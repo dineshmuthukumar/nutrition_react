@@ -1,0 +1,71 @@
+@import "../../styles/common";
+
+/*xs-styles*/
+
+.r-toast-container {
+  margin-bottom: 5px;
+  z-index: 1100;
+  display: flex;
+  background: #fff;
+  width: 300px;
+  animation: fadein 200ms;
+  border-radius: 2px;
+  position: relative;
+  box-shadow: 1px 1px 1px 1px #ccc;
+  border-radius: 8px;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.r-toast-container .icon {
+  padding: 10px 10px;
+}
+.r-toast-container .icon svg {
+  font-size: 20px;
+}
+
+.r-toast-container .toast-content {
+  color: #fff;
+  font-weight: bolder;
+  padding: 15px 10px;
+  font-size: 12px;
+}
+
+.warning {
+  background: #ff8f39;
+}
+
+.warning svg {
+  color: #fff;
+}
+
+.success {
+  background: #40ad5a;
+}
+
+.success svg {
+  color: #fff;
+}
+
+.error {
+  background: #ff5d5d;
+}
+
+.error svg {
+  color: #fff;
+}
+
+.info {
+  background: #5993ff;
+}
+
+.info svg {
+  color: #fff;
+}

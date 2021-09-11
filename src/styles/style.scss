@@ -1,0 +1,271 @@
+@import "./common";
+
+* {
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+
+body {
+  margin: 0;
+  font-family: $open-sans;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-color: #f5f6f8;
+}
+
+.font-10 {
+  font-size: 10px !important;
+}
+
+.hide {
+  display: none !important;
+}
+
+.show-inline {
+  display: inline !important;
+}
+
+.show-inline-block {
+  display: inline !important;
+}
+
+.show-flex {
+  display: flex !important;
+}
+
+.show-inline-flex {
+  display: inline-flex !important;
+}
+
+.show-block {
+  display: block !important;
+}
+
+.main-body {
+  margin-top: 60px;
+}
+
+/* loader */
+
+/*--- flone preloader ---*/
+
+.flone-preloader-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #f7f7f7;
+  z-index: 999999;
+}
+
+.flone-preloader {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  padding: 0;
+  text-align: left;
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -25px;
+  margin-top: -25px;
+}
+
+.flone-preloader span {
+  position: absolute;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  background: $theme-color;
+  -webkit-animation: preloader 1.3s linear infinite;
+  animation: preloader 1.3s linear infinite;
+}
+
+.flone-preloader span:last-child {
+  animation-delay: -0.8s;
+  -webkit-animation-delay: -0.8s;
+}
+
+@keyframes preloader {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1, 1);
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes preloader {
+  0% {
+    -webkit-transform: scale(0, 0);
+    opacity: 0.5;
+  }
+  100% {
+    -webkit-transform: scale(1, 1);
+    opacity: 0;
+  }
+}
+
+/*--- end of flone preloader ---*/
+
+label {
+  font-size: 12px;
+  // text-transform: uppercase;
+  font-weight: 600;
+  color: #6f7074;
+  margin-bottom: 0.25rem;
+}
+
+.otp-input {
+  text-align: center;
+
+  label {
+    margin-bottom: 0.5rem;
+  }
+}
+
+.otp-input > div {
+  justify-content: center;
+}
+
+.otp-input input {
+  width: 2em !important;
+  height: 2em;
+  font-size: 1rem;
+  margin: 0 0.4rem;
+  border: 1px solid #ced4da;
+  border-radius: 3px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+  &:focus {
+    color: #212529;
+    background-color: #fff;
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem #0d6efd40;
+  }
+}
+
+// input {
+//   border-radius: 2px !important;
+//   font-size: 13px !important;
+//   padding: 10px 15px !important;
+// }
+
+input,
+textarea {
+  font-size: 0.8rem !important;
+  font-weight: bold !important;
+}
+
+.offcanvas {
+  z-index: 1050 !important;
+}
+
+// select {
+//   border-radius: 2px !important;
+//   font-size: 13px !important;
+// }
+
+// button,
+// .btn {
+//   border-radius: 2px !important;
+//   font-size: 13px !important;
+//   svg {
+//     margin-top: -4px;
+//   }
+// }
+
+.top-loader {
+  display: none;
+  position: fixed;
+
+  width: 100%;
+  font-size: 12px;
+  padding: 2px 0;
+  z-index: 1000000;
+
+  // background: linear-gradient(
+  //   272deg,
+  //   #f34d0f,
+  //   #19d753,
+  //   #e42cee,
+  //   #c9ff22,
+  //   #2257ff,
+  //   #22ffed
+  // );
+  // background-size: 1200% 1200%;
+
+  // -webkit-animation: AnimationName 3s ease infinite;
+  // -moz-animation: AnimationName 3s ease infinite;
+  // animation: AnimationName 3s ease infinite;
+
+  animation-duration: 0.8s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background: linear-gradient(to right, #616060 8%, #ffffff 18%, #616060 33%);
+}
+
+.loading-indicator {
+  .top-loader {
+    display: block;
+  }
+  .whole-content {
+    pointer-events: none;
+  }
+}
+
+.react-toast-notifications__container {
+  z-index: 10000 !important;
+}
+
+@-webkit-keyframes AnimationName {
+  0% {
+    background-position: 0% 46%;
+  }
+  50% {
+    background-position: 100% 55%;
+  }
+  100% {
+    background-position: 0% 46%;
+  }
+}
+@-moz-keyframes AnimationName {
+  0% {
+    background-position: 0% 46%;
+  }
+  50% {
+    background-position: 100% 55%;
+  }
+  100% {
+    background-position: 0% 46%;
+  }
+}
+@keyframes AnimationName {
+  0% {
+    background-position: 0% 46%;
+  }
+  50% {
+    background-position: 100% 55%;
+  }
+  100% {
+    background-position: 0% 46%;
+  }
+}
+
+@keyframes placeHolderShimmer {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 150em 0;
+  }
+}
