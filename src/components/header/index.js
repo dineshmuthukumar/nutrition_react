@@ -43,7 +43,7 @@ const Header = ({ hideOptions = false }) => {
 
   const CustomToggle = React.forwardRef(({ onClick }, ref) => (
     <UserComponent
-      name="Suganth G"
+      user={state.user.data.user}
       ref={ref}
       onClick={(e) => {
         e.preventDefault();
@@ -85,14 +85,14 @@ const Header = ({ hideOptions = false }) => {
                 </Form>
 
                 <Nav>
-                  {/* <NavDropdown
-                title={state.lang === "en" ? "English" : "Hindi"}
-                id="basic-nav-dropdown"
-              >
-                <NavDropdown.Item onClick={handleChangeLang}>
-                  {state.lang === "en" ? "Hindi" : "English"}
-                </NavDropdown.Item>
-              </NavDropdown> */}
+                  <NavDropdown
+                    title={state.lang === "en" ? "English" : "Hindi"}
+                    id="basic-nav-dropdown"
+                  >
+                    <NavDropdown.Item onClick={handleChangeLang}>
+                      {state.lang === "en" ? "Hindi" : "English"}
+                    </NavDropdown.Item>
+                  </NavDropdown>
 
                   {user.login ? (
                     <Dropdown>
@@ -105,7 +105,12 @@ const Header = ({ hideOptions = false }) => {
                       <Dropdown.Menu>
                         <Dropdown.Item
                           as="button"
-                          onClick={() => history.push("/accounts#home")}
+                          onClick={() =>
+                            window.open(
+                              "https://base.bafdemo.com/accounts#home",
+                              "_self"
+                            )
+                          }
                         >
                           My Accounts
                         </Dropdown.Item>
@@ -220,9 +225,9 @@ const Header = ({ hideOptions = false }) => {
   );
 };
 
-const UserComponent = ({ name, onClick = () => {} }) => (
+const UserComponent = ({ user, onClick = () => {} }) => (
   <div className="header-user-details" onClick={onClick}>
-    <div className="user-name">{name}</div>
+    <div className="user-name">{`${user.first_name} ${user.last_name}`}</div>
     <img
       className="user-image"
       src="https://cdn1.iconfinder.com/data/icons/essential-21/128/User-512.png"

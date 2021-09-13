@@ -1,4 +1,7 @@
 import axios from "axios";
+import { signOutApi } from "../../api/methods";
+import { removeCookies } from "../../utils/cookies";
+import { userApi } from "./../../api/methods";
 
 import {
   user_login_action_request,
@@ -7,26 +10,27 @@ import {
   user_logout_action,
 } from "../actions/user_action";
 
-export const user_login_thunk = (input, toast) => {
+export const user_logout_thunk = () => {
   return async (dispatch) => {
     try {
-      dispatch(user_login_action_request());
-
-      const result = await axios.get(
-        `https://jsonplaceholder.typicode.com/todos/1`
-      );
-
-      if (result.status === 201) {
-        dispatch(user_login_action_success(input));
-      }
+      await signOutApi();
     } catch (err) {
-      dispatch(user_login_action_fauilure(err));
+      console.log("🚀 ~ file: user_thunk.js ~ line 58 ~ return ~ err", err);
     }
+    removeCookies();
+    dispatch(user_logout_action());
   };
 };
 
-export const user_logout_thunk = () => {
-  return (dispatch) => {
-    dispatch(user_logout_action());
+export const user_load_by_token_thunk = (token) => {
+  console.log("🚀 ~ file: user_thunk.js ~ line 26 ~ token", token);
+  return async (dispatch) => {
+    try {
+      const user = await userApi(token);
+
+      dispatch(user_login_action_success(user.data.data));
+    } catch (err) {
+      console.log("🚀 ~ file: user_thunk.js ~ line 58 ~ return ~ err", err);
+    }
   };
 };

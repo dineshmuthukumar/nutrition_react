@@ -7,3 +7,8 @@ const cookies = new Cookies();
 export const getCookies = () => {
   return cookies.get(cookie_token);
 };
+
+export const removeCookies = () => {
+  // cookies.remove(cookie_token);
+  cookies.remove(cookie_token, { domain: ".bafdemo.com" });
+};

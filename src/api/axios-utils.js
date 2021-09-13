@@ -1,6 +1,11 @@
 import axios from "axios";
+import { getCookies } from "./../utils/cookies";
 
 axios.defaults.baseURL = process.env.REACT_APP_SERVER_URL;
+
+const auth_token = getCookies();
+
+if (auth_token) axios.defaults.headers.common["Authorization"] = auth_token;
 
 axios.interceptors.request.use(
   function (config) {

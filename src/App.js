@@ -6,25 +6,36 @@ import {
   Redirect,
 } from "react-router-dom";
 import { ToastProvider } from "react-toast-notifications";
-import { useSelector, connect } from "react-redux";
+import { useSelector, connect, useDispatch } from "react-redux";
 
 import CustomToastComponent from "./components/toast/custom-toast";
-
-import "./App.css";
 import { change_lang_action } from "./redux/actions/lang_action";
 import { setLanguage } from "react-multi-lang";
+import { getCookies } from "./utils/cookies";
+import {
+  user_load_by_token_thunk,
+  user_logout_thunk,
+} from "./redux/thunk/user_thunk";
+import "./App.css";
 
 const Home = lazy(() => import("./pages/home"));
 const NotFound = lazy(() => import("./pages/not-found"));
 const Details = lazy(() => import("./pages/details"));
 
 function App(props) {
-  const state = useSelector((state) => state);
+  const dispatch = useDispatch();
+
+  const { lang, user } = useSelector((state) => state);
 
   useEffect(() => {
-    props.change_lang(state.lang);
-    setLanguage(state.lang);
-  }, [props, state.lang]);
+    props.change_lang(lang);
+    setLanguage(lang);
+
+    const token = getCookies();
+    if (!user.data.user && token) dispatch(user_load_by_token_thunk(token));
+
+    if (user.data.user && !token) dispatch(user_logout_thunk());
+  }, [props, lang]);
 
   return (
     <>

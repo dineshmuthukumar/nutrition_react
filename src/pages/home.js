@@ -1,12 +1,8 @@
 import React, { useEffect } from "react";
 import Header from "../components/header";
-import { getCookies } from "../utils/cookies";
 import ClientCard from "./../components/clientcard";
 
 const Home = () => {
-  useEffect(() => {
-    console.log(getCookies());
-  }, []);
   return (
     <>
       <Header />
