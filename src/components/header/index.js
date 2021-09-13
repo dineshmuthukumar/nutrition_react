@@ -124,7 +124,7 @@ const Header = ({ hideOptions = false }) => {
                         className="me-md-2 mt-2 mb-2 mt-md-0 mb-md-0"
                         onClick={() =>
                           window.open(
-                            "http://base.bafdemo.com/signin?redirect=abnft",
+                            "https://base.bafdemo.com/signin?redirect=https://amitabh.bafdemo.com/",
                             "_self"
                           )
                         }
@@ -134,7 +134,7 @@ const Header = ({ hideOptions = false }) => {
                       <Button
                         onClick={() =>
                           window.open(
-                            "http://base.bafdemo.com/signup?redirect=abnft",
+                            "https://base.bafdemo.com/signup",
                             "_self"
                           )
                         }
