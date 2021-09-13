@@ -14,6 +14,7 @@ const LoginComponent = () => {
   const { addToast } = useToasts();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  console.log("🚀 ~ file: index.js ~ line 17 ~ LoginComponent ~ user", user);
   const history = useHistory();
   const location = useLocation();
 

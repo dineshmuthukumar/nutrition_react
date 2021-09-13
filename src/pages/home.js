@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
-import Cookies from "universal-cookie";
 import Header from "../components/header";
+import { getCookies } from "../utils/cookies";
 import ClientCard from "./../components/clientcard";
 
 const Home = () => {
-  const cookies = new Cookies();
   useEffect(() => {
-    console.log(cookies.get("base_user_token"));
+    console.log(getCookies());
   }, []);
   return (
     <>
