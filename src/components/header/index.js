@@ -129,7 +129,7 @@ const Header = ({ hideOptions = false }) => {
                         className="me-md-2 mt-2 mb-2 mt-md-0 mb-md-0"
                         onClick={() =>
                           window.open(
-                            `${process.env.REACT_APP_BASE_URL}/signin?redirect=${process.env.REACT_APP_CURRENT_APP}`,
+                            `${process.env.REACT_APP_BASE_URL}/signin?redirect=${window.location.href}`,
                             "_self"
                           )
                         }
