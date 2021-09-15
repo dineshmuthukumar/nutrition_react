@@ -1,0 +1,51 @@
+.bid-history {
+  .bid-history-title {
+    font-size: 2rem;
+    font-weight: bolder;
+  }
+  .bid-history-content {
+    max-height: 70vh;
+    overflow: auto;
+    .bid-histroy-card {
+      background-color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      border-radius: 0.6rem;
+      margin-bottom: 0.5rem;
+
+      .first-half {
+        display: flex;
+        align-items: center;
+
+        img {
+          height: 60px;
+          width: 60px;
+          object-fit: scale-down;
+          border-radius: 50%;
+          margin-right: 1rem;
+        }
+
+        .time {
+          font-size: 0.8rem;
+          font-weight: bolder;
+        }
+
+        .bid-owner {
+          font-size: 1rem;
+          font-weight: bolder;
+        }
+      }
+      .second-half {
+        .bid-value {
+          font-size: 1rem;
+          font-weight: bolder;
+        }
+        .usd-value {
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+}

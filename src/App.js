@@ -5,10 +5,8 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import { ToastProvider } from "react-toast-notifications";
 import { useSelector, connect, useDispatch } from "react-redux";
 
-import CustomToastComponent from "./components/toast/custom-toast";
 import { change_lang_action } from "./redux/actions/lang_action";
 import { setLanguage } from "react-multi-lang";
 import { getCookies } from "./utils/cookies";
@@ -41,31 +39,25 @@ function App(props) {
     <>
       <div className="top-loader"></div>
       <div className="whole-content">
-        <ToastProvider
-          placement="bottom-right"
-          components={{ Toast: MyCustomToast }}
-          autoDismissTimeout={1800}
-        >
-          <Router>
-            <Suspense
-              fallback={
-                <div className="flone-preloader-wrapper">
-                  <div className="flone-preloader">
-                    <span></span>
-                    <span></span>
-                  </div>
+        <Router>
+          <Suspense
+            fallback={
+              <div className="flone-preloader-wrapper">
+                <div className="flone-preloader">
+                  <span></span>
+                  <span></span>
                 </div>
-              }
-            >
-              <Switch>
-                <Route exact path="/details/:id" component={Details} />
-                <Route exact path="/" component={Home} />
-                <Route path="/not-found" component={NotFound} />
-                <Route exact component={NotFound} />
-              </Switch>
-            </Suspense>
-          </Router>
-        </ToastProvider>
+              </div>
+            }
+          >
+            <Switch>
+              <Route exact path="/details/:id" component={Details} />
+              <Route exact path="/" component={Home} />
+              <Route path="/not-found" component={NotFound} />
+              <Route exact component={NotFound} />
+            </Switch>
+          </Suspense>
+        </Router>
       </div>
     </>
   );
@@ -80,10 +72,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(null, mapDispatchToProps)(App);
-
-const MyCustomToast = (props) => {
-  return <CustomToastComponent {...props}></CustomToastComponent>;
-};
 
 const PrivateRoute = ({ component: Component, authed, ...rest }) => {
   const user = useSelector((state) => state.user);

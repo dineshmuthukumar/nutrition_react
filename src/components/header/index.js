@@ -107,7 +107,7 @@ const Header = ({ hideOptions = false }) => {
                           as="button"
                           onClick={() =>
                             window.open(
-                              "https://base.bafdemo.com/accounts#home",
+                              `${process.env.REACT_APP_BASE_URL}/accounts#home`,
                               "_self"
                             )
                           }
@@ -129,7 +129,7 @@ const Header = ({ hideOptions = false }) => {
                         className="me-md-2 mt-2 mb-2 mt-md-0 mb-md-0"
                         onClick={() =>
                           window.open(
-                            "https://base.bafdemo.com/signin?redirect=https://amitabh.bafdemo.com/",
+                            `${process.env.REACT_APP_BASE_URL}/signin?redirect=${process.env.REACT_APP_CURRENT_APP}`,
                             "_self"
                           )
                         }
@@ -139,7 +139,7 @@ const Header = ({ hideOptions = false }) => {
                       <Button
                         onClick={() =>
                           window.open(
-                            "https://base.bafdemo.com/signup",
+                            `${process.env.REACT_APP_BASE_URL}/signup`,
                             "_self"
                           )
                         }

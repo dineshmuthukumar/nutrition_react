@@ -1,0 +1,23 @@
+.nft-tags {
+  .nft-tag-title {
+    font-size: 2rem;
+    font-weight: bolder;
+  }
+
+  .nft-tag-content {
+    display: flex;
+    flex-wrap: wrap;
+
+    .tag {
+      padding: 0.5rem 1.5rem;
+      font-size: 1rem;
+      font-weight: bolder;
+      margin-right: 1rem;
+      margin-bottom: 1rem;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
