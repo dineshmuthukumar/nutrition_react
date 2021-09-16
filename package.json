@@ -42,7 +42,7 @@
     "start:local": "react-scripts start .env.local",
     "start:dev": "react-scripts start .env.development",
     "start:prod": "react-scripts start .env.prod",
-    "build": "react-scripts build .env.prod",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
