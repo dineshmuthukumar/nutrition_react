@@ -39,8 +39,10 @@
     "websocket": "^1.0.34"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start:local": "react-scripts start .env.local",
+    "start:dev": "react-scripts start .env.development",
+    "start:prod": "react-scripts start .env.prod",
+    "build": "react-scripts build .env.prod",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
