@@ -8,7 +8,6 @@ import {
   FormControl,
   Button,
   Container,
-  Offcanvas,
 } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import { useTranslation, setLanguage } from "react-multi-lang";
@@ -35,11 +34,6 @@ const Header = ({ hideOptions = false }) => {
     setLanguage(u_lang);
     dispatch(change_lang_action(u_lang));
   };
-
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  // const handleShow = () => setShow(true);
 
   const CustomToggle = React.forwardRef(({ onClick }, ref) => (
     <UserComponent
@@ -78,21 +72,21 @@ const Header = ({ hideOptions = false }) => {
                 aria-label="Search"
               /> */}
 
-                  <div>
+                  {/* <div>
                     <Online>Only shown when you're online</Online>
                     <Offline>Only shown offline (surprise!)</Offline>
-                  </div>
+                  </div> */}
                 </Form>
 
                 <Nav>
-                  <NavDropdown
+                  {/* <NavDropdown
                     title={state.lang === "en" ? "English" : "Hindi"}
                     id="basic-nav-dropdown"
                   >
                     <NavDropdown.Item onClick={handleChangeLang}>
                       {state.lang === "en" ? "Hindi" : "English"}
                     </NavDropdown.Item>
-                  </NavDropdown>
+                  </NavDropdown> */}
 
                   {user.login ? (
                     <Dropdown>
@@ -154,73 +148,6 @@ const Header = ({ hideOptions = false }) => {
           )}
         </Container>
       </Navbar>
-
-      <Offcanvas show={show} onHide={handleClose}>
-        <Offcanvas.Header closeButton>
-          <Offcanvas.Title>
-            <img
-              alt=""
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Android_O_Preview_Logo.png/900px-Android_O_Preview_Logo.png"
-              width="30"
-              height="30"
-              className="d-inline-block align-top"
-            />{" "}
-            {t("abnft")}
-          </Offcanvas.Title>
-        </Offcanvas.Header>
-        <Offcanvas.Body>
-          <Nav variant="pills" className="flex-column">
-            <Nav.Item>
-              <Nav.Link
-                active={location.pathname === "/dashboard"}
-                href="/dashboard"
-              >
-                {t("dashboard")}
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link
-                active={location.pathname === "/profile"}
-                href="/profile"
-              >
-                {t("editprofile")}
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link
-                active={location.pathname === "/payment-method"}
-                href="/payment-method"
-              >
-                {t("paymentmethod")}
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link
-                active={location.pathname === "/seller-settings"}
-                href="/seller-settings"
-              >
-                {t("sellersettings")}
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link
-                active={location.pathname === "/notifications"}
-                href="/notifications"
-              >
-                {t("notifications")}
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link
-                active={location.pathname === "/security"}
-                href="/security"
-              >
-                {t("security")}
-              </Nav.Link>
-            </Nav.Item>
-          </Nav>
-        </Offcanvas.Body>
-      </Offcanvas>
     </>
   );
 };

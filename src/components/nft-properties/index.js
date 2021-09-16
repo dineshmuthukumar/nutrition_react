@@ -9,22 +9,12 @@ const NFTProperties = () => {
       <div className="nft-props-desc text-secondary">
         Art Properties are traits which determine the uniqueness of the NFT
       </div>
-      <div className="row mt-4">
-        <div className="col-12 col-md-4">
-          <NFTPropPills />
-        </div>
-        <div className="col-12 col-md-4">
-          <NFTPropPills />
-        </div>
-        <div className="col-12 col-md-4">
-          <NFTPropPills />
-        </div>
-        <div className="col-12 col-md-4">
-          <NFTPropPills />
-        </div>
-        <div className="col-12 col-md-4">
-          <NFTPropPills />
-        </div>
+      <div className="mt-4 nft-props-content">
+        <NFTPropPills />
+        <NFTPropPills />
+        <NFTPropPills />
+        <NFTPropPills />
+        <NFTPropPills />
       </div>
     </div>
   );

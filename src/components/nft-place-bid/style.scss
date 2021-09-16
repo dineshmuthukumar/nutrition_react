@@ -1,0 +1,87 @@
+.pop-bid-title {
+  font-size: 1.7rem;
+  font-weight: bolder;
+}
+.pop-nft-details {
+  position: relative;
+  height: 90vh;
+
+  img {
+    width: 100%;
+    max-height: 35vh;
+    object-fit: scale-down;
+  }
+  .least-bid {
+    font-size: 0.8rem;
+    font-weight: bolder;
+  }
+  .least-bid-value {
+    font-size: 0.9rem;
+    font-weight: bolder;
+  }
+  .input-bid-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 8rem;
+    margin-right: 8rem;
+    border: 2px solid #222;
+    border-radius: 0.6rem;
+
+    .input-bid {
+      width: 100%;
+      border: none;
+      outline: none;
+      border-radius: 0.6rem;
+      font-size: 1.8rem !important;
+      padding: 0.6rem 1.1rem;
+    }
+
+    .usd-value {
+      white-space: nowrap;
+      padding: 0 1.1rem;
+    }
+  }
+
+  .balance-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 8rem;
+    margin-right: 8rem;
+    border-radius: 0.6rem;
+    background-color: #eee;
+    padding: 1.3rem 1.5rem;
+    font-size: 0.9rem;
+    font-weight: bolder;
+  }
+
+  .bottom-area {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1.2rem;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    -webkit-box-shadow: 0px -4px 3px rgba(216, 216, 216, 0.75);
+    -moz-box-shadow: 0px -4px 3px rgba(216, 216, 216, 0.75);
+    box-shadow: 0px -4px 3px rgba(216, 216, 216, 0.75);
+
+    .time-details {
+      .time-title {
+        font-size: 0.7rem;
+        font-weight: bolder;
+      }
+      .time-counter {
+        font-size: 1.4rem;
+        white-space: nowrap;
+        font-weight: bolder;
+      }
+    }
+    .place-bid-button {
+      width: 100%;
+      text-align: center;
+    }
+  }
+}

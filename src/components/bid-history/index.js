@@ -6,7 +6,7 @@ const BidHistory = () => {
   return (
     <div className="bid-history">
       <div className="bid-history-title">Bid History</div>
-      <div className="bid-history-content">
+      <div className="bid-history-content mt-3">
         <BidCard />
         <BidCard />
         <BidCard />

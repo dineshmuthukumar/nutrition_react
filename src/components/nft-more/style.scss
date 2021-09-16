@@ -1,0 +1,49 @@
+.nft-more {
+  .title {
+    font-size: 2rem;
+    font-weight: bolder;
+  }
+  .nft-more-content {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: auto;
+
+    .more-card {
+      margin-right: 1rem;
+      margin-bottom: 2rem;
+
+      &:last-child {
+        margin-right: 0;
+      }
+      img {
+        width: 25rem;
+        max-height: 50vh;
+        object-fit: scale-down;
+        margin-bottom: 1rem;
+      }
+
+      .more-nft-title {
+        font-size: 1.5rem;
+        font-weight: bolder;
+      }
+      .more-nft-desc {
+        font-size: 1rem;
+        font-weight: bolder;
+        margin-bottom: 1.5rem;
+      }
+      .more-bid-details {
+        display: flex;
+        justify-content: space-between;
+
+        .mb-title {
+          font-size: 0.8rem;
+        }
+
+        .mb-value {
+          font-size: 1rem;
+          font-weight: bolder;
+        }
+      }
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ClientCard = ({ title, desc, imgUrl }) => {
   return (
@@ -10,9 +11,9 @@ const ClientCard = ({ title, desc, imgUrl }) => {
         <p className="card-text">
           <b>Highest Bid is 22.67 ETH</b>
         </p>
-        <a href="#" className="btn btn-primary float-end">
+        <Link to="/details/id" className="btn btn-primary float-end">
           Place Bid
-        </a>
+        </Link>
       </div>
     </div>
   );

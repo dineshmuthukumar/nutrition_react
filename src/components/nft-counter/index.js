@@ -10,7 +10,7 @@ const NFTCounter = () => {
         Auction ending in
         <BsFillQuestionCircleFill size={20} className="ms-1 question-icon" />
       </div>
-      <Countdown date={Date.now() + 1000000} daysInHours />
+      <Countdown date={Date.now() + 100000000} />
     </div>
   );
 };

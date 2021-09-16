@@ -281,3 +281,21 @@ textarea {
   outline: 1px solid #ccc;
   border-radius: 10px;
 }
+
+@media (min-width: $sm-width) {
+}
+
+@media (min-width: $md-width) {
+  .w-md-50 {
+    width: 50% !important;
+  }
+}
+
+@media (min-width: $lg-width) {
+  .w-lg-40 {
+    width: 40% !important;
+  }
+}
+
+@media (min-width: $xl-width) {
+}

@@ -1,10 +1,17 @@
-import React from "react";
-import NFTCounter from "./../nft-counter/index";
-import CurrentBid from "./../current-bid/index";
+import React, { useState } from "react";
 import { BiCheckCircle } from "react-icons/bi";
+import NFTCounter from "./../nft-counter";
+import CurrentBid from "./../current-bid";
+import NFTPlaceBid from "./../nft-place-bid";
 import "./style.scss";
 
 const NFTBaseDetails = () => {
+  const [show, setShow] = useState(false);
+
+  const handleShowBid = () => {
+    setShow(!show);
+  };
+
   return (
     <>
       <div className="creator mt-4">
@@ -25,7 +32,12 @@ const NFTBaseDetails = () => {
       <hr />
 
       <div className="text-center">
-        <button className="btn btn-dark text-center btn-lg w-75 mt-5 rounded-pill">
+        <NFTPlaceBid show={show} handleClose={handleShowBid} />
+
+        <button
+          className="btn btn-dark text-center btn-lg w-75 mt-5 rounded-pill"
+          onClick={handleShowBid}
+        >
           Place Bid
         </button>
         <div className="mt-2 royalty-info">
