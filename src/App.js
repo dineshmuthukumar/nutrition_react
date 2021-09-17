@@ -6,6 +6,7 @@ import {
   Redirect,
 } from "react-router-dom";
 import { useSelector, connect, useDispatch } from "react-redux";
+import { Offline } from "react-detect-offline";
 
 import { change_lang_action } from "./redux/actions/lang_action";
 import { setLanguage } from "react-multi-lang";
@@ -37,6 +38,12 @@ function App(props) {
 
   return (
     <>
+      <Offline>
+        <div className="offline-ribbon">
+          You are offline, please check you internet connection
+        </div>
+      </Offline>
+
       <div className="top-loader"></div>
       <div className="whole-content">
         <Router>

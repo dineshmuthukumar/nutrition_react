@@ -34,7 +34,7 @@ ReactDOM.render(
   <Provider store={store}>
     <App />
     <ToastContainer
-      position="bottom-center"
+      position="top-right"
       autoClose={3000}
       hideProgressBar
       newestOnTop={false}

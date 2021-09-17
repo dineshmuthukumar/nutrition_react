@@ -1,13 +1,13 @@
 .nft-counter {
-  .title {
-    font-weight: 800;
-    font-size: 1rem;
-  }
-  span {
+  .counter-time {
     font-size: 2.5rem;
     font-weight: 800;
   }
-  .question-icon {
-    margin-top: -5px;
+  .counter-interval {
+    font-size: 1.5rem;
+    font-weight: 800;
+  }
+  .interval-gap {
+    margin-right: 1rem;
   }
 }

@@ -13,7 +13,6 @@ import { useLocation } from "react-router-dom";
 import { useTranslation, setLanguage } from "react-multi-lang";
 import { useHistory } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
-import { Offline, Online } from "react-detect-offline";
 
 import { change_lang_action } from "./../../redux/actions/lang_action";
 import { user_logout_thunk } from "../../redux/thunk/user_thunk";

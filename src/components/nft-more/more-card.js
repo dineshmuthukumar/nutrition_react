@@ -1,4 +1,5 @@
 import React from "react";
+import NFTCounter from "../nft-counter";
 import "./style.scss";
 
 const MoreCard = () => {
@@ -14,7 +15,14 @@ const MoreCard = () => {
         </div>
         <div className="text-end">
           <div className="mb-title text-secondary">Starting In</div>
-          <div className="mb-value">10d 3h 12m 12s</div>
+          <div className="mb-value text-end">
+            <NFTCounter
+              time="2021-10-10"
+              timeClass="font-onerem"
+              intervalClass="font-psevenrem"
+              intervalGapClass="me-1"
+            />
+          </div>
         </div>
       </div>
     </div>

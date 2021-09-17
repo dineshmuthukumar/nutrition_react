@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { BiCheckCircle } from "react-icons/bi";
-import NFTCounter from "./../nft-counter";
+import NFTTimeLeft from "../nft-time-left";
 import CurrentBid from "./../current-bid";
 import NFTPlaceBid from "./../nft-place-bid";
 import "./style.scss";
@@ -28,7 +28,7 @@ const NFTBaseDetails = () => {
       </p>
       <CurrentBid />
       <hr />
-      <NFTCounter />
+      <NFTTimeLeft />
       <hr />
 
       <div className="text-center">
