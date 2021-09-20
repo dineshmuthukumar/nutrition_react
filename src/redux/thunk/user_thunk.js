@@ -1,7 +1,6 @@
-import axios from "axios";
-import { signOutApi } from "../../api/methods";
+import { signOutApi } from "../../api/base-methods";
 import { removeCookies } from "../../utils/cookies";
-import { userApi } from "./../../api/methods";
+import { userApi } from "../../api/base-methods";
 
 import {
   user_login_action_request,
@@ -23,7 +22,6 @@ export const user_logout_thunk = () => {
 };
 
 export const user_load_by_token_thunk = (token) => {
-  console.log("🚀 ~ file: user_thunk.js ~ line 26 ~ token", token);
   return async (dispatch) => {
     try {
       const user = await userApi(token);

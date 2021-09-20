@@ -8,8 +8,35 @@ $lg-max-width: 882px;
 $md-max-width: 774px;
 $sm-max-width: 650px;
 
+@font-face {
+  font-family: "neue_helveticabold";
+  src: url("../fonts/helvetica_neue_lt_75_bold-webfont.woff2") format("woff2"),
+    url("../fonts/helvetica_neue_lt_75_bold-webfont.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "neue_helveticalight";
+  src: url("../fonts/helvetica_neue_lt_45_light-webfont.woff2") format("woff2"),
+    url("../fonts/helvetica_neue_lt_45_light-webfont.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "neue_helveticamedium";
+  src: url("../fonts/helvetica_neue_lt_65_medium-webfont.woff2") format("woff2"),
+    url("../fonts/helvetica_neue_lt_65_medium-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
 $open-sans: "Open Sans", sans-serif !important;
 $roboto-sans: "Roboto", sans-serif !important;
+$neue-helveticalight: "neue_helveticalight" !important;
+$neue-helveticamedium: "neue_helveticamedium" !important;
+$neue-helveticabold: "neue_helveticabold" !important;
 
 $dark-color: #000;
 $little-dark-color: #222;
