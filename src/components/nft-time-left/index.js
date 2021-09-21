@@ -10,7 +10,7 @@ const NFTTimeLeft = () => {
         Auction ending in
         <BsFillQuestionCircleFill size={20} className="ms-1 question-icon" />
       </div>
-      <NFTCounter time={"2021-09-18"} />
+      <NFTCounter time={"2021-09-28"} />
     </div>
   );
 };

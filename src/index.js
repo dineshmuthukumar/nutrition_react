@@ -17,7 +17,7 @@ import { setTranslations } from "react-multi-lang";
 import en from "./translations/en.json";
 import hi from "./translations/hi.json";
 
-import "bootstrap/dist/css/bootstrap.min.css";
+import "./styles/custom_bootstrap.scss";
 import "react-toastify/dist/ReactToastify.css";
 import "./index.css";
 import "./styles/style.scss";

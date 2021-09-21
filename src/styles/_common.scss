@@ -9,6 +9,11 @@ $md-max-width: 774px;
 $sm-max-width: 650px;
 
 @font-face {
+  font-family: "Furuta";
+  src: url("../fonts/futura_heavy_font.ttf") format("truetype");
+}
+
+@font-face {
   font-family: "neue_helveticabold";
   src: url("../fonts/helvetica_neue_lt_75_bold-webfont.woff2") format("woff2"),
     url("../fonts/helvetica_neue_lt_75_bold-webfont.woff") format("woff");
@@ -37,6 +42,7 @@ $roboto-sans: "Roboto", sans-serif !important;
 $neue-helveticalight: "neue_helveticalight" !important;
 $neue-helveticamedium: "neue_helveticamedium" !important;
 $neue-helveticabold: "neue_helveticabold" !important;
+$futura: "Furuta" !important;
 
 $dark-color: #000;
 $little-dark-color: #222;
