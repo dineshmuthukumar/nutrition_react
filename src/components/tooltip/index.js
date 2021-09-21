@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
 const ToolTip = ({ icon, placement, content }) => {
     return (
