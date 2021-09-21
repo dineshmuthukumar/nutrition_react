@@ -1,7 +1,15 @@
 import React from "react";
 import "./style.scss";
 
-const BidValue = ({ title, value, currency, status, edition = false }) => {
+const BidValue = ({
+  title,
+  value,
+  currency,
+  status,
+  edition = false,
+  isEnd = false,
+  name,
+}) => {
   return (
     <div className="current-bid">
       <div className="title">
@@ -9,10 +17,17 @@ const BidValue = ({ title, value, currency, status, edition = false }) => {
         {status && <span className="status-tag rounded-pill">{status}</span>}
       </div>
       <div className="value">
-        <div className="crypto me-3">
-          {currency} {value}
-          {edition && <div className="edition">left</div>}
-        </div>
+        {isEnd ? (
+          <div className="user-detail">
+            <img src="https://picsum.photos/100/100" />
+            <div className="win-user-name">{name}</div>
+          </div>
+        ) : (
+          <div className="crypto me-3">
+            {currency} {value}
+            {edition && <div className="edition">left</div>}
+          </div>
+        )}
       </div>
     </div>
   );

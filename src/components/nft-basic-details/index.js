@@ -3,11 +3,14 @@ import { FaCheckCircle } from "react-icons/fa";
 import NFTTimeLeft from "../nft-time-left";
 import BidValue from "../bid-value";
 import NFTPlaceBid from "./../nft-place-bid";
-import { ReactComponent as YourSvg } from "./../../icons/discord_logo.svg";
+import { ReactComponent as DiscordSvg } from "./../../icons/discord_logo.svg";
+import ToolTip from "../tooltip";
 import "./style.scss";
 
 const NFTBaseDetails = () => {
   const [show, setShow] = useState(false);
+  const [currentUser, setCurrentUser] = useState(false);
+  const [ended, setEnded] = useState(true);
 
   const handleShowBid = () => {
     setShow(!show);
@@ -17,14 +20,26 @@ const NFTBaseDetails = () => {
     <>
       <div className="creator mt-3">
         Amitabh Bachchan
-        <FaCheckCircle size={16} className="ms-2 check-icon" />
+        <ToolTip
+          icon={<FaCheckCircle size={16} className="ms-2 check-icon" />}
+          content="Verified Artist"
+          placement="right"
+        />
+        {ended && <span className="nft-status-tag rounded-pill">Sold Out</span>}
       </div>
       <div className="nft-title-container">
         <div className="nft-title">Signed Poster #001</div>
-        <div className="discord">
-          <div className="count">22</div>
-          <YourSvg />
-        </div>
+
+        <ToolTip
+          icon={
+            <div className="discord">
+              <div className="count">22</div>
+              <DiscordSvg />
+            </div>
+          }
+          content="View this NFT bid's discord server"
+          placement="left"
+        />
       </div>
       <p className="text-secondary mt-1 mb-5 nft-desc">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -35,12 +50,16 @@ const NFTBaseDetails = () => {
 
       <div className="d-flex">
         <BidValue title="Minimum Bid" value="2.110k" currency="$" />
-        <BidValue
-          title="Your Last Bid"
-          value="1.8k"
-          currency="$"
-          status="Outbid"
-        />
+        {currentUser && (
+          <BidValue
+            title="Your Last Bid"
+            value="1.8k"
+            currency="$"
+            status="Outbid"
+          />
+        )}
+
+        {ended && <BidValue title="Owned By" name="@CryptoGeek" isEnd />}
       </div>
       <hr className="custom-divider" />
       <NFTTimeLeft />
@@ -52,6 +71,7 @@ const NFTBaseDetails = () => {
         <NFTPlaceBid show={show} handleClose={handleShowBid} />
 
         <button
+          disabled
           className="btn btn-dark text-center btn-lg mt-5 rounded-pill place-bid-btn"
           onClick={handleShowBid}
         >
