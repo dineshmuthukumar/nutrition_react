@@ -14,8 +14,8 @@ const Details = () => {
   return (
     <>
       <Header />
-      <div className="container">
-        <div className="row mt-3">
+      <div className="container-fluid">
+        <div className="row mt-5">
           <div className="col-12 col-lg-7 align-self-center">
             <NFTMedia />
           </div>

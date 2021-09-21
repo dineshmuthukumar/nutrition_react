@@ -53,6 +53,8 @@ function App(props) {
                 <div className="flone-preloader">
                   <span></span>
                   <span></span>
+                  <span></span>
+                  <span></span>
                 </div>
               </div>
             }

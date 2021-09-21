@@ -1,17 +1,17 @@
 @import "./common";
 
-* {
-  -webkit-transition: all 0.2s ease-in;
-  transition: all 0.2s ease-in;
-}
+// * {
+//   -webkit-transition: all 0.2s ease-in;
+//   transition: all 0.2s ease-in;
+// }
 
 body {
   margin: 0;
-  font-family: $neue-helveticamedium;
+  font-family: $open-sans;
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
-  background-color: #f0f0f0;
+  background-color: #fafafa;
 }
 
 .font-10 {

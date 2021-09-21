@@ -4,7 +4,7 @@ import "./style.scss";
 const NFTMedia = () => {
   return (
     <div className="nft-media">
-      <img src="https://picsum.photos/1000/1000" />
+      <img src="https://picsum.photos/780/750" />
       {/* <img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" /> */}
       {/* <video controls>
         <source
