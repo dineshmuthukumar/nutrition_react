@@ -1,0 +1,12 @@
+@import "../../styles/common";
+
+.tooltip-text {
+  font-family: $neue-helveticalight;
+
+  .tooltip-inner {
+    padding: 0.6rem;
+    text-align: left;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    max-width: 20rem;
+  }
+}

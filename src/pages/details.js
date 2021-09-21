@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import BidAuction from "../components/bid-auction";
 import BidAuctionEnd from "../components/bid-auction-end";
 import BidHistory from "../components/bid-history";
@@ -12,17 +12,30 @@ import NFTMore from "../components/nft-more";
 import NFTProperties from "../components/nft-properties";
 import NFTTags from "../components/nft-tags";
 import NFTSummary from "./../components/nft-summary";
+import SubHeader from "./../components/sub-header";
 
 const Details = () => {
   const data = {
     soldFor: 2000.99,
     soldOn: "Sep 16, 21 11:11pm",
-    lastBid: 1976.00,
+    lastBid: 1976.0,
     lastBidDate: "Sep 16, 21 11:09pm",
-  }
+  };
+
+  const [small, setSmall] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", () =>
+        setSmall(window.pageYOffset > 800)
+      );
+    }
+  }, []);
+
   return (
     <>
       <Header />
+      {small && <SubHeader />}
       <div className="container-fluid">
         <div className="row mt-5">
           <div className="col-12 col-lg-7 align-self-center">
