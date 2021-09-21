@@ -1,11 +1,42 @@
 .bid-history {
+  border-radius: 8px;
+  box-shadow: 0 6px 15px 0 rgba(0, 0, 0, 0.15);
+  border: solid 2px #000;
+  background-color: #fff;
+
   .bid-history-title {
     font-size: 2rem;
     font-weight: bolder;
+    border-radius: 0.43rem;
+    background-color: #000;
+
+    .bid-history-title-content {
+      font-family: HelveticaNeue;
+      font-size: 1.5rem;
+      font-weight: 500;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 0.79;
+      letter-spacing: normal;
+      color: #fff;
+    }
+
+    .bid-history-sort {
+      font-family: HelveticaNeue;
+      font-size: 1rem;
+      font-weight: 500;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.19;
+      letter-spacing: normal;
+      color: #fff;
+    }
   }
+
   .bid-history-content {
     max-height: 70vh;
     overflow: auto;
+
     .bid-histroy-card {
       background-color: #fff;
       display: flex;
@@ -37,11 +68,13 @@
           font-weight: bolder;
         }
       }
+
       .second-half {
         .bid-value {
           font-size: 1rem;
           font-weight: bolder;
         }
+
         .usd-value {
           font-size: 0.8rem;
         }
