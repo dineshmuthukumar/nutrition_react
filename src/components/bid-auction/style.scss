@@ -1,72 +1,44 @@
+@import "../../styles/common";
+
 .bid-auction {
-    width: 100%;
-    padding: 16px 23px 24px;
-    border-radius: 7px;
-    background-color: #000;
-}
+  background-color: black;
+  color: white;
+  border-radius: 0.5rem;
+  padding: 1.5rem 1.5rem;
+  min-height: 70vh;
 
-.bid-auction-content {
-  width: 447px;
-  height: 500px;
-  margin: 0 165px 73px 0;
-  transform: rotate(-360deg);
-  font-family: HelveticaNeue;
-  font-size: 88px;
-  font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1;
-  letter-spacing: normal;
-  color: #fff;
-}
+  .bid-auction-content {
+    font-family: $neue-helveticamedium;
+    font-size: 4.5rem;
+    line-height: normal;
+  }
 
-.bid-auction-time {
-  margin: 4.5rem 0 0;
-}
+  .bid-aution-bottom {
+    position: sticky;
+    top: 100vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #ffffff;
 
-.auction-start {
-  font-size: 1rem;
-  font-weight: 400;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  color: #fff;
-}
+    .bottom-title {
+      font-family: $neue-helveticamedium;
+      font-size: 0.8rem;
+    }
+    .bottom-time {
+      .counter-time {
+        font-size: 1.9rem !important;
+      }
 
-.auction-time {
-  font-size: 2.5rem;
-  font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  color: #fff;
-}
+      .counter-interval {
+        font-size: 0.9rem !important;
+        font-family: $neue-helveticalight;
+      }
 
-.recharge-wallet {
-  width: 1rem;
-  font-family: HelveticaNeue;
-  font-size: 14px;
-  font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: center;
-  color: #fff;
-}
-
-.recharge-button {
-  width: 8.6rem;;
-  margin: 38px 0 16px 196px;
-  padding: 7px 21px;
-  border-radius: 21px;
-  border: solid 1px #fff;
-  background-color: #000;
-}
-
-.line {
-  margin: 1rem 0 0;
-  border: solid 2px #fff;
+      .interval-gap {
+        margin-right: 0.7rem !important;
+      }
+    }
+  }
 }
