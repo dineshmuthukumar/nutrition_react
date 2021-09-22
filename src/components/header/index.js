@@ -42,13 +42,7 @@ const Header = ({ hideOptions = false }) => {
 
   return (
     <>
-      <Navbar
-        bg="dark"
-        expand="md"
-        sticky="top"
-        className="border-bottom"
-        variant="dark"
-      >
+      <Navbar bg="dark" expand="md" sticky="top" variant="dark">
         <Container fluid>
           <Navbar.Brand
             onClick={() => history.push("/")}
@@ -219,7 +213,7 @@ const UserComponent = ({ user, onClick = () => {} }) => (
       src="https://picsum.photos/50/50"
       alt="user-icon"
     />
-    <div className="user-name">{`${user.first_name} ${user.last_name}`}</div>
+    <div className="user-name">$ 5431.34</div>
   </div>
 );
 export default Header;

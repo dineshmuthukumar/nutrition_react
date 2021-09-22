@@ -6,7 +6,7 @@
 }
 
 .creator {
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-family: $neue-helveticamedium;
 
   .check-icon {
@@ -22,6 +22,15 @@
   }
 }
 
+.read-more-button {
+  cursor: pointer;
+}
+
+.bottom-content {
+  position: sticky;
+  top: 100vh;
+}
+
 .place-bid-btn {
   font-family: $neue-helveticamedium;
   padding-top: 1.2rem;
@@ -33,6 +42,23 @@
     color: #9c9c9b;
     border: none;
   }
+
+  &:hover {
+    background-color: #ffffff;
+    color: #000000;
+  }
+}
+
+.recharge-btn {
+  font-family: $neue-helveticamedium;
+  padding-top: 1.2rem;
+  padding-bottom: 1.2rem;
+  width: 80%;
+
+  &:hover {
+    background-color: #ffffff;
+    color: rgb(236, 41, 41) !important;
+  }
 }
 
 .nft-title-container {
@@ -41,7 +67,7 @@
   align-items: center;
 
   .nft-title {
-    font-size: 2.3rem;
+    font-size: 2.4rem;
     font-family: $neue-helveticamedium;
   }
 

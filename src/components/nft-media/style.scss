@@ -1,6 +1,9 @@
+@import "../../styles/common";
+
 .nft-media {
   text-align: center;
   background-color: #e7e7e9;
+  position: relative;
 
   img,
   video,
@@ -11,28 +14,22 @@
     object-fit: scale-down;
   }
 
-  .media-heart{
+  .media-lsf {
     position: absolute;
-    padding: 0.56rem 0.50rem 0.63rem;
-    border-radius: 0.25rem;
-    background-color: #fff;
-    margin-left: 3rem
-  }
+    right: 1rem;
+    bottom: 0.7rem;
+    display: flex;
 
-  .media-share{
-    position: absolute;
-    padding: 0.56rem 0.50rem 0.63rem;
-    border-radius: 0.25rem;
-    background-color: #fff;
-    margin-left: 6rem
-  }
+    div {
+      background-color: #ffffff;
+      padding: 0.5rem;
+      border-radius: 0.3rem;
+      margin-left: 0.5rem;
 
-  .media-expand{
-    position: absolute;
-    padding: 0.56rem 0.50rem 0.63rem;
-    border-radius: 0.25rem;
-    background-color: #fff;
-    margin-left: 9rem
+      &:active {
+        background-color: #c9c7c7;
+      }
+    }
   }
 }
 
@@ -40,4 +37,17 @@
   max-height: 80vh;
   object-fit: scale-down;
   width: 100%;
+}
+
+.custom-pop {
+  font-family: $neue-helveticamedium;
+}
+
+.full-screen-header {
+  border: none;
+
+  button {
+    font-size: 1.5rem;
+    opacity: 1;
+  }
 }

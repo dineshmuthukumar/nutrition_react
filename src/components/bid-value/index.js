@@ -6,8 +6,8 @@ const BidValue = ({
   value,
   currency,
   status,
-  edition = false,
   isEnd = false,
+  isLeft = false,
   name,
 }) => {
   return (
@@ -25,7 +25,7 @@ const BidValue = ({
         ) : (
           <div className="crypto me-3">
             {currency} {value}
-            {edition && <div className="edition">left</div>}
+            {isLeft && <div className="edition">left</div>}
           </div>
         )}
       </div>

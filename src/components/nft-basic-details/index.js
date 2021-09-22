@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaCheckCircle } from "react-icons/fa";
+import ReadMoreReact from "read-more-react";
 import NFTTimeLeft from "../nft-time-left";
 import BidValue from "../bid-value";
 import NFTPlaceBid from "./../nft-place-bid";
@@ -11,6 +12,7 @@ const NFTBaseDetails = () => {
   const [show, setShow] = useState(false);
   const [currentUser, setCurrentUser] = useState(false);
   const [ended, setEnded] = useState(true);
+  const [inSufficientBalance, setinSufficientBalance] = useState(false);
 
   const handleShowBid = () => {
     setShow(!show);
@@ -28,7 +30,9 @@ const NFTBaseDetails = () => {
         {ended && <span className="nft-status-tag rounded-pill">Sold Out</span>}
       </div>
       <div className="nft-title-container">
-        <div className="nft-title">Signed Poster #001</div>
+        <div className="nft-title">
+          Lazerbeams Visualiser [KDYN Remix] [2/3]
+        </div>
 
         <ToolTip
           icon={
@@ -42,44 +46,62 @@ const NFTBaseDetails = () => {
         />
       </div>
       <p className="text-secondary mt-1 mb-5 nft-desc">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Lorem ipsum dolor sit amet, consectetur ut enim.
+        <ReadMoreReact
+          min={300}
+          ideal={300}
+          max={700}
+          text={`
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex eacommodo consequat. Lorem ipsum dolor sit amet, consectetur ut enim  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.`}
+        />
       </p>
 
-      <div className="d-flex">
-        <BidValue title="Minimum Bid" value="2.110k" currency="$" />
-        {currentUser && (
-          <BidValue
-            title="Your Last Bid"
-            value="1.8k"
-            currency="$"
-            status="Outbid"
-          />
-        )}
+      <div className="bottom-content">
+        <div className="d-flex">
+          <BidValue title="Minimum Bid" value="2.110k" currency="$" />
+          {currentUser && (
+            <BidValue
+              title="Your Last Bid"
+              value="1.8k"
+              currency="$"
+              status="Outbid"
+            />
+          )}
 
-        {ended && <BidValue title="Owned By" name="@CryptoGeek" isEnd />}
-      </div>
-      <hr className="custom-divider" />
-      <NFTTimeLeft />
-      <hr className="custom-divider" />
-      <BidValue title="Limited Edition" value="1 of 1" edition />
-      <hr className="custom-divider" />
+          {ended && <BidValue title="Owned By" name="@CryptoGeek" isEnd />}
+        </div>
+        <hr className="custom-divider" />
+        <NFTTimeLeft
+          title="Auction ending in"
+          tooltipText="When there are less than 5 minutes left in the auction, successful bids will reset the auction to 5 minutes."
+        />
+        <hr className="custom-divider" />
+        <BidValue title="Limited Edition" value="1 of 1" isLeft />
+        <hr className="custom-divider" />
 
-      <div className="text-center">
-        <NFTPlaceBid show={show} handleClose={handleShowBid} />
+        <div className="text-center">
+          <NFTPlaceBid show={show} handleClose={handleShowBid} />
 
-        <button
-          disabled
-          className="btn btn-dark text-center btn-lg mt-5 rounded-pill place-bid-btn"
-          onClick={handleShowBid}
-        >
-          Place a Bid
-        </button>
-        <div className="mt-2 royalty-info">
-          Counterbid within the last 5 minutes will extend the auction by 15
-          minutes
+          {inSufficientBalance ? (
+            <button
+              className="btn btn-danger text-center text-white btn-lg mt-2 rounded-pill recharge-btn"
+              onClick={handleShowBid}
+            >
+              Recharge Wallet
+            </button>
+          ) : (
+            <button
+              // disabled
+              className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+              onClick={handleShowBid}
+            >
+              Place a Bid
+            </button>
+          )}
+
+          <div className="mt-2 royalty-info">
+            Counterbid within the last 5 minutes will extend the auction by 15
+            minutes
+          </div>
         </div>
       </div>
     </>
