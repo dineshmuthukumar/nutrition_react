@@ -34,8 +34,7 @@ const Details = () => {
 
   return (
     <>
-      <Header />
-      {small && <SubHeader />}
+      {small ? <SubHeader /> : <Header />}
       <div className="container-fluid">
         <div className="row mt-5">
           <div className="col-12 col-lg-7 align-self-center">
