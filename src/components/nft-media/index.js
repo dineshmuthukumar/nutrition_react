@@ -83,7 +83,7 @@ const NFTMedia = () => {
 const CustomPopover = ({ icon, placement, text }) => {
   return (
     <OverlayTrigger
-      trigger="hover"
+      trigger={['hover', 'focus']}
       rootClose
       key={placement}
       placement={placement}

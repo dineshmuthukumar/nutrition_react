@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { List } from 'react-content-loader'
-import { toast } from "react-toastify";
+import { List } from 'react-content-loader';
 import Header from "../components/header";
 import ClientCard from "./../components/clientcard";
 import { nftListApi } from "../api/methods";
+import toaster from "../utils/toaster";
 
 const Home = () => {
   const [list, setList] = useState([]);
@@ -21,7 +21,7 @@ const Home = () => {
       setLoading(false);
     } catch (err) {
       console.log(err);
-      toast.error("Something went wrong");
+      toaster(500, "Something went wrong");
     }
   };
 

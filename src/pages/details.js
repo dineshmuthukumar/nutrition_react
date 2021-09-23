@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { toast } from "react-toastify";
 import { nftDetailApi } from "../api/methods";
 import BidAuction from "../components/bid-auction";
 import BidAuctionEnd from "../components/bid-auction-end";
@@ -15,6 +14,7 @@ import NFTMore from "../components/nft-more";
 import NFTProperties from "../components/nft-properties";
 import NFTSectionTitle from "../components/nft-section-title";
 import NFTTags from "../components/nft-tags";
+import toaster from "../utils/toaster";
 import NFTSummary from "./../components/nft-summary";
 import SubHeader from "./../components/sub-header";
 
@@ -45,7 +45,7 @@ const Details = () => {
       setNft(response.data.data.nft);
     } catch (err) {
       console.log(err);
-      toast.error("Something went wrong");
+      toaster(500, "Something went wrong");
     }
   };
 
