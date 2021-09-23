@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import { nftDetailApi } from "../api/methods";
 import BidAuction from "../components/bid-auction";
 import BidAuctionEnd from "../components/bid-auction-end";
 import BidHistory from "../components/bid-history";
@@ -22,15 +25,28 @@ const Details = () => {
     lastBidDate: "Sep 16, 21 11:09pm",
   };
 
+  const params = useParams();
   const [small, setSmall] = useState(false);
+  const [nft, setNft] = useState({});
 
   useEffect(() => {
+    nftDetail(params.id);
     if (typeof window !== "undefined") {
       window.addEventListener("scroll", () =>
         setSmall(window.pageYOffset > 800)
       );
     }
   }, []);
+
+  const nftDetail = async (id) => {
+    try {
+      let response = await nftDetailApi({ nft_id: id });
+      setNft(response.data.data.nft);
+    } catch (err) {
+      console.log(err);
+      toast.error("Something went wrong");
+    }
+  };
 
   return (
     <>
@@ -41,7 +57,7 @@ const Details = () => {
             <NFTMedia />
           </div>
           <div className="col-12 col-lg-5">
-            <NFTBaseDetails />
+            <NFTBaseDetails nft={nft} />
           </div>
         </div>
         <div className="row mt-5">
@@ -61,7 +77,7 @@ const Details = () => {
             <div className="mt-4"></div>
             <ChainAttributes />
             <div className="mt-4"></div>
-            <NFTTags />
+            <NFTTags tags={nft.tag_names} />
           </div>
         </div>
         <div className="mt-5">

@@ -8,7 +8,7 @@ import { ReactComponent as DiscordSvg } from "./../../icons/discord_logo.svg";
 import ToolTip from "../tooltip";
 import "./style.scss";
 
-const NFTBaseDetails = () => {
+const NFTBaseDetails = ({ nft }) => {
   const [show, setShow] = useState(false);
   const [currentUser, setCurrentUser] = useState(false);
   const [ended, setEnded] = useState(true);
@@ -31,7 +31,7 @@ const NFTBaseDetails = () => {
       </div>
       <div className="nft-title-container">
         <div className="nft-title">
-          Lazerbeams Visualiser [KDYN Remix] [2/3]
+          {nft.name}
         </div>
 
         <ToolTip
@@ -46,13 +46,13 @@ const NFTBaseDetails = () => {
         />
       </div>
       <p className="text-secondary mt-1 mb-5 nft-desc">
-        <ReadMoreReact
-          min={300}
-          ideal={300}
-          max={700}
-          text={`
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex eacommodo consequat. Lorem ipsum dolor sit amet, consectetur ut enim  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.`}
-        />
+        {nft.description &&
+          <ReadMoreReact
+            min={300}
+            ideal={300}
+            max={700}
+            text={nft.description}
+          />}
       </p>
 
       <div className="bottom-content">
