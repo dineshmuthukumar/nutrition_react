@@ -13,6 +13,7 @@ import NFTBaseDetails from "../components/nft-basic-details";
 import NFTMedia from "../components/nft-media";
 import NFTMore from "../components/nft-more";
 import NFTProperties from "../components/nft-properties";
+import NFTSectionTitle from "../components/nft-section-title";
 import NFTTags from "../components/nft-tags";
 import NFTSummary from "./../components/nft-summary";
 import SubHeader from "./../components/sub-header";
@@ -65,12 +66,13 @@ const Details = () => {
             <NFTSummary />
           </div>
         </div>
+        <NFTSectionTitle title="Bid Details" />
         <div className="row mt-5">
           <div className="col-12 col-lg-6 order-lg-2">
-            <BidHistory />
+            {/* <BidHistory /> */}
             {/* <BidAuction /> */}
             {/* <BidAuctionEnd count="1000/1000"/> */}
-            {/* <BidWinner data={data}/> */}
+            <BidWinner data={data} />
           </div>
           <div className="col-12 col-lg-6 order-lg-1">
             <NFTProperties />

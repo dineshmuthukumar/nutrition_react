@@ -1,41 +1,37 @@
 import React from "react";
-import {
-  Container,
-  Row,
-  Col
-} from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import NFTCounter from "../nft-counter";
 import "./style.scss";
 
 const BidAuction = () => {
   return (
     <div className="bid-auction">
-      <span className="bid-auction-content mt-3">
-        This auction has not yet begun
-      </span>
-      <Container>
-        <Row>
-          <Col>
-            <div className="bid-auction-time text-start">
-              <div className="mb-title auction-start">Auction Starting In</div>
-              <div className="mb-value text-start auction-time">
-                <NFTCounter
-                  time="2021-10-10"
-                  timeClass="font-onerem"
-                  intervalClass="font-psevenrem"
-                  intervalGapClass="me-1"
-                />
-              </div>
-            </div>
-          </Col>
-          <Col>
-            <div className="recharge-button text-end">
-              <span className="recharge-wallet">Recharge Wallet</span>
-            </div>
-          </Col>
-        </Row>
-      </Container>
-      <div className="line"></div>
+      <div className="bid-auction-content">
+        This <br /> auction <br />
+        has not
+        <br /> yet begun
+      </div>
+      <div className="bid-aution-bottom">
+        <div>
+          <div className="bottom-title">Auction starting in</div>
+          <div className="bottom-time">
+            <NFTCounter
+              time="2021-10-10"
+              timeClass="font-onerem"
+              intervalClass="font-psevenrem"
+              intervalGapClass="me-1"
+            />
+          </div>
+        </div>
+        <div>
+          <button
+            type="button"
+            className="btn btn-dark rounded-pill border border-white"
+          >
+            Recharge Wallet
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

@@ -1,0 +1,118 @@
+@import "../../styles/common";
+
+.bid-winner {
+  background-color: black;
+  color: white;
+  border-radius: 0.5rem;
+  padding: 3rem 3rem 2rem 3rem;
+  min-height: 70vh;
+  position: relative;
+
+  .winner-text {
+    position: absolute;
+    transform: rotate(90deg);
+    right: -38%;
+    bottom: 23vh;
+    font-size: 10rem;
+    width: 100%;
+    text-align: center;
+    font-family: $neue-helveticamedium;
+  }
+
+  .winner-user-details {
+    img {
+      margin-top: 2rem;
+      height: 200px;
+      width: 200px;
+      border-radius: 50%;
+      object-fit: scale-down;
+    }
+
+    .winner-id {
+      margin-top: 2rem;
+      font-family: $neue-helveticamedium;
+      font-size: 2rem;
+    }
+  }
+
+  .nft-sold-details {
+    margin-top: 2.5rem;
+    display: flex;
+    width: 80%;
+
+    .sold-for {
+      flex: 1;
+
+      .sold-for-title {
+        font-family: $neue-helveticamedium;
+        font-size: 0.8rem;
+      }
+      .sold-for-value {
+        font-family: $neue-helveticamedium;
+        font-size: 1.5rem;
+      }
+    }
+    .sold-on {
+      flex: 1;
+
+      .sold-on-title {
+        font-family: $neue-helveticamedium;
+        font-size: 0.8rem;
+      }
+      .sold-on-value {
+        font-family: $neue-helveticamedium;
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  .nft-lastbid-details {
+    margin-top: 2.5rem;
+    display: flex;
+    width: 80%;
+
+    .lastbid-left {
+      flex: 1;
+      .lastbid-title {
+        font-family: $neue-helveticamedium;
+        font-size: 0.8rem;
+      }
+
+      .lastbid-title {
+        font-family: $neue-helveticamedium;
+        font-size: 1.5rem;
+      }
+    }
+
+    .lastbid-right {
+      flex: 1;
+
+      .lastbid-date-title {
+        font-family: $neue-helveticamedium;
+        font-size: 0.8rem;
+      }
+
+      .lastbid-date-title {
+        font-family: $neue-helveticamedium;
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  .bottom-section {
+    position: sticky;
+    top: 100vh;
+    display: flex;
+    justify-content: space-between;
+
+    .bidding-history-btn {
+      font-size: 0.8rem;
+      padding: 0.7rem 1.2rem;
+
+      &:hover {
+        background-color: white;
+        color: black;
+      }
+    }
+  }
+}
