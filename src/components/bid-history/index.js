@@ -68,7 +68,7 @@ const BidHistory = ({ input = [] }) => {
                   Sep 20, 2021 11:15pm
                 </div>
                 <div className="nft-owner">
-                  Bid placed by <BidName text="johndoe" />
+                  Bid listed by <BidName text="johndoe" />
                 </div>
               </div>
             </div>

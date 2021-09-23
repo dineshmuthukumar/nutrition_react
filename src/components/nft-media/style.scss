@@ -41,6 +41,20 @@
 
 .custom-pop {
   font-family: $neue-helveticamedium;
+
+  svg {
+    padding: 0.25rem;
+    margin-left: 0.5rem;
+    border-radius: 0.25rem;
+
+    &:hover {
+      background-color: rgb(228, 225, 225);
+    }
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
 }
 
 .full-screen-header {

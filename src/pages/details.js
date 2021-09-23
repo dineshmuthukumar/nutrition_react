@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { nftDetailApi } from "../api/methods";
 import BidAuction from "../components/bid-auction";
 import BidHistory from "../components/bid-history";
 import BidWinner from "../components/bid-winner";
@@ -11,6 +13,7 @@ import NFTMore from "../components/nft-more";
 import NFTProperties from "../components/nft-properties";
 import NFTSectionTitle from "../components/nft-section-title";
 import NFTTags from "../components/nft-tags";
+import toaster from "../utils/toaster";
 import NFTSummary from "./../components/nft-summary";
 import SubHeader from "./../components/sub-header";
 
@@ -22,15 +25,28 @@ const Details = () => {
     lastBidDate: "Sep 16, 21 11:09pm",
   };
 
+  const params = useParams();
   const [small, setSmall] = useState(false);
+  const [nft, setNft] = useState({});
 
   useEffect(() => {
+    nftDetail(params.id);
     if (typeof window !== "undefined") {
       window.addEventListener("scroll", () =>
         setSmall(window.pageYOffset > 800)
       );
     }
   }, []);
+
+  const nftDetail = async (id) => {
+    try {
+      let response = await nftDetailApi({ nft_id: id });
+      setNft(response.data.data.nft);
+    } catch (err) {
+      console.log(err);
+      toaster(500, "Something went wrong");
+    }
+  };
 
   return (
     <>
@@ -41,7 +57,7 @@ const Details = () => {
             <NFTMedia />
           </div>
           <div className="col-12 col-lg-5">
-            <NFTBaseDetails />
+            <NFTBaseDetails nft={nft} />
           </div>
         </div>
         <div className="row mt-5">
@@ -52,8 +68,8 @@ const Details = () => {
         <NFTSectionTitle title="Bid Details" />
         <div className="row mt-5 align-items-center">
           <div className="col-12 col-lg-6 order-lg-2">
-            <BidHistory input={[]} />
-            {/* <BidAuction status="start" bottomTitle="Auction starting in" /> */}
+            <BidHistory input={[1, 2, 3, 4, 5, 6, 7, 8, 5, 5]} />
+            {/* <BidAuction status="end" bottomTitle="Auction starting in" /> */}
             {/* <BidAuction
               status="end"
               bottomTitle="Limited Edition"
@@ -66,7 +82,7 @@ const Details = () => {
             <div className="mt-4"></div>
             <ChainAttributes />
             <div className="mt-4"></div>
-            <NFTTags />
+            <NFTTags tags={nft.tag_names} />
           </div>
         </div>
         <NFTSectionTitle title="Artist" />
