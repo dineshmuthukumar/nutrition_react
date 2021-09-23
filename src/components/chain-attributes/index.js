@@ -5,8 +5,11 @@ import "./style.scss";
 const ChainAttributes = () => {
   return (
     <div className="chain-attributes">
-      <div className="chain-att-title">Chain Attributes</div>
-      <div className="chain-att-content mt-4">
+      <div className="chain-att-title">
+        Chain Attributes
+        <span className="title-count">(3)</span>
+      </div>
+      <div className="chain-att-content mt-2">
         <ChainPills first="0xertu" second="Auction" />
         <ChainPills first="NFT" />
         <ChainPills first="ETH" />

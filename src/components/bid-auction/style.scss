@@ -39,6 +39,16 @@
       .interval-gap {
         margin-right: 0.7rem !important;
       }
+
+      .ended-count-value {
+        font-family: $neue-helveticamedium;
+        font-size: 2.25rem;
+      }
+    }
+
+    .bottom-recharge-btn {
+      padding: 0.5rem 1rem;
+      font-family: $neue-helveticalight;
     }
   }
 }

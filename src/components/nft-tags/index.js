@@ -5,8 +5,10 @@ import "./style.scss";
 const NFTTags = () => {
   return (
     <div className="nft-tags">
-      <div className="nft-tag-title">Tags</div>
-      <div className="nft-tag-content mt-4">
+      <div className="nft-tag-title">
+        Tags <span className="title-count">(8)</span>
+      </div>
+      <div className="nft-tag-content mt-2">
         <Tag text="Posters" />
         <Tag text="Amitabh Bachan" />
         <Tag text="Graphic Design" />

@@ -1,7 +1,20 @@
+@import "../../styles/common";
+
 .nft-more {
   .title {
-    font-size: 2rem;
-    font-weight: bolder;
+    font-size: 1.4rem;
+    font-family: $neue-helveticamedium;
+    margin-bottom: 1rem;
+    position: relative;
+
+    .title-count {
+      font-size: 0.8rem;
+      font-family: $neue-helveticabold;
+      top: 0;
+      width: 0;
+      position: absolute;
+      margin-left: 0.2rem;
+    }
   }
   .nft-more-content {
     display: flex;
@@ -23,13 +36,22 @@
       }
 
       .more-nft-title {
-        font-size: 1.5rem;
-        font-weight: bolder;
+        font-size: 1.3rem;
+        font-family: $neue-helveticabold;
+        position: relative;
+
+        .left-count {
+          position: absolute;
+          color: red;
+          right: 0;
+          font-family: $neue-helveticamedium;
+          font-size: 0.8rem;
+        }
       }
       .more-nft-desc {
         font-size: 1rem;
-        font-weight: bolder;
-        margin-bottom: 1.5rem;
+        font-family: $neue-helveticamedium;
+        margin-bottom: 1rem;
       }
       .more-bid-details {
         display: flex;
@@ -41,7 +63,7 @@
 
         .mb-value {
           font-size: 1rem;
-          font-weight: bolder;
+          font-family: $neue-helveticamedium;
         }
       }
     }

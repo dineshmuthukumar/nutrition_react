@@ -7,7 +7,7 @@ const NFTPropPills = () => {
       <img src="https://picsum.photos/100/100" />
       <div>
         <div className="title">Property Detail</div>
-        <div className="desc text-secondary">Property type</div>
+        <div className="desc text-secondary">Property Type</div>
       </div>
     </div>
   );

@@ -1,3 +1,5 @@
+@import "../../styles/common";
+
 .chain-pills {
   background-color: #ffffff;
   padding: 0 1.5rem 0 0;
@@ -5,17 +7,20 @@
   margin-bottom: 1rem;
 
   .first {
+    font-family: $neue-helveticabold;
     font-size: 0.8rem;
-    font-weight: bolder;
     display: flex;
     align-items: center;
 
     .second {
-      font-weight: bolder;
       font-size: 0.8rem;
+      font-family: $neue-helveticabold;
       padding: 0.6rem 1rem;
       background-color: #ffffff;
       margin-right: 0.7rem;
+      border-bottom: none !important;
+      border-left: none !important;
+      border-top: none !important;
     }
   }
 
@@ -25,5 +30,14 @@
 
   &:last-child {
     margin-right: 0;
+  }
+
+  &:hover {
+    background-color: #e7e7e9;
+    border-color: #ffffff !important;
+    .second {
+      background-color: #e7e7e9;
+      border-color: #ffffff !important;
+    }
   }
 }

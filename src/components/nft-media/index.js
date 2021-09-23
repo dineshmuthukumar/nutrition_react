@@ -40,12 +40,14 @@ const NFTMedia = () => {
           text="Favourite"
         />
 
-        <div>
-          <SharePopover
-            icon={<AiOutlineShareAlt size={25} />}
-            placement="top"
-          />
-        </div>
+        <SharePopover
+          icon={
+            <div>
+              <AiOutlineShareAlt size={25} />
+            </div>
+          }
+          placement="top"
+        />
 
         <CustomPopover
           icon={

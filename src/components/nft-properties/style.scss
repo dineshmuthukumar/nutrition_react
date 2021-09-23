@@ -1,12 +1,21 @@
+@import "../../styles/common";
+
 .nft-props {
   .nft-props-title {
-    font-size: 2rem;
-    font-weight: bolder;
+    font-size: 1.5rem;
+    font-family: $neue-helveticamedium;
+    position: relative;
+
+    .title-count {
+      font-size: 0.8rem;
+      font-family: $neue-helveticabold;
+      top: 0;
+      width: 0;
+      position: absolute;
+      margin-left: 0.2rem;
+    }
   }
-  .nft-props-desc {
-    font-size: 1rem;
-    font-weight: bolder;
-  }
+
   .nft-props-content {
     display: flex;
     flex-wrap: wrap;

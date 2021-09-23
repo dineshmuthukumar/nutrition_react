@@ -5,11 +5,12 @@ import "./style.scss";
 const NFTProperties = () => {
   return (
     <div className="nft-props">
-      <div className="nft-props-title">Properties</div>
-      <div className="nft-props-desc text-secondary">
-        Art Properties are traits which determine the uniqueness of the NFT
+      <div className="nft-props-title">
+        Properties
+        <span className="title-count">(3)</span>
       </div>
-      <div className="mt-4 nft-props-content">
+
+      <div className="mt-2 nft-props-content">
         <NFTPropPills />
         <NFTPropPills />
         <NFTPropPills />

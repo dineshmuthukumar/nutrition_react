@@ -8,22 +8,28 @@ const NFTSummary = () => {
       <div className="row">
         <div className="col-12 col-md-6 col-lg-3">
           <div className="p-4">
-            <Badge title="Total Bids" value="20" />
+            <Badge title="Total Bids" value="20000" />
           </div>
         </div>
         <div className="col-12 col-md-6 col-lg-3">
           <div className="p-4">
-            <Badge title="Price" value="2.55" currency="ETH" />
+            <Badge
+              title="Price"
+              value="99.63K"
+              currency="$"
+              diff="-2000"
+              tooltip="Price increased from last bid"
+            />
           </div>
         </div>
         <div className="col-12 col-md-6 col-lg-3">
           <div className="p-4">
-            <Badge title="Editions Left" value="1 of 1" />
+            <Badge title="Total Views" value="23457" />
           </div>
         </div>
         <div className="col-12 col-md-6 col-lg-3">
           <div className="p-4">
-            <Badge title="Total Trasfers" value="2" />
+            <Badge title="Total Favourites" value="76543" />
           </div>
         </div>
       </div>

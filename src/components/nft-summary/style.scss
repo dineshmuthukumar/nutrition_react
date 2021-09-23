@@ -1,16 +1,41 @@
+@import "../../styles/common";
+
 .nft-summary {
   border-radius: 1rem;
+  border: 2px solid #000000;
+
   .title {
     font-size: 1rem;
-    font-weight: bolder;
+    font-family: $neue-helveticamedium;
+
+    svg {
+      vertical-align: unset;
+    }
   }
   .value {
-    font-size: 3rem;
-    font-weight: 800;
+    font-size: 3.4rem;
+    font-family: $neue-helveticamedium;
+    position: relative;
 
-    .currency-symbol {
-      margin-left: 0.5rem;
-      font-size: 1.6rem;
+    svg {
+      font-size: 1.8rem;
+      margin-top: -9px;
+      margin-right: -4px;
+    }
+
+    .value-diff-range {
+      position: absolute;
+      font-family: $neue-helveticamedium;
+      font-size: 0.9rem;
+      margin-top: 0.9rem;
+
+      &.green {
+        color: green;
+      }
+
+      &.red {
+        color: red;
+      }
     }
   }
 }

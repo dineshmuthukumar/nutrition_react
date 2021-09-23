@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import BidAuction from "../components/bid-auction";
-import BidAuctionEnd from "../components/bid-auction-end";
 import BidHistory from "../components/bid-history";
 import BidWinner from "../components/bid-winner";
 import ChainAttributes from "../components/chain-attributes";
@@ -51,12 +50,16 @@ const Details = () => {
           </div>
         </div>
         <NFTSectionTitle title="Bid Details" />
-        <div className="row mt-5">
+        <div className="row mt-5 align-items-center">
           <div className="col-12 col-lg-6 order-lg-2">
-            {/* <BidHistory /> */}
-            {/* <BidAuction /> */}
-            {/* <BidAuctionEnd count="1000/1000"/> */}
-            <BidWinner data={data} />
+            <BidHistory input={[]} />
+            {/* <BidAuction status="start" bottomTitle="Auction starting in" /> */}
+            {/* <BidAuction
+              status="end"
+              bottomTitle="Limited Edition"
+              bottomValue="1000/1000"
+            /> */}
+            {/* <BidWinner data={data} /> */}
           </div>
           <div className="col-12 col-lg-6 order-lg-1">
             <NFTProperties />
@@ -66,6 +69,7 @@ const Details = () => {
             <NFTTags />
           </div>
         </div>
+        <NFTSectionTitle title="Artist" />
         <div className="mt-5">
           <NFTArtist />
         </div>

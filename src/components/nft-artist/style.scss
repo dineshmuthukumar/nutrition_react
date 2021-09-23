@@ -1,52 +1,74 @@
+@import "../../styles/common";
+
 .nft-artist {
-  .title {
-    font-size: 2rem;
-    font-weight: bolder;
-    border-bottom: 2px solid #222;
-  }
   .artist-content {
     .artist-img {
       width: 100%;
       max-height: 50vh;
       object-fit: scale-down;
     }
-    .artist-name {
-      font-size: 2rem;
-      font-weight: bolder;
-    }
-    .at-name {
-      font-size: 1.2rem;
-      font-weight: bolder;
-    }
-    .artist-desc {
-      font-size: 1rem;
-      font-weight: bolder;
-    }
 
-    .artist-pill-container {
-      display: flex;
-      flex-wrap: wrap;
+    .artist-details-content {
+      min-height: 45vh;
 
-      .artist-pill {
+      .artist-name {
+        font-size: 2rem;
+        font-family: $neue-helveticabold;
+      }
+      .at-name {
+        font-size: 1.4rem;
+        font-family: $neue-helveticabold;
+      }
+      .artist-desc {
+        font-size: 1.2rem;
+        font-family: $neue-helveticamedium;
+      }
+
+      .artist-pill-container {
+        display: flex;
+        flex-wrap: wrap;
+
+        .artist-pill {
+          display: flex;
+          align-items: center;
+          margin-bottom: 1rem;
+          margin-right: 1rem;
+
+          img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: scale-down;
+            margin-right: 0.7rem;
+          }
+
+          .pill-title {
+            font-size: 0.7rem;
+            font-family: $neue-helveticamedium;
+          }
+          .pill-value {
+            font-size: 0.9rem;
+            font-family: $neue-helveticabold;
+          }
+        }
+      }
+
+      .bottom-owner-contact-links {
+        position: sticky;
+        top: 100vh;
         display: flex;
         align-items: center;
-        margin-bottom: 1rem;
-        margin-right: 1rem;
 
-        img {
-          width: 50px;
-          height: 50px;
+        .share-link-owner {
+          background-color: black;
+          color: white;
           border-radius: 50%;
-          object-fit: scale-down;
-          margin-right: 1rem;
-        }
-
-        .pill-title {
-          font-size: 0.7rem;
-        }
-        .pill-value {
-          font-size: 0.85rem;
-          font-weight: bolder;
+          height: 32px;
+          width: 32px;
+          line-height: 29px;
+          text-align: center;
+          margin-right: 0.4rem;
+          align-self: center;
         }
       }
     }

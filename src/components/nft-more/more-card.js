@@ -6,7 +6,10 @@ const MoreCard = () => {
   return (
     <div className="more-card">
       <img src="https://picsum.photos/500/500" />
-      <div className="more-nft-title">NFT Name</div>
+      <div className="more-nft-title">
+        NFT Name
+        <span className="left-count">Only 10 left</span>
+      </div>
       <div className="more-nft-desc">Jane Doe</div>
       <div className="more-bid-details">
         <div>

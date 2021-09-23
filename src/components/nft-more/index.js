@@ -5,7 +5,10 @@ import "./style.scss";
 const NFTMore = () => {
   return (
     <div className="nft-more">
-      <div className="title">More from this artist</div>
+      <div className="title">
+        More from this artist
+        <span className="title-count">(8)</span>
+      </div>
       <div className="nft-more-content">
         <MoreCard />
         <MoreCard />

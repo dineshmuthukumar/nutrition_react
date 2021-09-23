@@ -1,18 +1,18 @@
 import React from "react";
+import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import AritstPills from "./artist-pills";
 import "./style.scss";
 
 const NFTArtist = () => {
   return (
     <div className="nft-artist">
-      <div className="title">Artist</div>
       <div className="row mt-4 artist-content">
         <div className="col-12 col-md-5">
           <img className="artist-img" src="https://picsum.photos/500/500" />
         </div>
-        <div className="col-12 col-md-7 mt-4 mt-md-0">
+        <div className="col-12 col-md-7 mt-4 mt-md-0 artist-details-content">
           <div className="artist-name">Amitabh Bachchan</div>
-          <div className="at-name">@ABNFT</div>
+          <div className="at-name">@AmitabhBachchan</div>
           <div className="artist-desc mt-4">
             Amitabh Bachchan is an Indian actor, film producer, television host,
             occasional playback singer and former politician known for his work
@@ -20,8 +20,18 @@ const NFTArtist = () => {
             actors in the history of Indian cinema.
           </div>
           <div className="artist-pill-container mt-4">
-            <AritstPills title="Created By" value="Amitabh Bachchan" />
-            <AritstPills title="Managed By" value="The Bachchan Estate" />
+            <AritstPills title="Managed By" value="GuardianLink" />
+          </div>
+          <div className="bottom-owner-contact-links">
+            <div className="share-link-owner">
+              <FaFacebookF />
+            </div>
+            <div className="share-link-owner">
+              <FaInstagram />
+            </div>
+            <div className="share-link-owner">
+              <FaTwitter />
+            </div>
           </div>
         </div>
       </div>

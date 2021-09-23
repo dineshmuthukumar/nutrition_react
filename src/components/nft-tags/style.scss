@@ -1,7 +1,19 @@
+@import "../../styles/common";
+
 .nft-tags {
   .nft-tag-title {
-    font-size: 2rem;
-    font-weight: bolder;
+    font-size: 1.5rem;
+    font-family: $neue-helveticamedium;
+    position: relative;
+
+    .title-count {
+      font-size: 0.8rem;
+      font-family: $neue-helveticabold;
+      top: 0;
+      width: 0;
+      position: absolute;
+      margin-left: 0.2rem;
+    }
   }
 
   .nft-tag-content {
@@ -10,8 +22,8 @@
 
     .tag {
       padding: 0.5rem 1.5rem;
-      font-size: 1rem;
-      font-weight: bolder;
+      font-family: $neue-helveticabold;
+      font-size: 0.8rem;
       margin-right: 1rem;
       margin-bottom: 1rem;
 
