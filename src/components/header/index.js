@@ -92,7 +92,7 @@ const Header = ({ hideOptions = false }) => {
                             onClick={() =>
                               window.open(
                                 `${process.env.REACT_APP_BASE_URL}/accounts#home`,
-                                "_self"
+                                "_blank"
                               )
                             }
                           >
@@ -103,7 +103,7 @@ const Header = ({ hideOptions = false }) => {
                             onClick={() =>
                               window.open(
                                 `${process.env.REACT_APP_BASE_URL}/accounts#wallet`,
-                                "_self"
+                                "_blank"
                               )
                             }
                           >
@@ -114,7 +114,7 @@ const Header = ({ hideOptions = false }) => {
                             onClick={() =>
                               window.open(
                                 `${process.env.REACT_APP_BASE_URL}/accounts#activity`,
-                                "_self"
+                                "_blank"
                               )
                             }
                           >
@@ -126,7 +126,7 @@ const Header = ({ hideOptions = false }) => {
                             onClick={() =>
                               window.open(
                                 `${process.env.REACT_APP_BASE_URL}/accounts#settings`,
-                                "_self"
+                                "_blank"
                               )
                             }
                           >
@@ -212,7 +212,7 @@ const UserComponent = ({ user, onClick = () => {} }) => (
       alt="user-icon"
     />
     <div className="user-name">
-      {user.currency_symbol} {user.balance}
+      {user?.currency_symbol} {user?.balance}
     </div>
   </div>
 );

@@ -78,7 +78,7 @@ const NFTBaseDetails = ({ nft, isPlaceBid }) => {
         <div className="text-center">
           <NFTPlaceBid show={isPlaceBid ? true : false} />
 
-          {parseFloat(user.balance) <= 0 ? (
+          {parseFloat(user?.balance) <= 0 ? (
             <button
               className="btn btn-danger text-center text-white btn-lg mt-2 rounded-pill recharge-btn"
               onClick={() =>

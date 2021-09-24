@@ -33,7 +33,7 @@ const NFTPlaceBid = ({ show = false }) => {
           <div className="balance-details mt-3">
             <div className="balance-text text-secondary">Your Balance</div>
             <div className="balance-value">
-              {user.currency_symbol} {user.balance}
+              {user?.currency_symbol} {user?.balance}
             </div>
           </div>
           <div className="bottom-area">
