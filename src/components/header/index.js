@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Navbar, Nav, Dropdown, Container } from "react-bootstrap";
 import { BiBell, BiCheck, BiHelpCircle } from "react-icons/bi";
-import { useLocation } from "react-router-dom";
 import { useTranslation, setLanguage } from "react-multi-lang";
 import { useHistory } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
@@ -15,7 +14,6 @@ import "./style.scss";
 const Header = ({ hideOptions = false }) => {
   const t = useTranslation();
   const history = useHistory();
-  const location = useLocation();
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
 
@@ -213,7 +211,9 @@ const UserComponent = ({ user, onClick = () => {} }) => (
       src="https://picsum.photos/50/50"
       alt="user-icon"
     />
-    <div className="user-name">$ 5431.34</div>
+    <div className="user-name">
+      {user.currency_symbol} {user.balance}
+    </div>
   </div>
 );
 export default Header;

@@ -8,12 +8,13 @@ import NFTPlaceBid from "./../nft-place-bid";
 import { ReactComponent as DiscordSvg } from "./../../icons/discord_logo.svg";
 import ToolTip from "../tooltip";
 import "./style.scss";
+import { useSelector } from "react-redux";
 
 const NFTBaseDetails = ({ nft, isPlaceBid }) => {
   const history = useHistory();
+  const { user } = useSelector((state) => state.user.data);
   const [currentUser, setCurrentUser] = useState(false);
   const [ended, setEnded] = useState(true);
-  const [inSufficientBalance, setinSufficientBalance] = useState(false);
 
   return (
     <>
@@ -77,8 +78,16 @@ const NFTBaseDetails = ({ nft, isPlaceBid }) => {
         <div className="text-center">
           <NFTPlaceBid show={isPlaceBid ? true : false} />
 
-          {inSufficientBalance ? (
-            <button className="btn btn-danger text-center text-white btn-lg mt-2 rounded-pill recharge-btn">
+          {parseFloat(user.balance) <= 0 ? (
+            <button
+              className="btn btn-danger text-center text-white btn-lg mt-2 rounded-pill recharge-btn"
+              onClick={() =>
+                window.open(
+                  `${process.env.REACT_APP_BASE_URL}/accounts#wallet`,
+                  "_self"
+                )
+              }
+            >
               Recharge Wallet
             </button>
           ) : (
