@@ -30,12 +30,14 @@ function App(props) {
   useEffect(() => {
     props.change_lang(lang);
     setLanguage(lang);
+  }, [props, lang]);
 
+  useEffect(() => {
     const token = getCookies();
-    if (!user.data.user && token) dispatch(user_load_by_token_thunk(token));
+    if (token) dispatch(user_load_by_token_thunk(token));
 
     if (user.data.user && !token) dispatch(user_logout_thunk());
-  }, [props, lang]);
+  }, []);
 
   return (
     <>
