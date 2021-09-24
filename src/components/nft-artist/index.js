@@ -1,4 +1,5 @@
 import React from "react";
+import ReadMoreReact from "read-more-react";
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import AritstPills from "./artist-pills";
 import "./style.scss";
@@ -14,10 +15,12 @@ const NFTArtist = () => {
           <div className="artist-name">Amitabh Bachchan</div>
           <div className="at-name">@AmitabhBachchan</div>
           <div className="artist-desc mt-4">
-            Amitabh Bachchan is an Indian actor, film producer, television host,
-            occasional playback singer and former politician known for his work
-            in Hindi cinema. He is regarded as one of the most influential
-            actors in the history of Indian cinema.
+            <ReadMoreReact
+              min={300}
+              ideal={300}
+              max={700}
+              text={`Amitabh Bachchan is an Indian actor, film producer, television host, occasional playback singer and former politician known for his work in Hindi cinema. He is regarded as one of the most influential actors in the history of Indian cinema. Amitabh Bachchan is an Indian actor, film producer, television host, occasional playback singer and former politician known for his work in Hindi cinema. He is regarded as one of the most influential actors in the history of Indian cinema. Amitabh Bachchan is an Indian actor, film producer, television host, occasional playback singer and former politician known for his work in Hindi cinema. He is regarded as one of the most influential actors in the history of Indian cinema.`}
+            />
           </div>
           <div className="artist-pill-container mt-4">
             <AritstPills title="Managed By" value="GuardianLink" />
