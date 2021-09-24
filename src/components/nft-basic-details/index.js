@@ -5,10 +5,10 @@ import ReadMoreReact from "read-more-react";
 import NFTTimeLeft from "../nft-time-left";
 import BidValue from "../bid-value";
 import NFTPlaceBid from "./../nft-place-bid";
+import { useSelector } from "react-redux";
 import { ReactComponent as DiscordSvg } from "./../../icons/discord_logo.svg";
 import ToolTip from "../tooltip";
 import "./style.scss";
-import { useSelector } from "react-redux";
 
 const NFTBaseDetails = ({ nft, isPlaceBid }) => {
   const history = useHistory();

@@ -1,9 +1,11 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { Offcanvas } from "react-bootstrap";
 import "./style.scss";
 
 const NFTPlaceBid = ({ show = false }) => {
+  const { user } = useSelector((state) => state.user.data);
   const history = useHistory();
 
   return (
@@ -24,14 +26,15 @@ const NFTPlaceBid = ({ show = false }) => {
           <div className="least-bid text-center text-secondary mt-4 mb-1">
             You must bid at least or more than
           </div>
-          <div className="least-bid-value text-center">3.155 ETH</div>
+          <div className="least-bid-value text-center">$ 3.155</div>
           <div className="input-bid-container mt-3">
-            <input className="input-bid" placeholder="O ETH" />
-            <div className="usd-value text-secondary">$ 0.00</div>
+            <input className="input-bid" placeholder="$ O" />
           </div>
           <div className="balance-details mt-3">
             <div className="balance-text text-secondary">Your Balance</div>
-            <div className="balance-value">1.88 ETH</div>
+            <div className="balance-value">
+              {user.currency_symbol} {user.balance}
+            </div>
           </div>
           <div className="bottom-area">
             <div className="time-details">
