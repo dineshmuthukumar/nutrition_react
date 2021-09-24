@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router";
 import { FaCheckCircle } from "react-icons/fa";
 import ReadMoreReact from "read-more-react";
 import NFTTimeLeft from "../nft-time-left";
@@ -8,15 +9,11 @@ import { ReactComponent as DiscordSvg } from "./../../icons/discord_logo.svg";
 import ToolTip from "../tooltip";
 import "./style.scss";
 
-const NFTBaseDetails = ({ nft }) => {
-  const [show, setShow] = useState(false);
+const NFTBaseDetails = ({ nft, isPlaceBid }) => {
+  const history = useHistory();
   const [currentUser, setCurrentUser] = useState(false);
   const [ended, setEnded] = useState(true);
   const [inSufficientBalance, setinSufficientBalance] = useState(false);
-
-  const handleShowBid = () => {
-    setShow(!show);
-  };
 
   return (
     <>
@@ -30,9 +27,7 @@ const NFTBaseDetails = ({ nft }) => {
         {ended && <span className="nft-status-tag rounded-pill">Sold Out</span>}
       </div>
       <div className="nft-title-container">
-        <div className="nft-title">
-          {nft.name}
-        </div>
+        <div className="nft-title">{nft.name}</div>
 
         <ToolTip
           icon={
@@ -46,13 +41,14 @@ const NFTBaseDetails = ({ nft }) => {
         />
       </div>
       <p className="text-secondary mt-1 mb-5 nft-desc">
-        {nft.description &&
+        {nft.description && (
           <ReadMoreReact
             min={300}
             ideal={300}
             max={700}
             text={nft.description}
-          />}
+          />
+        )}
       </p>
 
       <div className="bottom-content">
@@ -79,20 +75,19 @@ const NFTBaseDetails = ({ nft }) => {
         <hr className="custom-divider" />
 
         <div className="text-center">
-          <NFTPlaceBid show={show} handleClose={handleShowBid} />
+          <NFTPlaceBid show={isPlaceBid ? true : false} />
 
           {inSufficientBalance ? (
-            <button
-              className="btn btn-danger text-center text-white btn-lg mt-2 rounded-pill recharge-btn"
-              onClick={handleShowBid}
-            >
+            <button className="btn btn-danger text-center text-white btn-lg mt-2 rounded-pill recharge-btn">
               Recharge Wallet
             </button>
           ) : (
             <button
               // disabled
               className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
-              onClick={handleShowBid}
+              onClick={() =>
+                history.push(`${history.location.pathname}/placebid`)
+              }
             >
               Place a Bid
             </button>

@@ -1,12 +1,17 @@
 import React from "react";
+import { useHistory } from "react-router";
 import { Offcanvas } from "react-bootstrap";
 import "./style.scss";
 
-const NFTPlaceBid = ({ show = false, handleClose = () => {} }) => {
+const NFTPlaceBid = ({ show = false }) => {
+  const history = useHistory();
+
   return (
     <Offcanvas
       show={show}
-      onHide={handleClose}
+      onHide={() =>
+        history.push(history.location.pathname.replace("/placebid", ""))
+      }
       placement="end"
       className="w-100 w-md-50 w-lg-40"
     >
@@ -34,7 +39,15 @@ const NFTPlaceBid = ({ show = false, handleClose = () => {} }) => {
               <div className="time-counter">00d 12h 23m 22s</div>
             </div>
             <div className="place-bid-button">
-              <button className="btn btn-dark text-center btn-lg w-50 rounded-pill">
+              <button
+                className="btn btn-dark text-center btn-lg w-50 rounded-pill"
+                onClick={() =>
+                  window.open(
+                    `${process.env.REACT_APP_BASE_URL}/signin?redirect=${window.location.href}`,
+                    "_self"
+                  )
+                }
+              >
                 Place Bid
               </button>
             </div>

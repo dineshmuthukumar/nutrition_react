@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useRouteMatch } from "react-router";
 import { useParams } from "react-router-dom";
 import { nftDetailApi } from "../api/methods";
 import BidAuction from "../components/bid-auction";
@@ -18,6 +19,8 @@ import NFTSummary from "./../components/nft-summary";
 import SubHeader from "./../components/sub-header";
 
 const Details = () => {
+  const { params: matchParams } = useRouteMatch();
+
   const data = {
     soldFor: 2000.99,
     soldOn: "Sep 16, 21 11:11pm",
@@ -57,7 +60,7 @@ const Details = () => {
             <NFTMedia />
           </div>
           <div className="col-12 col-lg-5">
-            <NFTBaseDetails nft={nft} />
+            <NFTBaseDetails nft={nft} isPlaceBid={matchParams.placebid} />
           </div>
         </div>
         <div className="row mt-5">

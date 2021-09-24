@@ -10,7 +10,7 @@ export const getCookies = () => {
 
 export const removeCookies = () => {
   if (process.env.REACT_APP_ENVIRONMENT === "local") {
-    cookies.remove(cookie_token);
+    cookies.remove(cookie_token, { domain: "localhost" });
   } else {
     cookies.remove(cookie_token, { domain: ".bafdemo.com" });
   }

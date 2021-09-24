@@ -5,6 +5,7 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
+
 import { useSelector, connect, useDispatch } from "react-redux";
 import { Offline } from "react-detect-offline";
 
@@ -60,7 +61,7 @@ function App(props) {
             }
           >
             <Switch>
-              <Route exact path="/details/:id" component={Details} />
+              <Route exact path="/details/:id/:placebid?" component={Details} />
               <Route exact path="/" component={Home} />
               <Route path="/not-found" component={NotFound} />
               <Route exact component={NotFound} />
