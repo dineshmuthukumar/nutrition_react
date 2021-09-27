@@ -35,11 +35,11 @@ const Home = () => {
         {
           !loading ? <div className="row">
             {list.map((nft) => (
-              <div className="col-12 col-sm-6 col-md-4" key={nft.id}>
+              <div className="col-12 col-sm-6 col-md-4" key={nft.slug}>
                 <ClientCard
                   title={nft.name}
                   desc={nft.description}
-                  nftId={nft.id}
+                  nftId={nft.slug}
                   imgUrl={
                     "https://i.pinimg.com/originals/93/2a/88/932a88d96ca31d447044a8041bf8d100.png"
                   }

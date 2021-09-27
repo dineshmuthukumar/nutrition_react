@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useRouteMatch } from "react-router";
 import { useParams } from "react-router-dom";
 import { nftDetailApi } from "../api/methods";
+// import { socketJoinCommonRoom, socketNewMessage, socketStatus, socketTotalBid } from "../api/socket-methods";
 import BidAuction from "../components/bid-auction";
 import BidHistory from "../components/bid-history";
 import BidWinner from "../components/bid-winner";
@@ -31,8 +32,15 @@ const Details = () => {
   const params = useParams();
   const [small, setSmall] = useState(false);
   const [nft, setNft] = useState({});
+  const [totalBid, setTotalBid] = useState(0);
 
   useEffect(() => {
+
+    // socketJoinCommonRoom('room_1');
+    // socketStatus((data) => console.log(data));
+    // socketNewMessage((data) => console.log(data));
+    // socketTotalBid((data) => setTotalBid(data.total_bid));
+
     nftDetail(params.id);
     if (typeof window !== "undefined") {
       window.addEventListener("scroll", () =>
@@ -65,7 +73,7 @@ const Details = () => {
         </div>
         <div className="row mt-5">
           <div className="col-12">
-            <NFTSummary />
+            <NFTSummary totalBid={totalBid} />
           </div>
         </div>
         <NFTSectionTitle title="Bid Details" />
