@@ -84,7 +84,7 @@ const NFTBaseDetails = ({ nft, isPlaceBid }) => {
               onClick={() =>
                 window.open(
                   `${process.env.REACT_APP_BASE_URL}/accounts#wallet`,
-                  "_self"
+                  "_blank"
                 )
               }
             >

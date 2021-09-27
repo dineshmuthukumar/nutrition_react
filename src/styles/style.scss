@@ -312,8 +312,8 @@ textarea {
 }
 
 @media (min-width: $lg-width) {
-  .w-lg-40 {
-    width: 40% !important;
+  .w-lg-42 {
+    width: 42% !important;
   }
 }
 
@@ -391,4 +391,8 @@ textarea {
       }
     }
   }
+}
+
+.modal-backdrop.show {
+  opacity: 0.8;
 }
