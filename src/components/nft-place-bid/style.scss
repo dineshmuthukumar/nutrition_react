@@ -221,9 +221,24 @@
           color: #f21e00;
         }
 
-        .input-bid {
+        .input-bid-wrap {
           border: 2px solid #f21e00;
-          color: #f21e00;
+          .bid-currency {
+            color: #f21e00;
+          }
+          .input-bid {
+            color: #f21e00;
+          }
+        }
+      }
+
+      &.error-balance-float {
+        .input-quantity-container {
+          border: 2px solid #f21e00;
+
+          .input-quantity {
+            color: #f21e00;
+          }
         }
       }
 
@@ -232,9 +247,22 @@
           color: #f21e00;
         }
 
-        .input-bid {
+        .input-bid-wrap {
           border: 2px solid #f21e00;
-          color: #f21e00;
+          .bid-currency {
+            color: #f21e00;
+          }
+          .input-bid {
+            color: #f21e00;
+          }
+        }
+
+        .input-quantity-container {
+          border: 2px solid #f21e00;
+
+          .input-quantity {
+            color: #f21e00;
+          }
         }
       }
     }
