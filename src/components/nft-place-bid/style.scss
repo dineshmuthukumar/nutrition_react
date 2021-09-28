@@ -155,17 +155,58 @@
       padding: 0 3rem;
       .input-bid-text {
         font-size: 1rem;
+        color: #000000;
         font-family: $neue-helveticamedium;
         font-weight: normal;
         text-align: start;
       }
-      .input-bid {
-        width: 100%;
-        outline: none;
+
+      .input-bid-wrap {
         border: 2px solid #222;
         border-radius: 0.6rem;
-        font-size: 1.8rem !important;
-        padding: 0.6rem 1.1rem;
+        display: flex;
+        align-items: center;
+
+        .bid-currency {
+          color: #000000;
+          font-family: $neue-helveticamedium;
+          font-size: 1.8rem !important;
+          padding-left: 1.1rem;
+        }
+
+        .input-bid {
+          flex: 1;
+          font-family: $neue-helveticamedium;
+          font-size: 1.8rem !important;
+          padding: 0.6rem 1.1rem 0.6rem 0.1rem;
+          outline: none;
+          border-radius: 0.6rem;
+          border: none;
+        }
+      }
+
+      .input-quantity-container {
+        border: 2px solid #222;
+        border-radius: 0.6rem;
+        display: flex;
+        align-items: center;
+
+        .input-quantity {
+          flex: 1;
+          font-family: $neue-helveticamedium;
+          font-size: 1.8rem !important;
+          padding: 0.6rem 1.1rem;
+          outline: none;
+          border-radius: 0.6rem;
+          border: none;
+        }
+
+        .quantity-to-value {
+          color: #d3d3d6;
+          font-family: $neue-helveticamedium;
+          padding-right: 1.5rem;
+          font-size: 1.3rem !important;
+        }
       }
 
       .balance-details {

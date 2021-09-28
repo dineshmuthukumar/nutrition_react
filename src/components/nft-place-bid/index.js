@@ -2,16 +2,18 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { Offcanvas } from "react-bootstrap";
-import { BiCheckCircle, BiX } from "react-icons/bi";
+import { BiX } from "react-icons/bi";
+import { FaCheckCircle } from "react-icons/fa";
 import ErrorText from "./error-text";
 import "./style.scss";
-import { FaCheckCircle } from "react-icons/fa";
 
 const NFTPlaceBid = ({ show = false }) => {
   const { user } = useSelector((state) => state.user.data);
   const history = useHistory();
 
-  const [success, setSuccess] = useState(true);
+  const [success, setSuccess] = useState(false);
+
+  const [isQuantity, setIsQuantity] = useState(true);
 
   return (
     <Offcanvas
@@ -42,7 +44,7 @@ const NFTPlaceBid = ({ show = false }) => {
               </div>
 
               {/* error-progress -> error progress , loading -> progressing */}
-              <div className="pop-bid-progress loading">
+              <div className="pop-bid-progress">
                 <div className="progress-complete"></div>
               </div>
 
@@ -86,7 +88,19 @@ const NFTPlaceBid = ({ show = false }) => {
                 <label className="input-bid-text">
                   Enter minimum bid amount of $105.44
                 </label>
-                <input className="input-bid" placeholder="$0" />
+
+                {isQuantity ? (
+                  <div className="input-quantity-container">
+                    <input className="input-quantity" placeholder="0 NFTs" />
+                    {/* text-dark -> dark text after entering quantity */}
+                    <span className="quantity-to-value ">$3000</span>
+                  </div>
+                ) : (
+                  <div className="input-bid-wrap">
+                    <span className="bid-currency">$</span>
+                    <input className="input-bid" placeholder="0" />
+                  </div>
+                )}
                 <div className="balance-details">
                   Your wallet balance is {user?.currency_symbol} {user?.balance}
                 </div>
