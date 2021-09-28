@@ -40,6 +40,7 @@ const Home = () => {
                   title={nft.name}
                   desc={nft.description}
                   nftId={nft.slug}
+                  nftType={nft.nft_type}
                   imgUrl={
                     "https://i.pinimg.com/originals/93/2a/88/932a88d96ca31d447044a8041bf8d100.png"
                   }

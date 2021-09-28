@@ -7,7 +7,7 @@ const NFTTags = ({ tags }) => {
     <div className="nft-tags">
       <div className="nft-tag-title">
         Tags
-        <span className="title-count">(8)</span>
+        {tags && <span className="title-count">({tags.length})</span>}
       </div>
       <div className="nft-tag-content mt-2">
         {tags && tags.map((tag, i) => <Tag key={`tag${i}`} text={tag} />)}

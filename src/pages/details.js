@@ -32,7 +32,13 @@ const Details = () => {
   const params = useParams();
   const [small, setSmall] = useState(false);
   const [nft, setNft] = useState({});
-  const [totalBid, setTotalBid] = useState(0);
+  const [socketData, setSocketData] = useState({
+    totalBid: 0,
+    totalBuy: 0,
+    price: 0,
+    totalViews: 23457,
+    totalFavourites: 76543
+  });
 
   useEffect(() => {
 
@@ -47,6 +53,7 @@ const Details = () => {
         setSmall(window.pageYOffset > 800)
       );
     }
+    setSocketData({ ...socketData, totalBid: 11 })
   }, []);
 
   const nftDetail = async (id) => {
@@ -73,7 +80,7 @@ const Details = () => {
         </div>
         <div className="row mt-5">
           <div className="col-12">
-            <NFTSummary totalBid={totalBid} />
+            <NFTSummary nft={nft} socketData={socketData} />
           </div>
         </div>
         <NFTSectionTitle title="Bid Details" />

@@ -5,7 +5,7 @@ import { BsFillQuestionCircleFill } from "react-icons/bs";
 import ToolTip from "../tooltip";
 import "./style.scss";
 
-const NFTTimeLeft = ({ title, tooltipText, isEnded = false }) => {
+const NFTTimeLeft = ({ title, tooltipText, isEnded = false, time }) => {
   return (
     <div className="nft-time-left">
       <div className="title">
@@ -26,7 +26,7 @@ const NFTTimeLeft = ({ title, tooltipText, isEnded = false }) => {
           {dayjs("2019-01-25").format("DD. MM. YYYY")}
         </div>
       ) : (
-        <NFTCounter time={"2021-09-28"} />
+        <NFTCounter time={time} />
       )}
     </div>
   );
