@@ -4,13 +4,13 @@ import Badge from "./badge";
 import "./style.scss";
 
 const NFTSummary = ({ nft, socketData }) => {
-  const nftType = nft.nft_type === 'erc721';
+  const erc721 = nft.nft_type === 'erc721';
   return (
     <div className="bg-white shadow-sm nft-summary">
       <div className="row">
         <div className="col-12 col-md-6 col-lg-3">
           <div className="p-4">
-            {nftType ?
+            {erc721 ?
               <Badge title="Total Bids" value={socketData.totalBid ? socketData.totalBid : 2000} />
               : <Badge title="Total Buys" value={socketData.totalBuy ? socketData.totalBuy : 2000} />
             }
@@ -18,7 +18,7 @@ const NFTSummary = ({ nft, socketData }) => {
         </div>
         <div className="col-12 col-md-6 col-lg-3">
           <div className="p-4">
-            {nftType ?
+            {erc721 ?
               (<Badge
                 title="Price"
                 value={socketData.price ? currencyFormat(socketData.price, 'USD') : nft.minimum_bid && currencyFormat(nft.minimum_bid, 'USD')}

@@ -1,9 +1,11 @@
 import React from "react";
 import { Navbar } from "react-bootstrap";
 import { Container } from "react-bootstrap";
+import { currencyFormat } from "../../utils/common";
 import "./style.scss";
 
-const SubHeader = () => {
+const SubHeader = ({ nft }) => {
+  const erc721 = nft.nft_type === 'erc721';
   return (
     <>
       <Navbar
@@ -17,7 +19,7 @@ const SubHeader = () => {
             <img src="https://picsum.photos/100/100" />
             <div className="nft-head-details">
               <div className="sub-creator-title">Amitabh Bachchan</div>
-              <div className="sub-nft-title">Signed Poster #001</div>
+              <div className="sub-nft-title">{nft?.name}</div>
             </div>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -25,8 +27,8 @@ const SubHeader = () => {
           <Navbar.Collapse className="justify-content-end align-items-center">
             <Navbar.Text>
               <div className="text-end sub-head-right">
-                <div className="bid-title">Current Bid</div>
-                <div className="bid-value">$2356.98</div>
+                <div className="bid-title">{erc721 ? 'Current Bid' : 'NFTs Price'}</div>
+                <div className="bid-value">{erc721 ? currencyFormat(nft.minimum_bid, 'USD') : currencyFormat(nft.buy_amount, 'USD') }</div>
               </div>
             </Navbar.Text>
             <Navbar.Text>
@@ -34,7 +36,7 @@ const SubHeader = () => {
                 type="button"
                 className="btn btn-dark btn-lg rounded-pill sub-place-bid-btn"
               >
-                Place a Bid
+               {erc721 ? 'Place a Bid' : 'Buy'}
               </button>
             </Navbar.Text>
           </Navbar.Collapse>
