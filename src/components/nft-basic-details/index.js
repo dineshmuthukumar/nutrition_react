@@ -18,7 +18,7 @@ const NFTBaseDetails = ({ nft, isPlaceBid }) => {
   const [currentUser, setCurrentUser] = useState(false);
   const [ended, setEnded] = useState(true);
 
-  const nftType = nft.nft_type === 'erc721';
+  const nftType = nft.nft_type === "erc721";
 
   return (
     <>
@@ -53,15 +53,24 @@ const NFTBaseDetails = ({ nft, isPlaceBid }) => {
             max={700}
             text={nft.description}
           />
-        ) : <DescriptionLoader />}
+        ) : (
+          <DescriptionLoader />
+        )}
       </p>
 
       <div className="bottom-content">
         <div className="d-flex">
-          {nftType ?
-            <BidValue title="Minimum Bid" value={nft.minimum_bid && currencyFormat(nft.minimum_bid, 'USD')} />
-            : <BidValue title="Price" value={nft.buy_amount && currencyFormat(nft.buy_amount, 'USD')} />
-          }
+          {nftType ? (
+            <BidValue
+              title="Minimum Bid"
+              value={nft.minimum_bid && currencyFormat(nft.minimum_bid, "USD")}
+            />
+          ) : (
+            <BidValue
+              title="Price"
+              value={nft.buy_amount && currencyFormat(nft.buy_amount, "USD")}
+            />
+          )}
 
           {currentUser && (
             <BidValue
@@ -81,10 +90,16 @@ const NFTBaseDetails = ({ nft, isPlaceBid }) => {
           time={nft.auction_start_time}
         />
         <hr className="custom-divider" />
-        {nftType ?
+        {nftType ? (
           <BidValue title="Limited Edition" value="1 of 1" isLeft />
-          : nft.quantity && <BidValue title="Limited Edition" value={`${nft.quantity} / ${nft.quantity}`} />
-        }
+        ) : (
+          nft.quantity && (
+            <BidValue
+              title="Limited Edition"
+              value={`${nft.quantity} / ${nft.quantity}`}
+            />
+          )
+        )}
 
         <hr className="custom-divider" />
 
@@ -137,7 +152,15 @@ const NFTBaseDetails = ({ nft, isPlaceBid }) => {
   );
 };
 
-const TitleLoader = () => <ContentLoader><rect x="0" y="0" rx="0" ry="0" width="271" height="56" /></ContentLoader>
-const DescriptionLoader = () => <ContentLoader><rect x="0" y="0" rx="0" ry="0" width="470" height="40" /></ContentLoader>
+const TitleLoader = () => (
+  <ContentLoader>
+    <rect x="0" y="0" rx="0" ry="0" width="271" height="56" />
+  </ContentLoader>
+);
+const DescriptionLoader = () => (
+  <ContentLoader>
+    <rect x="0" y="0" rx="0" ry="0" width="470" height="40" />
+  </ContentLoader>
+);
 
 export default NFTBaseDetails;

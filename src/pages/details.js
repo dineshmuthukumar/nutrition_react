@@ -37,11 +37,10 @@ const Details = () => {
     totalBuy: 0,
     price: 0,
     totalViews: 23457,
-    totalFavourites: 76543
+    totalFavourites: 76543,
   });
 
   useEffect(() => {
-
     // socketJoinCommonRoom('room_1');
     // socketStatus((data) => console.log(data));
     // socketNewMessage((data) => console.log(data));
@@ -53,7 +52,7 @@ const Details = () => {
         setSmall(window.pageYOffset > 800)
       );
     }
-    setSocketData({ ...socketData, totalBid: 11 })
+    setSocketData({ ...socketData, totalBid: 11 });
   }, []);
 
   const nftDetail = async (id) => {
@@ -72,7 +71,7 @@ const Details = () => {
       <div className="container-fluid">
         <div className="row mt-5">
           <div className="col-12 col-lg-7 align-self-center">
-            <NFTMedia />
+            <NFTMedia title={nft?.name} />
           </div>
           <div className="col-12 col-lg-5">
             <NFTBaseDetails nft={nft} isPlaceBid={matchParams.placebid} />

@@ -6,14 +6,14 @@ import {
   AiOutlineExpand,
   AiOutlineLink,
   AiFillFacebook,
-  AiFillTwitterCircle
+  AiFillTwitterCircle,
 } from "react-icons/ai";
 import { FaTelegramPlane } from "react-icons/fa";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { toast } from "react-toastify";
 import "./style.scss";
 
-const NFTMedia = () => {
+const NFTMedia = ({ title }) => {
   const [modalShow, setModalShow] = useState(false);
   const [liked, setLiked] = useState(false);
   return (
@@ -52,6 +52,7 @@ const NFTMedia = () => {
             </div>
           }
           placement="top"
+          title={title}
         />
 
         <CustomPopover
@@ -85,7 +86,7 @@ const NFTMedia = () => {
 const CustomPopover = ({ icon, placement, text }) => {
   return (
     <OverlayTrigger
-      trigger={['hover', 'focus']}
+      trigger={["hover", "focus"]}
       rootClose
       key={placement}
       placement={placement}
@@ -100,7 +101,12 @@ const CustomPopover = ({ icon, placement, text }) => {
   );
 };
 
-const SharePopover = ({ icon, placement }) => {
+const SharePopover = ({ icon, placement, title }) => {
+  const url = window.location.href;
+  const hashtags =
+    "beyondlife.club,nft,amitabh,bachchan,amitabh_bachchan,bollywood,popular,recent";
+  const via = "beyondlife.club";
+
   return (
     <>
       <OverlayTrigger
@@ -112,16 +118,40 @@ const SharePopover = ({ icon, placement }) => {
           <Popover className="mb-2">
             <Popover.Body className="p-1 custom-pop">
               <CopyToClipboard
-                text={window.location.href}
+                text={url}
                 onCopy={() => {
                   toast.success("Copied to Clipboard");
                 }}
               >
                 <AiOutlineLink size={35} />
               </CopyToClipboard>
-              <AiFillFacebook size={35} style={{ color: "#4267B2" }} />
-              <AiFillTwitterCircle size={35} style={{ color: "#1DA1F2" }} />
-              <FaTelegramPlane size={35} style={{ color: "#0088cc" }} />
+              <AiFillFacebook
+                size={35}
+                style={{ color: "#4267B2" }}
+                onClick={() =>
+                  window.open(
+                    `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${title}`
+                  )
+                }
+              />
+              <AiFillTwitterCircle
+                size={35}
+                style={{ color: "#1DA1F2" }}
+                onClick={() =>
+                  window.open(
+                    `https://twitter.com/intent/tweet?url=${url}&text=${title}&hashtags=${hashtags}&via=${via}`
+                  )
+                }
+              />
+              <FaTelegramPlane
+                size={35}
+                style={{ color: "#0088cc" }}
+                onClick={() =>
+                  window.open(
+                    `https://telegram.me/share/?url=${url}&title=${title}`
+                  )
+                }
+              />
             </Popover.Body>
           </Popover>
         }
