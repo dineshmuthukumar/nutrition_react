@@ -50,18 +50,34 @@ const Details = () => {
     if (typeof window !== "undefined") {
       window.addEventListener("scroll", () => {
         if (window.pageYOffset > 800) {
-          if (!small) {
-            setSmall(true);
-          }
+          updateSubHeader(true);
+          localStorage.setItem("sub-header", "true");
         } else {
-          if (small) {
-            setSmall(false);
-          }
+          updateSubHeader(false);
+          localStorage.setItem("sub-header", "false");
         }
       });
     }
     setSocketData({ ...socketData, totalBid: 11 });
   }, []);
+
+  const updateSubHeader = (input) => {
+    console.log(
+      "🚀 ~ file: details.js ~ line 65 ~ updateSubHeader ~ input",
+      input,
+      localStorage.getItem("sub-header")
+    );
+
+    if (input) {
+      if (localStorage.getItem("sub-header") === "false") {
+        setSmall(input);
+      }
+    } else {
+      if (localStorage.getItem("sub-header") === "true") {
+        setSmall(input);
+      }
+    }
+  };
 
   const nftDetail = async (id) => {
     try {
