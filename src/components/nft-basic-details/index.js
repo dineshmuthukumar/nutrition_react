@@ -18,7 +18,7 @@ const NFTBaseDetails = ({ nft, isPlaceBid }) => {
   const [currentUser, setCurrentUser] = useState(false);
   const [ended, setEnded] = useState(true);
 
-  const nftType = nft.nft_type === 'erc721';
+  const erc721 = nft.nft_type === "erc721";
 
   return (
     <>
@@ -53,15 +53,24 @@ const NFTBaseDetails = ({ nft, isPlaceBid }) => {
             max={700}
             text={nft.description}
           />
-        ) : <DescriptionLoader />}
+        ) : (
+          <DescriptionLoader />
+        )}
       </p>
 
       <div className="bottom-content">
         <div className="d-flex">
-          {nftType ?
-            <BidValue title="Minimum Bid" value={nft.minimum_bid && currencyFormat(nft.minimum_bid, 'USD')} />
-            : <BidValue title="Price" value={nft.buy_amount && currencyFormat(nft.buy_amount, 'USD')} />
-          }
+          {erc721 ? (
+            <BidValue
+              title="Minimum Bid"
+              value={nft.minimum_bid && currencyFormat(nft.minimum_bid, "USD")}
+            />
+          ) : (
+            <BidValue
+              title="Price"
+              value={nft.buy_amount && currencyFormat(nft.buy_amount, "USD")}
+            />
+          )}
 
           {currentUser && (
             <BidValue
@@ -81,51 +90,65 @@ const NFTBaseDetails = ({ nft, isPlaceBid }) => {
           time={nft.auction_start_time}
         />
         <hr className="custom-divider" />
-        {nftType ?
+        {erc721 ? (
           <BidValue title="Limited Edition" value="1 of 1" isLeft />
-          : nft.quantity && <BidValue title="Limited Edition" value={`${nft.quantity} / ${nft.quantity}`} />
-        }
+        ) : (
+          nft.quantity && (
+            <BidValue
+              title="Limited Edition"
+              value={`${nft.quantity} / ${nft.quantity}`}
+            />
+          )
+        )}
 
         <hr className="custom-divider" />
 
         <div className="text-center">
           <NFTPlaceBid show={isPlaceBid ? true : false} nft={nft} />
 
-          {parseFloat(user?.balance) <= 0 ? (
-            <button
-              className="btn btn-danger text-center text-white btn-lg mt-2 rounded-pill recharge-btn"
-              // onClick={() =>
-              //   window.open(
-              //     `${process.env.REACT_APP_BASE_URL}/accounts#wallet`,
-              //     "_self"
-              //   )
-              // }
-              onClick={() =>
-                history.push(`${history.location.pathname}/placebid`)
-              }
-            >
-              Recharge Wallet
-            </button>
-          ) : nftType ? (
-            <button
-              className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
-              onClick={() =>
-                history.push(`${history.location.pathname}/placebid`)
-              }
-            >
-              Place a Bid
-            </button>
-          ) : (
-            <button
-              // disabled
-              className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
-              onClick={() =>
-                history.push(`${history.location.pathname}/placebid`)
-              }
-            >
-              Buy
-            </button>
-          )}
+          {(() => {
+            if (parseFloat(user?.balance) <= 0) {
+              return (
+                <button
+                  className="btn btn-danger text-center text-white btn-lg mt-2 rounded-pill recharge-btn"
+                  onClick={() =>
+                    window.open(
+                      `${process.env.REACT_APP_BASE_URL}/accounts#wallet`,
+                      "_self"
+                    )
+                  }
+                  // onClick={() =>
+                  //   history.push(`${history.location.pathname}/placebid`)
+                  // }
+                >
+                  Recharge Wallet
+                </button>
+              );
+            } else if (erc721) {
+              return (
+                <button
+                  className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                  onClick={() =>
+                    history.push(`${history.location.pathname}/placebid`)
+                  }
+                >
+                  Place a Bid
+                </button>
+              );
+            } else {
+              return (
+                <button
+                  // disabled
+                  className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                  onClick={() =>
+                    history.push(`${history.location.pathname}/placebid`)
+                  }
+                >
+                  Buy
+                </button>
+              );
+            }
+          })()}
 
           <div className="mt-2 royalty-info">
             Counterbid within the last 5 minutes will extend the auction by 15
@@ -137,7 +160,15 @@ const NFTBaseDetails = ({ nft, isPlaceBid }) => {
   );
 };
 
-const TitleLoader = () => <ContentLoader><rect x="0" y="0" rx="0" ry="0" width="271" height="56" /></ContentLoader>
-const DescriptionLoader = () => <ContentLoader><rect x="0" y="0" rx="0" ry="0" width="470" height="40" /></ContentLoader>
+const TitleLoader = () => (
+  <ContentLoader>
+    <rect x="0" y="0" rx="0" ry="0" width="271" height="56" />
+  </ContentLoader>
+);
+const DescriptionLoader = () => (
+  <ContentLoader>
+    <rect x="0" y="0" rx="0" ry="0" width="470" height="40" />
+  </ContentLoader>
+);
 
 export default NFTBaseDetails;

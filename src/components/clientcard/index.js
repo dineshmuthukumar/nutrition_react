@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import NFTCounter from "../nft-counter";
 
 const ClientCard = ({ title, desc, imgUrl, nftId, nftType }) => {
-  const type = nftType == 'erc1155'
+  const erc721 = nftType == 'erc721';
   return (
     <div className="card mb-3">
       <img src={imgUrl} className="card-img-top" alt={title} />
@@ -14,7 +14,7 @@ const ClientCard = ({ title, desc, imgUrl, nftId, nftType }) => {
           <b>Highest Bid is 22.67 ETH</b>
         </p> */}
         <Link to={`/details/${nftId}`} className="btn btn-primary float-end">
-          {type ? 'Buy' : 'Place Bid'}
+          {erc721 ? 'Place Bid' : 'Buy'}
         </Link>
       </div>
     </div>

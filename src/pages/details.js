@@ -68,7 +68,7 @@ const Details = () => {
 
   return (
     <>
-      {small ? <SubHeader /> : <Header />}
+      {small ? <SubHeader nft={nft} /> : <Header />}
       <div className="container-fluid">
         <div className="row mt-5">
           <div className="col-12 col-lg-7 align-self-center">
