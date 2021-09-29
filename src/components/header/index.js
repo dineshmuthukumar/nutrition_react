@@ -18,6 +18,7 @@ const Header = ({ hideOptions = false }) => {
   const state = useSelector((state) => state);
 
   const [value, setValue] = useState(false);
+  const [notification, setNotification] = useState(false);
 
   const { user, lang } = state;
 
@@ -27,7 +28,7 @@ const Header = ({ hideOptions = false }) => {
     dispatch(change_lang_action(u_lang));
   };
 
-  const CustomToggle = React.forwardRef(({ onClick }, ref) => (
+  const UserToggleComponent = React.forwardRef(({ onClick }, ref) => (
     <UserComponent
       user={state.user.data.user}
       ref={ref}
@@ -37,6 +38,22 @@ const Header = ({ hideOptions = false }) => {
       }}
     />
   ));
+
+  const NotificationToggleComponent = React.forwardRef(({ onClick }, ref) => {
+    return (
+      <div
+        className={`p-2 ${notification ? "bg-white rounded-circle" : ""}`}
+        ref={ref}
+        role="button"
+        onClick={(e) => {
+          e.preventDefault();
+          onClick(e);
+        }}
+      >
+        <BiBell size={25} color={notification ? "black" : "white"} />
+      </div>
+    );
+  });
 
   return (
     <>
@@ -54,14 +71,14 @@ const Header = ({ hideOptions = false }) => {
             <>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="d-flex me-auto ms-auto">
+                {/* <Nav className="d-flex me-auto ms-auto">
                   <Nav.Link href="#home">Menu Item</Nav.Link>
                   <Nav.Link href="#link">Menu Item</Nav.Link>
                   <Nav.Link href="#home">Menu Item</Nav.Link>
                   <Nav.Link href="#link">Menu Item</Nav.Link>
-                </Nav>
+                </Nav> */}
 
-                <Nav>
+                <Nav className="d-flex me-0 ms-auto">
                   {/* <NavDropdown
                     title={state.lang === "en" ? "English" : "Hindi"}
                     id="basic-nav-dropdown"
@@ -76,14 +93,52 @@ const Header = ({ hideOptions = false }) => {
                       <Nav.Link href="#home">
                         <BiHelpCircle size={25} />
                       </Nav.Link>
-                      <Nav.Link href="#link">
-                        <BiBell size={25} />
-                      </Nav.Link>
+                      <Dropdown
+                        autoClose="outside"
+                        onToggle={(e) => setNotification(e)}
+                      >
+                        <Dropdown.Toggle
+                          align="start"
+                          drop="start"
+                          as={NotificationToggleComponent}
+                        ></Dropdown.Toggle>
+
+                        <Dropdown.Menu align="end" className="noti-container">
+                          <div className="noti-header">Notifications</div>
+                          <div className="noti-content">
+                            <div className="sub-header">Today</div>
+
+                            {[
+                              1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                              1, 1, 1, 3,
+                            ].map((o) => (
+                              <div className="noti-message">
+                                <img src="https://picsum.photos/100/100" />
+                                <div className="noti-message-content">
+                                  <div className="title">Lorem Ipsum</div>
+                                  <div className="desc text-secondary">
+                                    Lorem ipsum dolor sit amet, consectetur
+                                    adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua.
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
+
+                            <div
+                              className="noti-load-more text-secondary"
+                              role="button"
+                            >
+                              See More
+                            </div>
+                          </div>
+                        </Dropdown.Menu>
+                      </Dropdown>
                       <Dropdown autoClose="outside">
                         <Dropdown.Toggle
                           align="start"
                           drop="start"
-                          as={CustomToggle}
+                          as={UserToggleComponent}
                         ></Dropdown.Toggle>
 
                         <Dropdown.Menu align="end">
