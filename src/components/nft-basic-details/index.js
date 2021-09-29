@@ -16,9 +16,13 @@ const NFTBaseDetails = ({ nft, isPlaceBid }) => {
   const history = useHistory();
   const { user } = useSelector((state) => state.user.data);
   const [currentUser, setCurrentUser] = useState(false);
-  const [ended, setEnded] = useState(true);
 
   const erc721 = nft.nft_type === "erc721";
+  const isAuctionStarted =
+    new Date().getTime() >= new Date(nft.auction_start_time).getTime();
+
+  const isAuctionEnded =
+    new Date().getTime() > new Date(nft.auction_end_time).getTime();
 
   return (
     <>
@@ -29,7 +33,9 @@ const NFTBaseDetails = ({ nft, isPlaceBid }) => {
           content="Verified Artist"
           placement="right"
         />
-        {ended && <span className="nft-status-tag rounded-pill">Sold Out</span>}
+        {isAuctionEnded && (
+          <span className="nft-status-tag rounded-pill">Sold Out</span>
+        )}
       </div>
       <div className="nft-title-container">
         <div className="nft-title">{nft.name ? nft.name : <TitleLoader />}</div>
@@ -81,14 +87,33 @@ const NFTBaseDetails = ({ nft, isPlaceBid }) => {
             />
           )}
 
-          {ended && <BidValue title="Owned By" name="@CryptoGeek" isEnd />}
+          {isAuctionEnded && (
+            <BidValue title="Owned By" name="@CryptoGeek" isEnd />
+          )}
         </div>
         <hr className="custom-divider" />
-        <NFTTimeLeft
-          title="Auction ending in"
-          tooltipText="When there are less than 5 minutes left in the auction, successful bids will reset the auction to 5 minutes."
-          time={nft.auction_start_time}
-        />
+        {!isAuctionStarted && (
+          <NFTTimeLeft
+            title="Auction starting in"
+            tooltipText="When there are less than 5 minutes left in the auction, successful bids will reset the auction to 5 minutes."
+            time={nft.auction_start_time}
+          />
+        )}
+        {!isAuctionEnded && isAuctionStarted && (
+          <NFTTimeLeft
+            title="Auction ending in"
+            tooltipText="When there are less than 5 minutes left in the auction, successful bids will reset the auction to 5 minutes."
+            time={nft.auction_end_time}
+          />
+        )}
+        {isAuctionEnded && (
+          <NFTTimeLeft
+            title="Auction ended on"
+            tooltipText="When there are less than 5 minutes left in the auction, successful bids will reset the auction to 5 minutes."
+            time={nft.auction_end_time}
+            isEnded={true}
+          />
+        )}
         <hr className="custom-divider" />
         {erc721 ? (
           <BidValue title="Limited Edition" value="1 of 1" isLeft />
@@ -117,9 +142,6 @@ const NFTBaseDetails = ({ nft, isPlaceBid }) => {
                       "_self"
                     )
                   }
-                  // onClick={() =>
-                  //   history.push(`${history.location.pathname}/placebid`)
-                  // }
                 >
                   Recharge Wallet
                 </button>
@@ -127,24 +149,25 @@ const NFTBaseDetails = ({ nft, isPlaceBid }) => {
             } else if (erc721) {
               return (
                 <button
+                  disabled={isAuctionEnded}
                   className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
                   onClick={() =>
                     history.push(`${history.location.pathname}/placebid`)
                   }
                 >
-                  Place a Bid
+                  {isAuctionEnded ? "Auction has ended" : "Place a Bid"}
                 </button>
               );
             } else {
               return (
                 <button
-                  // disabled
+                  disabled={isAuctionEnded}
                   className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
                   onClick={() =>
                     history.push(`${history.location.pathname}/placebid`)
                   }
                 >
-                  Buy
+                  {isAuctionEnded ? "Auction has ended" : "Buy"}
                 </button>
               );
             }

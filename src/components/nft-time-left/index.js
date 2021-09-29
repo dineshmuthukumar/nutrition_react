@@ -22,9 +22,7 @@ const NFTTimeLeft = ({ title, tooltipText, isEnded = false, time }) => {
         />
       </div>
       {isEnded ? (
-        <div className="end-date">
-          {dayjs("2019-01-25").format("DD. MM. YYYY")}
-        </div>
+        <div className="end-date">{dayjs(time).format("DD. MM. YYYY")}</div>
       ) : (
         <NFTCounter time={time} />
       )}
