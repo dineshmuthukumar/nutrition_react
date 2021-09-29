@@ -48,9 +48,17 @@ const Details = () => {
 
     nftDetail(params.id);
     if (typeof window !== "undefined") {
-      window.addEventListener("scroll", () =>
-        setSmall(window.pageYOffset > 800)
-      );
+      window.addEventListener("scroll", () => {
+        if (window.pageYOffset > 800) {
+          if (!small) {
+            setSmall(true);
+          }
+        } else {
+          if (small) {
+            setSmall(false);
+          }
+        }
+      });
     }
     setSocketData({ ...socketData, totalBid: 11 });
   }, []);
