@@ -84,7 +84,7 @@ const Details = () => {
         </div>
         <NFTSectionTitle title="Bid Details" />
         <div className="row mt-5 align-items-center">
-          <div className="col-12 col-lg-6 order-lg-2">
+          <div className="col-12 col-lg-6 order-lg-2 mb-4">
             <BidHistory input={[1, 2, 3, 4, 5, 6, 7, 8, 5, 5]} />
             {/* <BidAuction status="end" bottomTitle="Auction starting in" /> */}
             {/* <BidAuction

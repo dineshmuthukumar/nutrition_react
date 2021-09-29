@@ -318,11 +318,17 @@ input::-webkit-inner-spin-button {
 }
 
 @media (min-width: $sm-width) {
+  html {
+    font-size: 10px;
+  }
 }
 
 @media (min-width: $md-width) {
   .w-md-50 {
     width: 50% !important;
+  }
+  html {
+    font-size: 12px;
   }
 }
 
@@ -330,9 +336,15 @@ input::-webkit-inner-spin-button {
   .w-lg-42 {
     width: 42% !important;
   }
+  html {
+    font-size: 14px;
+  }
 }
 
 @media (min-width: $xl-width) {
+  html {
+    font-size: 16px;
+  }
 }
 
 .history-modal {
