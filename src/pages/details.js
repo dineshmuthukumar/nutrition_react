@@ -30,7 +30,7 @@ const Details = () => {
   };
 
   const params = useParams();
-  const [small, setSmall] = useState(true);
+  const [small, setSmall] = useState(false);
   const [nft, setNft] = useState({});
   const [socketData, setSocketData] = useState({
     totalBid: 0,
