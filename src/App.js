@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useEffect } from "react";
+import React, { Suspense, lazy, useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 
 import { useSelector, connect, useDispatch } from "react-redux";
-import { Offline } from "react-detect-offline";
 
 import { change_lang_action } from "./redux/actions/lang_action";
 import { setLanguage } from "react-multi-lang";
@@ -24,6 +23,7 @@ const Details = lazy(() => import("./pages/details"));
 
 function App(props) {
   const dispatch = useDispatch();
+  const [online, setOnline] = useState(true);
 
   const { lang, user } = useSelector((state) => state);
 
@@ -39,13 +39,22 @@ function App(props) {
     if (user.data.user && !token) dispatch(user_logout_thunk());
   }, []);
 
+  useEffect(() => {
+    window.addEventListener("online", (event) => {
+      setOnline(navigator.onLine);
+    });
+    window.addEventListener("offline", (event) => {
+      setOnline(navigator.onLine);
+    });
+  }, []);
+
   return (
     <>
-      <Offline>
+      {!online && (
         <div className="offline-ribbon">
           You are offline, please check you internet connection
         </div>
-      </Offline>
+      )}
 
       <div className="top-loader"></div>
       <div className="whole-content">
