@@ -17,7 +17,6 @@ const Header = ({ hideOptions = false }) => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
 
-  const [value, setValue] = useState(false);
   const [notification, setNotification] = useState(false);
 
   const { user, lang } = state;
