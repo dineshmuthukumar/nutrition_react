@@ -187,7 +187,7 @@ const Header = ({ hideOptions = false }) => {
                           >
                             Settings
                           </Dropdown.Item>
-                          <Dropdown.Divider />
+                          {/* <Dropdown.Divider />
                           <Dropdown.Item as="button">
                             <div className="d-flex justify-content-between">
                               <div>Moon Mode</div>
@@ -201,7 +201,7 @@ const Header = ({ hideOptions = false }) => {
                                 />
                               </div>
                             </div>
-                          </Dropdown.Item>
+                          </Dropdown.Item> */}
                           <Dropdown.Divider />
                           <Dropdown.Item
                             as="button"
