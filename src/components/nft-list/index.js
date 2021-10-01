@@ -1,5 +1,6 @@
 import React from "react";
 import NFTDrops from "../nft-drops";
+import goBtn from "../../images/arrow.svg";
 import "./style.scss";
 
 const NFTList = ({ data = [] }) => {
@@ -27,8 +28,8 @@ const NFTList = ({ data = [] }) => {
                     name="email"
                     placeholder="name@email.com"
                   />
-                  <button>
-                    <img src="images/arrow.svg" />
+                  <button type="button">
+                    <img src={goBtn} />
                   </button>
                 </form>
               </div>
