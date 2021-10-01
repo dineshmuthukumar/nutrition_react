@@ -1,7 +1,20 @@
 import React from "react";
 import { useHistory } from "react-router";
+import NFTCounter from "./../nft-counter";
+import dayjs from "dayjs";
 
-const NFTDrops = ({ title, desc, imgUrl, nftId, nftType }) => {
+const NFTDrops = ({
+  time,
+  label,
+  title,
+  desc,
+  imgUrl,
+  bidPrice,
+  nftId,
+  nftType,
+  isEnded,
+  isStarted = false,
+}) => {
   const erc721 = nftType == "erc721";
 
   const history = useHistory();
@@ -25,10 +38,22 @@ const NFTDrops = ({ title, desc, imgUrl, nftId, nftType }) => {
             <p>Amitabh Bachchan</p>
             <h3>{title}</h3>
           </div>
-          <div class="bl_timer">
-            <p>Starting in</p>
+
+          {isStarted && (
+            <div class="bl_timer">
+              <p>Bid Price</p>
+              <h3 className="font-onesevenrem">${bidPrice}</h3>
+            </div>
+          )}
+
+          <div class="bl_timer" style={isStarted ? { right: 0 } : {}}>
+            <p>{label}</p>
             <h3>
-              11<span>h</span> 23<span>m</span> 41<span>s</span>
+              {isEnded ? (
+                <>{time && dayjs(time).format("DD. MM. YYYY")}</>
+              ) : (
+                <NFTCounter time={time} timeClass="font-onesevenrem" />
+              )}
             </h3>
           </div>
         </div>

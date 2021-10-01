@@ -7,14 +7,46 @@ const NFTList = ({ data = [] }) => {
   return (
     <div class="bl_drop_wrapper">
       <div class="container-fluid">
-        {data.map((nft) => (
-          <NFTDrops
-            title={nft.name}
-            desc={nft.description}
-            nftId={nft.slug}
-            nftType={nft.nft_type}
-          />
-        ))}
+        {data.map((nft) => {
+          let label = "",
+            time,
+            isEnded = false,
+            isStarted = false,
+            bidBuyValue = 0;
+
+          if (new Date(nft.auction_start_time) > new Date()) {
+            label = "Starting in";
+            time = nft.auction_start_time;
+          } else if (new Date(nft.auction_end_time) > new Date()) {
+            label = "Ends in";
+            time = nft.auction_end_time;
+            isStarted = true;
+          } else {
+            time = nft.auction_end_time;
+            label = "Ended at";
+            isEnded = true;
+          }
+
+          if (nft.nft_type === "erc721") {
+            bidBuyValue = nft.minimum_bid;
+          } else {
+            bidBuyValue = nft.buy_amount;
+          }
+
+          return (
+            <NFTDrops
+              isStarted={isStarted}
+              isEnded={isEnded}
+              time={time}
+              label={label}
+              title={nft.name}
+              bidPrice={bidBuyValue}
+              desc={nft.description}
+              nftId={nft.slug}
+              nftType={nft.nft_type}
+            />
+          );
+        })}
       </div>
       <div class="container-fluid mt-5 mb-5">
         <div class="row mt-5 justify-content-center">
@@ -29,7 +61,7 @@ const NFTList = ({ data = [] }) => {
                     placeholder="name@email.com"
                   />
                   <button type="button">
-                    <img src={goBtn} />
+                    <img src={goBtn} style={{ maxWidth: "100%" }} />
                   </button>
                 </form>
               </div>

@@ -21,7 +21,7 @@
   .nft-more-content {
     display: flex;
     flex-wrap: nowrap;
-    overflow: auto;
+    overflow: hidden;
     scroll-behavior: smooth;
 
     .more-card {
