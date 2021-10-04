@@ -326,17 +326,11 @@ input::-webkit-inner-spin-button {
 }
 
 @media (min-width: $sm-width) {
-  html {
-    font-size: 10px;
-  }
 }
 
 @media (min-width: $md-width) {
   .w-md-50 {
     width: 50% !important;
-  }
-  html {
-    font-size: 12px;
   }
 }
 
@@ -344,15 +338,9 @@ input::-webkit-inner-spin-button {
   .w-lg-42 {
     width: 42% !important;
   }
-  html {
-    font-size: 14px;
-  }
 }
 
 @media (min-width: $xl-width) {
-  html {
-    font-size: 16px;
-  }
 }
 
 .history-modal {
@@ -430,4 +418,86 @@ input::-webkit-inner-spin-button {
 
 .modal-backdrop.show {
   opacity: 0.8;
+}
+
+// @media (min-width: 1440px) {
+//   html {
+//     font-size: 16px;
+//   }
+// }
+
+// @media (min-width: 1200px) {
+//   html {
+//     font-size: 16px;
+//   }
+// }
+
+// @media (min-width: 992px) {
+//   html {
+//     font-size: 10px;
+//   }
+// }
+
+// @media (min-width: 768px) {
+//   html {
+//     font-size: 1px;
+//   }
+// }
+
+// @media (min-width: 576px) {
+//   html {
+//     font-size: 1px;
+//   }
+// }
+
+html {
+  font-size: 10px;
+}
+
+@media (min-width: 576px) {
+  html {
+    font-size: 11px;
+  }
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 992px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 1200px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 1400px) {
+  html {
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 1600px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1800px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 2000px) {
+  html {
+    font-size: 16px;
+  }
 }

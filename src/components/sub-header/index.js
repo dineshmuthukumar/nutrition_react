@@ -1,11 +1,13 @@
 import React from "react";
+import { useHistory } from "react-router";
 import { Navbar } from "react-bootstrap";
 import { Container } from "react-bootstrap";
 import { currencyFormat } from "../../utils/common";
 import "./style.scss";
 
 const SubHeader = ({ nft }) => {
-  const erc721 = nft.nft_type === 'erc721';
+  const history = useHistory();
+  const erc721 = nft.nft_type === "erc721";
   return (
     <>
       <Navbar
@@ -27,16 +29,25 @@ const SubHeader = ({ nft }) => {
           <Navbar.Collapse className="justify-content-end align-items-center">
             <Navbar.Text>
               <div className="text-end sub-head-right">
-                <div className="bid-title">{erc721 ? 'Current Bid' : 'NFTs Price'}</div>
-                <div className="bid-value">{erc721 ? currencyFormat(nft.minimum_bid, 'USD') : currencyFormat(nft.buy_amount, 'USD') }</div>
+                <div className="bid-title">
+                  {erc721 ? "Current Bid" : "NFTs Price"}
+                </div>
+                <div className="bid-value">
+                  {erc721
+                    ? currencyFormat(nft.minimum_bid, "USD")
+                    : currencyFormat(nft.buy_amount, "USD")}
+                </div>
               </div>
             </Navbar.Text>
             <Navbar.Text>
               <button
                 type="button"
                 className="btn btn-dark btn-lg rounded-pill sub-place-bid-btn"
+                onClick={() =>
+                  history.push(`${history.location.pathname}/placebid`)
+                }
               >
-               {erc721 ? 'Place a Bid' : 'Buy'}
+                {erc721 ? "Place a Bid" : "Buy"}
               </button>
             </Navbar.Text>
           </Navbar.Collapse>

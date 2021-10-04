@@ -24,12 +24,8 @@ const NFTDrops = ({
   };
 
   return (
-    <div
-      class="row mt-5 justify-content-center"
-      role="button"
-      onClick={handleClick}
-    >
-      <div class="col-md-9">
+    <div class="row mt-5 justify-content-center">
+      <div class="col-md-9" role="button" onClick={handleClick}>
         <div
           class="bl_drop_list p-3"
           style={{ backgroundImage: "url(https://picsum.photos/780/750)" }}
