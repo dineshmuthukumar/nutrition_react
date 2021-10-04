@@ -41,7 +41,7 @@ const NFTDrops = ({
 
           {isStarted && (
             <div class="bl_timer">
-              <p>Bid Price</p>
+              <p>{erc721 ? "Bid Price" : "Buy Price"}</p>
               <h3 className="font-onesevenrem">${bidPrice}</h3>
             </div>
           )}
