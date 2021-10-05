@@ -8,7 +8,7 @@ import {
   AiFillFacebook,
   AiFillTwitterCircle,
 } from "react-icons/ai";
-import { FaTelegramPlane } from "react-icons/fa";
+import { FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { toast } from "react-toastify";
 import "./style.scss";
@@ -18,7 +18,7 @@ const NFTMedia = ({ title }) => {
   const [liked, setLiked] = useState(false);
   return (
     <div className="nft-media">
-      <img src="https://picsum.photos/780/750" />
+      <img src="https://wallpaperaccess.com/full/112115.jpg" />
       {/* <img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" /> */}
       {/* <video controls>
         <source
@@ -76,7 +76,10 @@ const NFTMedia = ({ title }) => {
       >
         <Modal.Header closeButton className="full-screen-header"></Modal.Header>
         <Modal.Body>
-          <img className="modal-img" src="https://picsum.photos/780/750" />
+          <img
+            className="modal-img"
+            src="https://wallpaperaccess.com/full/112115.jpg"
+          />
         </Modal.Body>
       </Modal>
     </div>
@@ -149,6 +152,16 @@ const SharePopover = ({ icon, placement, title }) => {
                 onClick={() =>
                   window.open(
                     `https://telegram.me/share/?url=${url}&title=${title}`
+                  )
+                }
+              />
+
+              <FaWhatsapp
+                size={35}
+                style={{ color: "#25D366" }}
+                onClick={() =>
+                  window.open(
+                    `whatsapp://send?text=Hey ! I found an awesome NFT here, check it out in below link%0a%0ahttps://amitabh.bafdemo.com/details/BxRM51oLFgY7AdoP`
                   )
                 }
               />
