@@ -25,7 +25,7 @@ axios.interceptors.response.use(
   },
   (error) => {
     document.body.classList.remove("loading-indicator");
-    return Promise.reject(error.response);
+    return Promise.reject(error);
   }
 );
 

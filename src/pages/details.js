@@ -2,7 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useRouteMatch } from "react-router";
 import { useParams } from "react-router-dom";
 import { nftDetailApi } from "../api/methods";
-// import { socketJoinCommonRoom, socketNewMessage, socketStatus, socketTotalBid } from "../api/socket-methods";
+// import {
+//   // socketConnect,
+//   // socketJoinCommonRoom,
+//   // socketNewMessage,
+//   // socketStatus,
+//   // socketTotalBid,
+// } from "../api/socket-methods";
 import BidAuction from "../components/bid-auction";
 import BidHistory from "../components/bid-history";
 import BidWinner from "../components/bid-winner";
@@ -41,6 +47,8 @@ const Details = () => {
   });
 
   useEffect(() => {
+    // socketConnect();
+    // socket.on("connect", () => console.log(socket.connected));
     // socketJoinCommonRoom('room_1');
     // socketStatus((data) => console.log(data));
     // socketNewMessage((data) => console.log(data));

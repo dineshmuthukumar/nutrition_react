@@ -6,11 +6,13 @@ import { BiX } from "react-icons/bi";
 import { FaCheckCircle } from "react-icons/fa";
 import ErrorText from "./error-text";
 import {
+  bidBuyError,
   currencyFormat,
   validateCurrency,
   validateQuantity,
 } from "../../utils/common";
 import "./style.scss";
+import { nftBuyApi } from "../../api/methods";
 
 const NFTPlaceBid = ({ show = false, nft }) => {
   const { user } = useSelector((state) => state.user.data);
@@ -25,12 +27,18 @@ const NFTPlaceBid = ({ show = false, nft }) => {
   const [buyQuantity, setBuyQuantity] = useState(0);
   const [bidAmount, setBidAmount] = useState(0);
   const [error, setError] = useState("");
+  const isAuctionEnded =
+    new Date().getTime() > new Date(nft.auction_end_time).getTime();
 
   const [buy, setBuy] = useState({
     amountClass: "",
     progressError: "",
     buttonDisable: true,
     processClass: "",
+    buttonName: "Buy NFTs",
+    isError: false,
+    errorTitle: "",
+    errorDescription: "",
   });
 
   const [bid, setBid] = useState({
@@ -38,14 +46,62 @@ const NFTPlaceBid = ({ show = false, nft }) => {
     progressError: "",
     buttonDisable: true,
     processClass: "",
+    buttonName: "Place Bid",
   });
 
-  const handleBuy = () => {
+  const handleBuy = async () => {
     if (!user)
       window.open(
         `${process.env.REACT_APP_BASE_URL}/signin?redirect=${window.location.href}`,
         "_self"
       );
+
+    if (!isAuctionEnded) {
+      try {
+        setBuy({
+          ...buy,
+          progressError: "loading",
+          processClass: "process",
+          buttonName: "Processing...",
+          buttonDisable: true,
+        });
+        const result = await nftBuyApi({
+          slug: nft.slug,
+          quantity: parseInt(buyQuantity),
+        });
+        if (result.data.success) {
+          console.log(result);
+          setSuccess(true);
+          setBuy({
+            ...buy,
+            progressError: "",
+            processClass: "",
+            buttonName: "Buy NFTs",
+            buttonDisable: false,
+          });
+        }
+        console.log(result);
+      } catch (error) {
+        if (error.response.data.status === 422) {
+          const err = bidBuyError(error.response.data.fail_status);
+          setBuy({
+            ...buy,
+            isError: true,
+            progressError: "error-progress",
+            errorTitle: err.title,
+            errorDescription: err.description,
+          });
+        }
+      }
+    } else {
+      const err = bidBuyError(702);
+      setBuy({
+        ...buy,
+        isError: true,
+        errorTitle: err.title,
+        errorDescription: err.description,
+      });
+    }
   };
 
   const handleBid = () => {
@@ -54,6 +110,11 @@ const NFTPlaceBid = ({ show = false, nft }) => {
         `${process.env.REACT_APP_BASE_URL}/signin?redirect=${window.location.href}`,
         "_self"
       );
+  };
+
+  const handleSuccess = () => {
+    history.push(history.location.pathname.replace("/placebid", ""));
+    window.location.reload();
   };
 
   const handleBidInputChange = (e) => {
@@ -101,7 +162,7 @@ const NFTPlaceBid = ({ show = false, nft }) => {
     if (e.target.value) {
       if (
         validateQuantity(e.target.value) &&
-        e.target.value <= nft.quantity &&
+        e.target.value <= nft.buy_count &&
         e.target.value != 0
       ) {
         let amount = e.target.value * parseFloat(nft.buy_amount);
@@ -134,7 +195,7 @@ const NFTPlaceBid = ({ show = false, nft }) => {
             setError("");
             setBuy({
               ...buy,
-              amountClass: "",
+              amountClass: "text-dark",
               progressError: "",
               buttonDisable: false,
             });
@@ -216,12 +277,21 @@ const NFTPlaceBid = ({ show = false, nft }) => {
 
               <div className="error-float-container">
                 {noBalance && <ErrorText type="nobalance" />}
-                {/* <ErrorText type="ending-time" />
-                <ErrorText
-                  type="error"
-                  title="Error Message Heading"
-                  desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod"
-                /> */}
+                {/* <ErrorText type="ending-time" /> */}
+                {buy.isError && (
+                  <ErrorText
+                    handleClick={() =>
+                      setBuy({
+                        ...buy,
+                        isError: false,
+                        progressError: "",
+                      })
+                    }
+                    type="error"
+                    title={buy.errorTitle}
+                    desc={buy.errorDescription}
+                  />
+                )}
               </div>
 
               <div className="pop-nft-media">
@@ -320,7 +390,9 @@ const NFTPlaceBid = ({ show = false, nft }) => {
                         className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop ${bid.processClass}`} //process -> proccessing
                         onClick={handleBid}
                       >
-                        {bidAmount > 0 ? "Place Bid" : "Bid amount is required"}
+                        {bidAmount > 0
+                          ? bid.buttonName
+                          : "Bid amount is required"}
                       </button>
                     ) : (
                       <button
@@ -328,7 +400,9 @@ const NFTPlaceBid = ({ show = false, nft }) => {
                         className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop ${buy.processClass}`} //process -> proccessing
                         onClick={handleBuy}
                       >
-                        {buyAmount > 0 ? " Buy NFTs" : "NFT amount is required"}
+                        {buyAmount > 0
+                          ? buy.buttonName
+                          : "NFT amount is required"}
                       </button>
                     )}
                   </div>
@@ -339,9 +413,13 @@ const NFTPlaceBid = ({ show = false, nft }) => {
             <>
               <div className="sucess-title">
                 <FaCheckCircle color={"#23bf61"} size={60} />
-                <div className="message mt-3">
-                  Bid successfully placed. <br /> You are the highest bidder
-                </div>
+                {erc721 ? (
+                  <div className="message mt-3">
+                    Bid successfully placed. <br /> You are the highest bidder
+                  </div>
+                ) : (
+                  <div className="message mt-3">NFT successfully bought.</div>
+                )}
               </div>
 
               <div className="pop-nft-media mt-4 preview">
@@ -365,27 +443,40 @@ const NFTPlaceBid = ({ show = false, nft }) => {
               <div className="pop-author-name text-center mt-3">
                 Amitabh Bachchan
               </div>
-              <div className="pop-nft-title text-center mb-1">
-                Signed Poster #001
-              </div>
+              <div className="pop-nft-title text-center mb-1">{nft?.name}</div>
 
               <div className="success-summary-container mt-3">
                 <div className="success-summary">
-                  <div>Bid price</div>
-                  <div className="bold">$105.50</div>
+                  <div>{erc721 ? "Bid price" : "Bought price"}</div>
+                  <div className="bold">
+                    {erc721
+                      ? currencyFormat(bidAmount, "USD")
+                      : currencyFormat(buyAmount, "USD")}
+                  </div>
                 </div>
+                {!erc721 && (
+                  <div className="success-summary">
+                    <div>Bought quantity</div>
+                    <div className="bold">{buyQuantity}</div>
+                  </div>
+                )}
                 <div className="success-summary">
-                  <div>Bid placed on</div>
+                  <div>{erc721 ? "Bid placed on" : "Bought on"}</div>
                   <div className="bold">22 Sep, 2021 12:35:20</div>
                 </div>
-                <div className="success-summary">
-                  <div>Bid placed for</div>
-                  <div className="bold">1 Limited Edition</div>
-                </div>
-                <div className="success-summary">
-                  <div>Transaction No.</div>
-                  <div className="bold">019dh393...00382182</div>
-                </div>
+
+                {erc721 && (
+                  <>
+                    <div className="success-summary">
+                      <div>Bid placed for</div>
+                      <div className="bold">1 Limited Edition</div>
+                    </div>
+                    <div className="success-summary">
+                      <div>Transaction No.</div>
+                      <div className="bold">019dh393...00382182</div>
+                    </div>
+                  </>
+                )}
               </div>
 
               <div className="bottom-area">
@@ -393,11 +484,12 @@ const NFTPlaceBid = ({ show = false, nft }) => {
                   <div className="place-bid-button">
                     <button
                       className="btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop "
-                      onClick={() =>
-                        history.push(
-                          history.location.pathname.replace("/placebid", "")
-                        )
-                      }
+                      // onClick={() =>
+                      //   history.push(
+                      //     history.location.pathname.replace("/placebid", "")
+                      //   )
+                      // }
+                      onClick={handleSuccess}
                     >
                       Okay
                     </button>

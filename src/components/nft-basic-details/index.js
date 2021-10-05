@@ -3,7 +3,6 @@ import { useHistory } from "react-router";
 import { useSelector } from "react-redux";
 import { FaCheckCircle } from "react-icons/fa";
 import ReadMoreReact from "read-more-react";
-import ContentLoader from "react-content-loader";
 import NFTTimeLeft from "../nft-time-left";
 import BidValue from "../bid-value";
 import NFTPlaceBid from "./../nft-place-bid";
@@ -11,6 +10,7 @@ import { ReactComponent as DiscordSvg } from "./../../icons/discord_logo.svg";
 import ToolTip from "../tooltip";
 import "./style.scss";
 import { currencyFormat } from "../../utils/common";
+import { DescriptionLoader, TitleLoader } from "./content-loader";
 
 const NFTBaseDetails = ({ nft, isPlaceBid }) => {
   const history = useHistory();
@@ -109,7 +109,7 @@ const NFTBaseDetails = ({ nft, isPlaceBid }) => {
         {isAuctionEnded && (
           <NFTTimeLeft
             title="Auction ended on"
-            tooltipText="When there are less than 5 minutes left in the auction, successful bids will reset the auction to 5 minutes."
+            tooltipText="Auction ended"
             time={nft.auction_end_time}
             isEnded={true}
           />
@@ -135,7 +135,12 @@ const NFTBaseDetails = ({ nft, isPlaceBid }) => {
             if (parseFloat(user?.balance) <= 0) {
               return (
                 <button
-                  className="btn btn-danger text-center text-white btn-lg mt-2 rounded-pill recharge-btn"
+                  disabled={isAuctionEnded}
+                  className={`btn ${
+                    isAuctionEnded
+                      ? "btn-dark place-bid-btn"
+                      : "btn-danger text-white recharge-btn"
+                  } text-center btn-lg mt-2 rounded-pill`}
                   onClick={() =>
                     window.open(
                       `${process.env.REACT_APP_BASE_URL}/accounts#wallet`,
@@ -143,7 +148,7 @@ const NFTBaseDetails = ({ nft, isPlaceBid }) => {
                     )
                   }
                 >
-                  Recharge Wallet
+                  {isAuctionEnded ? "Auction has ended" : "Recharge Wallet"}
                 </button>
               );
             } else if (erc721) {
@@ -182,16 +187,5 @@ const NFTBaseDetails = ({ nft, isPlaceBid }) => {
     </>
   );
 };
-
-const TitleLoader = () => (
-  <ContentLoader>
-    <rect x="0" y="0" rx="0" ry="0" width="271" height="56" />
-  </ContentLoader>
-);
-const DescriptionLoader = () => (
-  <ContentLoader>
-    <rect x="0" y="0" rx="0" ry="0" width="470" height="40" />
-  </ContentLoader>
-);
 
 export default NFTBaseDetails;

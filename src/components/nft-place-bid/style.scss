@@ -55,6 +55,13 @@
         color: white;
         display: flex;
         align-items: center;
+        position: relative;
+
+        .btn-cls {
+          position: absolute;
+          right: 0.4rem;
+          top: 0.4rem;
+        }
 
         .error-text {
           flex: 1;

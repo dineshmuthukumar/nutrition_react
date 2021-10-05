@@ -1,4 +1,5 @@
 import React from "react";
+import { BiX } from "react-icons/bi";
 import NFTCounter from "../nft-counter";
 
 const ErrorText = ({ type, handleClick = () => {}, title, desc }) => {
@@ -54,6 +55,12 @@ const ErrorText = ({ type, handleClick = () => {}, title, desc }) => {
   if (type === "error") {
     return (
       <div className="error-container">
+        <BiX
+          className="btn-cls"
+          size={16}
+          role="button"
+          onClick={handleClick}
+        />
         <div className="error-details">
           <div className="error-title">{title}</div>
           <div className="error-counter">{desc}</div>
