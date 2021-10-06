@@ -68,7 +68,11 @@ function NFTCounter({
 
   return (
     <div className={`nft-counter`}>
-      {timerComponents.length ? timerComponents : <span>Time's up!</span>}
+      {timerComponents.length ? (
+        timerComponents
+      ) : (
+        <span className={`${timeClass}`}>0</span>
+      )}
     </div>
   );
 }

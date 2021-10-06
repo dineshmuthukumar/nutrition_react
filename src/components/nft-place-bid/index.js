@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { Offcanvas } from "react-bootstrap";
@@ -70,7 +70,6 @@ const NFTPlaceBid = ({ show = false, nft }) => {
           quantity: parseInt(buyQuantity),
         });
         if (result.data.success) {
-          console.log(result);
           setSuccess(true);
           setBuy({
             ...buy,
@@ -80,7 +79,6 @@ const NFTPlaceBid = ({ show = false, nft }) => {
             buttonDisable: false,
           });
         }
-        console.log(result);
       } catch (error) {
         if (error.response.data.status === 422) {
           const err = bidBuyError(error.response.data.fail_status);
@@ -92,6 +90,15 @@ const NFTPlaceBid = ({ show = false, nft }) => {
             errorDescription: err.description,
           });
         }
+
+        const err = bidBuyError(error.response.data.fail_status);
+        setBuy({
+          ...buy,
+          isError: true,
+          progressError: "error-progress",
+          errorTitle: err.title,
+          errorDescription: err.description,
+        });
       }
     } else {
       const err = bidBuyError(702);
@@ -346,8 +353,9 @@ const NFTPlaceBid = ({ show = false, nft }) => {
                   <div className="input-bid-wrap">
                     <span className="bid-currency">$</span>
                     <input
-                      type="number"
+                      type="text"
                       className="input-bid"
+                      value={bidAmount}
                       placeholder="0"
                       onChange={handleBidInputChange}
                     />
