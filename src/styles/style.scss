@@ -7,13 +7,15 @@
 
 body {
   margin: 0;
-  font-family: $open-sans;
+  font-family: $neue-helveticalight;
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
   background-color: #fafafa;
 }
-
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6{
+  font-family: $neue-helveticabold;
+}
 input {
   &::placeholder {
     color: #e7e7e9;
@@ -456,25 +458,25 @@ html {
 
 @media (min-width: 576px) {
   html {
-    font-size: 11px;
-  }
+    font-size: 110%;
+}
 }
 
 @media (min-width: 768px) {
   html {
-    font-size: 12px;
-  }
+    font-size: 95%;
+}
 }
 
 @media (min-width: 992px) {
   html {
-    font-size: 12px;
-  }
+    font-size: 95%;
+}
 }
 
 @media (min-width: 1200px) {
   html {
-    font-size: 12px;
+    font-size: 100%;
   }
 }
 
@@ -500,4 +502,88 @@ html {
   html {
     font-size: 16px;
   }
+}
+
+
+// responsive media query
+
+
+
+
+/* Tablet (Landscape)
+----------------------------------------------------------- */
+
+@media only screen and (min-width : 768px) and (max-width : 1024px) {
+
+}
+
+
+
+/* Tablet (Portrait)
+----------------------------------------------------------- */
+
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+  .nft-artist .artist-content .artist-details-content .bottom-owner-contact-links {
+    top: 0 !important;
+}
+.nft-artist .artist-content .artist-details-content {
+  min-height: auto !important;
+}
+.recharge-btn {
+  width: 100% !important;
+}
+.w-75 {
+  width: auto !important;
+}
+}
+
+
+
+/* Mobile (Landscape)
+----------------------------------------------------------- */
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  .nft-artist .artist-content .artist-img {
+    width: 100%;
+    max-height: initial !important;
+    object-fit: cover !important;
+}
+.sub-header-nft .sub-place-bid-btn {
+
+  padding: 0.5rem 1.5rem;
+}
+}
+
+
+/* Mobile (Portrait only)
+----------------------------------------------------------- */
+
+@media only screen and (max-width: 479px) {
+  .recharge-btn {
+    width: 100% !important;
+}
+}
+
+// responive media query ends
+
+
+
+
+
+
+@media (min-width: 2100px) {
+  html {
+    font-size: 140%;
+  }
+  .nft-more .nft-more-content .more-card img {
+    width: 20rem !important;
+}
+.container-fluid {
+  padding: 0 10rem !important;
+}
+.nft-artist .artist-content .artist-img {
+  width: 100%;
+  max-height: 50vh;
+  object-fit: cover !important;
+}
 }
