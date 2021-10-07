@@ -2,13 +2,31 @@ import React from "react";
 import ContentLoader from "react-content-loader";
 
 export const TitleLoader = () => (
-  <ContentLoader>
-    <rect x="0" y="0" rx="0" ry="0" width="271" height="56" />
+  <ContentLoader viewBox="0 0 100% 100%" height={50} width={"100%"}>
+    <rect y="0" width="100%" height="100%" />
   </ContentLoader>
 );
 
 export const DescriptionLoader = () => (
-  <ContentLoader>
-    <rect x="0" y="0" rx="0" ry="0" width="470" height="40" />
+  <ContentLoader viewBox="0 0 100% 100%" height={50} width={"100%"}>
+    <rect y="0" width="100%" height="100%" />
+  </ContentLoader>
+);
+
+export const PriceLoader = () => (
+  <ContentLoader viewBox="0 0 100% 100%" height={50} width={"100%"}>
+    <rect y="0" width="100%" height="100%" />
+  </ContentLoader>
+);
+
+export const AuctionLoader = () => (
+  <ContentLoader viewBox="0 0 100% 100%" height={50} width={"100%"}>
+    <rect y="0" width="100%" height="100%" />
+  </ContentLoader>
+);
+
+export const QuantityLoader = () => (
+  <ContentLoader viewBox="0 0 100% 100%" height={50} width={"100%"}>
+    <rect y="0" width="100%" height="100%" />
   </ContentLoader>
 );

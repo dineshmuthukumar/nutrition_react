@@ -2,13 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useRouteMatch } from "react-router";
 import { useParams } from "react-router-dom";
 import { nftDetailApi } from "../api/methods";
-// import {
-//   // socketConnect,
-//   // socketJoinCommonRoom,
-//   // socketNewMessage,
-//   // socketStatus,
-//   // socketTotalBid,
-// } from "../api/socket-methods";
 import BidAuction from "../components/bid-auction";
 import BidHistory from "../components/bid-history";
 import BidWinner from "../components/bid-winner";
@@ -24,6 +17,7 @@ import NFTTags from "../components/nft-tags";
 import toaster from "../utils/toaster";
 import NFTSummary from "./../components/nft-summary";
 import SubHeader from "./../components/sub-header";
+import { buyDetail, pageView } from "../api/actioncable-methods";
 
 const Details = () => {
   const { params: matchParams } = useRouteMatch();
@@ -42,17 +36,24 @@ const Details = () => {
     totalBid: 0,
     totalBuy: 0,
     price: 0,
-    totalViews: 23457,
-    totalFavourites: 76543,
+    totalViews: 0,
+    totalFavourites: 0,
+    availableQty: 0,
   });
 
   useEffect(() => {
-    // socketConnect();
-    // socket.on("connect", () => console.log(socket.connected));
-    // socketJoinCommonRoom('room_1');
-    // socketStatus((data) => console.log(data));
-    // socketNewMessage((data) => console.log(data));
-    // socketTotalBid((data) => setTotalBid(data.total_bid));
+    buyDetail((data) => {
+      console.log(data);
+      setSocketData({
+        ...socketData,
+        availableQty: data.quantity,
+        totalBuy: data.total_buys,
+        totalFavourites: data.total_favourites,
+      });
+    });
+    pageView((data) => {
+      setSocketData({ ...socketData, totalViews: data.page_views });
+    });
 
     nftDetail(params.id);
     if (typeof window !== "undefined") {
@@ -70,12 +71,6 @@ const Details = () => {
   }, []);
 
   const updateSubHeader = (input) => {
-    console.log(
-      "🚀 ~ file: details.js ~ line 65 ~ updateSubHeader ~ input",
-      input,
-      localStorage.getItem("sub-header")
-    );
-
     if (input) {
       if (localStorage.getItem("sub-header") === "false") {
         setSmall(input);
@@ -106,7 +101,11 @@ const Details = () => {
             <NFTMedia title={nft?.name} />
           </div>
           <div className="col-12 col-lg-5">
-            <NFTBaseDetails nft={nft} isPlaceBid={matchParams.placebid} />
+            <NFTBaseDetails
+              nft={nft}
+              isPlaceBid={matchParams.placebid}
+              socketData={socketData}
+            />
           </div>
         </div>
         <div className="row mt-5">

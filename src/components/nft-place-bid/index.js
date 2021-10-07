@@ -121,7 +121,15 @@ const NFTPlaceBid = ({ show = false, nft }) => {
 
   const handleSuccess = () => {
     history.push(history.location.pathname.replace("/placebid", ""));
-    window.location.reload();
+    // window.location.reload();
+    setSuccess(false);
+    setBuyQuantity(0);
+    setBuyAmount(0);
+    setBuy({
+      ...buy,
+      amountClass: "",
+      buttonDisable: true,
+    });
   };
 
   const handleBidInputChange = (e) => {
@@ -332,7 +340,7 @@ const NFTPlaceBid = ({ show = false, nft }) => {
                         nft?.minimum_bid,
                         "USD"
                       )}`
-                    : `Enter Quantity (max ${nft?.quantity} NFTs)`}
+                    : `Enter Quantity (max ${nft?.total_quantity} NFTs)`}
                 </label>
 
                 {!erc721 ? (

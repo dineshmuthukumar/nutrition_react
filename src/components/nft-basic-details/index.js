@@ -10,9 +10,9 @@ import { ReactComponent as DiscordSvg } from "./../../icons/discord_logo.svg";
 import ToolTip from "../tooltip";
 import "./style.scss";
 import { currencyFormat } from "../../utils/common";
-import { DescriptionLoader, TitleLoader } from "./content-loader";
+import { DescriptionLoader, PriceLoader, TitleLoader } from "./content-loader";
 
-const NFTBaseDetails = ({ nft, isPlaceBid }) => {
+const NFTBaseDetails = ({ nft, isPlaceBid, socketData }) => {
   const history = useHistory();
   const { user } = useSelector((state) => state.user.data);
   const [currentUser, setCurrentUser] = useState(false);
@@ -106,7 +106,13 @@ const NFTBaseDetails = ({ nft, isPlaceBid }) => {
           ) : (
             <BidValue
               title="Price"
-              value={nft.buy_amount && currencyFormat(nft.buy_amount, "USD")}
+              value={
+                nft.buy_amount ? (
+                  currencyFormat(nft.buy_amount, "USD")
+                ) : (
+                  <PriceLoader />
+                )
+              }
             />
           )}
 
@@ -150,10 +156,14 @@ const NFTBaseDetails = ({ nft, isPlaceBid }) => {
         {erc721 ? (
           <BidValue title="Limited Edition" value="1 of 1" isLeft />
         ) : (
-          nft.quantity && (
+          nft.total_quantity && (
             <BidValue
               title="Limited Edition"
-              value={`${nft.quantity} / ${nft.quantity}`}
+              value={
+                socketData.availableQty
+                  ? `${socketData.availableQty} / ${nft.total_quantity}`
+                  : `${nft.quantity} / ${nft.total_quantity}`
+              }
             />
           )
         )}
