@@ -13,7 +13,9 @@ const NFTSummary = ({ nft, socketData }) => {
             {erc721 ? (
               <Badge
                 title="Total Bids"
-                value={socketData.totalBid ? socketData.totalBid : 2000}
+                value={
+                  socketData.totalBid ? socketData.totalBid : nft.total_bids
+                }
               />
             ) : (
               <Badge
@@ -35,7 +37,10 @@ const NFTSummary = ({ nft, socketData }) => {
                     ? currencyFormat(socketData.price, "USD")
                     : nft.minimum_bid && currencyFormat(nft.minimum_bid, "USD")
                 }
-                diff="-2000"
+                // diff="+2000"
+                diff={
+                  socketData.bidChange ? socketData.bidChange : nft.bid_change
+                }
                 tooltip="Price increased from last bid"
               />
             ) : (

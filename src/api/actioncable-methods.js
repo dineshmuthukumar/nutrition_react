@@ -83,3 +83,15 @@ export const pageView = (value) => {
     }
   );
 };
+
+export const totalFav = (value) => {
+  cable.subscriptions.create(
+    { channel: "NftChannel", room: "fav_view" },
+    {
+      connected: () => {},
+      received: (data) => {
+        value(data);
+      },
+    }
+  );
+};

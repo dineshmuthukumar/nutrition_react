@@ -61,6 +61,8 @@ export const bidBuyError = (code) => {
   const OUT_OF_STOCK = 705;
   const LIMITED_OUT = 706;
   const INSUFFICIENT_BALANCE = 707;
+  const INVALID_BID = 708;
+  const LOW_BID = 709;
 
   switch (code) {
     case ERROR:
@@ -81,6 +83,10 @@ export const bidBuyError = (code) => {
       return { title: "Error", description: "Limited out" };
     case INSUFFICIENT_BALANCE:
       return { title: "Error", description: "Insufficient Balance" };
+    case INVALID_BID:
+      return { title: "Error", description: "Invalid Bid" };
+    case LOW_BID:
+      return { title: "Error", description: "Low Bid" };
     default:
       return { title: "Error", description: "Something went wrong!" };
   }

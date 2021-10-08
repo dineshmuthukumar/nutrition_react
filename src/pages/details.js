@@ -17,7 +17,12 @@ import NFTTags from "../components/nft-tags";
 import toaster from "../utils/toaster";
 import NFTSummary from "./../components/nft-summary";
 import SubHeader from "./../components/sub-header";
-import { buyDetail, pageView } from "../api/actioncable-methods";
+import {
+  bidDetail,
+  buyDetail,
+  pageView,
+  totalFav,
+} from "../api/actioncable-methods";
 
 const Details = () => {
   const { params: matchParams } = useRouteMatch();
@@ -34,6 +39,7 @@ const Details = () => {
   const [nft, setNft] = useState({});
   const [socketData, setSocketData] = useState({
     totalBid: 0,
+    bidChange: 0,
     totalBuy: 0,
     price: 0,
     totalViews: 0,
@@ -47,11 +53,22 @@ const Details = () => {
         ...socketData,
         availableQty: data.quantity,
         totalBuy: data.total_buys,
-        totalFavourites: data.total_favourites,
+      });
+    });
+    bidDetail((data) => {
+      setSocketData({
+        ...socketData,
+        price: data.minimum_bid,
+        bidChange: data.bid_change,
+        totalBid: data.total_bids,
       });
     });
     pageView((data) => {
       setSocketData({ ...socketData, totalViews: data.page_views });
+    });
+
+    totalFav((data) => {
+      setSocketData({ ...socketData, totalFavourites: data.total_favourites });
     });
 
     nftDetail(params.id);
@@ -66,7 +83,6 @@ const Details = () => {
         }
       });
     }
-    setSocketData({ ...socketData, totalBid: 11 });
   }, []);
 
   const updateSubHeader = (input) => {

@@ -100,8 +100,12 @@ const NFTBaseDetails = ({ nft, isPlaceBid, socketData }) => {
         <div className="d-flex">
           {erc721 ? (
             <BidValue
-              title="Minimum Bid"
-              value={nft.minimum_bid && currencyFormat(nft.minimum_bid, "USD")}
+              title={isAuctionStarted ? "Current Bid" : "Minimum Bid"}
+              value={
+                socketData.price
+                  ? currencyFormat(socketData.price, "USD")
+                  : currencyFormat(nft.minimum_bid, "USD")
+              }
             />
           ) : (
             <BidValue
@@ -171,7 +175,11 @@ const NFTBaseDetails = ({ nft, isPlaceBid, socketData }) => {
         <hr className="custom-divider" />
 
         <div className="text-center">
-          <NFTPlaceBid show={isPlaceBid ? true : false} nft={nft} />
+          <NFTPlaceBid
+            show={isPlaceBid ? true : false}
+            nft={nft}
+            socketData={socketData}
+          />
 
           {(() => {
             if (parseFloat(user?.balance) <= 0) {

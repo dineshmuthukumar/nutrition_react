@@ -12,9 +12,9 @@ import {
   validateQuantity,
 } from "../../utils/common";
 import "./style.scss";
-import { nftBuyApi } from "../../api/methods";
+import { nftBidApi, nftBuyApi } from "../../api/methods";
 
-const NFTPlaceBid = ({ show = false, nft }) => {
+const NFTPlaceBid = ({ show = false, nft, socketData }) => {
   const { user } = useSelector((state) => state.user.data);
   const history = useHistory();
 
@@ -47,6 +47,9 @@ const NFTPlaceBid = ({ show = false, nft }) => {
     buttonDisable: true,
     processClass: "",
     buttonName: "Place Bid",
+    isError: false,
+    errorTitle: "",
+    errorDescription: "",
   });
 
   const handleBuy = async () => {
@@ -111,12 +114,66 @@ const NFTPlaceBid = ({ show = false, nft }) => {
     }
   };
 
-  const handleBid = () => {
+  const handleBid = async () => {
     if (!user)
       window.open(
         `${process.env.REACT_APP_BASE_URL}/signin?redirect=${window.location.href}`,
         "_self"
       );
+
+    if (!isAuctionEnded) {
+      try {
+        setBid({
+          ...bid,
+          progressError: "loading",
+          processClass: "process",
+          buttonName: "Processing...",
+          buttonDisable: true,
+        });
+        const result = await nftBidApi({
+          slug: nft.slug,
+          amount: parseFloat(bidAmount),
+        });
+        if (result.data.success) {
+          setSuccess(true);
+          setBid({
+            ...bid,
+            progressError: "",
+            processClass: "",
+            buttonName: "Place Bid",
+            buttonDisable: false,
+          });
+        }
+      } catch (error) {
+        if (error.response.data.status === 422) {
+          const err = bidBuyError(error.response.data.fail_status);
+          setBid({
+            ...bid,
+            isError: true,
+            progressError: "error-progress",
+            errorTitle: err.title,
+            errorDescription: err.description,
+          });
+        }
+
+        const err = bidBuyError(error.response.data.fail_status);
+        setBid({
+          ...bid,
+          isError: true,
+          progressError: "error-progress",
+          errorTitle: err.title,
+          errorDescription: err.description,
+        });
+      }
+    } else {
+      const err = bidBuyError(702);
+      setBid({
+        ...bid,
+        isError: true,
+        errorTitle: err.title,
+        errorDescription: err.description,
+      });
+    }
   };
 
   const handleSuccess = () => {
@@ -130,10 +187,16 @@ const NFTPlaceBid = ({ show = false, nft }) => {
       amountClass: "",
       buttonDisable: true,
     });
+    setBidAmount(0);
+    setBid({
+      ...bid,
+      buttonDisable: true,
+    });
   };
 
   const handleBidInputChange = (e) => {
     if (e.target.value) {
+      const minimumBid = socketData.price ? socketData.price : nft.minimum_bid;
       if (validateCurrency(e.target.value)) {
         if (user) {
           if (parseFloat(user.balance) < parseFloat(e.target.value)) {
@@ -145,9 +208,7 @@ const NFTPlaceBid = ({ show = false, nft }) => {
             setError("error-balance");
             setNoBalance(true);
             setBidAmount(e.target.value);
-          } else if (
-            parseFloat(e.target.value) <= parseFloat(nft.minimum_bid)
-          ) {
+          } else if (parseFloat(e.target.value) <= parseFloat(minimumBid)) {
             setBid({
               ...bid,
               progressError: "error-progress",
@@ -307,6 +368,20 @@ const NFTPlaceBid = ({ show = false, nft }) => {
                     desc={buy.errorDescription}
                   />
                 )}
+                {bid.isError && (
+                  <ErrorText
+                    handleClick={() =>
+                      setBid({
+                        ...bid,
+                        isError: false,
+                        progressError: "",
+                      })
+                    }
+                    type="error"
+                    title={bid.errorTitle}
+                    desc={bid.errorDescription}
+                  />
+                )}
               </div>
 
               <div className="pop-nft-media">
@@ -337,7 +412,7 @@ const NFTPlaceBid = ({ show = false, nft }) => {
                 <label className="input-bid-text">
                   {erc721
                     ? `Enter minimum bid amount of ${currencyFormat(
-                        nft?.minimum_bid,
+                        socketData.price ? socketData.price : nft.minimum_bid,
                         "USD"
                       )}`
                     : `Enter Quantity (max ${nft?.total_quantity} NFTs)`}
