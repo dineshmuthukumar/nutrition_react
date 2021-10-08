@@ -350,6 +350,7 @@ const NFTPlaceBid = ({ show = false, nft }) => {
                       className="input-quantity"
                       value={buyQuantity}
                       placeholder="0 NFTs"
+                      disabled={isAuctionEnded}
                       onChange={handleBuyInputChange}
                     />
                     {/* text-dark -> dark text after entering quantity */}
@@ -365,6 +366,7 @@ const NFTPlaceBid = ({ show = false, nft }) => {
                       className="input-bid"
                       value={bidAmount}
                       placeholder="0"
+                      disabled={isAuctionEnded}
                       onChange={handleBidInputChange}
                     />
                   </div>
@@ -406,9 +408,15 @@ const NFTPlaceBid = ({ show = false, nft }) => {
                         className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop ${bid.processClass}`} //process -> proccessing
                         onClick={handleBid}
                       >
-                        {bidAmount > 0
-                          ? bid.buttonName
-                          : "Bid amount is required"}
+                        {(() => {
+                          if (isAuctionEnded) {
+                            return "Auction has ended";
+                          } else if (bidAmount > 0) {
+                            return bid.buttonName;
+                          } else {
+                            return "Bid amount is required";
+                          }
+                        })()}
                       </button>
                     ) : (
                       <button
@@ -416,9 +424,15 @@ const NFTPlaceBid = ({ show = false, nft }) => {
                         className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop ${buy.processClass}`} //process -> proccessing
                         onClick={handleBuy}
                       >
-                        {buyAmount > 0
-                          ? buy.buttonName
-                          : "NFT amount is required"}
+                        {(() => {
+                          if (isAuctionEnded) {
+                            return "Auction has ended";
+                          } else if (buyAmount > 0) {
+                            return buy.buttonName;
+                          } else {
+                            return "NFT amount is required";
+                          }
+                        })()}
                       </button>
                     )}
                   </div>

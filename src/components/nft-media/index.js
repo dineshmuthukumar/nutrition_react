@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Modal, OverlayTrigger, Popover } from "react-bootstrap";
 import {
   AiFillHeart,
@@ -8,14 +8,42 @@ import {
   AiFillFacebook,
   AiFillTwitterCircle,
 } from "react-icons/ai";
+import { useSelector } from "react-redux";
 import { FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { toast } from "react-toastify";
+import { nftMakeFav, nftMakeUnFav } from "../../api/methods";
+import toaster from "../../utils/toaster";
 import "./style.scss";
 
-const NFTMedia = ({ title }) => {
+const NFTMedia = ({ title, slug, isFav }) => {
   const [modalShow, setModalShow] = useState(false);
   const [liked, setLiked] = useState(false);
+  const { user } = useSelector((state) => state.user.data);
+
+  useEffect(() => {
+    setLiked(isFav);
+  }, [isFav]);
+
+  const handleLike = async () => {
+    if (!user)
+      window.open(
+        `${process.env.REACT_APP_BASE_URL}/signin?redirect=${window.location.href}`,
+        "_self"
+      );
+
+    setLiked(!liked);
+    try {
+      if (!liked) {
+        let response = await nftMakeFav({ nft_slug: slug });
+      } else {
+        let response = await nftMakeUnFav({ nft_slug: slug });
+      }
+    } catch (err) {
+      console.log(err);
+      toaster(500, "Something went wrong");
+    }
+  };
   return (
     <div className="nft-media">
       <img src="https://wallpaperaccess.com/full/112115.jpg" />
@@ -37,7 +65,7 @@ const NFTMedia = ({ title }) => {
       <div className="media-lsf">
         <CustomPopover
           icon={
-            <div onClick={() => setLiked(!liked)}>
+            <div onClick={handleLike}>
               <AiFillHeart size={25} color={liked ? "red" : "black"} />
             </div>
           }

@@ -43,7 +43,6 @@ const Details = () => {
 
   useEffect(() => {
     buyDetail((data) => {
-      console.log(data);
       setSocketData({
         ...socketData,
         availableQty: data.quantity,
@@ -98,7 +97,11 @@ const Details = () => {
       <div className="container-fluid">
         <div className="row mt-5">
           <div className="col-12 col-lg-7 align-self-center">
-            <NFTMedia title={nft?.name} />
+            <NFTMedia
+              title={nft?.name}
+              slug={nft?.slug}
+              isFav={nft?.is_user_fav}
+            />
           </div>
           <div className="col-12 col-lg-5">
             <NFTBaseDetails
