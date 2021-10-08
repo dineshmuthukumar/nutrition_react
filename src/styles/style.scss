@@ -452,13 +452,9 @@ input::-webkit-inner-spin-button {
 //   }
 // }
 
-html {
-  font-size: 10px;
-}
-
 @media (min-width: 576px) {
   html {
-    font-size: 110%;
+    font-size: 80%;
 }
 }
 
@@ -561,6 +557,15 @@ html {
 @media only screen and (max-width: 479px) {
   .recharge-btn {
     width: 100% !important;
+}
+.sub-header-nft .sub-head-title .nft-head-details .sub-nft-title {
+  font-size: 1rem !important;
+}
+.sub-header-nft .sub-place-bid-btn {
+  font-family: "neue_helveticaroman" !important;
+  font-size: 0.9rem;
+  padding: 0.5rem 0.5rem !important;
+  width: 100px;
 }
 }
 
