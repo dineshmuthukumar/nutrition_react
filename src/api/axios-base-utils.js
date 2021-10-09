@@ -1,13 +1,17 @@
 import axios from "axios";
 import { getCookies } from "../utils/cookies";
 
-axios.defaults.baseURL = process.env.REACT_APP_BASE_SERVER_URL;
+const baseAxios = axios.create({
+  baseURL: process.env.REACT_APP_BASE_SERVER_URL,
+});
+
+// axios.defaults.baseURL = process.env.REACT_APP_BASE_SERVER_URL;
 
 const auth_token = getCookies();
 
-if (auth_token) axios.defaults.headers.common["Authorization"] = auth_token;
+if (auth_token) baseAxios.defaults.headers.common["Authorization"] = auth_token;
 
-axios.interceptors.request.use(
+baseAxios.interceptors.request.use(
   function (config) {
     document.body.classList.add("loading-indicator");
     return config;
@@ -18,7 +22,7 @@ axios.interceptors.request.use(
   }
 );
 
-axios.interceptors.response.use(
+baseAxios.interceptors.response.use(
   (response) => {
     document.body.classList.remove("loading-indicator");
     return response;
@@ -29,4 +33,4 @@ axios.interceptors.response.use(
   }
 );
 
-export default axios;
+export default baseAxios;

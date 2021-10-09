@@ -1,9 +1,9 @@
-import axios from "./axios-base-utils";
+import baseAxios from "./axios-base-utils";
 
 export const registerApi = (props) =>
-  axios.post("/register", { user: { ...props } });
+  baseAxios.post("/register", { user: { ...props } });
 
-export const signOutApi = () => axios.delete("/logout");
+export const signOutApi = () => baseAxios.delete("/logout");
 
 export const userApi = (token) =>
-  axios.get("/users/me", { headers: { Authorization: token } });
+  baseAxios.get("/users/me", { headers: { Authorization: token } });
