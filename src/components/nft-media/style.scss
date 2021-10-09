@@ -5,9 +5,8 @@
   background-color: #e7e7e9;
   position: relative;
 
-  img,
-  video,
-  audio {
+  
+  video{
     height: 40vh;
     max-height: 40vh;
     width: 100%;
@@ -46,6 +45,20 @@
   height: 100%;
 }
 
+.media_audio img,
+.media_audio video,
+{
+  margin: auto;
+  width:100%;
+  display: block;
+}
+.media_audio.modal-body img, .media_audio.modal-body video {
+  margin: auto;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: scale-down;
+}
 .custom-pop {
   font-family: $neue-helveticamedium;
 
@@ -72,4 +85,42 @@
     font-size: 1.5rem;
     opacity: 1;
   }
+}
+
+
+// .nft-media.media_audio {
+//   position: relative;
+//   display: inline-block;
+// }
+.nft-media.media_audio {
+  position: relative;
+  display: flex;
+  width: 100%;
+  background: #ededef;
+  border-radius: 8px;
+  justify-content: center;
+}
+.show_height {
+  display: flex;
+  width: 100%;
+  height: 82vh;
+  align-items: center;
+  justify-content: center;
+}
+img.type_gif {
+  width: auto !important;
+}
+
+.nft-media.media_audio img {
+  display: block;
+  width: 100%;
+}
+.audioOnmedia {
+  position: absolute;
+  top: auto;
+  width: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  bottom: 0.01rem;
 }

@@ -25,14 +25,18 @@ const SubHeader = ({ nft }) => {
           <Navbar.Brand role="button" className="sub-head-title">
             <img src="https://picsum.photos/100/100" />
             <div className="nft-head-details">
-              <div className="sub-creator-title">Amitabh Bachchan</div>
               <div className="sub-nft-title">{nft?.name}</div>
+              <div className="sub-creator-title ">
+              {erc721 ? "Current Bid" : "NFTs Price"} {erc721
+                    ? currencyFormat(nft.minimum_bid, "USD")
+                    : currencyFormat(nft.buy_amount, "USD")}
+              </div>
             </div>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
           <Navbar.Collapse className="justify-content-end align-items-center">
-            <Navbar.Text>
+            {/* <Navbar.Text>
               <div className="text-end sub-head-right">
                 <div className="bid-title">
                   {erc721 ? "Current Bid" : "NFTs Price"}
@@ -43,7 +47,7 @@ const SubHeader = ({ nft }) => {
                     : currencyFormat(nft.buy_amount, "USD")}
                 </div>
               </div>
-            </Navbar.Text>
+            </Navbar.Text> */}
             <Navbar.Text>
               {(() => {
                 if (parseFloat(user?.balance) <= 0) {

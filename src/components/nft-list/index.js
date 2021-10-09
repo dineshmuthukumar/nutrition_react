@@ -61,7 +61,7 @@ const NFTList = ({ data = [] }) => {
                     placeholder="name@email.com"
                   />
                   <button type="button">
-                    <img src={goBtn} style={{ maxWidth: "100%" }} />
+                    <img className="newsletter_btn_icon" src={goBtn} style={{ maxWidth: "80%" }} />
                   </button>
                 </form>
               </div>

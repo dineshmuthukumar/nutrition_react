@@ -45,28 +45,28 @@ const NFTMedia = ({ title, slug, isFav }) => {
     }
   };
   return (
-    <div className="nft-media">
-      <img src="https://wallpaperaccess.com/full/112115.jpg" />
-      {/* <img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" /> */}
+    <div className="nft-media media_audio">
+      {/* <div className="show_height"><img className="type_image typeimg_audio" src="https://wallpaperaccess.com/full/112115.jpg" />  </div> */}
+      {/* <div className="show_height"><img className="type_gif" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" />/div> */}
       {/* <video controls>
         <source
           src="https://www.w3schools.com/tags/movie.mp4"
           type="video/mp4"
         />
       </video> */}
-
-      {/* <audio controls className="shadow-sm ">
+      <div className="no_height"><img className="type_image typeimg_audio" src="https://wallpaperaccess.com/full/112115.jpg" />  </div>
+      <audio controls className="shadow-sm audioOnmedia">
         <source
           src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
           type="audio/mp3"
         />
         Your browser does not support the audio element.
-      </audio> */}
+      </audio>
       <div className="media-lsf">
         <CustomPopover
           icon={
-            <div onClick={handleLike}>
-              <AiFillHeart size={25} color={liked ? "red" : "black"} />
+            <div onClick={() => setLiked(!liked)}>
+              <AiFillHeart className="svg_size" size={25} color={liked ? "red" : "black"} />
             </div>
           }
           placement="top"
@@ -76,7 +76,7 @@ const NFTMedia = ({ title, slug, isFav }) => {
         <SharePopover
           icon={
             <div>
-              <AiOutlineShareAlt size={25} />
+              <AiOutlineShareAlt className="svg_size" size={25} />
             </div>
           }
           placement="top"
@@ -86,7 +86,7 @@ const NFTMedia = ({ title, slug, isFav }) => {
         <CustomPopover
           icon={
             <div onClick={() => setModalShow(true)}>
-              <AiOutlineExpand size={25} />
+              <AiOutlineExpand className="svg_size" size={25} />
             </div>
           }
           placement="top"
@@ -103,11 +103,23 @@ const NFTMedia = ({ title, slug, isFav }) => {
         onHide={() => setModalShow(false)}
       >
         <Modal.Header closeButton className="full-screen-header"></Modal.Header>
-        <Modal.Body>
-          <img
-            className="modal-img"
-            src="https://wallpaperaccess.com/full/112115.jpg"
-          />
+        <Modal.Body className="media_audio">
+       {/* <div className="show_height"><img className="type_image typeimg_audio" src="https://wallpaperaccess.com/full/112115.jpg" />  </div> */}
+      {/* <div className="show_height"><img className="type_gif" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" />/div> */}
+      {/* <video controls>
+        <source
+          src="https://www.w3schools.com/tags/movie.mp4"
+          type="video/mp4"
+        />
+      </video> */}
+      <div className="no_height"><img className="type_image typeimg_audio" src="https://wallpaperaccess.com/full/112115.jpg" />  </div>
+      <audio controls className="shadow-sm audioOnmedia">
+        <source
+          src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+          type="audio/mp3"
+        />
+        Your browser does not support the audio element.
+      </audio>
         </Modal.Body>
       </Modal>
     </div>
