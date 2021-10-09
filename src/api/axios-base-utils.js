@@ -1,5 +1,6 @@
 import axios from "axios";
-import { getCookies } from "../utils/cookies";
+import { getCookies, removeCookies } from "../utils/cookies";
+import { toast } from "react-toastify";
 
 const baseAxios = axios.create({
   baseURL: process.env.REACT_APP_BASE_SERVER_URL,
@@ -29,6 +30,10 @@ baseAxios.interceptors.response.use(
   },
   (error) => {
     document.body.classList.remove("loading-indicator");
+    if (error?.response.status === 401) {
+      removeCookies();
+      toast.warn("Session expired, signin again");
+    }
     return Promise.reject(error);
   }
 );
