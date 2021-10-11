@@ -20,6 +20,7 @@
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
     "react-icons": "^4.1.0",
+    "react-id-swiper": "^4.0.0",
     "react-multi-lang": "^2.1.1",
     "react-otp-input": "^2.4.0",
     "react-phone-input-2": "^2.14.0",
@@ -37,6 +38,7 @@
     "redux-localstorage-simple": "^2.3.1",
     "redux-thunk": "^2.3.0",
     "socket.io-client": "^4.2.0",
+    "swiper": "^6.0.2",
     "universal-cookie": "^4.0.4",
     "web-vitals": "^0.2.4",
     "websocket": "^1.0.34"

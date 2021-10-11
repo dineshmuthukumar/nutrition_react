@@ -1,22 +1,55 @@
 import React, { useRef } from "react";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import MoreCard from "./more-card";
+
+import Swiper from "react-id-swiper";
+// import "swiper/css/swiper.css";
+
+import "swiper/swiper.scss";
 import "./style.scss";
 
 const NFTMore = () => {
   const ref = useRef(0);
 
-  const scroll = (type) => {
-    var width =
-      window.innerWidth ||
-      document.documentElement.clientWidth ||
-      document.body.clientWidth;
-
-    if (type === "left") {
-      ref.current.scrollLeft += -(width / 1.5);
-    } else {
-      ref.current.scrollLeft += width / 1.5;
-    }
+  const params = {
+    slidesPerView: 5,
+    spaceBetween: 50,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    renderPrevButton: () => (
+      <button className="chevron-left-nav" type="button">
+        <BsChevronLeft />
+      </button>
+    ),
+    renderNextButton: () => (
+      <button className="chevron-right-nav" type="button">
+        <BsChevronRight />
+      </button>
+    ),
+    breakpoints: {
+      1024: {
+        slidesPerView: 4,
+        spaceBetween: 40,
+      },
+      768: {
+        slidesPerView: 3,
+        spaceBetween: 30,
+      },
+      640: {
+        slidesPerView: 2,
+        spaceBetween: 20,
+      },
+      320: {
+        slidesPerView: 1,
+        spaceBetween: 10,
+      },
+    },
   };
 
   return (
@@ -25,21 +58,34 @@ const NFTMore = () => {
         More from this artist
         <span className="title-count">(8)</span>
       </div>
-      <div ref={ref} className="nft-more-content">
-        <MoreCard />
-        <MoreCard />
-        <MoreCard />
-        <MoreCard />
-        <MoreCard />
-        <MoreCard />
-        <MoreCard />
+      <div className="nft-more-content">
+        <Swiper {...params}>
+          <div>
+            <MoreCard />
+          </div>
+          <div>
+            <MoreCard />
+          </div>
+          <div>
+            <MoreCard />
+          </div>
+          <div>
+            <MoreCard />
+          </div>
+          <div>
+            <MoreCard />
+          </div>
+          <div>
+            <MoreCard />
+          </div>
+          <div>
+            <MoreCard />
+          </div>
+          <div>
+            <MoreCard />
+          </div>
+        </Swiper>
       </div>
-      <button className="chevron-left-nav" onClick={() => scroll("left")}>
-        <BsChevronLeft />
-      </button>
-      <button className="chevron-right-nav" onClick={() => scroll("right")}>
-        <BsChevronRight />
-      </button>
     </div>
   );
 };
