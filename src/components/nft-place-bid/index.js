@@ -24,8 +24,8 @@ const NFTPlaceBid = ({ show = false, nft, socketData }) => {
   const [noBalance, setNoBalance] = useState(false);
 
   const [buyAmount, setBuyAmount] = useState(0);
-  const [buyQuantity, setBuyQuantity] = useState(0);
-  const [bidAmount, setBidAmount] = useState(0);
+  const [buyQuantity, setBuyQuantity] = useState("");
+  const [bidAmount, setBidAmount] = useState("");
   const [error, setError] = useState("");
   const isAuctionEnded =
     new Date().getTime() > new Date(nft.auction_end_time).getTime();
@@ -180,14 +180,14 @@ const NFTPlaceBid = ({ show = false, nft, socketData }) => {
     history.push(history.location.pathname.replace("/placebid", ""));
     // window.location.reload();
     setSuccess(false);
-    setBuyQuantity(0);
+    setBuyQuantity("");
     setBuyAmount(0);
     setBuy({
       ...buy,
       amountClass: "",
       buttonDisable: true,
     });
-    setBidAmount(0);
+    setBidAmount("");
     setBid({
       ...bid,
       buttonDisable: true,

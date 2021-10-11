@@ -139,17 +139,17 @@ const Details = () => {
               <NFTSummary nft={nft} socketData={socketData} />
             </div>
           </div>
-          <NFTSectionTitle title="Bid Details" />
+          <NFTSectionTitle title="NFT Details" />
           <div className="row mt-5">
             <div className="col-12 col-lg-6 order-lg-2 mb-4">
-              {/* <BidHistory input={[1, 2, 3, 4, 5, 6, 7, 8, 5, 5]} /> */}
+              <BidHistory input={[1, 2, 3, 4, 5, 6, 7, 8, 5, 5]} />
               {/* <BidAuction status="end" bottomTitle="Auction starting in" /> */}
               {/* <BidAuction
               status="end"
               bottomTitle="Limited Edition"
               bottomValue="1000/1000"
             /> */}
-              <BidWinner data={data} />
+              {/* <BidWinner data={data} /> */}
             </div>
             <div className="col-12 col-lg-6 order-lg-1">
               <NFTProperties />
