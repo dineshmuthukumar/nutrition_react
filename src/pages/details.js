@@ -17,6 +17,7 @@ import NFTTags from "../components/nft-tags";
 import toaster from "../utils/toaster";
 import NFTSummary from "./../components/nft-summary";
 import SubHeader from "./../components/sub-header";
+import { NFTLoader } from "../components/nft-basic-details/content-loader";
 import {
   bidDetail,
   buyDetail,
@@ -37,6 +38,7 @@ const Details = () => {
   const params = useParams();
   const [small, setSmall] = useState(false);
   const [nft, setNft] = useState({});
+  const [loader, setLoader] = useState(false);
   const [socketData, setSocketData] = useState({
     totalBid: 0,
     bidChange: 0,
@@ -98,9 +100,11 @@ const Details = () => {
   };
 
   const nftDetail = async (id) => {
+    setLoader(true);
     try {
       let response = await nftDetailApi({ nft_id: id });
       setNft(response.data.data.nft);
+      setLoader(false);
     } catch (err) {
       console.log(err);
       toaster(500, "Something went wrong");
@@ -110,58 +114,62 @@ const Details = () => {
   return (
     <>
       {small ? <SubHeader nft={nft} /> : <Header />}
-      <div className="container-fluid">
-        <div className="row mt-5">
-          <div className="col-12 col-lg-7 align-self-center">
-            <NFTMedia
-              title={nft?.name}
-              slug={nft?.slug}
-              isFav={nft?.is_user_fav}
-            />
+      {loader ? (
+        <NFTLoader />
+      ) : (
+        <div className="container-fluid">
+          <div className="row mt-5">
+            <div className="col-12 col-lg-7 align-self-center">
+              <NFTMedia
+                title={nft?.name}
+                slug={nft?.slug}
+                isFav={nft?.is_user_fav}
+              />
+            </div>
+            <div className="col-12 col-lg-5">
+              <NFTBaseDetails
+                nft={nft}
+                isPlaceBid={matchParams.placebid}
+                socketData={socketData}
+              />
+            </div>
           </div>
-          <div className="col-12 col-lg-5">
-            <NFTBaseDetails
-              nft={nft}
-              isPlaceBid={matchParams.placebid}
-              socketData={socketData}
-            />
+          <div className="row mt-5">
+            <div className="col-12">
+              <NFTSummary nft={nft} socketData={socketData} />
+            </div>
           </div>
-        </div>
-        <div className="row mt-5">
-          <div className="col-12">
-            <NFTSummary nft={nft} socketData={socketData} />
-          </div>
-        </div>
-        <NFTSectionTitle title="Bid Details" />
-        <div className="row mt-5">
-          <div className="col-12 col-lg-6 order-lg-2 mb-4">
-            {/* <BidHistory input={[1, 2, 3, 4, 5, 6, 7, 8, 5, 5]} /> */}
-            {/* <BidAuction status="end" bottomTitle="Auction starting in" /> */}
-            {/* <BidAuction
+          <NFTSectionTitle title="Bid Details" />
+          <div className="row mt-5">
+            <div className="col-12 col-lg-6 order-lg-2 mb-4">
+              {/* <BidHistory input={[1, 2, 3, 4, 5, 6, 7, 8, 5, 5]} /> */}
+              {/* <BidAuction status="end" bottomTitle="Auction starting in" /> */}
+              {/* <BidAuction
               status="end"
               bottomTitle="Limited Edition"
               bottomValue="1000/1000"
             /> */}
-            <BidWinner data={data} />
+              <BidWinner data={data} />
+            </div>
+            <div className="col-12 col-lg-6 order-lg-1">
+              <NFTProperties />
+              <div className="mt-4"></div>
+              <ChainAttributes />
+              <div className="mt-4"></div>
+              <NFTTags tags={nft.tag_names} />
+            </div>
           </div>
-          <div className="col-12 col-lg-6 order-lg-1">
-            <NFTProperties />
-            <div className="mt-4"></div>
-            <ChainAttributes />
-            <div className="mt-4"></div>
-            <NFTTags tags={nft.tag_names} />
+          <NFTSectionTitle title="Artist" />
+          <div className="mt-5">
+            <NFTArtist />
           </div>
+          <div className="mt-5">
+            <NFTMore />
+          </div>
+          <br />
+          <br />
         </div>
-        <NFTSectionTitle title="Artist" />
-        <div className="mt-5">
-          <NFTArtist />
-        </div>
-        <div className="mt-5">
-          <NFTMore />
-        </div>
-        <br />
-        <br />
-      </div>
+      )}
     </>
   );
 };

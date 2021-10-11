@@ -145,18 +145,18 @@ const Header = ({ hideOptions = false }) => {
                             as="button"
                             onClick={() =>
                               window.open(
-                                `${process.env.REACT_APP_BASE_URL}/accounts#home`,
+                                `${process.env.REACT_APP_BASE_URL}/accounts/profile`,
                                 "_blank"
                               )
                             }
                           >
-                            My Accounts
+                            My Profile
                           </Dropdown.Item>
                           <Dropdown.Item
                             as="button"
                             onClick={() =>
                               window.open(
-                                `${process.env.REACT_APP_BASE_URL}/accounts#wallet`,
+                                `${process.env.REACT_APP_BASE_URL}/accounts/wallet`,
                                 "_blank"
                               )
                             }
@@ -167,19 +167,30 @@ const Header = ({ hideOptions = false }) => {
                             as="button"
                             onClick={() =>
                               window.open(
-                                `${process.env.REACT_APP_BASE_URL}/accounts#activity`,
+                                `${process.env.REACT_APP_BASE_URL}/accounts/user-activity`,
                                 "_blank"
                               )
                             }
                           >
-                            Activity
+                            My Activity
+                          </Dropdown.Item>
+                          <Dropdown.Item
+                            as="button"
+                            onClick={() =>
+                              window.open(
+                                `${process.env.REACT_APP_BASE_URL}/accounts/bid-activity`,
+                                "_blank"
+                              )
+                            }
+                          >
+                            Bid Activity
                           </Dropdown.Item>
                           <Dropdown.Divider />
                           <Dropdown.Item
                             as="button"
                             onClick={() =>
                               window.open(
-                                `${process.env.REACT_APP_BASE_URL}/accounts#settings`,
+                                `${process.env.REACT_APP_BASE_URL}/accounts/settings`,
                                 "_blank"
                               )
                             }
