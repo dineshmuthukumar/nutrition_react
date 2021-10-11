@@ -415,7 +415,7 @@ const NFTPlaceBid = ({ show = false, nft, socketData }) => {
                         socketData.price ? socketData.price : nft.minimum_bid,
                         "USD"
                       )}`
-                    : `Enter Quantity (max ${nft?.total_quantity} NFTs)`}
+                    : `Enter Quantity`}
                 </label>
 
                 {!erc721 ? (

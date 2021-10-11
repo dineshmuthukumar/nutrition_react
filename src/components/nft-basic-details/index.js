@@ -10,7 +10,6 @@ import { ReactComponent as DiscordSvg } from "./../../icons/discord_logo.svg";
 import ToolTip from "../tooltip";
 import "./style.scss";
 import { currencyFormat } from "../../utils/common";
-import { DescriptionLoader, PriceLoader, TitleLoader } from "./content-loader";
 
 const NFTBaseDetails = ({ nft, isPlaceBid, socketData }) => {
   const history = useHistory();
@@ -70,7 +69,7 @@ const NFTBaseDetails = ({ nft, isPlaceBid, socketData }) => {
         )}
       </div>
       <div className="nft-title-container">
-        <div className="nft-title">{nft.name ? nft.name : <TitleLoader />}</div>
+        <div className="nft-title">{nft.name}</div>
 
         <ToolTip
           icon={
@@ -84,15 +83,13 @@ const NFTBaseDetails = ({ nft, isPlaceBid, socketData }) => {
         />
       </div>
       <p className="text-secondary mt-1 mb-5 nft-desc">
-        {nft.description ? (
+        {nft.description && (
           <ReadMoreReact
             min={300}
             ideal={300}
             max={700}
             text={nft.description}
           />
-        ) : (
-          <DescriptionLoader />
         )}
       </p>
 
@@ -110,13 +107,7 @@ const NFTBaseDetails = ({ nft, isPlaceBid, socketData }) => {
           ) : (
             <BidValue
               title="Price"
-              value={
-                nft.buy_amount ? (
-                  currencyFormat(nft.buy_amount, "USD")
-                ) : (
-                  <PriceLoader />
-                )
-              }
+              value={nft.buy_amount && currencyFormat(nft.buy_amount, "USD")}
             />
           )}
 
@@ -137,14 +128,22 @@ const NFTBaseDetails = ({ nft, isPlaceBid, socketData }) => {
         {!isAuctionStarted && (
           <NFTTimeLeft
             title="Auction starting in"
-            tooltipText="When there are less than 5 minutes left in the auction, successful bids will reset the auction to 5 minutes."
+            tooltipText={
+              erc721
+                ? "When there are less than 5 minutes left in the auction, successful bids will reset the auction to 5 minutes."
+                : "Nft buy auction"
+            }
             time={nft.auction_start_time}
           />
         )}
         {!isAuctionEnded && isAuctionStarted && (
           <NFTTimeLeft
             title="Auction ending in"
-            tooltipText="When there are less than 5 minutes left in the auction, successful bids will reset the auction to 5 minutes."
+            tooltipText={
+              erc721
+                ? "When there are less than 5 minutes left in the auction, successful bids will reset the auction to 5 minutes."
+                : "Nft buy auction"
+            }
             time={nft.auction_end_time}
           />
         )}
@@ -157,20 +156,33 @@ const NFTBaseDetails = ({ nft, isPlaceBid, socketData }) => {
           />
         )}
         <hr className="custom-divider" />
-        {erc721 ? (
-          <BidValue title="Limited Edition" value="1 of 1" isLeft />
-        ) : (
-          nft.total_quantity && (
-            <BidValue
-              title="Limited Edition"
-              value={
-                socketData.availableQty
-                  ? `${socketData.availableQty} / ${nft.total_quantity}`
-                  : `${nft.quantity} / ${nft.total_quantity}`
-              }
-            />
-          )
-        )}
+        {(() => {
+          if (erc721) {
+            return <BidValue title="Limited Edition" value="1 of 1" isLeft />;
+          } else if (nft.total_quantity) {
+            return (
+              <BidValue
+                title="Limited Edition"
+                value={
+                  socketData.availableQty
+                    ? `${socketData.availableQty} / ${nft.total_quantity}`
+                    : `${nft.quantity} / ${nft.total_quantity}`
+                }
+              />
+            );
+          } else {
+            return (
+              <BidValue
+                title="Unlimited Edition"
+                value={
+                  socketData.totalBuy
+                    ? `${socketData.totalBuy} / unlimited`
+                    : `${nft.total_buys}  / unlimited`
+                }
+              />
+            );
+          }
+        })()}
 
         <hr className="custom-divider" />
 
@@ -229,8 +241,8 @@ const NFTBaseDetails = ({ nft, isPlaceBid, socketData }) => {
           })()}
 
           <div className="mt-2 royalty-info">
-            Counterbid within the last 5 minutes will extend the auction by 15
-            minutes
+            {erc721 &&
+              "Counterbid within the last 5 minutes will extend the auction by 15 minutes"}
           </div>
         </div>
       </div>
