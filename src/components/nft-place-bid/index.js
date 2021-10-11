@@ -235,10 +235,13 @@ const NFTPlaceBid = ({ show = false, nft, socketData }) => {
   };
 
   const handleBuyInputChange = (e) => {
+    let count = nft.total_user_buys
+      ? nft.buy_count - nft.total_user_buys
+      : nft.buy_count;
     if (e.target.value) {
       if (
         validateQuantity(e.target.value) &&
-        e.target.value <= nft.buy_count &&
+        e.target.value <= count &&
         e.target.value != 0
       ) {
         let amount = e.target.value * parseFloat(nft.buy_amount);
@@ -254,7 +257,7 @@ const NFTPlaceBid = ({ show = false, nft, socketData }) => {
             });
             setError("error-balance-float");
             setNoBalance(true);
-          } else if (e.target.value > nft.buy_count) {
+          } else if (e.target.value > count) {
             setBuyQuantity(e.target.value);
             setBuyAmount(amount);
             setBuy({
@@ -277,7 +280,7 @@ const NFTPlaceBid = ({ show = false, nft, socketData }) => {
             });
           }
         } else {
-          if (e.target.value > nft.buy_count) {
+          if (e.target.value > count) {
             setBuyQuantity(e.target.value);
             setBuyAmount(amount);
             setBuy({
@@ -453,7 +456,12 @@ const NFTPlaceBid = ({ show = false, nft, socketData }) => {
                       user?.balance,
                       "USD"
                     )}`}
-                  {!erc721 && `You can buy maximum of ${nft?.buy_count} nfts`}
+                  {!erc721 &&
+                    `You can buy maximum of ${
+                      nft.total_user_buys
+                        ? nft.buy_count - nft.total_user_buys
+                        : nft.buy_count
+                    } nfts`}
                 </div>
               </div>
               <div className="bottom-area">

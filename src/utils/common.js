@@ -46,7 +46,7 @@ export const validateCurrency = (value) => {
 };
 
 export const validateQuantity = (value) => {
-  const re = /^\d+$/;
+  const re = /^[1-9][0-9]*$/;
   return re.test(value);
 };
 
