@@ -453,20 +453,24 @@ input::-webkit-inner-spin-button {
 // }
 @media (min-width: 576px) {
   html {
-    font-size: 11px;
+    font-size: 14px;
   }
 }
 
 @media (min-width: 768px) {
   html {
-    font-size: 12px;
+    font-size: 16px;
   }
 }
 
 @media (min-width: 992px) {
   html {
-    font-size: 12px;
+    font-size: 14px;
   }
+  .bid-winner .winner-text {
+    right: -38%;
+    bottom: 15vh !important;
+}
 }
 
 @media (min-width: 1200px) {
@@ -514,6 +518,9 @@ input::-webkit-inner-spin-button {
     height: 4rem;
     left: 50% !important;
   }
+  .bid-winner {
+    min-height: 50vh !important;
+}
 }
 /* Tablet (Landscape)
 ----------------------------------------------------------- */
@@ -569,6 +576,9 @@ input::-webkit-inner-spin-button {
 .bid-winner {
   min-height: 58vh !important;
 }
+.bid-winner .bottom-section .bidding-history-btn {
+  font-size: 1rem !important;
+}
 }
 
 
@@ -620,6 +630,9 @@ input::-webkit-inner-spin-button {
 }
 .bid-history .bid-history-content .bid-histroy-card{
   margin: 0 1rem !important;
+}
+.bid-winner .bottom-section .bidding-history-btn {
+  font-size: 1rem !important;
 }
 }
 
@@ -685,8 +698,23 @@ input::-webkit-inner-spin-button {
   display: block !important;
   margin-bottom: 2rem;
 }
-.bid-winner .winner-text{
-  bottom: 50vh !important;
+.bid-winner .winner-text {
+  bottom: 45vh !important;
+  font-size: 8rem !important;
+  right: -37% !important;
+}
+.bid-winner .bottom-section .bidding-history-btn {
+  font-size: 1rem !important;
+}
+.nft-artist .artist-content .artist-details-content .artist-pill-container .artist-pill .pill-value {
+  font-size: initial !important;
+}
+.nft-artist .artist-content .artist-details-content .artist-pill-container .artist-pill .pill-title {
+  font-size: inherit !important;
+}
+.bid-winner .winner-user-details img {
+  height: 100px !important;
+  width: 100px !important;
 }
 .place-bid-btn{
   padding-top: 0.5rem !important;

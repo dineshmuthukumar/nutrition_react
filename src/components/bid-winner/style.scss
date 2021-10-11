@@ -5,15 +5,15 @@
   color: white;
   border-radius: 0.5rem;
   padding: 3rem 3rem 2rem 3rem;
-  min-height: 70vh;
+  // min-height: 70vh;
   position: relative;
 
   .winner-text {
     position: absolute;
     transform: rotate(90deg);
     right: -38%;
-    bottom: 23vh;
-    font-size: 10rem;
+    bottom: 20vh !important;
+    font-size: 9rem;
     width: 100%;
     text-align: center;
     font-family: $neue-helveticamedium;
