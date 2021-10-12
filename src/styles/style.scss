@@ -180,7 +180,16 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
-
+.bl_drop_list::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  top: 30%;
+  background: linear-gradient(to bottom, rgba(6,27,65,0) 0%,rgba(27,27,28,0.95) 100%);
+  z-index: 0;
+}
 .offcanvas {
   z-index: 1050 !important;
 }
@@ -647,6 +656,10 @@ input::-webkit-inner-spin-button {
 .bid-auction {
   min-height: 60vh !important;
 }
+.bl_drop_list {
+  height: 25vh !important;
+}
+
 .sub-header-nft .sub-head-title .nft-head-details .sub-nft-title {
   font-size: 1rem !important;
 }
