@@ -63,6 +63,9 @@ const Details = () => {
         availableQty: data.quantity,
         totalBuy: data.total_buys,
       });
+      if (data.history) {
+        setBuyHistory((buyHistory) => [data.history, ...buyHistory]);
+      }
     });
     bidDetail((data) => {
       setSocketData({
@@ -71,6 +74,9 @@ const Details = () => {
         bidChange: data.bid_change,
         totalBid: data.total_bids,
       });
+      if (data.history) {
+        setBidHistory((bidHistory) => [data.history, ...bidHistory]);
+      }
     });
     pageView((data) => {
       setSocketData({ ...socketData, totalViews: data.page_views });

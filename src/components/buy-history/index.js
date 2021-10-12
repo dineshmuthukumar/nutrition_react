@@ -128,7 +128,11 @@ const BuyHistory = ({ nft, histories = [] }) => {
                   <td>{i + 1}</td>
                   <td>NFT auction</td>
                   <td>
-                    <BuyName text={history.tag} isTable />
+                    <BuyName
+                      imgUrl={history.avatar_url}
+                      text={history.user_name}
+                      isTable
+                    />
                   </td>
                   <td className="text-center">{history.quantity}</td>
                   <td className="text-center">

@@ -29,7 +29,7 @@ const BidHistory = ({ nft, histories = [] }) => {
                     First bid to last
                   </NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">
-                    Last bid first
+                    Last bid to first
                   </NavDropdown.Item>
                 </NavDropdown>
               </Nav>
@@ -128,7 +128,11 @@ const BidHistory = ({ nft, histories = [] }) => {
                   <td>{i + 1}</td>
                   <td>Bid placed by</td>
                   <td>
-                    <BidName text={history.tag} isTable />
+                    <BidName
+                      imgUrl={history.avatar_url}
+                      text={history.user_name}
+                      isTable
+                    />
                   </td>
                   <td className="text-center">
                     <div className="usd-value">
