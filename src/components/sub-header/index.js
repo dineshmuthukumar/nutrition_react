@@ -27,7 +27,7 @@ const SubHeader = ({ nft }) => {
             <div className="nft-head-details">
               <div className="sub-nft-title">{nft?.name}</div>
               <div className="sub-creator-title ">
-                {erc721 ? "Current Bid" : "NFTs Price"}
+                {erc721 ? "Current Bid " : "NFTs Price "}
                 {erc721
                   ? currencyFormat(nft.minimum_bid, "USD")
                   : currencyFormat(nft.buy_amount, "USD")}
@@ -69,6 +69,22 @@ const SubHeader = ({ nft }) => {
                       }
                     >
                       {isAuctionEnded ? "Auction has ended" : "Recharge Wallet"}
+                    </button>
+                  );
+                } else if (!user) {
+                  return (
+                    <button
+                      disabled={isAuctionEnded}
+                      type="button"
+                      className="btn btn-dark btn-lg rounded-pill sub-place-bid-btn"
+                      onClick={() =>
+                        window.open(
+                          `${process.env.REACT_APP_BASE_URL}/signin?redirect=${window.location.href}`,
+                          "_self"
+                        )
+                      }
+                    >
+                      {isAuctionEnded ? "Auction has ended" : "Sign In"}
                     </button>
                   );
                 } else if (erc721) {

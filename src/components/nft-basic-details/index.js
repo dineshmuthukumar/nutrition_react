@@ -188,6 +188,21 @@ const NFTBaseDetails = ({
                   {isAuctionEnded ? "Auction has ended" : "Recharge Wallet"}
                 </button>
               );
+            } else if (!user) {
+              return (
+                <button
+                  disabled={isAuctionEnded}
+                  className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                  onClick={() =>
+                    window.open(
+                      `${process.env.REACT_APP_BASE_URL}/signin?redirect=${window.location.href}`,
+                      "_self"
+                    )
+                  }
+                >
+                  {isAuctionEnded ? "Auction has ended" : "Sign In"}
+                </button>
+              );
             } else if (erc721) {
               return (
                 <button
