@@ -9,6 +9,7 @@ import ToggleButton from "react-toggle-button";
 import { change_lang_action } from "./../../redux/actions/lang_action";
 import { user_logout_thunk } from "../../redux/thunk/user_thunk";
 
+import userImg from "../../images/user_1.png";
 import "./style.scss";
 
 const Header = ({ hideOptions = false }) => {
@@ -273,7 +274,7 @@ const UserComponent = ({ user, onClick = () => {} }) => (
   <div className="header-user-details" onClick={onClick}>
     <img
       className="user-image"
-      src="https://picsum.photos/50/50"
+      src={user.avatar ? user.avatar : userImg}
       alt="user-icon"
     />
     <div className="user-name">
