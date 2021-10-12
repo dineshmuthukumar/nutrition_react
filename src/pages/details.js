@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useRouteMatch } from "react-router";
 import { useParams } from "react-router-dom";
-import { nftDetailApi } from "../api/methods";
+import { nftBidHistory, nftBuyHistory, nftDetailApi } from "../api/methods";
 import BidAuction from "../components/bid-auction";
 import BidHistory from "../components/bid-history";
+import BuyHistory from "../components/buy-history/index";
 import BidWinner from "../components/bid-winner";
 import ChainAttributes from "../components/chain-attributes";
 import Header from "../components/header";
@@ -35,10 +36,16 @@ const Details = () => {
     lastBidDate: "Sep 16, 21 11:09pm",
   };
 
-  const params = useParams();
+  const { slug } = useParams();
   const [small, setSmall] = useState(false);
   const [nft, setNft] = useState({});
+  const [buyHistory, setBuyHistory] = useState([]);
+  const [bidHistory, setBidHistory] = useState([]);
+  const [erc721, setErc721] = useState(false);
+  const [isAuctionStarted, setIsAuctionStarted] = useState(false);
+  const [isAuctionEnded, setIsAuctionEnded] = useState(false);
   const [loader, setLoader] = useState(false);
+  const [trigger, setTrigger] = useState(false);
   const [socketData, setSocketData] = useState({
     totalBid: 0,
     bidChange: 0,
@@ -73,7 +80,7 @@ const Details = () => {
       setSocketData({ ...socketData, totalFavourites: data.total_favourites });
     });
 
-    nftDetail(params.id);
+    nftDetail(slug);
     if (typeof window !== "undefined") {
       window.addEventListener("scroll", () => {
         if (window.pageYOffset > 800) {
@@ -87,6 +94,36 @@ const Details = () => {
     }
   }, []);
 
+  useEffect(() => {
+    let startInterval = 0,
+      endInterval = 0;
+    if (trigger) {
+      startInterval = setInterval(() => {
+        checkStartTimer(startInterval);
+      }, 1000);
+      endInterval = setInterval(() => {
+        checkEndTimer(endInterval);
+      }, 1000);
+    }
+    return () => {
+      window.clearInterval(startInterval);
+      window.clearInterval(endInterval);
+    };
+  }, [trigger]);
+
+  const checkStartTimer = (i) => {
+    if (new Date().getTime() >= new Date(nft.auction_start_time).getTime()) {
+      setIsAuctionStarted(true);
+      window.clearInterval(i);
+    }
+  };
+  const checkEndTimer = (i) => {
+    if (new Date().getTime() >= new Date(nft.auction_end_time).getTime()) {
+      setIsAuctionEnded(true);
+      window.clearInterval(i);
+    }
+  };
+
   const updateSubHeader = (input) => {
     if (input) {
       if (localStorage.getItem("sub-header") === "false") {
@@ -99,13 +136,30 @@ const Details = () => {
     }
   };
 
-  const nftDetail = async (id) => {
-    setLoader(true);
+  const nftDetail = async (slug) => {
     try {
-      let response = await nftDetailApi({ nft_id: id });
+      setLoader(true);
+      let response = await nftDetailApi({ nft_slug: slug });
+      const NFT = response.data.data.nft;
+      setIsAuctionStarted(
+        new Date().getTime() >= new Date(NFT.auction_start_time).getTime()
+      );
+      setIsAuctionEnded(
+        new Date().getTime() > new Date(NFT.auction_end_time).getTime()
+      );
+      setErc721(NFT.nft_type === "erc721");
+      if (NFT.nft_type === "erc721") {
+        let history = await nftBidHistory({ nft_slug: slug });
+        setBidHistory(history.data.data.histories);
+      } else {
+        let history = await nftBuyHistory({ nft_slug: slug });
+        setBuyHistory(history.data.data.histories);
+      }
       setNft(response.data.data.nft);
+      setTrigger(true);
       setLoader(false);
     } catch (err) {
+      // setLoader(false);
       console.log(err);
       toaster(500, "Something went wrong");
     }
@@ -131,6 +185,8 @@ const Details = () => {
                 nft={nft}
                 isPlaceBid={matchParams.placebid}
                 socketData={socketData}
+                isAuctionStarted={isAuctionStarted}
+                isAuctionEnded={isAuctionEnded}
               />
             </div>
           </div>
@@ -142,13 +198,64 @@ const Details = () => {
           <NFTSectionTitle title="NFT Details" />
           <div className="row mt-5">
             <div className="col-12 col-lg-6 order-lg-2 mb-4">
-              <BidHistory input={[1, 2, 3, 4, 5, 6, 7, 8, 5, 5]} />
-              {/* <BidAuction status="end" bottomTitle="Auction starting in" /> */}
-              {/* <BidAuction
-              status="end"
-              bottomTitle="Limited Edition"
-              bottomValue="1000/1000"
-            /> */}
+              {(() => {
+                if (erc721) {
+                  if (isAuctionStarted && !isAuctionEnded) {
+                    return <BidHistory nft={nft} histories={bidHistory} />;
+                  } else if (isAuctionEnded) {
+                    return (
+                      // <BidAuction
+                      //   status="end"
+                      //   bottomTitle="Limited Edition"
+                      //   bottomValue="1 of 1"
+                      // />
+                      <BidWinner data={data} />
+                    );
+                  } else {
+                    return (
+                      <BidAuction
+                        status="start"
+                        bottomTitle="Auction starting in"
+                        time={nft.auction_start_time}
+                      />
+                    );
+                  }
+                } else {
+                  if (isAuctionStarted && !isAuctionEnded) {
+                    return <BuyHistory nft={nft} histories={buyHistory} />;
+                  } else if (isAuctionEnded) {
+                    return (
+                      <BidAuction
+                        status="end"
+                        bottomTitle={
+                          nft.total_quantity
+                            ? "Limited Edition"
+                            : "Unlimited Edition"
+                        }
+                        bottomValue={(() => {
+                          if (nft.total_quantity) {
+                            return socketData.availableQty
+                              ? `${socketData.availableQty} / ${nft.total_quantity}`
+                              : `${nft.quantity} / ${nft.total_quantity}`;
+                          } else {
+                            return socketData.totalBuy
+                              ? `${socketData.totalBuy} / unlimited`
+                              : `${nft.total_buys}  / unlimited`;
+                          }
+                        })()}
+                      />
+                    );
+                  } else {
+                    return (
+                      <BidAuction
+                        status="start"
+                        bottomTitle="Auction starting in"
+                        time={nft.auction_start_time}
+                      />
+                    );
+                  }
+                }
+              })()}
               {/* <BidWinner data={data} /> */}
             </div>
             <div className="col-12 col-lg-6 order-lg-1">

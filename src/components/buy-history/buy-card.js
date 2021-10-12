@@ -1,10 +1,10 @@
 import React from "react";
 import dayjs from "dayjs";
 import "./style.scss";
-import BidName from "./bid-name";
+import BuyName from "./buy-name";
 import { currencyFormat } from "../../utils/common";
 
-const BidCard = ({ history, isEnd = false }) => {
+const BuyCard = ({ history, isEnd = false }) => {
   return (
     <div className="bid-histroy-card">
       {isEnd ? (
@@ -20,13 +20,13 @@ const BidCard = ({ history, isEnd = false }) => {
                 {dayjs(history.created_at).format("MMM D, YYYY hh:mma")}
               </div>
               <div className="bid-owner">
-                Bid placed by <BidName text={history.tag} />
+                NFT Bought by <BuyName text={history.tag} />
               </div>
             </div>
           </div>
           <div className="second-half">
             <div className="bid-value">
-              {currencyFormat(history.bid_amount, "USD")}
+              {currencyFormat(history.buy_amount, "USD")}
             </div>
           </div>
         </>
@@ -35,4 +35,4 @@ const BidCard = ({ history, isEnd = false }) => {
   );
 };
 
-export default BidCard;
+export default BuyCard;

@@ -27,9 +27,10 @@ const SubHeader = ({ nft }) => {
             <div className="nft-head-details">
               <div className="sub-nft-title">{nft?.name}</div>
               <div className="sub-creator-title ">
-              {erc721 ? "Current Bid" : "NFTs Price"} {erc721
-                    ? currencyFormat(nft.minimum_bid, "USD")
-                    : currencyFormat(nft.buy_amount, "USD")}
+                {erc721 ? "Current Bid" : "NFTs Price"}
+                {erc721
+                  ? currencyFormat(nft.minimum_bid, "USD")
+                  : currencyFormat(nft.buy_amount, "USD")}
               </div>
             </div>
           </Navbar.Brand>
@@ -62,7 +63,7 @@ const SubHeader = ({ nft }) => {
                       } btn-lg rounded-pill`}
                       onClick={() =>
                         window.open(
-                          `${process.env.REACT_APP_BASE_URL}/accounts#wallet`,
+                          `${process.env.REACT_APP_BASE_URL}/accounts/wallet`,
                           "_self"
                         )
                       }

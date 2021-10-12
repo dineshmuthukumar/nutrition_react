@@ -1,6 +1,6 @@
 import React from "react";
 
-const BidName = ({ text, isTable = false }) => {
+const BuyName = ({ text, isTable = false }) => {
   return isTable ? (
     <div className="expand-history-owner">
       <img src="https://picsum.photos/100/100" />
@@ -13,4 +13,4 @@ const BidName = ({ text, isTable = false }) => {
   );
 };
 
-export default BidName;
+export default BuyName;

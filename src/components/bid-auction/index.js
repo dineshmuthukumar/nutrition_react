@@ -3,7 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import NFTCounter from "../nft-counter";
 import "./style.scss";
 
-const BidAuction = ({ status, bottomTitle, bottomValue }) => {
+const BidAuction = ({ status, bottomTitle, bottomValue, time }) => {
   return (
     <div className="bid-auction">
       <div className="bid-auction-content">
@@ -26,7 +26,7 @@ const BidAuction = ({ status, bottomTitle, bottomValue }) => {
           <div className="bottom-time">
             {status === "start" ? (
               <NFTCounter
-                time="2021-10-10"
+                time={time}
                 timeClass="font-onerem"
                 intervalClass="font-psevenrem"
                 intervalGapClass="me-1"
@@ -40,6 +40,12 @@ const BidAuction = ({ status, bottomTitle, bottomValue }) => {
           <button
             type="button"
             className="btn btn-dark rounded-pill border border-white bottom-recharge-btn"
+            onClick={() =>
+              window.open(
+                `${process.env.REACT_APP_BASE_URL}/accounts/wallet`,
+                "_self"
+              )
+            }
           >
             Recharge Wallet
           </button>

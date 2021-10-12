@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import { Modal, Button, Table, Nav, NavDropdown } from "react-bootstrap";
 import { AiOutlineExpand } from "react-icons/ai";
 import { BsFullscreenExit } from "react-icons/bs";
 import { IoIosRocket } from "react-icons/io";
-import BidCard from "./bid-card";
-import BidName from "./bid-name";
 import { currencyFormat } from "../../utils/common";
+import BuyCard from "./buy-card";
+import BuyName from "./buy-name";
 import "./style.scss";
 
-const BidHistory = ({ nft, histories = [] }) => {
+const BuyHistory = ({ nft, histories = [] }) => {
   const [modalShow, setModalShow] = useState(false);
   return (
     <>
@@ -26,10 +26,10 @@ const BidHistory = ({ nft, histories = [] }) => {
                   className="history-dropdown"
                 >
                   <NavDropdown.Item href="#action/3.1">
-                    First bid to last
+                    First buy to last
                   </NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">
-                    Last bid first
+                    Last buy to first
                   </NavDropdown.Item>
                 </NavDropdown>
               </Nav>
@@ -46,10 +46,10 @@ const BidHistory = ({ nft, histories = [] }) => {
         {histories.length > 0 ? (
           <div className="bid-history-content">
             {histories.map((history, i) => (
-              <BidCard key={`biy-history${i}`} history={history} />
+              <BuyCard key={`buy-history${i}`} history={history} />
             ))}
 
-            <BidCard isEnd />
+            <BuyCard isEnd />
           </div>
         ) : (
           <div className="bid-empty-content">
@@ -57,8 +57,8 @@ const BidHistory = ({ nft, histories = [] }) => {
               <div className="empty-top-content">
                 <IoIosRocket color="white" />
                 <div className="empty-text">
-                  No active bids yet. <br />
-                  Be the first to make a bid.
+                  No NFTs bought yet. <br />
+                  Be the first to buy.
                 </div>
               </div>
             </div>
@@ -70,7 +70,7 @@ const BidHistory = ({ nft, histories = [] }) => {
                   Sep 20, 2021 11:15pm
                 </div>
                 <div className="nft-owner">
-                  Bid listed by <BidName text="@amitabhbachchan" />
+                  NFTs listed by <BuyName text="@amitabhbachchan" />
                 </div>
               </div>
             </div>
@@ -92,10 +92,10 @@ const BidHistory = ({ nft, histories = [] }) => {
                       className="history-dropdown"
                     >
                       <NavDropdown.Item href="#action/3.1">
-                        First bid to last
+                        First buy to last
                       </NavDropdown.Item>
                       <NavDropdown.Item href="#action/3.2">
-                        Last bid to first
+                        Last buy to first
                       </NavDropdown.Item>
                     </NavDropdown>
                   </Nav>
@@ -116,9 +116,9 @@ const BidHistory = ({ nft, histories = [] }) => {
               <tr>
                 <th>#</th>
                 <th>Event</th>
-                <th>Bider</th>
+                <th>Bought by</th>
+                <th className="text-center">Quantity</th>
                 <th className="text-center">Price</th>
-                <th className="text-center">Price Change</th>
                 <th className="text-center">Date</th>
               </tr>
             </thead>
@@ -126,21 +126,15 @@ const BidHistory = ({ nft, histories = [] }) => {
               {histories.map((history, i) => (
                 <tr>
                   <td>{i + 1}</td>
-                  <td>Bid placed by</td>
+                  <td>NFT auction</td>
                   <td>
-                    <BidName text={history.tag} isTable />
+                    <BuyName text={history.tag} isTable />
                   </td>
+                  <td className="text-center">{history.quantity}</td>
                   <td className="text-center">
                     <div className="usd-value">
-                      {currencyFormat(history.bid_amount, "USD")}
+                      {currencyFormat(history.buy_amount, "USD")}
                     </div>
-                  </td>
-                  <td
-                    className={`text-center ${
-                      i % 2 === 0 ? "text-success" : "text-danger"
-                    }`}
-                  >
-                    1.00%
                   </td>
                   <td className="text-center">
                     <div className="date">
@@ -163,4 +157,4 @@ const BidHistory = ({ nft, histories = [] }) => {
   );
 };
 
-export default BidHistory;
+export default BuyHistory;

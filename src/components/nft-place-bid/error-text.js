@@ -12,7 +12,7 @@ const ErrorText = ({ type, handleClick = () => {}, title, desc }) => {
             type="button"
             onClick={() =>
               window.open(
-                `${process.env.REACT_APP_BASE_URL}/accounts#wallet`,
+                `${process.env.REACT_APP_BASE_URL}/accounts/wallet`,
                 "_blank"
               )
             }

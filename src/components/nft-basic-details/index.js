@@ -11,49 +11,24 @@ import ToolTip from "../tooltip";
 import "./style.scss";
 import { currencyFormat } from "../../utils/common";
 
-const NFTBaseDetails = ({ nft, isPlaceBid, socketData }) => {
+const NFTBaseDetails = ({
+  nft,
+  isPlaceBid,
+  socketData,
+  isAuctionStarted,
+  isAuctionEnded,
+}) => {
   const history = useHistory();
   const { user } = useSelector((state) => state.user.data);
   const [currentUser, setCurrentUser] = useState(false);
-  const [isAuctionEnded, setIsAuctionEnded] = useState(
-    new Date().getTime() > new Date(nft?.auction_end_time).getTime()
-  );
-  const [isAuctionStarted, setIsAuctionStarted] = useState(
-    new Date().getTime() >= new Date(nft?.auction_start_time).getTime()
-  );
+  // const [isAuctionEnded, setIsAuctionEnded] = useState(
+  //   new Date().getTime() > new Date(nft?.auction_end_time).getTime()
+  // );
+  // const [isAuctionStarted, setIsAuctionStarted] = useState(
+  //   new Date().getTime() >= new Date(nft?.auction_start_time).getTime()
+  // );
 
   const erc721 = nft.nft_type === "erc721";
-  // const isAuctionStarted =
-  //   new Date().getTime() >= new Date(nft.auction_start_time).getTime();
-
-  // const isAuctionEnded =
-  //   new Date().getTime() > new Date(nft.auction_end_time).getTime();
-
-  useEffect(() => {
-    const startInterval = setInterval(() => {
-      checkStartTimer(startInterval);
-    }, 1000);
-    const endInterval = setInterval(() => {
-      checkEndTimer(endInterval);
-    }, 1000);
-    return () => {
-      window.clearInterval(startInterval);
-      window.clearInterval(endInterval);
-    };
-  }, [nft]);
-
-  const checkStartTimer = (i) => {
-    if (new Date().getTime() >= new Date(nft.auction_start_time).getTime()) {
-      setIsAuctionStarted(true);
-      window.clearInterval(i);
-    }
-  };
-  const checkEndTimer = (i) => {
-    if (new Date().getTime() >= new Date(nft.auction_end_time).getTime()) {
-      setIsAuctionEnded(true);
-      window.clearInterval(i);
-    }
-  };
 
   return (
     <>
@@ -205,7 +180,7 @@ const NFTBaseDetails = ({ nft, isPlaceBid, socketData }) => {
                   } text-center btn-lg mt-2 rounded-pill`}
                   onClick={() =>
                     window.open(
-                      `${process.env.REACT_APP_BASE_URL}/accounts#wallet`,
+                      `${process.env.REACT_APP_BASE_URL}/accounts/wallet`,
                       "_self"
                     )
                   }

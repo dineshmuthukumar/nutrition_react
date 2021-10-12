@@ -72,7 +72,11 @@ function App(props) {
             }
           >
             <Switch>
-              <Route exact path="/details/:id/:placebid?" component={Details} />
+              <Route
+                exact
+                path="/details/:slug/:placebid?"
+                component={Details}
+              />
               <Route exact path="/" component={Home} />
               <Route path="/not-found" component={NotFound} />
               <Route exact component={NotFound} />

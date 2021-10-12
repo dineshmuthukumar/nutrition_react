@@ -54,7 +54,12 @@ const NFTMedia = ({ title, slug, isFav }) => {
           type="video/mp4"
         />
       </video> */}
-      <div className="no_height"><img className="type_image typeimg_audio" src="https://wallpaperaccess.com/full/112115.jpg" />  </div>
+      <div className="no_height">
+        <img
+          className="type_image typeimg_audio"
+          src="https://wallpaperaccess.com/full/112115.jpg"
+        />
+      </div>
       <audio controls className="shadow-sm audioOnmedia">
         <source
           src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
@@ -65,8 +70,12 @@ const NFTMedia = ({ title, slug, isFav }) => {
       <div className="media-lsf">
         <CustomPopover
           icon={
-            <div onClick={() => setLiked(!liked)}>
-              <AiFillHeart className="svg_size" size={25} color={liked ? "red" : "black"} />
+            <div onClick={handleLike}>
+              <AiFillHeart
+                className="svg_size"
+                size={25}
+                color={liked ? "red" : "black"}
+              />
             </div>
           }
           placement="top"
@@ -104,22 +113,27 @@ const NFTMedia = ({ title, slug, isFav }) => {
       >
         <Modal.Header closeButton className="full-screen-header"></Modal.Header>
         <Modal.Body className="media_audio">
-       {/* <div className="show_height"><img className="type_image typeimg_audio" src="https://wallpaperaccess.com/full/112115.jpg" />  </div> */}
-      {/* <div className="show_height"><img className="type_gif" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" />/div> */}
-      {/* <video controls>
+          {/* <div className="show_height"><img className="type_image typeimg_audio" src="https://wallpaperaccess.com/full/112115.jpg" />  </div> */}
+          {/* <div className="show_height"><img className="type_gif" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" />/div> */}
+          {/* <video controls>
         <source
           src="https://www.w3schools.com/tags/movie.mp4"
           type="video/mp4"
         />
       </video> */}
-      <div className="no_height"><img className="type_image typeimg_audio" src="https://wallpaperaccess.com/full/112115.jpg" />  </div>
-      <audio controls className="shadow-sm audioOnmedia">
-        <source
-          src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
-          type="audio/mp3"
-        />
-        Your browser does not support the audio element.
-      </audio>
+          <div className="no_height">
+            <img
+              className="type_image typeimg_audio"
+              src="https://wallpaperaccess.com/full/112115.jpg"
+            />
+          </div>
+          <audio controls className="shadow-sm audioOnmedia">
+            <source
+              src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+              type="audio/mp3"
+            />
+            Your browser does not support the audio element.
+          </audio>
         </Modal.Body>
       </Modal>
     </div>
