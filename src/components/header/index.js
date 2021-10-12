@@ -41,7 +41,7 @@ const Header = ({ hideOptions = false }) => {
   const NotificationToggleComponent = React.forwardRef(({ onClick }, ref) => {
     return (
       <div
-        className={`p-2 ${notification ? "bg-white rounded-circle" : ""}`}
+        className={`p-2 ${notification ? "theme-color rounded-circle" : ""}`}
         ref={ref}
         role="button"
         onClick={(e) => {
