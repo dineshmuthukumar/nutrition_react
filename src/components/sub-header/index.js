@@ -6,12 +6,10 @@ import { Container } from "react-bootstrap";
 import { currencyFormat } from "../../utils/common";
 import "./style.scss";
 
-const SubHeader = ({ nft }) => {
+const SubHeader = ({ nft, isAuctionStarted, isAuctionEnded }) => {
   const history = useHistory();
   const { user } = useSelector((state) => state.user.data);
   const erc721 = nft.nft_type === "erc721";
-  const isAuctionEnded =
-    new Date().getTime() > new Date(nft.auction_end_time).getTime();
 
   return (
     <>

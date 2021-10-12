@@ -21,12 +21,6 @@ const NFTBaseDetails = ({
   const history = useHistory();
   const { user } = useSelector((state) => state.user.data);
   const [currentUser, setCurrentUser] = useState(false);
-  // const [isAuctionEnded, setIsAuctionEnded] = useState(
-  //   new Date().getTime() > new Date(nft?.auction_end_time).getTime()
-  // );
-  // const [isAuctionStarted, setIsAuctionStarted] = useState(
-  //   new Date().getTime() >= new Date(nft?.auction_start_time).getTime()
-  // );
 
   const erc721 = nft.nft_type === "erc721";
 

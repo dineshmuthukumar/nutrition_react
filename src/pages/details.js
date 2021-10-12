@@ -173,7 +173,15 @@ const Details = () => {
 
   return (
     <>
-      {small ? <SubHeader nft={nft} /> : <Header />}
+      {small ? (
+        <SubHeader
+          nft={nft}
+          isAuctionStarted={isAuctionStarted}
+          isAuctionEnded={isAuctionEnded}
+        />
+      ) : (
+        <Header />
+      )}
       {loader ? (
         <NFTLoader />
       ) : (

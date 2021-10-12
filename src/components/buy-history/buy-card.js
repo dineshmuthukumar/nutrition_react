@@ -20,7 +20,7 @@ const BuyCard = ({ history, isEnd = false }) => {
                 {dayjs(history.created_at).format("MMM D, YYYY hh:mma")}
               </div>
               <div className="bid-owner">
-                NFT Bought by
+                NFT Bought by{" "}
                 <BuyName imgUrl={history.avatar_url} text={history.user_name} />
               </div>
             </div>
