@@ -239,7 +239,7 @@ const Details = () => {
                       //   bottomTitle="Limited Edition"
                       //   bottomValue="1 of 1"
                       // />
-                      <BidWinner data={data} />
+                      <BidWinner data={data} histories={bidHistory} />
                     );
                   } else {
                     return (
