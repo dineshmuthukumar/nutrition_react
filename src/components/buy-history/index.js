@@ -17,7 +17,7 @@ const BuyHistory = ({ nft, histories = [] }) => {
         <div className="bid-history-title-content">
           <div className="bid-history-title">History</div>
           <div className="bid-history-filter">
-            <div className="me-2">
+            {/* <div className="me-2">
               <Nav>
                 <NavDropdown
                   title="Sort By"
@@ -33,7 +33,7 @@ const BuyHistory = ({ nft, histories = [] }) => {
                   </NavDropdown.Item>
                 </NavDropdown>
               </Nav>
-            </div>
+            </div> */}
             <AiOutlineExpand
               role="button"
               style={{ color: "#fff" }}
@@ -83,7 +83,7 @@ const BuyHistory = ({ nft, histories = [] }) => {
             <div className="modal-bid-history-title-content">
               <div className="modal-bid-history-title">History</div>
               <div className="modal-bid-history-filter">
-                <div className="me-2">
+                {/* <div className="me-2">
                   <Nav>
                     <NavDropdown
                       title="Sort By"
@@ -99,7 +99,7 @@ const BuyHistory = ({ nft, histories = [] }) => {
                       </NavDropdown.Item>
                     </NavDropdown>
                   </Nav>
-                </div>
+                </div> */}
                 <BsFullscreenExit
                   role="button"
                   style={{ color: "#fff" }}
