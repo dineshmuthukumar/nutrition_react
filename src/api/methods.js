@@ -4,6 +4,8 @@ export const nftListApi = ({ page }) => axios.get(`/nfts?page=${page}`);
 
 export const nftDetailApi = ({ nft_slug }) => axios.get(`/nfts/${nft_slug}`);
 
+export const nftMoreApi = ({ page }) => axios.get(`/nfts/more?page=${page}`);
+
 export const nftBuyHistory = ({ nft_slug }) =>
   axios.get(`/nfts/${nft_slug}/buy_history`);
 
