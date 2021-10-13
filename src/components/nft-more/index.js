@@ -8,7 +8,7 @@ import Swiper from "react-id-swiper";
 import "swiper/swiper.scss";
 import "./style.scss";
 
-const NFTMore = () => {
+const NFTMore = ({ nftList = [] }) => {
   const ref = useRef(0);
 
   const params = {
@@ -56,34 +56,41 @@ const NFTMore = () => {
     <div className="nft-more">
       <div className="title">
         More from this artist
-        <span className="title-count">(8)</span>
+        <span className="title-count">({nftList.length})</span>
       </div>
       <div className="nft-more-content">
         <Swiper {...params}>
-          <div>
-            <MoreCard />
-          </div>
-          <div>
-            <MoreCard />
-          </div>
-          <div>
-            <MoreCard />
-          </div>
-          <div>
-            <MoreCard />
-          </div>
-          <div>
-            <MoreCard />
-          </div>
-          <div>
-            <MoreCard />
-          </div>
-          <div>
-            <MoreCard />
-          </div>
-          <div>
-            <MoreCard />
-          </div>
+          {nftList.map((nft) => {
+            let label = "",
+              time,
+              isEnded = false,
+              isStarted = false;
+
+            if (new Date(nft.auction_start_time) > new Date()) {
+              label = "Starting in";
+              time = nft.auction_start_time;
+            } else if (new Date(nft.auction_end_time) > new Date()) {
+              label = "Ends in";
+              time = nft.auction_end_time;
+              isStarted = true;
+            } else {
+              time = nft.auction_end_time;
+              label = "Ended at";
+              isEnded = true;
+            }
+
+            return (
+              <div>
+                <MoreCard
+                  nft={nft}
+                  isStarted={isStarted}
+                  isEnded={isEnded}
+                  time={time}
+                  label={label}
+                />
+              </div>
+            );
+          })}
         </Swiper>
       </div>
     </div>

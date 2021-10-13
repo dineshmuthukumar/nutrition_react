@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useRouteMatch } from "react-router";
 import { useParams } from "react-router-dom";
-import { nftBidHistory, nftBuyHistory, nftDetailApi } from "../api/methods";
+import {
+  nftBidHistory,
+  nftBuyHistory,
+  nftDetailApi,
+  nftMoreApi,
+} from "../api/methods";
 import BidAuction from "../components/bid-auction";
 import BidHistory from "../components/bid-history";
 import BuyHistory from "../components/buy-history/index";
@@ -39,6 +44,7 @@ const Details = () => {
   const { slug } = useParams();
   const [small, setSmall] = useState(false);
   const [nft, setNft] = useState({});
+  const [nftMoreList, setNftMoreList] = useState([]);
   const [buyHistory, setBuyHistory] = useState([]);
   const [bidHistory, setBidHistory] = useState([]);
   const [erc721, setErc721] = useState(false);
@@ -87,6 +93,7 @@ const Details = () => {
     });
 
     nftDetail(slug);
+    nftMore();
     if (typeof window !== "undefined") {
       window.addEventListener("scroll", () => {
         if (window.pageYOffset > 800) {
@@ -168,6 +175,15 @@ const Details = () => {
       // setLoader(false);
       console.log(err);
       toaster(500, "Something went wrong");
+    }
+  };
+
+  const nftMore = async () => {
+    try {
+      let response = await nftMoreApi({ page: 1 });
+      setNftMoreList(response.data.data.nfts);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -285,7 +301,7 @@ const Details = () => {
             <NFTArtist />
           </div>
           <div className="mt-5">
-            <NFTMore />
+            <NFTMore nftList={nftMoreList} />
           </div>
           <br />
           <br />
