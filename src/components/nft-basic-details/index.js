@@ -80,12 +80,11 @@ const NFTBaseDetails = ({
             />
           )}
 
-          {currentUser && (
+          {user && nft.user_highest_bid && (
             <BidValue
               title="Your Last Bid"
-              value="1.8k"
-              currency="$"
-              status="Outbid"
+              value={currencyFormat(nft.user_highest_bid, "USD")}
+              // status="Outbid"
             />
           )}
 
