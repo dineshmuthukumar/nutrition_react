@@ -699,8 +699,9 @@ input::-webkit-inner-spin-button {
   height: auto !important; 
 }
 .audioOnmedia {
-  left: 27% !important;
+  left: 30% !important;
   height: 2.5rem;
+  width: 53% !important;
   bottom: -0.6rem !important;
   line-height: 0 !important;
 }
@@ -746,7 +747,14 @@ input::-webkit-inner-spin-button {
 padding-bottom: 0.5rem  !important;
 }
 html{
-  font-size: 12px !important;
+  font-size: 10px !important;
+}
+.nft-artist .artist-content .artist-img {
+  object-fit: cover !important;
+}
+.nft-more .nft-more-content .more-card img {
+  width: 100% !important;
+  object-fit: cover !important;
 }
 }
 
