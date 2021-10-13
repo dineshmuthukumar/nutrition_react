@@ -215,9 +215,11 @@ const NFTPlaceBid = ({ show = false, nft, socketData }) => {
               buttonDisable: true,
             });
             setError("error-bid");
+            setNoBalance(false);
             setBidAmount(e.target.value);
           } else {
             setBid({ ...bid, progressError: "", buttonDisable: false });
+            setNoBalance(false);
             setError("");
             setBidAmount(e.target.value);
           }
