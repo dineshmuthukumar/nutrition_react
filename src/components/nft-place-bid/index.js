@@ -14,7 +14,7 @@ import {
 import "./style.scss";
 import { nftBidApi, nftBuyApi } from "../../api/methods";
 
-const NFTPlaceBid = ({ show = false, nft, socketData }) => {
+const NFTPlaceBid = ({ show = false, nft, socketData, auctionEndTime }) => {
   const { user } = useSelector((state) => state.user.data);
   const history = useHistory();
 
@@ -28,7 +28,7 @@ const NFTPlaceBid = ({ show = false, nft, socketData }) => {
   const [bidAmount, setBidAmount] = useState("");
   const [error, setError] = useState("");
   const isAuctionEnded =
-    new Date().getTime() > new Date(nft.auction_end_time).getTime();
+    new Date().getTime() > new Date(auctionEndTime).getTime();
 
   const [buy, setBuy] = useState({
     amountClass: "",

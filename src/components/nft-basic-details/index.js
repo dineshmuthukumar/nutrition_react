@@ -17,6 +17,7 @@ const NFTBaseDetails = ({
   socketData,
   isAuctionStarted,
   isAuctionEnded,
+  auctionEndTime,
 }) => {
   const history = useHistory();
   const { user } = useSelector((state) => state.user.data);
@@ -88,7 +89,7 @@ const NFTBaseDetails = ({
             />
           )}
 
-          {isAuctionEnded && (
+          {erc721 && isAuctionEnded && (
             <BidValue title="Owned By" name="@CryptoGeek" isEnd />
           )}
         </div>
@@ -112,14 +113,14 @@ const NFTBaseDetails = ({
                 ? "When there are less than 5 minutes left in the auction, successful bids will reset the auction to 5 minutes."
                 : "Nft buy auction"
             }
-            time={nft.auction_end_time}
+            time={auctionEndTime}
           />
         )}
         {isAuctionEnded && (
           <NFTTimeLeft
             title="Auction ended on"
             tooltipText="Auction ended"
-            time={nft.auction_end_time}
+            time={auctionEndTime}
             isEnded={true}
           />
         )}
@@ -159,6 +160,7 @@ const NFTBaseDetails = ({
             show={isPlaceBid ? true : false}
             nft={nft}
             socketData={socketData}
+            auctionEndTime={auctionEndTime}
           />
 
           {(() => {

@@ -44,6 +44,7 @@ const Details = () => {
   const { slug } = useParams();
   const [small, setSmall] = useState(false);
   const [nft, setNft] = useState({});
+  const [auctionEndTime, setAuctionEndTime] = useState("");
   const [nftMoreList, setNftMoreList] = useState([]);
   const [buyHistory, setBuyHistory] = useState([]);
   const [bidHistory, setBidHistory] = useState([]);
@@ -83,6 +84,9 @@ const Details = () => {
       if (data.history) {
         setBidHistory((bidHistory) => [data.history, ...bidHistory]);
       }
+      if (data.auction_end_time) {
+        setAuctionEndTime(data.auction_end_time);
+      }
     });
     pageView({ slug }, (data) => {
       setSocketData({ ...socketData, totalViews: data.page_views });
@@ -110,7 +114,7 @@ const Details = () => {
   useEffect(() => {
     let startInterval = 0,
       endInterval = 0;
-    if (trigger) {
+    if (trigger && auctionEndTime) {
       startInterval = setInterval(() => {
         checkStartTimer(startInterval);
       }, 1000);
@@ -122,7 +126,7 @@ const Details = () => {
       window.clearInterval(startInterval);
       window.clearInterval(endInterval);
     };
-  }, [trigger]);
+  }, [trigger, auctionEndTime]);
 
   const checkStartTimer = (i) => {
     if (new Date().getTime() >= new Date(nft.auction_start_time).getTime()) {
@@ -131,7 +135,7 @@ const Details = () => {
     }
   };
   const checkEndTimer = (i) => {
-    if (new Date().getTime() >= new Date(nft.auction_end_time).getTime()) {
+    if (new Date().getTime() >= new Date(auctionEndTime).getTime()) {
       setIsAuctionEnded(true);
       window.clearInterval(i);
     }
@@ -154,6 +158,7 @@ const Details = () => {
       setLoader(true);
       let response = await nftDetailApi({ nft_slug: slug });
       const NFT = response.data.data.nft;
+      setAuctionEndTime(NFT.auction_end_time);
       setIsAuctionStarted(
         new Date().getTime() >= new Date(NFT.auction_start_time).getTime()
       );
@@ -217,6 +222,7 @@ const Details = () => {
                 socketData={socketData}
                 isAuctionStarted={isAuctionStarted}
                 isAuctionEnded={isAuctionEnded}
+                auctionEndTime={auctionEndTime}
               />
             </div>
           </div>
