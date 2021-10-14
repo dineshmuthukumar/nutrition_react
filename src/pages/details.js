@@ -63,7 +63,7 @@ const Details = () => {
   });
 
   useEffect(() => {
-    buyDetail((data) => {
+    buyDetail({ slug }, (data) => {
       setSocketData({
         ...socketData,
         availableQty: data.quantity,
@@ -73,7 +73,7 @@ const Details = () => {
         setBuyHistory((buyHistory) => [data.history, ...buyHistory]);
       }
     });
-    bidDetail((data) => {
+    bidDetail({ slug }, (data) => {
       setSocketData({
         ...socketData,
         price: data.minimum_bid,
@@ -84,11 +84,11 @@ const Details = () => {
         setBidHistory((bidHistory) => [data.history, ...bidHistory]);
       }
     });
-    pageView((data) => {
+    pageView({ slug }, (data) => {
       setSocketData({ ...socketData, totalViews: data.page_views });
     });
 
-    totalFav((data) => {
+    totalFav({ slug }, (data) => {
       setSocketData({ ...socketData, totalFavourites: data.total_favourites });
     });
 
