@@ -60,7 +60,7 @@ const NFTMedia = ({ title, slug, isFav }) => {
           src="https://wallpaperaccess.com/full/112115.jpg"
         />
       </div>
-      <audio controls className="shadow-sm audioOnmedia">
+      <audio controls className="shadow-sm audioOnmedia" disablepictureinpicture controlslist="nodownload noplaybackrate" >
         <source
           src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
           type="audio/mp3"

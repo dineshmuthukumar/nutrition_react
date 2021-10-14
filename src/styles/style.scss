@@ -699,9 +699,9 @@ input::-webkit-inner-spin-button {
   height: auto !important; 
 }
 .audioOnmedia {
-  left: 30% !important;
-  height: 2.5rem;
-  width: 53% !important;
+  left: 35% !important;
+  height: 2.8rem;
+  width: 65% !important;
   bottom: -0.6rem !important;
   line-height: 0 !important;
 }
@@ -713,6 +713,10 @@ input::-webkit-inner-spin-button {
 .media-lsf .svg_size {
   width: 15px !important;
   height: 15px !important;
+}
+.pop-body-container .pop-nft-details .bottom-area .terms
+{
+  font-size: inherit !important;
 }
 .container-fluid, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
   padding: 0 1rem !important;

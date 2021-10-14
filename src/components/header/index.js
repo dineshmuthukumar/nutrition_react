@@ -91,7 +91,7 @@ const Header = ({ hideOptions = false }) => {
                   {user.login ? (
                     <>
                       <Nav.Link href="#home">
-                        <BiHelpCircle size={25} />
+                        {/* <BiHelpCircle size={25} /> */}
                       </Nav.Link>
                       <Dropdown
                         autoClose="outside"
