@@ -4,6 +4,7 @@ import Header from "../components/header";
 import { nftListApi } from "../api/methods";
 import toaster from "../utils/toaster";
 import NFTList from "./../components/nft-list";
+import NewDrops from "../components/new-drops";
 
 const Home = () => {
   const [list, setList] = useState([]);
@@ -28,8 +29,10 @@ const Home = () => {
   return (
     <>
       <Header />
+  
+      <NewDrops/>
 
-      {!loading ? <NFTList data={list} /> : <ThreeColumnLoader />}
+      {/* {!loading ? <NFTList data={list} /> : <ThreeColumnLoader />} */}
 
       {/* <div className="container">
         <h1 className="text-center mt-5 mb-5">
