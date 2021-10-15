@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router";
+import { useHistory, useRouteMatch } from "react-router";
 import { Offcanvas } from "react-bootstrap";
 import { BiX } from "react-icons/bi";
 import { FaCheckCircle } from "react-icons/fa";
@@ -14,9 +14,10 @@ import {
 import "./style.scss";
 import { nftBidApi, nftBuyApi } from "../../api/methods";
 
-const NFTPlaceBid = ({ show = false, nft, socketData }) => {
+const NFTPlaceBid = ({ show = false, nft, socketData, auctionEndTime }) => {
   const { user } = useSelector((state) => state.user.data);
   const history = useHistory();
+  const { params } = useRouteMatch();
 
   const [success, setSuccess] = useState(false);
 
@@ -28,7 +29,7 @@ const NFTPlaceBid = ({ show = false, nft, socketData }) => {
   const [bidAmount, setBidAmount] = useState("");
   const [error, setError] = useState("");
   const isAuctionEnded =
-    new Date().getTime() > new Date(nft.auction_end_time).getTime();
+    new Date().getTime() > new Date(auctionEndTime).getTime();
 
   const [buy, setBuy] = useState({
     amountClass: "",
@@ -51,6 +52,36 @@ const NFTPlaceBid = ({ show = false, nft, socketData }) => {
     errorTitle: "",
     errorDescription: "",
   });
+
+  //pop up reset
+  useEffect(() => {
+    setNoBalance(false);
+    setBuyAmount(0);
+    setBuyQuantity("");
+    setBidAmount("");
+    setError("");
+    setBuy({
+      amountClass: "",
+      progressError: "",
+      buttonDisable: true,
+      processClass: "",
+      buttonName: "Buy NFTs",
+      isError: false,
+      errorTitle: "",
+      errorDescription: "",
+    });
+
+    setBid({
+      bidError: "",
+      progressError: "",
+      buttonDisable: true,
+      processClass: "",
+      buttonName: "Place Bid",
+      isError: false,
+      errorTitle: "",
+      errorDescription: "",
+    });
+  }, [params]);
 
   const handleBuy = async () => {
     if (!user)
