@@ -13,7 +13,18 @@ body {
   background-position: center;
   background-color: #fafafa;
 }
-h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6{
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
   font-family: $neue-helveticabold;
 }
 input {
@@ -181,17 +192,21 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 .bl_drop_list::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   bottom: 0;
   right: 0;
   top: 30%;
-  background: linear-gradient(to bottom, rgba(6,27,65,0) 0%,rgba(27,27,28,0.95) 100%);
+  background: linear-gradient(
+    to bottom,
+    rgba(6, 27, 65, 0) 0%,
+    rgba(27, 27, 28, 0.95) 100%
+  );
   z-index: 0;
 }
 .show.dropdown .theme-color svg {
-    color: red !important;
+  color: red !important;
 }
 .offcanvas {
   z-index: 1050 !important;
@@ -482,7 +497,7 @@ input::-webkit-inner-spin-button {
   .bid-winner .winner-text {
     right: -38%;
     bottom: 15vh !important;
-}
+  }
 }
 
 @media (min-width: 1200px) {
@@ -515,85 +530,81 @@ input::-webkit-inner-spin-button {
   }
 }
 
-
 // responsive media query
 
-
-
-@media only screen and (min-width : 1025px) and (max-width : 1300px) {
+@media only screen and (min-width: 1025px) and (max-width: 1300px) {
   .audioOnmedia {
     left: 27% !important;
     height: 4rem;
     bottom: 0rem !important;
   }
-  .media_audio.modal-body  .audioOnmedia {
+  .media_audio.modal-body .audioOnmedia {
     height: 4rem;
     left: 50% !important;
   }
   .bid-winner {
     min-height: 50vh !important;
-}
+  }
 }
 /* Tablet (Landscape)
 ----------------------------------------------------------- */
 
-@media only screen and (min-width : 768px) and (max-width : 1024px) {
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
   .audioOnmedia {
     left: 27% !important;
     height: 4rem;
     bottom: 0rem !important;
   }
-  .media_audio.modal-body  .audioOnmedia {
+  .media_audio.modal-body .audioOnmedia {
     height: 4rem;
     left: 50% !important;
   }
   .nft-media.media_audio {
     height: auto !important;
+  }
 }
-}
-
-
 
 /* Tablet (Portrait)
 ----------------------------------------------------------- */
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-  .nft-artist .artist-content .artist-details-content .bottom-owner-contact-links {
+  .nft-artist
+    .artist-content
+    .artist-details-content
+    .bottom-owner-contact-links {
     top: 0 !important;
+  }
+  .nft-artist .artist-content .artist-details-content {
+    min-height: auto !important;
+  }
+  .recharge-btn {
+    width: 100% !important;
+  }
+  .w-75 {
+    width: auto !important;
+  }
+  .audioOnmedia {
+    left: 27% !important;
+    height: 4rem;
+    bottom: 0rem !important;
+  }
+  .media_audio.modal-body .audioOnmedia {
+    height: 4rem;
+    left: 50% !important;
+  }
+  .show_gif {
+    height: auto !important;
+  }
+  .bid-auction {
+    min-height: 40vh !important;
+  }
+  .bid-winner {
+    min-height: 58vh !important;
+  }
+  .bid-winner .bottom-section .bidding-history-btn {
+    font-size: 1rem !important;
+  }
 }
-.nft-artist .artist-content .artist-details-content {
-  min-height: auto !important;
-}
-.recharge-btn {
-  width: 100% !important;
-}
-.w-75 {
-  width: auto !important;
-}
-.audioOnmedia {
-  left: 27% !important;
-  height: 4rem;
-  bottom: 0rem !important;
-}
-.media_audio.modal-body  .audioOnmedia {
-  height: 4rem;
-  left: 50% !important;
-}
-.show_gif {
-  height: auto !important; 
-}
-.bid-auction {
-  min-height: 40vh !important;
-}
-.bid-winner {
-  min-height: 58vh !important;
-}
-.bid-winner .bottom-section .bidding-history-btn {
-  font-size: 1rem !important;
-}
-}
-
-
 
 /* Mobile (Landscape)
 ----------------------------------------------------------- */
@@ -603,51 +614,54 @@ input::-webkit-inner-spin-button {
     width: 100%;
     max-height: initial !important;
     object-fit: cover !important;
+  }
+  .sub-header-nft .sub-place-bid-btn {
+    padding: 0.5rem 1.5rem;
+  }
+  .bid-auction {
+    min-height: 40vh !important;
+  }
+  .audioOnmedia {
+    left: 26% !important;
+    height: 4rem;
+    bottom: 0rem !important;
+  }
+  .media_audio.modal-body .audioOnmedia {
+    height: 2.5rem;
+  }
+  .media_audio.modal-body .audioOnmedia {
+    height: 4rem;
+    left: 50% !important;
+  }
+  .table-responsive-lg {
+    white-space: nowrap;
+  }
+  .container-fluid,
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl,
+  .container-xxl {
+    // padding: 0 1.5rem !important;
+  }
+  .nft-media.media_audio {
+    height: auto !important;
+  }
+  .show_gif {
+    height: auto !important;
+  }
+  .bid-history .bid-history-content {
+    min-height: auto !important;
+    max-height: initial !important;
+    white-space: nowrap !important;
+  }
+  .bid-history .bid-history-content .bid-histroy-card {
+    margin: 0 1rem !important;
+  }
+  .bid-winner .bottom-section .bidding-history-btn {
+    font-size: 1rem !important;
+  }
 }
-.sub-header-nft .sub-place-bid-btn {
-
-  padding: 0.5rem 1.5rem;
-}
-.bid-auction {
-  min-height: 40vh !important;
-}
-.audioOnmedia {
-  left: 26% !important;
-  height: 4rem;
-  bottom: 0rem !important;
-}
-.media_audio.modal-body  .audioOnmedia {
-  height: 2.5rem;
-}
-.media_audio.modal-body  .audioOnmedia {
-  height: 4rem;
-  left: 50% !important;
-}
-.table-responsive-lg {
-  white-space: nowrap;
-}
-.container-fluid, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
-  padding: 0 1.5rem !important;
-}
-.nft-media.media_audio {
-  height: auto !important;
-}
-.show_gif {
-  height: auto !important; 
-}
-.bid-history .bid-history-content {
-  min-height: auto !important;
-  max-height: initial !important;
-  white-space: nowrap !important;
-}
-.bid-history .bid-history-content .bid-histroy-card{
-  margin: 0 1rem !important;
-}
-.bid-winner .bottom-section .bidding-history-btn {
-  font-size: 1rem !important;
-}
-}
-
 
 /* Mobile (Portrait only)
 ----------------------------------------------------------- */
@@ -655,119 +669,128 @@ input::-webkit-inner-spin-button {
 @media only screen and (max-width: 479px) {
   .recharge-btn {
     width: 100% !important;
-}
-.bid-auction {
-  min-height: 60vh !important;
-}
-.bl_drop_list {
-  height: 25vh !important;
-}
-.place-bid-btn {
-  width: 100% !important;
-}
-.nft-summary .p-4 {
-  padding: 1rem 1rem 0rem !important;
-}
-.section-title {
-  margin: 2rem 0 2rem 0 !important;
-}
+  }
+  .bid-auction {
+    min-height: 60vh !important;
+  }
+  .bl_drop_list {
+    height: 25vh !important;
+  }
+  .place-bid-btn {
+    width: 100% !important;
+  }
+  .nft-summary .p-4 {
+    padding: 1rem 1rem 0rem !important;
+  }
+  .section-title {
+    margin: 2rem 0 2rem 0 !important;
+  }
 
-.sub-header-nft .sub-head-title .nft-head-details .sub-nft-title {
-  font-size: 1rem !important;
-}
-.nft-media.media_audio {
-  height: auto !important;
-}
-.sub-header-nft .sub-place-bid-btn {
-  font-family: "neue_helveticaroman" !important;
-  font-size: 0.9rem;
-  padding: 0.5rem 0.5rem !important;
-  width: 100px;
-}
-.bid-history .bid-history-content {
-  min-height: auto !important;
-  max-height: initial !important;
-  white-space: nowrap !important;
-}
-.bid-history .bid-history-content .bid-histroy-card{
-  margin: 0 1rem !important;
-}
-.table-responsive-lg {
-  white-space: nowrap;
-}
-.show_gif {
-  height: auto !important; 
-}
-.audioOnmedia {
-  left: 35% !important;
-  height: 2.8rem;
-  width: 65% !important;
-  bottom: -0.6rem !important;
-  line-height: 0 !important;
-}
-.media_audio.modal-body .audioOnmedia {
-  height: 2.5rem;
-  width: 90%;
-  left: 50% !important;
-}
-.media-lsf .svg_size {
-  width: 15px !important;
-  height: 15px !important;
-}
-.pop-body-container .pop-nft-details .bottom-area .terms
-{
-  font-size: inherit !important;
-}
-.container-fluid, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
-  padding: 0 1rem !important;
-}
-.bid-winner .nft-sold-details {
-  display: block !important;
-}
-.bid-winner .nft-lastbid-details {
-  display: block !important;
-  margin-bottom: 2rem;
-}
-.bid-winner .winner-text {
-  bottom: 45vh !important;
-  font-size: 8rem !important;
-  right: -37% !important;
-}
-.bid-winner .bottom-section .bidding-history-btn {
-  font-size: 1rem !important;
-}
-.nft-artist .artist-content .artist-details-content .artist-pill-container .artist-pill .pill-value {
-  font-size: initial !important;
-}
-.nft-artist .artist-content .artist-details-content .artist-pill-container .artist-pill .pill-title {
-  font-size: inherit !important;
-}
-.bid-winner .winner-user-details img {
-  height: 100px !important;
-  width: 100px !important;
-}
-.place-bid-btn{
-  padding-top: 0.5rem !important;
-padding-bottom: 0.5rem  !important;
-}
-html{
-  font-size: 10px !important;
-}
-.nft-artist .artist-content .artist-img {
-  object-fit: cover !important;
-}
-.nft-more .nft-more-content .more-card img {
-  width: 100% !important;
-  object-fit: cover !important;
-}
+  .sub-header-nft .sub-head-title .nft-head-details .sub-nft-title {
+    font-size: 1rem !important;
+  }
+  .nft-media.media_audio {
+    height: auto !important;
+  }
+  .sub-header-nft .sub-place-bid-btn {
+    font-family: "neue_helveticaroman" !important;
+    font-size: 0.9rem;
+    padding: 0.5rem 0.5rem !important;
+    width: 100px;
+  }
+  .bid-history .bid-history-content {
+    min-height: auto !important;
+    max-height: initial !important;
+    white-space: nowrap !important;
+  }
+  .bid-history .bid-history-content .bid-histroy-card {
+    margin: 0 1rem !important;
+  }
+  .table-responsive-lg {
+    white-space: nowrap;
+  }
+  .show_gif {
+    height: auto !important;
+  }
+  .audioOnmedia {
+    left: 35% !important;
+    height: 2.8rem;
+    width: 65% !important;
+    bottom: -0.6rem !important;
+    line-height: 0 !important;
+  }
+  .media_audio.modal-body .audioOnmedia {
+    height: 2.5rem;
+    width: 90%;
+    left: 50% !important;
+  }
+  .media-lsf .svg_size {
+    width: 15px !important;
+    height: 15px !important;
+  }
+  .pop-body-container .pop-nft-details .bottom-area .terms {
+    font-size: inherit !important;
+  }
+  .container-fluid,
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl,
+  .container-xxl {
+    // padding: 0 1rem !important;
+  }
+  .bid-winner .nft-sold-details {
+    display: block !important;
+  }
+  .bid-winner .nft-lastbid-details {
+    display: block !important;
+    margin-bottom: 2rem;
+  }
+  .bid-winner .winner-text {
+    bottom: 45vh !important;
+    font-size: 8rem !important;
+    right: -37% !important;
+  }
+  .bid-winner .bottom-section .bidding-history-btn {
+    font-size: 1rem !important;
+  }
+  .nft-artist
+    .artist-content
+    .artist-details-content
+    .artist-pill-container
+    .artist-pill
+    .pill-value {
+    font-size: initial !important;
+  }
+  .nft-artist
+    .artist-content
+    .artist-details-content
+    .artist-pill-container
+    .artist-pill
+    .pill-title {
+    font-size: inherit !important;
+  }
+  .bid-winner .winner-user-details img {
+    height: 100px !important;
+    width: 100px !important;
+  }
+  .place-bid-btn {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+  }
+  html {
+    font-size: 10px !important;
+  }
+  .nft-artist .artist-content .artist-img {
+    object-fit: cover !important;
+  }
+  .nft-more .nft-more-content .more-card img {
+    width: 100% !important;
+    object-fit: cover !important;
+  }
 }
 
 // responive media query ends
-
-
-
-
-
 
 @media (min-width: 2100px) {
   html {
@@ -776,16 +799,16 @@ html{
   .nft-more .nft-more-content .more-card img {
     // width: 20rem !important;
     width: 100%;
-}
-.container-fluid {
-  padding: 0 10rem !important;
-}
-.nft-artist .artist-content .artist-img {
-  width: 100%;
-  max-height: 50vh;
-  object-fit: cover !important;
-}
-img.newsletter_btn_icon {
-  max-width: 100% !important;
-}
+  }
+  .container-fluid {
+    // padding: 0 10rem !important;
+  }
+  .nft-artist .artist-content .artist-img {
+    width: 100%;
+    max-height: 50vh;
+    object-fit: cover !important;
+  }
+  img.newsletter_btn_icon {
+    max-width: 100% !important;
+  }
 }
