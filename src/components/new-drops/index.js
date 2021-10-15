@@ -5,10 +5,8 @@ import './style.scss'
 const NewDrops = ()=>{
 
     return <>
-    hello <br/>hello <br/>hello <br/>hello <br/>hello <br/>hello <br/>hello <br/>hello <br/>hello <br/>hello <br/>hello <br/>hello <br/>        
-    <DropCard/>
-    <DropCard/>
-    <DropCard/>
+
+  
     </>
 }
 
