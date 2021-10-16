@@ -12,6 +12,9 @@ export const nftBuyHistory = ({ nft_slug, page }) =>
 export const nftBidHistory = ({ nft_slug, page }) =>
   axios.get(`/nfts/${nft_slug}/bid_history?page=${page}`);
 
+export const nftBidWinner = ({ nft_slug }) =>
+  axios.get(`/nfts/${nft_slug}/bid_winner`);
+
 export const nftBuyApi = (props) => axios.post("/buys", { nft: { ...props } });
 
 export const nftBidApi = (props) => axios.post("/bids", { nft: { ...props } });

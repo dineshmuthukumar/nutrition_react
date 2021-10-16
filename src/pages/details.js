@@ -3,6 +3,7 @@ import { useRouteMatch } from "react-router";
 import { useParams } from "react-router-dom";
 import {
   nftBidHistory,
+  nftBidWinner,
   nftBuyHistory,
   nftDetailApi,
   nftMoreApi,
@@ -29,17 +30,11 @@ import {
   buyDetail,
   pageView,
   totalFav,
+  winnerDetail,
 } from "../api/actioncable-methods";
 
 const Details = () => {
   const { params: matchParams } = useRouteMatch();
-
-  const data = {
-    soldFor: 2000.99,
-    soldOn: "Sep 16, 21 11:11pm",
-    lastBid: 1976.0,
-    lastBidDate: "Sep 16, 21 11:09pm",
-  };
 
   const { slug } = useParams();
   const [small, setSmall] = useState(false);
@@ -48,6 +43,7 @@ const Details = () => {
   const [nftMoreList, setNftMoreList] = useState([]);
   const [buyHistory, setBuyHistory] = useState([]);
   const [bidHistory, setBidHistory] = useState([]);
+  const [bidWinner, setBidWinner] = useState(null);
   const [erc721, setErc721] = useState(false);
   const [isAuctionStarted, setIsAuctionStarted] = useState(false);
   const [isAuctionEnded, setIsAuctionEnded] = useState(false);
@@ -93,6 +89,11 @@ const Details = () => {
 
     totalFav({ slug }, (data) => {
       setSocketData({ ...socketData, totalFavourites: data.total_favourites });
+    });
+
+    winnerDetail({ slug }, (data) => {
+      setBidWinner(data.winner);
+      console.log(data);
     });
 
     nftDetail(slug);
@@ -141,7 +142,9 @@ const Details = () => {
           nft_slug: slug,
           page: 1,
         });
+        let winner = await nftBidWinner({ nft_slug: slug });
         setBidHistory(history.data.data.histories);
+        setBidWinner(winner.data.data.winner);
       } else {
         let history = await nftBuyHistory({
           nft_slug: slug,
@@ -207,6 +210,7 @@ const Details = () => {
                 auctionEndTime={auctionEndTime}
                 handleAuctionStartTimer={handleAuctionStartTimer}
                 handleAuctionEndTimer={handleAuctionEndTimer}
+                winner={bidWinner}
               />
             </div>
           </div>
@@ -223,14 +227,13 @@ const Details = () => {
                   if (isAuctionStarted && !isAuctionEnded) {
                     return <BidHistory nft={nft} histories={bidHistory} />;
                   } else if (isAuctionEnded) {
-                    return (
-                      // <BidAuction
-                      //   status="end"
-                      //   bottomTitle="Limited Edition"
-                      //   bottomValue="1 of 1"
-                      // />
-                      <BidWinner data={data} histories={bidHistory} />
-                    );
+                    if (bidWinner) {
+                      return (
+                        <BidWinner winner={bidWinner} histories={bidHistory} />
+                      );
+                    } else {
+                      return <BidHistory nft={nft} histories={bidHistory} />;
+                    }
                   } else {
                     return (
                       <BidAuction
