@@ -18,6 +18,8 @@ const NFTBaseDetails = ({
   isAuctionStarted,
   isAuctionEnded,
   auctionEndTime,
+  handleAuctionStartTimer,
+  handleAuctionEndTimer,
 }) => {
   const history = useHistory();
   const { user } = useSelector((state) => state.user.data);
@@ -103,6 +105,7 @@ const NFTBaseDetails = ({
                 : "Nft buy auction"
             }
             time={nft.auction_start_time}
+            handleTimer={handleAuctionStartTimer}
           />
         )}
         {!isAuctionEnded && isAuctionStarted && (
@@ -114,6 +117,7 @@ const NFTBaseDetails = ({
                 : "Nft buy auction"
             }
             time={auctionEndTime}
+            handleTimer={handleAuctionEndTimer}
           />
         )}
         {isAuctionEnded && (

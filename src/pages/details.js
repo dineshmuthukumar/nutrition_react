@@ -52,7 +52,6 @@ const Details = () => {
   const [isAuctionStarted, setIsAuctionStarted] = useState(false);
   const [isAuctionEnded, setIsAuctionEnded] = useState(false);
   const [loader, setLoader] = useState(false);
-  const [trigger, setTrigger] = useState(false);
   const [socketData, setSocketData] = useState({
     totalBid: 0,
     bidChange: 0,
@@ -111,36 +110,6 @@ const Details = () => {
     }
   }, []);
 
-  useEffect(() => {
-    let startInterval = 0,
-      endInterval = 0;
-    if (trigger && auctionEndTime) {
-      startInterval = setInterval(() => {
-        checkStartTimer(startInterval);
-      }, 1000);
-      endInterval = setInterval(() => {
-        checkEndTimer(endInterval);
-      }, 1000);
-    }
-    return () => {
-      window.clearInterval(startInterval);
-      window.clearInterval(endInterval);
-    };
-  }, [trigger, auctionEndTime]);
-
-  const checkStartTimer = (i) => {
-    if (new Date().getTime() >= new Date(nft.auction_start_time).getTime()) {
-      setIsAuctionStarted(true);
-      window.clearInterval(i);
-    }
-  };
-  const checkEndTimer = (i) => {
-    if (new Date().getTime() >= new Date(auctionEndTime).getTime()) {
-      setIsAuctionEnded(true);
-      window.clearInterval(i);
-    }
-  };
-
   const updateSubHeader = (input) => {
     if (input) {
       if (localStorage.getItem("sub-header") === "false") {
@@ -160,21 +129,27 @@ const Details = () => {
       const NFT = response.data.data.nft;
       setAuctionEndTime(NFT.auction_end_time);
       setIsAuctionStarted(
-        new Date().getTime() >= new Date(NFT.auction_start_time).getTime()
+        new Date(NFT.time).getTime() >=
+          new Date(NFT.auction_start_time).getTime()
       );
       setIsAuctionEnded(
-        new Date().getTime() > new Date(NFT.auction_end_time).getTime()
+        new Date(NFT.time).getTime() > new Date(NFT.auction_end_time).getTime()
       );
       setErc721(NFT.nft_type === "erc721");
       if (NFT.nft_type === "erc721") {
-        let history = await nftBidHistory({ nft_slug: slug });
+        let history = await nftBidHistory({
+          nft_slug: slug,
+          page: 1,
+        });
         setBidHistory(history.data.data.histories);
       } else {
-        let history = await nftBuyHistory({ nft_slug: slug });
+        let history = await nftBuyHistory({
+          nft_slug: slug,
+          page: 1,
+        });
         setBuyHistory(history.data.data.histories);
       }
       setNft(response.data.data.nft);
-      setTrigger(true);
       setLoader(false);
     } catch (err) {
       // setLoader(false);
@@ -190,6 +165,13 @@ const Details = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const handleAuctionStartTimer = () => {
+    setIsAuctionStarted(true);
+  };
+  const handleAuctionEndTimer = () => {
+    setIsAuctionEnded(true);
   };
 
   return (
@@ -223,6 +205,8 @@ const Details = () => {
                 isAuctionStarted={isAuctionStarted}
                 isAuctionEnded={isAuctionEnded}
                 auctionEndTime={auctionEndTime}
+                handleAuctionStartTimer={handleAuctionStartTimer}
+                handleAuctionEndTimer={handleAuctionEndTimer}
               />
             </div>
           </div>
