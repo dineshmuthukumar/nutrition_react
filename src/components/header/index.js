@@ -91,7 +91,7 @@ const Header = ({ hideOptions = false }) => {
                   {user.login ? (
                     <>
                       <Nav.Link href="#home">
-                        {/* <BiHelpCircle size={25} /> */}
+                        <BiHelpCircle size={25} />
                       </Nav.Link>
                       <Dropdown
                         autoClose="outside"
@@ -186,7 +186,6 @@ const Header = ({ hideOptions = false }) => {
                           >
                             Bid Activity
                           </Dropdown.Item>
-                          <Dropdown.Divider />
                           <Dropdown.Item
                             as="button"
                             onClick={() =>
@@ -197,6 +196,18 @@ const Header = ({ hideOptions = false }) => {
                             }
                           >
                             Settings
+                          </Dropdown.Item>
+                          <Dropdown.Divider />
+                          <Dropdown.Item
+                            as="button"
+                            // onClick={() =>
+                            //   window.open(
+                            //     `${process.env.REACT_APP_BASE_URL}/accounts/settings`,
+                            //     "_blank"
+                            //   )
+                            // }
+                          >
+                            Help Center
                           </Dropdown.Item>
                           {/* <Dropdown.Divider />
                           <Dropdown.Item as="button">

@@ -18,6 +18,7 @@ import {
 import "./App.css";
 
 const Home = lazy(() => import("./pages/home"));
+const Explore = lazy(() => import("./pages/explore-list"));
 const NotFound = lazy(() => import("./pages/not-found"));
 const Details = lazy(() => import("./pages/details"));
 
@@ -72,11 +73,13 @@ function App(props) {
             }
           >
             <Switch>
-              <Route
+              <Route exact path="/details/:slug" component={Details} />
+              <PrivateRoute
                 exact
-                path="/details/:slug/:placebid?"
+                path="/details/:slug/:placebid"
                 component={Details}
               />
+              <Route exact path="/explore" component={Explore} />
               <Route exact path="/" component={Home} />
               <Route path="/not-found" component={NotFound} />
               <Route exact component={NotFound} />
