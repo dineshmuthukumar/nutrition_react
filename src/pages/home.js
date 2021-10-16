@@ -29,11 +29,8 @@ const Home = () => {
   return (
     <>
       <Header />
-
-      <NewDrops/> 
-
-      {/* {!loading ? <NFTList data={list} /> : <ThreeColumnLoader />}/s */}
-
+      {/* <NewDrops/>  */}
+      {!loading ? <NFTList data={list} /> : <ThreeColumnLoader />}/s
       {/* <div className="container">
         <h1 className="text-center mt-5 mb-5">
           Never miss a drop. Sign up now!
