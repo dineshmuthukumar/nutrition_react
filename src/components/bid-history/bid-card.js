@@ -18,7 +18,7 @@ const BidCard = ({ history, isEnd = false }) => {
             <img src={history.avatar_url ? history.avatar_url : userImg} />
             <div className="bid-histoy-details">
               <div className="time text-secondary">
-                {dayjs(history.created_at).format("MMM D, YYYY hh:mm:ssa")}
+                {dayjs(history.created_at).format("MMM D, YYYY hh:mm:ss:SSSa")}
               </div>
               <div className="bid-owner">
                 Bid placed by{" "}

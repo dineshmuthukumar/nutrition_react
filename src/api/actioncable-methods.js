@@ -95,3 +95,15 @@ export const totalFav = ({ slug }, value) => {
     }
   );
 };
+
+export const winnerDetail = ({ slug }, value) => {
+  cable.subscriptions.create(
+    { channel: "NftChannel", room: `winner_detail_${slug}` },
+    {
+      connected: () => {},
+      received: (data) => {
+        value(data);
+      },
+    }
+  );
+};

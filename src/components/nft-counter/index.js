@@ -6,10 +6,16 @@ function NFTCounter({
   timeClass = "",
   intervalClass = "",
   intervalGapClass = "",
+  handleEndEvent = () => {},
 }) {
   const calculateTimeLeft = (input) => {
     const difference = +new Date(input) - +new Date();
-    let timeLeft = {};
+    let timeLeft = {
+      days: 0,
+      hours: 0,
+      minutes: 0,
+      seconds: 0.1,
+    };
 
     if (difference > 0) {
       timeLeft = {
@@ -28,6 +34,10 @@ function NFTCounter({
   useEffect(() => {
     setTimeout(() => {
       setTimeLeft(calculateTimeLeft(time));
+      const { days, hours, minutes, seconds } = calculateTimeLeft(time);
+      if (!days && !hours && !minutes && !seconds) {
+        handleEndEvent();
+      }
     }, 1000);
   });
 

@@ -3,6 +3,7 @@ import { useRouteMatch } from "react-router";
 import { useParams } from "react-router-dom";
 import {
   nftBidHistory,
+  nftBidWinner,
   nftBuyHistory,
   nftDetailApi,
   nftMoreApi,
@@ -29,17 +30,11 @@ import {
   buyDetail,
   pageView,
   totalFav,
+  winnerDetail,
 } from "../api/actioncable-methods";
 
 const Details = () => {
   const { params: matchParams } = useRouteMatch();
-
-  const data = {
-    soldFor: 2000.99,
-    soldOn: "Sep 16, 21 11:11pm",
-    lastBid: 1976.0,
-    lastBidDate: "Sep 16, 21 11:09pm",
-  };
 
   const { slug } = useParams();
   const [small, setSmall] = useState(false);
@@ -48,11 +43,11 @@ const Details = () => {
   const [nftMoreList, setNftMoreList] = useState([]);
   const [buyHistory, setBuyHistory] = useState([]);
   const [bidHistory, setBidHistory] = useState([]);
+  const [bidWinner, setBidWinner] = useState(null);
   const [erc721, setErc721] = useState(false);
   const [isAuctionStarted, setIsAuctionStarted] = useState(false);
   const [isAuctionEnded, setIsAuctionEnded] = useState(false);
   const [loader, setLoader] = useState(false);
-  const [trigger, setTrigger] = useState(false);
   const [socketData, setSocketData] = useState({
     totalBid: 0,
     bidChange: 0,
@@ -96,6 +91,11 @@ const Details = () => {
       setSocketData({ ...socketData, totalFavourites: data.total_favourites });
     });
 
+    winnerDetail({ slug }, (data) => {
+      setBidWinner(data.winner);
+      console.log(data);
+    });
+
     nftDetail(slug);
     nftMore();
     if (typeof window !== "undefined") {
@@ -110,36 +110,6 @@ const Details = () => {
       });
     }
   }, []);
-
-  useEffect(() => {
-    let startInterval = 0,
-      endInterval = 0;
-    if (trigger && auctionEndTime) {
-      startInterval = setInterval(() => {
-        checkStartTimer(startInterval);
-      }, 1000);
-      endInterval = setInterval(() => {
-        checkEndTimer(endInterval);
-      }, 1000);
-    }
-    return () => {
-      window.clearInterval(startInterval);
-      window.clearInterval(endInterval);
-    };
-  }, [trigger, auctionEndTime]);
-
-  const checkStartTimer = (i) => {
-    if (new Date().getTime() >= new Date(nft.auction_start_time).getTime()) {
-      setIsAuctionStarted(true);
-      window.clearInterval(i);
-    }
-  };
-  const checkEndTimer = (i) => {
-    if (new Date().getTime() >= new Date(auctionEndTime).getTime()) {
-      setIsAuctionEnded(true);
-      window.clearInterval(i);
-    }
-  };
 
   const updateSubHeader = (input) => {
     if (input) {
@@ -160,21 +130,29 @@ const Details = () => {
       const NFT = response.data.data.nft;
       setAuctionEndTime(NFT.auction_end_time);
       setIsAuctionStarted(
-        new Date().getTime() >= new Date(NFT.auction_start_time).getTime()
+        new Date(NFT.time).getTime() >=
+          new Date(NFT.auction_start_time).getTime()
       );
       setIsAuctionEnded(
-        new Date().getTime() > new Date(NFT.auction_end_time).getTime()
+        new Date(NFT.time).getTime() > new Date(NFT.auction_end_time).getTime()
       );
       setErc721(NFT.nft_type === "erc721");
       if (NFT.nft_type === "erc721") {
-        let history = await nftBidHistory({ nft_slug: slug });
+        let history = await nftBidHistory({
+          nft_slug: slug,
+          page: 1,
+        });
+        let winner = await nftBidWinner({ nft_slug: slug });
         setBidHistory(history.data.data.histories);
+        setBidWinner(winner.data.data.winner);
       } else {
-        let history = await nftBuyHistory({ nft_slug: slug });
+        let history = await nftBuyHistory({
+          nft_slug: slug,
+          page: 1,
+        });
         setBuyHistory(history.data.data.histories);
       }
       setNft(response.data.data.nft);
-      setTrigger(true);
       setLoader(false);
     } catch (err) {
       // setLoader(false);
@@ -190,6 +168,13 @@ const Details = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const handleAuctionStartTimer = () => {
+    setIsAuctionStarted(true);
+  };
+  const handleAuctionEndTimer = () => {
+    setIsAuctionEnded(true);
   };
 
   return (
@@ -223,6 +208,9 @@ const Details = () => {
                 isAuctionStarted={isAuctionStarted}
                 isAuctionEnded={isAuctionEnded}
                 auctionEndTime={auctionEndTime}
+                handleAuctionStartTimer={handleAuctionStartTimer}
+                handleAuctionEndTimer={handleAuctionEndTimer}
+                winner={bidWinner}
               />
             </div>
           </div>
@@ -239,14 +227,13 @@ const Details = () => {
                   if (isAuctionStarted && !isAuctionEnded) {
                     return <BidHistory nft={nft} histories={bidHistory} />;
                   } else if (isAuctionEnded) {
-                    return (
-                      // <BidAuction
-                      //   status="end"
-                      //   bottomTitle="Limited Edition"
-                      //   bottomValue="1 of 1"
-                      // />
-                      <BidWinner data={data} histories={bidHistory} />
-                    );
+                    if (bidWinner) {
+                      return (
+                        <BidWinner winner={bidWinner} histories={bidHistory} />
+                      );
+                    } else {
+                      return <BidHistory nft={nft} histories={bidHistory} />;
+                    }
                   } else {
                     return (
                       <BidAuction

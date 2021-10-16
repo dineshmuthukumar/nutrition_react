@@ -4,9 +4,10 @@ import { Modal, Button, Table, Nav, NavDropdown } from "react-bootstrap";
 import { BsFullscreenExit } from "react-icons/bs";
 import BidName from "../bid-history/bid-name";
 import { currencyFormat } from "../../utils/common";
+import userImg from "../../images/user_1.png";
 import "./style.scss";
 
-const BidWinner = ({ histories }) => {
+const BidWinner = ({ winner, histories }) => {
   const [modalShow, setModalShow] = useState(false);
   return (
     <>
@@ -14,29 +15,37 @@ const BidWinner = ({ histories }) => {
         <div className="winner-text">WINNER</div>
 
         <div className="winner-user-details">
-          <img src="https://picsum.photos/200/200" />
-          <div className="winner-id">@rtyuio</div>
+          <img src={winner.avatar_url ? winner.avatar_url : userImg} />
+          <div className="winner-id">{winner.user_name}</div>
         </div>
 
         <div className="nft-sold-details">
           <div className="sold-for">
             <div className="sold-for-title">NFT sold for</div>
-            <div className="sold-for-value">$2098.98</div>
+            <div className="sold-for-value">
+              {currencyFormat(winner.sold_amount, "USD")}
+            </div>
           </div>
           <div className="sold-on">
             <div className="sold-on-title">NFT sold on</div>
-            <div className="sold-on-value">Sep 16, 21 11:11pm</div>
+            <div className="sold-on-value">
+              {dayjs(winner.sold_at).format("MMM D, YYYY hh:mma")}
+            </div>
           </div>
         </div>
 
         <div className="nft-lastbid-details">
           <div className="lastbid-left">
             <div className="lastbid-title">Last Bid</div>
-            <div className="lastbid-value">$2098.98</div>
+            <div className="lastbid-value">
+              {currencyFormat(winner.last_bid, "USD")}
+            </div>
           </div>
           <div className="lastbid-right">
             <div className="lastbid-date-title">Last Bid Date</div>
-            <div className="lastbid-date-value">Sep 16, 21 11:11pm</div>
+            <div className="lastbid-date-value">
+              {dayjs(winner.last_bid_at).format("MMM D, YYYY hh:mma")}
+            </div>
           </div>
         </div>
 

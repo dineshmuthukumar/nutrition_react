@@ -18,6 +18,9 @@ const NFTBaseDetails = ({
   isAuctionStarted,
   isAuctionEnded,
   auctionEndTime,
+  handleAuctionStartTimer,
+  handleAuctionEndTimer,
+  winner,
 }) => {
   const history = useHistory();
   const { user } = useSelector((state) => state.user.data);
@@ -67,7 +70,15 @@ const NFTBaseDetails = ({
         <div className="d-flex">
           {erc721 ? (
             <BidValue
-              title={isAuctionStarted ? "Current Bid" : "Minimum Bid"}
+              title={(() => {
+                if (isAuctionEnded) {
+                  return "Last Bid";
+                } else if (isAuctionStarted) {
+                  return "Current Bid";
+                } else {
+                  return "Minimum Bid";
+                }
+              })()}
               value={
                 socketData.price
                   ? currencyFormat(socketData.price, "USD")
@@ -89,8 +100,13 @@ const NFTBaseDetails = ({
             />
           )}
 
-          {erc721 && isAuctionEnded && (
-            <BidValue title="Owned By" name="@CryptoGeek" isEnd />
+          {erc721 && isAuctionEnded && winner && (
+            <BidValue
+              title="Owned By"
+              avatar={winner.avatar_url}
+              name={winner.user_name}
+              isEnd
+            />
           )}
         </div>
         <hr className="custom-divider" />
@@ -103,6 +119,7 @@ const NFTBaseDetails = ({
                 : "Nft buy auction"
             }
             time={nft.auction_start_time}
+            handleTimer={handleAuctionStartTimer}
           />
         )}
         {!isAuctionEnded && isAuctionStarted && (
@@ -114,6 +131,7 @@ const NFTBaseDetails = ({
                 : "Nft buy auction"
             }
             time={auctionEndTime}
+            handleTimer={handleAuctionEndTimer}
           />
         )}
         {isAuctionEnded && (
