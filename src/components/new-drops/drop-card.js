@@ -52,6 +52,8 @@ const DropCard = ()=>{
                         <div className="col-lg-6">
                             <div className="drop-card-post">
                             <Image src="https://amitabh.bafdemo.com/static/media/artist-image.2236b257.png" /> 
+                            <div class="learnMore"> <a href="#">Join the waitlist</a> </div>
+                            
                             </div>
                         </div>
                     
