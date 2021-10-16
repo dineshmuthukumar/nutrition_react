@@ -1,0 +1,839 @@
+section.sw_ab_1 {
+    background: #081127;
+    color: #fff;
+    padding: 4rem 0rem;
+}
+h2.drop-title__heading {
+    font-size: 3rem;
+}
+p.drop-title__description {
+    font-size: 1.5rem;
+}
+.learnMore a {
+    text-decoration: none;
+    border-radius: 2em;
+    color: #fff;
+    border: 1px solid #fff;
+    width: 40%;
+    margin-left: 0;
+    margin-top: 6.9%;
+    height: 3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-position: 94% center; */
+    /* background-size: 5%; */
+    font-size: 1.3rem;
+    letter-spacing: 0.1rem;
+    font-family: 'neue_helveticabold';
+}
+.content-img img {
+    width: 100%;
+}
+.scroll-drops {
+    text-align: center;
+    margin-top: 5rem !important;
+} 
+.scroll-drops a{
+    color: #fff;
+}
+.scroll-drops a {
+    color: #fff;
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+section.sw_3 {
+    border-bottom: 1px solid #eaeaea;
+    border-top: 1px solid #eaeaea;
+    text-align: center;
+    position: sticky;
+    top: 0rem;
+    z-index: 9999;
+    padding: 0;
+    transition: .5s;
+    display: block;
+    margin-top: 0;
+    margin-bottom: 0rem;
+    background: #000;
+}
+.sw_3 .container {
+    /* display: flex; */
+    align-items: center;
+}
+section.dropCard-Section {
+    background: #000;
+    color: #fff;
+    padding-top: 6.25em;
+}
+.card_title {
+    max-width: 70%;
+    display: block;
+    margin: auto;
+    text-align: center;
+}
+.card_title p {
+    font-size: 1.3em;
+}   
+.card_title h2 {
+    font-size: 2.5rem;
+}
+p.small-title {
+    font-size: 1.5rem;
+    font-family: 'neue_helveticamedium';
+}
+.sticky-tabs {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.sw_3 .nav-tabs {
+    border: none;
+    text-align: center;
+    align-items: stretch;
+    justify-content: space-between;
+}
+.sw_3 .nav-tabs a {
+    width: 33.33%;
+    position: relative;
+}     
+.kd-feature-tabs {
+    padding: 0px !important;
+}
+.sw_3 .nav-tabs li {
+    float: left;
+    position: relative;
+    display: block;
+    width: 30%;
+}
+.sw_3 .nav-tabs a.nav-label:after{
+  content: '';
+  height: 100%; 
+  width: 1px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+
+  background-color: #fff;
+}
+.sw_3 .nav-tabs a {
+    border: none;
+    font-weight: 600;
+    border-top: none!important;
+    border-left: none!important;
+    border-right: none!important;
+    background: 0 0!important;
+    margin: 0;
+    border-radius: 0;
+    padding: 0;
+    line-height: inherit;
+    transition: .2s ease;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    height: 5rem;
+    color:  #fff;
+    text-decoration: none;
+}
+.app-showcase {
+    background: #000;
+    font-size: 1.2rem;
+}
+.sw_3 .nav-tabs a i {
+    font-size: 20px;
+    font-weight: 600;
+    margin-right: 15px;
+    transition: .2s ease;
+}
+
+.app-showcase a.feature-tabs-scroll img {
+    width: 25px;
+    margin-right: 1rem;
+}
+
+
+// card
+
+.drop_card {
+    // padding: 2em 0 0;
+    border: 2px solid #fff;
+    margin-top: 7.6em;
+}
+.border-right{
+    position: relative;
+}
+.border-right:after{
+    content: '';
+  height: 100%; 
+  width: 2px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+
+  background-color: #fff;
+}
+.drop-card-post{
+    padding:2em;
+    width: 100%;
+    height: 100%;
+    
+}
+.drop-card-post img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.drop_card .col-lg-6 {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.drop_card .drop-title {
+    padding: 2em;
+    border-bottom: 2px solid #fff;
+}   
+.drop-title h4 {
+    font-size: 2em;
+}
+.drop_card .auction-time {
+    padding: 2em;
+    border-bottom: 2px solid #fff;
+}
+.drop_card .additional-perks {
+    padding: 2em;
+}
+.drop-title p {
+    font-size: 1.2em;
+}
+.drop_card .additional-perks p {
+    font-size: 1.3em;
+    margin-bottom: 0;
+}
+.auction-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2em;
+    border-bottom: 2px solid #fff;
+}
+p.heading-S {
+    font-size: 1.2em;
+}
+.auction-main h1 {
+    font-size: 3.3em;
+    font-family: 'neue_helveticaroman' !important;
+    margin-bottom: 0;
+    line-height: 1;
+}
+
+// newsletter
+section.drop-newsletter {
+    background: url(https://cdn.beyondlife.club/media/bg_7.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 6.5em;
+    text-align: center;
+}
+.drop-newsletter h1 {
+    font-size: 4em;
+    line-height: 1.3;
+    -webkit-font-smoothing: antialiased;
+    max-width: 80%;
+    margin: auto;
+    font-family: 'neue_helveticaroman' !important;
+}
+.drop-newsletter .formGroup {
+    margin: 2.5em auto 0em auto;
+    position: relative;
+    width: 40%;
+}
+.nft_form_email {
+    position: relative;
+    display: block;
+    width: 100%;
+    line-height: 19px;
+    padding: 15px 20px;
+    background-color: #ffffffa3;
+    height: 50px;
+    border: 1px solid #dcd9d8;
+    transition: all 300ms ease;
+    border-radius: 100px;
+    font-size: 1.2em !important;
+} 
+
+button.nft_form {
+    position: absolute;
+    right: 5px;
+    top: 4px;
+    width: 42px;
+    height: 42px;
+    display: inline-block;
+    font-size: 2em;
+    line-height: 30px;
+    padding: 6px 9px;
+    font-weight: 700;
+    border-radius: 35px;
+    text-transform: capitalize;
+    background-color: #351fff80;
+    overflow: hidden;
+    border: none;
+}
+/* footer */    
+#footer{
+    background-image: url(https://cdn.beyondlife.club/media/footer_bar.png);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: top;
+    background-color: #000;
+    color:#fff;
+    display: flex;
+    flex-direction: column;
+}
+#footer ul li.current a{
+    text-decoration: underline;
+}
+
+#fmenu1{
+    display: flex;
+    width: 100%;
+    padding-bottom: 3.85em;
+
+}
+#fmenu1 .submenu{
+    display: flex;
+    padding: 3%;
+    align-items:flex-start;
+    justify-content: flex-start;
+    text-align: left;
+}
+#fmenu1 .submenu:first-of-type{
+    width:28%;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#fmenu1 .submenu:first-of-type h1{
+    font-size: 2em;
+    font-weight: 700;
+    color: #fff;
+}
+#fmenu1 .submenu:first-of-type p {
+    font-size: 0.9em;
+    font-weight: 500;
+    width: 90%;
+    color: #fff;
+}
+#fmenu1 .submenu ul {
+    padding-left: 0px;
+}
+#fmenu1 .submenu ul li{
+    list-style: none;
+}
+/* Social Media Links */
+
+#socialMedia{
+    width: 100%;
+}
+#socialMedia ul {
+    display: flex;
+    width: 100%;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-self: flex-start;
+    justify-content: flex-start;
+    padding-left: 0px;
+}
+#socialMedia ul li{
+
+}
+#socialMedia ul li a{
+    text-indent: -9000px;
+    cursor: pointer;
+    width: 1.45em;
+    height: 1.45em;
+    background-size: contain;
+    font-size: 1.18em !important;
+    margin-right:0.2em;
+}
+
+
+#fmenu1 .submenu:nth-of-type(2){
+    width:36%;
+}
+#fmenu1 .submenu:last-of-type{
+    width: 36%;
+    padding: 4% 3% 3% 4%;
+}
+#fmenu1 .submenu:last-of-type form {
+    width: 100%;
+}
+#fmenu1 .submenu:last-of-type form label {
+    font-size: 1.5rem;
+    padding-bottom: 6%;
+    display: block;
+    color: #fff;
+}
+#fmenu1 .submenu:last-of-type .formGroup{
+    position: relative;
+}
+#fmenu1 .submenu:last-of-type form input[type="email"]{
+    // height: 3em;
+    border-radius: 3em;
+    border: none;
+    width: 100%;
+    padding-left: 10%;
+    font-size: 0.8em;
+    background-color: #1F1F1F;
+    color: #A2A2A2;
+}  
+
+
+#fmenu1 .submenu:last-of-type form input[type="submit"] {
+    position: absolute;
+    right: 1%;
+    top: 6%;
+    width: 12%;
+    height: 86%;
+    text-indent: -9000px;
+    border-radius: 50%;
+    background-color: transparent;
+    background-image: url(https://cdn.beyondlife.club/media/blue_submit.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    background-size: contain;
+    border: none;
+
+}
+#fmenu1 ul{
+
+}
+
+#fmenu1 ul li{
+
+}
+
+#fmenu1 ul li a {
+    font-size: 1.4em;
+    padding: 0.4em 0.2em 1.5em 0.2em;
+    text-decoration: none;
+    color: #fff;
+    line-height: 2.4;
+}
+
+#fmenu1 ul li a:hover{
+    text-decoration: underline;
+}
+
+.social-icon-two li {
+    position: relative;
+    list-style: none;
+}
+
+#fmenu2{
+    display: flex;
+    justify-content: space-between;
+    width: 94%;
+    padding: 1.5% 0% 2.5% 0%;
+    border-top: 2px solid #979797;
+    margin: auto 3%;
+    box-sizing: border-box;
+}
+#fmenu2 .submenu{
+    display: flex;
+}
+#fmenu1 .submenu:first-of-type a {
+    text-decoration: none;
+}
+#fmenu2 .submenu:first-of-type {
+    font-size: 1.34em;
+    padding-left: 0;
+    max-width: 50%;
+    align-items: center;
+    color: #808080;
+    line-height: 1.3;
+}   
+#fmenu2 .submenu:first-of-type > div{
+    margin-right: 13%;
+    white-space: nowrap;
+}
+#fmenu2 .submenu:first-of-type > div a {
+    color: #808080;
+    text-decoration: none;
+}
+#fmenu2 .submenu:last-of-type{
+
+    width: 50%;
+    align-items: center;
+    justify-content: flex-end;
+}
+section.drops_list {
+    display: block;
+    width: 100%;
+    background: #000;
+    padding-bottom: 7rem;
+}
+#fmenu2 .submenu:last-of-type a{
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+#fmenu2 .submenu:last-of-type p{
+    font-size: 0.7em;
+    /*    background: url('https://cdn.beyondlife.club/media/powered_by.png')no-repeat;*/
+    padding-left: 1em;
+    background-position: left center;
+    white-space: nowrap;
+}
+#fmenu2 .submenu:last-of-type p:after{
+    content:'|';
+    color:#fff;
+    font-size: inherit;
+    margin: auto 0.5em;
+}
+
+#fmenu2 .submenu:last-of-type img{
+    width: 100%;
+    /*    margin-left:1em;*/
+}
+#socialMedia ul li a {
+    margin-left: 0;
+    margin-right: 10px;
+    position: relative;
+    display: flex;
+    color: #000;
+    width: 35px;
+    height: 35px;
+    border: 1px solid #7f7f7f;
+    border-radius: 50%;
+    text-align: center;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8em !important;    
+    background: #7f7f7f;
+}
+
+
+@media only screen and (min-width: 300px) and (max-width: 480px) {
+#fmenu1 {
+    flex-direction: column;
+    padding-bottom: 8%;
+}
+.border-right::after{
+    content: none;
+}
+footer{
+    background-image: none;
+}
+#fmenu1{
+    flex-direction: column;
+    padding-bottom: 8%;
+}
+#fmenu2{
+    flex-direction: column-reverse;
+    padding-top: 8%;
+}
+.submenu{
+    width: 100% !important;
+}
+#fmenu1 .submenu {
+    display: flex;
+    padding: 5% 4.5% 3% 4.5%;
+}
+#fmenu1 .submenu:first-of-type h1 {
+    font-size: 2em;
+    font-weight: 700;
+}
+h2.drop-title__heading {
+    margin-top: 2rem !important;
+}
+.drop-title p {
+    font-size: 1.3em !important;
+}
+#fmenu1 .submenu:first-of-type p {
+    font-size: 1em;
+}
+#fmenu1 ul {
+    width: 100%;
+}
+.additional-perks h5 {
+    font-size: 2em;
+}
+.drop_card .auction-time h5 {
+    font-size: 2em;
+}
+.drop-title p:last-child{
+    margin-bottom: 0px !important;
+}
+p.heading-S {
+    font-size: 1.6em;
+}
+#socialMedia {
+    padding-top: 4%;
+}
+#socialMedia ul{
+    width:90%;
+}
+#fmenu2 .submenu:last-of-type a {
+    justify-content: center;
+}   
+#fmenu1 .submenu:nth-of-type(2) ul li a {
+    font-size: 1.3em;
+    padding: 2% 0% 3% 0%;
+    width: 100%;
+    background: url(https://cdn.beyondlife.club/media/right_white.png)no-repeat;
+    background-position: center right;
+    background-size: 4%;    
+}   
+#fmenu1 .submenu:last-of-type form label {
+    display: none;
+}
+#fmenu1 .submenu:last-of-type .formGroup {
+    position: relative;
+    margin-top: 0%;
+}   
+#fmenu1 .submenu:last-of-type form input[type="submit"] {
+    position: absolute;
+    right: 1%;
+    top: 6%;
+    width: 10%;
+    height: 86%;
+}
+#fmenu2 .submenu:first-of-type {
+    width: 100%;
+    flex-direction: column;
+    padding-top: 6%;    
+    color: rgba(255,255,255,0.5);
+    font-size: 1em;   
+    margin-bottom: 2%;
+}
+button.nft_form{
+
+top: 3px !important;
+width: 30px !important;
+height: 30px !important;
+font-size: 1.3em !important;
+line-height: 15px !important;
+}
+#fmenu2 .submenu:first-of-type > div {
+    margin-right: initial;
+}
+#fmenu2 .submenu:last-of-type {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+#fmenu2 .submenu:last-of-type p {
+    font-size: 1em;
+    /*        background: url(https://cdn.beyondlife.club/media/powered_by.png)no-repeat;*/
+    padding-left: 0em;
+    background-position: left center;
+
+}
+#fmenu2 .submenu:last-of-type img {
+    width: 60%;
+    margin-left: 0;
+} 
+#fmenu2 .submenu:first-of-type {
+    padding-top: 3%;
+    font-size: 1.4em;
+    width: 100% !important;
+    display: block;
+    max-width: 100% !important;
+    text-align: center;
+}
+}
+
+
+@media only screen and (min-width: 481px) and (max-width: 767px) {
+    #fmenu1 {
+        flex-direction: column;
+        padding-bottom: 8%;
+    }
+    footer{
+        background-image: none;
+    }
+    #fmenu1{
+        flex-direction: column;
+        padding-bottom: 8%;
+    }
+    #fmenu2{
+        flex-direction: column-reverse;
+        padding-top: 8%;
+    }
+    .submenu{
+        width: 100% !important;
+    }
+    .learnMore a{
+        width: 50%;
+    }
+    .scroll-drops {
+        display: none;
+    }
+    #fmenu1 .submenu {
+        display: flex;
+        padding: 5% 4.5% 3% 4.5%;
+    }
+    .card_title {
+        max-width: 100%;
+        text-align: left;
+        padding: 0 0em;
+    }
+    section.drop-newsletter {
+        padding: 2em;
+        text-align: center;
+        background-position: 98%;
+    }
+    .drop-newsletter h1 {
+        font-size: 2em;
+    }
+    .drop-newsletter .formGroup {
+        width: 80%;
+    }
+    .drop_card {
+        border: 2px solid #fff;
+        margin-top: 3.6em;
+    }
+    #fmenu1 .submenu:first-of-type h1 {
+        font-size: 2em;
+        font-weight: 700;
+    }
+    h2.drop-title__heading {
+        margin-top: 2rem !important;
+    }
+    .drop-title p {
+        font-size: 1.3em !important;
+    }
+    #fmenu1 .submenu:first-of-type p {
+        font-size: 1em;
+    }
+    #fmenu1 ul {
+        width: 100%;
+    }
+    .additional-perks h5 {
+        font-size: 2em;
+    }
+    .drop_card .auction-time h5 {
+        font-size: 2em;
+    }
+    .drop-title p:last-child{
+        margin-bottom: 0px !important;
+    }
+    p.heading-S {
+        font-size: 1.6em;
+    }
+    #socialMedia {
+        padding-top: 4%;
+    }
+    #socialMedia ul{
+        width:90%;
+    }
+    #fmenu2 .submenu:last-of-type a {
+        justify-content: center;
+    }   
+    #fmenu1 .submenu:nth-of-type(2) ul li a {
+        font-size: 1.3em;
+        padding: 2% 0% 3% 0%;
+        width: 100%;
+        background: url(https://cdn.beyondlife.club/media/right_white.png)no-repeat;
+        background-position: center right;
+        background-size: 4%;    
+    }   
+    #fmenu1 .submenu:last-of-type form label {
+        display: none;
+    }
+    #fmenu1 .submenu:last-of-type .formGroup {
+        position: relative;
+        margin-top: 0%;
+    }   
+    #fmenu1 .submenu:last-of-type form input[type="submit"] {
+        position: absolute;
+        right: 1%;
+        top: 6%;
+        width: 10%;
+        height: 86%;
+    }
+    #fmenu2 .submenu:first-of-type {
+        width: 100%;
+        flex-direction: column;
+        padding-top: 6%;    
+        color: rgba(255,255,255,0.5);
+        font-size: 1em;   
+        margin-bottom: 2%;
+    }
+    button.nft_form {
+        top: 7px !important;
+        width: 35px !important;
+        height: 35px !important;
+        font-size: 1.3em !important;
+        line-height: 15px !important;
+    }
+    #fmenu2 .submenu:first-of-type > div {
+        margin-right: initial;
+    }
+    #fmenu2 .submenu:last-of-type {
+        width: 100%;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+    }
+    #fmenu2 .submenu:last-of-type p {
+        font-size: 1em;
+        /*        background: url(https://cdn.beyondlife.club/media/powered_by.png)no-repeat;*/
+        padding-left: 0em;
+        background-position: left center;
+    
+    }
+    #fmenu2 .submenu:last-of-type img {
+        width: 60%;
+        margin-left: 0;
+    } 
+    #fmenu2 .submenu:first-of-type {
+        padding-top: 3%;
+        font-size: 1.4em;
+        width: 100% !important;
+        display: block;
+        max-width: 100% !important;
+        text-align: center;
+    }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) {
+        h2.drop-title__heading {
+            margin-top: 2rem;
+        }
+        .learnMore a {
+            width: 50%;
+        }
+        .card_title {
+            text-align: left;
+            padding: 0;
+            max-width: 100%;
+        }
+        .drop_card {
+            border: 2px solid #fff;
+            margin-top: 3.6em;
+        }
+        section.drop-newsletter {
+            padding: 2rem;
+        }
+        .drop-newsletter h1 {
+            font-size: 2em;
+        }
+        #fmenu1 .submenu:first-of-type h1 {
+            font-size: 1.5em;
+        }
+        #socialMedia ul li a{
+            font-size: 1.2em !important;
+        }
+        #fmenu1 ul li a {
+            font-size: 1em;
+        }
+        #fmenu1 .submenu:last-of-type form label {
+            font-size: 1.2rem;
+            padding-bottom: 4%;
+        }
+
+    }

@@ -29,10 +29,10 @@ const Home = () => {
   return (
     <>
       <Header />
-  
-      <NewDrops/>
 
-      {/* {!loading ? <NFTList data={list} /> : <ThreeColumnLoader />} */}
+      <NewDrops/> 
+
+      {/* {!loading ? <NFTList data={list} /> : <ThreeColumnLoader />}/s */}
 
       {/* <div className="container">
         <h1 className="text-center mt-5 mb-5">

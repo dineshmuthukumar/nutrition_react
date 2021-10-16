@@ -636,6 +636,9 @@ input::-webkit-inner-spin-button {
   .table-responsive-lg {
     white-space: nowrap;
   }
+  .sw_3 .nav-tabs a span {
+    display: none;
+}
   .container-fluid,
   .container-sm,
   .container-md,
@@ -670,12 +673,23 @@ input::-webkit-inner-spin-button {
   .recharge-btn {
     width: 100% !important;
   }
+  section.sw_ab_1 {
+    padding: 4rem 1.2rem;
+}
+
   .bid-auction {
     min-height: 60vh !important;
   }
   .bl_drop_list {
     height: 25vh !important;
   }
+  .sw_3 .nav-tabs a span {
+    display: none;
+} 
+.card_title {
+  text-align: left !important;
+  max-width: 100% !important;
+}
   .place-bid-btn {
     width: 100% !important;
   }
@@ -788,6 +802,35 @@ input::-webkit-inner-spin-button {
     width: 100% !important;
     object-fit: cover !important;
   }
+  section.sw_ab_1 {
+    padding: 4rem 1.3rem !important;
+}
+.scroll-drops {
+  display: none;
+}
+.drop_card {
+  margin-top: 4em;
+}
+.drop-newsletter h1 {
+  font-size: 2.21em !important;
+  font-weight: 500;
+}
+.card_title {
+  padding-left: 2em;
+  padding-right: 2em;
+}
+.drop-newsletter .formGroup {
+  width: 100% !important;
+}
+section.drop-newsletter{
+  padding: 2em;
+}
+section.drop-newsletter {
+  background-position-x: 98% !important;
+}
+section.drop-newsletter{
+  padding: 2em !important;
+}
 }
 
 // responive media query ends
