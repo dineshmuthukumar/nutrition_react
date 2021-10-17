@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Modal, OverlayTrigger, Popover } from "react-bootstrap";
+import { prominent } from "color.js";
 import {
   AiFillHeart,
   AiOutlineShareAlt,
@@ -19,11 +20,16 @@ import "./style.scss";
 const NFTMedia = ({ image, title, slug, isFav }) => {
   const [modalShow, setModalShow] = useState(false);
   const [liked, setLiked] = useState(false);
+  const [bgColor, setBgColor] = useState();
   const { user } = useSelector((state) => state.user.data);
 
   useEffect(() => {
     setLiked(isFav);
   }, [isFav]);
+
+  useEffect(() => {
+    getBgColor(image);
+  }, []);
 
   const handleLike = async () => {
     if (!user)
@@ -35,17 +41,28 @@ const NFTMedia = ({ image, title, slug, isFav }) => {
     setLiked(!liked);
     try {
       if (!liked) {
-        let response = await nftMakeFav({ nft_slug: slug });
+        await nftMakeFav({ nft_slug: slug });
       } else {
-        let response = await nftMakeUnFav({ nft_slug: slug });
+        await nftMakeUnFav({ nft_slug: slug });
       }
     } catch (err) {
       console.log(err);
       toaster(500, "Something went wrong");
     }
   };
+
+  const getBgColor = async (input) => {
+    if (input) {
+      const color = await prominent(image, { amount: 1 });
+
+      setBgColor(`rgb(${color[0]},${color[1]},${color[2]},0.3)`);
+    } else {
+      setBgColor(`rgb(0,0,0,0.1)`);
+    }
+  };
+
   return (
-    <div className="nft-media media_audio">
+    <div className="nft-media media_audio" style={{ background: bgColor }}>
       {/* <div className="show_height"><img className="type_image typeimg_audio" src="https://wallpaperaccess.com/full/112115.jpg" />  </div> */}
       {/* <div className="show_height"><img className="type_gif" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" />/div> */}
       {/* <video controls>

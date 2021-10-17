@@ -13,7 +13,7 @@ const BidHistory = ({ nft, histories = [], isAuctionEnded }) => {
   const [modalShow, setModalShow] = useState(false);
   return (
     <>
-      <div className="bid-history">
+      <div className="bid-history if_bid_empty_cell">
         <div className="bid-history-title-content">
           <div className="bid-history-title">History</div>
           <div className="bid-history-filter">
@@ -34,16 +34,17 @@ const BidHistory = ({ nft, histories = [], isAuctionEnded }) => {
                 </NavDropdown>
               </Nav>
             </div> */}
+            {histories.length > 0 && (
             <AiOutlineExpand
               role="button"
               style={{ color: "#fff" }}
               size={25}
               onClick={() => setModalShow(true)}
-            />
+            />)}
           </div>
         </div>
 
-        {histories.length > 0 ? (
+        {histories.length > 1 ? (
           <div className="bid-history-content">
             {histories.map((history, i) => (
               <BidCard key={`biy-history${i}`} history={history} />

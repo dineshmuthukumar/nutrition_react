@@ -12,7 +12,7 @@ const BidWinner = ({ winner, histories }) => {
   return (
     <>
       <div className="bid-winner">
-        <div className="winner-text">WINNER</div>
+        <div className="winner-title"><div className="winner-text">WINNER</div></div>
 
         <div className="winner-user-details">
           <img src={winner.avatar_url ? winner.avatar_url : userImg} />

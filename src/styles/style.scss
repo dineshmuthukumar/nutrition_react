@@ -355,6 +355,7 @@ input::-webkit-inner-spin-button {
 }
 
 @media (min-width: $sm-width) {
+  
 }
 
 @media (min-width: $md-width) {
@@ -494,10 +495,8 @@ input::-webkit-inner-spin-button {
   html {
     font-size: 14px;
   }
-  .bid-winner .winner-text {
-    right: -38%;
-    bottom: 15vh !important;
-  }
+
+  
 }
 
 @media (min-width: 1200px) {
@@ -545,6 +544,7 @@ input::-webkit-inner-spin-button {
   .bid-winner {
     min-height: 50vh !important;
   }
+
 }
 /* Tablet (Landscape)
 ----------------------------------------------------------- */
@@ -759,11 +759,6 @@ input::-webkit-inner-spin-button {
   .bid-winner .nft-lastbid-details {
     display: block !important;
     margin-bottom: 2rem;
-  }
-  .bid-winner .winner-text {
-    bottom: 45vh !important;
-    font-size: 8rem !important;
-    right: -37% !important;
   }
   .bid-winner .bottom-section .bidding-history-btn {
     font-size: 1rem !important;

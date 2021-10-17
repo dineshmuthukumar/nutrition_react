@@ -9,6 +9,7 @@
     "actioncable": "^5.2.6",
     "axios": "^0.21.1",
     "bootstrap": "^5.1.0",
+    "color.js": "^1.2.0",
     "dayjs": "^1.10.7",
     "moment": "^2.29.1",
     "node-sass": "^4.14.1",
