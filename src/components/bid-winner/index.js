@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import dayjs from "dayjs";
 import { Modal, Button, Table, Nav, NavDropdown } from "react-bootstrap";
 import { BsFullscreenExit } from "react-icons/bs";
+import { BiX } from "react-icons/bi";
 import BidName from "../bid-history/bid-name";
 import { currencyFormat } from "../../utils/common";
 import userImg from "../../images/user_1.png";
@@ -12,7 +13,9 @@ const BidWinner = ({ winner, histories }) => {
   return (
     <>
       <div className="bid-winner">
-        <div className="winner-title"><div className="winner-text">WINNER</div></div>
+        <div className="winner-title">
+          <div className="winner-text">WINNER</div>
+        </div>
 
         <div className="winner-user-details">
           <img src={winner.avatar_url ? winner.avatar_url : userImg} />
@@ -83,7 +86,13 @@ const BidWinner = ({ winner, histories }) => {
                     </NavDropdown>
                   </Nav>
                 </div> */}
-                <BsFullscreenExit
+                {/* <BsFullscreenExit
+                  role="button"
+                  style={{ color: "#fff" }}
+                  size={25}
+                  onClick={() => setModalShow(false)}
+                /> */}
+                <BiX
                   role="button"
                   style={{ color: "#fff" }}
                   size={25}

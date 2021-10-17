@@ -4,9 +4,11 @@ import { Modal, Button, Table, Nav, NavDropdown } from "react-bootstrap";
 import { AiOutlineExpand } from "react-icons/ai";
 import { BsFullscreenExit } from "react-icons/bs";
 import { IoIosRocket } from "react-icons/io";
+import { BiX } from "react-icons/bi";
 import { currencyFormat } from "../../utils/common";
 import BuyCard from "./buy-card";
 import BuyName from "./buy-name";
+import amitabh from "../../images/amitabh.png";
 import "./style.scss";
 
 const BuyHistory = ({ nft, histories = [], isAuctionEnded }) => {
@@ -34,12 +36,14 @@ const BuyHistory = ({ nft, histories = [], isAuctionEnded }) => {
                 </NavDropdown>
               </Nav>
             </div> */}
-            <AiOutlineExpand
-              role="button"
-              style={{ color: "#fff" }}
-              size={25}
-              onClick={() => setModalShow(true)}
-            />
+            {histories.length > 0 && (
+              <AiOutlineExpand
+                role="button"
+                style={{ color: "#fff" }}
+                size={25}
+                onClick={() => setModalShow(true)}
+              />
+            )}
           </div>
         </div>
 
@@ -71,7 +75,7 @@ const BuyHistory = ({ nft, histories = [], isAuctionEnded }) => {
             </div>
 
             <div className="empty-bottom-content">
-              <img src="https://picsum.photos/100/100" />
+              <img src={amitabh} />
               <div className="nft-owner-history-details">
                 <div className="publish-time text-secondary">
                   {dayjs(nft.auction_start_time).format("MMM D, YYYY hh:mma")}
@@ -107,7 +111,13 @@ const BuyHistory = ({ nft, histories = [], isAuctionEnded }) => {
                     </NavDropdown>
                   </Nav>
                 </div> */}
-                <BsFullscreenExit
+                {/* <BsFullscreenExit
+                  role="button"
+                  style={{ color: "#fff" }}
+                  size={25}
+                  onClick={() => setModalShow(false)}
+                /> */}
+                <BiX
                   role="button"
                   style={{ color: "#fff" }}
                   size={25}

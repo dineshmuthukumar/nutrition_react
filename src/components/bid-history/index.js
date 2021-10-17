@@ -4,9 +4,11 @@ import { Modal, Button, Table, Nav, NavDropdown } from "react-bootstrap";
 import { AiOutlineExpand } from "react-icons/ai";
 import { BsFullscreenExit } from "react-icons/bs";
 import { IoIosRocket } from "react-icons/io";
+import { BiX } from "react-icons/bi";
 import BidCard from "./bid-card";
 import BidName from "./bid-name";
 import { currencyFormat } from "../../utils/common";
+import amitabh from "../../images/amitabh.png";
 import "./style.scss";
 
 const BidHistory = ({ nft, histories = [], isAuctionEnded }) => {
@@ -35,16 +37,17 @@ const BidHistory = ({ nft, histories = [], isAuctionEnded }) => {
               </Nav>
             </div> */}
             {histories.length > 0 && (
-            <AiOutlineExpand
-              role="button"
-              style={{ color: "#fff" }}
-              size={25}
-              onClick={() => setModalShow(true)}
-            />)}
+              <AiOutlineExpand
+                role="button"
+                style={{ color: "#fff" }}
+                size={25}
+                onClick={() => setModalShow(true)}
+              />
+            )}
           </div>
         </div>
 
-        {histories.length > 1 ? (
+        {histories.length > 0 ? (
           <div className="bid-history-content">
             {histories.map((history, i) => (
               <BidCard key={`biy-history${i}`} history={history} />
@@ -72,7 +75,7 @@ const BidHistory = ({ nft, histories = [], isAuctionEnded }) => {
             </div>
 
             <div className="empty-bottom-content">
-              <img src="https://picsum.photos/100/100" />
+              <img src={amitabh} />
               <div className="nft-owner-history-details">
                 <div className="publish-time text-secondary">
                   {dayjs(nft.auction_start_time).format("MMM D, YYYY hh:mma")}
@@ -108,7 +111,13 @@ const BidHistory = ({ nft, histories = [], isAuctionEnded }) => {
                     </NavDropdown>
                   </Nav>
                 </div> */}
-                <BsFullscreenExit
+                {/* <BsFullscreenExit
+                  role="button"
+                  style={{ color: "#fff" }}
+                  size={25}
+                  onClick={() => setModalShow(false)}
+                /> */}
+                <BiX
                   role="button"
                   style={{ color: "#fff" }}
                   size={25}
