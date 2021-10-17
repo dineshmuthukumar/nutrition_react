@@ -47,6 +47,7 @@ const Details = () => {
   const [erc721, setErc721] = useState(false);
   const [isAuctionStarted, setIsAuctionStarted] = useState(false);
   const [isAuctionEnded, setIsAuctionEnded] = useState(false);
+  const [soldOut, setSoldOut] = useState(false);
   const [loader, setLoader] = useState(false);
   const [socketData, setSocketData] = useState({
     totalBid: 0,
@@ -55,7 +56,7 @@ const Details = () => {
     price: 0,
     totalViews: 0,
     totalFavourites: 0,
-    availableQty: 0,
+    availableQty: null,
   });
 
   useEffect(() => {
@@ -67,6 +68,9 @@ const Details = () => {
       });
       if (data.history) {
         setBuyHistory((buyHistory) => [data.history, ...buyHistory]);
+      }
+      if (data.quantity === 0) {
+        setSoldOut(true);
       }
     });
     bidDetail({ slug }, (data) => {
@@ -93,7 +97,6 @@ const Details = () => {
 
     winnerDetail({ slug }, (data) => {
       setBidWinner(data.winner);
-      console.log(data);
     });
 
     nftDetail(slug);
@@ -146,6 +149,10 @@ const Details = () => {
         setBidHistory(history.data.data.histories);
         setBidWinner(winner.data.data.winner);
       } else {
+        if (NFT.quantity === 0) {
+          setSoldOut(true);
+        }
+
         let history = await nftBuyHistory({
           nft_slug: slug,
           page: 1,
@@ -184,6 +191,7 @@ const Details = () => {
           nft={nft}
           isAuctionStarted={isAuctionStarted}
           isAuctionEnded={isAuctionEnded}
+          soldOut={soldOut}
         />
       ) : (
         <Header />
@@ -208,6 +216,7 @@ const Details = () => {
                 socketData={socketData}
                 isAuctionStarted={isAuctionStarted}
                 isAuctionEnded={isAuctionEnded}
+                soldOut={soldOut}
                 auctionEndTime={auctionEndTime}
                 handleAuctionStartTimer={handleAuctionStartTimer}
                 handleAuctionEndTimer={handleAuctionEndTimer}
@@ -276,7 +285,8 @@ const Details = () => {
                         }
                         bottomValue={(() => {
                           if (nft.total_quantity) {
-                            return socketData.availableQty
+                            return socketData.availableQty >= 0 &&
+                              socketData.availableQty != null
                               ? `${socketData.availableQty} / ${nft.total_quantity}`
                               : `${nft.quantity} / ${nft.total_quantity}`;
                           } else {
