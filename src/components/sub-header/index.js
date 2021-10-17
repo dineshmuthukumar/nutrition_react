@@ -21,7 +21,13 @@ const SubHeader = ({ nft, isAuctionStarted, isAuctionEnded }) => {
       >
         <Container fluid>
           <Navbar.Brand role="button" className="sub-head-title">
-            <img src="https://picsum.photos/100/100" />
+            <img
+              src={
+                nft.image_url
+                  ? nft.image_url
+                  : "https://wallpaperaccess.com/full/112115.jpg"
+              }
+            />
             <div className="nft-head-details">
               <div className="sub-nft-title">{nft?.name}</div>
               <div className="sub-creator-title ">

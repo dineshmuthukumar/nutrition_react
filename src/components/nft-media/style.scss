@@ -5,8 +5,7 @@
   background-color: #e7e7e9;
   position: relative;
 
-  
-  video{
+  video {
     height: 40vh;
     max-height: 40vh;
     width: 100%;
@@ -46,13 +45,13 @@
 }
 
 .media_audio img,
-.media_audio video,
-{
+.media_audio video {
   margin: auto;
-  width:100%;
+  width: 100%;
   display: block;
 }
-.media_audio.modal-body img, .media_audio.modal-body video {
+.media_audio.modal-body img,
+.media_audio.modal-body video {
   margin: auto;
   display: block;
   width: 100%;
@@ -86,7 +85,6 @@
     opacity: 1;
   }
 }
-
 
 // .nft-media.media_audio {
 //   position: relative;

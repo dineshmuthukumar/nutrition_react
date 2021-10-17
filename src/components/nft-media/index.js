@@ -16,7 +16,7 @@ import { nftMakeFav, nftMakeUnFav } from "../../api/methods";
 import toaster from "../../utils/toaster";
 import "./style.scss";
 
-const NFTMedia = ({ title, slug, isFav }) => {
+const NFTMedia = ({ image, title, slug, isFav }) => {
   const [modalShow, setModalShow] = useState(false);
   const [liked, setLiked] = useState(false);
   const { user } = useSelector((state) => state.user.data);
@@ -57,16 +57,21 @@ const NFTMedia = ({ title, slug, isFav }) => {
       <div className="no_height">
         <img
           className="type_image typeimg_audio"
-          src="https://wallpaperaccess.com/full/112115.jpg"
+          src={image ? image : "https://wallpaperaccess.com/full/112115.jpg"}
         />
       </div>
-      <audio controls className="shadow-sm audioOnmedia" disablepictureinpicture controlslist="nodownload noplaybackrate" >
+      {/* <audio
+        controls
+        className="shadow-sm audioOnmedia"
+        disablepictureinpicture
+        controlslist="nodownload noplaybackrate"
+      >
         <source
           src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
           type="audio/mp3"
         />
         Your browser does not support the audio element.
-      </audio>
+      </audio> */}
       <div className="media-lsf">
         <CustomPopover
           icon={

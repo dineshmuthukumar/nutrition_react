@@ -195,6 +195,7 @@ const Details = () => {
           <div className="row mt-5">
             <div className="col-12 col-lg-7 align-self-center">
               <NFTMedia
+                image={nft?.image_url}
                 title={nft?.name}
                 slug={nft?.slug}
                 isFav={nft?.is_user_fav}
