@@ -5,9 +5,10 @@ export const buyDetail = ({ slug }, value) => {
     { channel: "NftChannel", room: `buy_detail_${slug}` },
     {
       connected: () => {
-        console.log("buy_detail room connected");
+        console.log("BL/AC1:Connected");
       },
       received: (data) => {
+        console.log("BL/AC1:Success");
         value(data);
       },
     }
@@ -19,9 +20,10 @@ export const bidDetail = ({ slug }, value) => {
     { channel: "NftChannel", room: `bid_detail_${slug}` },
     {
       connected: () => {
-        console.log("bid_detail room connected");
+        console.log("BL/AC2:Connected");
       },
       received: (data) => {
+        console.log("BL/AC2:Success");
         value(data);
       },
     }
@@ -33,9 +35,10 @@ export const buySummary = ({ slug }, value) => {
     { channel: "NftChannel", room: `buy_summary_${slug}` },
     {
       connected: () => {
-        console.log("buy_summary room connected");
+        console.log("BL/AC3:Connected");
       },
       received: (data) => {
+        console.log("BL/AC3:Success");
         value(data);
       },
     }
@@ -47,9 +50,10 @@ export const bidSummary = ({ slug }, value) => {
     { channel: "NftChannel", room: `bid_summary_${slug}` },
     {
       connected: () => {
-        console.log("bid_summary room connected");
+        console.log("BL/AC4:Connected");
       },
       received: (data) => {
+        console.log("BL/AC4:Success");
         value(data);
       },
     }
@@ -61,9 +65,10 @@ export const buyHistory = ({ slug }, value) => {
     { channel: "NftChannel", room: `buy_history_${slug}` },
     {
       connected: () => {
-        console.log("buy_history_ room connected");
+        console.log("BL/AC5:Connected");
       },
       received: (data) => {
+        console.log("BL/AC5:Success");
         value(data);
       },
     }
@@ -75,9 +80,10 @@ export const bidHistory = ({ slug }, value) => {
     { channel: "NftChannel", room: `bid_history_${slug}` },
     {
       connected: () => {
-        console.log("bid_history_ room connected");
+        console.log("BL/AC6:Connected");
       },
       received: (data) => {
+        console.log("BL/AC6:Success");
         value(data);
       },
     }
@@ -89,9 +95,10 @@ export const pageView = ({ slug }, value) => {
     { channel: "NftChannel", room: `page_view_${slug}` },
     {
       connected: () => {
-        console.log("page_view_ room connected");
+        console.log("BL/AC7:Connected");
       },
       received: (data) => {
+        console.log("BL/AC7:Success");
         value(data);
       },
     }
@@ -103,9 +110,10 @@ export const totalFav = ({ slug }, value) => {
     { channel: "NftChannel", room: `fav_view_${slug}` },
     {
       connected: () => {
-        console.log("fav_view_ room connected");
+        console.log("BL/AC8:Connected");
       },
       received: (data) => {
+        console.log("BL/AC8:Success");
         value(data);
       },
     }
@@ -117,9 +125,10 @@ export const winnerDetail = ({ slug }, value) => {
     { channel: "NftChannel", room: `winner_detail_${slug}` },
     {
       connected: () => {
-        console.log("winner_detail_ room connected");
+        console.log("BL/AC9:Connected");
       },
       received: (data) => {
+        console.log("BL/AC9:Success");
         value(data);
       },
     }
