@@ -129,16 +129,18 @@ const NFTMedia = ({ image, title, slug, isFav }) => {
           <div className="no_height">
             <img
               className="type_image typeimg_audio"
-              src="https://wallpaperaccess.com/full/112115.jpg"
+              src={
+                image ? image : "https://wallpaperaccess.com/full/112115.jpg"
+              }
             />
           </div>
-          <audio controls className="shadow-sm audioOnmedia">
+          {/* <audio controls className="shadow-sm audioOnmedia">
             <source
               src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
               type="audio/mp3"
             />
             Your browser does not support the audio element.
-          </audio>
+          </audio> */}
         </Modal.Body>
       </Modal>
     </div>

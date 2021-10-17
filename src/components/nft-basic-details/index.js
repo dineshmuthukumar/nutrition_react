@@ -178,7 +178,8 @@ const NFTBaseDetails = ({
             show={isPlaceBid ? true : false}
             nft={nft}
             socketData={socketData}
-            auctionEndTime={auctionEndTime}
+            isAuctionStarted={isAuctionStarted}
+            isAuctionEnded={isAuctionEnded}
           />
 
           {(() => {
@@ -219,25 +220,53 @@ const NFTBaseDetails = ({
             } else if (erc721) {
               return (
                 <button
-                  disabled={isAuctionEnded}
+                  disabled={(() => {
+                    if (!isAuctionStarted && !isAuctionEnded) {
+                      return !isAuctionStarted;
+                    } else {
+                      return isAuctionEnded;
+                    }
+                  })()}
                   className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
                   onClick={() =>
                     history.push(`${history.location.pathname}/placebid`)
                   }
                 >
-                  {isAuctionEnded ? "Auction has ended" : "Place a Bid"}
+                  {(() => {
+                    if (!isAuctionStarted && !isAuctionEnded) {
+                      return "Auction has not yet begun";
+                    } else if (isAuctionEnded) {
+                      return "Auction has ended";
+                    } else {
+                      return "Place a Bid";
+                    }
+                  })()}
                 </button>
               );
             } else {
               return (
                 <button
-                  disabled={isAuctionEnded}
+                  disabled={(() => {
+                    if (!isAuctionStarted && !isAuctionEnded) {
+                      return !isAuctionStarted;
+                    } else {
+                      return isAuctionEnded;
+                    }
+                  })()}
                   className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
                   onClick={() =>
                     history.push(`${history.location.pathname}/placebid`)
                   }
                 >
-                  {isAuctionEnded ? "Auction has ended" : "Buy"}
+                  {(() => {
+                    if (!isAuctionStarted && !isAuctionEnded) {
+                      return "Auction has not yet begun";
+                    } else if (isAuctionEnded) {
+                      return "Auction has ended";
+                    } else {
+                      return "Buy";
+                    }
+                  })()}
                 </button>
               );
             }

@@ -357,5 +357,13 @@
         }
       }
     }
+
+    .pop-signin {
+      margin: 10rem 2rem 10rem 2rem;
+      .pop-signin-title {
+        font-size: 2rem;
+        font-family: $neue-helveticabold;
+      }
+    }
   }
 }

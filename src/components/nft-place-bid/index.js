@@ -14,7 +14,13 @@ import {
 import "./style.scss";
 import { nftBidApi, nftBuyApi } from "../../api/methods";
 
-const NFTPlaceBid = ({ show = false, nft, socketData, auctionEndTime }) => {
+const NFTPlaceBid = ({
+  show = false,
+  nft,
+  socketData,
+  isAuctionStarted,
+  isAuctionEnded,
+}) => {
   const { user } = useSelector((state) => state.user.data);
   const history = useHistory();
   const { params } = useRouteMatch();
@@ -28,8 +34,6 @@ const NFTPlaceBid = ({ show = false, nft, socketData, auctionEndTime }) => {
   const [buyQuantity, setBuyQuantity] = useState("");
   const [bidAmount, setBidAmount] = useState("");
   const [error, setError] = useState("");
-  const isAuctionEnded =
-    new Date().getTime() > new Date(auctionEndTime).getTime();
 
   const [buy, setBuy] = useState({
     amountClass: "",
@@ -360,12 +364,333 @@ const NFTPlaceBid = ({ show = false, nft, socketData, auctionEndTime }) => {
       className="w-100 w-md-50 w-lg-42"
     >
       <Offcanvas.Body className="p-0 pop-body-container">
-        <div className="pop-nft-details">
-          {!success ? (
-            <>
+        {user ? (
+          <>
+            <div className="pop-nft-details">
+              {!success ? (
+                <>
+                  <div className="pop-head-content">
+                    <div className="pop-bid-title">
+                      {erc721 ? "Place a bid" : "Place a buy"}
+                    </div>
+                    <div className="close-button-pop">
+                      <BiX
+                        role="button"
+                        size={45}
+                        onClick={() =>
+                          history.push(
+                            history.location.pathname.replace("/placebid", "")
+                          )
+                        }
+                      />
+                    </div>
+                  </div>
+
+                  {/* error-progress -> error progress , loading -> progressing */}
+                  <div
+                    className={`pop-bid-progress ${bid.progressError} ${buy.progressError}`}
+                  >
+                    <div className="progress-complete"></div>
+                  </div>
+
+                  <div className="error-float-container">
+                    {noBalance && <ErrorText type="nobalance" />}
+                    {/* <ErrorText type="ending-time" /> */}
+                    {buy.isError && (
+                      <ErrorText
+                        handleClick={() =>
+                          setBuy({
+                            ...buy,
+                            isError: false,
+                            progressError: "",
+                          })
+                        }
+                        type="error"
+                        title={buy.errorTitle}
+                        desc={buy.errorDescription}
+                      />
+                    )}
+                    {bid.isError && (
+                      <ErrorText
+                        handleClick={() =>
+                          setBid({
+                            ...bid,
+                            isError: false,
+                            progressError: "",
+                          })
+                        }
+                        type="error"
+                        title={bid.errorTitle}
+                        desc={bid.errorDescription}
+                      />
+                    )}
+                  </div>
+
+                  <div className="pop-nft-media">
+                    <img
+                      src={
+                        nft.image_url
+                          ? nft.image_url
+                          : "https://wallpaperaccess.com/full/112115.jpg"
+                      }
+                    />
+                    {/* <img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" /> */}
+                    {/* <video controls>
+              <source
+                src="https://www.w3schools.com/tags/movie.mp4"
+                type="video/mp4"
+              />
+            </video> */}
+
+                    {/* <audio controls>
+              <source
+                src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+                type="audio/mp3"
+              />
+              Your browser does not support the audio element.
+            </audio> */}
+                  </div>
+                  <div className="pop-author-name text-center mt-3">
+                    Amitabh Bachchan
+                  </div>
+                  <div className="pop-nft-title text-center mb-1">
+                    {nft?.name}
+                  </div>
+
+                  {/* error-bid -> less value than min bid,  error-balance -> low value, error-balance-float -> low value in quantity  */}
+                  <div className={`input-bid-container mt-5 ${error}`}>
+                    <label className="input-bid-text">
+                      {erc721
+                        ? `Enter minimum bid amount of ${currencyFormat(
+                            socketData.price
+                              ? socketData.price
+                              : nft.minimum_bid,
+                            "USD"
+                          )}`
+                        : `Enter Quantity`}
+                    </label>
+
+                    {!erc721 ? (
+                      <div className="input-quantity-container">
+                        <input
+                          type="text"
+                          className="input-quantity"
+                          value={buyQuantity}
+                          placeholder="0 NFTs"
+                          disabled={(() => {
+                            if (!isAuctionStarted && !isAuctionEnded) {
+                              return !isAuctionStarted;
+                            } else {
+                              return isAuctionEnded;
+                            }
+                          })()}
+                          onChange={handleBuyInputChange}
+                        />
+                        {/* text-dark -> dark text after entering quantity */}
+                        <span
+                          className={`quantity-to-value ${buy.amountClass}`}
+                        >
+                          {currencyFormat(buyAmount, "USD")}
+                        </span>
+                      </div>
+                    ) : (
+                      <div className="input-bid-wrap">
+                        <span className="bid-currency">$</span>
+                        <input
+                          type="text"
+                          className="input-bid"
+                          value={bidAmount}
+                          placeholder="0"
+                          disabled={(() => {
+                            if (!isAuctionStarted && !isAuctionEnded) {
+                              return !isAuctionStarted;
+                            } else {
+                              return isAuctionEnded;
+                            }
+                          })()}
+                          onChange={handleBidInputChange}
+                        />
+                      </div>
+                    )}
+                    <div className="balance-details">
+                      {user &&
+                        erc721 &&
+                        `Your wallet balance is ${currencyFormat(
+                          user?.balance,
+                          "USD"
+                        )}`}
+                      {!erc721 &&
+                        `You can buy maximum of ${
+                          nft.total_user_buys
+                            ? nft.buy_count - nft.total_user_buys
+                            : nft.buy_count
+                        } nfts`}
+                    </div>
+                  </div>
+                  <div className="bottom-area">
+                    <div className="terms text-secondary">
+                      {erc721
+                        ? `Once a bid is placed, it cannot be withdrawn. Learn More about
+                  how auctions work.`
+                        : `Once an nft bought, it cannot be undone. Learn More about
+                  how this works.`}
+                    </div>
+
+                    <div className="bottom-content-pop">
+                      <div
+                        className="back-button"
+                        onClick={() =>
+                          history.push(
+                            history.location.pathname.replace("/placebid", "")
+                          )
+                        }
+                      >
+                        Back
+                      </div>
+                      <div className="place-bid-button">
+                        {erc721 ? (
+                          <button
+                            disabled={bid.buttonDisable}
+                            className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop ${bid.processClass}`} //process -> proccessing
+                            onClick={handleBid}
+                          >
+                            {(() => {
+                              if (!isAuctionStarted && !isAuctionEnded) {
+                                return "Auction has not yet begun";
+                              } else if (isAuctionEnded) {
+                                return "Auction has ended";
+                              } else if (bidAmount > 0) {
+                                return bid.buttonName;
+                              } else {
+                                return "Bid amount is required";
+                              }
+                            })()}
+                          </button>
+                        ) : (
+                          <button
+                            disabled={buy.buttonDisable}
+                            className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop ${buy.processClass}`} //process -> proccessing
+                            onClick={handleBuy}
+                          >
+                            {(() => {
+                              if (!isAuctionStarted && !isAuctionEnded) {
+                                return "Auction has not yet begun";
+                              } else if (isAuctionEnded) {
+                                return "Auction has ended";
+                              } else if (buyAmount > 0) {
+                                return buy.buttonName;
+                              } else {
+                                return "NFT amount is required";
+                              }
+                            })()}
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="sucess-title">
+                    <FaCheckCircle color={"#23bf61"} size={60} />
+                    {erc721 ? (
+                      <div className="message mt-3">
+                        Bid successfully placed. <br /> You are the highest
+                        bidder
+                      </div>
+                    ) : (
+                      <div className="message mt-3">
+                        NFT successfully bought.
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="pop-nft-media mt-4 preview">
+                    <img src="https://picsum.photos/780/750" />
+                    {/* <img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" /> */}
+                    {/* <video controls>
+              <source
+                src="https://www.w3schools.com/tags/movie.mp4"
+                type="video/mp4"
+              />
+            </video> */}
+
+                    {/* <audio controls>
+              <source
+                src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+                type="audio/mp3"
+              />
+              Your browser does not support the audio element.
+            </audio> */}
+                  </div>
+                  <div className="pop-author-name text-center mt-3">
+                    Amitabh Bachchan
+                  </div>
+                  <div className="pop-nft-title text-center mb-1">
+                    {nft?.name}
+                  </div>
+
+                  <div className="success-summary-container mt-3">
+                    <div className="success-summary">
+                      <div>{erc721 ? "Bid price" : "Bought price"}</div>
+                      <div className="bold">
+                        {erc721
+                          ? currencyFormat(bidAmount, "USD")
+                          : currencyFormat(buyAmount, "USD")}
+                      </div>
+                    </div>
+                    {!erc721 && (
+                      <div className="success-summary">
+                        <div>Bought quantity</div>
+                        <div className="bold">{buyQuantity}</div>
+                      </div>
+                    )}
+                    <div className="success-summary">
+                      <div>{erc721 ? "Bid placed on" : "Bought on"}</div>
+                      <div className="bold">22 Sep, 2021 12:35:20</div>
+                    </div>
+
+                    {erc721 && (
+                      <>
+                        <div className="success-summary">
+                          <div>Bid placed for</div>
+                          <div className="bold">1 Limited Edition</div>
+                        </div>
+                        <div className="success-summary">
+                          <div>Transaction No.</div>
+                          <div className="bold">019dh393...00382182</div>
+                        </div>
+                      </>
+                    )}
+                  </div>
+
+                  <div className="bottom-area">
+                    <div className="bottom-content-pop">
+                      <div className="place-bid-button">
+                        <button
+                          className="btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop "
+                          // onClick={() =>
+                          //   history.push(
+                          //     history.location.pathname.replace("/placebid", "")
+                          //   )
+                          // }
+                          onClick={handleSuccess}
+                        >
+                          Okay
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="pop-nft-details">
               <div className="pop-head-content">
                 <div className="pop-bid-title">
-                  {erc721 ? "Place a bid" : "Place a buy"}
+                  {/* {erc721 ? "Sign in to place a bid" : "Sign in to place a buy"} */}
                 </div>
                 <div className="close-button-pop">
                   <BiX
@@ -379,278 +704,27 @@ const NFTPlaceBid = ({ show = false, nft, socketData, auctionEndTime }) => {
                   />
                 </div>
               </div>
-
-              {/* error-progress -> error progress , loading -> progressing */}
-              <div
-                className={`pop-bid-progress ${bid.progressError} ${buy.progressError}`}
-              >
-                <div className="progress-complete"></div>
-              </div>
-
-              <div className="error-float-container">
-                {noBalance && <ErrorText type="nobalance" />}
-                {/* <ErrorText type="ending-time" /> */}
-                {buy.isError && (
-                  <ErrorText
-                    handleClick={() =>
-                      setBuy({
-                        ...buy,
-                        isError: false,
-                        progressError: "",
-                      })
-                    }
-                    type="error"
-                    title={buy.errorTitle}
-                    desc={buy.errorDescription}
-                  />
-                )}
-                {bid.isError && (
-                  <ErrorText
-                    handleClick={() =>
-                      setBid({
-                        ...bid,
-                        isError: false,
-                        progressError: "",
-                      })
-                    }
-                    type="error"
-                    title={bid.errorTitle}
-                    desc={bid.errorDescription}
-                  />
-                )}
-              </div>
-
-              <div className="pop-nft-media">
-                <img
-                  src={
-                    nft.image_url
-                      ? nft.image_url
-                      : "https://wallpaperaccess.com/full/112115.jpg"
-                  }
-                />
-                {/* <img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" /> */}
-                {/* <video controls>
-              <source
-                src="https://www.w3schools.com/tags/movie.mp4"
-                type="video/mp4"
-              />
-            </video> */}
-
-                {/* <audio controls>
-              <source
-                src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
-                type="audio/mp3"
-              />
-              Your browser does not support the audio element.
-            </audio> */}
-              </div>
-              <div className="pop-author-name text-center mt-3">
-                Amitabh Bachchan
-              </div>
-              <div className="pop-nft-title text-center mb-1">{nft?.name}</div>
-
-              {/* error-bid -> less value than min bid,  error-balance -> low value, error-balance-float -> low value in quantity  */}
-              <div className={`input-bid-container mt-5 ${error}`}>
-                <label className="input-bid-text">
-                  {erc721
-                    ? `Enter minimum bid amount of ${currencyFormat(
-                        socketData.price ? socketData.price : nft.minimum_bid,
-                        "USD"
-                      )}`
-                    : `Enter Quantity`}
-                </label>
-
-                {!erc721 ? (
-                  <div className="input-quantity-container">
-                    <input
-                      type="text"
-                      className="input-quantity"
-                      value={buyQuantity}
-                      placeholder="0 NFTs"
-                      disabled={isAuctionEnded}
-                      onChange={handleBuyInputChange}
-                    />
-                    {/* text-dark -> dark text after entering quantity */}
-                    <span className={`quantity-to-value ${buy.amountClass}`}>
-                      {currencyFormat(buyAmount, "USD")}
-                    </span>
-                  </div>
-                ) : (
-                  <div className="input-bid-wrap">
-                    <span className="bid-currency">$</span>
-                    <input
-                      type="text"
-                      className="input-bid"
-                      value={bidAmount}
-                      placeholder="0"
-                      disabled={isAuctionEnded}
-                      onChange={handleBidInputChange}
-                    />
-                  </div>
-                )}
-                <div className="balance-details">
-                  {user &&
-                    erc721 &&
-                    `Your wallet balance is ${currencyFormat(
-                      user?.balance,
-                      "USD"
-                    )}`}
-                  {!erc721 &&
-                    `You can buy maximum of ${
-                      nft.total_user_buys
-                        ? nft.buy_count - nft.total_user_buys
-                        : nft.buy_count
-                    } nfts`}
+              <div className="pop-signin">
+                <div className="pop-signin-title text-center mb-1">
+                  {erc721 ? "Sign in to place a bid" : "Sign in to place a buy"}
                 </div>
-              </div>
-              <div className="bottom-area">
-                <div className="terms text-secondary">
-                  {erc721
-                    ? `Once a bid is placed, it cannot be withdrawn. Learn More about
-                  how auctions work.`
-                    : `Once an nft bought, it cannot be undone. Learn More about
-                  how this works.`}
-                </div>
-
-                <div className="bottom-content-pop">
-                  <div
-                    className="back-button"
+                <div className="pop-nft-media">
+                  <button
+                    className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
                     onClick={() =>
-                      history.push(
-                        history.location.pathname.replace("/placebid", "")
+                      window.open(
+                        `${process.env.REACT_APP_BASE_URL}/signin?redirect=${window.location.href}`,
+                        "_self"
                       )
                     }
                   >
-                    Back
-                  </div>
-                  <div className="place-bid-button">
-                    {erc721 ? (
-                      <button
-                        disabled={bid.buttonDisable}
-                        className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop ${bid.processClass}`} //process -> proccessing
-                        onClick={handleBid}
-                      >
-                        {(() => {
-                          if (isAuctionEnded) {
-                            return "Auction has ended";
-                          } else if (bidAmount > 0) {
-                            return bid.buttonName;
-                          } else {
-                            return "Bid amount is required";
-                          }
-                        })()}
-                      </button>
-                    ) : (
-                      <button
-                        disabled={buy.buttonDisable}
-                        className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop ${buy.processClass}`} //process -> proccessing
-                        onClick={handleBuy}
-                      >
-                        {(() => {
-                          if (isAuctionEnded) {
-                            return "Auction has ended";
-                          } else if (buyAmount > 0) {
-                            return buy.buttonName;
-                          } else {
-                            return "NFT amount is required";
-                          }
-                        })()}
-                      </button>
-                    )}
-                  </div>
+                    Sign In
+                  </button>
                 </div>
               </div>
-            </>
-          ) : (
-            <>
-              <div className="sucess-title">
-                <FaCheckCircle color={"#23bf61"} size={60} />
-                {erc721 ? (
-                  <div className="message mt-3">
-                    Bid successfully placed. <br /> You are the highest bidder
-                  </div>
-                ) : (
-                  <div className="message mt-3">NFT successfully bought.</div>
-                )}
-              </div>
-
-              <div className="pop-nft-media mt-4 preview">
-                <img src="https://picsum.photos/780/750" />
-                {/* <img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" /> */}
-                {/* <video controls>
-              <source
-                src="https://www.w3schools.com/tags/movie.mp4"
-                type="video/mp4"
-              />
-            </video> */}
-
-                {/* <audio controls>
-              <source
-                src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
-                type="audio/mp3"
-              />
-              Your browser does not support the audio element.
-            </audio> */}
-              </div>
-              <div className="pop-author-name text-center mt-3">
-                Amitabh Bachchan
-              </div>
-              <div className="pop-nft-title text-center mb-1">{nft?.name}</div>
-
-              <div className="success-summary-container mt-3">
-                <div className="success-summary">
-                  <div>{erc721 ? "Bid price" : "Bought price"}</div>
-                  <div className="bold">
-                    {erc721
-                      ? currencyFormat(bidAmount, "USD")
-                      : currencyFormat(buyAmount, "USD")}
-                  </div>
-                </div>
-                {!erc721 && (
-                  <div className="success-summary">
-                    <div>Bought quantity</div>
-                    <div className="bold">{buyQuantity}</div>
-                  </div>
-                )}
-                <div className="success-summary">
-                  <div>{erc721 ? "Bid placed on" : "Bought on"}</div>
-                  <div className="bold">22 Sep, 2021 12:35:20</div>
-                </div>
-
-                {erc721 && (
-                  <>
-                    <div className="success-summary">
-                      <div>Bid placed for</div>
-                      <div className="bold">1 Limited Edition</div>
-                    </div>
-                    <div className="success-summary">
-                      <div>Transaction No.</div>
-                      <div className="bold">019dh393...00382182</div>
-                    </div>
-                  </>
-                )}
-              </div>
-
-              <div className="bottom-area">
-                <div className="bottom-content-pop">
-                  <div className="place-bid-button">
-                    <button
-                      className="btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop "
-                      // onClick={() =>
-                      //   history.push(
-                      //     history.location.pathname.replace("/placebid", "")
-                      //   )
-                      // }
-                      onClick={handleSuccess}
-                    >
-                      Okay
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </>
-          )}
-        </div>
+            </div>
+          </>
+        )}
       </Offcanvas.Body>
     </Offcanvas>
   );
