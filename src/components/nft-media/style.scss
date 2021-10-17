@@ -5,19 +5,19 @@
   background-color: #e7e7e9;
   position: relative;
 
-  img,
-  video,
-  audio {  
-    height: 40vh;
-    max-height: 40vh;
-    width: 100%;
-    object-fit: scale-down;
+  // img,
+  // video,
+  // audio {  
+  //   height: 40vh;
+  //   max-height: 40vh;
+  //   width: 100%;
+  //   object-fit: scale-down;
 
-    @media (min-width: 992px) {
-      height: 82vh;
-      max-height: 82vh;
-    }
-  }
+  //   @media (min-width: 992px) {
+  //     height: 82vh;
+  //     max-height: 82vh;
+  //   }
+  // }
 
   .media-lsf {
     position: absolute;
@@ -97,6 +97,7 @@
   display: flex;
   width: 100%;
   background: #ededef;
+  height: 100%;
   border-radius: 8px;
   justify-content: center;
 }
