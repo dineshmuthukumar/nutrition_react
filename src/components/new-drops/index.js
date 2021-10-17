@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
+import { Modal } from 'react-bootstrap';
 import Image from 'react-bootstrap/Image'
 import Navbar from 'react-bootstrap/Navbar'
 import { HiOutlineArrowRight } from "react-icons/hi";
@@ -11,6 +12,8 @@ import './style.scss'
 
 const NewDrops = ()=>{
 
+    const [modal, setModal] = useState(false);
+
     return <>
 
 <div className="new_drop_wrapper">
@@ -21,7 +24,7 @@ const NewDrops = ()=>{
                             <div className="drop-title mb-0">
                                 <h2 className="drop-title__heading mb-4">Amitabh Bachchan NFT Collections going live soon </h2>
                                 <p className="drop-title__description mb-4">Imagine owning an NFT that holds Amitji’s significance, history, the value of exceptional existence, and beyond. We bring a series of Amitabh Bachchan’s exclusive NFT collection, curated by the legend himself. Right from the time, Amitabh Bachchan. </p>
-                                <div class="learnMore"> <a href="#">Join the waitlist</a> </div>
+                                <div class="learnMore"> <button type="button" onClick={()=> setModal(true)}>Join the waitlist</button> </div>
                             </div>
                         </div>
                         <div className="col-xxl-7 col-xl-6 col-lg-5 col-md-9 col-xs-10 order-1 order-lg-2">
@@ -146,6 +149,19 @@ const NewDrops = ()=>{
                 </div>
             </div>
         </div>
+
+
+        <Modal show={modal} centered>
+  
+
+  <Modal.Body>
+    <p>Modal body text goes here.</p>
+
+    <button type="button" onClick={()=>setModal(false)}>close</button>
+  </Modal.Body>
+
+  
+</Modal>
       </>
 }
 
