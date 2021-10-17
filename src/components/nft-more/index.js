@@ -33,8 +33,12 @@ const NFTMore = ({ nftList = [] }) => {
       </button>
     ),
     breakpoints: {
+      1920: {
+        slidesPerView: 4,
+        spaceBetween: 40,
+      },  
       1024: {
-        slidesPerView: 2,
+        slidesPerView: 3,
         spaceBetween: 40,
       },
       768: {
