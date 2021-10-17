@@ -9,7 +9,7 @@ import BidName from "./bid-name";
 import { currencyFormat } from "../../utils/common";
 import "./style.scss";
 
-const BidHistory = ({ nft, histories = [] }) => {
+const BidHistory = ({ nft, histories = [], isAuctionEnded }) => {
   const [modalShow, setModalShow] = useState(false);
   return (
     <>
@@ -57,10 +57,17 @@ const BidHistory = ({ nft, histories = [] }) => {
             <div className="empty-top-container">
               <div className="empty-top-content">
                 <IoIosRocket color="white" />
-                <div className="empty-text">
-                  No active bids yet. <br />
-                  Be the first to make a bid.
-                </div>
+                {isAuctionEnded ? (
+                  <div className="empty-text">
+                    Auction has ended. <br />
+                    No active bids.
+                  </div>
+                ) : (
+                  <div className="empty-text">
+                    No active bids yet. <br />
+                    Be the first to make a bid.
+                  </div>
+                )}
               </div>
             </div>
 
@@ -68,7 +75,7 @@ const BidHistory = ({ nft, histories = [] }) => {
               <img src="https://picsum.photos/100/100" />
               <div className="nft-owner-history-details">
                 <div className="publish-time text-secondary">
-                  Sep 20, 2021 11:15pm
+                  {dayjs(nft.auction_start_time).format("MMM D, YYYY hh:mma")}
                 </div>
                 <div className="nft-owner">
                   Bid listed by <BidName text="@amitabhbachchan" />

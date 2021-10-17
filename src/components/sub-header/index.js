@@ -94,27 +94,55 @@ const SubHeader = ({ nft, isAuctionStarted, isAuctionEnded }) => {
                 } else if (erc721) {
                   return (
                     <button
-                      disabled={isAuctionEnded}
+                      disabled={(() => {
+                        if (!isAuctionStarted && !isAuctionEnded) {
+                          return !isAuctionStarted;
+                        } else {
+                          return isAuctionEnded;
+                        }
+                      })()}
                       type="button"
                       className="btn btn-dark btn-lg rounded-pill sub-place-bid-btn"
                       onClick={() =>
                         history.push(`${history.location.pathname}/placebid`)
                       }
                     >
-                      {isAuctionEnded ? "Auction has ended" : "Place a Bid"}
+                      {(() => {
+                        if (!isAuctionStarted && !isAuctionEnded) {
+                          return "Auction has not yet begun";
+                        } else if (isAuctionEnded) {
+                          return "Auction has ended";
+                        } else {
+                          return "Place a Bid";
+                        }
+                      })()}
                     </button>
                   );
                 } else {
                   return (
                     <button
-                      disabled={isAuctionEnded}
+                      disabled={(() => {
+                        if (!isAuctionStarted && !isAuctionEnded) {
+                          return !isAuctionStarted;
+                        } else {
+                          return isAuctionEnded;
+                        }
+                      })()}
                       type="button"
                       className="btn btn-dark btn-lg rounded-pill sub-place-bid-btn"
                       onClick={() =>
                         history.push(`${history.location.pathname}/placebid`)
                       }
                     >
-                      {isAuctionEnded ? "Auction has ended" : "Buy"}
+                      {(() => {
+                        if (!isAuctionStarted && !isAuctionEnded) {
+                          return "Auction has not yet begun";
+                        } else if (isAuctionEnded) {
+                          return "Auction has ended";
+                        } else {
+                          return "Buy";
+                        }
+                      })()}
                     </button>
                   );
                 }

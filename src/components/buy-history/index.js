@@ -9,7 +9,7 @@ import BuyCard from "./buy-card";
 import BuyName from "./buy-name";
 import "./style.scss";
 
-const BuyHistory = ({ nft, histories = [] }) => {
+const BuyHistory = ({ nft, histories = [], isAuctionEnded }) => {
   const [modalShow, setModalShow] = useState(false);
   return (
     <>
@@ -56,10 +56,17 @@ const BuyHistory = ({ nft, histories = [] }) => {
             <div className="empty-top-container">
               <div className="empty-top-content">
                 <IoIosRocket color="white" />
-                <div className="empty-text">
-                  No NFTs bought yet. <br />
-                  Be the first to buy.
-                </div>
+                {isAuctionEnded ? (
+                  <div className="empty-text">
+                    Auction has ended. <br />
+                    No NFTs bought.
+                  </div>
+                ) : (
+                  <div className="empty-text">
+                    No NFTs bought yet. <br />
+                    Be the first to buy.
+                  </div>
+                )}
               </div>
             </div>
 
@@ -67,7 +74,7 @@ const BuyHistory = ({ nft, histories = [] }) => {
               <img src="https://picsum.photos/100/100" />
               <div className="nft-owner-history-details">
                 <div className="publish-time text-secondary">
-                  Sep 20, 2021 11:15pm
+                  {dayjs(nft.auction_start_time).format("MMM D, YYYY hh:mma")}
                 </div>
                 <div className="nft-owner">
                   NFTs listed by <BuyName text="@amitabhbachchan" />

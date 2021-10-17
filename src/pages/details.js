@@ -226,14 +226,26 @@ const Details = () => {
               {(() => {
                 if (erc721) {
                   if (isAuctionStarted && !isAuctionEnded) {
-                    return <BidHistory nft={nft} histories={bidHistory} />;
+                    return (
+                      <BidHistory
+                        nft={nft}
+                        histories={bidHistory}
+                        isAuctionEnded={isAuctionEnded}
+                      />
+                    );
                   } else if (isAuctionEnded) {
                     if (bidWinner) {
                       return (
                         <BidWinner winner={bidWinner} histories={bidHistory} />
                       );
                     } else {
-                      return <BidHistory nft={nft} histories={bidHistory} />;
+                      return (
+                        <BidHistory
+                          nft={nft}
+                          histories={bidHistory}
+                          isAuctionEnded={isAuctionEnded}
+                        />
+                      );
                     }
                   } else {
                     return (
@@ -246,7 +258,13 @@ const Details = () => {
                   }
                 } else {
                   if (isAuctionStarted && !isAuctionEnded) {
-                    return <BuyHistory nft={nft} histories={buyHistory} />;
+                    return (
+                      <BuyHistory
+                        nft={nft}
+                        histories={buyHistory}
+                        isAuctionEnded={isAuctionEnded}
+                      />
+                    );
                   } else if (isAuctionEnded) {
                     return (
                       <BidAuction
