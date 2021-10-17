@@ -5,7 +5,7 @@ import "./style.scss";
 
 const NFTList = ({ data = [] }) => {
   return (
-    <div className="bl_drop_wrapper">
+    <div className="bl_drop_wra pper">
       <div className="container-fluid">
         {data.map((nft) => {
           let label = "",

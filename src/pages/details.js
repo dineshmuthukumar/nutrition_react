@@ -200,7 +200,8 @@ const Details = () => {
         <NFTLoader />
       ) : (
         <div className="container-fluid">
-          <div className="row mt-5">
+          <div className="fit-to-height">
+          <div className="row">
             <div className="col-12 col-lg-7 align-self-center">
               <NFTMedia
                 image={nft?.image_url}
@@ -223,6 +224,7 @@ const Details = () => {
                 winner={bidWinner}
               />
             </div>
+          </div>
           </div>
           <div className="row mt-5">
             <div className="col-12">
