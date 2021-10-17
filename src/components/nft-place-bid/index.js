@@ -21,6 +21,7 @@ const NFTPlaceBid = ({
   socketData,
   isAuctionStarted,
   isAuctionEnded,
+  soldOut,
 }) => {
   const { user } = useSelector((state) => state.user.data);
   const history = useHistory();
@@ -484,8 +485,10 @@ const NFTPlaceBid = ({
                           disabled={(() => {
                             if (!isAuctionStarted && !isAuctionEnded) {
                               return !isAuctionStarted;
-                            } else {
+                            } else if (isAuctionEnded) {
                               return isAuctionEnded;
+                            } else {
+                              return soldOut;
                             }
                           })()}
                           onChange={handleBuyInputChange}
@@ -581,6 +584,8 @@ const NFTPlaceBid = ({
                                 return "Auction has not yet begun";
                               } else if (isAuctionEnded) {
                                 return "Auction has ended";
+                              } else if (soldOut) {
+                                return "Sold Out";
                               } else if (buyAmount > 0) {
                                 return buy.buttonName;
                               } else {

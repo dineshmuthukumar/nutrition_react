@@ -17,6 +17,7 @@ const NFTBaseDetails = ({
   socketData,
   isAuctionStarted,
   isAuctionEnded,
+  soldOut,
   auctionEndTime,
   handleAuctionStartTimer,
   handleAuctionEndTimer,
@@ -37,7 +38,7 @@ const NFTBaseDetails = ({
           content="Verified Artist"
           placement="right"
         />
-        {isAuctionEnded && (
+        {(isAuctionEnded || soldOut) && (
           <span className="nft-status-tag rounded-pill">Sold Out</span>
         )}
       </div>
@@ -151,7 +152,8 @@ const NFTBaseDetails = ({
               <BidValue
                 title="Limited Edition"
                 value={
-                  socketData.availableQty
+                  socketData.availableQty >= 0 &&
+                  socketData.availableQty != null
                     ? `${socketData.availableQty} / ${nft.total_quantity}`
                     : `${nft.quantity} / ${nft.total_quantity}`
                 }
@@ -180,6 +182,7 @@ const NFTBaseDetails = ({
             socketData={socketData}
             isAuctionStarted={isAuctionStarted}
             isAuctionEnded={isAuctionEnded}
+            soldOut={soldOut}
           />
 
           {(() => {
@@ -249,8 +252,10 @@ const NFTBaseDetails = ({
                   disabled={(() => {
                     if (!isAuctionStarted && !isAuctionEnded) {
                       return !isAuctionStarted;
-                    } else {
+                    } else if (isAuctionEnded) {
                       return isAuctionEnded;
+                    } else {
+                      return soldOut;
                     }
                   })()}
                   className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
@@ -263,6 +268,8 @@ const NFTBaseDetails = ({
                       return "Auction has not yet begun";
                     } else if (isAuctionEnded) {
                       return "Auction has ended";
+                    } else if (soldOut) {
+                      return "Sold Out";
                     } else {
                       return "Buy";
                     }
