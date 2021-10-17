@@ -504,34 +504,97 @@ input::-webkit-inner-spin-button {
   //   font-size: 12px;
   // }
   html {
-    font-size: 12px;
+    font-size: 16px;
   }
 }
 
 @media (min-width: 1400px) {
+  // html {
+  //   font-size: 13px;
+  // }
   html {
-    font-size: 13px;
-  }
+      font-size: 18px;
+    }
 }
 
 @media (min-width: 1600px) {
   html {
-    font-size: 14px;
+    // font-size: 14px;
+    font-size: 19px;
   }
 }
 
 @media (min-width: 1800px) {
   html {
-    font-size: 15px;
+    font-size: 22px;
   }
 }
 
-@media (min-width: 2000px) {
+
+@media screen and (min-width: 1867px) and (max-width: 1966px){
   html {
-    font-size: 16px;
+    font-size: 25px;
   }
 }
 
+@media screen and (min-width: 1967px) and (max-width: 2066px){
+  html {
+    font-size: 25px;
+  }
+}
+
+@media screen and (min-width: 2067px) and (max-width: 2166px){
+  html {
+    font-size: 25px;
+  }
+}
+
+@media screen and (min-width: 2167px) and (max-width: 2266px){
+  html {
+    font-size: 25px;
+  }
+}
+
+@media screen and (min-width: 2267px) and (max-width: 2366px){
+  html {
+    font-size: 24px;
+  }
+}
+
+@media screen and (min-width: 2367px) and (max-width: 2466px){
+  html {
+    font-size: 24px;
+  }
+}
+
+@media screen and (min-width: 2467px) and (max-width: 2566px){
+  html {
+    font-size: 26px;
+  }
+}
+
+@media screen and (min-width: 2567px) and (max-width: 2666px){
+  html {
+    font-size: 25px;
+  }
+}
+
+@media screen and (min-width: 2667px) and (max-width: 2766px){
+  html {
+    font-size: 25px;
+  }
+}
+@media screen and (min-width: 2767px) and (max-width: 2866px){
+  html {
+    font-size: 25px;
+  }
+}
+
+@media screen and (min-width: 2867px){
+  html {
+    font-size: 25px;
+  }
+}
 // responsive media query
 
 @media only screen and (min-width: 1025px) and (max-width: 1300px) {
@@ -834,9 +897,7 @@ section.drop-newsletter{
 // responive media query ends
 
 @media (min-width: 2100px) {
-  html {
-    font-size: 140%;
-  }
+  
   .nft-more .nft-more-content .more-card img {
     // width: 20rem !important;
     width: 100%;
@@ -851,112 +912,5 @@ section.drop-newsletter{
   }
   img.newsletter_btn_icon {
     max-width: 100% !important;
-  }
-}
-
-@media screen and (min-width: 1025px) and (max-width: 1124px) and (orientation:landscape) {
-  .html {
-        font-size: 98.9% !important;
-  }
-}
-
-@media screen and (min-width: 1125px) and (max-width: 1224px) and (orientation:landscape) {
-  .html {
-       font-size: 105.9% !important;
-  }
-}
-
-@media screen and (min-width: 1225px) and (max-width: 1366px) and (orientation:landscape) {
-  .html {
-        font-size: 123.9% !important;
-  }
-}
-@media screen and (min-width: 1367px) and (max-width: 1466px){
-  .html {
-      font-size: 131% !important;
-  }
-}
-@media screen and (min-width: 1467px) and (max-width: 1566px){
-  .html {
-      font-size: 139% !important;
-  }
-}
-@media screen and (min-width: 1567px) and (max-width: 1666px){
-  .html {
-      font-size: 149% !important;
-  }
-}
-@media screen and (min-width: 1667px) and (max-width: 1766px){
-  .html {
-      font-size: 156% !important;
-  }
-}
-@media screen and (min-width: 1767px) and (max-width: 1866px){
-  .html {
-      font-size: 167% !important;
-  }
-}
-@media screen and (min-width: 1867px) and (max-width: 1966px){
-  .html {
-      font-size: 178% !important;
-  }
-}
-
-@media screen and (min-width: 1967px) and (max-width: 2066px){
-  .html {
-      font-size: 185% !important;
-  }
-}
-
-@media screen and (min-width: 2067px) and (max-width: 2166px){
-  .html {
-      font-size: 195% !important;
-  }
-}
-
-@media screen and (min-width: 2167px) and (max-width: 2266px){
-  .html {
-      font-size: 204% !important;
-  }
-}
-
-@media screen and (min-width: 2267px) and (max-width: 2366px){
-  .html {
-      font-size: 213% !important;
-  }
-}
-
-@media screen and (min-width: 2367px) and (max-width: 2466px){
-  .html {
-      font-size: 222% !important;
-  }
-}
-
-@media screen and (min-width: 2467px) and (max-width: 2566px){
-  .html {
-      font-size: 232% !important;
-  }
-}
-
-@media screen and (min-width: 2567px) and (max-width: 2666px){
-  .html {
-      font-size: 240% !important;
-  }
-}
-
-@media screen and (min-width: 2667px) and (max-width: 2766px){
-  .html {
-      font-size: 250% !important;
-  }
-}
-@media screen and (min-width: 2767px) and (max-width: 2866px){
-  .html {
-      font-size: 259% !important;
-  }
-}
-
-@media screen and (min-width: 2867px){
-  .html {
-      font-size: 264% !important;
   }
 }
