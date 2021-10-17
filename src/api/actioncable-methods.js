@@ -30,9 +30,9 @@ export const bidDetail = ({ slug }, value) => {
   );
 };
 
-export const buySummary = ({ slug }, value) => {
+export const pageView = ({ slug }, value) => {
   cable.subscriptions.create(
-    { channel: "NftChannel", room: `buy_summary_${slug}` },
+    { channel: "NftChannel", room: `page_view_${slug}` },
     {
       connected: () => {
         console.log("BL/AC3:Connected");
@@ -45,9 +45,9 @@ export const buySummary = ({ slug }, value) => {
   );
 };
 
-export const bidSummary = ({ slug }, value) => {
+export const totalFav = ({ slug }, value) => {
   cable.subscriptions.create(
-    { channel: "NftChannel", room: `bid_summary_${slug}` },
+    { channel: "NftChannel", room: `fav_view_${slug}` },
     {
       connected: () => {
         console.log("BL/AC4:Connected");
@@ -60,75 +60,15 @@ export const bidSummary = ({ slug }, value) => {
   );
 };
 
-export const buyHistory = ({ slug }, value) => {
+export const winnerDetail = ({ slug }, value) => {
   cable.subscriptions.create(
-    { channel: "NftChannel", room: `buy_history_${slug}` },
+    { channel: "NftChannel", room: `winner_detail_${slug}` },
     {
       connected: () => {
         console.log("BL/AC5:Connected");
       },
       received: (data) => {
         console.log("BL/AC5:Success");
-        value(data);
-      },
-    }
-  );
-};
-
-export const bidHistory = ({ slug }, value) => {
-  cable.subscriptions.create(
-    { channel: "NftChannel", room: `bid_history_${slug}` },
-    {
-      connected: () => {
-        console.log("BL/AC6:Connected");
-      },
-      received: (data) => {
-        console.log("BL/AC6:Success");
-        value(data);
-      },
-    }
-  );
-};
-
-export const pageView = ({ slug }, value) => {
-  cable.subscriptions.create(
-    { channel: "NftChannel", room: `page_view_${slug}` },
-    {
-      connected: () => {
-        console.log("BL/AC7:Connected");
-      },
-      received: (data) => {
-        console.log("BL/AC7:Success");
-        value(data);
-      },
-    }
-  );
-};
-
-export const totalFav = ({ slug }, value) => {
-  cable.subscriptions.create(
-    { channel: "NftChannel", room: `fav_view_${slug}` },
-    {
-      connected: () => {
-        console.log("BL/AC8:Connected");
-      },
-      received: (data) => {
-        console.log("BL/AC8:Success");
-        value(data);
-      },
-    }
-  );
-};
-
-export const winnerDetail = ({ slug }, value) => {
-  cable.subscriptions.create(
-    { channel: "NftChannel", room: `winner_detail_${slug}` },
-    {
-      connected: () => {
-        console.log("BL/AC9:Connected");
-      },
-      received: (data) => {
-        console.log("BL/AC9:Success");
         value(data);
       },
     }
