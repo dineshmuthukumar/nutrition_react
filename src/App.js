@@ -74,7 +74,7 @@ function App(props) {
           >
             <Switch>
               <Route exact path="/details/:slug" component={Details} />
-              <PrivateRoute
+              <Route
                 exact
                 path="/details/:slug/:placebid"
                 component={Details}
