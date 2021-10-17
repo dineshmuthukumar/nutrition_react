@@ -140,12 +140,16 @@
       // align-items: center;
 
       position: absolute;
-display: block;
+display: flex;
 top: auto;
 bottom: 2%;
+padding: 1.5rem;
+background-color: #fff;
+border-radius: 0.5rem;
 height: auto;
 width: 96%;
 left: 2%;
+align-items: center;
 
       img {
         height: 50px;
