@@ -188,6 +188,49 @@ const SharePopover = ({ icon, placement, title }) => {
     "beyondlife.club,nft,amitabh,bachchan,amitabh_bachchan,bollywood,popular,recent";
   const via = "beyondlife.club";
 
+  const detectWhatsapp = (uri) => {
+    const onIE = () => {
+      return new Promise((resolve) => {
+        window.navigator.msLaunchUri(
+          uri,
+          () => resolve(true),
+          () => resolve(false)
+        );
+      });
+    };
+
+    const notOnIE = () => {
+      return new Promise((resolve) => {
+        const a =
+          document.getElementById("wapp-launcher") ||
+          document.createElement("a");
+        a.id = "wapp-launcher";
+        a.href = uri;
+        a.style.display = "none";
+        document.body.appendChild(a);
+
+        const start = Date.now();
+        const timeoutToken = setTimeout(() => {
+          if (Date.now() - start > 1250) {
+            resolve(true);
+          } else {
+            resolve(false);
+          }
+        }, 1000);
+
+        const handleBlur = () => {
+          clearTimeout(timeoutToken);
+          resolve(true);
+        };
+        window.addEventListener("blur", handleBlur);
+
+        a.click();
+      });
+    };
+
+    return window.navigator.msLaunchUri ? onIE() : notOnIE();
+  };
+
   return (
     <>
       <OverlayTrigger
@@ -237,11 +280,17 @@ const SharePopover = ({ icon, placement, title }) => {
               <FaWhatsapp
                 size={35}
                 style={{ color: "#25D366" }}
-                onClick={() =>
-                  window.open(
+                onClick={() => {
+                  detectWhatsapp(
                     `whatsapp://send?text=Hey ! I found an awesome NFT here, check it out in below link%0a%0ahttps://amitabh.bafdemo.com/details/BxRM51oLFgY7AdoP`
-                  )
-                }
+                  ).then((hasWhatsapp) => {
+                    if (!hasWhatsapp) {
+                      alert(
+                        "You don't have WhatsApp, kindly install it and try again"
+                      );
+                    }
+                  });
+                }}
               />
             </Popover.Body>
           </Popover>

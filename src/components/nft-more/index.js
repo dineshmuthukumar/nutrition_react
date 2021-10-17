@@ -12,7 +12,7 @@ const NFTMore = ({ nftList = [] }) => {
   const ref = useRef(0);
 
   const params = {
-    slidesPerView: 5,
+    slidesPerView: 1,
     spaceBetween: 50,
     pagination: {
       el: ".swiper-pagination",
@@ -34,7 +34,7 @@ const NFTMore = ({ nftList = [] }) => {
     ),
     breakpoints: {
       1024: {
-        slidesPerView: 4,
+        slidesPerView: 2,
         spaceBetween: 40,
       },
       768: {

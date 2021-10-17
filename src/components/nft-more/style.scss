@@ -33,9 +33,14 @@
       }
       img {
         // width: 27.3rem;
+        // width: 100%;
+        // max-height: 50vh;
+        // object-fit: scale-down;
+        // margin-bottom: 1rem;
         width: 100%;
+        min-height: 25em;
         max-height: 50vh;
-        object-fit: scale-down;
+        object-fit: cover;
         margin-bottom: 1rem;
       }
 
