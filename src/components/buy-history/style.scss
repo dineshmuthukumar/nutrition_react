@@ -104,15 +104,16 @@
 
   .bid-empty-content {
     background-color: #000;
-    min-height: 65vh;
-    max-height: 65vh;
+    // min-height: 65vh;
+    // max-height: 65vh;
     margin-top: -1px;
     padding: 1rem;
+    position: relative;
 
     .empty-top-container {
       color: #fff;
       display: flex;
-      height: 50vh;
+      // height: 50vh;
 
       .empty-top-content {
         flex: 1;
@@ -130,13 +131,25 @@
     }
 
     .empty-bottom-content {
-      position: sticky;
-      top: 100vh;
-      display: flex;
-      background-color: #fff;
-      border-radius: 0.5rem;
-      padding: 1.5rem;
-      align-items: center;
+      // position: sticky;
+      // // top: 100vh;
+      // display: flex;
+      // background-color: #fff;
+      // border-radius: 0.5rem;
+      // padding: 1.5rem;
+      // align-items: center;
+
+      position: absolute;
+display: flex;
+top: auto;
+bottom: 2%;
+padding: 1.5rem;
+background-color: #fff;
+border-radius: 0.5rem;
+height: auto;
+width: 96%;
+left: 2%;
+align-items: center;
 
       img {
         height: 50px;

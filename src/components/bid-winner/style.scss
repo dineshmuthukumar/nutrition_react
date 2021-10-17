@@ -5,19 +5,19 @@
   color: white;
   border-radius: 0.5rem;
   padding: 3rem 3rem 2rem 3rem;
-  // min-height: 70vh;
+  min-height: 70vh;
   position: relative;
 
-  .winner-text {
-    position: absolute;
-    transform: rotate(90deg);
-    right: -38%;
-    bottom: 20vh !important;
-    font-size: 9rem;
-    width: 100%;
-    text-align: center;
-    font-family: $neue-helveticamedium;
-  }
+  // .winner-text {
+  //   position: absolute;
+  //   transform: rotate(90deg);
+  //   right: -38%;
+  //   bottom: 20vh !important;
+  //   font-size: 9rem;
+  //   width: 100%;
+  //   text-align: center;
+  //   font-family: $neue-helveticamedium;
+  // }
 
   .winner-user-details {
     img {
@@ -65,7 +65,9 @@
       }
     }
   }
-
+  .bid-winner .winner-text {
+    
+}
   .nft-lastbid-details {
     margin-top: 2.5rem;
     display: flex;
@@ -99,20 +101,35 @@
     }
   }
 
-  .bottom-section {
-    position: sticky;
-    top: 100vh;
-    display: flex;
-    justify-content: space-between;
+  // .bottom-section {
+  //   position: sticky;
+  //   top: 100vh;
+  //   display: flex;
+  //   justify-content: space-between;
 
-    .bidding-history-btn {
-      font-size: 0.8rem;
-      padding: 0.7rem 1.2rem;
+  //   .bidding-history-btn {
+  //     font-size: 0.8rem;
+  //     padding: 0.7rem 1.2rem;
 
-      &:hover {
-        background-color: white;
-        color: black;
-      }
-    }
-  }
+  //     &:hover {
+  //       background-color: white;
+  //       color: black;
+  //     }
+  //   }
+  // }
+}
+
+.bottom-section {
+  position: absolute;
+  width: 100%;
+  bottom: 4% !important;
+}
+.winner-text {
+  position: absolute;
+  transform: rotate(90deg);
+  right: -24%;
+  top: 32% !important;
+  font-size: 9.5rem;
+  font-family: "neue_helveticamedium" !important;
+  bottom: auto !important;
 }
