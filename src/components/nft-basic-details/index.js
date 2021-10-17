@@ -114,11 +114,17 @@ const NFTBaseDetails = ({
         {!isAuctionStarted && (
           <NFTTimeLeft
             title="Auction starting in"
-            tooltipText={
-              erc721
-                ? "When there are less than 5 minutes left in the auction, successful bids will reset the auction to 5 minutes."
-                : "Nft buy auction"
-            }
+            tooltipText={(() => {
+              if (erc721) {
+                if (nft.auction_extend_minutes) {
+                  return `When there are less than 5 minutes left in the auction, successful bids will reset the auction to ${nft.auction_extend_minutes} minutes.`;
+                } else {
+                  return "When there are less than 5 minutes left in the auction, successful bids will not reset the auction ending time";
+                }
+              } else {
+                return "Nft buy auction";
+              }
+            })()}
             time={nft.auction_start_time}
             handleTimer={handleAuctionStartTimer}
           />
@@ -126,11 +132,17 @@ const NFTBaseDetails = ({
         {!isAuctionEnded && isAuctionStarted && (
           <NFTTimeLeft
             title="Auction ending in"
-            tooltipText={
-              erc721
-                ? "When there are less than 5 minutes left in the auction, successful bids will reset the auction to 5 minutes."
-                : "Nft buy auction"
-            }
+            tooltipText={(() => {
+              if (erc721) {
+                if (nft.auction_extend_minutes) {
+                  return `When there are less than 5 minutes left in the auction, successful bids will reset the auction to ${nft.auction_extend_minutes} minutes.`;
+                } else {
+                  return "When there are less than 5 minutes left in the auction, successful bids will not reset the auction ending time";
+                }
+              } else {
+                return "Nft buy auction";
+              }
+            })()}
             time={auctionEndTime}
             handleTimer={handleAuctionEndTimer}
           />
@@ -281,7 +293,8 @@ const NFTBaseDetails = ({
 
           <div className="mt-2 royalty-info">
             {erc721 &&
-              "Counterbid within the last 5 minutes will extend the auction by 15 minutes"}
+              nft.auction_extend_minutes &&
+              `Counterbid within the last 5 minutes will extend the auction by ${nft.auction_extend_minutes} minutes`}
           </div>
         </div>
       </div>
