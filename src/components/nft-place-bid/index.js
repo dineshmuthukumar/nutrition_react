@@ -4,6 +4,7 @@ import { useHistory, useRouteMatch } from "react-router";
 import { Offcanvas } from "react-bootstrap";
 import { BiX } from "react-icons/bi";
 import { FaCheckCircle } from "react-icons/fa";
+import dayjs from "dayjs";
 import ErrorText from "./error-text";
 import {
   bidBuyError,
@@ -26,6 +27,7 @@ const NFTPlaceBid = ({
   const { params } = useRouteMatch();
 
   const [success, setSuccess] = useState(false);
+  const [successData, setSuccessData] = useState({});
 
   const erc721 = nft.nft_type === "erc721";
   const [noBalance, setNoBalance] = useState(false);
@@ -109,6 +111,7 @@ const NFTPlaceBid = ({
         });
         if (result.data.success) {
           setSuccess(true);
+          setSuccessData(result.data.data.buy);
           setBuy({
             ...buy,
             progressError: "",
@@ -171,6 +174,7 @@ const NFTPlaceBid = ({
         });
         if (result.data.success) {
           setSuccess(true);
+          setSuccessData(result.data.data.bid);
           setBid({
             ...bid,
             progressError: "",
@@ -606,7 +610,13 @@ const NFTPlaceBid = ({
                   </div>
 
                   <div className="pop-nft-media mt-4 preview">
-                    <img src="https://picsum.photos/780/750" />
+                    <img
+                      src={
+                        nft.image_url
+                          ? nft.image_url
+                          : "https://wallpaperaccess.com/full/112115.jpg"
+                      }
+                    />
                     {/* <img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" /> */}
                     {/* <video controls>
               <source
@@ -635,33 +645,36 @@ const NFTPlaceBid = ({
                       <div>{erc721 ? "Bid price" : "Bought price"}</div>
                       <div className="bold">
                         {erc721
-                          ? currencyFormat(bidAmount, "USD")
-                          : currencyFormat(buyAmount, "USD")}
+                          ? currencyFormat(successData.amount, "USD")
+                          : currencyFormat(successData.total_amount, "USD")}
                       </div>
                     </div>
                     {!erc721 && (
                       <div className="success-summary">
                         <div>Bought quantity</div>
-                        <div className="bold">{buyQuantity}</div>
+                        <div className="bold">{successData.quantity}</div>
                       </div>
                     )}
                     <div className="success-summary">
                       <div>{erc721 ? "Bid placed on" : "Bought on"}</div>
-                      <div className="bold">22 Sep, 2021 12:35:20</div>
+                      <div className="bold">
+                        {dayjs(successData.created_at).format(
+                          "MMM D, YYYY hh:mma"
+                        )}
+                      </div>
                     </div>
 
                     {erc721 && (
-                      <>
-                        <div className="success-summary">
-                          <div>Bid placed for</div>
-                          <div className="bold">1 Limited Edition</div>
-                        </div>
-                        <div className="success-summary">
-                          <div>Transaction No.</div>
-                          <div className="bold">019dh393...00382182</div>
-                        </div>
-                      </>
+                      <div className="success-summary">
+                        <div>Bid placed for</div>
+                        <div className="bold">1 Limited Edition</div>
+                      </div>
                     )}
+
+                    <div className="success-summary">
+                      <div>Transaction Id.</div>
+                      <div className="bold">{successData.transaction_id}</div>
+                    </div>
                   </div>
 
                   <div className="bottom-area">
