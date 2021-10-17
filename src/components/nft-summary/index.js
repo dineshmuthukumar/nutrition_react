@@ -8,7 +8,7 @@ const NFTSummary = ({ nft, socketData }) => {
   return (
     <div className="bg-white shadow-sm nft-summary">
       <div className="row">
-        <div className="col-12 col-md-6 col-lg-3">
+        <div className="d-flex align-items-center justify-content-around">
           <div className="p-4">
             {erc721 ? (
               <Badge
@@ -26,8 +26,6 @@ const NFTSummary = ({ nft, socketData }) => {
               />
             )}
           </div>
-        </div>
-        <div className="col-12 col-md-6 col-lg-3">
           <div className="p-4">
             {erc721 ? (
               <Badge
@@ -56,8 +54,6 @@ const NFTSummary = ({ nft, socketData }) => {
               />
             )}
           </div>
-        </div>
-        <div className="col-12 col-md-6 col-lg-3">
           <div className="p-4">
             <Badge
               title="Total Views"
@@ -66,8 +62,6 @@ const NFTSummary = ({ nft, socketData }) => {
               }
             />
           </div>
-        </div>
-        <div className="col-12 col-md-6 col-lg-3">
           <div className="p-4">
             <Badge
               title="Total Favourites"
