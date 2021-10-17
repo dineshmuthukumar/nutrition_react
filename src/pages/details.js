@@ -202,7 +202,7 @@ const Details = () => {
         <div className="container-fluid">
           <div className="fit-to-height">
           <div className="row">
-            <div className="col-12 col-lg-7 align-self-center">
+            <div className="col-12 col-lg-7">
               <NFTMedia
                 image={nft?.image_url}
                 title={nft?.name}
