@@ -43,6 +43,7 @@ const Details = () => {
   const [nftMoreList, setNftMoreList] = useState([]);
   const [buyHistory, setBuyHistory] = useState([]);
   const [bidHistory, setBidHistory] = useState([]);
+  const [totalCount, setTotalCount] = useState(0);
   const [bidWinner, setBidWinner] = useState(null);
   const [erc721, setErc721] = useState(false);
   const [isAuctionStarted, setIsAuctionStarted] = useState(false);
@@ -141,23 +142,18 @@ const Details = () => {
       );
       setErc721(NFT.nft_type === "erc721");
       if (NFT.nft_type === "erc721") {
-        let history = await nftBidHistory({
-          nft_slug: slug,
-          page: 1,
-        });
+        let history = await nftBidHistory({ nft_slug: slug, page: 1 });
         let winner = await nftBidWinner({ nft_slug: slug });
         setBidHistory(history.data.data.histories);
+        setTotalCount(history.data.data.total_count);
         setBidWinner(winner.data.data.winner);
       } else {
         if (NFT.quantity === 0) {
           setSoldOut(true);
         }
-
-        let history = await nftBuyHistory({
-          nft_slug: slug,
-          page: 1,
-        });
+        let history = await nftBuyHistory({ nft_slug: slug, page: 1 });
         setBuyHistory(history.data.data.histories);
+        setTotalCount(history.data.data.total_count);
       }
       setNft(response.data.data.nft);
       setLoader(false);
@@ -201,30 +197,30 @@ const Details = () => {
       ) : (
         <div className="container-fluid">
           <div className="bid_section_wrapper">
-          <div className="row fit-to-height">
-            <div className="col-12 col-lg-7">
-              <NFTMedia
-                image={nft?.image_url}
-                title={nft?.name}
-                slug={nft?.slug}
-                isFav={nft?.is_user_fav}
-              />
+            <div className="row fit-to-height">
+              <div className="col-12 col-lg-7">
+                <NFTMedia
+                  image={nft?.image_url}
+                  title={nft?.name}
+                  slug={nft?.slug}
+                  isFav={nft?.is_user_fav}
+                />
+              </div>
+              <div className="col-12 col-lg-5">
+                <NFTBaseDetails
+                  nft={nft}
+                  isPlaceBid={matchParams.placebid}
+                  socketData={socketData}
+                  isAuctionStarted={isAuctionStarted}
+                  isAuctionEnded={isAuctionEnded}
+                  soldOut={soldOut}
+                  auctionEndTime={auctionEndTime}
+                  handleAuctionStartTimer={handleAuctionStartTimer}
+                  handleAuctionEndTimer={handleAuctionEndTimer}
+                  winner={bidWinner}
+                />
+              </div>
             </div>
-            <div className="col-12 col-lg-5">
-              <NFTBaseDetails
-                nft={nft}
-                isPlaceBid={matchParams.placebid}
-                socketData={socketData}
-                isAuctionStarted={isAuctionStarted}
-                isAuctionEnded={isAuctionEnded}
-                soldOut={soldOut}
-                auctionEndTime={auctionEndTime}
-                handleAuctionStartTimer={handleAuctionStartTimer}
-                handleAuctionEndTimer={handleAuctionEndTimer}
-                winner={bidWinner}
-              />
-            </div>
-          </div>
           </div>
           <div className="row mt-5">
             <div className="col-12">
@@ -242,6 +238,7 @@ const Details = () => {
                         nft={nft}
                         histories={bidHistory}
                         isAuctionEnded={isAuctionEnded}
+                        totalCount={totalCount}
                       />
                     );
                   } else if (isAuctionEnded) {
@@ -255,6 +252,7 @@ const Details = () => {
                           nft={nft}
                           histories={bidHistory}
                           isAuctionEnded={isAuctionEnded}
+                          totalCount={totalCount}
                         />
                       );
                     }
@@ -274,6 +272,7 @@ const Details = () => {
                         nft={nft}
                         histories={buyHistory}
                         isAuctionEnded={isAuctionEnded}
+                        totalCount={totalCount}
                       />
                     );
                   } else if (isAuctionEnded) {

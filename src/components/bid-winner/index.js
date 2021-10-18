@@ -1,15 +1,70 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router";
 import dayjs from "dayjs";
+import { toast } from "react-toastify";
 import { Modal, Button, Table, Nav, NavDropdown } from "react-bootstrap";
 import { BsFullscreenExit } from "react-icons/bs";
 import { BiX } from "react-icons/bi";
 import BidName from "../bid-history/bid-name";
+import { nftBidHistory } from "../../api/methods";
 import { currencyFormat } from "../../utils/common";
+import { TableLoader } from "../nft-basic-details/content-loader";
 import userImg from "../../images/user_1.png";
 import "./style.scss";
 
 const BidWinner = ({ winner, histories }) => {
+  const { slug } = useParams();
   const [modalShow, setModalShow] = useState(false);
+  const [bidHistories, setBidHistories] = useState([]);
+  const [page, setPage] = useState(1);
+  const [totalRecords, setTotalRecords] = useState(0);
+  const [hasMore, setHasMore] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const fetchHistory = async () => {
+    try {
+      if (bidHistories.length >= totalRecords) {
+        setHasMore(false);
+        return;
+      }
+      let history = await nftBidHistory({ nft_slug: slug, page: page });
+      setBidHistories([...bidHistories, ...history.data.data.histories]);
+      setTotalRecords(history.data.data.total_count);
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
+    }
+  };
+
+  useEffect(() => {
+    if (bidHistories.length < totalRecords) {
+      setHasMore(true);
+    } else {
+      setHasMore(false);
+    }
+  }, [bidHistories, totalRecords, hasMore]);
+
+  const handleClick = async () => {
+    setModalShow(true);
+    try {
+      setLoading(true);
+      setPage((page) => page + 1);
+      let history = await nftBidHistory({ nft_slug: slug, page: page });
+      setBidHistories(history.data.data.histories);
+      setTotalRecords(history.data.data.total_count);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
+    }
+  };
+
+  const handleClose = () => {
+    setModalShow(false);
+    setPage(1);
+    setBidHistories([]);
+  };
+
   return (
     <>
       <div className="bid-winner">
@@ -56,7 +111,7 @@ const BidWinner = ({ winner, histories }) => {
           <button
             type="button"
             className="btn btn-dark rounded-pill border border-white bidding-history-btn"
-            onClick={() => setModalShow(true)}
+            onClick={handleClick}
           >
             Bidding History
           </button>
@@ -96,63 +151,77 @@ const BidWinner = ({ winner, histories }) => {
                   role="button"
                   style={{ color: "#fff" }}
                   size={25}
-                  onClick={() => setModalShow(false)}
+                  onClick={handleClose}
                 />
               </div>
             </div>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Table responsive="lg" className="history-table-expand mb-0">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Event</th>
-                <th>Bider</th>
-                <th className="text-center">Price</th>
-                <th className="text-center">Price Change</th>
-                <th className="text-center">Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {histories.map((history, i) => (
+          {loading ? (
+            <TableLoader />
+          ) : (
+            <Table responsive="lg" className="history-table-expand mb-0">
+              <thead>
                 <tr>
-                  <td>{i + 1}</td>
-                  <td>Bid placed by</td>
-                  <td>
-                    <BidName
-                      imgUrl={history.avatar_url}
-                      text={history.user_name}
-                      isTable
-                    />
-                  </td>
-                  <td className="text-center">
-                    <div className="usd-value">
-                      {currencyFormat(history.bid_amount, "USD")}
-                    </div>
-                  </td>
-                  <td
-                    className={`text-center ${
-                      i % 2 === 0 ? "text-success" : "text-danger"
-                    }`}
-                  >
-                    1.00%
-                  </td>
-                  <td className="text-center">
-                    <div className="date">
-                      {dayjs(history.created_at).format("MMM D, YYYY hh:mma")}
-                    </div>
-                  </td>
+                  <th>#</th>
+                  <th>Event</th>
+                  <th>Bider</th>
+                  <th className="text-center">Price</th>
+                  <th className="text-center">Price Change</th>
+                  <th className="text-center">Date</th>
                 </tr>
-              ))}
+              </thead>
+              <tbody>
+                {bidHistories.map((history, i) => (
+                  <tr>
+                    <td>{i + 1}</td>
+                    <td>Bid placed by</td>
+                    <td>
+                      <BidName
+                        imgUrl={history.avatar_url}
+                        text={history.user_name}
+                        isTable
+                      />
+                    </td>
+                    <td className="text-center">
+                      <div className="usd-value">
+                        {currencyFormat(history.bid_amount, "USD")}
+                      </div>
+                    </td>
+                    <td
+                      className={`text-center ${
+                        i % 2 === 0 ? "text-success" : "text-danger"
+                      }`}
+                    >
+                      1.00%
+                    </td>
+                    <td className="text-center">
+                      <div className="date">
+                        {dayjs(history.created_at).format("MMM D, YYYY hh:mma")}
+                      </div>
+                    </td>
+                  </tr>
+                ))}
 
-              <tr>
-                <td className="text-center text-secondary p-3" colSpan="6">
-                  You've reached the end of the list
-                </td>
-              </tr>
-            </tbody>
-          </Table>
+                {hasMore ? (
+                  <tr>
+                    <td className="text-center text-secondary p-3" colSpan="6">
+                      <span role="button" onClick={fetchHistory}>
+                        Load More
+                      </span>
+                    </td>
+                  </tr>
+                ) : (
+                  <tr>
+                    <td className="text-center text-secondary p-3" colSpan="6">
+                      You've reached the end of the list
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </Table>
+          )}
         </Modal.Body>
       </Modal>
     </>

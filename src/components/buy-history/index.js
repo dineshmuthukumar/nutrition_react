@@ -1,18 +1,72 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router";
 import dayjs from "dayjs";
+import { toast } from "react-toastify";
 import { Modal, Button, Table, Nav, NavDropdown } from "react-bootstrap";
 import { AiOutlineExpand } from "react-icons/ai";
 import { BsFullscreenExit } from "react-icons/bs";
 import { IoIosRocket } from "react-icons/io";
 import { BiX } from "react-icons/bi";
 import { currencyFormat } from "../../utils/common";
+import { nftBuyHistory } from "../../api/methods";
+import { TableLoader } from "../nft-basic-details/content-loader";
 import BuyCard from "./buy-card";
 import BuyName from "./buy-name";
 import amitabh from "../../images/amitabh.png";
 import "./style.scss";
 
-const BuyHistory = ({ nft, histories = [], isAuctionEnded }) => {
+const BuyHistory = ({ nft, histories = [], isAuctionEnded, totalCount }) => {
+  const { slug } = useParams();
   const [modalShow, setModalShow] = useState(false);
+  const [buyHistories, setBuyHistories] = useState([]);
+  const [page, setPage] = useState(1);
+  const [totalRecords, setTotalRecords] = useState(0);
+  const [hasMore, setHasMore] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const fetchHistory = async () => {
+    try {
+      if (buyHistories.length >= totalRecords) {
+        setHasMore(false);
+        return;
+      }
+      let history = await nftBuyHistory({ nft_slug: slug, page: page });
+      setBuyHistories([...buyHistories, ...history.data.data.histories]);
+      setTotalRecords(history.data.data.total_count);
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
+    }
+  };
+
+  useEffect(() => {
+    if (buyHistories.length < totalRecords) {
+      setHasMore(true);
+    } else {
+      setHasMore(false);
+    }
+  }, [buyHistories, totalRecords, hasMore]);
+
+  const handleClick = async () => {
+    setModalShow(true);
+    try {
+      setLoading(true);
+      setPage((page) => page + 1);
+      let history = await nftBuyHistory({ nft_slug: slug, page: page });
+      setBuyHistories([...buyHistories, ...history.data.data.histories]);
+      setTotalRecords(history.data.data.total_count);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
+    }
+  };
+
+  const handleClose = () => {
+    setModalShow(false);
+    setPage(1);
+    setBuyHistories([]);
+  };
   return (
     <>
       <div className="bid-history">
@@ -36,14 +90,14 @@ const BuyHistory = ({ nft, histories = [], isAuctionEnded }) => {
                 </NavDropdown>
               </Nav>
             </div> */}
-            {histories.length > 0 && (
+            {/* {histories.length > 0 && (
               <AiOutlineExpand
                 role="button"
                 style={{ color: "#fff" }}
                 size={25}
                 onClick={() => setModalShow(true)}
               />
-            )}
+            )} */}
           </div>
         </div>
 
@@ -53,7 +107,17 @@ const BuyHistory = ({ nft, histories = [], isAuctionEnded }) => {
               <BuyCard key={`buy-history${i}`} history={history} />
             ))}
 
-            <BuyCard isEnd />
+            {totalCount <= histories.length ? (
+              <BuyCard isEnd />
+            ) : (
+              <div className="bid-histroy-card">
+                <div className="history-end-content">
+                  <span role="button" onClick={handleClick}>
+                    View More
+                  </span>
+                </div>
+              </div>
+            )}
           </div>
         ) : (
           <div className="bid-empty-content">
@@ -121,57 +185,71 @@ const BuyHistory = ({ nft, histories = [], isAuctionEnded }) => {
                   role="button"
                   style={{ color: "#fff" }}
                   size={25}
-                  onClick={() => setModalShow(false)}
+                  onClick={handleClose}
                 />
               </div>
             </div>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Table responsive="lg" className="history-table-expand mb-0">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Event</th>
-                <th>Bought by</th>
-                <th className="text-center">Quantity</th>
-                <th className="text-center">Price</th>
-                <th className="text-center">Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {histories.map((history, i) => (
+          {loading ? (
+            <TableLoader />
+          ) : (
+            <Table responsive="lg" className="history-table-expand mb-0">
+              <thead>
                 <tr>
-                  <td>{i + 1}</td>
-                  <td>NFT auction</td>
-                  <td>
-                    <BuyName
-                      imgUrl={history.avatar_url}
-                      text={history.user_name}
-                      isTable
-                    />
-                  </td>
-                  <td className="text-center">{history.quantity}</td>
-                  <td className="text-center">
-                    <div className="usd-value">
-                      {currencyFormat(history.buy_amount, "USD")}
-                    </div>
-                  </td>
-                  <td className="text-center">
-                    <div className="date">
-                      {dayjs(history.created_at).format("MMM D, YYYY hh:mma")}
-                    </div>
-                  </td>
+                  <th>#</th>
+                  <th>Event</th>
+                  <th>Bought by</th>
+                  <th className="text-center">Quantity</th>
+                  <th className="text-center">Price</th>
+                  <th className="text-center">Date</th>
                 </tr>
-              ))}
+              </thead>
+              <tbody>
+                {buyHistories.map((history, i) => (
+                  <tr>
+                    <td>{i + 1}</td>
+                    <td>NFT auction</td>
+                    <td>
+                      <BuyName
+                        imgUrl={history.avatar_url}
+                        text={history.user_name}
+                        isTable
+                      />
+                    </td>
+                    <td className="text-center">{history.quantity}</td>
+                    <td className="text-center">
+                      <div className="usd-value">
+                        {currencyFormat(history.buy_amount, "USD")}
+                      </div>
+                    </td>
+                    <td className="text-center">
+                      <div className="date">
+                        {dayjs(history.created_at).format("MMM D, YYYY hh:mma")}
+                      </div>
+                    </td>
+                  </tr>
+                ))}
 
-              <tr>
-                <td className="text-center text-secondary p-3" colSpan="6">
-                  You've reached the end of the list
-                </td>
-              </tr>
-            </tbody>
-          </Table>
+                {hasMore ? (
+                  <tr>
+                    <td className="text-center text-secondary p-3" colSpan="6">
+                      <span role="button" onClick={fetchHistory}>
+                        Load More
+                      </span>
+                    </td>
+                  </tr>
+                ) : (
+                  <tr>
+                    <td className="text-center text-secondary p-3" colSpan="6">
+                      You've reached the end of the list
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </Table>
+          )}
         </Modal.Body>
       </Modal>
     </>
