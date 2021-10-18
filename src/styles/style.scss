@@ -572,7 +572,7 @@ input::-webkit-inner-spin-button {
 }
 @media screen and (min-width: 1667px) and (max-width: 1766px) {
   html {
-    font-size: 14px;
+    font-size: 15px;
   }
 }
 
@@ -641,7 +641,9 @@ input::-webkit-inner-spin-button {
     font-size: 25px;
   }
 }
-
+.no_height {
+  height: 83vh;
+}
 @media screen and (min-width: 2667px) and (max-width: 2766px) {
   html {
     font-size: 25px;
