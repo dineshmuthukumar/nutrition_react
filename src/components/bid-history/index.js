@@ -13,6 +13,7 @@ import { nftBidHistory } from "../../api/methods";
 import { currencyFormat } from "../../utils/common";
 import { TableLoader } from "../nft-basic-details/content-loader";
 import amitabh from "../../images/amitabh.png";
+import userImg from "../../images/user_1.png";
 import "./style.scss";
 
 const BidHistory = ({ nft, histories = [], isAuctionEnded, totalCount }) => {
@@ -219,7 +220,7 @@ const BidHistory = ({ nft, histories = [], isAuctionEnded, totalCount }) => {
                     <td>Bid placed by</td>
                     <td>
                       <BidName
-                        imgUrl={history.avatar_url}
+                        imgUrl={!history.private ? history.avatar_url : userImg}
                         text={history.user_name}
                         isTable
                         slug={history.slug}

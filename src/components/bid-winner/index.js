@@ -179,7 +179,7 @@ const BidWinner = ({ winner, histories }) => {
                     <td>Bid placed by</td>
                     <td>
                       <BidName
-                        imgUrl={history.avatar_url}
+                        imgUrl={!history.private ? history.avatar_url : userImg}
                         text={history.user_name}
                         isTable
                         slug={history.slug}
