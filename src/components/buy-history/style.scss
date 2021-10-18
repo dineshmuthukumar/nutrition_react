@@ -140,16 +140,16 @@
       // align-items: center;
 
       position: absolute;
-display: flex;
-top: auto;
-bottom: 2%;
-padding: 1.5rem;
-background-color: #fff;
-border-radius: 0.5rem;
-height: auto;
-width: 96%;
-left: 2%;
-align-items: center;
+      display: flex;
+      top: auto;
+      bottom: 2%;
+      padding: 1.5rem;
+      background-color: #fff;
+      border-radius: 0.5rem;
+      height: auto;
+      width: 96%;
+      left: 2%;
+      align-items: center;
 
       img {
         height: 50px;
@@ -159,12 +159,12 @@ align-items: center;
       }
 
       .publish-time {
-        font-size: 0.8rem;
+        font-size: 1.2rem;
         font-family: $neue-helveticamedium;
       }
 
       .nft-owner {
-        font-size: 1rem;
+        font-size: 1.33rem;
         font-family: $neue-helveticabold;
 
         span {
@@ -179,9 +179,7 @@ align-items: center;
   }
 }
 
-
 @media only screen and (min-width: 1025px) and (max-width: 1920px) {
-
   .bid-winner {
     background-color: black;
     color: white;
@@ -189,6 +187,5 @@ align-items: center;
     padding: 3rem 3rem 2rem 3rem;
     min-height: 100vh !important;
     position: relative;
-}
-
+  }
 }

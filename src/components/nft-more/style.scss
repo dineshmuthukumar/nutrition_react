@@ -23,6 +23,7 @@
     flex-wrap: nowrap;
     overflow: hidden;
     scroll-behavior: smooth;
+    font-family: $neue-helveticamedium;
 
     .more-card {
       margin-right: 1rem;
@@ -45,7 +46,7 @@
       }
 
       .more-nft-title {
-        font-size: 1.3rem;
+        font-size: 1.8rem;
         font-family: $neue-helveticabold;
         position: relative;
 
@@ -53,8 +54,9 @@
           position: absolute;
           color: #f21e00;
           right: 0;
-          font-family: $neue-helveticamedium;
-          font-size: 0.8rem;
+          font-family: $neue-helveticabold;
+          font-size: 1rem;
+          top: 0.5em;
         }
       }
       .more-nft-desc {
@@ -67,12 +69,13 @@
         justify-content: space-between;
 
         .mb-title {
-          font-size: 0.8rem;
+          font-size: 1.3rem;
+          font-family: $neue-helveticabold;
         }
 
         .mb-value {
-          font-size: 1rem;
-          font-family: $neue-helveticamedium;
+          font-size: 1.3rem;
+          font-family: $neue-helveticabold;
         }
       }
     }
@@ -121,4 +124,10 @@
       box-shadow: 0 0 6px 0px #dadada;
     }
   }
+}
+.font-onerem {
+  font-size: 1.3rem !important;
+}
+.nft-more .nft-more-content .more-card .more-bid-details .mb-title {
+  font-family: 'neue_helveticaroman' !important;
 }

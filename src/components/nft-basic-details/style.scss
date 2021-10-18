@@ -4,10 +4,17 @@
   font-size: 0.7rem;
   font-family: $neue-helveticamedium;
 }
-
+.fit-to-height {
+  height: 90vh;
+  padding-top: 2.1rem;
+  overflow: hidden;
+  padding-bottom: 2.1rem;
+}
 .creator {
   font-size: 1.2rem;
   font-family: $neue-helveticamedium;
+  margin-top: 0em !important;
+
 
   .check-icon {
     margin-top: -7px;

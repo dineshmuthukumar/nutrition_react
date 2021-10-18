@@ -6,7 +6,7 @@ import { Container } from "react-bootstrap";
 import { currencyFormat } from "../../utils/common";
 import "./style.scss";
 
-const SubHeader = ({ nft, isAuctionStarted, isAuctionEnded }) => {
+const SubHeader = ({ nft, isAuctionStarted, isAuctionEnded, soldOut }) => {
   const history = useHistory();
   const { user } = useSelector((state) => state.user.data);
   const erc721 = nft.nft_type === "erc721";
@@ -124,8 +124,10 @@ const SubHeader = ({ nft, isAuctionStarted, isAuctionEnded }) => {
                       disabled={(() => {
                         if (!isAuctionStarted && !isAuctionEnded) {
                           return !isAuctionStarted;
-                        } else {
+                        } else if (isAuctionEnded) {
                           return isAuctionEnded;
+                        } else {
+                          return soldOut;
                         }
                       })()}
                       type="button"
@@ -139,6 +141,8 @@ const SubHeader = ({ nft, isAuctionStarted, isAuctionEnded }) => {
                           return "Auction has not yet begun";
                         } else if (isAuctionEnded) {
                           return "Auction has ended";
+                        } else if (soldOut) {
+                          return "Sold Out";
                         } else {
                           return "Buy";
                         }

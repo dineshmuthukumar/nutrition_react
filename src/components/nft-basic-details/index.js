@@ -17,6 +17,7 @@ const NFTBaseDetails = ({
   socketData,
   isAuctionStarted,
   isAuctionEnded,
+  soldOut,
   auctionEndTime,
   handleAuctionStartTimer,
   handleAuctionEndTimer,
@@ -37,7 +38,7 @@ const NFTBaseDetails = ({
           content="Verified Artist"
           placement="right"
         />
-        {isAuctionEnded && (
+        {(isAuctionEnded || soldOut) && (
           <span className="nft-status-tag rounded-pill">Sold Out</span>
         )}
       </div>
@@ -113,11 +114,17 @@ const NFTBaseDetails = ({
         {!isAuctionStarted && (
           <NFTTimeLeft
             title="Auction starting in"
-            tooltipText={
-              erc721
-                ? "When there are less than 5 minutes left in the auction, successful bids will reset the auction to 5 minutes."
-                : "Nft buy auction"
-            }
+            tooltipText={(() => {
+              if (erc721) {
+                if (nft.auction_extend_minutes) {
+                  return `When there are less than 5 minutes left in the auction, successful bids will reset the auction to ${nft.auction_extend_minutes} minutes.`;
+                } else {
+                  return "When there are less than 5 minutes left in the auction, successful bids will not reset the auction ending time";
+                }
+              } else {
+                return "Nft buy auction";
+              }
+            })()}
             time={nft.auction_start_time}
             handleTimer={handleAuctionStartTimer}
           />
@@ -125,11 +132,17 @@ const NFTBaseDetails = ({
         {!isAuctionEnded && isAuctionStarted && (
           <NFTTimeLeft
             title="Auction ending in"
-            tooltipText={
-              erc721
-                ? "When there are less than 5 minutes left in the auction, successful bids will reset the auction to 5 minutes."
-                : "Nft buy auction"
-            }
+            tooltipText={(() => {
+              if (erc721) {
+                if (nft.auction_extend_minutes) {
+                  return `When there are less than 5 minutes left in the auction, successful bids will reset the auction to ${nft.auction_extend_minutes} minutes.`;
+                } else {
+                  return "When there are less than 5 minutes left in the auction, successful bids will not reset the auction ending time";
+                }
+              } else {
+                return "Nft buy auction";
+              }
+            })()}
             time={auctionEndTime}
             handleTimer={handleAuctionEndTimer}
           />
@@ -151,7 +164,8 @@ const NFTBaseDetails = ({
               <BidValue
                 title="Limited Edition"
                 value={
-                  socketData.availableQty
+                  socketData.availableQty >= 0 &&
+                  socketData.availableQty != null
                     ? `${socketData.availableQty} / ${nft.total_quantity}`
                     : `${nft.quantity} / ${nft.total_quantity}`
                 }
@@ -180,6 +194,7 @@ const NFTBaseDetails = ({
             socketData={socketData}
             isAuctionStarted={isAuctionStarted}
             isAuctionEnded={isAuctionEnded}
+            soldOut={soldOut}
           />
 
           {(() => {
@@ -249,8 +264,10 @@ const NFTBaseDetails = ({
                   disabled={(() => {
                     if (!isAuctionStarted && !isAuctionEnded) {
                       return !isAuctionStarted;
-                    } else {
+                    } else if (isAuctionEnded) {
                       return isAuctionEnded;
+                    } else {
+                      return soldOut;
                     }
                   })()}
                   className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
@@ -263,6 +280,8 @@ const NFTBaseDetails = ({
                       return "Auction has not yet begun";
                     } else if (isAuctionEnded) {
                       return "Auction has ended";
+                    } else if (soldOut) {
+                      return "Sold Out";
                     } else {
                       return "Buy";
                     }
@@ -274,7 +293,8 @@ const NFTBaseDetails = ({
 
           <div className="mt-2 royalty-info">
             {erc721 &&
-              "Counterbid within the last 5 minutes will extend the auction by 15 minutes"}
+              nft.auction_extend_minutes &&
+              `Counterbid within the last 5 minutes will extend the auction by ${nft.auction_extend_minutes} minutes`}
           </div>
         </div>
       </div>
