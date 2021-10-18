@@ -6,7 +6,7 @@ import toaster from "../utils/toaster";
 import NFTList from "./../components/nft-list";
 import NewDrops from "../components/new-drops";
 
-const Home = () => {
+const NewHome = () => {
   const [list, setList] = useState([]);
   const [page, setPage] = useState({ page: 1 });
   const [loading, setLoading] = useState(true);
@@ -29,8 +29,8 @@ const Home = () => {
   return (
     <>
       <Header />
-      {/* <NewDrops /> */}
-      {!loading ? <NFTList data={list} /> : <ThreeColumnLoader />}
+      <NewDrops />
+      {/* {!loading ? <NFTList data={list} /> : <ThreeColumnLoader />} */}
       {/* <div className="container">
         <h1 className="text-center mt-5 mb-5">
           Never miss a drop. Sign up now!
@@ -73,4 +73,4 @@ const ThreeColumnLoader = () => {
   );
 };
 
-export default Home;
+export default NewHome;

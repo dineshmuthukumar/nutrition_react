@@ -6,6 +6,10 @@ import Navbar from 'react-bootstrap/Navbar'
 import { HiOutlineArrowRight } from "react-icons/hi";
 import { FaTelegramPlane, FaDiscord, FaInstagram, FaMediumM, FaFacebookF, FaTwitter } from "react-icons/fa";
 
+import one from '../../images/drops/one.png'
+import two from '../../images/drops/two.png'
+import three from '../../images/drops/three.png'
+
 import { Button, Form } from 'react-bootstrap';
 import DropCard from './drop-card'
 import './style.scss'
@@ -53,9 +57,9 @@ const NewDrops = ()=>{
                 </div>
             </section>
             <section className="drops_list">
-            <DropCard />
-            <DropCard />
-            <DropCard  />
+            <DropCard img={three} />
+            <DropCard img={two}/>
+            <DropCard  img={one}/>
             </section>
             <section className="drop-newsletter">
                 <div className="container">
