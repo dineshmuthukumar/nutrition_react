@@ -41,7 +41,8 @@ export const abbreviateNumber = (value) => {
 };
 
 export const validateCurrency = (value) => {
-  const re = /^(\d*)\.?(\d){0,10}$/;
+  // const re = /^(\d*)\.?(\d){0,10}$/;
+  const re = /^\d*\.?\d{0,2}$/;
   return re.test(value);
 };
 
