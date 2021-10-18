@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "react-bootstrap/Image";
+import NFTCounter from "../nft-counter";
 import "./style.scss";
 
 const DropCard = ({ img }) => {
@@ -46,6 +47,7 @@ const DropCard = ({ img }) => {
               </div>
               <div className="auction-time">
                 <h5>Auction starting in</h5>
+                <NFTCounter time="2021-10-21T04:26:07.014Z" />
               </div>
               <div class="auction-main">
                 <div class="auction-one">
