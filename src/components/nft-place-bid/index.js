@@ -539,8 +539,8 @@ const NFTPlaceBid = ({
                       {erc721
                         ? `Once a bid is placed, it cannot be withdrawn. Learn More about
                   how auctions work.`
-                        : `Once an nft bought, it cannot be undone. Learn More about
-                  how this works.`}
+                        : `An nft can't be reversed after it's been purchased.. Learn More about
+                  how it works.`}
                     </div>
 
                     <div className="bottom-content-pop">
