@@ -67,7 +67,7 @@ const SubHeader = ({ nft, isAuctionStarted, isAuctionEnded, soldOut }) => {
                       } btn-lg rounded-pill`}
                       onClick={() =>
                         window.open(
-                          `${process.env.REACT_APP_BASE_URL}/accounts/wallet`,
+                          `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
                           "_self"
                         )
                       }
@@ -83,7 +83,7 @@ const SubHeader = ({ nft, isAuctionStarted, isAuctionEnded, soldOut }) => {
                       className="btn btn-dark btn-lg rounded-pill sub-place-bid-btn"
                       onClick={() =>
                         window.open(
-                          `${process.env.REACT_APP_BASE_URL}/signin?redirect=${window.location.href}`,
+                          `${process.env.REACT_APP_ACCOUNTS_URL}/signin?redirect=${window.location.href}`,
                           "_self"
                         )
                       }

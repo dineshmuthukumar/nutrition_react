@@ -93,7 +93,7 @@ const NFTPlaceBid = ({
   const handleBuy = async () => {
     if (!user)
       window.open(
-        `${process.env.REACT_APP_BASE_URL}/signin?redirect=${window.location.href}`,
+        `${process.env.REACT_APP_ACCOUNTS_URL}/signin?redirect=${window.location.href}`,
         "_self"
       );
 
@@ -156,7 +156,7 @@ const NFTPlaceBid = ({
   const handleBid = async () => {
     if (!user)
       window.open(
-        `${process.env.REACT_APP_BASE_URL}/signin?redirect=${window.location.href}`,
+        `${process.env.REACT_APP_ACCOUNTS_URL}/signin?redirect=${window.location.href}`,
         "_self"
       );
 
@@ -731,7 +731,7 @@ const NFTPlaceBid = ({
                     className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
                     onClick={() =>
                       window.open(
-                        `${process.env.REACT_APP_BASE_URL}/signin?redirect=${window.location.href}`,
+                        `${process.env.REACT_APP_ACCOUNTS_URL}/signin?redirect=${window.location.href}`,
                         "_self"
                       )
                     }

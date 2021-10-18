@@ -18,6 +18,7 @@ import {
 import "./App.css";
 
 const Home = lazy(() => import("./pages/home"));
+const NewHome = lazy(() => import("./pages/new-home"));
 const Explore = lazy(() => import("./pages/explore-list"));
 const NotFound = lazy(() => import("./pages/not-found"));
 const Details = lazy(() => import("./pages/details"));
@@ -80,6 +81,7 @@ function App(props) {
                 component={Details}
               />
               <Route exact path="/explore" component={Explore} />
+              <Route exact path="/new" component={NewHome} />
               <Route exact path="/" component={Home} />
               <Route path="/not-found" component={NotFound} />
               <Route exact component={NotFound} />

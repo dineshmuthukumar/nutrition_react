@@ -34,7 +34,7 @@ const NFTMedia = ({ image, title, slug, isFav }) => {
   const handleLike = async () => {
     if (!user)
       window.open(
-        `${process.env.REACT_APP_BASE_URL}/signin?redirect=${window.location.href}`,
+        `${process.env.REACT_APP_ACCOUNTS_URL}/signin?redirect=${window.location.href}`,
         "_self"
       );
 
@@ -282,7 +282,7 @@ const SharePopover = ({ icon, placement, title }) => {
                 style={{ color: "#25D366" }}
                 onClick={() => {
                   detectWhatsapp(
-                    `whatsapp://send?text=Hey ! I found an awesome NFT here, check it out in below link%0a%0ahttps://amitabh.bafdemo.com/details/BxRM51oLFgY7AdoP`
+                    `whatsapp://send?text=Hey ! I found an awesome NFT here%0a%0a${title}%0a%0aCheck it out in below link%0a%0a${url}`
                   ).then((hasWhatsapp) => {
                     if (!hasWhatsapp) {
                       alert(

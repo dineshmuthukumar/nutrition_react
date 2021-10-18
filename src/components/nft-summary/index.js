@@ -8,7 +8,7 @@ const NFTSummary = ({ nft, socketData }) => {
   return (
     <div className="bg-white shadow-sm nft-summary">
       <div className="row">
-        <div className="d-flex align-items-center justify-content-around">
+        <div className="d-flex align-items-center justify-content-around flex-wrap flex-row ">
           <div className="p-4">
             {erc721 ? (
               <Badge

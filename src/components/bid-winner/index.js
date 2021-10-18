@@ -182,6 +182,7 @@ const BidWinner = ({ winner, histories }) => {
                         imgUrl={history.avatar_url}
                         text={history.user_name}
                         isTable
+                        slug={history.slug}
                       />
                     </td>
                     <td className="text-center">
