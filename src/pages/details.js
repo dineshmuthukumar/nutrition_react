@@ -50,23 +50,34 @@ const Details = () => {
   const [isAuctionEnded, setIsAuctionEnded] = useState(false);
   const [soldOut, setSoldOut] = useState(false);
   const [loader, setLoader] = useState(false);
-  const [socketData, setSocketData] = useState({
-    totalBid: 0,
-    bidChange: 0,
-    totalBuy: 0,
-    price: 0,
-    totalViews: 0,
-    totalFavourites: 0,
-    availableQty: null,
-  });
+
+  // Socket State
+  const [totalBid, setTotalBid] = useState(0);
+  const [bidChange, setBidChange] = useState(0);
+  const [totalBuy, setTotalBuy] = useState(0);
+  const [price, setPrice] = useState(0);
+  const [totalViews, setTotalViews] = useState(0);
+  const [totalFavourites, setTotalFavourites] = useState(0);
+  const [availableQty, setAvailableQty] = useState(null);
+  // const [socketData, setSocketData] = useState({
+  //   totalBid: 0,
+  //   bidChange: 0,
+  //   totalBuy: 0,
+  //   price: 0,
+  //   totalViews: 0,
+  //   totalFavourites: 0,
+  //   availableQty: null,
+  // });
 
   useEffect(() => {
     buyDetail({ slug }, (data) => {
-      setSocketData({
-        ...socketData,
-        availableQty: data.quantity,
-        totalBuy: data.total_buys,
-      });
+      // setSocketData({
+      //   ...socketData,
+      //   availableQty: data.quantity,
+      //   totalBuy: data.total_buys,
+      // });
+      setAvailableQty(data.quantity);
+      setTotalBuy(data.total_buys);
       if (data.history) {
         setBuyHistory((buyHistory) => [data.history, ...buyHistory]);
       }
@@ -75,12 +86,15 @@ const Details = () => {
       }
     });
     bidDetail({ slug }, (data) => {
-      setSocketData({
-        ...socketData,
-        price: data.minimum_bid,
-        bidChange: data.bid_change,
-        totalBid: data.total_bids,
-      });
+      // setSocketData({
+      //   ...socketData,
+      //   price: data.minimum_bid,
+      //   bidChange: data.bid_change,
+      //   totalBid: data.total_bids,
+      // });
+      setTotalBid(data.total_bids);
+      setBidChange(data.bid_change);
+      setPrice(data.minimum_bid);
       if (data.history) {
         setBidHistory((bidHistory) => [data.history, ...bidHistory]);
       }
@@ -89,11 +103,13 @@ const Details = () => {
       }
     });
     pageView({ slug }, (data) => {
-      setSocketData({ ...socketData, totalViews: data.page_views });
+      // setSocketData({ totalViews: data.page_views });
+      setTotalViews(data.page_views);
     });
 
     totalFav({ slug }, (data) => {
-      setSocketData({ ...socketData, totalFavourites: data.total_favourites });
+      // setSocketData({ ...socketData, totalFavourites: data.total_favourites });
+      setTotalFavourites(data.total_favourites);
     });
 
     winnerDetail({ slug }, (data) => {
@@ -210,7 +226,18 @@ const Details = () => {
                 <NFTBaseDetails
                   nft={nft}
                   isPlaceBid={matchParams.placebid}
-                  socketData={socketData}
+                  // socketData={socketData}
+
+                  //Socket states start
+                  totalBid={totalBid}
+                  bidChange={bidChange}
+                  totalBuy={totalBuy}
+                  price={price}
+                  totalViews={totalViews}
+                  totalFavourites={totalFavourites}
+                  availableQty={availableQty}
+                  //Socket states end
+
                   isAuctionStarted={isAuctionStarted}
                   isAuctionEnded={isAuctionEnded}
                   soldOut={soldOut}
@@ -224,7 +251,16 @@ const Details = () => {
           </div>
           <div className="row mt-5">
             <div className="col-12">
-              <NFTSummary nft={nft} socketData={socketData} />
+              <NFTSummary
+                nft={nft}
+                // socketData={socketData}
+                totalBid={totalBid}
+                bidChange={bidChange}
+                totalBuy={totalBuy}
+                price={price}
+                totalViews={totalViews}
+                totalFavourites={totalFavourites}
+              />
             </div>
           </div>
           <NFTSectionTitle title="NFT Details" />
@@ -286,13 +322,12 @@ const Details = () => {
                         }
                         bottomValue={(() => {
                           if (nft.total_quantity) {
-                            return socketData.availableQty >= 0 &&
-                              socketData.availableQty != null
-                              ? `${socketData.availableQty} / ${nft.total_quantity}`
+                            return availableQty >= 0 && availableQty != null
+                              ? `${availableQty} / ${nft.total_quantity}`
                               : `${nft.quantity} / ${nft.total_quantity}`;
                           } else {
-                            return socketData.totalBuy
-                              ? `${socketData.totalBuy} / unlimited`
+                            return totalBuy
+                              ? `${totalBuy} / unlimited`
                               : `${nft.total_buys}  / unlimited`;
                           }
                         })()}

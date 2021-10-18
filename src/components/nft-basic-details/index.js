@@ -14,7 +14,15 @@ import { currencyFormat } from "../../utils/common";
 const NFTBaseDetails = ({
   nft,
   isPlaceBid,
-  socketData,
+  // socketData,
+  totalBid,
+  bidChange,
+  totalBuy,
+  price,
+  totalViews,
+  totalFavourites,
+  availableQty,
+
   isAuctionStarted,
   isAuctionEnded,
   soldOut,
@@ -81,8 +89,8 @@ const NFTBaseDetails = ({
                 }
               })()}
               value={
-                socketData.price
-                  ? currencyFormat(socketData.price, "USD")
+                price
+                  ? currencyFormat(price, "USD")
                   : currencyFormat(nft.minimum_bid, "USD")
               }
             />
@@ -164,9 +172,8 @@ const NFTBaseDetails = ({
               <BidValue
                 title="Limited Edition"
                 value={
-                  socketData.availableQty >= 0 &&
-                  socketData.availableQty != null
-                    ? `${socketData.availableQty} / ${nft.total_quantity}`
+                  availableQty >= 0 && availableQty != null
+                    ? `${availableQty} / ${nft.total_quantity}`
                     : `${nft.quantity} / ${nft.total_quantity}`
                 }
               />
@@ -176,8 +183,8 @@ const NFTBaseDetails = ({
               <BidValue
                 title="Unlimited Edition"
                 value={
-                  socketData.totalBuy
-                    ? `${socketData.totalBuy} / unlimited`
+                  totalBuy
+                    ? `${totalBuy} / unlimited`
                     : `${nft.total_buys}  / unlimited`
                 }
               />
@@ -191,7 +198,8 @@ const NFTBaseDetails = ({
           <NFTPlaceBid
             show={isPlaceBid ? true : false}
             nft={nft}
-            socketData={socketData}
+            // socketData={socketData}
+            price={price}
             isAuctionStarted={isAuctionStarted}
             isAuctionEnded={isAuctionEnded}
             soldOut={soldOut}

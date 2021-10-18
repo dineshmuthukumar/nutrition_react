@@ -3,7 +3,16 @@ import { currencyFormat } from "../../utils/common";
 import Badge from "./badge";
 import "./style.scss";
 
-const NFTSummary = ({ nft, socketData }) => {
+const NFTSummary = ({
+  nft,
+  // socketData
+  totalBid,
+  bidChange,
+  totalBuy,
+  price,
+  totalViews,
+  totalFavourites,
+}) => {
   const erc721 = nft.nft_type === "erc721";
   return (
     <div className="bg-white shadow-sm nft-summary">
@@ -13,16 +22,12 @@ const NFTSummary = ({ nft, socketData }) => {
             {erc721 ? (
               <Badge
                 title="Total Bids"
-                value={
-                  socketData.totalBid ? socketData.totalBid : nft.total_bids
-                }
+                value={totalBid ? totalBid : nft.total_bids}
               />
             ) : (
               <Badge
                 title="Total Buys"
-                value={
-                  socketData.totalBuy ? socketData.totalBuy : nft.total_buys
-                }
+                value={totalBuy ? totalBuy : nft.total_buys}
               />
             )}
           </div>
@@ -31,22 +36,20 @@ const NFTSummary = ({ nft, socketData }) => {
               <Badge
                 title="Price"
                 value={
-                  socketData.price
-                    ? currencyFormat(socketData.price, "USD")
+                  price
+                    ? currencyFormat(price, "USD")
                     : nft.minimum_bid && currencyFormat(nft.minimum_bid, "USD")
                 }
                 // diff="+2000"
-                diff={
-                  socketData.bidChange ? socketData.bidChange : nft.bid_change
-                }
+                diff={bidChange ? bidChange : nft.bid_change}
                 tooltip="Price increased from last bid"
               />
             ) : (
               <Badge
                 title="Price"
                 value={
-                  socketData.price
-                    ? currencyFormat(socketData.price, "USD")
+                  price
+                    ? currencyFormat(price, "USD")
                     : nft.buy_amount && currencyFormat(nft.buy_amount, "USD")
                 }
                 // diff="-2000"
@@ -57,19 +60,13 @@ const NFTSummary = ({ nft, socketData }) => {
           <div className="p-4">
             <Badge
               title="Total Views"
-              value={
-                socketData.totalViews ? socketData.totalViews : nft.page_views
-              }
+              value={totalViews ? totalViews : nft.page_views}
             />
           </div>
           <div className="p-4">
             <Badge
               title="Total Favourites"
-              value={
-                socketData.totalFavourites
-                  ? socketData.totalFavourites
-                  : nft.total_favourites
-              }
+              value={totalFavourites ? totalFavourites : nft.total_favourites}
             />
           </div>
         </div>

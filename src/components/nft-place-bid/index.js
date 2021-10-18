@@ -18,7 +18,8 @@ import { nftBidApi, nftBuyApi } from "../../api/methods";
 const NFTPlaceBid = ({
   show = false,
   nft,
-  socketData,
+  // socketData,
+  price,
   isAuctionStarted,
   isAuctionEnded,
   soldOut,
@@ -236,7 +237,7 @@ const NFTPlaceBid = ({
 
   const handleBidInputChange = (e) => {
     if (e.target.value) {
-      const minimumBid = socketData.price ? socketData.price : nft.minimum_bid;
+      const minimumBid = price ? price : nft.minimum_bid;
       if (validateCurrency(e.target.value)) {
         if (user) {
           if (parseFloat(user.balance) < parseFloat(e.target.value)) {
@@ -467,9 +468,7 @@ const NFTPlaceBid = ({
                     <label className="input-bid-text">
                       {erc721
                         ? `Enter minimum bid amount of ${currencyFormat(
-                            socketData.price
-                              ? socketData.price
-                              : nft.minimum_bid,
+                            price ? price : nft.minimum_bid,
                             "USD"
                           )}`
                         : `Enter Quantity`}
