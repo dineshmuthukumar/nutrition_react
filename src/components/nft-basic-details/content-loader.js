@@ -50,3 +50,84 @@ export const NFTLoader = (props) => (
     <rect x="376" y="41" rx="3" ry="3" width="231" height="29" />
   </ContentLoader>
 );
+
+export const TableLoader = (props) => (
+  <ContentLoader
+    width={"100%"}
+    height={400}
+    viewBox="0 0 100% 400"
+    backgroundColor="#f3f3f3"
+    foregroundColor="#ecebeb"
+    {...props}
+  >
+    <rect x="26" y="10" rx="4" ry="4" width="20" height="20" />
+    <rect x="100" y="10" rx="10" ry="10" width="85" height="19" />
+    <rect x="250" y="10" rx="10" ry="10" width="169" height="19" />
+    <rect x="500" y="10" rx="10" ry="10" width="169" height="19" />
+    <rect x="750" y="10" rx="10" ry="10" width="169" height="19" />
+    <rect x="980" y="10" rx="10" ry="10" width="100" height="19" />
+
+    <rect x="26" y="50" rx="4" ry="4" width="20" height="20" />
+    <rect x="100" y="50" rx="10" ry="10" width="85" height="19" />
+    <rect x="250" y="50" rx="10" ry="10" width="169" height="19" />
+    <rect x="500" y="50" rx="10" ry="10" width="169" height="19" />
+    <rect x="750" y="50" rx="10" ry="10" width="169" height="19" />
+    <rect x="980" y="50" rx="10" ry="10" width="100" height="19" />
+
+    <rect x="26" y="90" rx="4" ry="4" width="20" height="20" />
+    <rect x="100" y="90" rx="10" ry="10" width="85" height="19" />
+    <rect x="250" y="90" rx="10" ry="10" width="169" height="19" />
+    <rect x="500" y="90" rx="10" ry="10" width="169" height="19" />
+    <rect x="750" y="90" rx="10" ry="10" width="169" height="19" />
+    <rect x="980" y="90" rx="10" ry="10" width="100" height="19" />
+
+    <rect x="26" y="130" rx="4" ry="4" width="20" height="20" />
+    <rect x="100" y="130" rx="10" ry="10" width="85" height="19" />
+    <rect x="250" y="130" rx="10" ry="10" width="169" height="19" />
+    <rect x="500" y="130" rx="10" ry="10" width="169" height="19" />
+    <rect x="750" y="130" rx="10" ry="10" width="169" height="19" />
+    <rect x="980" y="130" rx="10" ry="10" width="100" height="19" />
+
+    <rect x="26" y="170" rx="4" ry="4" width="20" height="20" />
+    <rect x="100" y="170" rx="10" ry="10" width="85" height="19" />
+    <rect x="250" y="170" rx="10" ry="10" width="169" height="19" />
+    <rect x="500" y="170" rx="10" ry="10" width="169" height="19" />
+    <rect x="750" y="170" rx="10" ry="10" width="169" height="19" />
+    <rect x="980" y="170" rx="10" ry="10" width="100" height="19" />
+
+    <rect x="26" y="210" rx="4" ry="4" width="20" height="20" />
+    <rect x="100" y="210" rx="10" ry="10" width="85" height="19" />
+    <rect x="250" y="210" rx="10" ry="10" width="169" height="19" />
+    <rect x="500" y="210" rx="10" ry="10" width="169" height="19" />
+    <rect x="750" y="210" rx="10" ry="10" width="169" height="19" />
+    <rect x="980" y="210" rx="10" ry="10" width="100" height="19" />
+
+    <rect x="26" y="250" rx="4" ry="4" width="20" height="20" />
+    <rect x="100" y="250" rx="10" ry="10" width="85" height="19" />
+    <rect x="250" y="250" rx="10" ry="10" width="169" height="19" />
+    <rect x="500" y="250" rx="10" ry="10" width="169" height="19" />
+    <rect x="750" y="250" rx="10" ry="10" width="169" height="19" />
+    <rect x="980" y="250" rx="10" ry="10" width="100" height="19" />
+
+    <rect x="26" y="290" rx="4" ry="4" width="20" height="20" />
+    <rect x="100" y="290" rx="10" ry="10" width="85" height="19" />
+    <rect x="250" y="290" rx="10" ry="10" width="169" height="19" />
+    <rect x="500" y="290" rx="10" ry="10" width="169" height="19" />
+    <rect x="750" y="290" rx="10" ry="10" width="169" height="19" />
+    <rect x="980" y="290" rx="10" ry="10" width="100" height="19" />
+
+    <rect x="26" y="330" rx="4" ry="4" width="20" height="20" />
+    <rect x="100" y="330" rx="10" ry="10" width="85" height="19" />
+    <rect x="250" y="330" rx="10" ry="10" width="169" height="19" />
+    <rect x="500" y="330" rx="10" ry="10" width="169" height="19" />
+    <rect x="750" y="330" rx="10" ry="10" width="169" height="19" />
+    <rect x="980" y="330" rx="10" ry="10" width="100" height="19" />
+
+    <rect x="26" y="370" rx="4" ry="4" width="20" height="20" />
+    <rect x="100" y="370" rx="10" ry="10" width="85" height="19" />
+    <rect x="250" y="370" rx="10" ry="10" width="169" height="19" />
+    <rect x="500" y="370" rx="10" ry="10" width="169" height="19" />
+    <rect x="750" y="370" rx="10" ry="10" width="169" height="19" />
+    <rect x="980" y="370" rx="10" ry="10" width="100" height="19" />
+  </ContentLoader>
+);
