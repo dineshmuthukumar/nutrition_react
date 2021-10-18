@@ -146,7 +146,7 @@ const Header = ({ hideOptions = false }) => {
                             as="button"
                             onClick={() =>
                               window.open(
-                                `${process.env.REACT_APP_BASE_URL}/accounts/profile`,
+                                `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`,
                                 "_blank"
                               )
                             }
@@ -157,7 +157,7 @@ const Header = ({ hideOptions = false }) => {
                             as="button"
                             onClick={() =>
                               window.open(
-                                `${process.env.REACT_APP_BASE_URL}/accounts/wallet`,
+                                `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
                                 "_blank"
                               )
                             }
@@ -168,7 +168,7 @@ const Header = ({ hideOptions = false }) => {
                             as="button"
                             onClick={() =>
                               window.open(
-                                `${process.env.REACT_APP_BASE_URL}/accounts/user-activity`,
+                                `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/user-activity`,
                                 "_blank"
                               )
                             }
@@ -179,7 +179,7 @@ const Header = ({ hideOptions = false }) => {
                             as="button"
                             onClick={() =>
                               window.open(
-                                `${process.env.REACT_APP_BASE_URL}/accounts/bid-activity`,
+                                `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/bid-activity`,
                                 "_blank"
                               )
                             }
@@ -190,7 +190,7 @@ const Header = ({ hideOptions = false }) => {
                             as="button"
                             onClick={() =>
                               window.open(
-                                `${process.env.REACT_APP_BASE_URL}/accounts/settings`,
+                                `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/settings`,
                                 "_blank"
                               )
                             }
@@ -202,7 +202,7 @@ const Header = ({ hideOptions = false }) => {
                             as="button"
                             // onClick={() =>
                             //   window.open(
-                            //     `${process.env.REACT_APP_BASE_URL}/accounts/settings`,
+                            //     `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/settings`,
                             //     "_blank"
                             //   )
                             // }
@@ -241,7 +241,7 @@ const Header = ({ hideOptions = false }) => {
                         className="me-md-2 mt-2 mb-2 mt-md-0 mb-md-0"
                         onClick={() =>
                           window.open(
-                            `${process.env.REACT_APP_BASE_URL}/signin?redirect=${window.location.href}`,
+                            `${process.env.REACT_APP_ACCOUNTS_URL}/signin?redirect=${window.location.href}`,
                             "_self"
                           )
                         }
@@ -251,20 +251,20 @@ const Header = ({ hideOptions = false }) => {
                       <Button
                         onClick={() =>
                           window.open(
-                            `${process.env.REACT_APP_BASE_URL}/signup`,
+                            `${process.env.REACT_APP_ACCOUNTS_URL}/signup`,
                             "_self"
                           )
                         }
                       ></Button> */}
 
                       <Nav.Link
-                        href={`${process.env.REACT_APP_BASE_URL}/signin?redirect=${window.location.href}`}
+                        href={`${process.env.REACT_APP_ACCOUNTS_URL}/signin?redirect=${window.location.href}`}
                         target="_self"
                       >
                         {t("signin")}
                       </Nav.Link>
                       <Nav.Link
-                        href={`${process.env.REACT_APP_BASE_URL}/signup`}
+                        href={`${process.env.REACT_APP_ACCOUNTS_URL}/signup`}
                         target="_self"
                       >
                         {t("signup")}

@@ -22,7 +22,11 @@ const BidCard = ({ history, isEnd = false }) => {
               </div>
               <div className="bid-owner">
                 Bid placed by{" "}
-                <BidName imgUrl={history.avatar_url} text={history.user_name} />
+                <BidName
+                  imgUrl={history.avatar_url}
+                  text={history.user_name}
+                  slug={history.slug}
+                />
               </div>
             </div>
           </div>

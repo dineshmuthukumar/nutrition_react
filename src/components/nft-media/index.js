@@ -34,7 +34,7 @@ const NFTMedia = ({ image, title, slug, isFav }) => {
   const handleLike = async () => {
     if (!user)
       window.open(
-        `${process.env.REACT_APP_BASE_URL}/signin?redirect=${window.location.href}`,
+        `${process.env.REACT_APP_ACCOUNTS_URL}/signin?redirect=${window.location.href}`,
         "_self"
       );
 

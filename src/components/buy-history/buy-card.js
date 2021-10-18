@@ -22,7 +22,11 @@ const BuyCard = ({ history, isEnd = false }) => {
               </div>
               <div className="bid-owner">
                 NFT Bought by{" "}
-                <BuyName imgUrl={history.avatar_url} text={history.user_name} />
+                <BuyName
+                  imgUrl={history.avatar_url}
+                  text={history.user_name}
+                  slug={history.slug}
+                />
               </div>
             </div>
           </div>

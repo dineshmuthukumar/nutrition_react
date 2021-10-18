@@ -209,7 +209,7 @@ const NFTBaseDetails = ({
                   } text-center btn-lg mt-2 rounded-pill`}
                   onClick={() =>
                     window.open(
-                      `${process.env.REACT_APP_BASE_URL}/accounts/wallet`,
+                      `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
                       "_self"
                     )
                   }
@@ -224,7 +224,7 @@ const NFTBaseDetails = ({
                   className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
                   onClick={() =>
                     window.open(
-                      `${process.env.REACT_APP_BASE_URL}/signin?redirect=${window.location.href}`,
+                      `${process.env.REACT_APP_ACCOUNTS_URL}/signin?redirect=${window.location.href}`,
                       "_self"
                     )
                   }

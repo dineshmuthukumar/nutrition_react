@@ -42,7 +42,7 @@ const BidAuction = ({ status, bottomTitle, bottomValue, time }) => {
             className="btn btn-dark rounded-pill border border-white bottom-recharge-btn"
             onClick={() =>
               window.open(
-                `${process.env.REACT_APP_BASE_URL}/accounts/wallet`,
+                `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
                 "_blank"
               )
             }
