@@ -355,7 +355,6 @@ input::-webkit-inner-spin-button {
 }
 
 @media (min-width: $sm-width) {
-  
 }
 
 @media (min-width: $md-width) {
@@ -483,34 +482,31 @@ input::-webkit-inner-spin-button {
   html {
     font-size: 14px;
   }
-
 }
 
 @media (max-width: 768px) {
   html {
     font-size: 16px;
   }
- 
-.creator.mt-3 {
-  margin-top: 1rem !important;
-}
-.nft-artist .artist-content .artist-details-content {
-  min-height: auto !important;
-}
-.nft-artist .artist-content .artist-img {
-  width: 100% !important;
-}
-.nft-media.media_audio img {
-  height: auto !important;
-}
+
+  .creator.mt-3 {
+    margin-top: 1rem !important;
+  }
+  .nft-artist .artist-content .artist-details-content {
+    min-height: auto !important;
+  }
+  .nft-artist .artist-content .artist-img {
+    width: 100% !important;
+  }
+  .nft-media.media_audio img {
+    height: auto !important;
+  }
 }
 
 @media (min-width: 992px) {
   html {
     font-size: 14px;
   }
-
-  
 }
 
 @media (min-width: 1200px) {
@@ -518,121 +514,118 @@ input::-webkit-inner-spin-button {
   //   font-size: 12px;
   // }
   html {
-    font-size: 16px;
+    font-size: 12px;
   }
   .pop-body-container .pop-nft-details .input-bid-container {
     margin-top: 2rem !important;
-}
+  }
 }
 
 @media (min-width: 1400px) {
   // html {
   //   font-size: 13px;
   // }
-  html {
-      font-size: 18px;
-    }
-    .pop-body-container .pop-nft-details .input-bid-container {
-      margin-top: 3rem !important;
+
+  .pop-body-container .pop-nft-details .input-bid-container {
+    margin-top: 3rem !important;
   }
 }
 
 @media (min-width: 1600px) {
-  html {
-    // font-size: 14px;
-    font-size: 19px;
-  }
   .pop-body-container .pop-nft-details .input-bid-container {
     margin-top: 2rem !important;
-}
+  }
 }
 
 @media (min-width: 1800px) {
-  html {
-    font-size: 22px;
-  }
   .pop-body-container .pop-nft-details .input-bid-container {
     margin-top: 2rem !important;
-}
-}
-
-
-
-
-
-@media screen and (min-width: 1125px) and (max-width: 1224px)  {
- 
+  }
 }
 
-@media screen and (min-width: 1225px) and (max-width: 1364px)  {
+@media screen and (min-width: 1125px) and (max-width: 1224px) {
+}
+
+@media screen and (min-width: 1225px) and (max-width: 1364px) {
   .winner-text {
     right: -35% !important;
     top: 35% !important;
+  }
 }
-}
-@media screen and (min-width: 1365px) and (max-width: 1466px)  {
+@media screen and (min-width: 1365px) and (max-width: 1466px) {
   .winner-text {
     right: -38% !important;
     top: 35% !important;
-
+  }
 }
-}
 
-@media screen and (min-width: 1465px) and (max-width: 1566px)  {
+@media screen and (min-width: 1465px) and (max-width: 1566px) {
   .winner-text {
     right: -38% !important;
     top: 35% !important;
-
+  }
 }
-}
-
-
-
-@media screen and (min-width: 1867px) and (max-width: 1966px){
+@media screen and (min-width: 1567px) and (max-width: 1666px) {
   html {
-    font-size: 22px;
+    font-size: 14px;
+  }
+}
+@media screen and (min-width: 1667px) and (max-width: 1766px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 1767px) and (max-width: 1866px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 1867px) and (max-width: 1966px) {
+  html {
+    font-size: 18px;
   }
   .winner-text {
     right: -40% !important;
     top: 35% !important;
-
+  }
+  // .pop-body-container .pop-nft-details .input-bid-container {
+  //   margin-top: 3rem !important;
+  // }
 }
-// .pop-body-container .pop-nft-details .input-bid-container {
-//   margin-top: 3rem !important;
-// }
-}
 
-@media screen and (min-width: 1967px) and (max-width: 2066px){
+@media screen and (min-width: 1967px) and (max-width: 2066px) {
   html {
     font-size: 25px;
   }
 }
 
-@media screen and (min-width: 2067px) and (max-width: 2166px){
+@media screen and (min-width: 2067px) and (max-width: 2166px) {
   html {
     font-size: 25px;
   }
 }
 
-@media screen and (min-width: 2167px) and (max-width: 2266px){
+@media screen and (min-width: 2167px) and (max-width: 2266px) {
   html {
     font-size: 25px;
   }
 }
 
-@media screen and (min-width: 2267px) and (max-width: 2366px){
+@media screen and (min-width: 2267px) and (max-width: 2366px) {
   html {
     font-size: 24px;
   }
 }
 
-@media screen and (min-width: 2367px) and (max-width: 2466px){
+@media screen and (min-width: 2367px) and (max-width: 2466px) {
   html {
     font-size: 24px;
   }
 }
 
-@media screen and (min-width: 2467px) and (max-width: 2566px){
+@media screen and (min-width: 2467px) and (max-width: 2566px) {
   html {
     font-size: 25px;
   }
@@ -640,39 +633,42 @@ input::-webkit-inner-spin-button {
     right: -26% !important;
     top: 32% !important;
     font-size: 8rem !important;
-}
+  }
 }
 
-@media screen and (min-width: 2567px) and (max-width: 2666px){
+@media screen and (min-width: 2567px) and (max-width: 2666px) {
   html {
     font-size: 25px;
   }
 }
 
-@media screen and (min-width: 2667px) and (max-width: 2766px){
+@media screen and (min-width: 2667px) and (max-width: 2766px) {
   html {
     font-size: 25px;
   }
 }
-@media screen and (min-width: 2767px) and (max-width: 2866px){
-  html {
-    font-size: 25px;
-  }
-}
-
-@media screen and (min-width: 2867px) and (max-width: 2966px){
+@media screen and (min-width: 2767px) and (max-width: 2866px) {
   html {
     font-size: 25px;
   }
 }
 
+@media screen and (min-width: 2867px) and (max-width: 2966px) {
+  html {
+    font-size: 25px;
+  }
+}
 
 @media (min-width: 3066px) {
   html {
     font-size: 35px;
   }
+}
 
-  
+@media (min-width: 5066px) {
+  html {
+    font-size: 48px;
+  }
 }
 
 // responsive media query
@@ -690,7 +686,6 @@ input::-webkit-inner-spin-button {
   .bid-winner {
     min-height: 50vh !important;
   }
-
 }
 /* Tablet (Landscape)
 ----------------------------------------------------------- */
@@ -754,30 +749,30 @@ input::-webkit-inner-spin-button {
 @media screen and (min-width: 1024px) and (max-width: 1124px) {
   .winner-text {
     right: -38% !important;
-}
-.nft-media.media_audio {
-  height: 100% !important;
-}
-html {
-  font-size: 11.5px;
-}
-.bid-winner {
-  min-height: 90vh !important;
-}
-.bid-winner .winner-user-details img {
-  height: 11em !important;
-  width: 11em !important;
-}
+  }
+  .nft-media.media_audio {
+    height: 100% !important;
+  }
+  html {
+    font-size: 11.5px;
+  }
+  .bid-winner {
+    min-height: 90vh !important;
+  }
+  .bid-winner .winner-user-details img {
+    height: 11em !important;
+    width: 11em !important;
+  }
 }
 /* Mobile (Landscape)
 ----------------------------------------------------------- */
 @media only screen and (min-width: 320px) and (max-width: 639px) {
   .p-4 {
     flex-basis: calc(50% - 12px) !important;
-}
-.nft-media.media_audio img {
-  height: auto !important;
-}
+  }
+  .nft-media.media_audio img {
+    height: auto !important;
+  }
 }
 
 @media only screen and (min-width: 480px) and (max-width: 767px) {
@@ -789,12 +784,12 @@ html {
   .creator.mt-3 {
     margin-top: 1rem !important;
   }
-  .fit-to-height{
+  .fit-to-height {
     height: auto !important;
   }
   .nft-media.media_audio img {
     height: auto !important;
-}
+  }
   .sub-header-nft .sub-place-bid-btn {
     padding: 0.5rem 1.5rem;
   }
@@ -818,7 +813,7 @@ html {
   }
   .sw_3 .nav-tabs a span {
     display: none;
-}
+  }
   .container-fluid,
   .container-sm,
   .container-md,
@@ -856,12 +851,12 @@ html {
   .creator.mt-3 {
     margin-top: 1rem !important;
   }
-  .fit-to-height{
+  .fit-to-height {
     height: auto !important;
   }
   section.sw_ab_1 {
     padding: 4rem 1.2rem;
-}
+  }
 
   .bid-auction {
     min-height: 60vh !important;
@@ -871,11 +866,11 @@ html {
   }
   .sw_3 .nav-tabs a span {
     display: none;
-} 
-.card_title {
-  text-align: left !important;
-  max-width: 100% !important;
-}
+  }
+  .card_title {
+    text-align: left !important;
+    max-width: 100% !important;
+  }
   .place-bid-btn {
     width: 100% !important;
   }
@@ -985,39 +980,38 @@ html {
   }
   section.sw_ab_1 {
     padding: 4rem 1.3rem !important;
-}
-.scroll-drops {
-  display: none;
-}
-.drop_card {
-  margin-top: 4em;
-}
-.drop-newsletter h1 {
-  font-size: 2.21em !important;
-  font-weight: 500;
-}
-.card_title {
-  padding-left: 2em;
-  padding-right: 2em;
-}
-.drop-newsletter .formGroup {
-  width: 100% !important;
-}
-section.drop-newsletter{
-  padding: 2em;
-}
-section.drop-newsletter {
-  background-position-x: 98% !important;
-}
-section.drop-newsletter{
-  padding: 2em !important;
-}
+  }
+  .scroll-drops {
+    display: none;
+  }
+  .drop_card {
+    margin-top: 4em;
+  }
+  .drop-newsletter h1 {
+    font-size: 2.21em !important;
+    font-weight: 500;
+  }
+  .card_title {
+    padding-left: 2em;
+    padding-right: 2em;
+  }
+  .drop-newsletter .formGroup {
+    width: 100% !important;
+  }
+  section.drop-newsletter {
+    padding: 2em;
+  }
+  section.drop-newsletter {
+    background-position-x: 98% !important;
+  }
+  section.drop-newsletter {
+    padding: 2em !important;
+  }
 }
 
 // responive media query ends
 
 @media (min-width: 2100px) {
-  
   .nft-more .nft-more-content .more-card img {
     // width: 20rem !important;
     width: 100%;
@@ -1035,11 +1029,5 @@ section.drop-newsletter{
   }
 }
 
-
-
-
-
-@media screen and (max-width: 1024px), 
-       screen and (max-height: 800px) {
-       
+@media screen and (max-width: 1024px), screen and (max-height: 800px) {
 }
