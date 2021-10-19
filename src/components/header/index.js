@@ -97,13 +97,13 @@ const Header = ({ hideOptions = false }) => {
                         autoClose="outside"
                         onToggle={(e) => setNotification(e)}
                       >
-                        <Dropdown.Toggle
+                        {/* <Dropdown.Toggle
                           align="start"
                           drop="start"
                           as={NotificationToggleComponent}
-                        ></Dropdown.Toggle>
+                        ></Dropdown.Toggle> */}
 
-                        <Dropdown.Menu align="end" className="noti-container">
+                        {/* <Dropdown.Menu align="end" className="noti-container">
                           <div className="noti-header">Notifications</div>
                           <div className="noti-content">
                             <div className="sub-header">Today</div>
@@ -132,7 +132,7 @@ const Header = ({ hideOptions = false }) => {
                               See More
                             </div>
                           </div>
-                        </Dropdown.Menu>
+                        </Dropdown.Menu> */}
                       </Dropdown>
                       <Dropdown autoClose="outside">
                         <Dropdown.Toggle
