@@ -82,7 +82,7 @@ function App(props) {
               />
               <Route exact path="/explore/category/:slug" component={Explore} />
               <Route exact path="/" component={NewHome} />
-              <Route exact path="/new" component={Home} />
+              {/* <Route exact path="/new" component={Home} /> */}
               <Route path="/not-found" component={NotFound} />
               <Route exact component={NotFound} />
             </Switch>

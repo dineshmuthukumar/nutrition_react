@@ -70,6 +70,9 @@ const Details = () => {
   // });
 
   useEffect(() => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+
     buyDetail({ slug }, (data) => {
       // setSocketData({
       //   ...socketData,
