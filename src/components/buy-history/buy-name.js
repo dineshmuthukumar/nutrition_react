@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import userImg from "../../images/user_1.png";
 
 const BuyName = ({
@@ -8,6 +9,11 @@ const BuyName = ({
   slug,
   static_name = false,
 }) => {
+  const { user } = useSelector((state) => state.user.data);
+
+  const username =
+    user?.slug === slug ? user.first_name + user.last_name : text;
+
   return isTable ? (
     <div className="expand-history-owner">
       <img src={imgUrl ? imgUrl : userImg} />
@@ -18,11 +24,13 @@ const BuyName = ({
           onClick={() =>
             !static_name &&
             window.open(
-              `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/view/${slug}`
+              user?.slug === slug
+                ? `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`
+                : `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/view/${slug}`
             )
           }
         >
-          {text}
+          {username}
         </div>
       </div>
     </div>
@@ -33,11 +41,13 @@ const BuyName = ({
       onClick={() =>
         !static_name &&
         window.open(
-          `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/view/${slug}`
+          user?.slug === slug
+            ? `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`
+            : `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/view/${slug}`
         )
       }
     >
-      {text}
+      {username}
     </span>
   );
 };
