@@ -2,20 +2,28 @@ import React from "react";
 import NFTPropPills from "../nft-prop-pills";
 import "./style.scss";
 
-const NFTProperties = () => {
+const NFTProperties = ({ properties }) => {
   return (
     <div className="nft-props">
       <div className="nft-props-title">
         Properties
-        <span className="title-count">(3)</span>
+        {properties && (
+          <span className="title-count">
+            ({Object.keys(properties).length})
+          </span>
+        )}
       </div>
 
       <div className="mt-2 nft-props-content">
-        <NFTPropPills />
-        <NFTPropPills />
-        <NFTPropPills />
-        <NFTPropPills />
-        <NFTPropPills />
+        {properties &&
+          Object.keys(properties).map((property) => {
+            return (
+              <NFTPropPills
+                property={properties[property]}
+                propertyType={property}
+              />
+            );
+          })}
       </div>
     </div>
   );
