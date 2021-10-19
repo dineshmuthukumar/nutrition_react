@@ -16,6 +16,7 @@ import {
 import one from "../../images/drops/one.png";
 import two from "../../images/drops/two.png";
 import three from "../../images/drops/three.png";
+import four from "../../images/drops/amitab2.png";
 
 import { Button, Form } from "react-bootstrap";
 import DropCard from "./drop-card";
@@ -52,7 +53,7 @@ const NewDrops = () => {
               <div className="col-xxl-7 col-xl-6 col-lg-5 col-md-9 col-xs-10 order-1 order-lg-2">
                 <div className="content-img content-img--l4-1">
                   <Image
-                    src="https://amitabh.bafdemo.com/static/media/artist-image.2236b257.png"
+                    src={four}
                     rounded
                   />{" "}
                 </div>
@@ -74,15 +75,15 @@ const NewDrops = () => {
                   <div className="nav nav-tabs sticky-tabs">
                     <Link to="#drop_1" className="nav-label">
                       {" "}
-                      Collection 1: <span>Madhushala</span>{" "}
+                      Collection 1:  <span>Madhushala</span>{" "}
                     </Link>
                     <Link className="nav-label">
                       {" "}
-                      Collection 2: <span>Posters</span>{" "}
+                      Collection 2:  <span>Posters</span>{" "}
                     </Link>
                     <Link className="nav-label">
                       {" "}
-                      Collection 3:<span> Cryptopunks</span>{" "}
+                      Collection 3: <span> Cryptopunks</span>{" "}
                     </Link>
                   </div>
                 </Navbar>

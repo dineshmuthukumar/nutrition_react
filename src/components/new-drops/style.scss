@@ -14,7 +14,7 @@ p.drop-title__description {
     border-radius: 2em;
     color: #fff;
     border: 1px solid #fff;
-    width: 40%;
+    width: 50%;
     margin-left: 0;
     margin-top: 6.9%;
     height: 3em;
@@ -28,7 +28,9 @@ p.drop-title__description {
     font-family: 'neue_helveticabold';
 }
 .content-img img {
-    width: 100%;
+    width: 60%;
+    margin: auto;
+    display: block;
 }
 .scroll-drops {
     text-align: center;
@@ -531,6 +533,9 @@ section.drops_list {
 .border-right::after{
     content: none;
 }
+.drop-card-post .learnMore a {
+    width: 100%;
+}
 footer{
     background-image: none;
 }
@@ -545,6 +550,21 @@ footer{
 .submenu{
     width: 100% !important;
 }
+.content-img img {
+    width: 60%;
+}
+.learnMore a {
+    height: 3.5em;
+    font-size: 1.5rem;
+    width: 100%;
+}
+.drop_card {
+    border: none;
+    margin-top: 2.6em;
+}
+section.dropCard-Section {
+    padding-top: 3.25em;
+}
 #fmenu1 .submenu {
     display: flex;
     padding: 5% 4.5% 3% 4.5%;
@@ -557,7 +577,7 @@ h2.drop-title__heading {
     margin-top: 2rem !important;
 }
 .drop-title p {
-    font-size: 1.3em !important;
+    font-size: 1.4em !important;
 }
 #fmenu1 .submenu:first-of-type p {
     font-size: 1em;
@@ -616,13 +636,13 @@ p.heading-S {
     font-size: 1em;   
     margin-bottom: 2%;
 }
-button.nft_form{
-
-top: 3px !important;
-width: 30px !important;
-height: 30px !important;
-font-size: 1.3em !important;
-line-height: 15px !important;
+button.nft_form {
+    top: 9px !important;
+    right: 10px;
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 1.3em !important;
+    line-height: 15px !important;
 }
 #fmenu2 .submenu:first-of-type > div {
     margin-right: initial;
