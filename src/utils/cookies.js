@@ -10,9 +10,15 @@ export const getCookies = () => {
 
 export const removeCookies = () => {
   if (process.env.REACT_APP_ENVIRONMENT === "local") {
-    cookies.remove(cookie_token, { domain: "localhost", path: "/" });
+    cookies.remove(cookie_token, {
+      domain: process.env.REACT_APP_COOKIE_DOMAIN_NAME,
+      path: "/",
+    });
   } else {
-    cookies.remove(cookie_token, { domain: ".bafdemo.com", path: "/" });
+    cookies.remove(cookie_token, {
+      domain: process.env.REACT_APP_COOKIE_DOMAIN_NAME,
+      path: "/",
+    });
   }
 
   (function () {
