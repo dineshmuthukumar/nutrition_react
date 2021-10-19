@@ -52,10 +52,7 @@ const NewDrops = () => {
               </div>
               <div className="col-xxl-7 col-xl-6 col-lg-5 col-md-9 col-xs-10 order-1 order-lg-2">
                 <div className="content-img content-img--l4-1">
-                  <Image
-                    src={four}
-                    rounded
-                  />{" "}
+                  <Image src={four} rounded />{" "}
                 </div>
               </div>
             </div>
@@ -75,11 +72,11 @@ const NewDrops = () => {
                   <div className="nav nav-tabs sticky-tabs">
                     <Link to="#drop_1" className="nav-label">
                       {" "}
-                      Collection 1:  <span>Madhushala</span>{" "}
+                      Collection 1: <span>Madhushala</span>{" "}
                     </Link>
                     <Link className="nav-label">
                       {" "}
-                      Collection 2:  <span>Posters</span>{" "}
+                      Collection 2: <span>Posters</span>{" "}
                     </Link>
                     <Link className="nav-label">
                       {" "}
@@ -92,13 +89,56 @@ const NewDrops = () => {
           </div>
         </section>
         <section className="drops_list">
-          <DropCard img={three} cardTitle="Madhushala NFTs" smallTitle="Amalgamation Of Knowledge, Fulfilment of duties, and Expectations" cardDesc="BeyondLife.club brings you the philosophical undertones of Madhushala in Amitabh’s baritone as an NFT!. Now you can own a recorded version of Madhushala, curated by Amitabh Bachchan himself. 
-By owning this one-of-a-kind NFT, you are owning segments of Indian history, a livelihood full of extraordinary scenarios, a guide for betterment, a betterment for a lifetime.  " dropTitle="About Collection" dropDescOne="Mr. Harivansh Rai Bachchan (1907–2003), father of Mr. Amitabh Bachchan, wrote Madhushala that depicts the wisdom of Madhu-temple of Mind (Madhushala), karma, imbibement of knowledge, fulfillment of duties, and expectations of an individual from the society into beautiful verses. 
-" dropDescTwo="Madhushala’s Rhyme, Rhythm, and Flavour is still fresh in Amitabh’s mind. He believed and witnessed the miracles that the purest form of art brings in society. However, the love and the respect Mr.Bachchan holds in his heart that compelled him to recite, sing, and translate stories of Madhushala from time to time. " auctionTitle="Auction starting in" auctionTime="" editionTitle="Edition of" editionType="2/2" additional="Addtional Perk" additionalDesc="The highest bidders in the two categories, in addition to the NFTs, will also get to avail a meet-and-greet session with the Big B - A memory that any Amitabh will hold on to more dearly than the NFT itself!" />
-          <DropCard img={two}  cardTitle="Autographed Posters" smallTitle="Exclusive & Classic Amitabh Bachchan Posters in Digital" cardDesc="Now you can own an original movie poster of India’s legendary icon, hand-painted by a few authentic artists whose work will amaze you in every way. The cult value of their masterpieces is a statement of ethnicity, authenticity, Indian cinema’s legacy, and beyond." dropTitle="About Collection" dropDescOne="Hand-painted movie posters, as any classic cinema aficionado might have known, served as heralds for The Shahenshah of Bollywood’s movies. Carrying the savage retro flavor in their artistic expression, these posters are masterpieces in their own right! Posters of Amitabh’s classics depict the era of Celluloid Renaissance in Indian Cinema." dropDescTwo="Movie posters from the era where India witnessed its “Angry young man”, dominating the Indian cinema. Amitabh Bachchan’s career itself should be a storyline that will potentially be a superhit worldwide." auctionTitle="Auction starting in" auctionTime="" editionTitle="Limited Edition" editionType="10 Posters 24 Collection" additional="Addtional Perk" additionalDesc="10 randomly chosen purchasers of these poster NFTs will get signed and personalized letters from Amitabh himself! How cool is it for you to show off to your friends and folks that you have been called by name by the Big B! " />
-          <DropCard img={one}  cardTitle="Crypto Punks" smallTitle="Lorem ipsum Dolor Set Amitabh Bachchan Crypto Punks" cardDesc="Let’s admit it! Amitabh, in every Avatar, has been a success! Be it the classic ‘Angry Young Man’, or the modern French-bearded Godfather with his signature ‘Devion or Sajjanon’, or the Twitter personality who numbers his Tweets, the Big B can never be off trends!" dropTitle="About Collection" dropDescOne="Since Amitabh has just stepped into the NFT realm, and going with the proven trend in the NFT space, we bring you exclusive Amitabh Bachchan crypto punks! These crypto punks preserve the essence of Amitabh Bachchan using certain attributes.
-" dropDescTwo="These ‘Amitabh Punks’ have their signature headgear, neck-gear, hairstyle, eyewear, facial hair, and a few more, creating a repository of unique, meticulously crafted, and curated cryptopunk versions of Amitabh.
-" auctionTitle="Auction starting in" auctionTime="" editionTitle="Auction starting in" editionType="10000"  />
+          <DropCard
+            img={three}
+            cardTitle="Madhushala NFTs"
+            smallTitle="Amalgamation Of Knowledge, Fulfilment of duties, and Expectations"
+            cardDesc="BeyondLife.club brings you the philosophical undertones of Madhushala in Amitabh’s baritone as an NFT!. Now you can own a recorded version of Madhushala, curated by Amitabh Bachchan himself. 
+By owning this one-of-a-kind NFT, you are owning segments of Indian history, a livelihood full of extraordinary scenarios, a guide for betterment, a betterment for a lifetime.  "
+            dropTitle="About Collection"
+            dropDescOne="Mr. Harivansh Rai Bachchan (1907–2003), father of Mr. Amitabh Bachchan, wrote Madhushala that depicts the wisdom of Madhu-temple of Mind (Madhushala), karma, imbibement of knowledge, fulfillment of duties, and expectations of an individual from the society into beautiful verses. 
+"
+            dropDescTwo="Madhushala’s Rhyme, Rhythm, and Flavour is still fresh in Amitabh’s mind. He believed and witnessed the miracles that the purest form of art brings in society. However, the love and the respect Mr.Bachchan holds in his heart that compelled him to recite, sing, and translate stories of Madhushala from time to time. "
+            auctionTitle="Auction starting in"
+            auctionTime=""
+            editionTitle="Edition of"
+            editionType="2/2"
+            additional="Addtional Perk"
+            additionalDesc="The highest bidders in the two categories, in addition to the NFTs, will also get to avail a meet-and-greet session with the Big B - A memory that any Amitabh will hold on to more dearly than the NFT itself!"
+            slug={"J0RLMBoWUoBv2PzQ"}
+          />
+          <DropCard
+            img={two}
+            cardTitle="Autographed Posters"
+            smallTitle="Exclusive & Classic Amitabh Bachchan Posters in Digital"
+            cardDesc="Now you can own an original movie poster of India’s legendary icon, hand-painted by a few authentic artists whose work will amaze you in every way. The cult value of their masterpieces is a statement of ethnicity, authenticity, Indian cinema’s legacy, and beyond."
+            dropTitle="About Collection"
+            dropDescOne="Hand-painted movie posters, as any classic cinema aficionado might have known, served as heralds for The Shahenshah of Bollywood’s movies. Carrying the savage retro flavor in their artistic expression, these posters are masterpieces in their own right! Posters of Amitabh’s classics depict the era of Celluloid Renaissance in Indian Cinema."
+            dropDescTwo="Movie posters from the era where India witnessed its “Angry young man”, dominating the Indian cinema. Amitabh Bachchan’s career itself should be a storyline that will potentially be a superhit worldwide."
+            auctionTitle="Auction starting in"
+            auctionTime=""
+            editionTitle="Limited Edition"
+            editionType="10 Posters 24 Collection"
+            additional="Addtional Perk"
+            additionalDesc="10 randomly chosen purchasers of these poster NFTs will get signed and personalized letters from Amitabh himself! How cool is it for you to show off to your friends and folks that you have been called by name by the Big B! "
+            slug={"r1QzYBjdUegme4aR"}
+          />
+          <DropCard
+            img={one}
+            cardTitle="Crypto Punks"
+            smallTitle="Lorem ipsum Dolor Set Amitabh Bachchan Crypto Punks"
+            cardDesc="Let’s admit it! Amitabh, in every Avatar, has been a success! Be it the classic ‘Angry Young Man’, or the modern French-bearded Godfather with his signature ‘Devion or Sajjanon’, or the Twitter personality who numbers his Tweets, the Big B can never be off trends!"
+            dropTitle="About Collection"
+            dropDescOne="Since Amitabh has just stepped into the NFT realm, and going with the proven trend in the NFT space, we bring you exclusive Amitabh Bachchan crypto punks! These crypto punks preserve the essence of Amitabh Bachchan using certain attributes.
+"
+            dropDescTwo="These ‘Amitabh Punks’ have their signature headgear, neck-gear, hairstyle, eyewear, facial hair, and a few more, creating a repository of unique, meticulously crafted, and curated cryptopunk versions of Amitabh.
+"
+            auctionTitle="Auction starting in"
+            auctionTime=""
+            editionTitle="Auction starting in"
+            editionType="10000"
+            slug={"QobmxgwyU9Bl9LzY"}
+          />
         </section>
         <section className="drop-newsletter">
           <div className="container">

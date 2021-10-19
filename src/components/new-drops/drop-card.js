@@ -1,9 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
+import { useHistory } from "react-router";
 import Image from "react-bootstrap/Image";
 import NFTCounter from "../nft-counter";
 import "./style.scss";
 
-const DropCard = ({ img ,cardTitle, smallTitle, cardDesc, dropTitle, dropDescOne, dropDescTwo, auctionTitle, auctionTime, editionTitle, editionType, additional, additionalDesc }) => {
+const DropCard = ({
+  img,
+  cardTitle,
+  smallTitle,
+  cardDesc,
+  dropTitle,
+  dropDescOne,
+  dropDescTwo,
+  auctionTitle,
+  auctionTime,
+  editionTitle,
+  editionType,
+  additional,
+  additionalDesc,
+  slug,
+}) => {
+  const history = useHistory();
+  const handleClick = () => {
+    if (slug) {
+      history.push(`/explore/category/${slug}`);
+    }
+  };
+
   return (
     <>
       <section className="dropCard-Section" id="drop_1">
@@ -11,24 +34,16 @@ const DropCard = ({ img ,cardTitle, smallTitle, cardDesc, dropTitle, dropDescOne
           <div className="row">
             <div className="card_title">
               <h2>{cardTitle}</h2>
-              <p className="small-title mb-3">
-                {smallTitle}
-              </p>
-              <p>
-                {cardDesc}
-              </p>
+              <p className="small-title mb-3">{smallTitle}</p>
+              <p>{cardDesc}</p>
             </div>
           </div>
           <div className="row drop_card">
             <div className="col-lg-6 border-right">
               <div className="drop-title">
                 <h4 className="mb-4">{dropTitle}</h4>
-                <p>
-                  {dropDescOne}
-                </p>
-                <p className="mb-4">
-                  {dropDescTwo}
-                </p>
+                <p>{dropDescOne}</p>
+                <p className="mb-4">{dropDescTwo}</p>
               </div>
               <div className="auction-time">
                 <h5>{auctionTitle}</h5>
@@ -46,14 +61,12 @@ const DropCard = ({ img ,cardTitle, smallTitle, cardDesc, dropTitle, dropDescOne
               </div>
               <div className="additional-perks">
                 <h5>{additional}</h5>
-                <p>
-                  {additionalDesc}
-                </p>
+                <p>{additionalDesc}</p>
               </div>
             </div>
             <div className="col-lg-6">
               <div className="drop-card-post">
-                <Image src={img} />
+                <Image src={img} role="button" onClick={handleClick} />
                 <div class="learnMore">
                   {" "}
                   <a href="#">Join The Waitlist</a>{" "}

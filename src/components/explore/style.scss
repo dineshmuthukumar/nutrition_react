@@ -1,75 +1,91 @@
 .about-heading {
-    border-bottom: 2px solid #181818;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    flex-wrap: wrap;
+  border-bottom: 2px solid #181818;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
 }
 h3.about-title {
-    margin: 0;
-    font-size: 2rem;
-    font-weight: 700;
-    font-stretch: normal;
-    line-height: 2.31;
-    color: #181818;
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  font-stretch: normal;
+  line-height: 2.31;
+  color: #181818;
 }
 .user-nav li .nav-link {
-    color: #9c9c9b;
-    padding: 1rem;
-    padding-right: 1rem !important;
-    padding-left: 1rem !important;
-    font-family: "neue_helveticabold";
-    font-size: 1.2rem;
-}   
+  color: #9c9c9b;
+  padding: 1rem;
+  padding-right: 1rem !important;
+  padding-left: 1rem !important;
+  font-family: "neue_helveticabold";
+  font-size: 1.2rem;
+}
 .user-nav li .nav-link.active {
-    color: #000;
+  color: #000;
 }
 .post-title {
-    font-size: 1.6rem;
-    margin-top: 1rem;
-    margin-bottom: 0;
-    line-height: 1.2;
+  font-size: 1.6rem;
+  margin-top: 1rem;
+  margin-bottom: 0;
+  line-height: 1.2;
 }
 .post-cost {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: absolute;
-    bottom: .75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 0.75rem;
 }
 .post-sold-cost {
-    color: #181818;
-    font-weight: 700;
+  color: #181818;
+  font-weight: 700;
 }
 .post-cost .post-sold-text {
-    font-weight: 500;
+  font-weight: 500;
 }
 .post-sold-text {
-    color: #757575;
+  color: #757575;
 }
 .post-cost .post-sold-cost {
-    font-size: 1.2rem;
-    font-weight: 500;
-    font-family: "neue_helveticabold";
+  font-size: 1.2rem;
+  font-weight: 500;
+  font-family: "neue_helveticabold";
 }
 .pw_we {
-    display: block;
-    position: unset;
+  display: block;
+  position: unset;
 }
 .rights-bid {
-    text-align: right;
+  text-align: right;
 }
 .right-bid {
-    text-align: right;
+  text-align: right;
 }
 .left_bid {
-    color: red;
-    font-weight: 600;
+  color: red;
+  font-weight: 600;
 }
 .explore-title p {
-    font-size: 1.4em;
+  font-size: 1.4em;
 }
 .explore-title h1 {
-    font-size: 2.7em;
+  font-size: 2.7em;
+}
+.desc-para {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.left-bid {
+  width: 80%;
+}
+.left-bids {
+  width: 50%;
+}
+.item-post img {
+  max-height: 20rem;
+  width: 100%;
+  object-fit: cover;
 }

@@ -1,24 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { List } from "react-content-loader";
 import Header from "../components/header";
-import { nftListApi } from "../api/methods";
+import { nftCategoriesApi } from "../api/methods";
 import toaster from "../utils/toaster";
 import NFTList from "./../components/nft-list";
 import NewDrops from "../components/new-drops";
 
 const NewHome = () => {
   const [list, setList] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [page, setPage] = useState({ page: 1 });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    nftList(page);
+    nftCategories(page);
   }, []);
 
-  const nftList = async (page) => {
+  const nftCategories = async (page) => {
     try {
-      let response = await nftListApi(page);
-      setList(response.data.data.nfts);
+      setLoading(true);
+      let response = await nftCategoriesApi(page);
+      setCategories(response.data.data.categories);
       setLoading(false);
     } catch (err) {
       console.log(err);
@@ -29,7 +31,7 @@ const NewHome = () => {
   return (
     <>
       <Header />
-      <NewDrops />
+      <NewDrops categories={categories} />
       {/* {!loading ? <NFTList data={list} /> : <ThreeColumnLoader />} */}
       {/* <div className="container">
         <h1 className="text-center mt-5 mb-5">

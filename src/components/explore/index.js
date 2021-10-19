@@ -2,8 +2,10 @@ import React from "react";
 import postOne from "../../images/post1.png";
 import postTwo from "../../images/post2.png";
 import postThree from "../../images/post3.png";
+import ExploreCard from "./explore-card";
 import "./style.scss";
-const Explore = () => {
+
+const Explore = ({ list = [] }) => {
   return (
     <>
       <section className="explore-drops">
@@ -25,7 +27,7 @@ const Explore = () => {
                 <div className="col-md-12 ">
                   <div className="about-heading mb-4">
                     <div>
-                      <h3 className="about-title">Showing All (12)</h3>
+                      <h3 className="about-title">Showing ({list.length})</h3>
                     </div>
                     <div>
                       <ul className="nav user-nav">
@@ -35,12 +37,12 @@ const Explore = () => {
                             aria-current="page"
                             href="#"
                           >
-                            Filter By
+                            {/* Filter By */}
                           </a>
                         </li>
                         <li className="nav-item">
                           <a className="nav-link" href="#">
-                            Sort By
+                            {/* Sort By */}
                           </a>
                         </li>
                       </ul>
@@ -49,109 +51,49 @@ const Explore = () => {
                 </div>
               </div>
               <div className="row gutters-20">
-                {/* <!-- post column starts --> */}
-                <div className="col-xl-4 col-lg-4 col-sm-6">
-                  <div className="block-box user-post mb-5">
-                    <div className="item-post">
-                      <img src={postOne} width="100%" align="post" />
-                    </div>
-                    <h6 className="post-title">Signed Poster #001</h6>
-                    <p>Amitabh Bachchan</p>
-                    <div className="post-cost pw_we">
-                      <div className="post-sold-text">Auction Starting in</div>
-                      <div className="post-sold-cost">3h 16m 18s</div>
-                    </div>
-                  </div>
-                </div>
-                {/* <!-- post column starts --> */}
-                {/* <!-- post column starts --> */}
-                <div className="col-xl-4 col-lg-4 col-sm-6">
-                  <div className="block-box user-post  mb-5">
-                    <div className="item-post">
-                      <img src={postTwo} width="100%" align="post" />
-                    </div>
-                    <h6 className="post-title">Signed Poster #010</h6>
-                    <p>Amitabh Bachchan</p>
-                    <div className="post-cost pw_we">
-                      <div className="post-sold-text">Auction Starting in</div>
-                      <div className="post-sold-cost">3h 16m 18s</div>
-                    </div>
-                  </div>
-                </div>
-                {/* <!-- post column starts --> */}
-                {/* <!-- post column starts --> */}
-                <div className="col-xl-4 col-lg-4 col-sm-6">
-                  <div className="block-box user-post  mb-5">
-                    <div className="item-post">
-                      <img src={postThree} width="100%" align="post" />
-                    </div>
-                    <div className="d-flex justify-content-between">
-                      <div className="left-bid">
-                        <h6 className="post-title">Hocus Pocuss</h6>
-                        <p>Julianlage</p>
-                      </div>
-                      <div className="rights-bid">
-                        <p className="left_bid mt-3">Only 10 left</p>
-                      </div>
-                    </div>
-                    <div className="post-cost pw_we d-flex  justify-content-between">
-                      <div className="left-bid">
-                        <div className="post-sold-text">Bid Price</div>
-                        <div className="post-sold-cost">$100.28</div>
-                      </div>
-                      <div className="right-bid">
-                        <div className="post-sold-text">Ending In</div>
-                        <div className="post-sold-cost">3h 16m 18s</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                {/* <!-- post column starts --> */}
-                {/* <!-- post column starts --> */}
-                <div className="col-xl-4 col-lg-4 col-sm-6">
-                  <div className="block-box user-post  mb-5">
-                    <div className="item-post">
-                      <img src={postThree} width="100%" align="post" />
-                    </div>
-                    <h6 className="post-title">Hocus Pocus</h6>
-                    <p>Julianlage</p>
-                    <div className="post-cost pw_we">
-                      <div className="post-sold-text">Auction Starting in</div>
-                      <div className="post-sold-cost">3h 16m 18s</div>
-                    </div>
-                  </div>
-                </div>
-                {/* <!-- post column starts --> */}
-                {/* <!-- post column starts --> */}
-                <div className="col-xl-4 col-lg-4 col-sm-6">
-                  <div className="block-box user-post  mb-5">
-                    <div className="item-post">
-                      <img src={postOne} width="100%" align="post" />
-                    </div>
-                    <h6 className="post-title">Hocus Pocus</h6>
-                    <p>Julianlage</p>
-                    <div className="post-cost pw_we">
-                      <div className="post-sold-text">Auction Starting in</div>
-                      <div className="post-sold-cost">3h 16m 18s</div>
-                    </div>
-                  </div>
-                </div>
-                {/* <!-- post column starts --> */}
-                {/* <!-- post column starts --> */}
-                <div className="col-xl-4 col-lg-4 col-sm-6">
-                  <div className="block-box user-post  mb-5">
-                    <div className="item-post">
-                      <img src={postTwo} width="100%" align="post" />
-                    </div>
-                    <h6 className="post-title">Hocus Pocus</h6>
-                    <p>Julianlage</p>
-                    <div className="post-cost pw_we">
-                      <div className="post-sold-text">Auction Starting in</div>
-                      <div className="post-sold-cost">3h 16m 18s</div>
-                    </div>
-                  </div>
-                </div>
-                {/* <!-- post column starts --> */}
+                {list.map((nft) => {
+                  let label = "",
+                    time,
+                    isEnded = false,
+                    isStarted = false,
+                    bidBuyValue = 0;
+
+                  if (new Date(nft.auction_start_time) > new Date(nft.time)) {
+                    label = "Starting in";
+                    time = nft.auction_start_time;
+                  } else if (
+                    new Date(nft.auction_end_time) > new Date(nft.time)
+                  ) {
+                    label = "Ends in";
+                    time = nft.auction_end_time;
+                    isStarted = true;
+                  } else {
+                    time = nft.auction_end_time;
+                    label = "Ended at";
+                    isEnded = true;
+                  }
+
+                  if (nft.nft_type === "erc721") {
+                    bidBuyValue = nft.minimum_bid;
+                  } else {
+                    bidBuyValue = nft.buy_amount;
+                  }
+
+                  return (
+                    <ExploreCard
+                      slug={nft.slug}
+                      nft={nft}
+                      isStarted={isStarted}
+                      isEnded={isEnded}
+                      time={time}
+                      label={label}
+                      title={nft.name}
+                      bidPrice={bidBuyValue}
+                      desc={nft.description}
+                      nftType={nft.nft_type}
+                    />
+                  );
+                })}
               </div>
             </div>
           </div>
