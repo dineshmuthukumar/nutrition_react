@@ -71,12 +71,12 @@ const NFTMedia = ({ image, title, slug, isFav }) => {
           type="video/mp4"
         />
       </video> */}
-      <div className="no_height align-items-center">
+      {/* <div className="no_height align-items-center"> */}
         <img
           className="type_image typeimg_audio"
           src={image ? image : "https://wallpaperaccess.com/full/112115.jpg"}
         />
-      </div>
+      {/* </div> */}
       {/* <audio
         controls
         className="shadow-sm audioOnmedia"

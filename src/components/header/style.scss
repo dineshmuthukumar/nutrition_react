@@ -50,6 +50,7 @@
 .navbar-dark .navbar-nav .nav-link {
   color: #ffffff !important;
   font-family: $neue-helveticalight;
+  font-size: 1.2rem;
 }
 
 .navbar-nav {
@@ -62,7 +63,7 @@
   margin-top: 0.6rem !important;
 
   .dropdown-item {
-    font-size: 0.85rem;
+    font-size: 1rem;
     font-family: $neue-helveticamedium;
     border-radius: 0.2rem;
     margin: 0.3rem 0;

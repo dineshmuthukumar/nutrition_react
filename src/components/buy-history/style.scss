@@ -65,7 +65,7 @@
       .first-half {
         display: flex;
         align-items: center;
-
+        width: calc(100% - 100px);
         img {
           height: 60px;
           width: 60px;
@@ -75,14 +75,15 @@
         }
 
         .time {
-          font-size: 0.8rem;
+          font-size: 1rem;
           font-family: $neue-helveticamedium;
         }
 
         .bid-owner {
-          font-size: 1rem;
+          font-size: 1.15rem;
           font-family: $neue-helveticabold;
-
+          width: calc(100%);
+          word-wrap: break-word;
           .owner-id {
             cursor: pointer;
 
@@ -94,8 +95,12 @@
       }
 
       .second-half {
+        width: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
         .bid-value {
-          font-size: 1rem;
+          font-size: 1.2rem;
           font-family: $neue-helveticabold;
         }
       }
@@ -188,4 +193,13 @@
     min-height: 100vh !important;
     position: relative;
   }
+}
+
+@media only screen and (max-width: 767px) {
+  .bid-owner{
+    span{
+      display: flex;
+    }
+  }
+
 }

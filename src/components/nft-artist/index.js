@@ -15,7 +15,7 @@ const NFTArtist = () => {
         <div className="col-12 col-md-7 mt-4 mt-md-0 artist-details-content">
           <div className="artist-name">Amitabh Bachchan</div>
           <div className="at-name">@AmitabhBachchan</div>
-          <div className="artist-desc mt-4">
+          <div className="artist-desc mt-5">
             <ReadMoreReact
               min={300}
               ideal={300}

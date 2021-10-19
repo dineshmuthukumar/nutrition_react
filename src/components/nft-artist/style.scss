@@ -12,16 +12,17 @@ object-fit: cover;
       min-height: 45vh;
 
       .artist-name {
-        font-size: 2rem;
+        font-size: 2.9rem;
         font-family: $neue-helveticabold;
       }
       .at-name {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
         font-family: $neue-helveticabold;
       }
       .artist-desc {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         font-family: $neue-helveticamedium;
+        line-height: 1.4;
       }
 
       .artist-pill-container {
@@ -43,11 +44,11 @@ object-fit: cover;
           }
 
           .pill-title {
-            font-size: 0.7rem;
+            font-size: .9rem;
             font-family: $neue-helveticamedium;
           }
           .pill-value {
-            font-size: 0.9rem;
+            font-size: 1.1rem;
             font-family: $neue-helveticabold;
           }
         }
@@ -63,12 +64,14 @@ object-fit: cover;
           background-color: black;
           color: white;
           border-radius: 50%;
-          height: 32px;
-          width: 32px;
-          line-height: 29px;
+          height: 2.5rem;
+          width: 2.5rem;
           text-align: center;
-          margin-right: 0.4rem;
-          align-self: center;
+          margin-right: 0.8rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.3rem;
         }
       }
     }

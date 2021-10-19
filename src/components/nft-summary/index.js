@@ -17,8 +17,8 @@ const NFTSummary = ({
   return (
     <div className="bg-white shadow-sm nft-summary">
       <div className="row">
-        <div className="d-flex align-items-center justify-content-around flex-wrap flex-row ">
-          <div className="p-4">
+        <div className="d-flex align-items-center justify-content-around flex-wrap flex-row point-box">
+          <div className="p-4 point-list">
             {erc721 ? (
               <Badge
                 title="Total Bids"
@@ -31,7 +31,7 @@ const NFTSummary = ({
               />
             )}
           </div>
-          <div className="p-4">
+          <div className="p-4 point-list">
             {erc721 ? (
               <Badge
                 title="Price"
@@ -57,13 +57,13 @@ const NFTSummary = ({
               />
             )}
           </div>
-          <div className="p-4">
+          <div className="p-4 point-list">
             <Badge
               title="Total Views"
               value={totalViews ? totalViews : nft.page_views}
             />
           </div>
-          <div className="p-4">
+          <div className="p-4 point-list">
             <Badge
               title="Total Favourites"
               value={totalFavourites ? totalFavourites : nft.total_favourites}
