@@ -44,9 +44,9 @@ const NewDrops = () => {
                     time, Amitabh Bachchan.{" "}
                   </p>
                   <div class="learnMore">
-                    <a href="#">Join the waitlist</a>
+                    <a href="#">Join The Waitlist</a>
 
-                    {/* <button type="button" onClick={()=> setModal(true)}>Join the waitlist</button>  */}
+                    {/* <button type="button" onClick={()=> setModal(true)}>Join The Waitlist</button>  */}
                   </div>
                 </div>
               </div>
