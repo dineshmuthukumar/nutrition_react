@@ -100,7 +100,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
 "
             dropDescTwo="Madhushala’s Rhyme, Rhythm, and Flavour is still fresh in Amitabh’s mind. He believed and witnessed the miracles that the purest form of art brings in society. However, the love and the respect Mr.Bachchan holds in his heart that compelled him to recite, sing, and translate stories of Madhushala from time to time. "
             auctionTitle="Auction starting in"
-            auctionTime=""
+            auctionTime="2021-10-22T14:25:00.000Z"
             editionTitle="Edition of"
             editionType="2/2"
             additional="Addtional Perk"
@@ -116,7 +116,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
             dropDescOne="Hand-painted movie posters, as any classic cinema aficionado might have known, served as heralds for The Shahenshah of Bollywood’s movies. Carrying the savage retro flavor in their artistic expression, these posters are masterpieces in their own right! Posters of Amitabh’s classics depict the era of Celluloid Renaissance in Indian Cinema."
             dropDescTwo="Movie posters from the era where India witnessed its “Angry young man”, dominating the Indian cinema. Amitabh Bachchan’s career itself should be a storyline that will potentially be a superhit worldwide."
             auctionTitle="Auction starting in"
-            auctionTime=""
+            auctionTime="2021-10-22T14:25:00.000Z"
             editionTitle="Limited Edition"
             editionType="10 Posters 24 Collection"
             additional="Addtional Perk"
@@ -134,8 +134,8 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
             dropDescTwo="These ‘Amitabh Punks’ have their signature headgear, neck-gear, hairstyle, eyewear, facial hair, and a few more, creating a repository of unique, meticulously crafted, and curated cryptopunk versions of Amitabh.
 "
             auctionTitle="Auction starting in"
-            auctionTime=""
-            editionTitle="Auction starting in"
+            auctionTime="2021-10-22T14:25:00.000Z"
+            editionTitle="Edition"
             editionType="10000"
             slug={"QobmxgwyU9Bl9LzY"}
           />
