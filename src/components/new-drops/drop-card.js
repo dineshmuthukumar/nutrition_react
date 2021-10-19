@@ -56,7 +56,7 @@ const DropCard = ({ img ,cardTitle, smallTitle, cardDesc, dropTitle, dropDescOne
                 <Image src={img} />
                 <div class="learnMore">
                   {" "}
-                  <a href="#">Join the waitlist</a>{" "}
+                  <a href="#">Join The Waitlist</a>{" "}
                 </div>
               </div>
             </div>
