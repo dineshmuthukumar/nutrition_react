@@ -12,8 +12,9 @@ import {
   validateCurrency,
   validateQuantity,
 } from "../../utils/common";
-import "./style.scss";
 import { nftBidApi, nftBuyApi } from "../../api/methods";
+import sample from "../../images/sampleNFT.jpg";
+import "./style.scss";
 
 const NFTPlaceBid = ({
   show = false,
@@ -433,13 +434,7 @@ const NFTPlaceBid = ({
                   </div>
 
                   <div className="pop-nft-media">
-                    <img
-                      src={
-                        nft.image_url
-                          ? nft.image_url
-                          : "https://wallpaperaccess.com/full/112115.jpg"
-                      }
-                    />
+                    <img src={nft.image_url ? nft.image_url : sample} />
                     {/* <img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" /> */}
                     {/* <video controls>
               <source
@@ -614,13 +609,7 @@ const NFTPlaceBid = ({
                   </div>
 
                   <div className="pop-nft-media mt-4 preview">
-                    <img
-                      src={
-                        nft.image_url
-                          ? nft.image_url
-                          : "https://wallpaperaccess.com/full/112115.jpg"
-                      }
-                    />
+                    <img src={nft.image_url ? nft.image_url : sample} />
                     {/* <img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" /> */}
                     {/* <video controls>
               <source

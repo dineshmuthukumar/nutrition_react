@@ -15,6 +15,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import { toast } from "react-toastify";
 import { nftMakeFav, nftMakeUnFav } from "../../api/methods";
 import toaster from "../../utils/toaster";
+import sample from "../../images/sampleNFT.jpg";
 import "./style.scss";
 
 const NFTMedia = ({ image, title, slug, isFav }) => {
@@ -72,10 +73,7 @@ const NFTMedia = ({ image, title, slug, isFav }) => {
         />
       </video> */}
       {/* <div className="no_height align-items-center"> */}
-        <img
-          className="type_image typeimg_audio"
-          src={image ? image : "https://wallpaperaccess.com/full/112115.jpg"}
-        />
+      <img className="type_image typeimg_audio" src={image ? image : sample} />
       {/* </div> */}
       {/* <audio
         controls
@@ -146,9 +144,7 @@ const NFTMedia = ({ image, title, slug, isFav }) => {
           <div className="no_height">
             <img
               className="type_image typeimg_audio"
-              src={
-                image ? image : "https://wallpaperaccess.com/full/112115.jpg"
-              }
+              src={image ? image : sample}
             />
           </div>
           {/* <audio controls className="shadow-sm audioOnmedia">

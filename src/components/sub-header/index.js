@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { Navbar } from "react-bootstrap";
 import { Container } from "react-bootstrap";
 import { currencyFormat } from "../../utils/common";
+import sample from "../../images/sampleNFT.jpg";
 import "./style.scss";
 
 const SubHeader = ({ nft, isAuctionStarted, isAuctionEnded, soldOut }) => {
@@ -21,13 +22,7 @@ const SubHeader = ({ nft, isAuctionStarted, isAuctionEnded, soldOut }) => {
       >
         <Container fluid>
           <Navbar.Brand role="button" className="sub-head-title">
-            <img
-              src={
-                nft.image_url
-                  ? nft.image_url
-                  : "https://wallpaperaccess.com/full/112115.jpg"
-              }
-            />
+            <img src={nft.image_url ? nft.image_url : sample} />
             <div className="nft-head-details">
               <div className="sub-nft-title">{nft?.name}</div>
               <div className="sub-creator-title ">
