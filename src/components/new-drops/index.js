@@ -17,6 +17,8 @@ import one from "../../images/drops/one.png";
 import two from "../../images/drops/two.png";
 import three from "../../images/drops/three.png";
 import four from "../../images/drops/amitab2.png";
+import five from "../../images/drops/drops_1.jpg";
+import six from "../../images/drops/drops_2.jpg";
 
 import { Button, Form } from "react-bootstrap";
 import DropCard from "./drop-card";
@@ -52,7 +54,7 @@ const NewDrops = () => {
               </div>
               <div className="col-xxl-7 col-xl-6 col-lg-5 col-md-9 col-xs-10 order-1 order-lg-2">
                 <div className="content-img content-img--l4-1">
-                  <Image src={four} rounded />{" "}
+                  <Image src={five} rounded />{" "}
                 </div>
               </div>
             </div>
@@ -90,7 +92,7 @@ const NewDrops = () => {
         </section>
         <section className="drops_list">
           <DropCard
-            img={three}
+            img={six}
             cardTitle="Madhushala NFTs"
             smallTitle="Amalgamation Of Knowledge, Fulfilment of duties, and Expectations"
             cardDesc="BeyondLife.club brings you the philosophical undertones of Madhushala in Amitabh’s baritone as an NFT!. Now you can own a recorded version of Madhushala, curated by Amitabh Bachchan himself. 
@@ -126,7 +128,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
           <DropCard
             img={one}
             cardTitle="Crypto Punks"
-            smallTitle="Lorem ipsum Dolor Set Amitabh Bachchan Crypto Punks"
+            smallTitle="A Collection of Signature Crypto-Style Amitabh Miniatures"
             cardDesc="Let’s admit it! Amitabh, in every Avatar, has been a success! Be it the classic ‘Angry Young Man’, or the modern French-bearded Godfather with his signature ‘Devion or Sajjanon’, or the Twitter personality who numbers his Tweets, the Big B can never be off trends!"
             dropTitle="About Collection"
             dropDescOne="Since Amitabh has just stepped into the NFT realm, and going with the proven trend in the NFT space, we bring you exclusive Amitabh Bachchan crypto punks! These crypto punks preserve the essence of Amitabh Bachchan using certain attributes.

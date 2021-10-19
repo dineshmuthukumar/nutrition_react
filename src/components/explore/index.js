@@ -3,6 +3,7 @@ import postOne from "../../images/post1.png";
 import postTwo from "../../images/post2.png";
 import postThree from "../../images/post3.png";
 import ExploreCard from "./explore-card";
+import ExploreCardTwo from "./explore-card-two";
 import "./style.scss";
 
 const Explore = ({ list = [] }) => {
@@ -80,7 +81,19 @@ const Explore = ({ list = [] }) => {
                   }
 
                   return (
-                    <ExploreCard
+                    // <ExploreCard
+                    //   slug={nft.slug}
+                    //   nft={nft}
+                    //   isStarted={isStarted}
+                    //   isEnded={isEnded}
+                    //   time={time}
+                    //   label={label}
+                    //   title={nft.name}
+                    //   bidPrice={bidBuyValue}
+                    //   desc={nft.description}
+                    //   nftType={nft.nft_type}
+                    // />
+                      <ExploreCardTwo
                       slug={nft.slug}
                       nft={nft}
                       isStarted={isStarted}
