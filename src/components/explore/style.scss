@@ -89,7 +89,6 @@ h3.about-title {
   width: 100%;
   object-fit: cover;
 }
-
 .h_nft .item-post img {
     max-height: 40rem;
     min-height: 40rem;
@@ -183,7 +182,23 @@ h3.about-title {
     right: auto;
     left: -3.5rem;
 }
-
+button.load_more {
+  text-decoration: none;
+  border-radius: 2em;
+  color: #000;
+  border: 1px solid #000;
+  margin-left: 0;
+  margin-top: 5%;
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  letter-spacing: 0.1rem;
+  font-family: "neue_helveticabold";
+  width: auto;
+  padding: 1rem 4rem;
+  font-weight: normal;
+}
 @media (max-width: 992px) {
   .h_nft .item-post img {
     max-height: 20rem;
@@ -245,3 +260,6 @@ h3.about-title {
     padding-left: calc(var(--bs-gutter-x) * .5)  !important;
 }
 }
+
+
+

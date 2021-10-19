@@ -6,7 +6,7 @@ import ExploreCard from "./explore-card";
 import ExploreCardTwo from "./explore-card-two";
 import "./style.scss";
 
-const Explore = ({ list = [] }) => {
+const Explore = ({ list = [], handleClick, hasMore }) => {
   return (
     <>
       <section className="explore-drops">
@@ -93,7 +93,7 @@ const Explore = ({ list = [] }) => {
                     //   desc={nft.description}
                     //   nftType={nft.nft_type}
                     // />
-                      <ExploreCardTwo
+                    <ExploreCardTwo
                       slug={nft.slug}
                       nft={nft}
                       isStarted={isStarted}
@@ -108,6 +108,15 @@ const Explore = ({ list = [] }) => {
                   );
                 })}
               </div>
+              {hasMore && (
+                <div className="row mb-5">
+                  <div className="col-md-12 text-center">
+                    <button className="load_more" onClick={handleClick}>
+                      Load More
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

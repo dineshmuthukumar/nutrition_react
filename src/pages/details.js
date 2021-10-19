@@ -70,6 +70,9 @@ const Details = () => {
   // });
 
   useEffect(() => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+
     buyDetail({ slug }, (data) => {
       // setSocketData({
       //   ...socketData,
@@ -347,9 +350,9 @@ const Details = () => {
               {/* <BidWinner data={data} /> */}
             </div>
             <div className="col-12 col-lg-6 order-lg-1">
-              <NFTProperties />
+              <NFTProperties properties={nft.properties} />
               <div className="mt-5"></div>
-              <ChainAttributes />
+              <ChainAttributes chains={nft.chain_attributes} />
               <div className="mt-5"></div>
               <NFTTags tags={nft.tag_names} />
             </div>
