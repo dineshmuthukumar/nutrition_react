@@ -46,7 +46,7 @@ const NewDrops = () => {
                     time, Amitabh Bachchan.{" "}
                   </p>
                   <div class="learnMore">
-                    <a href="#">Join The Waitlist</a>
+                    <a href="#drop_newsletter">Join The Waitlist</a>
 
                     {/* <button type="button" onClick={()=> setModal(true)}>Join The Waitlist</button>  */}
                   </div>
@@ -142,7 +142,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
             slug={"QobmxgwyU9Bl9LzY"}
           />
         </section>
-        <section className="drop-newsletter">
+        <section className="drop-newsletter" id="drop_newsletter">
           <div className="container">
             <div className="row">
               <h1>
@@ -179,32 +179,32 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
               <div id="socialMedia">
                 <ul class="social-icon-two">
                   <li>
-                    <a href="#">
+                    <a href="https://discord.com/invite/87s8ReJ5FA">
                       <FaDiscord />
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a target="_blank" href="https://t.me/Beyondlifeclub">
                       <FaTelegramPlane />
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a target="_blank" href="https://twitter.com/beyondlifeclub">
                       <FaTwitter />
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a target="_blank" href="https://www.facebook.com/BeyondLifeClub-109895114746109">
                       <FaFacebookF />
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a target="_blank" href="https://www.instagram.com/beyondlife.club/">
                       <FaInstagram />
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a target="_blank" href="https://medium.com/@BeyondLife.Club">
                       <FaMediumM />
                     </a>
                   </li>
@@ -214,16 +214,16 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
             <div class="submenu">
               <ul>
                 <li>
-                  <a href="about.php">About: The world beyond end</a>
+                  <a target="_blank" href="https://www.beyondlife.club/about.php">About: The world beyond end</a>
                 </li>
                 <li>
-                  <a href="philosophy.php">Philosophy of BeyondLife.club</a>
+                  <a target="_blank" href="https://www.beyondlife.club/philosophy.php">Philosophy of BeyondLife.club</a>
                 </li>
                 <li>
-                  <a href="nft.php">What is an NFT? </a>
+                  <a target="_blank" href="https://www.beyondlife.club/nft.php">What is an NFT? </a>
                 </li>
                 <li>
-                  <a href="terms-and-condition.php">Terms of service</a>
+                  <a  target="_blank" href="https://www.beyondlife.club/terms-and-condition.php">Terms of service</a>
                 </li>
               </ul>
             </div>
@@ -252,7 +252,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
             <div class="submenu">
               <div>© BeyondLife.club.</div>
               <div>
-                <a href="#">Terms and conditions</a>
+                <a target="_blank" href="#">Terms and conditions</a>
               </div>
               <div>
                 <a href="#">Privacy</a>
