@@ -69,25 +69,7 @@ const Header = ({ hideOptions = false }) => {
           </Navbar.Brand>
           {!hideOptions && (
             <>
-              <Navbar.Toggle aria-controls="basic-navbar-nav" />
-              <Navbar.Collapse id="basic-navbar-nav">
-                {/* <Nav className="d-flex me-auto ms-auto">
-                  <Nav.Link href="#home">Menu Item</Nav.Link>
-                  <Nav.Link href="#link">Menu Item</Nav.Link>
-                  <Nav.Link href="#home">Menu Item</Nav.Link>
-                  <Nav.Link href="#link">Menu Item</Nav.Link>
-                </Nav> */}
-
-                <Nav className="d-flex me-0 ms-auto">
-                  {/* <NavDropdown
-                    title={state.lang === "en" ? "English" : "Hindi"}
-                    id="basic-nav-dropdown"
-                  >
-                    <NavDropdown.Item onClick={handleChangeLang}>
-                      {state.lang === "en" ? "Hindi" : "English"}
-                    </NavDropdown.Item>
-                  </NavDropdown> */}
-
+              <Nav className="d-flex me-0 ms-auto">
                   {user.login ? (
                     <>
                       <Nav.Link href="#home">
@@ -127,8 +109,7 @@ const Header = ({ hideOptions = false }) => {
 
                             <div
                               className="noti-load-more text-secondary"
-                              role="button"
-                            >
+                              role="button" >
                               See More
                             </div>
                           </div>
@@ -142,6 +123,8 @@ const Header = ({ hideOptions = false }) => {
                         ></Dropdown.Toggle>
 
                         <Dropdown.Menu align="end">
+                              
+                          <UserComponent user={state.user.data.user} />
                           <Dropdown.Item
                             as="button"
                             onClick={() =>
@@ -236,26 +219,7 @@ const Header = ({ hideOptions = false }) => {
                     </>
                   ) : (
                     <>
-                      {/* <Button
-                        variant="success"
-                        className="me-md-2 mt-2 mb-2 mt-md-0 mb-md-0"
-                        onClick={() =>
-                          window.open(
-                            `${process.env.REACT_APP_ACCOUNTS_URL}/signin?redirect=${window.location.href}`,
-                            "_self"
-                          )
-                        }
-                      >
-                        {t("signin")}
-                      </Button>
-                      <Button
-                        onClick={() =>
-                          window.open(
-                            `${process.env.REACT_APP_ACCOUNTS_URL}/signup`,
-                            "_self"
-                          )
-                        }
-                      ></Button> */}
+                    
 
                       <Nav.Link
                         href={`${process.env.REACT_APP_ACCOUNTS_URL}/signin?redirect=${window.location.href}`}
@@ -272,7 +236,6 @@ const Header = ({ hideOptions = false }) => {
                     </>
                   )}
                 </Nav>
-              </Navbar.Collapse>
             </>
           )}
         </Container>

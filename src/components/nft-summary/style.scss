@@ -18,19 +18,20 @@
     position: relative;
 
     svg {
-      font-size: 1.8rem;
-      margin-top: -9px;
-      margin-right: -4px;
+      font-size: 1.5rem;
+      margin-top: -3px;
+      margin-right: -2px;
     }
 
     .value-diff-range {
       position: absolute;
       font-family: $neue-helveticamedium;
       font-size: 0.9rem;
-      margin-top: 0.9rem;
+      margin-top: 0.5rem;
+      display: inline-flex;
 
       &.green {
-        color: green;
+        color: #00a954;
       }
 
       &.red {
