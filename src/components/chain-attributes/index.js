@@ -2,24 +2,25 @@ import React from "react";
 import ChainPills from "../chain-pills";
 import "./style.scss";
 
-const ChainAttributes = () => {
+const ChainAttributes = ({ chains = [] }) => {
   return (
     <div className="chain-attributes">
       <div className="chain-att-title">
         Chain Attributes
-        <span className="title-count">(3)</span>
+        <span className="title-count">({chains.length})</span>
       </div>
       <div className="chain-att-content mt-2">
-        <ChainPills first="0xertu" second="Auction" />
-        <ChainPills first="NFT" />
-        <ChainPills first="ETH" />
-        <ChainPills first="0xertu" second="Auction" />
-        <ChainPills first="NFT" />
-        <ChainPills first="ETH" />
-        <ChainPills first="311" /> <ChainPills first="311" />
-        <ChainPills first="IPFS" second="Metadata" />{" "}
-        <ChainPills first="0xertu" second="Auction" />
-        <ChainPills first="IPFS" second="Metadata" />
+        {chains.map((chain, i) => {
+          if (typeof chain == "string") {
+            const value = chain;
+            return <ChainPills key={`chain-${i}`} first={value} />;
+          } else {
+            const key = Object.keys(chain);
+            return (
+              <ChainPills key={`chain-${i}`} first={chain[key]} second={key} />
+            );
+          }
+        })}
       </div>
     </div>
   );

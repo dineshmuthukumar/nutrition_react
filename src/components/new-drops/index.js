@@ -120,7 +120,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
             auctionTitle="Auction starting in"
             auctionTime="2021-10-22T14:25:00.000Z"
             editionTitle="Limited Edition"
-            editionType="10 Posters 24 Collection"
+            editionType="10/24"
             additional="Addtional Perk"
             additionalDesc="10 randomly chosen purchasers of these poster NFTs will get signed and personalized letters from Amitabh himself! How cool is it for you to show off to your friends and folks that you have been called by name by the Big B! "
             slug={"r1QzYBjdUegme4aR"}
