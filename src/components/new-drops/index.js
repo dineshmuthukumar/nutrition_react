@@ -326,7 +326,10 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
             <div class="submenu">
               <div>© BeyondLife.club.</div>
               <div>
-                <a target="_blank" href="#">
+                <a
+                  target="_blank"
+                  href="https://www.beyondlife.club/terms-and-condition.php"
+                >
                   Terms and conditions
                 </a>
               </div>
