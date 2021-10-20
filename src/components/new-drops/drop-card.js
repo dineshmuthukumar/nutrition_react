@@ -5,6 +5,8 @@ import NFTCounter from "../nft-counter";
 import "./style.scss";
 
 const DropCard = ({
+  Id,
+  ref,
   img,
   cardTitle,
   smallTitle,
@@ -29,10 +31,10 @@ const DropCard = ({
 
   return (
     <>
-      <section className="dropCard-Section" id="drop_1">
+      
         <div className="container">
           <div className="row">
-            <div className="card_title">
+            <div className="card_title col-lg-6">
               <h2>{cardTitle}</h2>
               <p className="small-title mb-3">{smallTitle}</p>
               <p>{cardDesc}</p>
@@ -69,13 +71,13 @@ const DropCard = ({
                 <Image src={img} role="button" onClick={handleClick} />
                 <div class="learnMore">
                   {" "}
-                  <a href="#">Join The Waitlist</a>{" "}
+                  <a href=""  onClick={handleClick}>Place Your Bid Right Now!</a>{" "}
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
+     
     </>
   );
 };

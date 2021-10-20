@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import Image from "react-bootstrap/Image";
@@ -25,7 +25,15 @@ import DropCard from "./drop-card";
 import "./style.scss";
 
 const NewDrops = () => {
+  const r_one=useRef(null);
+  const r_two=useRef(null);
+  const r_three=useRef(null);
+
   const [modal, setModal] = useState(false);
+
+const exe_scroll_one = ()=> r_one.current.scrollIntoView();
+const exe_scroll_two = ()=> r_two.current.scrollIntoView();
+const exe_scroll_three = ()=> r_three.current.scrollIntoView();
 
   return (
     <>
@@ -36,7 +44,7 @@ const NewDrops = () => {
               <div className="col-xxl-5 col-xl-6 col-lg-7 col-md-9 col-xs-11 order-2 order-lg-1">
                 <div className="drop-title mb-0">
                   <h2 className="drop-title__heading mb-4">
-                    Amitabh Bachchan NFT Collections going live soon{" "}
+                    Here's Your Chance To Own Exclusive Amitabh Bachchan's NFT Collections{" "}
                   </h2>
                   <p className="drop-title__description mb-4">
                     Imagine owning an NFT that holds Amitji’s significance,
@@ -46,9 +54,9 @@ const NewDrops = () => {
                     time, Amitabh Bachchan.{" "}
                   </p>
                   <div class="learnMore">
-                    <a href="#drop_newsletter">Join The Waitlist</a>
+                    <a  href="">Place Your Bid Right Now!</a>
 
-                    {/* <button type="button" onClick={()=> setModal(true)}>Join The Waitlist</button>  */}
+                    {/* <button type="button" onClick={()=> setModal(true)}>Place Your Bid Right Now!</button>  */}
                   </div>
                 </div>
               </div>
@@ -72,17 +80,16 @@ const NewDrops = () => {
               <div className="app-showcase">
                 <Navbar className="kd-feature-tabs">
                   <div className="nav nav-tabs sticky-tabs">
-                    <Link to="#drop_1" className="nav-label">
+                    <Link to="#drop_1" className="nav-label" onClick={exe_scroll_one} >
                       {" "}
-                      Collection 1: <span>Madhushala</span>{" "}
+                      Collection 1: <span className="main_title"> Madhushala</span>  <span className="sub_title">Exquisite Poetry of Amitabh's Dad Rendered in The Voice of Amitabh!</span>{" "}
                     </Link>
-                    <Link className="nav-label">
-                      {" "}
-                      Collection 2: <span>Posters</span>{" "}
+                    <Link to="#posters" onClick={exe_scroll_two} className="nav-label">
+                      Collection 2:  <span className="main_title"> Original Hand</span> <span className="sub_title">Painted Rare Posters of Amitabh's Blockbusters... With His Signature!</span>
                     </Link>
-                    <Link className="nav-label">
+                    <Link className="nav-label" to="#" onClick={exe_scroll_three}>
                       {" "}
-                      Collection 3: <span> Cryptopunks</span>{" "}
+                      Collection 3:  <span className="main_title"> Amitabh CryptoPunks</span> <span className="sub_title">Distinct And Unique Minimal Miniatures That Are Unmistakably Amitabh In Every Way!</span>{" "}
                     </Link>
                   </div>
                 </Navbar>
@@ -91,7 +98,9 @@ const NewDrops = () => {
           </div>
         </section>
         <section className="drops_list">
+        <section className="dropCard-Section" ref={r_one}>
           <DropCard
+          id="madhushala"
             img={six}
             cardTitle="Madhushala NFTs"
             smallTitle="Amalgamation Of Knowledge, Fulfilment of duties, and Expectations"
@@ -108,8 +117,10 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
             additional="Addtional Perk"
             additionalDesc="The highest bidders in the two categories, in addition to the NFTs, will also get to avail a meet-and-greet session with the Big B - A memory that any Amitabh will hold on to more dearly than the NFT itself!"
             slug={"J0RLMBoWUoBv2PzQ"}
-          />
+          />  </section>
+         <section className="dropCard-Section" ref={r_two}>
           <DropCard
+            Id={"posters"}
             img={two}
             cardTitle="Autographed Posters"
             smallTitle="Exclusive & Classic Amitabh Bachchan Posters in Digital"
@@ -125,6 +136,8 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
             additionalDesc="10 randomly chosen purchasers of these poster NFTs will get signed and personalized letters from Amitabh himself! How cool is it for you to show off to your friends and folks that you have been called by name by the Big B! "
             slug={"r1QzYBjdUegme4aR"}
           />
+          </section>
+           <section className="dropCard-Section" ref={r_three}>
           <DropCard
             img={one}
             cardTitle="Crypto Punks"
@@ -140,7 +153,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
             editionTitle="Edition"
             editionType="10000"
             slug={"QobmxgwyU9Bl9LzY"}
-          />
+          />   </section>
         </section>
         <section className="drop-newsletter" id="drop_newsletter">
           <div className="container">
