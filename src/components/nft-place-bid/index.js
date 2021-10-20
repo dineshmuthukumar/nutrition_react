@@ -525,15 +525,15 @@ const NFTPlaceBid = ({
                           nft.total_user_buys
                             ? nft.buy_count - nft.total_user_buys
                             : nft.buy_count
-                        } nfts`}
+                        } this NFT`}
                     </div>
                   </div>
                   <div className="bottom-area">
                     <div className="terms text-secondary">
                       {erc721
-                        ? `Once a bid is placed, it cannot be withdrawn. Learn More about
+                        ? `Once a bid is placed, it cannot be withdrawn. Learn more about
                   how auctions work.`
-                        : `An nft can't be reversed after it's been purchased.. Learn More about
+                        : `An nft can't be reversed after it's been purchased. Learn more about
                   how it works.`}
                     </div>
 
