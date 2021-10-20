@@ -66,13 +66,15 @@ section.sw_3 {
 section.dropCard-Section {
     background: #000;
     color: #fff;
-    padding-top: 6.25em;
+    padding-top: 8em;
 }
 .card_title {
     max-width: 70%;
     display: block;
     margin: auto;
     text-align: center;
+    padding-left:1rem;
+     padding-right:1rem;
 }
 .card_title p {
     font-size: 1.3em;
@@ -121,22 +123,29 @@ p.small-title {
 }
 .sw_3 .nav-tabs a {
     border: none;
-    font-weight: 600;
-    border-top: none!important;
-    border-left: none!important;
-    border-right: none!important;
-    background: 0 0!important;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    background: 0 0 !important;
     margin: 0;
     border-radius: 0;
-    padding: 0;
+    padding: 0.5rem 0;
     line-height: inherit;
     transition: .2s ease;
     align-items: center;
     justify-content: center;
     display: flex;
-    height: 5rem;
-    color:  #fff;
+    flex-wrap: wrap;
+    height: 7rem;
+    color: #fff;
     text-decoration: none;
+    font-family: "neue_helveticabold" !important;
+    font-size: 1.5rem;
+}
+.sw_3 .nav-tabs a .sub_title {
+    font-family: "neue_helveticaroman" !important;
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
 }
 .app-showcase {
     background: #000;
@@ -525,6 +534,21 @@ section.drops_list {
     margin-top: 2em;
     width: 50%;
 }
+
+@media screen and (max-width: 1050px) {
+    
+    .sw_3 .nav-tabs a .sub_title{
+    display:none;
+    }
+.sw_3 .nav-tabs a {
+    height: auto;
+    font-size: 1rem;
+    padding: 0.5rem 0.5rem;
+}
+.sw_3 .nav-tabs a span.main_title {
+    display: block;
+}
+}
 @media only screen and (min-width: 300px) and (max-width: 480px) {
 #fmenu1 {
     flex-direction: column;
@@ -707,7 +731,6 @@ button.nft_form {
     .card_title {
         max-width: 100%;
         text-align: left;
-        padding: 0 0em;
     }
     section.drop-newsletter {
         padding: 2em;
