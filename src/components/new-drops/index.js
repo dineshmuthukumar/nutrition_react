@@ -90,8 +90,8 @@ const NewDrops = ({ categories }) => {
                       Collection 1:{" "}
                       <span className="main_title"> Madhushala</span>{" "}
                       <span className="sub_title">
-                        Exquisite Poetry of Amitabh's Dad Rendered in The Voice
-                        of Amitabh!
+                        Exquisite Poetry of Amitabh's Dad Harivansh Rai Bachchan
+                        Rendered In Amitabh's Distinct Baritone!{" "}
                       </span>{" "}
                     </Link>
                     <Link
@@ -99,11 +99,10 @@ const NewDrops = ({ categories }) => {
                       onClick={exe_scroll_two}
                       className="nav-label"
                     >
-                      Collection 2:{" "}
-                      <span className="main_title"> Original Hand</span>{" "}
+                      Collection 2: <span className="main_title"> Posters</span>{" "}
                       <span className="sub_title">
-                        Painted Rare Posters of Amitabh's Blockbusters... With
-                        His Signature!
+                        Original Hand-Painted Rare Posters of Amitabh's
+                        Blockbusters... With His Signature!
                       </span>
                     </Link>
                     <Link
