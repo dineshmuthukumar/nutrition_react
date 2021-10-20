@@ -16,7 +16,7 @@ const Explore = ({ list = [], handleClick, hasMore }) => {
               <h1>Madhushala Collections</h1>
               <p>
                 BeyondLife.club brings you the philosophical undertones of
-                Madhushala in Amitabh’s baritone as an NFT!. Now you can own a
+                Madhushala in Amitabh's baritone as an NFT!. Now you can own a
                 recorded version of Madhushala, curated by Amitabh Bachchan
                 himself.
               </p>
