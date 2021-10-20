@@ -21,12 +21,12 @@ const NFTSummary = ({
           <div className="p-4 point-list">
             {erc721 ? (
               <Badge
-                title="Total Bids"
+                title="Bids"
                 value={totalBid ? totalBid : nft.total_bids}
               />
             ) : (
               <Badge
-                title="Total Buys"
+                title="Buys"
                 value={totalBuy ? totalBuy : nft.total_buys}
               />
             )}
@@ -59,13 +59,13 @@ const NFTSummary = ({
           </div>
           <div className="p-4 point-list">
             <Badge
-              title="Total Views"
+              title="Views"
               value={totalViews ? totalViews : nft.page_views}
             />
           </div>
           <div className="p-4 point-list">
             <Badge
-              title="Total Favourites"
+              title="Favourites"
               value={totalFavourites ? totalFavourites : nft.total_favourites}
             />
           </div>

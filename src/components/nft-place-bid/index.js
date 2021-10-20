@@ -635,7 +635,7 @@ const NFTPlaceBid = ({
 
                   <div className="success-summary-container mt-3">
                     <div className="success-summary">
-                      <div>{erc721 ? "Bid price" : "Bought price"}</div>
+                      <div>{erc721 ? "Bid price" : "Price"}</div>
                       <div className="bold">
                         {erc721
                           ? currencyFormat(successData.amount, "USD")
@@ -644,12 +644,12 @@ const NFTPlaceBid = ({
                     </div>
                     {!erc721 && (
                       <div className="success-summary">
-                        <div>Bought quantity</div>
+                        <div>Quantity</div>
                         <div className="bold">{successData.quantity}</div>
                       </div>
                     )}
                     <div className="success-summary">
-                      <div>{erc721 ? "Bid placed on" : "Bought on"}</div>
+                      <div>{erc721 ? "Bid placed on" : "Time"}</div>
                       <div className="bold">
                         {dayjs(successData.created_at).format(
                           "MMM D, YYYY hh:mma"

@@ -139,7 +139,7 @@ const NFTBaseDetails = ({
         )}
         {!isAuctionEnded && isAuctionStarted && (
           <NFTTimeLeft
-            title="Auction ending in"
+            title="End of Auction"
             tooltipText={(() => {
               if (erc721) {
                 if (nft.auction_extend_minutes) {
@@ -170,7 +170,7 @@ const NFTBaseDetails = ({
           } else if (nft.total_quantity) {
             return (
               <BidValue
-                title="Limited Edition"
+                title="Edition(s)"
                 value={
                   availableQty >= 0 && availableQty != null
                     ? `${availableQty} / ${nft.total_quantity}`
