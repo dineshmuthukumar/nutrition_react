@@ -73,7 +73,7 @@ const Details = () => {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 
-    buyDetail({ slug }, (data) => {
+    buyDetail(slug, (data) => {
       // setSocketData({
       //   ...socketData,
       //   availableQty: data.quantity,
@@ -88,7 +88,7 @@ const Details = () => {
         setSoldOut(true);
       }
     });
-    bidDetail({ slug }, (data) => {
+    bidDetail(slug, (data) => {
       // setSocketData({
       //   ...socketData,
       //   price: data.minimum_bid,
@@ -105,17 +105,17 @@ const Details = () => {
         setAuctionEndTime(data.auction_end_time);
       }
     });
-    pageView({ slug }, (data) => {
+    pageView(slug, (data) => {
       // setSocketData({ totalViews: data.page_views });
       setTotalViews(data.page_views);
     });
 
-    totalFav({ slug }, (data) => {
+    totalFav(slug, (data) => {
       // setSocketData({ ...socketData, totalFavourites: data.total_favourites });
       setTotalFavourites(data.total_favourites);
     });
 
-    winnerDetail({ slug }, (data) => {
+    winnerDetail(slug, (data) => {
       setBidWinner(data.winner);
     });
 

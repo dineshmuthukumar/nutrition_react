@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Navbar, Nav, Dropdown, Container } from "react-bootstrap";
 import { BiBell, BiCheck, BiHelpCircle } from "react-icons/bi";
 import { useTranslation, setLanguage } from "react-multi-lang";
@@ -7,10 +7,15 @@ import { useSelector, useDispatch } from "react-redux";
 import ToggleButton from "react-toggle-button";
 
 import { change_lang_action } from "./../../redux/actions/lang_action";
-import { user_logout_thunk } from "../../redux/thunk/user_thunk";
+import {
+  user_load_by_token_thunk,
+  user_logout_thunk,
+} from "../../redux/thunk/user_thunk";
 
 import userImg from "../../images/user_1.png";
 import "./style.scss";
+import { getCookies } from "../../utils/cookies";
+import { accountDetail } from "../../api/actioncable-methods";
 
 const Header = ({ hideOptions = false }) => {
   const t = useTranslation();
@@ -21,6 +26,13 @@ const Header = ({ hideOptions = false }) => {
   const [notification, setNotification] = useState(false);
 
   const { user, lang } = state;
+  const slug = user.data.user.slug;
+
+  useEffect(() => {
+    accountDetail(slug, (data) => {
+      dispatch(user_load_by_token_thunk(getCookies()));
+    });
+  }, []);
 
   const handleChangeLang = () => {
     const u_lang = lang === "en" ? "hi" : "en";
@@ -70,12 +82,12 @@ const Header = ({ hideOptions = false }) => {
           {!hideOptions && (
             <>
               <Nav className="d-flex me-0 ms-auto">
-                  {user.login ? (
-                    <>
-                      <Nav.Link href="#home">
-                        <BiHelpCircle size={25} />
-                      </Nav.Link>
-                      {/* <Dropdown
+                {user.login ? (
+                  <>
+                    <Nav.Link href="#home">
+                      <BiHelpCircle size={25} />
+                    </Nav.Link>
+                    {/* <Dropdown
                         autoClose="outside"
                         onToggle={(e) => setNotification(e)}
                       >
@@ -115,84 +127,83 @@ const Header = ({ hideOptions = false }) => {
                           </div>
                         </Dropdown.Menu>
                       </Dropdown> */}
-                      <Dropdown autoClose="outside">
-                        <Dropdown.Toggle
-                          align="start"
-                          drop="start"
-                          as={UserToggleComponent}
-                        ></Dropdown.Toggle>
+                    <Dropdown autoClose="outside">
+                      <Dropdown.Toggle
+                        align="start"
+                        drop="start"
+                        as={UserToggleComponent}
+                      ></Dropdown.Toggle>
 
-                        <Dropdown.Menu align="end">
-                              
-                          <UserComponent user={state.user.data.user} />
-                          <Dropdown.Item
-                            as="button"
-                            onClick={() =>
-                              window.open(
-                                `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`,
-                                "_blank"
-                              )
-                            }
-                          >
-                            My Profile
-                          </Dropdown.Item>
-                          <Dropdown.Item
-                            as="button"
-                            onClick={() =>
-                              window.open(
-                                `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
-                                "_blank"
-                              )
-                            }
-                          >
-                            Wallet
-                          </Dropdown.Item>
-                          <Dropdown.Item
-                            as="button"
-                            onClick={() =>
-                              window.open(
-                                `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/user-activity`,
-                                "_blank"
-                              )
-                            }
-                          >
-                            My Activity
-                          </Dropdown.Item>
-                          <Dropdown.Item
-                            as="button"
-                            onClick={() =>
-                              window.open(
-                                `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/bid-activity`,
-                                "_blank"
-                              )
-                            }
-                          >
-                            Bid Activity
-                          </Dropdown.Item>
-                          <Dropdown.Item
-                            as="button"
-                            onClick={() =>
-                              window.open(
-                                `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/settings`,
-                                "_blank"
-                              )
-                            }
-                          >
-                            Settings
-                          </Dropdown.Item>
-                          <Dropdown.Divider />
-                          <Dropdown.Item
-                            as="button"
-                            // onClick={() =>
-                            //   window.open(
-                            //     `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/settings`,
-                            //     "_blank"
-                            //   )
-                            // }
-                          >
-                            Help Center
-                          </Dropdown.Item>
-                          {/* <Dropdown.Divider />
+                      <Dropdown.Menu align="end">
+                        <UserComponent user={state.user.data.user} />
+                        <Dropdown.Item
+                          as="button"
+                          onClick={() =>
+                            window.open(
+                              `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`,
+                              "_blank"
+                            )
+                          }
+                        >
+                          My Profile
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          as="button"
+                          onClick={() =>
+                            window.open(
+                              `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
+                              "_blank"
+                            )
+                          }
+                        >
+                          Wallet
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          as="button"
+                          onClick={() =>
+                            window.open(
+                              `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/user-activity`,
+                              "_blank"
+                            )
+                          }
+                        >
+                          My Activity
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          as="button"
+                          onClick={() =>
+                            window.open(
+                              `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/bid-activity`,
+                              "_blank"
+                            )
+                          }
+                        >
+                          Bid Activity
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          as="button"
+                          onClick={() =>
+                            window.open(
+                              `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/settings`,
+                              "_blank"
+                            )
+                          }
+                        >
+                          Settings
+                        </Dropdown.Item>
+                        <Dropdown.Divider />
+                        <Dropdown.Item
+                          as="button"
+                          // onClick={() =>
+                          //   window.open(
+                          //     `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/settings`,
+                          //     "_blank"
+                          //   )
+                          // }
+                        >
+                          Help Center
+                        </Dropdown.Item>
+                        {/* <Dropdown.Divider />
                           <Dropdown.Item as="button">
                             <div className="d-flex justify-content-between">
                               <div>Moon Mode</div>
@@ -207,35 +218,33 @@ const Header = ({ hideOptions = false }) => {
                               </div>
                             </div>
                           </Dropdown.Item> */}
-                          <Dropdown.Divider />
-                          <Dropdown.Item
-                            as="button"
-                            onClick={() => dispatch(user_logout_thunk())}
-                          >
-                            Sign Out
-                          </Dropdown.Item>
-                        </Dropdown.Menu>
-                      </Dropdown>{" "}
-                    </>
-                  ) : (
-                    <>
-                    
-
-                      <Nav.Link
-                        href={`${process.env.REACT_APP_ACCOUNTS_URL}/signin?redirect=${window.location.href}`}
-                        target="_self"
-                      >
-                        {t("signin")}
-                      </Nav.Link>
-                      <Nav.Link
-                        href={`${process.env.REACT_APP_ACCOUNTS_URL}/signup`}
-                        target="_self"
-                      >
-                        {t("signup")}
-                      </Nav.Link>
-                    </>
-                  )}
-                </Nav>
+                        <Dropdown.Divider />
+                        <Dropdown.Item
+                          as="button"
+                          onClick={() => dispatch(user_logout_thunk())}
+                        >
+                          Sign Out
+                        </Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>{" "}
+                  </>
+                ) : (
+                  <>
+                    <Nav.Link
+                      href={`${process.env.REACT_APP_ACCOUNTS_URL}/signin?redirect=${window.location.href}`}
+                      target="_self"
+                    >
+                      {t("signin")}
+                    </Nav.Link>
+                    <Nav.Link
+                      href={`${process.env.REACT_APP_ACCOUNTS_URL}/signup`}
+                      target="_self"
+                    >
+                      {t("signup")}
+                    </Nav.Link>
+                  </>
+                )}
+              </Nav>
             </>
           )}
         </Container>

@@ -1,5 +1,9 @@
 import ActionCable from "actioncable";
 
-const cable = ActionCable.createConsumer(process.env.REACT_APP_SOCKET_URL);
+export const nftCable = ActionCable.createConsumer(
+  process.env.REACT_APP_SOCKET_URL
+);
 
-export default cable;
+export const baseCable = ActionCable.createConsumer(
+  process.env.REACT_APP_BASE_SOCKET_URL
+);

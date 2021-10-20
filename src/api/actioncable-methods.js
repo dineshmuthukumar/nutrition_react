@@ -1,7 +1,7 @@
-import cable from "./actioncable-utils";
+import { baseCable, nftCable } from "./actioncable-utils";
 
-export const buyDetail = ({ slug }, value) => {
-  cable.subscriptions.create(
+export const buyDetail = (slug, value) => {
+  nftCable.subscriptions.create(
     { channel: "NftChannel", room: `buy_detail_${slug}` },
     {
       connected: () => {
@@ -15,8 +15,8 @@ export const buyDetail = ({ slug }, value) => {
   );
 };
 
-export const bidDetail = ({ slug }, value) => {
-  cable.subscriptions.create(
+export const bidDetail = (slug, value) => {
+  baseCable.subscriptions.create(
     { channel: "NftChannel", room: `bid_detail_${slug}` },
     {
       connected: () => {
@@ -30,8 +30,8 @@ export const bidDetail = ({ slug }, value) => {
   );
 };
 
-export const pageView = ({ slug }, value) => {
-  cable.subscriptions.create(
+export const pageView = (slug, value) => {
+  nftCable.subscriptions.create(
     { channel: "NftChannel", room: `page_view_${slug}` },
     {
       connected: () => {
@@ -45,8 +45,8 @@ export const pageView = ({ slug }, value) => {
   );
 };
 
-export const totalFav = ({ slug }, value) => {
-  cable.subscriptions.create(
+export const totalFav = (slug, value) => {
+  nftCable.subscriptions.create(
     { channel: "NftChannel", room: `fav_view_${slug}` },
     {
       connected: () => {
@@ -60,8 +60,8 @@ export const totalFav = ({ slug }, value) => {
   );
 };
 
-export const winnerDetail = ({ slug }, value) => {
-  cable.subscriptions.create(
+export const winnerDetail = (slug, value) => {
+  nftCable.subscriptions.create(
     { channel: "NftChannel", room: `winner_detail_${slug}` },
     {
       connected: () => {
@@ -69,6 +69,20 @@ export const winnerDetail = ({ slug }, value) => {
       },
       received: (data) => {
         console.log("BL/AC5:Success");
+        value(data);
+      },
+    }
+  );
+};
+
+export const accountDetail = (slug, value) => {
+  baseCable.subscriptions.create(
+    { channel: "UserChannel", room: `account_${slug}` },
+    {
+      connected: () => {
+        console.log("connected");
+      },
+      received: (data) => {
         value(data);
       },
     }
