@@ -12,7 +12,7 @@ const BidName = ({
   const { user } = useSelector((state) => state.user.data);
 
   const username =
-    user?.slug === slug ? user.first_name + user.last_name : text;
+    user?.slug === slug ? `@${user?.first_name + user?.last_name}` : text;
   return isTable ? (
     <div className="expand-history-owner">
       <img src={imgUrl ? imgUrl : userImg} />
