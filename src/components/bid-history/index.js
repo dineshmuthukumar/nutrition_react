@@ -152,7 +152,7 @@ const BidHistory = ({ nft, histories = [], isAuctionEnded, totalCount }) => {
                   {dayjs(nft.auction_start_time).format("MMM D, YYYY hh:mma")}
                 </div>
                 <div className="nft-owner">
-                  Bid listed by <BidName text="@amitabhbachchan" />
+                  Bid listed by <BidName text="@amitabhbachchan" static_name />
                 </div>
               </div>
             </div>
@@ -231,12 +231,8 @@ const BidHistory = ({ nft, histories = [], isAuctionEnded, totalCount }) => {
                         {currencyFormat(history.bid_amount, "USD")}
                       </div>
                     </td>
-                    <td
-                      className={`text-center ${
-                        i % 2 === 0 ? "text-success" : "text-danger"
-                      }`}
-                    >
-                      1.00%
+                    <td className="text-center text-success">
+                      {history.bid_change}
                     </td>
                     <td className="text-center">
                       <div className="date">

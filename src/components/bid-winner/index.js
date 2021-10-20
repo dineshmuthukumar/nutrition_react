@@ -190,12 +190,8 @@ const BidWinner = ({ winner, histories }) => {
                         {currencyFormat(history.bid_amount, "USD")}
                       </div>
                     </td>
-                    <td
-                      className={`text-center ${
-                        i % 2 === 0 ? "text-success" : "text-danger"
-                      }`}
-                    >
-                      1.00%
+                    <td className="text-center text-success">
+                      {history.bid_change}
                     </td>
                     <td className="text-center">
                       <div className="date">
