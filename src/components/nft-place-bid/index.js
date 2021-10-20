@@ -525,7 +525,7 @@ const NFTPlaceBid = ({
                           nft.total_user_buys
                             ? nft.buy_count - nft.total_user_buys
                             : nft.buy_count
-                        } this NFT`}
+                        } of this NFT`}
                     </div>
                   </div>
                   <div className="bottom-area">

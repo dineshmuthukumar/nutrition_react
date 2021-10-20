@@ -21,11 +21,12 @@ const DropCard = ({
   additional,
   additionalDesc,
   slug,
+  catName,
 }) => {
   const history = useHistory();
   const handleClick = () => {
     if (slug) {
-      history.push(`/explore/category/${slug}`);
+      history.push(`/explore/category/${catName}/${slug}`);
     }
   };
 
@@ -69,10 +70,9 @@ const DropCard = ({
             <div className="drop-card-post">
               <Image src={img} role="button" onClick={handleClick} />
               <div class="learnMore">
-                {" "}
                 <a href="" onClick={handleClick}>
                   Place Your Bid Right Now!
-                </a>{" "}
+                </a>
               </div>
             </div>
           </div>

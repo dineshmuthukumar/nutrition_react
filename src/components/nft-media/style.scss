@@ -115,12 +115,20 @@ img.type_gif {
 }
 
 .nft-media.media_audio img {
+  // display: block;
+  // width: 100%;
+  // height: calc(100vh - 9.5rem);
+  // object-fit: contain;
+  // object-position: center;
+  // padding: 2rem;
+
   display: block;
-  width: 100%;
-  height: calc(100vh - 9.5rem);
+  max-width: 100%;
+  max-height: calc(100vh - 9.5rem);
   object-fit: contain;
   object-position: center;
   padding: 2rem;
+  width: auto;
 }
 .audioOnmedia {
   position: absolute;

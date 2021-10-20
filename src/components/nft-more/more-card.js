@@ -2,6 +2,7 @@ import React from "react";
 import dayjs from "dayjs";
 import { currencyFormat } from "../../utils/common";
 import NFTCounter from "../nft-counter";
+import sample from "../../images/sampleNFT.jpg";
 import "./style.scss";
 
 const MoreCard = ({ nft, isStarted = false, isEnded, time, label }) => {
@@ -9,11 +10,15 @@ const MoreCard = ({ nft, isStarted = false, isEnded, time, label }) => {
   return (
     <div className="more-card">
       <img
-        src={nft.image_url ? nft.image_url : "https://picsum.photos/500/500"}
+        src={nft.image_url ? nft.image_url : sample}
+        role="button"
+        onClick={() => {
+          window.open(`/details/${nft.slug}`, "_blank");
+        }}
       />
       <div className="more-nft-title">
         {nft.name}
-        {!erc721 && (
+        {!erc721 && !isEnded && (
           <span className="left-count">
             {nft.quantity ? `Only ${nft.quantity} left` : "Sold out"}
           </span>
