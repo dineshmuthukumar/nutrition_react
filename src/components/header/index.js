@@ -87,7 +87,13 @@ const Header = ({ hideOptions = false }) => {
                 {user.login ? (
                   <>
                     <Nav.Link href="#home">
-                      <BiHelpCircle size={25} />
+                      <BiHelpCircle
+                        size={25}
+                        role="button"
+                        onClick={() =>
+                          window.open(process.env.REACT_APP_HELP_URL, "_blank")
+                        }
+                      />
                     </Nav.Link>
                     {/* <Dropdown
                         autoClose="outside"
