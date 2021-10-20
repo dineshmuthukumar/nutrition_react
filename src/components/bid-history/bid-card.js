@@ -1,11 +1,14 @@
 import React from "react";
 import dayjs from "dayjs";
+import { useSelector } from "react-redux";
 import BidName from "./bid-name";
 import { currencyFormat } from "../../utils/common";
 import userImg from "../../images/user_1.png";
 import "./style.scss";
 
 const BidCard = ({ history, isEnd = false }) => {
+  const { user } = useSelector((state) => state.user.data);
+
   return (
     <div className="bid-histroy-card">
       {isEnd ? (
@@ -18,6 +21,8 @@ const BidCard = ({ history, isEnd = false }) => {
             <img
               src={
                 !history.private && history.avatar_url
+                  ? history.avatar_url
+                  : user?.slug === history.slug
                   ? history.avatar_url
                   : userImg
               }
