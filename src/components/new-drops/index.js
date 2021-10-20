@@ -45,14 +45,14 @@ const NewDrops = ({ categories }) => {
                 <div className="drop-title mb-0">
                   <h2 className="drop-title__heading mb-4">
                     Here's Your Chance To Own Exclusive Amitabh Bachchan's NFT
-                    Collections{" "}
+                    Collections
                   </h2>
                   <p className="drop-title__description mb-4">
                     Imagine owning an NFT that holds Amit-ji's significance,
                     history, the value of exceptional existence, and beyond. We
                     bring a series of Amitabh Bachchan's exclusive NFT
                     collection, curated by the legend himself. Right from the
-                    time, Amitabh Bachchan.{" "}
+                    time, Amitabh Bachchan.
                   </p>
                   <div class="learnMore">
                     <a href="">Place Your Bid Right Now!</a>
@@ -63,14 +63,13 @@ const NewDrops = ({ categories }) => {
               </div>
               <div className="col-xxl-7 col-xl-6 col-lg-5 col-md-9 col-xs-10 order-1 order-lg-2">
                 <div className="content-img content-img--l4-1">
-                  <Image src={five} rounded />{" "}
+                  <Image src={five} rounded />
                 </div>
               </div>
             </div>
             <div className="row">
               <div className="scroll-drops my-4">
-                {" "}
-                <a href="#drop_1">Scroll for all Drops</a>{" "}
+                <a href="#drop_1">Scroll for all Drops</a>
               </div>
             </div>
           </div>
@@ -86,21 +85,20 @@ const NewDrops = ({ categories }) => {
                       className="nav-label"
                       onClick={exe_scroll_one}
                     >
-                      {" "}
-                      Collection 1:{" "}
-                      <span className="main_title"> Madhushala</span>{" "}
+                      Collection 1:
+                      <span className="main_title"> Madhushala</span>
                       <span className="sub_title">
                         Exquisite Poetry of Amitabh's Dad Rendered in The Voice
                         of Amitabh!
-                      </span>{" "}
+                      </span>
                     </Link>
                     <Link
                       to="#posters"
                       onClick={exe_scroll_two}
                       className="nav-label"
                     >
-                      Collection 2:{" "}
-                      <span className="main_title"> Original Hand</span>{" "}
+                      Collection 2:
+                      <span className="main_title"> Original Hand</span>
                       <span className="sub_title">
                         Painted Rare Posters of Amitabh's Blockbusters... With
                         His Signature!
@@ -111,16 +109,12 @@ const NewDrops = ({ categories }) => {
                       to="#"
                       onClick={exe_scroll_three}
                     >
-                      {" "}
-                      Collection 3:{" "}
-                      <span className="main_title">
-                        {" "}
-                        Amitabh CryptoPunks
-                      </span>{" "}
+                      Collection 3:
+                      <span className="main_title">Amitabh CryptoPunks</span>
                       <span className="sub_title">
                         Distinct And Unique Minimal Miniatures That Are
                         Unmistakably Amitabh In Every Way!
-                      </span>{" "}
+                      </span>
                     </Link>
                   </div>
                 </Navbar>
@@ -149,7 +143,8 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
                 additional="Addtional Perk"
                 additionalDesc="The highest bidders in the two categories, in addition to the NFTs, will also get to avail a meet-and-greet session with the Big B - A memory that any Amitabh will hold on to more dearly than the NFT itself!"
                 slug={categories[0].slug}
-              />{" "}
+                catName={categories[0].name}
+              />
             </section>
             <section className="dropCard-Section" ref={r_two}>
               <DropCard
@@ -168,6 +163,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
                 additional="Addtional Perk"
                 additionalDesc="10 randomly chosen purchasers of these poster NFTs will get signed and personalized letters from Amitabh himself! How cool is it for you to show off to your friends and folks that you have been called by name by the Big B! "
                 slug={categories[1].slug}
+                catName={categories[1].name}
               />
             </section>
             <section className="dropCard-Section" ref={r_three}>
@@ -186,7 +182,8 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
                 editionTitle="Edition"
                 editionType="10000"
                 slug={categories[2].slug}
-              />{" "}
+                catName={categories[2].name}
+              />
             </section>
           </section>
         )}
@@ -197,7 +194,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
               <h1>
                 Are you the one going to make it big in India?
                 <span>Own an NFT.</span>
-              </h1>{" "}
+              </h1>
             </div>
             <Form id="nft_form">
               <Form.Group className="formGroup mb-3" controlId="formBasicEmail">
@@ -209,7 +206,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
                 />
                 <p className="nft_email_error"></p>
                 <Button className="nft_form" type="submit">
-                  <HiOutlineArrowRight />{" "}
+                  <HiOutlineArrowRight />
                 </Button>
               </Form.Group>
             </Form>
@@ -219,7 +216,6 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
           <div id="fmenu1">
             <div class="submenu">
               <div>
-                {" "}
                 <a href="index.php">
                   <h1>BeyondLife.club</h1>
                 </a>
@@ -292,7 +288,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
                 </li>
                 <li>
                   <a target="_blank" href="https://www.beyondlife.club/nft.php">
-                    What is an NFT?{" "}
+                    What is an NFT?
                   </a>
                 </li>
                 <li>
@@ -320,7 +316,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
                   />
                   <p className="nft_email_error"></p>
                   <Button className="nft_form" type="submit">
-                    <HiOutlineArrowRight />{" "}
+                    <HiOutlineArrowRight />
                   </Button>
                 </Form.Group>
               </Form>

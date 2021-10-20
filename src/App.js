@@ -80,7 +80,11 @@ function App(props) {
                 path="/details/:slug/:placebid"
                 component={Details}
               />
-              <Route exact path="/explore/category/:slug" component={Explore} />
+              <Route
+                exact
+                path="/explore/category/:name/:slug"
+                component={Explore}
+              />
               <Route exact path="/" component={NewHome} />
               {/* <Route exact path="/new" component={Home} /> */}
               <Route path="/not-found" component={NotFound} />

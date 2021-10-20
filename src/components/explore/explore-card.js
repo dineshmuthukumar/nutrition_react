@@ -1,5 +1,5 @@
-import dayjs from "dayjs";
 import React from "react";
+import dayjs from "dayjs";
 import { useHistory } from "react-router";
 import sample from "../../images/sampleNFT.jpg";
 import { currencyFormat } from "../../utils/common";
@@ -41,7 +41,7 @@ const ExploreCard = ({
             <h6 className="post-title">{nft.name}</h6>
             <p className="desc-para">{nft.description}</p>
           </div>
-          {!erc721 && (
+          {!erc721 && !isEnded && (
             <div className="rights-bid">
               <p className="left_bid mt-3">
                 {nft.quantity ? `Only ${nft.quantity} left` : "Sold out"}
