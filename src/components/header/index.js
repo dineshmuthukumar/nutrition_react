@@ -26,12 +26,14 @@ const Header = ({ hideOptions = false }) => {
   const [notification, setNotification] = useState(false);
 
   const { user, lang } = state;
-  const slug = user.data.user.slug;
+  const slug = user.data.user ? user.data.user.slug : null;
 
   useEffect(() => {
-    accountDetail(slug, (data) => {
-      dispatch(user_load_by_token_thunk(getCookies()));
-    });
+    if (slug) {
+      accountDetail(slug, (data) => {
+        dispatch(user_load_by_token_thunk(getCookies()));
+      });
+    }
   }, []);
 
   const handleChangeLang = () => {
