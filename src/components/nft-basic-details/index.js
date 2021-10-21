@@ -13,7 +13,8 @@ import { currencyFormat } from "../../utils/common";
 
 const NFTBaseDetails = ({
   nft,
-  isPlaceBid,
+  placeBidPop,
+  setPlaceBidPop,
   // socketData,
   totalBid,
   bidChange,
@@ -196,8 +197,9 @@ const NFTBaseDetails = ({
 
         <div className="text-center">
           <NFTPlaceBid
-            show={isPlaceBid ? true : false}
             nft={nft}
+            placeBidPop={placeBidPop}
+            setPlaceBidPop={setPlaceBidPop}
             // socketData={socketData}
             price={price}
             isAuctionStarted={isAuctionStarted}
@@ -251,9 +253,7 @@ const NFTBaseDetails = ({
                     }
                   })()}
                   className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
-                  onClick={() =>
-                    history.push(`${history.location.pathname}/placebid`)
-                  }
+                  onClick={() => setPlaceBidPop(!placeBidPop)}
                 >
                   {(() => {
                     if (!isAuctionStarted && !isAuctionEnded) {
@@ -279,9 +279,7 @@ const NFTBaseDetails = ({
                     }
                   })()}
                   className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
-                  onClick={() =>
-                    history.push(`${history.location.pathname}/placebid`)
-                  }
+                  onClick={() => setPlaceBidPop(!placeBidPop)}
                 >
                   {(() => {
                     if (!isAuctionStarted && !isAuctionEnded) {

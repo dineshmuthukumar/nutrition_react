@@ -34,8 +34,6 @@ import {
 } from "../api/actioncable-methods";
 
 const Details = () => {
-  const { params: matchParams } = useRouteMatch();
-
   const { slug } = useParams();
   const [small, setSmall] = useState(false);
   const [nft, setNft] = useState({});
@@ -50,6 +48,7 @@ const Details = () => {
   const [isAuctionEnded, setIsAuctionEnded] = useState(false);
   const [soldOut, setSoldOut] = useState(false);
   const [loader, setLoader] = useState(false);
+  const [placeBidPop, setPlaceBidPop] = useState(false);
 
   // Socket State
   const [totalBid, setTotalBid] = useState(0);
@@ -203,6 +202,8 @@ const Details = () => {
     <>
       {small ? (
         <SubHeader
+          placeBidPop={placeBidPop}
+          setPlaceBidPop={setPlaceBidPop}
           nft={nft}
           isAuctionStarted={isAuctionStarted}
           isAuctionEnded={isAuctionEnded}
@@ -228,7 +229,8 @@ const Details = () => {
               <div className="col-12 col-lg-5">
                 <NFTBaseDetails
                   nft={nft}
-                  isPlaceBid={matchParams.placebid}
+                  placeBidPop={placeBidPop}
+                  setPlaceBidPop={setPlaceBidPop}
                   // socketData={socketData}
 
                   //Socket states start

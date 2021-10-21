@@ -7,7 +7,14 @@ import { currencyFormat } from "../../utils/common";
 import sample from "../../images/sampleNFT.jpg";
 import "./style.scss";
 
-const SubHeader = ({ nft, isAuctionStarted, isAuctionEnded, soldOut }) => {
+const SubHeader = ({
+  nft,
+  isAuctionStarted,
+  isAuctionEnded,
+  soldOut,
+  placeBidPop,
+  setPlaceBidPop,
+}) => {
   const history = useHistory();
   const { user } = useSelector((state) => state.user.data);
   const erc721 = nft.nft_type === "erc721";
@@ -98,9 +105,7 @@ const SubHeader = ({ nft, isAuctionStarted, isAuctionEnded, soldOut }) => {
                       })()}
                       type="button"
                       className="btn btn-dark btn-lg rounded-pill sub-place-bid-btn"
-                      onClick={() =>
-                        history.push(`${history.location.pathname}/placebid`)
-                      }
+                      onClick={() => setPlaceBidPop(!placeBidPop)}
                     >
                       {(() => {
                         if (!isAuctionStarted && !isAuctionEnded) {
@@ -127,9 +132,7 @@ const SubHeader = ({ nft, isAuctionStarted, isAuctionEnded, soldOut }) => {
                       })()}
                       type="button"
                       className="btn btn-dark btn-lg rounded-pill sub-place-bid-btn"
-                      onClick={() =>
-                        history.push(`${history.location.pathname}/placebid`)
-                      }
+                      onClick={() => setPlaceBidPop(!placeBidPop)}
                     >
                       {(() => {
                         if (!isAuctionStarted && !isAuctionEnded) {

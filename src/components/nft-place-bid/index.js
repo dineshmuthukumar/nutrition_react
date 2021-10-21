@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useHistory, useRouteMatch } from "react-router";
+import { useRouteMatch } from "react-router";
 import { Offcanvas } from "react-bootstrap";
 import { BiX } from "react-icons/bi";
 import { FaCheckCircle } from "react-icons/fa";
@@ -17,7 +17,8 @@ import sample from "../../images/sampleNFT.jpg";
 import "./style.scss";
 
 const NFTPlaceBid = ({
-  show = false,
+  placeBidPop = false,
+  setPlaceBidPop,
   nft,
   // socketData,
   price,
@@ -26,7 +27,6 @@ const NFTPlaceBid = ({
   soldOut,
 }) => {
   const { user } = useSelector((state) => state.user.data);
-  const history = useHistory();
   const { params } = useRouteMatch();
 
   const [success, setSuccess] = useState(false);
@@ -219,7 +219,7 @@ const NFTPlaceBid = ({
   };
 
   const handleSuccess = () => {
-    history.push(history.location.pathname.replace("/placebid", ""));
+    setPlaceBidPop(!placeBidPop);
     // window.location.reload();
     setSuccess(false);
     setBuyQuantity("");
@@ -363,10 +363,8 @@ const NFTPlaceBid = ({
 
   return (
     <Offcanvas
-      show={show}
-      onHide={() =>
-        history.push(history.location.pathname.replace("/placebid", ""))
-      }
+      show={placeBidPop}
+      onHide={() => setPlaceBidPop(!placeBidPop)}
       placement="end"
       className="w-100 w-md-50 w-lg-42"
     >
@@ -384,11 +382,7 @@ const NFTPlaceBid = ({
                       <BiX
                         role="button"
                         size={45}
-                        onClick={() =>
-                          history.push(
-                            history.location.pathname.replace("/placebid", "")
-                          )
-                        }
+                        onClick={() => setPlaceBidPop(!placeBidPop)}
                       />
                     </div>
                   </div>
@@ -540,11 +534,7 @@ const NFTPlaceBid = ({
                     <div className="bottom-content-pop">
                       <div
                         className="back-button"
-                        onClick={() =>
-                          history.push(
-                            history.location.pathname.replace("/placebid", "")
-                          )
-                        }
+                        onClick={() => setPlaceBidPop(!placeBidPop)}
                       >
                         Back
                       </div>
@@ -675,11 +665,6 @@ const NFTPlaceBid = ({
                       <div className="place-bid-button">
                         <button
                           className="btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop "
-                          // onClick={() =>
-                          //   history.push(
-                          //     history.location.pathname.replace("/placebid", "")
-                          //   )
-                          // }
                           onClick={handleSuccess}
                         >
                           Okay
@@ -702,11 +687,7 @@ const NFTPlaceBid = ({
                   <BiX
                     role="button"
                     size={45}
-                    onClick={() =>
-                      history.push(
-                        history.location.pathname.replace("/placebid", "")
-                      )
-                    }
+                    onClick={() => setPlaceBidPop(!placeBidPop)}
                   />
                 </div>
               </div>
