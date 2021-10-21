@@ -152,7 +152,13 @@ span.main_title {
   margin-right: 15px;
   transition: 0.2s ease;
 }
-
+.nft_email_error {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
+input {
+  font-weight: normal !important;
+}
 .app-showcase a.feature-tabs-scroll img {
   width: 25px;
   margin-right: 1rem;
