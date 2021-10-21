@@ -561,6 +561,16 @@ section.drops_list {
     display: block;
   }
 }
+@media screen and (max-width: 768px) {
+  .border-right:after {
+    display: none;
+  }
+  .drop_card .auction-time,
+  .drop_card .additional-perks {
+    text-align: center;
+  }
+}
+
 @media only screen and (min-width: 300px) and (max-width: 480px) {
   #fmenu1 {
     flex-direction: column;
@@ -569,7 +579,12 @@ section.drops_list {
   .border-right::after {
     content: none;
   }
-
+  .card_title {
+    text-align: center !important;
+  }
+  .card_title h2 {
+    font-size: 3rem;
+  }
   footer {
     background-image: none;
   }
@@ -587,13 +602,15 @@ section.drops_list {
   .content-img img {
     width: 85%;
   }
-
   .drop_card {
-    border: none;
-    margin-top: 2.6em;
+    border: 1px solid #fff;
+    margin-top: 3.6em;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
   }
   section.dropCard-Section {
-    padding-top: 3.25em;
+    padding-top: 7em;
   }
   #fmenu1 .submenu {
     display: flex;
@@ -708,6 +725,12 @@ section.drops_list {
     flex-direction: column;
     padding-bottom: 8%;
   }
+  .card_title h2 {
+    font-size: 3rem;
+  }
+  .card_title {
+    text-align: center !important;
+  }
   footer {
     background-image: none;
   }
@@ -746,8 +769,11 @@ section.drops_list {
     width: 80%;
   }
   .drop_card {
-    border: 2px solid #fff;
+    border: 1px solid #fff;
     margin-top: 3.6em;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
   }
   #fmenu1 .submenu:first-of-type h1 {
     font-size: 2em;
