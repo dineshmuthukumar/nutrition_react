@@ -32,6 +32,7 @@ const NewDropsTemp = ({ categories }) => {
   const r_one = useRef(null);
   const r_two = useRef(null);
   const r_three = useRef(null);
+  const r_four = useRef(null);
   const r_email = useRef(null);
 
   const [modal, setModal] = useState(false);
@@ -98,6 +99,7 @@ const NewDropsTemp = ({ categories }) => {
 
   const exe_scroll_one = () => r_one.current.scrollIntoView();
   const exe_scroll_two = () => r_two.current.scrollIntoView();
+  const exe_scroll_four = () => r_four.current.scrollIntoView();
   const exe_scroll_three = () => r_three.current.scrollIntoView();
   const exe_scroll_email = () => r_email.current.scrollIntoView();
 
@@ -183,7 +185,7 @@ const NewDropsTemp = ({ categories }) => {
                     <Link
                       className="nav-label"
                       to="#"
-                      onClick={exe_scroll_three}
+                      onClick={exe_scroll_four}
                     >
                       Collection 4:
                       <span className="main_title">Illustrations & Art</span>
@@ -240,9 +242,10 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
                 additionalDesc="What More Do You Get: You can, just like any other NFT, sell your prized possessions in marketplaces and trade them like any other NFT that you buy! "
                 slug={categories[1].slug}
                 catName={categories[1].name}
+                scroll={exe_scroll_email}
               />
             </section>
-            <section className="dropCard-Section" ref={r_two}>
+            <section className="dropCard-Section" ref={r_three}>
               <DropCard
                 Id={"posters"}
                 img={two}
@@ -263,7 +266,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
                 scroll={exe_scroll_email}
               />
             </section>
-            <section className="dropCard-Section" ref={r_three}>
+            <section className="dropCard-Section" ref={r_four}>
               <DropCard
                 img={one}
                 cardTitle="Crypto Punks"
@@ -461,17 +464,17 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
           <div id="fmenu2">
             <div className="submenu">
               <div>© BeyondLife.club.</div>
-              <div>
+              {/* <div>
                 <a
                   target="_blank"
                   href="https://www.beyondlife.club/terms-and-condition.php"
                 >
                   Terms and conditions
                 </a>
-              </div>
-              <div>
+              </div> */}
+              {/* <div>
                 <a href="#">Privacy</a>
-              </div>
+              </div> */}
             </div>
             <div className="submenu">
               <a target="_blank" href="https://www.guardianlink.io">
