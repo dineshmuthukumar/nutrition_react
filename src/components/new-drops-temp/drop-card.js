@@ -3,6 +3,7 @@ import { useHistory } from "react-router";
 import Image from "react-bootstrap/Image";
 import NFTCounter from "../nft-counter";
 import "./style.scss";
+import { Link } from "react-router-dom";
 
 const DropCard = ({
   Id,
@@ -22,6 +23,7 @@ const DropCard = ({
   additionalDesc,
   slug,
   catName,
+  scroll,
 }) => {
   return (
     <>
@@ -44,13 +46,13 @@ const DropCard = ({
               <h5>{auctionTitle}</h5>
               <NFTCounter time={"Nov 04, 2021 00:00:00"} />
             </div>
-            <div class="auction-main">
-              <div class="auction-one">
-                <p class="heading-S">Minimum Price</p>
+            <div className="auction-main">
+              <div className="auction-one">
+                <p className="heading-S">Minimum Price</p>
                 <h1>TBA</h1>
               </div>
-              <div class="auction-two">
-                <p class="heading-S">{editionTitle}</p>
+              <div className="auction-two">
+                <p className="heading-S">{editionTitle}</p>
                 <h1>{editionType} </h1>
               </div>
             </div>
@@ -62,8 +64,10 @@ const DropCard = ({
           <div className="col-lg-6">
             <div className="drop-card-post">
               <Image src={img} />
-              <div class="learnMore">
-                <a href="#">Place Your Bid Right Now!</a>
+              <div className="learnMore">
+                <Link to="#" onClick={scroll}>
+                  Join The Waitlist
+                </Link>
               </div>
             </div>
           </div>

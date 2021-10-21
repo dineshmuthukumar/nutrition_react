@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Modal } from "react-bootstrap";
+import axios from "axios";
 import Image from "react-bootstrap/Image";
 import Navbar from "react-bootstrap/Navbar";
 import { HiOutlineArrowRight } from "react-icons/hi";
@@ -23,17 +24,82 @@ import six from "../../images/drops/drops_2.jpg";
 import { Button, Form } from "react-bootstrap";
 import DropCard from "./drop-card";
 import "./style.scss";
+import { validateEmail } from "./../../utils/common";
+import { toast } from "react-toastify";
+import { BiLoader, BiLoaderAlt } from "react-icons/bi";
 
 const NewDropsTemp = ({ categories }) => {
   const r_one = useRef(null);
   const r_two = useRef(null);
   const r_three = useRef(null);
+  const r_email = useRef(null);
 
   const [modal, setModal] = useState(false);
+  const [email, setEmail] = useState();
+  const [email2, setEmail2] = useState();
+  const [loading, setLoading] = useState(false);
+  const [loading2, setLoading2] = useState(false);
+  const [vEmail, setVEmail] = useState();
+  const [vEmail2, setVEmail2] = useState();
+
+  const sendEmailNewletter = (input) =>
+    axios.post(process.env.REACT_APP_NEWSLETTER_API, {
+      Nemail: input,
+    });
+
+  const handleSendNewsLetter = async () => {
+    if (validateEmail(email)) {
+      setVEmail(null);
+      try {
+        setLoading(true);
+        await sendEmailNewletter(email);
+        setLoading(false);
+        setEmail(null);
+        setVEmail(
+          "We will buzz you when the NFT Drop is ready to launch. Thank you for being a part of Beyondlife.club #beyondlife.club #nft"
+        );
+      } catch (error) {
+        setLoading(false);
+
+        console.log(
+          "🚀 ~ file: index.js ~ line 46 ~ handleSendNewsLetter ~ error",
+          error
+        );
+      }
+    } else {
+      setVEmail("Please provide a valid email");
+    }
+  };
+
+  const handleSendNewsLetter2 = async () => {
+    if (validateEmail(email2)) {
+      setVEmail2(null);
+
+      try {
+        setLoading2(true);
+        await sendEmailNewletter(email2);
+        setEmail2(null);
+        setVEmail2(
+          "We will buzz you when the NFT Drop is ready to launch. Thank you for being a part of Beyondlife.club #beyondlife.club #nft"
+        );
+        setLoading2(false);
+      } catch (error) {
+        setLoading2(false);
+
+        console.log(
+          "🚀 ~ file: index.js ~ line 46 ~ handleSendNewsLetter ~ error",
+          error
+        );
+      }
+    } else {
+      setVEmail2("Please provide a valid email");
+    }
+  };
 
   const exe_scroll_one = () => r_one.current.scrollIntoView();
   const exe_scroll_two = () => r_two.current.scrollIntoView();
   const exe_scroll_three = () => r_three.current.scrollIntoView();
+  const exe_scroll_email = () => r_email.current.scrollIntoView();
 
   return (
     <>
@@ -54,8 +120,14 @@ const NewDropsTemp = ({ categories }) => {
                     collection, curated by the legend himself. Right from the
                     time, Amitabh Bachchan.
                   </p>
-                  <div class="learnMore">
-                    <a href="">Place Your Bid Right Now!</a>
+                  <div className="learnMore">
+                    <Link
+                      className="nav-label"
+                      to="#"
+                      onClick={exe_scroll_email}
+                    >
+                      Join The Waitlist
+                    </Link>
 
                     {/* <button type="button" onClick={()=> setModal(true)}>Place Your Bid Right Now!</button>  */}
                   </div>
@@ -147,6 +219,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
                 additionalDesc="The highest bidders in the two categories, in addition to the NFTs, will also get to avail a meet-and-greet session with the Big B - A memory that any Amitabh will hold on to more dearly than the NFT itself!"
                 slug={categories[0].slug}
                 catName={categories[0].name}
+                scroll={exe_scroll_email}
               />
             </section>
             <section className="dropCard-Section" ref={r_two}>
@@ -187,6 +260,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
                 additionalDesc="10 randomly chosen purchasers of these poster NFTs will get signed and personalized letters from Amitabh himself! How cool is it for you to show off to your friends and folks that you have been called by name by the Big B! "
                 slug={categories[1].slug}
                 catName={categories[1].name}
+                scroll={exe_scroll_email}
               />
             </section>
             <section className="dropCard-Section" ref={r_three}>
@@ -206,12 +280,13 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
                 editionType="10000"
                 slug={categories[2].slug}
                 catName={categories[2].name}
+                scroll={exe_scroll_email}
               />
             </section>
           </section>
         )}
 
-        <section className="drop-newsletter" id="drop_newsletter">
+        <section className="drop-newsletter" id="drop_newsletter" ref={r_email}>
           <div className="container">
             <div className="row">
               <h1>
@@ -219,17 +294,36 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
                 Bachchan!
               </h1>
             </div>
-            <Form id="nft_form">
+            <Form
+              id="nft_form"
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleSendNewsLetter();
+                return false;
+              }}
+            >
               <Form.Group className="formGroup mb-3" controlId="formBasicEmail">
                 <Form.Control
                   className="nft_form_email"
                   type="email"
+                  disabled={loading}
                   name="Nemail"
                   placeholder="name@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
-                <p className="nft_email_error"></p>
-                <Button className="nft_form" type="submit">
-                  <HiOutlineArrowRight />
+                <p className="nft_email_error">{vEmail}</p>
+                <Button
+                  className="nft_form"
+                  disabled={loading}
+                  type="button"
+                  onClick={handleSendNewsLetter}
+                >
+                  {loading ? (
+                    <BiLoaderAlt className="fa fa-spin" />
+                  ) : (
+                    <HiOutlineArrowRight />
+                  )}
                 </Button>
               </Form.Group>
             </Form>
@@ -237,7 +331,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
         </section>
         <div id="footer">
           <div id="fmenu1">
-            <div class="submenu">
+            <div className="submenu">
               <div>
                 <a href="index.php">
                   <h1>BeyondLife.club</h1>
@@ -245,7 +339,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
                 <p>A world without an end</p>
               </div>
               <div id="socialMedia">
-                <ul class="social-icon-two">
+                <ul className="social-icon-two">
                   <li>
                     <a href="https://discord.com/invite/87s8ReJ5FA">
                       <FaDiscord />
@@ -291,7 +385,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
                 </ul>
               </div>
             </div>
-            <div class="submenu">
+            <div className="submenu">
               <ul>
                 <li>
                   <a
@@ -324,8 +418,15 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
                 </li>
               </ul>
             </div>
-            <div class="submenu">
-              <Form id="nft_form">
+            <div className="submenu">
+              <Form
+                id="nft_form"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handleSendNewsLetter2();
+                  return false;
+                }}
+              >
                 <Form.Label>Get the latest NFT updates</Form.Label>
                 <Form.Group
                   className="formGroup mb-3"
@@ -336,17 +437,29 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
                     type="email"
                     name="Nemail"
                     placeholder="name@example.com"
+                    disabled={loading2}
+                    value={email2}
+                    onChange={(e) => setEmail2(e.target.value)}
                   />
-                  <p className="nft_email_error"></p>
-                  <Button className="nft_form" type="submit">
-                    <HiOutlineArrowRight />
+                  <p className="nft_email_error">{vEmail2}</p>
+                  <Button
+                    className="nft_form"
+                    type="button"
+                    disabled={loading2}
+                    onClick={handleSendNewsLetter2}
+                  >
+                    {loading2 ? (
+                      <BiLoaderAlt className="fa fa-spin" />
+                    ) : (
+                      <HiOutlineArrowRight />
+                    )}
                   </Button>
                 </Form.Group>
               </Form>
             </div>
           </div>
           <div id="fmenu2">
-            <div class="submenu">
+            <div className="submenu">
               <div>© BeyondLife.club.</div>
               <div>
                 <a
@@ -360,7 +473,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
                 <a href="#">Privacy</a>
               </div>
             </div>
-            <div class="submenu">
+            <div className="submenu">
               <a target="_blank" href="https://www.guardianlink.io">
                 <Image
                   src="https://cdn.beyondlife.club/media/logo_horizondal.png"

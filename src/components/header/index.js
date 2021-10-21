@@ -17,7 +17,7 @@ import "./style.scss";
 import { getCookies } from "../../utils/cookies";
 import { accountDetail } from "../../api/actioncable-methods";
 
-const Header = ({ hideOptions = false }) => {
+const Header = ({ hideOptions = false, hideSign = false }) => {
   const t = useTranslation();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -238,20 +238,31 @@ const Header = ({ hideOptions = false }) => {
                   </>
                 ) : (
                   <>
-                    <Nav.Link
-                      href={`${process.env.REACT_APP_ACCOUNTS_URL}/signin?redirect=${window.location.href}`}
-                      target="_self"
-                    >
-                      {t("signin")}
-                    </Nav.Link>
-                    <Nav.Link
-                      href={`${process.env.REACT_APP_ACCOUNTS_URL}/signup`}
-                      target="_self"
-                    >
-                      {t("signup")}
-                    </Nav.Link>
+                    {!hideSign && (
+                      <>
+                        <Nav.Link
+                          href={`${process.env.REACT_APP_ACCOUNTS_URL}/signin?redirect=${window.location.href}`}
+                          target="_self"
+                        >
+                          {t("signin")}
+                        </Nav.Link>
+                        <Nav.Link
+                          href={`${process.env.REACT_APP_ACCOUNTS_URL}/signup`}
+                          target="_self"
+                        >
+                          {t("signup")}
+                        </Nav.Link>
+                      </>
+                    )}
                   </>
                 )}
+
+                <Nav.Link
+                  href={`https://discord.com/invite/87s8ReJ5FA`}
+                  target="_blank"
+                >
+                  Join Our Discord
+                </Nav.Link>
               </Nav>
             </>
           )}
