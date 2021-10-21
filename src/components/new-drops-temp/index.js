@@ -21,7 +21,6 @@ import four from "../../images/drops/amitab2.png";
 import five from "../../images/drops/drops_1.jpg";
 import six from "../../images/drops/drops_2.jpg";
 import seven from "../../images/drops/magical_1.gif";
-import eight from "../../images/drops/magical_2.gif";
 
 import { Button, Form } from "react-bootstrap";
 import DropCard from "./drop-card";
