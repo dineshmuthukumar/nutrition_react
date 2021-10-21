@@ -31,7 +31,7 @@ const NewHome = () => {
 
   return (
     <>
-      <Header />
+      <Header hideSign />
       {/* <NewDrops categories={categories} /> */}
       <NewDropsTemp categories={categories} />
 
