@@ -552,10 +552,10 @@ section.drops_list {
   .sw_3 .nav-tabs a {
     height: auto;
     font-size: 0.9rem;
-    padding: 0.5rem 0.5rem;
+    padding: 0.5rem 0.2rem;
   }
   span.main_title {
-    margin-left: 0;
+    margin-left: 0 !important;
   }
   .sw_3 .nav-tabs a span.main_title {
     display: block;

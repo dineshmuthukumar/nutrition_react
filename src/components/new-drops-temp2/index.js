@@ -21,11 +21,11 @@ import four from "../../images/drops/amitab2.png";
 import five from "../../images/drops/drops_1.jpg";
 import six from "../../images/drops/drops_2.jpg";
 import seven from "../../images/drops/magical_1.gif";
-import eight from "../../images/drops/magical_2.jpg";
+import eight from "../../images/drops/magical_4.jpg";
 
 import { Button, Form } from "react-bootstrap";
 import DropCard from "./drop-card";
-import "./style.scss";
+import "../new-drops-temp/style.scss";
 import { validateEmail } from "./../../utils/common";
 import { toast } from "react-toastify";
 import { BiLoader, BiLoaderAlt } from "react-icons/bi";
@@ -168,7 +168,7 @@ const NewDropsTemp2 = ({ categories }) => {
                       className="nav-label"
                     >
                       Collection 2:
-                      <span className="main_title"> Mystery NFTs</span>
+                      <span className="main_title"> Loot Box</span>
                       <span className="sub_title">
                         Your Ticket To Surprise Amitabh NFTs
                       </span>
@@ -230,7 +230,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
               <DropCard
                 Id={"posters"}
                 img={eight}
-                cardTitle="The NFT Surprise Zone"
+                cardTitle="Win The Loot Box"
                 smallTitle="Signed Vintage Posters | Illustrations | Big B Punks"
                 cardDesc="Would you miss out on a chance to own some of the most prized representations of Amitab’s legacy!? Explore the NFT surprise zone to win yours!"
                 dropTitle="About Collection"

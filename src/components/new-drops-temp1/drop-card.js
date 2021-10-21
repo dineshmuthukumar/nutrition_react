@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router";
 import Image from "react-bootstrap/Image";
 import NFTCounter from "../nft-counter";
-import "./style.scss";
+import "../new-drops-temp/style.scss";
 import { Link } from "react-router-dom";
 
 const DropCard = ({

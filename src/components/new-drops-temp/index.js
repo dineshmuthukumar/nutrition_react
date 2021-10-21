@@ -167,7 +167,7 @@ const NewDropsTemp = ({ categories }) => {
                       className="nav-label"
                     >
                       Collection 2:
-                      <span className="main_title"> Mystery NFTs</span>
+                      <span className="main_title"> Magic Bullet</span>
                       <span className="sub_title">
                         Your Ticket To Surprise Amitabh NFTs
                       </span>
@@ -229,7 +229,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
               <DropCard
                 Id={"posters"}
                 img={seven}
-                cardTitle="Mystery NFT"
+                cardTitle="Win a Magic Bullet"
                 smallTitle="Your chance to win unbelievable Amitabh NFTs!"
                 cardDesc="Here’s an opportunity for you to get a mysterious Amitabh Bachchan NFT! Nobody knows what it is gonna be until you open it. Ready to take the chance? "
                 dropTitle="About Collection"

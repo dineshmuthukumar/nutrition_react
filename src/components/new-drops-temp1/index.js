@@ -20,11 +20,11 @@ import three from "../../images/drops/three.png";
 import four from "../../images/drops/amitab2.png";
 import five from "../../images/drops/drops_1.jpg";
 import six from "../../images/drops/drops_2.jpg";
-import seven from "../../images/drops/magical_1.gif";
+import seven from "../../images/drops/magical_3.jpg";
 
 import { Button, Form } from "react-bootstrap";
 import DropCard from "./drop-card";
-import "./style.scss";
+import "../new-drops-temp/style.scss";
 import { validateEmail } from "./../../utils/common";
 import { toast } from "react-toastify";
 import { BiLoader, BiLoaderAlt } from "react-icons/bi";
@@ -167,7 +167,7 @@ const NewDropsTemp1 = ({ categories }) => {
                       className="nav-label"
                     >
                       Collection 2:
-                      <span className="main_title"> Mystery NFTs</span>
+                      <span className="main_title"> Magic Box</span>
                       <span className="sub_title">
                         Your Ticket To Surprise Amitabh NFTs
                       </span>
