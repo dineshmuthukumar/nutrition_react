@@ -114,7 +114,7 @@ const NewDropsTemp = ({ categories }) => {
                       onClick={exe_scroll_three}
                     >
                       Collection 4:
-                      <span className="main_title">Illustrations & Art</span>
+                      <span className="main_title">Big-B Punks & Art</span>
                       <span className="sub_title">
                         Amitabh's Artistic Illustrations & Punk-Style Arts
                       </span>
@@ -138,7 +138,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
                 dropTitle="About Collection"
                 dropDescOne="Mr. Harivansh Rai Bachchan (1907–2003), father of Mr. Amitabh Bachchan, wrote Madhushala that depicts the wisdom of Madhu-temple of Mind (Madhushala), karma, imbibement of knowledge, fulfillment of duties, and expectations of an individual from the society into beautiful verses. 
 "
-                dropDescTwo="Madhushala’s Rhyme, Rhythm, and Flavour is still fresh in Amitabh’s mind. He believed and witnessed the miracles that the purest form of art brings in society. However, the love and the respect Mr.Bachchan holds in his heart that compelled him to recite, sing, and translate stories of Madhushala from time to time. "
+                dropDescTwo="Madhushala’s Rhyme, Rhythm, and Flavour is still fresh in Amitabh’s mind. He believed and witnessed the miracles that the purest form of art brings in society. However, the love and the respect Mr.Bachchan holds in his heart that compelled him to recite, sing, and translate stories of Madhushala from time to time. This enthralling audio NFT of Madhushala has one version in Hindi, and one in English! "
                 auctionTitle="Auction starting in"
                 auctionTime="2021-10-22T14:25:00.000Z"
                 editionTitle="Edition of"
@@ -173,7 +173,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
               <DropCard
                 Id={"posters"}
                 img={two}
-                cardTitle="Autographed Posters"
+                cardTitle="Autographed Physical Posters"
                 smallTitle="Exclusive & Classic Amitabh Bachchan Posters in Digital"
                 cardDesc="Now you can own an original movie poster of India’s legendary icon, hand-painted by a few authentic artists whose work will amaze you in every way. The cult value of their masterpieces is a statement of ethnicity, authenticity, Indian cinema’s legacy, and beyond."
                 dropTitle="About Collection"
@@ -192,7 +192,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
             <section className="dropCard-Section" ref={r_three}>
               <DropCard
                 img={one}
-                cardTitle="Crypto Punks"
+                cardTitle="Big-B Punks and Illustrations"
                 smallTitle="A Collection of Signature Crypto-Style Amitabh Miniatures"
                 cardDesc="Let’s admit it! Amitabh, in every Avatar, has been a success! Be it the classic ‘Angry Young Man’, or the modern French-bearded Godfather with his signature ‘Devion or Sajjanon’, or the Twitter personality who numbers his Tweets, the Big B can never be off trends!"
                 dropTitle="About Collection"
