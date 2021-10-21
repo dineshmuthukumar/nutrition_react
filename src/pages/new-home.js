@@ -5,6 +5,7 @@ import { nftCategoriesApi } from "../api/methods";
 import toaster from "../utils/toaster";
 import NFTList from "./../components/nft-list";
 import NewDrops from "../components/new-drops";
+import NewDropsTemp from "./../components/new-drops-temp/index";
 
 const NewHome = () => {
   const [list, setList] = useState([]);
@@ -31,7 +32,9 @@ const NewHome = () => {
   return (
     <>
       <Header />
-      <NewDrops categories={categories} />
+      {/* <NewDrops categories={categories} /> */}
+      <NewDropsTemp categories={categories} />
+
       {/* {!loading ? <NFTList data={list} /> : <ThreeColumnLoader />} */}
       {/* <div className="container">
         <h1 className="text-center mt-5 mb-5">
