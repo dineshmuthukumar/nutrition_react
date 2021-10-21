@@ -503,9 +503,9 @@ input::-webkit-inner-spin-button {
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 991px) {
   html {
-    font-size: 14px;
+    font-size: 13px;
   }
 }
 
@@ -514,7 +514,7 @@ input::-webkit-inner-spin-button {
   //   font-size: 12px;
   // }
   html {
-    font-size: 12px;
+    font-size: 13px;
   }
   .pop-body-container .pop-nft-details .input-bid-container {
     margin-top: 2rem !important;
@@ -819,14 +819,7 @@ input::-webkit-inner-spin-button {
   .sw_3 .nav-tabs a span {
     display: none;
   }
-  .container-fluid,
-  .container-sm,
-  .container-md,
-  .container-lg,
-  .container-xl,
-  .container-xxl {
-    // padding: 0 1.5rem !important;
-  }
+
   .nft-media.media_audio {
     height: auto !important;
   }
@@ -931,14 +924,7 @@ input::-webkit-inner-spin-button {
   .pop-body-container .pop-nft-details .bottom-area .terms {
     font-size: inherit !important;
   }
-  .container-fluid,
-  .container-sm,
-  .container-md,
-  .container-lg,
-  .container-xl,
-  .container-xxl {
-    // padding: 0 1rem !important;
-  }
+
   .bid-winner .nft-sold-details {
     display: block !important;
   }
@@ -974,7 +960,7 @@ input::-webkit-inner-spin-button {
   //   padding-bottom: 0.5rem !important;
   // }
   html {
-    font-size: 10px !important;
+    font-size: 12px !important;
   }
   .nft-artist .artist-content .artist-img {
     object-fit: cover !important;
@@ -1021,9 +1007,7 @@ input::-webkit-inner-spin-button {
     // width: 20rem !important;
     width: 100%;
   }
-  .container-fluid {
-    // padding: 0 10rem !important;
-  }
+
   .nft-artist .artist-content .artist-img {
     width: 100%;
     max-height: 50vh;
@@ -1067,4 +1051,11 @@ input::-webkit-inner-spin-button {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
+}
+
+@media screen and (max-width: 479px) {
+  .container-fluid, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
+    padding: 0 1rem !important;
+  }
+  
 }

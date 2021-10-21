@@ -15,6 +15,9 @@
         font-size: 2rem;
         font-family: $neue-helveticabold;
       }
+      .close-button-pop svg {
+        height: 3rem;
+      }
     }
 
     .pop-bid-progress {
@@ -332,6 +335,9 @@
         .place-bid-button {
           width: 100%;
           text-align: center;
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
 
           .place-bid-btn-pop {
             font-family: $neue-helveticamedium;
