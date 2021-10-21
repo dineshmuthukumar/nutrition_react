@@ -121,8 +121,7 @@ const NewDropsTemp2 = ({ categories }) => {
                     Imagine owning an NFT that holds Amit-ji's significance,
                     history, the value of exceptional existence, and beyond. We
                     bring a series of Amitabh Bachchan's exclusive NFT
-                    collection, curated by the legend himself. Right from the
-                    time, Amitabh Bachchan.
+                    collection, curated by the legend himself.
                   </p>
                   <div className="learnMore">
                     <Link
@@ -209,8 +208,8 @@ const NewDropsTemp2 = ({ categories }) => {
                 img={six}
                 cardTitle="Madhushala NFTs"
                 smallTitle="Amalgamation Of Knowledge, Fulfilment of duties, and Expectations"
-                cardDesc="BeyondLife.club brings you the philosophical undertones of Madhushala in Amitabh’s baritone as an NFT!. Now you can own a recorded version of Madhushala, curated by Amitabh Bachchan himself. 
-By owning this one-of-a-kind NFT, you are owning segments of Indian history, a livelihood full of extraordinary scenarios, a guide for betterment, a betterment for a lifetime.  "
+                cardDesc="BeyondLife.club brings you the philosophical undertones of Madhushala in Amitabh’s baritone as an NFT! Now you can own a recorded version of Madhushala, curated by Amitabh Bachchan himself. 
+By owning this one-of-a-kind NFT, you are owning segments of Indian history, a livelihood full of extraordinary scenarios, a guide for betterment... betterment for a lifetime!  "
                 dropTitle="About Collection"
                 dropDescOne="Mr. Harivansh Rai Bachchan (1907–2003), father of Mr. Amitabh Bachchan, wrote Madhushala that depicts the wisdom of Madhu-temple of Mind (Madhushala), karma, imbibement of knowledge, fulfillment of duties, and expectations of an individual from the society into beautiful verses. 
 "
@@ -232,9 +231,9 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
                 img={eight}
                 cardTitle="Win The Loot Box"
                 smallTitle="Signed Vintage Posters | Illustrations | Big B Punks"
-                cardDesc="Would you miss out on a chance to own some of the most prized representations of Amitab’s legacy!? Explore the NFT surprise zone to win yours!"
+                cardDesc="Would you miss out on a chance to own some of the most prized representations of Amitab’s legacy!? Explore the NFT Loot Box to win yours!"
                 dropTitle="About Collection"
-                dropDescOne="Don’t miss out on the chance to become a proud owner of some of Amitabh’s NFTs worth even ₹50,00,000! All you need to do is explore the NFT surprise zone and see what you’ve won for yourself! It could either be a signed vintage Amitabh Bachchan poster… or a unique illustration of the superstar… or a prized Big B punk! "
+                dropDescOne="Don’t miss out on the chance to become a proud owner of some of Amitabh’s NFTs worth even ₹50,00,000! All you need to do is explore the NFT Loot Box and see what you’ve won for yourself! It could either be a signed vintage Amitabh Bachchan poster… or a unique illustration of the superstar… or a prized Big B punk! "
                 dropDescTwo="All these will can be yours even without entering an auction… and with an assurance that you will get at least one prized art or poster for you to be proud of!"
                 auctionTitle="Auction starting in"
                 auctionTime="2021-10-22T14:25:00.000Z"
@@ -256,11 +255,11 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
                 cardDesc="Now you can own an original movie poster of India’s legendary icon, hand-painted by a few authentic artists whose work will amaze you in every way. The cult value of their masterpieces is a statement of ethnicity, authenticity, Indian cinema’s legacy, and beyond."
                 dropTitle="About Collection"
                 dropDescOne="Hand-painted movie posters, as any classic cinema aficionado might have known, served as heralds for The Shahenshah of Bollywood’s movies. Carrying the savage retro flavor in their artistic expression, these posters are masterpieces in their own right! Posters of Amitabh’s classics depict the era of Celluloid Renaissance in Indian Cinema."
-                dropDescTwo="Movie posters from the era where India witnessed its “Angry young man”, dominating the Indian cinema. Amitabh Bachchan’s career itself should be a storyline that will potentially be a superhit worldwide."
+                dropDescTwo="Movie posters from the era when India witnessed its “Angry young man”, dominating the Indian cinema. Amitabh Bachchan’s career itself should be a storyline that will potentially be a superhit worldwide."
                 auctionTitle="Auction starting in"
                 auctionTime="2021-10-22T14:25:00.000Z"
                 editionTitle="Limited Edition"
-                editionType="10/24"
+                editionType="5/5"
                 additional="Addtional Perk"
                 additionalDesc="10 randomly chosen purchasers of these poster NFTs will get signed and personalized letters from Amitabh himself! How cool is it for you to show off to your friends and folks that you have been called by name by the Big B! "
                 slug={categories[1].slug}

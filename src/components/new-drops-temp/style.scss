@@ -246,7 +246,7 @@ section.drop-newsletter {
 }
 .drop-newsletter h1 {
   font-size: 4em;
-  line-height: 1.3;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   max-width: 80%;
   margin: auto;
@@ -568,6 +568,9 @@ section.drops_list {
   .drop_card .auction-time,
   .drop_card .additional-perks {
     text-align: center;
+  }
+  section.drop-newsletter {
+    padding: 6em 2em !important;
   }
 }
 
