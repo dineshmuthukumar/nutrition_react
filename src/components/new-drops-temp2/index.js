@@ -21,6 +21,7 @@ import four from "../../images/drops/amitab2.png";
 import five from "../../images/drops/drops_1.jpg";
 import six from "../../images/drops/drops_2.jpg";
 import seven from "../../images/drops/magical_1.gif";
+import eight from "../../images/drops/magical_2.jpg";
 
 import { Button, Form } from "react-bootstrap";
 import DropCard from "./drop-card";
@@ -228,7 +229,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
             <section className="dropCard-Section mistry_nft" ref={r_two}>
               <DropCard
                 Id={"posters"}
-                img={seven}
+                img={eight}
                 cardTitle="The NFT Surprise Zone"
                 smallTitle="Signed Vintage Posters | Illustrations | Big B Punks"
                 cardDesc="Would you miss out on a chance to own some of the most prized representations of Amitab’s legacy!? Explore the NFT surprise zone to win yours!"
