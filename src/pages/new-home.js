@@ -41,7 +41,7 @@ const NewHome = () => {
       {(() => {
         if (!id) {
           return <NewDropsTemp categories={categories} />;
-        } else if (id === "1") {
+        } else if (id === "drop-2") {
           return <NewDropsTemp1 categories={categories} />;
         } else {
           return <NewDropsTemp2 categories={categories} />;

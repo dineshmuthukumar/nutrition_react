@@ -114,7 +114,7 @@ const NewDropsTemp2 = ({ categories }) => {
               <div className="col-xxl-5 col-xl-6 col-lg-7 col-md-12 order-2 order-lg-1">
                 <div className="drop-title mb-0">
                   <h2 className="drop-title__heading mb-4">
-                    2Here's Your Chance To Own Exclusive Amitabh Bachchan's NFT
+                    Here's Your Chance To Own Exclusive Amitabh Bachchan's NFT
                     Collections
                   </h2>
                   <p className="drop-title__description mb-4">
