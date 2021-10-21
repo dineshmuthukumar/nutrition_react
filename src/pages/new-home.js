@@ -4,7 +4,7 @@ import Header from "../components/header";
 import { nftCategoriesApi } from "../api/methods";
 import toaster from "../utils/toaster";
 import NFTList from "./../components/nft-list";
-import NewDrops from "../components/new-drops";
+// import NewDrops from "../components/new-drops";
 import NewDropsTemp from "./../components/new-drops-temp/index";
 
 const NewHome = () => {

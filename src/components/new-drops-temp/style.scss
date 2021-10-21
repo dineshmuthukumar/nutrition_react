@@ -14,18 +14,13 @@ p.drop-title__description {
   border-radius: 2em;
   color: #fff;
   border: 1px solid #fff;
-  width: 70%;
   margin-left: 0;
   margin-top: 6.9%;
-  height: 3em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* background-position: 94% center; */
-  /* background-size: 5%; */
   font-size: 1.3rem;
   letter-spacing: 0.1rem;
   font-family: "neue_helveticabold";
+  padding: 1rem 3rem;
+  display: inline-block;
 }
 .content-img img {
   width: 60%;
@@ -73,8 +68,8 @@ section.dropCard-Section {
   display: block;
   margin: auto;
   text-align: center;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 .card_title p {
   font-size: 1.3em;
@@ -99,7 +94,7 @@ p.small-title {
   justify-content: space-between;
 }
 .sw_3 .nav-tabs a {
-  width: 33.33%;
+  width: 25%;
   position: relative;
 }
 .kd-feature-tabs {
@@ -132,11 +127,7 @@ p.small-title {
   padding: 0.5rem;
   line-height: inherit;
   transition: 0.2s ease;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  flex-wrap: wrap;
-  height: 7rem;
+  text-align: center;
   color: #fff;
   text-decoration: none;
   font-family: "neue_helveticabold" !important;
@@ -149,9 +140,10 @@ span.main_title {
   font-family: "neue_helveticaroman" !important;
   font-size: 1.2rem;
   margin-top: 0.5rem;
+  display: block;
 }
 .app-showcase {
-  background: #000;
+  background: #222;
   font-size: 1.2rem;
 }
 .sw_3 .nav-tabs a i {
@@ -521,20 +513,37 @@ section.drops_list {
   display: block;
   width: 100%;
   margin: auto;
+  text-align: center;
 }
 .drop-card-post .learnMore a {
   margin: auto;
   margin-top: 2em;
-  width: 50%;
 }
 
+@media screen and (max-width: 992px) {
+  h2.drop-title__heading,
+  .drop-title p,
+  .learnMore,
+  .drop-title h4 {
+    text-align: center;
+  }
+  .learnMore a {
+    margin-top: 2%;
+  }
+  h2.drop-title__heading {
+    font-size: 2.5rem;
+  }
+  .drop-card-post img {
+    height: auto;
+  }
+}
 @media screen and (max-width: 1050px) {
   .sw_3 .nav-tabs a .sub_title {
     display: none;
   }
   .sw_3 .nav-tabs a {
     height: auto;
-    font-size: 1rem;
+    font-size: 0.7rem;
     padding: 0.5rem 0.5rem;
   }
   .sw_3 .nav-tabs a span.main_title {
@@ -549,9 +558,7 @@ section.drops_list {
   .border-right::after {
     content: none;
   }
-  .drop-card-post .learnMore a {
-    width: 100%;
-  }
+
   footer {
     background-image: none;
   }
@@ -567,13 +574,9 @@ section.drops_list {
     width: 100% !important;
   }
   .content-img img {
-    width: 60%;
+    width: 85%;
   }
-  .learnMore a {
-    height: 3.5em;
-    font-size: 1.5rem;
-    width: 100%;
-  }
+
   .drop_card {
     border: none;
     margin-top: 2.6em;
@@ -708,9 +711,7 @@ section.drops_list {
   .submenu {
     width: 100% !important;
   }
-  .learnMore a {
-    width: 50%;
-  }
+
   .scroll-drops {
     display: none;
   }
@@ -844,9 +845,7 @@ section.drops_list {
   h2.drop-title__heading {
     margin-top: 2rem;
   }
-  .learnMore a {
-    width: 50%;
-  }
+
   .card_title {
     text-align: left;
     padding: 0;

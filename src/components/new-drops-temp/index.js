@@ -41,7 +41,7 @@ const NewDropsTemp = ({ categories }) => {
         <section className="sw_ab_1">
           <div className="container">
             <div className="row align-items-center justify-content-center">
-              <div className="col-xxl-5 col-xl-6 col-lg-7 col-md-9 col-xs-11 order-2 order-lg-1">
+              <div className="col-xxl-5 col-xl-6 col-lg-7 col-md-12 order-2 order-lg-1">
                 <div className="drop-title mb-0">
                   <h2 className="drop-title__heading mb-4">
                     Here's Your Chance To Own Exclusive Amitabh Bachchan's NFT
@@ -61,15 +61,10 @@ const NewDropsTemp = ({ categories }) => {
                   </div>
                 </div>
               </div>
-              <div className="col-xxl-7 col-xl-6 col-lg-5 col-md-9 col-xs-10 order-1 order-lg-2">
+              <div className="col-xxl-7 col-xl-6 col-lg-5 col-md-12 order-1 order-lg-2">
                 <div className="content-img content-img--l4-1">
                   <Image src={five} rounded />
                 </div>
-              </div>
-            </div>
-            <div className="row">
-              <div className="scroll-drops my-4">
-                <a href="#drop_1">Scroll for all Drops</a>
               </div>
             </div>
           </div>
@@ -88,8 +83,7 @@ const NewDropsTemp = ({ categories }) => {
                       Collection 1:
                       <span className="main_title"> Madhushala</span>
                       <span className="sub_title">
-                        Exquisite Poetry of Amitabh's Dad Harivansh Rai Bachchan
-                        Rendered In Amitabh's Distinct Baritone!
+                        Big B's Dad's Poetry in Amitabh's Voice!!
                       </span>
                     </Link>
                     <Link
@@ -97,10 +91,10 @@ const NewDropsTemp = ({ categories }) => {
                       onClick={exe_scroll_two}
                       className="nav-label"
                     >
-                      Collection 2: <span className="main_title"> Posters</span>
+                      Collection 2:
+                      <span className="main_title"> Mystery NFTs</span>
                       <span className="sub_title">
-                        Original Hand-Painted Rare Posters of Amitabh's
-                        Blockbusters... With His Signature!
+                        Your Ticket To Surprise Amitabh NFTs
                       </span>
                     </Link>
                     <Link
@@ -109,10 +103,20 @@ const NewDropsTemp = ({ categories }) => {
                       onClick={exe_scroll_three}
                     >
                       Collection 3:
-                      <span className="main_title">Amitabh CryptoPunks</span>
+                      <span className="main_title">Posters</span>
                       <span className="sub_title">
-                        Distinct And Unique Minimal Miniatures That Are
-                        Unmistakably Amitabh In Every Way!
+                        Hand-Painted & Autographed AB Posters
+                      </span>
+                    </Link>
+                    <Link
+                      className="nav-label"
+                      to="#"
+                      onClick={exe_scroll_three}
+                    >
+                      Collection 4:
+                      <span className="main_title">Illustrations & Art</span>
+                      <span className="sub_title">
+                        Amitabh's Artistic Illustrations & Punk-Style Arts
                       </span>
                     </Link>
                   </div>
@@ -143,6 +147,26 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
                 additionalDesc="The highest bidders in the two categories, in addition to the NFTs, will also get to avail a meet-and-greet session with the Big B - A memory that any Amitabh will hold on to more dearly than the NFT itself!"
                 slug={categories[0].slug}
                 catName={categories[0].name}
+              />
+            </section>
+            <section className="dropCard-Section" ref={r_two}>
+              <DropCard
+                Id={"posters"}
+                img={two}
+                cardTitle="Mystery NFT"
+                smallTitle="Your chance to win unbelievable Amitabh NFTs!"
+                cardDesc="Here’s an opportunity for you to get a mysterious Amitabh Bachchan NFT! Nobody knows what it is gonna be until you open it. Ready to take the chance? "
+                dropTitle="About Collection"
+                dropDescOne="We present you the Mystery NFT, an exclusive and surprise offering. You can purchase these Mystery NFTs and see what surprise they hold for you inside! For all you know, it could be a rare Amitabh art NFT… or even a vintage Amitabh poster NFT or an exclusive Big B Punk, some of them even worth ₹50,00,000!"
+                dropDescTwo="What’s more exciting is that there’s no auction involved… and you can be assured that there’s one NFT waiting for you! Hurry Up! Claim Your Mystery NFT for Amitabh Now!"
+                auctionTitle="Auction starting in"
+                auctionTime="2021-10-22T14:25:00.000Z"
+                editionTitle="Limited Edition"
+                editionType="10/24"
+                additional="Addtional Perk"
+                additionalDesc="What More Do You Get: You can, just like any other NFT, sell your prized possessions in marketplaces and trade them like any other NFT that you buy! "
+                slug={categories[1].slug}
+                catName={categories[1].name}
               />
             </section>
             <section className="dropCard-Section" ref={r_two}>
@@ -191,8 +215,8 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
           <div className="container">
             <div className="row">
               <h1>
-                Are you the one going to make it big in India?
-                <span>Own an NFT.</span>
+                Be Notified About India’s First Rare-Art NFT Featuring Amitabh
+                Bachchan!
               </h1>
             </div>
             <Form id="nft_form">
