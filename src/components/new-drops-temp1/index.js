@@ -20,6 +20,7 @@ import three from "../../images/drops/three.png";
 import four from "../../images/drops/amitab2.png";
 import five from "../../images/drops/drops_1.jpg";
 import six from "../../images/drops/drops_2.jpg";
+import seven from "../../images/drops/magical_1.gif";
 
 import { Button, Form } from "react-bootstrap";
 import DropCard from "./drop-card";
@@ -224,16 +225,16 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
                 scroll={exe_scroll_email}
               />
             </section>
-            <section className="dropCard-Section" ref={r_two}>
+            <section className="dropCard-Section mistry_nft" ref={r_two}>
               <DropCard
                 Id={"posters"}
-                img={two}
-                cardTitle="Mystery NFT"
-                smallTitle="Your chance to win unbelievable Amitabh NFTs!"
-                cardDesc="Here’s an opportunity for you to get a mysterious Amitabh Bachchan NFT! Nobody knows what it is gonna be until you open it. Ready to take the chance? "
+                img={seven}
+                cardTitle="The Big B Magic Box"
+                smallTitle="Make exclusive posters, artworks, and Big B punks yours!"
+                cardDesc="Are you such a die-hard fan of the Big B that you’d not miss out on a chance to get your hands on anything that represents his legacy? Here’s your chance!!"
                 dropTitle="About Collection"
-                dropDescOne="We present you the Mystery NFT, an exclusive and surprise offering. You can purchase these Mystery NFTs and see what surprise they hold for you inside! For all you know, it could be a rare Amitabh art NFT… or even a vintage Amitabh poster NFT or an exclusive Big B Punk, some of them even worth ₹50,00,000!"
-                dropDescTwo="What’s more exciting is that there’s no auction involved… and you can be assured that there’s one NFT waiting for you! Hurry Up! Claim Your Mystery NFT for Amitabh Now!"
+                dropDescOne="We bring you the Big B Magic Box - a unique offering that holds big surprises for anyone who purchases it. Every purchaser of the Big B Magic Box will get assured NFT of either Amitabh’s signed posters or exclusive illustrations or meticulously created Big B Punks!"
+                dropDescTwo="There’s no auction involved here and it means the chances of you winning something is 100%. Some of these arts and posters could be worth even ₹50,00,000!"
                 auctionTitle="Auction starting in"
                 auctionTime="2021-10-22T14:25:00.000Z"
                 editionTitle="Limited Edition"

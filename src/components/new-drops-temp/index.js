@@ -20,6 +20,8 @@ import three from "../../images/drops/three.png";
 import four from "../../images/drops/amitab2.png";
 import five from "../../images/drops/drops_1.jpg";
 import six from "../../images/drops/drops_2.jpg";
+import seven from "../../images/drops/magical_1.gif";
+import eight from "../../images/drops/magical_2.gif";
 
 import { Button, Form } from "react-bootstrap";
 import DropCard from "./drop-card";
@@ -224,10 +226,10 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
                 scroll={exe_scroll_email}
               />
             </section>
-            <section className="dropCard-Section" ref={r_two}>
+            <section className="dropCard-Section mistry_nft" ref={r_two}>
               <DropCard
                 Id={"posters"}
-                img={six}
+                img={seven}
                 cardTitle="Mystery NFT"
                 smallTitle="Your chance to win unbelievable Amitabh NFTs!"
                 cardDesc="Here’s an opportunity for you to get a mysterious Amitabh Bachchan NFT! Nobody knows what it is gonna be until you open it. Ready to take the chance? "

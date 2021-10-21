@@ -20,6 +20,7 @@ import three from "../../images/drops/three.png";
 import four from "../../images/drops/amitab2.png";
 import five from "../../images/drops/drops_1.jpg";
 import six from "../../images/drops/drops_2.jpg";
+import seven from "../../images/drops/magical_1.gif";
 
 import { Button, Form } from "react-bootstrap";
 import DropCard from "./drop-card";
@@ -224,16 +225,16 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
                 scroll={exe_scroll_email}
               />
             </section>
-            <section className="dropCard-Section" ref={r_two}>
+            <section className="dropCard-Section mistry_nft" ref={r_two}>
               <DropCard
                 Id={"posters"}
-                img={two}
-                cardTitle="Mystery NFT"
-                smallTitle="Your chance to win unbelievable Amitabh NFTs!"
-                cardDesc="Here’s an opportunity for you to get a mysterious Amitabh Bachchan NFT! Nobody knows what it is gonna be until you open it. Ready to take the chance? "
+                img={seven}
+                cardTitle="The NFT Surprise Zone"
+                smallTitle="Signed Vintage Posters | Illustrations | Big B Punks"
+                cardDesc="Would you miss out on a chance to own some of the most prized representations of Amitab’s legacy!? Explore the NFT surprise zone to win yours!"
                 dropTitle="About Collection"
-                dropDescOne="We present you the Mystery NFT, an exclusive and surprise offering. You can purchase these Mystery NFTs and see what surprise they hold for you inside! For all you know, it could be a rare Amitabh art NFT… or even a vintage Amitabh poster NFT or an exclusive Big B Punk, some of them even worth ₹50,00,000!"
-                dropDescTwo="What’s more exciting is that there’s no auction involved… and you can be assured that there’s one NFT waiting for you! Hurry Up! Claim Your Mystery NFT for Amitabh Now!"
+                dropDescOne="Don’t miss out on the chance to become a proud owner of some of Amitabh’s NFTs worth even ₹50,00,000! All you need to do is explore the NFT surprise zone and see what you’ve won for yourself! It could either be a signed vintage Amitabh Bachchan poster… or a unique illustration of the superstar… or a prized Big B punk! "
+                dropDescTwo="All these will can be yours even without entering an auction… and with an assurance that you will get at least one prized art or poster for you to be proud of!"
                 auctionTitle="Auction starting in"
                 auctionTime="2021-10-22T14:25:00.000Z"
                 editionTitle="Limited Edition"
