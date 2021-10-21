@@ -237,8 +237,8 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
                 dropDescTwo="All these will can be yours even without entering an auction… and with an assurance that you will get at least one prized art or poster for you to be proud of!"
                 auctionTitle="Auction starting in"
                 auctionTime="2021-10-22T14:25:00.000Z"
-                editionTitle="Limited Edition"
-                editionType="10/24"
+                editionTitle="Items"
+                editionType="5000"
                 additional="Addtional Perk"
                 additionalDesc="What More Do You Get: You can, just like any other NFT, sell your prized possessions in marketplaces and trade them like any other NFT that you buy! "
                 slug={categories[1].slug}
@@ -259,7 +259,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
                 auctionTitle="Auction starting in"
                 auctionTime="2021-10-22T14:25:00.000Z"
                 editionTitle="Limited Edition"
-                editionType="5/5"
+                editionType="7/7"
                 additional="Addtional Perk"
                 additionalDesc="10 randomly chosen purchasers of these poster NFTs will get signed and personalized letters from Amitabh himself! How cool is it for you to show off to your friends and folks that you have been called by name by the Big B! "
                 slug={categories[1].slug}
@@ -281,7 +281,9 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
                 auctionTitle="Auction starting in"
                 auctionTime="2021-10-22T14:25:00.000Z"
                 editionTitle="Edition"
-                editionType="10000"
+                editionType="6/6"
+                additional="Addtional Perk"
+                additionalDesc="These miniatures and illustrations represent the craze for collectibles in the crypto world! A crypto featuring a legendary and globally recognized superstar is bound to be a thing of pride to possess... in addition to high possibilitiesof fetching good deals in the secondary market!"
                 slug={categories[2].slug}
                 catName={categories[2].name}
                 scroll={exe_scroll_email}

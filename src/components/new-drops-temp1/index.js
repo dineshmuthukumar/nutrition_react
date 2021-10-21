@@ -236,8 +236,8 @@ const NewDropsTemp1 = ({ categories }) => {
                 dropDescTwo="There’s no auction involved here and it means the chances of you winning something is 100%. Some of these arts and posters could be worth even ₹50,00,000!"
                 auctionTitle="Auction starting in"
                 auctionTime="2021-10-22T14:25:00.000Z"
-                editionTitle="Limited Edition"
-                editionType="10/24"
+                editionTitle="Items"
+                editionType="5000"
                 additional="Addtional Perk"
                 additionalDesc="What More Do You Get: You can, just like any other NFT, sell your prized possessions in marketplaces and trade them like any other NFT that you buy! "
                 slug={categories[1].slug}
@@ -258,7 +258,7 @@ const NewDropsTemp1 = ({ categories }) => {
                 auctionTitle="Auction starting in"
                 auctionTime="2021-10-22T14:25:00.000Z"
                 editionTitle="Limited Edition"
-                editionType="5/5"
+                editionType="7/7"
                 additional="Addtional Perk"
                 additionalDesc="10 randomly chosen purchasers of these poster NFTs will get signed and personalized letters from Amitabh himself! How cool is it for you to show off to your friends and folks that you have been called by name by the Big B! "
                 slug={categories[1].slug}
@@ -280,7 +280,9 @@ const NewDropsTemp1 = ({ categories }) => {
                 auctionTitle="Auction starting in"
                 auctionTime="2021-10-22T14:25:00.000Z"
                 editionTitle="Edition"
-                editionType="10000"
+                editionType="6/6"
+                additional="Addtional Perk"
+                additionalDesc="These miniatures and illustrations represent the craze for collectibles in the crypto world! A crypto featuring a legendary and globally recognized superstar is bound to be a thing of pride to possess... in addition to high possibilitiesof fetching good deals in the secondary market!"
                 slug={categories[2].slug}
                 catName={categories[2].name}
                 scroll={exe_scroll_email}
