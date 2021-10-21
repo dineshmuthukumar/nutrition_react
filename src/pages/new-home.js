@@ -6,12 +6,17 @@ import toaster from "../utils/toaster";
 import NFTList from "./../components/nft-list";
 // import NewDrops from "../components/new-drops";
 import NewDropsTemp from "./../components/new-drops-temp/index";
+import { useRouteMatch } from "react-router";
+import NewDropsTemp1 from "./../components/new-drops-temp1/index";
+import NewDropsTemp2 from "./../components/new-drops-temp2/index";
 
 const NewHome = () => {
   const [list, setList] = useState([]);
   const [categories, setCategories] = useState([]);
   const [page, setPage] = useState({ page: 1 });
   const [loading, setLoading] = useState(true);
+
+  const { id } = useRouteMatch().params;
 
   useEffect(() => {
     nftCategories(page);
@@ -33,7 +38,15 @@ const NewHome = () => {
     <>
       <Header hideSign />
       {/* <NewDrops categories={categories} /> */}
-      <NewDropsTemp categories={categories} />
+      {(() => {
+        if (!id) {
+          return <NewDropsTemp categories={categories} />;
+        } else if (id === "1") {
+          return <NewDropsTemp1 categories={categories} />;
+        } else {
+          return <NewDropsTemp2 categories={categories} />;
+        }
+      })()}
 
       {/* {!loading ? <NFTList data={list} /> : <ThreeColumnLoader />} */}
       {/* <div className="container">

@@ -28,7 +28,7 @@ import { validateEmail } from "./../../utils/common";
 import { toast } from "react-toastify";
 import { BiLoader, BiLoaderAlt } from "react-icons/bi";
 
-const NewDropsTemp = ({ categories }) => {
+const NewDropsTemp1 = ({ categories }) => {
   const r_one = useRef(null);
   const r_two = useRef(null);
   const r_three = useRef(null);
@@ -112,7 +112,7 @@ const NewDropsTemp = ({ categories }) => {
               <div className="col-xxl-5 col-xl-6 col-lg-7 col-md-12 order-2 order-lg-1">
                 <div className="drop-title mb-0">
                   <h2 className="drop-title__heading mb-4">
-                    Here's Your Chance To Own Exclusive Amitabh Bachchan's NFT
+                    1Here's Your Chance To Own Exclusive Amitabh Bachchan's NFT
                     Collections
                   </h2>
                   <p className="drop-title__description mb-4">
@@ -227,7 +227,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
             <section className="dropCard-Section" ref={r_two}>
               <DropCard
                 Id={"posters"}
-                img={six}
+                img={two}
                 cardTitle="Mystery NFT"
                 smallTitle="Your chance to win unbelievable Amitabh NFTs!"
                 cardDesc="Here’s an opportunity for you to get a mysterious Amitabh Bachchan NFT! Nobody knows what it is gonna be until you open it. Ready to take the chance? "
@@ -281,8 +281,6 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
                 auctionTime="2021-10-22T14:25:00.000Z"
                 editionTitle="Edition"
                 editionType="10000"
-                additional="Addtional Perk"
-                additionalDesc="These miniatures and illustrations represent the craze for collectibles in the crypto world! A crypto featuring a legendary and globally recognized superstar is bound to be a thing of pride to possess... in addition to high possibilitiesof fetching good deals in the secondary market!"
                 slug={categories[2].slug}
                 catName={categories[2].name}
                 scroll={exe_scroll_email}
@@ -503,4 +501,4 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
   );
 };
 
-export default NewDropsTemp;
+export default NewDropsTemp1;
