@@ -263,25 +263,25 @@ section.drop-newsletter {
   position: relative;
   display: block;
   width: 100%;
-  line-height: 19px;
-  padding: 15px 20px;
+  line-height: 3rem;
+  padding: 1.4rem 1rem  1.4rem 1rem;
   background-color: #ffffffa3;
-  height: 50px;
+  height: 3rem;
   border: 1px solid #dcd9d8;
   transition: all 300ms ease;
   border-radius: 100px;
-  font-size: 1.2em !important;
+  font-size: 1.2rem !important;
 }
 
 button.nft_form {
   position: absolute;
   right: 5px;
   top: 4px;
-  width: 42px;
-  height: 42px;
-  display: inline-block;
-  font-size: 2em;
-  line-height: 30px;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  font-size: 2rem;
+  line-height: 2rem;
   padding: 6px 9px;
   font-weight: 700;
   border-radius: 35px;
@@ -289,6 +289,12 @@ button.nft_form {
   background-color: #6052e7;
   overflow: hidden;
   border: none;
+  align-items: center;
+  justify-content: center;
+  svg {
+    height: 2rem;
+    width: 2rem;
+  }
 }
 /* footer */
 #footer {
@@ -385,12 +391,11 @@ button.nft_form {
   position: relative;
 }
 #fmenu1 .submenu:last-of-type form input[type="email"] {
-  // height: 3em;
-  border-radius: 3em;
+  // border-radius: 3em;
   border: none;
-  width: 100%;
-  padding-left: 10%;
-  font-size: 0.8em;
+  // width: 100%;
+  // padding-left: 10%;
+  // font-size: 0.8em;
   background-color: #1f1f1f;
   color: #a2a2a2;
 }
@@ -502,20 +507,21 @@ section.drops_list {
 }
 #socialMedia ul li a {
   margin-left: 0;
-  margin-right: 10px;
+  margin-right: 0.5rem;
   position: relative;
   display: flex;
   color: #000;
-  width: 35px;
-  height: 35px;
+  width: 2.5rem;
+  height: 2.5rem;
   border: 1px solid #7f7f7f;
   border-radius: 50%;
   text-align: center;
   padding: 0;
   justify-content: center;
   align-items: center;
-  font-size: 1.8em !important;
+  font-size: 1.5em !important;
   background: #7f7f7f;
+  margin-bottom: 0.5rem;
 }
 .drop-card-post .learnMore {
   display: block;
@@ -623,12 +629,12 @@ section.drops_list {
     justify-content: center;
   }
   #fmenu1 .submenu:nth-of-type(2) ul li a {
-    font-size: 1.3em;
-    padding: 2% 0% 3% 0%;
+    font-size: 1.3rem;
+    padding: 1rem 1.5rem 1rem 0rem;
     width: 100%;
     background: url(https://cdn.beyondlife.club/media/right_white.png) no-repeat;
     background-position: center right;
-    background-size: 4%;
+    background-size: 1rem;
   }
   #fmenu1 .submenu:last-of-type form label {
     display: none;
@@ -652,14 +658,14 @@ section.drops_list {
     font-size: 1em;
     margin-bottom: 2%;
   }
-  button.nft_form {
-    top: 9px !important;
-    right: 10px;
-    width: 30px !important;
-    height: 30px !important;
-    font-size: 1.3em !important;
-    line-height: 15px !important;
-  }
+  // button.nft_form {
+  //   top: 9px !important;
+  //   right: 10px;
+  //   width: 30px !important;
+  //   height: 30px !important;
+  //   font-size: 1.3em !important;
+  //   line-height: 15px !important;
+  // }
   #fmenu2 .submenu:first-of-type > div {
     margin-right: initial;
   }
@@ -775,12 +781,12 @@ section.drops_list {
     justify-content: center;
   }
   #fmenu1 .submenu:nth-of-type(2) ul li a {
-    font-size: 1.3em;
-    padding: 2% 0% 3% 0%;
+    font-size: 1.3rem;
+    padding: 1rem 1.5rem 1rem 0rem;
     width: 100%;
     background: url(https://cdn.beyondlife.club/media/right_white.png) no-repeat;
     background-position: center right;
-    background-size: 4%;
+    background-size: 1rem;
   }
   #fmenu1 .submenu:last-of-type form label {
     display: none;
@@ -804,13 +810,13 @@ section.drops_list {
     font-size: 1em;
     margin-bottom: 2%;
   }
-  button.nft_form {
-    top: 7px !important;
-    width: 35px !important;
-    height: 35px !important;
-    font-size: 1.3em !important;
-    line-height: 15px !important;
-  }
+  // button.nft_form {
+  //   top: 7px !important;
+  //   width: 35px !important;
+  //   height: 35px !important;
+  //   font-size: 1.3em !important;
+  //   line-height: 15px !important;
+  // }
   #fmenu2 .submenu:first-of-type > div {
     margin-right: initial;
   }
@@ -886,7 +892,7 @@ section.drops_list {
   .container-xxl {
     max-width: 80%;
   }
-  button.nft_form {
-    font-size: inherit;
-  }
+  // button.nft_form {
+  //   font-size: inherit;
+  // }
 }
