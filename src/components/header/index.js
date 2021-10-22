@@ -16,6 +16,7 @@ import userImg from "../../images/user_1.png";
 import "./style.scss";
 import { getCookies } from "../../utils/cookies";
 import { accountDetail } from "../../api/actioncable-methods";
+import { currencyFormat } from "../../utils/common";
 
 const Header = ({ hideOptions = false, hideSign = false }) => {
   const t = useTranslation();
@@ -284,7 +285,7 @@ const UserComponent = ({ user, onClick = () => {} }) => (
       alt="user-icon"
     />
     <div className="user-name">
-      {user?.currency_symbol} {user?.balance}
+      {currencyFormat(user?.balance, user?.currency_name)}
     </div>
   </div>
 );

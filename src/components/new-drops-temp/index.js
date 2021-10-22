@@ -149,22 +149,14 @@ const NewDropsTemp = ({ categories }) => {
               <div className="app-showcase">
                 <Navbar className="kd-feature-tabs">
                   <div className="nav nav-tabs sticky-tabs">
-                    <Link
-                      to="#drop_1"
-                      className="nav-label"
-                      onClick={exe_scroll_one}
-                    >
+                    <Link to="#" className="nav-label" onClick={exe_scroll_one}>
                       Collection 1:
                       <span className="main_title"> Madhushala</span>
                       <span className="sub_title">
                         Big B's Dad's Poetry in Amitabh's Voice!!
                       </span>
                     </Link>
-                    <Link
-                      to="#posters"
-                      onClick={exe_scroll_two}
-                      className="nav-label"
-                    >
+                    <Link to="#" onClick={exe_scroll_two} className="nav-label">
                       Collection 2:
                       <span className="main_title"> Magic Bullet</span>
                       <span className="sub_title">
