@@ -14,18 +14,19 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 
-import one from "../../images/drops/one.png";
+import one from "../../images/drops/crypto_punk.jpg";
 import two from "../../images/drops/two.png";
 import three from "../../images/drops/three.png";
 import four from "../../images/drops/amitab2.png";
 import five from "../../images/drops/drops_1.jpg";
 import six from "../../images/drops/drops_2.jpg";
 import seven from "../../images/drops/magical_1.gif";
-import eight from "../../images/drops/magical_4.jpg";
+import eight from "../../images/drops/nft_1.jpg";
 
 import { Button, Form } from "react-bootstrap";
 import DropCard from "./drop-card";
 import "../new-drops-temp/style.scss";
+import { sendEmailNewletter } from "../../api/axios-newsletter";
 import { validateEmail } from "./../../utils/common";
 import { toast } from "react-toastify";
 import { BiLoader, BiLoaderAlt } from "react-icons/bi";
@@ -45,22 +46,31 @@ const NewDropsTemp2 = ({ categories }) => {
   const [vEmail, setVEmail] = useState();
   const [vEmail2, setVEmail2] = useState();
 
-  const sendEmailNewletter = (input) =>
-    axios.post(process.env.REACT_APP_NEWSLETTER_API, {
-      Nemail: input,
-    });
+  // const sendEmailNewletter = (input) => {
+  //   axios.post(process.env.REACT_APP_NEWSLETTER_API, formData)
+  // };
 
   const handleSendNewsLetter = async () => {
     if (validateEmail(email)) {
       setVEmail(null);
       try {
         setLoading(true);
-        await sendEmailNewletter(email);
+
+        const formData = new FormData();
+        formData.append("Nemail", email);
+
+        const result = await sendEmailNewletter(formData);
+        if (result.data.status) {
+          setVEmail(
+            "We will buzz you when the NFT Drop is ready to launch. Thank you for being a part of Beyondlife.club #beyondlife.club #nft"
+          );
+        } else {
+          setVEmail(
+            "We got it again!, We are excited to have you as part of our NFT club. Details have been noted already. So, worry not! We will return to you once we are all set with the NFT drops. See you soon!"
+          );
+        }
         setLoading(false);
-        setEmail(null);
-        setVEmail(
-          "We will buzz you when the NFT Drop is ready to launch. Thank you for being a part of Beyondlife.club #beyondlife.club #nft"
-        );
+        setEmail("");
       } catch (error) {
         setLoading(false);
 
@@ -80,11 +90,23 @@ const NewDropsTemp2 = ({ categories }) => {
 
       try {
         setLoading2(true);
-        await sendEmailNewletter(email2);
-        setEmail2(null);
-        setVEmail2(
-          "We will buzz you when the NFT Drop is ready to launch. Thank you for being a part of Beyondlife.club #beyondlife.club #nft"
-        );
+
+        const formData = new FormData();
+        formData.append("Nemail", email2);
+
+        const result = await sendEmailNewletter(formData);
+
+        if (result.data.status) {
+          setVEmail2(
+            "We will buzz you when the NFT Drop is ready to launch. Thank you for being a part of Beyondlife.club #beyondlife.club #nft"
+          );
+        } else {
+          setVEmail2(
+            "We got it again!, We are excited to have you as part of our NFT club. Details have been noted already. So, worry not! We will return to you once we are all set with the NFT drops. See you soon!"
+          );
+        }
+
+        setEmail2("");
         setLoading2(false);
       } catch (error) {
         setLoading2(false);
@@ -114,15 +136,14 @@ const NewDropsTemp2 = ({ categories }) => {
               <div className="col-xxl-5 col-xl-6 col-lg-7 col-md-12 order-2 order-lg-1">
                 <div className="drop-title mb-0">
                   <h2 className="drop-title__heading mb-4">
-                    Here's Your Chance To Own Exclusive Amitabh Bachchan's NFT
-                    Collections
+                    Amitabh Bachchan's Exclusive NFT Collections - Make Them
+                    Yours!
                   </h2>
                   <p className="drop-title__description mb-4">
                     Imagine owning an NFT that holds Amit-ji's significance,
                     history, the value of exceptional existence, and beyond. We
                     bring a series of Amitabh Bachchan's exclusive NFT
-                    collection, curated by the legend himself. Right from the
-                    time, Amitabh Bachchan.
+                    collection, curated by the legend himself.
                   </p>
                   <div className="learnMore">
                     <Link
@@ -206,11 +227,11 @@ const NewDropsTemp2 = ({ categories }) => {
             <section className="dropCard-Section" ref={r_one}>
               <DropCard
                 id="madhushala"
-                img={six}
+                img={eight}
                 cardTitle="Madhushala NFTs"
                 smallTitle="Amalgamation Of Knowledge, Fulfilment of duties, and Expectations"
-                cardDesc="BeyondLife.club brings you the philosophical undertones of Madhushala in Amitabh’s baritone as an NFT!. Now you can own a recorded version of Madhushala, curated by Amitabh Bachchan himself. 
-By owning this one-of-a-kind NFT, you are owning segments of Indian history, a livelihood full of extraordinary scenarios, a guide for betterment, a betterment for a lifetime.  "
+                cardDesc="BeyondLife.club brings you the philosophical undertones of Madhushala in Amitabh’s baritone as an NFT! Now you can own a recorded version of Madhushala, curated by Amitabh Bachchan himself. 
+By owning this one-of-a-kind NFT, you are owning segments of Indian history, a livelihood full of extraordinary scenarios, a guide for betterment... betterment for a lifetime!  "
                 dropTitle="About Collection"
                 dropDescOne="Mr. Harivansh Rai Bachchan (1907–2003), father of Mr. Amitabh Bachchan, wrote Madhushala that depicts the wisdom of Madhu-temple of Mind (Madhushala), karma, imbibement of knowledge, fulfillment of duties, and expectations of an individual from the society into beautiful verses. 
 "
@@ -232,14 +253,14 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
                 img={eight}
                 cardTitle="Win The Loot Box"
                 smallTitle="Signed Vintage Posters | Illustrations | Big B Punks"
-                cardDesc="Would you miss out on a chance to own some of the most prized representations of Amitab’s legacy!? Explore the NFT surprise zone to win yours!"
+                cardDesc="Would you miss out on a chance to own some of the most prized representations of Amitab’s legacy!? Explore the NFT Loot Box to win yours!"
                 dropTitle="About Collection"
-                dropDescOne="Don’t miss out on the chance to become a proud owner of some of Amitabh’s NFTs worth even ₹50,00,000! All you need to do is explore the NFT surprise zone and see what you’ve won for yourself! It could either be a signed vintage Amitabh Bachchan poster… or a unique illustration of the superstar… or a prized Big B punk! "
+                dropDescOne="Don’t miss out on the chance to become a proud owner of some of Amitabh’s NFTs worth even ₹50,00,000! All you need to do is explore the NFT Loot Box and see what you’ve won for yourself! It could either be a signed vintage Amitabh Bachchan poster… or a unique illustration of the superstar… or a prized Big B punk! "
                 dropDescTwo="All these will can be yours even without entering an auction… and with an assurance that you will get at least one prized art or poster for you to be proud of!"
                 auctionTitle="Auction starting in"
                 auctionTime="2021-10-22T14:25:00.000Z"
-                editionTitle="Limited Edition"
-                editionType="10/24"
+                editionTitle="Items"
+                editionType="5000"
                 additional="Addtional Perk"
                 additionalDesc="What More Do You Get: You can, just like any other NFT, sell your prized possessions in marketplaces and trade them like any other NFT that you buy! "
                 slug={categories[1].slug}
@@ -256,11 +277,11 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
                 cardDesc="Now you can own an original movie poster of India’s legendary icon, hand-painted by a few authentic artists whose work will amaze you in every way. The cult value of their masterpieces is a statement of ethnicity, authenticity, Indian cinema’s legacy, and beyond."
                 dropTitle="About Collection"
                 dropDescOne="Hand-painted movie posters, as any classic cinema aficionado might have known, served as heralds for The Shahenshah of Bollywood’s movies. Carrying the savage retro flavor in their artistic expression, these posters are masterpieces in their own right! Posters of Amitabh’s classics depict the era of Celluloid Renaissance in Indian Cinema."
-                dropDescTwo="Movie posters from the era where India witnessed its “Angry young man”, dominating the Indian cinema. Amitabh Bachchan’s career itself should be a storyline that will potentially be a superhit worldwide."
+                dropDescTwo="Movie posters from the era when India witnessed its “Angry young man”, dominating the Indian cinema. Amitabh Bachchan’s career itself should be a storyline that will potentially be a superhit worldwide."
                 auctionTitle="Auction starting in"
                 auctionTime="2021-10-22T14:25:00.000Z"
                 editionTitle="Limited Edition"
-                editionType="10/24"
+                editionType="7/7"
                 additional="Addtional Perk"
                 additionalDesc="10 randomly chosen purchasers of these poster NFTs will get signed and personalized letters from Amitabh himself! How cool is it for you to show off to your friends and folks that you have been called by name by the Big B! "
                 slug={categories[1].slug}
@@ -282,7 +303,9 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
                 auctionTitle="Auction starting in"
                 auctionTime="2021-10-22T14:25:00.000Z"
                 editionTitle="Edition"
-                editionType="10000"
+                editionType="6/6"
+                additional="Addtional Perk"
+                additionalDesc="These miniatures and illustrations represent the craze for collectibles in the crypto world! A crypto featuring a legendary and globally recognized superstar is bound to be a thing of pride to possess... in addition to high possibilitiesof fetching good deals in the secondary market!"
                 slug={categories[2].slug}
                 catName={categories[2].name}
                 scroll={exe_scroll_email}
@@ -295,8 +318,8 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
           <div className="container">
             <div className="row">
               <h1>
-                Be Notified About India’s First Rare-Art NFT Featuring Amitabh
-                Bachchan!
+                Be Notified About India’s First Rare-Art NFT Featuring <br />{" "}
+                Amitabh Bachchan!
               </h1>
             </div>
             <Form

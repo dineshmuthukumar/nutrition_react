@@ -75,6 +75,36 @@ export const winnerDetail = (slug, value) => {
   );
 };
 
+export const userBuyDetail = (nftSlug, userSlug, value) => {
+  nftCable.subscriptions.create(
+    { channel: "NftChannel", room: `buy_detail_${nftSlug}_${userSlug}` },
+    {
+      connected: () => {
+        console.log("BL/AC6:Connected");
+      },
+      received: (data) => {
+        console.log("BL/AC6:Success");
+        value(data);
+      },
+    }
+  );
+};
+
+export const userBidDetail = (nftSlug, userSlug, value) => {
+  nftCable.subscriptions.create(
+    { channel: "NftChannel", room: `bid_detail_${nftSlug}_${userSlug}` },
+    {
+      connected: () => {
+        console.log("BL/AC7:Connected");
+      },
+      received: (data) => {
+        console.log("BL/AC7:Success");
+        value(data);
+      },
+    }
+  );
+};
+
 export const accountDetail = (slug, value) => {
   baseCable.subscriptions.create(
     { channel: "UserChannel", room: `account_${slug}` },

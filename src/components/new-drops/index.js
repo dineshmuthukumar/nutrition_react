@@ -41,7 +41,7 @@ const NewDrops = ({ categories }) => {
         <section className="sw_ab_1">
           <div className="container">
             <div className="row align-items-center justify-content-center">
-              <div className="col-xxl-5 col-xl-6 col-lg-7 col-md-9 col-xs-11 order-2 order-lg-1">
+              <div className="col-xxl-5 col-xl-6 col-lg-7 col-md-9 col-11 order-2 order-lg-1">
                 <div className="drop-title mb-0">
                   <h2 className="drop-title__heading mb-4">
                     Here's Your Chance To Own Exclusive Amitabh Bachchan's NFT
@@ -61,7 +61,7 @@ const NewDrops = ({ categories }) => {
                   </div>
                 </div>
               </div>
-              <div className="col-xxl-7 col-xl-6 col-lg-5 col-md-9 col-xs-10 order-1 order-lg-2">
+              <div className="col-xxl-7 col-xl-6 col-lg-5 col-md-9 col-10 order-1 order-lg-2">
                 <div className="content-img content-img--l4-1">
                   <Image src={five} rounded />
                 </div>
