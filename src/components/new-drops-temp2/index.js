@@ -22,6 +22,7 @@ import five from "../../images/drops/drops_1.jpg";
 import six from "../../images/drops/drops_2.jpg";
 import seven from "../../images/drops/magical_1.gif";
 import eight from "../../images/drops/nft_1.jpg";
+import drops_banner from "../../images/drops/drops_banner.png";
 
 import { Button, Form } from "react-bootstrap";
 import DropCard from "./drop-card";
@@ -133,6 +134,7 @@ const NewDropsTemp2 = ({ categories }) => {
     <>
       <div className="new_drop_wrapper">
         <section className="sw_ab_1">
+          <img className="dr_baner" src={drops_banner} />
           <div className="container">
             <div className="row align-items-center justify-content-center">
               <div className="col-xxl-5 col-xl-6 col-lg-7 col-md-12 order-2 order-lg-1">
@@ -152,18 +154,17 @@ const NewDropsTemp2 = ({ categories }) => {
                       className="nav-label"
                       to="#"
                       onClick={() => {
-                        if(user?.slug){
+                        if (user?.slug) {
                           window.open(
                             `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
                             "_self"
-                          )
+                          );
                         } else {
                           window.open(
                             `${process.env.REACT_APP_ACCOUNTS_URL}/signup`,
                             "_self"
-                          )
+                          );
                         }
-
                       }}
                     >
                       {user?.slug ? "Access the Drops" : "Register Now!"}

@@ -1,33 +1,29 @@
-section.sw_ab_1 {
-  background: #081127;
-  color: #fff;
-  padding: 6rem 0rem;
-  position: relative;
-}
 // section.sw_ab_1 {
-//   background: url(../../images/drops/drops_banner_2.jpg);
-//   background-position-x: 0%;
-//   background-position-y: 0%;
-//   background-repeat: repeat;
-//   background-size: auto;
+//   background: #081127;
 //   color: #fff;
 //   padding: 6rem 0rem;
 //   position: relative;
-//   background-repeat: no-repeat;
-//   background-size: cover;
-//   background-position: right center;
 // }
-section.sw_ab_1:before {
-  content: "";
-  width: 50%;
-  height: 100%;
-  background: url("../../images/drops/drops_banner.png");
-  position: absolute;
-  right: 0;
-  top: 0;
-  background-position: left;
-  background-size: cover;
+section.sw_ab_1 {
+  background: url(../../images/drops/drops_banner_2.jpg);
+  background-position-x: 0%;
+  background-position-y: 0%;
+  background-repeat: repeat;
+  background-size: auto;
+  color: #fff;
+  padding: 6rem 0rem;
+  position: relative;
   background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right center;
+}
+.sw_ab_1 h2.drop-title__heading,
+.sw_ab_1 .drop-title p {
+  color: #000;
+}
+.sw_ab_1 .learnMore a {
+  color: #000;
+  border: 1px solid #000;
 }
 h2.drop-title__heading {
   font-size: 3.5rem;
@@ -569,6 +565,14 @@ section.drops_list {
   margin: auto;
   margin-top: 2em;
 }
+.dr_baner {
+  display: none;
+}
+@media screen and (max-width: 1400px) {
+  section.sw_ab_1 {
+    background-position: left center;
+  }
+}
 
 @media screen and (max-width: 992px) {
   h2.drop-title__heading,
@@ -576,6 +580,22 @@ section.drops_list {
   .learnMore,
   .drop-title h4 {
     text-align: center;
+  }
+  section.sw_ab_1 {
+    background: #000;
+    padding: 0rem 0rem 3rem;
+  }
+  .sw_ab_1 h2.drop-title__heading,
+  .sw_ab_1 .drop-title p {
+    color: #fff;
+  }
+  .sw_ab_1 .learnMore a {
+    color: #fff;
+    border: 1px solid #fff;
+  }
+  .dr_baner {
+    display: block;
+    width: 100%;
   }
   .learnMore a {
     margin-top: 2%;
