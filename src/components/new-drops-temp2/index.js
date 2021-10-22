@@ -21,7 +21,7 @@ import four from "../../images/drops/amitab2.png";
 import five from "../../images/drops/drops_1.jpg";
 import six from "../../images/drops/drops_2.jpg";
 import seven from "../../images/drops/magical_1.gif";
-import eight from "../../images/drops/magical_4.jpg";
+import eight from "../../images/drops/nft_1.jpg";
 
 import { Button, Form } from "react-bootstrap";
 import DropCard from "./drop-card";
@@ -205,7 +205,7 @@ const NewDropsTemp2 = ({ categories }) => {
             <section className="dropCard-Section" ref={r_one}>
               <DropCard
                 id="madhushala"
-                img={six}
+                img={eight}
                 cardTitle="Madhushala NFTs"
                 smallTitle="Amalgamation Of Knowledge, Fulfilment of duties, and Expectations"
                 cardDesc="BeyondLife.club brings you the philosophical undertones of Madhushala in Amitabh’s baritone as an NFT! Now you can own a recorded version of Madhushala, curated by Amitabh Bachchan himself. 
