@@ -30,8 +30,10 @@ import { sendEmailNewletter } from "../../api/axios-newsletter";
 import { validateEmail } from "./../../utils/common";
 import { toast } from "react-toastify";
 import { BiLoader, BiLoaderAlt } from "react-icons/bi";
+import { useSelector } from "react-redux";
 
 const NewDropsTemp2 = ({ categories }) => {
+  const { user } = useSelector((state) => state.user.data);
   const r_one = useRef(null);
   const r_two = useRef(null);
   const r_three = useRef(null);
@@ -149,9 +151,22 @@ const NewDropsTemp2 = ({ categories }) => {
                     <Link
                       className="nav-label"
                       to="#"
-                      onClick={exe_scroll_email}
+                      onClick={() => {
+                        if(user?.slug){
+                          window.open(
+                            `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
+                            "_self"
+                          )
+                        } else {
+                          window.open(
+                            `${process.env.REACT_APP_ACCOUNTS_URL}/signup`,
+                            "_self"
+                          )
+                        }
+
+                      }}
                     >
-                      Register Now!
+                      {user?.slug ? "Access the Drops" : "Register Now!"}
                     </Link>
 
                     {/* <button type="button" onClick={()=> setModal(true)}>Place Your Bid Right Now!</button>  */}
@@ -340,7 +355,6 @@ const NewDropsTemp2 = ({ categories }) => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
-                <p className="nft_email_error">{vEmail}</p>
                 <Button
                   className="nft_form"
                   disabled={loading}
@@ -354,6 +368,7 @@ const NewDropsTemp2 = ({ categories }) => {
                   )}
                 </Button>
               </Form.Group>
+              <p className="nft_email_error">{vEmail}</p>
             </Form>
           </div>
         </section>

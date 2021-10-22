@@ -967,7 +967,23 @@ section.drops_list {
   .container-xxl {
     max-width: 80%;
   }
-  // button.nft_form {
-  //   font-size: inherit;
-  // }
+  button.nft_form {
+    font-size: inherit;
+  }
+  .card_title {
+    max-width: 100%;
+  }
+  .drop-title p,
+  .drop_card .additional-perks p {
+    font-size: 1em;
+  }
+  .auction-main h1 {
+    font-size: 2.5em;
+  }
+  section.drop-newsletter br {
+    display: none;
+  }
+  #footer .nft_email_error {
+    font-size: 1rem;
+  }
 }

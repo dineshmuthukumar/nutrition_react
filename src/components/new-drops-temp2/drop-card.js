@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
+import { useSelector } from "react-redux";
 import Image from "react-bootstrap/Image";
 import NFTCounter from "../nft-counter";
 import "../new-drops-temp/style.scss";
@@ -26,6 +27,7 @@ const DropCard = ({
   catName,
   scroll,
 }) => {
+  const { user } = useSelector((state) => state.user.data);
   return (
     <>
       <div className="container">
@@ -67,8 +69,21 @@ const DropCard = ({
             <div className="drop-card-post">
               <Image src={img} />
               <div className="learnMore">
-                <Link to="#" onClick={scroll}>
-                  Register Now!
+                <Link to="#" onClick={() => {
+                        if(user?.slug){
+                          window.open(
+                            `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
+                            "_self"
+                          )
+                        } else {
+                          window.open(
+                            `${process.env.REACT_APP_ACCOUNTS_URL}/signup`,
+                            "_self"
+                          )
+                        }
+
+                      }}>
+                  {user?.slug ? "Access the Drops" : "Register Now!"}
                 </Link>
               </div>
             </div>
