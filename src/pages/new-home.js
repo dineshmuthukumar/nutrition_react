@@ -16,8 +16,6 @@ const NewHome = () => {
   const [page, setPage] = useState({ page: 1 });
   const [loading, setLoading] = useState(true);
 
-  const { id } = useRouteMatch().params;
-
   useEffect(() => {
     nftCategories(page);
   }, []);
@@ -36,17 +34,9 @@ const NewHome = () => {
 
   return (
     <>
-      <Header hideSign />
+      <Header hideBid />
       {/* <NewDrops categories={categories} /> */}
-      {(() => {
-        if (!id) {
-          return <NewDropsTemp categories={categories} />;
-        } else if (id === "drop-2") {
-          return <NewDropsTemp1 categories={categories} />;
-        } else {
-          return <NewDropsTemp2 categories={categories} />;
-        }
-      })()}
+      <NewDropsTemp2 categories={categories} />
 
       {/* {!loading ? <NFTList data={list} /> : <ThreeColumnLoader />} */}
       {/* <div className="container">
