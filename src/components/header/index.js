@@ -18,7 +18,7 @@ import { getCookies } from "../../utils/cookies";
 import { accountDetail } from "../../api/actioncable-methods";
 import { currencyFormat } from "../../utils/common";
 
-const Header = ({ hideOptions = false, hideSign = false, hideBid = false }) => {
+const Header = ({ hideOptions = false, hideSign = false }) => {
   const t = useTranslation();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -89,20 +89,18 @@ const Header = ({ hideOptions = false, hideSign = false, hideBid = false }) => {
                   <>
                     {user.login ? (
                       <>
-                        {hideBid && (
-                          <Nav.Link href="#home">
-                            <BiHelpCircle
-                              size={25}
-                              role="button"
-                              onClick={() =>
-                                window.open(
-                                  process.env.REACT_APP_HELP_URL,
-                                  "_blank"
-                                )
-                              }
-                            />
-                          </Nav.Link>
-                        )}
+                        <Nav.Link href="#home">
+                          <BiHelpCircle
+                            size={25}
+                            role="button"
+                            onClick={() =>
+                              window.open(
+                                process.env.REACT_APP_HELP_URL,
+                                "_blank"
+                              )
+                            }
+                          />
+                        </Nav.Link>
                         {/* <Dropdown
                         autoClose="outside"
                         onToggle={(e) => setNotification(e)}
@@ -185,19 +183,17 @@ const Header = ({ hideOptions = false, hideSign = false, hideBid = false }) => {
                             >
                               My Activity
                             </Dropdown.Item>{" "}
-                            {!hideBid && (
-                              <Dropdown.Item
-                                as="button"
-                                onClick={() =>
-                                  window.open(
-                                    `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/bid-activity`,
-                                    "_blank"
-                                  )
-                                }
-                              >
-                                Bid Activity
-                              </Dropdown.Item>
-                            )}
+                            <Dropdown.Item
+                              as="button"
+                              onClick={() =>
+                                window.open(
+                                  `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/bid-activity`,
+                                  "_blank"
+                                )
+                              }
+                            >
+                              Bid Activity
+                            </Dropdown.Item>
                             <Dropdown.Item
                               as="button"
                               onClick={() =>
