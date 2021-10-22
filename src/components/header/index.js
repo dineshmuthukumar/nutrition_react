@@ -17,7 +17,7 @@ import "./style.scss";
 import { getCookies } from "../../utils/cookies";
 import { accountDetail } from "../../api/actioncable-methods";
 
-const Header = ({ hideOptions = false, hideSign = false }) => {
+const Header = ({ hideOptions = false, hideSign = false, hideBid = false }) => {
   const t = useTranslation();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -45,7 +45,7 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
   const UserToggleComponent = React.forwardRef(({ onClick }, ref) => (
     <UserComponent
       user={state.user.data.user}
-      ref={ref}
+      sref={ref}
       onClick={(e) => {
         e.preventDefault();
         onClick(e);
@@ -88,18 +88,20 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
                   <>
                     {user.login ? (
                       <>
-                        <Nav.Link href="#home">
-                          <BiHelpCircle
-                            size={25}
-                            role="button"
-                            onClick={() =>
-                              window.open(
-                                process.env.REACT_APP_HELP_URL,
-                                "_blank"
-                              )
-                            }
-                          />
-                        </Nav.Link>
+                        {hideBid && (
+                          <Nav.Link href="#home">
+                            <BiHelpCircle
+                              size={25}
+                              role="button"
+                              onClick={() =>
+                                window.open(
+                                  process.env.REACT_APP_HELP_URL,
+                                  "_blank"
+                                )
+                              }
+                            />
+                          </Nav.Link>
+                        )}
                         {/* <Dropdown
                         autoClose="outside"
                         onToggle={(e) => setNotification(e)}
@@ -181,18 +183,20 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
                               }
                             >
                               My Activity
-                            </Dropdown.Item>
-                            <Dropdown.Item
-                              as="button"
-                              onClick={() =>
-                                window.open(
-                                  `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/bid-activity`,
-                                  "_blank"
-                                )
-                              }
-                            >
-                              Bid Activity
-                            </Dropdown.Item>
+                            </Dropdown.Item>{" "}
+                            {!hideBid && (
+                              <Dropdown.Item
+                                as="button"
+                                onClick={() =>
+                                  window.open(
+                                    `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/bid-activity`,
+                                    "_blank"
+                                  )
+                                }
+                              >
+                                Bid Activity
+                              </Dropdown.Item>
+                            )}
                             <Dropdown.Item
                               as="button"
                               onClick={() =>
@@ -276,8 +280,8 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
   );
 };
 
-const UserComponent = ({ user, onClick = () => {} }) => (
-  <div className="header-user-details" onClick={onClick}>
+const UserComponent = ({ sref, user, onClick = () => {} }) => (
+  <div className="header-user-details" onClick={onClick} ref={sref}>
     <img
       className="user-image"
       src={user.avatar ? user.avatar : userImg}
