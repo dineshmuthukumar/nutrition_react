@@ -232,9 +232,9 @@ const NewDropsTemp2 = ({ categories }) => {
                 smallTitle="Amalgamation Of Knowledge, Fulfilment of Duties, and Expectations!"
                 cardDesc="BeyondLife.club brings you the philosophical undertones of Madhushala in Amitabh’s baritone as an NFT! Now you can own a recorded version of Madhushala, curated by Amitabh Bachchan himself. By owning this one-of-a-kind NFT, you’re owning a segment of this legend’s history in his own voice, and an 86-year-old iconic and epoch-making metaphorical Hindi poetry!"
                 dropTitle="About Collection"
-                dropDescOne="Mr. Harivansh Rai Bachchan (1907–2003), father of Mr. Amitabh Bachchan, wrote Madhushala that depicts the wisdom of Madhu - temple of Mind (Madhushala), karma, imbibement of knowledge, fulfillment of duties, and expectations of an individual from the society into beautiful verses. 
-"
-                dropDescTwo="Madhushala’s Rhyme, Rhythm, and Flavour is still fresh in Amitabh’s mind. He believed and witnessed the miracles that this purest form of art brings in society. The love and the respect Mr.Bachchan holds in his heart that compelled him to recite, sing, and translate stories of Madhushala from time to time. This unique and enthralling audio NFT of Madhushala has one version in Hindi, and one in English! "
+                dropDescOne="Mr. Harivansh Rai Bachchan (1907–2003), father of Mr. Amitabh Bachchan, wrote Madhushala that depicts the wisdom of Madhu - temple of Mind (Madhushala), karma, imbibement of knowledge, fulfillment of duties, and expectations of an individual from the society into beautiful verses."
+                dropDescTwo="Madhushala’s Rhyme, Rhythm, and Flavour is still fresh in Amitabh’s mind. He believed and witnessed the miracles that this purest form of art brings to society. The love and the respect Mr.Bachchan holds in his heart compelled him to recite, sing, and translate stories of Madhushala from time to time. This unique and enthralling audio NFT of Madhushala has one version in Hindi, and one in English!"
+                dropDescThree="The Madhushala NFT is a super-premium NFT presented to you by BeyondLife.club. You will be the one among the two sole owners of the exclusive NFTS - the rendition of Mr. Harivansh’s refined poetry in Amitabh’s rustic baritone!!"
                 auctionTitle="Auction starting in"
                 auctionTime="2021-10-22T14:25:00.000Z"
                 editionTitle="Edition of"
@@ -297,10 +297,9 @@ const NewDropsTemp2 = ({ categories }) => {
                 smallTitle="A Collection of Signature Crypto-Style Amitabh Miniatures"
                 cardDesc="Let’s admit it! Amitabh, in every Avatar, has been a success! Be it the classic ‘Angry Young Man’, or the modern French-bearded Godfather with his signature ‘Devion or Sajjanon’, or the Twitter personality who numbers his Tweets, the BigB can never be off trends!"
                 dropTitle="About Collection"
-                dropDescOne="Since Amitabh has just stepped into the NFT realm, and going with the proven trend in the NFT space, we bring you exclusive Amitabh Bachchan crypto punks! These crypto punks preserve the essence of Amitabh Bachchan using certain attributes.
-"
-                dropDescTwo="These ‘Amitabh Punks' have their signature headgear, neck-gear, hairstyle, eyewear, facial hair, and a few more, creating a repository of unique, meticulously crafted, and curated cryptopunk versions of Amitabh.
-"
+                dropDescOne="Since Amitabh has just stepped into the NFT realm, and going with the proven trends in the NFT space, we bring you exclusive Amitabh Bachchan BigB punks and exclusive Smart Contract-Generated Pastel NFT Art! These punks and NFT artworks preserve the essence of Amitabh Bachchan using certain attributes."
+                dropDescTwo="These BigB Punks have their signature headgear, neck-gear, hairstyle, eyewear, facial hair, and a few more, creating a repository of unique, meticulously crafted, and curated cryptopunk versions of Amitabh. The NFT art has been exclusively hand-drawn, "
+                dropDescThree="Every Pastel Art and every BigB Punk collection is a collectible in its own right, and there will just be a total of 6 of these! You could be the owner of one of the most celebrated forms of art in the crypto space!"
                 auctionTitle="Auction starting in"
                 auctionTime="2021-10-22T14:25:00.000Z"
                 editionTitle="Edition"
