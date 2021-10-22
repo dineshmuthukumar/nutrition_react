@@ -14,7 +14,7 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 
-import one from "../../images/drops/one.png";
+import one from "../../images/drops/crypto_punk.jpg";
 import two from "../../images/drops/two.png";
 import three from "../../images/drops/three.png";
 import four from "../../images/drops/amitab2.png";
@@ -269,7 +269,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
             </section>
             <section className="dropCard-Section" ref={r_four}>
               <DropCard
-                img={eight}
+                img={one}
                 cardTitle="Big-B Punks and Illustrations"
                 smallTitle="A Collection of Signature Crypto-Style Amitabh Miniatures"
                 cardDesc="Let’s admit it! Amitabh, in every Avatar, has been a success! Be it the classic ‘Angry Young Man’, or the modern French-bearded Godfather with his signature ‘Devion or Sajjanon’, or the Twitter personality who numbers his Tweets, the Big B can never be off trends!"
