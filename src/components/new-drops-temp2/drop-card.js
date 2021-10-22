@@ -15,6 +15,7 @@ const DropCard = ({
   dropTitle,
   dropDescOne,
   dropDescTwo,
+  dropDescThree,
   auctionTitle,
   auctionTime,
   editionTitle,
@@ -40,7 +41,8 @@ const DropCard = ({
             <div className="drop-title">
               <h4 className="mb-4">{dropTitle}</h4>
               <p>{dropDescOne}</p>
-              <p className="mb-4">{dropDescTwo}</p>
+              <p className={!dropDescThree ? "mb-4" : ""}>{dropDescTwo}</p>
+              <p className="mb-4">{dropDescThree}</p>
             </div>
             <div className="auction-time">
               <p className="heading-S">{auctionTitle}</p>
@@ -66,7 +68,7 @@ const DropCard = ({
               <Image src={img} />
               <div className="learnMore">
                 <Link to="#" onClick={scroll}>
-                  Join The Waitlist
+                  Register Now!
                 </Link>
               </div>
             </div>
