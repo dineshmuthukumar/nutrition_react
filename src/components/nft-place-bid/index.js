@@ -428,22 +428,44 @@ const NFTPlaceBid = ({
                   </div>
 
                   <div className="pop-nft-media">
-                    <img src={nft.image_url ? nft.image_url : sample} />
-                    {/* <img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" /> */}
-                    {/* <video controls>
-              <source
-                src="https://www.w3schools.com/tags/movie.mp4"
-                type="video/mp4"
-              />
-            </video> */}
+                    {(() => {
+                      if (nft.asset_type.includes("image")) {
+                        return (
+                          <img
+                            className="type_image typeimg_audio"
+                            src={nft.asset_url ? nft.asset_url : sample}
+                          />
+                        );
+                      } else if (nft.asset_type.includes("audio")) {
+                        return (
+                          <>
+                            <img
+                              className="type_image typeimg_audio"
+                              src={nft.cover_url ? nft.cover_url : sample}
+                            />
 
-                    {/* <audio controls>
-              <source
-                src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
-                type="audio/mp3"
-              />
-              Your browser does not support the audio element.
-            </audio> */}
+                            <audio
+                              controls
+                              className="shadow-sm audioOnmedia"
+                              disablepictureinpicture
+                              controlslist="nodownload noplaybackrate"
+                            >
+                              <source
+                                src={nft.asset_url}
+                                type={nft.asset_type}
+                              />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </>
+                        );
+                      } else if (nft.asset_type.includes("video")) {
+                        return (
+                          <video controls>
+                            <source src={nft.asset_url} type={nft.asset_type} />
+                          </video>
+                        );
+                      }
+                    })()}
                   </div>
                   <div className="pop-author-name text-center mt-3">
                     Amitabh Bachchan
@@ -599,22 +621,45 @@ const NFTPlaceBid = ({
                   </div>
 
                   <div className="pop-nft-media mt-4 preview">
-                    <img src={nft.image_url ? nft.image_url : sample} />
-                    {/* <img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" /> */}
-                    {/* <video controls>
-              <source
-                src="https://www.w3schools.com/tags/movie.mp4"
-                type="video/mp4"
-              />
-            </video> */}
-
-                    {/* <audio controls>
-              <source
-                src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
-                type="audio/mp3"
-              />
-              Your browser does not support the audio element.
-            </audio> */}
+                    {(() => {
+                      if (nft.asset_type.includes("image")) {
+                        return (
+                          <img
+                            className="type_image typeimg_audio"
+                            src={nft.asset_url ? nft.asset_url : sample}
+                          />
+                        );
+                      } else if (nft.asset_type.includes("audio")) {
+                        return (
+                          <>
+                            <div className="no_height align-items-center">
+                              <img
+                                className="type_image typeimg_audio"
+                                src={nft.cover_url ? nft.cover_url : sample}
+                              />
+                            </div>
+                            <audio
+                              controls
+                              className="shadow-sm audioOnmedia"
+                              disablepictureinpicture
+                              controlslist="nodownload noplaybackrate"
+                            >
+                              <source
+                                src={nft.asset_url}
+                                type={nft.asset_type}
+                              />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </>
+                        );
+                      } else if (nft.asset_type.includes("video")) {
+                        return (
+                          <video controls>
+                            <source src={nft.asset_url} type={nft.asset_type} />
+                          </video>
+                        );
+                      }
+                    })()}
                   </div>
                   <div className="pop-author-name text-center mt-3">
                     Amitabh Bachchan

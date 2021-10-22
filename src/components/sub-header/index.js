@@ -29,7 +29,15 @@ const SubHeader = ({
       >
         <Container fluid>
           <Navbar.Brand role="button" className="sub-head-title">
-            <img src={nft.image_url ? nft.image_url : sample} />
+            <img
+              src={(() => {
+                if (nft.asset_type.includes("image")) {
+                  return nft.asset_url ? nft.asset_url : sample;
+                } else {
+                  return nft.cover_url ? nft.cover_url : sample;
+                }
+              })()}
+            />
             <div className="nft-head-details">
               <div className="sub-nft-title">{nft?.name}</div>
               <div className="sub-creator-title ">

@@ -28,24 +28,30 @@ const ExploreCardTwo = ({
     <div className="col-xl-10 p-0 h_nft">
       <div className="row">
         <div className="col-xl-6 col-lg-6 col-md-6 nft_img p-0">
-            <div className="item-post">
-              <img
-                src={nft.image_url ? nft.image_url : sample}
-                width="100%"
-                align="post"
-                role="button"
-                onClick={handleClick}
-              />
-              <div className="nft_status">
-                {!erc721 && (
-                  <div className="rights-bid">
-                    <p className="left_bid">
-                      {nft.quantity ? `Only ${nft.quantity} left` : "Sold out"}
-                    </p>
-                  </div>
-                )}
-              </div>
+          <div className="item-post">
+            <img
+              src={(() => {
+                if (nft.asset_type.includes("image")) {
+                  return nft.asset_url ? nft.asset_url : sample;
+                } else {
+                  return nft.cover_url ? nft.cover_url : sample;
+                }
+              })()}
+              width="100%"
+              align="post"
+              role="button"
+              onClick={handleClick}
+            />
+            <div className="nft_status">
+              {!erc721 && (
+                <div className="rights-bid">
+                  <p className="left_bid">
+                    {nft.quantity ? `Only ${nft.quantity} left` : "Sold out"}
+                  </p>
+                </div>
+              )}
             </div>
+          </div>
         </div>
         <div className="col-xl-6 col-lg-6 col-md-6 nft_details  p-0">
           <div className="h_nft_cnt">
@@ -69,15 +75,10 @@ const ExploreCardTwo = ({
                   {isEnded ? (
                     <>{time && dayjs(time).format("DD. MM. YYYY")}</>
                   ) : (
-                    <NFTCounter
-                      time={time}
-                      intervalGapClass="me-1"
-                    />
+                    <NFTCounter time={time} intervalGapClass="me-1" />
                   )}
                 </div>
               </div>
-
-
             </div>
           </div>
         </div>

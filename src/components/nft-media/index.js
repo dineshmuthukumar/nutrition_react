@@ -18,7 +18,7 @@ import toaster from "../../utils/toaster";
 import sample from "../../images/sampleNFT.jpg";
 import "./style.scss";
 
-const NFTMedia = ({ image, title, slug, isFav }) => {
+const NFTMedia = ({ nft, title, slug, isFav }) => {
   const [modalShow, setModalShow] = useState(false);
   const [liked, setLiked] = useState(false);
   const [bgColor, setBgColor] = useState();
@@ -29,7 +29,11 @@ const NFTMedia = ({ image, title, slug, isFav }) => {
   }, [isFav]);
 
   useEffect(() => {
-    getBgColor(image);
+    if (nft.asset_type.includes("image")) {
+      getBgColor(nft.asset_url);
+    } else {
+      getBgColor(nft.cover_url);
+    }
   }, []);
 
   const handleLike = async () => {
@@ -54,6 +58,9 @@ const NFTMedia = ({ image, title, slug, isFav }) => {
 
   const getBgColor = async (input) => {
     if (input) {
+      const image = nft.asset_type.includes("image")
+        ? nft.asset_url
+        : nft.cover_url;
       const color = await prominent(image, { amount: 1 });
 
       setBgColor(`rgb(${color[0]},${color[1]},${color[2]},0.3)`);
@@ -66,27 +73,43 @@ const NFTMedia = ({ image, title, slug, isFav }) => {
     <div className="nft-media media_audio" style={{ background: bgColor }}>
       {/* <div className="show_height"><img className="type_image typeimg_audio" src="https://wallpaperaccess.com/full/112115.jpg" />  </div> */}
       {/* <div className="show_height"><img className="type_gif" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" />/div> */}
-      {/* <video controls>
-        <source
-          src="https://www.w3schools.com/tags/movie.mp4"
-          type="video/mp4"
-        />
-      </video> */}
-      {/* <div className="no_height align-items-center"> */}
-      <img className="type_image typeimg_audio" src={image ? image : sample} />
-      {/* </div> */}
-      {/* <audio
-        controls
-        className="shadow-sm audioOnmedia"
-        disablepictureinpicture
-        controlslist="nodownload noplaybackrate"
-      >
-        <source
-          src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
-          type="audio/mp3"
-        />
-        Your browser does not support the audio element.
-      </audio> */}
+      {(() => {
+        if (nft.asset_type.includes("image")) {
+          return (
+            <img
+              className="type_image typeimg_audio"
+              src={nft.asset_url ? nft.asset_url : sample}
+            />
+          );
+        } else if (nft.asset_type.includes("audio")) {
+          return (
+            <>
+              <div className="no_height align-items-center">
+                <img
+                  className="type_image typeimg_audio"
+                  src={nft.cover_url ? nft.cover_url : sample}
+                />
+              </div>
+              <audio
+                controls
+                className="shadow-sm audioOnmedia"
+                disablepictureinpicture
+                controlslist="nodownload noplaybackrate"
+              >
+                <source src={nft.asset_url} type={nft.asset_type} />
+                Your browser does not support the audio element.
+              </audio>
+            </>
+          );
+        } else if (nft.asset_type.includes("video")) {
+          return (
+            <video controls>
+              <source src={nft.asset_url} type={nft.asset_type} />
+            </video>
+          );
+        }
+      })()}
+
       <div className="media-lsf">
         <CustomPopover
           icon={
@@ -135,25 +158,43 @@ const NFTMedia = ({ image, title, slug, isFav }) => {
         <Modal.Body className="media_audio">
           {/* <div className="show_height"><img className="type_image typeimg_audio" src="https://wallpaperaccess.com/full/112115.jpg" />  </div> */}
           {/* <div className="show_height"><img className="type_gif" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" />/div> */}
-          {/* <video controls>
-        <source
-          src="https://www.w3schools.com/tags/movie.mp4"
-          type="video/mp4"
-        />
-      </video> */}
-          <div className="no_height">
-            <img
-              className="type_image typeimg_audio"
-              src={image ? image : sample}
-            />
-          </div>
-          {/* <audio controls className="shadow-sm audioOnmedia">
-            <source
-              src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
-              type="audio/mp3"
-            />
-            Your browser does not support the audio element.
-          </audio> */}
+
+          {(() => {
+            if (nft.asset_type.includes("image")) {
+              return (
+                <img
+                  className="type_image typeimg_audio"
+                  src={nft.asset_url ? nft.asset_url : sample}
+                />
+              );
+            } else if (nft.asset_type.includes("audio")) {
+              return (
+                <>
+                  <div className="no_height">
+                    <img
+                      className="type_image typeimg_audio"
+                      src={nft.cover_url ? nft.cover_url : sample}
+                    />
+                  </div>
+                  <audio
+                    controls
+                    className="shadow-sm audioOnmedia"
+                    disablepictureinpicture
+                    controlslist="nodownload noplaybackrate"
+                  >
+                    <source src={nft.asset_url} type={nft.asset_type} />
+                    Your browser does not support the audio element.
+                  </audio>
+                </>
+              );
+            } else if (nft.asset_type.includes("video")) {
+              return (
+                <video controls>
+                  <source src={nft.asset_url} type={nft.asset_type} />
+                </video>
+              );
+            }
+          })()}
         </Modal.Body>
       </Modal>
     </div>
