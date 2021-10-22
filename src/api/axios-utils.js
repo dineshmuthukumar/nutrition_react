@@ -4,13 +4,16 @@ import { toast } from "react-toastify";
 import { store } from "./../redux/store";
 import { user_logout_thunk } from "./../redux/thunk/user_thunk";
 
-axios.defaults.baseURL = process.env.REACT_APP_SERVER_URL;
+const appAxios = axios.create({
+  baseURL: process.env.REACT_APP_SERVER_URL,
+});
+// axios.defaults.baseURL = process.env.REACT_APP_SERVER_URL;
 
 const auth_token = getCookies();
 
-if (auth_token) axios.defaults.headers.common["Authorization"] = auth_token;
+if (auth_token) appAxios.defaults.headers.common["Authorization"] = auth_token;
 
-axios.interceptors.request.use(
+appAxios.interceptors.request.use(
   function (config) {
     document.body.classList.add("loading-indicator");
     const auth_token = getCookies();
@@ -23,7 +26,7 @@ axios.interceptors.request.use(
   }
 );
 
-axios.interceptors.response.use(
+appAxios.interceptors.response.use(
   (response) => {
     document.body.classList.remove("loading-indicator");
 
@@ -42,4 +45,4 @@ axios.interceptors.response.use(
   }
 );
 
-export default axios;
+export default appAxios;

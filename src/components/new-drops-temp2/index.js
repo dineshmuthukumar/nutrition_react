@@ -26,6 +26,7 @@ import eight from "../../images/drops/nft_1.jpg";
 import { Button, Form } from "react-bootstrap";
 import DropCard from "./drop-card";
 import "../new-drops-temp/style.scss";
+import { sendEmailNewletter } from "../../api/axios-newsletter";
 import { validateEmail } from "./../../utils/common";
 import { toast } from "react-toastify";
 import { BiLoader, BiLoaderAlt } from "react-icons/bi";
@@ -45,22 +46,31 @@ const NewDropsTemp2 = ({ categories }) => {
   const [vEmail, setVEmail] = useState();
   const [vEmail2, setVEmail2] = useState();
 
-  const sendEmailNewletter = (input) =>
-    axios.post(process.env.REACT_APP_NEWSLETTER_API, {
-      Nemail: input,
-    });
+  // const sendEmailNewletter = (input) => {
+  //   axios.post(process.env.REACT_APP_NEWSLETTER_API, formData)
+  // };
 
   const handleSendNewsLetter = async () => {
     if (validateEmail(email)) {
       setVEmail(null);
       try {
         setLoading(true);
-        await sendEmailNewletter(email);
+
+        const formData = new FormData();
+        formData.append("Nemail", email);
+
+        const result = await sendEmailNewletter(formData);
+        if (result.data.status) {
+          setVEmail(
+            "We will buzz you when the NFT Drop is ready to launch. Thank you for being a part of Beyondlife.club #beyondlife.club #nft"
+          );
+        } else {
+          setVEmail(
+            "We got it again!, We are excited to have you as part of our NFT club. Details have been noted already. So, worry not! We will return to you once we are all set with the NFT drops. See you soon!"
+          );
+        }
         setLoading(false);
-        setEmail(null);
-        setVEmail(
-          "We will buzz you when the NFT Drop is ready to launch. Thank you for being a part of Beyondlife.club #beyondlife.club #nft"
-        );
+        setEmail("");
       } catch (error) {
         setLoading(false);
 
@@ -80,11 +90,23 @@ const NewDropsTemp2 = ({ categories }) => {
 
       try {
         setLoading2(true);
-        await sendEmailNewletter(email2);
-        setEmail2(null);
-        setVEmail2(
-          "We will buzz you when the NFT Drop is ready to launch. Thank you for being a part of Beyondlife.club #beyondlife.club #nft"
-        );
+
+        const formData = new FormData();
+        formData.append("Nemail", email2);
+
+        const result = await sendEmailNewletter(formData);
+
+        if (result.data.status) {
+          setVEmail2(
+            "We will buzz you when the NFT Drop is ready to launch. Thank you for being a part of Beyondlife.club #beyondlife.club #nft"
+          );
+        } else {
+          setVEmail2(
+            "We got it again!, We are excited to have you as part of our NFT club. Details have been noted already. So, worry not! We will return to you once we are all set with the NFT drops. See you soon!"
+          );
+        }
+
+        setEmail2("");
         setLoading2(false);
       } catch (error) {
         setLoading2(false);
