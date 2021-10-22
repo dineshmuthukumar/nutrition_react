@@ -114,8 +114,8 @@ const NewDropsTemp2 = ({ categories }) => {
               <div className="col-xxl-5 col-xl-6 col-lg-7 col-md-12 order-2 order-lg-1">
                 <div className="drop-title mb-0">
                   <h2 className="drop-title__heading mb-4">
-                    Here's Your Chance To Own Exclusive Amitabh Bachchan's NFT
-                    Collections
+                    Amitabh Bachchan's Exclusive NFT Collections - Make Them
+                    Yours!
                   </h2>
                   <p className="drop-title__description mb-4">
                     Imagine owning an NFT that holds Amit-ji's significance,
@@ -269,7 +269,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
             </section>
             <section className="dropCard-Section" ref={r_four}>
               <DropCard
-                img={one}
+                img={eight}
                 cardTitle="Big-B Punks and Illustrations"
                 smallTitle="A Collection of Signature Crypto-Style Amitabh Miniatures"
                 cardDesc="Let’s admit it! Amitabh, in every Avatar, has been a success! Be it the classic ‘Angry Young Man’, or the modern French-bearded Godfather with his signature ‘Devion or Sajjanon’, or the Twitter personality who numbers his Tweets, the Big B can never be off trends!"
@@ -296,8 +296,8 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
           <div className="container">
             <div className="row">
               <h1>
-                Be Notified About India’s First Rare-Art NFT Featuring Amitabh
-                Bachchan!
+                Be Notified About India’s First Rare-Art NFT Featuring <br />{" "}
+                Amitabh Bachchan!
               </h1>
             </div>
             <Form
