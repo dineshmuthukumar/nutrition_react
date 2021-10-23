@@ -216,22 +216,14 @@ const NewDropsTemp2 = ({ categories }) => {
               <div className="app-showcase">
                 <Navbar className="kd-feature-tabs">
                   <div className="nav nav-tabs sticky-tabs">
-                    <Link
-                      to="#drop_1"
-                      className="nav-label"
-                      onClick={exe_scroll_one}
-                    >
+                    <Link to="#" className="nav-label" onClick={exe_scroll_one}>
                       Collection 1:
                       <span className="main_title">Madhushala - Poetry</span>
                       <span className="sub_title">
                         BigB's Dad's Poetry in Amitabh's Voice!!
                       </span>
                     </Link>
-                    <Link
-                      to="#posters"
-                      onClick={exe_scroll_two}
-                      className="nav-label"
-                    >
+                    <Link to="#" onClick={exe_scroll_two} className="nav-label">
                       Collection 2:
                       <span className="main_title">Win With Thex Loot Box</span>
                       <span className="sub_title">

@@ -73,7 +73,7 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
 
   return (
     <>
-      <Navbar bg="dark" expand="md" sticky="top" variant="dark">
+      <Navbar bg="dark" expand="md" variant="dark">
         <Container fluid>
           <Navbar.Brand
             onClick={() => history.push("/")}
