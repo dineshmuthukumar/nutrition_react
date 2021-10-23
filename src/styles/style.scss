@@ -541,6 +541,9 @@ input::-webkit-inner-spin-button {
   .pop-body-container .pop-nft-details .input-bid-container {
     margin-top: 2rem !important;
   }
+  html {
+    font-size: 17px;
+  }
 }
 
 @media screen and (min-width: 1125px) and (max-width: 1224px) {
@@ -565,24 +568,24 @@ input::-webkit-inner-spin-button {
     top: 35% !important;
   }
 }
-@media screen and (min-width: 1567px) and (max-width: 1666px) {
+@media screen and (min-width: 1567px) {
   html {
     font-size: 14px;
   }
 }
-@media screen and (min-width: 1667px) and (max-width: 1766px) {
+@media screen and (min-width: 1667px) {
   html {
     font-size: 15px;
   }
 }
 
-@media screen and (min-width: 1767px) and (max-width: 1866px) {
-  html {
-    font-size: 14px;
-  }
-}
+// @media screen and (min-width: 1767px) and (max-width: 1866px) {
+//   html {
+//     font-size: 18px;
+//   }
+// }
 
-@media screen and (min-width: 1867px) and (max-width: 1966px) {
+@media screen and (min-width: 1867px){
   html {
     font-size: 18px;
   }
@@ -595,39 +598,33 @@ input::-webkit-inner-spin-button {
   // }
 }
 
-@media screen and (min-width: 1967px) and (max-width: 2066px) {
+@media screen and (min-width: 1967px){
+  html {
+    font-size: 19px;
+  }
+}
+
+@media screen and (min-width: 2067px){
+  html {
+    font-size: 19px;
+  }
+}
+
+@media screen and (min-width: 2167px){
   html {
     font-size: 20px;
   }
 }
 
-@media screen and (min-width: 2067px) and (max-width: 2166px) {
+@media screen and (min-width: 2267px){
   html {
-    font-size: 20px;
+    font-size: 21px;
   }
 }
 
-@media screen and (min-width: 2167px) and (max-width: 2266px) {
+@media screen and (min-width: 2467px){
   html {
     font-size: 22px;
-  }
-}
-
-@media screen and (min-width: 2267px) and (max-width: 2366px) {
-  html {
-    font-size: 24px;
-  }
-}
-
-@media screen and (min-width: 2367px) and (max-width: 2466px) {
-  html {
-    font-size: 24px;
-  }
-}
-
-@media screen and (min-width: 2467px) and (max-width: 2566px) {
-  html {
-    font-size: 25px;
   }
   .winner-text {
     right: -26% !important;
@@ -636,7 +633,7 @@ input::-webkit-inner-spin-button {
   }
 }
 
-@media screen and (min-width: 2567px) and (max-width: 2666px) {
+@media screen and (min-width: 2567px){
   html {
     font-size: 25px;
   }
@@ -649,30 +646,48 @@ input::-webkit-inner-spin-button {
     font-size: 25px;
   }
 }
-@media screen and (min-width: 2767px) and (max-width: 2866px) {
-  html {
-    font-size: 25px;
-  }
-}
+// @media screen and (min-width: 2767px) and (max-width: 2866px) {
+//   html {
+//     font-size: 25px;
+//   }
+// }
 
-@media screen and (min-width: 2867px) and (max-width: 2966px) {
-  html {
-    font-size: 25px;
-  }
-}
+// @media screen and (min-width: 2867px) and (max-width: 2966px) {
+//   html {
+//     font-size: 25px;
+//   }
+// }
 
 @media (min-width: 3066px) {
   html {
     font-size: 35px;
   }
 }
-
+@media (min-width: 4066px) {
+  html {
+    font-size: 42px;
+  }
+}
 @media (min-width: 5066px) {
   html {
     font-size: 48px;
   }
 }
-
+@media (min-width: 6066px) {
+  html {
+    font-size: 62px;
+  }
+}
+@media only screen and (max-width: 479px){
+  html {
+    font-size: 13px !important;
+  }
+}
+@media (max-width: 767px){
+  html {
+    font-size: 14px;
+  }
+}
 // responsive media query
 
 @media only screen and (min-width: 3072x) and (max-width: 2466px) {
@@ -755,9 +770,9 @@ input::-webkit-inner-spin-button {
   .nft-media.media_audio {
     height: 100% !important;
   }
-  html {
-    font-size: 11.5px;
-  }
+  // html {
+  //   font-size: 11.5px;
+  // }
   .bid-winner {
     min-height: 90vh !important;
   }
