@@ -299,6 +299,7 @@ const NFTBaseDetails = ({
 
           <div className="mt-2 royalty-info">
             {erc721 &&
+              !isAuctionEnded &&
               nft.auction_extend_minutes &&
               `Counterbid within the last 5 minutes will extend the auction by ${nft.auction_extend_minutes} minutes`}
           </div>

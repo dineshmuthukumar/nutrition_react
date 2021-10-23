@@ -537,17 +537,7 @@ input::-webkit-inner-spin-button {
   }
 }
 
-@media (min-width: 1800px) {
-  .pop-body-container .pop-nft-details .input-bid-container {
-    margin-top: 2rem !important;
-  }
-  html {
-    font-size: 17px;
-  }
-}
 
-@media screen and (min-width: 1125px) and (max-width: 1224px) {
-}
 
 @media screen and (min-width: 1225px) and (max-width: 1364px) {
   .winner-text {
@@ -584,10 +574,17 @@ input::-webkit-inner-spin-button {
 //     font-size: 18px;
 //   }
 // }
-
+@media (min-width: 1800px) {
+  .pop-body-container .pop-nft-details .input-bid-container {
+    margin-top: 2rem !important;
+  }
+  html {
+    font-size: 17px;
+  }
+}
 @media screen and (min-width: 1867px){
   html {
-    font-size: 18px;
+    font-size: 17px;
   }
   .winner-text {
     right: -40% !important;

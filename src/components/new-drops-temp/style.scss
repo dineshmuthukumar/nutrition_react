@@ -577,6 +577,25 @@ section.drops_list {
   }
 }
 
+@media only screen and (min-width: 992px) and (max-width: 1400px) {
+  .drop-title h4 {
+    font-size: 2em;
+  }
+  .drop-title p {
+    font-size: 1em;
+  }
+  p.heading-S {
+    font-size: 1.5em;
+    margin-bottom: 0.5rem;
+  }
+  .drop_card .auction-time {
+    padding: 1em 2em;
+  }
+  .auction-main h1 {
+    font-size: 2.5em;
+  }
+}
+
 @media screen and (max-width: 991px) {
   h2.drop-title__heading,
   .drop-title p,
@@ -723,7 +742,7 @@ section.drops_list {
   }
   #fmenu1 .submenu:nth-of-type(2) ul li a {
     font-size: 1.3rem;
-    padding: .5rem 1.5rem .5rem 0rem;
+    padding: 0.5rem 1.5rem 0.5rem 0rem;
     width: 100%;
     background: url(https://cdn.beyondlife.club/media/right_white.png) no-repeat;
     background-position: center right;
@@ -789,7 +808,7 @@ section.drops_list {
   }
 }
 @media screen and (min-width: 992px) {
-  .content-img.content-img--l4-1{
+  .content-img.content-img--l4-1 {
     display: none;
   }
 }
@@ -887,7 +906,7 @@ section.drops_list {
   }
   #fmenu1 .submenu:nth-of-type(2) ul li a {
     font-size: 1.3rem;
-    padding: .5rem 1.5rem .5rem 0rem;
+    padding: 0.5rem 1.5rem 0.5rem 0rem;
     width: 100%;
     background: url(https://cdn.beyondlife.club/media/right_white.png) no-repeat;
     background-position: center right;
