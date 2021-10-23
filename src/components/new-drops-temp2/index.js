@@ -130,6 +130,34 @@ const NewDropsTemp2 = ({ categories }) => {
   const exe_scroll_three = () => r_three.current.scrollIntoView();
   const exe_scroll_email = () => r_email.current.scrollIntoView();
 
+  const DropTwoDescTwo = () => {
+    return (
+      <>
+        <p>
+          Open the Loot Box and you have chances of finding one of the
+          following:
+        </p>
+        <ul>
+          <li>
+            An original vintage <b>poster NFT</b> autographed by Amitabh worth
+            over <b>INR 10 Lakhs!</b>
+          </li>
+          <li>
+            Unique <b>BigB Punk</b> worth over <b>INR 10000!</b>
+          </li>
+          <li>
+            Signature <b>Pastel Art</b> NFT worth about <b>INR 5000!</b>
+          </li>
+        </ul>
+        <p>
+          All these posters and NFTs are limited edition, and you will be one of
+          the exclusive fans of Amitabh to own these! Every NFT has something
+          worth trading.
+        </p>
+      </>
+    );
+  };
+
   return (
     <>
       <div className="new_drop_wrapper">
@@ -268,17 +296,17 @@ const NewDropsTemp2 = ({ categories }) => {
                 img={eight}
                 cardTitle="Win The LOOT BOX"
                 smallTitle="Signed Vintage Posters | NFT Art | BigB Punks"
-                cardDesc="Would you miss out on the chance to own some of the most prized representations of Amitabh’s legacy!? Explore the NFT Loot Box to win yours!"
+                cardDesc="Would you miss out on the chance to own some of the most prized representations of Amitabh’s legacy? Explore the NFT Loot Box to win yours!"
                 dropTitle="About Collection"
-                dropDescOne="Don’t miss out on the chance to become a proud owner Amitabh’s NFT, BigB Punks, and rare vintage posters! All you need to do is explore the NFT Loot Box and see what you’ve won for yourself! The Loot Box could make you one of the proudest owners of some of the most unique Amitabh Bachchan NFTs! "
-                dropDescTwo="You could win one individual physical poster NFT worth INR 5 Lakh each, or one in the thousands of pastel NFT art worth INR 5000 each, or one of BigB Punks worth INR 10000 each! Every art is limited in its supply and you could be one of the very few thousands among the millions of Amitabh fans to own these NFT art pieces or vintage posters or BigB Punks!"
-                dropDescThree="The best part about the Loot Box is that all these can be yours even without entering an auction… and with an assurance that you will get at least one prized NFT art or poster for you to be proud of! Hurry up! Purchase the Loot Box now!!"
+                dropDescOne="Don’t miss out on the chance to become a proud owner Amitabh’s NFT  art pieces, BigB Punks, and rare vintage posters! All you need to do is explore the NFT Loot Box and see what you’ve won for yourself! The Loot Box could make you one of the proudest owners of some of the most unique Amitabh Bachchan NFTs! "
+                dropDescTwo={<DropTwoDescTwo />}
+                dropDescThree="The best part about the Loot Box is that all these can be yours even without entering an auction… and with an assurance that you will get at least one prized NFT art or poster for you to be proud of! Hurry up! Purchase the Loot Box now!"
                 auctionTitle="Drops Open In"
                 auctionTime="2021-10-22T14:25:00.000Z"
                 editionTitle="Items"
                 editionType="5000"
-                additional="Addtional Perk"
-                additionalDesc="You not only have the pride of possessing some of the most unique Amitabh NFTs! You also can, just like any other NFT, sell your prized possessions in marketplaces and trade them like any other NFT that you buy! "
+                additional="What You Get"
+                additionalDesc="You not only have the pride of possessing some of the most unique Amitabh NFTs! You also can, just like any other NFT, sell your prized possessions in marketplaces and trade them! "
                 slug={categories[1].slug}
                 catName={categories[1].name}
                 scroll={exe_scroll_email}
@@ -320,8 +348,8 @@ const NewDropsTemp2 = ({ categories }) => {
                 auctionTime="2021-10-22T14:25:00.000Z"
                 editionTitle="Edition"
                 editionType="6/6"
-                additional="Addtional Perk"
-                additionalDesc="These miniatures and NFT art pieces represent the craze for collectibles in the crypto world! A crypto featuring a legendary and globally recognized superstar is bound to be a thing of pride to possess... in addition to high possibilitiesof fetching good deals in the secondary market!"
+                additional="What You Get"
+                additionalDesc="These BigB Punks and NFT art pieces represent the craze for collectibles in the crypto world! An NFT featuring a legendary and globally recognized superstar is bound to be a thing of pride to possess... in addition to high possibilitiesof fetching good deals in the secondary market!"
                 slug={categories[2].slug}
                 catName={categories[2].name}
                 scroll={exe_scroll_email}
