@@ -34,7 +34,7 @@ const NewHome = () => {
 
   return (
     <>
-      <Header hideBid />
+      <Header />
       {/* <NewDrops categories={categories} /> */}
       <NewDropsTemp2 categories={categories} />
 

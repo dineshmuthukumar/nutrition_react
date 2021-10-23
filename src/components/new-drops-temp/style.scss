@@ -1,7 +1,29 @@
+// section.sw_ab_1 {
+//   background: #081127;
+//   color: #fff;
+//   padding: 6rem 0rem;
+//   position: relative;
+// }
 section.sw_ab_1 {
-  background: #081127;
+  background: url(../../images/drops/drops_banner_2.jpg);
+  background-position-x: 0%;
+  background-position-y: 0%;
+  background-repeat: repeat;
+  background-size: auto;
   color: #fff;
-  padding: 4rem 0rem;
+  padding: 6rem 0rem;
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right center;
+}
+.sw_ab_1 h2.drop-title__heading,
+.sw_ab_1 .drop-title p {
+  color: #000;
+}
+.sw_ab_1 .learnMore a {
+  color: #000;
+  border: 1px solid #000;
 }
 h2.drop-title__heading {
   font-size: 3.5rem;
@@ -145,7 +167,7 @@ span.main_title {
 .navbar-dark .navbar-nav .nav-link {
   border: 1px solid #fff;
   border-radius: 2em;
-  padding: 0.6rem 2rem 0.5rem;
+  padding: 0.4rem 1.5rem 0.4rem;
 }
 .app-showcase {
   background: #222;
@@ -206,6 +228,9 @@ svg {
 .drop_card .drop-title {
   padding: 2em;
   border-bottom: 2px solid #fff;
+}
+.drop_card .drop-title b {
+  font-family: "neue_helveticabold" !important;
 }
 .drop-title h4 {
   font-size: 2.5em;
@@ -271,32 +296,38 @@ section.drop-newsletter {
   position: relative;
   display: block;
   width: 100%;
-  line-height: 19px;
-  padding: 15px 20px;
+  line-height: 3rem;
+  padding: 1.4rem 1rem 1.4rem 1rem;
   background-color: #ffffffa3;
-  height: 50px;
+  height: 3.5rem;
   border: 1px solid #dcd9d8;
   transition: all 300ms ease;
   border-radius: 100px;
-  font-size: 1.2em !important;
+  font-size: 1.2rem !important;
 }
 
 button.nft_form {
   position: absolute;
-  right: 5px;
-  top: 4px;
-  width: 42px;
-  height: 42px;
-  display: inline-block;
-  font-size: 1.5em;
-  line-height: 30px;
-  padding: 0px;
+  right: 0.3rem;
+  top: 0.2rem;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  font-size: 2rem;
+  line-height: 2rem;
+  padding: 0;
   font-weight: 700;
-  border-radius: 35px;
+  border-radius: 50%;
   text-transform: capitalize;
   background-color: #6052e7;
   overflow: hidden;
   border: none;
+  align-items: center;
+  justify-content: center;
+  svg {
+    height: 2rem;
+    width: 2rem;
+  }
 }
 /* footer */
 #footer {
@@ -393,12 +424,11 @@ button.nft_form {
   position: relative;
 }
 #fmenu1 .submenu:last-of-type form input[type="email"] {
-  // height: 3em;
-  border-radius: 3em;
+  // border-radius: 3em;
   border: none;
-  width: 100%;
-  padding-left: 10%;
-  font-size: 0.8em;
+  // width: 100%;
+  // padding-left: 10%;
+  // font-size: 0.8em;
   background-color: #1f1f1f;
   color: #a2a2a2;
 }
@@ -512,7 +542,7 @@ section.drops_list {
 }
 #socialMedia ul li a {
   margin-left: 0;
-  margin-right: 10px;
+  margin-right: 0.5rem;
   position: relative;
   display: flex;
   color: #000;
@@ -524,8 +554,9 @@ section.drops_list {
   padding: 0;
   justify-content: center;
   align-items: center;
-  font-size: 1.4em !important;
+  font-size: 1.5em !important;
   background: #7f7f7f;
+  margin-bottom: 0.5rem;
 }
 .drop-card-post .learnMore {
   display: block;
@@ -537,13 +568,37 @@ section.drops_list {
   margin: auto;
   margin-top: 2em;
 }
+.dr_baner {
+  display: none;
+}
+@media screen and (max-width: 1400px) {
+  section.sw_ab_1 {
+    background-position: left center;
+  }
+}
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 991px) {
   h2.drop-title__heading,
   .drop-title p,
   .learnMore,
   .drop-title h4 {
     text-align: center;
+  }
+  section.sw_ab_1 {
+    background: #000;
+    padding: 0rem 0rem 3rem;
+  }
+  .sw_ab_1 h2.drop-title__heading,
+  .sw_ab_1 .drop-title p {
+    color: #fff;
+  }
+  .sw_ab_1 .learnMore a {
+    color: #fff;
+    border: 1px solid #fff;
+  }
+  .dr_baner {
+    display: none;
+    width: 100%;
   }
   .learnMore a {
     margin-top: 2%;
@@ -667,12 +722,13 @@ section.drops_list {
     justify-content: center;
   }
   #fmenu1 .submenu:nth-of-type(2) ul li a {
-    font-size: 1.3em;
-    padding: 2% 0% 3% 0%;
+    font-size: 1.3rem;
+    padding: .5rem 1.5rem .5rem 0rem;
     width: 100%;
     background: url(https://cdn.beyondlife.club/media/right_white.png) no-repeat;
     background-position: center right;
-    background-size: 4%;
+    background-size: 1rem;
+    display: flex;
   }
   #fmenu1 .submenu:last-of-type form label {
     display: none;
@@ -696,14 +752,14 @@ section.drops_list {
     font-size: 1em;
     margin-bottom: 2%;
   }
-  button.nft_form {
-    top: 9px !important;
-    right: 10px;
-    width: 30px !important;
-    height: 30px !important;
-    font-size: 1.3em !important;
-    line-height: 15px !important;
-  }
+  // button.nft_form {
+  //   top: 9px !important;
+  //   right: 10px;
+  //   width: 30px !important;
+  //   height: 30px !important;
+  //   font-size: 1.3em !important;
+  //   line-height: 15px !important;
+  // }
   #fmenu2 .submenu:first-of-type > div {
     margin-right: initial;
   }
@@ -732,7 +788,11 @@ section.drops_list {
     text-align: center;
   }
 }
-
+@media screen and (min-width: 992px) {
+  .content-img.content-img--l4-1{
+    display: none;
+  }
+}
 @media only screen and (min-width: 481px) and (max-width: 767px) {
   #fmenu1 {
     flex-direction: column;
@@ -826,12 +886,13 @@ section.drops_list {
     justify-content: center;
   }
   #fmenu1 .submenu:nth-of-type(2) ul li a {
-    font-size: 1.3em;
-    padding: 2% 0% 3% 0%;
+    font-size: 1.3rem;
+    padding: .5rem 1.5rem .5rem 0rem;
     width: 100%;
     background: url(https://cdn.beyondlife.club/media/right_white.png) no-repeat;
     background-position: center right;
-    background-size: 4%;
+    background-size: 1rem;
+    display: flex;
   }
   #fmenu1 .submenu:last-of-type form label {
     display: none;
@@ -855,13 +916,13 @@ section.drops_list {
     font-size: 1em;
     margin-bottom: 2%;
   }
-  button.nft_form {
-    top: 7px !important;
-    width: 35px !important;
-    height: 35px !important;
-    font-size: 1.3em !important;
-    line-height: 15px !important;
-  }
+  // button.nft_form {
+  //   top: 7px !important;
+  //   width: 35px !important;
+  //   height: 35px !important;
+  //   font-size: 1.3em !important;
+  //   line-height: 15px !important;
+  // }
   #fmenu2 .submenu:first-of-type > div {
     margin-right: initial;
   }
@@ -937,5 +998,21 @@ section.drops_list {
   }
   button.nft_form {
     font-size: inherit;
+  }
+  .card_title {
+    max-width: 100%;
+  }
+  .drop-title p,
+  .drop_card .additional-perks p {
+    font-size: 1em;
+  }
+  .auction-main h1 {
+    font-size: 2.5em;
+  }
+  section.drop-newsletter br {
+    display: none;
+  }
+  #footer .nft_email_error {
+    font-size: 1rem;
   }
 }

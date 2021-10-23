@@ -29,7 +29,13 @@ const ExploreCard = ({
       <div className="block-box user-post  mb-5">
         <div className="item-post">
           <img
-            src={nft.image_url ? nft.image_url : sample}
+            src={(() => {
+              if (nft.asset_type.includes("image")) {
+                return nft.asset_url ? nft.asset_url : sample;
+              } else {
+                return nft.cover_url ? nft.cover_url : sample;
+              }
+            })()}
             width="100%"
             align="post"
             role="button"

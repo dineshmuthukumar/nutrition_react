@@ -39,7 +39,7 @@ const Explore = ({ list = [], handleClick, hasMore }) => {
   return (
     <>
       <section className="explore-drops">
-        <div className="container">
+        <div className="container-fluid">
           <div className="row mt-5 explore-title">
             <ExploreTitle
               title={explore.title}

@@ -220,7 +220,7 @@ const Details = () => {
             <div className="row fit-to-height">
               <div className="col-12 col-lg-7">
                 <NFTMedia
-                  image={nft?.image_url}
+                  nft={nft}
                   title={nft?.name}
                   slug={nft?.slug}
                   isFav={nft?.is_user_fav}
