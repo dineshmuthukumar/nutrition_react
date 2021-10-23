@@ -486,7 +486,7 @@ input::-webkit-inner-spin-button {
 
 @media (max-width: 768px) {
   html {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .creator.mt-3 {
@@ -864,9 +864,9 @@ input::-webkit-inner-spin-button {
   .fit-to-height {
     height: auto !important;
   }
-  section.sw_ab_1 {
-    padding: 4rem 1.2rem;
-  }
+  // section.sw_ab_1 {
+  //   padding: 4rem 1.2rem;
+  // }
 
   .bid-auction {
     min-height: 60vh !important;
@@ -981,9 +981,9 @@ input::-webkit-inner-spin-button {
     width: 100% !important;
     object-fit: cover !important;
   }
-  section.sw_ab_1 {
-    padding: 4rem 1.3rem !important;
-  }
+  // section.sw_ab_1 {
+  //   padding: 4rem 1.3rem !important;
+  // }
   .scroll-drops {
     display: none;
   }

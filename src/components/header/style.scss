@@ -51,8 +51,12 @@
 .navbar-dark .navbar-nav .nav-link {
   color: #ffffff !important;
   font-family: $neue-helveticalight;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   padding-left: 1rem;
+  @media screen and (max-width: 375px) {
+    padding: 0.3rem 0.8rem 0.3rem;
+    font-size: 0.9rem;
+  }
 }
 
 .navbar-nav {

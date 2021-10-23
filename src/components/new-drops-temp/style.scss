@@ -168,6 +168,10 @@ span.main_title {
   border: 1px solid #fff;
   border-radius: 2em;
   padding: 0.4rem 1.5rem 0.4rem;
+  @media screen and (max-width: 375px) {
+    padding: 0.3rem 0.8rem 0.3rem;
+    font-size: 0.9rem;
+  }
 }
 .app-showcase {
   background: #222;
@@ -807,9 +811,12 @@ section.drops_list {
     text-align: center;
   }
 }
-@media screen and (min-width: 992px) {
+
   .content-img.content-img--l4-1 {
-    display: none;
+    display: block;
+    margin-top: 2rem;
+    @media screen and (min-width: 992px) {
+      display: none;
   }
 }
 @media only screen and (min-width: 481px) and (max-width: 767px) {
