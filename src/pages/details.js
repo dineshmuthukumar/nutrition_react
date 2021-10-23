@@ -47,7 +47,7 @@ const Details = () => {
   const [isAuctionStarted, setIsAuctionStarted] = useState(false);
   const [isAuctionEnded, setIsAuctionEnded] = useState(false);
   const [soldOut, setSoldOut] = useState(false);
-  const [loader, setLoader] = useState(false);
+  const [loader, setLoader] = useState(true);
   const [placeBidPop, setPlaceBidPop] = useState(false);
 
   // Socket State
