@@ -1,5 +1,5 @@
 import { signOutApi } from "../../api/base-methods";
-import { removeCookies } from "../../utils/cookies";
+import { removeCookies, getCookies } from "../../utils/cookies";
 import { userApi } from "../../api/base-methods";
 
 import {
@@ -12,7 +12,8 @@ import {
 export const user_logout_thunk = () => {
   return async (dispatch) => {
     try {
-      await signOutApi();
+      const token = getCookies();
+      if (token) await signOutApi();
     } catch (err) {
       console.log("🚀 ~ file: user_thunk.js ~ line 58 ~ return ~ err", err);
     }
