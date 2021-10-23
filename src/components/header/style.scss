@@ -17,7 +17,7 @@
   align-items: center;
   border: 1px solid #ccc;
   padding: 5px 10px 5px 5px;
-  border-radius: 20px;
+  border-radius: 50rem;
   cursor: pointer;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   margin-left: 0.5rem;
@@ -37,6 +37,7 @@
     margin-left: 0.7rem;
     font-family: $neue-helveticalight;
     color: #ffffff;
+    font-size: 1.2rem;
   }
 
   .user-image {
@@ -142,16 +143,22 @@
 .navbar-expand-md .navbar-nav .dropdown-menu {
   position: absolute;
 }
-.navbar-dark .navbar-nav .nav-link {
-  border: 1px solid #fff;
-  border-radius: 2em;
-  padding: 0.6rem 2rem 0.5rem;
-  margin-right: 1rem;
-}
-.navbar-dark .navbar-nav .nav-link:last-child {
-  margin-right: 0;
-  background: #fff;
-  color: #000 !important;
+
+.navbar-dark .navbar-nav {
+  .nav-link{
+    border: 1px solid #fff;
+    border-radius: 2em;
+    padding: 0.6rem 2rem 0.5rem;
+    margin-right: 0.5rem;
+    &:last-child {
+      margin-right: 0;
+      background: #fff;
+      color: #000 !important;
+      @media screen and (max-width: 767px) {
+        padding: 0;
+      }
+    }
+  }
 }
 .navbar-nav .dropdown {
   margin-right: 1rem;

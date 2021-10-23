@@ -167,7 +167,7 @@ span.main_title {
 .navbar-dark .navbar-nav .nav-link {
   border: 1px solid #fff;
   border-radius: 2em;
-  padding: 0.6rem 2rem 0.5rem;
+  padding: 0.4rem 1.5rem 0.4rem;
 }
 .app-showcase {
   background: #222;
@@ -299,7 +299,7 @@ section.drop-newsletter {
   line-height: 3rem;
   padding: 1.4rem 1rem 1.4rem 1rem;
   background-color: #ffffffa3;
-  height: 3rem;
+  height: 3.5rem;
   border: 1px solid #dcd9d8;
   transition: all 300ms ease;
   border-radius: 100px;
@@ -308,16 +308,16 @@ section.drop-newsletter {
 
 button.nft_form {
   position: absolute;
-  right: 5px;
-  top: 4px;
-  width: 2.5rem;
-  height: 2.5rem;
+  right: 0.3rem;
+  top: 0.2rem;
+  width: 3rem;
+  height: 3rem;
   display: flex;
   font-size: 2rem;
   line-height: 2rem;
   padding: 0;
   font-weight: 700;
-  border-radius: 35px;
+  border-radius: 50%;
   text-transform: capitalize;
   background-color: #6052e7;
   overflow: hidden;
@@ -577,7 +577,7 @@ section.drops_list {
   }
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 991px) {
   h2.drop-title__heading,
   .drop-title p,
   .learnMore,
@@ -597,7 +597,7 @@ section.drops_list {
     border: 1px solid #fff;
   }
   .dr_baner {
-    display: block;
+    display: none;
     width: 100%;
   }
   .learnMore a {
@@ -723,11 +723,12 @@ section.drops_list {
   }
   #fmenu1 .submenu:nth-of-type(2) ul li a {
     font-size: 1.3rem;
-    padding: 1rem 1.5rem 1rem 0rem;
+    padding: .5rem 1.5rem .5rem 0rem;
     width: 100%;
     background: url(https://cdn.beyondlife.club/media/right_white.png) no-repeat;
     background-position: center right;
     background-size: 1rem;
+    display: flex;
   }
   #fmenu1 .submenu:last-of-type form label {
     display: none;
@@ -787,7 +788,11 @@ section.drops_list {
     text-align: center;
   }
 }
-
+@media screen and (min-width: 992px) {
+  .content-img.content-img--l4-1{
+    display: none;
+  }
+}
 @media only screen and (min-width: 481px) and (max-width: 767px) {
   #fmenu1 {
     flex-direction: column;
@@ -882,11 +887,12 @@ section.drops_list {
   }
   #fmenu1 .submenu:nth-of-type(2) ul li a {
     font-size: 1.3rem;
-    padding: 1rem 1.5rem 1rem 0rem;
+    padding: .5rem 1.5rem .5rem 0rem;
     width: 100%;
     background: url(https://cdn.beyondlife.club/media/right_white.png) no-repeat;
     background-position: center right;
     background-size: 1rem;
+    display: flex;
   }
   #fmenu1 .submenu:last-of-type form label {
     display: none;
