@@ -405,7 +405,7 @@ const NewDropsTemp2 = ({ categories }) => {
           <div id="fmenu1">
             <div className="submenu">
               <div>
-                <a href="index.php">
+                <a target="_blank" href="https://www.beyondlife.club">
                   <h1>BeyondLife.club</h1>
                 </a>
                 <p>A world without an end</p>
