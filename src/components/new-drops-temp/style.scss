@@ -17,6 +17,56 @@ section.sw_ab_1 {
   background-size: cover;
   background-position: right center;
 }
+.scroll {
+  width: 4em;
+  height: 4em;
+  border: 2px solid #333;
+  border-radius: 50%;
+  position: relative;
+  animation: down 1.5s infinite;
+  -webkit-animation: down 1.5s infinite;
+  margin: 0 auto;
+  position: absolute;
+  bottom: 2em;
+  cursor: pointer;
+  left: 0;
+  right: 0;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 1.2em;
+    left: 1.45em;
+    width: 1em;
+    height: 1em;
+    border-left: 2px solid #333;
+    border-bottom: 2px solid #333;
+    transform: rotate(-45deg);
+  }
+}
+@keyframes down {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translateY(15px);
+  }
+  40% {
+    transform: translate(0);
+  }
+}
+
+@-webkit-keyframes down {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translateY(15px);
+  }
+  40% {
+    transform: translate(0);
+  }
+}
+
 .sw_ab_1 h2.drop-title__heading,
 .sw_ab_1 .drop-title p {
   color: #000;
@@ -24,6 +74,20 @@ section.sw_ab_1 {
 .sw_ab_1 .learnMore a {
   color: #000;
   border: 1px solid #000;
+  margin-right: 1em;
+}
+.sw_ab_1 .learnMore a:last-child {
+  background: #000;
+  color: #fff;
+  margin-right: 0px;
+}
+.sw_ab_1 .learnMore a:last-child:hover {
+  background: #fff;
+  color: #000;
+}
+.sw_ab_1 .learnMore a:hover {
+  background: #000;
+  color: #fff;
 }
 h2.drop-title__heading {
   font-size: 3.5rem;
@@ -43,6 +107,7 @@ p.drop-title__description {
   letter-spacing: 0.1rem;
   padding: 0.5rem 3rem;
   display: inline-block;
+  transition: 0.5s;
 }
 .content-img img {
   width: 60%;
@@ -359,6 +424,9 @@ button.nft_form {
   align-items: flex-start;
   justify-content: flex-start;
   text-align: left;
+}
+.copyright a {
+  margin-left: 0.3em;
 }
 #fmenu1 .submenu:first-of-type {
   width: 28%;
@@ -812,11 +880,11 @@ section.drops_list {
   }
 }
 
-  .content-img.content-img--l4-1 {
-    display: block;
-    margin-top: 2rem;
-    @media screen and (min-width: 992px) {
-      display: none;
+.content-img.content-img--l4-1 {
+  display: block;
+  margin-top: 2rem;
+  @media screen and (min-width: 992px) {
+    display: none;
   }
 }
 @media only screen and (min-width: 481px) and (max-width: 767px) {

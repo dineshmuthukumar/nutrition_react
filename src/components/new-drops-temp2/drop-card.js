@@ -69,22 +69,49 @@ const DropCard = ({
             <div className="drop-card-post">
               <Image src={img} />
               <div className="learnMore">
-                <Link to="#" onClick={() => {
-                        if(user?.slug){
-                          window.open(
-                            `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
-                            "_self"
-                          )
-                        } else {
-                          window.open(
-                            `${process.env.REACT_APP_ACCOUNTS_URL}/signup`,
-                            "_self"
-                          )
-                        }
+                {!user?.slug && (
+                  <Link
+                    className="nav-label"
+                    to="#"
+                    onClick={() => {
+                      if (user?.slug) {
+                        window.open(
+                          `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
+                          "_self"
+                        );
+                      } else {
+                        window.open(
+                          `${process.env.REACT_APP_ACCOUNTS_URL}/signup`,
+                          "_self"
+                        );
+                      }
+                    }}
+                  >
+                    {user?.slug ? "Access the Drops" : "Join The Waitlist!"}
+                  </Link>
+                )}
 
-                      }}>
-                  {user?.slug ? "Access the Drops" : "Register Now!"}
+                <Link
+                  className="nav-label"
+                  to="#"
+                  onClick={() => {
+                    if (user?.slug) {
+                      window.open(
+                        `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
+                        "_self"
+                      );
+                    } else {
+                      window.open(
+                        `${process.env.REACT_APP_ACCOUNTS_URL}/signup`,
+                        "_self"
+                      );
+                    }
+                  }}
+                >
+                  Fund Your Wallet
                 </Link>
+
+                {/* <button type="button" onClick={()=> setModal(true)}>Place Your Bid Right Now!</button>  */}
               </div>
             </div>
           </div>

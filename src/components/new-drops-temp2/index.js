@@ -195,7 +195,26 @@ const NewDropsTemp2 = ({ categories }) => {
                         }
                       }}
                     >
-                      {user?.slug ? "Access the Drops" : "Register Now!"}
+                      {user?.slug ? "Add Fund Now" : "Join the Waitlist"}
+                    </Link>
+                    <Link
+                      className="nav-label"
+                      to="#"
+                      onClick={() => {
+                        if (user?.slug) {
+                          window.open(
+                            `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
+                            "_self"
+                          );
+                        } else {
+                          window.open(
+                            `${process.env.REACT_APP_ACCOUNTS_URL}/signup`,
+                            "_self"
+                          );
+                        }
+                      }}
+                    >
+                      {user?.slug ? "Add Fund Now" : "Add Fund Now"}
                     </Link>
 
                     {/* <button type="button" onClick={()=> setModal(true)}>Place Your Bid Right Now!</button>  */}
@@ -209,6 +228,7 @@ const NewDropsTemp2 = ({ categories }) => {
               </div>
             </div>
           </div>
+          <div onClick={exe_scroll_one} class="scroll"></div>
         </section>
         <section className="sw_3" id="ab_3">
           <div className="">
@@ -247,7 +267,7 @@ const NewDropsTemp2 = ({ categories }) => {
                       onClick={exe_scroll_four}
                     >
                       Collection 4:
-                      <span className="main_title">Big-B Punks & NFT Art</span>
+                      <span className="main_title">BigB Punks & NFT Art</span>
                       <span className="sub_title">
                         Smart Contract-Generated Pastel NFT Art of AB
                       </span>
@@ -265,18 +285,18 @@ const NewDropsTemp2 = ({ categories }) => {
                 id="madhushala"
                 img={four}
                 cardTitle="Madhushala NFTs"
-                smallTitle="Amalgamation Of Knowledge, Fulfilment of Duties, and Expectations!"
+                smallTitle="Amalgamation of Knowledge, Fulfilment of Duties, and Expectations!"
                 cardDesc="BeyondLife.club brings you the philosophical undertones of Madhushala in Amitabh’s baritone as an NFT! Now you can own a recorded version of Madhushala, curated by Amitabh Bachchan himself. By owning this one-of-a-kind NFT, you’re owning a segment of this legend’s history in his own voice, and an 86-year-old iconic and epoch-making metaphorical Hindi poetry!"
                 dropTitle="About Collection"
-                dropDescOne="Mr. Harivansh Rai Bachchan (1907–2003), father of Mr. Amitabh Bachchan, wrote Madhushala that depicts the wisdom of Madhu - temple of Mind (Madhushala), karma, imbibement of knowledge, fulfillment of duties, and expectations of an individual from the society into beautiful verses."
-                dropDescTwo="Madhushala’s Rhyme, Rhythm, and Flavour is still fresh in Amitabh’s mind. He believed and witnessed the miracles that this purest form of art brings to society. The love and the respect Mr.Bachchan holds in his heart compelled him to recite, sing, and translate stories of Madhushala from time to time. This unique and enthralling audio NFT of Madhushala has one version in Hindi, and one in English!"
-                dropDescThree="The Madhushala NFT is a super-premium NFT presented to you by BeyondLife.club. You will be the one among the two sole owners of the exclusive NFTS - the rendition of Mr. Harivansh’s refined poetry in Amitabh’s rustic baritone!!"
+                dropDescOne="Mr. Harivansh Rai Bachchan (1907–2003), father of Mr. Amitabh Bachchan, wrote Madhushala that depicts the wisdom of Madhu - the Temple of Mind (Madhushala), karma, imbibement of knowledge, fulfilment of duties, and expectations of an individual from the society into beautiful verses."
+                dropDescTwo="Madhushala’s Rhyme, Rhythm, and Flavour is still fresh in Amitabh’s mind. He believed and witnessed the miracles that this purest form of art brings to society. The love and the respect he holds for Mr. Bachchan in his heart compelled him to recite, sing, and translate stories of Madhushala from time to time. This unique and enthralling audio NFT of Madhushala has one version in Hindi, and one in English!"
+                dropDescThree="The Madhushala NFT is a super-premium NFT presented to you by BeyondLife.club. You will be the one among the two sole owners of the exclusive NFTs - the rendition of Mr. Harivansh’s refined poetry in Amitabh’s rustic baritone!!"
                 auctionTitle="Auction starting in"
-                auctionTime="2021-10-22T14:25:00.000Z"
+                auctionTime="2021-01-11T14:25:00.000Z"
                 editionTitle="Edition of"
                 editionType="2/2"
-                additional="Addtional Perk"
-                additionalDesc="The highest bidders in the two categories, in addition to the NFTs, will also get to avail a meet-and-greet session with the BigB - A memory that any Amitabh will hold on to more dearly than the NFT itself!"
+                additional="Additional Perk"
+                additionalDesc="The highest bidders in the two categories, in addition to the NFTs, will also get to avail a meet-and-greet session with the BigB - A memory that any anyone will hold on to more dearly than the NFT itself!"
                 slug={categories[0].slug}
                 catName={categories[0].name}
                 scroll={exe_scroll_email}
@@ -290,7 +310,7 @@ const NewDropsTemp2 = ({ categories }) => {
                 smallTitle="Signed Vintage Posters | NFT Art | BigB Punks"
                 cardDesc="Would you miss out on the chance to own some of the most prized representations of Amitabh’s legacy? Explore the NFT Loot Box to win yours!"
                 dropTitle="About Collection"
-                dropDescOne="Don’t miss out on the chance to become a proud owner Amitabh’s NFT  art pieces, BigB Punks, and rare vintage posters! All you need to do is explore the NFT Loot Box and see what you’ve won for yourself! The Loot Box could make you one of the proudest owners of some of the most unique Amitabh Bachchan NFTs! "
+                dropDescOne="Don’t miss out on the chance to become a proud owner of Amitabh’s NFT  art pieces, BigB Punks, and rare vintage posters! All you need to do is explore the NFT Loot Box and see what you’ve won for yourself! The Loot Box could make you one of the proudest owners of some of the most unique Amitabh Bachchan NFTs! "
                 dropDescTwo={<DropTwoDescTwo />}
                 dropDescThree="The best part about the Loot Box is that all these can be yours even without entering an auction… and with an assurance that you will get at least one prized NFT art or poster for you to be proud of! Hurry up! Purchase the Loot Box now!"
                 auctionTitle="Drops Open In"
@@ -312,14 +332,14 @@ const NewDropsTemp2 = ({ categories }) => {
                 smallTitle="Vintage Original Rare Posters with Digital NFT Certificate of Authenticity"
                 cardDesc="Now you can own a video of Amitabh signing an original movie poster of his iconic movies, hand-painted by a few authentic artists whose work will amaze you in every way. The cult value of their masterpieces is a statement of ethnicity, authenticity, Indian cinema’s legacy, and beyond."
                 dropTitle="About Collection"
-                dropDescOne="Hand-painted movie posters, as any classic cinema aficionado might have known, served as heralds for The Shahenshah of Bollywood’s movies. Carrying the savage retro flavor in their artistic expression, these posters are masterpieces in their own right! Posters of Amitabh’s classics depict the era of Celluloid Renaissance in Indian Cinema."
-                dropDescTwo="Movie posters from the era when India witnessed its “Angry young man”, dominating the Indian cinema. Amitabh Bachchan’s career itself should be a storyline that will potentially be a superhit worldwide."
-                dropDescThree="Our NFT will feature the Legend BigB signing these signature posters on a video. In addition to that video, you will also receive the autographed physical copy of that vintage poster of some of Amitabh’s iconic movies! These prized videos are bound to be evergreen, and they could now be yours!"
+                dropDescOne="Hand-painted movie posters, as any classic cinema aficionado would know, served as heralds for The Shahenshah of Bollywood’s movies. Carrying the savage retro flavor in their artistic expression, these posters are masterpieces in their own right! Posters of Amitabh’s classics depict the era of Celluloid Renaissance in Indian Cinema."
+                dropDescTwo="Movie posters from the era when India witnessed its “”, dominating the Indian cinema. Amitabh Bachchan’s career itself should be a storyline that will potentially be a superhit worldwide."
+                dropDescThree="Our NFT will feature the Legend BigB signing these signature posters in a video. In addition to that video, you will also receive the autographed physical copy of the vintage poster of some of Amitabh’s iconic movies! These prized videos are bound to be evergreen, and they could now be yours!"
                 auctionTitle="Auction starting in"
                 auctionTime="2021-10-22T14:25:00.000Z"
                 editionTitle="Limited Edition"
                 editionType="7/7"
-                additional="Addtional Perk"
+                additional="Additional Perk"
                 additionalDesc="10 randomly chosen purchasers of these poster NFTs will get signed and personalized letters from Amitabh himself! How cool is it for you to show off to your friends and folks that you have been called by name by the BigB! "
                 slug={categories[1].slug}
                 catName={categories[1].name}
@@ -331,17 +351,17 @@ const NewDropsTemp2 = ({ categories }) => {
                 img={one}
                 cardTitle="Big-B Punks and NFT Arts"
                 smallTitle="A Collection of Signature Crypto-Style Amitabh Miniatures"
-                cardDesc="Let’s admit it! Amitabh, in every Avatar, has been a success! Be it the classic ‘Angry Young Man’, or the modern French-bearded Godfather with his signature ‘Devion or Sajjanon’, or the Twitter personality who numbers his Tweets, the BigB can never be off trends!"
+                cardDesc="Let’s admit it! Amitabh, in every avatar, has been a success! Be it the classic ‘Angry Young Man’, or the modern French-bearded Godfather with his signature 'Deviyon or Sajjanon’, or the Twitter personality who numbers his Tweets, the BigB can never be off trends!"
                 dropTitle="About Collection"
-                dropDescOne="Since Amitabh has just stepped into the NFT realm, and going with the proven trends in the NFT space, we bring you exclusive Amitabh Bachchan BigB punks and exclusive Smart Contract-Generated Pastel NFT Art! These punks and NFT artworks preserve the essence of Amitabh Bachchan using certain attributes."
-                dropDescTwo="These BigB Punks have their signature headgear, neck-gear, hairstyle, eyewear, facial hair, and a few more, creating a repository of unique, meticulously crafted, and curated cryptopunk versions of Amitabh. The NFT art has been exclusively hand-drawn, "
-                dropDescThree="Every Pastel Art and every BigB Punk collection is a collectible in its own right, and there will just be a total of 6 of these! You could be the owner of one of the most celebrated forms of art in the crypto space!"
+                dropDescOne="Since Amitabh has just stepped into the NFT realm, and going with the proven trends in the NFT space, we bring you exclusive Amitabh Bachchan BigB Punks and exclusive Smart Contract-Generated Pastel NFT Art! These Punks and NFT artworks preserve the essence of Amitabh Bachchan using certain attributes."
+                dropDescTwo="These BigB Punks have their signature headgear, neck-gear, hairstyle, eyewear, facial hair, and a few more, creating a repository of unique, meticulously crafted, and curated cryptopunk versions of Amitabh. The NFT art has been exclusively hand-drawn. "
+                dropDescThree="Every Pastel Art and every BigB Punk collection is a collectible in its own right, and there will be just a total of 6 of these! You could be the owner of one of the most celebrated forms of art in the crypto space!"
                 auctionTitle="Auction starting in"
                 auctionTime="2021-10-22T14:25:00.000Z"
                 editionTitle="Edition"
                 editionType="6/6"
                 additional="What You Get"
-                additionalDesc="These BigB Punks and NFT art pieces represent the craze for collectibles in the crypto world! An NFT featuring a legendary and globally recognized superstar is bound to be a thing of pride to possess... in addition to high possibilitiesof fetching good deals in the secondary market!"
+                additionalDesc="These BigB Punks and NFT art pieces represent the craze for collectibles in the crypto world! An NFT featuring a legendary and globally recognized superstar is bound to be a thing of pride to possess... in addition to high possibilities of fetching good deals in the secondary market!"
                 slug={categories[2].slug}
                 catName={categories[2].name}
                 scroll={exe_scroll_email}
@@ -524,7 +544,12 @@ const NewDropsTemp2 = ({ categories }) => {
           </div>
           <div id="fmenu2">
             <div className="submenu">
-              <div>© BeyondLife.club.</div>
+              <div className="copyright">
+                ©All rights reserved. Rhiti Entertainment Pte. Ltd. Singapore.
+                <a target="_blank" href="https://www.beyondlife.club">
+                  Beyondlife LLC.
+                </a>
+              </div>
               {/* <div>
                 <a
                   target="_blank"
