@@ -536,7 +536,7 @@ const NewDropsTemp2 = ({ categories }) => {
           <div id="fmenu2">
             <div className="submenu">
               <div className="copyright">
-                ©All rights reserved. Rhiti Entertainment Pte. Ltd. Singapore.
+                ©All rights reserved. Rhiti Entertainment Pte. Ltd. Singapore &
                 <a target="_blank" href="https://www.beyondlife.club">
                   Beyondlife LLC.
                 </a>
