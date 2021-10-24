@@ -209,12 +209,12 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
                             <Dropdown.Divider />
                             <Dropdown.Item
                               as="button"
-                              // onClick={() =>
-                              //   window.open(
-                              //     `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/settings`,
-                              //     "_blank"
-                              //   )
-                              // }
+                              onClick={() =>
+                                window.open(
+                                  process.env.REACT_APP_HELP_URL,
+                                  "_blank"
+                                )
+                              }
                             >
                               Help Center
                             </Dropdown.Item>
