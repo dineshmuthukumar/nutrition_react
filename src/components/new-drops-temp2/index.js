@@ -444,7 +444,7 @@ const NewDropsTemp2 = ({ categories }) => {
                   <li>
                     <a
                       target="_blank"
-                      href="https://www.instagram.com/beyondlife.club/"
+                      href="https://www.instagram.com/beyondlife.clubofficial"
                     >
                       <FaInstagram />
                     </a>
