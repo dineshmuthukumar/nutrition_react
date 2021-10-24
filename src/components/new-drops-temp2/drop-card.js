@@ -48,7 +48,7 @@ const DropCard = ({
             </div>
             <div className="auction-time">
               <p className="heading-S">{auctionTitle}</p>
-              <NFTCounter time={"Nov 04, 2021 00:00:00"} />
+              <NFTCounter time={"Nov 01, 2021 00:00:00"} />
             </div>
             <div className="auction-main">
               <div className="auction-one">
@@ -69,21 +69,23 @@ const DropCard = ({
             <div className="drop-card-post">
               <Image src={img} />
               <div className="learnMore">
-                <Link to="#" onClick={() => {
-                        if(user?.slug){
-                          window.open(
-                            `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
-                            "_self"
-                          )
-                        } else {
-                          window.open(
-                            `${process.env.REACT_APP_ACCOUNTS_URL}/signup`,
-                            "_self"
-                          )
-                        }
-
-                      }}>
-                  {user?.slug ? "Access the Drops" : "Register Now!"}
+                <Link
+                  to="#"
+                  onClick={() => {
+                    if (user?.slug) {
+                      window.open(
+                        `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
+                        "_self"
+                      );
+                    } else {
+                      window.open(
+                        `${process.env.REACT_APP_ACCOUNTS_URL}/signup`,
+                        "_self"
+                      );
+                    }
+                  }}
+                >
+                  {user?.slug ? <>Get Ready For This NFT </> : "Register Now!"}
                 </Link>
               </div>
             </div>

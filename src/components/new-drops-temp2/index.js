@@ -178,6 +178,28 @@ const NewDropsTemp2 = ({ categories }) => {
                     collection, curated by the legend himself.
                   </p>
                   <div className="learnMore">
+                    {!user?.slug && (
+                      <Link
+                        className="nav-label"
+                        to="#"
+                        onClick={() => {
+                          if (user?.slug) {
+                            window.open(
+                              `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
+                              "_self"
+                            );
+                          } else {
+                            window.open(
+                              `${process.env.REACT_APP_ACCOUNTS_URL}/signup`,
+                              "_self"
+                            );
+                          }
+                        }}
+                      >
+                        {user?.slug ? "Access the Drops" : "Join The Waitlist!"}
+                      </Link>
+                    )}
+
                     <Link
                       className="nav-label"
                       to="#"
@@ -195,7 +217,7 @@ const NewDropsTemp2 = ({ categories }) => {
                         }
                       }}
                     >
-                      {user?.slug ? "Access the Drops" : "Register Now!"}
+                      Fund Your Wallet
                     </Link>
 
                     {/* <button type="button" onClick={()=> setModal(true)}>Place Your Bid Right Now!</button>  */}
