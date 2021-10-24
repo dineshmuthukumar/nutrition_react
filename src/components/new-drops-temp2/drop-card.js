@@ -74,7 +74,7 @@ const DropCard = ({
                   onClick={() => {
                     if (user?.slug) {
                       window.open(
-                        `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
+                        `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet#web`,
                         "_self"
                       );
                     } else {
