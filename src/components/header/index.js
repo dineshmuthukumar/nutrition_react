@@ -76,7 +76,9 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
       <Navbar bg="dark" expand="md" variant="dark">
         <Container fluid>
           <Navbar.Brand
-            onClick={() => history.push("/")}
+            onClick={() =>
+              window.open(process.env.REACT_APP_WEBSITE_URL, "_blank")
+            }
             role="button"
             className="head-title"
           >
