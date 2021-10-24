@@ -182,21 +182,9 @@ const NewDropsTemp2 = ({ categories }) => {
                       <Link
                         className="nav-label"
                         to="#"
-                        onClick={() => {
-                          if (user?.slug) {
-                            window.open(
-                              `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet#web`,
-                              "_self"
-                            );
-                          } else {
-                            window.open(
-                              `${process.env.REACT_APP_ACCOUNTS_URL}/signup`,
-                              "_self"
-                            );
-                          }
-                        }}
+                        onClick={exe_scroll_email}
                       >
-                        {user?.slug ? "Access the Drops" : "Join The Waitlist!"}
+                        Join The Waitlist!
                       </Link>
                     )}
 
