@@ -163,59 +163,45 @@ const NewDropsTemp2 = ({ categories }) => {
       <div className="new_drop_wrapper">
         <section className="sw_ab_1">
           <img className="dr_baner" src={drops_banner} />
-          <div className="container">
-            <div className="row align-items-center justify-content-center">
-              <div className="col-xxl-5 col-xl-6 col-lg-7 col-md-12 order-2 order-lg-1">
-                <div className="drop-title mb-0">
-                  <h2 className="drop-title__heading mb-4">
-                    Amitabh Bachchan's Exclusive NFT Collections - Make Them
-                    Yours!
-                  </h2>
-                  <p className="drop-title__description mb-4">
-                    Imagine owning an NFT that holds Amit-ji's significance,
-                    history, the value of exceptional existence, and beyond. We
-                    bring a series of Amitabh Bachchan's exclusive NFT
-                    collection, curated by the legend himself.
-                  </p>
-                  <div className="learnMore">
-                    {!user?.slug && (
-                      <Link
-                        className="nav-label"
-                        to="#"
-                        onClick={exe_scroll_email}
-                      >
-                        Join The Waitlist!
-                      </Link>
-                    )}
+          <div className="banner_content">
+            <div className="drop-title mb-0">
+              <h2 className="drop-title__heading mb-4">
+                Amitabh Bachchan's Exclusive NFT Collections - Make Them Yours!
+              </h2>
+              <p className="drop-title__description mb-4">
+                Imagine owning an NFT that holds Amit-ji's significance,
+                history, the value of exceptional existence, and beyond. We
+                bring a series of Amitabh Bachchan's exclusive NFT collection,
+                curated by the legend himself.
+              </p>
+              <div className="learnMore">
+                {!user?.slug && (
+                  <Link className="nav-label" to="#" onClick={exe_scroll_email}>
+                    Join The Waitlist!
+                  </Link>
+                )}
 
-                    <Link
-                      className="nav-label"
-                      to="#"
-                      onClick={() => {
-                        if (user?.slug) {
-                          window.open(
-                            `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet#web`,
-                            "_self"
-                          );
-                        } else {
-                          window.open(
-                            `${process.env.REACT_APP_ACCOUNTS_URL}/signup`,
-                            "_self"
-                          );
-                        }
-                      }}
-                    >
-                      Fund Your Wallet
-                    </Link>
+                <Link
+                  className="nav-label"
+                  to="#"
+                  onClick={() => {
+                    if (user?.slug) {
+                      window.open(
+                        `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet#web`,
+                        "_self"
+                      );
+                    } else {
+                      window.open(
+                        `${process.env.REACT_APP_ACCOUNTS_URL}/signup`,
+                        "_self"
+                      );
+                    }
+                  }}
+                >
+                  Fund Your Wallet
+                </Link>
 
-                    {/* <button type="button" onClick={()=> setModal(true)}>Place Your Bid Right Now!</button>  */}
-                  </div>
-                </div>
-              </div>
-              <div className="col-xxl-7 col-xl-6 col-lg-5 col-md-12 order-1 order-lg-2">
-                <div className="content-img content-img--l4-1">
-                  <Image src={five} rounded />
-                </div>
+                {/* <button type="button" onClick={()=> setModal(true)}>Place Your Bid Right Now!</button>  */}
               </div>
             </div>
           </div>

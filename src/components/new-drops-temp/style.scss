@@ -643,6 +643,10 @@ section.drops_list {
 .dr_baner {
   display: none;
 }
+.banner_content {
+  max-width: 47em;
+  padding-left: 5em;
+}
 @media screen and (max-width: 1400px) {
   section.sw_ab_1 {
     background-position: left center;
@@ -688,8 +692,14 @@ section.drops_list {
     border: 1px solid #fff;
   }
   .dr_baner {
-    display: none;
+    display: block;
     width: 100%;
+  }
+  .banner_content {
+    max-width: 90%;
+    padding-left: 2em;
+    padding-right: 2em;
+    margin: 0 auto;
   }
   .learnMore a {
     margin-top: 2%;
