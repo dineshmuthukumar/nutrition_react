@@ -562,17 +562,17 @@ button.nft_form {
   text-decoration: none;
 }
 #fmenu2 .submenu:first-of-type {
-  font-size: 1.34em;
+  font-size: 1rem;
   padding-left: 0;
   max-width: 50%;
   align-items: center;
   color: #808080;
   line-height: 1.3;
 }
-#fmenu2 .submenu:first-of-type > div {
-  margin-right: 13%;
-  white-space: nowrap;
-}
+// #fmenu2 .submenu:first-of-type > div {
+//   margin-right: 13%;
+//   white-space: nowrap;
+// }
 #fmenu2 .submenu:first-of-type > div a {
   color: #808080;
   text-decoration: none;
@@ -889,7 +889,7 @@ section.drops_list {
   }
   #fmenu2 .submenu:first-of-type {
     padding-top: 3%;
-    font-size: 1.4em;
+    font-size: 1rem;
     width: 100% !important;
     display: block;
     max-width: 100% !important;
@@ -1055,7 +1055,7 @@ section.drops_list {
   }
   #fmenu2 .submenu:first-of-type {
     padding-top: 3%;
-    font-size: 1.4em;
+    font-size: 1rem;
     width: 100% !important;
     display: block;
     max-width: 100% !important;

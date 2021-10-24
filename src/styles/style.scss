@@ -537,8 +537,6 @@ input::-webkit-inner-spin-button {
   }
 }
 
-
-
 @media screen and (min-width: 1225px) and (max-width: 1364px) {
   .winner-text {
     right: -35% !important;
@@ -582,7 +580,7 @@ input::-webkit-inner-spin-button {
     font-size: 17px;
   }
 }
-@media screen and (min-width: 1867px){
+@media screen and (min-width: 1867px) {
   html {
     font-size: 17px;
   }
@@ -595,31 +593,31 @@ input::-webkit-inner-spin-button {
   // }
 }
 
-@media screen and (min-width: 1967px){
+@media screen and (min-width: 1967px) {
   html {
     font-size: 19px;
   }
 }
 
-@media screen and (min-width: 2067px){
+@media screen and (min-width: 2067px) {
   html {
     font-size: 19px;
   }
 }
 
-@media screen and (min-width: 2167px){
+@media screen and (min-width: 2167px) {
   html {
     font-size: 20px;
   }
 }
 
-@media screen and (min-width: 2267px){
+@media screen and (min-width: 2267px) {
   html {
     font-size: 21px;
   }
 }
 
-@media screen and (min-width: 2467px){
+@media screen and (min-width: 2467px) {
   html {
     font-size: 22px;
   }
@@ -630,7 +628,7 @@ input::-webkit-inner-spin-button {
   }
 }
 
-@media screen and (min-width: 2567px){
+@media screen and (min-width: 2567px) {
   html {
     font-size: 25px;
   }
@@ -675,12 +673,12 @@ input::-webkit-inner-spin-button {
     font-size: 62px;
   }
 }
-@media only screen and (max-width: 479px){
+@media only screen and (max-width: 479px) {
   html {
     font-size: 13px !important;
   }
 }
-@media (max-width: 767px){
+@media (max-width: 767px) {
   html {
     font-size: 14px;
   }
@@ -1066,8 +1064,12 @@ input::-webkit-inner-spin-button {
 }
 
 @media screen and (max-width: 479px) {
-  .container-fluid, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
+  .container-fluid,
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl,
+  .container-xxl {
     padding: 0 1rem !important;
   }
-  
 }
