@@ -215,13 +215,18 @@
   .navbar-dark .discord_ic svg {
     display: block;
   }
+
   .alert_info {
     width: 88%;
     padding-left: 2%;
   }
   .alert_info p {
-    font-size: 0.6em;
+    font-size: 0.8em;
     line-height: 1.4;
+  }
+  .alert_close span {
+    right: 0.5em;
+    top: 0.6em;
   }
   .discord_ic span {
     display: none;
