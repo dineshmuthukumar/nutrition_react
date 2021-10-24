@@ -700,6 +700,13 @@ section.drops_list {
   .drop-card-post img {
     height: auto;
   }
+  .scroll {
+    display: none;
+  }
+  .sw_ab_1 .learnMore a {
+    margin-right: 0;
+    margin-bottom: 1em;
+  }
 }
 @media screen and (max-width: 1050px) {
   .sw_3 .nav-tabs a .sub_title {
