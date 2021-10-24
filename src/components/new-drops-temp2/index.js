@@ -470,11 +470,8 @@ const NewDropsTemp2 = ({ categories }) => {
                   </a>
                 </li>
                 <li>
-                  <a
-                    target="_blank"
-                    href="https://www.beyondlife.club/terms-and-condition.php"
-                  >
-                    Terms of service
+                  <a target="_blank" href="https://www.beyondlife.club/faq.php">
+                    FAQ
                   </a>
                 </li>
               </ul>
@@ -526,6 +523,17 @@ const NewDropsTemp2 = ({ categories }) => {
                 <a target="_blank" href="https://www.beyondlife.club">
                   Beyondlife LLC.
                 </a>
+                <span>
+                  <a href="https://www.beyondlife.club/terms-and-condition.php">
+                    Terms & Conditions
+                  </a>
+                  |
+                </span>
+                <span>
+                  <a href="https://www.beyondlife.club/privacy-policy.php">
+                    Privacy Policy
+                  </a>
+                </span>
               </div>
               {/* <div>
                 <a
