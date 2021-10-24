@@ -26,6 +26,7 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
   const state = useSelector((state) => state);
 
   const [notification, setNotification] = useState(false);
+  const [ribbon, setRibbon] = useState(true);
 
   const { user, lang } = state;
   const slug = user.data.user ? user.data.user.slug : null;
@@ -73,21 +74,25 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
 
   return (
     <>
-      <div className="top_bar">
-        <div className="alert_box">
-          <div className="alert_info">
-            <p>
-              <a href="https://accounts.beyondlife.club/accounts/wallet#web">
-                The Amitabh NFT Drops Are Soon Going Live! Get Ready To Access
-                The Drops By Adding Balance To Your Wallet!
-              </a>
-            </p>
-          </div>
-          <div class="alert_close">
-            <span id="al_close">x</span>
+      {ribbon && (
+        <div className="top_bar">
+          <div className="alert_box">
+            <div className="alert_info">
+              <p>
+                <a href="https://accounts.beyondlife.club/accounts/wallet#web">
+                  The Amitabh NFT Drops Are Soon Going Live! Get Ready To Access
+                  The Drops By Adding Balance To Your Wallet!
+                </a>
+              </p>
+            </div>
+            <div class="alert_close">
+              <span id="al_close" onClick={() => setRibbon(false)}>
+                x
+              </span>
+            </div>
           </div>
         </div>
-      </div>
+      )}
       <Navbar bg="dark" expand="md" variant="dark">
         <Container fluid>
           <Navbar.Brand
