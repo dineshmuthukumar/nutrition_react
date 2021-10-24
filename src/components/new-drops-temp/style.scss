@@ -610,7 +610,6 @@ section.drops_list {
 
 #fmenu2 .submenu:last-of-type img {
   width: 100%;
-  /*    margin-left:1em;*/
 }
 #socialMedia ul li a {
   margin-left: 0;
@@ -647,6 +646,7 @@ section.drops_list {
   max-width: 47em;
   padding-left: 5em;
 }
+
 @media screen and (max-width: 1400px) {
   section.sw_ab_1 {
     background-position: left center;
