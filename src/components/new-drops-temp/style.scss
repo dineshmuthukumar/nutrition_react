@@ -649,13 +649,29 @@ section.drops_list {
   max-width: 47em;
   padding-left: 5em;
 }
-
+span.seperator {
+  margin-left: 0.5em;
+}
+.learnMore a:hover {
+  background: #fff;
+  color: #000;
+}
 @media screen and (max-width: 1400px) {
   section.sw_ab_1 {
     background-position: left center;
   }
+  #fmenu2 .submenu:last-of-type {
+    width: 40%;
+  }
 }
-
+@media only screen and (min-width: 1050px) and (max-width: 1240px) {
+  .sw_3 .nav-tabs a {
+    font-size: 1rem;
+  }
+  .sw_3 .nav-tabs a .sub_title {
+    font-size: 0.8rem;
+  }
+}
 @media only screen and (min-width: 992px) and (max-width: 1400px) {
   .drop-title h4 {
     font-size: 2em;

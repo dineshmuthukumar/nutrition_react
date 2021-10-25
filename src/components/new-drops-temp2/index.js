@@ -266,7 +266,7 @@ const NewDropsTemp2 = ({ categories }) => {
               cardDesc="BeyondLife.club brings you the philosophical undertones of Madhushala in Amitabh's baritone as an NFT! Now you can own a recorded version of Madhushala, curated by Amitabh Bachchan himself. By owning this one-of-a-kind NFT, you're owning a segment of this legend's history in his own voice, and an 86-year-old iconic and epoch-making metaphorical Hindi poetry!"
               dropTitle="About Collection"
               dropDescOne="Mr. Harivansh Rai Bachchan (1907–2003), father of Mr. Amitabh Bachchan, wrote Madhushala that depicts the wisdom of Madhu - the Temple of Mind (Madhushala), karma, imbibement of knowledge, fulfilment of duties, and expectations of an individual from the society into beautiful verses."
-              dropDescTwo="Madhushala's Rhyme, Rhythm, and Flavour is still fresh in Amitabh's mind. He believed and witnessed the miracles that this purest form of art brings to society. The love and the respect he holds for Mr.Bachchan holds in his heart compelled him to recite, sing, and translate stories of Madhushala from time to time. This unique and enthralling audio NFT of Madhushala has one version in Hindi, and one in English!"
+              dropDescTwo="Madhushala's Rhyme, Rhythm, and Flavour is still fresh in Amitabh's mind. He believed and witnessed the miracles that this purest form of art brings to society. The love and the respect he holds for Mr.Bachchan in his heart compelled him to recite, sing, and translate stories of Madhushala from time to time. This unique and enthralling audio NFT of Madhushala has one version in Hindi, and one in English!"
               dropDescThree="The Madhushala NFT is a super-premium NFT presented to you by BeyondLife.club. You will be the one among the two sole owners of the exclusive NFTs - the rendition of Mr. Harivansh's refined poetry in Amitabh's rustic baritone!!"
               auctionTitle="Auction starting in"
               auctionTime="2021-10-22T14:25:00.000Z"
@@ -521,13 +521,13 @@ const NewDropsTemp2 = ({ categories }) => {
               <div className="copyright">
                 ©All rights reserved. Rhiti Entertainment Pte. Ltd. Singapore &
                 <a target="_blank" href="https://www.beyondlife.club">
-                  Beyondlife LLC.
+                  BeyondLife LLC.
                 </a>
                 <span>
-                  <a href="https://www.beyondlife.club/terms-and-condition.php">
+                  <a href="https://www.beyondlife.club/terms.php">
                     Terms & Conditions
                   </a>
-                  |
+                  <span className="seperator">|</span>
                 </span>
                 <span>
                   <a href="https://www.beyondlife.club/privacy-policy.php">
