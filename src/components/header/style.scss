@@ -279,7 +279,7 @@
   }
   .dropdown-menu.show.dropdown-menu-end {
     .user-name {
-      display: block;
+      display: flex !important;
     }
   }
 
