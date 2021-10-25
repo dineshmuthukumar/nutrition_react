@@ -278,8 +278,14 @@
     display: none !important;
   }
   .dropdown-menu.show.dropdown-menu-end {
+    .header-user-details {
+      display: block;
+      &:hover{
+        background: #000000;
+      }
+    }
     .user-name {
-      display: flex !important;
+      display: inline-flex !important;
     }
   }
 
