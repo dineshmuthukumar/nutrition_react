@@ -16,7 +16,7 @@
   display: flex;
   align-items: center;
   border: 1px solid #ccc;
-  padding: 5px 10px 5px 5px;
+  padding: 5px 5px 5px 5px;
   border-radius: 50rem;
   cursor: pointer;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -26,10 +26,10 @@
 
   &:hover {
     outline: 0;
-    background: #ffffff;
+    background: #ffffff4f;
 
     .user-name {
-      color: #000000;
+      color: #ffffff;
     }
   }
 
@@ -38,6 +38,11 @@
     font-family: $neue-helveticalight;
     color: #ffffff;
     font-size: 1.2rem;
+    margin-right: 0.7rem;
+    width: calc(100% - 3.4rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .user-image {
