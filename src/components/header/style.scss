@@ -183,7 +183,7 @@
     width: 100%;
     padding: 4px 15px;
     .alert_info {
-      width: calc(100% - 50px);
+      width: calc(100% - 30px);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -194,13 +194,13 @@
       a {
         color: #ff3462;
         font-weight: normal;
-        font-size: 1.2em;
+        font-size: 1rem;
         text-decoration: none;
         font-family: "neue_helveticabold" !important;
       }
     }
     .alert_close {
-      width: 50px;
+      width: 30px;
       display: flex;
       justify-content: flex-end;
       align-items: center;
