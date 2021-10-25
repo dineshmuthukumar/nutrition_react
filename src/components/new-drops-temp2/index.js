@@ -205,7 +205,7 @@ const NewDropsTemp2 = ({ categories }) => {
               </div>
             </div>
           </div>
-          <div onClick={exe_scroll_one} class="scroll"></div>
+          <div onClick={exe_scroll_one} className="scroll"></div>
         </section>
         <section className="sw_3" id="ab_3">
           <div className="">

@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Navbar, Nav, Dropdown, Container } from "react-bootstrap";
-import { BiBell, BiCheck, BiHelpCircle } from "react-icons/bi";
+import { BiBell, BiHelpCircle } from "react-icons/bi";
 import { useTranslation, setLanguage } from "react-multi-lang";
 import { useHistory } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
-import ToggleButton from "react-toggle-button";
+import { FaDiscord } from "react-icons/fa";
 
 import { change_lang_action } from "./../../redux/actions/lang_action";
 import {
   user_load_by_token_thunk,
   user_logout_thunk,
 } from "../../redux/thunk/user_thunk";
+import { accountDetail } from "../../api/actioncable-methods";
+import { getCookies } from "../../utils/cookies";
+import { currencyFormat } from "../../utils/common";
 
 import userImg from "../../images/user_1.png";
 import "./style.scss";
-import { getCookies } from "../../utils/cookies";
-import { accountDetail } from "../../api/actioncable-methods";
-import { currencyFormat } from "../../utils/common";
-import { FaDiscord } from "react-icons/fa";
 
 const Header = ({ hideOptions = false, hideSign = false }) => {
   const t = useTranslation();
@@ -91,7 +90,7 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
                 </a>
               </p>
             </div>
-            <div class="alert_close">
+            <div className="alert_close">
               <span id="al_close" onClick={() => setRibbon(false)}>
                 x
               </span>

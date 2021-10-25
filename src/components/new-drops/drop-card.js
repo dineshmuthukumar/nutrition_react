@@ -51,13 +51,13 @@ const DropCard = ({
               <h5>{auctionTitle}</h5>
               <NFTCounter time={auctionTime} />
             </div>
-            <div class="auction-main">
-              <div class="auction-one">
-                <p class="heading-S">Minimum Price</p>
+            <div className="auction-main">
+              <div className="auction-one">
+                <p className="heading-S">Minimum Price</p>
                 <h1>TBA</h1>
               </div>
-              <div class="auction-two">
-                <p class="heading-S">{editionTitle}</p>
+              <div className="auction-two">
+                <p className="heading-S">{editionTitle}</p>
                 <h1>{editionType} </h1>
               </div>
             </div>
@@ -69,7 +69,7 @@ const DropCard = ({
           <div className="col-lg-6">
             <div className="drop-card-post">
               <Image src={img} role="button" onClick={handleClick} />
-              <div class="learnMore">
+              <div className="learnMore">
                 <a href="" onClick={handleClick}>
                   Place Your Bid Right Now!
                 </a>

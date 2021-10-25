@@ -54,7 +54,7 @@ const NewDrops = ({ categories }) => {
                     collection, curated by the legend himself. Right from the
                     time, Amitabh Bachchan.
                   </p>
-                  <div class="learnMore">
+                  <div className="learnMore">
                     <a href="">Place Your Bid Right Now!</a>
 
                     {/* <button type="button" onClick={()=> setModal(true)}>Place Your Bid Right Now!</button>  */}
@@ -213,7 +213,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
         </section>
         <div id="footer">
           <div id="fmenu1">
-            <div class="submenu">
+            <div className="submenu">
               <div>
                 <a href="index.php">
                   <h1>BeyondLife.club</h1>
@@ -221,7 +221,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
                 <p>A world without an end</p>
               </div>
               <div id="socialMedia">
-                <ul class="social-icon-two">
+                <ul className="social-icon-two">
                   <li>
                     <a href="https://discord.com/invite/87s8ReJ5FA">
                       <FaDiscord />
@@ -267,7 +267,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
                 </ul>
               </div>
             </div>
-            <div class="submenu">
+            <div className="submenu">
               <ul>
                 <li>
                   <a
@@ -300,7 +300,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
                 </li>
               </ul>
             </div>
-            <div class="submenu">
+            <div className="submenu">
               <Form id="nft_form">
                 <Form.Label>Get the latest NFT updates</Form.Label>
                 <Form.Group
@@ -322,7 +322,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
             </div>
           </div>
           <div id="fmenu2">
-            <div class="submenu">
+            <div className="submenu">
               <div>© BeyondLife.club.</div>
               <div>
                 <a
@@ -336,7 +336,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
                 <a href="#">Privacy</a>
               </div>
             </div>
-            <div class="submenu">
+            <div className="submenu">
               <a target="_blank" href="https://www.guardianlink.io">
                 <Image
                   src="https://cdn.beyondlife.club/media/logo_horizondal.png"
