@@ -177,7 +177,7 @@ const NewDropsTemp2 = ({ categories }) => {
               <div className="learnMore">
                 {!user?.slug && (
                   <Link className="nav-label" to="#" onClick={exe_scroll_email}>
-                    Join The Waitlist!
+                    Join The Waitlist
                   </Link>
                 )}
 
