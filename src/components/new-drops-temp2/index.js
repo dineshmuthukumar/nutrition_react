@@ -521,13 +521,13 @@ const NewDropsTemp2 = ({ categories }) => {
               <div className="copyright">
                 ©All rights reserved. Rhiti Entertainment Pte. Ltd. Singapore &
                 <a target="_blank" href="https://www.beyondlife.club">
-                  Beyondlife LLC.
+                  BeyondLife LLC.
                 </a>
                 <span>
-                  <a href="https://www.beyondlife.club/terms-and-condition.php">
+                  <a href="https://www.beyondlife.club/terms.php">
                     Terms & Conditions
                   </a>
-                  |
+                  <span className="seperator">|</span>
                 </span>
                 <span>
                   <a href="https://www.beyondlife.club/privacy-policy.php">

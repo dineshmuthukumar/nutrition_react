@@ -102,7 +102,7 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
             role="button"
             className="head-title"
           >
-            Beyondlife.club
+            BeyondLife.club
             <div className="sub-head-title">Powered by GuardianLink</div>
           </Navbar.Brand>
           {!hideOptions && (

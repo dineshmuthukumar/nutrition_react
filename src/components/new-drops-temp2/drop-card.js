@@ -85,7 +85,7 @@ const DropCard = ({
                     }
                   }}
                 >
-                  {user?.slug ? <>Get Ready For This NFT </> : "Register Now!"}
+                  {user?.slug ? <>Get Ready For This NFT </> : "Register Now"}
                 </Link>
 
                 {/* <button type="button" onClick={()=> setModal(true)}>Place Your Bid Right Now!</button>  */}
