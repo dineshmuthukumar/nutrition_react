@@ -228,21 +228,18 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
                     </a>
                   </li>
                   <li>
-                    <a target="_blank" href="https://t.me/Beyondlifeclub">
+                    <a target="_self" href="https://t.me/Beyondlifeclub">
                       <FaTelegramPlane />
                     </a>
                   </li>
                   <li>
-                    <a
-                      target="_blank"
-                      href="https://twitter.com/beyondlifeclub"
-                    >
+                    <a target="_self" href="https://twitter.com/beyondlifeclub">
                       <FaTwitter />
                     </a>
                   </li>
                   <li>
                     <a
-                      target="_blank"
+                      target="_self"
                       href="https://www.facebook.com/BeyondLifeClub-109895114746109"
                     >
                       <FaFacebookF />
@@ -250,7 +247,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
                   </li>
                   <li>
                     <a
-                      target="_blank"
+                      target="_self"
                       href="https://www.instagram.com/beyondlife.club/"
                     >
                       <FaInstagram />
@@ -258,7 +255,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
                   </li>
                   <li>
                     <a
-                      target="_blank"
+                      target="_self"
                       href="https://medium.com/@BeyondLife.Club"
                     >
                       <FaMediumM />
@@ -271,7 +268,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
               <ul>
                 <li>
                   <a
-                    target="_blank"
+                    target="_self"
                     href="https://www.beyondlife.club/about.php"
                   >
                     About: The world beyond end
@@ -279,20 +276,20 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
                 </li>
                 <li>
                   <a
-                    target="_blank"
+                    target="_self"
                     href="https://www.beyondlife.club/philosophy.php"
                   >
                     Philosophy of BeyondLife.club
                   </a>
                 </li>
                 <li>
-                  <a target="_blank" href="https://www.beyondlife.club/nft.php">
+                  <a target="_self" href="https://www.beyondlife.club/nft.php">
                     What is an NFT?
                   </a>
                 </li>
                 <li>
                   <a
-                    target="_blank"
+                    target="_self"
                     href="https://www.beyondlife.club/terms-and-condition.php"
                   >
                     Terms of service
@@ -326,7 +323,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
               <div>© BeyondLife.club.</div>
               <div>
                 <a
-                  target="_blank"
+                  target="_self"
                   href="https://www.beyondlife.club/terms-and-condition.php"
                 >
                   Terms and conditions
@@ -337,7 +334,7 @@ By owning this one-of-a-kind NFT, you are owning segments of Indian history, a l
               </div>
             </div>
             <div className="submenu">
-              <a target="_blank" href="https://www.guardianlink.io">
+              <a target="_self" href="https://www.guardianlink.io">
                 <Image
                   src="https://cdn.beyondlife.club/media/logo_horizondal.png"
                   alt="alt"

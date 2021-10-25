@@ -102,7 +102,7 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
         <Container fluid>
           <Navbar.Brand
             onClick={() =>
-              window.open(process.env.REACT_APP_WEBSITE_URL, "_blank")
+              window.open(process.env.REACT_APP_WEBSITE_URL, "_self")
             }
             role="button"
             className="head-title"
@@ -112,7 +112,7 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
               className="sub-head-title header-powereby "
               role="button"
               onClick={() =>
-                window.open(process.env.REACT_APP_GUARDIAN_URL, "_blank")
+                window.open(process.env.REACT_APP_GUARDIAN_URL, "_self")
               }
             >
               Powered by GuardianLink
@@ -191,7 +191,7 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
                               onClick={() =>
                                 window.open(
                                   `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`,
-                                  "_blank"
+                                  "_self"
                                 )
                               }
                             >
@@ -202,7 +202,7 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
                               onClick={() =>
                                 window.open(
                                   `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
-                                  "_blank"
+                                  "_self"
                                 )
                               }
                             >
@@ -213,7 +213,7 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
                               onClick={() =>
                                 window.open(
                                   `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/user-activity`,
-                                  "_blank"
+                                  "_self"
                                 )
                               }
                             >
@@ -224,7 +224,7 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
                               onClick={() =>
                                 window.open(
                                   `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/bid-activity`,
-                                  "_blank"
+                                  "_self"
                                 )
                               }
                             >
@@ -235,7 +235,7 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
                               onClick={() =>
                                 window.open(
                                   `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/settings`,
-                                  "_blank"
+                                  "_self"
                                 )
                               }
                             >
@@ -301,7 +301,7 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
                 <Nav.Link
                   className="discord_ic"
                   href={`https://discord.com/invite/87s8ReJ5FA`}
-                  target="_blank"
+                  target="_self"
                 >
                   <FaDiscord size={25} />
                   <span>Join Our Discord</span>

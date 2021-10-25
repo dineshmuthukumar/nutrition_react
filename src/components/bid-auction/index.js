@@ -43,7 +43,7 @@ const BidAuction = ({ status, bottomTitle, bottomValue, time }) => {
             onClick={() =>
               window.open(
                 `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
-                "_blank"
+                "_self"
               )
             }
           >
