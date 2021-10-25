@@ -275,7 +275,7 @@
 }
 @media screen and (max-width: 560px) {
   .user-name {
-    display: none;
+    display: none !important;
   }
   .dropdown-menu.show.dropdown-menu-end {
     .user-name {
