@@ -171,7 +171,7 @@ const NewDropsTemp2 = ({ categories }) => {
               <p className="drop-title__description mb-4">
                 Imagine owning an NFT that holds Amit-ji's significance,
                 history, the value of exceptional existence, and beyond. We
-                bring a series of Amitabh Bachchan's exclusive NFT collection,
+                bring a series of Amitabh Bachchan's exclusive NFT collections
                 curated by the legend himself.
               </p>
               <div className="learnMore">
@@ -295,7 +295,7 @@ const NewDropsTemp2 = ({ categories }) => {
               editionTitle="Items"
               editionType="5000"
               additional="What You Get"
-              additionalDesc="You not only have the pride of possessing some of the most unique Amitabh NFTs! You also can, just like any other NFT, sell your prized possessions in marketplaces and trade them! "
+              additionalDesc="You not only have the pride of possessing some of the most unique Amitabh NFTs! Just like any other NFT, you can sell your prized possessions in marketplaces and trade them! "
               // slug={categories[1].slug}
               // catName={categories[1].name}
               scroll={exe_scroll_email}
@@ -311,7 +311,7 @@ const NewDropsTemp2 = ({ categories }) => {
               dropTitle="About Collection"
               dropDescOne="Hand-painted movie posters, as any classic cinema aficionado would know, served as heralds for The Shahenshah of Bollywood movies. Carrying the savage retro flavor in their artistic expression, these posters are masterpieces in their own right! Posters of Amitabh's classics depict the era of Celluloid Renaissance in Indian Cinema."
               dropDescTwo="Movie posters from the era when India witnessed its “Angry Young Man” dominate Indian cinema. This Amitabh Bachchan's golden era  was so epic that it could itself be a storyline that will potentially be a superhit worldwide."
-              dropDescThree="Our NFTs will feature the Legend BigB signing these signature posters in a video. In addition to that video, you will also receive the autographed physical copy of the vintage poster of some of Amitabh's iconic movies! These prized videos are bound to be evergreen, and they could now be yours!"
+              dropDescThree="Our NFTs will feature the Legend BigB signing these rare and origianal posters in a video. In addition to that video, you will also receive the autographed physical copy of the vintage poster of some of Amitabh's iconic movies! These prized videos are bound to be evergreen, and they could now be yours!"
               auctionTitle="Auction starting in"
               auctionTime="2021-10-22T14:25:00.000Z"
               editionTitle="Limited Edition"
@@ -331,7 +331,7 @@ const NewDropsTemp2 = ({ categories }) => {
               cardDesc="Let's admit it! Amitabh, in every avatar, has been a success! Be it the classic ‘Angry Young Man', or the modern French-bearded Godfather with his signature 'DEVIYON aur SAJJANO', or the Twitter personality who numbers his Tweets, the BigB can never be off trends!"
               dropTitle="About Collection"
               dropDescOne="Since Amitabh has just stepped into the NFT realm, and going with the proven trends in the NFT space, we bring you exclusive Amitabh Bachchan BigB Punks and exclusive Smart Contract-Generated Pastel NFT Art! These Punks and NFT artworks preserve the essence of Amitabh Bachchan using certain attributes."
-              dropDescTwo="These BigB Punks have their signature headgear, neck-gear, hairstyle, eyewear, facial hair, and a few more, creating a repository of unique, meticulously crafted, and curated cryptopunk versions of Amitabh. The NFT art has been exclusively hand-drawn."
+              dropDescTwo="These BigB Punks have their signature headgear, neck-gear, hairstyle, eyewear, facial hair, and a few more, creating a repository of unique, meticulously crafted, and curated art-versions of Amitabh. The NFT art has been exclusively hand-drawn."
               dropDescThree="Every Pastel Art and every BigB Punk collection is a collectible in its own right, and there will be just a total of 6 of these! You could be the owner of one of the most celebrated forms of art in the crypto space!"
               auctionTitle="Auction starting in"
               auctionTime="2021-10-22T14:25:00.000Z"

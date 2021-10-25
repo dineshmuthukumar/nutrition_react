@@ -120,7 +120,7 @@ const NewDropsTemp = ({ categories }) => {
                     Imagine owning an NFT that holds Amit-ji's significance,
                     history, the value of exceptional existence, and beyond. We
                     bring a series of Amitabh Bachchan's exclusive NFT
-                    collections, curated by the legend himself.
+                    collection, curated by the legend himself.
                   </p>
                   <div className="learnMore">
                     <Link
@@ -153,7 +153,7 @@ const NewDropsTemp = ({ categories }) => {
                       Collection 1:
                       <span className="main_title"> Madhushala</span>
                       <span className="sub_title">
-                        BigB's Dad's Poetry in Amitabh's Voice!!
+                        Big B's Dad's Poetry in Amitabh's Voice!!
                       </span>
                     </Link>
                     <Link to="#" onClick={exe_scroll_two} className="nav-label">
@@ -180,7 +180,7 @@ const NewDropsTemp = ({ categories }) => {
                       onClick={exe_scroll_four}
                     >
                       Collection 4:
-                      <span className="main_title">BigB Punks & Art</span>
+                      <span className="main_title">Big-B Punks & Art</span>
                       <span className="sub_title">
                         Amitabh's Artistic Illustrations & Punk-Style Arts
                       </span>
