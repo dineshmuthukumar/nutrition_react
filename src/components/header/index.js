@@ -79,7 +79,13 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
           <div className="alert_box">
             <div className="alert_info">
               <p>
-                <a href="https://accounts.beyondlife.club/accounts/wallet#web">
+                <a
+                  href={
+                    slug
+                      ? `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet#web`
+                      : `${process.env.REACT_APP_ACCOUNTS_URL}/signup`
+                  }
+                >
                   The Amitabh NFT Drops Are Soon Going Live! Get Ready To Access
                   The Drops By Adding Balance To Your Wallet!
                 </a>
