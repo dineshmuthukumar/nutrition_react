@@ -764,6 +764,32 @@ span.seperator {
   section.drop-newsletter {
     padding: 6em 2em !important;
   }
+  .learnMore a {
+    font-size: 1rem;
+  }
+  div#freshworks-container {
+    display: none;
+  }
+}
+@media screen and (max-width: 768px) {
+  .learnMore a {
+    font-size: 0.8rem;
+    padding: 0.5rem 1.5rem;
+  }
+  .drop-newsletter h1 {
+    .drop-newsletter h1 {
+      max-width: 100%;
+    }
+  }
+}
+@media screen and (max-width: 355px) {
+  .banner_content {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+  h2.drop-title__heading {
+    font-size: 2rem;
+  }
 }
 
 @media only screen and (min-width: 300px) and (max-width: 480px) {
