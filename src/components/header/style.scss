@@ -180,32 +180,39 @@
 }
 .top_bar {
   text-align: center;
-  padding: 0.6em 0;
+  padding: 0.2em 0;
   position: relative;
   .alert_box {
     display: flex;
     flex-direction: row;
     width: 100%;
-    padding: 4px 15px;
+    padding: 0px 15px;
     .alert_info {
-      width: calc(100% - 30px);
+      width: calc(100% - 2rem);
       display: flex;
       align-items: center;
       justify-content: center;
       p {
-        font-size: 1rem;
+        // font-size: 1rem;
         margin: 0;
       }
       a {
         color: #ff3462;
         font-weight: normal;
-        font-size: 1rem;
+        font-size: 1.15rem;
+        line-height: 1.6;
         text-decoration: none;
-        font-family: "neue_helveticabold" !important;
+        font-family: $neue-helveticabold;
+        @media screen and (max-width: 767px) {
+          font-size: 1rem;
+        }
+        @media screen and (max-width: 479px) {
+          font-size: 0.8rem;
+        }
       }
     }
     .alert_close {
-      width: 30px;
+      width: 2rem;
       display: flex;
       justify-content: flex-end;
       align-items: center;
