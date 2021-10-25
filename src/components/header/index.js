@@ -103,7 +103,15 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
             className="head-title"
           >
             BeyondLife.club
-            <div className="sub-head-title">Powered by GuardianLink</div>
+            <div
+              className="sub-head-title header-powereby "
+              role="button"
+              onClick={() =>
+                window.open(process.env.REACT_APP_GUARDIAN_URL, "_blank")
+              }
+            >
+              Powered by GuardianLink
+            </div>
           </Navbar.Brand>
           {!hideOptions && (
             <>
