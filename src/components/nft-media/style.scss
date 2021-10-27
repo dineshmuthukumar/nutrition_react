@@ -24,10 +24,13 @@
     right: 1rem;
     bottom: 0.7rem;
     display: flex;
-
+    svg{
+      height: 1.4rem;
+      width: 1.4rem;
+    }
     div {
       background-color: #ffffff;
-      padding: 0.5rem;
+      padding: 0.7rem;
       border-radius: 0.3rem;
       margin-left: 0.5rem;
       cursor: pointer;
@@ -57,7 +60,7 @@
   margin: auto;
   display: block;
   width: 100%;
-  height: calc(100vh - 120px);
+  height: calc(100vh - 6rem);
   object-fit: contain;
   object-position: center;
 }
@@ -69,6 +72,8 @@
     margin-left: 0.5rem;
     border-radius: 0.25rem;
     cursor: pointer;
+    height: 2.2rem;
+    width: 2.2rem;
 
     &:hover {
       background-color: rgb(228, 225, 225);
@@ -128,7 +133,7 @@ img.type_gif {
   object-fit: contain;
   object-position: center;
   padding: 2rem;
-  width: auto;
+  width: 100%;
 }
 .audioOnmedia {
   position: absolute;

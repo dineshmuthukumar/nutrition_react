@@ -44,7 +44,7 @@
   }
 
   .bid-history-content {
-    min-height: 65vh;
+    min-height: calc(100vh - 10rem) !important;
     max-height: 65vh;
     border-left: 2px solid #000;
     border-right: 2px solid #000;
@@ -67,8 +67,8 @@
         align-items: center;
 
         img {
-          height: 60px;
-          width: 60px;
+          height: 3rem;
+          width: 3rem;
           object-fit: cover;
           border-radius: 50%;
           margin-right: 1rem;

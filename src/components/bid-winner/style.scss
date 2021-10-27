@@ -5,8 +5,15 @@
   color: white;
   border-radius: 0.5rem;
   padding: 3rem 3rem 2rem 3rem;
-  min-height: 70vh;
+  min-height: calc(100vh - 10rem) !important;
   position: relative;
+  overflow: hidden;
+  @media screen and (min-width:3066px) {
+    min-height: calc(100vh) !important; 
+  }
+  @media screen and (max-width:1440px) {
+    min-height: calc(100vh - 15rem) !important; 
+  }
 
   // .winner-text {
   //   position: absolute;
@@ -22,10 +29,14 @@
   .winner-user-details {
     img {
       margin-top: 2rem;
-      height: 200px;
-      width: 200px;
+      height: 12rem;
+      width: 12rem;
       border-radius: 50%;
       object-fit: cover;
+      // @media screen and (min-width: 3066px) {
+      //   height: 12rem;
+      //   width: 12rem;
+      // }
     }
 
     .winner-id {
@@ -45,7 +56,7 @@
 
       .sold-for-title {
         font-family: $neue-helveticamedium;
-        font-size: 0.8rem;
+        font-size: 0.9rem;
       }
       .sold-for-value {
         font-family: $neue-helveticamedium;
@@ -57,7 +68,7 @@
 
       .sold-on-title {
         font-family: $neue-helveticamedium;
-        font-size: 0.8rem;
+        font-size: 0.9rem;
       }
       .sold-on-value {
         font-family: $neue-helveticamedium;
@@ -77,10 +88,10 @@
       flex: 1;
       .lastbid-title {
         font-family: $neue-helveticamedium;
-        font-size: 0.8rem;
+        font-size: 0.9rem;
       }
 
-      .lastbid-title {
+      .lastbid-value {
         font-family: $neue-helveticamedium;
         font-size: 1.5rem;
       }
@@ -91,10 +102,10 @@
 
       .lastbid-date-title {
         font-family: $neue-helveticamedium;
-        font-size: 0.8rem;
+        font-size: 0.9rem;
       }
 
-      .lastbid-date-title {
+      .lastbid-date-value {
         font-family: $neue-helveticamedium;
         font-size: 1.5rem;
       }
@@ -127,9 +138,15 @@
 .winner-text {
   position: absolute;
   transform: rotate(90deg);
-  right: -24%;
-  top: 32% !important;
+  right: -15.5rem;
+  // top: 13rem !important;
+  top: calc(50% - 8rem) !important;
   font-size: 9.5rem;
-  font-family: "neue_helveticamedium" !important;
+  font-family: $neue-helveticabold;
   bottom: auto !important;
+  @media screen and (min-width: 3066px) {
+    right: -14rem;
+    // top: 12.5rem !important;
+    font-size: 8.5rem;
+  }
 }

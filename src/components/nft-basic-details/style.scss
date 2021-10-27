@@ -18,8 +18,8 @@
 
   .check-icon {
     margin-top: -7px;
-    // height: 26px !important;
-    // width: 26px !important;
+    height: 1rem !important;
+    width: 1rem !important;
   }
 
   .nft-status-tag {
@@ -38,6 +38,12 @@
 .bottom-content {
   position: sticky;
   top: 100vh;
+  .d-flex{
+    @media screen and (max-width: 425px ) {
+      flex-direction: column;
+    }
+  }
+  
 }
 
 .place-bid-btn {
@@ -89,8 +95,8 @@
 
     .count {
       position: absolute;
-      right: -8px;
-      top: -8px;
+      right: -0.3rem;
+      top: -0.3rem;
       background-color: #fafafa;
       border: 1px solid #e7e7e9;
       color: #9b9b9b;
@@ -107,8 +113,8 @@
     }
 
     svg {
-      height: 25px;
-      width: 25px;
+      height: 2rem;
+      width: 2rem;
 
       path {
         fill: #000000;
