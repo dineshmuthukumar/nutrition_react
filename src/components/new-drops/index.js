@@ -398,21 +398,18 @@ const NewDrops = ({ categories }) => {
                     </a>
                   </li>
                   <li>
-                    <a target="_blank" href="https://t.me/Beyondlifeclub">
+                    <a target="_self" href="https://t.me/Beyondlifeclub">
                       <FaTelegramPlane />
                     </a>
                   </li>
                   <li>
-                    <a
-                      target="_blank"
-                      href="https://twitter.com/beyondlifeclub"
-                    >
+                    <a target="_self" href="https://twitter.com/beyondlifeclub">
                       <FaTwitter />
                     </a>
                   </li>
                   <li>
                     <a
-                      target="_blank"
+                      target="_self"
                       href="https://www.facebook.com/BeyondLifeClub-109895114746109"
                     >
                       <FaFacebookF />
@@ -428,7 +425,7 @@ const NewDrops = ({ categories }) => {
                   </li>
                   <li>
                     <a
-                      target="_blank"
+                      target="_self"
                       href="https://medium.com/@BeyondLife.Club"
                     >
                       <FaMediumM />
@@ -441,7 +438,7 @@ const NewDrops = ({ categories }) => {
               <ul>
                 <li>
                   <a
-                    target="_blank"
+                    target="_self"
                     href="https://www.beyondlife.club/about.php"
                   >
                     About: The world beyond end
@@ -449,14 +446,14 @@ const NewDrops = ({ categories }) => {
                 </li>
                 <li>
                   <a
-                    target="_blank"
+                    target="_self"
                     href="https://www.beyondlife.club/philosophy.php"
                   >
                     Philosophy of BeyondLife.club
                   </a>
                 </li>
                 <li>
-                  <a target="_blank" href="https://www.beyondlife.club/nft.php">
+                  <a target="_self" href="https://www.beyondlife.club/nft.php">
                     What is an NFT?
                   </a>
                 </li>
@@ -528,7 +525,7 @@ const NewDrops = ({ categories }) => {
               </div>
               {/* <div>
                 <a
-                  target="_blank"
+                  target="_self"
                   href="https://www.beyondlife.club/terms-and-condition.php"
                 >
                   Terms and conditions

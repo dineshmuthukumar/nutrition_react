@@ -19,7 +19,7 @@ const MoreCard = ({ nft, isStarted = false, isEnded, time, label }) => {
         })()}
         role="button"
         onClick={() => {
-          window.open(`/details/${nft.slug}`, "_blank");
+          window.open(`/details/${nft.slug}`, "_self");
         }}
       />
       <div className="more-nft-title">

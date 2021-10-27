@@ -13,7 +13,7 @@ const ErrorText = ({ type, handleClick = () => {}, title, desc }) => {
             onClick={() =>
               window.open(
                 `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
-                "_blank"
+                "_self"
               )
             }
             className="btn-error-button rounded rounded-pill"

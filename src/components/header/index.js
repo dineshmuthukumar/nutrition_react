@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Navbar, Nav, Dropdown, Container } from "react-bootstrap";
-import { BiBell, BiCheck, BiHelpCircle } from "react-icons/bi";
+import { BiBell, BiHelpCircle } from "react-icons/bi";
 import { useTranslation, setLanguage } from "react-multi-lang";
 import { useHistory } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
-import ToggleButton from "react-toggle-button";
+import { FaDiscord } from "react-icons/fa";
 
 import { change_lang_action } from "./../../redux/actions/lang_action";
 import {
   user_load_by_token_thunk,
   user_logout_thunk,
 } from "../../redux/thunk/user_thunk";
+import { accountDetail } from "../../api/actioncable-methods";
+import { getCookies } from "../../utils/cookies";
+import { currencyFormat } from "../../utils/common";
 
 import userImg from "../../images/user_1.png";
 import "./style.scss";
-import { getCookies } from "../../utils/cookies";
-import { accountDetail } from "../../api/actioncable-methods";
-import { currencyFormat } from "../../utils/common";
-import { FaDiscord } from "react-icons/fa";
 
 const Header = ({ hideOptions = false, hideSign = false }) => {
   const t = useTranslation();
@@ -91,7 +90,7 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
                 </a>
               </p>
             </div>
-            <div class="alert_close">
+            <div className="alert_close">
               <span id="al_close" onClick={() => setRibbon(false)}>
                 x
               </span>
@@ -103,7 +102,7 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
         <Container fluid>
           <Navbar.Brand
             onClick={() =>
-              window.open(process.env.REACT_APP_WEBSITE_URL, "_blank")
+              window.open(process.env.REACT_APP_WEBSITE_URL, "_self")
             }
             role="button"
             className="head-title"
@@ -113,7 +112,7 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
               className="sub-head-title header-powereby "
               role="button"
               onClick={() =>
-                window.open(process.env.REACT_APP_GUARDIAN_URL, "_blank")
+                window.open(process.env.REACT_APP_GUARDIAN_URL, "_self")
               }
             >
               Powered by GuardianLink
@@ -192,7 +191,7 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
                               onClick={() =>
                                 window.open(
                                   `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`,
-                                  "_blank"
+                                  "_self"
                                 )
                               }
                             >
@@ -203,7 +202,7 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
                               onClick={() =>
                                 window.open(
                                   `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
-                                  "_blank"
+                                  "_self"
                                 )
                               }
                             >
@@ -214,7 +213,7 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
                               onClick={() =>
                                 window.open(
                                   `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/user-activity`,
-                                  "_blank"
+                                  "_self"
                                 )
                               }
                             >
@@ -225,7 +224,7 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
                               onClick={() =>
                                 window.open(
                                   `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/bid-activity`,
-                                  "_blank"
+                                  "_self"
                                 )
                               }
                             >
@@ -236,7 +235,7 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
                               onClick={() =>
                                 window.open(
                                   `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/settings`,
-                                  "_blank"
+                                  "_self"
                                 )
                               }
                             >
@@ -302,7 +301,7 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
                 <Nav.Link
                   className="discord_ic"
                   href={`https://discord.com/invite/87s8ReJ5FA`}
-                  target="_blank"
+                  target="_self"
                 >
                   <FaDiscord size={25} />
                   <span>Join Our Discord</span>
