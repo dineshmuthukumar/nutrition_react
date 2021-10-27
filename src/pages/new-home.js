@@ -4,7 +4,7 @@ import Header from "../components/header";
 import { nftCategoriesApi } from "../api/methods";
 import toaster from "../utils/toaster";
 import NFTList from "./../components/nft-list";
-// import NewDrops from "../components/new-drops";
+import NewDrops from "../components/new-drops";
 import NewDropsTemp from "./../components/new-drops-temp/index";
 import { useRouteMatch } from "react-router";
 import NewDropsTemp1 from "./../components/new-drops-temp1/index";
@@ -35,8 +35,8 @@ const NewHome = () => {
   return (
     <>
       <Header />
-      {/* <NewDrops categories={categories} /> */}
-      <NewDropsTemp2 categories={categories} />
+      <NewDrops categories={categories} />
+      {/* <NewDropsTemp2 categories={categories} /> */}
 
       {/* {!loading ? <NFTList data={list} /> : <ThreeColumnLoader />} */}
       {/* <div className="container">

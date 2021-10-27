@@ -16,14 +16,14 @@ const Explore = ({ list = [], handleClick, hasMore }) => {
   });
 
   useEffect(() => {
-    if (name == "Madhushala") {
+    if (name.includes("Madhushala")) {
       setExplore({
         title: "Madhushala Collections",
         description: `BeyondLife.club brings you the philosophical undertones of Madhushala in
         Amitabh's baritone as an NFT!. Now you can own a recorded version of
         Madhushala, curated by Amitabh Bachchan himself.`,
       });
-    } else if (name == "Posters") {
+    } else if (name.includes("Posters")) {
       setExplore({
         title: "Autographed Posters",
         description: `Now you can own an original movie poster of India’s legendary icon, hand-painted by a few authentic artists whose work will amaze you in every way. The cult value of their masterpieces is a statement of ethnicity, authenticity, Indian cinema’s legacy, and beyond.`,

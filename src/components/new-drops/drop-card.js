@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import Image from "react-bootstrap/Image";
 import NFTCounter from "../nft-counter";
 import "./style.scss";
 
 const DropCard = ({
-  Id,
-  ref,
   img,
   cardTitle,
   smallTitle,
@@ -14,6 +14,7 @@ const DropCard = ({
   dropTitle,
   dropDescOne,
   dropDescTwo,
+  dropDescThree,
   auctionTitle,
   auctionTime,
   editionTitle,
@@ -22,10 +23,14 @@ const DropCard = ({
   additionalDesc,
   slug,
   catName,
+  type,
 }) => {
+  const { user } = useSelector((state) => state.user.data);
   const history = useHistory();
   const handleClick = () => {
-    if (slug) {
+    if (type === "loot") {
+      history.push(`/explore/loot/${slug}`);
+    } else {
       history.push(`/explore/category/${catName}/${slug}`);
     }
   };
@@ -45,34 +50,37 @@ const DropCard = ({
             <div className="drop-title">
               <h4 className="mb-4">{dropTitle}</h4>
               <p>{dropDescOne}</p>
-              <p className="mb-4">{dropDescTwo}</p>
+              <p className={!dropDescThree ? "mb-4" : ""}>{dropDescTwo}</p>
+              <p className="mb-4">{dropDescThree}</p>
             </div>
             <div className="auction-time">
-              <h5>{auctionTitle}</h5>
-              <NFTCounter time={auctionTime} />
+              <p className="heading-S">{auctionTitle}</p>
+              <NFTCounter time={"Nov 01, 2021 00:00:00"} />
             </div>
-            <div class="auction-main">
-              <div class="auction-one">
-                <p class="heading-S">Minimum Price</p>
+            <div className="auction-main">
+              <div className="auction-one">
+                <p className="heading-S">Minimum Price</p>
                 <h1>TBA</h1>
               </div>
-              <div class="auction-two">
-                <p class="heading-S">{editionTitle}</p>
+              <div className="auction-two">
+                <p className="heading-S">{editionTitle}</p>
                 <h1>{editionType} </h1>
               </div>
             </div>
             <div className="additional-perks">
-              <h5>{additional}</h5>
+              <p className="heading-S">{additional}</p>
               <p>{additionalDesc}</p>
             </div>
           </div>
           <div className="col-lg-6">
             <div className="drop-card-post">
               <Image src={img} role="button" onClick={handleClick} />
-              <div class="learnMore">
-                <a href="" onClick={handleClick}>
-                  Place Your Bid Right Now!
-                </a>
+              <div className="learnMore">
+                <Link to="#" onClick={handleClick}>
+                  Get Ready For This NFT
+                </Link>
+
+                {/* <button type="button" onClick={()=> setModal(true)}>Place Your Bid Right Now!</button>  */}
               </div>
             </div>
           </div>
