@@ -30,8 +30,11 @@ import {
   buyDetail,
   pageView,
   totalFav,
+  userBidDetail,
+  userBuyDetail,
   winnerDetail,
 } from "../api/actioncable-methods";
+import { useSelector } from "react-redux";
 
 const Details = () => {
   const { slug } = useParams();
@@ -58,26 +61,14 @@ const Details = () => {
   const [totalViews, setTotalViews] = useState(0);
   const [totalFavourites, setTotalFavourites] = useState(0);
   const [availableQty, setAvailableQty] = useState(null);
-  // const [socketData, setSocketData] = useState({
-  //   totalBid: 0,
-  //   bidChange: 0,
-  //   totalBuy: 0,
-  //   price: 0,
-  //   totalViews: 0,
-  //   totalFavourites: 0,
-  //   availableQty: null,
-  // });
+
+  const { user } = useSelector((state) => state.user.data);
 
   useEffect(() => {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 
     buyDetail(slug, (data) => {
-      // setSocketData({
-      //   ...socketData,
-      //   availableQty: data.quantity,
-      //   totalBuy: data.total_buys,
-      // });
       setAvailableQty(data.quantity);
       setTotalBuy(data.total_buys);
       if (data.history) {
@@ -88,12 +79,6 @@ const Details = () => {
       }
     });
     bidDetail(slug, (data) => {
-      // setSocketData({
-      //   ...socketData,
-      //   price: data.minimum_bid,
-      //   bidChange: data.bid_change,
-      //   totalBid: data.total_bids,
-      // });
       setTotalBid(data.total_bids);
       setBidChange(data.bid_change);
       setPrice(data.minimum_bid);
@@ -105,12 +90,10 @@ const Details = () => {
       }
     });
     pageView(slug, (data) => {
-      // setSocketData({ totalViews: data.page_views });
       setTotalViews(data.page_views);
     });
 
     totalFav(slug, (data) => {
-      // setSocketData({ ...socketData, totalFavourites: data.total_favourites });
       setTotalFavourites(data.total_favourites);
     });
 
@@ -132,6 +115,22 @@ const Details = () => {
       });
     }
   }, []);
+
+  useEffect(() => {
+    if (user) {
+      if (erc721) {
+        userBidDetail(slug, user.slug, (data) => {
+          console.log(data);
+        });
+      } else {
+        userBuyDetail(slug, user.slug, (data) => {
+          console.log(data);
+        });
+      }
+
+      console.log(user.slug);
+    }
+  }, [erc721]);
 
   const updateSubHeader = (input) => {
     if (input) {

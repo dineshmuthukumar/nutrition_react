@@ -106,7 +106,11 @@ const NFTBaseDetails = ({
             <BidValue
               title="Your Last Bid"
               value={currencyFormat(nft.user_highest_bid, "USD")}
-              // status="Outbid"
+              status={
+                parseFloat(nft.user_highest_bid) < parseFloat(nft.minimum_bid)
+                  ? "Outbid"
+                  : ""
+              }
             />
           )}
 
