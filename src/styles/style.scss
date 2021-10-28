@@ -1318,15 +1318,15 @@ input::-webkit-inner-spin-button {
       a {
         color: #ff3462;
         font-weight: normal;
-        font-size: 1.15rem;
+        font-size: 1.6rem;
         line-height: 1.6;
         text-decoration: none;
         font-family: $neue-helveticabold;
         @media screen and (max-width: 767px) {
-          font-size: 1rem;
+          font-size: 1.3rem;
         }
         @media screen and (max-width: 479px) {
-          font-size: 0.8rem;
+          font-size: 1.3rem;
         }
       }
     }
