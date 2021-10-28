@@ -278,12 +278,18 @@ input::-webkit-inner-spin-button {
   // -moz-animation: AnimationName 3s ease infinite;
   // animation: AnimationName 3s ease infinite;
 
-  animation-duration: 0.8s;
+  @media (min-width: 992px) {
+    animation-duration: 0.8s;
+    background: linear-gradient(to right, #616060 8%, #ffffff 18%, #616060 33%);
+  }
+
+  animation-duration: 2s;
+  background: linear-gradient(to right, #616060 0%, #ffffff 20%, #616060 100%);
+
   animation-fill-mode: forwards;
   animation-iteration-count: infinite;
   animation-name: placeHolderShimmer;
   animation-timing-function: linear;
-  background: linear-gradient(to right, #616060 8%, #ffffff 18%, #616060 33%);
 }
 
 .loading-indicator {
@@ -1312,7 +1318,8 @@ input::-webkit-inner-spin-button {
         width: 1.5em;
         height: 1.5em;
         font-size: 1.9rem;
-        svg,img{
+        svg,
+        img {
           height: 1.3rem;
           width: 1.3rem;
         }
