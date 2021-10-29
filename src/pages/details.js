@@ -61,6 +61,7 @@ const Details = () => {
   const [totalViews, setTotalViews] = useState(0);
   const [totalFavourites, setTotalFavourites] = useState(0);
   const [availableQty, setAvailableQty] = useState(null);
+  const [userTotalBuys, setUserTotalBuys] = useState(0);
 
   const { user } = useSelector((state) => state.user.data);
 
@@ -125,11 +126,9 @@ const Details = () => {
         });
       } else {
         userBuyDetail(slug, user.slug, (data) => {
-          console.log(data);
+          setUserTotalBuys(data.user_buys);
         });
       }
-
-      console.log(user.slug);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [erc721]);
@@ -232,8 +231,6 @@ const Details = () => {
                   nft={nft}
                   placeBidPop={placeBidPop}
                   setPlaceBidPop={setPlaceBidPop}
-                  // socketData={socketData}
-
                   //Socket states start
                   totalBid={totalBid}
                   bidChange={bidChange}
@@ -242,6 +239,7 @@ const Details = () => {
                   totalViews={totalViews}
                   totalFavourites={totalFavourites}
                   availableQty={availableQty}
+                  userTotalBuys={userTotalBuys}
                   //Socket states end
 
                   isAuctionStarted={isAuctionStarted}

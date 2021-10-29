@@ -23,6 +23,7 @@ const NFTPlaceBid = ({
   nft,
   // socketData,
   price,
+  userTotalBuys,
   isAuctionStarted,
   isAuctionEnded,
   soldOut,
@@ -280,9 +281,9 @@ const NFTPlaceBid = ({
   };
 
   const handleBuyInputChange = (e) => {
-    let count = nft.total_user_buys
-      ? nft.buy_count - nft.total_user_buys
-      : nft.buy_count;
+    let count = userTotalBuys
+      ? nft.buy_count - userTotalBuys
+      : nft.buy_count - nft.total_user_buys;
     if (e.target.value) {
       if (
         validateQuantity(e.target.value) &&
@@ -546,12 +547,17 @@ const NFTPlaceBid = ({
                           user?.balance,
                           "USD"
                         )}`}
-                      {!erc721 &&
-                        `You can buy maximum of ${
-                          nft.total_user_buys
-                            ? nft.buy_count - nft.total_user_buys
-                            : nft.buy_count
-                        } of this NFT`}
+                      {!erc721 && userTotalBuys
+                        ? `You can buy maximum of ${
+                            userTotalBuys
+                              ? nft.buy_count - userTotalBuys
+                              : nft.buy_count
+                          } of this NFT`
+                        : `You can buy maximum of ${
+                            nft.total_user_buys
+                              ? nft.buy_count - nft.total_user_buys
+                              : nft.buy_count
+                          } of this NFT`}
                     </div>
                   </div>
                   <div className="bottom-area">

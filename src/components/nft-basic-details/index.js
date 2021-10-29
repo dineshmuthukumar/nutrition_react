@@ -18,6 +18,7 @@ const NFTBaseDetails = ({
   setPlaceBidPop,
   // socketData,
   totalBuy,
+  userTotalBuys,
   price,
   availableQty,
   isAuctionStarted,
@@ -195,6 +196,7 @@ const NFTBaseDetails = ({
             setPlaceBidPop={setPlaceBidPop}
             // socketData={socketData}
             price={price}
+            userTotalBuys={userTotalBuys}
             isAuctionStarted={isAuctionStarted}
             isAuctionEnded={isAuctionEnded}
             soldOut={soldOut}
