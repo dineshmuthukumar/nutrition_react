@@ -151,7 +151,7 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
                         ></Dropdown.Toggle>
 
                         <Dropdown.Menu align="end" className="noti-container">
-                          <div className="noti-header">Notifications</div>
+                          <div className="noti-header"><BiBell size={25} color={"white"} /> Notifications</div>
                           <div className="noti-content">
                             <div className="sub-header">Today</div>
 

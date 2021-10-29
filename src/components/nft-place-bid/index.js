@@ -430,14 +430,14 @@ const NFTPlaceBid = ({
 
                   <div className="pop-nft-media">
                     {(() => {
-                      if (nft.asset_type.includes("image")) {
+                      if (nft?.asset_type?.includes("image")) {
                         return (
                           <img
                             className="type_image typeimg_audio"
                             src={nft.asset_url ? nft.asset_url : sample}
                           />
                         );
-                      } else if (nft.asset_type.includes("audio")) {
+                      } else if (nft?.asset_type?.includes("audio")) {
                         return (
                           <>
                             <img
@@ -459,7 +459,7 @@ const NFTPlaceBid = ({
                             </audio>
                           </>
                         );
-                      } else if (nft.asset_type.includes("video")) {
+                      } else if (nft?.asset_type?.includes("video")) {
                         return (
                           <video controls>
                             <source src={nft.asset_url} type={nft.asset_type} />

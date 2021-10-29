@@ -11,7 +11,7 @@ const MoreCard = ({ nft, isStarted = false, isEnded, time, label }) => {
     <div className="more-card">
       <img
         src={(() => {
-          if (nft.asset_type.includes("image")) {
+          if (nft?.asset_type?.includes("image")) {
             return nft.asset_url ? nft.asset_url : sample;
           } else {
             return nft.cover_url ? nft.cover_url : sample;

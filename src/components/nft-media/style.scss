@@ -107,6 +107,9 @@
   border-radius: 4px;
   justify-content: center;
   align-items: center;
+  @media screen and (max-width: 991px) {
+    min-height: calc(100vh - 20rem);
+  }
 }
 .show_height {
   display: flex;
