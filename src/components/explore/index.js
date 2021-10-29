@@ -103,21 +103,37 @@ const Explore = ({ list = [], handleClick, hasMore }) => {
                   } else {
                     bidBuyValue = nft.buy_amount;
                   }
-
-                  return (
-                    <ExploreCard
-                      slug={nft.slug}
-                      nft={nft}
-                      isStarted={isStarted}
-                      isEnded={isEnded}
-                      time={time}
-                      label={label}
-                      title={nft.name}
-                      bidPrice={bidBuyValue}
-                      desc={nft.description}
-                      nftType={nft.nft_type}
-                    />
-                  );
+                  if (name.includes("Madhushala")) {
+                    return (
+                      <ExploreCardTwo
+                        slug={nft.slug}
+                        nft={nft}
+                        isStarted={isStarted}
+                        isEnded={isEnded}
+                        time={time}
+                        label={label}
+                        title={nft.name}
+                        bidPrice={bidBuyValue}
+                        desc={nft.description}
+                        nftType={nft.nft_type}
+                      />
+                    );
+                  } else {
+                    return (
+                      <ExploreCard
+                        slug={nft.slug}
+                        nft={nft}
+                        isStarted={isStarted}
+                        isEnded={isEnded}
+                        time={time}
+                        label={label}
+                        title={nft.name}
+                        bidPrice={bidBuyValue}
+                        desc={nft.description}
+                        nftType={nft.nft_type}
+                      />
+                    );
+                  }
                 })}
               </div>
               {hasMore && (
