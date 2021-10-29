@@ -24,23 +24,33 @@
     overflow: hidden;
     scroll-behavior: smooth;
     font-family: $neue-helveticamedium;
+    min-width: 100%;
 
     .more-card {
       margin-right: 1rem;
       margin-bottom: 2rem;
+      min-width: 100%;
+      display: flex;
+      flex-direction: column;
+      @media screen and (max-width: 559px) {
+        min-width: 100%;
+      }
+      @media screen and (min-width: 560px) {
+        min-width: calc(50% - 1rem);
+      }
+      @media screen and (min-width: 992px) {
+        min-width: calc(33.3333% - 1rem);
+      }
+      @media screen and (min-width: 1024px) {
+        min-width: calc(25% - 1rem);
+      }
 
       &:last-child {
         margin-right: 0;
       }
       img {
-        // width: 27.3rem;
-        // width: 100%;
-        // max-height: 50vh;
-        // object-fit: scale-down;
-        // margin-bottom: 1rem;
-        width: 100%;
-        min-height: 25em;
-        max-height: 50vh;
+        min-width: 100%;
+        height: 28rem;
         object-fit: cover;
         margin-bottom: 1rem;
       }
@@ -89,7 +99,7 @@
     outline: none;
     border: none;
     border-radius: 50%;
-    right: 0;
+    left: 0;
 
     svg {
       height: 30px;
@@ -127,5 +137,5 @@
   font-size: 1.3rem !important;
 }
 .nft-more .nft-more-content .more-card .more-bid-details .mb-title {
-  font-family: 'neue_helveticaroman' !important;
+  font-family: "neue_helveticaroman" !important;
 }

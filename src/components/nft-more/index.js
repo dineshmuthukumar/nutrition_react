@@ -10,50 +10,60 @@ import "./style.scss";
 
 const NFTMore = ({ nftList = [] }) => {
   const ref = useRef(0);
+  const scroll = (type) => {
+    var width =
+      window.innerWidth ||
+      document.documentElement.clientWidth ||
+      document.body.clientWidth;
 
-  const params = {
-    slidesPerView: 1,
-    spaceBetween: 50,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
+    const one_rem = parseFloat(
+      getComputedStyle(document.documentElement).fontSize
+    );
+
+    if (type === "left") {
+      if (width <= 560) {
+        ref.current.scrollLeft += -(width - one_rem);
+      } else if (width <= 992 && width > 560) {
+        ref.current.scrollLeft += -(width / 2 - one_rem);
+      } else if (width <= 1024 && width > 992) {
+        ref.current.scrollLeft += -(width / 3 - one_rem);
+      } else {
+        ref.current.scrollLeft += -(width / 4 - one_rem);
+      }
+    } else {
+      if (width <= 560) {
+        ref.current.scrollLeft += width - one_rem;
+      } else if (width <= 992 && width > 560) {
+        ref.current.scrollLeft += width / 2 - one_rem;
+      } else if (width <= 1024 && width > 992) {
+        ref.current.scrollLeft += width / 3 - one_rem;
+      } else {
+        ref.current.scrollLeft += width / 4 - one_rem;
+      }
+    }
+  };
+
+  const info = {
+    nft: {
+      nft_type: "erc721",
+      slug: "mJGgB1R9FbNoXWPr",
+      asset_url:
+        "https://amitabhapi.guardiannft.in/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--240dd68bc85394a6d347e919675c91d9a0174089/madhushala.png",
+      asset_type: "image/png",
+      cover_url: "https://amitabhapi.guardiannft.in",
+      name: "Madhushala",
+      description:
+        "Mr. Harivansh Rai Bachchan (1907–2003), father of Mr. Amitabh Bachchan, wrote Madhushala that depicts the wisdom of Madhu - the Temple of Mind (Madhushala), karma, imbibement of knowledge, fulfilment of duties, and expectations of an individual from the society into beautiful verses.\r\n\r\nMadhushala's Rhyme, Rhythm, and Flavour is still fresh in Amitabh's mind. He believed and witnessed the miracles that this purest form of art brings to society. The love and the respect he holds for Mr.Bachchan i...",
+      time: "2021-10-29T18:54:54.025Z",
+      timed_auction: true,
+      auction_start_time: "2021-10-29T07:47:30.000Z",
+      auction_end_time: "2021-10-30T13:13:00.000Z",
+      top_bid: 13,
     },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-    renderPrevButton: () => (
-      <button className="chevron-left-nav" type="button">
-        <BsChevronLeft />
-      </button>
-    ),
-    renderNextButton: () => (
-      <button className="chevron-right-nav" type="button">
-        <BsChevronRight />
-      </button>
-    ),
-    breakpoints: {
-      1920: {
-        slidesPerView: 4,
-        spaceBetween: 40,
-      },  
-      1024: {
-        slidesPerView: 3,
-        spaceBetween: 40,
-      },
-      768: {
-        slidesPerView: 3,
-        spaceBetween: 30,
-      },
-      640: {
-        slidesPerView: 2,
-        spaceBetween: 20,
-      },
-      320: {
-        slidesPerView: 1,
-        spaceBetween: 10,
-      },
-    },
+    isStarted: true,
+    isEnded: false,
+    time: "2021-10-30T13:13:00.000Z",
+    label: "Ends in",
   };
 
   return (
@@ -62,41 +72,43 @@ const NFTMore = ({ nftList = [] }) => {
         More from this artist
         <span className="title-count">({nftList.length})</span>
       </div>
-      <div className="nft-more-content">
-        <Swiper {...params}>
-          {nftList.map((nft) => {
-            let label = "",
-              time,
-              isEnded = false,
-              isStarted = false;
+      <div ref={ref} className="nft-more-content">
+        {nftList.map((nft) => {
+          let label = "",
+            time,
+            isEnded = false,
+            isStarted = false;
 
-            if (new Date(nft.auction_start_time) > new Date()) {
-              label = "Starting in";
-              time = nft.auction_start_time;
-            } else if (new Date(nft.auction_end_time) > new Date()) {
-              label = "Ends in";
-              time = nft.auction_end_time;
-              isStarted = true;
-            } else {
-              time = nft.auction_end_time;
-              label = "Ended at";
-              isEnded = true;
-            }
+          if (new Date(nft.auction_start_time) > new Date()) {
+            label = "Starting in";
+            time = nft.auction_start_time;
+          } else if (new Date(nft.auction_end_time) > new Date()) {
+            label = "Ends in";
+            time = nft.auction_end_time;
+            isStarted = true;
+          } else {
+            time = nft.auction_end_time;
+            label = "Ended at";
+            isEnded = true;
+          }
 
-            return (
-              <div>
-                <MoreCard
-                  nft={nft}
-                  isStarted={isStarted}
-                  isEnded={isEnded}
-                  time={time}
-                  label={label}
-                />
-              </div>
-            );
-          })}
-        </Swiper>
+          return (
+            <MoreCard
+              nft={nft}
+              isStarted={isStarted}
+              isEnded={isEnded}
+              time={time}
+              label={label}
+            />
+          );
+        })}
       </div>
+      <button className="chevron-left-nav" onClick={() => scroll("left")}>
+        <BsChevronLeft />
+      </button>
+      <button className="chevron-right-nav" onClick={() => scroll("right")}>
+        <BsChevronRight />
+      </button>
     </div>
   );
 };
