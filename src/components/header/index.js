@@ -6,6 +6,10 @@ import { useTranslation } from "react-multi-lang";
 import { useSelector, useDispatch } from "react-redux";
 import { FaDiscord } from "react-icons/fa";
 
+import depositIcon from "../../images/deposit.svg";
+import bidIcon from "../../images/bid.svg";
+import buyIcon from "../../images/buy.svg";
+import outbidIcon from "../../images/outbid.svg";
 import userImg from "../../images/user_1.png";
 import { user_logout_thunk } from "../../redux/thunk/user_thunk";
 import { accountDetail } from "../../api/actioncable-methods";
@@ -116,33 +120,99 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
   const NotiCard = ({ data }) => {
     return (
       <div className="noti-message" role="button">
-        <img src="https://picsum.photos/100/100" alt="notification icon" />
+        {(() => {
+          switch (data.reason) {
+            case "deposit":
+              return <img src={depositIcon} alt="notification icon" />;
+
+            case "buy_success":
+              return <img src={buyIcon} alt="notification icon" />;
+
+            case "bid_success":
+              return <img src={bidIcon} alt="notification icon" />;
+
+            case "bid_expired":
+              return <img src={outbidIcon} alt="notification icon" />;
+
+            default:
+              return "";
+          }
+        })()}
+
         <div className="noti-message-content">
-          <div className="title">
-            {(() => {
-              switch (data.reason) {
-                case "deposit":
-                  return "Deposit";
+          {(() => {
+            switch (data.reason) {
+              case "deposit":
+                return (
+                  <>
+                    <div className="title">Deposit Successful</div>
+                    <div className="desc text-secondary">
+                      Your payment of{" "}
+                      {currencyFormat(
+                        data.amount,
+                        user.data.user.currency_name
+                      )}{" "}
+                      was successfully processed to your wallet! Happy NFT
+                      buying.
+                    </div>
+                    <div className="noti-time">
+                      {dayjs(data.created_at).format("DD MMM YYYY hh:mma")}
+                    </div>
+                  </>
+                );
 
-                case "buy_success":
-                  return "Buy Success";
+              case "buy_success":
+                return (
+                  <>
+                    <div className="title">
+                      {data.nft_name} - Your NFT is Yours!
+                    </div>
+                    <div className="desc text-secondary">
+                      Congratulations! You've successfully purchased your NFT.
+                      Check it out in your collections.
+                    </div>
+                    <div className="noti-time">
+                      {dayjs(data.created_at).format("DD MMM YYYY hh:mma")}
+                    </div>
+                  </>
+                );
 
-                case "bid_success":
-                  return "Bid Success";
+              case "bid_success":
+                return (
+                  <>
+                    <div className="title">
+                      {data.nft_name} - Your Bid Has Been Placed!
+                    </div>
+                    <div className="desc text-secondary">
+                      Congratulations. Your bid has been successfully placed.
+                      All the best for winning the auction.
+                    </div>
+                    <div className="noti-time">
+                      {dayjs(data.created_at).format("DD MMM YYYY hh:mma")}
+                    </div>
+                  </>
+                );
 
-                case "bid_expired":
-                  return "Bid Expired";
+              case "bid_expired":
+                return (
+                  <>
+                    <div className="title">
+                      {data.nft_name} - You've been outbid!
+                    </div>
+                    <div className="desc text-secondary">
+                      You're no longer the highest bidder. You can, however
+                      still place a higher bid, and win the auction!
+                    </div>
+                    <div className="noti-time">
+                      {dayjs(data.created_at).format("DD MMM YYYY hh:mma")}
+                    </div>
+                  </>
+                );
 
-                default:
-                  return "";
-              }
-            })()}
-          </div>
-          <div className="desc text-secondary">
-            {data.nft_name} for{" "}
-            {currencyFormat(data.amount, user.data.user.currency_name)} at{" "}
-            {dayjs(data.created_at).format("DD MMM YYYY hh:mma")}
-          </div>
+              default:
+                return "";
+            }
+          })()}
         </div>
       </div>
     );
