@@ -12,6 +12,7 @@ const NFTTimeLeft = ({
   tooltipText,
   isEnded = false,
   time,
+  cTime,
   handleTimer = () => {},
 }) => {
   return (
@@ -34,6 +35,7 @@ const NFTTimeLeft = ({
       ) : (
         <NFTCounter
           time={time}
+          cTime={cTime}
           timeClass="counter-time"
           handleEndEvent={handleTimer}
         />
