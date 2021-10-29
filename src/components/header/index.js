@@ -18,6 +18,7 @@ import { currencyFormat } from "../../utils/common";
 
 import userImg from "../../images/user_1.png";
 import "./style.scss";
+import { user_wallet_update_action } from "../../redux/actions/user_action";
 
 const Header = ({ hideOptions = false, hideSign = false }) => {
   const t = useTranslation();
@@ -34,8 +35,7 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
   useEffect(() => {
     if (slug) {
       accountDetail(slug, (data) => {
-        console.log(data);
-        dispatch(user_load_by_token_thunk(getCookies()));
+        dispatch(user_wallet_update_action(data));
       });
     }
   }, []);

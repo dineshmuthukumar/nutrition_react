@@ -414,7 +414,7 @@ const NFTLootBuy = ({
                           onClick={() =>
                             window.open(
                               `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`,
-                              "_self"
+                              "_blank"
                             )
                           }
                         >

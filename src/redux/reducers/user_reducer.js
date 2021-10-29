@@ -2,6 +2,7 @@ import {
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
   USER_LOGIN_FAILURE,
+  USER_WALLET_UPDATE,
   USER_LOGOUT,
 } from "./../actions/user_action";
 
@@ -33,6 +34,19 @@ const user_reducer = (state = initState, { payload, type }) => {
       loading: false,
       error: false,
       errorData: {},
+    };
+  }
+
+  if (type === USER_WALLET_UPDATE) {
+    state = {
+      ...state,
+      data: {
+        user: {
+          ...state.data.user,
+          balance: payload.balance,
+          locked: payload.locked,
+        },
+      },
     };
   }
 
