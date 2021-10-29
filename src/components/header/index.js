@@ -2,30 +2,22 @@ import React, { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import { Navbar, Nav, Dropdown, Container } from "react-bootstrap";
 import { BiBell, BiHelpCircle } from "react-icons/bi";
-import { useTranslation, setLanguage } from "react-multi-lang";
-import { useHistory } from "react-router";
+import { useTranslation } from "react-multi-lang";
 import { useSelector, useDispatch } from "react-redux";
 import { FaDiscord } from "react-icons/fa";
-import { FaTimes } from "react-icons/fa";
-
-import { change_lang_action } from "./../../redux/actions/lang_action";
-import {
-  user_load_by_token_thunk,
-  user_logout_thunk,
-} from "../../redux/thunk/user_thunk";
-import { accountDetail } from "../../api/actioncable-methods";
-import { getCookies } from "../../utils/cookies";
-import { currencyFormat } from "../../utils/common";
 
 import userImg from "../../images/user_1.png";
-import "./style.scss";
+import { user_logout_thunk } from "../../redux/thunk/user_thunk";
+import { accountDetail } from "../../api/actioncable-methods";
+import { currencyFormat } from "../../utils/common";
 import { user_wallet_update_action } from "../../redux/actions/user_action";
 import { getNotificationApi } from "../../api/base-methods";
 import { readNotificationApi } from "./../../api/base-methods";
 
+import "./style.scss";
+
 const Header = ({ hideOptions = false, hideSign = false }) => {
   const t = useTranslation();
-  const history = useHistory();
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
 
@@ -36,7 +28,7 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
 
   const [ribbon, setRibbon] = useState(true);
 
-  const { user, lang } = state;
+  const { user } = state;
   const slug = user.data.user ? user.data.user.slug : null;
 
   useEffect(() => {
@@ -178,7 +170,10 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
             <div className="alert_close">
               <span id="al_close" onClick={() => setRibbon(false)}>
                 {/* <FaTimes /> */}
-                <img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e" />
+                <img
+                  alt="times logo"
+                  src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e"
+                />
               </span>
             </div>
           </div>

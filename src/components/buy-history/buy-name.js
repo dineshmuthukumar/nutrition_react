@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+
 import userImg from "../../images/user_1.png";
 
 const BuyName = ({
@@ -16,7 +17,7 @@ const BuyName = ({
 
   return isTable ? (
     <div className="expand-history-owner">
-      <img src={imgUrl ? imgUrl : userImg} />
+      <img src={imgUrl ? imgUrl : userImg} alt="" />
       <div>
         <div
           className="text-secondary"

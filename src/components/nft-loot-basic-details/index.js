@@ -1,24 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router";
+import React from "react";
+import ReadMoreReact from "read-more-react";
 import { useSelector } from "react-redux";
 import { FaCheckCircle } from "react-icons/fa";
-import ReadMoreReact from "read-more-react";
+
 import NFTTimeLeft from "../nft-time-left";
 import BidValue from "../bid-value";
 import NFTLootBuy from "../nft-loot-buy";
-import { ReactComponent as DiscordSvg } from "./../../icons/discord_logo.svg";
 import ToolTip from "../tooltip";
+import { ReactComponent as DiscordSvg } from "./../../icons/discord_logo.svg";
 import { currencyFormat } from "../../utils/common";
+
 import "./style.scss";
 
 const NFTLootBaseDetails = ({
   category,
-  nft,
   lootBuyPop,
   setLootBuyPop,
-  totalBuy,
-  price,
-  availableQty,
   isAuctionStarted,
   isAuctionEnded,
   soldOut,
@@ -26,7 +23,6 @@ const NFTLootBaseDetails = ({
   handleAuctionStartTimer,
   handleAuctionEndTimer,
 }) => {
-  const history = useHistory();
   const { user } = useSelector((state) => state.user.data);
 
   return (

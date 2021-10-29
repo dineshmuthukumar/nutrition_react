@@ -1,26 +1,27 @@
 import React, { useState, useEffect } from "react";
+import dayjs from "dayjs";
 import { useSelector } from "react-redux";
 import { useRouteMatch } from "react-router";
 import { Offcanvas } from "react-bootstrap";
 import { BiX } from "react-icons/bi";
 import { FaCheckCircle } from "react-icons/fa";
-import dayjs from "dayjs";
+
 import ErrorText from "./error-text";
+import lootBuy from "../../images/loot/loot_buy.png";
+import lootSuccess from "../../images/loot/loot_success.gif";
 import {
   bidBuyError,
   currencyFormat,
   validateQuantity,
 } from "../../utils/common";
 import { lootBuyApi } from "../../api/methods";
-import lootBuy from "../../images/loot/loot_buy.png";
-import lootSuccess from "../../images/loot/loot_success.gif";
+
 import "./style.scss";
 
 const NFTLootBuy = ({
   lootBuyPop = false,
   setLootBuyPop,
   category,
-  nft,
   isAuctionStarted,
   isAuctionEnded,
   soldOut,
@@ -150,7 +151,7 @@ const NFTLootBuy = ({
       if (
         validateQuantity(e.target.value) &&
         e.target.value <= count &&
-        e.target.value != 0
+        e.target.value !== 0
       ) {
         let amount =
           e.target.value * parseFloat(category.category_detail.buy_amount);
@@ -275,7 +276,11 @@ const NFTLootBuy = ({
                   </div>
 
                   <div className="pop-nft-media">
-                    <img className="type_image typeimg_audio" src={lootBuy} />
+                    <img
+                      alt="media logo"
+                      className="type_image typeimg_audio"
+                      src={lootBuy}
+                    />
                   </div>
                   <div className="pop-author-name text-center mt-3">
                     {/* An Assured NFT To Be Yours! */}
@@ -369,6 +374,7 @@ const NFTLootBuy = ({
 
                   <div className="pop-nft-media mt-4 preview">
                     <img
+                      alt="media logo"
                       className="type_image typeimg_audio"
                       src={lootSuccess}
                     />

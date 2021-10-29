@@ -11,7 +11,7 @@ const NFTPropPills = ({ property, propertyType }) => {
   const random = Math.floor(Math.random() * icons.length);
   return (
     <div className="nft-prop-pills">
-      <img src={icons[random]} />
+      <img src={icons[random]} alt="property logo" />
       <div>
         <div className="title">{propertyType}</div>
         <div className="desc text-secondary">{property}</div>

@@ -3,9 +3,7 @@ import { removeCookies, getCookies } from "../../utils/cookies";
 import { userApi } from "../../api/base-methods";
 
 import {
-  user_login_action_request,
   user_login_action_success,
-  user_login_action_fauilure,
   user_logout_action,
 } from "../actions/user_action";
 

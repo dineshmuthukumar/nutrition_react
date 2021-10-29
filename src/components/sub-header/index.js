@@ -1,10 +1,11 @@
 import React from "react";
-import { useHistory } from "react-router";
 import { useSelector } from "react-redux";
 import { Navbar } from "react-bootstrap";
 import { Container } from "react-bootstrap";
-import { currencyFormat } from "../../utils/common";
+
 import sample from "../../images/sampleNFT.jpg";
+import { currencyFormat } from "../../utils/common";
+
 import "./style.scss";
 
 const SubHeader = ({
@@ -15,7 +16,6 @@ const SubHeader = ({
   placeBidPop,
   setPlaceBidPop,
 }) => {
-  const history = useHistory();
   const { user } = useSelector((state) => state.user.data);
   const erc721 = nft.nft_type === "erc721";
 
@@ -30,6 +30,7 @@ const SubHeader = ({
         <Container fluid>
           <Navbar.Brand role="button" className="sub-head-title">
             <img
+              alt="asset info logo"
               src={(() => {
                 if (nft?.asset_type?.includes("image")) {
                   return nft.asset_url ? nft.asset_url : sample;

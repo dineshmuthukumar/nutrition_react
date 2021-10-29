@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useRouteMatch } from "react-router";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 import {
   nftBidHistory,
   nftBidWinner,
@@ -34,7 +35,6 @@ import {
   userBuyDetail,
   winnerDetail,
 } from "../api/actioncable-methods";
-import { useSelector } from "react-redux";
 
 const Details = () => {
   const { slug } = useParams();
@@ -114,6 +114,7 @@ const Details = () => {
         }
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -130,6 +131,7 @@ const Details = () => {
 
       console.log(user.slug);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [erc721]);
 
   const updateSubHeader = (input) => {

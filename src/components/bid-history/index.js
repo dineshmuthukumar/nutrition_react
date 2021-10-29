@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
 import dayjs from "dayjs";
+import { useParams } from "react-router";
 import { toast } from "react-toastify";
-import { Modal, Button, Table, Nav, NavDropdown } from "react-bootstrap";
-import { AiOutlineExpand } from "react-icons/ai";
-import { BsFullscreenExit } from "react-icons/bs";
+import { Modal, Table } from "react-bootstrap";
 import { IoIosRocket } from "react-icons/io";
 import { BiX } from "react-icons/bi";
+
 import BidCard from "./bid-card";
 import BidName from "./bid-name";
+import userImg from "../../images/user_1.png";
+import amitabh from "../../images/amitabh.png";
 import { nftBidHistory } from "../../api/methods";
 import { currencyFormat } from "../../utils/common";
 import { TableLoader } from "../nft-basic-details/content-loader";
-import amitabh from "../../images/amitabh.png";
-import userImg from "../../images/user_1.png";
+
 import "./style.scss";
 
 const BidHistory = ({ nft, histories = [], isAuctionEnded, totalCount }) => {
@@ -146,7 +146,7 @@ const BidHistory = ({ nft, histories = [], isAuctionEnded, totalCount }) => {
             </div>
 
             <div className="empty-bottom-content">
-              <img src={amitabh} />
+              <img src={amitabh} alt="" />
               <div className="nft-owner-history-details">
                 <div className="publish-time text-secondary">
                   {dayjs(nft.auction_start_time).format("MMM D, YYYY hh:mma")}

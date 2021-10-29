@@ -1,5 +1,6 @@
 import React from "react";
 import NFTPropPills from "../nft-prop-pills";
+
 import "./style.scss";
 
 const NFTProperties = ({ properties }) => {

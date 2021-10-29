@@ -1,10 +1,5 @@
 import React, { Suspense, lazy, useEffect, useState } from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import { useSelector, connect, useDispatch } from "react-redux";
 
@@ -39,6 +34,7 @@ function App(props) {
     if (token) dispatch(user_load_by_token_thunk(token));
 
     if (user.data.user && !token) dispatch(user_logout_thunk());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

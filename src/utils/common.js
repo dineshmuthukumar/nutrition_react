@@ -1,11 +1,11 @@
 export const validateEmail = (email) => {
   const re =
-    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; // eslint-disable-line
   return re.test(String(email).toLowerCase());
 };
 
 export const validatePhone = (mobile) => {
-  const re = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+  const re = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im; // eslint-disable-line
   return re.test(mobile);
 };
 
@@ -27,14 +27,14 @@ export const abbreviateNumber = (value) => {
     let shortValue = "";
     for (let precision = 2; precision >= 1; precision--) {
       shortValue = (
-        suffixNum != 0 ? value / Math.pow(1000, suffixNum) : value
+        suffixNum !== 0 ? value / Math.pow(1000, suffixNum) : value
       ).toPrecision(precision);
       let dotLessShortValue = (shortValue + "").replace(/[^a-zA-Z 0-9]+/g, "");
       if (dotLessShortValue.length <= 2) {
         break;
       }
     }
-    if (shortValue % 1 != 0) shortValue = shortValue.toFixed(1);
+    if (shortValue % 1 !== 0) shortValue = shortValue.toFixed(1);
     newValue = shortValue + suffixes[suffixNum];
   }
   return newValue;

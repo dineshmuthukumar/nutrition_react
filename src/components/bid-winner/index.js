@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
 import dayjs from "dayjs";
+import { useParams } from "react-router";
 import { toast } from "react-toastify";
-import { Modal, Button, Table, Nav, NavDropdown } from "react-bootstrap";
-import { BsFullscreenExit } from "react-icons/bs";
+import { Modal, Table } from "react-bootstrap";
 import { BiX } from "react-icons/bi";
+
 import BidName from "../bid-history/bid-name";
+import userImg from "../../images/user_1.png";
 import { nftBidHistory } from "../../api/methods";
 import { currencyFormat } from "../../utils/common";
 import { TableLoader } from "../nft-basic-details/content-loader";
-import userImg from "../../images/user_1.png";
 import "./style.scss";
 
 const BidWinner = ({ winner, histories }) => {
@@ -73,7 +73,7 @@ const BidWinner = ({ winner, histories }) => {
         </div>
 
         <div className="winner-user-details">
-          <img src={winner.avatar_url ? winner.avatar_url : userImg} />
+          <img alt="" src={winner.avatar_url ? winner.avatar_url : userImg} />
           <div className="winner-id">{winner.user_name}</div>
         </div>
 

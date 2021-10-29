@@ -62,6 +62,9 @@ function NFTCounter({
       case "seconds":
         custom_interval = "s";
         break;
+      default:
+        custom_interval = "";
+        break;
     }
 
     timerComponents.push(

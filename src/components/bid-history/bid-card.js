@@ -1,9 +1,11 @@
 import React from "react";
 import dayjs from "dayjs";
 import { useSelector } from "react-redux";
+
 import BidName from "./bid-name";
-import { currencyFormat } from "../../utils/common";
 import userImg from "../../images/user_1.png";
+import { currencyFormat } from "../../utils/common";
+
 import "./style.scss";
 
 const BidCard = ({ history, isEnd = false }) => {
@@ -19,6 +21,7 @@ const BidCard = ({ history, isEnd = false }) => {
         <>
           <div className="first-half">
             <img
+              alt=""
               src={
                 !history.private && history.avatar_url
                   ? history.avatar_url

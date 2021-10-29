@@ -1,5 +1,6 @@
 import React from "react";
 import Tag from "./tag";
+
 import "./style.scss";
 
 const NFTTags = ({ tags }) => {

@@ -1,6 +1,6 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
 import NFTCounter from "../nft-counter";
+
 import "./style.scss";
 
 const BidAuction = ({ status, bottomTitle, bottomValue, time }) => {

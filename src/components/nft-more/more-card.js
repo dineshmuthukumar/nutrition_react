@@ -1,8 +1,10 @@
 import React from "react";
 import dayjs from "dayjs";
-import { currencyFormat } from "../../utils/common";
+
 import NFTCounter from "../nft-counter";
 import sample from "../../images/sampleNFT.jpg";
+import { currencyFormat } from "../../utils/common";
+
 import "./style.scss";
 
 const MoreCard = ({ nft, isStarted = false, isEnded, time, label }) => {
@@ -10,6 +12,7 @@ const MoreCard = ({ nft, isStarted = false, isEnded, time, label }) => {
   return (
     <div className="more-card">
       <img
+        alt="media logo"
         src={(() => {
           if (nft?.asset_type?.includes("image")) {
             return nft.asset_url ? nft.asset_url : sample;

@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router";
-import { useSelector } from "react-redux";
+import React from "react";
 import Image from "react-bootstrap/Image";
-import NFTCounter from "../nft-counter";
-import "../new-drops-temp/style.scss";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+
+import NFTCounter from "../nft-counter";
+
+import "../new-drops-temp/style.scss";
 
 const DropCard = ({
   Id,

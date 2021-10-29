@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { toast } from "react-toastify";
-import { nftListApi } from "../api/methods";
+
 import Explore from "../components/explore";
 import Header from "../components/header";
+import { nftListApi } from "../api/methods";
 
 const ExploreList = () => {
   const { slug } = useParams();
@@ -15,6 +16,7 @@ const ExploreList = () => {
 
   useEffect(() => {
     nftList(page);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const nftList = async (page) => {

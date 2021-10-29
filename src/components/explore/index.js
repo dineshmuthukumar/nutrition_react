@@ -1,11 +1,10 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import postOne from "../../images/post1.png";
-import postTwo from "../../images/post2.png";
-import postThree from "../../images/post3.png";
+
 import ExploreCard from "./explore-card";
-import ExploreCardTwo from "./explore-card-two";
 import ExploreTitle from "./explore-title";
+
 import "./style.scss";
 
 const Explore = ({ list = [], handleClick, hasMore }) => {

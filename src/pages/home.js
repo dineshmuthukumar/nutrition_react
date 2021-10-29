@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { List } from "react-content-loader";
+
 import Header from "../components/header";
 import { nftListApi } from "../api/methods";
 import toaster from "../utils/toaster";
 import NFTList from "./../components/nft-list";
-import NewDrops from "../components/new-drops";
 
 const Home = () => {
   const [list, setList] = useState([]);
