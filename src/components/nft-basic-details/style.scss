@@ -5,7 +5,7 @@
   font-family: $neue-helveticamedium;
 }
 .fit-to-height {
-  height: calc(100vh - 5rem);
+  min-height: calc(100vh - 5rem);
   padding-top: 2.1rem;
   overflow: hidden;
   padding-bottom: 2.1rem;
@@ -41,6 +41,17 @@
   .d-flex{
     @media screen and (max-width: 425px ) {
       flex-direction: column;
+      .current-bid{
+        &:first-child{
+          margin: 0.5rem 0 0.5rem 0;
+        }
+        &:last-child{
+          border-top: 2px solid #000000 !important;
+          opacity: 1;
+          margin: 0.5rem 0 0.5rem 0;
+          padding-top: 1.5rem;
+        }
+      }
     }
   }
   
@@ -67,9 +78,12 @@
 
 .recharge-btn {
   font-family: $neue-helveticamedium;
-  padding-top: 1.2rem;
-  padding-bottom: 1.2rem;
-  width: 80%;
+
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
 
   &:hover {
     background-color: #ffffff;

@@ -29,7 +29,7 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
   }, [isFav]);
 
   useEffect(() => {
-    if (nft.asset_type.includes("image")) {
+    if (nft?.asset_type?.includes("image")) {
       getBgColor(nft.asset_url);
     } else {
       getBgColor(nft.cover_url);
@@ -74,14 +74,14 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
       {/* <div className="show_height"><img className="type_image typeimg_audio" src="https://wallpaperaccess.com/full/112115.jpg" />  </div> */}
       {/* <div className="show_height"><img className="type_gif" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" />/div> */}
       {(() => {
-        if (nft.asset_type.includes("image")) {
+        if (nft?.asset_type?.includes("image")) {
           return (
             <img
               className="type_image typeimg_audio"
               src={nft.asset_url ? nft.asset_url : sample}
             />
           );
-        } else if (nft.asset_type.includes("audio")) {
+        } else if (nft?.asset_type?.includes("audio")) {
           return (
             <>
               <div className="no_height align-items-center">
@@ -101,7 +101,7 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
               </audio>
             </>
           );
-        } else if (nft.asset_type.includes("video")) {
+        } else if (nft?.asset_type?.includes("video")) {
           return (
             <video controls>
               <source src={nft.asset_url} type={nft.asset_type} />
@@ -160,14 +160,14 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
           {/* <div className="show_height"><img className="type_gif" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" />/div> */}
 
           {(() => {
-            if (nft.asset_type.includes("image")) {
+            if (nft?.asset_type?.includes("image")) {
               return (
                 <img
                   className="type_image typeimg_audio"
                   src={nft.asset_url ? nft.asset_url : sample}
                 />
               );
-            } else if (nft.asset_type.includes("audio")) {
+            } else if (nft?.asset_type?.includes("audio")) {
               return (
                 <>
                   <div className="no_height">
@@ -187,7 +187,7 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
                   </audio>
                 </>
               );
-            } else if (nft.asset_type.includes("video")) {
+            } else if (nft?.asset_type?.includes("video")) {
               return (
                 <video controls>
                   <source src={nft.asset_url} type={nft.asset_type} />
