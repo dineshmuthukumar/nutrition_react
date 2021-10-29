@@ -1,6 +1,8 @@
 import React from "react";
+
 import NFTDrops from "../nft-drops";
 import goBtn from "../../images/arrow.svg";
+
 import "./style.scss";
 
 const NFTList = ({ data = [] }) => {
@@ -62,6 +64,7 @@ const NFTList = ({ data = [] }) => {
                   />
                   <button type="button">
                     <img
+                      alt="news letter logo"
                       className="newsletter_btn_icon"
                       src={goBtn}
                       style={{ maxWidth: "80%" }}

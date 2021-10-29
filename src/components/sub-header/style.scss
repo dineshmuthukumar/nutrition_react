@@ -2,6 +2,21 @@
 
 .sub-header-nft {
   box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.15);
+  .recharge-btn {
+    font-family: $neue-helveticamedium;
+  
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      width: 100%;
+  
+  
+    &:hover {
+      background-color: #ffffff;
+      color: rgb(236, 41, 41) !important;
+    }
+  }
 
   .sub-head-title {
     display: flex;

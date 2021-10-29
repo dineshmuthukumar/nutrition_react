@@ -1,5 +1,7 @@
 import React from "react";
+
 import ChainPills from "../chain-pills";
+
 import "./style.scss";
 
 const ChainAttributes = ({ chains = [] }) => {

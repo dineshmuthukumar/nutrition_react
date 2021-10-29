@@ -1,5 +1,7 @@
 import React from "react";
+
 import userImg from "../../images/user_1.png";
+
 import "./style.scss";
 
 const BidValue = ({
@@ -21,7 +23,7 @@ const BidValue = ({
       <div className="value">
         {isEnd ? (
           <div className="user-detail">
-            <img src={avatar ? avatar : userImg} />
+            <img alt="" src={avatar ? avatar : userImg} />
             <div className="win-user-name">{name}</div>
           </div>
         ) : (

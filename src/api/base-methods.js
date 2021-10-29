@@ -7,3 +7,9 @@ export const signOutApi = () => baseAxios.delete("/logout");
 
 export const userApi = (token) =>
   baseAxios.get("/users/me", { headers: { Authorization: token } });
+
+export const getNotificationApi = (page) =>
+  baseAxios.get(`/users/notifications?page=${page}`);
+
+export const readNotificationApi = () =>
+  baseAxios.post("/users/notification_read");

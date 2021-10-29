@@ -1,21 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Header from "../components/header";
-import NFTMedia from "../components/nft-media";
+import { toast } from "react-toastify";
+
 import NFTLootBaseDetails from "../components/nft-loot-basic-details";
-import NFTLootBuy from "../components/nft-loot-buy";
+import NFTLootMedia from "../components/nft-loot-media";
+import Header from "../components/header";
 import { NFTLoader } from "../components/nft-basic-details/content-loader";
 import { nftCategoryDetailApi } from "../api/methods";
-import NFTLootMedia from "../components/nft-loot-media";
-import { toast } from "react-toastify";
 
 const Loot = () => {
   const { slug } = useParams();
-  const [nft, setNft] = useState({});
   const [category, setCategory] = useState({});
   const [auctionEndTime, setAuctionEndTime] = useState("");
-  const [bidWinner, setBidWinner] = useState(null);
-  const [erc721, setErc721] = useState(false);
   const [isAuctionStarted, setIsAuctionStarted] = useState(false);
   const [isAuctionEnded, setIsAuctionEnded] = useState(false);
   const [soldOut, setSoldOut] = useState(false);
@@ -24,7 +20,7 @@ const Loot = () => {
 
   useEffect(() => {
     nftCategoryDetail(slug);
-  }, []);
+  }, [slug]);
 
   const nftCategoryDetail = async (slug) => {
     try {

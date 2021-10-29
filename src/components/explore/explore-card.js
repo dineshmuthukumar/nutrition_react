@@ -1,9 +1,11 @@
 import React from "react";
 import dayjs from "dayjs";
 import { useHistory } from "react-router";
+
 import sample from "../../images/sampleNFT.jpg";
-import { currencyFormat } from "../../utils/common";
 import NFTCounter from "../nft-counter";
+import { currencyFormat } from "../../utils/common";
+
 import "./style.scss";
 
 const ExploreCard = ({
@@ -18,7 +20,7 @@ const ExploreCard = ({
   desc,
   nftType,
 }) => {
-  const erc721 = nftType == "erc721";
+  const erc721 = nftType === "erc721";
   const history = useHistory();
 
   const handleClick = () => {
@@ -29,6 +31,7 @@ const ExploreCard = ({
       <div className="block-box user-post  mb-5">
         <div className="item-post">
           <img
+            alt="item logo"
             src={(() => {
               if (nft?.asset_type?.includes("image")) {
                 return nft.asset_url ? nft.asset_url : sample;

@@ -1,5 +1,6 @@
 import React from "react";
 import { BiX } from "react-icons/bi";
+
 import NFTCounter from "../nft-counter";
 
 const ErrorText = ({ type, handleClick = () => {}, title, desc }) => {

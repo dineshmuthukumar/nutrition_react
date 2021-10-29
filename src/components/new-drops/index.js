@@ -19,13 +19,14 @@ import four from "../../images/drops/nft_2.png";
 import eight from "../../images/drops/nft_1.jpg";
 import drops_banner from "../../images/drops/drops_banner.png";
 
-import { Button, Form } from "react-bootstrap";
 import DropCard from "./drop-card";
-import "../new-drops-temp/style.scss";
+import { Button, Form } from "react-bootstrap";
 import { sendEmailNewletter } from "../../api/axios-newsletter";
 import { validateEmail } from "./../../utils/common";
 import { BiLoaderAlt } from "react-icons/bi";
 import { useSelector } from "react-redux";
+
+import "../new-drops-temp/style.scss";
 
 const NewDrops = ({ categories }) => {
   const { user } = useSelector((state) => state.user.data);
@@ -152,7 +153,7 @@ const NewDrops = ({ categories }) => {
     <>
       <div className="new_drop_wrapper">
         <section className="sw_ab_1">
-          <img className="dr_baner" src={drops_banner} />
+          <img alt="banner" className="dr_baner" src={drops_banner} />
           <div className="banner_content">
             <div className="drop-title mb-0">
               <h2 className="drop-title__heading mb-4">
@@ -385,7 +386,11 @@ const NewDrops = ({ categories }) => {
           <div id="fmenu1">
             <div className="submenu">
               <div>
-                <a target="_blank" href="https://www.beyondlife.club">
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://www.beyondlife.club"
+                >
                   <h1>BeyondLife.club</h1>
                 </a>
                 <p>A world without an end</p>
@@ -418,6 +423,7 @@ const NewDrops = ({ categories }) => {
                   <li>
                     <a
                       target="_blank"
+                      rel="noreferrer"
                       href="https://www.instagram.com/beyondlife.clubofficial"
                     >
                       <FaInstagram />
@@ -458,7 +464,11 @@ const NewDrops = ({ categories }) => {
                   </a>
                 </li>
                 <li>
-                  <a target="_blank" href="https://www.beyondlife.club/faq.php">
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href="https://www.beyondlife.club/faq.php"
+                  >
                     FAQ
                   </a>
                 </li>
@@ -508,7 +518,11 @@ const NewDrops = ({ categories }) => {
             <div className="submenu">
               <div className="copyright">
                 ©All rights reserved. Rhiti Entertainment Pte. Ltd. Singapore &
-                <a target="_blank" href="https://www.beyondlife.club">
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://www.beyondlife.club"
+                >
                   BeyondLife LLC.
                 </a>
                 <span>
@@ -536,7 +550,11 @@ const NewDrops = ({ categories }) => {
               </div> */}
             </div>
             <div className="submenu">
-              <a target="_blank" href="https://www.guardianlink.io">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="https://www.guardianlink.io"
+              >
                 <Image
                   src="https://cdn.beyondlife.club/media/logo_horizondal.png"
                   alt="alt"

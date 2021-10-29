@@ -1,6 +1,5 @@
 import axios from "axios";
 import { getCookies, removeCookies } from "../utils/cookies";
-import { toast } from "react-toastify";
 import { store } from "./../redux/store";
 import { user_logout_thunk } from "./../redux/thunk/user_thunk";
 

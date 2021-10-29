@@ -1,31 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { List } from "react-content-loader";
 import Header from "../components/header";
-import { nftCategoriesApi } from "../api/methods";
-import toaster from "../utils/toaster";
-import NFTList from "./../components/nft-list";
+
 import NewDrops from "../components/new-drops";
-import NewDropsTemp from "./../components/new-drops-temp/index";
-import { useRouteMatch } from "react-router";
-import NewDropsTemp1 from "./../components/new-drops-temp1/index";
-import NewDropsTemp2 from "./../components/new-drops-temp2/index";
+import toaster from "../utils/toaster";
+import { nftCategoriesApi } from "../api/methods";
 
 const NewHome = () => {
-  const [list, setList] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [page, setPage] = useState({ page: 1 });
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    nftCategories(page);
+    nftCategories(1);
   }, []);
 
   const nftCategories = async (page) => {
     try {
-      setLoading(true);
       let response = await nftCategoriesApi(page);
       setCategories(response.data.data.categories);
-      setLoading(false);
     } catch (err) {
       console.log(err);
       toaster(500, "Something went wrong");
@@ -62,22 +52,6 @@ const NewHome = () => {
         }
       </div> */}
     </>
-  );
-};
-
-const ThreeColumnLoader = () => {
-  return (
-    <div className="row">
-      <div className="col-12 col-sm-6 col-md-4">
-        <List height={100} />
-      </div>
-      <div className="col-12 col-sm-6 col-md-4">
-        <List height={100} />
-      </div>
-      <div className="col-12 col-sm-6 col-md-4">
-        <List height={100} />
-      </div>
-    </div>
   );
 };
 

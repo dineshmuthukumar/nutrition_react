@@ -1,10 +1,5 @@
 import React, { Suspense, lazy, useEffect, useState } from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import { useSelector, connect, useDispatch } from "react-redux";
 
@@ -17,7 +12,6 @@ import {
 } from "./redux/thunk/user_thunk";
 import "./App.css";
 
-const Home = lazy(() => import("./pages/home"));
 const NewHome = lazy(() => import("./pages/new-home"));
 const Explore = lazy(() => import("./pages/explore-list"));
 const Loot = lazy(() => import("./pages/loot"));
@@ -40,6 +34,7 @@ function App(props) {
     if (token) dispatch(user_load_by_token_thunk(token));
 
     if (user.data.user && !token) dispatch(user_logout_thunk());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -110,21 +105,21 @@ const mapDispatchToProps = (dispatch) => {
 
 export default connect(null, mapDispatchToProps)(App);
 
-const PrivateRoute = ({ component: Component, authed, ...rest }) => {
-  const user = useSelector((state) => state.user);
+// const PrivateRoute = ({ component: Component, authed, ...rest }) => {
+//   const user = useSelector((state) => state.user);
 
-  return (
-    <Route
-      {...rest}
-      render={(props) =>
-        user.login ? (
-          <Component {...props} />
-        ) : (
-          <Redirect
-            to={{ pathname: "/signin", state: { from: props.location } }}
-          />
-        )
-      }
-    />
-  );
-};
+//   return (
+//     <Route
+//       {...rest}
+//       render={(props) =>
+//         user.login ? (
+//           <Component {...props} />
+//         ) : (
+//           <Redirect
+//             to={{ pathname: "/signin", state: { from: props.location } }}
+//           />
+//         )
+//       }
+//     />
+//   );
+// };

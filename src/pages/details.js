@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useRouteMatch } from "react-router";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 import {
   nftBidHistory,
   nftBidWinner,
@@ -34,7 +35,6 @@ import {
   userBuyDetail,
   winnerDetail,
 } from "../api/actioncable-methods";
-import { useSelector } from "react-redux";
 
 const Details = () => {
   const { slug } = useParams();
@@ -61,6 +61,7 @@ const Details = () => {
   const [totalViews, setTotalViews] = useState(0);
   const [totalFavourites, setTotalFavourites] = useState(0);
   const [availableQty, setAvailableQty] = useState(null);
+  const [userTotalBuys, setUserTotalBuys] = useState(0);
 
   const { user } = useSelector((state) => state.user.data);
 
@@ -114,6 +115,7 @@ const Details = () => {
         }
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -124,12 +126,11 @@ const Details = () => {
         });
       } else {
         userBuyDetail(slug, user.slug, (data) => {
-          console.log(data);
+          setUserTotalBuys(data.user_buys);
         });
       }
-
-      console.log(user.slug);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [erc721]);
 
   const updateSubHeader = (input) => {
@@ -230,8 +231,6 @@ const Details = () => {
                   nft={nft}
                   placeBidPop={placeBidPop}
                   setPlaceBidPop={setPlaceBidPop}
-                  // socketData={socketData}
-
                   //Socket states start
                   totalBid={totalBid}
                   bidChange={bidChange}
@@ -240,6 +239,7 @@ const Details = () => {
                   totalViews={totalViews}
                   totalFavourites={totalFavourites}
                   availableQty={availableQty}
+                  userTotalBuys={userTotalBuys}
                   //Socket states end
 
                   isAuctionStarted={isAuctionStarted}

@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import React from "react";
 import Image from "react-bootstrap/Image";
+import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
+
 import NFTCounter from "../nft-counter";
+
 import "./style.scss";
 
 const DropCard = ({
@@ -25,7 +26,6 @@ const DropCard = ({
   catName,
   type,
 }) => {
-  const { user } = useSelector((state) => state.user.data);
   const history = useHistory();
   const handleClick = () => {
     if (type === "loot") {

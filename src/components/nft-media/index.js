@@ -13,9 +13,11 @@ import { useSelector } from "react-redux";
 import { FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { toast } from "react-toastify";
-import { nftMakeFav, nftMakeUnFav } from "../../api/methods";
+
 import toaster from "../../utils/toaster";
 import sample from "../../images/sampleNFT.jpg";
+import { nftMakeFav, nftMakeUnFav } from "../../api/methods";
+
 import "./style.scss";
 
 const NFTMedia = ({ nft, title, slug, isFav }) => {
@@ -34,6 +36,7 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
     } else {
       getBgColor(nft.cover_url);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleLike = async () => {
@@ -77,6 +80,7 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
         if (nft?.asset_type?.includes("image")) {
           return (
             <img
+              alt="media logo"
               className="type_image typeimg_audio"
               src={nft.asset_url ? nft.asset_url : sample}
             />
@@ -86,6 +90,7 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
             <>
               <div className="no_height align-items-center">
                 <img
+                  alt="media logo"
                   className="type_image typeimg_audio"
                   src={nft.cover_url ? nft.cover_url : sample}
                 />
@@ -163,6 +168,7 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
             if (nft?.asset_type?.includes("image")) {
               return (
                 <img
+                  alt="media logo"
                   className="type_image typeimg_audio"
                   src={nft.asset_url ? nft.asset_url : sample}
                 />
@@ -172,6 +178,7 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
                 <>
                   <div className="no_height">
                     <img
+                      alt="media logo"
                       className="type_image typeimg_audio"
                       src={nft.cover_url ? nft.cover_url : sample}
                     />

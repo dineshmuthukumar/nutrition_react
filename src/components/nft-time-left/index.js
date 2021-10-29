@@ -2,7 +2,9 @@ import React from "react";
 import NFTCounter from "../nft-counter";
 import dayjs from "dayjs";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
+
 import ToolTip from "../tooltip";
+
 import "./style.scss";
 
 const NFTTimeLeft = ({

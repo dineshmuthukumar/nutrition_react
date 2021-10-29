@@ -1,9 +1,11 @@
 import React from "react";
 import dayjs from "dayjs";
-import BuyName from "./buy-name";
 import { useSelector } from "react-redux";
-import { currencyFormat } from "../../utils/common";
+
+import BuyName from "./buy-name";
 import userImg from "../../images/user_1.png";
+import { currencyFormat } from "../../utils/common";
+
 import "./style.scss";
 
 const BuyCard = ({ history, isEnd = false }) => {
@@ -19,6 +21,7 @@ const BuyCard = ({ history, isEnd = false }) => {
         <>
           <div className="first-half">
             <img
+              alt=""
               src={
                 !history.private && history.avatar_url
                   ? history.avatar_url

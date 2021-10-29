@@ -1,24 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router";
+import React from "react";
+import ReadMoreReact from "read-more-react";
 import { useSelector } from "react-redux";
 import { FaCheckCircle } from "react-icons/fa";
-import ReadMoreReact from "read-more-react";
+
 import NFTTimeLeft from "../nft-time-left";
 import BidValue from "../bid-value";
 import NFTLootBuy from "../nft-loot-buy";
-import { ReactComponent as DiscordSvg } from "./../../icons/discord_logo.svg";
 import ToolTip from "../tooltip";
-import "./style.scss";
+import { ReactComponent as DiscordSvg } from "./../../icons/discord_logo.svg";
 import { currencyFormat } from "../../utils/common";
+
+import "./style.scss";
 
 const NFTLootBaseDetails = ({
   category,
-  nft,
   lootBuyPop,
   setLootBuyPop,
-  totalBuy,
-  price,
-  availableQty,
   isAuctionStarted,
   isAuctionEnded,
   soldOut,
@@ -26,7 +23,6 @@ const NFTLootBaseDetails = ({
   handleAuctionStartTimer,
   handleAuctionEndTimer,
 }) => {
-  const history = useHistory();
   const { user } = useSelector((state) => state.user.data);
 
   return (
@@ -59,9 +55,9 @@ const NFTLootBaseDetails = ({
       <p className="text-secondary mt-1 mb-5 nft-desc">
         {category.category_detail && (
           <ReadMoreReact
-            min={300}
-            ideal={300}
-            max={700}
+            min={40}
+            ideal={40}
+            max={150}
             text={category.category_detail.description}
           />
         )}
@@ -178,7 +174,7 @@ const NFTLootBaseDetails = ({
                     } else if (soldOut) {
                       return "Sold Out";
                     } else {
-                      return "Purchase the Loot Box!";
+                      return "Purchase the Loot Box";
                     }
                   })()}
                 </button>

@@ -1,8 +1,10 @@
 import React from "react";
 import ReadMoreReact from "read-more-react";
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
+
 import AritstPills from "./artist-pills";
 import artistImg from "../../images/artist-image.png";
+
 import "./style.scss";
 
 const NFTArtist = () => {
@@ -10,7 +12,7 @@ const NFTArtist = () => {
     <div className="nft-artist">
       <div className="row mt-4 artist-content">
         <div className="col-12 col-md-5">
-          <img className="artist-img" src={artistImg} />
+          <img className="artist-img" src={artistImg} alt="artist logo" />
         </div>
         <div className="col-12 col-md-7 mt-4 mt-md-0 artist-details-content">
           <div className="artist-name">Amitabh Bachchan</div>

@@ -1,73 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Modal, OverlayTrigger, Popover } from "react-bootstrap";
-import { prominent } from "color.js";
 import {
-  AiFillHeart,
-  AiOutlineShareAlt,
   AiOutlineExpand,
   AiOutlineLink,
   AiFillFacebook,
   AiFillTwitterCircle,
+  AiOutlineShareAlt,
 } from "react-icons/ai";
-import { useSelector } from "react-redux";
 import { FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { toast } from "react-toastify";
-import { nftMakeFav, nftMakeUnFav } from "../../api/methods";
-import toaster from "../../utils/toaster";
-import sample from "../../images/sampleNFT.jpg";
-import lootNFT from "../../images/drops/nft_1.jpg";
+
+import lootBox from "../../images/loot/loot_box.gif";
+
 import "./style.scss";
 
 const NFTLootMedia = () => {
   const [modalShow, setModalShow] = useState(false);
-  const [liked, setLiked] = useState(false);
-  const [bgColor, setBgColor] = useState();
-  const { user } = useSelector((state) => state.user.data);
-
-  // useEffect(() => {
-  //   setLiked(isFav);
-  // }, [isFav]);
-
-  useEffect(() => {
-    getBgColor(lootNFT);
-  }, []);
-
-  const handleLike = async () => {
-    if (!user)
-      window.open(
-        `${process.env.REACT_APP_ACCOUNTS_URL}/signin?redirect=${window.location.href}`,
-        "_self"
-      );
-
-    setLiked(!liked);
-    // try {
-    //   if (!liked) {
-    //     await nftMakeFav({ nft_slug: slug });
-    //   } else {
-    //     await nftMakeUnFav({ nft_slug: slug });
-    //   }
-    // } catch (err) {
-    //   console.log(err);
-    //   toaster(500, "Something went wrong");
-    // }
-  };
-
-  const getBgColor = async (input) => {
-    if (input) {
-      const color = await prominent(lootNFT, { amount: 1 });
-      setBgColor(`rgb(${color[0]},${color[1]},${color[2]},0.3)`);
-    } else {
-      setBgColor(`rgb(0,0,0,0.1)`);
-    }
-  };
 
   return (
-    <div className="nft-media media_audio" style={{ background: bgColor }}>
+    <div className="nft-media media_audio" style={{ background: "black" }}>
       {/* <div className="show_height"><img className="type_image typeimg_audio" src="https://wallpaperaccess.com/full/112115.jpg" />  </div> */}
       {/* <div className="show_height"><img className="type_gif" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" />/div> */}
 
-      <img className="type_image typeimg_audio" src={lootNFT} />
+      <img alt="loot logo" className="type_image typeimg_audio" src={lootBox} />
 
       <div className="media-lsf">
         {/* <CustomPopover
@@ -82,7 +38,7 @@ const NFTLootMedia = () => {
           }
           placement="top"
           text="Favourite"
-        />
+        />*/}
 
         <SharePopover
           icon={
@@ -91,8 +47,8 @@ const NFTLootMedia = () => {
             </div>
           }
           placement="top"
-          title={title}
-        /> */}
+          title="BigB Loot Box!"
+        />
 
         <CustomPopover
           icon={
@@ -118,7 +74,11 @@ const NFTLootMedia = () => {
           {/* <div className="show_height"><img className="type_image typeimg_audio" src="https://wallpaperaccess.com/full/112115.jpg" />  </div> */}
           {/* <div className="show_height"><img className="type_gif" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" />/div> */}
 
-          <img className="type_image typeimg_audio" src={lootNFT} />
+          <img
+            className="type_image typeimg_audio"
+            src={lootBox}
+            alt="type logo"
+          />
         </Modal.Body>
       </Modal>
     </div>

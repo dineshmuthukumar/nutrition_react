@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
+import dayjs from "dayjs";
 import { useSelector } from "react-redux";
 import { useRouteMatch } from "react-router";
 import { Offcanvas } from "react-bootstrap";
-import { BiX } from "react-icons/bi";
 import { FaCheckCircle } from "react-icons/fa";
-import dayjs from "dayjs";
+
 import ErrorText from "./error-text";
+import sample from "../../images/sampleNFT.jpg";
 import {
   bidBuyError,
   currencyFormat,
@@ -13,7 +14,7 @@ import {
   validateQuantity,
 } from "../../utils/common";
 import { nftBidApi, nftBuyApi } from "../../api/methods";
-import sample from "../../images/sampleNFT.jpg";
+
 import "./style.scss";
 
 const NFTPlaceBid = ({
@@ -22,6 +23,7 @@ const NFTPlaceBid = ({
   nft,
   // socketData,
   price,
+  userTotalBuys,
   isAuctionStarted,
   isAuctionEnded,
   soldOut,
@@ -279,14 +281,14 @@ const NFTPlaceBid = ({
   };
 
   const handleBuyInputChange = (e) => {
-    let count = nft.total_user_buys
-      ? nft.buy_count - nft.total_user_buys
-      : nft.buy_count;
+    let count = userTotalBuys
+      ? nft.buy_count - userTotalBuys
+      : nft.buy_count - nft.total_user_buys;
     if (e.target.value) {
       if (
         validateQuantity(e.target.value) &&
         e.target.value <= count &&
-        e.target.value != 0
+        e.target.value !== 0
       ) {
         let amount = e.target.value * parseFloat(nft.buy_amount);
         if (user) {
@@ -378,13 +380,19 @@ const NFTPlaceBid = ({
                     <div className="pop-bid-title">
                       {erc721 ? "Place a bid" : "Place a buy"}
                     </div>
-                    <div className="close-button-pop" onClick={() => setPlaceBidPop(!placeBidPop)}>
+                    <div
+                      className="close-button-pop"
+                      onClick={() => setPlaceBidPop(!placeBidPop)}
+                    >
                       {/* <BiX
                         role="button"
                         size={45}
                         onClick={() => setPlaceBidPop(!placeBidPop)}
                       /> */}
-                      <img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e"></img>
+                      <img
+                        alt="place bid logo"
+                        src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e"
+                      ></img>
                     </div>
                   </div>
 
@@ -433,6 +441,7 @@ const NFTPlaceBid = ({
                       if (nft?.asset_type?.includes("image")) {
                         return (
                           <img
+                            alt="media logo"
                             className="type_image typeimg_audio"
                             src={nft.asset_url ? nft.asset_url : sample}
                           />
@@ -441,6 +450,7 @@ const NFTPlaceBid = ({
                         return (
                           <>
                             <img
+                              alt="media logo"
                               className="type_image typeimg_audio"
                               src={nft.cover_url ? nft.cover_url : sample}
                             />
@@ -537,12 +547,17 @@ const NFTPlaceBid = ({
                           user?.balance,
                           "USD"
                         )}`}
-                      {!erc721 &&
-                        `You can buy maximum of ${
-                          nft.total_user_buys
-                            ? nft.buy_count - nft.total_user_buys
-                            : nft.buy_count
-                        } of this NFT`}
+                      {!erc721 && userTotalBuys
+                        ? `You can buy maximum of ${
+                            userTotalBuys
+                              ? nft.buy_count - userTotalBuys
+                              : nft.buy_count
+                          } of this NFT`
+                        : `You can buy maximum of ${
+                            nft.total_user_buys
+                              ? nft.buy_count - nft.total_user_buys
+                              : nft.buy_count
+                          } of this NFT`}
                     </div>
                   </div>
                   <div className="bottom-area">
@@ -626,6 +641,7 @@ const NFTPlaceBid = ({
                       if (nft.asset_type.includes("image")) {
                         return (
                           <img
+                            alt="media logo"
                             className="type_image typeimg_audio"
                             src={nft.asset_url ? nft.asset_url : sample}
                           />
@@ -635,6 +651,7 @@ const NFTPlaceBid = ({
                           <>
                             <div className="no_height align-items-center">
                               <img
+                                alt="media logo"
                                 className="type_image typeimg_audio"
                                 src={nft.cover_url ? nft.cover_url : sample}
                               />
@@ -729,13 +746,19 @@ const NFTPlaceBid = ({
                 <div className="pop-bid-title">
                   {/* {erc721 ? "Sign in to place a bid" : "Sign in to place a buy"} */}
                 </div>
-                <div className="close-button-pop" onClick={() => setPlaceBidPop(!placeBidPop)}>
+                <div
+                  className="close-button-pop"
+                  onClick={() => setPlaceBidPop(!placeBidPop)}
+                >
                   {/* <BiX
                     role="button"
                     size={45}
                     onClick={() => setPlaceBidPop(!placeBidPop)}
                   /> */}
-                  <img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e"></img>
+                  <img
+                    alt="bid logo"
+                    src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e"
+                  ></img>
                 </div>
               </div>
               <div className="pop-signin">

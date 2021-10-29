@@ -1,7 +1,8 @@
 import React from "react";
-import { useHistory } from "react-router";
-import NFTCounter from "./../nft-counter";
 import dayjs from "dayjs";
+import { useHistory } from "react-router";
+
+import NFTCounter from "./../nft-counter";
 
 const NFTDrops = ({
   time,

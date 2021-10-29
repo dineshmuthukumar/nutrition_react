@@ -1,29 +1,26 @@
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router";
+import React from "react";
+import ReadMoreReact from "read-more-react";
 import { useSelector } from "react-redux";
 import { FaCheckCircle } from "react-icons/fa";
-import ReadMoreReact from "read-more-react";
+
 import NFTTimeLeft from "../nft-time-left";
 import BidValue from "../bid-value";
+import ToolTip from "../tooltip";
 import NFTPlaceBid from "./../nft-place-bid";
 import { ReactComponent as DiscordSvg } from "./../../icons/discord_logo.svg";
-import ToolTip from "../tooltip";
-import "./style.scss";
 import { currencyFormat } from "../../utils/common";
+
+import "./style.scss";
 
 const NFTBaseDetails = ({
   nft,
   placeBidPop,
   setPlaceBidPop,
   // socketData,
-  totalBid,
-  bidChange,
   totalBuy,
+  userTotalBuys,
   price,
-  totalViews,
-  totalFavourites,
   availableQty,
-
   isAuctionStarted,
   isAuctionEnded,
   soldOut,
@@ -32,9 +29,7 @@ const NFTBaseDetails = ({
   handleAuctionEndTimer,
   winner,
 }) => {
-  const history = useHistory();
   const { user } = useSelector((state) => state.user.data);
-  const [currentUser, setCurrentUser] = useState(false);
 
   const erc721 = nft.nft_type === "erc721";
 
@@ -67,12 +62,7 @@ const NFTBaseDetails = ({
       </div>
       <p className="text-secondary mt-1 mb-5 nft-desc">
         {nft.description && (
-          <ReadMoreReact
-            min={40}
-            ideal={40}
-            max={150}
-            text={nft.description}
-          />
+          <ReadMoreReact min={40} ideal={40} max={150} text={nft.description} />
         )}
       </p>
 
@@ -206,6 +196,7 @@ const NFTBaseDetails = ({
             setPlaceBidPop={setPlaceBidPop}
             // socketData={socketData}
             price={price}
+            userTotalBuys={userTotalBuys}
             isAuctionStarted={isAuctionStarted}
             isAuctionEnded={isAuctionEnded}
             soldOut={soldOut}
