@@ -34,6 +34,7 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
   useEffect(() => {
     if (slug) {
       accountDetail(slug, (data) => {
+        console.log(data);
         dispatch(user_load_by_token_thunk(getCookies()));
       });
     }

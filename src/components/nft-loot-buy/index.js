@@ -9,11 +9,9 @@ import ErrorText from "./error-text";
 import {
   bidBuyError,
   currencyFormat,
-  validateCurrency,
   validateQuantity,
 } from "../../utils/common";
-import { nftBuyApi } from "../../api/methods";
-import sample from "../../images/sampleNFT.jpg";
+import { lootBuyApi } from "../../api/methods";
 import lootNFT from "../../images/drops/nft_1.jpg";
 import "./style.scss";
 
@@ -74,60 +72,60 @@ const NFTLootBuy = ({
         "_self"
       );
 
-    // if (!isAuctionEnded) {
-    //   try {
-    //     setBuy({
-    //       ...buy,
-    //       progressError: "loading",
-    //       processClass: "process",
-    //       buttonName: "Processing...",
-    //       buttonDisable: true,
-    //     });
-    //     const result = await nftBuyApi({
-    //       slug: nft.slug,
-    //       quantity: parseInt(buyQuantity),
-    //     });
-    //     if (result.data.success) {
-    //       setSuccess(true);
-    //       setSuccessData(result.data.data.buy);
-    //       setBuy({
-    //         ...buy,
-    //         progressError: "",
-    //         processClass: "",
-    //         buttonName: "Claim Your Loot Box",
-    //         buttonDisable: false,
-    //       });
-    //     }
-    //   } catch (error) {
-    //     if (error.response.data.status === 422) {
-    //       const err = bidBuyError(error.response.data.fail_status);
-    //       setBuy({
-    //         ...buy,
-    //         isError: true,
-    //         progressError: "error-progress",
-    //         errorTitle: err.title,
-    //         errorDescription: err.description,
-    //       });
-    //     }
+    if (!isAuctionEnded) {
+      try {
+        setBuy({
+          ...buy,
+          progressError: "loading",
+          processClass: "process",
+          buttonName: "Processing...",
+          buttonDisable: true,
+        });
+        const result = await lootBuyApi({
+          slug: category.slug,
+          quantity: parseInt(buyQuantity),
+        });
+        if (result.data.success) {
+          setSuccess(true);
+          setSuccessData(result.data.data);
+          setBuy({
+            ...buy,
+            progressError: "",
+            processClass: "",
+            buttonName: "Claim Your Loot Box",
+            buttonDisable: false,
+          });
+        }
+      } catch (error) {
+        if (error.response.data.status === 422) {
+          const err = bidBuyError(error.response.data.fail_status);
+          setBuy({
+            ...buy,
+            isError: true,
+            progressError: "error-progress",
+            errorTitle: err.title,
+            errorDescription: err.description,
+          });
+        }
 
-    //     const err = bidBuyError(error.response.data.fail_status);
-    //     setBuy({
-    //       ...buy,
-    //       isError: true,
-    //       progressError: "error-progress",
-    //       errorTitle: err.title,
-    //       errorDescription: err.description,
-    //     });
-    //   }
-    // } else {
-    //   const err = bidBuyError(702);
-    //   setBuy({
-    //     ...buy,
-    //     isError: true,
-    //     errorTitle: err.title,
-    //     errorDescription: err.description,
-    //   });
-    // }
+        const err = bidBuyError(error.response.data.fail_status);
+        setBuy({
+          ...buy,
+          isError: true,
+          progressError: "error-progress",
+          errorTitle: err.title,
+          errorDescription: err.description,
+        });
+      }
+    } else {
+      const err = bidBuyError(702);
+      setBuy({
+        ...buy,
+        isError: true,
+        errorTitle: err.title,
+        errorDescription: err.description,
+      });
+    }
   };
 
   const handleSuccess = () => {
@@ -382,15 +380,17 @@ const NFTLootBuy = ({
                     <div className="success-summary">
                       <div>Price of the Loot</div>
                       <div className="bold">
-                        {currencyFormat(successData.total_amount, "USD")}
+                        {currencyFormat(
+                          category.category_detail.buy_amount,
+                          "USD"
+                        )}{" "}
+                        X {successData.quantity}
                       </div>
                     </div>
                     <div className="success-summary">
                       <div>Bought On</div>
                       <div className="bold">
-                        {dayjs(successData.created_at).format(
-                          "MMM D, YYYY hh:mma"
-                        )}
+                        {dayjs(successData.time).format("MMM D, YYYY hh:mma")}
                       </div>
                     </div>
 
@@ -405,13 +405,18 @@ const NFTLootBuy = ({
                       <div className="place-bid-button">
                         <button
                           className="btn btn-outline-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop "
-                          onClick={handleSuccess}
+                          onClick={() => setSuccess(false)}
                         >
                           Buy More
                         </button>
                         <button
                           className="btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop "
-                          onClick={handleSuccess}
+                          onClick={() =>
+                            window.open(
+                              `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`,
+                              "_self"
+                            )
+                          }
                         >
                           Access your NFTs
                         </button>
