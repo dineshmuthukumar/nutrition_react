@@ -432,6 +432,7 @@ button.nft_form {
   width: 28%;
   flex-direction: column;
   justify-content: space-between;
+  user-select: none;
 }
 #fmenu1 .submenu:first-of-type h1 {
   font-size: 2em;
