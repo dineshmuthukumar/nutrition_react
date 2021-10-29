@@ -285,9 +285,9 @@ const NewDrops = ({ categories }) => {
                 editionType="5000"
                 additional="What You Get"
                 additionalDesc="You not only have the pride of possessing some of the most unique Amitabh NFTs! Just like any other NFT, you can sell your prized possessions in marketplaces and trade them! "
-                slug={categories[4].slug}
-                catName={categories[4].name}
-                type={categories[4].type}
+                slug={categories[1].slug}
+                catName={categories[1].name}
+                type={categories[1].type}
                 scroll={exe_scroll_email}
               />
             </section>
@@ -307,9 +307,9 @@ const NewDrops = ({ categories }) => {
                 editionType="7/7"
                 additional="What You Get"
                 additionalDesc="Having your ownership over both the video of Amitabh signing the poster, and the autographed authentic physical poster itself makes you one among seven-in-seven billion people on the planet who has these prized posters of exceptional value!"
-                slug={categories[1].slug}
-                catName={categories[1].name}
-                type={categories[1].type}
+                slug={categories[2].slug}
+                catName={categories[2].name}
+                type={categories[2].type}
                 scroll={exe_scroll_email}
               />
             </section>
@@ -329,9 +329,9 @@ const NewDrops = ({ categories }) => {
                 editionType="6/6"
                 additional="What You Get"
                 additionalDesc="These BigB Punks and NFT art pieces represent the craze for collectibles in the crypto world! An NFT featuring a legendary and globally recognized superstar is bound to be a thing of pride to possess... in addition to high possibilities of fetching good deals in the secondary market!"
-                slug={categories[2].slug}
-                catName={categories[2].name}
-                type={categories[2].type}
+                slug={categories[3].slug}
+                catName={categories[3].name}
+                type={categories[3].type}
                 scroll={exe_scroll_email}
               />
             </section>

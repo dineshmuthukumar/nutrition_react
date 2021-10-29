@@ -5,7 +5,7 @@
   font-family: $neue-helveticamedium;
 }
 .fit-to-height {
-  height: calc(100vh - 5rem);
+  min-height: calc(100vh - 5rem);
   padding-top: 2.1rem;
   overflow: hidden;
   padding-bottom: 2.1rem;

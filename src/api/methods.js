@@ -33,3 +33,6 @@ export const nftMakeFav = ({ nft_slug }) =>
 
 export const nftMakeUnFav = ({ nft_slug }) =>
   appAxios.post(`/nfts/${nft_slug}/unfav`);
+
+export const lootBuyApi = (props) =>
+  appAxios.post("/buys/loot_box", { nft: { ...props } });

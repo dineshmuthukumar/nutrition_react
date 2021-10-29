@@ -68,9 +68,9 @@ const NFTBaseDetails = ({
       <p className="text-secondary mt-1 mb-5 nft-desc">
         {nft.description && (
           <ReadMoreReact
-            min={300}
-            ideal={300}
-            max={700}
+            min={40}
+            ideal={40}
+            max={150}
             text={nft.description}
           />
         )}
@@ -106,7 +106,11 @@ const NFTBaseDetails = ({
             <BidValue
               title="Your Last Bid"
               value={currencyFormat(nft.user_highest_bid, "USD")}
-              // status="Outbid"
+              status={
+                parseFloat(nft.user_highest_bid) < parseFloat(nft.minimum_bid)
+                  ? "Outbid"
+                  : ""
+              }
             />
           )}
 

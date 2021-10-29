@@ -18,6 +18,7 @@ import { currencyFormat } from "../../utils/common";
 
 import userImg from "../../images/user_1.png";
 import "./style.scss";
+import { user_wallet_update_action } from "../../redux/actions/user_action";
 
 const Header = ({ hideOptions = false, hideSign = false }) => {
   const t = useTranslation();
@@ -34,7 +35,7 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
   useEffect(() => {
     if (slug) {
       accountDetail(slug, (data) => {
-        dispatch(user_load_by_token_thunk(getCookies()));
+        dispatch(user_wallet_update_action(data));
       });
     }
   }, []);
@@ -150,7 +151,7 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
                         ></Dropdown.Toggle>
 
                         <Dropdown.Menu align="end" className="noti-container">
-                          <div className="noti-header">Notifications</div>
+                          <div className="noti-header"><BiBell size={25} color={"white"} /> Notifications</div>
                           <div className="noti-content">
                             <div className="sub-header">Today</div>
 
