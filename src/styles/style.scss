@@ -1234,8 +1234,7 @@ input::-webkit-inner-spin-button {
       img {
         width: 3rem;
         height: 3rem;
-        object-fit: cover;
-        border-radius: 50%;
+        object-fit: contain;
         margin-right: 0.8rem;
       }
 
