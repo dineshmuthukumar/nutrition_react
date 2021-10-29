@@ -1100,6 +1100,7 @@ input::-webkit-inner-spin-button {
   color: #ffffff !important;
   text-align: right;
   font-size: 1.4rem;
+  user-select: none;
   @media screen and (max-width: 375px) {
     font-size: 1.2rem;
   }
