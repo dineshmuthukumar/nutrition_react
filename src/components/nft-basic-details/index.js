@@ -128,6 +128,7 @@ const NFTBaseDetails = ({
               }
             })()}
             time={nft.auction_start_time}
+            cTime={nft.time}
             handleTimer={handleAuctionStartTimer}
           />
         )}
