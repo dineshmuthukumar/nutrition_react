@@ -17,7 +17,6 @@ import {
 } from "./redux/thunk/user_thunk";
 import "./App.css";
 
-const Home = lazy(() => import("./pages/home"));
 const NewHome = lazy(() => import("./pages/new-home"));
 const Explore = lazy(() => import("./pages/explore-list"));
 const Loot = lazy(() => import("./pages/loot"));
@@ -110,21 +109,21 @@ const mapDispatchToProps = (dispatch) => {
 
 export default connect(null, mapDispatchToProps)(App);
 
-const PrivateRoute = ({ component: Component, authed, ...rest }) => {
-  const user = useSelector((state) => state.user);
+// const PrivateRoute = ({ component: Component, authed, ...rest }) => {
+//   const user = useSelector((state) => state.user);
 
-  return (
-    <Route
-      {...rest}
-      render={(props) =>
-        user.login ? (
-          <Component {...props} />
-        ) : (
-          <Redirect
-            to={{ pathname: "/signin", state: { from: props.location } }}
-          />
-        )
-      }
-    />
-  );
-};
+//   return (
+//     <Route
+//       {...rest}
+//       render={(props) =>
+//         user.login ? (
+//           <Component {...props} />
+//         ) : (
+//           <Redirect
+//             to={{ pathname: "/signin", state: { from: props.location } }}
+//           />
+//         )
+//       }
+//     />
+//   );
+// };
