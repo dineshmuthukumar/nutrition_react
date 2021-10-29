@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import dayjs from "dayjs";
 import { Navbar, Nav, Dropdown, Container } from "react-bootstrap";
 import { BiBell, BiHelpCircle } from "react-icons/bi";
 import { useTranslation, setLanguage } from "react-multi-lang";
@@ -19,6 +20,8 @@ import { currencyFormat } from "../../utils/common";
 import userImg from "../../images/user_1.png";
 import "./style.scss";
 import { user_wallet_update_action } from "../../redux/actions/user_action";
+import { getNotificationApi } from "../../api/base-methods";
+import { readNotificationApi } from "./../../api/base-methods";
 
 const Header = ({ hideOptions = false, hideSign = false }) => {
   const t = useTranslation();
@@ -26,7 +29,11 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
 
-  const [notification, setNotification] = useState(false);
+  const [notiLoading, setNotiLoading] = useState(false);
+  const [npage, setNPage] = useState(1);
+  const [notification, setNotification] = useState();
+  const [notiRead, setNotiRead] = useState(false);
+
   const [ribbon, setRibbon] = useState(true);
 
   const { user, lang } = state;
@@ -38,12 +45,53 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
         dispatch(user_wallet_update_action(data));
       });
     }
+    handleGetNotification(npage);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleChangeLang = () => {
-    const u_lang = lang === "en" ? "hi" : "en";
-    setLanguage(u_lang);
-    dispatch(change_lang_action(u_lang));
+  // const handleChangeLang = () => {
+  //   const u_lang = lang === "en" ? "hi" : "en";
+  //   setLanguage(u_lang);
+  //   dispatch(change_lang_action(u_lang));
+  // };
+
+  const handleGetNotification = async (input) => {
+    try {
+      setNotiLoading(true);
+      const result = await getNotificationApi(input);
+      setNotiLoading(false);
+      if (input === 1) {
+        setNotification(result.data.data);
+        setNotiRead(result.data.data.notifications_read);
+      } else {
+        setNotification({
+          ...notification,
+          notifications: [
+            ...notification.notifications,
+            ...result.data.data.notifications,
+          ],
+          next_page: result.data.data.next_page,
+        });
+      }
+    } catch (error) {
+      setNotiLoading(false);
+
+      console.log(
+        "🚀 ~ file: index.js ~ line 49 ~ handleGetNotification ~ error",
+        error
+      );
+    }
+  };
+
+  const readNotification = async () => {
+    try {
+      if (notiRead) await readNotificationApi();
+    } catch (error) {
+      console.log(
+        "🚀 ~ file: index.js ~ line 61 ~ readNotification ~ error",
+        error
+      );
+    }
   };
 
   const UserToggleComponent = React.forwardRef(({ onClick }, ref) => (
@@ -68,10 +116,45 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
           onClick(e);
         }}
       >
-        <BiBell size={25} color={notification ? "black" : "white"} />
+        <BiBell size={25} color={"white"} />
       </div>
     );
   });
+
+  const NotiCard = ({ data }) => {
+    return (
+      <div className="noti-message" role="button">
+        <img src="https://picsum.photos/100/100" alt="notification icon" />
+        <div className="noti-message-content">
+          <div className="title">
+            {(() => {
+              switch (data.reason) {
+                case "deposit":
+                  return "Deposit";
+
+                case "buy_success":
+                  return "Buy Success";
+
+                case "bid_success":
+                  return "Bid Success";
+
+                case "bid_expired":
+                  return "Bid Expired";
+
+                default:
+                  return "";
+              }
+            })()}
+          </div>
+          <div className="desc text-secondary">
+            {data.nft_name} for{" "}
+            {currencyFormat(data.amount, user.data.user.currency_name)} at{" "}
+            {dayjs(data.created_at).format("DD MMM YYYY hh:mma")}
+          </div>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <>
@@ -140,46 +223,65 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
                             }
                           />
                         </Nav.Link>
-                        {/* <Dropdown
-                        autoClose="outside"
-                        onToggle={(e) => setNotification(e)}
-                      >
-                        <Dropdown.Toggle
-                          align="start"
-                          drop="start"
-                          as={NotificationToggleComponent}
-                        ></Dropdown.Toggle>
+                        <Dropdown
+                          autoClose="outside"
+                          onToggle={(e) => {
+                            if (e) {
+                              readNotification();
+                              setNotiRead(false);
+                            }
+                          }}
+                        >
+                          <Dropdown.Toggle
+                            align="start"
+                            drop="start"
+                            as={NotificationToggleComponent}
+                          ></Dropdown.Toggle>
 
-                        <Dropdown.Menu align="end" className="noti-container">
-                          <div className="noti-header"><BiBell size={25} color={"white"} /> Notifications</div>
-                          <div className="noti-content">
-                            <div className="sub-header">Today</div>
-
-                            {[
-                              1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-                              1, 1, 1, 3,
-                            ].map((o) => (
-                              <div className="noti-message">
-                                <img src="https://picsum.photos/100/100" />
-                                <div className="noti-message-content">
-                                  <div className="title">Lorem Ipsum</div>
-                                  <div className="desc text-secondary">
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.
-                                  </div>
-                                </div>
-                              </div>
-                            ))}
-
-                            <div
-                              className="noti-load-more text-secondary"
-                              role="button" >
-                              See More
+                          <Dropdown.Menu align="end" className="noti-container">
+                            <div className="noti-header">
+                              <BiBell size={25} color={"white"} /> Notifications
                             </div>
-                          </div>
-                        </Dropdown.Menu>
-                      </Dropdown> */}
+                            <div className="noti-content">
+                              {/* <div className="sub-header">Today</div> */}
+
+                              {notification?.notifications.length > 0 ? (
+                                <>
+                                  {notification?.notifications.map((o, i) => (
+                                    <NotiCard key={`noti${i}`} data={o} />
+                                  ))}
+
+                                  {notiLoading && (
+                                    <div className="noti-load-more text-secondary">
+                                      Loading...
+                                    </div>
+                                  )}
+
+                                  {notification?.next_page ? (
+                                    <div
+                                      className="noti-load-more text-secondary"
+                                      role="button"
+                                      onClick={() => {
+                                        setNPage(npage + 1);
+                                        handleGetNotification(npage + 1);
+                                      }}
+                                    >
+                                      See More
+                                    </div>
+                                  ) : (
+                                    <div className="noti-load-more text-secondary">
+                                      You have reached the end
+                                    </div>
+                                  )}
+                                </>
+                              ) : (
+                                <div className="noti-load-more text-secondary">
+                                  No notifications found
+                                </div>
+                              )}
+                            </div>
+                          </Dropdown.Menu>
+                        </Dropdown>
                         <Dropdown autoClose="outside">
                           <Dropdown.Toggle
                             align="start"
