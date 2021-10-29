@@ -178,7 +178,7 @@ const NFTLootBaseDetails = ({
                     } else if (soldOut) {
                       return "Sold Out";
                     } else {
-                      return "Purchase the Loot Box!";
+                      return "Purchase the Loot Box";
                     }
                   })()}
                 </button>

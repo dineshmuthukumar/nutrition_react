@@ -12,7 +12,8 @@ import {
   validateQuantity,
 } from "../../utils/common";
 import { lootBuyApi } from "../../api/methods";
-import lootNFT from "../../images/drops/nft_1.jpg";
+import lootBuy from "../../images/loot/loot_buy.png";
+import lootSuccess from "../../images/loot/loot_success.gif";
 import "./style.scss";
 
 const NFTLootBuy = ({
@@ -97,8 +98,8 @@ const NFTLootBuy = ({
           });
         }
       } catch (error) {
-        if (error.response.status === 422) {
-          const err = bidBuyError(error.response.fail_status);
+        if (error.response.data.status === 422) {
+          const err = bidBuyError(error.response.data.fail_status);
           setBuy({
             ...buy,
             isError: true,
@@ -108,7 +109,7 @@ const NFTLootBuy = ({
           });
         }
 
-        const err = bidBuyError(error.response.fail_status);
+        const err = bidBuyError(error.response.data.fail_status);
         setBuy({
           ...buy,
           isError: true,
@@ -274,7 +275,7 @@ const NFTLootBuy = ({
                   </div>
 
                   <div className="pop-nft-media">
-                    <img className="type_image typeimg_audio" src={lootNFT} />
+                    <img className="type_image typeimg_audio" src={lootBuy} />
                   </div>
                   <div className="pop-author-name text-center mt-3">
                     {/* An Assured NFT To Be Yours! */}
@@ -367,7 +368,10 @@ const NFTLootBuy = ({
                   </div>
 
                   <div className="pop-nft-media mt-4 preview">
-                    <img className="type_image typeimg_audio" src={lootNFT} />
+                    <img
+                      className="type_image typeimg_audio"
+                      src={lootSuccess}
+                    />
                   </div>
                   <div className="pop-author-name text-center mt-3">
                     {/* Check Your NFT Collections to See What You've Won!! */}

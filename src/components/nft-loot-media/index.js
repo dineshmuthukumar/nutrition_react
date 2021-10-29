@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Modal, OverlayTrigger, Popover } from "react-bootstrap";
 import { prominent } from "color.js";
 import {
-  AiFillHeart,
-  AiOutlineShareAlt,
   AiOutlineExpand,
   AiOutlineLink,
   AiFillFacebook,
@@ -13,10 +11,8 @@ import { useSelector } from "react-redux";
 import { FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { toast } from "react-toastify";
-import { nftMakeFav, nftMakeUnFav } from "../../api/methods";
 import toaster from "../../utils/toaster";
-import sample from "../../images/sampleNFT.jpg";
-import lootNFT from "../../images/drops/nft_1.jpg";
+import lootBox from "../../images/loot/loot_box.gif";
 import "./style.scss";
 
 const NFTLootMedia = () => {
@@ -30,7 +26,7 @@ const NFTLootMedia = () => {
   // }, [isFav]);
 
   useEffect(() => {
-    getBgColor(lootNFT);
+    getBgColor(lootBox);
   }, []);
 
   const handleLike = async () => {
@@ -55,7 +51,7 @@ const NFTLootMedia = () => {
 
   const getBgColor = async (input) => {
     if (input) {
-      const color = await prominent(lootNFT, { amount: 1 });
+      const color = await prominent(lootBox, { amount: 1 });
       setBgColor(`rgb(${color[0]},${color[1]},${color[2]},0.3)`);
     } else {
       setBgColor(`rgb(0,0,0,0.1)`);
@@ -63,11 +59,11 @@ const NFTLootMedia = () => {
   };
 
   return (
-    <div className="nft-media media_audio" style={{ background: bgColor }}>
+    <div className="nft-media media_audio" style={{ background: "black" }}>
       {/* <div className="show_height"><img className="type_image typeimg_audio" src="https://wallpaperaccess.com/full/112115.jpg" />  </div> */}
       {/* <div className="show_height"><img className="type_gif" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" />/div> */}
 
-      <img className="type_image typeimg_audio" src={lootNFT} />
+      <img className="type_image typeimg_audio" src={lootBox} />
 
       <div className="media-lsf">
         {/* <CustomPopover
@@ -118,7 +114,7 @@ const NFTLootMedia = () => {
           {/* <div className="show_height"><img className="type_image typeimg_audio" src="https://wallpaperaccess.com/full/112115.jpg" />  </div> */}
           {/* <div className="show_height"><img className="type_gif" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" />/div> */}
 
-          <img className="type_image typeimg_audio" src={lootNFT} />
+          <img className="type_image typeimg_audio" src={lootBox} />
         </Modal.Body>
       </Modal>
     </div>
