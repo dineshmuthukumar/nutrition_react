@@ -1,5 +1,5 @@
 import React from "react";
-import { currencyFormat } from "../../utils/common";
+import { abbreviateNumber, currencyFormat } from "../../utils/common";
 import Badge from "./badge";
 import "./style.scss";
 
@@ -35,11 +35,22 @@ const NFTSummary = ({
             {erc721 ? (
               <Badge
                 title="Price"
-                value={
-                  price
-                    ? currencyFormat(price, "USD")
-                    : nft.minimum_bid && currencyFormat(nft.minimum_bid, "USD")
-                }
+                // value={
+                //   price
+                //     ? currencyFormat(price, "USD")
+                //     : nft.minimum_bid && currencyFormat(nft.minimum_bid, "USD")
+                // }
+                value={(() => {
+                  if (price && price >= 1000) {
+                    return `$${abbreviateNumber(price)}`;
+                  } else if (price && price < 1000) {
+                    return currencyFormat(price, "USD");
+                  } else if (nft.minimum_bid && nft.minimum_bid >= 1000) {
+                    return `$${abbreviateNumber(nft.minimum_bid)}`;
+                  } else {
+                    return currencyFormat(nft.minimum_bid, "USD");
+                  }
+                })()}
                 // diff="+2000"
                 diff={bidChange ? bidChange : nft.bid_change}
                 tooltip="Price increased from last bid"

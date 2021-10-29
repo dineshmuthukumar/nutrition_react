@@ -285,9 +285,9 @@ const NewDrops = ({ categories }) => {
                 editionType="5000"
                 additional="What You Get"
                 additionalDesc="You not only have the pride of possessing some of the most unique Amitabh NFTs! Just like any other NFT, you can sell your prized possessions in marketplaces and trade them! "
-                slug={categories[4].slug}
-                catName={categories[4].name}
-                type={categories[4].type}
+                slug={categories[3].slug}
+                catName={categories[3].name}
+                type={categories[3].type}
                 scroll={exe_scroll_email}
               />
             </section>

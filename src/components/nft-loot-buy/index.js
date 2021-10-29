@@ -97,8 +97,8 @@ const NFTLootBuy = ({
           });
         }
       } catch (error) {
-        if (error.response.data.status === 422) {
-          const err = bidBuyError(error.response.data.fail_status);
+        if (error.response.status === 422) {
+          const err = bidBuyError(error.response.fail_status);
           setBuy({
             ...buy,
             isError: true,
@@ -108,7 +108,7 @@ const NFTLootBuy = ({
           });
         }
 
-        const err = bidBuyError(error.response.data.fail_status);
+        const err = bidBuyError(error.response.fail_status);
         setBuy({
           ...buy,
           isError: true,
@@ -128,17 +128,17 @@ const NFTLootBuy = ({
     }
   };
 
-  const handleSuccess = () => {
-    setLootBuyPop(!lootBuyPop);
-    setSuccess(false);
-    setBuyQuantity("");
-    setBuyAmount(0);
-    setBuy({
-      ...buy,
-      amountClass: "",
-      buttonDisable: true,
-    });
-  };
+  // const handleSuccess = () => {
+  //   setLootBuyPop(!lootBuyPop);
+  //   setSuccess(false);
+  //   setBuyQuantity("");
+  //   setBuyAmount(0);
+  //   setBuy({
+  //     ...buy,
+  //     amountClass: "",
+  //     buttonDisable: true,
+  //   });
+  // };
 
   const handleBuyInputChange = (e) => {
     // let count = category.category_detail.total_user_buys
