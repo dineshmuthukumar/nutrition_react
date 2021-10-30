@@ -110,9 +110,16 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
         onClick={(e) => {
           e.preventDefault();
           onClick(e);
+          setNotiRead(true);
         }}
       >
         <BiBell size={25} color={"white"} />
+
+        {!notiRead && (
+          <>
+            <span className="nofi-color"> </span>
+          </>
+        )}
       </div>
     );
   });
