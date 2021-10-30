@@ -36,7 +36,7 @@ const NFTBaseDetails = ({
   return (
     <>
       <div className="creator mt-3">
-        Amitabh Bachchan
+        {nft.category_name} | Amitabh Bachchan
         <ToolTip
           icon={<FaCheckCircle size={16} className="ms-2 check-icon" />}
           content="Verified Artist"
@@ -51,8 +51,13 @@ const NFTBaseDetails = ({
 
         <ToolTip
           icon={
-            <div className="discord">
-              <div className="count">22</div>
+            <div
+              className="discord"
+              onClick={() =>
+                window.open("https://discord.com/invite/87s8ReJ5FA", "_blank")
+              }
+            >
+              {/* <div className="count">22</div> */}
               <DiscordSvg />
             </div>
           }

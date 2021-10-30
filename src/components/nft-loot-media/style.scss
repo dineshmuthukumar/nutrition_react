@@ -102,8 +102,10 @@
   border-radius: 4px;
   justify-content: center;
   align-items: center;
+  height: calc(100vh - 8.5rem) !important;
   @media screen and (max-width: 991px) {
     min-height: calc(100vh - 20rem);
+    height: 100% !important;
   }
 }
 .show_height {

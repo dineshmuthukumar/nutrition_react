@@ -30,19 +30,24 @@
       margin-right: 1rem;
       margin-bottom: 2rem;
       min-width: 100%;
+      max-width: 100%;
       display: flex;
       flex-direction: column;
       @media screen and (max-width: 559px) {
         min-width: 100%;
+        max-width: 100%;
       }
       @media screen and (min-width: 560px) {
         min-width: calc(50% - 1rem);
+        max-width: calc(50% - 1rem);
       }
       @media screen and (min-width: 992px) {
         min-width: calc(33.3333% - 1rem);
+        max-width: calc(33.3333% - 1rem);
       }
       @media screen and (min-width: 1024px) {
         min-width: calc(25% - 1rem);
+        max-width: calc(25% - 1rem);
       }
 
       &:last-child {
@@ -59,14 +64,26 @@
         font-size: 1.8rem;
         font-family: $neue-helveticabold;
         position: relative;
+        display: flex;
+        align-items: center;
+        .right-content {
+          width: calc(100% - 8rem);
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
 
         .left-count {
-          position: absolute;
+          // position: absolute;
           color: #f21e00;
           right: 0;
           font-family: $neue-helveticabold;
           font-size: 1rem;
           top: 0.5em;
+          width: 8rem;
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
         }
       }
       .more-nft-desc {

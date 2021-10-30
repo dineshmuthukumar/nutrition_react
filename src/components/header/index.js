@@ -104,7 +104,7 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
   const NotificationToggleComponent = React.forwardRef(({ onClick }, ref) => {
     return (
       <div
-        className={`p-2 ${notification ? "theme-color rounded-circle" : ""}`}
+        className={`${notification ? "theme-color rounded-circle" : ""}`}
         ref={ref}
         role="button"
         onClick={(e) => {
