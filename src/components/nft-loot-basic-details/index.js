@@ -56,9 +56,9 @@ const NFTLootBaseDetails = ({
       <p className="text-secondary mt-1 mb-5 nft-desc">
         {category.category_detail && (
           <ReadMoreReact
-            min={40}
-            ideal={40}
-            max={150}
+            min={200}
+            ideal={200}
+            max={550}
             text={category.category_detail.description}
           />
         )}

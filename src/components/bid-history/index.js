@@ -149,7 +149,7 @@ const BidHistory = ({ nft, histories = [], isAuctionEnded, totalCount }) => {
               <img src={amitabh} alt="" />
               <div className="nft-owner-history-details">
                 <div className="publish-time text-secondary">
-                  {dayjs(nft.auction_start_time).format("MMM D, YYYY hh:mma")}
+                  {dayjs(nft.auction_start_time).format("MMM D, YYYY hh:mm A")}
                 </div>
                 <div className="nft-owner">
                   Bid listed by <BidName text="@amitabhbachchan" static_name />
@@ -236,7 +236,7 @@ const BidHistory = ({ nft, histories = [], isAuctionEnded, totalCount }) => {
                     </td>
                     <td className="text-center">
                       <div className="date">
-                        {dayjs(history.created_at).format("MMM D, YYYY hh:mma")}
+                        {dayjs(history.created_at).format("MMM D, YYYY hh:mm A")}
                       </div>
                     </td>
                   </tr>
