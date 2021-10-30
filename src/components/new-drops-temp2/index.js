@@ -48,6 +48,7 @@ const NewDropsTemp2 = ({ categories }) => {
   const [loading2, setLoading2] = useState(false);
   const [vEmail, setVEmail] = useState();
   const [vEmail2, setVEmail2] = useState();
+  const [active, setActive] = useState();
 
   // const sendEmailNewletter = (input) => {
   //   axios.post(process.env.REACT_APP_NEWSLETTER_API, formData)
@@ -124,11 +125,25 @@ const NewDropsTemp2 = ({ categories }) => {
     }
   };
 
-  const exe_scroll_one = () => r_one.current.scrollIntoView();
-  const exe_scroll_two = () => r_two.current.scrollIntoView();
-  const exe_scroll_four = () => r_four.current.scrollIntoView();
-  const exe_scroll_three = () => r_three.current.scrollIntoView();
-  const exe_scroll_email = () => r_email.current.scrollIntoView();
+  const exe_scroll_one = () => {
+    r_one.current.scrollIntoView();
+    setActive("one");
+  };
+  const exe_scroll_two = () => {
+    r_two.current.scrollIntoView();
+    setActive("two");
+  };
+  const exe_scroll_four = () => {
+    r_four.current.scrollIntoView();
+    setActive("four");
+  };
+  const exe_scroll_three = () => {
+    r_three.current.scrollIntoView();
+    setActive("three");
+  };
+  const exe_scroll_email = () => {
+    r_email.current.scrollIntoView();
+  };
 
   const DropTwoDescTwo = () => {
     return (
@@ -213,14 +228,26 @@ const NewDropsTemp2 = ({ categories }) => {
               <div className="app-showcase">
                 <Navbar className="kd-feature-tabs">
                   <div className="nav nav-tabs sticky-tabs">
-                    <Link to="#" className="nav-label" onClick={exe_scroll_one}>
+                    <Link
+                      to="#"
+                      className={`nav-label ${
+                        active === "one" ? "active" : ""
+                      }`}
+                      onClick={exe_scroll_one}
+                    >
                       Collection 1:
                       <span className="main_title">Madhushala - Poetry</span>
                       <span className="sub_title">
                         BigB's Dad's Poetry in Amitabh's Voice!!
                       </span>
                     </Link>
-                    <Link to="#" onClick={exe_scroll_two} className="nav-label">
+                    <Link
+                      to="#"
+                      onClick={exe_scroll_two}
+                      className={`nav-label ${
+                        active === "two" ? "active" : ""
+                      }`}
+                    >
                       Collection 2:
                       <span className="main_title">Win With Thex Loot Box</span>
                       <span className="sub_title">
@@ -228,7 +255,9 @@ const NewDropsTemp2 = ({ categories }) => {
                       </span>
                     </Link>
                     <Link
-                      className="nav-label"
+                      className={`nav-label ${
+                        active === "three" ? "active" : ""
+                      }`}
                       to="#"
                       onClick={exe_scroll_three}
                     >
@@ -239,7 +268,9 @@ const NewDropsTemp2 = ({ categories }) => {
                       </span>
                     </Link>
                     <Link
-                      className="nav-label"
+                      className={`nav-label ${
+                        active === "four" ? "active" : ""
+                      }`}
                       to="#"
                       onClick={exe_scroll_four}
                     >
