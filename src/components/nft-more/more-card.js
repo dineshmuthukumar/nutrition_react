@@ -26,7 +26,7 @@ const MoreCard = ({ nft, isStarted = false, isEnded, time, label }) => {
         }}
       />
       <div className="more-nft-title">
-        {nft.name}
+        <span className="right-content">{nft.name}</span>
         {!erc721 && !isEnded && (
           <span className="left-count">
             {nft.quantity ? `Only ${nft.quantity} left` : "Sold out"}

@@ -205,9 +205,9 @@ input::-webkit-inner-spin-button {
   );
   z-index: 0;
 }
-.show.dropdown .theme-color svg {
-  color: red !important;
-}
+// .show.dropdown .theme-color svg {
+//   color: red !important;
+// }
 .offcanvas {
   z-index: 1050 !important;
 }
@@ -1242,11 +1242,16 @@ input::-webkit-inner-spin-button {
         width: calc(100% - 3.8rem);
         .title {
           font-family: $neue-helveticamedium;
-          font-size: 0.9rem;
+          font-size: 0.95rem;
         }
         .desc {
           font-family: $neue-helveticamedium;
-          font-size: 0.7rem;
+          font-size: 0.8rem;
+        }
+        .noti-time{
+          font-family: $neue-helveticamedium;
+          font-size: 0.8rem;
+          margin-top: 0.3rem;
         }
       }
     }
@@ -1290,6 +1295,7 @@ input::-webkit-inner-spin-button {
   border-radius: 0;
   padding: 0;
   font-size: 1.5rem;
+  margin-right: 1rem;
 }
 .top_bar {
   text-align: center;

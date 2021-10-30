@@ -51,8 +51,8 @@ const NFTBaseDetails = ({
 
         <ToolTip
           icon={
-            <div className="discord">
-              <div className="count">22</div>
+            <div className="discord" onClick={()=> window.open("https://discord.com/invite/87s8ReJ5FA","_blank")}>
+              {/* <div className="count">22</div> */}
               <DiscordSvg />
             </div>
           }
