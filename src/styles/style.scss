@@ -1440,3 +1440,29 @@ input::-webkit-inner-spin-button {
 .popover {
   max-width: 20rem;
 }
+
+
+@media screen and (min-width: 376px) {
+  #drop_inner {
+    display: none;
+  }
+  #drop_outer {
+    display: block;
+    padding: 0;
+    margin-right: 1rem;
+    border: none !important;
+  }
+}
+@media screen and (max-width: 375px) {
+  #drop_outer,
+  .user-name {
+    display: none;
+  }
+  #drop_inner {
+    display: block;
+  }
+  .noti-container.dropdown-menu-end[data-bs-popper] {
+    right: -60px;
+    min-width: 22rem !important;
+  }
+}

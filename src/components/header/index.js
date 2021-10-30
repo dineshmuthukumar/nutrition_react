@@ -276,6 +276,13 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
                   <>
                     {user.login ? (
                       <>
+                        <Nav.Link
+                          id="drop_outer"
+                          href={process.env.REACT_APP_AMITABH_URL}
+                          target="_self"
+                        >
+                          Drops
+                        </Nav.Link>
                         <Nav.Link href="#home" className="help_ic">
                           <BiHelpCircle
                             size={25}
@@ -356,6 +363,13 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
 
                           <Dropdown.Menu align="end">
                             <UserComponent user={state.user.data.user} />
+                            <Dropdown.Item
+                              id="drop_inner"
+                              href={process.env.REACT_APP_AMITABH_URL}
+                              target="_self"
+                            >
+                              Drops
+                            </Dropdown.Item>
                             <Dropdown.Item
                               as="button"
                               onClick={() =>

@@ -55,7 +55,7 @@ const Explore = ({ list = [], handleClick, hasMore }) => {
                       <ul className="nav user-nav">
                         <li className="nav-item">
                           <a
-                            className="nav-link active px-5"
+                            className="nav-link active"
                             aria-current="page"
                             href="#"
                           >
