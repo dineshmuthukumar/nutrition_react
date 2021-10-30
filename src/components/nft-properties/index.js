@@ -10,21 +10,42 @@ const NFTProperties = ({ properties }) => {
         Properties
         {properties && (
           <span className="title-count">
-            ({Object.keys(properties).length})
+            {(() => {
+              if (properties && typeof properties === "string") {
+                let propertiesData = JSON.parse(properties);
+                return `(${Object.keys(propertiesData).length})`;
+              } else {
+                return `(${Object.keys(properties).length})`;
+              }
+            })()}
           </span>
         )}
       </div>
 
       <div className="mt-2 nft-props-content">
-        {properties &&
-          Object.keys(properties).map((property) => {
-            return (
-              <NFTPropPills
-                property={properties[property]}
-                propertyType={property}
-              />
-            );
-          })}
+        {(() => {
+          if (properties && typeof properties === "string") {
+            let propertiesData = JSON.parse(properties);
+            console.log(propertiesData);
+            return Object.keys(propertiesData).map((property) => {
+              return (
+                <NFTPropPills
+                  property={propertiesData[property]}
+                  propertyType={property}
+                />
+              );
+            });
+          } else {
+            return Object.keys(properties).map((property) => {
+              return (
+                <NFTPropPills
+                  property={properties[property]}
+                  propertyType={property}
+                />
+              );
+            });
+          }
+        })()}
       </div>
     </div>
   );
