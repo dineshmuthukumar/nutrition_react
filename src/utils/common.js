@@ -34,7 +34,7 @@ export const abbreviateNumber = (value) => {
         break;
       }
     }
-    if (shortValue % 1 !== 0) shortValue = shortValue.toFixed(1);
+    if (shortValue % 1 !== 0) shortValue = parseFloat(shortValue).toFixed(1);
     newValue = shortValue + suffixes[suffixNum];
   }
   return newValue;
