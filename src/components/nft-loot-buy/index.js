@@ -422,7 +422,7 @@ const NFTLootBuy = ({
                           className="btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop "
                           onClick={() =>
                             window.open(
-                              `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`,
+                              `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/mynft`,
                               "_blank"
                             )
                           }
