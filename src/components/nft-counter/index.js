@@ -16,6 +16,8 @@ function NFTCounter({
     } else {
       difference = +new Date(input) - +new Date();
     }
+
+    difference = +new Date(input) - +new Date();
     let timeLeft = {
       days: 0,
       hours: 0,
