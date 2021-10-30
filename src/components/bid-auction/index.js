@@ -3,7 +3,13 @@ import NFTCounter from "../nft-counter";
 
 import "./style.scss";
 
-const BidAuction = ({ status, bottomTitle, bottomValue, time }) => {
+const BidAuction = ({
+  status,
+  bottomTitle,
+  bottomValue,
+  time,
+  userTotalBuys,
+}) => {
   return (
     <div className="bid-auction">
       <div className="bid-auction-content">
@@ -16,7 +22,8 @@ const BidAuction = ({ status, bottomTitle, bottomValue, time }) => {
         ) : (
           <>
             This <br /> auction <br />
-            has ended
+            has ended <br />
+            {userTotalBuys && `You've bought ${userTotalBuys} NFTs`}
           </>
         )}
       </div>

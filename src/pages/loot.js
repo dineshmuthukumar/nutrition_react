@@ -7,6 +7,7 @@ import NFTLootMedia from "../components/nft-loot-media";
 import Header from "../components/header";
 import { NFTLoader } from "../components/nft-basic-details/content-loader";
 import { nftCategoryDetailApi } from "../api/methods";
+import { buyDetail } from "../api/actioncable-methods";
 
 const Loot = () => {
   const { slug } = useParams();
@@ -17,10 +18,20 @@ const Loot = () => {
   const [soldOut, setSoldOut] = useState(false);
   const [loader, setLoader] = useState(true);
   const [lootBuyPop, setLootBuyPop] = useState(false);
+  const [availableQty, setAvailableQty] = useState(null);
 
   useEffect(() => {
     nftCategoryDetail(slug);
   }, [slug]);
+
+  useEffect(() => {
+    buyDetail(slug, (data) => {
+      setAvailableQty(data.quantity);
+      if (data.quantity === 0) {
+        setSoldOut(true);
+      }
+    });
+  }, []);
 
   const nftCategoryDetail = async (slug) => {
     try {
@@ -67,6 +78,7 @@ const Loot = () => {
                   category={category}
                   lootBuyPop={lootBuyPop}
                   setLootBuyPop={setLootBuyPop}
+                  availableQty={availableQty}
                   isAuctionStarted={isAuctionStarted}
                   isAuctionEnded={isAuctionEnded}
                   auctionEndTime={auctionEndTime}

@@ -203,6 +203,10 @@ p.small-title {
 
   background-color: #fff;
 }
+.sw_3 .nav-tabs a.nav-label:last-child:after {
+  width: 0 px;
+}
+
 .sw_3 .nav-tabs a {
   border: none;
   border-top: none !important;
@@ -708,8 +712,8 @@ span.seperator {
     color: #fff;
   }
   .sw_ab_1 .learnMore a {
-    color: #fff;
     border: 1px solid #fff;
+    margin-right: 0;
   }
   .dr_baner {
     display: block;
