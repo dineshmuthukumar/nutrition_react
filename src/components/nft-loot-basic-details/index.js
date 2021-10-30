@@ -44,7 +44,12 @@ const NFTLootBaseDetails = ({
 
         <ToolTip
           icon={
-            <div className="discord" onClick={()=> window.open("https://discord.com/invite/87s8ReJ5FA","_blank")}>
+            <div
+              className="discord"
+              onClick={() =>
+                window.open("https://discord.com/invite/87s8ReJ5FA", "_blank")
+              }
+            >
               {/* <div className="count">22</div> */}
               <DiscordSvg />
             </div>
@@ -85,7 +90,7 @@ const NFTLootBaseDetails = ({
         )}
         {!isAuctionEnded && isAuctionStarted && (
           <NFTTimeLeft
-            title="End of Auction"
+            title="End of Buying Window"
             tooltipText="NFT Loot Auction"
             time={auctionEndTime}
             handleTimer={handleAuctionEndTimer}
