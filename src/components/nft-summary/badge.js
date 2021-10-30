@@ -27,12 +27,12 @@ const Badge = ({ title, value, currency, diff, tooltip }) => {
             {diff > 0 ? (
               <span className="value-diff-range green">
                 <BiUpArrowAlt />
-                {diff}
+                {`${diff}%`}
               </span>
             ) : (
               <span className="value-diff-range red">
                 <BiDownArrowAlt />
-                {diff}
+                {`${diff}%`}
               </span>
             )}
           </>
