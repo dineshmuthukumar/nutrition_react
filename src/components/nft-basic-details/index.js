@@ -67,7 +67,7 @@ const NFTBaseDetails = ({
       </div>
       <p className="text-secondary mt-1 mb-5 nft-desc">
         {nft.description && (
-          <ReadMoreReact min={40} ideal={40} max={150} text={nft.description} />
+          <ReadMoreReact min={200} ideal={200} max={550} text={nft.description} />
         )}
       </p>
 

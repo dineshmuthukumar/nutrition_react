@@ -18,7 +18,7 @@ const Explore = ({ list = [], handleClick, hasMore }) => {
     if (name.includes("Madhushala")) {
       setExplore({
         title: "Madhushala NFTs",
-        description: `BeyondLife.club brings you the philosophical undertones of Madhushala in Amitabh's baritone as an NFT! Now you can own a recorded version of Madhushala, curated by Amitabh Bachchan himself. By owning this one-of-a-kind NFT, you're owning a segment of this legend's history in his own voice, and an 86-year-old iconic and epoch-making metaphorical Hindi poetry!`,
+        description: `Madhushala is a poetic confluence of romance and philosophy, penned by Amit-Ji’s dad Shri. Harivansh Rai Bachchan!        `,
       });
     } else if (name.includes("Posters")) {
       setExplore({
@@ -55,7 +55,7 @@ const Explore = ({ list = [], handleClick, hasMore }) => {
                       <ul className="nav user-nav">
                         <li className="nav-item">
                           <a
-                            className="nav-link active px-5"
+                            className="nav-link active"
                             aria-current="page"
                             href="#"
                           >

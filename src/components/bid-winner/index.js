@@ -87,7 +87,7 @@ const BidWinner = ({ winner, histories }) => {
           <div className="sold-on">
             <div className="sold-on-title">NFT sold on</div>
             <div className="sold-on-value">
-              {dayjs(winner.sold_at).format("MMM D, YYYY hh:mma")}
+              {dayjs(winner.sold_at).format("MMM D, YYYY hh:mm A")}
             </div>
           </div>
         </div>
@@ -102,7 +102,7 @@ const BidWinner = ({ winner, histories }) => {
           <div className="lastbid-right">
             <div className="lastbid-date-title">Last Bid Date</div>
             <div className="lastbid-date-value">
-              {dayjs(winner.last_bid_at).format("MMM D, YYYY hh:mma")}
+              {dayjs(winner.last_bid_at).format("MMM D, YYYY hh:mm A")}
             </div>
           </div>
         </div>
@@ -195,7 +195,7 @@ const BidWinner = ({ winner, histories }) => {
                     </td>
                     <td className="text-center">
                       <div className="date">
-                        {dayjs(history.created_at).format("MMM D, YYYY hh:mma")}
+                        {dayjs(history.created_at).format("MMM D, YYYY hh:mm A")}
                       </div>
                     </td>
                   </tr>
