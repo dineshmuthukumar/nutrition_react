@@ -17,20 +17,18 @@ const Explore = ({ list = [], handleClick, hasMore }) => {
   useEffect(() => {
     if (name.includes("Madhushala")) {
       setExplore({
-        title: "Madhushala Collections",
-        description: `BeyondLife.club brings you the philosophical undertones of Madhushala in
-        Amitabh's baritone as an NFT!. Now you can own a recorded version of
-        Madhushala, curated by Amitabh Bachchan himself.`,
+        title: "Madhushala NFTs",
+        description: `BeyondLife.club brings you the philosophical undertones of Madhushala in Amitabh's baritone as an NFT! Now you can own a recorded version of Madhushala, curated by Amitabh Bachchan himself. By owning this one-of-a-kind NFT, you're owning a segment of this legend's history in his own voice, and an 86-year-old iconic and epoch-making metaphorical Hindi poetry!`,
       });
     } else if (name.includes("Posters")) {
       setExplore({
-        title: "Autographed Posters",
-        description: `Now you can own an original movie poster of India’s legendary icon, hand-painted by a few authentic artists whose work will amaze you in every way. The cult value of their masterpieces is a statement of ethnicity, authenticity, Indian cinema’s legacy, and beyond.`,
+        title: "Autographed Physical Posters",
+        description: `Now you can own a video of Amitabh signing an original movie poster of his iconic movies, hand-painted by a few authentic artists whose work will amaze you in every way. The cult value of their masterpieces is a statement of ethnicity, authenticity, Indian cinema's legacy, and beyond.`,
       });
     } else {
       setExplore({
-        title: "Crypto Punks",
-        description: `Let’s admit it! Amitabh, in every Avatar, has been a success! Be it the classic ‘Angry Young Man’, or the modern French-bearded Godfather with his signature ‘Devion or Sajjanon’, or the Twitter personality who numbers his Tweets, the Big B can never be off trends!`,
+        title: "BigB Punks and NFT Arts",
+        description: `Let's admit it! Amitabh, in every avatar, has been a success! Be it the classic ‘Angry Young Man', or the modern French-bearded Godfather with his signature 'DEVIYON aur SAJJANO', or the Twitter personality who numbers his Tweets, the BigB can never be off trends!`,
       });
     }
   }, [name]);

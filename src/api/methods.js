@@ -1,6 +1,6 @@
 import appAxios from "./axios-utils";
 
-export const nftCategoriesApi = ({ page }) =>
+export const nftCategoriesApi = (page) =>
   appAxios.get(`/categories?page=${page}`);
 
 export const nftCategoryDetailApi = ({ slug }) =>

@@ -16,6 +16,7 @@ const NFTLootBaseDetails = ({
   category,
   lootBuyPop,
   setLootBuyPop,
+  availableQty,
   isAuctionStarted,
   isAuctionEnded,
   soldOut,
@@ -101,7 +102,11 @@ const NFTLootBaseDetails = ({
         <hr className="custom-divider" />
         <BidValue
           title="Edition(s)"
-          value={`${category.category_detail.quantity} / ${category.category_detail.total_quantity}`}
+          value={
+            availableQty >= 0 && availableQty != null
+              ? `${availableQty} / ${category.category_detail.total_quantity}`
+              : `${category.category_detail.quantity} / ${category.category_detail.total_quantity}`
+          }
         />
 
         <hr className="custom-divider" />

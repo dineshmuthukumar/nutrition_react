@@ -257,7 +257,6 @@ const Details = () => {
             <div className="col-12">
               <NFTSummary
                 nft={nft}
-                // socketData={socketData}
                 totalBid={totalBid}
                 bidChange={bidChange}
                 totalBuy={totalBuy}
@@ -333,6 +332,15 @@ const Details = () => {
                             return totalBuy
                               ? `${totalBuy} / unlimited`
                               : `${nft.total_buys}  / unlimited`;
+                          }
+                        })()}
+                        userTotalBuys={(() => {
+                          if (userTotalBuys) {
+                            return userTotalBuys;
+                          } else if (nft.total_user_buys) {
+                            return nft.total_user_buys;
+                          } else {
+                            return 0;
                           }
                         })()}
                       />
