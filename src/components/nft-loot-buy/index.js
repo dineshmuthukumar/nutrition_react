@@ -393,8 +393,7 @@ const NFTLootBuy = ({
                         {currencyFormat(
                           category.category_detail.buy_amount,
                           "USD"
-                        )}{" "}
-                        X {successData.quantity}
+                        )}
                       </div>
                     </div>
                     <div className="success-summary">
