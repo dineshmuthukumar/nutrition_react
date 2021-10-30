@@ -8,11 +8,8 @@
   min-height: calc(100vh - 10rem) !important;
   position: relative;
   overflow: hidden;
-  @media screen and (min-width:3066px) {
-    min-height: calc(100vh) !important; 
-  }
   @media screen and (max-width:1440px) {
-    min-height: calc(100vh - 6rem) !important; 
+    min-height: calc(100vh) !important; 
   }
 
   // .winner-text {
