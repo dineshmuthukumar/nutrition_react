@@ -390,10 +390,7 @@ const NFTLootBuy = ({
                     <div className="success-summary">
                       <div>Price of the Loot</div>
                       <div className="bold">
-                        {currencyFormat(
-                          category.category_detail.buy_amount,
-                          "USD"
-                        )}
+                        {currencyFormat(buyAmount, "USD")}
                       </div>
                     </div>
                     <div className="success-summary">
