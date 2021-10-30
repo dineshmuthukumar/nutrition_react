@@ -232,7 +232,7 @@ const BidHistory = ({ nft, histories = [], isAuctionEnded, totalCount }) => {
                       </div>
                     </td>
                     <td className="text-center text-success">
-                      {history.bid_change}
+                      {`${history.bid_change}%`}
                     </td>
                     <td className="text-center">
                       <div className="date">

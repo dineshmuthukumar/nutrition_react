@@ -191,7 +191,7 @@ const BidWinner = ({ winner, histories }) => {
                       </div>
                     </td>
                     <td className="text-center text-success">
-                      {history.bid_change}
+                      {`${history.bid_change}%`}
                     </td>
                     <td className="text-center">
                       <div className="date">
