@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -65,6 +65,27 @@ const Details = () => {
 
   const { user } = useSelector((state) => state.user.data);
 
+  const inputRef = useRef();
+
+  const scrollHandler = () => {
+    const position = inputRef.current.getBoundingClientRect();
+
+    if (position.top <= 0) {
+      updateSubHeader(true);
+      localStorage.setItem("sub-header", "true");
+    } else {
+      updateSubHeader(false);
+      localStorage.setItem("sub-header", "false");
+    }
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", scrollHandler, true);
+    return () => {
+      window.removeEventListener("scroll", scrollHandler, true);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   useEffect(() => {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
@@ -104,17 +125,7 @@ const Details = () => {
 
     nftDetail(slug);
     nftMore();
-    if (typeof window !== "undefined") {
-      window.addEventListener("scroll", () => {
-        if (window.pageYOffset > 800) {
-          updateSubHeader(true);
-          localStorage.setItem("sub-header", "true");
-        } else {
-          updateSubHeader(false);
-          localStorage.setItem("sub-header", "false");
-        }
-      });
-    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -212,6 +223,7 @@ const Details = () => {
       ) : (
         <Header />
       )}
+
       {loader ? (
         <NFTLoader />
       ) : (
@@ -254,7 +266,7 @@ const Details = () => {
             </div>
           </div>
           <div className="row mt-5">
-            <div className="col-12">
+            <div className="col-12" ref={inputRef}>
               <NFTSummary
                 nft={nft}
                 totalBid={totalBid}
