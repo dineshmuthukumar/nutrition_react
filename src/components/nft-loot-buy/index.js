@@ -393,19 +393,18 @@ const NFTLootBuy = ({
                         {currencyFormat(
                           category.category_detail.buy_amount,
                           "USD"
-                        )}{" "}
-                        X {successData.quantity}
+                        )}
                       </div>
                     </div>
                     <div className="success-summary">
                       <div>Bought On</div>
                       <div className="bold">
-                        {dayjs(successData.time).format("MMM D, YYYY hh:mma")}
+                        {dayjs(successData.time).format("MMM D, YYYY hh:mm A")}
                       </div>
                     </div>
 
                     {/* <div className="success-summary">
-                      <div>Transaction Id.</div>
+                      <div>Transaction ID</div>
                       <div className="bold">{successData.transaction_id}</div>
                     </div> */}
                   </div>

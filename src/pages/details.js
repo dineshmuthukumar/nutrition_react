@@ -67,17 +67,6 @@ const Details = () => {
 
   const inputRef = useRef();
 
-  const scrollHandler = () => {
-    const position = inputRef.current.getBoundingClientRect();
-
-    if (position.top <= 0) {
-      updateSubHeader(true);
-      localStorage.setItem("sub-header", "true");
-    } else {
-      updateSubHeader(false);
-      localStorage.setItem("sub-header", "false");
-    }
-  };
   useEffect(() => {
     window.addEventListener("scroll", scrollHandler, true);
     return () => {
@@ -85,6 +74,17 @@ const Details = () => {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const scrollHandler = () => {
+    const position = inputRef.current?.getBoundingClientRect();
+    if (position?.top <= 0) {
+      updateSubHeader(true);
+      localStorage.setItem("sub-header", "true");
+    } else {
+      updateSubHeader(false);
+      localStorage.setItem("sub-header", "false");
+    }
+  };
 
   useEffect(() => {
     document.body.scrollTop = 0;

@@ -15,14 +15,14 @@ const NFTArtist = () => {
           <img className="artist-img" src={artistImg} alt="artist logo" />
         </div>
         <div className="col-12 col-md-7 mt-4 mt-md-0 artist-details-content">
-          <div className="artist-name">Amitabh Bachchan</div>
-          <div className="at-name">@AmitabhBachchan</div>
+          <div className="artist-name">The Inspiration</div>
+          <div className="at-name">Amitabh Bachchan</div>
           <div className="artist-desc mt-5">
             <ReadMoreReact
               min={300}
               ideal={300}
               max={700}
-              text={`Amitabh Bachchan is an Indian actor, film producer, television host, occasional playback singer and former politician known for his work in Hindi cinema. He is regarded as one of the most influential actors in the history of Indian cinema.`}
+              text={`Amitabh Bachchan is, without question, the most influential film personality of the last century. In an illustrious career that spans four decades, he’s donned multiple portfolios like acting, production, television hosting, and singing!`}
             />
           </div>
           <div className="artist-pill-container mt-4">

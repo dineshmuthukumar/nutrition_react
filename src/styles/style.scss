@@ -1318,15 +1318,15 @@ input::-webkit-inner-spin-button {
       a {
         color: #ff3462;
         font-weight: normal;
-        font-size: 1.15rem;
+        font-size: 1.6rem;
         line-height: 1.6;
         text-decoration: none;
         font-family: $neue-helveticabold;
         @media screen and (max-width: 767px) {
-          font-size: 1rem;
+          font-size: 1.3rem;
         }
         @media screen and (max-width: 479px) {
-          font-size: 0.8rem;
+          font-size: 1.3rem;
         }
       }
     }
@@ -1439,4 +1439,30 @@ input::-webkit-inner-spin-button {
 
 .popover {
   max-width: 20rem;
+}
+
+
+@media screen and (min-width: 376px) {
+  #drop_inner {
+    display: none;
+  }
+  #drop_outer {
+    display: block;
+    padding: 0;
+    margin-right: 1rem;
+    border: none !important;
+  }
+}
+@media screen and (max-width: 375px) {
+  #drop_outer,
+  .user-name {
+    display: none;
+  }
+  #drop_inner {
+    display: block;
+  }
+  .noti-container.dropdown-menu-end[data-bs-popper] {
+    right: -60px;
+    min-width: 22rem !important;
+  }
 }

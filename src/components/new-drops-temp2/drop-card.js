@@ -49,7 +49,7 @@ const DropCard = ({
             </div>
             <div className="auction-time">
               <p className="heading-S">{auctionTitle}</p>
-              <NFTCounter time={"Nov 01, 2021 00:00:00"} />
+              <NFTCounter time={"Nov 01, 2021 12:00:00"} />
             </div>
             <div className="auction-main">
               <div className="auction-one">
