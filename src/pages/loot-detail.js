@@ -7,6 +7,11 @@ import { NFTLoader } from "../components/nft-basic-details/content-loader";
 import { nftDetailApi } from "../api/methods";
 import NFTLootBoughtDetails from "../components/nft-loot-bought-details";
 import NFTLootBoughtMedia from "../components/nft-loot-bought-media";
+import NFTSectionTitle from "../components/nft-section-title";
+import NFTProperties from "../components/nft-properties";
+import ChainAttributes from "../components/chain-attributes";
+import NFTTags from "../components/nft-tags";
+import LootNFTOwn from "../components/loot-nft-own";
 
 const LootDetail = () => {
   const { slug } = useParams();
@@ -44,6 +49,19 @@ const LootDetail = () => {
               <div className="col-12 col-lg-5">
                 <NFTLootBoughtDetails nft={nft} />
               </div>
+            </div>
+          </div>
+          <NFTSectionTitle title="NFT Details" />
+          <div className="row mt-5">
+            <div className="col-12 col-lg-6 order-lg-2 mb-4">
+              <LootNFTOwn />
+            </div>
+            <div className="col-12 col-lg-6 order-lg-1">
+              <NFTProperties properties={nft.properties} />
+              <div className="mt-5"></div>
+              <ChainAttributes chains={nft.chain_attributes} />
+              <div className="mt-5"></div>
+              <NFTTags tags={nft.tag_names} />
             </div>
           </div>
         </div>

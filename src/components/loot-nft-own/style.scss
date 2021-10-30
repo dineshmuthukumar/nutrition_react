@@ -1,0 +1,148 @@
+@import "../../styles/common";
+
+.bid-winner {
+  background-color: black;
+  color: white;
+  border-radius: 0.5rem;
+  padding: 3rem 3rem 2rem 3rem;
+  min-height: calc(100vh - 10rem) !important;
+  position: relative;
+  overflow: hidden;
+  @media screen and (max-width:1440px) {
+    min-height: calc(100vh) !important; 
+  }
+
+  // .winner-text {
+  //   position: absolute;
+  //   transform: rotate(90deg);
+  //   right: -38%;
+  //   bottom: 20vh !important;
+  //   font-size: 9rem;
+  //   width: 100%;
+  //   text-align: center;
+  //   font-family: $neue-helveticamedium;
+  // }
+
+  .winner-user-details {
+    img {
+      margin-top: 2rem;
+      height: 12rem;
+      width: 12rem;
+      border-radius: 50%;
+      object-fit: cover;
+      // @media screen and (min-width: 3066px) {
+      //   height: 12rem;
+      //   width: 12rem;
+      // }
+    }
+
+    .winner-id {
+      margin-top: 2rem;
+      font-family: $neue-helveticamedium;
+      font-size: 2rem;
+    }
+  }
+
+  .nft-sold-details {
+    margin-top: 2.5rem;
+    display: flex;
+    width: 80%;
+
+    .sold-for {
+      flex: 1;
+
+      .sold-for-title {
+        font-family: $neue-helveticamedium;
+        font-size: 0.9rem;
+      }
+      .sold-for-value {
+        font-family: $neue-helveticamedium;
+        font-size: 1.5rem;
+      }
+    }
+    .sold-on {
+      flex: 1;
+
+      .sold-on-title {
+        font-family: $neue-helveticamedium;
+        font-size: 0.9rem;
+      }
+      .sold-on-value {
+        font-family: $neue-helveticamedium;
+        font-size: 1.5rem;
+      }
+    }
+  }
+  .bid-winner .winner-text {
+    
+}
+  .nft-lastbid-details {
+    margin-top: 2.5rem;
+    display: flex;
+    width: 80%;
+
+    .lastbid-left {
+      flex: 1;
+      .lastbid-title {
+        font-family: $neue-helveticamedium;
+        font-size: 0.9rem;
+      }
+
+      .lastbid-value {
+        font-family: $neue-helveticamedium;
+        font-size: 1.5rem;
+      }
+    }
+
+    .lastbid-right {
+      flex: 1;
+
+      .lastbid-date-title {
+        font-family: $neue-helveticamedium;
+        font-size: 0.9rem;
+      }
+
+      .lastbid-date-value {
+        font-family: $neue-helveticamedium;
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  // .bottom-section {
+  //   position: sticky;
+  //   top: 100vh;
+  //   display: flex;
+  //   justify-content: space-between;
+
+  //   .bidding-history-btn {
+  //     font-size: 0.8rem;
+  //     padding: 0.7rem 1.2rem;
+
+  //     &:hover {
+  //       background-color: white;
+  //       color: black;
+  //     }
+  //   }
+  // }
+}
+
+.bottom-section {
+  position: absolute;
+  width: 100%;
+  bottom: 4% !important;
+}
+.winner-text {
+  position: absolute;
+  transform: rotate(90deg);
+  right: -14rem;
+  top: calc(50% - 7rem) !important;
+  font-size: 9.5rem;
+  font-family: "neue_helveticabold" !important;
+  bottom: auto !important;
+  @media screen and (min-width: 3066px) {
+    right: -12rem;
+    // top: 12.5rem !important;
+    font-size: 8.5rem;
+  }
+}
