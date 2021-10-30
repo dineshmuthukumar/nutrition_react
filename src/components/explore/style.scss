@@ -31,6 +31,11 @@ h3.about-title {
   margin-top: 1rem;
   margin-bottom: 0.6rem;
   line-height: 1.2;
+  overflow: hidden;
+    display: block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
 }
 .post-cost {
   display: flex;
@@ -45,17 +50,19 @@ h3.about-title {
 }
 .post-cost .post-sold-text {
   font-weight: 500;
+  font-size: 1.4em;
 }
 .post-sold-text {
   color: #757575;
 }
-.post-cost{
+.post-cost {
   .post-sold-cost {
     font-size: 1.2rem;
     font-weight: 500;
     font-family: $neue-helveticabold;
     .nft-counter {
-      .counter-time,.counter-interval{
+      .counter-time,
+      .counter-interval {
         font-size: 1.2rem;
       }
     }
@@ -85,6 +92,7 @@ h3.about-title {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  font-size: 1.4em;
 }
 .left-bid {
   width: 80%;
@@ -96,6 +104,10 @@ h3.about-title {
   height: 35rem;
   width: 100%;
   object-fit: cover;
+  transition: 0.5s;
+}
+.item-post img:hover {
+  opacity: 0.8;
 }
 .h_nft .item-post img {
   max-height: 40rem;

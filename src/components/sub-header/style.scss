@@ -21,23 +21,39 @@
   .sub-head-title {
     display: flex;
     align-items: center;
+    @media screen and (max-width: 425px) {
+      width: calc(100% - 11rem);
+    }
 
     img {
       height: 3rem;
       width: 3rem;
       object-fit: cover;
       border-radius: 50%;
-      margin-right: 1rem;
+      margin-right: 0.5rem;
+      min-width: 3rem;
     }
 
     .nft-head-details {
       .sub-creator-title {
         font-family: $neue-helveticamedium;
         font-size: 1rem;
+        @media screen and(max-width: 425px) {
+          width: calc(100% - 2rem);
+          overflow: hidden;
+          display: block;
+          text-overflow: ellipsis;
+        }
       }
       .sub-nft-title {
         font-family: $neue-helveticamedium;
         font-size: 1.5rem;
+        @media screen and(max-width: 425px) {
+          width: calc(100% - 2rem);
+          overflow: hidden;
+          display: block;
+          text-overflow: ellipsis;
+        }
       }
     }
   }

@@ -80,7 +80,7 @@ const NFTLootBuy = ({
           ...buy,
           progressError: "loading",
           processClass: "process",
-          buttonName: "Processing...",
+          buttonName: "In Progress...",
           buttonDisable: true,
         });
         const result = await lootBuyApi({
@@ -146,7 +146,7 @@ const NFTLootBuy = ({
     // let count = category.category_detail.total_user_buys
     //   ? category.category_detail.buy_count - category.category_detail.total_user_buys
     //   : category.category_detail.buy_count;
-    let count = 20;
+    let count = 100;
     if (e.target.value) {
       if (
         validateQuantity(e.target.value) &&
@@ -292,7 +292,7 @@ const NFTLootBuy = ({
                   {/* error-bid -> less value than min bid,  error-balance -> low value, error-balance-float -> low value in quantity  */}
                   <div className={`input-bid-container mt-5 ${error}`}>
                     <label className="input-bid-text">
-                      Enter Quantity (Max of 20 at a time)
+                      Enter Quantity (Max of 100 at a time)
                     </label>
 
                     <div className="input-quantity-container">
@@ -393,7 +393,8 @@ const NFTLootBuy = ({
                         {currencyFormat(
                           category.category_detail.buy_amount,
                           "USD"
-                        )}
+                        )}{" "}
+                        X {successData.quantity}
                       </div>
                     </div>
                     <div className="success-summary">

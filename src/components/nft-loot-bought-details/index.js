@@ -5,6 +5,7 @@ import { FaCheckCircle } from "react-icons/fa";
 
 import BidValue from "../bid-value";
 import ToolTip from "../tooltip";
+import NFTTimeLeft from "../nft-time-left";
 import { ReactComponent as DiscordSvg } from "./../../icons/discord_logo.svg";
 import { currencyFormat } from "../../utils/common";
 
@@ -58,7 +59,25 @@ const NFTLootBoughtDetails = ({ nft }) => {
           />
         </div>
         <hr className="custom-divider" />
-        <BidValue title="Bought quantity" value={nft.total_user_buys} />
+        <div className="d-flex">
+          <NFTTimeLeft
+            title="Bought on"
+            tooltipText="NFT Bought date"
+            time={new Date()}
+            isEnded={true}
+          />
+        </div>
+        <hr className="custom-divider" />
+        <div className="d-flex">
+          <BidValue
+            title="You Owned"
+            value={
+              nft.total_user_buys &&
+              `${nft.total_user_buys} / ${nft.total_quantity}`
+            }
+          />
+        </div>
+        <hr className="custom-divider" />
       </div>
     </>
   );

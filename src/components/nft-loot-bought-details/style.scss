@@ -15,7 +15,6 @@
   font-family: $neue-helveticamedium;
   margin-top: 0em !important;
 
-
   .check-icon {
     margin-top: -7px;
     height: 1rem !important;
@@ -33,19 +32,20 @@
 
 .read-more-button {
   cursor: pointer;
+  color: #004fff;
 }
 
 .bottom-content {
   position: sticky;
   top: 100vh;
-  .d-flex{
-    @media screen and (max-width: 425px ) {
+  .d-flex {
+    @media screen and (max-width: 425px) {
       flex-direction: column;
-      .current-bid{
-        &:first-child{
+      .current-bid {
+        &:first-child {
           margin: 0.5rem 0 0.5rem 0;
         }
-        &:last-child{
+        &:last-child {
           border-top: 2px solid #000000 !important;
           opacity: 1;
           margin: 0.5rem 0 0.5rem 0;
@@ -54,7 +54,6 @@
       }
     }
   }
-  
 }
 
 .place-bid-btn {
@@ -84,13 +83,11 @@
 //   padding-left: 1rem;
 //   padding-right: 1rem;
 
-
 //   &:hover {
 //     background-color: #ffffff;
 //     color: rgb(236, 41, 41) !important;
 //   }
 // }
-
 
 .recharge-btn {
   font-family: $neue-helveticamedium;
@@ -103,7 +100,6 @@
     color: rgb(236, 41, 41) !important;
   }
 }
-
 
 .nft-title-container {
   display: flex;
@@ -168,5 +164,7 @@
   .fit-to-height {
     height: auto;
   }
-  .creator{ margin-top: 2rem !important;}
+  .creator {
+    margin-top: 2rem !important;
+  }
 }

@@ -27,7 +27,7 @@ const SubHeader = ({
         sticky="top"
         className="border-bottom sub-header-nft"
       >
-        <Container fluid>
+        <Container fluid className="topbanner-box">
           <Navbar.Brand role="button" className="sub-head-title">
             <img
               alt="asset info logo"
@@ -42,17 +42,29 @@ const SubHeader = ({
             <div className="nft-head-details">
               <div className="sub-nft-title">{nft?.name}</div>
               <div className="sub-creator-title ">
-                {erc721 ? "Current Bid " : "NFTs Price "}
+                {(() => {
+                  if (erc721) {
+                    if (!isAuctionStarted && !isAuctionEnded) {
+                      return "Minimum Bid ";
+                    } else if (isAuctionStarted && !isAuctionEnded) {
+                      return "Current Bid ";
+                    } else {
+                      return "Last Bid ";
+                    }
+                  } else {
+                    return "NFTs Price ";
+                  }
+                })()}
                 {erc721
                   ? currencyFormat(nft.minimum_bid, "USD")
                   : currencyFormat(nft.buy_amount, "USD")}
               </div>
             </div>
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          {/* <Navbar.Toggle aria-controls="basic-navbar-nav" /> */}
 
-          <Navbar.Collapse className="justify-content-end align-items-center">
-            {/* <Navbar.Text>
+          {/* <Navbar.Collapse className="justify-content-end align-items-center"> */}
+          {/* <Navbar.Text>
               <div className="text-end sub-head-right">
                 <div className="bid-title">
                   {erc721 ? "Current Bid" : "NFTs Price"}
@@ -64,102 +76,102 @@ const SubHeader = ({
                 </div>
               </div>
             </Navbar.Text> */}
-            <Navbar.Text>
-              {(() => {
-                if (parseFloat(user?.balance) <= 0) {
-                  return (
-                    <button
-                      disabled={isAuctionEnded}
-                      type="button"
-                      className={`btn  ${
-                        isAuctionEnded
-                          ? "btn-dark sub-place-bid-btn"
-                          : "btn-danger text-white recharge-btn"
-                      } btn-lg rounded-pill`}
-                      onClick={() =>
-                        window.open(
-                          `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
-                          "_self"
-                        )
+          <Navbar.Text className="band_btn">
+            {(() => {
+              if (parseFloat(user?.balance) <= 0) {
+                return (
+                  <button
+                    disabled={isAuctionEnded}
+                    type="button"
+                    className={`btn  ${
+                      isAuctionEnded
+                        ? "btn-dark sub-place-bid-btn"
+                        : "btn-danger text-white recharge-btn"
+                    } btn-lg rounded-pill`}
+                    onClick={() =>
+                      window.open(
+                        `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
+                        "_self"
+                      )
+                    }
+                  >
+                    {isAuctionEnded ? "Auction has ended" : "Recharge Wallet"}
+                  </button>
+                );
+              } else if (!user) {
+                return (
+                  <button
+                    disabled={isAuctionEnded}
+                    type="button"
+                    className="btn btn-dark btn-lg rounded-pill sub-place-bid-btn"
+                    onClick={() =>
+                      window.open(
+                        `${process.env.REACT_APP_ACCOUNTS_URL}/signin?redirect=${window.location.href}`,
+                        "_self"
+                      )
+                    }
+                  >
+                    {isAuctionEnded ? "Auction has ended" : "Sign In"}
+                  </button>
+                );
+              } else if (erc721) {
+                return (
+                  <button
+                    disabled={(() => {
+                      if (!isAuctionStarted && !isAuctionEnded) {
+                        return !isAuctionStarted;
+                      } else {
+                        return isAuctionEnded;
                       }
-                    >
-                      {isAuctionEnded ? "Auction has ended" : "Recharge Wallet"}
-                    </button>
-                  );
-                } else if (!user) {
-                  return (
-                    <button
-                      disabled={isAuctionEnded}
-                      type="button"
-                      className="btn btn-dark btn-lg rounded-pill sub-place-bid-btn"
-                      onClick={() =>
-                        window.open(
-                          `${process.env.REACT_APP_ACCOUNTS_URL}/signin?redirect=${window.location.href}`,
-                          "_self"
-                        )
+                    })()}
+                    type="button"
+                    className="btn btn-dark btn-lg rounded-pill sub-place-bid-btn"
+                    onClick={() => setPlaceBidPop(!placeBidPop)}
+                  >
+                    {(() => {
+                      if (!isAuctionStarted && !isAuctionEnded) {
+                        return "Auction has not yet begun";
+                      } else if (isAuctionEnded) {
+                        return "Auction has ended";
+                      } else {
+                        return "Place a Bid";
                       }
-                    >
-                      {isAuctionEnded ? "Auction has ended" : "Sign In"}
-                    </button>
-                  );
-                } else if (erc721) {
-                  return (
-                    <button
-                      disabled={(() => {
-                        if (!isAuctionStarted && !isAuctionEnded) {
-                          return !isAuctionStarted;
-                        } else {
-                          return isAuctionEnded;
-                        }
-                      })()}
-                      type="button"
-                      className="btn btn-dark btn-lg rounded-pill sub-place-bid-btn"
-                      onClick={() => setPlaceBidPop(!placeBidPop)}
-                    >
-                      {(() => {
-                        if (!isAuctionStarted && !isAuctionEnded) {
-                          return "Auction has not yet begun";
-                        } else if (isAuctionEnded) {
-                          return "Auction has ended";
-                        } else {
-                          return "Place a Bid";
-                        }
-                      })()}
-                    </button>
-                  );
-                } else {
-                  return (
-                    <button
-                      disabled={(() => {
-                        if (!isAuctionStarted && !isAuctionEnded) {
-                          return !isAuctionStarted;
-                        } else if (isAuctionEnded) {
-                          return isAuctionEnded;
-                        } else {
-                          return soldOut;
-                        }
-                      })()}
-                      type="button"
-                      className="btn btn-dark btn-lg rounded-pill sub-place-bid-btn"
-                      onClick={() => setPlaceBidPop(!placeBidPop)}
-                    >
-                      {(() => {
-                        if (!isAuctionStarted && !isAuctionEnded) {
-                          return "Auction has not yet begun";
-                        } else if (isAuctionEnded) {
-                          return "Auction has ended";
-                        } else if (soldOut) {
-                          return "Sold Out";
-                        } else {
-                          return "Buy";
-                        }
-                      })()}
-                    </button>
-                  );
-                }
-              })()}
-            </Navbar.Text>
-          </Navbar.Collapse>
+                    })()}
+                  </button>
+                );
+              } else {
+                return (
+                  <button
+                    disabled={(() => {
+                      if (!isAuctionStarted && !isAuctionEnded) {
+                        return !isAuctionStarted;
+                      } else if (isAuctionEnded) {
+                        return isAuctionEnded;
+                      } else {
+                        return soldOut;
+                      }
+                    })()}
+                    type="button"
+                    className="btn btn-dark btn-lg rounded-pill sub-place-bid-btn"
+                    onClick={() => setPlaceBidPop(!placeBidPop)}
+                  >
+                    {(() => {
+                      if (!isAuctionStarted && !isAuctionEnded) {
+                        return "Auction has not yet begun";
+                      } else if (isAuctionEnded) {
+                        return "Auction has ended";
+                      } else if (soldOut) {
+                        return "Sold Out";
+                      } else {
+                        return "Buy";
+                      }
+                    })()}
+                  </button>
+                );
+              }
+            })()}
+          </Navbar.Text>
+          {/* </Navbar.Collapse> */}
         </Container>
       </Navbar>
     </>

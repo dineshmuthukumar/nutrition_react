@@ -1475,3 +1475,19 @@ input::-webkit-inner-spin-button {
   background: #f00;
   border-radius: 50px;
 }
+.topbanner-box {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+@media screen and (max-width: 425px) {
+  .band_btn.navbar-text {
+
+    width: 9rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+  }
+}

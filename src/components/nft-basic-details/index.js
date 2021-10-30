@@ -67,7 +67,12 @@ const NFTBaseDetails = ({
       </div>
       <p className="text-secondary mt-1 mb-5 nft-desc">
         {nft.description && (
-          <ReadMoreReact min={200} ideal={200} max={550} text={nft.description} />
+          <ReadMoreReact
+            min={200}
+            ideal={200}
+            max={550}
+            text={nft.description}
+          />
         )}
       </p>
 
@@ -165,34 +170,47 @@ const NFTBaseDetails = ({
           />
         )}
         <hr className="custom-divider" />
-        {(() => {
-          if (erc721) {
-            return <BidValue title="Limited Edition" value="1 of 1" isLeft />;
-          } else if (nft.total_quantity) {
-            return (
-              <BidValue
-                title="Edition(s)"
-                value={
-                  availableQty >= 0 && availableQty != null
-                    ? `${availableQty} / ${nft.total_quantity}`
-                    : `${nft.quantity} / ${nft.total_quantity}`
-                }
-              />
-            );
-          } else {
-            return (
-              <BidValue
-                title="Unlimited Edition"
-                value={
-                  totalBuy
-                    ? `${totalBuy} / unlimited`
-                    : `${nft.total_buys}  / unlimited`
-                }
-              />
-            );
-          }
-        })()}
-
+        <div className="d-flex">
+          {(() => {
+            if (erc721) {
+              return <BidValue title="Limited Edition" value="1 of 1" isLeft />;
+            } else if (nft.total_quantity) {
+              return (
+                <>
+                  <BidValue
+                    title="Edition(s)"
+                    value={
+                      availableQty >= 0 && availableQty != null
+                        ? `${availableQty} / ${nft.total_quantity}`
+                        : `${nft.quantity} / ${nft.total_quantity}`
+                    }
+                  />
+                  {nft.total_user_buys && (
+                    <BidValue
+                      title="You Owned"
+                      value={
+                        userTotalBuys
+                          ? `${userTotalBuys} / ${nft.total_quantity} NFTs`
+                          : `${nft.total_user_buys} / ${nft.total_quantity} NFTs`
+                      }
+                    />
+                  )}
+                </>
+              );
+            } else {
+              return (
+                <BidValue
+                  title="Unlimited Edition"
+                  value={
+                    totalBuy
+                      ? `${totalBuy} / unlimited`
+                      : `${nft.total_buys}  / unlimited`
+                  }
+                />
+              );
+            }
+          })()}
+        </div>
         <hr className="custom-divider" />
 
         <div className="text-center">

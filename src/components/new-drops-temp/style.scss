@@ -223,6 +223,12 @@ p.small-title {
   text-decoration: none;
   font-family: "neue_helveticabold" !important;
   font-size: 1.3rem;
+  transition: 0.5s;
+}
+.sw_3 .nav-tabs a:hover,
+.sw_3 .nav-tabs a.active {
+  background: #fff !important;
+  color: #000;
 }
 span.main_title {
   margin-left: 5px;
