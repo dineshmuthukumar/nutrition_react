@@ -27,7 +27,7 @@ const SubHeader = ({
         sticky="top"
         className="border-bottom sub-header-nft"
       >
-        <Container fluid>
+        <Container fluid className="topbanner-box">
           <Navbar.Brand role="button" className="sub-head-title">
             <img
               alt="asset info logo"
@@ -49,9 +49,9 @@ const SubHeader = ({
               </div>
             </div>
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          {/* <Navbar.Toggle aria-controls="basic-navbar-nav" /> */}
 
-          <Navbar.Collapse className="justify-content-end align-items-center">
+          {/* <Navbar.Collapse className="justify-content-end align-items-center"> */}
             {/* <Navbar.Text>
               <div className="text-end sub-head-right">
                 <div className="bid-title">
@@ -64,7 +64,7 @@ const SubHeader = ({
                 </div>
               </div>
             </Navbar.Text> */}
-            <Navbar.Text>
+            <Navbar.Text className="band_btn">
               {(() => {
                 if (parseFloat(user?.balance) <= 0) {
                   return (
@@ -159,7 +159,7 @@ const SubHeader = ({
                 }
               })()}
             </Navbar.Text>
-          </Navbar.Collapse>
+          {/* </Navbar.Collapse> */}
         </Container>
       </Navbar>
     </>
