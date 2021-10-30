@@ -1248,7 +1248,7 @@ input::-webkit-inner-spin-button {
           font-family: $neue-helveticamedium;
           font-size: 0.8rem;
         }
-        .noti-time{
+        .noti-time {
           font-family: $neue-helveticamedium;
           font-size: 0.8rem;
           margin-top: 0.3rem;
@@ -1441,7 +1441,6 @@ input::-webkit-inner-spin-button {
   max-width: 20rem;
 }
 
-
 @media screen and (min-width: 376px) {
   #drop_inner {
     display: none;
@@ -1465,4 +1464,14 @@ input::-webkit-inner-spin-button {
     right: -60px;
     min-width: 22rem !important;
   }
+}
+
+.nofi-color {
+  height: 0.7rem;
+  width: 0.7rem;
+  position: absolute;
+  top: 0.3rem;
+  right: 0.7rem;
+  background: #f00;
+  border-radius: 50px;
 }
