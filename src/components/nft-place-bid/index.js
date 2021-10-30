@@ -547,17 +547,23 @@ const NFTPlaceBid = ({
                           user?.balance,
                           "USD"
                         )}`}
-                      {!erc721 && userTotalBuys
-                        ? `You can buy maximum of ${
-                            userTotalBuys
-                              ? nft.buy_count - userTotalBuys
-                              : nft.buy_count
-                          } of this NFT`
-                        : `You can buy maximum of ${
-                            nft.total_user_buys
-                              ? nft.buy_count - nft.total_user_buys
-                              : nft.buy_count
-                          } of this NFT`}
+                      {(() => {
+                        if (!erc721) {
+                          if (userTotalBuys) {
+                            return `You can buy maximum of ${
+                              userTotalBuys
+                                ? nft.buy_count - userTotalBuys
+                                : nft.buy_count
+                            } of this NFT`;
+                          } else {
+                            return `You can buy maximum of ${
+                              nft.total_user_buys
+                                ? nft.buy_count - nft.total_user_buys
+                                : nft.buy_count
+                            } of this NFT`;
+                          }
+                        }
+                      })()}
                     </div>
                   </div>
                   <div className="bottom-area">
