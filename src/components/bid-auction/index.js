@@ -23,7 +23,9 @@ const BidAuction = ({
           <>
             This <br /> auction <br />
             has ended <br />
-            {userTotalBuys && `You've bought ${userTotalBuys} NFTs`}
+            <p className="bought_nft">
+              {userTotalBuys && `You've bought ${userTotalBuys} NFTs`}
+            </p>
           </>
         )}
       </div>

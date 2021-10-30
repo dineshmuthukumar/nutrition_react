@@ -8,16 +8,21 @@
   min-height: calc(100vh - 10rem) !important;
   position: relative;
   overflow: hidden;
-  @media screen and (min-width:3066px) {
-    min-height: calc(100vh) !important; 
+  @media screen and (min-width: 3066px) {
+    min-height: calc(100vh) !important;
   }
-  @media screen and (max-width:1440px) {
-    min-height: calc(100vh - 12rem) !important; 
+  @media screen and (max-width: 1440px) {
+    min-height: calc(100vh - 12rem) !important;
   }
   .bid-auction-content {
     font-family: $neue-helveticamedium;
     font-size: 4.5rem;
     line-height: normal;
+
+    .bought_nft {
+      font-size: 2rem;
+      margin-top: 3rem;
+    }
   }
 
   .bid-aution-bottom {
