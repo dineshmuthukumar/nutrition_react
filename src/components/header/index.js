@@ -276,11 +276,7 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
                   <>
                     {user.login ? (
                       <>
-                        <Nav.Link
-                          id="drop_outer"
-                          href={process.env.REACT_APP_AMITABH_URL}
-                          target="_self"
-                        >
+                        <Nav.Link id="drop_outer" href="/">
                           Drops
                         </Nav.Link>
                         <Nav.Link href="#home" className="help_ic">
