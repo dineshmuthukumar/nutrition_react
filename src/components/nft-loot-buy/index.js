@@ -150,7 +150,10 @@ const NFTLootBuy = ({
     // let count = category.category_detail.total_user_buys
     //   ? category.category_detail.buy_count - category.category_detail.total_user_buys
     //   : category.category_detail.buy_count;
-    let count = 100;
+    let count =
+      category.category_detail.quantity >= 100
+        ? 100
+        : category.category_detail.quantity;
     if (e.target.value) {
       if (
         validateQuantity(e.target.value) &&
@@ -296,7 +299,11 @@ const NFTLootBuy = ({
                   {/* error-bid -> less value than min bid,  error-balance -> low value, error-balance-float -> low value in quantity  */}
                   <div className={`input-bid-container mt-5 ${error}`}>
                     <label className="input-bid-text">
-                      Enter Quantity (Max of 100 at a time)
+                      Enter Quantity (Max of{" "}
+                      {category.category_detail.quantity >= 100
+                        ? 100
+                        : category.category_detail.quantity}{" "}
+                      at a time)
                     </label>
 
                     <div className="input-quantity-container">
