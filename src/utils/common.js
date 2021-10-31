@@ -40,6 +40,12 @@ export const abbreviateNumber = (value) => {
   return newValue;
 };
 
+export const percDiff = (basePrice, newPrice) => {
+  return (
+    100 * Math.abs((basePrice - newPrice) / ((basePrice + newPrice) / 2))
+  ).toFixed(2);
+};
+
 export const validateCurrency = (value) => {
   // const re = /^(\d*)\.?(\d){0,10}$/;
   const re = /^\d*\.?\d{0,2}$/;

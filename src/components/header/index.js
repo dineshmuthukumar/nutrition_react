@@ -521,7 +521,7 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
                 <Nav.Link
                   className="discord_ic"
                   href={`https://discord.com/invite/87s8ReJ5FA`}
-                  target="_self"
+                  target="_blank"
                 >
                   <FaDiscord size={25} />
                   <span>Join Our Discord</span>

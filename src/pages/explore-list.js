@@ -13,6 +13,7 @@ const ExploreList = () => {
   const [hasMore, setHasMore] = useState(false);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [loadingMore, setLoadingMore] = useState(false);
 
   useEffect(() => {
     nftList(page);
@@ -43,11 +44,11 @@ const ExploreList = () => {
         return;
       }
       setPage((page) => page + 1);
-      setLoading(true);
+      setLoadingMore(true);
       let response = await nftListApi({ slug, page });
       setList([...list, ...response.data.data.nfts]);
       setTotalRecords(response.data.data.total_count);
-      setLoading(false);
+      setLoadingMore(false);
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong");
@@ -57,7 +58,13 @@ const ExploreList = () => {
   return (
     <>
       <Header />
-      <Explore list={list} handleClick={fetchMore} hasMore={hasMore} />
+      <Explore
+        list={list}
+        loading={loading}
+        loadingMore={loadingMore}
+        handleClick={fetchMore}
+        hasMore={hasMore}
+      />
     </>
   );
 };

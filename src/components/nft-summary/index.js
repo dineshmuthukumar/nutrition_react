@@ -1,5 +1,5 @@
 import React from "react";
-import { abbreviateNumber, currencyFormat } from "../../utils/common";
+import { abbreviateNumber, currencyFormat, percDiff } from "../../utils/common";
 import Badge from "./badge";
 import "./style.scss";
 
@@ -18,7 +18,29 @@ const NFTSummary = ({
     <div className="bg-white shadow-sm nft-summary">
       <div className="row">
         <div className="d-flex align-items-center justify-content-around flex-wrap flex-row point-box">
-        <div className="p-4 point-list">
+          {erc721 && (
+            <div className="p-4 point-list">
+              <Badge
+                title="Base Price"
+                value={(() => {
+                  if (nft.starting_bid >= 1000) {
+                    return `$${abbreviateNumber(nft.starting_bid)}`;
+                  } else {
+                    return currencyFormat(nft.starting_bid, "USD");
+                  }
+                })()}
+                // diff="+2000"
+                // diff={bidChange ? bidChange : nft.bid_change}
+                diff={
+                  price
+                    ? percDiff(nft.starting_bid, price)
+                    : percDiff(nft.starting_bid, nft.minimum_bid)
+                }
+                tooltip="Base Price"
+              />
+            </div>
+          )}
+          <div className="p-4 point-list">
             {erc721 ? (
               <Badge
                 title="Price"

@@ -1,6 +1,6 @@
 import React from "react";
 import ReadMoreReact from "read-more-react";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { FaCheckCircle } from "react-icons/fa";
 
 import BidValue from "../bid-value";
@@ -12,7 +12,7 @@ import { currencyFormat } from "../../utils/common";
 import "./style.scss";
 
 const NFTLootBoughtDetails = ({ nft }) => {
-  const { user } = useSelector((state) => state.user.data);
+  // const { user } = useSelector((state) => state.user.data);
 
   return (
     <>

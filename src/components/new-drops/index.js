@@ -429,23 +429,29 @@ const NewDrops = ({ categories }) => {
               <div id="socialMedia">
                 <ul className="social-icon-two">
                   <li>
-                    <a href="https://discord.com/invite/87s8ReJ5FA">
+                    <a
+                      target="_blank"
+                      href="https://discord.com/invite/87s8ReJ5FA"
+                    >
                       <FaDiscord />
                     </a>
                   </li>
                   <li>
-                    <a target="_self" href="https://t.me/Beyondlifeclub">
+                    <a target="_blank" href="https://t.me/Beyondlifeclub">
                       <FaTelegramPlane />
                     </a>
                   </li>
                   <li>
-                    <a target="_self" href="https://twitter.com/beyondlifeclub">
+                    <a
+                      target="_blank"
+                      href="https://twitter.com/beyondlifeclub"
+                    >
                       <FaTwitter />
                     </a>
                   </li>
                   <li>
                     <a
-                      target="_self"
+                      target="_blank"
                       href="https://www.facebook.com/BeyondLifeClub-109895114746109"
                     >
                       <FaFacebookF />
@@ -462,7 +468,7 @@ const NewDrops = ({ categories }) => {
                   </li>
                   <li>
                     <a
-                      target="_self"
+                      target="_blank"
                       href="https://medium.com/@BeyondLife.Club"
                     >
                       <FaMediumM />
