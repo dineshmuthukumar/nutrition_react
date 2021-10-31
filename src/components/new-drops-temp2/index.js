@@ -28,7 +28,13 @@ import { sendEmailNewletter } from "../../api/axios-newsletter";
 import { validateEmail } from "./../../utils/common";
 import "../new-drops-temp/style.scss";
 
-const NewDropsTemp2 = ({ categories, setStarted, started }) => {
+const NewDropsTemp2 = ({
+  categories,
+  setStarted,
+  started,
+  ended,
+  setEnded,
+}) => {
   const { user } = useSelector((state) => state.user.data);
   const r_one = useRef(null);
   const r_two = useRef(null);
@@ -49,12 +55,16 @@ const NewDropsTemp2 = ({ categories, setStarted, started }) => {
 
   const [atime, setAtime] = useState(date);
 
-  const end_date = "Nov 03, 2021 01:40:00";
+  const end_date = "Nov 04, 2021 12:00:00";
 
   useEffect(() => {
     if (new Date(date) < new Date()) {
       setAtime(end_date);
       setStarted(true);
+    }
+
+    if (new Date(end_date) < new Date()) {
+      setEnded(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -66,6 +76,10 @@ const NewDropsTemp2 = ({ categories, setStarted, started }) => {
     if (new Date(date) < t) {
       setAtime(end_date);
       setStarted(true);
+    }
+
+    if (new Date(end_date) < t) {
+      setEnded(true);
     }
   };
 
@@ -209,10 +223,43 @@ const NewDropsTemp2 = ({ categories, setStarted, started }) => {
                 by the legend himself.
               </p>
               <div className="learnMore">
-                {!user?.slug && (
-                  <Link className="nav-label" to="#" onClick={exe_scroll_email}>
-                    {started ? "Explore Now" : "Join The Waitlist"}
-                  </Link>
+                {started ? (
+                  <>
+                    {user?.slug ? (
+                      <Link
+                        className="nav-label"
+                        to="#"
+                        onClick={exe_scroll_one}
+                      >
+                        Explore Now
+                      </Link>
+                    ) : (
+                      <Link
+                        className="nav-label"
+                        to="#"
+                        onClick={() =>
+                          window.open(
+                            `${process.env.REACT_APP_ACCOUNTS_URL}/signup`,
+                            "_self"
+                          )
+                        }
+                      >
+                        Register Now
+                      </Link>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    {!user?.slug && (
+                      <Link
+                        className="nav-label"
+                        to="#"
+                        onClick={exe_scroll_email}
+                      >
+                        Join The Waitlist
+                      </Link>
+                    )}
+                  </>
                 )}
 
                 <Link
@@ -312,6 +359,8 @@ const NewDropsTemp2 = ({ categories, setStarted, started }) => {
                 id="madhushala"
                 img={four}
                 started={started}
+                endDate={end_date}
+                isEnded={ended}
                 setCheck={handleCheck}
                 cardTitle="Madhushala NFTs"
                 smallTitle="Amalgamation of Knowledge, Fulfilment of Duties, and Expectations!"
@@ -320,7 +369,13 @@ const NewDropsTemp2 = ({ categories, setStarted, started }) => {
                 dropDescOne="Mr. Harivansh Rai Bachchan (1907–2003), father of Mr. Amitabh Bachchan, wrote Madhushala that depicts the wisdom of Madhu - the Temple of Mind (Madhushala), karma, imbibement of knowledge, fulfilment of duties, and expectations of an individual from the society into beautiful verses."
                 dropDescTwo="Madhushala's Rhyme, Rhythm, and Flavour is still fresh in Amitabh's mind. He believed and witnessed the miracles that this purest form of art brings to society. The love and the respect he holds for Mr.Bachchan in his heart compelled him to recite, sing, and translate stories of Madhushala from time to time. This unique and enthralling audio NFT of Madhushala has one version in Hindi, and one in English!"
                 dropDescThree="The Madhushala NFT is a super-premium NFT presented to you by BeyondLife.club. You will be the one among the two sole owners of the exclusive NFTs - the rendition of Mr. Harivansh's refined poetry in Amitabh's rustic baritone!!"
-                auctionTitle="Auction starting in"
+                auctionTitle={
+                  !started
+                    ? "Auction starting in"
+                    : ended
+                    ? "Auction ended on"
+                    : "Auction ending in"
+                }
                 auctionTime={atime}
                 editionTitle="Edition of"
                 editionType="2/2"
@@ -337,6 +392,8 @@ const NewDropsTemp2 = ({ categories, setStarted, started }) => {
               <DropCard
                 Id={"posters"}
                 started={started}
+                endDate={end_date}
+                isEnded={ended}
                 img={eight}
                 setCheck={handleCheck}
                 isBuy
@@ -347,7 +404,7 @@ const NewDropsTemp2 = ({ categories, setStarted, started }) => {
                 dropDescOne="Don't miss out on the chance to become a proud owner of Amitabh's NFT  art pieces, BigB Punks, and rare vintage posters! All you need to do is explore the NFT Loot Box and see what you've won for yourself! The Loot Box could make you one of the proudest owners of some of the most unique Amitabh Bachchan NFTs! "
                 dropDescTwo={<DropTwoDescTwo />}
                 dropDescThree="The best part about the Loot Box is that all these can be yours even without entering an auction… and with an assurance that you will get at least one prized NFT art or poster for you to be proud of! Hurry up! Purchase the Loot Box now!"
-                auctionTitle="Drops Open In"
+                auctionTitle={started ? "Drops Open Until" : "Drops Open In"}
                 auctionTime={atime}
                 editionTitle="Items"
                 editionType="5000"
@@ -364,6 +421,8 @@ const NewDropsTemp2 = ({ categories, setStarted, started }) => {
               <DropCard
                 Id={"posters"}
                 started={started}
+                endDate={end_date}
+                isEnded={ended}
                 img={two}
                 setCheck={handleCheck}
                 cardTitle="Autographed Physical Posters"
@@ -373,7 +432,13 @@ const NewDropsTemp2 = ({ categories, setStarted, started }) => {
                 dropDescOne="Hand-painted movie posters, as any classic cinema aficionado would know, served as heralds for The Shahenshah of Bollywood movies. Carrying the savage retro flavor in their artistic expression, these posters are masterpieces in their own right! Posters of Amitabh's classics depict the era of Celluloid Renaissance in Indian Cinema."
                 dropDescTwo="Movie posters from the era when India witnessed its “Angry Young Man” dominate Indian cinema. This Amitabh Bachchan's golden era  was so epic that it could itself be a storyline that will potentially be a superhit worldwide."
                 dropDescThree="Our NFTs will feature the Legend BigB signing these rare and origianal posters in a video. In addition to that video, you will also receive the autographed physical copy of the vintage poster of some of Amitabh's iconic movies! These prized videos are bound to be evergreen, and they could now be yours!"
-                auctionTitle="Auction starting in"
+                auctionTitle={
+                  !started
+                    ? "Auction starting in"
+                    : ended
+                    ? "Auction ended on"
+                    : "Auction ending in"
+                }
                 auctionTime={atime}
                 editionTitle="Limited Edition"
                 editionType="7/7"
@@ -390,6 +455,8 @@ const NewDropsTemp2 = ({ categories, setStarted, started }) => {
               <DropCard
                 started={started}
                 img={one}
+                endDate={end_date}
+                isEnded={ended}
                 setCheck={handleCheck}
                 cardTitle="BigB Punks and NFT Arts"
                 smallTitle="A Collection of Signature Crypto-Style Amitabh Miniatures"
@@ -398,7 +465,13 @@ const NewDropsTemp2 = ({ categories, setStarted, started }) => {
                 dropDescOne="Since Amitabh has just stepped into the NFT realm, and going with the proven trends in the NFT space, we bring you exclusive Amitabh Bachchan BigB Punks and exclusive Smart Contract-Generated Pastel NFT Art! These Punks and NFT artworks preserve the essence of Amitabh Bachchan using certain attributes."
                 dropDescTwo="These BigB Punks have their signature headgear, neck-gear, hairstyle, eyewear, facial hair, and a few more, creating a repository of unique, meticulously crafted, and curated art-versions of Amitabh. The NFT art has been exclusively hand-drawn."
                 dropDescThree="Every Pastel Art and every BigB Punk collection is a collectible in its own right, and there will be just a total of 6 of these! You could be the owner of one of the most celebrated forms of art in the crypto space!"
-                auctionTitle="Auction starting in"
+                auctionTitle={
+                  !started
+                    ? "Auction starting in"
+                    : ended
+                    ? "Auction ended on"
+                    : "Auction ending in"
+                }
                 auctionTime={atime}
                 editionTitle="Edition"
                 editionType="6/6"

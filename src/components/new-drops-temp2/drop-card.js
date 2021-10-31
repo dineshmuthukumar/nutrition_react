@@ -1,4 +1,5 @@
 import React from "react";
+import dayjs from "dayjs";
 import Image from "react-bootstrap/Image";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -16,6 +17,8 @@ const DropCard = ({
   started,
   cardDesc,
   dropTitle,
+  endDate,
+  isEnded,
   setCheck,
   enabled = true,
   dropDescOne,
@@ -62,7 +65,36 @@ const DropCard = ({
             </div>
             <div className="auction-time">
               <p className="heading-S">{auctionTitle}</p>
-              <NFTCounter time={auctionTime} handleEndEvent={setCheck} />
+
+              {(() => {
+                if (type === "loot") {
+                  if (started) {
+                    return <div className="end-date">Total Sell-Out</div>;
+                  } else {
+                    return (
+                      <NFTCounter
+                        time={auctionTime}
+                        handleEndEvent={setCheck}
+                      />
+                    );
+                  }
+                } else {
+                  if (isEnded) {
+                    return (
+                      <div className="end-date">
+                        {dayjs(endDate).format("DD. MM. YYYY")}
+                      </div>
+                    );
+                  } else {
+                    return (
+                      <NFTCounter
+                        time={auctionTime}
+                        handleEndEvent={setCheck}
+                      />
+                    );
+                  }
+                }
+              })()}
             </div>
             <div className="auction-main">
               <div className="auction-one">
