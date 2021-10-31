@@ -30,6 +30,7 @@ const ExploreCard = ({
     <div className="col-xl-4 col-lg-4 col-sm-6">
       <div className="block-box user-post  mb-5">
         <div className="item-post">
+        <span className="nft-type-badge">ERC 1155</span>
           <img
             alt="item logo"
             src={(() => {
