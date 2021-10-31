@@ -18,20 +18,7 @@ const NFTSummary = ({
     <div className="bg-white shadow-sm nft-summary">
       <div className="row">
         <div className="d-flex align-items-center justify-content-around flex-wrap flex-row point-box">
-          <div className="p-4 point-list">
-            {erc721 ? (
-              <Badge
-                title="Bids"
-                value={totalBid ? totalBid : nft.total_bids}
-              />
-            ) : (
-              <Badge
-                title="Buys"
-                value={totalBuy ? totalBuy : nft.total_buys}
-              />
-            )}
-          </div>
-          <div className="p-4 point-list">
+        <div className="p-4 point-list">
             {erc721 ? (
               <Badge
                 title="Price"
@@ -65,6 +52,19 @@ const NFTSummary = ({
                 }
                 // diff="-2000"
                 tooltip="Buy price"
+              />
+            )}
+          </div>
+          <div className="p-4 point-list">
+            {erc721 ? (
+              <Badge
+                title="Bids"
+                value={totalBid ? totalBid : nft.total_bids}
+              />
+            ) : (
+              <Badge
+                title="Buys"
+                value={totalBuy ? totalBuy : nft.total_buys}
               />
             )}
           </div>

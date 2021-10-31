@@ -7,6 +7,9 @@
   .title {
     font-size: 1.2rem;
     font-family: $neue-helveticamedium;
+    @media screen and (max-width: 560px) {
+      font-size: 1rem;
+    }
 
     svg {
       vertical-align: unset;
@@ -17,7 +20,7 @@
     font-family: $neue-helveticamedium;
     position: relative;
     @media screen and (max-width: 560px) {
-      font-size: 2.4rem;
+      font-size: 2rem;
     }
 
     svg {
