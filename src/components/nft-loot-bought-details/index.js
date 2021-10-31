@@ -60,13 +60,23 @@ const NFTLootBoughtDetails = ({ nft }) => {
         </div>
         <hr className="custom-divider" />
         <div className="d-flex">
+          <BidValue title="Category" value={nft.category_name} />
+          {/* <NFTTimeLeft
+            title="Bought on"
+            tooltipText="NFT Bought date"
+            time={new Date()}
+            isEnded={true}
+          /> */}
+        </div>
+        {/* <hr className="custom-divider" />
+        <div className="d-flex">
           <NFTTimeLeft
             title="Bought on"
             tooltipText="NFT Bought date"
             time={new Date()}
             isEnded={true}
           />
-        </div>
+        </div> */}
         <hr className="custom-divider" />
         <div className="d-flex">
           {(() => {

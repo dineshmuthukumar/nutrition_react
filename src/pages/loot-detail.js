@@ -54,7 +54,7 @@ const LootDetail = () => {
           <NFTSectionTitle title="NFT Details" />
           <div className="row mt-5">
             <div className="col-12 col-lg-6 order-lg-2 mb-4">
-              <LootNFTOwn />
+              {/* <LootNFTOwn /> */}
             </div>
             <div className="col-12 col-lg-6 order-lg-1">
               {nft.properties && <NFTProperties properties={nft.properties} />}
