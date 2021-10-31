@@ -47,7 +47,7 @@ const intlFormat = (num) => {
 export const abbreviateNumber = (num) => {
   if (num >= 1000000000) return intlFormat(num / 1000000000) + "B";
   if (num >= 1000000) return intlFormat(num / 1000000) + "M";
-  if (num >= 1000) return intlFormat(num / 1000) + "k";
+  if (num >= 1000) return intlFormat(num / 1000) + "K";
   return intlFormat(num);
 };
 
