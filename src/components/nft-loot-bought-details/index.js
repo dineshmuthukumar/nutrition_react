@@ -71,10 +71,10 @@ const NFTLootBoughtDetails = ({ nft }) => {
         <div className="d-flex">
           {(() => {
             if (nft.nft_type === "erc721") {
-              return <BidValue title="You Owned" value="1 of 1" isLeft />;
+              return <BidValue title="You Own" value="1 of 1" isLeft />;
             } else {
               <BidValue
-                title="You Owned"
+                title="You Own"
                 value={
                   nft.total_user_buys &&
                   `${nft.total_user_buys} / ${nft.total_quantity}`
