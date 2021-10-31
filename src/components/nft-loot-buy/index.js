@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import dayjs from "dayjs";
 import { useSelector } from "react-redux";
-import { useRouteMatch } from "react-router";
 import { Offcanvas } from "react-bootstrap";
 import { BiX } from "react-icons/bi";
 import { FaCheckCircle } from "react-icons/fa";
@@ -27,7 +26,6 @@ const NFTLootBuy = ({
   soldOut,
 }) => {
   const { user } = useSelector((state) => state.user.data);
-  const { params } = useRouteMatch();
 
   const [success, setSuccess] = useState(false);
   const [successData, setSuccessData] = useState({});
@@ -65,7 +63,7 @@ const NFTLootBuy = ({
       errorTitle: "",
       errorDescription: "",
     });
-  }, [params, lootBuyPop, success]);
+  }, [lootBuyPop, success]);
 
   useEffect(() => {
     setSuccess(false);
@@ -87,10 +85,12 @@ const NFTLootBuy = ({
           buttonName: "In Progress...",
           buttonDisable: true,
         });
+
         const result = await lootBuyApi({
           slug: category.slug,
           quantity: parseInt(buyQuantity),
         });
+
         if (result.data.success) {
           setSuccess(true);
           setSuccessData(result.data.data);
@@ -348,6 +348,11 @@ const NFTLootBuy = ({
                           className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop ${buy.processClass}`} //process -> proccessing
                           onClick={handleBuy}
                         >
+                          {console.log(
+                            "🚀 ~ file: index.js ~ line 362 ~ buy.buttonName",
+                            buy.buttonName,
+                            buy.processClass
+                          )}
                           {(() => {
                             if (!isAuctionStarted && !isAuctionEnded) {
                               return "Auction has not yet begun";
