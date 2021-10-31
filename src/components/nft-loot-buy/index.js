@@ -245,7 +245,7 @@ const NFTLootBuy = ({
         {user ? (
           <>
             <div className="pop-nft-details">
-              {success ? (
+              {!success ? (
                 <>
                   <div className="pop-head-content">
                     <div className="pop-bid-title">Buy It Now!</div>
