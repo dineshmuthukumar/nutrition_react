@@ -11,7 +11,7 @@ const MoreCard = ({ nft, isStarted = false, isEnded, time, label }) => {
   const erc721 = nft.nft_type === "erc721";
   return (
     <div className="more-card">
-      <span className="nft-type-badge">ERC 1155</span>
+      <span className="nft-type-badge">{nft.nft_type.toUpperCase()}</span>
       <img
         alt="media logo"
         src={(() => {
