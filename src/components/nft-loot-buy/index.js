@@ -65,7 +65,11 @@ const NFTLootBuy = ({
       errorTitle: "",
       errorDescription: "",
     });
-  }, [params]);
+  }, [params, lootBuyPop, success]);
+
+  useEffect(() => {
+    setSuccess(false);
+  }, [lootBuyPop]);
 
   const handleBuy = async () => {
     if (!user)
