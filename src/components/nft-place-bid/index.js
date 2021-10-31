@@ -633,7 +633,7 @@ const NFTPlaceBid = ({
                     {erc721 ? (
                       <div className="message mt-3">
                         Bid successfully placed. <br /> You are the highest
-                        bidder
+                        bidder.
                       </div>
                     ) : (
                       <div className="message mt-3">

@@ -1,6 +1,6 @@
 import React from "react";
 import ReadMoreReact from "read-more-react";
-import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
+// import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 
 import AritstPills from "./artist-pills";
 import artistImg from "../../images/artist-image.png";
@@ -26,7 +26,7 @@ const NFTArtist = () => {
             />
           </div>
           <div className="artist-pill-container mt-4">
-            <AritstPills title="Managed By" value="GuardianLink" />
+            <AritstPills title="Managed By" value="BeyondLife" />
           </div>
           {/* <div className="bottom-owner-contact-links">
             <div className="share-link-owner">
