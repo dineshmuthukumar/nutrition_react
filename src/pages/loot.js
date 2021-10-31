@@ -40,6 +40,9 @@ const Loot = () => {
       let response = await nftCategoryDetailApi({ slug: slug });
       setCategory(response.data.data.category);
       const loot = response.data.data.category.category_detail;
+      if (loot.quantity === 0) {
+        setSoldOut(true);
+      }
       setAuctionEndTime(loot.auction_end_time);
       setIsAuctionStarted(
         new Date().getTime() >= new Date(loot.auction_start_time).getTime()
