@@ -700,15 +700,15 @@ input::-webkit-inner-spin-button {
 // responsive media query
 
 @media only screen and (min-width: 3072x) and (max-width: 2466px) {
-  .audioOnmedia {
-    left: 27% !important;
-    height: 4rem;
-    bottom: 0rem !important;
-  }
-  .media_audio.modal-body .audioOnmedia {
-    height: 4rem;
-    left: 50% !important;
-  }
+  // .audioOnmedia {
+  //   left: 27% !important;
+  //   height: 4rem;
+  //   bottom: 0rem !important;
+  // }
+  // .media_audio.modal-body .audioOnmedia {
+  //   height: 4rem;
+  //   left: 50% !important;
+  // }
   .bid-winner {
     min-height: 50vh !important;
   }
@@ -717,15 +717,15 @@ input::-webkit-inner-spin-button {
 ----------------------------------------------------------- */
 
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
-  .audioOnmedia {
-    left: 27% !important;
-    height: 4rem;
-    bottom: 0rem !important;
-  }
-  .media_audio.modal-body .audioOnmedia {
-    height: 4rem;
-    left: 50% !important;
-  }
+  // .audioOnmedia {
+  //   left: 27% !important;
+  //   height: 4rem;
+  //   bottom: 0rem !important;
+  // }
+  // .media_audio.modal-body .audioOnmedia {
+  //   height: 4rem;
+  //   left: 50% !important;
+  // }
   // .nft-media.media_audio {
   //   height: auto !important;
   // }
@@ -751,15 +751,15 @@ input::-webkit-inner-spin-button {
   .w-75 {
     width: auto !important;
   }
-  .audioOnmedia {
-    left: 27% !important;
-    height: 4rem;
-    bottom: 0rem !important;
-  }
-  .media_audio.modal-body .audioOnmedia {
-    height: 4rem;
-    left: 50% !important;
-  }
+  // .audioOnmedia {
+  //   left: 27% !important;
+  //   height: 4rem;
+  //   bottom: 0rem !important;
+  // }
+  // .media_audio.modal-body .audioOnmedia {
+  //   height: 4rem;
+  //   left: 50% !important;
+  // }
   .show_gif {
     height: auto !important;
   }
@@ -826,18 +826,18 @@ input::-webkit-inner-spin-button {
   .bid-auction {
     min-height: 40vh !important;
   }
-  .audioOnmedia {
-    left: 26% !important;
-    height: 4rem;
-    bottom: 0rem !important;
-  }
-  .media_audio.modal-body .audioOnmedia {
-    height: 2.5rem;
-  }
-  .media_audio.modal-body .audioOnmedia {
-    height: 4rem;
-    left: 50% !important;
-  }
+  // .audioOnmedia {
+  //   left: 26% !important;
+  //   height: 4rem;
+  //   bottom: 0rem !important;
+  // }
+  // .media_audio.modal-body .audioOnmedia {
+  //   height: 2.5rem;
+  // }
+  // .media_audio.modal-body .audioOnmedia {
+  //   height: 4rem;
+  //   left: 50% !important;
+  // }
   .table-responsive-lg {
     white-space: nowrap;
   }
@@ -931,18 +931,18 @@ input::-webkit-inner-spin-button {
   .show_gif {
     height: auto !important;
   }
-  .audioOnmedia {
-    left: 35% !important;
-    height: 2.8rem;
-    width: 65% !important;
-    bottom: -0.6rem !important;
-    line-height: 0 !important;
-  }
-  .media_audio.modal-body .audioOnmedia {
-    height: 2.5rem;
-    width: 90%;
-    left: 50% !important;
-  }
+  // .audioOnmedia {
+  //   left: 35% !important;
+  //   height: 2.8rem;
+  //   width: 65% !important;
+  //   bottom: -0.6rem !important;
+  //   line-height: 0 !important;
+  // }
+  // .media_audio.modal-body .audioOnmedia {
+  //   height: 2.5rem;
+  //   width: 90%;
+  //   left: 50% !important;
+  // }
   // .media-lsf .svg_size {
   //   width: 15px !important;
   //   height: 15px !important;
@@ -1262,6 +1262,12 @@ input::-webkit-inner-spin-button {
       text-align: center;
       font-family: $neue-helveticamedium;
       font-size: 0.8rem;
+      &.no-notify{
+        min-height: 5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
     }
   }
 }
@@ -1494,5 +1500,5 @@ input::-webkit-inner-spin-button {
 }
 
 nav.navbar.navbar-expand-md.navbar-dark.bg-dark{
-  z-index: 10000;
+  z-index: 999;
 }

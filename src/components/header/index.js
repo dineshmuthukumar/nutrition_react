@@ -350,7 +350,7 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
                                   )}
                                 </>
                               ) : (
-                                <div className="noti-load-more text-secondary">
+                                <div className="noti-load-more text-secondary no-notify">
                                   No notifications found
                                 </div>
                               )}
@@ -368,7 +368,7 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
                             <UserComponent user={state.user.data.user} />
                             <Dropdown.Item
                               id="drop_inner"
-                              href={process.env.REACT_APP_AMITABH_URL}
+                              href="/"
                               target="_self"
                             >
                               Drops

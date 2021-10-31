@@ -41,7 +41,7 @@ const NFTLootBuy = ({
     progressError: "",
     buttonDisable: true,
     processClass: "",
-    buttonName: "Claim Your Loot Box",
+    buttonName: "Enter No. of NFTs",
     isError: false,
     errorTitle: "",
     errorDescription: "",
@@ -58,7 +58,7 @@ const NFTLootBuy = ({
       progressError: "",
       buttonDisable: true,
       processClass: "",
-      buttonName: "Claim Your Loot Box",
+      buttonName: "Enter No. of NFTs",
       isError: false,
       errorTitle: "",
       errorDescription: "",
@@ -98,7 +98,7 @@ const NFTLootBuy = ({
             ...buy,
             progressError: "",
             processClass: "",
-            buttonName: "Claim Your Loot Box",
+            buttonName: "Enter No. of NFTs",
             buttonDisable: false,
           });
         }
@@ -392,7 +392,7 @@ const NFTLootBuy = ({
                     {/* Check Your NFT Collections to See What You've Won!! */}
                   </div>
                   <div className="pop-nft-title text-center mb-1">
-                    Check Your NFT Collections to See <br /> What You've Won!!
+                    Check Your NFT Collections to See <br /> What You've Cart!
                   </div>
 
                   <div className="success-summary-container mt-3">
