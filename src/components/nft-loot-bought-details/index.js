@@ -50,7 +50,7 @@ const NFTLootBoughtDetails = ({ nft }) => {
       <div className="bottom-content">
         <div className="d-flex">
           <BidValue
-            title={nft.nft_type === "erc721" ? "Bid Price" : "Price"}
+            title="Price"
             value={
               nft.nft_type === "erc721"
                 ? currencyFormat(nft.minimum_bid, "USD")
@@ -69,13 +69,19 @@ const NFTLootBoughtDetails = ({ nft }) => {
         </div>
         <hr className="custom-divider" />
         <div className="d-flex">
-          <BidValue
-            title="You Owned"
-            value={
-              nft.total_user_buys &&
-              `${nft.total_user_buys} / ${nft.total_quantity}`
+          {(() => {
+            if (nft.nft_type === "erc721") {
+              return <BidValue title="You Owned" value="1 of 1" isLeft />;
+            } else {
+              <BidValue
+                title="You Owned"
+                value={
+                  nft.total_user_buys &&
+                  `${nft.total_user_buys} / ${nft.total_quantity}`
+                }
+              />;
             }
-          />
+          })()}
         </div>
         <hr className="custom-divider" />
       </div>
