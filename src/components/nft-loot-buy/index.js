@@ -41,7 +41,7 @@ const NFTLootBuy = ({
     progressError: "",
     buttonDisable: true,
     processClass: "",
-    buttonName: "Enter No. of NFTs",
+    buttonName: "Claim Your Loot Box",
     isError: false,
     errorTitle: "",
     errorDescription: "",
@@ -58,7 +58,7 @@ const NFTLootBuy = ({
       progressError: "",
       buttonDisable: true,
       processClass: "",
-      buttonName: "Enter No. of NFTs",
+      buttonName: "Claim Your Loot Box",
       isError: false,
       errorTitle: "",
       errorDescription: "",
@@ -98,7 +98,7 @@ const NFTLootBuy = ({
             ...buy,
             progressError: "",
             processClass: "",
-            buttonName: "Enter No. of NFTs",
+            buttonName: "Claim Your Loot Box",
             buttonDisable: false,
           });
         }
