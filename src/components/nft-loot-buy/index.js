@@ -41,7 +41,7 @@ const NFTLootBuy = ({
     progressError: "",
     buttonDisable: true,
     processClass: "",
-    buttonName: "Enter No. of NFTs",
+    buttonName: "Claim Your Loot Box",
     isError: false,
     errorTitle: "",
     errorDescription: "",
@@ -58,7 +58,7 @@ const NFTLootBuy = ({
       progressError: "",
       buttonDisable: true,
       processClass: "",
-      buttonName: "Enter No. of NFTs",
+      buttonName: "Claim Your Loot Box",
       isError: false,
       errorTitle: "",
       errorDescription: "",
@@ -98,7 +98,7 @@ const NFTLootBuy = ({
             ...buy,
             progressError: "",
             processClass: "",
-            buttonName: "Enter No. of NFTs",
+            buttonName: "Claim Your Loot Box",
             buttonDisable: false,
           });
         }
@@ -150,7 +150,10 @@ const NFTLootBuy = ({
     // let count = category.category_detail.total_user_buys
     //   ? category.category_detail.buy_count - category.category_detail.total_user_buys
     //   : category.category_detail.buy_count;
-    let count = 100;
+    let count =
+      category.category_detail.quantity >= 100
+        ? 100
+        : category.category_detail.quantity;
     if (e.target.value) {
       if (
         validateQuantity(e.target.value) &&
@@ -242,7 +245,7 @@ const NFTLootBuy = ({
         {user ? (
           <>
             <div className="pop-nft-details">
-              {!success ? (
+              {success ? (
                 <>
                   <div className="pop-head-content">
                     <div className="pop-bid-title">Buy It Now!</div>
@@ -296,7 +299,11 @@ const NFTLootBuy = ({
                   {/* error-bid -> less value than min bid,  error-balance -> low value, error-balance-float -> low value in quantity  */}
                   <div className={`input-bid-container mt-5 ${error}`}>
                     <label className="input-bid-text">
-                      Enter Quantity (Max of 100 at a time)
+                      Enter Quantity (Max of{" "}
+                      {category.category_detail.quantity >= 100
+                        ? 100
+                        : category.category_detail.quantity}{" "}
+                      at a time)
                     </label>
 
                     <div className="input-quantity-container">
@@ -377,7 +384,7 @@ const NFTLootBuy = ({
                     <FaCheckCircle color={"#23bf61"} size={60} />
                     <div className="message mt-3">
                       Congratulations ! <br />
-                      You now own the Amitabh's NFTs!!
+                      You now own Amitabh's NFTs!!
                     </div>
                   </div>
 
@@ -392,7 +399,7 @@ const NFTLootBuy = ({
                     {/* Check Your NFT Collections to See What You've Won!! */}
                   </div>
                   <div className="pop-nft-title text-center mb-1">
-                    Check Your NFT Collections to See <br /> What You've Cart!
+                    Check Your NFT Collections to See <br /> What You've got!
                   </div>
 
                   <div className="success-summary-container mt-3">

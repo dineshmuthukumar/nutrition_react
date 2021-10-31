@@ -64,9 +64,18 @@ const NFTLootBoughtMedia = ({ nft }) => {
                   alt="media logo"
                   className="type_image typeimg_audio"
                   src={nft.cover_url ? nft.cover_url : lootBox}
+                  onClick={() => {
+                    var el = document.getElementById("audio-fullscreen");
+                    if (!el.paused) {
+                      el.pause();
+                    } else {
+                      el.play();
+                    }
+                  }}
                 />
               </div>
               <audio
+                id="audio-fullscreen"
                 controls
                 className="shadow-sm audioOnmedia"
                 disablepictureinpicture
@@ -79,7 +88,7 @@ const NFTLootBoughtMedia = ({ nft }) => {
           );
         } else if (nft?.asset_type?.includes("video")) {
           return (
-            <video controls>
+            <video id="full-screenVideo" controls oncontextmenu="return false;" controlsList="nodownload" autoplay playsinline>
               <source src={nft.asset_url} type={nft.asset_type} />
             </video>
           );
@@ -135,11 +144,55 @@ const NFTLootBoughtMedia = ({ nft }) => {
           {/* <div className="show_height"><img className="type_image typeimg_audio" src="https://wallpaperaccess.com/full/112115.jpg" />  </div> */}
           {/* <div className="show_height"><img className="type_gif" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" />/div> */}
 
-          <img
-            className="type_image typeimg_audio"
-            src={lootBox}
-            alt="type logo"
-          />
+          {(() => {
+            if (nft?.asset_type?.includes("image")) {
+              return (
+                <img
+                  alt="media logo"
+                  className="type_image typeimg_audio"
+                  src={nft.asset_url ? nft.asset_url : lootBox}
+                />
+              );
+            } else if (nft?.asset_type?.includes("audio")) {
+              return (
+                <>
+                  <div className="no_height">
+                    <img
+                      alt="media logo"
+                      className="type_image typeimg_audio"
+                      src={nft.cover_url ? nft.cover_url : lootBox}
+                      onClick={() => {
+                        var el = document.getElementById(
+                          "audio-fullscreen-full"
+                        );
+                        if (!el.paused) {
+                          el.pause();
+                        } else {
+                          el.play();
+                        }
+                      }}
+                    />
+                  </div>
+                  <audio
+                    id="audio-fullscreen-full"
+                    controls
+                    className="shadow-sm audioOnmedia"
+                    disablepictureinpicture
+                    controlslist="nodownload noplaybackrate"
+                  >
+                    <source src={nft.asset_url} type={nft.asset_type} />
+                    Your browser does not support the audio element.
+                  </audio>
+                </>
+              );
+            } else if (nft?.asset_type?.includes("video")) {
+              return (
+                <video controls oncontextmenu="return false;" controlsList="nodownload" autoplay playsinline>
+                  <source src={nft.asset_url} type={nft.asset_type} />
+                </video>
+              );
+            }
+          })()}
         </Modal.Body>
       </Modal>
     </div>

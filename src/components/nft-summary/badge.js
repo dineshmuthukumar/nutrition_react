@@ -3,7 +3,7 @@ import { BiUpArrowAlt, BiDownArrowAlt } from "react-icons/bi";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
 import ToolTip from "../tooltip";
 
-const Badge = ({ title, value, currency, diff, tooltip }) => {
+const Badge = ({ title, value, currency, diff = 0, tooltip }) => {
   return (
     <>
       <div className="title">
@@ -22,7 +22,7 @@ const Badge = ({ title, value, currency, diff, tooltip }) => {
       <div className="value">
         {currency && currency}
         {value}
-        {diff && (
+        {diff > 0 && (
           <>
             {diff > 0 ? (
               <span className="value-diff-range green">
