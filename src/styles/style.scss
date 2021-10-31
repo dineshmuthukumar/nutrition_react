@@ -1451,7 +1451,12 @@ input::-webkit-inner-spin-button {
     min-width: 24rem;
   }
 }
-
+@media screen and (min-width: 425px) {
+  .noti-container.dropdown-menu-end[data-bs-popper] {
+    right: -50px;
+    min-width: 22rem !important;
+  }
+}
 @media screen and (max-width: 320px) {
   .noti-container.dropdown-menu-end[data-bs-popper] {
     right: -50px;
@@ -1480,10 +1485,6 @@ input::-webkit-inner-spin-button {
   }
   #drop_inner {
     display: block;
-  }
-  .noti-container.dropdown-menu-end[data-bs-popper] {
-    right: -60px;
-    min-width: 22rem !important;
   }
 }
 
