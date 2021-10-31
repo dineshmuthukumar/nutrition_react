@@ -10,6 +10,9 @@
     @media screen and (max-width: 560px) {
       font-size: 1rem;
     }
+    @media screen and (max-width: 768px) {
+      font-size: 1rem;
+    }
 
     svg {
       vertical-align: unset;
@@ -21,6 +24,9 @@
     position: relative;
     @media screen and (max-width: 560px) {
       font-size: 2rem;
+    }
+    @media screen and (max-width: 768px) {
+      font-size: 2.2rem;
     }
 
     svg {
