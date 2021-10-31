@@ -28,6 +28,7 @@
     padding: 0.4rem 0.5rem 0.2rem 0.5rem;
     background-color: #f21e00;
     color: #ffffff;
+    white-space: nowrap;
   }
 }
 
@@ -39,20 +40,19 @@
 .bottom-content {
   position: sticky;
   top: 100vh;
+  @media screen and (max-width: 425px ) {
+    .current-bid {
+      padding: 1rem 0;
+      border-bottom: 2px solid #000;
+      
+    }
+    hr.custom-divider{
+      display: none;
+    }
+  }
   .d-flex{
     @media screen and (max-width: 425px ) {
       flex-direction: column;
-      .current-bid{
-        &:first-child{
-          margin: 0.5rem 0 0.5rem 0;
-        }
-        &:last-child{
-          border-top: 2px solid #000000 !important;
-          opacity: 1;
-          margin: 0.5rem 0 0.5rem 0;
-          padding-top: 1.5rem;
-        }
-      }
     }
   }
   

@@ -16,7 +16,7 @@ const NFTTimeLeft = ({
   handleTimer = () => {},
 }) => {
   return (
-    <div className="nft-time-left">
+    <div className="current-bid nft-time-left">
       <div className="title">
         {title}
         <ToolTip
