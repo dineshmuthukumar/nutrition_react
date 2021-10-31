@@ -191,11 +191,13 @@ const BidWinner = ({ winner, histories }) => {
                       </div>
                     </td>
                     <td className="text-center text-success">
-                      {`${history.bid_change}%`}
+                      {`${history.bid_change.toFixed(2)}%`}
                     </td>
                     <td className="text-center">
                       <div className="date">
-                        {dayjs(history.created_at).format("MMM D, YYYY hh:mm A")}
+                        {dayjs(history.created_at).format(
+                          "MMM D, YYYY hh:mm A"
+                        )}
                       </div>
                     </td>
                   </tr>

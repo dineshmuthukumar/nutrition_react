@@ -61,7 +61,7 @@ const NFTSummary = ({
                   }
                 })()}
                 // diff="+2000"
-                diff={bidChange ? bidChange : nft.bid_change}
+                diff={bidChange ? bidChange : nft.bid_change.toFixed(2)}
                 tooltip="Price increased from last bid"
               />
             ) : (
