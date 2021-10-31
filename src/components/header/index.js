@@ -125,8 +125,17 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
   });
 
   const NotiCard = ({ data }) => {
+    const handleNotiClick = () => {
+      if (data.reason === "deposit") {
+        window.open(
+          `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
+          "_self"
+        );
+      }
+    };
+
     return (
-      <div className="noti-message" role="button">
+      <div className="noti-message" role="button" onClick={handleNotiClick}>
         {(() => {
           switch (data.reason) {
             case "deposit":
@@ -299,7 +308,7 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
                           />
                         </Nav.Link>
                         <Dropdown
-                          autoClose="outside"
+                          autoClose={["inside", "outside"]}
                           onToggle={(e) => {
                             if (e) {
                               readNotification();
@@ -323,7 +332,9 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
                               {notification?.notifications.length > 0 ? (
                                 <>
                                   {notification?.notifications.map((o, i) => (
-                                    <NotiCard key={`noti${i}`} data={o} />
+                                    <Dropdown.Item>
+                                      <NotiCard key={`noti${i}`} data={o} />
+                                    </Dropdown.Item>
                                   ))}
 
                                   {notiLoading && (
