@@ -52,9 +52,7 @@ export const abbreviateNumber = (num) => {
 };
 
 export const percDiff = (basePrice, newPrice) => {
-  return (
-    100 * Math.abs((basePrice - newPrice) / ((basePrice + newPrice) / 2))
-  ).toFixed(2);
+  return (((newPrice - basePrice) / basePrice) * 100).toFixed(2);
 };
 
 export const validateCurrency = (value) => {
