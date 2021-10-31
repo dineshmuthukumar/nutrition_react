@@ -185,7 +185,7 @@ const NFTBaseDetails = ({
                         : `${nft.quantity} / ${nft.total_quantity}`
                     }
                   />
-                  {nft.total_user_buys && (
+                  {nft.total_user_buys > 0 && (
                     <BidValue
                       title="You Owned"
                       value={
