@@ -65,8 +65,11 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
         ? nft.asset_url
         : nft.cover_url;
       const color = await prominent(image, { amount: 1 });
-
-      setBgColor(`rgb(${color[0]},${color[1]},${color[2]},0.3)`);
+      if (nft.asset_type.includes("image")) {
+        setBgColor(`rgb(${color[0]},${color[1]},${color[2]},0.3)`);
+      } else {
+        setBgColor(`#020001`);
+      }
     } else {
       setBgColor(`rgb(0,0,0,0.1)`);
     }

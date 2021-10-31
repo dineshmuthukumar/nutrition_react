@@ -30,7 +30,7 @@ const ErrorText = ({ type, handleClick = () => {}, title, desc }) => {
     return (
       <div className="error-container">
         <div className="time-details">
-          <div className="time-title">End of Auction</div>
+          <div className="time-title">End of Buying Window</div>
           <div className="time-counter">
             <NFTCounter
               time={"2021-09-28"}

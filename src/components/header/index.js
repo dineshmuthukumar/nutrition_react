@@ -41,7 +41,7 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
         dispatch(user_wallet_update_action(data));
       });
     }
-    handleGetNotification(npage);
+    if (user.login) handleGetNotification(npage);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -125,8 +125,17 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
   });
 
   const NotiCard = ({ data }) => {
+    const handleNotiClick = () => {
+      if (data.reason === "deposit") {
+        window.open(
+          `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
+          "_self"
+        );
+      }
+    };
+
     return (
-      <div className="noti-message" role="button">
+      <div className="noti-message" role="button" onClick={handleNotiClick}>
         {(() => {
           switch (data.reason) {
             case "deposit":
@@ -299,7 +308,7 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
                           />
                         </Nav.Link>
                         <Dropdown
-                          autoClose="outside"
+                          autoClose={["inside", "outside"]}
                           onToggle={(e) => {
                             if (e) {
                               readNotification();
@@ -323,7 +332,9 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
                               {notification?.notifications.length > 0 ? (
                                 <>
                                   {notification?.notifications.map((o, i) => (
-                                    <NotiCard key={`noti${i}`} data={o} />
+                                    <Dropdown.Item>
+                                      <NotiCard key={`noti${i}`} data={o} />
+                                    </Dropdown.Item>
                                   ))}
 
                                   {notiLoading && (
@@ -350,7 +361,7 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
                                   )}
                                 </>
                               ) : (
-                                <div className="noti-load-more text-secondary">
+                                <div className="noti-load-more text-secondary no-notify">
                                   No notifications found
                                 </div>
                               )}
@@ -368,7 +379,7 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
                             <UserComponent user={state.user.data.user} />
                             <Dropdown.Item
                               id="drop_inner"
-                              href={process.env.REACT_APP_AMITABH_URL}
+                              href="/"
                               target="_self"
                             >
                               Drops
@@ -388,12 +399,45 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
                               as="button"
                               onClick={() =>
                                 window.open(
+                                  `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/mynft`,
+                                  "_self"
+                                )
+                              }
+                            >
+                              My NFTs
+                            </Dropdown.Item>
+                            <Dropdown.Item
+                              as="button"
+                              onClick={() =>
+                                window.open(
                                   `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
                                   "_self"
                                 )
                               }
                             >
                               Wallet
+                            </Dropdown.Item>
+                            <Dropdown.Item
+                              as="button"
+                              onClick={() =>
+                                window.open(
+                                  `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/bid-activity`,
+                                  "_self"
+                                )
+                              }
+                            >
+                              Bid Activity
+                            </Dropdown.Item>
+                            <Dropdown.Item
+                              as="button"
+                              onClick={() =>
+                                window.open(
+                                  `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/claim`,
+                                  "_self"
+                                )
+                              }
+                            >
+                              Claim NFTs
                             </Dropdown.Item>
                             <Dropdown.Item
                               as="button"
@@ -406,17 +450,6 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
                             >
                               My Activity
                             </Dropdown.Item>{" "}
-                            <Dropdown.Item
-                              as="button"
-                              onClick={() =>
-                                window.open(
-                                  `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/bid-activity`,
-                                  "_self"
-                                )
-                              }
-                            >
-                              Bid Activity
-                            </Dropdown.Item>
                             <Dropdown.Item
                               as="button"
                               onClick={() =>

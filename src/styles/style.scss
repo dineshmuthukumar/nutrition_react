@@ -700,15 +700,15 @@ input::-webkit-inner-spin-button {
 // responsive media query
 
 @media only screen and (min-width: 3072x) and (max-width: 2466px) {
-  .audioOnmedia {
-    left: 27% !important;
-    height: 4rem;
-    bottom: 0rem !important;
-  }
-  .media_audio.modal-body .audioOnmedia {
-    height: 4rem;
-    left: 50% !important;
-  }
+  // .audioOnmedia {
+  //   left: 27% !important;
+  //   height: 4rem;
+  //   bottom: 0rem !important;
+  // }
+  // .media_audio.modal-body .audioOnmedia {
+  //   height: 4rem;
+  //   left: 50% !important;
+  // }
   .bid-winner {
     min-height: 50vh !important;
   }
@@ -717,15 +717,15 @@ input::-webkit-inner-spin-button {
 ----------------------------------------------------------- */
 
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
-  .audioOnmedia {
-    left: 27% !important;
-    height: 4rem;
-    bottom: 0rem !important;
-  }
-  .media_audio.modal-body .audioOnmedia {
-    height: 4rem;
-    left: 50% !important;
-  }
+  // .audioOnmedia {
+  //   left: 27% !important;
+  //   height: 4rem;
+  //   bottom: 0rem !important;
+  // }
+  // .media_audio.modal-body .audioOnmedia {
+  //   height: 4rem;
+  //   left: 50% !important;
+  // }
   // .nft-media.media_audio {
   //   height: auto !important;
   // }
@@ -751,15 +751,15 @@ input::-webkit-inner-spin-button {
   .w-75 {
     width: auto !important;
   }
-  .audioOnmedia {
-    left: 27% !important;
-    height: 4rem;
-    bottom: 0rem !important;
-  }
-  .media_audio.modal-body .audioOnmedia {
-    height: 4rem;
-    left: 50% !important;
-  }
+  // .audioOnmedia {
+  //   left: 27% !important;
+  //   height: 4rem;
+  //   bottom: 0rem !important;
+  // }
+  // .media_audio.modal-body .audioOnmedia {
+  //   height: 4rem;
+  //   left: 50% !important;
+  // }
   .show_gif {
     height: auto !important;
   }
@@ -826,18 +826,18 @@ input::-webkit-inner-spin-button {
   .bid-auction {
     min-height: 40vh !important;
   }
-  .audioOnmedia {
-    left: 26% !important;
-    height: 4rem;
-    bottom: 0rem !important;
-  }
-  .media_audio.modal-body .audioOnmedia {
-    height: 2.5rem;
-  }
-  .media_audio.modal-body .audioOnmedia {
-    height: 4rem;
-    left: 50% !important;
-  }
+  // .audioOnmedia {
+  //   left: 26% !important;
+  //   height: 4rem;
+  //   bottom: 0rem !important;
+  // }
+  // .media_audio.modal-body .audioOnmedia {
+  //   height: 2.5rem;
+  // }
+  // .media_audio.modal-body .audioOnmedia {
+  //   height: 4rem;
+  //   left: 50% !important;
+  // }
   .table-responsive-lg {
     white-space: nowrap;
   }
@@ -896,6 +896,7 @@ input::-webkit-inner-spin-button {
   }
   .place-bid-btn {
     width: 100% !important;
+    margin-top: 2rem !important;
   }
   .nft-summary .p-4 {
     padding: 1rem 1rem 0rem !important;
@@ -930,18 +931,18 @@ input::-webkit-inner-spin-button {
   .show_gif {
     height: auto !important;
   }
-  .audioOnmedia {
-    left: 35% !important;
-    height: 2.8rem;
-    width: 65% !important;
-    bottom: -0.6rem !important;
-    line-height: 0 !important;
-  }
-  .media_audio.modal-body .audioOnmedia {
-    height: 2.5rem;
-    width: 90%;
-    left: 50% !important;
-  }
+  // .audioOnmedia {
+  //   left: 35% !important;
+  //   height: 2.8rem;
+  //   width: 65% !important;
+  //   bottom: -0.6rem !important;
+  //   line-height: 0 !important;
+  // }
+  // .media_audio.modal-body .audioOnmedia {
+  //   height: 2.5rem;
+  //   width: 90%;
+  //   left: 50% !important;
+  // }
   // .media-lsf .svg_size {
   //   width: 15px !important;
   //   height: 15px !important;
@@ -1192,7 +1193,7 @@ input::-webkit-inner-spin-button {
 }
 
 .noti-container {
-  min-width: 30rem;
+  min-width: 24rem;
   padding: 0;
   border-radius: 0.6rem;
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.49);
@@ -1261,6 +1262,12 @@ input::-webkit-inner-spin-button {
       text-align: center;
       font-family: $neue-helveticamedium;
       font-size: 0.8rem;
+      &.no-notify{
+        min-height: 5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
     }
   }
 }
@@ -1427,7 +1434,7 @@ input::-webkit-inner-spin-button {
   .noti-container.dropdown-menu-end[data-bs-popper] {
     right: 0;
     left: auto;
-    min-width: 28rem;
+    min-width: 24rem;
   }
 }
 
@@ -1470,8 +1477,8 @@ input::-webkit-inner-spin-button {
   height: 0.7rem;
   width: 0.7rem;
   position: absolute;
-  top: 0.3rem;
-  right: 0.7rem;
+  top: 0;
+  right: 0.2rem;
   background: #f00;
   border-radius: 50px;
 }
@@ -1490,4 +1497,8 @@ input::-webkit-inner-spin-button {
     align-items: center;
   
   }
+}
+
+nav.navbar.navbar-expand-md.navbar-dark.bg-dark{
+  z-index: 999;
 }

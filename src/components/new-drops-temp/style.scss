@@ -135,7 +135,7 @@ section.sw_3 {
   text-align: center;
   position: sticky;
   top: 0rem;
-  z-index: 9999;
+  z-index: 997;
   padding: 0;
   transition: 0.5s;
   display: block;
@@ -259,8 +259,9 @@ span.main_title {
   transition: 0.2s ease;
 }
 .nft_email_error {
-  font-size: 1.5rem;
-  margin-top: 1rem;
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  color: red;
 }
 input {
   font-weight: normal !important;

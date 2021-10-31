@@ -53,7 +53,6 @@ const NewDropsTemp2 = ({ categories }) => {
   // const sendEmailNewletter = (input) => {
   //   axios.post(process.env.REACT_APP_NEWSLETTER_API, formData)
   // };
-
   const handleSendNewsLetter = async () => {
     if (validateEmail(email)) {
       setVEmail(null);

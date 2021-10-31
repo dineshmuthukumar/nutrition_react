@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import dayjs from "dayjs";
 import { useSelector } from "react-redux";
-import { useRouteMatch } from "react-router";
 import { Offcanvas } from "react-bootstrap";
 import { BiX } from "react-icons/bi";
 import { FaCheckCircle } from "react-icons/fa";
@@ -27,7 +26,6 @@ const NFTLootBuy = ({
   soldOut,
 }) => {
   const { user } = useSelector((state) => state.user.data);
-  const { params } = useRouteMatch();
 
   const [success, setSuccess] = useState(false);
   const [successData, setSuccessData] = useState({});
@@ -43,7 +41,7 @@ const NFTLootBuy = ({
     progressError: "",
     buttonDisable: true,
     processClass: "",
-    buttonName: "Claim Your Loot Box",
+    buttonName: "Enter No. of NFTs",
     isError: false,
     errorTitle: "",
     errorDescription: "",
@@ -60,12 +58,16 @@ const NFTLootBuy = ({
       progressError: "",
       buttonDisable: true,
       processClass: "",
-      buttonName: "Claim Your Loot Box",
+      buttonName: "Enter No. of NFTs",
       isError: false,
       errorTitle: "",
       errorDescription: "",
     });
-  }, [params]);
+  }, [lootBuyPop, success]);
+
+  useEffect(() => {
+    setSuccess(false);
+  }, [lootBuyPop]);
 
   const handleBuy = async () => {
     if (!user)
@@ -83,10 +85,12 @@ const NFTLootBuy = ({
           buttonName: "In Progress...",
           buttonDisable: true,
         });
+
         const result = await lootBuyApi({
           slug: category.slug,
           quantity: parseInt(buyQuantity),
         });
+
         if (result.data.success) {
           setSuccess(true);
           setSuccessData(result.data.data);
@@ -94,7 +98,7 @@ const NFTLootBuy = ({
             ...buy,
             progressError: "",
             processClass: "",
-            buttonName: "Claim Your Loot Box",
+            buttonName: "Enter No. of NFTs",
             buttonDisable: false,
           });
         }
@@ -344,6 +348,11 @@ const NFTLootBuy = ({
                           className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop ${buy.processClass}`} //process -> proccessing
                           onClick={handleBuy}
                         >
+                          {console.log(
+                            "🚀 ~ file: index.js ~ line 362 ~ buy.buttonName",
+                            buy.buttonName,
+                            buy.processClass
+                          )}
                           {(() => {
                             if (!isAuctionStarted && !isAuctionEnded) {
                               return "Auction has not yet begun";
@@ -368,7 +377,7 @@ const NFTLootBuy = ({
                     <FaCheckCircle color={"#23bf61"} size={60} />
                     <div className="message mt-3">
                       Congratulations ! <br />
-                      You now own one of Amitabh's exclusive NFTs!!
+                      You now own the Amitabh's NFTs!!
                     </div>
                   </div>
 
@@ -383,7 +392,7 @@ const NFTLootBuy = ({
                     {/* Check Your NFT Collections to See What You've Won!! */}
                   </div>
                   <div className="pop-nft-title text-center mb-1">
-                    Check Your NFT Collections to See <br /> What You've Won!!
+                    Check Your NFT Collections to See <br /> What You've Cart!
                   </div>
 
                   <div className="success-summary-container mt-3">
