@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Modal, OverlayTrigger, Popover } from "react-bootstrap";
 import { prominent } from "color.js";
 import {
@@ -75,6 +75,26 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
     }
   };
 
+  const toggleFullScreen = () => {
+    var el = document.getElementById("full-screenVideo");
+
+    if (el.requestFullscreen) {
+      el.requestFullscreen();
+    } else if (el.msRequestFullscreen) {
+      el.msRequestFullscreen();
+    } else if (el.mozRequestFullScreen) {
+      el.mozRequestFullScreen();
+    } else if (el.webkitRequestFullscreen) {
+      el.webkitRequestFullscreen();
+    }
+  };
+
+  const toggleAudioFullScreen = () => {
+    var el = document.getElementById("audio-fullscreen");
+    if (!el.paused) el.pause();
+    setModalShow(true);
+  };
+
   return (
     <div className="nft-media media_audio" style={{ background: bgColor }}>
       {/* <div className="show_height"><img className="type_image typeimg_audio" src="https://wallpaperaccess.com/full/112115.jpg" />  </div> */}
@@ -96,9 +116,18 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
                   alt="media logo"
                   className="type_image typeimg_audio"
                   src={nft.cover_url ? nft.cover_url : sample}
+                  onClick={() => {
+                    var el = document.getElementById("audio-fullscreen");
+                    if (!el.paused) {
+                      el.pause();
+                    } else {
+                      el.play();
+                    }
+                  }}
                 />
               </div>
               <audio
+                id="audio-fullscreen"
                 controls
                 className="shadow-sm audioOnmedia"
                 disablepictureinpicture
@@ -111,7 +140,7 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
           );
         } else if (nft?.asset_type?.includes("video")) {
           return (
-            <video controls>
+            <video controls id="full-screenVideo">
               <source src={nft.asset_url} type={nft.asset_type} />
             </video>
           );
@@ -145,7 +174,17 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
 
         <CustomPopover
           icon={
-            <div onClick={() => setModalShow(true)}>
+            <div
+              onClick={() => {
+                if (nft?.asset_type?.includes("image")) {
+                  setModalShow(true);
+                } else if (nft?.asset_type?.includes("video")) {
+                  toggleFullScreen();
+                } else if (nft?.asset_type?.includes("audio")) {
+                  toggleAudioFullScreen();
+                }
+              }}
+            >
               <AiOutlineExpand className="svg_size" size={25} />
             </div>
           }
@@ -184,9 +223,20 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
                       alt="media logo"
                       className="type_image typeimg_audio"
                       src={nft.cover_url ? nft.cover_url : sample}
+                      onClick={() => {
+                        var el = document.getElementById(
+                          "audio-fullscreen-full"
+                        );
+                        if (!el.paused) {
+                          el.pause();
+                        } else {
+                          el.play();
+                        }
+                      }}
                     />
                   </div>
                   <audio
+                    id="audio-fullscreen-full"
                     controls
                     className="shadow-sm audioOnmedia"
                     disablepictureinpicture
