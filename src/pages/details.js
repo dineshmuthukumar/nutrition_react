@@ -376,7 +376,10 @@ const Details = () => {
               {/* <BidWinner data={data} /> */}
             </div>
             <div className="col-12 col-lg-6 order-lg-1">
-              <NFTProperties properties={nft.properties} />
+              {nft.properties > 0 && (
+                <NFTProperties properties={nft.properties} />
+              )}
+
               <div className="mt-5"></div>
               <ChainAttributes chains={nft.chain_attributes} />
               <div className="mt-5"></div>
