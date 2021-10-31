@@ -69,9 +69,14 @@ const Details = () => {
 
   useEffect(() => {
     window.addEventListener("scroll", scrollHandler, true);
+    document.addEventListener("contextmenu", (e) => {
+      e.preventDefault();
+    });
+
     return () => {
       window.removeEventListener("scroll", scrollHandler, true);
     };
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

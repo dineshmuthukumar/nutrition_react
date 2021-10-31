@@ -1,15 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import dayjs from "dayjs";
-import { useParams } from "react-router";
-import { toast } from "react-toastify";
-import { Modal, Table } from "react-bootstrap";
-import { BiX } from "react-icons/bi";
 
-import BidName from "../bid-history/bid-name";
 import userImg from "../../images/user_1.png";
-import { nftBidHistory } from "../../api/methods";
 import { currencyFormat } from "../../utils/common";
-import { TableLoader } from "../nft-basic-details/content-loader";
 import "./style.scss";
 
 const LootNFTOwn = ({ data }) => {

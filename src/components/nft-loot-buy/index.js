@@ -368,7 +368,7 @@ const NFTLootBuy = ({
                     <FaCheckCircle color={"#23bf61"} size={60} />
                     <div className="message mt-3">
                       Congratulations ! <br />
-                      You now own one of Amitabh's exclusive NFTs!!
+                      You now own the Amitabh's NFTs!!
                     </div>
                   </div>
 
