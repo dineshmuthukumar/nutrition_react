@@ -387,9 +387,11 @@ const Details = () => {
           <div className="mt-5">
             <NFTArtist />
           </div>
-          <div className="mt-5">
-            <NFTMore nftList={nftMoreList} />
-          </div>
+          {nftMoreList.length > 0 && (
+            <div className="mt-5">
+              <NFTMore nftList={nftMoreList} />
+            </div>
+          )}
           <br />
           <br />
         </div>
