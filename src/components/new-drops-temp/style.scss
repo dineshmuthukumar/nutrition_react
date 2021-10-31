@@ -360,15 +360,27 @@ section.drop-newsletter {
   text-align: center;
 }
 .drop-newsletter h1 {
-  font-size: 2.8em;
-  line-height: 1.6;
+  font-size: 2.5em;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   max-width: 80%;
   margin: auto;
   font-family: "neue_helveticaroman" !important;
 }
+.drop-newsletter h1 span.big_text {
+  font-size: 1.5em;
+}
+.drop-newsletter h2 {
+  font-size: 2.5em;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  max-width: 80%;
+  margin: auto;
+  font-family: "neue_helveticaroman" !important;
+  margin-top: 0.8em;
+}
 .drop-newsletter .formGroup {
-  margin: 2.5em auto 0em auto;
+  margin: 0.5em auto 0em auto;
   position: relative;
   width: 40%;
 }
@@ -769,10 +781,21 @@ span.seperator {
     text-align: center;
   }
   section.drop-newsletter {
-    padding: 6em 2em !important;
+    padding: 6em 1em !important;
   }
   .learnMore a {
     font-size: 1rem;
+  }
+  .drop-newsletter h1 {
+    max-width: 100%;
+    font-size: 1.6em !important;
+    font-weight: 500;
+  }
+  .drop-newsletter h1 span.big_text {
+    font-size: 1.2em;
+  }
+  .drop-newsletter h2 {
+    font-size: 1.9em;
   }
 }
 @media screen and (max-width: 768px) {
@@ -1000,7 +1023,7 @@ span.seperator {
     background-position: 98%;
   }
   .drop-newsletter h1 {
-    font-size: 2em;
+    font-size: 1.5em;
   }
   .drop-newsletter .formGroup {
     width: 80%;

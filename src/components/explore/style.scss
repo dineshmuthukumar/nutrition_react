@@ -32,10 +32,10 @@ h3.about-title {
   margin-bottom: 0.6rem;
   line-height: 1.2;
   overflow: hidden;
-    display: block;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    width: 100%;
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
 }
 .post-cost {
   display: flex;
@@ -105,6 +105,9 @@ h3.about-title {
   width: 100%;
   object-fit: cover;
   transition: 0.5s;
+}
+.item-post img.punk-explorer {
+  height: auto;
 }
 .item-post img:hover {
   opacity: 0.8;

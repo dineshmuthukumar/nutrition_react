@@ -92,7 +92,14 @@ function NFTCounter({
       {timerComponents.length ? (
         timerComponents
       ) : (
-        <span className={`${timeClass}`}>0</span>
+        <span className={`counter-time ${timeClass}`}>
+          0
+          <span
+            className={`counter-interval interval-gap ${intervalClass} ${intervalGapClass}`}
+          >
+            s
+          </span>
+        </span>
       )}
     </div>
   );

@@ -1207,7 +1207,8 @@ input::-webkit-inner-spin-button {
     white-space: pre-wrap;
     background-color: transparent;
     border: 0;
-    &:hover, &:active {
+    &:hover,
+    &:active {
       color: #000000 !important;
       background-color: #f6f6f9;
     }
@@ -1275,7 +1276,7 @@ input::-webkit-inner-spin-button {
       text-align: center;
       font-family: $neue-helveticamedium;
       font-size: 0.8rem;
-      &.no-notify{
+      &.no-notify {
         min-height: 5rem;
         display: flex;
         justify-content: center;
@@ -1348,6 +1349,10 @@ input::-webkit-inner-spin-button {
         @media screen and (max-width: 479px) {
           font-size: 1.3rem;
         }
+
+        &.start {
+          animation: blinker 4.5s linear infinite;
+        }
       }
     }
     .alert_close {
@@ -1370,6 +1375,18 @@ input::-webkit-inner-spin-button {
         }
       }
     }
+  }
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0;
+  }
+  90% {
+    opacity: 0;
   }
 }
 
@@ -1503,15 +1520,13 @@ input::-webkit-inner-spin-button {
 }
 @media screen and (max-width: 425px) {
   .band_btn.navbar-text {
-
     width: 9rem;
     display: flex;
     justify-content: center;
     align-items: center;
-  
   }
 }
 
-nav.navbar.navbar-expand-md.navbar-dark.bg-dark{
+nav.navbar.navbar-expand-md.navbar-dark.bg-dark {
   z-index: 999;
 }

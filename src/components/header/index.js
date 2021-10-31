@@ -20,7 +20,7 @@ import { readNotificationApi } from "./../../api/base-methods";
 
 import "./style.scss";
 
-const Header = ({ hideOptions = false, hideSign = false }) => {
+const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
   const t = useTranslation();
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
@@ -242,14 +242,17 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
             <div className="alert_info">
               <p>
                 <a
+                  className={started ? "start" : ""}
                   href={
                     slug
                       ? `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet#web`
                       : `${process.env.REACT_APP_ACCOUNTS_URL}/signup`
                   }
                 >
-                  The Amitabh NFT Drops Are Soon Going Live! Get Ready To Access
-                  The Drops By Adding Balance To Your Wallet!
+                  {started
+                    ? "The Amitabh NFT Drops Are Live Right Now! Fund Your Wallet & Participate In The Auctions & Buying Right Now!"
+                    : `The Amitabh NFT Drops Are Soon Going Live! Get Ready To Access
+                  The Drops By Adding Balance To Your Wallet!`}
                 </a>
               </p>
             </div>
@@ -288,13 +291,13 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
           {!hideOptions && (
             <>
               <Nav className="d-flex me-0 ms-auto">
+                <Nav.Link id="drop_outer" href="/">
+                  Drops
+                </Nav.Link>
                 {!hideSign && (
                   <>
                     {user.login ? (
                       <>
-                        <Nav.Link id="drop_outer" href="/">
-                          Drops
-                        </Nav.Link>
                         <Nav.Link href="#home" className="help_ic">
                           <BiHelpCircle
                             size={25}

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import Image from "react-bootstrap/Image";
@@ -28,7 +28,7 @@ import { useSelector } from "react-redux";
 
 import "../new-drops-temp/style.scss";
 
-const NewDrops = ({ categories }) => {
+const NewDrops = ({ categories, setStarted, started }) => {
   const { user } = useSelector((state) => state.user.data);
   const r_one = useRef(null);
   const r_two = useRef(null);
@@ -44,6 +44,31 @@ const NewDrops = ({ categories }) => {
   const [vEmail, setVEmail] = useState();
   const [vEmail2, setVEmail2] = useState();
   const [active, setActive] = useState();
+
+  const date = "Nov 01, 2021 02:10:00";
+
+  const [atime, setAtime] = useState(date);
+
+  const end_date = "Nov 03, 2021 01:40:00";
+
+  // useEffect(() => {
+  //   console.log("sss", new Date(date), new Date());
+  //   if (new Date(date) < new Date()) {
+  //     setAtime(end_date);
+  //     setStarted(true);
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
+
+  const handleCheck = () => {
+    var t = new Date();
+    t.setSeconds(t.getSeconds() + 2);
+
+    if (new Date(date) < t) {
+      setAtime(end_date);
+      setStarted(true);
+    }
+  };
 
   const handleSendNewsLetter = async () => {
     if (validateEmail(email)) {
@@ -282,6 +307,7 @@ const NewDrops = ({ categories }) => {
             <section className="dropCard-Section" ref={r_one}>
               <DropCard
                 img={four}
+                setCheck={handleCheck}
                 cardTitle="Madhushala NFTs"
                 smallTitle="Amalgamation of Knowledge, Fulfilment of Duties, and Expectations!"
                 cardDesc="BeyondLife.club brings you the philosophical undertones of Madhushala in Amitabh's baritone as an NFT! Now you can own a recorded version of Madhushala, curated by Amitabh Bachchan himself. By owning this one-of-a-kind NFT, you're owning a segment of this legend's history in his own voice, and an 86-year-old iconic and epoch-making metaphorical Hindi poetry!"
@@ -290,7 +316,7 @@ const NewDrops = ({ categories }) => {
                 dropDescTwo="Madhushala's Rhyme, Rhythm, and Flavour is still fresh in Amitabh's mind. He believed and witnessed the miracles that this purest form of art brings to society. The love and the respect he holds for Mr.Bachchan in his heart compelled him to recite, sing, and translate stories of Madhushala from time to time. This unique and enthralling audio NFT of Madhushala has one version in Hindi, and one in English!"
                 dropDescThree="The Madhushala NFT is a super-premium NFT presented to you by BeyondLife.club. You will be the one among the two sole owners of the exclusive NFTs - the rendition of Mr. Harivansh's refined poetry in Amitabh's rustic baritone!!"
                 auctionTitle="Auction starting in"
-                auctionTime="2021-10-22T14:25:00.000Z"
+                auctionTime={atime}
                 editionTitle="Edition of"
                 editionType="2/2"
                 additional="Additional Perk"
@@ -304,6 +330,7 @@ const NewDrops = ({ categories }) => {
             <section className="dropCard-Section mistry_nft" ref={r_two}>
               <DropCard
                 img={eight}
+                setCheck={handleCheck}
                 cardTitle="Win The LOOT BOX"
                 smallTitle="Signed Vintage Posters | NFT Art | BigB Punks"
                 cardDesc="Would you miss out on the chance to own some of the most prized representations of Amitabh's legacy? Explore the NFT Loot Box to win yours!"
@@ -312,7 +339,7 @@ const NewDrops = ({ categories }) => {
                 dropDescTwo={<DropTwoDescTwo />}
                 dropDescThree="The best part about the Loot Box is that all these can be yours even without entering an auction… and with an assurance that you will get at least one prized NFT art or poster for you to be proud of! Hurry up! Purchase the Loot Box now!"
                 auctionTitle="Drops Open In"
-                auctionTime="2021-10-22T14:25:00.000Z"
+                auctionTime={atime}
                 editionTitle="Items"
                 editionType="5000"
                 additional="What You Get"
@@ -326,6 +353,7 @@ const NewDrops = ({ categories }) => {
             <section className="dropCard-Section" ref={r_three}>
               <DropCard
                 img={two}
+                setCheck={handleCheck}
                 cardTitle="Autographed Physical Posters"
                 smallTitle="Vintage Original Rare Posters with Digital NFT Certificate of Authenticity"
                 cardDesc="Now you can own a video of Amitabh signing an original movie poster of his iconic movies, hand-painted by a few authentic artists whose work will amaze you in every way. The cult value of their masterpieces is a statement of ethnicity, authenticity, Indian cinema's legacy, and beyond."
@@ -334,7 +362,7 @@ const NewDrops = ({ categories }) => {
                 dropDescTwo="Movie posters from the era when India witnessed its “Angry Young Man” dominate Indian cinema. This Amitabh Bachchan's golden era  was so epic that it could itself be a storyline that will potentially be a superhit worldwide."
                 dropDescThree="Our NFTs will feature the Legend BigB signing these rare and origianal posters in a video. In addition to that video, you will also receive the autographed physical copy of the vintage poster of some of Amitabh's iconic movies! These prized videos are bound to be evergreen, and they could now be yours!"
                 auctionTitle="Auction starting in"
-                auctionTime="2021-10-22T14:25:00.000Z"
+                auctionTime={atime}
                 editionTitle="Limited Edition"
                 editionType="7/7"
                 additional="What You Get"
@@ -348,6 +376,7 @@ const NewDrops = ({ categories }) => {
             <section className="dropCard-Section" ref={r_four}>
               <DropCard
                 img={one}
+                setCheck={handleCheck}
                 cardTitle="BigB Punks and NFT Arts"
                 smallTitle="A Collection of Signature Crypto-Style Amitabh Miniatures"
                 cardDesc="Let's admit it! Amitabh, in every avatar, has been a success! Be it the classic ‘Angry Young Man', or the modern French-bearded Godfather with his signature 'DEVIYON aur SAJJANO', or the Twitter personality who numbers his Tweets, the BigB can never be off trends!"
@@ -356,7 +385,7 @@ const NewDrops = ({ categories }) => {
                 dropDescTwo="These BigB Punks have their signature headgear, neck-gear, hairstyle, eyewear, facial hair, and a few more, creating a repository of unique, meticulously crafted, and curated art-versions of Amitabh. The NFT art has been exclusively hand-drawn."
                 dropDescThree="Every Pastel Art and every BigB Punk collection is a collectible in its own right, and there will be just a total of 6 of these! You could be the owner of one of the most celebrated forms of art in the crypto space!"
                 auctionTitle="Auction starting in"
-                auctionTime="2021-10-22T14:25:00.000Z"
+                auctionTime={atime}
                 editionTitle="Edition"
                 editionType="6/6"
                 additional="What You Get"
