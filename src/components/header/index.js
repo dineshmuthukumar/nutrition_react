@@ -41,7 +41,7 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
         dispatch(user_wallet_update_action(data));
       });
     }
-    handleGetNotification(npage);
+    if (user.login) handleGetNotification(npage);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -410,17 +410,6 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
                               as="button"
                               onClick={() =>
                                 window.open(
-                                  `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/user-activity`,
-                                  "_self"
-                                )
-                              }
-                            >
-                              My Activity
-                            </Dropdown.Item>{" "}
-                            <Dropdown.Item
-                              as="button"
-                              onClick={() =>
-                                window.open(
                                   `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/bid-activity`,
                                   "_self"
                                 )
@@ -428,6 +417,28 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
                             >
                               Bid Activity
                             </Dropdown.Item>
+                            <Dropdown.Item
+                              as="button"
+                              onClick={() =>
+                                window.open(
+                                  `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/claim`,
+                                  "_self"
+                                )
+                              }
+                            >
+                              Claim NFTs
+                            </Dropdown.Item>
+                            <Dropdown.Item
+                              as="button"
+                              onClick={() =>
+                                window.open(
+                                  `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/user-activity`,
+                                  "_self"
+                                )
+                              }
+                            >
+                              My Activity
+                            </Dropdown.Item>{" "}
                             <Dropdown.Item
                               as="button"
                               onClick={() =>

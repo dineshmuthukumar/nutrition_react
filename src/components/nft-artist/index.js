@@ -1,6 +1,6 @@
 import React from "react";
 import ReadMoreReact from "read-more-react";
-import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
+// import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 
 import AritstPills from "./artist-pills";
 import artistImg from "../../images/artist-image.png";
