@@ -248,8 +248,8 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
                       : `${process.env.REACT_APP_ACCOUNTS_URL}/signup`
                   }
                 >
-                  The Amitabh NFT Drops Are Soon Going Live! Get Ready To Access
-                  The Drops By Adding Balance To Your Wallet!
+                  The Amitabh NFT Drops Are Live Right Now! Fund Your Wallet
+                  &amp; Participate In The Auctions &amp; Buying Right Now!
                 </a>
               </p>
             </div>
