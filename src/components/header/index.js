@@ -388,6 +388,17 @@ const Header = ({ hideOptions = false, hideSign = false }) => {
                               as="button"
                               onClick={() =>
                                 window.open(
+                                  `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/mynft`,
+                                  "_self"
+                                )
+                              }
+                            >
+                              My NFTs
+                            </Dropdown.Item>
+                            <Dropdown.Item
+                              as="button"
+                              onClick={() =>
+                                window.open(
                                   `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
                                   "_self"
                                 )
