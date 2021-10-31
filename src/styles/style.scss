@@ -1275,7 +1275,7 @@ input::-webkit-inner-spin-button {
       text-align: center;
       font-family: $neue-helveticamedium;
       font-size: 0.8rem;
-      &.no-notify{
+      &.no-notify {
         min-height: 5rem;
         display: flex;
         justify-content: center;
@@ -1342,6 +1342,7 @@ input::-webkit-inner-spin-button {
         line-height: 1.6;
         text-decoration: none;
         font-family: $neue-helveticabold;
+        animation: blinker 4.5s linear infinite;
         @media screen and (max-width: 767px) {
           font-size: 1.3rem;
         }
@@ -1503,15 +1504,24 @@ input::-webkit-inner-spin-button {
 }
 @media screen and (max-width: 425px) {
   .band_btn.navbar-text {
-
     width: 9rem;
     display: flex;
     justify-content: center;
     align-items: center;
-  
   }
 }
 
-nav.navbar.navbar-expand-md.navbar-dark.bg-dark{
+nav.navbar.navbar-expand-md.navbar-dark.bg-dark {
   z-index: 999;
+}
+@keyframes blinker {
+  50% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0;
+  }
+  90% {
+    opacity: 0;
+  }
 }
