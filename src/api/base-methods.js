@@ -1,5 +1,7 @@
 import baseAxios from "./axios-base-utils";
 
+import axios from "axios";
+
 export const registerApi = (props) =>
   baseAxios.post("/register", { user: { ...props } });
 
@@ -14,4 +16,7 @@ export const getNotificationApi = (page) =>
 export const readNotificationApi = () =>
   baseAxios.post("/users/notification_read");
 
-export const getServerTimeApi = () => baseAxios.get("/server/time");
+export const getServerTimeApi = () =>
+  axios.get(
+    `${process.env.REACT_APP_BASE_SERVER_URL.replace("api/v1", "")}/time`
+  );

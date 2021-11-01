@@ -51,11 +51,11 @@ const NewDropsTemp2 = ({
   const [vEmail2, setVEmail2] = useState();
   const [active, setActive] = useState();
 
-  const date = "Nov 01, 2021 00:55:00";
+  const date = "Nov 01, 2021 06:30:00";
 
   const [atime, setAtime] = useState(date);
 
-  const end_date = "Nov 01, 2021 00:58:00";
+  const end_date = "Nov 04, 2021 06:30:00";
 
   useEffect(() => {
     var offset = new Date().getTimezoneOffset();
