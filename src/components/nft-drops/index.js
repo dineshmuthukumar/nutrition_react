@@ -15,6 +15,7 @@ const NFTDrops = ({
   nftType,
   isEnded,
   isStarted = false,
+  cTime,
 }) => {
   const erc721 = nftType == "erc721";
 
@@ -49,7 +50,11 @@ const NFTDrops = ({
               {isEnded ? (
                 <>{time && dayjs(time).format("DD. MM. YYYY")}</>
               ) : (
-                <NFTCounter time={time} timeClass="font-onesevenrem" />
+                <NFTCounter
+                  time={time}
+                  cTime={cTime}
+                  timeClass="font-onesevenrem"
+                />
               )}
             </h3>
           </div>

@@ -40,6 +40,7 @@ const NFTList = ({ data = [] }) => {
               isStarted={isStarted}
               isEnded={isEnded}
               time={time}
+              cTime={nft.time}
               label={label}
               title={nft.name}
               bidPrice={bidBuyValue}

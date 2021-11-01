@@ -675,38 +675,20 @@ const NFTPlaceBid = ({
                       } else if (nft.asset_type.includes("audio")) {
                         return (
                           <>
-                            <div className="no_height align-items-center">
-                              <img
-                                alt="media logo"
-                                className="type_image typeimg_audio"
-                                src={nft.cover_url ? nft.cover_url : sample}
-                              />
-                            </div>
-                            <audio
-                              controls
-                              className="shadow-sm audioOnmedia"
-                              disablepictureinpicture
-                              controlslist="nodownload noplaybackrate"
-                            >
-                              <source
-                                src={nft.asset_url}
-                                type={nft.asset_type}
-                              />
-                              Your browser does not support the audio element.
-                            </audio>
+                            <img
+                              alt="media logo"
+                              className="type_image typeimg_audio"
+                              src={nft.cover_url ? nft.cover_url : sample}
+                            />
                           </>
                         );
                       } else if (nft.asset_type.includes("video")) {
                         return (
-                          <video
-                            controls
-                            oncontextmenu="return false;"
-                            controlsList="nodownload"
-                            autoplay
-                            playsinline
-                          >
-                            <source src={nft.asset_url} type={nft.asset_type} />
-                          </video>
+                          <img
+                            alt="media logo"
+                            className="type_image typeimg_audio"
+                            src={nft.cover_url ? nft.cover_url : sample}
+                          />
                         );
                       }
                     })()}

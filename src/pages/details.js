@@ -62,6 +62,8 @@ const Details = () => {
   const [totalFavourites, setTotalFavourites] = useState(0);
   const [availableQty, setAvailableQty] = useState(null);
   const [userTotalBuys, setUserTotalBuys] = useState(0);
+  const [userOutBid, setUserOutBid] = useState(false);
+  const [userLastBid, setUserLastBid] = useState(0);
 
   const { user } = useSelector((state) => state.user.data);
 
@@ -138,7 +140,8 @@ const Details = () => {
     if (user) {
       if (erc721) {
         userBidDetail(slug, user.slug, (data) => {
-          console.log(data);
+          setUserLastBid(data.user_bid);
+          setUserOutBid(data.outbid);
         });
       } else {
         userBuyDetail(slug, user.slug, (data) => {
@@ -257,6 +260,8 @@ const Details = () => {
                   totalFavourites={totalFavourites}
                   availableQty={availableQty}
                   userTotalBuys={userTotalBuys}
+                  userOutBid={userOutBid}
+                  userLastBid={userLastBid}
                   //Socket states end
 
                   isAuctionStarted={isAuctionStarted}
@@ -318,6 +323,7 @@ const Details = () => {
                         status="start"
                         bottomTitle="Auction starting in"
                         time={nft.auction_start_time}
+                        cTime={nft.time}
                       />
                     );
                   }
@@ -368,6 +374,7 @@ const Details = () => {
                         status="start"
                         bottomTitle="Auction starting in"
                         time={nft.auction_start_time}
+                        cTime={nft.time}
                       />
                     );
                   }

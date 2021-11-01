@@ -21,6 +21,7 @@ const NFTLootBuy = ({
   lootBuyPop = false,
   setLootBuyPop,
   category,
+  availableQty,
   isAuctionStarted,
   isAuctionEnded,
   soldOut,
@@ -150,10 +151,18 @@ const NFTLootBuy = ({
     // let count = category.category_detail.total_user_buys
     //   ? category.category_detail.buy_count - category.category_detail.total_user_buys
     //   : category.category_detail.buy_count;
-    let count =
-      category.category_detail.quantity >= 100
-        ? 100
-        : category.category_detail.quantity;
+
+    let count = 100;
+    if (availableQty >= 100) {
+      count = 100;
+    } else if (availableQty) {
+      count = availableQty;
+    } else if (category.category_detail.quantity >= 100) {
+      count = 100;
+    } else {
+      count = category.category_detail.quantity;
+    }
+
     if (e.target.value) {
       if (
         validateQuantity(e.target.value) &&
@@ -300,9 +309,17 @@ const NFTLootBuy = ({
                   <div className={`input-bid-container mt-5 ${error}`}>
                     <label className="input-bid-text">
                       Enter Quantity (Max of{" "}
-                      {category.category_detail.quantity >= 100
-                        ? 100
-                        : category.category_detail.quantity}{" "}
+                      {(() => {
+                        if (availableQty >= 100) {
+                          return 100;
+                        } else if (availableQty) {
+                          return availableQty;
+                        } else if (category.category_detail.quantity >= 100) {
+                          return 100;
+                        } else {
+                          return category.category_detail.quantity;
+                        }
+                      })()}{" "}
                       at a time)
                     </label>
 
@@ -355,11 +372,6 @@ const NFTLootBuy = ({
                           className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop ${buy.processClass}`} //process -> proccessing
                           onClick={handleBuy}
                         >
-                          {console.log(
-                            "🚀 ~ file: index.js ~ line 362 ~ buy.buttonName",
-                            buy.buttonName,
-                            buy.processClass
-                          )}
                           {(() => {
                             if (!isAuctionStarted && !isAuctionEnded) {
                               return "Auction has not yet begun";

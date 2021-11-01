@@ -54,6 +54,7 @@ const MoreCard = ({ nft, isStarted = false, isEnded, time, label }) => {
             ) : (
               <NFTCounter
                 time={time}
+                cTime={nft.time}
                 timeClass="font-onerem"
                 intervalClass="font-psevenrem"
                 intervalGapClass="me-1"

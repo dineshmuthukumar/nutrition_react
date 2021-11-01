@@ -16,11 +16,12 @@ const NFTBaseDetails = ({
   nft,
   placeBidPop,
   setPlaceBidPop,
-  // socketData,
   totalBuy,
   userTotalBuys,
   price,
   availableQty,
+  userOutBid,
+  userLastBid,
   isAuctionStarted,
   isAuctionEnded,
   soldOut,
@@ -102,17 +103,34 @@ const NFTBaseDetails = ({
             />
           )}
 
-          {user && nft.user_highest_bid && (
-            <BidValue
-              title="Your Last Bid"
-              value={currencyFormat(nft.user_highest_bid, "USD")}
-              status={
-                parseFloat(nft.user_highest_bid) < parseFloat(nft.minimum_bid)
-                  ? "Outbid"
-                  : ""
-              }
-            />
-          )}
+          {(() => {
+            if (user && userLastBid && price) {
+              return (
+                <BidValue
+                  title="Your Last Bid"
+                  value={currencyFormat(userLastBid, "USD")}
+                  status={
+                    parseFloat(userLastBid) < parseFloat(price) ? "Outbid" : ""
+                  }
+                />
+              );
+            } else if (user && nft.user_highest_bid) {
+              return (
+                <BidValue
+                  title="Your Last Bid"
+                  value={currencyFormat(nft.user_highest_bid, "USD")}
+                  status={
+                    parseFloat(nft.user_highest_bid) <
+                    parseFloat(nft.minimum_bid)
+                      ? "Outbid"
+                      : ""
+                  }
+                />
+              );
+            } else {
+              return null;
+            }
+          })()}
 
           {erc721 && isAuctionEnded && winner && (
             <BidValue
@@ -158,6 +176,7 @@ const NFTBaseDetails = ({
               }
             })()}
             time={auctionEndTime}
+            cTime={nft.time}
             handleTimer={handleAuctionEndTimer}
           />
         )}
@@ -166,6 +185,7 @@ const NFTBaseDetails = ({
             title="Auction ended on"
             tooltipText="Auction ended"
             time={auctionEndTime}
+            cTime={nft.time}
             isEnded={true}
           />
         )}
@@ -218,7 +238,6 @@ const NFTBaseDetails = ({
             nft={nft}
             placeBidPop={placeBidPop}
             setPlaceBidPop={setPlaceBidPop}
-            // socketData={socketData}
             price={price}
             userTotalBuys={userTotalBuys}
             isAuctionStarted={isAuctionStarted}

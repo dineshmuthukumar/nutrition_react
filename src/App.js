@@ -6,6 +6,7 @@ import { useSelector, connect, useDispatch } from "react-redux";
 import { change_lang_action } from "./redux/actions/lang_action";
 import { setLanguage } from "react-multi-lang";
 import { getCookies } from "./utils/cookies";
+import { getServerTimeApi } from "./api/base-methods";
 import {
   user_load_by_token_thunk,
   user_logout_thunk,
@@ -22,6 +23,7 @@ const Details = lazy(() => import("./pages/details"));
 function App(props) {
   const dispatch = useDispatch();
   const [online, setOnline] = useState(true);
+  const [diffTimer, setDiffTimer] = useState(false);
 
   const { lang, user } = useSelector((state) => state);
 
@@ -29,6 +31,39 @@ function App(props) {
     props.change_lang(lang);
     setLanguage(lang);
   }, [props, lang]);
+
+  const checkSystemTimer = (input) => {
+    var offset = new Date().getTimezoneOffset();
+
+    var sys_time = new Date();
+    sys_time.setMinutes(sys_time.getMinutes() - -1 * offset);
+    sys_time.toString();
+
+    var server_time = Date.parse(input);
+
+    console.log(
+      "🚀 ~ file: App.js ~ line 48 ~ checkSystemTimer ~ server_time",
+      input,
+      sys_time
+    );
+
+    var seconds = (server_time.getTime() - sys_time.getTime()) / 1000;
+
+    // if (seconds >= 35) {
+    //   setDiffTimer(true);
+    // } else {
+    //   setDiffTimer(false);
+    // }
+  };
+
+  const getServerTime = async () => {
+    try {
+      const result = await getServerTimeApi();
+      checkSystemTimer(result.data.data.time);
+    } catch (error) {
+      console.log("🚀 ~ file: App.js ~ line 48 ~ getServerTime ~ error", error);
+    }
+  };
 
   useEffect(() => {
     const token = getCookies();
@@ -45,6 +80,7 @@ function App(props) {
     window.addEventListener("offline", (event) => {
       setOnline(navigator.onLine);
     });
+    getServerTime();
   }, []);
 
   return (
@@ -54,6 +90,13 @@ function App(props) {
           You are offline, please check you internet connection
         </div>
       )}
+
+      {/* {diffTimer && (
+        <div className="offline-ribbon">
+          Your system time is not match with the internet timing, please sync
+          with live time to have a flawless experience
+        </div>
+      )} */}
 
       <div className="top-loader"></div>
       <div className="whole-content">

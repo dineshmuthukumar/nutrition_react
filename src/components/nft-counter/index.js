@@ -27,10 +27,10 @@ function NFTCounter({
       difference = +new Date(input_utc) - +new Date(cInput_utc_1);
     }
 
-    var cInput_utc_temp = new Date();
-    cInput_utc_temp.setMinutes(cInput_utc_temp.getMinutes() - offset);
+    var cInput_utc_2 = new Date();
+    cInput_utc_2.setMinutes(cInput_utc_2.getMinutes() - offset);
 
-    difference = +new Date(input_utc) - +new Date(cInput_utc_temp);
+    difference = +new Date(input_utc) - +new Date(cInput_utc_2);
 
     let timeLeft = {
       days: 0,
