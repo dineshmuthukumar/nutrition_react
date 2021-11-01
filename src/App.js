@@ -1,5 +1,10 @@
 import React, { Suspense, lazy, useEffect, useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 
 import { useSelector, connect, useDispatch } from "react-redux";
 
@@ -121,7 +126,7 @@ function App(props) {
                 component={Details}
               />
               <Route exact path="/explore/loot/:slug" component={Loot} />
-              <Route
+              <PrivateRoute
                 exact
                 path="/loot/nft/detail/:slug"
                 component={LootDetail}
@@ -154,21 +159,19 @@ const mapDispatchToProps = (dispatch) => {
 
 export default connect(null, mapDispatchToProps)(App);
 
-// const PrivateRoute = ({ component: Component, authed, ...rest }) => {
-//   const user = useSelector((state) => state.user);
+const PrivateRoute = ({ component: Component, authed, ...rest }) => {
+  const user = useSelector((state) => state.user);
 
-//   return (
-//     <Route
-//       {...rest}
-//       render={(props) =>
-//         user.login ? (
-//           <Component {...props} />
-//         ) : (
-//           <Redirect
-//             to={{ pathname: "/signin", state: { from: props.location } }}
-//           />
-//         )
-//       }
-//     />
-//   );
-// };
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        user.login ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+        )
+      }
+    />
+  );
+};
