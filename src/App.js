@@ -37,13 +37,29 @@ function App(props) {
 
     var sys_time = new Date();
     sys_time.setMinutes(sys_time.getMinutes() - -1 * offset);
+    sys_time.toString();
 
-    var server_time = new Date(input);
+    var server_time = Date.parse(input);
+
+    console.log(
+      "🚀 ~ file: App.js ~ line 48 ~ checkSystemTimer ~ server_time",
+      input,
+      sys_time
+    );
+
+    var seconds = (server_time.getTime() - sys_time.getTime()) / 1000;
+
+    // if (seconds >= 35) {
+    //   setDiffTimer(true);
+    // } else {
+    //   setDiffTimer(false);
+    // }
   };
 
   const getServerTime = async () => {
     try {
-      await getServerTimeApi();
+      const result = await getServerTimeApi();
+      checkSystemTimer(result.data.data.time);
     } catch (error) {
       console.log("🚀 ~ file: App.js ~ line 48 ~ getServerTime ~ error", error);
     }
@@ -75,11 +91,12 @@ function App(props) {
         </div>
       )}
 
-      {!online && (
+      {/* {diffTimer && (
         <div className="offline-ribbon">
-          You are offline, please check you internet connection
+          Your system time is not match with the internet timing, please sync
+          with live time to have a flawless experience
         </div>
-      )}
+      )} */}
 
       <div className="top-loader"></div>
       <div className="whole-content">
