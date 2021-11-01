@@ -75,7 +75,7 @@ const DropCard = ({
                     return <div className="end-date">TBA</div>;
                   } else {
                     if (started) {
-                      return <div className="end-date">Total Sell-Out</div>;
+                      return <div className="end-date">Until Loots Last</div>;
                     } else {
                       return (
                         <NFTCounter

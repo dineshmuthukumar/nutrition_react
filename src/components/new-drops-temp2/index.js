@@ -55,7 +55,7 @@ const NewDropsTemp2 = ({
 
   const date = "Nov 01, 2021 06:30:00";
 
-  const loot_date = "Nov 10, 2022 11:30:00";
+  const loot_date = "Nov 02, 2021 13:30:00";
 
   const [atime, setAtime] = useState(date);
   const [ltime, setLtime] = useState(loot_date);
@@ -451,11 +451,10 @@ const NewDropsTemp2 = ({
                 dropDescOne="Don't miss out on the chance to become a proud owner of Amitabh's NFT  art pieces, BigB Punks, and rare vintage posters! All you need to do is explore the NFT Loot Box and see what you've won for yourself! The Loot Box could make you one of the proudest owners of some of the most unique Amitabh Bachchan NFTs! "
                 dropDescTwo={<DropTwoDescTwo />}
                 dropDescThree="The best part about the Loot Box is that all these can be yours even without entering an auction… and with an assurance that you will get at least one prized NFT art or poster for you to be proud of! Hurry up! Purchase the Loot Box now!"
-                // auctionTitle={loot_start ? "Drops Open Until" : "Drops Open In"}
-                // auctionTime={ltime}
-
-                auctionTitle={"Drops Open In"}
-                tba
+                auctionTitle={loot_start ? "Drops Open" : "Drops Open In"}
+                auctionTime={ltime}
+                // auctionTitle={"Drops Open In"}
+                // tba
                 editionTitle="Items"
                 editionType="5000"
                 additional="What You Get"
