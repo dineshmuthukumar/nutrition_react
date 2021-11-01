@@ -152,7 +152,8 @@ const BidHistory = ({ nft, histories = [], isAuctionEnded, totalCount }) => {
                   {dayjs(nft.auction_start_time).format("MMM D, YYYY hh:mm A")}
                 </div>
                 <div className="nft-owner">
-                  Bid listed by <BidName text="@amitabhbachchan" static_name />
+                  {/* Bid listed by <BidName text="@amitabhbachchan" static_name /> */}
+                  Bid listed by @amitabhbachchan
                 </div>
               </div>
             </div>
