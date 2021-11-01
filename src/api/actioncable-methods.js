@@ -16,7 +16,7 @@ export const buyDetail = (slug, value) => {
 };
 
 export const bidDetail = (slug, value) => {
-  baseCable.subscriptions.create(
+  nftCable.subscriptions.create(
     { channel: "NftChannel", room: `bid_detail_${slug}` },
     {
       connected: () => {

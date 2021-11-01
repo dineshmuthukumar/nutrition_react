@@ -570,11 +570,29 @@ const NFTPlaceBid = ({
                   </div>
                   <div className="bottom-area">
                     <div className="terms text-secondary">
-                      {erc721
-                        ? `Once a bid is placed, it cannot be withdrawn. Learn more about
-                  how auctions work.`
-                        : `An nft can't be reversed after it's been purchased. Learn more about
-                  how it works.`}
+                      {erc721 ? (
+                        <>
+                          Once a bid is placed, it cannot be withdrawn.
+                          <a
+                            href={process.env.REACT_APP_HELP_URL}
+                            target="_blank"
+                          >
+                            Learn more
+                          </a>{" "}
+                          about how auctions work.
+                        </>
+                      ) : (
+                        <>
+                          An nft can't be reversed after it's been purchased.
+                          <a
+                            href={process.env.REACT_APP_HELP_URL}
+                            target="_blank"
+                          >
+                            Learn more
+                          </a>{" "}
+                          about how it works.
+                        </>
+                      )}
                     </div>
 
                     <div className="bottom-content-pop">
@@ -680,7 +698,13 @@ const NFTPlaceBid = ({
                         );
                       } else if (nft.asset_type.includes("video")) {
                         return (
-                          <video controls oncontextmenu="return false;" controlsList="nodownload" autoplay playsinline>
+                          <video
+                            controls
+                            oncontextmenu="return false;"
+                            controlsList="nodownload"
+                            autoplay
+                            playsinline
+                          >
                             <source src={nft.asset_url} type={nft.asset_type} />
                           </video>
                         );
