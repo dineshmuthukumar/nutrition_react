@@ -323,6 +323,7 @@ const Details = () => {
                         status="start"
                         bottomTitle="Auction starting in"
                         time={nft.auction_start_time}
+                        cTime={nft.time}
                       />
                     );
                   }
@@ -373,6 +374,7 @@ const Details = () => {
                         status="start"
                         bottomTitle="Auction starting in"
                         time={nft.auction_start_time}
+                        cTime={nft.time}
                       />
                     );
                   }

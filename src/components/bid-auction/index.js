@@ -8,6 +8,7 @@ const BidAuction = ({
   bottomTitle,
   bottomValue,
   time,
+  cTime,
   userTotalBuys,
 }) => {
   return (
@@ -36,6 +37,7 @@ const BidAuction = ({
             {status === "start" ? (
               <NFTCounter
                 time={time}
+                cTime={cTime}
                 timeClass="font-onerem"
                 intervalClass="font-psevenrem"
                 intervalGapClass="me-1"

@@ -174,6 +174,7 @@ const NFTBaseDetails = ({
               }
             })()}
             time={auctionEndTime}
+            cTime={nft.time}
             handleTimer={handleAuctionEndTimer}
           />
         )}
@@ -182,6 +183,7 @@ const NFTBaseDetails = ({
             title="Auction ended on"
             tooltipText="Auction ended"
             time={auctionEndTime}
+            cTime={nft.time}
             isEnded={true}
           />
         )}
