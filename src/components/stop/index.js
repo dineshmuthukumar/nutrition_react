@@ -3,12 +3,9 @@ import React from "react";
 const Stop = () => {
   return (
     <h2 className="text-center mt-5">
-      Apologies! Due to a technical fault, the Loot Box drop is postponed, we
-      will let you know as soon as it is live. <br />
-      Rest assured our team is working on it with top priority, your balances
-      and NFTs are safe.
-      <br /> Thank you for your patience and apologies for any inconvenience
-      caused.
+      Welcome BigB Loot Box NFT collectors! Please stay tuned, your funds and
+      NFTs are safe. You will be the first to participate as soon as we are live
+      again.
     </h2>
   );
 };

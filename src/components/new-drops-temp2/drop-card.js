@@ -19,6 +19,7 @@ const DropCard = ({
   dropTitle,
   endDate,
   isEnded,
+  tba = false,
   setCheck,
   enabled = true,
   dropDescOne,
@@ -70,15 +71,19 @@ const DropCard = ({
 
               {(() => {
                 if (type === "loot") {
-                  if (started) {
-                    return <div className="end-date">Total Sell-Out</div>;
+                  if (tba) {
+                    return <div className="end-date">TBA</div>;
                   } else {
-                    return (
-                      <NFTCounter
-                        time={auctionTime}
-                        handleEndEvent={setCheck}
-                      />
-                    );
+                    if (started) {
+                      return <div className="end-date">Total Sell-Out</div>;
+                    } else {
+                      return (
+                        <NFTCounter
+                          time={auctionTime}
+                          handleEndEvent={setCheck}
+                        />
+                      );
+                    }
                   }
                 } else {
                   if (isEnded) {

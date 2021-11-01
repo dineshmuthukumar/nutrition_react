@@ -126,19 +126,25 @@ function App(props) {
                 path="/details/:slug/:placebid"
                 component={Details}
               />
-              <Route exact path="/explore/loot/:slug" component={Loot} />
-              <PrivateRoute
+              {/* <Route exact path="/explore/loot/:slug" component={Loot} /> */}
+              {/* <PrivateRoute
                 exact
                 path="/loot/nft/detail/:slug"
                 component={LootDetail}
+              /> */}
+              <Route exact path="/explore/loot/:slug" component={Stop} />
+              <PrivateRoute
+                exact
+                path="/loot/nft/detail/:slug"
+                component={Stop}
               />
               <Route
                 exact
                 path="/explore/category/:name/:slug"
                 component={Explore}
               />
-              {/* <Route exact path="/" component={NewHome} /> */}
-              <Route exact path="/" component={Stop} />
+              <Route exact path="/" component={NewHome} />
+              {/* <Route exact path="/" component={Stop} /> */}
 
               {/* <Route exact path="/new" component={Home} /> */}
               <Route path="/not-found" component={NotFound} />
