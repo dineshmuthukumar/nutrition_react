@@ -3,10 +3,12 @@ import React from "react";
 const Stop = () => {
   return (
     <h2 className="text-center mt-5">
-      Dear Collectors, We are experiencing unprecedented demands on the auction.
-      We are going to be up soon. Your wallets are safe and protected. Please
-      bear with us with patience. We really appreciate your support and
-      kindness. |  Team BeyondLife.club
+      Apologies! Due to a technical fault, the Loot Box drop is postponed, we
+      will let you know as soon as it is live. <br />
+      Rest assured our team is working on it with top priority, your balances
+      and NFTs are safe.
+      <br /> Thank you for your patience and apologies for any inconvenience
+      caused.
     </h2>
   );
 };
