@@ -8,6 +8,7 @@ import { nftCategoriesApi } from "../api/methods";
 const NewHome = () => {
   const [categories, setCategories] = useState([]);
   const [started, setStarted] = useState(false);
+  const [ended, setEnded] = useState(false);
 
   useEffect(() => {
     nftCategories(1);
@@ -30,6 +31,8 @@ const NewHome = () => {
         categories={categories}
         started={started}
         setStarted={setStarted}
+        ended={ended}
+        setEnded={setEnded}
       />
       {/* <NewDropsTemp2 categories={categories} /> */}
 
