@@ -10,14 +10,28 @@ function NFTCounter({
   handleEndEvent = () => {},
 }) {
   const calculateTimeLeft = (input, cInput) => {
+    var offset = new Date().getTimezoneOffset();
+    var input_utc = new Date(input);
+    input_utc.setMinutes(input_utc.getMinutes() - offset);
+
     let difference;
     if (cInput) {
-      difference = +new Date(input) - +new Date(cInput);
+      var cInput_utc = new Date(cInput);
+      cInput_utc.setMinutes(cInput_utc.getMinutes() - offset);
+
+      difference = +new Date(input_utc) - +new Date(cInput_utc);
     } else {
-      difference = +new Date(input) - +new Date();
+      var cInput_utc_1 = new Date();
+      cInput_utc_1.setMinutes(cInput_utc_1.getMinutes() - offset);
+
+      difference = +new Date(input_utc) - +new Date(cInput_utc_1);
     }
 
-    difference = +new Date(input) - +new Date();
+    var cInput_utc_temp = new Date();
+    cInput_utc_temp.setMinutes(cInput_utc_temp.getMinutes() - offset);
+
+    difference = +new Date(input_utc) - +new Date(cInput_utc_temp);
+
     let timeLeft = {
       days: 0,
       hours: 0,

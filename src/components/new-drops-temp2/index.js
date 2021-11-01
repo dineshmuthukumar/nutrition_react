@@ -51,34 +51,54 @@ const NewDropsTemp2 = ({
   const [vEmail2, setVEmail2] = useState();
   const [active, setActive] = useState();
 
-  const date = "Nov 01, 2021 03:03:00";
+  const date = "Nov 01, 2021 00:55:00";
 
   const [atime, setAtime] = useState(date);
 
-  const end_date = "Nov 04, 2021 12:00:00";
+  const end_date = "Nov 01, 2021 00:58:00";
 
   useEffect(() => {
-    if (new Date(date) < new Date()) {
-      setAtime(end_date);
+    var offset = new Date().getTimezoneOffset();
+    var date_utc = new Date(date);
+    date_utc.setMinutes(date_utc.getMinutes() - offset);
+
+    var end_date_utc = new Date(end_date);
+    end_date_utc.setMinutes(end_date_utc.getMinutes() - offset);
+
+    // setAtime(date_utc);
+
+    if (new Date(date_utc) < new Date()) {
+      setAtime(end_date_utc);
       setStarted(true);
+    } else {
+      setAtime(date_utc);
     }
 
-    if (new Date(end_date) < new Date()) {
+    if (new Date(end_date_utc) < new Date()) {
       setEnded(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleCheck = () => {
+    var offset = new Date().getTimezoneOffset();
+    var date_utc = new Date(date);
+    date_utc.setMinutes(date_utc.getMinutes() - offset);
+
+    var end_date_utc = new Date(end_date);
+    end_date_utc.setMinutes(end_date_utc.getMinutes() - offset);
+
     var t = new Date();
     t.setSeconds(t.getSeconds() + 2);
 
-    if (new Date(date) < t) {
-      setAtime(end_date);
+    if (new Date(date_utc) < t) {
+      setAtime(end_date_utc);
       setStarted(true);
+    } else {
+      setAtime(date_utc);
     }
 
-    if (new Date(end_date) < t) {
+    if (new Date(end_date_utc) < t) {
       setEnded(true);
     }
   };
