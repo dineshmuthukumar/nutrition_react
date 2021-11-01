@@ -7,7 +7,7 @@ import NFTLootMedia from "../components/nft-loot-media";
 import Header from "../components/header";
 import { NFTLoader } from "../components/nft-basic-details/content-loader";
 import { nftCategoryDetailApi } from "../api/methods";
-import { buyDetail } from "../api/actioncable-methods";
+import { lootDetail } from "../api/actioncable-methods";
 
 const Loot = () => {
   const { slug } = useParams();
@@ -25,7 +25,7 @@ const Loot = () => {
   }, [slug]);
 
   useEffect(() => {
-    buyDetail(slug, (data) => {
+    lootDetail((data) => {
       setAvailableQty(data.quantity);
       if (data.quantity === 0) {
         setSoldOut(true);
