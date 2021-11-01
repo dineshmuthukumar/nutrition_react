@@ -71,7 +71,7 @@ const NFTBaseDetails = ({
           <ReadMoreReact
             min={200}
             ideal={200}
-            max={550}
+            max={560}
             text={nft.description}
           />
         )}

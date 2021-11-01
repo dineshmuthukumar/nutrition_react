@@ -51,11 +51,11 @@ const NewDropsTemp2 = ({
   const [vEmail2, setVEmail2] = useState();
   const [active, setActive] = useState();
 
-  const date = "Nov 01, 2021 12:44:00";
+  const date = "Nov 01, 2021 00:55:00";
 
   const [atime, setAtime] = useState(date);
 
-  const end_date = "Nov 04, 2021 12:00:00";
+  const end_date = "Nov 01, 2021 00:58:00";
 
   useEffect(() => {
     var offset = new Date().getTimezoneOffset();
@@ -65,9 +65,13 @@ const NewDropsTemp2 = ({
     var end_date_utc = new Date(end_date);
     end_date_utc.setMinutes(end_date_utc.getMinutes() - offset);
 
+    // setAtime(date_utc);
+
     if (new Date(date_utc) < new Date()) {
       setAtime(end_date_utc);
       setStarted(true);
+    } else {
+      setAtime(date_utc);
     }
 
     if (new Date(end_date_utc) < new Date()) {
@@ -90,6 +94,8 @@ const NewDropsTemp2 = ({
     if (new Date(date_utc) < t) {
       setAtime(end_date_utc);
       setStarted(true);
+    } else {
+      setAtime(date_utc);
     }
 
     if (new Date(end_date_utc) < t) {
