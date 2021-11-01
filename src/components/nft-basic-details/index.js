@@ -104,12 +104,14 @@ const NFTBaseDetails = ({
           )}
 
           {(() => {
-            if (user && userLastBid) {
+            if (user && userLastBid && price) {
               return (
                 <BidValue
                   title="Your Last Bid"
                   value={currencyFormat(userLastBid, "USD")}
-                  status={userOutBid ? "Outbid" : ""}
+                  status={
+                    parseFloat(userLastBid) < parseFloat(price) ? "Outbid" : ""
+                  }
                 />
               );
             } else if (user && nft.user_highest_bid) {
