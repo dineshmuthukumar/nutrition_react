@@ -39,6 +39,37 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const static_url = [
+    {
+      id: "Vj6ZeNAwFOYbad2n",
+      url: "https://res.cloudinary.com/developergsh/video/upload/v1635764508/NFT/Sehenshah-2-1_tjshyo.mp4",
+    },
+    {
+      id: "BxRM51oLFgY7AdoP",
+      url: "https://res.cloudinary.com/developergsh/video/upload/v1635764506/NFT/Silsila-1_g5ltpg.mp4",
+    },
+    {
+      id: "GaDEQYvAFO1lRxdZ",
+      url: "https://res.cloudinary.com/developergsh/video/upload/v1635764499/NFT/Don-1_ipyhxt.mp4",
+    },
+    {
+      id: "mJGgB1R9FbNoXWPr",
+      url: "https://res.cloudinary.com/developergsh/video/upload/v1635764488/NFT/Sholay-1-1_g6xfpe.mp4",
+    },
+    {
+      id: "Ma498YyXFk1wBnL6",
+      url: "https://res.cloudinary.com/developergsh/video/upload/v1635764467/NFT/Dewar-1_Low_uqtjre.mp4",
+    },
+    {
+      id: "lqgR23zJF83Xa8Kx",
+      url: "https://res.cloudinary.com/developergsh/video/upload/v1635764457/NFT/Hum_oz9bj1.mp4",
+    },
+    {
+      id: "46RDA3OXFLNM8ZmW",
+      url: "https://res.cloudinary.com/developergsh/video/upload/v1635762632/NFT/Kabikabi-1_iovca0.mp4",
+    },
+  ];
+
   const handleLike = async () => {
     if (!user)
       window.open(
@@ -150,7 +181,10 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
               // oncontextmenu="return false;"
               // controlsList="nodownload"
             >
-              <source src={nft.asset_url} type="video/mp4" />
+              <source
+                src={static_url.find((obj) => obj.id === slug).url}
+                type="video/mp4"
+              />
             </video>
           );
         }
@@ -265,7 +299,10 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
                   autoplay
                   playsinline
                 >
-                  <source src={nft.asset_url} type={nft.asset_type} />
+                  <source
+                    src={static_url.find((obj) => obj.id === slug).url}
+                    type="video/mp4"
+                  />
                 </video>
               );
             }

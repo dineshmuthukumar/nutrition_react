@@ -236,38 +236,6 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
 
   return (
     <>
-      {ribbon && (
-        <div className="top_bar">
-          <div className="alert_box">
-            <div className="alert_info">
-              <p>
-                <a
-                  className={started ? "start" : ""}
-                  href={
-                    slug
-                      ? `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet#web`
-                      : `${process.env.REACT_APP_ACCOUNTS_URL}/signup`
-                  }
-                >
-                  {started
-                    ? "The Amitabh NFT Drops Are Live Right Now! Fund Your Wallet & Participate In The Auctions & Buying Right Now!"
-                    : `The Amitabh NFT Drops Are Soon Going Live! Get Ready To Access
-                  The Drops By Adding Balance To Your Wallet!`}
-                </a>
-              </p>
-            </div>
-            <div className="alert_close">
-              <span id="al_close" onClick={() => setRibbon(false)}>
-                {/* <FaTimes /> */}
-                <img
-                  alt="times logo"
-                  src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e"
-                />
-              </span>
-            </div>
-          </div>
-        </div>
-      )}
       <Navbar bg="dark" expand="md" variant="dark">
         <Container fluid>
           <Navbar.Brand
