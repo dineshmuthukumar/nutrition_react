@@ -17,6 +17,7 @@ import {
   user_logout_thunk,
 } from "./redux/thunk/user_thunk";
 import "./App.css";
+import Stop from "./components/stop";
 
 const NewHome = lazy(() => import("./pages/new-home"));
 const Explore = lazy(() => import("./pages/explore-list"));
@@ -136,7 +137,8 @@ function App(props) {
                 path="/explore/category/:name/:slug"
                 component={Explore}
               />
-              <Route exact path="/" component={NewHome} />
+              {/* <Route exact path="/" component={NewHome} /> */}
+              <Route exact path="/" component={Stop} />
 
               {/* <Route exact path="/new" component={Home} /> */}
               <Route path="/not-found" component={NotFound} />
