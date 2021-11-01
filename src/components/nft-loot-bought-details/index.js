@@ -83,13 +83,15 @@ const NFTLootBoughtDetails = ({ nft }) => {
             if (nft.nft_type === "erc721") {
               return <BidValue title="You Own" value="1 of 1" isLeft />;
             } else {
-              <BidValue
-                title="You Own"
-                value={
-                  nft.total_user_buys &&
-                  `${nft.total_user_buys} / ${nft.total_quantity}`
-                }
-              />;
+              return (
+                <BidValue
+                  title="You Own"
+                  value={
+                    nft.total_user_buys &&
+                    `${nft.total_user_buys} / ${nft.total_quantity}`
+                  }
+                />
+              );
             }
           })()}
         </div>
