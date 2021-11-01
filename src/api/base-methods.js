@@ -13,3 +13,5 @@ export const getNotificationApi = (page) =>
 
 export const readNotificationApi = () =>
   baseAxios.post("/users/notification_read");
+
+export const getServerTimeApi = () => baseAxios.get("/server/time");
