@@ -18,6 +18,43 @@ const NFTSummary = ({
     <div className="bg-white shadow-sm nft-summary">
       <div className="row">
         <div className="d-flex align-items-center justify-content-around flex-wrap flex-row point-box">
+          <div className="p-4 point-list">
+            {erc721 ? (
+              <Badge
+                title="Price"
+                // value={
+                //   price
+                //     ? currencyFormat(price, "USD")
+                //     : nft.minimum_bid && currencyFormat(nft.minimum_bid, "USD")
+                // }
+                value={(() => {
+                  if (price && price >= 1000) {
+                    return `$${abbreviateNumber(price)}`;
+                  } else if (price && price < 1000) {
+                    return currencyFormat(price, "USD");
+                  } else if (nft.minimum_bid && nft.minimum_bid >= 1000) {
+                    return `$${abbreviateNumber(nft.minimum_bid)}`;
+                  } else {
+                    return currencyFormat(nft.minimum_bid, "USD");
+                  }
+                })()}
+                // diff="+2000"
+                diff={bidChange ? bidChange : nft.bid_change.toFixed(2)}
+                tooltip="Price increased from last bid"
+              />
+            ) : (
+              <Badge
+                title="Price"
+                value={
+                  price
+                    ? currencyFormat(price, "USD")
+                    : nft.buy_amount && currencyFormat(nft.buy_amount, "USD")
+                }
+                // diff="-2000"
+                tooltip="Buy price"
+              />
+            )}
+          </div>
           {erc721 && (
             <div className="p-4 point-list">
               <Badge
@@ -40,43 +77,6 @@ const NFTSummary = ({
               />
             </div>
           )}
-          <div className="p-4 point-list">
-            {erc721 ? (
-              <Badge
-                title="Price"
-                // value={
-                //   price
-                //     ? currencyFormat(price, "USD")
-                //     : nft.minimum_bid && currencyFormat(nft.minimum_bid, "USD")
-                // }
-                value={(() => {
-                  if (price && price >= 1000) {
-                    return `$${abbreviateNumber(price)}`;
-                  } else if (price && price < 1000) {
-                    return currencyFormat(price, "USD");
-                  } else if (nft.minimum_bid && nft.minimum_bid >= 1000) {
-                    return `$${abbreviateNumber(nft.minimum_bid)}`;
-                  } else {
-                    return currencyFormat(nft.minimum_bid, "USD");
-                  }
-                })()}
-                // diff="+2000"
-                diff={bidChange ? bidChange : nft.bid_change}
-                tooltip="Price increased from last bid"
-              />
-            ) : (
-              <Badge
-                title="Price"
-                value={
-                  price
-                    ? currencyFormat(price, "USD")
-                    : nft.buy_amount && currencyFormat(nft.buy_amount, "USD")
-                }
-                // diff="-2000"
-                tooltip="Buy price"
-              />
-            )}
-          </div>
           <div className="p-4 point-list">
             {erc721 ? (
               <Badge

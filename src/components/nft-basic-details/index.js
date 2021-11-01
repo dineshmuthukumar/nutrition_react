@@ -36,7 +36,7 @@ const NFTBaseDetails = ({
   return (
     <>
       <div className="creator mt-3">
-        {nft.category_name} | Amitabh Bachchan
+        {nft.category_name} | Amitabh Bachchan Exclusive NFTs
         <ToolTip
           icon={<FaCheckCircle size={16} className="ms-2 check-icon" />}
           content="Verified Artist"
@@ -187,7 +187,7 @@ const NFTBaseDetails = ({
                   />
                   {nft.total_user_buys > 0 && (
                     <BidValue
-                      title="You Owned"
+                      title="You Own"
                       value={
                         userTotalBuys
                           ? `${userTotalBuys} / ${nft.total_quantity} NFTs`

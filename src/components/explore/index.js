@@ -13,13 +13,14 @@ const Explore = ({ list = [], handleClick, hasMore, loading, loadingMore }) => {
   const [explore, setExplore] = useState({
     title: "",
     description: "",
+    class: "",
   });
 
   useEffect(() => {
     if (name.includes("Madhushala")) {
       setExplore({
         title: "Madhushala NFTs",
-        description: `Madhushala is a poetic confluence of romance and philosophy, penned by Amit-Ji's dad Shri. Harivansh Rai Bachchan!        `,
+        description: `Madhushala is a poetic confluence of romance and philosophy, penned by AmitJi's father Shri. Harivansh Rai Bachchan!        `,
       });
     } else if (name.includes("Posters")) {
       setExplore({
@@ -28,6 +29,7 @@ const Explore = ({ list = [], handleClick, hasMore, loading, loadingMore }) => {
       });
     } else {
       setExplore({
+        class: "punk-explorer",
         title: "BigB Punks and NFT Arts",
         description: `Let's admit it! Amitabh, in every avatar, has been a success! Be it the classic 'Angry Young Man', or the modern French-bearded Godfather with his signature 'DEVIYON aur SAJJANO', or the Twitter personality who numbers his Tweets, the BigB can never be off trends!`,
       });
@@ -110,6 +112,7 @@ const Explore = ({ list = [], handleClick, hasMore, loading, loadingMore }) => {
 
                       return (
                         <ExploreCard
+                          punkClass={explore.class}
                           slug={nft.slug}
                           nft={nft}
                           isStarted={isStarted}

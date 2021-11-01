@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Header from "../components/header";
 
-import NewDrops from "../components/new-drops";
+import NewDropsTemp2 from "../components/new-drops-temp2";
 import toaster from "../utils/toaster";
 import { nftCategoriesApi } from "../api/methods";
 
 const NewHome = () => {
   const [categories, setCategories] = useState([]);
+  const [started, setStarted] = useState(false);
+  const [ended, setEnded] = useState(false);
 
   useEffect(() => {
     nftCategories(1);
@@ -24,8 +26,14 @@ const NewHome = () => {
 
   return (
     <>
-      <Header />
-      <NewDrops categories={categories} />
+      <Header started={started} />
+      <NewDropsTemp2
+        categories={categories}
+        started={started}
+        setStarted={setStarted}
+        ended={ended}
+        setEnded={setEnded}
+      />
       {/* <NewDropsTemp2 categories={categories} /> */}
 
       {/* {!loading ? <NFTList data={list} /> : <ThreeColumnLoader />} */}

@@ -11,6 +11,7 @@ import "./style.scss";
 const ExploreCard = ({
   nft,
   slug,
+  punkClass = "",
   isStarted,
   isEnded,
   time,
@@ -30,8 +31,10 @@ const ExploreCard = ({
     <div className="col-xl-4 col-lg-4 col-sm-6">
       <div className="block-box user-post  mb-5">
         <div className="item-post">
+          <span className="nft-type-badge">{nft.nft_type.toUpperCase()}</span>
           <img
-            alt="item logo"
+            alt="item logo "
+            className={punkClass}
             src={(() => {
               if (nft?.asset_type?.includes("image")) {
                 return nft.asset_url ? nft.asset_url : sample;

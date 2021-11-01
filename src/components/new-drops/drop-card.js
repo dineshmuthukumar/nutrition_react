@@ -12,6 +12,7 @@ const DropCard = ({
   cardTitle,
   smallTitle,
   cardDesc,
+  setCheck,
   dropTitle,
   dropDescOne,
   dropDescTwo,
@@ -55,7 +56,7 @@ const DropCard = ({
             </div>
             <div className="auction-time">
               <p className="heading-S">{auctionTitle}</p>
-              <NFTCounter time={"Nov 01, 2021 00:00:00"} />
+              <NFTCounter time={auctionTime} handleEndEvent={setCheck} />
             </div>
             <div className="auction-main">
               <div className="auction-one">

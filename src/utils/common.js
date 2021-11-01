@@ -19,31 +19,40 @@ export const currencyFormat = (value, type) => {
   return formatter.format(parseFloat(value));
 };
 
-export const abbreviateNumber = (value) => {
-  let newValue = value;
-  if (value >= 1000) {
-    const suffixes = ["", "K", "M", "B", "T"];
-    let suffixNum = Math.floor(("" + value).length / 3);
-    let shortValue = "";
-    for (let precision = 2; precision >= 1; precision--) {
-      shortValue = (
-        suffixNum !== 0 ? value / Math.pow(1000, suffixNum) : value
-      ).toPrecision(precision);
-      let dotLessShortValue = (shortValue + "").replace(/[^a-zA-Z 0-9]+/g, "");
-      if (dotLessShortValue.length <= 2) {
-        break;
-      }
-    }
-    if (shortValue % 1 !== 0) shortValue = parseFloat(shortValue).toFixed(1);
-    newValue = shortValue + suffixes[suffixNum];
-  }
-  return newValue;
+// export const abbreviateNumber = (value) => {
+//   let newValue = value;
+//   if (value >= 1000) {
+//     const suffixes = ["", "K", "M", "B", "T"];
+//     let suffixNum = Math.floor(("" + value).length / 3);
+//     let shortValue = "";
+//     for (let precision = 2; precision >= 1; precision--) {
+//       shortValue = (
+//         suffixNum !== 0 ? value / Math.pow(1000, suffixNum) : value
+//       ).toPrecision(precision);
+//       let dotLessShortValue = (shortValue + "").replace(/[^a-zA-Z 0-9]+/g, "");
+//       if (dotLessShortValue.length <= 2) {
+//         break;
+//       }
+//     }
+//     console.log(shortValue);
+//     if (shortValue % 1 !== 0) shortValue = parseFloat(shortValue).toFixed(1);
+//     newValue = shortValue + suffixes[suffixNum];
+//   }
+//   return newValue;
+// };
+
+const intlFormat = (num) => {
+  return new Intl.NumberFormat().format(Math.round(num * 10) / 10);
+};
+export const abbreviateNumber = (num) => {
+  if (num >= 1000000000) return intlFormat(num / 1000000000) + "B";
+  if (num >= 1000000) return intlFormat(num / 1000000) + "M";
+  if (num >= 1000) return intlFormat(num / 1000) + "K";
+  return intlFormat(num);
 };
 
 export const percDiff = (basePrice, newPrice) => {
-  return (
-    100 * Math.abs((basePrice - newPrice) / ((basePrice + newPrice) / 2))
-  ).toFixed(2);
+  return (((newPrice - basePrice) / basePrice) * 100).toFixed(2);
 };
 
 export const validateCurrency = (value) => {

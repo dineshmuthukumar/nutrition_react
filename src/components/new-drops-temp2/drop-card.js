@@ -1,20 +1,26 @@
 import React from "react";
+import dayjs from "dayjs";
 import Image from "react-bootstrap/Image";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router";
 
 import NFTCounter from "../nft-counter";
 
 import "../new-drops-temp/style.scss";
 
 const DropCard = ({
-  Id,
-  ref,
   img,
+  isBuy = false,
   cardTitle,
   smallTitle,
+  started,
   cardDesc,
   dropTitle,
+  endDate,
+  isEnded,
+  setCheck,
+  enabled = true,
   dropDescOne,
   dropDescTwo,
   dropDescThree,
@@ -26,9 +32,19 @@ const DropCard = ({
   additionalDesc,
   slug,
   catName,
-  scroll,
+  type,
 }) => {
   const { user } = useSelector((state) => state.user.data);
+
+  const history = useHistory();
+  const handleClick = () => {
+    if (type === "loot") {
+      history.push(`/explore/loot/${slug}`);
+    } else {
+      history.push(`/explore/category/${catName}/${slug}`);
+    }
+  };
+
   return (
     <>
       <div className="container">
@@ -49,7 +65,36 @@ const DropCard = ({
             </div>
             <div className="auction-time">
               <p className="heading-S">{auctionTitle}</p>
-              <NFTCounter time={"Nov 01, 2021 12:00:00"} />
+
+              {(() => {
+                if (type === "loot") {
+                  if (started) {
+                    return <div className="end-date">Total Sell-Out</div>;
+                  } else {
+                    return (
+                      <NFTCounter
+                        time={auctionTime}
+                        handleEndEvent={setCheck}
+                      />
+                    );
+                  }
+                } else {
+                  if (isEnded) {
+                    return (
+                      <div className="end-date">
+                        {dayjs(endDate).format("DD. MM. YYYY")}
+                      </div>
+                    );
+                  } else {
+                    return (
+                      <NFTCounter
+                        time={auctionTime}
+                        handleEndEvent={setCheck}
+                      />
+                    );
+                  }
+                }
+              })()}
             </div>
             <div className="auction-main">
               <div className="auction-one">
@@ -68,27 +113,36 @@ const DropCard = ({
           </div>
           <div className="col-lg-6">
             <div className="drop-card-post">
-              <Image src={img} />
+              {started && enabled ? (
+                <Image role="button" src={img} onClick={handleClick} />
+              ) : (
+                <Image src={img} />
+              )}
               <div className="learnMore">
-                <Link
-                  to="#"
-                  onClick={() => {
-                    if (user?.slug) {
-                      window.open(
-                        `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet#web`,
-                        "_self"
-                      );
-                    } else {
-                      window.open(
-                        `${process.env.REACT_APP_ACCOUNTS_URL}/signup`,
-                        "_self"
-                      );
-                    }
-                  }}
-                >
-                  {user?.slug ? <>Get Ready For This NFT </> : "Register Now"}
-                </Link>
-
+                {started && enabled ? (
+                  <Link to="#" onClick={handleClick}>
+                    {isBuy ? "Buy Now" : "Bid Now"}
+                  </Link>
+                ) : (
+                  <Link
+                    to="#"
+                    onClick={() => {
+                      if (user?.slug) {
+                        window.open(
+                          `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet#web`,
+                          "_self"
+                        );
+                      } else {
+                        window.open(
+                          `${process.env.REACT_APP_ACCOUNTS_URL}/signup`,
+                          "_self"
+                        );
+                      }
+                    }}
+                  >
+                    {user?.slug ? <>Get Ready For This NFT </> : "Register Now"}
+                  </Link>
+                )}
                 {/* <button type="button" onClick={()=> setModal(true)}>Place Your Bid Right Now!</button>  */}
               </div>
             </div>
