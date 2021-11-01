@@ -51,9 +51,14 @@ const NewDropsTemp2 = ({
   const [vEmail2, setVEmail2] = useState();
   const [active, setActive] = useState();
 
+  const [loot_start, set_loot_start] = useState(false);
+
   const date = "Nov 01, 2021 06:30:00";
 
+  const loot_date = "Nov 01, 2021 11:30:00";
+
   const [atime, setAtime] = useState(date);
+  const [ltime, setLtime] = useState(loot_date);
 
   const end_date = "Nov 04, 2021 06:30:00";
 
@@ -61,6 +66,9 @@ const NewDropsTemp2 = ({
     var offset = new Date().getTimezoneOffset();
     var date_utc = new Date(date);
     date_utc.setMinutes(date_utc.getMinutes() - offset);
+
+    var loot_date_utc = new Date(loot_date);
+    loot_date_utc.setMinutes(loot_date_utc.getMinutes() - offset);
 
     var end_date_utc = new Date(end_date);
     end_date_utc.setMinutes(end_date_utc.getMinutes() - offset);
@@ -77,6 +85,12 @@ const NewDropsTemp2 = ({
     if (new Date(end_date_utc) < new Date()) {
       setEnded(true);
     }
+
+    if (new Date(loot_date_utc) < new Date()) {
+      set_loot_start(true);
+    } else {
+      setLtime(loot_date_utc);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -84,6 +98,9 @@ const NewDropsTemp2 = ({
     var offset = new Date().getTimezoneOffset();
     var date_utc = new Date(date);
     date_utc.setMinutes(date_utc.getMinutes() - offset);
+
+    var loot_date_utc = new Date(loot_date);
+    loot_date_utc.setMinutes(loot_date_utc.getMinutes() - offset);
 
     var end_date_utc = new Date(end_date);
     end_date_utc.setMinutes(end_date_utc.getMinutes() - offset);
@@ -100,6 +117,12 @@ const NewDropsTemp2 = ({
 
     if (new Date(end_date_utc) < t) {
       setEnded(true);
+    }
+
+    if (new Date(loot_date_utc) < t) {
+      set_loot_start(true);
+    } else {
+      setLtime(loot_date_utc);
     }
   };
 
@@ -411,7 +434,7 @@ const NewDropsTemp2 = ({
             <section className="dropCard-Section mistry_nft" ref={r_two}>
               <DropCard
                 Id={"posters"}
-                started={started}
+                started={loot_start}
                 endDate={end_date}
                 isEnded={ended}
                 img={eight}
@@ -424,8 +447,8 @@ const NewDropsTemp2 = ({
                 dropDescOne="Don't miss out on the chance to become a proud owner of Amitabh's NFT  art pieces, BigB Punks, and rare vintage posters! All you need to do is explore the NFT Loot Box and see what you've won for yourself! The Loot Box could make you one of the proudest owners of some of the most unique Amitabh Bachchan NFTs! "
                 dropDescTwo={<DropTwoDescTwo />}
                 dropDescThree="The best part about the Loot Box is that all these can be yours even without entering an auction… and with an assurance that you will get at least one prized NFT art or poster for you to be proud of! Hurry up! Purchase the Loot Box now!"
-                auctionTitle={started ? "Drops Open Until" : "Drops Open In"}
-                auctionTime={atime}
+                auctionTitle={loot_start ? "Drops Open Until" : "Drops Open In"}
+                auctionTime={ltime}
                 editionTitle="Items"
                 editionType="5000"
                 additional="What You Get"
