@@ -120,6 +120,7 @@ const NFTLootBaseDetails = ({
           <NFTLootBuy
             category={category}
             lootBuyPop={lootBuyPop}
+            availableQty={availableQty}
             setLootBuyPop={setLootBuyPop}
             isAuctionStarted={isAuctionStarted}
             isAuctionEnded={isAuctionEnded}

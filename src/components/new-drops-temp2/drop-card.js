@@ -33,6 +33,8 @@ const DropCard = ({
   slug,
   catName,
   type,
+  price,
+  priceTitle,
 }) => {
   const { user } = useSelector((state) => state.user.data);
 
@@ -98,8 +100,8 @@ const DropCard = ({
             </div>
             <div className="auction-main">
               <div className="auction-one">
-                <p className="heading-S">Minimum Price</p>
-                <h1>TBA</h1>
+                <p className="heading-S">{priceTitle}</p>
+                <h1>{price}</h1>
               </div>
               <div className="auction-two">
                 <p className="heading-S">{editionTitle}</p>
