@@ -34,6 +34,10 @@
       border-radius: 0.3rem;
       margin-left: 0.5rem;
       cursor: pointer;
+      background-color: #fff;
+      background-clip: padding-box;
+      border: 1px solid rgba(0,0,0,.2);
+      border-radius: .3rem;
 
       &:active {
         background-color: #c9c7c7;
