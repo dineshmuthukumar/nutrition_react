@@ -126,7 +126,9 @@ function App(props) {
                 path="/details/:slug/:placebid"
                 component={Details}
               />
-              <Route exact path="/explore/loot/:slug" component={Loot} />
+              {/* <Route exact path="/explore/loot/:slug" component={Loot} /> */}
+
+              <Redirect exact path="/explore/loot/:slug" to="/" />
               <PrivateRoute
                 exact
                 path="/loot/nft/detail/:slug"
