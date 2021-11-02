@@ -47,12 +47,6 @@ function App(props) {
 
     var server_time = Date.parse(input);
 
-    console.log(
-      "🚀 ~ file: App.js ~ line 48 ~ checkSystemTimer ~ server_time",
-      input,
-      sys_time
-    );
-
     var seconds = (server_time.getTime() - sys_time.getTime()) / 1000;
 
     // if (seconds >= 35) {
@@ -126,18 +120,18 @@ function App(props) {
                 path="/details/:slug/:placebid"
                 component={Details}
               />
-              {/* <Route exact path="/explore/loot/:slug" component={Loot} /> */}
-              {/* <PrivateRoute
+              <Route exact path="/explore/loot/:slug" component={Loot} />
+              <PrivateRoute
                 exact
                 path="/loot/nft/detail/:slug"
                 component={LootDetail}
-              /> */}
-              <Route exact path="/explore/loot/:slug" component={Stop} />
+              />
+              {/* <Route exact path="/explore/loot/:slug" component={Stop} />
               <PrivateRoute
                 exact
                 path="/loot/nft/detail/:slug"
                 component={Stop}
-              />
+              /> */}
               <Route
                 exact
                 path="/explore/category/:name/:slug"
