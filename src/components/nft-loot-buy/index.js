@@ -443,9 +443,12 @@ const NFTLootBuy = ({
                       <div className="place-bid-button">
                         <button
                           className="btn btn-outline-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop "
-                          onClick={() => setSuccess(false)}
+                          onClick={() => {
+                            setSuccess(false);
+                            setLootBuyPop(!lootBuyPop);
+                          }}
                         >
-                          Buy More
+                          Close
                         </button>
                         <button
                           className="btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop "
