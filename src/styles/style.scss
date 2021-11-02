@@ -906,7 +906,7 @@ input::-webkit-inner-spin-button {
   }
 
   .sub-header-nft .sub-head-title .nft-head-details .sub-nft-title {
-    font-size: 1rem !important;
+    font-size: 1.4rem !important;
   }
   .nft-media.media_audio {
     height: auto !important;
@@ -914,8 +914,7 @@ input::-webkit-inner-spin-button {
   .sub-header-nft .sub-place-bid-btn {
     font-family: $neue-helveticamedium;
     font-size: 0.9rem !important;
-    padding: 0.5rem 0.5rem !important;
-    width: 100px;
+    padding: 0.5rem 1rem !important;
   }
   .bid-history .bid-history-content {
     min-height: auto !important;
@@ -1474,9 +1473,9 @@ input::-webkit-inner-spin-button {
     min-width: 22rem !important;
   }
 }
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 421px) {
   .noti-container.dropdown-menu-end[data-bs-popper] {
-    right: -50px;
+    right: -90px;
   }
 }
 
@@ -1520,14 +1519,6 @@ input::-webkit-inner-spin-button {
   flex-direction: row;
   overflow: hidden;
 }
-@media screen and (max-width: 425px) {
-  .band_btn.navbar-text {
-    width: 9rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-}
 
 nav.navbar.navbar-expand-md.navbar-dark.bg-dark {
   z-index: 999;
@@ -1545,7 +1536,16 @@ nav.navbar.navbar-expand-md.navbar-dark.bg-dark {
 }
 
 .point-box {
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: 767px) {
+    align-content: flex-start !important;
+  }
+  @media screen and (max-width: 639px) {
     justify-content: flex-start !important;
+  }
+
+  .point-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 }

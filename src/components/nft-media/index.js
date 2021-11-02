@@ -187,15 +187,15 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
           );
         } else if (nft?.asset_type?.includes("video")) {
           return (
+            <div className="video-height">
             <video
               id="full-screenVideo"
               playsinline
               controls
               autoplay
-              muted
               loop
-              // oncontextmenu="return false;"
-              // controlsList="nodownload"
+              oncontextmenu="return false;"
+              controlsList="nodownload"
             >
               <source
                 src={
@@ -206,6 +206,7 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
                 type="video/mp4"
               />
             </video>
+            </div>
           );
         }
       })()}
@@ -312,7 +313,7 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
               );
             } else if (nft?.asset_type?.includes("video")) {
               return (
-                <video
+                  <video
                   controls
                   oncontextmenu="return false;"
                   controlsList="nodownload"

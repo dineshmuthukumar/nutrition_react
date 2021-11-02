@@ -56,10 +56,10 @@
   display: block;
   object-fit: contain;
   height: 85%;  
-  @media screen and (max-width: 991px) {
-    width: 96%;
-    height: 80%;
-  }
+  // @media screen and (max-width: 991px) {
+  //   width: 96%;
+  //   height: 80%;
+  // }
 }
 .media_audio.modal-body img,
 .media_audio.modal-body video {
@@ -114,12 +114,22 @@
   justify-content: center;
   align-items: center;
   height: calc(100vh - 8.5rem) !important;
-  @media screen and (min-width: 520px) and (max-width: 991px) {
+  @media screen and (max-width: 991px) {
     min-height: calc(100vh - 20rem);
-    height: 65vh !important;
+    height: auto !important;
+  }
+  .video-height {
+    width: 100%;
+    display: flex;
+    height: 100%;
+    @media screen and (max-width: 991px) {
+      width: 100%;
+      display: flex;
+      height: calc(100vh - 10rem); 
+    }
   }
   .no_height {
-    @media screen and (max-width: 520px) {
+    @media screen and (max-width: 991px) {
       height: auto;
     }
   }

@@ -17,7 +17,7 @@ const NFTSummary = ({
   return (
     <div className="bg-white shadow-sm nft-summary">
       <div className="row">
-        <div className="d-flex align-items-center justify-content-around flex-wrap flex-row point-box">
+        <div className="d-flex justify-content-around flex-wrap flex-row point-box">
           <div className="p-4 point-list">
             {erc721 ? (
               <Badge

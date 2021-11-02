@@ -135,15 +135,16 @@ const NFTLootBoughtMedia = ({ nft }) => {
           );
         } else if (nft?.asset_type?.includes("video")) {
           return (
-            <video
-              id="full-screenVideo"
-              controls
-              oncontextmenu="return false;"
-              controlsList="nodownload"
-              autoplay
+            <div className="video-height">
+              <video id="full-screenVideo" 
+              controls oncontextmenu="return false;" 
+              controlsList="nodownload" 
               playsinline
-            >
-              <source
+              controls
+              autoplay
+              loop
+              >
+                <source
                 src={
                   static_url.find((obj) => obj.id === nft.slug)?.url
                     ? static_url.find((obj) => obj.id === nft.slug)?.url
@@ -151,7 +152,8 @@ const NFTLootBoughtMedia = ({ nft }) => {
                 }
                 type="video/mp4"
               />
-            </video>
+              </video>
+            </div>
           );
         }
       })()}
@@ -248,13 +250,8 @@ const NFTLootBoughtMedia = ({ nft }) => {
               );
             } else if (nft?.asset_type?.includes("video")) {
               return (
-                <video
-                  controls
-                  oncontextmenu="return false;"
-                  controlsList="nodownload"
-                  autoplay
-                  playsinline
-                >
+                
+                <video controls oncontextmenu="return false;" controlsList="nodownload" autoplay playsinline>
                   <source
                     src={
                       static_url.find((obj) => obj.id === nft.slug)?.url
