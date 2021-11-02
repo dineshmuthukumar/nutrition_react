@@ -145,8 +145,8 @@ const NFTLootBoughtMedia = ({ nft }) => {
             >
               <source
                 src={
-                  static_url.find((obj) => obj.id === slug)?.url
-                    ? static_url.find((obj) => obj.id === slug)?.url
+                  static_url.find((obj) => obj.id === nft.slug)?.url
+                    ? static_url.find((obj) => obj.id === nft.slug)?.url
                     : nft.asset_url
                 }
                 type="video/mp4"
@@ -257,8 +257,8 @@ const NFTLootBoughtMedia = ({ nft }) => {
                 >
                   <source
                     src={
-                      static_url.find((obj) => obj.id === slug)?.url
-                        ? static_url.find((obj) => obj.id === slug)?.url
+                      static_url.find((obj) => obj.id === nft.slug)?.url
+                        ? static_url.find((obj) => obj.id === nft.slug)?.url
                         : nft.asset_url
                     }
                     type="video/mp4"

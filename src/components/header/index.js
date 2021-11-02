@@ -397,7 +397,7 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                                 )
                               }
                             >
-                              Bid Activity
+                              Outbid NFTs
                             </Dropdown.Item>
                             <Dropdown.Item
                               as="button"
