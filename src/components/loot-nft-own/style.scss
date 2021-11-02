@@ -8,8 +8,8 @@
   min-height: calc(100vh - 10rem) !important;
   position: relative;
   overflow: hidden;
-  @media screen and (max-width:1440px) {
-    min-height: calc(100vh) !important; 
+  @media screen and (max-width: 1440px) {
+    min-height: calc(100vh) !important;
   }
 
   // .winner-text {
@@ -30,6 +30,7 @@
       width: 12rem;
       border-radius: 50%;
       object-fit: cover;
+      animation: zoom-in-zoom-out 1s ease-in infinite;
       // @media screen and (min-width: 3066px) {
       //   height: 12rem;
       //   width: 12rem;
@@ -42,7 +43,17 @@
       font-size: 2rem;
     }
   }
-
+  @keyframes zoom-in-zoom-out {
+    0% {
+      transform: scale(1, 1);
+    }
+    50% {
+      transform: scale(1.1, 1.1);
+    }
+    100% {
+      transform: scale(1, 1);
+    }
+  }
   .nft-sold-details {
     margin-top: 2.5rem;
     display: flex;
@@ -73,19 +84,28 @@
       }
     }
   }
-  .bid-winner .winner-text {
-    
-}
+  .winner_details {
+    width: 70%;
+    margin-top: 4em;
+    text-align: center;
+  }
+  .winner_details .lastbid-left div,
+  .winner_details .lastbid-right div {
+    border: 1px solid #fff;
+    padding: 10px;
+  }
+  .lastbid-left,
+  .lastbid-right {
+    width: 50%;
+  }
   .nft-lastbid-details {
     margin-top: 2.5rem;
-    display: flex;
-    width: 80%;
+    display: flex !important;
 
     .lastbid-left {
-      flex: 1;
       .lastbid-title {
         font-family: $neue-helveticamedium;
-        font-size: 0.9rem;
+        font-size: 1.5rem;
       }
 
       .lastbid-value {
@@ -95,11 +115,9 @@
     }
 
     .lastbid-right {
-      flex: 1;
-
       .lastbid-date-title {
         font-family: $neue-helveticamedium;
-        font-size: 0.9rem;
+        font-size: 1.5rem;
       }
 
       .lastbid-date-value {
@@ -144,5 +162,18 @@
     right: -12rem;
     // top: 12.5rem !important;
     font-size: 8.5rem;
+  }
+}
+@media screen and (max-width: 768px) {
+  .winner-text {
+    right: -14rem;
+    top: calc(50% - 7rem) !important;
+    font-size: 8rem;
+  }
+  .bid-winner {
+    min-height: calc(90vh) !important;
+  }
+  .bid-winner {
+    padding: 3rem 1rem 2rem 1rem;
   }
 }
