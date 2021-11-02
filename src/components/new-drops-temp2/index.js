@@ -358,7 +358,7 @@ const NewDropsTemp2 = ({
                       }`}
                     >
                       Collection 2:
-                      <span className="main_title">Win With Thex Loot Box</span>
+                      <span className="main_title">Win With The Loot Box</span>
                       <span className="sub_title">
                         Your Ticket To Surprise Amitabh NFTs
                       </span>
