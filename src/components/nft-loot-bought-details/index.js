@@ -44,7 +44,7 @@ const NFTLootBoughtDetails = ({ nft }) => {
         />
       </div>
       <p className="text-secondary mt-1 mb-5 nft-desc">
-        {nft && <ReadMoreReact min={40} ideal={40} text={nft.description} />}
+        {nft && <ReadMoreReact min={200} ideal={200} max={550} text={nft.description} />}
       </p>
 
       <div className="bottom-content">

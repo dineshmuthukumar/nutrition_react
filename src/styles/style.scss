@@ -992,7 +992,7 @@ input::-webkit-inner-spin-button {
   }
   .nft-more .nft-more-content .more-card img {
     width: 100% !important;
-    object-fit: cover !important;
+    object-fit: contain !important;
   }
   // section.sw_ab_1 {
   //   padding: 4rem 1.3rem !important;
