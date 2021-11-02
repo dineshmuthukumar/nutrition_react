@@ -106,7 +106,7 @@ function App(props) {
 
       <div className="top-loader"></div>
       <div className="whole-content">
-        <Router>
+        <Router basename="/">
           <Suspense
             fallback={
               <div className="flone-preloader-wrapper">
