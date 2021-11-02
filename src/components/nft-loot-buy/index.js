@@ -172,7 +172,7 @@ const NFTLootBuy = ({
         let amount =
           e.target.value * parseFloat(category.category_detail.buy_amount);
         if (user) {
-          if (parseFloat(user.balance) <= parseFloat(amount)) {
+          if (parseFloat(user.balance) < parseFloat(amount)) {
             setBuyQuantity(e.target.value);
             setBuyAmount(amount);
             setBuy({
