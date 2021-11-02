@@ -510,7 +510,7 @@ const UserComponent = ({ sref, user, onClick = () => {} }) => (
   <div className="header-user-details" onClick={onClick} ref={sref}>
     <img
       className="user-image"
-      src={user.avatar ? user.avatar : userImg}
+      src={user.avatar_url ? user.avatar_url : userImg}
       alt="user-icon"
     />
     <div className="user-name">
