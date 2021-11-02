@@ -4,7 +4,7 @@
 //   padding: 6rem 0rem;
 //   position: relative;
 // }
-@import '../../styles/common';
+@import "../../styles/common";
 
 section.sw_ab_1 {
   background: url(../../images/drops/drops_banner_2.jpg);
@@ -729,7 +729,6 @@ span.seperator {
   }
   .sw_ab_1 .learnMore a {
     border: 1px solid #fff;
-    margin-right: 0;
   }
   .dr_baner {
     display: block;
@@ -754,7 +753,6 @@ span.seperator {
     display: none;
   }
   .sw_ab_1 .learnMore a {
-    margin-right: 0;
     margin-bottom: 1em;
   }
 }
@@ -805,6 +803,12 @@ span.seperator {
     font-size: 1.5rem;
     padding: 1.3rem 3.5rem;
     line-height: 1;
+  }
+  .sw_ab_1 .learnMore a {
+    margin: 0 auto 20px;
+    display: block;
+    max-width: 310px;
+    margin-right: auto !important;
   }
   .drop-newsletter h1 {
     .drop-newsletter h1 {

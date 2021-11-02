@@ -47,7 +47,13 @@ function App(props) {
 
     var server_time = Date.parse(input);
 
-    var seconds = (server_time.getTime() - sys_time.getTime()) / 1000;
+    // console.log(
+    //   "🚀 ~ file: App.js ~ line 48 ~ checkSystemTimer ~ server_time",
+    //   input,
+    //   sys_time
+    // );
+
+    // var seconds = (server_time.getTime() - sys_time.getTime()) / 1000;
 
     // if (seconds >= 35) {
     //   setDiffTimer(true);

@@ -20,6 +20,53 @@ const NFTLootBoughtMedia = ({ nft }) => {
   const [modalShow, setModalShow] = useState(false);
   const [bgColor, setBgColor] = useState();
 
+  const static_url = [
+    {
+      id: "Vj6ZeNAwFOYbad2n",
+      url: "https://res.cloudinary.com/developergsh/video/upload/v1635764508/NFT/Sehenshah-2-1_tjshyo.mp4",
+    },
+    {
+      id: "BxRM51oLFgY7AdoP",
+      url: "https://res.cloudinary.com/developergsh/video/upload/v1635764506/NFT/Silsila-1_g5ltpg.mp4",
+    },
+    {
+      id: "GaDEQYvAFO1lRxdZ",
+      url: "https://res.cloudinary.com/developergsh/video/upload/v1635764499/NFT/Don-1_ipyhxt.mp4",
+    },
+    {
+      id: "mJGgB1R9FbNoXWPr",
+      url: "https://res.cloudinary.com/developergsh/video/upload/v1635764488/NFT/Sholay-1-1_g6xfpe.mp4",
+    },
+    {
+      id: "Ma498YyXFk1wBnL6",
+      url: "https://res.cloudinary.com/developergsh/video/upload/v1635764467/NFT/Dewar-1_Low_uqtjre.mp4",
+    },
+    {
+      id: "lqgR23zJF83Xa8Kx",
+      url: "https://res.cloudinary.com/developergsh/video/upload/v1635764457/NFT/Hum_oz9bj1.mp4",
+    },
+    {
+      id: "46RDA3OXFLNM8ZmW",
+      url: "https://res.cloudinary.com/developergsh/video/upload/v1635762632/NFT/Kabikabi-1_iovca0.mp4",
+    },
+    {
+      id: "wnJMy1xzFm36A09X",
+      url: "https://res.cloudinary.com/developergsh/video/upload/v1635844602/NFT/Loot-Mrnatwarlal-wnJMy1xzFm36A09X_pky3cn.mp4",
+    },
+    {
+      id: "PxR5B1r4FA3GnjAM",
+      url: "https://res.cloudinary.com/developergsh/video/upload/v1635844749/NFT/Loot-Sehenshah-PxR5B1r4FA3GnjAM_r9tfb3.mp4",
+    },
+    {
+      id: "GB8OzYpaFy3Rb6vm",
+      url: "https://res.cloudinary.com/developergsh/video/upload/v1635844806/NFT/Loot-Trishul-GB8OzYpaFy3Rb6vm_hzjy28.mp4",
+    },
+    {
+      id: "AJWQV1MOFl3w6mOX",
+      url: "https://res.cloudinary.com/developergsh/video/upload/v1635844806/NFT/Loot-Deewaar-AJWQV1MOFl3w6mOX_gh2zha.mp4",
+    },
+  ];
+
   useEffect(() => {
     if (nft?.asset_type?.includes("image")) {
       getBgColor(nft.asset_url);
@@ -88,8 +135,22 @@ const NFTLootBoughtMedia = ({ nft }) => {
           );
         } else if (nft?.asset_type?.includes("video")) {
           return (
-            <video id="full-screenVideo" controls oncontextmenu="return false;" controlsList="nodownload" autoplay playsinline>
-              <source src={nft.asset_url} type={nft.asset_type} />
+            <video
+              id="full-screenVideo"
+              controls
+              oncontextmenu="return false;"
+              controlsList="nodownload"
+              autoplay
+              playsinline
+            >
+              <source
+                src={
+                  static_url.find((obj) => obj.id === slug)?.url
+                    ? static_url.find((obj) => obj.id === slug)?.url
+                    : nft.asset_url
+                }
+                type="video/mp4"
+              />
             </video>
           );
         }
@@ -187,8 +248,21 @@ const NFTLootBoughtMedia = ({ nft }) => {
               );
             } else if (nft?.asset_type?.includes("video")) {
               return (
-                <video controls oncontextmenu="return false;" controlsList="nodownload" autoplay playsinline>
-                  <source src={nft.asset_url} type={nft.asset_type} />
+                <video
+                  controls
+                  oncontextmenu="return false;"
+                  controlsList="nodownload"
+                  autoplay
+                  playsinline
+                >
+                  <source
+                    src={
+                      static_url.find((obj) => obj.id === slug)?.url
+                        ? static_url.find((obj) => obj.id === slug)?.url
+                        : nft.asset_url
+                    }
+                    type="video/mp4"
+                  />
                 </video>
               );
             }

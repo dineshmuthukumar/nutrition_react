@@ -68,6 +68,22 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
       id: "46RDA3OXFLNM8ZmW",
       url: "https://res.cloudinary.com/developergsh/video/upload/v1635762632/NFT/Kabikabi-1_iovca0.mp4",
     },
+    {
+      id: "wnJMy1xzFm36A09X",
+      url: "https://res.cloudinary.com/developergsh/video/upload/v1635844602/NFT/Loot-Mrnatwarlal-wnJMy1xzFm36A09X_pky3cn.mp4",
+    },
+    {
+      id: "PxR5B1r4FA3GnjAM",
+      url: "https://res.cloudinary.com/developergsh/video/upload/v1635844749/NFT/Loot-Sehenshah-PxR5B1r4FA3GnjAM_r9tfb3.mp4",
+    },
+    {
+      id: "GB8OzYpaFy3Rb6vm",
+      url: "https://res.cloudinary.com/developergsh/video/upload/v1635844806/NFT/Loot-Trishul-GB8OzYpaFy3Rb6vm_hzjy28.mp4",
+    },
+    {
+      id: "AJWQV1MOFl3w6mOX",
+      url: "https://res.cloudinary.com/developergsh/video/upload/v1635844806/NFT/Loot-Deewaar-AJWQV1MOFl3w6mOX_gh2zha.mp4",
+    },
   ];
 
   const handleLike = async () => {
@@ -182,7 +198,11 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
               // controlsList="nodownload"
             >
               <source
-                src={static_url.find((obj) => obj.id === slug).url}
+                src={
+                  static_url.find((obj) => obj.id === slug)?.url
+                    ? static_url.find((obj) => obj.id === slug)?.url
+                    : nft.asset_url
+                }
                 type="video/mp4"
               />
             </video>
@@ -300,7 +320,11 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
                   playsinline
                 >
                   <source
-                    src={static_url.find((obj) => obj.id === slug).url}
+                    src={
+                      static_url.find((obj) => obj.id === slug)?.url
+                        ? static_url.find((obj) => obj.id === slug)?.url
+                        : nft.asset_url
+                    }
                     type="video/mp4"
                   />
                 </video>
