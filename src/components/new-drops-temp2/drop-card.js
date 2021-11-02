@@ -75,7 +75,7 @@ const DropCard = ({
                     return <div className="end-date">TBA</div>;
                   } else {
                     if (started) {
-                      return <div className="end-date">Until Loots Last</div>;
+                      return <div className="end-date">SOLD OUT</div>;
                     } else {
                       return (
                         <NFTCounter
@@ -127,9 +127,13 @@ const DropCard = ({
               )}
               <div className="learnMore">
                 {started && enabled ? (
-                  <Link to="#" onClick={handleClick}>
-                    {isBuy ? "Buy Now" : "Bid Now"}
-                  </Link>
+                  <>
+                    {type !== "loot" && (
+                      <Link to="#" onClick={handleClick}>
+                        {isBuy ? "Buy Now" : "Bid Now"}
+                      </Link>
+                    )}
+                  </>
                 ) : (
                   <Link
                     to="#"
