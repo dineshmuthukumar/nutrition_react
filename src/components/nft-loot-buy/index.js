@@ -152,13 +152,13 @@ const NFTLootBuy = ({
     //   ? category.category_detail.buy_count - category.category_detail.total_user_buys
     //   : category.category_detail.buy_count;
 
-    let count = 100;
-    if (availableQty >= 100) {
-      count = 100;
+    let count = 5;
+    if (availableQty >= 5) {
+      count = 5;
     } else if (availableQty) {
       count = availableQty;
-    } else if (category.category_detail.quantity >= 100) {
-      count = 100;
+    } else if (category.category_detail.quantity >= 5) {
+      count = 5;
     } else {
       count = category.category_detail.quantity;
     }
@@ -310,12 +310,12 @@ const NFTLootBuy = ({
                     <label className="input-bid-text">
                       Enter Quantity (Max of{" "}
                       {(() => {
-                        if (availableQty >= 100) {
-                          return 100;
+                        if (availableQty >= 5) {
+                          return 5;
                         } else if (availableQty) {
                           return availableQty;
-                        } else if (category.category_detail.quantity >= 100) {
-                          return 100;
+                        } else if (category.category_detail.quantity >= 5) {
+                          return 5;
                         } else {
                           return category.category_detail.quantity;
                         }
