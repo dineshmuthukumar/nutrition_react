@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router";
 
 import {
   nftBidHistory,
@@ -37,6 +38,7 @@ import {
 } from "../api/actioncable-methods";
 
 const Details = () => {
+  const history = useHistory();
   const { slug } = useParams();
   const [small, setSmall] = useState(false);
   const [nft, setNft] = useState({});
@@ -169,6 +171,10 @@ const Details = () => {
       setLoader(true);
       let response = await nftDetailApi({ nft_slug: slug });
       const NFT = response.data.data.nft;
+
+      if (NFT.is_loot) {
+        history.push("/");
+      }
       setAuctionEndTime(NFT.auction_end_time);
       setIsAuctionStarted(
         new Date(NFT.time).getTime() >=
