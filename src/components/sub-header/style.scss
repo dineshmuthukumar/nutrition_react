@@ -18,11 +18,27 @@
     }
   }
 
+
+  .band_btn.navbar-text {
+    width: 20rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @media screen and (max-width: 767px) {
+      width: 10rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
   .sub-head-title {
     display: flex;
     align-items: center;
-    @media screen and (max-width: 425px) {
-      width: calc(100% - 11rem);
+    width: calc(100% - 21rem);
+    overflow: hidden;
+    @media screen and (max-width: 767px) {
+      width: calc(100% - 10rem);
     }
 
     img {
@@ -35,27 +51,25 @@
     }
 
     .nft-head-details {
+      width: calc(100% - 3rem);
       .sub-creator-title {
         font-family: $neue-helveticamedium;
         font-size: 1rem;
-        @media screen and(max-width: 425px) {
-          width: calc(100% - 2rem);
-          overflow: hidden;
-          display: block;
-          text-overflow: ellipsis;
-        }
+        overflow: hidden;
+        display: block;
+        text-overflow: ellipsis;
+        width: 100%;
+
       }
       .sub-nft-title {
         font-family: $neue-helveticamedium;
         font-size: 1.5rem;
-        @media screen and(max-width: 425px) {
-          width: calc(100% - 2rem);
-          overflow: hidden;
-          display: block;
-          text-overflow: ellipsis;
-        }
-        @media screen and(max-width: 321px) {
-          width: calc(100% - 5rem);
+        overflow: hidden;
+        display: block;
+        text-overflow: ellipsis;
+        width: 100%;
+        @media screen and (max-width: 767px) {
+            font-size: 1.4rem !important;
         }
       }
     }
@@ -81,5 +95,9 @@
     padding: 0.5rem 2.5rem;
     font-weight: 800;
     letter-spacing: .1rem;
+    @media screen and (max-width: 767px) {
+      font-size: 0.9rem !important;
+      padding: 0.5rem 1rem !important;
+    }
   }
 }
