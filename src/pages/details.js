@@ -383,9 +383,24 @@ const Details = () => {
               {/* <BidWinner data={data} /> */}
             </div>
             <div className="col-12 col-lg-6 order-lg-1">
-              {nft.properties > 0 && (
-                <NFTProperties properties={nft.properties} />
-              )}
+              {(() => {
+                if (nft.properties && typeof nft.properties === "string") {
+                  let propertiesData = JSON.parse(nft.properties);
+                  if (
+                    propertiesData &&
+                    Object.keys(propertiesData).length > 0
+                  ) {
+                    return <NFTProperties properties={propertiesData} />;
+                  }
+                } else {
+                  if (
+                    nft.properties &&
+                    Object.keys(nft.properties).length > 0
+                  ) {
+                    return <NFTProperties properties={nft.properties} />;
+                  }
+                }
+              })()}
 
               <div className="mt-5"></div>
               <ChainAttributes chains={nft.chain_attributes} />
