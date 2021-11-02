@@ -368,9 +368,10 @@ const NFTLootBuy = ({
                       </div>
                       <div className="place-bid-button">
                         <button
-                          disabled={buy.buttonDisable}
+                          // disabled={buy.buttonDisable}
+                          disabled={true}
                           className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop ${buy.processClass}`} //process -> proccessing
-                          onClick={handleBuy}
+                          // onClick={handleBuy}
                         >
                           {(() => {
                             if (!isAuctionStarted && !isAuctionEnded) {
