@@ -123,7 +123,7 @@ h3.about-title {
   img {
     height: 35rem;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
     transition: 0.5s;
     &.punk-explorer {
       height: auto;
