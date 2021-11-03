@@ -18,9 +18,7 @@ const LootNFTOwn = ({ nft }) => {
         <div className="winner_details">
           <div className="winner-user-details">
             <img alt="" src={winnerImg} />
-            <div className="winner-id">
-              {user && `@${user.first_name}${user.last_name}`}
-            </div>
+            <div className="winner-id">Congratulations!!</div>
           </div>
           <div className="nft-lastbid-details">
             <div className="lastbid-left">
