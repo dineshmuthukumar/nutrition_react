@@ -8,6 +8,7 @@ import { useHistory } from "react-router";
 import NFTCounter from "../nft-counter";
 
 import "../new-drops-temp/style.scss";
+import Explore from "./../explore/index";
 
 const DropCard = ({
   img,
@@ -75,7 +76,7 @@ const DropCard = ({
                     return <div className="end-date">TBA</div>;
                   } else {
                     if (started) {
-                      return <div className="end-date">SOLD OUT</div>;
+                      return <div className="end-date">03. 11. 2021</div>;
                     } else {
                       return (
                         <NFTCounter
@@ -121,7 +122,11 @@ const DropCard = ({
           <div className="col-lg-6">
             <div className="drop-card-post">
               {started && enabled ? (
-                <Image role="button" src={img} onClick={handleClick} />
+                <Image
+                  role={type !== "loot" && "button"}
+                  src={img}
+                  onClick={type !== "loot" && handleClick}
+                />
               ) : (
                 <Image src={img} />
               )}
@@ -130,7 +135,7 @@ const DropCard = ({
                   <>
                     {type !== "loot" && (
                       <Link to="#" onClick={handleClick}>
-                        {isBuy ? "Buy Now" : "Bid Now"}
+                        Explore
                       </Link>
                     )}
                   </>

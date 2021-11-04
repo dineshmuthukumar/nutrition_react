@@ -60,7 +60,7 @@ const NewDropsTemp2 = ({
   const [atime, setAtime] = useState(date);
   const [ltime, setLtime] = useState(loot_date);
 
-  const end_date = "Nov 04, 2021 06:30:00";
+  const end_date = "Nov 04, 2021 06:33:00";
 
   useEffect(() => {
     var offset = new Date().getTimezoneOffset();
@@ -224,7 +224,7 @@ const NewDropsTemp2 = ({
     return (
       <>
         <p>
-          Open the Loot Box and you have chances of finding one of the
+          People opened the Loot Box & had chances of finding one of the
           following:
         </p>
         <ul>
@@ -260,10 +260,13 @@ const NewDropsTemp2 = ({
                 {started ? "Are Live Now" : "Make Them Yours"}!
               </h2> */}
               <h2 className="drop-title__heading mb-4">
-              BeyondLife.Club Marketplace Opens Soon for your Amitabh NFTs
+                BeyondLife.Club Marketplace Opens Soon for your Amitabh NFTs
               </h2>
               <p className="drop-title__description mb-4">
-              Beyondlife.club marketplace is all set to launch very soon. You can soon trade your prized Amitabh Bachchan NFTs on our marketplace - watch this space for the next big announcement and reap the returns of your Amitabh NFTs!
+                Beyondlife.club marketplace is all set to launch very soon. You
+                can soon trade your prized Amitabh Bachchan NFTs on our
+                marketplace - watch this space for the next big announcement and
+                reap the returns of your Amitabh NFTs!
               </p>
               <div className="learnMore">
                 {started ? (
@@ -305,24 +308,8 @@ const NewDropsTemp2 = ({
                   </>
                 )}
 
-                <Link
-                  className="nav-label"
-                  to="#"
-                  onClick={() => {
-                    if (user?.slug) {
-                      window.open(
-                        `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet#web`,
-                        "_self"
-                      );
-                    } else {
-                      window.open(
-                        `${process.env.REACT_APP_ACCOUNTS_URL}/signup`,
-                        "_self"
-                      );
-                    }
-                  }}
-                >
-                  Fund Your Wallet
+                <Link className="nav-label" to="#" onClick={exe_scroll_email}>
+                  Stay Updated
                 </Link>
 
                 {/* <button type="button" onClick={()=> setModal(true)}>Place Your Bid Right Now!</button>  */}
@@ -360,7 +347,7 @@ const NewDropsTemp2 = ({
                       Collection 2:
                       <span className="main_title">Win With The Loot Box</span>
                       <span className="sub_title">
-                        Your Ticket To Surprise Amitabh NFTs
+                        The $10 Gateway to Amitabh NFTs
                       </span>
                     </Link>
                     <Link
@@ -401,8 +388,8 @@ const NewDropsTemp2 = ({
               <DropCard
                 id="madhushala"
                 img={four}
-                price="$30,000"
-                priceTitle="Minimum Bid Price"
+                price="$756,000"
+                priceTitle="Collection sold for"
                 started={started}
                 endDate={end_date}
                 isEnded={ended}
@@ -413,7 +400,7 @@ const NewDropsTemp2 = ({
                 dropTitle="About Collection"
                 dropDescOne="Mr. Harivansh Rai Bachchan (1907–2003), father of Mr. Amitabh Bachchan, wrote Madhushala that depicts the wisdom of Madhu - the Temple of Mind (Madhushala), karma, imbibement of knowledge, fulfilment of duties, and expectations of an individual from the society into beautiful verses."
                 dropDescTwo="Madhushala's Rhyme, Rhythm, and Flavour is still fresh in Amitabh's mind. He believed and witnessed the miracles that this purest form of art brings to society. The love and the respect he holds for Mr.Bachchan in his heart compelled him to recite, sing, and translate stories of Madhushala from time to time. This unique and enthralling audio NFT of Madhushala has one version in Hindi, and one in English!"
-                dropDescThree="The Madhushala NFT is a super-premium NFT presented to you by BeyondLife.club. You will be the one among the two sole owners of the exclusive NFTs - the rendition of Mr. Harivansh's refined poetry in Amitabh's rustic baritone!!"
+                dropDescThree="The Madhushala NFT is a super-premium NFT presented to you by BeyondLife.club. There are only two sole owners of this exclusive Amitabh’s Poetry NFTs - the rendition of Mr. Harivansh's refined poetry in Amitabh's rustic baritone!!"
                 auctionTitle={
                   !started
                     ? "Auction starting in"
@@ -440,18 +427,18 @@ const NewDropsTemp2 = ({
                 endDate={end_date}
                 isEnded={ended}
                 img={eight}
-                price="$10"
-                priceTitle="Buy Price"
+                price="$50,000"
+                priceTitle="Loot sold for"
                 setCheck={handleCheck}
                 isBuy
                 cardTitle="Win The LOOT BOX"
                 smallTitle="Signed Vintage Posters | NFT Art | BigB Punks"
-                cardDesc="Would you miss out on the chance to own some of the most prized representations of Amitabh's legacy? Explore the NFT Loot Box to win yours!"
+                cardDesc="The BigB Loot Box gave the masses a chance to own Amitabh Bachchan NFTs! The BigB Craze is as big as 6 million users, and selling 5000 NFTs in 54 minutes flat!"
                 dropTitle="About Collection"
-                dropDescOne="Don't miss out on the chance to become a proud owner of Amitabh's NFT  art pieces, BigB Punks, and rare vintage posters! All you need to do is explore the NFT Loot Box and see what you've won for yourself! The Loot Box could make you one of the proudest owners of some of the most unique Amitabh Bachchan NFTs! "
+                dropDescOne="This gave people the chance to become a proud owner of Amitabh's NFT  art pieces, BigB Punks, and rare vintage posters! With that, you could explore the NFT Loot Box and see what you've won for yourself! The Loot Box could make you one of the proudest owners of some of the most unique Amitabh Bachchan NFTs! "
                 dropDescTwo={<DropTwoDescTwo />}
-                dropDescThree="The best part about the Loot Box is that all these can be yours even without entering an auction… and with an assurance that you will get at least one prized NFT art or poster for you to be proud of! Hurry up! Purchase the Loot Box now!"
-                auctionTitle={loot_start ? "Drops Open" : "Drops Open In"}
+                dropDescThree="The best part about the Loot Box was that it was not under any auction and was made available for direct purchase. Everyone who had the Loot Box had an assurance that they will get at least one prized NFT… & kickstarting “NFTs for all!"
+                auctionTitle={loot_start ? "Drops Ended on" : "Drops Open In"}
                 auctionTime={ltime}
                 // auctionTitle={"Drops Open In"}
                 // tba
@@ -473,16 +460,16 @@ const NewDropsTemp2 = ({
                 endDate={end_date}
                 isEnded={ended}
                 img={two}
-                price="$9,500"
-                priceTitle="Minimum Bid Price"
+                price="$94,052"
+                priceTitle="Collection sold for"
                 setCheck={handleCheck}
                 cardTitle="Autographed Physical Posters"
                 smallTitle="Vintage Original Rare Posters with Digital NFT Certificate of Authenticity"
-                cardDesc="Now you can own a video of Amitabh signing an original movie poster of his iconic movies, hand-painted by a few authentic artists whose work will amaze you in every way. The cult value of their masterpieces is a statement of ethnicity, authenticity, Indian cinema's legacy, and beyond."
+                cardDesc="The NFT featured a video of Amitabh signing an original movie poster of his iconic movies, hand-painted by a few authentic artists whose work will amaze you in every way. The cult value of their masterpieces is a statement of ethnicity, authenticity, Indian cinema's legacy, and beyond."
                 dropTitle="About Collection"
                 dropDescOne="Hand-painted movie posters, as any classic cinema aficionado would know, served as heralds for The Shahenshah of Bollywood movies. Carrying the savage retro flavor in their artistic expression, these posters are masterpieces in their own right! Posters of Amitabh's classics depict the era of Celluloid Renaissance in Indian Cinema."
                 dropDescTwo="Movie posters from the era when India witnessed its “Angry Young Man” dominate Indian cinema. This Amitabh Bachchan's golden era  was so epic that it could itself be a storyline that will potentially be a superhit worldwide."
-                dropDescThree="Our NFTs will feature the Legend BigB signing these rare and origianal posters in a video. In addition to that video, you will also receive the autographed physical copy of the vintage poster of some of Amitabh's iconic movies! These prized videos are bound to be evergreen, and they could now be yours!"
+                dropDescThree="Our NFTs feature the Legend BigB signing these rare and original posters in a video. In addition to that video, you will also receive the autographed physical copy of the vintage poster of some of Amitabh's iconic movies! These prized videos are bound to be evergreen"
                 auctionTitle={
                   !started
                     ? "Auction starting in"
@@ -508,8 +495,8 @@ const NewDropsTemp2 = ({
                 img={one}
                 endDate={end_date}
                 isEnded={ended}
-                price="$200"
-                priceTitle="Minimum Bid Price"
+                price="$66,900"
+                priceTitle="Collection sold for"
                 setCheck={handleCheck}
                 cardTitle="BigB Punks and NFT Arts"
                 smallTitle="A Collection of Signature Crypto-Style Amitabh Miniatures"
@@ -545,9 +532,9 @@ const NewDropsTemp2 = ({
             <div className="row">
               {started ? (
                 <h1>
-                  <span class="big_text">India's First Rare-Art NFT</span>{" "}
+                  <span class="big_text">Be Informed On Our Next NFTs</span>{" "}
                   <br />
-                  Featuring Amitabh Bachchan
+                  Subscribe To Our Newsletter
                 </h1>
               ) : (
                 <>
