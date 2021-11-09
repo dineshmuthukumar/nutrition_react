@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import dayjs from "dayjs";
 import { useParams } from "react-router";
 import { toast } from "react-toastify";
@@ -19,43 +19,36 @@ import "./style.scss";
 const BuyHistory = ({ nft, histories = [], isAuctionEnded, totalCount }) => {
   const { slug } = useParams();
   const [modalShow, setModalShow] = useState(false);
-  const [buyHistories, setBuyHistories] = useState([]);
+  const [buyHistories, setBuyHistories] = useState({});
+  const [buyHistoryList, setBuyHistoryList] = useState([]);
   const [page, setPage] = useState(1);
-  const [totalRecords, setTotalRecords] = useState(0);
-  const [hasMore, setHasMore] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const fetchHistory = async () => {
+  const fetchHistory = async (pageNo) => {
     try {
-      if (buyHistories.length >= totalRecords) {
-        setHasMore(false);
-        return;
-      }
-      let history = await nftBuyHistory({ nft_slug: slug, page: page });
-      setBuyHistories([...buyHistories, ...history.data.data.histories]);
-      setTotalRecords(history.data.data.total_count);
+      let result = await nftBuyHistory({ nft_slug: slug, page: pageNo });
+      setBuyHistories(result.data.data);
+      setBuyHistoryList([...buyHistoryList, ...result.data.data.histories]);
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong");
     }
   };
 
-  useEffect(() => {
-    if (buyHistories.length < totalRecords) {
-      setHasMore(true);
-    } else {
-      setHasMore(false);
+  const fetchMoreHistory = () => {
+    if (buyHistories.next_page) {
+      fetchHistory(page + 1);
+      setPage(page + 1);
     }
-  }, [buyHistories, totalRecords, hasMore]);
+  };
 
   const handleClick = async () => {
     setModalShow(true);
     try {
       setLoading(true);
-      setPage((page) => page + 1);
       let history = await nftBuyHistory({ nft_slug: slug, page: page });
-      setBuyHistories([...buyHistories, ...history.data.data.histories]);
-      setTotalRecords(history.data.data.total_count);
+      setBuyHistories(history.data.data);
+      setBuyHistoryList(history.data.data.histories);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -66,7 +59,8 @@ const BuyHistory = ({ nft, histories = [], isAuctionEnded, totalCount }) => {
   const handleClose = () => {
     setModalShow(false);
     setPage(1);
-    setBuyHistories([]);
+    setBuyHistories({});
+    setBuyHistoryList([]);
   };
   return (
     <>
@@ -208,7 +202,7 @@ const BuyHistory = ({ nft, histories = [], isAuctionEnded, totalCount }) => {
                 </tr>
               </thead>
               <tbody>
-                {buyHistories.map((history, i) => (
+                {buyHistoryList.map((history, i) => (
                   <tr>
                     <td>{i + 1}</td>
                     <td>NFT auction</td>
@@ -228,16 +222,18 @@ const BuyHistory = ({ nft, histories = [], isAuctionEnded, totalCount }) => {
                     </td>
                     <td className="text-center">
                       <div className="date">
-                        {dayjs(history.created_at).format("MMM D, YYYY hh:mm A")}
+                        {dayjs(history.created_at).format(
+                          "MMM D, YYYY hh:mm A"
+                        )}
                       </div>
                     </td>
                   </tr>
                 ))}
 
-                {hasMore ? (
+                {buyHistories.next_page ? (
                   <tr>
                     <td className="text-center text-secondary p-3" colSpan="6">
-                      <span role="button" onClick={fetchHistory}>
+                      <span role="button" onClick={fetchMoreHistory}>
                         Load More
                       </span>
                     </td>
