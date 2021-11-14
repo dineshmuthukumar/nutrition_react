@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import dayjs from "dayjs";
 import { useParams } from "react-router";
 import { toast } from "react-toastify";
@@ -15,43 +15,36 @@ import "./style.scss";
 const BidWinner = ({ winner, histories }) => {
   const { slug } = useParams();
   const [modalShow, setModalShow] = useState(false);
-  const [bidHistories, setBidHistories] = useState([]);
+  const [bidHistories, setBidHistories] = useState({});
   const [page, setPage] = useState(1);
-  const [totalRecords, setTotalRecords] = useState(0);
-  const [hasMore, setHasMore] = useState(false);
+  const [bidHistoryList, setBidHistoryList] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const fetchHistory = async () => {
+  const fetchHistory = async (pageNo) => {
     try {
-      if (bidHistories.length >= totalRecords) {
-        setHasMore(false);
-        return;
-      }
-      let history = await nftBidHistory({ nft_slug: slug, page: page });
-      setBidHistories([...bidHistories, ...history.data.data.histories]);
-      setTotalRecords(history.data.data.total_count);
+      let result = await nftBidHistory({ nft_slug: slug, page: pageNo });
+      setBidHistoryList([...bidHistoryList, ...result.data.data.histories]);
+      setBidHistories(result.data.data);
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong");
     }
   };
 
-  useEffect(() => {
-    if (bidHistories.length < totalRecords) {
-      setHasMore(true);
-    } else {
-      setHasMore(false);
+  const fetchMoreHistory = () => {
+    if (bidHistories.next_page) {
+      fetchHistory(page + 1);
+      setPage(page + 1);
     }
-  }, [bidHistories, totalRecords, hasMore]);
+  };
 
   const handleClick = async () => {
     setModalShow(true);
     try {
       setLoading(true);
-      setPage((page) => page + 1);
       let history = await nftBidHistory({ nft_slug: slug, page: page });
-      setBidHistories(history.data.data.histories);
-      setTotalRecords(history.data.data.total_count);
+      setBidHistories(history.data.data);
+      setBidHistoryList(history.data.data.histories);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -62,7 +55,8 @@ const BidWinner = ({ winner, histories }) => {
   const handleClose = () => {
     setModalShow(false);
     setPage(1);
-    setBidHistories([]);
+    setBidHistories({});
+    setBidHistoryList([]);
   };
 
   return (
@@ -173,7 +167,7 @@ const BidWinner = ({ winner, histories }) => {
                 </tr>
               </thead>
               <tbody>
-                {bidHistories.map((history, i) => (
+                {bidHistoryList.map((history, i) => (
                   <tr>
                     <td>{i + 1}</td>
                     <td>Bid placed by</td>
@@ -203,10 +197,10 @@ const BidWinner = ({ winner, histories }) => {
                   </tr>
                 ))}
 
-                {hasMore ? (
+                {bidHistories.next_page ? (
                   <tr>
                     <td className="text-center text-secondary p-3" colSpan="6">
-                      <span role="button" onClick={fetchHistory}>
+                      <span role="button" onClick={fetchMoreHistory}>
                         Load More
                       </span>
                     </td>
