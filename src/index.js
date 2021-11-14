@@ -23,7 +23,7 @@ setTranslations({ en, hi });
 
 ReactDOM.render(
   <Provider store={store}>
-    <MintProcess />
+    <App />
     <ToastContainer
       position="top-right"
       autoClose={15000}
