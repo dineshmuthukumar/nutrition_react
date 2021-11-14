@@ -6,6 +6,7 @@ import { ToastContainer } from "react-toastify";
 import { Provider } from "react-redux";
 
 import App from "./App";
+import MintProcess from "./pages/mint-process";
 import reportWebVitals from "./reportWebVitals";
 
 import { setTranslations } from "react-multi-lang";
@@ -22,7 +23,7 @@ setTranslations({ en, hi });
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <MintProcess />
     <ToastContainer
       position="top-right"
       autoClose={15000}

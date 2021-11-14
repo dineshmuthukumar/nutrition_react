@@ -1191,6 +1191,11 @@ input::-webkit-inner-spin-button {
   }
 }
 
+.not-found-text {
+  font-family: $neue-helveticabold;
+  font-size: 1.2rem;
+}
+
 .noti-container {
   min-width: 24rem;
   padding: 0;
