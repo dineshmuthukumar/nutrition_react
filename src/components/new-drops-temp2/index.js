@@ -263,7 +263,7 @@ const NewDropsTemp2 = ({
               BeyondLife.Club Marketplace Opens Soon for your Amitabh NFTs
               </h2>
               <p className="drop-title__description mb-4">
-              The Beyondlife.club marketplace is all set to launch very soon. You can soon trade your prized Amitabh Bachchan NFTs on our marketplace - watch this space for the next big announcement and reap the returns of your Amitabh NFTs!
+              Beyondlife.club marketplace is all set to launch very soon. You can soon trade your prized Amitabh Bachchan NFTs on our marketplace - watch this space for the next big announcement and reap the returns of your Amitabh NFTs!
               </p>
               <div className="learnMore">
                 {started ? (
