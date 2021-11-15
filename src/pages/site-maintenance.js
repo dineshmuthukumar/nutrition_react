@@ -1,7 +1,7 @@
 import React from "react";
 import { FiSettings } from "react-icons/fi";
 
-const MintProcess = () => {
+const SiteMaintenance = () => {
   return (
     <>
       <div className="container">
@@ -31,4 +31,4 @@ const MintProcess = () => {
   );
 };
 
-export default MintProcess;
+export default SiteMaintenance;

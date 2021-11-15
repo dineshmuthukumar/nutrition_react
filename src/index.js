@@ -6,7 +6,7 @@ import { ToastContainer } from "react-toastify";
 import { Provider } from "react-redux";
 
 import App from "./App";
-import MintProcess from "./pages/mint-process";
+import SiteMaintenance from "./pages/site-maintenance";
 import reportWebVitals from "./reportWebVitals";
 
 import { setTranslations } from "react-multi-lang";
