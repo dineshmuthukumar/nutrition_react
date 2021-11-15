@@ -255,15 +255,15 @@ const NewDropsTemp2 = ({
           <img className="dr_baner" src={drops_banner} alt="" />
           <div className="banner_content">
             <div className="drop-title mb-0">
-              <h2 className="drop-title__heading mb-4">
+              {/* <h2 className="drop-title__heading mb-4">
                 Amitabh Bachchan's Exclusive NFT Collections -{" "}
                 {started ? "Are Live Now" : "Make Them Yours"}!
+              </h2> */}
+              <h2 className="drop-title__heading mb-4">
+              BeyondLife.Club Marketplace Opens Soon for your Amitabh NFTs
               </h2>
               <p className="drop-title__description mb-4">
-                Imagine owning an NFT that holds AmitJi's significance, history,
-                the value of exceptional existence, and beyond. We bring a
-                series of Amitabh Bachchan's exclusive NFT collections curated
-                by the legend himself.
+              The Beyondlife.club marketplace is all set to launch very soon. You can soon trade your prized Amitabh Bachchan NFTs on our marketplace - watch this space for the next big announcement and reap the returns of your Amitabh NFTs!
               </p>
               <div className="learnMore">
                 {started ? (

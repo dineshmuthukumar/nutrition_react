@@ -1,1 +1,59 @@
 @import "../../styles/common";
+.css-5cmxo2 {
+	flex: none;
+	height: 100%;
+	display: inline-flex !important;
+	text-decoration: none;
+	box-sizing: border-box;
+	margin: 0;
+	min-width: 0;
+	outline: none;
+	cursor: pointer;
+	color: #fff;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	position: relative;
+	text-decoration: none;
+	margin-left: 8px;
+	margin-right: 8px;
+}
+.css-1oowbt2 {
+	box-sizing: border-box;
+	margin: 0;
+	min-width: 0;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	position: relative;
+	border-radius: 4px;
+	margin-left: 8px;
+	padding-left: 4px;
+	padding-right: 4px;
+	font-size: 12px;
+	line-height: 16px;
+	background-color: #ff0000;
+	color: #fff;
+}
+.blinker{
+    animation: blinker 1s linear infinite;
+}
+@keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
+.css-1oowbt2:before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: -3px;
+    top: 2px;
+    border-left: 0;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-right: 6px solid;
+    border-right-color: #ff0000;
+}

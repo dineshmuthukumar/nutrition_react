@@ -259,6 +259,10 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
           {!hideOptions && (
             <>
               <Nav className="d-flex me-0 ms-auto">
+              <Nav.Link className="css-5cmxo2" id="drop_outer" href="/">
+              <div class="css-vurnku">Marketplace</div>
+              <div class="css-1oowbt2"><span className="blinker">Coming Soon</span></div>
+                </Nav.Link>
                 <Nav.Link id="drop_outer" href="/">
                   Drops
                 </Nav.Link>
