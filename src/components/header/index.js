@@ -253,6 +253,7 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                 window.open(process.env.REACT_APP_GUARDIAN_URL, "_self")
               }
             >
+              
               Powered by GuardianLink
             </div>
           </Navbar.Brand>
