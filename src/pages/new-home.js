@@ -11,7 +11,7 @@ const NewHome = () => {
   const [ended, setEnded] = useState(false);
 
   useEffect(() => {
-    nftCategories(1);
+    // nftCategories(1);
   }, []);
 
   const nftCategories = async (page) => {

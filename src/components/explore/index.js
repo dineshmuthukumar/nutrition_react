@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import ContentLoader from "react-content-loader";
 
 import ExploreCard from "./explore-card";
@@ -9,6 +9,7 @@ import ExploreTitle from "./explore-title";
 import "./style.scss";
 
 const Explore = ({ list = [], handleClick, hasMore, loading, loadingMore }) => {
+  const history = useHistory();
   const { name } = useParams();
   const [explore, setExplore] = useState({
     title: "",
@@ -27,6 +28,8 @@ const Explore = ({ list = [], handleClick, hasMore, loading, loadingMore }) => {
         title: "Poster Autographing Moments",
         description: `Now you can own a video of Amitabh signing an original movie poster of his iconic movies, hand-painted by a few authentic artists whose work will amaze you in every way. The winner of these NFTs also gets a physical poster autographed by the Legend Amitabh Bachchan himself.`,
       });
+    } else if (name.includes("LOOT")) {
+      history.push("/");
     } else {
       setExplore({
         class: "punk-explorer",

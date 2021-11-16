@@ -413,10 +413,10 @@ const NewDropsTemp2 = ({
                 editionType="2/2"
                 additional="Additional Perk"
                 additionalDesc="The highest bidders in the two categories, in addition to the NFTs, will also get to avail a meet-and-greet session with the BigB - A memory that anyone will hold on to more dearly than the NFT itself!"
-                slug={categories[0].slug}
-                catName={categories[0].name}
-                type={categories[0].type}
-                enabled={categories[0].enabled}
+                slug={"J0RLMBoWUoBv2PzQ"}
+                catName={"Madhushala"}
+                type={"category"}
+                enabled={true}
                 scroll={exe_scroll_email}
               />
             </section>
@@ -446,10 +446,10 @@ const NewDropsTemp2 = ({
                 editionType="5000"
                 additional="What You Get"
                 additionalDesc="You not only have the pride of possessing some of the most unique Amitabh NFTs! Just like any other NFT, you can sell your prized possessions in marketplaces and trade them! "
-                slug={categories[1].slug}
-                catName={categories[1].name}
-                type={categories[1].type}
-                enabled={categories[1].enabled}
+                slug={"r1QzYBjdUegme4aR"}
+                catName={"LOOT BOX"}
+                type={"loot"}
+                enabled={false}
                 scroll={exe_scroll_email}
               />
             </section>
@@ -482,10 +482,10 @@ const NewDropsTemp2 = ({
                 editionType="7/7"
                 additional="What You Get"
                 additionalDesc="Having your ownership over both the video of Amitabh signing the poster, and the autographed authentic physical poster itself makes you one among seven-in-seven billion people on the planet who has these prized posters of exceptional value!"
-                slug={categories[2].slug}
-                catName={categories[2].name}
-                type={categories[2].type}
-                enabled={categories[2].enabled}
+                slug={"QobmxgwyU9Bl9LzY"}
+                catName={"Physical Posters"}
+                type={"category"}
+                enabled={true}
                 scroll={exe_scroll_email}
               />
             </section>
@@ -517,10 +517,10 @@ const NewDropsTemp2 = ({
                 editionType="6/6"
                 additional="What You Get"
                 additionalDesc="These BigB Punks and NFT art pieces represent the craze for collectibles in the crypto world! An NFT featuring a legendary and globally recognized superstar is bound to be a thing of pride to possess... in addition to high possibilities of fetching good deals in the secondary market!"
-                slug={categories[3].slug}
-                catName={categories[3].name}
-                enabled={categories[3].enabled}
-                type={categories[3].type}
+                slug={"p9jW8BpbUygVwrAJ"}
+                catName={"BigB Punks"}
+                enabled={true}
+                type={"category"}
                 scroll={exe_scroll_email}
               />
             </section>
