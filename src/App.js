@@ -17,19 +17,15 @@ import {
   user_logout_thunk,
 } from "./redux/thunk/user_thunk";
 import "./App.css";
-import Stop from "./components/stop";
 
-const NewHome = lazy(() => import("./pages/new-home"));
+const Home = lazy(() => import("./pages/home"));
 const Explore = lazy(() => import("./pages/explore-list"));
-const Loot = lazy(() => import("./pages/loot"));
-const LootDetail = lazy(() => import("./pages/loot-detail"));
-const NotFound = lazy(() => import("./pages/not-found"));
 const Details = lazy(() => import("./pages/details"));
+const NotFound = lazy(() => import("./pages/not-found"));
 
 function App(props) {
   const dispatch = useDispatch();
   const [online, setOnline] = useState(true);
-  const [diffTimer, setDiffTimer] = useState(false);
 
   const { lang, user } = useSelector((state) => state);
 
@@ -44,22 +40,6 @@ function App(props) {
     var sys_time = new Date();
     sys_time.setMinutes(sys_time.getMinutes() - -1 * offset);
     sys_time.toString();
-
-    var server_time = Date.parse(input);
-
-    // console.log(
-    //   "🚀 ~ file: App.js ~ line 48 ~ checkSystemTimer ~ server_time",
-    //   input,
-    //   sys_time
-    // );
-
-    // var seconds = (server_time.getTime() - sys_time.getTime()) / 1000;
-
-    // if (seconds >= 35) {
-    //   setDiffTimer(true);
-    // } else {
-    //   setDiffTimer(false);
-    // }
   };
 
   const getServerTime = async () => {
@@ -97,13 +77,6 @@ function App(props) {
         </div>
       )}
 
-      {/* {diffTimer && (
-        <div className="offline-ribbon">
-          Your system time is not match with the internet timing, please sync
-          with live time to have a flawless experience
-        </div>
-      )} */}
-
       <div className="top-loader"></div>
       <div className="whole-content">
         <Router basename="/">
@@ -123,32 +96,10 @@ function App(props) {
               <Route exact path="/details/:slug" component={Details} />
               <Route
                 exact
-                path="/details/:slug/:placebid"
-                component={Details}
-              />
-              {/* <Route exact path="/explore/loot/:slug" component={Loot} /> */}
-
-              <Redirect exact path="/explore/loot/:slug" to="/" />
-              <PrivateRoute
-                exact
-                path="/loot/nft/detail/:slug"
-                component={LootDetail}
-              />
-              {/* <Route exact path="/explore/loot/:slug" component={Stop} />
-              <PrivateRoute
-                exact
-                path="/loot/nft/detail/:slug"
-                component={Stop}
-              /> */}
-              <Route
-                exact
                 path="/explore/category/:name/:slug"
                 component={Explore}
               />
-              <Route exact path="/" component={NewHome} />
-              {/* <Route exact path="/" component={Stop} /> */}
-
-              {/* <Route exact path="/new" component={Home} /> */}
+              <Route exact path="/" component={Home} />
               <Route path="/not-found" component={NotFound} />
               <Route exact component={NotFound} />
             </Switch>
