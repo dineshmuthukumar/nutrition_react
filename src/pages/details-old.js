@@ -37,7 +37,7 @@ import {
   winnerDetail,
 } from "../api/actioncable-methods";
 
-const Details = () => {
+const DetailsOld = () => {
   const history = useHistory();
   const { slug } = useParams();
   const [small, setSmall] = useState(false);
@@ -54,8 +54,6 @@ const Details = () => {
   const [soldOut, setSoldOut] = useState(false);
   const [loader, setLoader] = useState(true);
   const [placeBidPop, setPlaceBidPop] = useState(false);
-  const [putOnSalePop, setPutOnSalePop] = useState(false);
-  const [cancelTheSalePop, setCancelTheSalePop] = useState(false);
 
   // Socket State
   const [totalBid, setTotalBid] = useState(0);
@@ -227,7 +225,19 @@ const Details = () => {
 
   return (
     <>
-      <Header />
+      {small ? (
+        <SubHeader
+          placeBidPop={placeBidPop}
+          setPlaceBidPop={setPlaceBidPop}
+          nft={nft}
+          isAuctionStarted={isAuctionStarted}
+          isAuctionEnded={isAuctionEnded}
+          soldOut={soldOut}
+        />
+      ) : (
+        <Header />
+      )}
+
       {loader ? (
         <NFTLoader />
       ) : (
@@ -247,10 +257,6 @@ const Details = () => {
                   nft={nft}
                   placeBidPop={placeBidPop}
                   setPlaceBidPop={setPlaceBidPop}
-                  putOnSalePop={putOnSalePop}
-                  setPutOnSalePop={setPutOnSalePop}
-                  cancelTheSalePop={cancelTheSalePop}
-                  setCancelTheSalePop={setCancelTheSalePop}
                   //Socket states start
                   totalBid={totalBid}
                   bidChange={bidChange}
@@ -425,4 +431,4 @@ const Details = () => {
   );
 };
 
-export default Details;
+export default DetailsOld;

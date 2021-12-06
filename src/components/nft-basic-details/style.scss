@@ -15,7 +15,6 @@
   font-family: $neue-helveticamedium;
   margin-top: 0em !important;
 
-
   .check-icon {
     margin-top: -7px;
     height: 1rem !important;
@@ -40,22 +39,20 @@
 .bottom-content {
   position: sticky;
   top: 100vh;
-  @media screen and (max-width: 425px ) {
+  @media screen and (max-width: 425px) {
     .current-bid {
       padding: 1rem 0;
       border-bottom: 2px solid #000;
-      
     }
-    hr.custom-divider{
+    hr.custom-divider {
       display: none;
     }
   }
-  .d-flex{
-    @media screen and (max-width: 425px ) {
+  .d-flex {
+    @media screen and (max-width: 425px) {
       flex-direction: column;
     }
   }
-  
 }
 
 .place-bid-btn {
@@ -77,12 +74,30 @@
   }
 }
 
+.place-bid-buy-btn {
+  font-family: $neue-helveticamedium;
+  padding-top: 1.2rem;
+  padding-bottom: 1.2rem;
+  width: 45%;
+  border: 2px solid #000000;
+
+  &:disabled {
+    background-color: #e7e7e9;
+    color: #9c9c9b;
+    border: none;
+  }
+
+  &:hover {
+    background-color: #ffffff;
+    color: #000000;
+  }
+}
+
 .recharge-btn {
   font-family: $neue-helveticamedium;
   padding-top: 1.2rem;
   padding-bottom: 1.2rem;
   width: 80%;
-
 
   &:hover {
     background-color: #ffffff;
@@ -153,5 +168,7 @@
   .fit-to-height {
     height: auto;
   }
-  .creator{ margin-top: 2rem !important;}
+  .creator {
+    margin-top: 2rem !important;
+  }
 }

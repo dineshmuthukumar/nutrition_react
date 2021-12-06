@@ -11,6 +11,7 @@ const BidValue = ({
   status,
   isEnd = false,
   isLeft = false,
+  isOwner = false,
   name,
   avatar,
 }) => {
@@ -27,10 +28,13 @@ const BidValue = ({
             <div className="win-user-name">{name}</div>
           </div>
         ) : (
-          <div className="crypto me-3">
-            {currency} {value}
-            {isLeft && <div className="edition">left</div>}
-          </div>
+          <>
+            <div className="crypto me-3">
+              {currency} {value}
+              {isLeft && <div className="edition">left</div>}
+            </div>
+            {isLeft && isOwner && <div className="h2">Edition</div>}
+          </>
         )}
       </div>
     </div>
