@@ -1,1 +1,65 @@
 @import "../../styles/common";
+
+
+.top-seller-section{
+    background-color: #fff;
+    padding: 2rem 0;
+}
+.sec-heading {
+    padding: 1rem 0;
+    border-bottom: .3rem solid #000;
+    margin-bottom: 3rem;
+    font-family: $neue-helveticalight;
+}
+
+
+.user{
+    &-card {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-bottom: 1rem;
+        figure{
+            position: relative;
+            img{
+                height: 4.5rem;
+                width: 4.5rem;
+                border-radius: 50rem;
+            }
+        }
+    }
+    &-count {
+        padding: 0 1rem;
+        font-size: 1.4rem;
+        margin: 0;
+    }
+    &-content {
+        width: calc(100% - 7rem);
+        padding-left: 1rem;
+        h3,h4{
+            @include text-ellipsis;
+        }
+        .user{
+            &-name {
+                font-size: 1.6rem;
+                font-family: $neue-helveticabold;
+                margin-bottom: 0.2rem;
+            }
+            &-price {
+                font-size: 1.3rem;
+                font-family: $neue-helveticalight;
+                color: #757575;
+            }
+        }
+    }
+    &-verify {
+        position: absolute;
+        bottom: -0.2rem;
+        right: -0.2rem;
+        background: #000;
+        border-radius: 50rem;
+        padding: 0rem;
+        color: #fff;
+        font-size: 1.8rem;
+    }
+}

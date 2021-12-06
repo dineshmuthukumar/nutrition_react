@@ -44,3 +44,13 @@ $theme-color: #871dc4;
 $theme-color-lite: #c784ed;
 
 //#fc7a4f
+
+
+// Helper
+
+@mixin text-ellipsis {
+  width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
