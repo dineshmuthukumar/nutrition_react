@@ -33,7 +33,7 @@ const BidValue = ({
               {currency} {value}
               {isLeft && <div className="edition">left</div>}
             </div>
-            {isLeft && isOwner && <div className="h2">Edition</div>}
+            {isOwner && <div className="h2">Edition</div>}
           </>
         )}
       </div>

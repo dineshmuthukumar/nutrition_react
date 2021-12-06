@@ -91,7 +91,7 @@ const NFTBaseDetails = ({
 
       <div className="bottom-content">
         <div className="d-flex">
-          {erc721 ? (
+          {/* {erc721 ? (
             <BidValue
               title={(() => {
                 if (isAuctionEnded) {
@@ -113,9 +113,9 @@ const NFTBaseDetails = ({
               title="Price"
               value={nft.buy_amount && currencyFormat(nft.buy_amount, "USD")}
             />
-          )}
+          )} */}
 
-          {(() => {
+          {/* {(() => {
             if (user && userLastBid && price) {
               return (
                 <BidValue
@@ -142,7 +142,7 @@ const NFTBaseDetails = ({
             } else {
               return null;
             }
-          })()}
+          })()} */}
 
           {/* {erc721 && isAuctionEnded && winner && (
             <BidValue
@@ -153,7 +153,7 @@ const NFTBaseDetails = ({
             />
           )} */}
         </div>
-        <hr className="custom-divider" />
+        {/* <hr className="custom-divider" /> */}
 
         <div className="d-flex">
           <BidValue title="Category" value={nft.category_name} />
@@ -173,14 +173,17 @@ const NFTBaseDetails = ({
             } else if (erc721 && !isOwner) {
               return <BidValue title="Limited Edition" value="1 of 1" isLeft />;
             } else if (!erc721 && isOwner) {
-              <BidValue
-                title="You Own"
-                value={
-                  userTotalBuys
-                    ? `${userTotalBuys} / ${nft.total_quantity} NFTs`
-                    : `${nft.total_user_buys} / ${nft.total_quantity} NFTs`
-                }
-              />;
+              return (
+                <BidValue
+                  title="You Own"
+                  value={
+                    userTotalBuys
+                      ? `${userTotalBuys} / ${nft.total_quantity}`
+                      : `${nft.total_user_buys} / ${nft.total_quantity}`
+                  }
+                  isOwner
+                />
+              );
             } else {
               return (
                 <BidValue

@@ -135,7 +135,7 @@ const Details = () => {
     });
 
     nftDetail(slug);
-    nftMore();
+    // nftMore();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -174,9 +174,6 @@ const Details = () => {
       let response = await nftDetailApi({ nft_slug: slug });
       const NFT = response.data.data.nft;
 
-      if (NFT.is_loot) {
-        history.push("/");
-      }
       setAuctionEndTime(NFT.auction_end_time);
       setIsAuctionStarted(
         new Date(NFT.time).getTime() >=
@@ -186,20 +183,20 @@ const Details = () => {
         new Date(NFT.time).getTime() > new Date(NFT.auction_end_time).getTime()
       );
       setErc721(NFT.nft_type === "erc721");
-      if (NFT.nft_type === "erc721") {
-        let history = await nftBidHistory({ nft_slug: slug, page: 1 });
-        let winner = await nftBidWinner({ nft_slug: slug });
-        setBidHistory(history.data.data.histories);
-        setTotalCount(history.data.data.total_count);
-        setBidWinner(winner.data.data.winner);
-      } else {
-        if (NFT.quantity === 0) {
-          setSoldOut(true);
-        }
-        let history = await nftBuyHistory({ nft_slug: slug, page: 1 });
-        setBuyHistory(history.data.data.histories);
-        setTotalCount(history.data.data.total_count);
-      }
+      // if (NFT.nft_type === "erc721") {
+      //   let history = await nftBidHistory({ nft_slug: slug, page: 1 });
+      //   let winner = await nftBidWinner({ nft_slug: slug });
+      //   setBidHistory(history.data.data.histories);
+      //   setTotalCount(history.data.data.total_count);
+      //   setBidWinner(winner.data.data.winner);
+      // } else {
+      //   if (NFT.quantity === 0) {
+      //     setSoldOut(true);
+      //   }
+      //   let history = await nftBuyHistory({ nft_slug: slug, page: 1 });
+      //   setBuyHistory(history.data.data.histories);
+      //   setTotalCount(history.data.data.total_count);
+      // }
       setNft(response.data.data.nft);
       setLoader(false);
     } catch (err) {
@@ -275,7 +272,7 @@ const Details = () => {
               </div>
             </div>
           </div>
-          <div className="row mt-5">
+          {/* <div className="row mt-5">
             <div className="col-12" ref={inputRef}>
               <NFTSummary
                 nft={nft}
@@ -287,7 +284,7 @@ const Details = () => {
                 totalFavourites={totalFavourites}
               />
             </div>
-          </div>
+          </div> */}
           <NFTSectionTitle title="NFT Details" />
           <div className="row mt-5">
             <div className="col-12 col-lg-6 order-lg-2 mb-4">

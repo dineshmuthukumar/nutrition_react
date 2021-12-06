@@ -40,7 +40,7 @@ const NFTPutOnSale = ({
   const [noBalance, setNoBalance] = useState(false);
 
   const [buyAmount, setBuyAmount] = useState(0);
-  const [buyQuantity, setBuyQuantity] = useState("");
+  // const [buyQuantity, setBuyQuantity] = useState("");
   const [bidAmount, setBidAmount] = useState("");
   const [error, setError] = useState("");
 
@@ -49,6 +49,7 @@ const NFTPutOnSale = ({
     isBuy: false,
     bidAmount: "",
     buyAmount: "",
+    buyQuantity: null,
   });
 
   const [buy, setBuy] = useState({
@@ -90,6 +91,16 @@ const NFTPutOnSale = ({
       }
     } else {
       setSale({ ...sale, buyAmount: e.target.value });
+    }
+  };
+
+  const handleQuantityInputChange = (e) => {
+    if (e.target.value) {
+      if (validateQuantity(e.target.value)) {
+        setSale({ ...sale, buyQuantity: e.target.value });
+      }
+    } else {
+      setSale({ ...sale, buyQuantity: e.target.value });
     }
   };
 
@@ -236,12 +247,25 @@ const NFTPutOnSale = ({
                     {!erc721 ? (
                       <>
                         <label className="input-bid-text">Set buy amount</label>
+                        <div className="input-bid-wrap">
+                          <span className="bid-currency">$</span>
+                          <input
+                            type="text"
+                            className="input-bid"
+                            value={sale.buyAmount}
+                            placeholder="0"
+                            disabled={!sale.isBuy}
+                            onChange={handleBuyInputChange}
+                          />
+                        </div>
+                        <label className="input-bid-text">Set buy amount</label>
                         <div className="input-quantity-container">
                           <input
                             type="text"
                             className="input-quantity"
-                            value={buyQuantity}
+                            value={sale.buyQuantity}
                             placeholder="0 NFTs"
+                            onChange={handleQuantityInputChange}
                           />
                         </div>
                       </>
