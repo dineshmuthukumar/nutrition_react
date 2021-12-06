@@ -1,10 +1,12 @@
 import React from "react";
 import "./styles.scss";
 
-const HeroVideo = () => {
+
+const HeroVideo = ({video}) => {
     return <>
         <video autoPlay loop muted id="hero-video">
-            <source src="https://www.w3schools.com/tags/movie.mp4" type="video/mp4" />
+            <source src={video} type="video/mp4" />
+            Your browser does not support HTML5 video.
         </video>
     </>;
 };

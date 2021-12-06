@@ -1,13 +1,14 @@
 @import "../../styles/common";
 
 .hero-section{
-    min-height: 80vh;
-    background-color: #101010;
+    min-height: 85vh;
+    // background-color: #101010;
     padding: 2rem 0;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     position: relative;
+    overflow: hidden;
     .hero-content{
         max-width: 41rem;
         width: 100%;

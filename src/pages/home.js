@@ -10,11 +10,13 @@ import ShowAll from "../components/show-all";
 const Home = () => {
     return ( < >
         <Header />
-        <Banner />
-        <Collections />
-        <HotCollections />
-        <TopSellers />
-        <ShowAll />
+            <main>
+                <Banner />
+                <Collections />
+                <HotCollections />
+                <TopSellers />
+                <ShowAll />
+            </main>
         <Footer />
         </>
     );
