@@ -13,7 +13,7 @@ import { currencyFormat } from "../../utils/common";
 import "./style.scss";
 import NFTPutOnSale from "../nft-put-on-sale";
 import NFTCancelTheSale from "../nft-cancel-the-sale";
-
+import HelpLine from "../help-line"
 const NFTBaseDetails = ({
   nft,
   placeBidPop,
@@ -88,6 +88,9 @@ const NFTBaseDetails = ({
           />
         )}
       </p>
+      <div className="d-flex justify-content-end align-items-center w-100">
+          <HelpLine />
+      </div>
 
       <div className="bottom-content">
         <div className="d-flex">

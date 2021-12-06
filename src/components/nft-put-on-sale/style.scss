@@ -136,14 +136,16 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      margin-top: 2rem;
+      margin-top: 0;
 
       img,
       video {
-        max-height: 25vh;
-        object-fit: scale-down;
+        max-height: 15rem;
+        object-fit: cover;
         border-radius: 0.7rem;
         overflow: hidden;
+        width: 15rem;
+        object-position: top;
       }
 
       audio {
@@ -383,3 +385,128 @@
     }
   }
 }
+
+
+
+.pop-body-container .pop-nft-details{
+  .pop-nft-info {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin: 2rem 0;
+    padding: 0 1rem;
+    .pop-nft-media{
+      margin-top: 0;
+      img,
+      video {
+        max-height: 15rem;
+        object-fit: cover;
+        border-radius: 0.7rem;
+        overflow: hidden;
+        width: 15rem;
+        object-position: top;
+      }
+    }
+    .pop-nft-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding-left: 2rem;
+      .erc-type {
+        font-size: 1.8rem;
+        margin: 0.5rem 0;
+        font-family: $neue-helveticamedium;
+        span{
+          font-size: 1.5rem;
+          color: #000;
+          font-family: $neue-helveticalight;
+        }
+      }
+    
+      .pop-author-name{
+        font-size: 1.7rem;
+        font-family: $neue-helveticalight;
+      }
+      .pop-nft-title {
+        font-family: $neue-helveticamedium;
+        font-size: 2.4rem;
+        padding: 0;
+        text-align: left !important;
+        line-height: 1.3;
+        margin-top: 1rem;
+      }
+    }  
+  }  
+
+
+  .input-bid-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 0rem !important;
+    span.quantity-to-value{
+      color: red;
+      font-family: $neue-helveticamedium;
+      margin-top: 0.5rem;
+      display: flex;
+    }
+    .input-field-bid {
+      padding: 0 1rem;
+    }
+  }
+}
+
+
+
+.toggle-btn-buybid {
+  padding: 0rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  .btn-buy,.btn-bid {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    padding: 0 1rem;
+    align-items: center;
+    font-family: $neue-helveticalight;
+    .toggle-private-title {
+      font-size: 2rem;
+      color: #000;
+    }
+  }
+}
+
+
+.you-own{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding: 0 1.3rem;
+  margin-bottom: 2rem;
+  border-bottom: 3px solid #000;
+  &-block {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding: 0 1rem;
+  }
+  &-title{
+    font-size: 2rem;
+  }
+  h3{
+    font-size: 3rem;
+    font-family: $neue-helveticalight;
+    span{
+      font-size: 1.7rem;
+      color: #757575;
+
+    }
+  }
+
+}
+

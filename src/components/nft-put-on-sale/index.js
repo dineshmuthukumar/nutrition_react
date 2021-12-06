@@ -16,7 +16,7 @@ import {
   validateQuantity,
 } from "../../utils/common";
 import { nftBidApi, nftBuyApi } from "../../api/methods";
-
+import HelpLine from "../help-line"
 import "./style.scss";
 
 const NFTPutOnSale = ({
@@ -145,107 +145,115 @@ const NFTPutOnSale = ({
                   <div className="error-float-container">
                     {/* <ErrorText type="ending-time" /> */}
                   </div>
-
-                  <div className="pop-nft-media">
-                    {(() => {
-                      if (nft?.asset_type?.includes("image")) {
-                        return (
-                          <img
-                            alt="media logo"
-                            className="type_image typeimg_audio"
-                            src={nft.asset_url ? nft.asset_url : sample}
-                          />
-                        );
-                      } else if (nft?.asset_type?.includes("audio")) {
-                        return (
-                          <>
+                  <div className="pop-nft-info">
+                    <div className="pop-nft-media">
+                      {(() => {
+                        if (nft?.asset_type?.includes("image")) {
+                          return (
+                            <img
+                              alt="media logo"
+                              className="type_image typeimg_audio"
+                              src={nft.asset_url ? nft.asset_url : sample}
+                            />
+                          );
+                        } else if (nft?.asset_type?.includes("audio")) {
+                          return (
+                            <>
+                              <img
+                                alt="media logo"
+                                className="type_image typeimg_audio"
+                                src={nft.cover_url ? nft.cover_url : sample}
+                              />
+                            </>
+                          );
+                        } else if (nft?.asset_type?.includes("video")) {
+                          return (
                             <img
                               alt="media logo"
                               className="type_image typeimg_audio"
                               src={nft.cover_url ? nft.cover_url : sample}
                             />
-                          </>
-                        );
-                      } else if (nft?.asset_type?.includes("video")) {
-                        return (
-                          <img
-                            alt="media logo"
-                            className="type_image typeimg_audio"
-                            src={nft.cover_url ? nft.cover_url : sample}
-                          />
-                        );
-                      }
-                    })()}
-                  </div>
-                  <div className="pop-author-name text-center mt-3">
-                    Amitabh Bachchan
-                  </div>
-                  <div className="pop-nft-title text-center mb-1">
-                    {nft?.name}
-                  </div>
-
-                  <div className="col-12 col-md-6 mb-3 d-flex">
-                    <label className="toggle-private-title w-100">Buy</label>
-                    <div>
-                      <ToggleButton
-                        inactiveLabel={<BiX size={20} />}
-                        activeLabel={<BiCheck size={20} />}
-                        colors={{
-                          activeThumb: {
-                            base: "rgb(0,0,0)",
-                          },
-                          inactiveThumb: {
-                            base: "rgb(0,0,0)",
-                          },
-                          active: {
-                            base: "rgb(146, 147, 148)",
-                            hover: "rgb(177, 191, 215)",
-                          },
-                          inactive: {
-                            base: "rgb(146, 147, 148)",
-                            hover: "rgb(177, 191, 215)",
-                          },
-                        }}
-                        value={sale.isBuy}
-                        onToggle={(value) => {
-                          setSale({ ...sale, isBuy: !value, buyAmount: "" });
-                        }}
-                      />
+                          );
+                        }
+                      })()}
+                    </div>
+                    <div className="pop-nft-content">
+                      <div className="pop-author-name text-center mt-3">
+                        Amitabh Bachchan
+                      </div>
+                      <div className="pop-nft-title text-center mb-1">
+                      {nft?.name}
+                    </div>
+                      <div className="erc-type"> 1 of 1 <span>left</span></div>
                     </div>
                   </div>
-                  <div className="col-12 col-md-6 mb-3 d-flex">
-                    <label className="toggle-private-title w-100">Bid</label>
-                    <div>
-                      <ToggleButton
-                        inactiveLabel={<BiX size={20} />}
-                        activeLabel={<BiCheck size={20} />}
-                        colors={{
-                          activeThumb: {
-                            base: "rgb(0,0,0)",
-                          },
-                          inactiveThumb: {
-                            base: "rgb(0,0,0)",
-                          },
-                          active: {
-                            base: "rgb(146, 147, 148)",
-                            hover: "rgb(177, 191, 215)",
-                          },
-                          inactive: {
-                            base: "rgb(146, 147, 148)",
-                            hover: "rgb(177, 191, 215)",
-                          },
-                        }}
-                        value={sale.isBid}
-                        onToggle={(value) => {
-                          setSale({ ...sale, isBid: !value, bidAmount: "" });
-                        }}
-                      />
+                  <div className="toggle-btn-buybid">
+                    <div className="btn-buy">
+                      <label className="toggle-private-title w-100">Buy</label>
+                      <div>
+                        <ToggleButton
+                          inactiveLabel={<BiX size={20} />}
+                          activeLabel={<BiCheck size={20} />}
+                          colors={{
+                            activeThumb: {
+                              base: "rgb(0,0,0)",
+                            },
+                            inactiveThumb: {
+                              base: "rgb(0,0,0)",
+                            },
+                            active: {
+                              base: "rgb(146, 147, 148)",
+                              hover: "rgb(177, 191, 215)",
+                            },
+                            inactive: {
+                              base: "rgb(146, 147, 148)",
+                              hover: "rgb(177, 191, 215)",
+                            },
+                          }}
+                          value={sale.isBuy}
+                          onToggle={(value) => {
+                            setSale({ ...sale, isBuy: !value, buyAmount: "" });
+                          }}
+                        />
+                      </div>
+                    </div>
+                    <div className="btn-bid">
+                      <label className="toggle-private-title w-100">Bid</label>
+                      <div>
+                        <ToggleButton
+                          inactiveLabel={<BiX size={20} />}
+                          activeLabel={<BiCheck size={20} />}
+                          colors={{
+                            activeThumb: {
+                              base: "rgb(0,0,0)",
+                            },
+                            inactiveThumb: {
+                              base: "rgb(0,0,0)",
+                            },
+                            active: {
+                              base: "rgb(146, 147, 148)",
+                              hover: "rgb(177, 191, 215)",
+                            },
+                            inactive: {
+                              base: "rgb(146, 147, 148)",
+                              hover: "rgb(177, 191, 215)",
+                            },
+                          }}
+                          value={sale.isBid}
+                          onToggle={(value) => {
+                            setSale({ ...sale, isBid: !value, bidAmount: "" });
+                          }}
+                        />
+                      </div>
                     </div>
                   </div>
+                  
+                  
                   {/* error-bid -> less value than min bid,  error-balance -> low value, error-balance-float -> low value in quantity  */}
                   <div className={`input-bid-container mt-5 ${error}`}>
                     {!erc721 ? (
                       <>
+                      <div className="input-field-bid">
                         <label className="input-bid-text">Set buy amount</label>
                         <div className="input-bid-wrap">
                           <span className="bid-currency">$</span>
@@ -258,6 +266,8 @@ const NFTPutOnSale = ({
                             onChange={handleBuyInputChange}
                           />
                         </div>
+                      </div>
+                      <div className="input-field-bid">
                         <label className="input-bid-text">Set buy amount</label>
                         <div className="input-quantity-container">
                           <input
@@ -268,41 +278,60 @@ const NFTPutOnSale = ({
                             onChange={handleQuantityInputChange}
                           />
                         </div>
+                      </div>
                       </>
                     ) : (
                       <>
-                        <label className="input-bid-text">Set buy amount</label>
-                        <div className="input-bid-wrap">
-                          <span className="bid-currency">$</span>
-                          <input
-                            type="text"
-                            className="input-bid"
-                            value={sale.buyAmount}
-                            placeholder="0"
-                            disabled={!sale.isBuy}
-                            onChange={handleBuyInputChange}
-                          />
+                      <div className="input-field-bid">
+                          <label className="input-bid-text">Set buy amount</label>
+                          <div className="input-bid-wrap">
+                            <span className="bid-currency">$</span>
+                            <input
+                              type="text"
+                              className="input-bid"
+                              value={sale.buyAmount}
+                              placeholder="0"
+                              disabled={!sale.isBuy}
+                              onChange={handleBuyInputChange}
+                            />
+                          </div>
                         </div>
-                        <label className="input-bid-text">
-                          Set initial bid amount
-                        </label>
-                        <div className="input-bid-wrap">
-                          <span className="bid-currency">$</span>
-                          <input
-                            type="text"
-                            className="input-bid"
-                            value={sale.bidAmount}
-                            placeholder="0"
-                            disabled={!sale.isBid}
-                            onChange={handleBidInputChange}
-                          />
+                        <div className="input-field-bid">
+                          <label className="input-bid-text">
+                            Set initial bid amount
+                          </label>
+                          <div className="input-bid-wrap">
+                            <span className="bid-currency">$</span>
+                            <input
+                              type="text"
+                              className="input-bid"
+                              value={sale.bidAmount}
+                              placeholder="0"
+                              disabled={!sale.isBid}
+                              onChange={handleBidInputChange}
+                            />
+                          </div>
+                          <span className={`quantity-to-value`}>
+                            Bid expires in 7days, If not acknowledged
+                          </span>
                         </div>
-                        <span className={`quantity-to-value text-dark`}>
-                          Bid expires in 7days, If not acknowledged
-                        </span>
+
                       </>
                     )}
                   </div>
+                  
+                  <div className="you-own-block">
+                    <span className="you-own-title">You Own</span>
+                    <div className="you-own">
+                      <h3>1 0f 1 <span>left</span></h3>
+                      <h3>Edition</h3>
+                    </div>
+                  </div>
+                  
+                  <div className="px-3">
+                    <HelpLine />
+                  </div>
+
                   <div className="bottom-area">
                     <div className="terms text-secondary">
                       Royalty will be deducted 10% of every transaction
