@@ -13,7 +13,7 @@ import { currencyFormat } from "../../utils/common";
 import "./style.scss";
 import NFTPutOnSale from "../nft-put-on-sale";
 import NFTCancelTheSale from "../nft-cancel-the-sale";
-import HelpLine from "../help-line"
+import HelpLine from "../help-line";
 const NFTBaseDetails = ({
   nft,
   placeBidPop,
@@ -43,8 +43,8 @@ const NFTBaseDetails = ({
   const isBid = false;
   const isBuy = false;
   const isOwner = true;
-  const isOnSale = false;
-  const onSaleQty = 2 != 10;
+  const isOnSale = nft.owner_details.orders;
+  const onSaleQty = nft.owner_details.available_quantity != 0;
 
   return (
     <>
@@ -89,7 +89,7 @@ const NFTBaseDetails = ({
         )}
       </p>
       <div className="d-flex justify-content-end align-items-center w-100">
-          <HelpLine />
+        <HelpLine />
       </div>
 
       <div className="bottom-content">
@@ -179,11 +179,7 @@ const NFTBaseDetails = ({
               return (
                 <BidValue
                   title="You Own"
-                  value={
-                    userTotalBuys
-                      ? `${userTotalBuys} / ${nft.total_quantity}`
-                      : `${nft.total_user_buys} / ${nft.total_quantity}`
-                  }
+                  value={`${nft.owner_details.total_quantity} / ${nft.total_quantity}`}
                   isOwner
                 />
               );
@@ -301,14 +297,6 @@ const NFTBaseDetails = ({
               );
             } else if (!erc721 && isOwner && isOnSale) {
               return onSaleQty ? (
-                <button
-                  disabled={false}
-                  className="btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill place-bid-buy-btn"
-                  // onClick={() => setPlaceBidPop(!placeBidPop)}
-                >
-                  Cancel the sale
-                </button>
-              ) : (
                 <>
                   <button
                     disabled={false}
@@ -322,7 +310,17 @@ const NFTBaseDetails = ({
                     className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn"
                     // onClick={() => setPlaceBidPop(!placeBidPop)}
                   >
-                    Put on sale (4qty)
+                    Put on sale ({nft.owner_details.available_quantity}qty)
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button
+                    disabled={false}
+                    className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                    // onClick={() => setPlaceBidPop(!placeBidPop)}
+                  >
+                    Cancel the sale
                   </button>
                 </>
               );
