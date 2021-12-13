@@ -2,6 +2,7 @@ import React from "react";
 import ReadMoreReact from "read-more-react";
 import { useSelector } from "react-redux";
 import { FaCheckCircle } from "react-icons/fa";
+import _ from 'lodash';
 
 import NFTTimeLeft from "../nft-time-left";
 import BidValue from "../bid-value";
@@ -43,8 +44,8 @@ const NFTBaseDetails = ({
   const isBid = false;
   const isBuy = false;
   const isOwner = true;
-  const isOnSale = nft.owner_details.orders;
-  const onSaleQty = nft.owner_details.available_quantity != 0;
+  const isOnSale = _.get(nft, 'nft.owner_details.orders', []);
+  const onSaleQty = _.get(nft,'nft.owner_details.available_quantity', ) != 0;
 
   return (
     <>
@@ -179,7 +180,7 @@ const NFTBaseDetails = ({
               return (
                 <BidValue
                   title="You Own"
-                  value={`${nft.owner_details.total_quantity} / ${nft.total_quantity}`}
+                  value={`${_.get(nft,'nft.owner_details.total_quantity')} / ${nft.total_quantity}`}
                   isOwner
                 />
               );
@@ -310,7 +311,7 @@ const NFTBaseDetails = ({
                     className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn"
                     // onClick={() => setPlaceBidPop(!placeBidPop)}
                   >
-                    Put on sale ({nft.owner_details.available_quantity}qty)
+                    Put on sale ({_.get(nft,'nft.owner_details.available_quantity')}qty)
                   </button>
                 </>
               ) : (

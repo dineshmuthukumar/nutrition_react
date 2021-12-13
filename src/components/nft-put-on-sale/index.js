@@ -6,6 +6,7 @@ import { Offcanvas } from "react-bootstrap";
 import ToggleButton from "react-toggle-button";
 import { BiCheck, BiX } from "react-icons/bi";
 import { FaCheckCircle } from "react-icons/fa";
+import _ from 'lodash';
 
 import ErrorText from "./error-text";
 import sample from "../../images/sampleNFT.jpg";
@@ -343,7 +344,7 @@ const NFTPutOnSale = ({
                                   onChange={handleQuantityInputChange}
                                 />
                                 <span className="bid-currency">
-                                  /{nft.owner_details.available_quantity}
+                                  /{_.get(nft,'nft.owner_details.available_quantity')}
                                 </span>
                               </div>
                             </div>
