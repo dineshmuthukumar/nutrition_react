@@ -163,12 +163,14 @@
     .pop-author-name {
       font-family: $neue-helveticamedium;
       font-size: 1rem;
+      margin-top: 0 !important;
     }
 
     .pop-nft-title {
       font-family: $neue-helveticamedium;
       font-size: 1.4rem;
       padding: 0 1rem;
+      margin-top: 0.5rem;
     }
 
     .input-bid-container {
@@ -290,6 +292,11 @@
     .sucess-title {
       text-align: center;
       padding-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: calc(100vh - 3rem);
 
       .message {
         font-family: $neue-helveticamedium;
@@ -326,6 +333,8 @@
         text-align: center;
         margin-bottom: 0.5rem;
         padding: 0 1rem;
+        text-align: left !important;
+        color: #f21e00 !important;
       }
 
       .bottom-content-pop {
@@ -394,17 +403,17 @@
     flex-direction: row;
     align-items: flex-start;
     justify-content: flex-start;
-    margin: 2rem 0;
+    margin: 1rem 0;
     padding: 0 1rem;
     .pop-nft-media{
       margin-top: 0;
       img,
       video {
-        max-height: 15rem;
+        max-height: 12rem;
         object-fit: cover;
         border-radius: 0.7rem;
         overflow: hidden;
-        width: 15rem;
+        width: 12rem;
         object-position: top;
       }
     }
@@ -425,15 +434,15 @@
       }
     
       .pop-author-name{
-        font-size: 1.7rem;
+        font-size: 1.4rem;
         font-family: $neue-helveticalight;
       }
       .pop-nft-title {
         font-family: $neue-helveticamedium;
-        font-size: 2.4rem;
+        font-size: 2.2rem;
         padding: 0;
         text-align: left !important;
-        line-height: 1.3;
+        line-height: 1.2;
         margin-top: 1rem;
       }
     }  
@@ -445,17 +454,25 @@
     align-items: flex-start;
     justify-content: space-between;
     padding: 0rem !important;
+    @media screen and (min-width: 1200px) {
+      margin-top: 0.5rem;
+    }
     span.quantity-to-value{
       color: red;
       font-family: $neue-helveticamedium;
       margin-top: 0.5rem;
       display: flex;
+      font-size: 0.8rem;
     }
     .input-field-bid {
       padding: 0 1rem;
+      &.disabled{
+        opacity: 0.3;
+      }
     }
   }
 }
+
 
 
 
@@ -471,10 +488,11 @@
     width: 50%;
     padding: 0 1rem;
     align-items: center;
-    font-family: $neue-helveticalight;
+    
     .toggle-private-title {
-      font-size: 2rem;
+      font-size: 1.5rem;
       color: #000;
+      font-family: $neue-helveticalight;
     }
   }
 }
@@ -491,18 +509,18 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
     padding: 0 1rem;
   }
   &-title{
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
   h3{
-    font-size: 3rem;
-    font-family: $neue-helveticalight;
+    font-size: 2rem;
+    font-family: $neue-helveticamedium;
     span{
-      font-size: 1.7rem;
+      font-size: 1.2rem;
       color: #757575;
 
     }
@@ -510,3 +528,53 @@
 
 }
 
+.bid-input{
+  .input-quantity{
+    width: calc(100% - 4rem);
+  }
+  .bid-currency {
+    font-size: 2rem;
+    width: 4rem;
+    text-align: center;
+  }
+}
+
+.confirm-content{
+  &-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin: 1rem 0;
+    padding: 0 1rem;
+    width: 100%;
+  }
+  &-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0 1rem;
+    margin: 1rem 0;
+    width: 100%;
+    li {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      span{
+        font-size: 1.4rem;
+        font-family: $neue-helveticalight
+      }
+      &.final-set{
+        span{
+          font-family: $neue-helveticabold;
+        }
+      }
+    }
+  }
+  &-msg {
+    font-size: 1.4rem;
+    text-align: center;
+    width: 100%;
+    margin: 2rem 0;
+  }
+}

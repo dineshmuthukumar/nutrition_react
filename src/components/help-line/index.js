@@ -5,7 +5,7 @@ import "./style.scss";
 const HelpLine = () => {
   return (
     <>
-      <a href="javascript:void(0);" className="help-link">
+      <a href="/help-line" className="help-link">
           <RiQuestionnaireFill className="help-link-icon" />  Help Line
       </a>
     </>

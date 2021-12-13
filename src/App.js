@@ -22,6 +22,7 @@ const Home = lazy(() => import("./pages/home"));
 const Explore = lazy(() => import("./pages/explore-list"));
 const Details = lazy(() => import("./pages/details"));
 const NotFound = lazy(() => import("./pages/not-found"));
+const HelpLine = lazy(() => import("./pages/help-line"));
 
 function App(props) {
   const dispatch = useDispatch();
@@ -100,6 +101,7 @@ function App(props) {
                 component={Explore}
               />
               <Route exact path="/" component={Home} />
+              <Route exact path="/help-line" component={HelpLine} />
               <Route path="/not-found" component={NotFound} />
               <Route exact component={NotFound} />
             </Switch>

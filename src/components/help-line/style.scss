@@ -1,13 +1,16 @@
 @import "../../styles/common";
 
 .help-link{
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-family: $neue-helveticabold;
   margin-top: 0em !important;
   text-decoration: none !important;
   letter-spacing: 0.1rem;
   color: #000;
   &-icon{
-    font-size: 2rem;
+    font-size: 1.6rem;
+  }
+  &:hover,&:focus,&:active{
+    color: #004fff;
   }
 }

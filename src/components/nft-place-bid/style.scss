@@ -5,7 +5,11 @@
   .pop-nft-details {
     position: relative;
     height: 100vh;
-
+    .pop-bid-bodyContent {
+      height: calc(100vh - 15rem);
+      overflow: hidden;
+      overflow-y: auto;
+    }
     .pop-head-content {
       display: flex;
       padding: 1rem;
