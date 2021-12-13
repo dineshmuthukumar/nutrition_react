@@ -101,38 +101,38 @@ const Details = () => {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 
-    buyDetail(slug, (data) => {
-      setAvailableQty(data.quantity);
-      setTotalBuy(data.total_buys);
-      if (data.history) {
-        setBuyHistory((buyHistory) => [data.history, ...buyHistory]);
-      }
-      if (data.quantity === 0) {
-        setSoldOut(true);
-      }
-    });
-    bidDetail(slug, (data) => {
-      setTotalBid(data.total_bids);
-      setBidChange(data.bid_change);
-      setPrice(data.minimum_bid);
-      if (data.history) {
-        setBidHistory((bidHistory) => [data.history, ...bidHistory]);
-      }
-      if (data.auction_end_time) {
-        setAuctionEndTime(data.auction_end_time);
-      }
-    });
-    pageView(slug, (data) => {
-      setTotalViews(data.page_views);
-    });
+    // buyDetail(slug, (data) => {
+    //   setAvailableQty(data.quantity);
+    //   setTotalBuy(data.total_buys);
+    //   if (data.history) {
+    //     setBuyHistory((buyHistory) => [data.history, ...buyHistory]);
+    //   }
+    //   if (data.quantity === 0) {
+    //     setSoldOut(true);
+    //   }
+    // });
+    // bidDetail(slug, (data) => {
+    //   setTotalBid(data.total_bids);
+    //   setBidChange(data.bid_change);
+    //   setPrice(data.minimum_bid);
+    //   if (data.history) {
+    //     setBidHistory((bidHistory) => [data.history, ...bidHistory]);
+    //   }
+    //   if (data.auction_end_time) {
+    //     setAuctionEndTime(data.auction_end_time);
+    //   }
+    // });
+    // pageView(slug, (data) => {
+    //   setTotalViews(data.page_views);
+    // });
 
-    totalFav(slug, (data) => {
-      setTotalFavourites(data.total_favourites);
-    });
+    // totalFav(slug, (data) => {
+    //   setTotalFavourites(data.total_favourites);
+    // });
 
-    winnerDetail(slug, (data) => {
-      setBidWinner(data.winner);
-    });
+    // winnerDetail(slug, (data) => {
+    //   setBidWinner(data.winner);
+    // });
 
     nftDetail(slug);
     // nftMore();
@@ -143,14 +143,14 @@ const Details = () => {
   useEffect(() => {
     if (user) {
       if (erc721) {
-        userBidDetail(slug, user.slug, (data) => {
-          setUserLastBid(data.user_bid);
-          setUserOutBid(data.outbid);
-        });
+        // userBidDetail(slug, user.slug, (data) => {
+        //   setUserLastBid(data.user_bid);
+        //   setUserOutBid(data.outbid);
+        // });
       } else {
-        userBuyDetail(slug, user.slug, (data) => {
-          setUserTotalBuys(data.user_buys);
-        });
+        // userBuyDetail(slug, user.slug, (data) => {
+        //   setUserTotalBuys(data.user_buys);
+        // });
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
