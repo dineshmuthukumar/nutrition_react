@@ -40,11 +40,10 @@ const NFTBaseDetails = ({
   const { user } = useSelector((state) => state.user.data);
 
   const erc721 = nft.nft_type === "erc721";
-  const isBidBuy = true;
   const isBid = _.get(nft, "orders.is_bid", false);
   const isBuy = _.get(nft, "orders.is_buy", false);
   const isOwner = _.has(nft, "owner_details");
-  const isOnSale = _.has(nft, "owner_details.orders");
+  const isOnSale = _.size(_.get(nft, "owner_details.orders", [])) > 0;
   const onSaleQty = _.get(nft, "owner_details.available_quantity", 0) != 0;
 
   return (
@@ -338,7 +337,17 @@ const NFTBaseDetails = ({
                   Place a Bid
                 </button>
               );
-            } else if (isBidBuy) {
+            } else if (isBuy) {
+              return (
+                <button
+                  disabled={false}
+                  className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                  // onClick={() => setPlaceBidPop(!placeBidPop)}
+                >
+                  Buy
+                </button>
+              );
+            } else if (isBid && isBuy) {
               return (
                 <>
                   <button

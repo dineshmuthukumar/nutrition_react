@@ -7,6 +7,7 @@ import ToggleButton from "react-toggle-button";
 import { BiCheck, BiX } from "react-icons/bi";
 import { FaCheckCircle } from "react-icons/fa";
 import _ from "lodash";
+import { toast } from "react-toastify";
 
 import ErrorText from "./error-text";
 import sample from "../../images/sampleNFT.jpg";
@@ -55,7 +56,7 @@ const NFTPutOnSale = ({
   const [erc1155Sale, setErc1155Sale] = useState({
     isBuy: true,
     buyAmount: "",
-    buyQuantity: null,
+    buyQuantity: "",
     totalAmount: 0,
   });
 
@@ -169,6 +170,14 @@ const NFTPutOnSale = ({
         // setSuccessData(result.data.data.buy);
       }
     } catch (error) {
+      toast.error("Something went wrong!");
+      setConfirmState({
+        ...confirmState,
+        progressError: "",
+        processClass: "",
+        buttonName: "Confirm",
+        buttonDisable: false,
+      });
       console.log(error.response);
     }
   };
@@ -233,7 +242,9 @@ const NFTPutOnSale = ({
                                     <img
                                       alt="media logo"
                                       className="type_image typeimg_audio"
-                                      src={nft.cover_url ? nft.cover_url : sample}
+                                      src={
+                                        nft.cover_url ? nft.cover_url : sample
+                                      }
                                     />
                                   </>
                                 );
@@ -243,6 +254,14 @@ const NFTPutOnSale = ({
                                     alt="media logo"
                                     className="type_image typeimg_audio"
                                     src={nft.cover_url ? nft.cover_url : sample}
+                                  />
+                                );
+                              } else {
+                                return (
+                                  <img
+                                    alt="media logo"
+                                    className="type_image typeimg_audio"
+                                    src={nft.asset_url ? nft.asset_url : sample}
                                   />
                                 );
                               }
@@ -454,7 +473,8 @@ const NFTPutOnSale = ({
 
                       <div className="bottom-area">
                         <div className="terms text-secondary">
-                          Royalty will be deducted 10% of every transaction
+                          Royalty will be deducted {nft.royalties}% of every
+                          transaction
                         </div>
 
                         <div className="bottom-content-pop">
@@ -465,92 +485,157 @@ const NFTPutOnSale = ({
                             Back
                           </div>
                           <div className="place-bid-button">
-                            <button
-                              disabled={false}
-                              className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop ${confirmState.processClass}`} //process -> proccessing
-                              // onClick={handlePutOnSale}
-                              onClick={() => setConfirm(true)}
-                            >
-                              Put on sale
-                            </button>
+                            {erc721 ? (
+                              <button
+                                disabled={(() => {
+                                  if (
+                                    erc721Sale.isBuy &&
+                                    !erc721Sale.buyAmount > 0
+                                  ) {
+                                    return true;
+                                  } else if (
+                                    erc721Sale.isBid &&
+                                    !erc721Sale.bidAmount > 0
+                                  ) {
+                                    return true;
+                                  } else {
+                                    return false;
+                                  }
+                                })()}
+                                className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop ${confirmState.processClass}`} //process -> proccessing
+                                onClick={() => setConfirm(true)}
+                              >
+                                {(() => {
+                                  if (
+                                    erc721Sale.isBuy &&
+                                    !erc721Sale.buyAmount > 0
+                                  ) {
+                                    return "Buy amount is required";
+                                  } else if (
+                                    erc721Sale.isBid &&
+                                    !erc721Sale.bidAmount > 0
+                                  ) {
+                                    return "Bid amount is required";
+                                  } else {
+                                    return "Put on sale";
+                                  }
+                                })()}
+                              </button>
+                            ) : (
+                              <button
+                                disabled={(() => {
+                                  if (
+                                    !erc1155Sale.buyAmount > 0 ||
+                                    !erc1155Sale.buyQuantity > 0
+                                  ) {
+                                    return true;
+                                  } else {
+                                    return false;
+                                  }
+                                })()}
+                                className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop ${confirmState.processClass}`} //process -> proccessing
+                                onClick={() => setConfirm(true)}
+                              >
+                                {(() => {
+                                  if (!erc1155Sale.buyAmount > 0) {
+                                    return "Buy amount is required";
+                                  } else if (!erc1155Sale.buyQuantity > 0) {
+                                    return "Quantity is required";
+                                  } else {
+                                    return "Put on sale";
+                                  }
+                                })()}
+                              </button>
+                            )}
                           </div>
                         </div>
                       </div>
                     </>
                   );
                 } else if (confirm) {
-                  return (
-                    <>
-                      <div className="pop-head-content">
-                        <div className="pop-bid-title">Confirm the sale</div>
-                        <div
-                          className="close-button-pop"
-                          onClick={() => setPutOnSalePop(!putOnSalePop)}
-                        >
-                          <img
-                            alt="place bid logo"
-                            src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e"
-                          ></img>
+                  if (erc721) {
+                    return (
+                      <>
+                        <div className="pop-head-content">
+                          <div className="pop-bid-title">Confirm the sale</div>
+                          <div
+                            className="close-button-pop"
+                            onClick={() => setPutOnSalePop(!putOnSalePop)}
+                          >
+                            <img
+                              alt="place bid logo"
+                              src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e"
+                            ></img>
+                          </div>
                         </div>
-                      </div>
 
-                      {/* error-progress -> error progress , loading -> progressing */}
-                      <div
-                        className={`pop-bid-progress ${confirmState.progressError}`}
-                      >
-                        <div className="progress-complete"></div>
-                      </div>
+                        {/* error-progress -> error progress , loading -> progressing */}
+                        <div
+                          className={`pop-bid-progress ${confirmState.progressError}`}
+                        >
+                          <div className="progress-complete"></div>
+                        </div>
 
-                      <div className="error-float-container">
-                        {/* <ErrorText type="ending-time" /> */}
-                      </div>
-                      <div className="pop-nft-info">
-                        <div className="pop-nft-media">
-                          {(() => {
-                            if (nft?.asset_type?.includes("image")) {
-                              return (
-                                <img
-                                  alt="media logo"
-                                  className="type_image typeimg_audio"
-                                  src={nft.asset_url ? nft.asset_url : sample}
-                                />
-                              );
-                            } else if (nft?.asset_type?.includes("audio")) {
-                              return (
-                                <>
+                        <div className="error-float-container">
+                          {/* <ErrorText type="ending-time" /> */}
+                        </div>
+                        <div className="pop-nft-info">
+                          <div className="pop-nft-media">
+                            {(() => {
+                              if (nft?.asset_type?.includes("image")) {
+                                return (
+                                  <img
+                                    alt="media logo"
+                                    className="type_image typeimg_audio"
+                                    src={nft.asset_url ? nft.asset_url : sample}
+                                  />
+                                );
+                              } else if (nft?.asset_type?.includes("audio")) {
+                                return (
+                                  <>
+                                    <img
+                                      alt="media logo"
+                                      className="type_image typeimg_audio"
+                                      src={
+                                        nft.cover_url ? nft.cover_url : sample
+                                      }
+                                    />
+                                  </>
+                                );
+                              } else if (nft?.asset_type?.includes("video")) {
+                                return (
                                   <img
                                     alt="media logo"
                                     className="type_image typeimg_audio"
                                     src={nft.cover_url ? nft.cover_url : sample}
                                   />
-                                </>
-                              );
-                            } else if (nft?.asset_type?.includes("video")) {
-                              return (
-                                <img
-                                  alt="media logo"
-                                  className="type_image typeimg_audio"
-                                  src={nft.cover_url ? nft.cover_url : sample}
-                                />
-                              );
-                            }
-                          })()}
-                        </div>
-                        <div className="pop-nft-content">
-                          <div className="pop-author-name text-center mt-3">
-                            Amitabh Bachchan
+                                );
+                              } else {
+                                return (
+                                  <img
+                                    alt="media logo"
+                                    className="type_image typeimg_audio"
+                                    src={nft.asset_url ? nft.asset_url : sample}
+                                  />
+                                );
+                              }
+                            })()}
                           </div>
-                          <div className="pop-nft-title text-center mb-1">
-                            {nft?.name}
+                          <div className="pop-nft-content">
+                            <div className="pop-author-name text-center mt-3">
+                              Amitabh Bachchan
+                            </div>
+                            <div className="pop-nft-title text-center mb-1">
+                              {nft?.name}
+                            </div>
+                            {/* <div className="erc-type">
+                              {" "}
+                              1 of 1 <span>left</span>
+                            </div> */}
                           </div>
-                          {/* <div className="erc-type">
-                            {" "}
-                            1 of 1 <span>left</span>
-                          </div> */}
                         </div>
-                      </div>
 
-                      <div className="confirm-content-block">
+                        <div className="confirm-content-block">
                           <ul className="confirm-content-list">
                             <li>
                               <span className="key">Selected Editions</span>
@@ -558,12 +643,42 @@ const NFTPutOnSale = ({
                             </li>
                             <li>
                               <span className="key">Type</span>
-                              <span className="value">Bid &amp; Buy</span>
+                              <span className="value">
+                                {(() => {
+                                  if (erc721Sale.isBid && !erc721Sale.isBuy) {
+                                    return "Bid";
+                                  } else if (
+                                    erc721Sale.isBuy &&
+                                    !erc721Sale.isBid
+                                  ) {
+                                    return "Buy";
+                                  } else if (
+                                    erc721Sale.isBid &&
+                                    erc721Sale.isBuy
+                                  ) {
+                                    return "Bid & Buy";
+                                  } else {
+                                    return "-";
+                                  }
+                                })()}
+                              </span>
                             </li>
-                            <li>
-                              <span className="key">Buy amount</span>
-                              <span className="value">$120.00</span>
-                            </li>
+                            {erc721Sale.isBuy && (
+                              <li>
+                                <span className="key">Bid amount</span>
+                                <span className="value">
+                                  {currencyFormat(erc721Sale.bidAmount, "USD")}
+                                </span>
+                              </li>
+                            )}
+                            {erc721Sale.isBuy && (
+                              <li>
+                                <span className="key">Buy amount</span>
+                                <span className="value">
+                                  {currencyFormat(erc721Sale.buyAmount, "USD")}
+                                </span>
+                              </li>
+                            )}
                             <li>
                               <span className="key">Artist Fee</span>
                               <span className="value">10%</span>
@@ -574,37 +689,179 @@ const NFTPutOnSale = ({
                             </li>
                             <li className="final-set">
                               <span className="key">Total Amount </span>
-                              <span className="value">$ 96.00</span>
+                              <span className="value">
+                                {currencyFormat(erc721Sale.buyAmount, "USD")}
+                              </span>
                             </li>
                           </ul>
-                        <div className="confirm-content-msg">
-                          Are you sure want to Continue ?
-                        </div>
-                      </div>
-
-                      
-
-                      <div className="bottom-area">
-                        <div className="bottom-content-pop">
-                          <div
-                            className="back-button"
-                            onClick={() => setConfirm(!confirm)}
-                          >
-                            Back
+                          <div className="confirm-content-msg">
+                            Are you sure want to Continue ?
                           </div>
-                          <div className="place-bid-button">
-                            <button
-                              disabled={confirmState.buttonDisable}
-                              className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop ${confirmState.processClass}`} //process -> proccessing
-                              onClick={handlePutOnSale}
+                        </div>
+
+                        <div className="bottom-area">
+                          <div className="bottom-content-pop">
+                            <div
+                              className="back-button"
+                              onClick={() => setConfirm(!confirm)}
                             >
-                              {confirmState.buttonName}
-                            </button>
+                              Back
+                            </div>
+                            <div className="place-bid-button">
+                              <button
+                                disabled={confirmState.buttonDisable}
+                                className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop ${confirmState.processClass}`} //process -> proccessing
+                                onClick={handlePutOnSale}
+                              >
+                                {confirmState.buttonName}
+                              </button>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </>
-                  );
+                      </>
+                    );
+                  } else {
+                    return (
+                      <>
+                        <div className="pop-head-content">
+                          <div className="pop-bid-title">Confirm the sale</div>
+                          <div
+                            className="close-button-pop"
+                            onClick={() => setPutOnSalePop(!putOnSalePop)}
+                          >
+                            <img
+                              alt="place bid logo"
+                              src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e"
+                            ></img>
+                          </div>
+                        </div>
+
+                        {/* error-progress -> error progress , loading -> progressing */}
+                        <div
+                          className={`pop-bid-progress ${confirmState.progressError}`}
+                        >
+                          <div className="progress-complete"></div>
+                        </div>
+
+                        <div className="error-float-container">
+                          {/* <ErrorText type="ending-time" /> */}
+                        </div>
+                        <div className="pop-nft-info">
+                          <div className="pop-nft-media">
+                            {(() => {
+                              if (nft?.asset_type?.includes("image")) {
+                                return (
+                                  <img
+                                    alt="media logo"
+                                    className="type_image typeimg_audio"
+                                    src={nft.asset_url ? nft.asset_url : sample}
+                                  />
+                                );
+                              } else if (nft?.asset_type?.includes("audio")) {
+                                return (
+                                  <>
+                                    <img
+                                      alt="media logo"
+                                      className="type_image typeimg_audio"
+                                      src={
+                                        nft.cover_url ? nft.cover_url : sample
+                                      }
+                                    />
+                                  </>
+                                );
+                              } else if (nft?.asset_type?.includes("video")) {
+                                return (
+                                  <img
+                                    alt="media logo"
+                                    className="type_image typeimg_audio"
+                                    src={nft.cover_url ? nft.cover_url : sample}
+                                  />
+                                );
+                              } else {
+                                return (
+                                  <img
+                                    alt="media logo"
+                                    className="type_image typeimg_audio"
+                                    src={nft.asset_url ? nft.asset_url : sample}
+                                  />
+                                );
+                              }
+                            })()}
+                          </div>
+                          <div className="pop-nft-content">
+                            <div className="pop-author-name text-center mt-3">
+                              Amitabh Bachchan
+                            </div>
+                            <div className="pop-nft-title text-center mb-1">
+                              {nft?.name}
+                            </div>
+                            {/* <div className="erc-type">
+                              {" "}
+                              1 of 1 <span>left</span>
+                            </div> */}
+                          </div>
+                        </div>
+
+                        <div className="confirm-content-block">
+                          <ul className="confirm-content-list">
+                            <li>
+                              <span className="key">Selected Editions</span>
+                              <span className="value">{`${
+                                erc1155Sale.buyQuantity
+                              } / ${_.get(
+                                nft,
+                                "owner_details.total_quantity",
+                                0
+                              )}`}</span>
+                            </li>
+                            <li>
+                              <span className="key">Buy amount</span>
+                              <span className="value">
+                                {currencyFormat(erc1155Sale.totalAmount, "USD")}
+                              </span>
+                            </li>
+                            <li>
+                              <span className="key">Artist Fee</span>
+                              <span className="value">{nft.royalties}%</span>
+                            </li>
+                            <li>
+                              <span className="key">Service Fee</span>
+                              <span className="value">10%</span>
+                            </li>
+                            <li className="final-set">
+                              <span className="key">Total Amount </span>
+                              <span className="value">
+                                {currencyFormat(erc1155Sale.totalAmount, "USD")}
+                              </span>
+                            </li>
+                          </ul>
+                          <div className="confirm-content-msg">
+                            Are you sure want to Continue ?
+                          </div>
+                        </div>
+
+                        <div className="bottom-area">
+                          <div className="bottom-content-pop">
+                            <div
+                              className="back-button"
+                              onClick={() => setConfirm(!confirm)}
+                            >
+                              Back
+                            </div>
+                            <div className="place-bid-button">
+                              <button
+                                disabled={confirmState.buttonDisable}
+                                className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop ${confirmState.processClass}`} //process -> proccessing
+                                onClick={handlePutOnSale}
+                              >
+                                {confirmState.buttonName}
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                    );
+                  }
                 } else {
                   return (
                     <>

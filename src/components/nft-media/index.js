@@ -208,6 +208,14 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
               </video>
             </div>
           );
+        } else {
+          return (
+            <img
+              alt="media logo"
+              className="type_image typeimg_audio"
+              src={nft.asset_url ? nft.asset_url : sample}
+            />
+          );
         }
       })()}
 
