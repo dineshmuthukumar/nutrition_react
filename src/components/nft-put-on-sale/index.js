@@ -499,6 +499,11 @@ const NFTPutOnSale = ({
                                     !erc721Sale.bidAmount > 0
                                   ) {
                                     return true;
+                                  } else if (
+                                    !erc721Sale.isBuy &&
+                                    !erc721Sale.isBid
+                                  ) {
+                                    return true;
                                   } else {
                                     return false;
                                   }
@@ -517,6 +522,11 @@ const NFTPutOnSale = ({
                                     !erc721Sale.bidAmount > 0
                                   ) {
                                     return "Bid amount is required";
+                                  } else if (
+                                    !erc721Sale.isBuy &&
+                                    !erc721Sale.isBid
+                                  ) {
+                                    return "Bid or Buy amount is required";
                                   } else {
                                     return "Put on sale";
                                   }
@@ -663,7 +673,7 @@ const NFTPutOnSale = ({
                                 })()}
                               </span>
                             </li>
-                            {erc721Sale.isBuy && (
+                            {erc721Sale.isBid && (
                               <li>
                                 <span className="key">Bid amount</span>
                                 <span className="value">
