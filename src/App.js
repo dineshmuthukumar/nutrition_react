@@ -94,7 +94,11 @@ function App(props) {
             }
           >
             <Switch>
-              <Route exact path="/details/:slug" component={Details} />
+              <Route
+                exact
+                path="/details/:slug/:orderSlug?"
+                component={Details}
+              />
               <Route
                 exact
                 path="/explore/category/:name/:slug"

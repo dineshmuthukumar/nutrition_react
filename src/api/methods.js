@@ -9,7 +9,13 @@ export const nftCategoryDetailApi = ({ slug }) =>
 export const nftListApi = ({ slug, page }) =>
   appAxios.get(`/categories/${slug}/nfts?page=${page}`);
 
-export const nftDetailApi = ({ nft_slug }) => appAxios.get(`/nfts/${nft_slug}`);
+export const nftDetailApi = ({ nft_slug, order_slug }) => {
+  if (order_slug) {
+    return appAxios.get(`/nfts/${nft_slug}?order_slug=${order_slug}`);
+  } else {
+    return appAxios.get(`/nfts/${nft_slug}`);
+  }
+};
 
 export const nftMoreApi = ({ page }) => appAxios.get(`/nfts/more?page=${page}`);
 
@@ -23,7 +29,7 @@ export const nftBidWinner = ({ nft_slug }) =>
   appAxios.get(`/nfts/${nft_slug}/bid_winner`);
 
 export const nftBuyApi = (props) =>
-  appAxios.post("/buys", { nft: { ...props } });
+  appAxios.post("/buys", { order: { ...props } });
 
 export const nftBidApi = (props) =>
   appAxios.post("/bids", { nft: { ...props } });

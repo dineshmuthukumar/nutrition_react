@@ -39,7 +39,7 @@ import {
 
 const Details = () => {
   const history = useHistory();
-  const { slug } = useParams();
+  const { slug, orderSlug } = useParams();
   const [small, setSmall] = useState(false);
   const [nft, setNft] = useState({});
   const [auctionEndTime, setAuctionEndTime] = useState("");
@@ -134,7 +134,7 @@ const Details = () => {
     //   setBidWinner(data.winner);
     // });
 
-    nftDetail(slug);
+    nftDetail(slug, orderSlug);
     // nftMore();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -168,10 +168,13 @@ const Details = () => {
     }
   };
 
-  const nftDetail = async (slug) => {
+  const nftDetail = async (slug, orderSlug) => {
     try {
       setLoader(true);
-      let response = await nftDetailApi({ nft_slug: slug });
+      let response = await nftDetailApi({
+        nft_slug: slug,
+        order_slug: orderSlug,
+      });
       const NFT = response.data.data.nft;
 
       setAuctionEndTime(NFT.auction_end_time);
