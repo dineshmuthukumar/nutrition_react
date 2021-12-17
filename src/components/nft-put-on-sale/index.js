@@ -274,10 +274,11 @@ const NFTPutOnSale = ({
                             <div className="pop-nft-title text-center mb-1">
                               {nft?.name}
                             </div>
-                            {/* <div className="erc-type">
-                              {" "}
-                              1 of 1 <span>left</span>
-                            </div> */}
+                            {erc721 && (
+                              <div className="erc-type">
+                                1 of 1 <span>left</span>
+                              </div>
+                            )}
                           </div>
                         </div>
 
@@ -628,10 +629,9 @@ const NFTPutOnSale = ({
                             <div className="pop-nft-title text-center mb-1">
                               {nft?.name}
                             </div>
-                            {/* <div className="erc-type">
-                              {" "}
+                            <div className="erc-type">
                               1 of 1 <span>left</span>
-                            </div> */}
+                            </div>
                           </div>
                         </div>
 
@@ -796,7 +796,6 @@ const NFTPutOnSale = ({
                               {nft?.name}
                             </div>
                             {/* <div className="erc-type">
-                              {" "}
                               1 of 1 <span>left</span>
                             </div> */}
                           </div>

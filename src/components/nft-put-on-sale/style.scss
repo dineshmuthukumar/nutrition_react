@@ -15,12 +15,13 @@
         font-size: 2rem;
         font-family: $neue-helveticabold;
       }
-      .close-button-pop{
+      .close-button-pop {
         display: flex;
         justify-content: center;
         align-items: center;
         cursor: pointer;
-        svg,img {
+        svg,
+        img {
           height: 1.5rem;
           width: 1.5rem;
         }
@@ -333,7 +334,6 @@
         text-align: center;
         margin-bottom: 0.5rem;
         padding: 0 1rem;
-        text-align: left !important;
         color: #f21e00 !important;
       }
 
@@ -395,9 +395,7 @@
   }
 }
 
-
-
-.pop-body-container .pop-nft-details{
+.pop-body-container .pop-nft-details {
   .pop-nft-info {
     display: flex;
     flex-direction: row;
@@ -405,7 +403,7 @@
     justify-content: flex-start;
     margin: 1rem 0;
     padding: 0 1rem;
-    .pop-nft-media{
+    .pop-nft-media {
       margin-top: 0;
       img,
       video {
@@ -426,28 +424,27 @@
         font-size: 1.8rem;
         margin: 0.5rem 0;
         font-family: $neue-helveticamedium;
-        span{
+        span {
           font-size: 1.5rem;
           color: #000;
           font-family: $neue-helveticalight;
         }
       }
-    
-      .pop-author-name{
-        font-size: 1.4rem;
+
+      .pop-author-name {
+        font-size: 1.2rem;
         font-family: $neue-helveticalight;
       }
       .pop-nft-title {
         font-family: $neue-helveticamedium;
-        font-size: 2.2rem;
+        font-size: 2rem;
         padding: 0;
         text-align: left !important;
         line-height: 1.2;
-        margin-top: 1rem;
+        margin-top: 0.2rem;
       }
-    }  
-  }  
-
+    }
+  }
 
   .input-bid-container {
     display: flex;
@@ -457,7 +454,7 @@
     @media screen and (min-width: 1200px) {
       margin-top: 0.5rem;
     }
-    span.quantity-to-value{
+    span.quantity-to-value {
       color: red;
       font-family: $neue-helveticamedium;
       margin-top: 0.5rem;
@@ -466,15 +463,12 @@
     }
     .input-field-bid {
       padding: 0 1rem;
-      &.disabled{
+      &.disabled {
         opacity: 0.3;
       }
     }
   }
 }
-
-
-
 
 .toggle-btn-buybid {
   padding: 0rem;
@@ -482,13 +476,14 @@
   justify-content: space-between;
   align-items: center;
   margin-top: 2rem;
-  .btn-buy,.btn-bid {
+  .btn-buy,
+  .btn-bid {
     display: flex;
     justify-content: space-between;
     width: 50%;
     padding: 0 1rem;
     align-items: center;
-    
+
     .toggle-private-title {
       font-size: 1.5rem;
       color: #000;
@@ -497,8 +492,7 @@
   }
 }
 
-
-.you-own{
+.you-own {
   display: flex;
   justify-content: space-between;
   margin-top: 1rem;
@@ -509,27 +503,25 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin-top: .5rem;
-    margin-bottom: .5rem;
+    margin-top: 3rem;
+    margin-bottom: 0.5rem;
     padding: 0 1rem;
   }
-  &-title{
+  &-title {
     font-size: 1.5rem;
   }
-  h3{
+  h3 {
     font-size: 2rem;
     font-family: $neue-helveticamedium;
-    span{
+    span {
       font-size: 1.2rem;
       color: #757575;
-
     }
   }
-
 }
 
-.bid-input{
-  .input-quantity{
+.bid-input {
+  .input-quantity {
     width: calc(100% - 4rem);
   }
   .bid-currency {
@@ -539,7 +531,7 @@
   }
 }
 
-.confirm-content{
+.confirm-content {
   &-block {
     display: flex;
     flex-direction: column;
@@ -560,12 +552,12 @@
       display: flex;
       justify-content: space-between;
       margin-bottom: 1.5rem;
-      span{
+      span {
         font-size: 1.4rem;
-        font-family: $neue-helveticalight
+        font-family: $neue-helveticalight;
       }
-      &.final-set{
-        span{
+      &.final-set {
+        span {
           font-family: $neue-helveticabold;
         }
       }
