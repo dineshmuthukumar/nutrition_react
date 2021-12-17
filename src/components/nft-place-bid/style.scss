@@ -19,12 +19,13 @@
         font-size: 2rem;
         font-family: $neue-helveticabold;
       }
-      .close-button-pop{
+      .close-button-pop {
         display: flex;
         justify-content: center;
         align-items: center;
         cursor: pointer;
-        svg,img {
+        svg,
+        img {
           height: 1.5rem;
           width: 1.5rem;
         }
@@ -383,6 +384,94 @@
       .pop-signin-title {
         font-size: 2rem;
         font-family: $neue-helveticabold;
+      }
+    }
+  }
+}
+
+.pop-body-container .pop-nft-details {
+  .pop-nft-info {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin: 1rem 0;
+    padding: 0 1rem;
+    .pop-nft-media {
+      margin-top: 0;
+      img,
+      video {
+        max-height: 12rem;
+        object-fit: cover;
+        border-radius: 0.7rem;
+        overflow: hidden;
+        width: 12rem;
+        object-position: top;
+      }
+    }
+    .pop-nft-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding-left: 2rem;
+      .erc-type {
+        font-size: 1.8rem;
+        margin: 0.5rem 0;
+        font-family: $neue-helveticamedium;
+        span {
+          font-size: 1.5rem;
+          color: #000;
+          font-family: $neue-helveticalight;
+        }
+      }
+
+      .pop-author-name {
+        font-size: 1.2rem;
+        font-family: $neue-helveticalight;
+      }
+      .pop-nft-title {
+        font-family: $neue-helveticamedium;
+        font-size: 2rem;
+        padding: 0;
+        text-align: left !important;
+        line-height: 1.2;
+        margin-top: 0.2rem;
+      }
+    }
+  }
+
+  .input-bid-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 0rem !important;
+    @media screen and (min-width: 1200px) {
+      margin-top: 0.5rem;
+    }
+    span.quantity-to-value {
+      color: red;
+      font-family: $neue-helveticamedium;
+      margin-top: 0.5rem;
+      display: flex;
+      font-size: 0.8rem;
+    }
+    .input-field-bid {
+      padding: 0 1rem;
+      width: 100%;
+      h1 {
+        font-family: $neue-helveticalight;
+      }
+      &.disabled {
+        opacity: 0.3;
+      }
+      .total-amount-box {
+        border: 0.2rem solid #000;
+        padding: 2rem;
+        border-radius: 0.5rem;
+        margin-bottom: 1rem;
+        h1 {
+          margin: 0;
+        }
       }
     }
   }

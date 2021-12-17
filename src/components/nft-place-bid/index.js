@@ -402,170 +402,213 @@ const NFTPlaceBid = ({
                   >
                     <div className="progress-complete"></div>
                   </div>
-
-                  <div className="error-float-container">
-                    {noBalance && <ErrorText type="nobalance" />}
-                    {/* <ErrorText type="ending-time" /> */}
-                    {buy.isError && (
-                      <ErrorText
-                        handleClick={() =>
-                          setBuy({
-                            ...buy,
-                            isError: false,
-                            progressError: "",
-                          })
-                        }
-                        type="error"
-                        title={buy.errorTitle}
-                        desc={buy.errorDescription}
-                      />
-                    )}
-                    {bid.isError && (
-                      <ErrorText
-                        handleClick={() =>
-                          setBid({
-                            ...bid,
-                            isError: false,
-                            progressError: "",
-                          })
-                        }
-                        type="error"
-                        title={bid.errorTitle}
-                        desc={bid.errorDescription}
-                      />
-                    )}
-                  </div>
-
-                  <div className="pop-nft-media">
-                    {(() => {
-                      if (nft?.asset_type?.includes("image")) {
-                        return (
-                          <img
-                            alt="media logo"
-                            className="type_image typeimg_audio"
-                            src={nft.asset_url ? nft.asset_url : sample}
-                          />
-                        );
-                      } else if (nft?.asset_type?.includes("audio")) {
-                        return (
-                          <>
-                            <img
-                              alt="media logo"
-                              className="type_image typeimg_audio"
-                              src={nft.cover_url ? nft.cover_url : sample}
-                            />
-                            {/* 
-                            <audio
-                              controls
-                              className="shadow-sm audioOnmedia"
-                              disablepictureinpicture
-                              controlslist="nodownload noplaybackrate"
-                            >
-                              <source
-                                src={nft.asset_url}
-                                type={nft.asset_type}
-                              />
-                              Your browser does not support the audio element.
-                            </audio> */}
-                          </>
-                        );
-                      } else if (nft?.asset_type?.includes("video")) {
-                        return (
-                          <img
-                            alt="media logo"
-                            className="type_image typeimg_audio"
-                            src={nft.cover_url ? nft.cover_url : sample}
-                          />
-                        );
-                      }
-                    })()}
-                  </div>
-                  <div className="pop-author-name text-center mt-3">
-                    Amitabh Bachchan
-                  </div>
-                  <div className="pop-nft-title text-center mb-1">
-                    {nft?.name}
-                  </div>
-
-                  {/* error-bid -> less value than min bid,  error-balance -> low value, error-balance-float -> low value in quantity  */}
-                  <div className={`input-bid-container mt-5 ${error}`}>
-                    <label className="input-bid-text">
-                      {erc721
-                        ? `Enter minimum bid amount of ${currencyFormat(
-                            price ? price : nft.minimum_bid,
-                            "USD"
-                          )}`
-                        : `Enter Quantity`}
-                    </label>
-
-                    {!erc721 ? (
-                      <div className="input-quantity-container">
-                        <input
-                          type="text"
-                          className="input-quantity"
-                          value={buyQuantity}
-                          placeholder="0 NFTs"
-                          disabled={(() => {
-                            if (!isAuctionStarted && !isAuctionEnded) {
-                              return !isAuctionStarted;
-                            } else if (isAuctionEnded) {
-                              return isAuctionEnded;
-                            } else {
-                              return soldOut;
-                            }
-                          })()}
-                          onChange={handleBuyInputChange}
-                        />
-                        {/* text-dark -> dark text after entering quantity */}
-                        <span
-                          className={`quantity-to-value ${buy.amountClass}`}
-                        >
-                          {currencyFormat(buyAmount, "USD")}
-                        </span>
-                      </div>
-                    ) : (
-                      <div className="input-bid-wrap">
-                        <span className="bid-currency">$</span>
-                        <input
-                          type="text"
-                          className="input-bid"
-                          value={bidAmount}
-                          placeholder="0"
-                          disabled={(() => {
-                            if (!isAuctionStarted && !isAuctionEnded) {
-                              return !isAuctionStarted;
-                            } else {
-                              return isAuctionEnded;
-                            }
-                          })()}
-                          onChange={handleBidInputChange}
-                        />
-                      </div>
-                    )}
-                    <div className="balance-details">
-                      {user &&
-                        erc721 &&
-                        `Your wallet balance is ${currencyFormat(
-                          user?.balance,
-                          "USD"
-                        )}`}
-                      {(() => {
-                        if (!erc721) {
-                          if (userTotalBuys) {
-                            return `You can buy maximum of ${
-                              userTotalBuys
-                                ? nft.buy_count - userTotalBuys
-                                : nft.buy_count
-                            } of this NFT`;
-                          } else {
-                            return `You can buy maximum of ${
-                              nft.total_user_buys
-                                ? nft.buy_count - nft.total_user_buys
-                                : nft.buy_count
-                            } of this NFT`;
+                  <div className="pop-bid-bodyContent">
+                    <div className="error-float-container">
+                      {noBalance && <ErrorText type="nobalance" />}
+                      {/* <ErrorText type="ending-time" /> */}
+                      {buy.isError && (
+                        <ErrorText
+                          handleClick={() =>
+                            setBuy({
+                              ...buy,
+                              isError: false,
+                              progressError: "",
+                            })
                           }
-                        }
-                      })()}
+                          type="error"
+                          title={buy.errorTitle}
+                          desc={buy.errorDescription}
+                        />
+                      )}
+                      {bid.isError && (
+                        <ErrorText
+                          handleClick={() =>
+                            setBid({
+                              ...bid,
+                              isError: false,
+                              progressError: "",
+                            })
+                          }
+                          type="error"
+                          title={bid.errorTitle}
+                          desc={bid.errorDescription}
+                        />
+                      )}
+                    </div>
+                    <div className="pop-nft-info">
+                      <div className="pop-nft-media">
+                        {(() => {
+                          if (nft?.asset_type?.includes("image")) {
+                            return (
+                              <img
+                                alt="media logo"
+                                className="type_image typeimg_audio"
+                                src={nft.asset_url ? nft.asset_url : sample}
+                              />
+                            );
+                          } else if (nft?.asset_type?.includes("audio")) {
+                            return (
+                              <>
+                                <img
+                                  alt="media logo"
+                                  className="type_image typeimg_audio"
+                                  src={nft.cover_url ? nft.cover_url : sample}
+                                />
+                                {/* 
+                                <audio
+                                  controls
+                                  className="shadow-sm audioOnmedia"
+                                  disablepictureinpicture
+                                  controlslist="nodownload noplaybackrate"
+                                >
+                                  <source
+                                    src={nft.asset_url}
+                                    type={nft.asset_type}
+                                  />
+                                  Your browser does not support the audio element.
+                                </audio> */}
+                              </>
+                            );
+                          } else if (nft?.asset_type?.includes("video")) {
+                            return (
+                              <img
+                                alt="media logo"
+                                className="type_image typeimg_audio"
+                                src={nft.cover_url ? nft.cover_url : sample}
+                              />
+                            );
+                          } else {
+                            return (
+                              <img
+                                alt="media logo"
+                                className="type_image typeimg_audio"
+                                src={nft.asset_url ? nft.asset_url : sample}
+                              />
+                            );
+                          }
+                        })()}
+                      </div>
+                      <div className="pop-nft-content">
+                        <div className="pop-author-name text-center mt-3">
+                          Amitabh Bachchan
+                        </div>
+                        <div className="pop-nft-title text-center mb-1">
+                          {nft?.name}
+                        </div>
+                        {erc721 && (
+                          <div className="erc-type">
+                            1 of 1 <span>left</span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                    {/* error-bid -> less value than min bid,  error-balance -> low value, error-balance-float -> low value in quantity  */}
+
+                    <div className={`input-bid-container mt-5 ${error}`}>
+                      <div className={`input-field-bid`}>
+                        <label className="input-bid-text">
+                          {erc721
+                            ? `Enter minimum bid amount of ${currencyFormat(
+                                price ? price : nft.minimum_bid,
+                                "USD"
+                              )}`
+                            : `Enter Quantity`}
+                        </label>
+
+                        {!erc721 ? (
+                          <div className="input-quantity-container">
+                            <input
+                              type="text"
+                              className="input-quantity"
+                              value={buyQuantity}
+                              placeholder="0 NFTs"
+                              disabled={(() => {
+                                if (!isAuctionStarted && !isAuctionEnded) {
+                                  return !isAuctionStarted;
+                                } else if (isAuctionEnded) {
+                                  return isAuctionEnded;
+                                } else {
+                                  return soldOut;
+                                }
+                              })()}
+                              onChange={handleBuyInputChange}
+                            />
+                            {/* text-dark -> dark text after entering quantity */}
+                            <span
+                              className={`quantity-to-value ${buy.amountClass}`}
+                            >
+                              {currencyFormat(buyAmount, "USD")}
+                            </span>
+                          </div>
+                        ) : (
+                          <div className="input-bid-wrap">
+                            <span className="bid-currency">$</span>
+                            <input
+                              type="text"
+                              className="input-bid"
+                              value={bidAmount}
+                              placeholder="0"
+                              disabled={(() => {
+                                if (!isAuctionStarted && !isAuctionEnded) {
+                                  return !isAuctionStarted;
+                                } else {
+                                  return isAuctionEnded;
+                                }
+                              })()}
+                              onChange={handleBidInputChange}
+                            />
+                          </div>
+                        )}
+                        <div className="balance-details">
+                          {user &&
+                            erc721 &&
+                            `Your wallet balance is ${currencyFormat(
+                              user?.balance,
+                              "USD"
+                            )}`}
+                          {(() => {
+                            if (!erc721) {
+                              if (userTotalBuys) {
+                                return `You can buy maximum of ${
+                                  userTotalBuys
+                                    ? nft.buy_count - userTotalBuys
+                                    : nft.buy_count
+                                } of this NFT`;
+                              } else {
+                                return `You can buy maximum of ${
+                                  nft.total_user_buys
+                                    ? nft.buy_count - nft.total_user_buys
+                                    : nft.buy_count
+                                } of this NFT`;
+                              }
+                            }
+                          })()}
+                        </div>
+                      </div>
+                    </div>
+                    <div className={`input-bid-container mt-5`}>
+                      <div className="input-field-bid">
+                        <div className="services-fee-box">
+                          <label className="input-bid-text">Buy amount</label>
+                          <h1>$ 2000.00</h1>
+                        </div>
+                      </div>
+                    </div>
+                    <div className={`input-bid-container mt-5`}>
+                      <div className="input-field-bid">
+                        <div className="services-fee-box">
+                          <label className="input-bid-text">Services Fee</label>
+                          <h1>10%</h1>
+                        </div>
+                      </div>
+                    </div>
+                    <div className={`input-bid-container mt-5`}>
+                      <div className="input-field-bid">
+                        <div className="total-amount-box">
+                          <label className="input-bid-text">Total Amount</label>
+                          <h1>$ 121.00</h1>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div className="bottom-area">
