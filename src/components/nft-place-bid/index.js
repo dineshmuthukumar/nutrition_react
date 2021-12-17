@@ -21,6 +21,7 @@ const NFTPlaceBid = ({
   placeBidPop = false,
   setPlaceBidPop,
   nft,
+  orderDetails,
   // socketData,
   price,
   userTotalBuys,
@@ -559,7 +560,7 @@ const NFTPlaceBid = ({
                             />
                           </div>
                         )}
-                        <div className="balance-details">
+                        {/* <div className="balance-details">
                           {user &&
                             erc721 &&
                             `Your wallet balance is ${currencyFormat(
@@ -583,17 +584,20 @@ const NFTPlaceBid = ({
                               }
                             }
                           })()}
-                        </div>
+                        </div> */}
                       </div>
                     </div>
-                    <div className={`input-bid-container mt-5`}>
-                      <div className="input-field-bid">
-                        <div className="services-fee-box">
-                          <label className="input-bid-text">Buy amount</label>
-                          <h1>$ 2000.00</h1>
+                    {erc721 && orderDetails.isBuy && (
+                      <div className={`input-bid-container mt-5`}>
+                        <div className="input-field-bid">
+                          <div className="services-fee-box">
+                            <label className="input-bid-text">Buy amount</label>
+                            <h1>$ 2000.00</h1>
+                          </div>
                         </div>
                       </div>
-                    </div>
+                    )}
+
                     <div className={`input-bid-container mt-5`}>
                       <div className="input-field-bid">
                         <div className="services-fee-box">

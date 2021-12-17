@@ -206,6 +206,7 @@ const NFTBaseDetails = ({
         <div className="text-center">
           <NFTPlaceBid
             nft={nft}
+            orderDetails={orderDetails}
             placeBidPop={placeBidPop}
             setPlaceBidPop={setPlaceBidPop}
             price={price}
