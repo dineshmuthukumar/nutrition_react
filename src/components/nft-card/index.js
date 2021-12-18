@@ -1,17 +1,16 @@
 import React from "react";
 import "./style.scss";
-import {FaHeart} from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 
-const NFTCard = ({image}) => {
-  return <>
-    <div class="col-xl-3 col-lg-3 col-sm-6">
+const NFTCard = ({ image }) => {
+  return (
+    <>
       <article className="nft-card">
         <figure>
           <img src={image} alt="cardImage" />
           <FaHeart className="heart-icon" />
         </figure>
         <div className="nft-content">
-          
           <h3>BigBSigned</h3>
           <h4>Featured NFT</h4>
           <div className="nft-priceType">
@@ -26,8 +25,8 @@ const NFTCard = ({image}) => {
           </div>
         </div>
       </article>
-    </div>
-  </>;
+    </>
+  );
 };
 
 export default NFTCard;

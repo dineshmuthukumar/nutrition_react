@@ -23,6 +23,7 @@ const Explore = lazy(() => import("./pages/explore-list"));
 const Details = lazy(() => import("./pages/details"));
 const NotFound = lazy(() => import("./pages/not-found"));
 const HelpLine = lazy(() => import("./pages/help-line"));
+const UserDetails = lazy(() => import("./pages/user-details"));
 
 function App(props) {
   const dispatch = useDispatch();
@@ -106,6 +107,7 @@ function App(props) {
               />
               <Route exact path="/" component={Home} />
               <Route exact path="/help-line" component={HelpLine} />
+              <Route exact path="/user-details" component={UserDetails} />
               <Route path="/not-found" component={NotFound} />
               <Route exact component={NotFound} />
             </Switch>
