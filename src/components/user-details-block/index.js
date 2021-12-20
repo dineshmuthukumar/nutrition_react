@@ -37,6 +37,35 @@ const UserDetailsBlock = () => {
                   <div className="row">
                     <div className="col-sm-12">
                       {/* Place tab and filter here */}
+                      <ul className="nav user-nav">
+                        <li className="nav-item">
+                          <a
+                            className={`nav-link active`}
+                            aria-current="page"
+                            role="button"
+                          >
+                            On Sale
+                          </a>
+                        </li>
+                        <li className="nav-item">
+                          <a
+                            className={`nav-link active`}
+                            aria-current="page"
+                            role="button"
+                          >
+                            Liked
+                          </a>
+                        </li>
+                        <li className="nav-item">
+                          <a
+                            className={`nav-link active`}
+                            aria-current="page"
+                            role="button"
+                          >
+                            On Sale
+                          </a>
+                        </li>
+                      </ul>
                     </div>
                   </div>
                   <div className="row">

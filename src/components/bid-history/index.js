@@ -16,7 +16,62 @@ import { TableLoader } from "../nft-basic-details/content-loader";
 
 import "./style.scss";
 
-const BidHistory = ({ nft, histories = [], isAuctionEnded, totalCount }) => {
+const BidHistory = ({
+  nft,
+  histories = [
+    {
+      avatar_url: "",
+      created_at: "2021-11-02T18:12:31.891Z",
+      user_name: "@wiki",
+      slug: "ljdkasncksbd",
+      bid_amount: 100,
+    },
+    {
+      avatar_url: "",
+      created_at: "2021-11-02T18:12:31.891Z",
+      user_name: "@wiki",
+      slug: "ljdkasncksbd",
+      bid_amount: 100,
+    },
+    {
+      avatar_url: "",
+      created_at: "2021-11-02T18:12:31.891Z",
+      user_name: "@wiki",
+      slug: "ljdkasncksbd",
+      bid_amount: 100,
+    },
+    {
+      avatar_url: "",
+      created_at: "2021-11-02T18:12:31.891Z",
+      user_name: "@wiki",
+      slug: "ljdkasncksbd",
+      bid_amount: 100,
+    },
+    {
+      avatar_url: "",
+      created_at: "2021-11-02T18:12:31.891Z",
+      user_name: "@wiki",
+      slug: "ljdkasncksbd",
+      bid_amount: 100,
+    },
+    {
+      avatar_url: "",
+      created_at: "2021-11-02T18:12:31.891Z",
+      user_name: "@wiki",
+      slug: "ljdkasncksbd",
+      bid_amount: 100,
+    },
+    {
+      avatar_url: "",
+      created_at: "2021-11-02T18:12:31.891Z",
+      user_name: "@wiki",
+      slug: "ljdkasncksbd",
+      bid_amount: 100,
+    },
+  ],
+  isAuctionEnded,
+  totalCount,
+}) => {
   const { slug } = useParams();
   const [modalShow, setModalShow] = useState(false);
   const [bidHistories, setBidHistories] = useState({});
@@ -68,36 +123,10 @@ const BidHistory = ({ nft, histories = [], isAuctionEnded, totalCount }) => {
       <div className="bid-history if_bid_empty_cell">
         <div className="bid-history-title-content">
           <div className="bid-history-title">History</div>
-          <div className="bid-history-filter">
-            {/* <div className="me-2">
-              <Nav>
-                <NavDropdown
-                  title="Sort By"
-                  menuVariant="white"
-                  align="end"
-                  className="history-dropdown"
-                >
-                  <NavDropdown.Item href="#action/3.1">
-                    First bid to last
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">
-                    Last bid to first
-                  </NavDropdown.Item>
-                </NavDropdown>
-              </Nav>
-            </div> */}
-            {/* {histories.length > 0 && (
-              <AiOutlineExpand
-                role="button"
-                style={{ color: "#fff" }}
-                size={25}
-                onClick={() => setModalShow(true)}
-              />
-            )} */}
-          </div>
+          <div className="bid-history-filter"></div>
         </div>
 
-        {histories.length > 0 ? (
+        {/* {histories.length > 0 ? (
           <div className="bid-history-content">
             {histories.map((history, i) => (
               <BidCard key={`biy-history${i}`} history={history} />
@@ -140,119 +169,61 @@ const BidHistory = ({ nft, histories = [], isAuctionEnded, totalCount }) => {
                 <div className="publish-time text-secondary">
                   {dayjs(nft.auction_start_time).format("MMM D, YYYY hh:mm A")}
                 </div>
-                <div className="nft-owner">
-                  {/* Bid listed by <BidName text="@amitabhbachchan" static_name /> */}
-                  Bid listed by @amitabhbachchan
+                <div className="nft-owner">Bid listed by @amitabhbachchan</div>
+              </div>
+            </div>
+          </div>
+        )} */}
+
+        {1 == 1 ? (
+          <div className="bid-history-content">
+            {histories.map((history, i) => (
+              <BidCard key={`biy-history${i}`} history={history} />
+            ))}
+
+            {/* {totalCount <= histories.length ? (
+              <BidCard isEnd />
+            ) : (
+              <div className="bid-histroy-card">
+                <div className="history-end-content">
+                  <span role="button" onClick={handleClick}>
+                    View More
+                  </span>
                 </div>
+              </div>
+            )} */}
+          </div>
+        ) : (
+          <div className="bid-empty-content">
+            <div className="empty-top-container">
+              <div className="empty-top-content">
+                <IoIosRocket color="white" />
+                {1 == 0 ? (
+                  <div className="empty-text">
+                    Auction has ended. <br />
+                    No active bids.
+                  </div>
+                ) : (
+                  <div className="empty-text">
+                    No active bids yet. <br />
+                    Be the first to make a bid.
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div className="empty-bottom-content">
+              <img src={amitabh} alt="" />
+              <div className="nft-owner-history-details">
+                <div className="publish-time text-secondary">
+                  {dayjs(nft.auction_start_time).format("MMM D, YYYY hh:mm A")}
+                </div>
+                <div className="nft-owner">Bid listed by @amitabhbachchan</div>
               </div>
             </div>
           </div>
         )}
       </div>
-      <Modal size="xl" centered show={modalShow} className="history-modal">
-        <Modal.Header className="bg-dark p-0">
-          <Modal.Title className="flex-fill">
-            <div className="modal-bid-history-title-content">
-              <div className="modal-bid-history-title">History</div>
-              <div className="modal-bid-history-filter">
-                {/* <div className="me-2">
-                  <Nav>
-                    <NavDropdown
-                      title="Sort By"
-                      menuVariant="white"
-                      align="end"
-                      className="history-dropdown"
-                    >
-                      <NavDropdown.Item href="#action/3.1">
-                        First bid to last
-                      </NavDropdown.Item>
-                      <NavDropdown.Item href="#action/3.2">
-                        Last bid to first
-                      </NavDropdown.Item>
-                    </NavDropdown>
-                  </Nav>
-                </div> */}
-                {/* <BsFullscreenExit
-                  role="button"
-                  style={{ color: "#fff" }}
-                  size={25}
-                  onClick={() => setModalShow(false)}
-                /> */}
-                <BiX
-                  role="button"
-                  style={{ color: "#fff" }}
-                  size={25}
-                  onClick={handleClose}
-                />
-              </div>
-            </div>
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          {loading ? (
-            <TableLoader />
-          ) : (
-            <Table responsive="lg" className="history-table-expand mb-0">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Event</th>
-                  <th>Bider</th>
-                  <th className="text-center">Price</th>
-                  <th className="text-center">Price Change</th>
-                  <th className="text-center">Date</th>
-                </tr>
-              </thead>
-              <tbody>
-                {bidHistoryList.map((history, i) => (
-                  <tr>
-                    <td>{i + 1}</td>
-                    <td>Bid placed by</td>
-                    <td>
-                      <BidName
-                        imgUrl={!history.private ? history.avatar_url : userImg}
-                        text={history.user_name}
-                        isTable
-                        slug={history.slug}
-                      />
-                    </td>
-                    <td className="text-center">
-                      <div className="usd-value">
-                        {currencyFormat(history.bid_amount, "USD")}
-                      </div>
-                    </td>
-                    <td className="text-center text-success">
-                      {`${history.bid_change.toFixed(2)}%`}
-                    </td>
-                    <td className="text-center">
-                      <div className="date">
-                        {dayjs(history.created_at).format(
-                          "MMM D, YYYY hh:mm A"
-                        )}
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-                {bidHistories.next_page ? (
-                  <tr>
-                    <td className="text-center text-secondary p-3" colSpan="6">
-                      <span role="button" onClick={fetchMoreHistory}>
-                        Load More
-                      </span>
-                    </td>
-                  </tr>
-                ) : (
-                  <tr>
-                    <td className="text-center text-secondary p-3" colSpan="6">
-                      You've reached the end of the list
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </Table>
-          )}
-        </Modal.Body>
-      </Modal>
     </>
   );
 };
