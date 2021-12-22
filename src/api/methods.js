@@ -1,13 +1,24 @@
 import appAxios from "./axios-utils";
 
 export const nftCategoriesApi = (page) =>
-  appAxios.get(`/categories?page=${page}`);
+  appAxios.get(`/dashboard/categories?page=${page}`);
 
 export const nftCategoryDetailApi = ({ slug }) =>
   appAxios.get(`/categories/${slug}`);
 
-export const nftListApi = ({ slug, page }) =>
+export const nftCategoryListApi = ({ slug, page }) =>
   appAxios.get(`/categories/${slug}/nfts?page=${page}`);
+
+export const nftShowAllApi = ({ page, sort, filter }) =>
+  appAxios.get(`/dashboard/index?page=${page}&sort=${sort}&filter=${filter}`);
+
+export const hotNFTsApi = ({ page }) =>
+  appAxios.get(`/dashboard/hot_nfts?page=${page}`);
+
+export const topSellersApi = ({ page, time_format }) =>
+  appAxios.get(
+    `/dashboard/top_sellers?page=${page}&time_format=${time_format}`
+  );
 
 export const nftDetailApi = ({ nft_slug, order_slug }) => {
   if (order_slug) {
@@ -28,11 +39,11 @@ export const nftBidHistory = ({ nft_slug, page }) =>
 export const nftBidWinner = ({ nft_slug }) =>
   appAxios.get(`/nfts/${nft_slug}/bid_winner`);
 
-export const nftBuyApi = (props) =>
-  appAxios.post("/buys", { order: { ...props } });
+// export const nftBuyApi = (props) =>
+//   appAxios.post("/buys", { order: { ...props } });
 
-export const nftBidApi = (props) =>
-  appAxios.post("/bids", { nft: { ...props } });
+// export const nftBidApi = (props) =>
+//   appAxios.post("/bids", { nft: { ...props } });
 
 export const nftMakeFav = ({ nft_slug }) =>
   appAxios.post(`/nfts/${nft_slug}/fav`);
@@ -45,3 +56,9 @@ export const lootBuyApi = (props) =>
 
 export const putOnSaleApi = ({ slug, order }) =>
   appAxios.post(`/nfts/${slug}/orders`, { order: order });
+
+export const nftBuyApi = ({ order_slug, order }) =>
+  appAxios.post(`/orders/${order_slug}/buy`, { order });
+
+export const nftBidApi = ({ order_slug, order }) =>
+  appAxios.post(`/orders/${order_slug}/bid`, { order });

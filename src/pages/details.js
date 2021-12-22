@@ -54,6 +54,7 @@ const Details = () => {
   const [soldOut, setSoldOut] = useState(false);
   const [loader, setLoader] = useState(true);
   const [placeBidPop, setPlaceBidPop] = useState(false);
+  const [placeBuyPop, setPlaceBuyPop] = useState(false);
   const [putOnSalePop, setPutOnSalePop] = useState(false);
   const [cancelTheSalePop, setCancelTheSalePop] = useState(false);
 
@@ -247,6 +248,8 @@ const Details = () => {
                   nft={nft}
                   placeBidPop={placeBidPop}
                   setPlaceBidPop={setPlaceBidPop}
+                  placeBuyPop={placeBuyPop}
+                  setPlaceBuyPop={setPlaceBuyPop}
                   putOnSalePop={putOnSalePop}
                   setPutOnSalePop={setPutOnSalePop}
                   cancelTheSalePop={cancelTheSalePop}

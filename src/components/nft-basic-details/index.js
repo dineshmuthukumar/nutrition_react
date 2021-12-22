@@ -7,18 +7,21 @@ import _ from "lodash";
 import NFTTimeLeft from "../nft-time-left";
 import BidValue from "../bid-value";
 import ToolTip from "../tooltip";
-import NFTPlaceBid from "./../nft-place-bid";
+import NFTPlaceBid from "../nft-place-bid";
+import NFTPlaceBuy from "../nft-place-buy";
+import NFTPutOnSale from "../nft-put-on-sale";
+import NFTCancelTheSale from "../nft-cancel-the-sale";
+import HelpLine from "../help-line";
 import { ReactComponent as DiscordSvg } from "./../../icons/discord_logo.svg";
 import { currencyFormat } from "../../utils/common";
 
 import "./style.scss";
-import NFTPutOnSale from "../nft-put-on-sale";
-import NFTCancelTheSale from "../nft-cancel-the-sale";
-import HelpLine from "../help-line";
 const NFTBaseDetails = ({
   nft,
   placeBidPop,
   setPlaceBidPop,
+  placeBuyPop,
+  setPlaceBuyPop,
   putOnSalePop,
   setPutOnSalePop,
   cancelTheSalePop,
@@ -209,6 +212,21 @@ const NFTBaseDetails = ({
             orderDetails={orderDetails}
             placeBidPop={placeBidPop}
             setPlaceBidPop={setPlaceBidPop}
+            isBid={isBid}
+            isBuy={isBuy}
+            price={price}
+            userTotalBuys={userTotalBuys}
+            isAuctionStarted={isAuctionStarted}
+            isAuctionEnded={isAuctionEnded}
+            soldOut={soldOut}
+          />
+          <NFTPlaceBuy
+            nft={nft}
+            orderDetails={orderDetails}
+            placeBuyPop={placeBuyPop}
+            setPlaceBuyPop={setPlaceBuyPop}
+            isBid={isBid}
+            isBuy={isBuy}
             price={price}
             userTotalBuys={userTotalBuys}
             isAuctionStarted={isAuctionStarted}
@@ -335,7 +353,7 @@ const NFTBaseDetails = ({
                 <button
                   disabled={false}
                   className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
-                  // onClick={() => setPlaceBidPop(!placeBidPop)}
+                  onClick={() => setPlaceBidPop(!placeBidPop)}
                 >
                   Place a Bid
                 </button>
@@ -345,7 +363,7 @@ const NFTBaseDetails = ({
                 <button
                   disabled={false}
                   className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
-                  onClick={() => setPlaceBidPop(!placeBidPop)}
+                  onClick={() => setPlaceBuyPop(!placeBuyPop)}
                 >
                   Buy {currencyFormat(orderDetails.buy_amount, "USD")}
                 </button>
@@ -356,14 +374,14 @@ const NFTBaseDetails = ({
                   <button
                     disabled={false}
                     className="btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill place-bid-buy-btn"
-                    // onClick={() => setPlaceBidPop(!placeBidPop)}
+                    onClick={() => setPlaceBuyPop(!placeBuyPop)}
                   >
                     Buy {currencyFormat(orderDetails.buy_amount, "USD")}
                   </button>
                   <button
                     disabled={false}
                     className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn"
-                    // onClick={() => setPlaceBidPop(!placeBidPop)}
+                    onClick={() => setPlaceBidPop(!placeBidPop)}
                   >
                     Place a Bid
                   </button>

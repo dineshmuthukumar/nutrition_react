@@ -1,0 +1,478 @@
+@import "../../styles/common";
+
+.pop-body-container {
+  position: relative;
+  .pop-nft-details {
+    position: relative;
+    height: 100vh;
+    .pop-bid-bodyContent {
+      height: calc(100vh - 15rem);
+      overflow: hidden;
+      overflow-y: auto;
+    }
+    .pop-head-content {
+      display: flex;
+      padding: 1rem;
+      justify-content: space-between;
+
+      .pop-bid-title {
+        font-size: 2rem;
+        font-family: $neue-helveticabold;
+      }
+      .close-button-pop {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        svg,
+        img {
+          height: 1.5rem;
+          width: 1.5rem;
+        }
+      }
+    }
+
+    .pop-bid-progress {
+      background: #e7e7e9;
+      .progress-complete {
+        background: #000;
+        padding: 0.25rem;
+        width: 25%;
+        border-top-right-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+      }
+
+      &.error-progress {
+        .progress-complete {
+          background: #f21e00;
+        }
+      }
+
+      &.loading {
+        .progress-complete {
+          background: #9c9c9b;
+        }
+      }
+    }
+
+    .error-float-container {
+      position: absolute;
+      top: 8rem;
+      padding: 0 2rem;
+      z-index: 10;
+      width: 100%;
+
+      .error-container {
+        background: #f21e00;
+        margin-bottom: 0.6rem;
+        border-radius: 0.5rem;
+        padding: 1rem 1rem;
+        color: white;
+        display: flex;
+        align-items: center;
+        position: relative;
+
+        .btn-cls {
+          position: absolute;
+          right: 0.4rem;
+          top: 0.4rem;
+        }
+
+        .error-text {
+          flex: 1;
+          font-family: $neue-helveticamedium;
+          font-size: 0.9rem;
+        }
+
+        .time-details {
+          flex: 1;
+
+          .time-title {
+            font-family: $neue-helveticamedium;
+            font-size: 0.9rem;
+          }
+          .time-counter {
+            .alert-counter-time {
+              font-family: $neue-helveticamedium;
+              font-size: 1.5rem;
+            }
+
+            .alert-counter-interval {
+              font-family: $neue-helveticalight;
+              font-size: 0.8rem;
+            }
+
+            .alert-counter-gap {
+              margin-right: 1rem;
+            }
+          }
+        }
+
+        .btn-error-button {
+          font-family: $neue-helveticamedium;
+          background: #f21e00;
+          font-size: 0.8rem;
+          outline: none;
+          border: 1px solid white;
+          color: white;
+          padding: 0.5rem 1rem;
+
+          &:hover {
+            background: white;
+            color: #f21e00;
+          }
+        }
+
+        .error-details {
+          .error-title {
+            font-family: $neue-helveticamedium;
+            font-size: 1rem;
+          }
+
+          .error-desc {
+            font-family: $neue-helveticamedium;
+            font-size: 0.8rem;
+          }
+        }
+      }
+    }
+
+    .pop-nft-media {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 2rem;
+
+      img,
+      video {
+        max-height: 25vh;
+        object-fit: scale-down;
+        border-radius: 0.7rem;
+        overflow: hidden;
+      }
+
+      audio {
+        margin-top: 1rem;
+        width: 75%;
+      }
+
+      &.preview {
+        img,
+        video {
+          max-height: 25vh;
+        }
+      }
+    }
+    .pop-author-name {
+      font-family: $neue-helveticamedium;
+      font-size: 1rem;
+    }
+
+    .pop-nft-title {
+      font-family: $neue-helveticamedium;
+      font-size: 1.4rem;
+      padding: 0 1rem;
+    }
+
+    .input-bid-container {
+      padding: 0 3rem;
+      .input-bid-text {
+        font-size: 1rem;
+        color: #000000;
+        font-family: $neue-helveticamedium;
+        font-weight: normal;
+        text-align: start;
+      }
+
+      .input-bid-wrap {
+        border: 2px solid #222;
+        border-radius: 0.6rem;
+        display: flex;
+        align-items: center;
+
+        .bid-currency {
+          color: #000000;
+          font-family: $neue-helveticamedium;
+          font-size: 1.8rem !important;
+          padding-left: 1.1rem;
+        }
+
+        .input-bid {
+          width: 100%;
+          font-family: $neue-helveticamedium;
+          font-size: 1.8rem !important;
+          padding: 0.6rem 1.1rem 0.6rem 0.1rem;
+          outline: none;
+          border-radius: 0.6rem;
+          border: none;
+        }
+      }
+
+      .input-quantity-container {
+        border: 2px solid #222;
+        border-radius: 0.6rem;
+        display: flex;
+        align-items: center;
+
+        .input-quantity {
+          width: 100%;
+          font-family: $neue-helveticamedium;
+          font-size: 1.8rem !important;
+          padding: 0.6rem 1.1rem;
+          outline: none;
+          border-radius: 0.6rem;
+          border: none;
+        }
+
+        .quantity-to-value {
+          color: #d3d3d6;
+          font-family: $neue-helveticamedium;
+          padding-right: 1.5rem;
+          font-size: 1.3rem !important;
+        }
+      }
+
+      .balance-details {
+        margin-top: 0.5rem;
+        font-size: 0.8rem;
+        font-family: $neue-helveticabold;
+        color: #000;
+      }
+
+      &.error-bid {
+        .input-bid-text {
+          color: #f21e00;
+        }
+
+        .input-bid-wrap {
+          border: 2px solid #f21e00;
+          .bid-currency {
+            color: #f21e00;
+          }
+          .input-bid {
+            color: #f21e00;
+          }
+        }
+      }
+
+      &.error-balance-float {
+        .input-quantity-container {
+          border: 2px solid #f21e00;
+
+          .input-quantity {
+            color: #f21e00;
+          }
+        }
+      }
+
+      &.error-balance {
+        .balance-details {
+          color: #f21e00;
+        }
+
+        .input-bid-wrap {
+          border: 2px solid #f21e00;
+          .bid-currency {
+            color: #f21e00;
+          }
+          .input-bid {
+            color: #f21e00;
+          }
+        }
+
+        .input-quantity-container {
+          border: 2px solid #f21e00;
+
+          .input-quantity {
+            color: #f21e00;
+          }
+        }
+      }
+    }
+
+    .sucess-title {
+      text-align: center;
+      padding-top: 2.5rem;
+
+      .message {
+        font-family: $neue-helveticamedium;
+        font-size: 1.6rem;
+        padding: 0 2rem;
+      }
+    }
+
+    .success-summary-container {
+      padding: 0 4rem;
+      .success-summary {
+        display: flex;
+        justify-content: space-between;
+        font-family: $neue-helveticamedium;
+        font-size: 1rem;
+        padding: 0.5rem 0 0.5rem 0;
+        border-bottom: 1px solid #000000;
+
+        .bold {
+          font-family: $neue-helveticabold;
+          font-size: 1.1rem;
+        }
+      }
+    }
+
+    .bottom-area {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+
+      .terms {
+        font-family: $neue-helveticamedium;
+        font-size: 0.9rem;
+        text-align: center;
+        margin-bottom: 0.5rem;
+        padding: 0 1rem;
+      }
+
+      .bottom-content-pop {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 1rem;
+
+        -webkit-box-shadow: 0px -4px 3px rgba(216, 216, 216, 0.75);
+        -moz-box-shadow: 0px -4px 3px rgba(216, 216, 216, 0.75);
+        box-shadow: 0px -4px 3px rgba(216, 216, 216, 0.75);
+
+        .back-button {
+          cursor: pointer;
+          font-family: $neue-helveticamedium;
+          font-size: 1.3rem;
+          margin-left: 2rem;
+        }
+        .place-bid-button {
+          width: 100%;
+          text-align: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          .place-bid-btn-pop {
+            font-family: $neue-helveticamedium;
+            padding-top: 1.2rem;
+            padding-bottom: 1.2rem;
+            border: 2px solid #000000;
+
+            &:disabled {
+              background-color: #e7e7e9;
+              color: #9c9c9b;
+              border: none;
+
+              &.process {
+                background-color: #000000;
+              }
+            }
+
+            &:hover {
+              background-color: #ffffff;
+              color: #000000;
+            }
+          }
+        }
+      }
+    }
+
+    .pop-signin {
+      margin: 10rem 2rem 10rem 2rem;
+      .pop-signin-title {
+        font-size: 2rem;
+        font-family: $neue-helveticabold;
+      }
+    }
+  }
+}
+
+.pop-body-container .pop-nft-details {
+  .pop-nft-info {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin: 1rem 0;
+    padding: 0 1rem;
+    .pop-nft-media {
+      margin-top: 0;
+      img,
+      video {
+        max-height: 12rem;
+        object-fit: cover;
+        border-radius: 0.7rem;
+        overflow: hidden;
+        width: 12rem;
+        object-position: top;
+      }
+    }
+    .pop-nft-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding-left: 2rem;
+      .erc-type {
+        font-size: 1.8rem;
+        margin: 0.5rem 0;
+        font-family: $neue-helveticamedium;
+        span {
+          font-size: 1.5rem;
+          color: #000;
+          font-family: $neue-helveticalight;
+        }
+      }
+
+      .pop-author-name {
+        font-size: 1.2rem;
+        font-family: $neue-helveticalight;
+      }
+      .pop-nft-title {
+        font-family: $neue-helveticamedium;
+        font-size: 2rem;
+        padding: 0;
+        text-align: left !important;
+        line-height: 1.2;
+        margin-top: 0.2rem;
+      }
+    }
+  }
+
+  .input-bid-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 0rem !important;
+    @media screen and (min-width: 1200px) {
+      margin-top: 0.5rem;
+    }
+    span.quantity-to-value {
+      color: red;
+      font-family: $neue-helveticamedium;
+      margin-top: 0.5rem;
+      display: flex;
+      font-size: 0.8rem;
+    }
+    .input-field-bid {
+      padding: 0 1rem;
+      width: 100%;
+      h1 {
+        font-family: $neue-helveticalight;
+      }
+      &.disabled {
+        opacity: 0.3;
+      }
+      .total-amount-box {
+        border: 0.2rem solid #000;
+        padding: 2rem;
+        border-radius: 0.5rem;
+        margin-bottom: 1rem;
+        h1 {
+          margin: 0;
+        }
+      }
+    }
+  }
+}

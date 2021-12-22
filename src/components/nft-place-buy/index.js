@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import dayjs from "dayjs";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useRouteMatch } from "react-router";
 import { Offcanvas } from "react-bootstrap";
 import { FaCheckCircle } from "react-icons/fa";
 
@@ -13,13 +13,14 @@ import {
   validateCurrency,
   validateQuantity,
 } from "../../utils/common";
-import { nftBidApi } from "../../api/methods";
+import { nftBidApi, nftBuyApi } from "../../api/methods";
 
 import "./style.scss";
+import { useParams } from "react-router-dom";
 
-const NFTPlaceBid = ({
-  placeBidPop = false,
-  setPlaceBidPop,
+const NFTPlaceBuy = ({
+  placeBuyPop = false,
+  setPlaceBuyPop,
   nft,
   orderDetails,
   // socketData,
@@ -37,15 +38,17 @@ const NFTPlaceBid = ({
 
   const erc721 = nft.nft_type === "erc721";
   const [noBalance, setNoBalance] = useState(false);
-  const [bidAmount, setBidAmount] = useState("");
+
+  const [buyAmount, setBuyAmount] = useState(0);
+  const [buyQuantity, setBuyQuantity] = useState("");
   const [error, setError] = useState("");
 
-  const [bid, setBid] = useState({
-    bidError: "",
+  const [buy, setBuy] = useState({
+    amountClass: "",
     progressError: "",
     buttonDisable: true,
     processClass: "",
-    buttonName: "Place Bid",
+    buttonName: "Confirm",
     isError: false,
     errorTitle: "",
     errorDescription: "",
@@ -54,21 +57,22 @@ const NFTPlaceBid = ({
   //pop up reset
   useEffect(() => {
     setNoBalance(false);
-    setBidAmount("");
+    setBuyAmount(0);
+    setBuyQuantity("");
     setError("");
-    setBid({
-      bidError: "",
+    setBuy({
+      amountClass: "",
       progressError: "",
       buttonDisable: true,
       processClass: "",
-      buttonName: "Place Bid",
+      buttonName: "Confirm",
       isError: false,
       errorTitle: "",
       errorDescription: "",
     });
   }, []);
 
-  const handleBid = async () => {
+  const handleBuy = async () => {
     if (!user)
       window.open(
         `${process.env.REACT_APP_ACCOUNTS_URL}/signin?redirect=${window.location.href}`,
@@ -76,33 +80,33 @@ const NFTPlaceBid = ({
       );
 
     try {
-      setBid({
-        ...bid,
+      setBuy({
+        ...buy,
         progressError: "loading",
         processClass: "process",
         buttonName: "Processing...",
         buttonDisable: true,
       });
-      const result = await nftBidApi({
+      const result = await nftBuyApi({
         order_slug: orderSlug,
-        order: { amount: parseFloat(bidAmount) },
+        order: { quantity: erc721 ? 1 : parseInt(buyQuantity) },
       });
       if (result.data.success) {
         setSuccess(true);
-        setSuccessData(result.data.data.bid);
-        setBid({
-          ...bid,
+        setSuccessData(result.data.data.buy);
+        setBuy({
+          ...buy,
           progressError: "",
           processClass: "",
-          buttonName: "Place Bid",
+          buttonName: "Confirm",
           buttonDisable: false,
         });
       }
     } catch (error) {
       if (error.response.data.status === 422) {
         const err = bidBuyError(error.response.data.fail_status);
-        setBid({
-          ...bid,
+        setBuy({
+          ...buy,
           isError: true,
           progressError: "error-progress",
           errorTitle: err.title,
@@ -111,8 +115,8 @@ const NFTPlaceBid = ({
       }
 
       const err = bidBuyError(error.response.data.fail_status);
-      setBid({
-        ...bid,
+      setBuy({
+        ...buy,
         isError: true,
         progressError: "error-progress",
         errorTitle: err.title,
@@ -122,61 +126,103 @@ const NFTPlaceBid = ({
   };
 
   const handleSuccess = () => {
-    setPlaceBidPop(!placeBidPop);
+    setPlaceBuyPop(!placeBuyPop);
+    // window.location.reload();
     setSuccess(false);
-    setBidAmount("");
-    setBid({
-      ...bid,
+    setBuyQuantity("");
+    setBuyAmount(0);
+    setBuy({
+      ...buy,
+      amountClass: "",
       buttonDisable: true,
     });
   };
 
-  const handleBidInputChange = (e) => {
+  const handleBuyInputChange = (e) => {
+    let count = nft.order_details.available_quantity;
     if (e.target.value) {
-      const minimumBid = price ? price : orderDetails.minimum_bid;
-      if (validateCurrency(e.target.value)) {
+      if (
+        validateQuantity(e.target.value) &&
+        e.target.value <= count &&
+        e.target.value !== 0
+      ) {
+        let amount = e.target.value * parseFloat(nft.order_details.buy_amount);
         if (user) {
-          if (parseFloat(user.balance) < parseFloat(e.target.value)) {
-            setBid({
-              ...bid,
+          if (parseFloat(user.balance) <= parseFloat(amount)) {
+            setBuyQuantity(e.target.value);
+            setBuyAmount(amount);
+            setBuy({
+              ...buy,
+              amountClass: "text-dark",
+              progressError: "error-progress",
+              buttonDisable: true,
+            });
+            setError("error-balance-float");
+            setNoBalance(true);
+          } else if (e.target.value > count) {
+            setBuyQuantity(e.target.value);
+            setBuyAmount(amount);
+            setBuy({
+              ...buy,
+              amountClass: "text-dark",
               progressError: "error-progress",
               buttonDisable: true,
             });
             setError("error-balance");
-            setNoBalance(true);
-            setBidAmount(e.target.value);
-          } else if (parseFloat(e.target.value) <= parseFloat(minimumBid)) {
-            setBid({
-              ...bid,
+          } else {
+            setBuyQuantity(e.target.value);
+            setBuyAmount(amount);
+            setNoBalance(false);
+            setError("");
+            setBuy({
+              ...buy,
+              amountClass: "text-dark",
+              progressError: "",
+              buttonDisable: false,
+            });
+          }
+        } else {
+          if (e.target.value > count) {
+            setBuyQuantity(e.target.value);
+            setBuyAmount(amount);
+            setBuy({
+              ...buy,
+              amountClass: "text-dark",
               progressError: "error-progress",
               buttonDisable: true,
             });
-            setError("error-bid");
-            setNoBalance(false);
-            setBidAmount(e.target.value);
+            setError("error-balance");
           } else {
-            setBid({ ...bid, progressError: "", buttonDisable: false });
-            setNoBalance(false);
+            setBuyQuantity(e.target.value);
+            setBuyAmount(amount);
             setError("");
-            setBidAmount(e.target.value);
+            setBuy({
+              ...buy,
+              amountClass: "text-dark",
+              progressError: "",
+              buttonDisable: false,
+            });
           }
-        } else {
-          setBidAmount(e.target.value);
-          setBid({ ...bid, buttonDisable: false });
         }
       }
     } else {
-      setBidAmount(e.target.value);
-      setNoBalance(false);
+      setBuyQuantity(e.target.value);
+      setBuyAmount(0);
+      setBuy({
+        ...buy,
+        amountClass: "",
+        progressError: "",
+        buttonDisable: true,
+      });
       setError("");
-      setBid({ ...bid, bidError: "", progressError: "", buttonDisable: true });
+      setNoBalance(false);
     }
   };
 
   return (
     <Offcanvas
-      show={placeBidPop}
-      onHide={() => setPlaceBidPop(!placeBidPop)}
+      show={placeBuyPop}
+      onHide={() => setPlaceBuyPop(!placeBuyPop)}
       placement="end"
       className="w-100 w-md-50 w-lg-42"
     >
@@ -187,10 +233,10 @@ const NFTPlaceBid = ({
               {!success ? (
                 <>
                   <div className="pop-head-content">
-                    <div className="pop-bid-title">Place a bid</div>
+                    <div className="pop-bid-title">Buy the NFT</div>
                     <div
                       className="close-button-pop"
-                      onClick={() => setPlaceBidPop(!placeBidPop)}
+                      onClick={() => setPlaceBuyPop(!placeBuyPop)}
                     >
                       <img
                         alt="place bid logo"
@@ -200,26 +246,25 @@ const NFTPlaceBid = ({
                   </div>
 
                   {/* error-progress -> error progress , loading -> progressing */}
-                  <div className={`pop-bid-progress ${bid.progressError}`}>
+                  <div className={`pop-bid-progress ${buy.progressError}`}>
                     <div className="progress-complete"></div>
                   </div>
                   <div className="pop-bid-bodyContent">
                     <div className="error-float-container">
                       {noBalance && <ErrorText type="nobalance" />}
                       {/* <ErrorText type="ending-time" /> */}
-
-                      {bid.isError && (
+                      {buy.isError && (
                         <ErrorText
                           handleClick={() =>
-                            setBid({
-                              ...bid,
+                            setBuy({
+                              ...buy,
                               isError: false,
                               progressError: "",
                             })
                           }
                           type="error"
-                          title={bid.errorTitle}
-                          desc={bid.errorDescription}
+                          title={buy.errorTitle}
+                          desc={buy.errorDescription}
                         />
                       )}
                     </div>
@@ -282,23 +327,32 @@ const NFTPlaceBid = ({
                     <div className={`input-bid-container mt-5 ${error}`}>
                       <div className={`input-field-bid`}>
                         <label className="input-bid-text">
-                          {erc721 &&
-                            `Enter minimum bid amount of ${currencyFormat(
-                              price ? price : orderDetails.minimum_bid,
-                              "USD"
-                            )}`}
+                          {erc721
+                            ? `Buy Amount`
+                            : `Enter Quantity Max (${orderDetails.available_quantity})`}
                         </label>
 
-                        <div className="input-bid-wrap">
-                          <span className="bid-currency">$</span>
-                          <input
-                            type="text"
-                            className="input-bid"
-                            value={bidAmount}
-                            placeholder="0"
-                            onChange={handleBidInputChange}
-                          />
-                        </div>
+                        {!erc721 ? (
+                          <div className="input-quantity-container">
+                            <input
+                              type="text"
+                              className="input-quantity"
+                              value={buyQuantity}
+                              placeholder="0 NFTs"
+                              onChange={handleBuyInputChange}
+                            />
+                            {/* text-dark -> dark text after entering quantity */}
+                            <span
+                              className={`quantity-to-value ${buy.amountClass}`}
+                            >
+                              {currencyFormat(buyAmount, "USD")}
+                            </span>
+                          </div>
+                        ) : (
+                          <div className="services-fee-box">
+                            <h1>{currencyFormat(buyAmount, "USD")}</h1>
+                          </div>
+                        )}
                       </div>
                     </div>
 
@@ -314,45 +368,52 @@ const NFTPlaceBid = ({
                       <div className="input-field-bid">
                         <div className="total-amount-box">
                           <label className="input-bid-text">Total Amount</label>
-                          <h1>
-                            {bidAmount
-                              ? currencyFormat(bidAmount, "USD")
-                              : currencyFormat(0, "USD")}
-                          </h1>
+                          <h1>{currencyFormat(buyAmount, "USD")}</h1>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div className="bottom-area">
                     <div className="terms text-secondary">
-                      Once a bid is placed, it cannot be withdrawn.
+                      An nft can't be reversed after it's been purchased.
                       <a href={process.env.REACT_APP_HELP_URL} target="_blank">
                         Learn more
                       </a>{" "}
-                      about how auctions work.
+                      about how it works.
                     </div>
 
                     <div className="bottom-content-pop">
                       <div
                         className="back-button"
-                        onClick={() => setPlaceBidPop(!placeBidPop)}
+                        onClick={() => setPlaceBuyPop(!placeBuyPop)}
                       >
                         Back
                       </div>
                       <div className="place-bid-button">
-                        <button
-                          disabled={bid.buttonDisable}
-                          className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop ${bid.processClass}`} //process -> proccessing
-                          onClick={handleBid}
-                        >
-                          {(() => {
-                            if (bidAmount > 0) {
-                              return bid.buttonName;
-                            } else {
-                              return "Bid amount is required";
-                            }
-                          })()}
-                        </button>
+                        {erc721 ? (
+                          <button
+                            className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop`} //process -> proccessing
+                            onClick={handleBuy}
+                          >
+                            Confirm
+                          </button>
+                        ) : (
+                          <button
+                            disabled={buy.buttonDisable}
+                            className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop ${buy.processClass}`} //process -> proccessing
+                            onClick={handleBuy}
+                          >
+                            {(() => {
+                              if (soldOut) {
+                                return "Sold Out";
+                              } else if (buyQuantity > 0) {
+                                return buy.buttonName;
+                              } else {
+                                return "NFT quantity is required";
+                              }
+                            })()}
+                          </button>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -362,8 +423,7 @@ const NFTPlaceBid = ({
                   <div className="sucess-title">
                     <FaCheckCircle color={"#23bf61"} size={60} />
                     <div className="message mt-3">
-                      Bid successfully placed. <br /> You are the highest
-                      bidder.
+                      Your can view your NFT in My NFT page
                     </div>
                   </div>
 
@@ -407,13 +467,21 @@ const NFTPlaceBid = ({
 
                   <div className="success-summary-container mt-3">
                     <div className="success-summary">
-                      <div>Bid price</div>
+                      <div>Price</div>
                       <div className="bold">
-                        {currencyFormat(successData.amount, "USD")}
+                        {/* {erc721
+                          ? currencyFormat(successData.amount, "USD")
+                          : currencyFormat(successData.total_amount, "USD")} */}
                       </div>
                     </div>
+                    {!erc721 && (
+                      <div className="success-summary">
+                        <div>Quantity</div>
+                        <div className="bold">{successData.quantity}</div>
+                      </div>
+                    )}
                     <div className="success-summary">
-                      <div>{erc721 ? "Bid placed on" : "Time"}</div>
+                      <div>Purchased on</div>
                       <div className="bold">
                         {dayjs(successData.created_at).format(
                           "MMM D, YYYY hh:mm A"
@@ -423,7 +491,7 @@ const NFTPlaceBid = ({
 
                     {erc721 && (
                       <div className="success-summary">
-                        <div>Bid placed for</div>
+                        <div>Buy placed for</div>
                         <div className="bold">1 Limited Edition</div>
                       </div>
                     )}
@@ -441,7 +509,7 @@ const NFTPlaceBid = ({
                           className="btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop "
                           onClick={handleSuccess}
                         >
-                          Okay
+                          View your NFT
                         </button>
                       </div>
                     </div>
@@ -459,12 +527,12 @@ const NFTPlaceBid = ({
                 </div>
                 <div
                   className="close-button-pop"
-                  onClick={() => setPlaceBidPop(!placeBidPop)}
+                  onClick={() => setPlaceBuyPop(!placeBuyPop)}
                 >
                   {/* <BiX
                     role="button"
                     size={45}
-                    onClick={() => setPlaceBidPop(!placeBidPop)}
+                    onClick={() => setPlaceBuyPop(!placeBuyPop)}
                   /> */}
                   <img
                     alt="bid logo"
@@ -498,4 +566,4 @@ const NFTPlaceBid = ({
   );
 };
 
-export default NFTPlaceBid;
+export default NFTPlaceBuy;
