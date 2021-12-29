@@ -57,7 +57,7 @@ function App(props) {
     const token = getCookies();
     if (token) dispatch(user_load_by_token_thunk(token));
 
-    if (user.data.user && !token) dispatch(user_logout_thunk());
+    if (user.data?.user && !token) dispatch(user_logout_thunk());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

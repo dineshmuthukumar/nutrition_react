@@ -33,7 +33,7 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
   const [ribbon, setRibbon] = useState(true);
 
   const { user } = state;
-  const slug = user.data.user ? user.data.user.slug : null;
+  const slug = user.data?.user ? user.data?.user?.slug : null;
 
   useEffect(() => {
     if (slug) {
