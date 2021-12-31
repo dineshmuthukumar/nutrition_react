@@ -191,7 +191,7 @@ const Details = () => {
         new Date(NFT.time).getTime() > new Date(NFT.auction_end_time).getTime()
       );
       setErc721(NFT.nft_type === "erc721");
-      if (NFT.nft_type === "erc721") {
+      if (NFT.nft_type === "erc721" && orderSlug) {
         let history = await orderBidHistory({ order_slug: orderSlug, page: 1 });
         // let winner = await nftBidWinner({ nft_slug: slug });
         console.log(history);
