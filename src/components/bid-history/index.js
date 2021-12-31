@@ -8,6 +8,8 @@ import { BiX } from "react-icons/bi";
 
 import BidCard from "./bid-card";
 import BidName from "./bid-name";
+import HistoryHeader from "../history-header";
+import HistoryConfirm from "../history-confirm";
 import userImg from "../../images/user_1.png";
 import amitabh from "../../images/amitabh.png";
 import { nftBidHistory } from "../../api/methods";
@@ -16,68 +18,65 @@ import { TableLoader } from "../nft-basic-details/content-loader";
 
 import "./style.scss";
 
-const BidHistory = ({
-  nft,
-  histories = [
-    {
-      avatar_url: "",
-      created_at: "2021-11-02T18:12:31.891Z",
-      user_name: "@wiki",
-      slug: "ljdkasncksbd",
-      bid_amount: 100,
-    },
-    {
-      avatar_url: "",
-      created_at: "2021-11-02T18:12:31.891Z",
-      user_name: "@wiki",
-      slug: "ljdkasncksbd",
-      bid_amount: 100,
-    },
-    {
-      avatar_url: "",
-      created_at: "2021-11-02T18:12:31.891Z",
-      user_name: "@wiki",
-      slug: "ljdkasncksbd",
-      bid_amount: 100,
-    },
-    {
-      avatar_url: "",
-      created_at: "2021-11-02T18:12:31.891Z",
-      user_name: "@wiki",
-      slug: "ljdkasncksbd",
-      bid_amount: 100,
-    },
-    {
-      avatar_url: "",
-      created_at: "2021-11-02T18:12:31.891Z",
-      user_name: "@wiki",
-      slug: "ljdkasncksbd",
-      bid_amount: 100,
-    },
-    {
-      avatar_url: "",
-      created_at: "2021-11-02T18:12:31.891Z",
-      user_name: "@wiki",
-      slug: "ljdkasncksbd",
-      bid_amount: 100,
-    },
-    {
-      avatar_url: "",
-      created_at: "2021-11-02T18:12:31.891Z",
-      user_name: "@wiki",
-      slug: "ljdkasncksbd",
-      bid_amount: 100,
-    },
-  ],
-  isAuctionEnded,
-  totalCount,
-}) => {
+const BidHistory = ({ nft, histories = [], isAuctionEnded, totalCount }) => {
   const { slug } = useParams();
   const [modalShow, setModalShow] = useState(false);
   const [bidHistories, setBidHistories] = useState({});
   const [page, setPage] = useState(1);
   const [bidHistoryList, setBidHistoryList] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const historyList = [
+    {
+      avatar_url: "",
+      created_at: "2021-11-02T18:12:31.891Z",
+      user_name: "@wiki",
+      slug: "ljdkasncksbd",
+      bid_amount: 100,
+    },
+    {
+      avatar_url: "",
+      created_at: "2021-11-02T18:12:31.891Z",
+      user_name: "@wiki",
+      slug: "ljdkasncksbd",
+      bid_amount: 100,
+    },
+    {
+      avatar_url: "",
+      created_at: "2021-11-02T18:12:31.891Z",
+      user_name: "@wiki",
+      slug: "ljdkasncksbd",
+      bid_amount: 100,
+    },
+    {
+      avatar_url: "",
+      created_at: "2021-11-02T18:12:31.891Z",
+      user_name: "@wiki",
+      slug: "ljdkasncksbd",
+      bid_amount: 100,
+    },
+    {
+      avatar_url: "",
+      created_at: "2021-11-02T18:12:31.891Z",
+      user_name: "@wiki",
+      slug: "ljdkasncksbd",
+      bid_amount: 100,
+    },
+    {
+      avatar_url: "",
+      created_at: "2021-11-02T18:12:31.891Z",
+      user_name: "@wiki",
+      slug: "ljdkasncksbd",
+      bid_amount: 100,
+    },
+    {
+      avatar_url: "",
+      created_at: "2021-11-02T18:12:31.891Z",
+      user_name: "@wiki",
+      slug: "ljdkasncksbd",
+      bid_amount: 100,
+    },
+  ];
 
   const fetchHistory = async (pageNo) => {
     try {
@@ -121,6 +120,7 @@ const BidHistory = ({
   return (
     <>
       <div className="bid-history if_bid_empty_cell">
+        <HistoryHeader />
         <div className="bid-history-title-content">
           <div className="bid-history-title">History</div>
           <div className="bid-history-filter"></div>
@@ -177,8 +177,8 @@ const BidHistory = ({
 
         {1 == 1 ? (
           <div className="bid-history-content">
-            {histories.map((history, i) => (
-              <BidCard key={`biy-history${i}`} history={history} />
+            {historyList.map((history, i) => (
+              <BidCard key={`bid-history${i}`} history={history} />
             ))}
 
             {/* {totalCount <= histories.length ? (
@@ -224,6 +224,8 @@ const BidHistory = ({
           </div>
         )}
       </div>
+
+      <HistoryConfirm />
     </>
   );
 };

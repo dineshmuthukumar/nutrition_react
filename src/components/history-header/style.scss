@@ -1,0 +1,80 @@
+@import "../../styles/common";
+
+.bid-history--header {
+  background-color: #000;
+  padding: 2rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  @media screen and (max-width: 660px) {
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .bh-user {
+    &-image {
+      height: 7rem;
+      width: 7rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img {
+        height: 7rem;
+        width: 7rem;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
+    &-details {
+      width: calc(100% - 7rem);
+      padding-left: 2rem;
+      padding-top: 1.5rem;
+      padding-bottom: 1rem;
+      @media screen and (max-width: 660px) {
+        width: 100%;
+        padding-left: 0;
+      }
+    }
+    &-name {
+      color: #fff;
+      font-family: $neue-helveticalight;
+      @include text-ellipsis;
+    }
+    &-status {
+      color: #bdbdbc;
+      font-family: $neue-helveticabold;
+      text-transform: uppercase;
+      margin-bottom: 1.3rem;
+      @include text-ellipsis;
+    }
+    &-sold-info {
+      display: flex;
+      width: 100%;
+      justify-content: flex-start;
+      @media screen and (max-width: 425px) {
+        flex-direction: column;
+      }
+      .price {
+        padding-right: 2rem;
+        @media screen and (max-width: 425px) {
+          padding-right: 0;
+          margin-bottom: 0.5rem;
+        }
+      }
+      .price,
+      .date {
+        display: flex;
+        flex-direction: column;
+        .key {
+          color: #fff;
+          font-size: 1.1rem;
+          margin-bottom: 0.2rem;
+        }
+        .value {
+          color: #fff;
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+}

@@ -16,14 +16,15 @@
 
   .bid-history-title-content {
     padding: 0.6rem 1.5rem;
-    background-color: #000;
+    background-color: #fff;
     display: flex;
     justify-content: space-between;
-
+    border-left: 2px solid #000;
+    border-right: 2px solid #000;
     .bid-history-title {
       font-family: $neue-helveticamedium;
       font-size: 1.5rem;
-      color: #fff;
+      color: #000;
     }
 
     .bid-history-filter {
@@ -58,14 +59,14 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.2rem 0;
+      padding: 1.2rem 1rem;
       border-bottom: 1px solid #e7e7e9;
-      margin: 0 2rem;
-
+      margin: 0 1rem;
+      border-radius: 0.5rem;
       .first-half {
         display: flex;
         align-items: center;
-        width: calc(100% - 100px);
+        width: calc(100% - 15rem);
         img {
           height: 3rem;
           width: 3rem;
@@ -78,6 +79,25 @@
         .time {
           font-size: 1rem;
           font-family: $neue-helveticamedium;
+          .expire-pill {
+            padding: 0.3rem 0.5rem;
+            background-color: #bdbdbc;
+            color: #fff;
+            border-radius: 0.3rem;
+            margin-left: 0.5rem;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            @media screen and (max-width: 767px) {
+              margin-left: 0;
+            }
+            &.active {
+              background-color: #ff0000;
+            }
+          }
+          @media screen and (max-width: 767px) {
+            display: flex;
+            flex-direction: column-reverse;
+          }
         }
 
         .bid-owner {
@@ -96,13 +116,53 @@
       }
 
       .second-half {
-        width: 100px;
+        width: 15rem;
         display: flex;
         align-items: center;
         justify-content: flex-end;
+        @media screen and (max-width: 767px) {
+          align-items: flex-end;
+          justify-content: flex-start;
+          flex-direction: column-reverse;
+        }
         .bid-value {
           font-size: 1.2rem;
           font-family: $neue-helveticabold;
+        }
+        .assign-btn {
+          background-color: #fff;
+          display: flex;
+          padding: 0.4rem 1.5rem;
+          margin: 0px 1rem;
+          border-radius: 5rem;
+          color: #000;
+          text-decoration: none;
+          display: none;
+          @media screen and (max-width: 767px) {
+            margin: 1px 0rem;
+          }
+        }
+      }
+    }
+    &.owner {
+      .bid-histroy-card {
+        &:hover,
+        &:focus,
+        &:active {
+          background-color: #000;
+          .first-half {
+            .bid-owner {
+              color: #fff;
+            }
+          }
+          .second-half {
+            .assign-btn {
+              display: flex;
+            }
+            .bid-value {
+              color: #fff;
+            }
+          }
         }
       }
     }
@@ -197,8 +257,8 @@
 }
 
 @media only screen and (max-width: 767px) {
-  .bid-owner{
-    span{
+  .bid-owner {
+    span {
       display: flex;
     }
   }

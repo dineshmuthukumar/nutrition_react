@@ -141,3 +141,42 @@
     transform: translateX(-100%);
   }
 }
+
+.side-menu {
+  position: fixed !important;
+  right: 0rem !important;
+  top: 0rem !important;
+  bottom: 0;
+  background: #000000;
+  width: 20rem;
+  height: calc(100vh);
+  display: block;
+  max-width: inherit;
+  overflow-y: auto;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  transform: translate(100%);
+  transition: 0.5s all ease-in-out;
+  &.show {
+    transform: translate(0%);
+  }
+  .dropdown-item {
+    font-size: 1.2rem;
+    font-family: "neue_helveticamedium" !important;
+    border-radius: 0.2rem;
+    margin: 1.5rem 0;
+    color: #ffffff;
+  }
+}
+
+.menu-icon {
+  margin-left: 1rem;
+  display: block;
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+}
+.close-icon {
+  text-align: right;
+  padding: 1.2rem 1rem;
+}

@@ -37,32 +37,32 @@ const UserDetailsBlock = () => {
                   <div className="row">
                     <div className="col-sm-12">
                       {/* Place tab and filter here */}
-                      <ul className="nav user-nav">
+                      <ul className="nav user-block-nav">
                         <li className="nav-item">
                           <a
                             className={`nav-link active`}
                             aria-current="page"
                             role="button"
                           >
-                            On Sale
+                            On Sale (4)
                           </a>
                         </li>
                         <li className="nav-item">
                           <a
-                            className={`nav-link active`}
+                            className={`nav-link`}
                             aria-current="page"
                             role="button"
                           >
-                            Liked
+                            Owned (3)
                           </a>
                         </li>
                         <li className="nav-item">
                           <a
-                            className={`nav-link active`}
+                            className={`nav-link`}
                             aria-current="page"
                             role="button"
                           >
-                            On Sale
+                            Liked (3)
                           </a>
                         </li>
                       </ul>

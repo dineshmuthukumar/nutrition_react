@@ -33,6 +33,7 @@ const BidCard = ({ history, isEnd = false }) => {
             <div className="bid-histoy-details">
               <div className="time text-secondary">
                 {dayjs(history.created_at).format("MMM D, YYYY hh:mm A")}
+                <span className="expire-pill active">Expires in 2 Days</span>
               </div>
               <div className="bid-owner">
                 Bid placed by{" "}
@@ -45,6 +46,9 @@ const BidCard = ({ history, isEnd = false }) => {
             </div>
           </div>
           <div className="second-half">
+            <a href="javascript:void(0);" className="assign-btn">
+              Assign
+            </a>
             <div className="bid-value">
               {currencyFormat(history.bid_amount, "USD")}
             </div>

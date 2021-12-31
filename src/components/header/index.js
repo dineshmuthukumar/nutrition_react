@@ -5,6 +5,8 @@ import { BiBell, BiHelpCircle } from "react-icons/bi";
 import { useTranslation } from "react-multi-lang";
 import { useSelector, useDispatch } from "react-redux";
 import { FaDiscord } from "react-icons/fa";
+import { CgMenuRight } from "react-icons/cg";
+import { VscChromeClose } from "react-icons/vsc";
 
 import depositIcon from "../../images/deposit.svg";
 import bidIcon from "../../images/bid.svg";
@@ -504,6 +506,31 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                   <span>Join Our Discord</span>
                 </Nav.Link>
               </Nav>
+              <Dropdown
+                autoClose={["inside", "outside"]}
+                onToggle={(e) => {
+                  if (e) {
+                    readNotification();
+                    setNotiRead(false);
+                  }
+                }}
+              >
+                <Dropdown.Toggle
+                  align="start"
+                  drop="start"
+                  as={HeaderMobileMenuIcon}
+                ></Dropdown.Toggle>
+
+                <Dropdown.Menu align="end" className="side-menu">
+                  <Dropdown.Item
+                    drop="start"
+                    as={HeaderMobileMenuCloseIcon}
+                  ></Dropdown.Item>
+                  <Dropdown.Item href="/">Explore</Dropdown.Item>
+                  <Dropdown.Item href="/">Drops</Dropdown.Item>
+                  <Dropdown.Item href="/">Marketplace</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             </>
           )}
         </Container>
@@ -524,4 +551,37 @@ const UserComponent = ({ sref, user, onClick = () => {} }) => (
     </div>
   </div>
 );
+
+const HeaderMobileMenuIcon = React.forwardRef(({ onClick }, ref) => {
+  return (
+    <div
+      className="menu-icon"
+      ref={ref}
+      role="button"
+      onClick={(e) => {
+        e.preventDefault();
+        onClick(e);
+      }}
+    >
+      <CgMenuRight size={25} color={"white"} />
+    </div>
+  );
+});
+
+const HeaderMobileMenuCloseIcon = React.forwardRef(({ onClick }, ref) => {
+  return (
+    <div
+      className="close-icon"
+      ref={ref}
+      role="button"
+      onClick={(e) => {
+        e.preventDefault();
+        onClick(e);
+      }}
+    >
+      <VscChromeClose size={25} color={"white"} />
+    </div>
+  );
+});
+
 export default Header;

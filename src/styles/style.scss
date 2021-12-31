@@ -681,9 +681,9 @@ input::-webkit-inner-spin-button {
     font-size: 72px;
   }
 }
-@media only screen and (max-width: 479px) {
+@media only screen and (max-width: 560px) {
   html {
-    font-size: 13px !important;
+    font-size: 12px !important;
   }
 }
 @media (max-width: 767px) {
@@ -981,9 +981,9 @@ input::-webkit-inner-spin-button {
   //   padding-top: 0.5rem !important;
   //   padding-bottom: 0.5rem !important;
   // }
-  html {
-    font-size: 12px !important;
-  }
+  // html {
+  //   font-size: 12px !important;
+  // }
   .nft-artist .artist-content .artist-img {
     object-fit: cover !important;
   }
@@ -1099,12 +1099,15 @@ input::-webkit-inner-spin-button {
   font-size: 1.4rem;
   user-select: none;
   @media screen and (max-width: 375px) {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 
   .sub-head-title {
     font-family: $neue-helveticalight;
     font-size: 0.7rem;
+    @media screen and (max-width: 375px) {
+      font-size: 0.6rem;
+    }
   }
 }
 
@@ -1154,6 +1157,7 @@ input::-webkit-inner-spin-button {
   font-family: $neue-helveticalight;
   font-size: 1.1rem;
   padding-left: 1rem;
+  white-space: nowrap;
   @media screen and (max-width: 375px) {
     padding: 0.3rem 0.8rem 0.3rem;
     font-size: 0.9rem;
@@ -1303,7 +1307,7 @@ input::-webkit-inner-spin-button {
       margin-right: 0;
       background: #fff;
       color: #000 !important;
-      @media screen and (max-width: 767px) {
+      @media screen and (max-width: 991px) {
         padding: 0;
       }
     }
@@ -1392,7 +1396,7 @@ input::-webkit-inner-spin-button {
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 992px) {
   .navbar-dark .discord_ic svg {
     display: none;
   }
@@ -1401,11 +1405,24 @@ input::-webkit-inner-spin-button {
     height: 2rem;
   }
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   .navbar-dark .discord_ic svg {
     display: block;
   }
-
+  .discord_ic span {
+    display: none;
+  }
+  .navbar-dark .navbar-nav .discord_ic {
+    padding: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    svg {
+      margin: 0.5rem auto 0;
+      height: 1.5rem;
+    }
+  }
+}
+@media screen and (max-width: 767px) {
   .alert_info {
     width: 88%;
     padding-left: 2%;
@@ -1418,19 +1435,6 @@ input::-webkit-inner-spin-button {
   //   right: 0.5em;
   //   top: 0.6em;
   // }
-  .discord_ic span {
-    display: none;
-  }
-  .navbar-dark .navbar-nav .discord_ic {
-    padding: 0;
-    width: 2.5rem;
-    height: 2.5rem;
-  }
-
-  .navbar-dark .navbar-nav .discord_ic svg {
-    margin: 0.5rem auto 0;
-    height: 1.5rem;
-  }
 }
 
 // @media screen and (max-width: 767px){
@@ -1478,6 +1482,7 @@ input::-webkit-inner-spin-button {
 @media screen and (max-width: 421px) {
   .noti-container.dropdown-menu-end[data-bs-popper] {
     right: -90px;
+    min-width: 21rem;
   }
 }
 
@@ -1496,13 +1501,13 @@ input::-webkit-inner-spin-button {
     border: none !important;
   }
 }
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 767px) {
   #drop_outer,
   .user-name {
     display: none;
   }
   #drop_inner {
-    display: block;
+    display: none;
   }
 }
 
@@ -1552,14 +1557,13 @@ nav.navbar.navbar-expand-md.navbar-dark.bg-dark {
   }
 }
 
-
-.help-details{
-  h1{
+.help-details {
+  h1 {
     margin-top: 1rem;
     margin-bottom: 2rem;
     font-family: $neue-helveticamedium;
   }
-  p{
+  p {
     color: #757575;
     font-size: 1.2rem;
   }
