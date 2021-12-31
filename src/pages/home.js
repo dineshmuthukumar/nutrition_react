@@ -8,18 +8,19 @@ import TopSellers from "../components/top-sellers";
 import ShowAll from "../components/show-all";
 
 const Home = () => {
-    return ( < >
-        <Header />
-            <main>
-                <Banner />
-                <Collections />
-                <HotCollections />
-                <TopSellers />
-                <ShowAll />
-            </main>
-        <Footer />
-        </>
-    );
+  return (
+    <>
+      <Header />
+      <main>
+        <Banner />
+        <Collections />
+        <HotCollections />
+        <TopSellers />
+        <ShowAll />
+      </main>
+      <Footer />
+    </>
+  );
 };
 
 export default Home;

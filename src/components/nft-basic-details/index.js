@@ -101,21 +101,38 @@ const NFTBaseDetails = ({
         <div className="d-flex">
           {(() => {
             if (isOrder) {
-              return erc721 ? (
-                <BidValue
-                  title="Minimum Bid"
-                  value={
-                    price
-                      ? currencyFormat(price, "USD")
-                      : currencyFormat(orderDetails.minimum_bid, "USD")
-                  }
-                />
-              ) : (
-                <BidValue
-                  title="Price"
-                  value={currencyFormat(orderDetails.buy_amount, "USD")}
-                />
-              );
+              if (erc721) {
+                if (isBid) {
+                  return (
+                    <BidValue
+                      title="Minimum Bid"
+                      value={
+                        price
+                          ? currencyFormat(price, "USD")
+                          : currencyFormat(orderDetails.minimum_bid, "USD")
+                      }
+                    />
+                  );
+                } else {
+                  return (
+                    <BidValue
+                      title="Price"
+                      value={
+                        price
+                          ? currencyFormat(price, "USD")
+                          : currencyFormat(orderDetails.buy_amount, "USD")
+                      }
+                    />
+                  );
+                }
+              } else {
+                return (
+                  <BidValue
+                    title="Price"
+                    value={currencyFormat(orderDetails.buy_amount, "USD")}
+                  />
+                );
+              }
             }
           })()}
 
@@ -348,6 +365,25 @@ const NFTBaseDetails = ({
                   </button>
                 </>
               );
+            } else if (isBid && isBuy) {
+              return (
+                <>
+                  <button
+                    disabled={false}
+                    className="btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill place-bid-buy-btn"
+                    onClick={() => setPlaceBuyPop(!placeBuyPop)}
+                  >
+                    Buy {currencyFormat(orderDetails.buy_amount, "USD")}
+                  </button>
+                  <button
+                    disabled={false}
+                    className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn"
+                    onClick={() => setPlaceBidPop(!placeBidPop)}
+                  >
+                    Place a Bid
+                  </button>
+                </>
+              );
             } else if (isBid) {
               return (
                 <button
@@ -367,25 +403,6 @@ const NFTBaseDetails = ({
                 >
                   Buy {currencyFormat(orderDetails.buy_amount, "USD")}
                 </button>
-              );
-            } else if (isBid && isBuy) {
-              return (
-                <>
-                  <button
-                    disabled={false}
-                    className="btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill place-bid-buy-btn"
-                    onClick={() => setPlaceBuyPop(!placeBuyPop)}
-                  >
-                    Buy {currencyFormat(orderDetails.buy_amount, "USD")}
-                  </button>
-                  <button
-                    disabled={false}
-                    className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn"
-                    onClick={() => setPlaceBidPop(!placeBidPop)}
-                  >
-                    Place a Bid
-                  </button>
-                </>
               );
             }
           })()}

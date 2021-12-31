@@ -89,7 +89,12 @@ const NFTPlaceBid = ({
       });
       if (result.data.success) {
         setSuccess(true);
-        setSuccessData(result.data.data.bid);
+        // setSuccessData(result.data.data.bid);
+        setSuccessData({
+          amount: bidAmount,
+          created_at: new Date(),
+          transaction_id: "jVSHfrd42y727y73y",
+        });
         setBid({
           ...bid,
           progressError: "",
@@ -369,7 +374,7 @@ const NFTPlaceBid = ({
 
                   <div className="pop-nft-media mt-4 preview">
                     {(() => {
-                      if (nft.asset_type.includes("image")) {
+                      if (nft?.asset_type?.includes("image")) {
                         return (
                           <img
                             alt="media logo"
@@ -377,7 +382,7 @@ const NFTPlaceBid = ({
                             src={nft.asset_url ? nft.asset_url : sample}
                           />
                         );
-                      } else if (nft.asset_type.includes("audio")) {
+                      } else if (nft?.asset_type?.includes("audio")) {
                         return (
                           <>
                             <img
@@ -387,12 +392,20 @@ const NFTPlaceBid = ({
                             />
                           </>
                         );
-                      } else if (nft.asset_type.includes("video")) {
+                      } else if (nft?.asset_type?.includes("video")) {
                         return (
                           <img
                             alt="media logo"
                             className="type_image typeimg_audio"
                             src={nft.cover_url ? nft.cover_url : sample}
+                          />
+                        );
+                      } else {
+                        return (
+                          <img
+                            alt="media logo"
+                            className="type_image typeimg_audio"
+                            src={nft.asset_url ? nft.asset_url : sample}
                           />
                         );
                       }

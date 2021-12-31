@@ -1,6 +1,6 @@
 import appAxios from "./axios-utils";
 
-export const nftCategoriesApi = (page) =>
+export const nftCategoriesApi = ({ page }) =>
   appAxios.get(`/dashboard/categories?page=${page}`);
 
 export const nftCategoryDetailApi = ({ slug }) =>
@@ -9,8 +9,9 @@ export const nftCategoryDetailApi = ({ slug }) =>
 export const nftCategoryListApi = ({ slug, page }) =>
   appAxios.get(`/categories/${slug}/nfts?page=${page}`);
 
-export const nftShowAllApi = ({ page, sort, filter }) =>
-  appAxios.get(`/dashboard/index?page=${page}&sort=${sort}&filter=${filter}`);
+export const nftShowAllApi = ({ page }) =>
+  appAxios.get(`/dashboard/index?page=${page}`);
+// appAxios.get(`/dashboard/index?page=${page}&sort=${sort}&filter=${filter}`);
 
 export const hotNFTsApi = ({ page }) =>
   appAxios.get(`/dashboard/hot_nfts?page=${page}`);
@@ -35,6 +36,9 @@ export const nftBuyHistory = ({ nft_slug, page }) =>
 
 export const nftBidHistory = ({ nft_slug, page }) =>
   appAxios.get(`/nfts/${nft_slug}/bid_history?page=${page}`);
+
+export const orderBidHistory = ({ order_slug, page }) =>
+  appAxios.get(`/orders/${order_slug}/bid_history?page=${page}`);
 
 export const nftBidWinner = ({ nft_slug }) =>
   appAxios.get(`/nfts/${nft_slug}/bid_winner`);

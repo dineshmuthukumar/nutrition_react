@@ -100,11 +100,7 @@ function App(props) {
                 path="/details/:slug/:orderSlug?"
                 component={Details}
               />
-              <Route
-                exact
-                path="/explore/category/:name/:slug"
-                component={Explore}
-              />
+              <Route exact path="/explore/category/:slug" component={Explore} />
               <Route exact path="/" component={Home} />
               <Route exact path="/help-line" component={HelpLine} />
               <Route exact path="/user-details" component={UserDetails} />

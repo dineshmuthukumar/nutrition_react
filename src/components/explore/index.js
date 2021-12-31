@@ -3,41 +3,50 @@ import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
 import ContentLoader from "react-content-loader";
 
-import ExploreCard from "./explore-card";
 import ExploreTitle from "./explore-title";
+import NFTCard from "../nft-card/index";
+import cardImage from "../../images/drops/nft_2.png";
 
 import "./style.scss";
+import { nftCategoryListApi } from "../../api/methods";
+import ExploreCard from "./explore-card";
 
-const Explore = ({ list = [], handleClick, hasMore, loading, loadingMore }) => {
-  const history = useHistory();
-  const { name } = useParams();
-  const [explore, setExplore] = useState({
-    title: "",
-    description: "",
-    class: "",
-  });
+const Explore = ({ categoryDetail }) => {
+  const { slug } = useParams();
+
+  const [page, setPage] = useState(1);
+  const [list, setList] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [hasNext, setHasNext] = useState(false);
+  const [loadingMore, setLoadingMore] = useState(false);
 
   useEffect(() => {
-    if (name.includes("Madhushala")) {
-      setExplore({
-        title: "Madhushala NFTs",
-        description: `Madhushala is a poetic confluence of romance and philosophy, penned by AmitJi's father Shri. Harivansh Rai Bachchan!        `,
+    nftList(page);
+  }, []);
+
+  const nftList = async (page) => {
+    try {
+      setLoading(true);
+      let response = await nftCategoryListApi({
+        slug: slug,
+        page,
       });
-    } else if (name.includes("Posters")) {
-      setExplore({
-        title: "Poster Autographing Moments",
-        description: `Now you can own a video of Amitabh signing an original movie poster of his iconic movies, hand-painted by a few authentic artists whose work will amaze you in every way. The winner of these NFTs also gets a physical poster autographed by the Legend Amitabh Bachchan himself.`,
-      });
-    } else if (name.includes("LOOT")) {
-      history.push("/");
-    } else {
-      setExplore({
-        class: "punk-explorer",
-        title: "BigB Punks and NFT Arts",
-        description: `Let's admit it! Amitabh, in every avatar, has been a success! Be it the classic 'Angry Young Man', or the modern French-bearded Godfather with his signature 'DEVIYON aur SAJJANO', or the Twitter personality who numbers his Tweets, the BigB can never be off trends!`,
-      });
+      setList([...list, ...response.data.data.nfts]);
+      setHasNext(response.data.data.next_page);
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
     }
-  }, [name]);
+  };
+
+  const fetchMore = () => {
+    if (hasNext) {
+      setLoadingMore(true);
+      nftList(page + 1);
+      setPage(page + 1);
+      setLoadingMore(false);
+    }
+  };
 
   return (
     <>
@@ -45,8 +54,8 @@ const Explore = ({ list = [], handleClick, hasMore, loading, loadingMore }) => {
         <div className="container-fluid">
           <div className="row mt-5 explore-title">
             <ExploreTitle
-              title={explore.title}
-              description={explore.description}
+              title={categoryDetail.name}
+              description={categoryDetail.description}
             />
           </div>
           <div className="row">
@@ -99,8 +108,9 @@ const Explore = ({ list = [], handleClick, hasMore, loading, loadingMore }) => {
                         new Date(nft.auction_end_time) > new Date(nft.time)
                       ) {
                         label = "Ends in";
-                        time = nft.auction_end_time;
                         isStarted = true;
+
+                        time = nft.auction_end_time;
                       } else {
                         time = nft.auction_end_time;
                         label = "Ended at";
@@ -115,7 +125,7 @@ const Explore = ({ list = [], handleClick, hasMore, loading, loadingMore }) => {
 
                       return (
                         <ExploreCard
-                          punkClass={explore.class}
+                          key={nft.slug}
                           slug={nft.slug}
                           nft={nft}
                           isStarted={isStarted}
@@ -132,7 +142,7 @@ const Explore = ({ list = [], handleClick, hasMore, loading, loadingMore }) => {
                   </>
                 )}
               </div>
-              {hasMore && (
+              {/* {hasMore && (
                 <div className="row mb-5">
                   <div className="col-md-12 text-center">
                     <button
@@ -144,7 +154,7 @@ const Explore = ({ list = [], handleClick, hasMore, loading, loadingMore }) => {
                     </button>
                   </div>
                 </div>
-              )}
+              )} */}
             </div>
           </div>
         </div>

@@ -67,7 +67,7 @@ const Footer = () => {
                 <h1>BeyondLife.club</h1>
               </a>
               <p>A world without an end</p>
-              <div class="support_mail">
+              <div className="support_mail">
                 <p className="mb-0">Need a Help?</p>
                 <p>
                   <a

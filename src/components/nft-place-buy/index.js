@@ -57,7 +57,11 @@ const NFTPlaceBuy = ({
   //pop up reset
   useEffect(() => {
     setNoBalance(false);
-    setBuyAmount(0);
+    if (erc721) {
+      setBuyAmount(orderDetails.buy_amount);
+    } else {
+      setBuyAmount(0);
+    }
     setBuyQuantity("");
     setError("");
     setBuy({
@@ -93,7 +97,12 @@ const NFTPlaceBuy = ({
       });
       if (result.data.success) {
         setSuccess(true);
-        setSuccessData(result.data.data.buy);
+        // setSuccessData(result.data.data.buy);
+        setSuccessData({
+          quantity: buyQuantity,
+          created_at: new Date(),
+          transaction_id: "1RDGGL2378773GHWFHHT",
+        });
         setBuy({
           ...buy,
           progressError: "",
@@ -429,7 +438,7 @@ const NFTPlaceBuy = ({
 
                   <div className="pop-nft-media mt-4 preview">
                     {(() => {
-                      if (nft.asset_type.includes("image")) {
+                      if (nft?.asset_type?.includes("image")) {
                         return (
                           <img
                             alt="media logo"
@@ -437,7 +446,7 @@ const NFTPlaceBuy = ({
                             src={nft.asset_url ? nft.asset_url : sample}
                           />
                         );
-                      } else if (nft.asset_type.includes("audio")) {
+                      } else if (nft?.asset_type?.includes("audio")) {
                         return (
                           <>
                             <img
@@ -447,12 +456,20 @@ const NFTPlaceBuy = ({
                             />
                           </>
                         );
-                      } else if (nft.asset_type.includes("video")) {
+                      } else if (nft?.asset_type?.includes("video")) {
                         return (
                           <img
                             alt="media logo"
                             className="type_image typeimg_audio"
                             src={nft.cover_url ? nft.cover_url : sample}
+                          />
+                        );
+                      } else {
+                        return (
+                          <img
+                            alt="media logo"
+                            className="type_image typeimg_audio"
+                            src={nft.asset_url ? nft.asset_url : sample}
                           />
                         );
                       }

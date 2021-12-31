@@ -66,25 +66,11 @@ const ExploreCard = ({
             <div className="post-sold-text">
               {erc721 ? "Bid Price" : "Price"}
             </div>
-            <div className="post-sold-cost">
-              {currencyFormat(bidPrice, "USD")}
-            </div>
+            <div className="post-sold-cost">{currencyFormat(4800, "USD")}</div>
           </div>
           <div className="right-bid">
-            <div className="post-sold-text">{label}</div>
-            <div className="post-sold-cost">
-              {isEnded ? (
-                <>{time && dayjs(time).format("DD. MM. YYYY")}</>
-              ) : (
-                <NFTCounter
-                  time={time}
-                  cTime={nft.time}
-                  timeClass="font-onerem"
-                  intervalClass="font-psevenrem"
-                  intervalGapClass="me-1"
-                />
-              )}
-            </div>
+            <div className="post-sold-text">NFT Type</div>
+            <div className="post-sold-cost">{nft.nft_type}</div>
           </div>
         </div>
       </div>

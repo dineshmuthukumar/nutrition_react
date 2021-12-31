@@ -159,6 +159,7 @@ const NFTPutOnSale = ({
         order: order,
       });
       if (result.data.success) {
+        setConfirm(false);
         setSuccess(true);
         setConfirmState({
           ...confirmState,
@@ -180,6 +181,11 @@ const NFTPutOnSale = ({
       });
       console.log(error.response);
     }
+  };
+
+  const handleSuccess = () => {
+    setPutOnSalePop(!putOnSalePop);
+    window.location.reload();
   };
 
   return (
@@ -884,7 +890,10 @@ const NFTPutOnSale = ({
                       <div className="bottom-area">
                         <div className="bottom-content-pop">
                           <div className="place-bid-button">
-                            <button className="btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop ">
+                            <button
+                              className="btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop "
+                              onClick={handleSuccess}
+                            >
                               Okay
                             </button>
                           </div>

@@ -18,7 +18,13 @@ import { TableLoader } from "../nft-basic-details/content-loader";
 
 import "./style.scss";
 
-const BidHistory = ({ nft, histories = [], isAuctionEnded, totalCount }) => {
+const BidHistory = ({
+  nft,
+  isOwner,
+  histories = [],
+  isAuctionEnded,
+  totalCount,
+}) => {
   const { slug } = useParams();
   const [modalShow, setModalShow] = useState(false);
   const [bidHistories, setBidHistories] = useState({});
@@ -126,10 +132,10 @@ const BidHistory = ({ nft, histories = [], isAuctionEnded, totalCount }) => {
           <div className="bid-history-filter"></div>
         </div>
 
-        {/* {histories.length > 0 ? (
-          <div className="bid-history-content">
+        {histories.length > 0 ? (
+          <div className={`bid-history-content ${isOwner ? "owner" : ""}`}>
             {histories.map((history, i) => (
-              <BidCard key={`biy-history${i}`} history={history} />
+              <BidCard key={`bid-history${i}`} history={history} />
             ))}
 
             {totalCount <= histories.length ? (
@@ -143,55 +149,6 @@ const BidHistory = ({ nft, histories = [], isAuctionEnded, totalCount }) => {
                 </div>
               </div>
             )}
-          </div>
-        ) : (
-          <div className="bid-empty-content">
-            <div className="empty-top-container">
-              <div className="empty-top-content">
-                <IoIosRocket color="white" />
-                {isAuctionEnded ? (
-                  <div className="empty-text">
-                    Auction has ended. <br />
-                    No active bids.
-                  </div>
-                ) : (
-                  <div className="empty-text">
-                    No active bids yet. <br />
-                    Be the first to make a bid.
-                  </div>
-                )}
-              </div>
-            </div>
-
-            <div className="empty-bottom-content">
-              <img src={amitabh} alt="" />
-              <div className="nft-owner-history-details">
-                <div className="publish-time text-secondary">
-                  {dayjs(nft.auction_start_time).format("MMM D, YYYY hh:mm A")}
-                </div>
-                <div className="nft-owner">Bid listed by @amitabhbachchan</div>
-              </div>
-            </div>
-          </div>
-        )} */}
-
-        {1 == 1 ? (
-          <div className="bid-history-content">
-            {historyList.map((history, i) => (
-              <BidCard key={`bid-history${i}`} history={history} />
-            ))}
-
-            {/* {totalCount <= histories.length ? (
-              <BidCard isEnd />
-            ) : (
-              <div className="bid-histroy-card">
-                <div className="history-end-content">
-                  <span role="button" onClick={handleClick}>
-                    View More
-                  </span>
-                </div>
-              </div>
-            )} */}
           </div>
         ) : (
           <div className="bid-empty-content">
@@ -225,7 +182,7 @@ const BidHistory = ({ nft, histories = [], isAuctionEnded, totalCount }) => {
         )}
       </div>
 
-      <HistoryConfirm />
+      {/* <HistoryConfirm /> */}
     </>
   );
 };
