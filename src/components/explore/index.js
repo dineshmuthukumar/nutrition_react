@@ -89,7 +89,7 @@ const Explore = ({ categoryDetail }) => {
               </div>
               <div className="row gutters-20">
                 {loading ? (
-                  <ActivityList />
+                  <NFTListLoader />
                 ) : (
                   <>
                     {list.map((nft) => {
@@ -163,7 +163,7 @@ const Explore = ({ categoryDetail }) => {
   );
 };
 
-const ActivityList = (props) => (
+const NFTListLoader = (props) => (
   <ContentLoader
     viewBox="0 0 900 400"
     width={"100%"}

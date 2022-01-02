@@ -11,6 +11,7 @@ import {
   nftDetailApi,
   nftMoreApi,
   orderBidHistory,
+  nftOwnerApi,
 } from "../api/methods";
 import BidAuction from "../components/bid-auction";
 import BidHistory from "../components/bid-history";
@@ -38,6 +39,7 @@ import {
   userBuyDetail,
   winnerDetail,
 } from "../api/actioncable-methods";
+import OwnerList from "../components/owner-list";
 
 const Details = () => {
   const history = useHistory();
@@ -50,6 +52,7 @@ const Details = () => {
   const [bidHistory, setBidHistory] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
   const [bidWinner, setBidWinner] = useState(null);
+  const [nftOwner, setNFTOwner] = useState([]);
   const [erc721, setErc721] = useState(false);
   const [isAuctionStarted, setIsAuctionStarted] = useState(false);
   const [isAuctionEnded, setIsAuctionEnded] = useState(false);
@@ -116,18 +119,19 @@ const Details = () => {
     //     setSoldOut(true);
     //   }
     // });
-    // bidDetail(slug, (data) => {
-    //   setTotalBid(data.total_bids);
-    //   setBidChange(data.bid_change);
-    //   setPrice(data.minimum_bid);
-    //   if (data.history) {
-    //     setBidHistory((bidHistory) => [data.history, ...bidHistory]);
-    //   }
-    //   if (data.auction_end_time) {
-    //     setAuctionEndTime(data.auction_end_time);
-    //   }
-    // });
-    pageView(slug, (data) => {
+    bidDetail(orderSlug, (data) => {
+      console.log(data);
+      setTotalBid(data.total_bids);
+      setBidChange(data.bid_change);
+      setPrice(data.minimum_bid);
+      if (data.history) {
+        setBidHistory((bidHistory) => [data.history, ...bidHistory]);
+      }
+      if (data.auction_end_time) {
+        setAuctionEndTime(data.auction_end_time);
+      }
+    });
+    pageView(orderSlug, (data) => {
       setTotalViews(data.page_views);
     });
 
@@ -181,6 +185,9 @@ const Details = () => {
         order_slug: orderSlug,
       });
       const NFT = response.data.data.nft;
+      if (NFT?.order_details?.status === "cancelled") {
+        history.push("/");
+      }
 
       setAuctionEndTime(NFT.auction_end_time);
       setIsAuctionStarted(
@@ -193,11 +200,8 @@ const Details = () => {
       setErc721(NFT.nft_type === "erc721");
       if (NFT.nft_type === "erc721" && orderSlug) {
         let history = await orderBidHistory({ order_slug: orderSlug, page: 1 });
-        // let winner = await nftBidWinner({ nft_slug: slug });
-        console.log(history);
         setBidHistory(history.data.data.histories);
         setTotalCount(history.data.data.total_count);
-        // setBidWinner(winner.data.data.winner);
       } else {
         if (NFT.quantity === 0) {
           setSoldOut(true);
@@ -206,6 +210,9 @@ const Details = () => {
         // setBuyHistory(history.data.data.histories);
         // setTotalCount(history.data.data.total_count);
       }
+      let owners = await nftOwnerApi({ nft_slug: slug });
+      setNFTOwner(owners.data.data.owners);
+
       setNft(response.data.data.nft);
       setLoader(false);
     } catch (err) {
@@ -279,6 +286,7 @@ const Details = () => {
                   handleAuctionStartTimer={handleAuctionStartTimer}
                   handleAuctionEndTimer={handleAuctionEndTimer}
                   winner={bidWinner}
+                  owners={nftOwner}
                 />
               </div>
             </div>
@@ -299,13 +307,22 @@ const Details = () => {
           <NFTSectionTitle title="NFT Details" />
           <div className="row mt-5">
             <div className="col-12 col-lg-6 order-lg-2 mb-4">
-              <BidHistory
-                nft={nft}
-                isOwner={isOwner}
-                histories={bidHistory}
-                isAuctionEnded={isAuctionEnded}
-                totalCount={totalCount}
-              />
+              {(() => {
+                if (erc721) {
+                  return (
+                    <BidHistory
+                      nft={nft}
+                      isOwner={isOwner}
+                      nftOwner={nftOwner[0]}
+                      histories={bidHistory}
+                      isAuctionEnded={isAuctionEnded}
+                      totalCount={totalCount}
+                    />
+                  );
+                } else {
+                  return <OwnerList nft={nft} nftOwners={nftOwner} />;
+                }
+              })()}
             </div>
             <div className="col-12 col-lg-6 order-lg-1">
               {(() => {

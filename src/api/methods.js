@@ -43,6 +43,9 @@ export const orderBidHistory = ({ order_slug, page }) =>
 export const nftBidWinner = ({ nft_slug }) =>
   appAxios.get(`/nfts/${nft_slug}/bid_winner`);
 
+export const nftOwnerApi = ({ nft_slug }) =>
+  appAxios.get(`/nfts/${nft_slug}/owners`);
+
 // export const nftBuyApi = (props) =>
 //   appAxios.post("/buys", { order: { ...props } });
 
@@ -66,3 +69,12 @@ export const nftBuyApi = ({ order_slug, order }) =>
 
 export const nftBidApi = ({ order_slug, order }) =>
   appAxios.post(`/orders/${order_slug}/bid`, { order });
+
+export const bidSaleCancelApi = ({ order_slug }) =>
+  appAxios.post(`/orders/${order_slug}/bid_cancel`);
+
+export const buySaleCancelApi = ({ order_slug, quantity }) =>
+  appAxios.post(`/orders/${order_slug}/buy_cancel`, { quantity });
+
+export const acceptBidApi = ({ order_slug, order }) =>
+  appAxios.post(`/orders/${order_slug}/accept_bid`, { order });

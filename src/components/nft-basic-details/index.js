@@ -39,6 +39,7 @@ const NFTBaseDetails = ({
   handleAuctionStartTimer,
   handleAuctionEndTimer,
   winner,
+  owners,
 }) => {
   const { user } = useSelector((state) => state.user.data);
 
@@ -133,6 +134,13 @@ const NFTBaseDetails = ({
                   />
                 );
               }
+            } else {
+              return (
+                <BidValue
+                  title="Sold Price"
+                  value={currencyFormat(nft.price, "USD")}
+                />
+              );
             }
           })()}
 
@@ -165,14 +173,14 @@ const NFTBaseDetails = ({
             }
           })()} */}
 
-          {/* {erc721 && isAuctionEnded && winner && (
+          {erc721 && owners.length > 0 && (
             <BidValue
               title="Owned By"
-              avatar={winner.avatar_url}
-              name={winner.user_name}
+              avatar={owners[0].avatar_url}
+              name={owners[0].user_name}
               isEnd
             />
-          )} */}
+          )}
         </div>
         <hr className="custom-divider" />
 
@@ -262,6 +270,7 @@ const NFTBaseDetails = ({
           />
           <NFTCancelTheSale
             nft={nft}
+            isOwner={isOwner}
             cancelTheSalePop={cancelTheSalePop}
             setCancelTheSalePop={setCancelTheSalePop}
             price={price}
@@ -322,7 +331,7 @@ const NFTBaseDetails = ({
                   <button
                     disabled={false}
                     className="btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill place-bid-buy-btn"
-                    // onClick={() => setPlaceBidPop(!placeBidPop)}
+                    onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
                   >
                     Cancel the sale
                   </button>
@@ -404,12 +413,20 @@ const NFTBaseDetails = ({
                   Buy {currencyFormat(orderDetails.buy_amount, "USD")}
                 </button>
               );
+            } else {
+              return (
+                <button
+                  disabled={true}
+                  className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                >
+                  Sold
+                </button>
+              );
             }
           })()}
 
           <div className="mt-2 royalty-info">
             {erc721 &&
-              !isAuctionEnded &&
               nft.auction_extend_minutes &&
               `Counterbid within the last 5 minutes will extend the auction by ${nft.auction_extend_minutes} minutes`}
           </div>

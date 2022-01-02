@@ -24,6 +24,7 @@ const BidHistory = ({
   histories = [],
   isAuctionEnded,
   totalCount,
+  nftOwner,
 }) => {
   const { slug } = useParams();
   const [modalShow, setModalShow] = useState(false);
@@ -31,58 +32,6 @@ const BidHistory = ({
   const [page, setPage] = useState(1);
   const [bidHistoryList, setBidHistoryList] = useState([]);
   const [loading, setLoading] = useState(false);
-
-  const historyList = [
-    {
-      avatar_url: "",
-      created_at: "2021-11-02T18:12:31.891Z",
-      user_name: "@wiki",
-      slug: "ljdkasncksbd",
-      bid_amount: 100,
-    },
-    {
-      avatar_url: "",
-      created_at: "2021-11-02T18:12:31.891Z",
-      user_name: "@wiki",
-      slug: "ljdkasncksbd",
-      bid_amount: 100,
-    },
-    {
-      avatar_url: "",
-      created_at: "2021-11-02T18:12:31.891Z",
-      user_name: "@wiki",
-      slug: "ljdkasncksbd",
-      bid_amount: 100,
-    },
-    {
-      avatar_url: "",
-      created_at: "2021-11-02T18:12:31.891Z",
-      user_name: "@wiki",
-      slug: "ljdkasncksbd",
-      bid_amount: 100,
-    },
-    {
-      avatar_url: "",
-      created_at: "2021-11-02T18:12:31.891Z",
-      user_name: "@wiki",
-      slug: "ljdkasncksbd",
-      bid_amount: 100,
-    },
-    {
-      avatar_url: "",
-      created_at: "2021-11-02T18:12:31.891Z",
-      user_name: "@wiki",
-      slug: "ljdkasncksbd",
-      bid_amount: 100,
-    },
-    {
-      avatar_url: "",
-      created_at: "2021-11-02T18:12:31.891Z",
-      user_name: "@wiki",
-      slug: "ljdkasncksbd",
-      bid_amount: 100,
-    },
-  ];
 
   const fetchHistory = async (pageNo) => {
     try {
@@ -126,7 +75,7 @@ const BidHistory = ({
   return (
     <>
       <div className="bid-history if_bid_empty_cell">
-        <HistoryHeader />
+        <HistoryHeader nftOwner={nftOwner} />
         <div className="bid-history-title-content">
           <div className="bid-history-title">History</div>
           <div className="bid-history-filter"></div>

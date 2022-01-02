@@ -25,7 +25,11 @@ const ExploreCard = ({
   const history = useHistory();
 
   const handleClick = () => {
-    history.push(`/details/${slug}`);
+    if (nft?.is_on_sale) {
+      history.push(`/details/${nft?.slug}/${nft?.order_details?.slug}`);
+    } else {
+      history.push(`/details/${nft?.slug}`);
+    }
   };
   return (
     <div className="col-xl-4 col-lg-4 col-sm-6">
@@ -66,11 +70,30 @@ const ExploreCard = ({
             <div className="post-sold-text">
               {erc721 ? "Bid Price" : "Price"}
             </div>
-            <div className="post-sold-cost">{currencyFormat(4800, "USD")}</div>
+            <div className="post-sold-cost">
+              {(() => {
+                if (nft?.is_on_sale) {
+                  if (erc721) {
+                    return nft?.order_details?.is_bid
+                      ? currencyFormat(nft?.order_details?.top_bid, "USD")
+                      : currencyFormat(nft?.order_details?.buy_amount, "USD");
+                  } else {
+                    return currencyFormat(
+                      nft?.order_details?.buy_amount,
+                      "USD"
+                    );
+                  }
+                } else {
+                  return "Not For Sale";
+                }
+              })()}
+            </div>
           </div>
           <div className="right-bid">
             <div className="post-sold-text">NFT Type</div>
-            <div className="post-sold-cost">{nft.nft_type}</div>
+            <div className="post-sold-cost">
+              {nft?.nft_type === "erc721" ? "ERC 721" : "ERC 1155"}
+            </div>
           </div>
         </div>
       </div>

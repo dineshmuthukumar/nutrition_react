@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import NFTCard from "../nft-card";
 import { toast } from "react-toastify";
+import ContentLoader from "react-content-loader";
 import { VscChevronLeft } from "react-icons/vsc";
 import { VscChevronRight } from "react-icons/vsc";
 import cardImage from "../../images/drops/nft_2.png";
@@ -31,7 +32,6 @@ const HotCollections = () => {
 
   return (
     <>
-      {console.log(list, "list")}
       <section className="hot-collection-section">
         <div className="container-fluid">
           <div className="row">
@@ -47,20 +47,20 @@ const HotCollections = () => {
                   </a>
                 </div>
               </h1>
-              <div className="row">
-                <div className="col-xl-3 col-lg-3 col-sm-6">
-                  <NFTCard image={cardImage} />
+
+              {!loading ? (
+                <div className="row">
+                  {list.length > 0
+                    ? list.map((nft, i) => (
+                        <div className="col-xl-3 col-lg-3 col-sm-6">
+                          <NFTCard nft={nft} key={i} image={cardImage} />
+                        </div>
+                      ))
+                    : "No Data Found!"}
                 </div>
-                <div className="col-xl-3 col-lg-3 col-sm-6">
-                  <NFTCard image={cardImage} />
-                </div>
-                <div className="col-xl-3 col-lg-3 col-sm-6">
-                  <NFTCard image={cardImage} />
-                </div>
-                <div className="col-xl-3 col-lg-3 col-sm-6">
-                  <NFTCard image={cardImage} />
-                </div>
-              </div>
+              ) : (
+                <NFTCardLoader />
+              )}
             </div>
           </div>
         </div>
@@ -68,5 +68,21 @@ const HotCollections = () => {
     </>
   );
 };
+
+const NFTCardLoader = (props) => (
+  <ContentLoader
+    viewBox="0 50 900 400"
+    width={"100%"}
+    height={"100%"}
+    backgroundColor="#f5f5f5"
+    foregroundColor="#dbdbdb"
+    className="mt-1"
+    {...props}
+  >
+    <rect x="12" y="5" rx="2" ry="2" width="280" height="300" />
+    <rect x="308" y="5" rx="2" ry="2" width="280" height="300" />
+    <rect x="600" y="5" rx="2" ry="2" width="280" height="300" />
+  </ContentLoader>
+);
 
 export default HotCollections;

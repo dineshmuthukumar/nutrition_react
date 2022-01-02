@@ -70,7 +70,7 @@ const ShowAll = () => {
 
 const NFTCardLoader = (props) => (
   <ContentLoader
-    viewBox="0 0 900 400"
+    viewBox="0 50 900 400"
     width={"100%"}
     height={"100%"}
     backgroundColor="#f5f5f5"
