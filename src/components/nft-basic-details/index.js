@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import ReadMoreReact from "read-more-react";
 import { useSelector } from "react-redux";
 import { FaCheckCircle } from "react-icons/fa";
+import { BiX } from "react-icons/bi";
+import { Modal } from "react-bootstrap";
 import _ from "lodash";
 
 import NFTTimeLeft from "../nft-time-left";
@@ -42,6 +44,7 @@ const NFTBaseDetails = ({
   owners,
 }) => {
   const { user } = useSelector((state) => state.user.data);
+  const [modalShow, setModalShow] = useState(false);
 
   const erc721 = nft.nft_type === "erc721";
   const isBid = _.get(nft, "order_details.is_bid", false);
@@ -61,9 +64,9 @@ const NFTBaseDetails = ({
           content="Verified Artist"
           placement="right"
         />
-        {/* {(isAuctionEnded || soldOut) && (
+        {soldOut && (
           <span className="nft-status-tag rounded-pill">Sold Out</span>
-        )} */}
+        )}
       </div>
       <div className="nft-title-container">
         <div className="nft-title">{nft.name}</div>
@@ -144,7 +147,7 @@ const NFTBaseDetails = ({
             }
           })()}
 
-          {/* {(() => {
+          {(() => {
             if (user && userLastBid && price) {
               return (
                 <BidValue
@@ -171,7 +174,7 @@ const NFTBaseDetails = ({
             } else {
               return null;
             }
-          })()} */}
+          })()}
 
           {erc721 && owners.length > 0 && (
             <BidValue
@@ -350,7 +353,7 @@ const NFTBaseDetails = ({
                   <button
                     disabled={false}
                     className="btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill place-bid-buy-btn"
-                    // onClick={() => setPlaceBidPop(!placeBidPop)}
+                    onClick={() => setModalShow(true)}
                   >
                     Cancel the sale
                   </button>
@@ -368,7 +371,7 @@ const NFTBaseDetails = ({
                   <button
                     disabled={false}
                     className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
-                    // onClick={() => setPlaceBidPop(!placeBidPop)}
+                    onClick={() => setModalShow(true)}
                   >
                     Cancel the sale
                   </button>
@@ -432,6 +435,25 @@ const NFTBaseDetails = ({
           </div>
         </div>
       </div>
+
+      <Modal size="md" centered show={modalShow} className="history-modal">
+        <Modal.Header className="bg-dark p-0">
+          <Modal.Title className="flex-fill">
+            <div className="modal-bid-history-title-content">
+              <div className="modal-bid-history-title">Cancel the sale</div>
+              <div className="modal-bid-history-filter">
+                <BiX
+                  role="button"
+                  style={{ color: "#fff" }}
+                  size={25}
+                  onClick={() => setModalShow(false)}
+                />
+              </div>
+            </div>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{/* design here */}</Modal.Body>
+      </Modal>
     </>
   );
 };

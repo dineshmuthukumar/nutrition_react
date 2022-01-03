@@ -104,17 +104,10 @@ const BidHistory = ({
             <div className="empty-top-container">
               <div className="empty-top-content">
                 <IoIosRocket color="white" />
-                {1 == 0 ? (
-                  <div className="empty-text">
-                    Auction has ended. <br />
-                    No active bids.
-                  </div>
-                ) : (
-                  <div className="empty-text">
-                    No active bids yet. <br />
-                    Be the first to make a bid.
-                  </div>
-                )}
+                <div className="empty-text">
+                  No active bids yet. <br />
+                  Be the first to make a bid.
+                </div>
               </div>
             </div>
 
@@ -124,7 +117,7 @@ const BidHistory = ({
                 <div className="publish-time text-secondary">
                   {dayjs(nft.auction_start_time).format("MMM D, YYYY hh:mm A")}
                 </div>
-                <div className="nft-owner">Bid listed by @amitabhbachchan</div>
+                <div className="nft-owner">Bid listed by @beyondlife.club</div>
               </div>
             </div>
           </div>
