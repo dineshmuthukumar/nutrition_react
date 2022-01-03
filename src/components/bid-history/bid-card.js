@@ -8,7 +8,13 @@ import { currencyFormat } from "../../utils/common";
 
 import "./style.scss";
 
-const BidCard = ({ history, isEnd = false }) => {
+const BidCard = ({
+  history,
+  isEnd = false,
+  acceptBidConfirm,
+  setAcceptBidConfirm,
+  setAcceptBidDetail,
+}) => {
   const { user } = useSelector((state) => state.user.data);
 
   return (
@@ -52,9 +58,15 @@ const BidCard = ({ history, isEnd = false }) => {
             </div>
           </div>
           <div className="second-half">
-            <a href="javascript:void(0);" className="assign-btn">
+            <button
+              className="assign-btn"
+              onClick={() => {
+                setAcceptBidConfirm(!acceptBidConfirm);
+                setAcceptBidDetail(history);
+              }}
+            >
               Assign
-            </a>
+            </button>
             <div className="bid-value">
               {currencyFormat(history.bid_amount, "USD")}
             </div>

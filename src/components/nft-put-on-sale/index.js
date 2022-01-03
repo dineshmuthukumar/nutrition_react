@@ -20,6 +20,7 @@ import {
 import { nftBidApi, nftBuyApi, putOnSaleApi } from "../../api/methods";
 import HelpLine from "../help-line";
 import "./style.scss";
+import toaster from "../../utils/toaster";
 
 const NFTPutOnSale = ({
   putOnSalePop = false,
@@ -171,7 +172,10 @@ const NFTPutOnSale = ({
         // setSuccessData(result.data.data.buy);
       }
     } catch (error) {
-      toast.error("Something went wrong!");
+      if (error.response.data.status === 422) {
+        const err = bidBuyError(error.response.data.fail_status);
+        toaster(error.response.data.status, err.description);
+      }
       setConfirmState({
         ...confirmState,
         progressError: "",
@@ -432,7 +436,8 @@ const NFTPutOnSale = ({
                                 }`}
                               >
                                 <label className="input-bid-text">
-                                  Set initial bid amount
+                                  Set initial bid amount greater than{" "}
+                                  {currencyFormat(nft.floor_price, "USD")}
                                 </label>
                                 <div className="input-bid-wrap">
                                   <span className="bid-currency">$</span>
@@ -709,18 +714,31 @@ const NFTPutOnSale = ({
                               )}
                               <li>
                                 <span className="key">Artist Fee</span>
-                                <span className="value">10%</span>
+                                <span className="value">
+                                  {parseFloat(nft.royalties)}%
+                                </span>
                               </li>
                               <li>
                                 <span className="key">Service Fee</span>
-                                <span className="value">10%</span>
-                              </li>
-                              <li className="final-set">
-                                <span className="key">Total Amount </span>
                                 <span className="value">
-                                  {currencyFormat(erc721Sale.buyAmount, "USD")}
+                                  {parseFloat(nft.service_fee)}%
                                 </span>
                               </li>
+                              {erc721Sale.isBuy && (
+                                <li className="final-set">
+                                  <span className="key">Total Amount </span>
+                                  <span className="value">
+                                    {currencyFormat(
+                                      parseFloat(erc721Sale.buyAmount) -
+                                        (parseFloat(erc721Sale.buyAmount) *
+                                          (parseFloat(nft.royalties) +
+                                            parseFloat(nft.service_fee))) /
+                                          100,
+                                      "USD"
+                                    )}
+                                  </span>
+                                </li>
+                              )}
                             </ul>
                           </div>
                         </div>

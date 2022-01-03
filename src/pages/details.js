@@ -63,6 +63,10 @@ const Details = () => {
   const [putOnSalePop, setPutOnSalePop] = useState(false);
   const [cancelTheSalePop, setCancelTheSalePop] = useState(false);
 
+  const [isOrderOnSale, setIsOrderOnSale] = useState(false);
+  const [isOrderSuccess, setIsOrderSuccess] = useState(false);
+  const [isOrderCancelled, setIsOrderCancelled] = useState(false);
+
   // Socket State
   const [totalBid, setTotalBid] = useState(0);
   const [bidChange, setBidChange] = useState(0);
@@ -127,9 +131,9 @@ const Details = () => {
       if (data.history) {
         setBidHistory((bidHistory) => [data.history, ...bidHistory]);
       }
-      if (data.auction_end_time) {
-        setAuctionEndTime(data.auction_end_time);
-      }
+      // if (data.auction_end_time) {
+      //   setAuctionEndTime(data.auction_end_time);
+      // }
     });
     pageView(orderSlug, (data) => {
       setTotalViews(data.page_views);
@@ -185,6 +189,13 @@ const Details = () => {
         order_slug: orderSlug,
       });
       const NFT = response.data.data.nft;
+
+      if (NFT?.order_details) {
+        setIsOrderOnSale(NFT.order_details?.status === "onsale");
+        setIsOrderSuccess(NFT.order_details?.status === "success");
+        setIsOrderCancelled(NFT.order_details?.status === "cancelled");
+      }
+
       if (NFT?.order_details?.status === "cancelled") {
         history.push("/");
       }
@@ -287,6 +298,11 @@ const Details = () => {
                   handleAuctionEndTimer={handleAuctionEndTimer}
                   winner={bidWinner}
                   owners={nftOwner}
+                  //Order
+                  isOrderOnSale={isOrderOnSale}
+                  isOrderSuccess={isOrderSuccess}
+                  isOrderCancelled={isOrderCancelled}
+                  latestBid={history.length > 0 ? history[0] : {}}
                 />
               </div>
             </div>
@@ -312,6 +328,7 @@ const Details = () => {
                   return (
                     <BidHistory
                       nft={nft}
+                      orderSlug={orderSlug}
                       isOwner={isOwner}
                       nftOwner={nftOwner[0]}
                       histories={bidHistory}

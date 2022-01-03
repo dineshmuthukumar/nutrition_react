@@ -80,6 +80,7 @@ export const bidBuyError = (code) => {
   const INVALID_BID = 708;
   const LOW_BID = 709;
   const INVALID_NFT = 710;
+  const KYC_VERIFY = 715;
 
   switch (code) {
     case ERROR:
@@ -106,6 +107,11 @@ export const bidBuyError = (code) => {
       return { title: "Error", description: "Low Bid" };
     case INVALID_NFT:
       return { title: "Error", description: "Invalid NFT" };
+    case KYC_VERIFY:
+      return {
+        title: "Error",
+        description: "Please complete your KYC verification",
+      };
     default:
       return { title: "Error", description: "Something went wrong!" };
   }

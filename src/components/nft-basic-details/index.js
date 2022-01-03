@@ -44,6 +44,10 @@ const NFTBaseDetails = ({
   handleAuctionEndTimer,
   winner,
   owners,
+  isOrderOnSale,
+  isOrderSuccess,
+  isOrderCancelled,
+  latestBid,
 }) => {
   const { user } = useSelector((state) => state.user.data);
   const [modalShow, setModalShow] = useState(false);
@@ -106,7 +110,7 @@ const NFTBaseDetails = ({
       <div className="bottom-content">
         <div className="d-flex">
           {(() => {
-            if (isOrder) {
+            if (isOrderOnSale) {
               if (erc721) {
                 if (isBid) {
                   return (
@@ -139,6 +143,8 @@ const NFTBaseDetails = ({
                   />
                 );
               }
+            } else if (isOrderSuccess) {
+              return null;
             } else {
               return (
                 <BidValue
@@ -223,7 +229,7 @@ const NFTBaseDetails = ({
                   value={(() => {
                     if (availableQty >= 0 && availableQty != null) {
                       return `${availableQty} / ${nft.total_quantity}`;
-                    } else if (isOrder) {
+                    } else if (isOrderOnSale) {
                       return `${orderDetails.available_quantity} / ${orderDetails.total_quantity}`;
                     } else {
                       return nft.total_quantity;
@@ -321,15 +327,26 @@ const NFTBaseDetails = ({
                 </button>
               );
             } else if (isOwner && !isOnSale) {
-              return (
-                <button
-                  disabled={false}
-                  className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
-                  onClick={() => setPutOnSalePop(!putOnSalePop)}
-                >
-                  Put on sale
-                </button>
-              );
+              if (isOrder && !isOrderOnSale) {
+                return (
+                  <button
+                    disabled={true}
+                    className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                  >
+                    {isOrderSuccess ? "Sold Out" : "Cancelled"}
+                  </button>
+                );
+              } else {
+                return (
+                  <button
+                    disabled={false}
+                    className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                    onClick={() => setPutOnSalePop(!putOnSalePop)}
+                  >
+                    Put on sale
+                  </button>
+                );
+              }
             } else if (erc721 && isOwner && isOnSale) {
               return (
                 <>

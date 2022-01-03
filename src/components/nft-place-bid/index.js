@@ -89,12 +89,8 @@ const NFTPlaceBid = ({
       });
       if (result.data.success) {
         setSuccess(true);
-        // setSuccessData(result.data.data.bid);
-        setSuccessData({
-          amount: bidAmount,
-          created_at: new Date(),
-          transaction_id: "jVSHfrd42y727y73y",
-        });
+        setSuccessData(result.data.data.bid);
+
         setBid({
           ...bid,
           progressError: "",
@@ -311,7 +307,7 @@ const NFTPlaceBid = ({
                       <div className="input-field-bid">
                         <div className="services-fee-box">
                           <label className="input-bid-text">Services Fee</label>
-                          <h1>10%</h1>
+                          <h1>{parseFloat(nft.service_fee)}%</h1>
                         </div>
                       </div>
                     </div>
@@ -321,7 +317,13 @@ const NFTPlaceBid = ({
                           <label className="input-bid-text">Total Amount</label>
                           <h1>
                             {bidAmount
-                              ? currencyFormat(bidAmount, "USD")
+                              ? currencyFormat(
+                                  parseFloat(bidAmount) +
+                                    (parseFloat(bidAmount) *
+                                      parseFloat(nft.service_fee)) /
+                                      100,
+                                  "USD"
+                                )
                               : currencyFormat(0, "USD")}
                           </h1>
                         </div>
@@ -364,13 +366,6 @@ const NFTPlaceBid = ({
                 </>
               ) : (
                 <>
-                  {/* <div className="sucess-title">
-                    <FaCheckCircle color={"#23bf61"} size={60} />
-                    <div className="message mt-3">
-                      Bid successfully placed. <br /> You are the highest
-                      bidder.
-                    </div>
-                  </div> */}
                   <div className="success-preview">
                     <div className="pop-nft-title text-center mb-1">
                       Your bid has been successfully placed.

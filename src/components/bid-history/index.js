@@ -20,6 +20,7 @@ import "./style.scss";
 
 const BidHistory = ({
   nft,
+  orderSlug,
   isOwner,
   histories = [],
   isAuctionEnded,
@@ -32,6 +33,8 @@ const BidHistory = ({
   const [page, setPage] = useState(1);
   const [bidHistoryList, setBidHistoryList] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [acceptBidConfirm, setAcceptBidConfirm] = useState(false);
+  const [acceptBidDetail, setAcceptBidDetail] = useState({});
 
   const fetchHistory = async (pageNo) => {
     try {
@@ -74,57 +77,75 @@ const BidHistory = ({
 
   return (
     <>
-      <div className="bid-history if_bid_empty_cell">
-        <HistoryHeader nftOwner={nftOwner} />
-        <div className="bid-history-title-content">
-          <div className="bid-history-title">History</div>
-          <div className="bid-history-filter"></div>
+      {!acceptBidConfirm ? (
+        <div className="bid-history if_bid_empty_cell">
+          <HistoryHeader nftOwner={nftOwner} />
+          <div className="bid-history-title-content">
+            <div className="bid-history-title">History</div>
+            <div className="bid-history-filter"></div>
+          </div>
+
+          {histories.length > 0 ? (
+            <div className={`bid-history-content ${isOwner ? "owner" : ""}`}>
+              {histories.map((history, i) => (
+                <BidCard
+                  key={`bid-history${i}`}
+                  history={history}
+                  acceptBidConfirm={acceptBidConfirm}
+                  setAcceptBidConfirm={setAcceptBidConfirm}
+                  setAcceptBidDetail={setAcceptBidDetail}
+                />
+              ))}
+
+              {totalCount <= histories.length ? (
+                <BidCard isEnd />
+              ) : (
+                <div className="bid-histroy-card">
+                  <div className="history-end-content">
+                    <span role="button" onClick={handleClick}>
+                      View More
+                    </span>
+                  </div>
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="bid-empty-content">
+              <div className="empty-top-container">
+                <div className="empty-top-content">
+                  <IoIosRocket color="white" />
+                  <div className="empty-text">
+                    No active bids yet. <br />
+                    Be the first to make a bid.
+                  </div>
+                </div>
+              </div>
+
+              <div className="empty-bottom-content">
+                <img src={amitabh} alt="" />
+                <div className="nft-owner-history-details">
+                  <div className="publish-time text-secondary">
+                    {dayjs(nft.auction_start_time).format(
+                      "MMM D, YYYY hh:mm A"
+                    )}
+                  </div>
+                  <div className="nft-owner">
+                    Bid listed by @beyondlife.club
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
-
-        {histories.length > 0 ? (
-          <div className={`bid-history-content ${isOwner ? "owner" : ""}`}>
-            {histories.map((history, i) => (
-              <BidCard key={`bid-history${i}`} history={history} />
-            ))}
-
-            {totalCount <= histories.length ? (
-              <BidCard isEnd />
-            ) : (
-              <div className="bid-histroy-card">
-                <div className="history-end-content">
-                  <span role="button" onClick={handleClick}>
-                    View More
-                  </span>
-                </div>
-              </div>
-            )}
-          </div>
-        ) : (
-          <div className="bid-empty-content">
-            <div className="empty-top-container">
-              <div className="empty-top-content">
-                <IoIosRocket color="white" />
-                <div className="empty-text">
-                  No active bids yet. <br />
-                  Be the first to make a bid.
-                </div>
-              </div>
-            </div>
-
-            <div className="empty-bottom-content">
-              <img src={amitabh} alt="" />
-              <div className="nft-owner-history-details">
-                <div className="publish-time text-secondary">
-                  {dayjs(nft.auction_start_time).format("MMM D, YYYY hh:mm A")}
-                </div>
-                <div className="nft-owner">Bid listed by @beyondlife.club</div>
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* <HistoryConfirm /> */}
+      ) : (
+        <HistoryConfirm
+          nft={nft}
+          orderSlug={orderSlug}
+          acceptBidDetail={acceptBidDetail}
+          acceptBidConfirm={acceptBidConfirm}
+          setAcceptBidConfirm={setAcceptBidConfirm}
+        />
+      )}
     </>
   );
 };
