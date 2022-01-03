@@ -158,14 +158,14 @@ const NFTBaseDetails = ({
                   }
                 />
               );
-            } else if (user && nft.user_highest_bid) {
+            } else if (user && orderDetails.user_highest_bid) {
               return (
                 <BidValue
                   title="Your Last Bid"
-                  value={currencyFormat(nft.user_highest_bid, "USD")}
+                  value={currencyFormat(orderDetails.user_highest_bid, "USD")}
                   status={
-                    parseFloat(nft.user_highest_bid) <
-                    parseFloat(nft.minimum_bid)
+                    parseFloat(orderDetails.user_highest_bid) <
+                    parseFloat(orderDetails.minimum_bid)
                       ? "Outbid"
                       : ""
                   }
