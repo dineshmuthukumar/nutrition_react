@@ -525,9 +525,13 @@
     width: calc(100% - 4rem);
   }
   .bid-currency {
+    font-family: $neue-helveticamedium;
     font-size: 2rem;
-    width: 4rem;
+    width: 10rem;
     text-align: center;
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 0.5rem;
   }
 }
 

@@ -44,8 +44,10 @@
   }
 
   .bid-history-content {
-    min-height: calc(100vh - 10rem) !important;
-    max-height: 65vh;
+    // min-height: calc(100vh - 10rem) !important;
+    // max-height: 65vh;
+    min-height: calc(100vh - 24rem) !important;
+    min-height: 50vh;
     border-left: 2px solid #000;
     border-right: 2px solid #000;
     border-bottom: 2px solid #000;
@@ -91,7 +93,7 @@
               margin-left: 0;
             }
             &.active {
-              background-color: #ff0000;
+              background-color: #4caf50;
             }
           }
           @media screen and (max-width: 767px) {
