@@ -876,17 +876,25 @@ const NFTPutOnSale = ({
                               </li>
                               <li>
                                 <span className="key">Artist Fee</span>
-                                <span className="value">{nft.royalties}%</span>
+                                <span className="value">
+                                  {parseFloat(nft.royalties)}%
+                                </span>
                               </li>
                               <li>
                                 <span className="key">Service Fee</span>
-                                <span className="value">10%</span>
+                                <span className="value">
+                                  {parseFloat(nft.service_fee)}%
+                                </span>
                               </li>
                               <li className="final-set">
                                 <span className="key">Total Amount </span>
                                 <span className="value">
                                   {currencyFormat(
-                                    erc1155Sale.totalAmount,
+                                    parseFloat(erc1155Sale.totalAmount) -
+                                      (parseFloat(erc1155Sale.totalAmount) *
+                                        (parseFloat(nft.royalties) +
+                                          parseFloat(nft.service_fee))) /
+                                        100,
                                     "USD"
                                   )}
                                 </span>

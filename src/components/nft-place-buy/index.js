@@ -369,7 +369,7 @@ const NFTPlaceBuy = ({
                       <div className="input-field-bid">
                         <div className="services-fee-box">
                           <label className="input-bid-text">Services Fee</label>
-                          <h1>10%</h1>
+                          <h1>{parseFloat(nft.service_fee)}%</h1>
                         </div>
                       </div>
                     </div>
@@ -377,7 +377,15 @@ const NFTPlaceBuy = ({
                       <div className="input-field-bid">
                         <div className="total-amount-box">
                           <label className="input-bid-text">Total Amount</label>
-                          <h1>{currencyFormat(buyAmount, "USD")}</h1>
+                          <h1>
+                            {currencyFormat(
+                              parseFloat(buyAmount) +
+                                (parseFloat(buyAmount) *
+                                  parseFloat(nft.service_fee)) /
+                                  100,
+                              "USD"
+                            )}
+                          </h1>
                         </div>
                       </div>
                     </div>
