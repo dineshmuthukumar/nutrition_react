@@ -12,7 +12,11 @@ const BidCard = ({ history, isEnd = false }) => {
   const { user } = useSelector((state) => state.user.data);
 
   return (
-    <div className="bid-histroy-card">
+    <div
+      className={`bid-histroy-card ${
+        history?.status === "active" ? "active-history-card" : ""
+      }`}
+    >
       {isEnd ? (
         <div className="history-end-content">
           You've reached the end of the list
@@ -33,7 +37,9 @@ const BidCard = ({ history, isEnd = false }) => {
             <div className="bid-histoy-details">
               <div className="time text-secondary">
                 {dayjs(history.created_at).format("MMM D, YYYY hh:mm A")}
-                <span className="expire-pill active">Expires in 2 Days</span>
+                <span className={`expire-pill ${history?.status}`}>
+                  {history?.status === "active" ? "Active" : "Expired"}
+                </span>
               </div>
               <div className="bid-owner">
                 Bid placed by{" "}

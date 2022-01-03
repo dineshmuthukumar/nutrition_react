@@ -94,12 +94,16 @@ const ExploreCard = ({
               })()}
             </div>
           </div>
-          {/* <div className="right-bid">
-            <div className="post-sold-text">NFT Type</div>
-            <div className="post-sold-cost">
-              {nft?.nft_type === "erc721" ? "ERC 721" : "ERC 1155"}
+          {nft?.is_on_sale && (
+            <div className="right-bid">
+              <div className="post-sold-text">Edition(s)</div>
+              <div className="post-sold-cost">
+                {nft?.nft_type === "erc721"
+                  ? "1 of 1"
+                  : `${nft?.order_details?.available_quantity} / ${nft?.order_details?.total_quantity}`}
+              </div>
             </div>
-          </div> */}
+          )}
         </div>
       </div>
     </div>
