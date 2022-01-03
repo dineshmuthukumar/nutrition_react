@@ -184,3 +184,63 @@
     margin-top: 2rem !important;
   }
 }
+
+.cancel-nft-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  .cancel-nft-item {
+    margin-bottom: 1rem;
+    article.cancel-nft {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      width: 100%;
+      .image-block {
+        width: 5rem;
+        height: 5rem;
+        img {
+          height: 5rem;
+          width: 5rem;
+          object-fit: cover;
+          object-position: center;
+        }
+      }
+      .info-block {
+        width: calc(100% - 5rem);
+        padding-left: 0.5rem;
+        .name {
+          font-family: $neue-helveticamedium;
+        }
+        .nft-info {
+          padding: 0;
+          margin: 0;
+          li {
+            display: flex;
+            .key {
+              width: 70px;
+              font-size: 0.95rem;
+              font-family: $neue-helveticalight;
+            }
+            .value {
+              font-family: $neue-helveticamedium;
+            }
+          }
+        }
+        .cancel-btn {
+          &:hover,
+          &:focus,
+          &:active {
+            background-color: #fff;
+            color: #000;
+          }
+        }
+      }
+    }
+  }
+}
+
+.scroll-modal {
+  padding: 0.5rem;
+  max-height: 70vh;
+}

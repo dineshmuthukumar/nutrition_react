@@ -26,7 +26,7 @@ const NFTArtist = () => {
             />
           </div>
           <div className="artist-pill-container mt-4">
-            <AritstPills title="Managed By" value="BeyondLife" />
+            <AritstPills title="Managed By" value="BeyondLife.club" />
           </div>
           {/* <div className="bottom-owner-contact-links">
             <div className="share-link-owner">

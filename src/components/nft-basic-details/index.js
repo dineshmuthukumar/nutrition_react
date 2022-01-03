@@ -16,6 +16,8 @@ import NFTCancelTheSale from "../nft-cancel-the-sale";
 import HelpLine from "../help-line";
 import { ReactComponent as DiscordSvg } from "./../../icons/discord_logo.svg";
 import { currencyFormat } from "../../utils/common";
+import postImages from "../../images/post1.png";
+import CancelNft from "./nft-cancel-box";
 
 import "./style.scss";
 const NFTBaseDetails = ({
@@ -453,7 +455,22 @@ const NFTBaseDetails = ({
             </div>
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body>{/* design here */}</Modal.Body>
+        <Modal.Body className="scroll-modal ">
+          <ul className="cancel-nft-list">
+            <li className="cancel-nft-item">
+              <CancelNft image={postImages} />
+            </li>
+            <li className="cancel-nft-item">
+              <CancelNft image={postImages} />
+            </li>
+            <li className="cancel-nft-item">
+              <CancelNft image={postImages} />
+            </li>
+            <li className="cancel-nft-item">
+              <CancelNft image={postImages} />
+            </li>
+          </ul>
+        </Modal.Body>
       </Modal>
     </>
   );
