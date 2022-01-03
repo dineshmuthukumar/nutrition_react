@@ -56,6 +56,19 @@ const ShowAll = () => {
                         </div>
                       ))
                     : "No Data Found!"}
+                  {hasNext && (
+                    <div className="row mb-5">
+                      <div className="col-md-12 text-center">
+                        <button
+                          className="load_more"
+                          disabled={loadingMore}
+                          onClick={fetchMore}
+                        >
+                          {loadingMore ? "Loading..." : "Load More"}
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
               ) : (
                 <NFTCardLoader />

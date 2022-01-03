@@ -92,7 +92,7 @@ const Explore = ({ categoryDetail }) => {
                   <NFTListLoader />
                 ) : (
                   <>
-                    {list.map((nft) => {
+                    {list.map((nft, i) => {
                       let label = "",
                         time,
                         isEnded = false,
@@ -125,7 +125,7 @@ const Explore = ({ categoryDetail }) => {
 
                       return (
                         <ExploreCard
-                          key={nft.slug}
+                          key={`${nft.slug}${i}`}
                           slug={nft.slug}
                           nft={nft}
                           isStarted={isStarted}
@@ -142,19 +142,19 @@ const Explore = ({ categoryDetail }) => {
                   </>
                 )}
               </div>
-              {/* {hasMore && (
+              {hasNext && (
                 <div className="row mb-5">
                   <div className="col-md-12 text-center">
                     <button
                       className="load_more"
                       disabled={loadingMore}
-                      onClick={handleClick}
+                      onClick={fetchMore}
                     >
                       {loadingMore ? "Loading..." : "Load More"}
                     </button>
                   </div>
                 </div>
-              )} */}
+              )}
             </div>
           </div>
         </div>

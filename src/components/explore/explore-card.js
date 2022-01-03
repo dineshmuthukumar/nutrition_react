@@ -57,13 +57,13 @@ const ExploreCard = ({
             <h6 className="post-title">{nft.name}</h6>
             <p className="desc-para">{nft.description}</p>
           </div>
-          {!erc721 && !isEnded && (
+          {/* {!erc721 && !isEnded && (
             <div className="rights-bid">
               <p className="left_bid mt-3">
                 {nft.quantity ? `Only ${nft.quantity} left` : "Sold out"}
               </p>
             </div>
-          )}
+          )} */}
         </div>
         <div className="post-cost pw_we d-flex  justify-content-between">
           <div className="left-bids">
@@ -75,7 +75,12 @@ const ExploreCard = ({
                 if (nft?.is_on_sale) {
                   if (erc721) {
                     return nft?.order_details?.is_bid
-                      ? currencyFormat(nft?.order_details?.top_bid, "USD")
+                      ? currencyFormat(
+                          nft?.order_details?.top_bid
+                            ? nft?.order_details?.top_bid
+                            : nft?.order_details?.minimum_bid,
+                          "USD"
+                        )
                       : currencyFormat(nft?.order_details?.buy_amount, "USD");
                   } else {
                     return currencyFormat(
@@ -89,12 +94,12 @@ const ExploreCard = ({
               })()}
             </div>
           </div>
-          <div className="right-bid">
+          {/* <div className="right-bid">
             <div className="post-sold-text">NFT Type</div>
             <div className="post-sold-cost">
               {nft?.nft_type === "erc721" ? "ERC 721" : "ERC 1155"}
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
