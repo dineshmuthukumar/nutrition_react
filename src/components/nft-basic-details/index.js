@@ -333,7 +333,7 @@ const NFTBaseDetails = ({
                 <>
                   <button
                     disabled={false}
-                    className="btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill place-bid-buy-btn"
+                    className="btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill place-bid-buy-btn filled-btn"
                     onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
                   >
                     Cancel the sale
@@ -352,7 +352,8 @@ const NFTBaseDetails = ({
                 <>
                   <button
                     disabled={false}
-                    className="btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill place-bid-buy-btn"
+                    className="btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill place-bid-buy-btn filled-btn"
+                    // onClick={() => setPlaceBidPop(!placeBidPop)}
                     onClick={() => setModalShow(true)}
                   >
                     Cancel the sale
@@ -382,7 +383,7 @@ const NFTBaseDetails = ({
                 <>
                   <button
                     disabled={false}
-                    className="btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill place-bid-buy-btn"
+                    className="btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill place-bid-buy-btn filled-btn"
                     onClick={() => setPlaceBuyPop(!placeBuyPop)}
                   >
                     Buy {currencyFormat(orderDetails.buy_amount, "USD")}

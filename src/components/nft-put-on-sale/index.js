@@ -592,24 +592,37 @@ const NFTPutOnSale = ({
                         >
                           <div className="progress-complete"></div>
                         </div>
-
-                        <div className="error-float-container">
-                          {/* <ErrorText type="ending-time" /> */}
-                        </div>
-                        <div className="pop-nft-info">
-                          <div className="pop-nft-media">
-                            {(() => {
-                              if (nft?.asset_type?.includes("image")) {
-                                return (
-                                  <img
-                                    alt="media logo"
-                                    className="type_image typeimg_audio"
-                                    src={nft.asset_url ? nft.asset_url : sample}
-                                  />
-                                );
-                              } else if (nft?.asset_type?.includes("audio")) {
-                                return (
-                                  <>
+                        <div className="pop-bid-bodyContent">
+                          <div className="error-float-container">
+                            {/* <ErrorText type="ending-time" /> */}
+                          </div>
+                          <div className="pop-nft-info">
+                            <div className="pop-nft-media">
+                              {(() => {
+                                if (nft?.asset_type?.includes("image")) {
+                                  return (
+                                    <img
+                                      alt="media logo"
+                                      className="type_image typeimg_audio"
+                                      src={
+                                        nft.asset_url ? nft.asset_url : sample
+                                      }
+                                    />
+                                  );
+                                } else if (nft?.asset_type?.includes("audio")) {
+                                  return (
+                                    <>
+                                      <img
+                                        alt="media logo"
+                                        className="type_image typeimg_audio"
+                                        src={
+                                          nft.cover_url ? nft.cover_url : sample
+                                        }
+                                      />
+                                    </>
+                                  );
+                                } else if (nft?.asset_type?.includes("video")) {
+                                  return (
                                     <img
                                       alt="media logo"
                                       className="type_image typeimg_audio"
@@ -617,105 +630,104 @@ const NFTPutOnSale = ({
                                         nft.cover_url ? nft.cover_url : sample
                                       }
                                     />
-                                  </>
-                                );
-                              } else if (nft?.asset_type?.includes("video")) {
-                                return (
-                                  <img
-                                    alt="media logo"
-                                    className="type_image typeimg_audio"
-                                    src={nft.cover_url ? nft.cover_url : sample}
-                                  />
-                                );
-                              } else {
-                                return (
-                                  <img
-                                    alt="media logo"
-                                    className="type_image typeimg_audio"
-                                    src={nft.asset_url ? nft.asset_url : sample}
-                                  />
-                                );
-                              }
-                            })()}
-                          </div>
-                          <div className="pop-nft-content">
-                            <div className="pop-author-name text-center mt-3">
-                              Amitabh Bachchan
+                                  );
+                                } else {
+                                  return (
+                                    <img
+                                      alt="media logo"
+                                      className="type_image typeimg_audio"
+                                      src={
+                                        nft.asset_url ? nft.asset_url : sample
+                                      }
+                                    />
+                                  );
+                                }
+                              })()}
                             </div>
-                            <div className="pop-nft-title text-center mb-1">
-                              {nft?.name}
-                            </div>
-                            <div className="erc-type">
-                              1 of 1 <span>left</span>
+                            <div className="pop-nft-content">
+                              <div className="pop-author-name text-center mt-3">
+                                Amitabh Bachchan
+                              </div>
+                              <div className="pop-nft-title text-center mb-1">
+                                {nft?.name}
+                              </div>
+                              <div className="erc-type">
+                                1 of 1 <span>left</span>
+                              </div>
                             </div>
                           </div>
-                        </div>
 
-                        <div className="confirm-content-block">
-                          <ul className="confirm-content-list">
-                            <li>
-                              <span className="key">Selected Editions</span>
-                              <span className="value">1/1</span>
-                            </li>
-                            <li>
-                              <span className="key">Type</span>
-                              <span className="value">
-                                {(() => {
-                                  if (erc721Sale.isBid && !erc721Sale.isBuy) {
-                                    return "Bid";
-                                  } else if (
-                                    erc721Sale.isBuy &&
-                                    !erc721Sale.isBid
-                                  ) {
-                                    return "Buy";
-                                  } else if (
-                                    erc721Sale.isBid &&
-                                    erc721Sale.isBuy
-                                  ) {
-                                    return "Bid & Buy";
-                                  } else {
-                                    return "-";
-                                  }
-                                })()}
-                              </span>
-                            </li>
-                            {erc721Sale.isBid && (
+                          <div className="confirm-content-block">
+                            <ul className="confirm-content-list">
                               <li>
-                                <span className="key">Bid amount</span>
+                                <span className="key">Selected Editions</span>
+                                <span className="value">1/1</span>
+                              </li>
+                              <li>
+                                <span className="key">Type</span>
                                 <span className="value">
-                                  {currencyFormat(erc721Sale.bidAmount, "USD")}
+                                  {(() => {
+                                    if (erc721Sale.isBid && !erc721Sale.isBuy) {
+                                      return "Bid";
+                                    } else if (
+                                      erc721Sale.isBuy &&
+                                      !erc721Sale.isBid
+                                    ) {
+                                      return "Buy";
+                                    } else if (
+                                      erc721Sale.isBid &&
+                                      erc721Sale.isBuy
+                                    ) {
+                                      return "Bid & Buy";
+                                    } else {
+                                      return "-";
+                                    }
+                                  })()}
                                 </span>
                               </li>
-                            )}
-                            {erc721Sale.isBuy && (
+                              {erc721Sale.isBid && (
+                                <li>
+                                  <span className="key">Bid amount</span>
+                                  <span className="value">
+                                    {currencyFormat(
+                                      erc721Sale.bidAmount,
+                                      "USD"
+                                    )}
+                                  </span>
+                                </li>
+                              )}
+                              {erc721Sale.isBuy && (
+                                <li>
+                                  <span className="key">Buy amount</span>
+                                  <span className="value">
+                                    {currencyFormat(
+                                      erc721Sale.buyAmount,
+                                      "USD"
+                                    )}
+                                  </span>
+                                </li>
+                              )}
                               <li>
-                                <span className="key">Buy amount</span>
+                                <span className="key">Artist Fee</span>
+                                <span className="value">10%</span>
+                              </li>
+                              <li>
+                                <span className="key">Service Fee</span>
+                                <span className="value">10%</span>
+                              </li>
+                              <li className="final-set">
+                                <span className="key">Total Amount </span>
                                 <span className="value">
                                   {currencyFormat(erc721Sale.buyAmount, "USD")}
                                 </span>
                               </li>
-                            )}
-                            <li>
-                              <span className="key">Artist Fee</span>
-                              <span className="value">10%</span>
-                            </li>
-                            <li>
-                              <span className="key">Service Fee</span>
-                              <span className="value">10%</span>
-                            </li>
-                            <li className="final-set">
-                              <span className="key">Total Amount </span>
-                              <span className="value">
-                                {currencyFormat(erc721Sale.buyAmount, "USD")}
-                              </span>
-                            </li>
-                          </ul>
+                            </ul>
+                          </div>
+                        </div>
+                        <div className="bottom-area">
                           <div className="confirm-content-msg">
                             Are you sure want to Continue ?
                           </div>
-                        </div>
-
-                        <div className="bottom-area">
                           <div className="bottom-content-pop">
                             <div
                               className="back-button"
@@ -758,24 +770,37 @@ const NFTPutOnSale = ({
                         >
                           <div className="progress-complete"></div>
                         </div>
-
-                        <div className="error-float-container">
-                          {/* <ErrorText type="ending-time" /> */}
-                        </div>
-                        <div className="pop-nft-info">
-                          <div className="pop-nft-media">
-                            {(() => {
-                              if (nft?.asset_type?.includes("image")) {
-                                return (
-                                  <img
-                                    alt="media logo"
-                                    className="type_image typeimg_audio"
-                                    src={nft.asset_url ? nft.asset_url : sample}
-                                  />
-                                );
-                              } else if (nft?.asset_type?.includes("audio")) {
-                                return (
-                                  <>
+                        <div className="pop-bid-bodyContent">
+                          <div className="error-float-container">
+                            {/* <ErrorText type="ending-time" /> */}
+                          </div>
+                          <div className="pop-nft-info">
+                            <div className="pop-nft-media">
+                              {(() => {
+                                if (nft?.asset_type?.includes("image")) {
+                                  return (
+                                    <img
+                                      alt="media logo"
+                                      className="type_image typeimg_audio"
+                                      src={
+                                        nft.asset_url ? nft.asset_url : sample
+                                      }
+                                    />
+                                  );
+                                } else if (nft?.asset_type?.includes("audio")) {
+                                  return (
+                                    <>
+                                      <img
+                                        alt="media logo"
+                                        className="type_image typeimg_audio"
+                                        src={
+                                          nft.cover_url ? nft.cover_url : sample
+                                        }
+                                      />
+                                    </>
+                                  );
+                                } else if (nft?.asset_type?.includes("video")) {
+                                  return (
                                     <img
                                       alt="media logo"
                                       className="type_image typeimg_audio"
@@ -783,79 +808,78 @@ const NFTPutOnSale = ({
                                         nft.cover_url ? nft.cover_url : sample
                                       }
                                     />
-                                  </>
-                                );
-                              } else if (nft?.asset_type?.includes("video")) {
-                                return (
-                                  <img
-                                    alt="media logo"
-                                    className="type_image typeimg_audio"
-                                    src={nft.cover_url ? nft.cover_url : sample}
-                                  />
-                                );
-                              } else {
-                                return (
-                                  <img
-                                    alt="media logo"
-                                    className="type_image typeimg_audio"
-                                    src={nft.asset_url ? nft.asset_url : sample}
-                                  />
-                                );
-                              }
-                            })()}
-                          </div>
-                          <div className="pop-nft-content">
-                            <div className="pop-author-name text-center mt-3">
-                              Amitabh Bachchan
+                                  );
+                                } else {
+                                  return (
+                                    <img
+                                      alt="media logo"
+                                      className="type_image typeimg_audio"
+                                      src={
+                                        nft.asset_url ? nft.asset_url : sample
+                                      }
+                                    />
+                                  );
+                                }
+                              })()}
                             </div>
-                            <div className="pop-nft-title text-center mb-1">
-                              {nft?.name}
-                            </div>
-                            {/* <div className="erc-type">
+                            <div className="pop-nft-content">
+                              <div className="pop-author-name text-center mt-3">
+                                Amitabh Bachchan
+                              </div>
+                              <div className="pop-nft-title text-center mb-1">
+                                {nft?.name}
+                              </div>
+                              {/* <div className="erc-type">
                               1 of 1 <span>left</span>
                             </div> */}
+                            </div>
+                          </div>
+
+                          <div className="confirm-content-block">
+                            <ul className="confirm-content-list">
+                              <li>
+                                <span className="key">Selected Editions</span>
+                                <span className="value">{`${
+                                  erc1155Sale.buyQuantity
+                                } / ${_.get(
+                                  nft,
+                                  "owner_details.total_quantity",
+                                  0
+                                )}`}</span>
+                              </li>
+                              <li>
+                                <span className="key">Buy amount</span>
+                                <span className="value">
+                                  {currencyFormat(
+                                    erc1155Sale.totalAmount,
+                                    "USD"
+                                  )}
+                                </span>
+                              </li>
+                              <li>
+                                <span className="key">Artist Fee</span>
+                                <span className="value">{nft.royalties}%</span>
+                              </li>
+                              <li>
+                                <span className="key">Service Fee</span>
+                                <span className="value">10%</span>
+                              </li>
+                              <li className="final-set">
+                                <span className="key">Total Amount </span>
+                                <span className="value">
+                                  {currencyFormat(
+                                    erc1155Sale.totalAmount,
+                                    "USD"
+                                  )}
+                                </span>
+                              </li>
+                            </ul>
                           </div>
                         </div>
-
-                        <div className="confirm-content-block">
-                          <ul className="confirm-content-list">
-                            <li>
-                              <span className="key">Selected Editions</span>
-                              <span className="value">{`${
-                                erc1155Sale.buyQuantity
-                              } / ${_.get(
-                                nft,
-                                "owner_details.total_quantity",
-                                0
-                              )}`}</span>
-                            </li>
-                            <li>
-                              <span className="key">Buy amount</span>
-                              <span className="value">
-                                {currencyFormat(erc1155Sale.totalAmount, "USD")}
-                              </span>
-                            </li>
-                            <li>
-                              <span className="key">Artist Fee</span>
-                              <span className="value">{nft.royalties}%</span>
-                            </li>
-                            <li>
-                              <span className="key">Service Fee</span>
-                              <span className="value">10%</span>
-                            </li>
-                            <li className="final-set">
-                              <span className="key">Total Amount </span>
-                              <span className="value">
-                                {currencyFormat(erc1155Sale.totalAmount, "USD")}
-                              </span>
-                            </li>
-                          </ul>
+                        <div className="bottom-area">
                           <div className="confirm-content-msg">
                             Are you sure want to Continue ?
                           </div>
-                        </div>
-
-                        <div className="bottom-area">
                           <div className="bottom-content-pop">
                             <div
                               className="back-button"

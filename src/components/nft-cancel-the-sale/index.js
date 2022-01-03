@@ -107,15 +107,18 @@ const NFTCancelTheSale = ({
                   </div> */}
                   <div className="bottom-area">
                     <div className="bottom-content-pop">
-                      <div className="back-button" onClick={handleCancel}>
-                        Yes
+                      <div
+                        className={`back-button`} //process -> proccessing
+                        onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
+                      >
+                        No
                       </div>
                       <div className="place-bid-button">
                         <button
                           className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop `} //process -> proccessing
-                          onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
+                          onClick={handleCancel}
                         >
-                          No
+                          Yes
                         </button>
                       </div>
                     </div>

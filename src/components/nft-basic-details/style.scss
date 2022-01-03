@@ -87,9 +87,21 @@
     border: none;
   }
 
-  &:hover {
+  &:hover,
+  &:focus,
+  &:active {
     background-color: #ffffff;
     color: #000000;
+  }
+  &.filled-btn {
+    background-color: #ffffff;
+    color: #000000;
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: #000000;
+      color: #ffffff;
+    }
   }
 }
 

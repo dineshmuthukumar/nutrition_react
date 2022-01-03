@@ -15,12 +15,13 @@
         font-size: 2rem;
         font-family: $neue-helveticabold;
       }
-      .close-button-pop{
+      .close-button-pop {
         display: flex;
         justify-content: center;
         align-items: center;
         cursor: pointer;
-        svg,img {
+        svg,
+        img {
           height: 1.5rem;
           width: 1.5rem;
         }
@@ -287,7 +288,13 @@
 
     .sucess-title {
       text-align: center;
-      padding-top: 2.5rem;
+      text-align: center;
+      padding-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: calc(100vh - 13rem);
 
       .message {
         font-family: $neue-helveticamedium;
