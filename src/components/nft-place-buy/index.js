@@ -429,96 +429,99 @@ const NFTPlaceBuy = ({
                 </>
               ) : (
                 <>
-                  <div className="sucess-title">
+                  {/* <div className="sucess-title">
                     <FaCheckCircle color={"#23bf61"} size={60} />
                     <div className="message mt-3">
                       Your can view your NFT in My NFT page
                     </div>
-                  </div>
-
-                  <div className="pop-nft-media mt-4 preview">
-                    {(() => {
-                      if (nft?.asset_type?.includes("image")) {
-                        return (
-                          <img
-                            alt="media logo"
-                            className="type_image typeimg_audio"
-                            src={nft.asset_url ? nft.asset_url : sample}
-                          />
-                        );
-                      } else if (nft?.asset_type?.includes("audio")) {
-                        return (
-                          <>
+                  </div> */}
+                  <div className="success-preview">
+                    <div className="pop-nft-title text-center mb-1">
+                      Your can view your NFT in My NFT page
+                    </div>
+                    <div className="pop-nft-media mt-4 preview">
+                      {(() => {
+                        if (nft?.asset_type?.includes("image")) {
+                          return (
+                            <img
+                              alt="media logo"
+                              className="type_image typeimg_audio"
+                              src={nft.asset_url ? nft.asset_url : sample}
+                            />
+                          );
+                        } else if (nft?.asset_type?.includes("audio")) {
+                          return (
+                            <>
+                              <img
+                                alt="media logo"
+                                className="type_image typeimg_audio"
+                                src={nft.cover_url ? nft.cover_url : sample}
+                              />
+                            </>
+                          );
+                        } else if (nft?.asset_type?.includes("video")) {
+                          return (
                             <img
                               alt="media logo"
                               className="type_image typeimg_audio"
                               src={nft.cover_url ? nft.cover_url : sample}
                             />
-                          </>
-                        );
-                      } else if (nft?.asset_type?.includes("video")) {
-                        return (
-                          <img
-                            alt="media logo"
-                            className="type_image typeimg_audio"
-                            src={nft.cover_url ? nft.cover_url : sample}
-                          />
-                        );
-                      } else {
-                        return (
-                          <img
-                            alt="media logo"
-                            className="type_image typeimg_audio"
-                            src={nft.asset_url ? nft.asset_url : sample}
-                          />
-                        );
-                      }
-                    })()}
-                  </div>
-                  <div className="pop-author-name text-center mt-3">
-                    Amitabh Bachchan
-                  </div>
-                  <div className="pop-nft-title text-center mb-1">
-                    {nft?.name}
-                  </div>
+                          );
+                        } else {
+                          return (
+                            <img
+                              alt="media logo"
+                              className="type_image typeimg_audio"
+                              src={nft.asset_url ? nft.asset_url : sample}
+                            />
+                          );
+                        }
+                      })()}
+                    </div>
+                    <div className="pop-author-name text-center mt-3">
+                      Amitabh Bachchan
+                    </div>
+                    <div className="pop-nft-title text-center mb-1">
+                      {nft?.name}
+                    </div>
 
-                  <div className="success-summary-container mt-3">
-                    <div className="success-summary">
-                      <div>Price</div>
-                      <div className="bold">
-                        {/* {erc721
+                    <div className="success-summary-container mt-3">
+                      <div className="success-summary">
+                        <div>Price</div>
+                        <div className="bold">
+                          {/* {erc721
                           ? currencyFormat(successData.amount, "USD")
                           : currencyFormat(successData.total_amount, "USD")} */}
+                        </div>
                       </div>
-                    </div>
-                    {!erc721 && (
+                      {!erc721 && (
+                        <div className="success-summary">
+                          <div>Quantity</div>
+                          <div className="bold">{successData.quantity}</div>
+                        </div>
+                      )}
                       <div className="success-summary">
-                        <div>Quantity</div>
-                        <div className="bold">{successData.quantity}</div>
+                        <div>Purchased on</div>
+                        <div className="bold">
+                          {dayjs(successData.created_at).format(
+                            "MMM D, YYYY hh:mm A"
+                          )}
+                        </div>
                       </div>
-                    )}
-                    <div className="success-summary">
-                      <div>Purchased on</div>
-                      <div className="bold">
-                        {dayjs(successData.created_at).format(
-                          "MMM D, YYYY hh:mm A"
-                        )}
-                      </div>
-                    </div>
 
-                    {erc721 && (
+                      {erc721 && (
+                        <div className="success-summary">
+                          <div>Buy placed for</div>
+                          <div className="bold">1 Limited Edition</div>
+                        </div>
+                      )}
+
                       <div className="success-summary">
-                        <div>Buy placed for</div>
-                        <div className="bold">1 Limited Edition</div>
+                        <div>Transaction ID</div>
+                        <div className="bold">{successData.transaction_id}</div>
                       </div>
-                    )}
-
-                    <div className="success-summary">
-                      <div>Transaction ID</div>
-                      <div className="bold">{successData.transaction_id}</div>
                     </div>
                   </div>
-
                   <div className="bottom-area">
                     <div className="bottom-content-pop">
                       <div className="place-bid-button">

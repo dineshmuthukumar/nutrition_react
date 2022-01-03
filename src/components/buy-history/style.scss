@@ -144,28 +144,28 @@
         }
       }
     }
-    &.owner {
-      .bid-histroy-card {
-        &:hover,
-        &:focus,
-        &:active {
-          background-color: #000;
-          .first-half {
-            .bid-owner {
-              color: #fff;
-            }
-          }
-          .second-half {
-            .assign-btn {
-              display: flex;
-            }
-            .bid-value {
-              color: #fff;
-            }
-          }
-        }
-      }
-    }
+    // &.owner {
+    //   .bid-histroy-card {
+    //     &:hover,
+    //     &:focus,
+    //     &:active {
+    //       background-color: #000;
+    //       .first-half {
+    //         .bid-owner {
+    //           color: #fff;
+    //         }
+    //       }
+    //       .second-half {
+    //         .assign-btn {
+    //           display: flex;
+    //         }
+    //         .bid-value {
+    //           color: #fff;
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
   }
 
   .bid-empty-content {
