@@ -600,6 +600,18 @@ const NFTPutOnSale = ({
                         <div className="pop-bid-bodyContent">
                           <div className="error-float-container">
                             {/* <ErrorText type="ending-time" /> */}
+                            {/* <ErrorText
+                              handleClick={() =>
+                                setBuy({
+                                  ...buy,
+                                  isError: false,
+                                  progressError: "",
+                                })
+                              }
+                              type="error"
+                              title={buy.errorTitle}
+                              desc={buy.errorDescription}
+                            /> */}
                           </div>
                           <div className="pop-nft-info">
                             <div className="pop-nft-media">

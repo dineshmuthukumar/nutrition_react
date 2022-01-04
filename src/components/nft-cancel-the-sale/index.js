@@ -15,6 +15,7 @@ const NFTCancelTheSale = ({
   setCancelTheSalePop,
   nft,
   isOwner,
+  orderDetails,
 }) => {
   const history = useHistory();
   const { user } = useSelector((state) => state.user.data);
@@ -61,33 +62,38 @@ const NFTCancelTheSale = ({
           <>
             <div className="pop-nft-details">
               {!success ? (
-                <>
-                  <div className="pop-head-content">
-                    <div className="pop-bid-title">Cancel the sale</div>
+                !erc721 ? (
+                  <>{/* design */}</>
+                ) : (
+                  <>
+                    <div className="pop-head-content">
+                      <div className="pop-bid-title">Cancel the sale</div>
+                      <div
+                        className="close-button-pop"
+                        onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
+                      >
+                        <img
+                          alt="place bid logo"
+                          src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e"
+                        ></img>
+                      </div>
+                    </div>
+
+                    {/* error-progress -> error progress , loading -> progressing */}
                     <div
-                      className="close-button-pop"
-                      onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
+                      className={`pop-bid-progress ${success ? "error" : ""}`}
                     >
-                      <img
-                        alt="place bid logo"
-                        src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e"
-                      ></img>
+                      <div className="progress-complete"></div>
                     </div>
-                  </div>
 
-                  {/* error-progress -> error progress , loading -> progressing */}
-                  <div className={`pop-bid-progress ${success ? "error" : ""}`}>
-                    <div className="progress-complete"></div>
-                  </div>
-
-                  <div className="sucess-title">
-                    <FaTimesCircle color={"#f21e00"} size={60} />
-                    <div className="message mt-3">
-                      Are you sure want to cancel the sale
+                    <div className="sucess-title">
+                      <FaTimesCircle color={"#f21e00"} size={60} />
+                      <div className="message mt-3">
+                        Are you sure want to cancel the sale
+                      </div>
                     </div>
-                  </div>
 
-                  {/* <div className="pop-bid-bodyContent">
+                    {/* <div className="pop-bid-bodyContent">
                     <div className="error-float-container">
                       {error && (
                         <ErrorText
@@ -105,25 +111,26 @@ const NFTCancelTheSale = ({
                       )}
                     </div>
                   </div> */}
-                  <div className="bottom-area">
-                    <div className="bottom-content-pop">
-                      <div
-                        className={`back-button`} //process -> proccessing
-                        onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
-                      >
-                        No
-                      </div>
-                      <div className="place-bid-button">
-                        <button
-                          className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop `} //process -> proccessing
-                          onClick={handleCancel}
+                    <div className="bottom-area">
+                      <div className="bottom-content-pop">
+                        <div
+                          className={`back-button`} //process -> proccessing
+                          onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
                         >
-                          Yes
-                        </button>
+                          No
+                        </div>
+                        <div className="place-bid-button">
+                          <button
+                            className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop `} //process -> proccessing
+                            onClick={handleCancel}
+                          >
+                            Yes
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </>
+                  </>
+                )
               ) : (
                 <>
                   <div className="sucess-title">
