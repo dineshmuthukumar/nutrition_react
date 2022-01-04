@@ -6,8 +6,8 @@ import { FaTimesCircle } from "react-icons/fa";
 import BidValue from "../bid-value";
 
 import ErrorText from "./error-text";
-import { bidBuyError } from "../../utils/common";
-import { bidSaleCancelApi } from "../../api/methods";
+import { bidBuyError, validateQuantity } from "../../utils/common";
+import { bidSaleCancelApi, buySaleCancelApi } from "../../api/methods";
 
 import "./style.scss";
 
@@ -21,6 +21,7 @@ const NFTCancelTheSale = ({
   const history = useHistory();
   const { user } = useSelector((state) => state.user.data);
   const [success, setSuccess] = useState(false);
+  const [cancelQuantity, setCancelQuantity] = useState("");
   const erc721 = nft.nft_type === "erc721";
 
   const [error, setError] = useState({
@@ -29,7 +30,7 @@ const NFTCancelTheSale = ({
     errorDescription: "",
   });
 
-  const handleCancel = async () => {
+  const handleBidCancel = async () => {
     try {
       const result = await bidSaleCancelApi({
         order_slug: isOwner && nft.owner_details.orders[0].slug,
@@ -48,6 +49,43 @@ const NFTCancelTheSale = ({
           errorDescription: err.description,
         });
       }
+    }
+  };
+
+  const handleBuyCancel = async () => {
+    try {
+      const result = await buySaleCancelApi({
+        order_slug: orderDetails.slug,
+        order: { quantity: cancelQuantity },
+      });
+      if (result.data.success) {
+        setSuccess(true);
+      }
+    } catch (error) {
+      if (error.response.data.status === 422) {
+        const err = bidBuyError(error.response.data.fail_status);
+        setError({
+          ...error,
+          isError: true,
+          progressError: "error-progress",
+          errorTitle: err.title,
+          errorDescription: err.description,
+        });
+      }
+    }
+  };
+
+  const handleQuantityInputChange = (e) => {
+    if (e.target.value) {
+      if (
+        validateQuantity(e.target.value) &&
+        e.target.value <= orderDetails.available_quantity &&
+        e.target.value !== 0
+      ) {
+        setCancelQuantity(e.target.value);
+      }
+    } else {
+      setCancelQuantity(e.target.value);
     }
   };
 
@@ -90,10 +128,13 @@ const NFTCancelTheSale = ({
                             <input
                               type="text"
                               className="input-quantity"
-                              value={2}
+                              value={cancelQuantity}
                               placeholder="0 NFTs"
+                              onChange={handleQuantityInputChange}
                             />
-                            <span className="bid-currency">/{"4"}</span>
+                            <span className="bid-currency">
+                              /{orderDetails.available_quantity}
+                            </span>
                           </div>
                         </div>
                       </div>
@@ -114,6 +155,7 @@ const NFTCancelTheSale = ({
                         <div className="place-bid-button">
                           <button
                             className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop`} //process -> proccessing
+                            onClick={handleBuyCancel}
                           >
                             Confirm
                           </button>
@@ -179,7 +221,7 @@ const NFTCancelTheSale = ({
                         <div className="place-bid-button">
                           <button
                             className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop `} //process -> proccessing
-                            onClick={handleCancel}
+                            onClick={handleBidCancel}
                           >
                             Yes
                           </button>

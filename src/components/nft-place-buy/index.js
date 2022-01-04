@@ -240,7 +240,7 @@ const NFTPlaceBuy = ({
               {!success ? (
                 <>
                   <div className="pop-head-content">
-                    <div className="pop-bid-title">Buy the NFT</div>
+                    <div className="pop-bid-title">Purchase Your NFT</div>
                     <div
                       className="close-button-pop"
                       onClick={() => setPlaceBuyPop(!placeBuyPop)}
@@ -335,7 +335,7 @@ const NFTPlaceBuy = ({
                       <div className={`input-field-bid`}>
                         <label className="input-bid-text">
                           {erc721
-                            ? `Buy Amount`
+                            ? `Cost Of NFT`
                             : `Enter Quantity Max (${orderDetails.available_quantity})`}
                         </label>
 

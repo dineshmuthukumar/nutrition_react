@@ -626,7 +626,7 @@ const NFTBaseDetails = ({
                   disabled={true}
                   className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
                 >
-                  Sold
+                  Yet To Be Listed!
                 </button>
               );
             }
@@ -645,7 +645,7 @@ const NFTBaseDetails = ({
           <Modal.Title className="flex-fill">
             <div className="modal-bid-history-title-content">
               <div className="modal-bid-history-title">
-                Select order to cancel the sale
+                Select Sale-Order for Cancelation
               </div>
               <div className="modal-bid-history-filter">
                 <BiX

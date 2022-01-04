@@ -373,7 +373,7 @@ const NFTPutOnSale = ({
                             <>
                               <div className={`input-field-bid`}>
                                 <label className="input-bid-text">
-                                  Set buy amount per edition
+                                  Set Sale Cost (Per edition)
                                 </label>
                                 <div className="input-bid-wrap">
                                   <span className="bid-currency">$</span>
@@ -388,7 +388,7 @@ const NFTPutOnSale = ({
                               </div>
                               <div className="input-field-bid">
                                 <label className="input-bid-text">
-                                  Set the Edition
+                                  Set NFT Count for Sale
                                 </label>
                                 <div className="input-quantity-container bid-input">
                                   <input
@@ -416,7 +416,7 @@ const NFTPutOnSale = ({
                                 }`}
                               >
                                 <label className="input-bid-text">
-                                  Set buy amount
+                                  Set Price
                                 </label>
                                 <div className="input-bid-wrap">
                                   <span className="bid-currency">$</span>
@@ -436,7 +436,7 @@ const NFTPutOnSale = ({
                                 }`}
                               >
                                 <label className="input-bid-text">
-                                  Bid amount greater than{" "}
+                                  Min. Bid Amount -
                                   {currencyFormat(nft.floor_price, "USD")}
                                 </label>
                                 <div className="input-bid-wrap">
@@ -451,7 +451,8 @@ const NFTPutOnSale = ({
                                   />
                                 </div>
                                 <span className={`quantity-to-value`}>
-                                  Bid expires in 7days, If not acknowledged
+                                  Bids will expire In 7 days if you do not
+                                  acknowledge/accept it.
                                 </span>
                               </div>
                             </>
@@ -751,6 +752,17 @@ const NFTPutOnSale = ({
                                   </span>
                                 </li>
                               )}
+                              {!erc721Sale.isBuy && erc721Sale.isBid && (
+                                <li className="final-set">
+                                  <span className="key">
+                                    Your final amount will be calculated after
+                                    deducting {parseFloat(nft.royalties)}%
+                                    artist fees and{" "}
+                                    {parseFloat(nft.service_fee)}% service fees
+                                    based on your final accepted bid amount.
+                                  </span>
+                                </li>
+                              )}
                             </ul>
                           </div>
                         </div>
@@ -945,7 +957,8 @@ const NFTPutOnSale = ({
                       <div className="sucess-title">
                         <FaCheckCircle color={"#23bf61"} size={60} />
                         <div className="message mt-3">
-                          Your NFT sale has been successfully placed.
+                          Your NFT has been successfully listed for
+                          {erc721 ? "auction/sale" : "sale"}.
                         </div>
                       </div>
 
