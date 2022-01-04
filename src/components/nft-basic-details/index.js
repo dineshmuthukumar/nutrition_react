@@ -116,9 +116,53 @@ const NFTBaseDetails = ({
 
       <div className="bottom-content">
         {acceptBidConfirm ? (
-          <>{/* design */}</>
+          <>
+            <div className={`assign-card`}>
+              <div className="first-half">
+                <img alt="" src={postImages} />
+                <div className="bid-histoy-details">
+                  <div className="time text-secondary">
+                    Sep 20, 2021 11:15pm
+                  </div>
+                  <div className="bid-owner">Bid placed by @sirdonski</div>
+                </div>
+              </div>
+              <div className="second-half">
+                <div className="highest-bid">
+                  <span className="key">Highest Bid Price</span>
+                  <span className="value">$ 2.110k</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="d-flex">
+              <BidValue title="Artist fee" value={"10 %"} />
+
+              <BidValue title="Service fee" value={"10 %"} />
+            </div>
+            <hr className="custom-divider" />
+            <div className="d-flex">
+              <BidValue title="You will Get" value={"$ 1980.99"} />
+            </div>
+            <hr className="custom-divider" />
+          </>
         ) : acceptBidSucess ? (
-          <>{/* design */}</>
+          <>
+            <div className={`assign-card`}>
+              <div className="first-half">
+                <img alt="" src={postImages} />
+                <div className="bid-histoy-details">
+                  <div className="time text-secondary">
+                    Sep 20, 2021 11:15pm
+                  </div>
+                  <div className="bid-owner">Assigned to @sirdonski</div>
+                </div>
+              </div>
+            </div>
+            <div className="assign-sold">
+              <h4>Collectible Sold</h4>
+            </div>
+          </>
         ) : (
           <>
             <div className="d-flex">
@@ -383,7 +427,10 @@ const NFTBaseDetails = ({
                     <button
                       disabled={false}
                       className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn"
-                      // onClick={() => setAcceptBidConfirm(!acceptBidConfirm)}
+                      onClick={() => {
+                        setAcceptBidConfirm(!acceptBidConfirm);
+                        setAcceptBidSucess(!acceptBidSucess);
+                      }}
                     >
                       Confirm
                     </button>

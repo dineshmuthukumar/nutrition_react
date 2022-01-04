@@ -244,3 +244,91 @@
   padding: 0.5rem;
   max-height: 70vh;
 }
+
+.assign-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background: #fff;
+  margin: 0 0 2rem;
+
+  .first-half {
+    display: flex;
+    align-items: center;
+    width: calc(100% - 10rem);
+
+    img {
+      height: 3rem;
+      width: 3rem;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-right: 1rem;
+      background-color: #ccc;
+    }
+
+    .time {
+      font-size: 1rem;
+      font-family: $neue-helveticamedium;
+      .expire-pill {
+        padding: 0.3rem 0.5rem;
+        background-color: #bdbdbc;
+        color: #fff;
+        border-radius: 0.3rem;
+        margin-left: 0.5rem;
+        font-size: 0.8rem;
+        white-space: nowrap;
+        @media screen and (max-width: 767px) {
+          margin-left: 0;
+        }
+        &.active {
+          background-color: #4caf50;
+        }
+      }
+      @media screen and (max-width: 767px) {
+        display: flex;
+        flex-direction: column-reverse;
+      }
+    }
+
+    .bid-owner {
+      font-size: 1.1rem;
+      font-family: $neue-helveticamedium;
+
+      .owner-id {
+        cursor: pointer;
+
+        &:hover {
+          color: #000 !important;
+        }
+      }
+    }
+  }
+  .second-half {
+    .highest-bid {
+      border: 2px solid #000;
+      padding: 0.5rem 0.8rem;
+      display: flex;
+      flex-direction: column;
+      border-radius: 0.5rem;
+      flex-direction: column;
+      .key {
+        font-size: 0.8rem;
+        font-family: $neue-helveticamedium;
+        margin-bottom: 0.2rem;
+      }
+      .value {
+        font-size: 2rem;
+        font-family: $neue-helveticamedium;
+        line-height: 2rem;
+      }
+    }
+  }
+}
+
+.assign-sold {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 30vh;
+}
