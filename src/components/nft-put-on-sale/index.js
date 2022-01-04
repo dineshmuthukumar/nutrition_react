@@ -20,7 +20,6 @@ import {
 import { nftBidApi, nftBuyApi, putOnSaleApi } from "../../api/methods";
 import HelpLine from "../help-line";
 import "./style.scss";
-import toaster from "../../utils/toaster";
 
 const NFTPutOnSale = ({
   putOnSalePop = false,
@@ -173,8 +172,9 @@ const NFTPutOnSale = ({
       }
     } catch (error) {
       if (error.response.data.status === 422) {
-        const err = bidBuyError(error.response.data.fail_status);
-        toaster(error.response.data.status, err.description);
+        // const err = bidBuyError(error.response.data.fail_status);
+        // toaster(error.response.data.status, err.description);
+        toast.error(error.response.data.message);
       }
       setConfirmState({
         ...confirmState,

@@ -121,7 +121,7 @@ const BidHistory = ({
                 </div>
               </div>
 
-              <div className="empty-bottom-content">
+              {/* <div className="empty-bottom-content">
                 <img src={amitabh} alt="" />
                 <div className="nft-owner-history-details">
                   <div className="publish-time text-secondary">
@@ -133,7 +133,7 @@ const BidHistory = ({
                     Bid listed by @beyondlife.club
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           )}
         </div>

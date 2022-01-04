@@ -44,7 +44,12 @@ const NFTCard = ({ nft, image }) => {
                   if (nft?.is_on_sale) {
                     if (erc721) {
                       return nft?.order_details?.is_bid
-                        ? currencyFormat(nft?.order_details?.top_bid, "USD")
+                        ? currencyFormat(
+                            nft?.order_details?.top_bid
+                              ? nft?.order_details?.top_bid
+                              : nft?.order_details?.minimum_bid,
+                            "USD"
+                          )
                         : currencyFormat(nft?.order_details?.buy_amount, "USD");
                     } else {
                       return currencyFormat(

@@ -32,7 +32,7 @@ const CancelNft = ({ nft, order, image, modalShow, setModalShow }) => {
           setModalShow(!modalShow);
         }}
       >
-        Proceed
+        Cancel
       </button>
     </article>
   );

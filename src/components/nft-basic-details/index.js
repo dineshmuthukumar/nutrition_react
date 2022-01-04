@@ -523,11 +523,13 @@ const NFTBaseDetails = ({
         </div>
       </div>
 
-      <Modal size="md" centered show={modalShow} className="history-modal">
+      <Modal size="lg" centered show={modalShow} className="history-modal">
         <Modal.Header className="bg-dark p-0">
           <Modal.Title className="flex-fill">
             <div className="modal-bid-history-title-content">
-              <div className="modal-bid-history-title">Cancel the sale</div>
+              <div className="modal-bid-history-title">
+                Select order to cancel the sale
+              </div>
               <div className="modal-bid-history-filter">
                 <BiX
                   role="button"

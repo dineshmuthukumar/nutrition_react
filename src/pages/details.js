@@ -124,7 +124,6 @@ const Details = () => {
       }
     });
     bidDetail(orderSlug, (data) => {
-      console.log(data);
       setTotalBid(data.total_bids);
       setBidChange(data.bid_change);
       setPrice(data.minimum_bid);
@@ -308,19 +307,22 @@ const Details = () => {
               </div>
             </div>
           </div>
-          {/* <div className="row mt-5">
-            <div className="col-12" ref={inputRef}>
-              <NFTSummary
-                nft={nft}
-                totalBid={totalBid}
-                bidChange={bidChange}
-                totalBuy={totalBuy}
-                price={price}
-                totalViews={totalViews}
-                totalFavourites={totalFavourites}
-              />
+          {orderSlug && (
+            <div className="row mt-5">
+              <div className="col-12" ref={inputRef}>
+                <NFTSummary
+                  nft={nft}
+                  totalBid={totalBid}
+                  bidChange={bidChange}
+                  totalBuy={totalBuy}
+                  price={price}
+                  totalViews={totalViews}
+                  totalFavourites={totalFavourites}
+                />
+              </div>
             </div>
-          </div> */}
+          )}
+
           <NFTSectionTitle title="NFT Details" />
           <div className="row mt-5">
             <div className="col-12 col-lg-6 order-lg-2 mb-4">

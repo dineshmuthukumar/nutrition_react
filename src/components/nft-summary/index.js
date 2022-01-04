@@ -1,4 +1,5 @@
 import React from "react";
+import _ from "lodash";
 import { abbreviateNumber, currencyFormat, percDiff } from "../../utils/common";
 import Badge from "./badge";
 import "./style.scss";
@@ -14,6 +15,7 @@ const NFTSummary = ({
   totalFavourites,
 }) => {
   const erc721 = nft.nft_type === "erc721";
+  const orderDetails = _.get(nft, "order_details", {});
   return (
     <div className="bg-white shadow-sm nft-summary">
       <div className="row">
@@ -32,14 +34,19 @@ const NFTSummary = ({
                     return `$${abbreviateNumber(price)}`;
                   } else if (price && price < 1000) {
                     return currencyFormat(price, "USD");
-                  } else if (nft.minimum_bid && nft.minimum_bid >= 1000) {
-                    return `$${abbreviateNumber(nft.minimum_bid)}`;
+                  } else if (
+                    orderDetails.minimum_bid &&
+                    orderDetails.minimum_bid >= 1000
+                  ) {
+                    return `$${abbreviateNumber(orderDetails.minimum_bid)}`;
                   } else {
-                    return currencyFormat(nft.minimum_bid, "USD");
+                    return currencyFormat(orderDetails.minimum_bid, "USD");
                   }
                 })()}
                 // diff="+2000"
-                diff={bidChange ? bidChange : nft.bid_change.toFixed(2)}
+                diff={
+                  bidChange ? bidChange : orderDetails.bid_change.toFixed(2)
+                }
                 tooltip="Price increased from last bid"
               />
             ) : (
@@ -48,7 +55,8 @@ const NFTSummary = ({
                 value={
                   price
                     ? currencyFormat(price, "USD")
-                    : nft.buy_amount && currencyFormat(nft.buy_amount, "USD")
+                    : orderDetails.buy_amount &&
+                      currencyFormat(orderDetails.buy_amount, "USD")
                 }
                 // diff="-2000"
                 tooltip="Buy price"
@@ -60,18 +68,21 @@ const NFTSummary = ({
               <Badge
                 title="Base Price"
                 value={(() => {
-                  if (nft.starting_bid >= 1000) {
-                    return `$${abbreviateNumber(nft.starting_bid)}`;
+                  if (orderDetails.starting_bid >= 1000) {
+                    return `$${abbreviateNumber(orderDetails.starting_bid)}`;
                   } else {
-                    return currencyFormat(nft.starting_bid, "USD");
+                    return currencyFormat(orderDetails.starting_bid, "USD");
                   }
                 })()}
                 // diff="+2000"
-                // diff={bidChange ? bidChange : nft.bid_change}
+                // diff={bidChange ? bidChange : orderDetails.bid_change}
                 diff={
                   price
-                    ? percDiff(nft.starting_bid, price)
-                    : percDiff(nft.starting_bid, nft.minimum_bid)
+                    ? percDiff(orderDetails.starting_bid, price)
+                    : percDiff(
+                        orderDetails.starting_bid,
+                        orderDetails.minimum_bid
+                      )
                 }
                 tooltip="Base Price"
               />
@@ -81,19 +92,19 @@ const NFTSummary = ({
             {erc721 ? (
               <Badge
                 title="Bids"
-                value={totalBid ? totalBid : nft.total_bids}
+                value={totalBid ? totalBid : orderDetails.total_bids}
               />
             ) : (
               <Badge
                 title="Buys"
-                value={totalBuy ? totalBuy : nft.total_buys}
+                value={totalBuy ? totalBuy : orderDetails.total_buys}
               />
             )}
           </div>
           <div className="p-4 point-list">
             <Badge
               title="Views"
-              value={totalViews ? totalViews : nft.page_views}
+              value={totalViews ? totalViews : orderDetails.page_views}
             />
           </div>
           <div className="p-4 point-list">
