@@ -1,10 +1,12 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
-import "./style.scss";
 import { currencyFormat } from "../../utils/common";
+import cardImage from "../../images/drops/nft_2.png";
 
-const NFTCard = ({ nft, image }) => {
+import "./style.scss";
+
+const NFTCard = ({ nft }) => {
   const erc721 = nft?.nft_type === "erc721";
   const history = useHistory();
 
@@ -16,63 +18,63 @@ const NFTCard = ({ nft, image }) => {
     }
   };
   return (
-    <>
-      <article className="nft-card">
-        <figure>
-          <img
-            src={(() => {
-              if (nft?.asset_type?.includes("image")) {
-                return nft.asset_url ? nft.asset_url : image;
-              } else {
-                return nft?.cover_url ? nft?.cover_url : image;
-              }
-            })()}
-            alt="cardImage"
-            role="button"
-            onClick={handleClick}
-          />
-          <FaHeart className="heart-icon" />
-        </figure>
-        <div className="nft-content">
-          <h3>{nft?.name}</h3>
-          <h4>Featured NFT</h4>
-          <div className="nft-priceType">
-            <h5 className="nft-price">
-              <span className="key">{erc721 ? "Bid Price" : "Price"}</span>
-              <span className="value">
-                {(() => {
-                  if (nft?.is_on_sale) {
-                    if (erc721) {
-                      return nft?.order_details?.is_bid
-                        ? currencyFormat(
-                            nft?.order_details?.top_bid
-                              ? nft?.order_details?.top_bid
-                              : nft?.order_details?.minimum_bid,
-                            "USD"
-                          )
-                        : currencyFormat(nft?.order_details?.buy_amount, "USD");
-                    } else {
-                      return currencyFormat(
-                        nft?.order_details?.buy_amount,
-                        "USD"
-                      );
-                    }
+    <div className="more-card" role="button" onClick={handleClick}>
+      <span className="nft-like-btn">
+        <FaHeart size={30} color="#ccc" />
+      </span>
+      <span className="nft-type-badge">{nft.nft_type.toUpperCase()}</span>
+      <img
+        alt="media logo"
+        src={(() => {
+          if (nft?.asset_type?.includes("image")) {
+            return nft.asset_url ? nft.asset_url : cardImage;
+          } else {
+            return nft.cover_url ? nft.cover_url : cardImage;
+          }
+        })()}
+        role="button"
+        onClick={() => {
+          window.open(`/details/${nft.slug}`, "_self");
+        }}
+      />
+
+      <div className="top-content-title">
+        <div>
+          <div className="more-nft-title">{nft?.name}</div>
+          <div className="more-nft-desc">Featured NFT</div>
+        </div>
+        <div className="more-bid-details">
+          <div className="text-end">
+            <div className="mb-title text-secondary">
+              {erc721 ? "Bid Price" : "Price"}
+            </div>
+            <div className="mb-value">
+              {(() => {
+                if (nft?.is_on_sale) {
+                  if (erc721) {
+                    return nft?.order_details?.is_bid
+                      ? currencyFormat(
+                          nft?.order_details?.top_bid
+                            ? nft?.order_details?.top_bid
+                            : nft?.order_details?.minimum_bid,
+                          "USD"
+                        )
+                      : currencyFormat(nft?.order_details?.buy_amount, "USD");
                   } else {
-                    return "Not For Sale";
+                    return currencyFormat(
+                      nft?.order_details?.buy_amount,
+                      "USD"
+                    );
                   }
-                })()}
-              </span>
-            </h5>
-            <h5 className="nft-type">
-              <span className="key">NFT Type</span>
-              <span className="value">
-                {nft?.nft_type === "erc721" ? "ERC 721" : "ERC 1155"}
-              </span>
-            </h5>
+                } else {
+                  return "Not For Sale";
+                }
+              })()}
+            </div>
           </div>
         </div>
-      </article>
-    </>
+      </div>
+    </div>
   );
 };
 

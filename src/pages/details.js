@@ -114,6 +114,7 @@ const Details = () => {
     document.documentElement.scrollTop = 0;
 
     buyDetail(orderSlug, (data) => {
+      console.log(data);
       setAvailableQty(data.quantity);
       setTotalBuy(data.total_buys);
       if (data.history) {
@@ -213,7 +214,7 @@ const Details = () => {
         setBidHistory(history.data.data.histories);
         setTotalCount(history.data.data.total_count);
       } else {
-        if (NFT.quantity === 0) {
+        if (NFT?.order_details?.available_quantity === 0) {
           setSoldOut(true);
         }
         // let history = await nftBuyHistory({ nft_slug: slug, page: 1 });
