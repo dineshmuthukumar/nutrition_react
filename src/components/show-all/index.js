@@ -51,7 +51,7 @@ const ShowAll = () => {
                 <div className="row">
                   {list.length > 0
                     ? list.map((nft, i) => (
-                        <div className="col-xl-3 col-lg-3 col-sm-6">
+                        <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                           <NFTCard nft={nft} key={i} image={cardImage} />
                         </div>
                       ))
