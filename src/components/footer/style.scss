@@ -243,6 +243,9 @@ span.main_title {
     padding: 0.3rem 0.8rem 0.3rem;
     font-size: 0.9rem;
   }
+  @media screen and (max-width: 320px) {
+    font-size: 0.8rem;
+  }
 }
 .app-showcase {
   background: #222;
