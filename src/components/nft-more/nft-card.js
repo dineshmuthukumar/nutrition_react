@@ -44,7 +44,7 @@ const CollectionCard = ({ nft }) => {
           <div className="more-nft-desc">Featured NFT</div>
         </div>
         <div className="more-bid-details">
-          <div>
+          <div className="text-end">
             <div className="mb-title text-secondary">
               {erc721 ? "Bid Price" : "Price"}
             </div>

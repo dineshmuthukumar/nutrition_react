@@ -44,17 +44,7 @@ const TopSellers = () => {
         <div className="container-fluid">
           <div className="row">
             <div className="col-sm-12">
-              <h1 className="sec-heading">
-                Top Sellers
-                <div className="carousel-btn-box">
-                  <a className="carousel-btn">
-                    <VscChevronLeft />
-                  </a>
-                  <a className="carousel-btn">
-                    <VscChevronRight />
-                  </a>
-                </div>
-              </h1>
+              <h1 className="sec-heading">Top Sellers</h1>
               <div className="row">
                 {list.length > 0
                   ? list.map((seller, i) => (
