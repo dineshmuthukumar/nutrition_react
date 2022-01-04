@@ -366,7 +366,7 @@ const NFTPlaceBuy = ({
                     <div className={`input-bid-container mt-5`}>
                       <div className="input-field-bid">
                         <div className="services-fee-box">
-                          <label className="input-bid-text">Services Fee</label>
+                          <label className="input-bid-text">Service Fee</label>
                           <h1>{parseFloat(nft.service_fee)}%</h1>
                         </div>
                       </div>
