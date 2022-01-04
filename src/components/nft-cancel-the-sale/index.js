@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Offcanvas } from "react-bootstrap";
 import { FaTimesCircle } from "react-icons/fa";
+import BidValue from "../bid-value";
 
 import ErrorText from "./error-text";
 import { bidBuyError } from "../../utils/common";
@@ -63,7 +64,63 @@ const NFTCancelTheSale = ({
             <div className="pop-nft-details">
               {!success ? (
                 !erc721 ? (
-                  <>{/* design */}</>
+                  <>
+                    <div className="pop-head-content">
+                      <div className="pop-bid-title">Cancel the sale</div>
+                      <div
+                        className="close-button-pop"
+                        onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
+                      >
+                        <img
+                          alt="place bid logo"
+                          src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e"
+                        ></img>
+                      </div>
+                    </div>
+                    <div class="pop-bid-progress ">
+                      <div class="progress-complete"></div>
+                    </div>
+                    <div className="pop-bid-bodyContent px-4">
+                      <div className={`input-bid-container mt-5 mb-5`}>
+                        <div className="input-field-bid px-0">
+                          <label className="input-bid-text">
+                            Set the Edition
+                          </label>
+                          <div className="input-quantity-container bid-input">
+                            <input
+                              type="text"
+                              className="input-quantity"
+                              value={2}
+                              placeholder="0 NFTs"
+                            />
+                            <span className="bid-currency">/{"4"}</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* <div className="d-flex">
+                        <BidValue title="Artist fee" value={"10 %"} />
+                        <BidValue title="Service fee" value={"10 %"} />
+                      </div>
+                      <hr className="custom-divider" /> */}
+                    </div>
+                    <div className="bottom-area">
+                      <h5 className="text-center">
+                        Are you sure want to cancel the sale?
+                      </h5>
+
+                      <div className="bottom-content-pop">
+                        <div className="back-button">Cancel</div>
+                        <div className="place-bid-button">
+                          <button
+                            className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop`} //process -> proccessing
+                          >
+                            Confirm
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </>
                 ) : (
                   <>
                     <div className="pop-head-content">

@@ -252,11 +252,19 @@
   padding: 1rem 1.5rem;
   background: #fff;
   margin: 0 0 2rem;
+  @media screen and (max-width: 425px) {
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+  }
 
   .first-half {
     display: flex;
     align-items: center;
     width: calc(100% - 10rem);
+    @media screen and (max-width: 425px) {
+      width: calc(100%);
+    }
 
     img {
       height: 3rem;
@@ -305,13 +313,22 @@
     }
   }
   .second-half {
+    @media screen and (max-width: 425px) {
+      width: calc(100%);
+    }
     .highest-bid {
       border: 2px solid #000;
-      padding: 0.5rem 0.8rem;
+      padding: 1rem 0.8rem;
       display: flex;
       flex-direction: column;
       border-radius: 0.5rem;
-      flex-direction: column;
+      margin: 1rem 0;
+      @media screen and (max-width: 425px) {
+        width: calc(100%);
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
       .key {
         font-size: 0.8rem;
         font-family: $neue-helveticamedium;
