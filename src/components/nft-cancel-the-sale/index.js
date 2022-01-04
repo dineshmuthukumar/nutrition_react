@@ -123,7 +123,7 @@ const NFTCancelTheSale = ({
                       <div className={`input-bid-container mt-5 mb-5`}>
                         <div className="input-field-bid px-0">
                           <label className="input-bid-text">
-                            Set the Edition
+                            No of units to cancel sale
                           </label>
                           <div className="input-quantity-container bid-input">
                             <input

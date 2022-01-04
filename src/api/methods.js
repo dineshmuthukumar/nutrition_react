@@ -78,3 +78,9 @@ export const buySaleCancelApi = ({ order_slug, order }) =>
 
 export const acceptBidApi = ({ order_slug, order }) =>
   appAxios.post(`/orders/${order_slug}/accept_bid`, { order });
+
+export const sellerFavedNFTSApi = ({ slug, page }) =>
+  appAxios.get(`/users/${slug}/faved?page=${page}`);
+
+export const sellerOwnedNFTsApi = ({ slug, page }) =>
+  appAxios.get(`/users/${slug}/owned?page=${page}`);
