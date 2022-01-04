@@ -76,7 +76,7 @@ const BidCard = ({
                 setAcceptBidDetail(history);
               }}
             >
-              Assign
+              Accept Bid
             </button>
             <div className="bid-value">
               {currencyFormat(history.bid_amount, "USD")}

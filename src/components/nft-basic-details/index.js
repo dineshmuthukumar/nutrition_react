@@ -195,34 +195,6 @@ const NFTBaseDetails = ({
             </div>
             <hr className="custom-divider" />
           </>
-        ) : acceptBidSucess || isOrderSuccess ? (
-          <>
-            <div className={`assign-card`}>
-              <div className="first-half">
-                <img
-                  alt=""
-                  src={
-                    !latestBid.private && latestBid.avatar_url
-                      ? latestBid.avatar_url
-                      : user?.slug === latestBid.slug
-                      ? latestBid.avatar_url
-                      : userImg
-                  }
-                />
-                <div className="bid-histoy-details">
-                  <div className="time text-secondary">
-                    {dayjs(latestBid.created_at).format("MMM D, YYYY hh:mm A")}
-                  </div>
-                  <div className="bid-owner">
-                    Assigned to {latestBid.user_name}
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="assign-sold">
-              <h4>Collectible Sold</h4>
-            </div>
-          </>
         ) : (
           <>
             <div className="d-flex">
@@ -521,7 +493,7 @@ const NFTBaseDetails = ({
                       className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn"
                       onClick={() => setAcceptBidConfirm(!acceptBidConfirm)}
                     >
-                      Assign
+                      Accept Bid
                     </button>
                   </>
                 );
