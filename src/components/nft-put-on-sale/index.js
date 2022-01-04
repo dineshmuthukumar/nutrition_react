@@ -728,13 +728,13 @@ const NFTPutOnSale = ({
                               <li>
                                 <span className="key">Artist Fee</span>
                                 <span className="value">
-                                  {parseFloat(nft.royalties)}%
+                                  - {parseFloat(nft.royalties)}%
                                 </span>
                               </li>
                               <li>
                                 <span className="key">Service Fee</span>
                                 <span className="value">
-                                  {parseFloat(nft.service_fee)}%
+                                  - {parseFloat(nft.service_fee)}%
                                 </span>
                               </li>
                               {erc721Sale.isBuy && (
@@ -901,13 +901,13 @@ const NFTPutOnSale = ({
                               <li>
                                 <span className="key">Artist Fee</span>
                                 <span className="value">
-                                  {parseFloat(nft.royalties)}%
+                                  - {parseFloat(nft.royalties)}%
                                 </span>
                               </li>
                               <li>
                                 <span className="key">Service Fee</span>
                                 <span className="value">
-                                  {parseFloat(nft.service_fee)}%
+                                  - {parseFloat(nft.service_fee)}%
                                 </span>
                               </li>
                               <li className="final-set">
