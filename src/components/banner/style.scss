@@ -46,3 +46,34 @@
   object-fit: cover;
   border-radius: 0.8rem;
 }
+.cat-block {
+  position: relative;
+  .cat-title {
+    position: absolute;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    color: #ffffff;
+    padding: 1rem 1.2rem;
+    text-shadow: 3px 3px 2px #000000a3;
+    width: 100%;
+    overflow: hidden;
+    word-break: break-word;
+    text-align: left;
+  }
+}
+
+.hero-carousel {
+  &-desktop {
+    display: block;
+    @media screen and (max-width: 767px) {
+      display: none;
+    }
+  }
+  &-mobile {
+    display: none;
+    @media screen and (max-width: 767px) {
+      display: block;
+    }
+  }
+}
