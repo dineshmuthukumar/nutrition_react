@@ -310,12 +310,12 @@ const NFTPutOnSale = ({
                                       base: "rgb(0,0,0)",
                                     },
                                     active: {
-                                      base: "rgb(146, 147, 148)",
-                                      hover: "rgb(177, 191, 215)",
+                                      base: "rgb(76, 175, 80)",
+                                      hover: "rgb(76, 175, 80)",
                                     },
                                     inactive: {
-                                      base: "rgb(146, 147, 148)",
-                                      hover: "rgb(177, 191, 215)",
+                                      base: "rgb(158, 158, 158)",
+                                      hover: "rgb(158, 158, 158)",
                                     },
                                   }}
                                   value={erc721Sale.isBuy}
@@ -345,12 +345,12 @@ const NFTPutOnSale = ({
                                       base: "rgb(0,0,0)",
                                     },
                                     active: {
-                                      base: "rgb(146, 147, 148)",
-                                      hover: "rgb(177, 191, 215)",
+                                      base: "rgb(76, 175, 80)",
+                                      hover: "rgb(76, 175, 80)",
                                     },
                                     inactive: {
-                                      base: "rgb(146, 147, 148)",
-                                      hover: "rgb(177, 191, 215)",
+                                      base: "rgb(158, 158, 158)",
+                                      hover: "rgb(158, 158, 158)",
                                     },
                                   }}
                                   value={erc721Sale.isBid}
@@ -436,7 +436,7 @@ const NFTPutOnSale = ({
                                 }`}
                               >
                                 <label className="input-bid-text">
-                                  Set initial bid amount greater than{" "}
+                                  Bid amount greater than{" "}
                                   {currencyFormat(nft.floor_price, "USD")}
                                 </label>
                                 <div className="input-bid-wrap">
