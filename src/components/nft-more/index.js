@@ -1,11 +1,18 @@
 import React, { useRef } from "react";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+import cardImage from "../../images/drops/nft_2.png";
 
 import MoreCard from "./more-card";
+import CollectionCard from "./nft-card";
 
 import "./style.scss";
+import NFTCard from "../nft-card/index";
 
-const NFTMore = ({ nftList = [] }) => {
+const NFTMore = ({
+  nftList = [],
+  hideNavigation = false,
+  hideTitle = false,
+}) => {
   const ref = useRef(0);
   const scroll = (type) => {
     var width =
@@ -42,10 +49,13 @@ const NFTMore = ({ nftList = [] }) => {
 
   return (
     <div className="nft-more">
-      <div className="title">
-        More from this artist
-        <span className="title-count">({nftList.length})</span>
-      </div>
+      {!hideTitle && (
+        <div className="title">
+          More from this artist
+          <span className="title-count">({nftList.length})</span>
+        </div>
+      )}
+
       <div ref={ref} className="nft-more-content">
         {nftList.map((nft) => {
           let label = "",
@@ -67,22 +77,29 @@ const NFTMore = ({ nftList = [] }) => {
           }
 
           return (
-            <MoreCard
-              nft={nft}
-              isStarted={isStarted}
-              isEnded={isEnded}
-              time={time}
-              label={label}
-            />
+            // <MoreCard
+            //   nft={nft}
+            //   isStarted={isStarted}
+            //   isEnded={isEnded}
+            //   time={time}
+            //   label={label}
+            // />
+
+            <CollectionCard nft={nft} />
           );
         })}
       </div>
-      <button className="chevron-left-nav" onClick={() => scroll("left")}>
-        <BsChevronLeft />
-      </button>
-      <button className="chevron-right-nav" onClick={() => scroll("right")}>
-        <BsChevronRight />
-      </button>
+
+      {!hideNavigation && (
+        <>
+          <button className="chevron-left-nav" onClick={() => scroll("left")}>
+            <BsChevronLeft />
+          </button>
+          <button className="chevron-right-nav" onClick={() => scroll("right")}>
+            <BsChevronRight />
+          </button>
+        </>
+      )}
     </div>
   );
 };

@@ -2,7 +2,9 @@ import React from "react";
 import dayjs from "dayjs";
 
 import NFTCounter from "../nft-counter";
-import sample from "../../images/sampleNFT.jpg";
+
+import sample from "../../images/drops/nft_2.png";
+
 import { currencyFormat } from "../../utils/common";
 
 import "./style.scss";

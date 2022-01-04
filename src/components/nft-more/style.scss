@@ -34,6 +34,21 @@
       display: flex;
       flex-direction: column;
       position: relative;
+
+      .nft-like-btn {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        background-color: rgba(0, 0, 0, 0.39);
+        padding: 0.6rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.719);
+        }
+      }
+
       .nft-type-badge {
         position: absolute;
         top: 23rem;
@@ -72,44 +87,54 @@
       &:last-child {
         margin-right: 0;
       }
+
+      overflow: hidden;
+
       img {
         min-width: 100%;
         height: 28rem;
-        object-fit: contain;
+        object-fit: cover;
         margin-bottom: 1rem;
       }
 
-      .more-nft-title {
-        font-size: 1.8rem;
-        font-family: $neue-helveticabold;
-        position: relative;
+      .top-content-title {
         display: flex;
-        align-items: center;
-        .right-content {
-          width: calc(100% - 8rem);
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
+        justify-content: space-between;
 
-        .left-count {
-          // position: absolute;
-          color: #f21e00;
-          right: 0;
+        .more-nft-title {
+          font-size: 1.4rem;
           font-family: $neue-helveticabold;
-          font-size: 1rem;
-          top: 0.5em;
-          width: 8rem;
+          position: relative;
           display: flex;
           align-items: center;
-          justify-content: flex-end;
+
+          .right-content {
+            width: calc(100% - 8rem);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
+          .left-count {
+            // position: absolute;
+            color: #f21e00;
+            right: 0;
+            font-family: $neue-helveticabold;
+            font-size: 1rem;
+            top: 0.5em;
+            width: 8rem;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+          }
+        }
+        .more-nft-desc {
+          font-size: 1rem;
+          font-family: $neue-helveticamedium;
+          margin-bottom: 1rem;
         }
       }
-      .more-nft-desc {
-        font-size: 1rem;
-        font-family: $neue-helveticamedium;
-        margin-bottom: 1rem;
-      }
+
       .more-bid-details {
         display: flex;
         justify-content: space-between;
@@ -124,6 +149,10 @@
           font-family: $neue-helveticabold;
         }
       }
+
+      // &:hover {
+      //   opacity: 0.85;
+      // }
     }
   }
 

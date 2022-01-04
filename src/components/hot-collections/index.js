@@ -6,6 +6,7 @@ import { VscChevronLeft } from "react-icons/vsc";
 import { VscChevronRight } from "react-icons/vsc";
 import cardImage from "../../images/drops/nft_2.png";
 import { hotNFTsApi } from "../../api/methods";
+import NFTMore from "../nft-more/index";
 import "./style.scss";
 
 const HotCollections = () => {
@@ -38,25 +39,31 @@ const HotCollections = () => {
             <div className="col-sm-12">
               <h1 className="sec-heading">
                 Hot Collections
-                <div className="carousel-btn-box">
+                {/* <div className="carousel-btn-box">
                   <a className="carousel-btn">
                     <VscChevronLeft />
                   </a>
                   <a className="carousel-btn">
                     <VscChevronRight />
                   </a>
-                </div>
+                </div> */}
               </h1>
 
               {!loading ? (
                 <div className="row">
-                  {list.length > 0
+                  {list.length > 0 ? (
+                    <NFTMore nftList={list} hideTitle />
+                  ) : (
+                    "No Data Found!"
+                  )}
+
+                  {/* {list.length > 0
                     ? list.map((nft, i) => (
                         <div className="col-xl-3 col-lg-3 col-sm-6">
                           <NFTCard nft={nft} key={i} image={cardImage} />
                         </div>
                       ))
-                    : "No Data Found!"}
+                    : "No Data Found!"} */}
                 </div>
               ) : (
                 <NFTCardLoader />
