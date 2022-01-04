@@ -28,8 +28,11 @@ const CancelNft = ({ nft, order, image, modalShow, setModalShow }) => {
         type="button"
         className="btn btn-dark text-center mt-2 rounded-pill cancel-btn"
         onClick={() => {
-          history.push(`/details/${nft.slug}/${order.slug}`);
           setModalShow(!modalShow);
+          window.open(
+            `${process.env.REACT_APP_MARKETPLACE_URL}/details/${nft.slug}/${order.slug}`,
+            "_self"
+          );
         }}
       >
         Cancel
