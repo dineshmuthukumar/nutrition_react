@@ -95,12 +95,8 @@ const NFTPlaceBuy = ({
       });
       if (result.data.success) {
         setSuccess(true);
-        // setSuccessData(result.data.data.buy);
-        setSuccessData({
-          quantity: buyQuantity,
-          created_at: new Date(),
-          transaction_id: "1RDGGL2378773GHWFHHT",
-        });
+        setSuccessData(result.data.data.buy);
+
         setBuy({
           ...buy,
           progressError: "",
@@ -495,9 +491,7 @@ const NFTPlaceBuy = ({
                       <div className="success-summary">
                         <div>Price</div>
                         <div className="bold">
-                          {/* {erc721
-                          ? currencyFormat(successData.amount, "USD")
-                          : currencyFormat(successData.total_amount, "USD")} */}
+                          {currencyFormat(successData.amount, "USD")}
                         </div>
                       </div>
                       {!erc721 && (
