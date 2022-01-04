@@ -26,8 +26,6 @@ const NFTPlaceBuy = ({
   // socketData,
   price,
   userTotalBuys,
-  isAuctionStarted,
-  isAuctionEnded,
   soldOut,
 }) => {
   const { user } = useSelector((state) => state.user.data);

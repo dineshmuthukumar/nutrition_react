@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import userImg from "../../images/user_1.png";
 import UserImage from "../../images/amitabh.png";
 import { FaThumbsUp } from "react-icons/fa";
@@ -13,7 +14,11 @@ const HistoryConfirm = ({
   acceptBidConfirm,
   setAcceptBidConfirm,
   acceptBidDetail,
+  isOrderOnSale,
+  isOrderSuccess,
+  isOrderCancelled,
 }) => {
+  const { user } = useSelector((state) => state.user.data);
   const [success, setSuccess] = useState(false);
 
   const handleAcceptBid = async () => {
@@ -34,13 +39,41 @@ const HistoryConfirm = ({
 
   return (
     <>
-      {!success ? (
+      {success || isOrderSuccess ? (
+        <div className="bid-history-confirm">
+          <div className="success-msg">
+            <FaThumbsUp className="thumbUp-icon" />
+            <h3>Collectible Sold</h3>
+          </div>
+          {/* <div className="owned-user-details">
+            <div className="owned-user-image">
+              <img src={UserImage} alt="bid-user" />
+            </div>
+            <div className="owned-user-info">
+              <h5 className="time">Sep 20, 2021 11:15pm</h5>
+              <h4 className="name">
+                Owned by <span>@sirdonski</span>
+              </h4>
+            </div>
+          </div> */}
+        </div>
+      ) : (
         <div className="bid-history-confirm">
           <div className="bh-user-details">
             <div className="bh-user-image">
-              <img src={userImg} alt="bid-user" />
+              <img
+                src={
+                  !acceptBidDetail.private && acceptBidDetail.avatar_url
+                    ? acceptBidDetail.avatar_url
+                    : user?.slug === acceptBidDetail.slug &&
+                      acceptBidDetail.avatar_url
+                    ? acceptBidDetail.avatar_url
+                    : userImg
+                }
+                alt="bid-user"
+              />
             </div>
-            <h2 className="bh-user-name">@sirdonski</h2>
+            <h2 className="bh-user-name">{acceptBidDetail.user_name}</h2>
           </div>
           <div className="bh-user-sold-details">
             <div className="sold-info">
@@ -94,24 +127,6 @@ const HistoryConfirm = ({
                   Confirm
                 </button>
               </div>
-            </div>
-          </div>
-        </div>
-      ) : (
-        <div className="bid-history-confirm">
-          <div className="success-msg">
-            <FaThumbsUp className="thumbUp-icon" />
-            <h3>Collectible Sold</h3>
-          </div>
-          <div className="owned-user-details">
-            <div className="owned-user-image">
-              <img src={UserImage} alt="bid-user" />
-            </div>
-            <div className="owned-user-info">
-              <h5 className="time">Sep 20, 2021 11:15pm</h5>
-              <h4 className="name">
-                Owned by <span>@sirdonski</span>
-              </h4>
             </div>
           </div>
         </div>

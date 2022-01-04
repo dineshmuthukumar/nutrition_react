@@ -14,13 +14,16 @@ const BidCard = ({
   acceptBidConfirm,
   setAcceptBidConfirm,
   setAcceptBidDetail,
+  latestIndex,
 }) => {
   const { user } = useSelector((state) => state.user.data);
 
   return (
     <div
       className={`bid-histroy-card ${
-        history?.status === "active" ? "active-history-card" : ""
+        history?.status === "active" && latestIndex === 0
+          ? "active-history-card"
+          : ""
       }`}
     >
       {isEnd ? (
@@ -35,7 +38,7 @@ const BidCard = ({
               src={
                 !history.private && history.avatar_url
                   ? history.avatar_url
-                  : user?.slug === history.slug
+                  : user?.slug === history.slug && history.avatar_url
                   ? history.avatar_url
                   : userImg
               }
@@ -43,8 +46,16 @@ const BidCard = ({
             <div className="bid-histoy-details">
               <div className="time text-secondary">
                 {dayjs(history.created_at).format("MMM D, YYYY hh:mm A")}
-                <span className={`expire-pill ${history?.status}`}>
-                  {history?.status === "active" ? "Active" : "Expired"}
+                <span
+                  className={`expire-pill ${
+                    history?.status === "active" && latestIndex === 0
+                      ? "active"
+                      : ""
+                  }`}
+                >
+                  {history?.status === "active" && latestIndex === 0
+                    ? "Active"
+                    : "Expired"}
                 </span>
               </div>
               <div className="bid-owner">

@@ -103,7 +103,11 @@ function App(props) {
               <Route exact path="/explore/category/:slug" component={Explore} />
               <Route exact path="/" component={Home} />
               <Route exact path="/help-line" component={HelpLine} />
-              <Route exact path="/user-details" component={UserDetails} />
+              <Route
+                exact
+                path="/top-seller/:slug/details"
+                component={UserDetails}
+              />
               <Route path="/not-found" component={NotFound} />
               <Route exact component={NotFound} />
             </Switch>

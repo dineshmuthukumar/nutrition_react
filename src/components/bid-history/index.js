@@ -26,6 +26,9 @@ const BidHistory = ({
   isAuctionEnded,
   totalCount,
   nftOwner,
+  isOrderOnSale,
+  isOrderSuccess,
+  isOrderCancelled,
 }) => {
   const { slug } = useParams();
   const [modalShow, setModalShow] = useState(false);
@@ -90,6 +93,7 @@ const BidHistory = ({
               {histories.map((history, i) => (
                 <BidCard
                   key={`bid-history${i}`}
+                  latestIndex={i}
                   history={history}
                   acceptBidConfirm={acceptBidConfirm}
                   setAcceptBidConfirm={setAcceptBidConfirm}
@@ -144,6 +148,9 @@ const BidHistory = ({
           acceptBidDetail={acceptBidDetail}
           acceptBidConfirm={acceptBidConfirm}
           setAcceptBidConfirm={setAcceptBidConfirm}
+          isOrderOnSale={isOrderOnSale}
+          isOrderSuccess={isOrderSuccess}
+          isOrderCancelled={isOrderCancelled}
         />
       )}
     </>

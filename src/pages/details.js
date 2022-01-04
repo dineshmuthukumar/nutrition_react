@@ -302,7 +302,7 @@ const Details = () => {
                   isOrderSuccess={isOrderSuccess}
                   isOrderCancelled={isOrderCancelled}
                   orderSlug={orderSlug}
-                  latestBid={history.length > 0 ? history[0] : {}}
+                  latestBid={bidHistory.length > 0 ? bidHistory[0] : {}}
                 />
               </div>
             </div>
@@ -337,6 +337,9 @@ const Details = () => {
                       histories={bidHistory}
                       isAuctionEnded={isAuctionEnded}
                       totalCount={totalCount}
+                      isOrderOnSale={isOrderOnSale}
+                      isOrderSuccess={isOrderSuccess}
+                      isOrderCancelled={isOrderCancelled}
                     />
                   );
                 } else {

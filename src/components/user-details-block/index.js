@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style.scss";
-
-import NFTCard from "../nft-card";
 
 import cardImage from "../../images/drops/nft_2.png";
 import userImage from "../../images/amitabh.png";
+import SellerNFTCard from "../seller-nft-card/index";
 
 const UserDetailsBlock = () => {
+  const [key, setKey] = useState("owned");
   return (
     <>
       <section className="user-details-block">
@@ -40,29 +40,38 @@ const UserDetailsBlock = () => {
                       <ul className="nav user-block-nav">
                         <li className="nav-item">
                           <a
-                            className={`nav-link active`}
+                            className={`nav-link ${
+                              key === "onsale" ? "active" : ""
+                            }`}
                             aria-current="page"
                             role="button"
+                            onClick={() => setKey("onsale")}
                           >
-                            On Sale (4)
+                            On Sale (1)
                           </a>
                         </li>
                         <li className="nav-item">
                           <a
-                            className={`nav-link`}
+                            className={`nav-link ${
+                              key === "owned" ? "active" : ""
+                            }`}
                             aria-current="page"
                             role="button"
+                            onClick={() => setKey("owned")}
                           >
-                            Owned (3)
+                            Owned (1)
                           </a>
                         </li>
                         <li className="nav-item">
                           <a
-                            className={`nav-link`}
+                            className={`nav-link ${
+                              key === "liked" ? "active" : ""
+                            }`}
                             aria-current="page"
                             role="button"
+                            onClick={() => setKey("liked")}
                           >
-                            Liked (3)
+                            Liked (1)
                           </a>
                         </li>
                       </ul>
@@ -70,16 +79,7 @@ const UserDetailsBlock = () => {
                   </div>
                   <div className="row">
                     <div class="col-xl-4 col-lg-4 col-md- col-sm-6">
-                      <NFTCard image={cardImage} />
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md- col-sm-6">
-                      <NFTCard image={cardImage} />
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md- col-sm-6">
-                      <NFTCard image={cardImage} />
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md- col-sm-6">
-                      <NFTCard image={cardImage} />
+                      <SellerNFTCard image={cardImage} />
                     </div>
                   </div>
                 </div>

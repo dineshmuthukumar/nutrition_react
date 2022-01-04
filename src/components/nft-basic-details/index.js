@@ -5,7 +5,9 @@ import { FaCheckCircle } from "react-icons/fa";
 import { BiX } from "react-icons/bi";
 import { Modal } from "react-bootstrap";
 import _ from "lodash";
+import dayjs from "dayjs";
 
+import { acceptBidApi } from "../../api/methods";
 import NFTTimeLeft from "../nft-time-left";
 import BidValue from "../bid-value";
 import ToolTip from "../tooltip";
@@ -18,6 +20,7 @@ import { ReactComponent as DiscordSvg } from "./../../icons/discord_logo.svg";
 import { currencyFormat } from "../../utils/common";
 import postImages from "../../images/post1.png";
 import CancelNft from "./nft-cancel-box";
+import userImg from "../../images/user_1.png";
 
 import "./style.scss";
 const NFTBaseDetails = ({
@@ -64,6 +67,23 @@ const NFTBaseDetails = ({
   const isOrder = _.has(nft, "order_details");
   const orderDetails = _.get(nft, "order_details", {});
   const ownerOrderDetails = _.get(nft, "owner_details.orders", []);
+
+  const handleAcceptBid = async () => {
+    setAcceptBidConfirm(!acceptBidConfirm);
+    try {
+      const result = await acceptBidApi({
+        order_slug: orderSlug,
+        order: { bid_slug: latestBid.bid_slug },
+      });
+      if (result.data.success) {
+        setAcceptBidSucess(true);
+      }
+    } catch (error) {
+      if (error.response.data.status === 422) {
+        console.log(error);
+      }
+    }
+  };
 
   return (
     <>
@@ -119,43 +139,83 @@ const NFTBaseDetails = ({
           <>
             <div className={`assign-card`}>
               <div className="first-half">
-                <img alt="" src={postImages} />
+                <img
+                  alt=""
+                  src={
+                    !latestBid.private && latestBid.avatar_url
+                      ? latestBid.avatar_url
+                      : user?.slug === latestBid.slug
+                      ? latestBid.avatar_url
+                      : userImg
+                  }
+                />
                 <div className="bid-histoy-details">
                   <div className="time text-secondary">
-                    Sep 20, 2021 11:15pm
+                    {dayjs(latestBid.created_at).format("MMM D, YYYY hh:mm A")}
                   </div>
-                  <div className="bid-owner">Bid placed by @sirdonski</div>
+                  <div className="bid-owner">
+                    Bid placed by {latestBid.user_name}
+                  </div>
                 </div>
               </div>
               <div className="second-half">
                 <div className="highest-bid">
                   <span className="key">Highest Bid Price</span>
-                  <span className="value">$ 2.110k</span>
+                  <span className="value">
+                    {currencyFormat(latestBid.bid_amount, "USD")}
+                  </span>
                 </div>
               </div>
             </div>
 
             <div className="d-flex">
-              <BidValue title="Artist fee" value={"10 %"} />
+              <BidValue
+                title="Artist fee"
+                value={`${parseFloat(nft.royalties)} %`}
+              />
 
-              <BidValue title="Service fee" value={"10 %"} />
+              <BidValue
+                title="Service fee"
+                value={`${parseFloat(nft.service_fee)} %`}
+              />
             </div>
             <hr className="custom-divider" />
             <div className="d-flex">
-              <BidValue title="You will Get" value={"$ 1980.99"} />
+              <BidValue
+                title="You will Get"
+                value={currencyFormat(
+                  parseFloat(latestBid.bid_amount) -
+                    (parseFloat(latestBid.bid_amount) *
+                      (parseFloat(nft.royalties) +
+                        parseFloat(nft.service_fee))) /
+                      100,
+                  "USD"
+                )}
+              />
             </div>
             <hr className="custom-divider" />
           </>
-        ) : acceptBidSucess ? (
+        ) : acceptBidSucess || isOrderSuccess ? (
           <>
             <div className={`assign-card`}>
               <div className="first-half">
-                <img alt="" src={postImages} />
+                <img
+                  alt=""
+                  src={
+                    !latestBid.private && latestBid.avatar_url
+                      ? latestBid.avatar_url
+                      : user?.slug === latestBid.slug
+                      ? latestBid.avatar_url
+                      : userImg
+                  }
+                />
                 <div className="bid-histoy-details">
                   <div className="time text-secondary">
-                    Sep 20, 2021 11:15pm
+                    {dayjs(latestBid.created_at).format("MMM D, YYYY hh:mm A")}
                   </div>
-                  <div className="bid-owner">Assigned to @sirdonski</div>
+                  <div className="bid-owner">
+                    Assigned to {latestBid.user_name}
+                  </div>
                 </div>
               </div>
             </div>
@@ -290,8 +350,12 @@ const NFTBaseDetails = ({
                     <BidValue
                       title="Edition(s)"
                       value={(() => {
-                        if (availableQty >= 0 && availableQty != null) {
-                          return `${availableQty} / ${nft.total_quantity}`;
+                        if (
+                          availableQty >= 0 &&
+                          availableQty != null &&
+                          isOrderOnSale
+                        ) {
+                          return `${availableQty} / ${orderDetails.total_quantity}`;
                         } else if (isOrderOnSale) {
                           return `${orderDetails.available_quantity} / ${orderDetails.total_quantity}`;
                         } else {
@@ -427,14 +491,20 @@ const NFTBaseDetails = ({
                     <button
                       disabled={false}
                       className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn"
-                      onClick={() => {
-                        setAcceptBidConfirm(!acceptBidConfirm);
-                        setAcceptBidSucess(!acceptBidSucess);
-                      }}
+                      onClick={handleAcceptBid}
                     >
                       Confirm
                     </button>
                   </>
+                );
+              } else if (acceptBidSucess || isOrderSuccess) {
+                return (
+                  <button
+                    disabled={true}
+                    className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                  >
+                    Sold Out
+                  </button>
                 );
               } else {
                 return (
