@@ -233,7 +233,12 @@ const NFTBaseDetails = ({
                     );
                   }
                 } else if (isOrderSuccess) {
-                  return null;
+                  return (
+                    <BidValue
+                      title="Price"
+                      value={currencyFormat(orderDetails.buy_amount, "USD")}
+                    />
+                  );
                 } else {
                   return (
                     <BidValue
@@ -308,15 +313,25 @@ const NFTBaseDetails = ({
                     <BidValue title="Limited Edition" value="1 of 1" isLeft />
                   );
                 } else if (!erc721 && isOwner) {
-                  return (
-                    <BidValue
-                      title="You Own"
-                      value={`${_.get(nft, "owner_details.total_quantity")} / ${
-                        nft.total_quantity
-                      }`}
-                      isOwner
-                    />
-                  );
+                  if (isOrder) {
+                    return (
+                      <BidValue
+                        title="Edition(s)"
+                        value={`${orderDetails.available_quantity} / ${orderDetails.total_quantity}`}
+                      />
+                    );
+                  } else {
+                    return (
+                      <BidValue
+                        title="You Own"
+                        value={`${_.get(
+                          nft,
+                          "owner_details.total_quantity"
+                        )} / ${nft.total_quantity}`}
+                        isOwner
+                      />
+                    );
+                  }
                 } else {
                   return (
                     <BidValue
