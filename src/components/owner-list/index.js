@@ -28,7 +28,7 @@ const OwnerList = ({ nft, nftOwners = [], isAuctionEnded, totalCount }) => {
     <>
       <div className="bid-history">
         <div className="owner-history-title-content">
-          <div className="bid-history-title">Owner List</div>
+          <div className="bid-history-title">List of Owners</div>
           <div className="bid-history-filter"></div>
         </div>
 

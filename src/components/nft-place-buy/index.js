@@ -95,12 +95,8 @@ const NFTPlaceBuy = ({
       });
       if (result.data.success) {
         setSuccess(true);
-        // setSuccessData(result.data.data.buy);
-        setSuccessData({
-          quantity: buyQuantity,
-          created_at: new Date(),
-          transaction_id: "1RDGGL2378773GHWFHHT",
-        });
+        setSuccessData(result.data.data.buy);
+
         setBuy({
           ...buy,
           progressError: "",
@@ -240,7 +236,7 @@ const NFTPlaceBuy = ({
               {!success ? (
                 <>
                   <div className="pop-head-content">
-                    <div className="pop-bid-title">Buy the NFT</div>
+                    <div className="pop-bid-title">Purchase Your NFT</div>
                     <div
                       className="close-button-pop"
                       onClick={() => setPlaceBuyPop(!placeBuyPop)}
@@ -335,7 +331,7 @@ const NFTPlaceBuy = ({
                       <div className={`input-field-bid`}>
                         <label className="input-bid-text">
                           {erc721
-                            ? `Buy Amount`
+                            ? `Cost Of NFT`
                             : `Enter Quantity Max (${orderDetails.available_quantity})`}
                         </label>
 
@@ -366,7 +362,7 @@ const NFTPlaceBuy = ({
                     <div className={`input-bid-container mt-5`}>
                       <div className="input-field-bid">
                         <div className="services-fee-box">
-                          <label className="input-bid-text">Services Fee</label>
+                          <label className="input-bid-text">Service Fee</label>
                           <h1>{parseFloat(nft.service_fee)}%</h1>
                         </div>
                       </div>
@@ -495,9 +491,7 @@ const NFTPlaceBuy = ({
                       <div className="success-summary">
                         <div>Price</div>
                         <div className="bold">
-                          {/* {erc721
-                          ? currencyFormat(successData.amount, "USD")
-                          : currencyFormat(successData.total_amount, "USD")} */}
+                          {currencyFormat(successData.amount, "USD")}
                         </div>
                       </div>
                       {!erc721 && (

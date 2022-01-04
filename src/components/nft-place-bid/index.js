@@ -188,7 +188,7 @@ const NFTPlaceBid = ({
               {!success ? (
                 <>
                   <div className="pop-head-content">
-                    <div className="pop-bid-title">Place a bid</div>
+                    <div className="pop-bid-title">Place Your Bid</div>
                     <div
                       className="close-button-pop"
                       onClick={() => setPlaceBidPop(!placeBidPop)}
@@ -284,7 +284,8 @@ const NFTPlaceBid = ({
                       <div className={`input-field-bid`}>
                         <label className="input-bid-text">
                           {erc721 &&
-                            `Enter minimum bid amount of ${currencyFormat(
+                            `Your Bid Amount Should Be Greater Than
+                            ${currencyFormat(
                               price ? price : orderDetails.minimum_bid,
                               "USD"
                             )}`}
@@ -306,7 +307,7 @@ const NFTPlaceBid = ({
                     <div className={`input-bid-container mt-5`}>
                       <div className="input-field-bid">
                         <div className="services-fee-box">
-                          <label className="input-bid-text">Services Fee</label>
+                          <label className="input-bid-text">Service Fee</label>
                           <h1>{parseFloat(nft.service_fee)}%</h1>
                         </div>
                       </div>
@@ -486,7 +487,9 @@ const NFTPlaceBid = ({
               </div>
               <div className="pop-signin">
                 <div className="pop-signin-title text-center mb-1">
-                  {erc721 ? "Sign in to place a bid" : "Sign in to place a buy"}
+                  {erc721
+                    ? "Sign in to place your bid"
+                    : "Sign in to place a buy"}
                 </div>
                 <div className="pop-nft-media">
                   <button
