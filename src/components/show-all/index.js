@@ -64,12 +64,40 @@ const ShowAll = () => {
     showAllNFTs(page);
   }, []);
 
-  const showAllNFTs = async (page) => {
+  const showAllNFTs = async (page, category, type, saleType) => {
     try {
       page === 1 && setLoading(true);
       setLoadingMore(true);
-      let response = await nftShowAllApi({ page });
+      let response = await nftShowAllApi({
+        page,
+        filter: {
+          category: category,
+          type: type,
+          sale_type: saleType,
+        },
+      });
       setList([...list, ...response.data.data.nfts]);
+      setHasNext(response.data.data.next_page);
+      page === 1 && setLoading(false);
+      setLoadingMore(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const showAllFilteredNFTs = async (page, category, type, saleType) => {
+    try {
+      page === 1 && setLoading(true);
+      setLoadingMore(true);
+      let response = await nftShowAllApi({
+        page,
+        filter: {
+          category: category,
+          type: type,
+          sale_type: saleType,
+        },
+      });
+      setList(response.data.data.nfts);
       setHasNext(response.data.data.next_page);
       page === 1 && setLoading(false);
       setLoadingMore(false);
@@ -80,7 +108,19 @@ const ShowAll = () => {
 
   const fetchMore = () => {
     if (hasNext) {
-      showAllNFTs(page + 1);
+      const categoryFilter = filter.category
+        .filter((xx) => xx.checked === true)
+        .map((obj, i) => obj.value);
+
+      const typeFilter = filter.nft
+        .filter((xx) => xx.checked === true)
+        .map((obj, i) => obj.value);
+
+      const saleTypeFilter = filter.sale
+        .filter((xx) => xx.checked === true)
+        .map((obj, i) => obj.value);
+
+      showAllNFTs(page + 1, categoryFilter, typeFilter, saleTypeFilter);
       setPage(page + 1);
     }
   };
@@ -132,6 +172,20 @@ const ShowAll = () => {
       checked: !info.category[index].checked,
     };
     setFilter(info);
+
+    const categoryFilter = filter.category
+      .filter((xx) => xx.checked === true)
+      .map((obj, i) => obj.value);
+
+    const typeFilter = filter.nft
+      .filter((xx) => xx.checked === true)
+      .map((obj, i) => obj.value);
+
+    const saleTypeFilter = filter.sale
+      .filter((xx) => xx.checked === true)
+      .map((obj, i) => obj.value);
+
+    showAllFilteredNFTs(page, categoryFilter, typeFilter, saleTypeFilter);
   };
 
   const handleSaleCheck = (input) => {
@@ -142,6 +196,20 @@ const ShowAll = () => {
       checked: !info.sale[index].checked,
     };
     setFilter(info);
+
+    const categoryFilter = filter.category
+      .filter((xx) => xx.checked === true)
+      .map((obj, i) => obj.value);
+
+    const typeFilter = filter.nft
+      .filter((xx) => xx.checked === true)
+      .map((obj, i) => obj.value);
+
+    const saleTypeFilter = filter.sale
+      .filter((xx) => xx.checked === true)
+      .map((obj, i) => obj.value);
+
+    showAllFilteredNFTs(page, categoryFilter, typeFilter, saleTypeFilter);
   };
 
   const handleNFTCheck = (input) => {
@@ -152,6 +220,20 @@ const ShowAll = () => {
       checked: !info.nft[index].checked,
     };
     setFilter(info);
+
+    const categoryFilter = filter.category
+      .filter((xx) => xx.checked === true)
+      .map((obj, i) => obj.value);
+
+    const typeFilter = filter.nft
+      .filter((xx) => xx.checked === true)
+      .map((obj, i) => obj.value);
+
+    const saleTypeFilter = filter.sale
+      .filter((xx) => xx.checked === true)
+      .map((obj, i) => obj.value);
+
+    showAllFilteredNFTs(page, categoryFilter, typeFilter, saleTypeFilter);
   };
 
   return (

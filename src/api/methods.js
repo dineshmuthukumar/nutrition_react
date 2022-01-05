@@ -9,9 +9,12 @@ export const nftCategoryDetailApi = ({ slug }) =>
 export const nftCategoryListApi = ({ slug, page }) =>
   appAxios.get(`/categories/${slug}/nfts?page=${page}`);
 
-export const nftShowAllApi = ({ page }) =>
-  appAxios.get(`/dashboard/index?page=${page}`);
-// appAxios.get(`/dashboard/index?page=${page}&sort=${sort}&filter=${filter}`);
+export const nftShowAllApi = ({ page, filter }) =>
+  appAxios.get(`/dashboard/index?page=${page}`, {
+    params: {
+      filter,
+    },
+  });
 
 export const hotNFTsApi = ({ page }) =>
   appAxios.get(`/dashboard/hot_nfts?page=${page}`);

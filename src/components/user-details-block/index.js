@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { sellerFavedNFTSApi, sellerOwnedNFTsApi } from "../../api/methods";
+import {
+  sellerDetailApi,
+  sellerFavedNFTSApi,
+  sellerOwnedNFTsApi,
+} from "../../api/methods";
 import cardImage from "../../images/drops/nft_2.png";
 import userImage from "../../images/amitabh.png";
 import SellerNFTCard from "../seller-nft-card/index";
@@ -15,6 +19,7 @@ const UserDetailsBlock = () => {
   const [ownedList, setOwnedList] = useState([]);
   const [favedList, setFavedList] = useState([]);
   const [onSaleList, setOnSaleList] = useState([]);
+  const [sellerDetail, setSellerDetail] = useState({ users: [] });
   const [favedCount, setFavedCount] = useState(0);
   const [onSaleCount, setOnSaleCount] = useState(0);
   const [ownedCount, setOwnedCount] = useState(0);
@@ -48,7 +53,20 @@ const UserDetailsBlock = () => {
     }
   };
 
+  const getSellerDetail = async () => {
+    try {
+      setLoading(true);
+      const result = await sellerDetailApi({ slug });
+      setSellerDetail(result.data.data);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      // setLoading(false);
+    }
+  };
+
   useEffect(() => {
+    getSellerDetail();
     getSellerOwnedNFTs(page);
     getSellerFavedNFTs(page);
   }, []);
@@ -60,25 +78,40 @@ const UserDetailsBlock = () => {
           <div className="row">
             <div className="col-sm-12">
               <div className="user-flexblock">
-                <article className="user-info-box">
-                  <img className="user-info-image" src={userImage} />
-                  <h4 className="user-info-name">James</h4>
-                  <h6 className="user-info-subname">@james</h6>
-                  <ul className="user-info-list">
-                    <li>
-                      <span className="key">Favourites</span>
-                      <span className="value">20</span>
-                    </li>
-                    <li>
-                      <span className="key">Bought</span>
-                      <span className="value">10</span>
-                    </li>
-                    <li>
+                {sellerDetail && (
+                  <article className="user-info-box">
+                    <img
+                      className="user-info-image"
+                      src={
+                        sellerDetail?.users[0]?.avatar_url
+                          ? sellerDetail?.users[0]?.avatar_url
+                          : userImage
+                      }
+                    />
+                    {/* <h4 className="user-info-name">James</h4> */}
+                    <h6 className="user-info-subname">
+                      {sellerDetail?.users[0]?.user_name}
+                    </h6>
+                    <ul className="user-info-list">
+                      <li>
+                        <span className="key">Favourites</span>
+                        <span className="value">
+                          {sellerDetail.faved_count}
+                        </span>
+                      </li>
+                      <li>
+                        <span className="key">Owned</span>
+                        <span className="value">
+                          {sellerDetail.owned_count}
+                        </span>
+                      </li>
+                      {/* <li>
                       <span className="key">Sold</span>
                       <span className="value">10</span>
-                    </li>
-                  </ul>
-                </article>
+                    </li> */}
+                    </ul>
+                  </article>
+                )}
                 <div className="user-collection-box">
                   <div className="row">
                     <div className="col-sm-12">

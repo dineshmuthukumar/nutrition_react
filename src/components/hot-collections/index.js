@@ -88,9 +88,10 @@ const NFTCardLoader = (props) => (
     className="mt-1"
     {...props}
   >
-    <rect x="12" y="5" rx="2" ry="2" width="280" height="300" />
-    <rect x="308" y="5" rx="2" ry="2" width="280" height="300" />
-    <rect x="600" y="5" rx="2" ry="2" width="280" height="300" />
+    <rect x="0" y="5" rx="2" ry="2" width="218" height="280" />
+    <rect x="228" y="5" rx="2" ry="2" width="218" height="280" />
+    <rect x="456" y="5" rx="2" ry="2" width="218" height="280" />
+    <rect x="684" y="5" rx="2" ry="2" width="218" height="280" />
   </ContentLoader>
 );
 
