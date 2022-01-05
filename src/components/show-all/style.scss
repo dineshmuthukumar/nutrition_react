@@ -73,3 +73,11 @@ button.load_more {
     }
   }
 }
+
+.showall-heading {
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start !important;
+  }
+}

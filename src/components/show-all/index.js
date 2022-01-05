@@ -160,7 +160,7 @@ const ShowAll = () => {
         <div className="container-fluid">
           <div className="row">
             <div className="col-sm-12">
-              <div className="sec-heading d-flex align-items-end mb-2">
+              <div className="sec-heading d-flex align-items-end mb-2 showall-heading">
                 <span className="me-4 mt-2">
                   {!loading ? `Showing All (${list.length})` : <ShowCount />}
                 </span>
