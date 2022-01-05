@@ -33,9 +33,7 @@ const CollectionCard = ({ nft }) => {
           }
         })()}
         role="button"
-        onClick={() => {
-          window.open(`/details/${nft.slug}`, "_self");
-        }}
+        onClick={handleClick}
       />
 
       <div className="top-content-title">

@@ -10,18 +10,10 @@ import "./style.scss";
 const Banner = () => {
   return (
     <>
-      {/* <section className="hero-section">
-      <HeroVideo video={heroVideoBox} />
-      <div className="hero-content">
-        <h1>COLLECT SUPER RARE DIGITAL ARTWORKS</h1>
-        <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h6>
-      </div>
-    </section> */}
-
-      <div className="container-fluid mt-4">
+      <div className="container-fluid mt-4 hero-carousel-mobile">
         <div className="row">
-          <div className="col-6">
-            <div style={{ height: "calc((100vw - 7rem)/2)" }}>
+          <div className="col-12">
+            <div style={{ height: "50vh" }}>
               <Carousel
                 showThumbs={false}
                 dynamicHeight={true}
@@ -34,11 +26,77 @@ const Banner = () => {
                 infiniteLoop={true}
                 swipeable={true}
               >
-                <div style={{ overflow: "hidden" }}>
+                <div style={{ overflow: "hidden" }} className="cat-block">
+                  <video
+                    loop
+                    muted
+                    autoPlay
+                    playsInline
+                    src={heroVideoBox}
+                    className="first-image"
+                    style={{ height: "50vh" }}
+                  ></video>
+                  <h5 className="cat-title">BigB Punks</h5>
+                </div>
+                <div className="cat-block">
+                  <h5 className="cat-title">BigB Punks</h5>
+                  <img
+                    src={sample}
+                    className="first-image"
+                    style={{ height: "50vh" }}
+                  />
+                </div>
+                <div className="cat-block">
+                  <h5 className="cat-title">BigB Punks</h5>
+                  <img
+                    src={sample}
+                    className="first-image"
+                    style={{ height: "50vh" }}
+                  />
+                </div>
+                <div className="cat-block">
+                  <h5 className="cat-title">BigB Punks</h5>
+                  <img
+                    src={sample}
+                    className="first-image"
+                    style={{ height: "50vh" }}
+                  />
+                </div>
+                <div className="cat-block">
+                  <h5 className="cat-title">BigB Punks</h5>
+                  <img
+                    src={sample}
+                    className="first-image"
+                    style={{ height: "50vh" }}
+                  />
+                </div>
+              </Carousel>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="container-fluid mt-4 hero-carousel-desktop">
+        <div className="row">
+          <div className="col-6">
+            <div style={{ height: "calc((100vw - 13rem)/2)" }}>
+              <Carousel
+                showThumbs={false}
+                dynamicHeight={true}
+                useKeyboardArrows
+                autoPlay
+                interval={4000}
+                showArrows={false}
+                showStatus={false}
+                stopOnHover
+                infiniteLoop={true}
+                swipeable={true}
+              >
+                <div style={{ overflow: "hidden" }} className="cat-block">
                   {/* <img
                     src={sample}
                     className="first-image"
-                    style={{ height: "calc((100vw - 7rem)/2)" }}
+                    style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
                   /> */}
 
                   <video
@@ -46,37 +104,42 @@ const Banner = () => {
                     muted
                     autoPlay
                     playsInline
-                    src="https://www.w3schools.com/html/mov_bbb.mp4"
+                    src={heroVideoBox}
                     className="first-image"
-                    style={{ height: "calc((100vw - 7rem)/2)" }}
+                    style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
                   ></video>
+                  <h5 className="cat-title">BigB Punks</h5>
                 </div>
-                <div>
+                <div className="cat-block">
+                  <h5 className="cat-title">BigB Punks</h5>
                   <img
                     src={sample}
                     className="first-image"
-                    style={{ height: "calc((100vw - 7rem)/2)" }}
+                    style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
                   />
                 </div>
-                <div>
+                <div className="cat-block">
+                  <h5 className="cat-title">BigB Punks</h5>
                   <img
                     src={sample}
                     className="first-image"
-                    style={{ height: "calc((100vw - 7rem)/2)" }}
+                    style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
                   />
                 </div>
-                <div>
+                <div className="cat-block">
+                  <h5 className="cat-title">BigB Punks</h5>
                   <img
                     src={sample}
                     className="first-image"
-                    style={{ height: "calc((100vw - 7rem)/2)" }}
+                    style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
                   />
                 </div>
-                <div>
+                <div className="cat-block">
+                  <h5 className="cat-title">BigB Punks</h5>
                   <img
                     src={sample}
                     className="first-image"
-                    style={{ height: "calc((100vw - 7rem)/2)" }}
+                    style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
                   />
                 </div>
               </Carousel>
@@ -86,10 +149,13 @@ const Banner = () => {
             <div className="row">
               <div className="col pb-4">
                 <div
+                  className="cat-block"
                   style={{
-                    height: "calc(((((100vw - 7rem)/2)/3)*2) - 1.5rem)",
+                    height:
+                      "calc(((((100vw - (7rem + 6rem))/2)/3)*2) - 1.5rem)",
                   }}
                 >
+                  <h5 className="cat-title">BigB Punks</h5>
                   <img
                     src={sample}
                     className="first-image"
@@ -102,10 +168,12 @@ const Banner = () => {
             <div className="row">
               <div className="col">
                 <div
+                  className="cat-block"
                   style={{
-                    height: "calc(((((100vw - 7rem)/2)/3)))",
+                    height: "calc(((((100vw - (7rem + 6rem))/2)/3)))",
                   }}
                 >
+                  <h5 className="cat-title">BigB Punks</h5>
                   <img
                     src={sample}
                     className="first-image"
@@ -115,10 +183,12 @@ const Banner = () => {
               </div>
               <div className="col">
                 <div
+                  className="cat-block"
                   style={{
-                    height: "calc(((((100vw - 7rem)/2)/3)))",
+                    height: "calc(((((100vw - (7rem + 6rem))/2)/3)))",
                   }}
                 >
+                  <h5 className="cat-title">BigB Punks</h5>
                   <img
                     src={sample}
                     className="first-image"
@@ -132,10 +202,12 @@ const Banner = () => {
             <div className="row">
               <div className="col pb-4">
                 <div
+                  className="cat-block"
                   style={{
-                    height: "calc(((((100vw - 7rem)/2)/3) ) - 1.5rem)",
+                    height: "calc(((((100vw - (7rem + 6rem))/2)/3) ) - 1.5rem)",
                   }}
                 >
+                  <h5 className="cat-title">BigB Punks</h5>
                   <img
                     src={sample}
                     className="first-image"
@@ -147,10 +219,12 @@ const Banner = () => {
             <div className="row">
               <div className="col pb-4">
                 <div
+                  className="cat-block"
                   style={{
-                    height: "calc(((((100vw - 7rem)/2)/3)) - 1.5rem)",
+                    height: "calc(((((100vw - (7rem + 6rem))/2)/3)) - 1.5rem)",
                   }}
                 >
+                  <h5 className="cat-title">BigB Punks</h5>
                   <img
                     src={sample}
                     className="first-image"
@@ -162,10 +236,12 @@ const Banner = () => {
             <div className="row">
               <div className="col">
                 <div
+                  className="cat-block"
                   style={{
-                    height: "calc(((((100vw - 7rem)/2)/3)))",
+                    height: "calc(((((100vw - (7rem + 6rem))/2)/3)))",
                   }}
                 >
+                  <h5 className="cat-title">BigB Punks</h5>
                   <img
                     src={sample}
                     className="first-image"

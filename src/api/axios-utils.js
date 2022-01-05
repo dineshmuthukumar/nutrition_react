@@ -6,11 +6,6 @@ import { user_logout_thunk } from "./../redux/thunk/user_thunk";
 const appAxios = axios.create({
   baseURL: process.env.REACT_APP_SERVER_URL,
 });
-// axios.defaults.baseURL = process.env.REACT_APP_SERVER_URL;
-
-const auth_token = getCookies();
-
-if (auth_token) appAxios.defaults.headers.common["Authorization"] = auth_token;
 
 appAxios.interceptors.request.use(
   function (config) {
