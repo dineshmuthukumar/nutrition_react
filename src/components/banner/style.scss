@@ -61,6 +61,18 @@
     word-break: break-word;
     text-align: left;
   }
+
+  .big-box {
+    font-size: 3rem;
+    top: 2rem;
+    left: 2rem;
+  }
+
+  .medium-box {
+    font-size: 2rem;
+    top: 1rem;
+    left: 1rem;
+  }
 }
 
 .hero-carousel {

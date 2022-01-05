@@ -93,12 +93,12 @@ const Banner = () => {
                 swipeable={true}
               >
                 <div style={{ overflow: "hidden" }} className="cat-block">
+                  <h5 className="cat-title big-box">BigB Punks</h5>
                   {/* <img
                     src={sample}
                     className="first-image"
                     style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
                   /> */}
-
                   <video
                     loop
                     muted
@@ -108,10 +108,9 @@ const Banner = () => {
                     className="first-image"
                     style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
                   ></video>
-                  <h5 className="cat-title">BigB Punks</h5>
                 </div>
                 <div className="cat-block">
-                  <h5 className="cat-title">BigB Punks</h5>
+                  <h5 className="cat-title big-box">BigB Punks</h5>
                   <img
                     src={sample}
                     className="first-image"
@@ -119,7 +118,7 @@ const Banner = () => {
                   />
                 </div>
                 <div className="cat-block">
-                  <h5 className="cat-title">BigB Punks</h5>
+                  <h5 className="cat-title big-box">BigB Punks</h5>
                   <img
                     src={sample}
                     className="first-image"
@@ -127,7 +126,7 @@ const Banner = () => {
                   />
                 </div>
                 <div className="cat-block">
-                  <h5 className="cat-title">BigB Punks</h5>
+                  <h5 className="cat-title big-box">BigB Punks</h5>
                   <img
                     src={sample}
                     className="first-image"
@@ -135,7 +134,7 @@ const Banner = () => {
                   />
                 </div>
                 <div className="cat-block">
-                  <h5 className="cat-title">BigB Punks</h5>
+                  <h5 className="cat-title big-box">BigB Punks</h5>
                   <img
                     src={sample}
                     className="first-image"
@@ -155,7 +154,7 @@ const Banner = () => {
                       "calc(((((100vw - (7rem + 6rem))/2)/3)*2) - 1.5rem)",
                   }}
                 >
-                  <h5 className="cat-title">BigB Punks</h5>
+                  <h5 className="cat-title medium-box">BigB Punks</h5>
                   <img
                     src={sample}
                     className="first-image"
