@@ -80,7 +80,18 @@ const BidHistory = ({
 
   return (
     <>
-      {!acceptBidConfirm ? (
+      {acceptBidConfirm || isOrderSuccess ? (
+        <HistoryConfirm
+          nft={nft}
+          orderSlug={orderSlug}
+          acceptBidDetail={acceptBidDetail}
+          acceptBidConfirm={acceptBidConfirm}
+          setAcceptBidConfirm={setAcceptBidConfirm}
+          isOrderOnSale={isOrderOnSale}
+          isOrderSuccess={isOrderSuccess}
+          isOrderCancelled={isOrderCancelled}
+        />
+      ) : (
         <div className="bid-history if_bid_empty_cell">
           <HistoryHeader nftOwner={nftOwner} />
           <div className="bid-history-title-content">
@@ -126,32 +137,21 @@ const BidHistory = ({
               </div>
 
               {/* <div className="empty-bottom-content">
-                <img src={amitabh} alt="" />
-                <div className="nft-owner-history-details">
-                  <div className="publish-time text-secondary">
-                    {dayjs(nft.auction_start_time).format(
-                      "MMM D, YYYY hh:mm A"
-                    )}
-                  </div>
-                  <div className="nft-owner">
-                    Bid listed by @beyondlife.club
-                  </div>
+              <img src={amitabh} alt="" />
+              <div className="nft-owner-history-details">
+                <div className="publish-time text-secondary">
+                  {dayjs(nft.auction_start_time).format(
+                    "MMM D, YYYY hh:mm A"
+                  )}
                 </div>
-              </div> */}
+                <div className="nft-owner">
+                  Bid listed by @beyondlife.club
+                </div>
+              </div>
+            </div> */}
             </div>
           )}
         </div>
-      ) : (
-        <HistoryConfirm
-          nft={nft}
-          orderSlug={orderSlug}
-          acceptBidDetail={acceptBidDetail}
-          acceptBidConfirm={acceptBidConfirm}
-          setAcceptBidConfirm={setAcceptBidConfirm}
-          isOrderOnSale={isOrderOnSale}
-          isOrderSuccess={isOrderSuccess}
-          isOrderCancelled={isOrderCancelled}
-        />
       )}
     </>
   );

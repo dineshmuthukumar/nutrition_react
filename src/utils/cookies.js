@@ -4,6 +4,40 @@ const cookie_token = "bl_base_user_token";
 
 const cookies = new Cookies();
 
+export const setCookiesByName = (name, input) => {
+  if (process.env.REACT_APP_ENVIRONMENT === "local") {
+    cookies.set(name, input);
+  } else {
+    cookies.set(name, input, {
+      domain: process.env.REACT_APP_COOKIE_DOMAIN_NAME,
+    });
+  }
+};
+
+export const setCookies = (input) => {
+  if (process.env.REACT_APP_ENVIRONMENT === "local") {
+    cookies.set(cookie_token, input);
+  } else {
+    cookies.set(cookie_token, input, {
+      domain: process.env.REACT_APP_COOKIE_DOMAIN_NAME,
+    });
+  }
+};
+
+export const removeCookiesByName = (name) => {
+  if (process.env.REACT_APP_ENVIRONMENT === "local") {
+    cookies.remove(name, {
+      domain: process.env.REACT_APP_COOKIE_DOMAIN_NAME,
+      path: "/",
+    });
+  } else {
+    cookies.remove(name, {
+      domain: process.env.REACT_APP_COOKIE_DOMAIN_NAME,
+      path: "/",
+    });
+  }
+};
+
 export const getCookies = () => {
   return cookies.get(cookie_token);
 };

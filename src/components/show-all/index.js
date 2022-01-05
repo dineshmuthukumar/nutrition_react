@@ -66,11 +66,13 @@ const ShowAll = () => {
 
   const showAllNFTs = async (page) => {
     try {
-      setLoading(true);
+      page === 1 && setLoading(true);
+      setLoadingMore(true);
       let response = await nftShowAllApi({ page });
       setList([...list, ...response.data.data.nfts]);
       setHasNext(response.data.data.next_page);
-      setLoading(false);
+      page === 1 && setLoading(false);
+      setLoadingMore(false);
     } catch (err) {
       console.log(err);
     }
@@ -78,10 +80,8 @@ const ShowAll = () => {
 
   const fetchMore = () => {
     if (hasNext) {
-      setLoadingMore(true);
       showAllNFTs(page + 1);
       setPage(page + 1);
-      setLoadingMore(false);
     }
   };
 
@@ -297,6 +297,9 @@ const ShowAll = () => {
                         </div>
                       ))
                     : "No Data Found!"}
+
+                  {!loading && loadingMore && <NFTCardLoader />}
+
                   {hasNext && (
                     <div className="row mb-5">
                       <div className="col-md-12 text-center">
@@ -332,9 +335,10 @@ const NFTCardLoader = (props) => (
     className="mt-1"
     {...props}
   >
-    <rect x="12" y="5" rx="2" ry="2" width="280" height="300" />
-    <rect x="308" y="5" rx="2" ry="2" width="280" height="300" />
-    <rect x="600" y="5" rx="2" ry="2" width="280" height="300" />
+    <rect x="0" y="5" rx="2" ry="2" width="218" height="280" />
+    <rect x="228" y="5" rx="2" ry="2" width="218" height="280" />
+    <rect x="456" y="5" rx="2" ry="2" width="218" height="280" />
+    <rect x="684" y="5" rx="2" ry="2" width="218" height="280" />
   </ContentLoader>
 );
 

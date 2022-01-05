@@ -1,0 +1,118 @@
+@import "../../styles/common";
+
+.more-card {
+  margin-right: 1rem;
+  margin-bottom: 2rem;
+  min-width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  .nft-like-btn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background-color: rgba(0, 0, 0, 0.39);
+    padding: 0.6rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.719);
+    }
+  }
+
+  .nft-type-badge {
+    position: absolute;
+    top: 23rem;
+    left: 0;
+    background: #000;
+    color: #fff;
+    padding: 0;
+    font-size: 1rem;
+    border-radius: 0 20px 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+    min-width: 7rem;
+    padding: 0 1.5rem;
+    font-family: $neue-helveticabold;
+    box-shadow: 1px 1px 0px 1px #ffff;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  overflow: hidden;
+
+  img {
+    min-width: 100%;
+    height: 28rem;
+    object-fit: cover;
+    margin-bottom: 1rem;
+  }
+
+  .top-content-title {
+    display: flex;
+    justify-content: space-between;
+
+    .more-nft-title {
+      font-size: 1.4rem;
+      font-family: $neue-helveticabold;
+      position: relative;
+      display: flex;
+      align-items: center;
+
+      .right-content {
+        width: calc(100% - 8rem);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .left-count {
+        // position: absolute;
+        color: #f21e00;
+        right: 0;
+        font-family: $neue-helveticabold;
+        font-size: 1rem;
+        top: 0.5em;
+        width: 8rem;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+    }
+    .more-nft-desc {
+      font-size: 1rem;
+      font-family: $neue-helveticamedium;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .more-bid-details {
+    display: flex;
+    justify-content: space-between;
+
+    .mb-title {
+      font-size: 1.2rem;
+      font-family: $neue-helveticamedium;
+    }
+
+    .mb-value {
+      font-size: 1.3rem;
+      font-family: $neue-helveticabold;
+    }
+  }
+
+  // &:hover {
+  //   opacity: 0.85;
+  // }
+}
+
+.font-onerem {
+  font-size: 1.3rem !important;
+}

@@ -7,15 +7,11 @@ const baseAxios = axios.create({
   baseURL: process.env.REACT_APP_BASE_SERVER_URL,
 });
 
-// axios.defaults.baseURL = process.env.REACT_APP_BASE_SERVER_URL;
-
-const auth_token = getCookies();
-
-if (auth_token) baseAxios.defaults.headers.common["Authorization"] = auth_token;
-
 baseAxios.interceptors.request.use(
   function (config) {
     document.body.classList.add("loading-indicator");
+    const auth_token = getCookies();
+    if (auth_token) config.headers.Authorization = auth_token;
     return config;
   },
   function (error) {
