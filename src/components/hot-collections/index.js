@@ -54,7 +54,9 @@ const HotCollections = () => {
                   {list.length > 0 ? (
                     <NFTMore nftList={list} hideTitle />
                   ) : (
-                    "No Data Found!"
+                    <div className="col-12 text-center">
+                      <h3 className="my-3">No Data Found!</h3>
+                    </div>
                   )}
 
                   {/* {list.length > 0

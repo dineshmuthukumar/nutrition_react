@@ -160,12 +160,12 @@ const ShowAll = () => {
         <div className="container-fluid">
           <div className="row">
             <div className="col-sm-12">
-              <div className="sec-heading d-flex align-items-end mb-2">
-                <span className="me-4">
+              <div className="sec-heading d-flex align-items-end mb-2 showall-heading">
+                <span className="me-4 mt-2">
                   {!loading ? `Showing All (${list.length})` : <ShowCount />}
                 </span>
 
-                <span className="d-flex">
+                <span className="d-flex flex-wrap mt-2">
                   <Dropdown className="me-3">
                     <Dropdown.Toggle
                       align="start"
@@ -241,7 +241,7 @@ const ShowAll = () => {
                 </span>
               </div>
 
-              <div className="mt-4 mb-4 d-flex">
+              <div className="mt-4 mb-4 d-flex flex-wrap">
                 {filter.category
                   .filter((xx) => xx.checked === true)
                   .map((obj, i) => (
@@ -290,13 +290,17 @@ const ShowAll = () => {
 
               {!loading ? (
                 <div className="row">
-                  {list.length > 0
-                    ? list.map((nft, i) => (
-                        <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                          <NFTCard nft={nft} key={i} image={cardImage} />
-                        </div>
-                      ))
-                    : "No Data Found!"}
+                  {list.length > 0 ? (
+                    list.map((nft, i) => (
+                      <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                        <NFTCard nft={nft} key={i} image={cardImage} />
+                      </div>
+                    ))
+                  ) : (
+                    <div className="col-12 text-center">
+                      <h3 className="my-3">No Data Found!</h3>
+                    </div>
+                  )}
 
                   {!loading && loadingMore && <NFTCardLoader />}
 
