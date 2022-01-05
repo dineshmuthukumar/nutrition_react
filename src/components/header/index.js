@@ -30,7 +30,7 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
   const [notiLoading, setNotiLoading] = useState(false);
   const [npage, setNPage] = useState(1);
   const [notification, setNotification] = useState();
-  const [notiRead, setNotiRead] = useState(false);
+  const [notiRead, setNotiRead] = useState(true);
 
   const [ribbon, setRibbon] = useState(true);
 
@@ -42,8 +42,8 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
       accountDetail(slug, (data) => {
         dispatch(user_wallet_update_action(data));
       });
+      handleGetNotification(npage);
     }
-    if (user.login) handleGetNotification(npage);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -60,7 +60,9 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
       setNotiLoading(false);
       if (input === 1) {
         setNotification(result.data.data);
-        setNotiRead(result.data.data.notifications_read);
+        if (result.data.data.total > 0) {
+          setNotiRead(result.data.data.notifications_read);
+        }
       } else {
         setNotification({
           ...notification,
