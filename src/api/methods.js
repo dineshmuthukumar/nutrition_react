@@ -76,6 +76,9 @@ export const nftBidApi = ({ order_slug, order }) =>
 export const bidSaleCancelApi = ({ order_slug }) =>
   appAxios.post(`/orders/${order_slug}/bid_cancel`);
 
+export const saleCancelApi = ({ order_slug }) =>
+  appAxios.post(`/orders/${order_slug}/sale_cancel`);
+
 export const buySaleCancelApi = ({ order_slug, order }) =>
   appAxios.post(`/orders/${order_slug}/buy_cancel`, { order });
 
