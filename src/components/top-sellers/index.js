@@ -46,16 +46,20 @@ const TopSellers = () => {
             <div className="col-sm-12">
               <h1 className="sec-heading">Top Sellers</h1>
               <div className="row">
-                {list.length > 0
-                  ? list.map((seller, i) => (
-                      <Seller
-                        key={`user-${i}`}
-                        index={i}
-                        seller={seller}
-                        image={userImage}
-                      />
-                    ))
-                  : "No Data Found"}
+                {list.length > 0 ? (
+                  list.map((seller, i) => (
+                    <Seller
+                      key={`user-${i}`}
+                      index={i}
+                      seller={seller}
+                      image={userImage}
+                    />
+                  ))
+                ) : (
+                  <div className="col-12 text-center">
+                    <h3 className="my-3">No Data Found!</h3>
+                  </div>
+                )}
               </div>
             </div>
           </div>

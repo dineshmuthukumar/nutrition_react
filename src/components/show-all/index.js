@@ -290,13 +290,17 @@ const ShowAll = () => {
 
               {!loading ? (
                 <div className="row">
-                  {list.length > 0
-                    ? list.map((nft, i) => (
-                        <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                          <NFTCard nft={nft} key={i} image={cardImage} />
-                        </div>
-                      ))
-                    : "No Data Found!"}
+                  {list.length > 0 ? (
+                    list.map((nft, i) => (
+                      <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                        <NFTCard nft={nft} key={i} image={cardImage} />
+                      </div>
+                    ))
+                  ) : (
+                    <div className="col-12 text-center">
+                      <h3 className="my-3">No Data Found!</h3>
+                    </div>
+                  )}
 
                   {!loading && loadingMore && <NFTCardLoader />}
 
