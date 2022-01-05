@@ -161,11 +161,11 @@ const ShowAll = () => {
           <div className="row">
             <div className="col-sm-12">
               <div className="sec-heading d-flex align-items-end mb-2">
-                <span className="me-4">
+                <span className="me-4 mt-2">
                   {!loading ? `Showing All (${list.length})` : <ShowCount />}
                 </span>
 
-                <span className="d-flex">
+                <span className="d-flex flex-wrap mt-2">
                   <Dropdown className="me-3">
                     <Dropdown.Toggle
                       align="start"
@@ -241,7 +241,7 @@ const ShowAll = () => {
                 </span>
               </div>
 
-              <div className="mt-4 mb-4 d-flex">
+              <div className="mt-4 mb-4 d-flex flex-wrap">
                 {filter.category
                   .filter((xx) => xx.checked === true)
                   .map((obj, i) => (
