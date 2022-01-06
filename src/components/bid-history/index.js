@@ -94,12 +94,14 @@ const BidHistory = ({
       ) : (
         <div className="bid-history if_bid_empty_cell">
           <HistoryHeader nftOwner={nftOwner} />
-          <div className="bid-history-title-content">
-            <div className="bid-history-title">History</div>
-            <div className="bid-history-filter"></div>
-          </div>
+          {isOrderOnSale && (
+            <div className="bid-history-title-content">
+              <div className="bid-history-title">History</div>
+              <div className="bid-history-filter"></div>
+            </div>
+          )}
 
-          {histories.length > 0 ? (
+          {histories.length > 0 && isOrderOnSale ? (
             <div className={`bid-history-content ${isOwner ? "owner" : ""}`}>
               {histories.map((history, i) => (
                 <BidCard
@@ -125,18 +127,19 @@ const BidHistory = ({
               )}
             </div>
           ) : (
-            <div className="bid-empty-content">
-              <div className="empty-top-container">
-                <div className="empty-top-content">
-                  <IoIosRocket color="white" />
-                  <div className="empty-text">
-                    No active bids yet. <br />
-                    Be the first to make a bid.
+            isOrderOnSale && (
+              <div className="bid-empty-content">
+                <div className="empty-top-container">
+                  <div className="empty-top-content">
+                    <IoIosRocket color="white" />
+                    <div className="empty-text">
+                      No active bids yet. <br />
+                      {!isOwner && "Be the first to make a bid."}
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* <div className="empty-bottom-content">
+                {/* <div className="empty-bottom-content">
               <img src={amitabh} alt="" />
               <div className="nft-owner-history-details">
                 <div className="publish-time text-secondary">
@@ -149,7 +152,8 @@ const BidHistory = ({
                 </div>
               </div>
             </div> */}
-            </div>
+              </div>
+            )
           )}
         </div>
       )}

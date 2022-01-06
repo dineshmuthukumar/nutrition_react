@@ -9,31 +9,16 @@ import cardImage from "../../images/drops/nft_2.png";
 import "./style.scss";
 import { BiX } from "react-icons/bi";
 
-const ShowAll = () => {
+const ShowAll = ({ categories }) => {
   const [page, setPage] = useState(1);
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [totalCount, setTotalCount] = useState(0);
   const [hasNext, setHasNext] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
 
   const [filter, setFilter] = useState({
-    category: [
-      {
-        name: "Madushala",
-        value: "madushala",
-        checked: false,
-      },
-      {
-        name: "Chakra Art Punks",
-        value: "art_punks",
-        checked: false,
-      },
-      {
-        name: "BigB Punks",
-        value: "bigb_punks",
-        checked: false,
-      },
-    ],
+    category: [],
     sale: [
       {
         name: "Bid",
@@ -66,8 +51,18 @@ const ShowAll = () => {
   });
 
   useEffect(() => {
+    let categoryList = [];
+    categories.forEach((category) => {
+      const categoryDetail = {
+        name: category.name,
+        value: category.name,
+        checked: false,
+      };
+      categoryList.push(categoryDetail);
+    });
+    setFilter({ ...filter, category: categoryList });
     showAllNFTs(page);
-  }, []);
+  }, [categories]);
 
   const showAllNFTs = async (page, category, type, saleType) => {
     try {
@@ -83,6 +78,7 @@ const ShowAll = () => {
       });
       setList([...list, ...response.data.data.nfts]);
       setHasNext(response.data.data.next_page);
+      setTotalCount(response.data.data.total_count);
       page === 1 && setLoading(false);
       setLoadingMore(false);
     } catch (err) {
@@ -104,6 +100,7 @@ const ShowAll = () => {
       });
       setList(response.data.data.nfts);
       setHasNext(response.data.data.next_page);
+      setTotalCount(response.data.data.total_count);
       page === 1 && setLoading(false);
       setLoadingMore(false);
     } catch (err) {
@@ -248,9 +245,7 @@ const ShowAll = () => {
           <div className="row">
             <div className="col-sm-12">
               <div className="sec-heading d-flex align-items-end mb-2 showall-heading">
-                <span className="me-4 mt-2">
-                  {!loading ? `Listed NFTs` : <ShowCount />}
-                </span>
+                <span className="me-4 mt-2">Listed NFTs</span>
 
                 <span className="d-flex flex-wrap mt-2">
                   <Dropdown className="me-3">

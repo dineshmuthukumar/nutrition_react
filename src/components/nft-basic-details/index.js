@@ -498,18 +498,22 @@ const NFTBaseDetails = ({
                   <>
                     <button
                       disabled={false}
-                      className="btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill place-bid-buy-btn filled-btn"
+                      className={`btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill ${
+                        isOrder ? `place-bid-buy-btn` : "place-bid-btn"
+                      } filled-btn`}
                       onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
                     >
                       Cancel the sale
                     </button>
-                    <button
-                      disabled={false}
-                      className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn"
-                      onClick={() => setAcceptBidConfirm(!acceptBidConfirm)}
-                    >
-                      Accept Bid
-                    </button>
+                    {isOrder && (
+                      <button
+                        disabled={latestBid ? false : true}
+                        className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn"
+                        onClick={() => setAcceptBidConfirm(!acceptBidConfirm)}
+                      >
+                        Accept Bid
+                      </button>
+                    )}
                   </>
                 );
               }

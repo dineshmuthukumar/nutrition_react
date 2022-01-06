@@ -50,21 +50,33 @@ button.load_more {
 }
 
 .filter-pill-button {
-  background-color: rgb(231, 231, 231);
-  border: 1px solid #ccc;
-  padding: 0.2rem 0.2rem 0.2rem 0.8rem;
+  // background-color: rgb(231, 231, 231);
+  // border: 1px solid #ccc;
+  // padding: 0.2rem 0.2rem 0.2rem 0.8rem;
+  // border-radius: 50rem;
+  // display: flex;
+  // margin-right: 0.5rem;
+  // margin-bottom: 0.5rem;
+  background-color: #020202;
+  border: 1px solid #020202;
+  padding: 0 0.5rem 0 1rem;
   border-radius: 50rem;
   display: flex;
   margin-right: 0.5rem;
   margin-bottom: 0.5rem;
+  color: #fff;
+  align-items: center;
+  justify-content: center;
+  height: 2.5rem;
 
   .first {
     font-family: $neue-helveticamedium;
   }
 
   &:hover {
-    background-color: rgb(255, 255, 255);
+    background-color: #fff;
     border: 1px solid rgb(129, 129, 129);
+    color: #000;
   }
 
   .last {
