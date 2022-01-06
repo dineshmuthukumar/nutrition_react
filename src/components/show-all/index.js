@@ -9,31 +9,16 @@ import cardImage from "../../images/drops/nft_2.png";
 import "./style.scss";
 import { BiX } from "react-icons/bi";
 
-const ShowAll = () => {
+const ShowAll = ({ categories }) => {
   const [page, setPage] = useState(1);
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [totalCount, setTotalCount] = useState(0);
   const [hasNext, setHasNext] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
 
   const [filter, setFilter] = useState({
-    category: [
-      {
-        name: "Madushala",
-        value: "madushala",
-        checked: false,
-      },
-      {
-        name: "Chakra Art Punks",
-        value: "art_punks",
-        checked: false,
-      },
-      {
-        name: "BigB Punks",
-        value: "bigb_punks",
-        checked: false,
-      },
-    ],
+    category: [],
     sale: [
       {
         name: "Bid",
@@ -61,16 +46,56 @@ const ShowAll = () => {
   });
 
   useEffect(() => {
+    let categoryList = [];
+    categories.forEach((category) => {
+      const categoryDetail = {
+        name: category.name,
+        value: category.name,
+        checked: false,
+      };
+      categoryList.push(categoryDetail);
+    });
+    setFilter({ ...filter, category: categoryList });
     showAllNFTs(page);
-  }, []);
+  }, [categories]);
 
-  const showAllNFTs = async (page) => {
+  const showAllNFTs = async (page, category, type, saleType) => {
     try {
       page === 1 && setLoading(true);
       setLoadingMore(true);
-      let response = await nftShowAllApi({ page });
+      let response = await nftShowAllApi({
+        page,
+        filter: {
+          category: category,
+          type: type,
+          sale_type: saleType,
+        },
+      });
       setList([...list, ...response.data.data.nfts]);
       setHasNext(response.data.data.next_page);
+      setTotalCount(response.data.data.total_count);
+      page === 1 && setLoading(false);
+      setLoadingMore(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const showAllFilteredNFTs = async (page, category, type, saleType) => {
+    try {
+      page === 1 && setLoading(true);
+      setLoadingMore(true);
+      let response = await nftShowAllApi({
+        page,
+        filter: {
+          category: category,
+          type: type,
+          sale_type: saleType,
+        },
+      });
+      setList(response.data.data.nfts);
+      setHasNext(response.data.data.next_page);
+      setTotalCount(response.data.data.total_count);
       page === 1 && setLoading(false);
       setLoadingMore(false);
     } catch (err) {
@@ -80,7 +105,19 @@ const ShowAll = () => {
 
   const fetchMore = () => {
     if (hasNext) {
-      showAllNFTs(page + 1);
+      const categoryFilter = filter.category
+        .filter((xx) => xx.checked === true)
+        .map((obj, i) => obj.value);
+
+      const typeFilter = filter.nft
+        .filter((xx) => xx.checked === true)
+        .map((obj, i) => obj.value);
+
+      const saleTypeFilter = filter.sale
+        .filter((xx) => xx.checked === true)
+        .map((obj, i) => obj.value);
+
+      showAllNFTs(page + 1, categoryFilter, typeFilter, saleTypeFilter);
       setPage(page + 1);
     }
   };
@@ -132,6 +169,20 @@ const ShowAll = () => {
       checked: !info.category[index].checked,
     };
     setFilter(info);
+
+    const categoryFilter = filter.category
+      .filter((xx) => xx.checked === true)
+      .map((obj, i) => obj.value);
+
+    const typeFilter = filter.nft
+      .filter((xx) => xx.checked === true)
+      .map((obj, i) => obj.value);
+
+    const saleTypeFilter = filter.sale
+      .filter((xx) => xx.checked === true)
+      .map((obj, i) => obj.value);
+
+    showAllFilteredNFTs(page, categoryFilter, typeFilter, saleTypeFilter);
   };
 
   const handleSaleCheck = (input) => {
@@ -142,6 +193,20 @@ const ShowAll = () => {
       checked: !info.sale[index].checked,
     };
     setFilter(info);
+
+    const categoryFilter = filter.category
+      .filter((xx) => xx.checked === true)
+      .map((obj, i) => obj.value);
+
+    const typeFilter = filter.nft
+      .filter((xx) => xx.checked === true)
+      .map((obj, i) => obj.value);
+
+    const saleTypeFilter = filter.sale
+      .filter((xx) => xx.checked === true)
+      .map((obj, i) => obj.value);
+
+    showAllFilteredNFTs(page, categoryFilter, typeFilter, saleTypeFilter);
   };
 
   const handleNFTCheck = (input) => {
@@ -152,6 +217,20 @@ const ShowAll = () => {
       checked: !info.nft[index].checked,
     };
     setFilter(info);
+
+    const categoryFilter = filter.category
+      .filter((xx) => xx.checked === true)
+      .map((obj, i) => obj.value);
+
+    const typeFilter = filter.nft
+      .filter((xx) => xx.checked === true)
+      .map((obj, i) => obj.value);
+
+    const saleTypeFilter = filter.sale
+      .filter((xx) => xx.checked === true)
+      .map((obj, i) => obj.value);
+
+    showAllFilteredNFTs(page, categoryFilter, typeFilter, saleTypeFilter);
   };
 
   return (
@@ -160,11 +239,8 @@ const ShowAll = () => {
         <div className="container-fluid">
           <div className="row">
             <div className="col-sm-12">
-              <div className="sec-heading d-flex align-items-end mb-2">
-                <span className="me-4 mt-2">
-                  {!loading ? `Showing All (${list.length})` : <ShowCount />}
-                </span>
-
+              <div className="sec-heading d-flex align-items-end mb-2 showall-heading">
+                <span className="me-4 mt-2">Explore All</span>
                 <span className="d-flex flex-wrap mt-2">
                   <Dropdown className="me-3">
                     <Dropdown.Toggle
@@ -290,13 +366,17 @@ const ShowAll = () => {
 
               {!loading ? (
                 <div className="row">
-                  {list.length > 0
-                    ? list.map((nft, i) => (
-                        <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                          <NFTCard nft={nft} key={i} image={cardImage} />
-                        </div>
-                      ))
-                    : "No Data Found!"}
+                  {list.length > 0 ? (
+                    list.map((nft, i) => (
+                      <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                        <NFTCard nft={nft} key={i} image={cardImage} />
+                      </div>
+                    ))
+                  ) : (
+                    <div className="col-12 text-center">
+                      <h3 className="my-3">No Data Found!</h3>
+                    </div>
+                  )}
 
                   {!loading && loadingMore && <NFTCardLoader />}
 

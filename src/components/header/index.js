@@ -505,7 +505,7 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                   target="_blank"
                 >
                   <FaDiscord size={25} />
-                  <span>Join Our Discord</span>
+                  {/* <span>Join Our Discord</span> */}
                 </Nav.Link>
               </Nav>
               <Dropdown

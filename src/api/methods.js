@@ -9,9 +9,12 @@ export const nftCategoryDetailApi = ({ slug }) =>
 export const nftCategoryListApi = ({ slug, page }) =>
   appAxios.get(`/categories/${slug}/nfts?page=${page}`);
 
-export const nftShowAllApi = ({ page }) =>
-  appAxios.get(`/dashboard/index?page=${page}`);
-// appAxios.get(`/dashboard/index?page=${page}&sort=${sort}&filter=${filter}`);
+export const nftShowAllApi = ({ page, filter }) =>
+  appAxios.get(`/dashboard/index?page=${page}`, {
+    params: {
+      filter,
+    },
+  });
 
 export const hotNFTsApi = ({ page }) =>
   appAxios.get(`/dashboard/hot_nfts?page=${page}`);
@@ -73,6 +76,9 @@ export const nftBidApi = ({ order_slug, order }) =>
 export const bidSaleCancelApi = ({ order_slug }) =>
   appAxios.post(`/orders/${order_slug}/bid_cancel`);
 
+export const saleCancelApi = ({ order_slug }) =>
+  appAxios.post(`/orders/${order_slug}/sale_cancel`);
+
 export const buySaleCancelApi = ({ order_slug, order }) =>
   appAxios.post(`/orders/${order_slug}/buy_cancel`, { order });
 
@@ -84,3 +90,6 @@ export const sellerFavedNFTSApi = ({ slug, page }) =>
 
 export const sellerOwnedNFTsApi = ({ slug, page }) =>
   appAxios.get(`/users/${slug}/owned?page=${page}`);
+
+export const sellerDetailApi = ({ slug }) =>
+  appAxios.get(`/users/${slug}/seller_me`);

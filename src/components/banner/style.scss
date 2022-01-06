@@ -60,18 +60,56 @@
     overflow: hidden;
     word-break: break-word;
     text-align: left;
+
+    @media screen and (max-width: 1024px) {
+      font-size: 1rem;
+    }
+    @media screen and (max-width: 991px) {
+      font-size: 0.8rem;
+    }
+    @media screen and (max-width: 767px) {
+      font-size: 1.2rem;
+    }
   }
 
   .big-box {
     font-size: 3rem;
     top: 2rem;
     left: 2rem;
+
+    @media screen and (max-width: 1024px) {
+      font-size: 2rem;
+      top: 1rem;
+      left: 1rem;
+    }
+    @media screen and (max-width: 992px) {
+      font-size: 1.7rem;
+      top: 0.5rem;
+      left: 0.5rem;
+    }
+    @media screen and (max-width: 767px) {
+      font-size: 1.2rem;
+    }
   }
 
   .medium-box {
     font-size: 2rem;
     top: 1rem;
     left: 1rem;
+
+    @media screen and (max-width: 1024px) {
+      font-size: 1.4rem;
+      top: 1rem;
+      left: 1rem;
+    }
+    @media screen and (max-width: 992px) {
+      font-size: 1rem;
+      top: 0.5rem;
+      left: 0.5rem;
+    }
+    @media screen and (max-width: 767px) {
+      font-size: 1.2rem;
+    }
   }
 }
 

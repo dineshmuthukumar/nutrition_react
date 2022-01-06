@@ -19,9 +19,9 @@ const CollectionCard = ({ nft }) => {
   };
   return (
     <div className="more-card" role="button" onClick={handleClick}>
-      <span className="nft-like-btn">
+      {/* <span className="nft-like-btn">
         <FaHeart size={30} color="#ccc" />
-      </span>
+      </span> */}
       <span className="nft-type-badge">{nft.nft_type.toUpperCase()}</span>
       <img
         alt="media logo"
