@@ -44,7 +44,7 @@ const NFTCard = ({ nft }) => {
         <div className="more-bid-details">
           <div className="text-end">
             <div className="mb-title text-secondary">
-              {erc721 ? "Bid Price" : "Price"}
+              {nft?.is_on_sale ? (erc721 ? "Bid Price" : "Price") : null}
             </div>
             <div className="mb-value">
               {(() => {
@@ -64,8 +64,6 @@ const NFTCard = ({ nft }) => {
                       "USD"
                     );
                   }
-                } else {
-                  return "Not For Sale";
                 }
               })()}
             </div>

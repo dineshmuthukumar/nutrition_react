@@ -45,6 +45,11 @@ const ShowAll = () => {
         value: "buy",
         checked: false,
       },
+      {
+        name: "Bid & Buy",
+        value: "bid_buy",
+        checked: false,
+      },
     ],
     nft: [
       {
@@ -94,7 +99,7 @@ const ShowAll = () => {
         onClick(e);
       }}
     >
-      Category
+      NFT Collection
     </div>
   ));
 
@@ -162,7 +167,7 @@ const ShowAll = () => {
             <div className="col-sm-12">
               <div className="sec-heading d-flex align-items-end mb-2 showall-heading">
                 <span className="me-4 mt-2">
-                  {!loading ? `Showing All (${list.length})` : <ShowCount />}
+                  {!loading ? `Listed NFTs` : <ShowCount />}
                 </span>
 
                 <span className="d-flex flex-wrap mt-2">
