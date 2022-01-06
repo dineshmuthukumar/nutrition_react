@@ -1,10 +1,9 @@
 {
   "name": "new-app",
   "version": "0.1.0",
-  "homepage": "https://amitabh.beyondlife.club/",
+  "homepage": "https://marketplace.baflabs.com/",
   "private": true,
   "dependencies": {
-    "@babel/preset-react": "^7.16.5",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -74,6 +73,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/preset-react": "^7.16.5",
     "babel-cli": "^6.26.0",
     "babel-preset-react": "^6.24.1"
   }
