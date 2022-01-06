@@ -10,6 +10,7 @@ import bigb_artpunk from "../../images/marketplace/bigb_artpunk.jpg";
 import madhushala_nft from "../../images/marketplace/madhushala_nft.png";
 import chakra_artpunks from "../../images/marketplace/chakra_artpunks.jpg";
 import comic_cover_new from "../../images/marketplace/comic_cover_new.jpg";
+import digital_poster from "../../images/marketplace/digital_poster.gif";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./style.scss";
 
@@ -61,6 +62,14 @@ const Banner = ({ list = [] }) => {
                     className="first-image"
                     style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
                   ></video>
+                </div>
+                <div style={{ overflow: "hidden" }} className="cat-block">
+                  <h5 className="cat-title big-box">Digital Posters</h5>
+                  <img
+                    src={digital_poster}
+                    className="first-image"
+                    style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
+                  />
                 </div>
               </Carousel>
             </div>

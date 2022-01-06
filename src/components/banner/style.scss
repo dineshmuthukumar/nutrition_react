@@ -138,6 +138,7 @@
   width: 100%;
   height: 12em;
   left: 0;
+  border-radius: 0.8rem;
 }
 .cat-block:before {
   height: 5em;
@@ -149,4 +150,9 @@
 }
 .cat-block .cat-title {
   text-shadow: none;
+}
+.carousel .control-dots .dot {
+  width: 2em;
+  border-radius: 6px;
+  height: 0.7em;
 }
