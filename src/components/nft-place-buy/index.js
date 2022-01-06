@@ -327,72 +327,81 @@ const NFTPlaceBuy = ({
                     </div>
                     {/* error-bid -> less value than min bid,  error-balance -> low value, error-balance-float -> low value in quantity  */}
 
-                    <div className={`input-bid-container mt-5 ${error}`}>
-                      <div className={`input-field-bid`}>
-                        <label className="input-bid-text">
-                          {erc721
-                            ? `Cost Of NFT`
-                            : `Enter Quantity Max (${orderDetails.available_quantity})`}
-                        </label>
+                    <div className="sticky-bottom-nft-buy">
+                      <div className={`input-bid-container ${error}`}>
+                        <div className={`input-field-bid`}>
+                          <label className="input-bid-text">
+                            {erc721
+                              ? `Price of NFT`
+                              : `Enter Quantity Max (${orderDetails.available_quantity})`}
+                          </label>
 
-                        {!erc721 ? (
-                          <div className="input-quantity-container">
-                            <input
-                              type="text"
-                              className="input-quantity"
-                              value={buyQuantity}
-                              placeholder="0 NFTs"
-                              onChange={handleBuyInputChange}
-                            />
-                            {/* text-dark -> dark text after entering quantity */}
-                            <span
-                              className={`quantity-to-value ${buy.amountClass}`}
-                            >
-                              {currencyFormat(buyAmount, "USD")}
-                            </span>
-                          </div>
-                        ) : (
+                          {!erc721 ? (
+                            <div className="input-quantity-container">
+                              <input
+                                type="text"
+                                className="input-quantity"
+                                value={buyQuantity}
+                                placeholder="0 NFTs"
+                                onChange={handleBuyInputChange}
+                              />
+                              {/* text-dark -> dark text after entering quantity */}
+                              <span
+                                className={`quantity-to-value ${buy.amountClass}`}
+                              >
+                                {currencyFormat(buyAmount, "USD")}
+                              </span>
+                            </div>
+                          ) : (
+                            <div className="services-fee-box">
+                              <h1>{currencyFormat(buyAmount, "USD")}</h1>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      <div className={`input-bid-container`}>
+                        <div className="input-field-bid">
                           <div className="services-fee-box">
-                            <h1>{currencyFormat(buyAmount, "USD")}</h1>
+                            <label className="input-bid-text">
+                              Service Fee
+                            </label>
+                            <h4>{parseFloat(nft.service_fee)}%</h4>
                           </div>
-                        )}
-                      </div>
-                    </div>
-
-                    <div className={`input-bid-container mt-5`}>
-                      <div className="input-field-bid">
-                        <div className="services-fee-box">
-                          <label className="input-bid-text">Service Fee</label>
-                          <h1>{parseFloat(nft.service_fee)}%</h1>
                         </div>
                       </div>
-                    </div>
-                    <div className={`input-bid-container mt-5`}>
-                      <div className="input-field-bid">
-                        <div className="total-amount-box">
-                          <label className="input-bid-text">Total Amount</label>
-                          <h1>
-                            {currencyFormat(
-                              parseFloat(buyAmount) +
-                                (parseFloat(buyAmount) *
-                                  parseFloat(nft.service_fee)) /
-                                  100,
-                              "USD"
-                            )}
-                          </h1>
+                      <div className={`input-bid-container`}>
+                        <div className="input-field-bid">
+                          <div className="total-amount-box">
+                            <label className="input-bid-text">
+                              Total Amount
+                            </label>
+                            <h1>
+                              {currencyFormat(
+                                parseFloat(buyAmount) +
+                                  (parseFloat(buyAmount) *
+                                    parseFloat(nft.service_fee)) /
+                                    100,
+                                "USD"
+                              )}
+                            </h1>
+                          </div>
                         </div>
+                      </div>
+                      <div className="terms text-secondary">
+                        An transaction can't be reversed after NFT is been
+                        purchased.{" "}
+                        <a
+                          href={process.env.REACT_APP_HELP_URL}
+                          target="_blank"
+                        >
+                          Learn more
+                        </a>{" "}
+                        about how it works.
                       </div>
                     </div>
                   </div>
                   <div className="bottom-area">
-                    <div className="terms text-secondary">
-                      An nft can't be reversed after it's been purchased.
-                      <a href={process.env.REACT_APP_HELP_URL} target="_blank">
-                        Learn more
-                      </a>{" "}
-                      about how it works.
-                    </div>
-
                     <div className="bottom-content-pop">
                       <div
                         className="back-button"

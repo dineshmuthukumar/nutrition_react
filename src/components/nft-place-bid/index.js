@@ -280,66 +280,73 @@ const NFTPlaceBid = ({
                     </div>
                     {/* error-bid -> less value than min bid,  error-balance -> low value, error-balance-float -> low value in quantity  */}
 
-                    <div className={`input-bid-container mt-5 ${error}`}>
-                      <div className={`input-field-bid`}>
-                        <label className="input-bid-text">
-                          {erc721 &&
-                            `Your Bid Amount Should Be Greater Than
+                    <div className="stick-bottom-bid-place">
+                      <div className={`input-bid-container ${error}`}>
+                        <div className={`input-field-bid`}>
+                          <label className="input-bid-text">
+                            {erc721 &&
+                              `Your Bid Amount Should Be Greater Than
                             ${currencyFormat(
                               price ? price : orderDetails.minimum_bid,
                               "USD"
                             )}`}
-                        </label>
+                          </label>
 
-                        <div className="input-bid-wrap">
-                          <span className="bid-currency">$</span>
-                          <input
-                            type="text"
-                            className="input-bid"
-                            value={bidAmount}
-                            placeholder="0"
-                            onChange={handleBidInputChange}
-                          />
+                          <div className="input-bid-wrap">
+                            <span className="bid-currency">$</span>
+                            <input
+                              type="text"
+                              className="input-bid"
+                              value={bidAmount}
+                              placeholder="0"
+                              onChange={handleBidInputChange}
+                            />
+                          </div>
                         </div>
                       </div>
-                    </div>
-
-                    <div className={`input-bid-container mt-5`}>
-                      <div className="input-field-bid">
-                        <div className="services-fee-box">
-                          <label className="input-bid-text">Service Fee</label>
-                          <h1>{parseFloat(nft.service_fee)}%</h1>
+                      <div className={`input-bid-container`}>
+                        <div className="input-field-bid">
+                          <div className="services-fee-box">
+                            <label className="input-bid-text">
+                              Service Fee
+                            </label>
+                            <h4>{parseFloat(nft.service_fee)}%</h4>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div className={`input-bid-container mt-5`}>
-                      <div className="input-field-bid">
-                        <div className="total-amount-box">
-                          <label className="input-bid-text">Total Amount</label>
-                          <h1>
-                            {bidAmount
-                              ? currencyFormat(
-                                  parseFloat(bidAmount) +
-                                    (parseFloat(bidAmount) *
-                                      parseFloat(nft.service_fee)) /
-                                      100,
-                                  "USD"
-                                )
-                              : currencyFormat(0, "USD")}
-                          </h1>
+                      <div className={`input-bid-container`}>
+                        <div className="input-field-bid">
+                          <div className="total-amount-box">
+                            <label className="input-bid-text">
+                              Total Amount
+                            </label>
+                            <h1>
+                              {bidAmount
+                                ? currencyFormat(
+                                    parseFloat(bidAmount) +
+                                      (parseFloat(bidAmount) *
+                                        parseFloat(nft.service_fee)) /
+                                        100,
+                                    "USD"
+                                  )
+                                : currencyFormat(0, "USD")}
+                            </h1>
+                          </div>
                         </div>
+                      </div>
+                      <div className="terms text-secondary">
+                        Once a bid is placed, it cannot be withdrawn.{" "}
+                        <a
+                          href={process.env.REACT_APP_HELP_URL}
+                          target="_blank"
+                        >
+                          Learn more
+                        </a>{" "}
+                        about how auctions work.
                       </div>
                     </div>
                   </div>
                   <div className="bottom-area">
-                    <div className="terms text-secondary">
-                      Once a bid is placed, it cannot be withdrawn.
-                      <a href={process.env.REACT_APP_HELP_URL} target="_blank">
-                        Learn more
-                      </a>{" "}
-                      about how auctions work.
-                    </div>
-
                     <div className="bottom-content-pop">
                       <div
                         className="back-button"
