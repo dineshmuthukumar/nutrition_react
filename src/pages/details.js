@@ -331,7 +331,7 @@ const Details = () => {
             <>
               <NFTSectionTitle title="Order Details" />
               <div className="row mt-5">
-                <NFTOrderHistory orderList={ownerOrdersList} />
+                <NFTOrderHistory nft={nft} orderList={ownerOrdersList} />
               </div>
             </>
           )}
