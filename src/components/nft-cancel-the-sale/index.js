@@ -239,7 +239,8 @@ const NFTCancelTheSale = ({
                   <div className="sucess-title">
                     <FaTimesCircle color={"#f21e00"} size={60} />
                     <div className="message mt-3">
-                      Your NFT sale has been Removed
+                      Listing canceled successfully. Your NFT is no longer
+                      listed for selling.
                     </div>
                   </div>
 

@@ -402,6 +402,14 @@ const NFTPlaceBuy = ({
                     </div>
                   </div>
                   <div className="bottom-area">
+                    <div className="terms text-secondary">
+                      An NFT purchase cannot be refunded or reversed.
+                      <a href={process.env.REACT_APP_HELP_URL} target="_blank">
+                        Learn more
+                      </a>{" "}
+                      to know how NFT purchases work.
+                    </div>
+
                     <div className="bottom-content-pop">
                       <div
                         className="back-button"
@@ -447,8 +455,9 @@ const NFTPlaceBuy = ({
                     </div>
                   </div> */}
                   <div className="success-preview">
-                    <div className="pop-nft-title text-center mb-1">
-                      Your can view your NFT in My NFT page
+                    <div className="pop-nft-title text-center mb-1 bold">
+                      You have successfully purchased your NFT. You can view
+                      them in the 'My NFT' section of your profile.
                     </div>
                     <div className="pop-nft-media mt-4 preview">
                       {(() => {
