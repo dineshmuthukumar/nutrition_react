@@ -109,8 +109,8 @@ const HistoryConfirm = ({
             <div className="footer-btn-box">
               <div className="notes-box">
                 <p>
-                  Note: Once you sell the NFT, the collective will be removed
-                  from My NFT page
+                  Note: Once you sell your NFT, it will be moved from your
+                  collectibles in the 'My NFTs' section.
                 </p>
               </div>
               <div className="btn-block">

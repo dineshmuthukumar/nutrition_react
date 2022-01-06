@@ -417,6 +417,10 @@ const NFTPutOnSale = ({
                               >
                                 <label className="input-bid-text">
                                   Set Price
+                                  <span className={`quantity-to-value`}>
+                                    Min.Buy Amount{" "}
+                                    {currencyFormat(nft.floor_price, "USD")}
+                                  </span>
                                 </label>
                                 <div className="input-bid-wrap">
                                   <span className="bid-currency">$</span>
@@ -436,8 +440,11 @@ const NFTPutOnSale = ({
                                 }`}
                               >
                                 <label className="input-bid-text">
-                                  Min. Bid Amount -
-                                  {currencyFormat(nft.floor_price, "USD")}
+                                  Initial Bid Amount
+                                  <span className={`quantity-to-value`}>
+                                    Min.Bid Amount{" "}
+                                    {currencyFormat(nft.floor_price, "USD")}
+                                  </span>
                                 </label>
                                 <div className="input-bid-wrap">
                                   <span className="bid-currency">$</span>
@@ -486,8 +493,8 @@ const NFTPutOnSale = ({
 
                       <div className="bottom-area">
                         <div className="terms text-secondary">
-                          Royalty will be deducted {nft.royalties}% of every
-                          transaction
+                          A royalty fee of {nft.royalties}% will be applicable
+                          for every transaction.
                         </div>
 
                         <div className="bottom-content-pop">
@@ -739,7 +746,7 @@ const NFTPutOnSale = ({
                               </li>
                               {erc721Sale.isBuy && (
                                 <li className="final-set">
-                                  <span className="key">Total Amount </span>
+                                  <span className="key">Final Amount </span>
                                   <span className="value">
                                     {currencyFormat(
                                       parseFloat(erc721Sale.buyAmount) -
@@ -752,9 +759,9 @@ const NFTPutOnSale = ({
                                   </span>
                                 </li>
                               )}
-                              {!erc721Sale.isBuy && erc721Sale.isBid && (
+                              {erc721Sale.isBid && (
                                 <li className="final-set">
-                                  <span className="key">
+                                  <span className="key ">
                                     Your final amount will be calculated after
                                     deducting {parseFloat(nft.royalties)}%
                                     artist fees and{" "}
