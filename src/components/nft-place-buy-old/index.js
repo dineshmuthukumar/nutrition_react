@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import dayjs from "dayjs";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useRouteMatch } from "react-router";
 import { Offcanvas } from "react-bootstrap";
 import { FaCheckCircle } from "react-icons/fa";
 
@@ -10,18 +10,22 @@ import sample from "../../images/sampleNFT.jpg";
 import {
   bidBuyError,
   currencyFormat,
+  validateCurrency,
   validateQuantity,
 } from "../../utils/common";
-import { nftBuyApi } from "../../api/methods";
+import { nftBidApi, nftBuyApi } from "../../api/methods";
 
 import "./style.scss";
+import { useParams } from "react-router-dom";
 
-const NFTPlaceBid = ({
+const NFTPlaceBuy = ({
   placeBuyPop = false,
   setPlaceBuyPop,
   nft,
   orderDetails,
   // socketData,
+  price,
+  userTotalBuys,
   soldOut,
 }) => {
   const { user } = useSelector((state) => state.user.data);
@@ -63,7 +67,7 @@ const NFTPlaceBid = ({
       progressError: "",
       buttonDisable: true,
       processClass: "",
-      buttonName: "Buy NFTs",
+      buttonName: "Confirm",
       isError: false,
       errorTitle: "",
       errorDescription: "",
@@ -92,11 +96,12 @@ const NFTPlaceBid = ({
       if (result.data.success) {
         setSuccess(true);
         setSuccessData(result.data.data.buy);
+
         setBuy({
           ...buy,
           progressError: "",
           processClass: "",
-          buttonName: "Buy NFTs",
+          buttonName: "Confirm",
           buttonDisable: false,
         });
       }
@@ -137,14 +142,14 @@ const NFTPlaceBid = ({
   };
 
   const handleBuyInputChange = (e) => {
-    let count = orderDetails.available_quantity;
+    let count = nft.order_details.available_quantity;
     if (e.target.value) {
       if (
         validateQuantity(e.target.value) &&
         e.target.value <= count &&
         e.target.value !== 0
       ) {
-        let amount = e.target.value * parseFloat(orderDetails.buy_amount);
+        let amount = e.target.value * parseFloat(nft.order_details.buy_amount);
         if (user) {
           if (parseFloat(user.balance) <= parseFloat(amount)) {
             setBuyQuantity(e.target.value);
@@ -224,14 +229,14 @@ const NFTPlaceBid = ({
       placement="end"
       className="w-100 w-md-50 w-lg-42"
     >
-      <Offcanvas.Body className="p-0 pop-body-buy-container">
+      <Offcanvas.Body className="p-0 pop-body-container">
         {user ? (
           <>
-            <div className="pop-nft-buy-details">
+            <div className="pop-nft-details">
               {!success ? (
                 <>
                   <div className="pop-head-content">
-                    <div className="pop-buy-title">Purchase Your NFT</div>
+                    <div className="pop-bid-title">Purchase Your NFT</div>
                     <div
                       className="close-button-pop"
                       onClick={() => setPlaceBuyPop(!placeBuyPop)}
@@ -244,10 +249,10 @@ const NFTPlaceBid = ({
                   </div>
 
                   {/* error-progress -> error progress , loading -> progressing */}
-                  <div className={`pop-buy-progress ${buy.progressError}`}>
+                  <div className={`pop-bid-progress ${buy.progressError}`}>
                     <div className="progress-complete"></div>
                   </div>
-                  <div className="pop-body-buy-content">
+                  <div className="pop-bid-bodyContent">
                     <div className="error-float-container">
                       {noBalance && <ErrorText type="nobalance" />}
                       {/* <ErrorText type="ending-time" /> */}
@@ -266,133 +271,143 @@ const NFTPlaceBid = ({
                         />
                       )}
                     </div>
-
-                    <div className="pop-nft-buy-media">
-                      {(() => {
-                        if (nft?.asset_type?.includes("image")) {
-                          return (
-                            <img
-                              alt="media logo"
-                              className="type_image typeimg_audio"
-                              src={nft.asset_url ? nft.asset_url : sample}
-                            />
-                          );
-                        } else if (nft?.asset_type?.includes("audio")) {
-                          return (
-                            <>
+                    <div className="pop-nft-info">
+                      <div className="pop-nft-media">
+                        {(() => {
+                          if (nft?.asset_type?.includes("image")) {
+                            return (
+                              <img
+                                alt="media logo"
+                                className="type_image typeimg_audio"
+                                src={nft.asset_url ? nft.asset_url : sample}
+                              />
+                            );
+                          } else if (nft?.asset_type?.includes("audio")) {
+                            return (
+                              <>
+                                <img
+                                  alt="media logo"
+                                  className="type_image typeimg_audio"
+                                  src={nft.cover_url ? nft.cover_url : sample}
+                                />
+                              </>
+                            );
+                          } else if (nft?.asset_type?.includes("video")) {
+                            return (
                               <img
                                 alt="media logo"
                                 className="type_image typeimg_audio"
                                 src={nft.cover_url ? nft.cover_url : sample}
                               />
-                            </>
-                          );
-                        } else if (nft?.asset_type?.includes("video")) {
-                          return (
-                            <img
-                              alt="media logo"
-                              className="type_image typeimg_audio"
-                              src={nft.cover_url ? nft.cover_url : sample}
-                            />
-                          );
-                        } else {
-                          return (
-                            <img
-                              alt="media logo"
-                              className="type_image typeimg_audio"
-                              src={nft.asset_url ? nft.asset_url : sample}
-                            />
-                          );
-                        }
-                      })()}
-                    </div>
-                    <div className="pop-buy-author-name text-center mt-3">
-                      {nft?.category_name}
-                    </div>
-                    <div className="pop-nft-buy-title text-center mb-1">
-                      {nft?.name}
-                    </div>
-                    {erc721 ? (
-                      <div className="erc-quantity text-center mb-1">
-                        1 of 1 <span>left</span>
+                            );
+                          } else {
+                            return (
+                              <img
+                                alt="media logo"
+                                className="type_image typeimg_audio"
+                                src={nft.asset_url ? nft.asset_url : sample}
+                              />
+                            );
+                          }
+                        })()}
                       </div>
-                    ) : (
-                      <div className="erc-quantity text-center mb-1">
-                        {`${orderDetails.available_quantity} / ${orderDetails.total_quantity}`}
-                      </div>
-                    )}
-                    {/* error-bid -> less value than min bid,  error-balance -> low value, error-balance-float -> low value in quantity  */}
-                    <div className={`input-buy-container mt-4 ${error}`}>
-                      <label className="input-buy-text">
-                        {erc721
-                          ? `Price of NFT`
-                          : `Enter Quantity Max (${orderDetails.available_quantity})`}
-                      </label>
-
-                      {!erc721 ? (
-                        <div className="input-buy-quantity-container">
-                          <input
-                            type="text"
-                            className="input-buy-quantity"
-                            value={buyQuantity}
-                            placeholder="0 NFTs"
-                            disabled={soldOut}
-                            onChange={handleBuyInputChange}
-                          />
-                          {/* text-dark -> dark text after entering quantity */}
-                          <span
-                            className={`quantity-to-value ${buy.amountClass}`}
-                          >
-                            {currencyFormat(buyAmount, "USD")}
-                          </span>
+                      <div className="pop-nft-content">
+                        <div className="pop-author-name text-center mt-3">
+                          Amitabh Bachchan
                         </div>
-                      ) : (
-                        // <div className="input-buy-wrap">
-                        <h1>{currencyFormat(buyAmount, "USD")}</h1>
-                        // </div>
-                      )}
-                      {/* <div className="balance-details">
-                        {user &&
-                          `Your wallet balance is ${currencyFormat(
-                            user?.balance,
-                            "USD"
-                          )}`}
-                      </div> */}
-                    </div>
-                    <div className={`input-buy-container mt-3`}>
-                      <div className="services-fee-box">
-                        <label className="input-buy-text">Service Fee</label>
-                        <h4>{parseFloat(nft.service_fee)}%</h4>
+                        <div className="pop-nft-title text-center mb-1">
+                          {nft?.name}
+                        </div>
+                        {erc721 && (
+                          <div className="erc-type">
+                            1 of 1 <span>left</span>
+                          </div>
+                        )}
                       </div>
                     </div>
-                    <div className={`input-buy-container mt-4`}>
-                      <div className="total-amount-box">
-                        <label className="input-buy-text">Total Amount</label>
-                        <h1>
-                          {currencyFormat(
-                            parseFloat(buyAmount) +
-                              (parseFloat(buyAmount) *
-                                parseFloat(nft.service_fee)) /
-                                100,
-                            "USD"
+                    {/* error-bid -> less value than min bid,  error-balance -> low value, error-balance-float -> low value in quantity  */}
+
+                    <div className="sticky-bottom-nft-buy">
+                      <div className={`input-bid-container ${error}`}>
+                        <div className={`input-field-bid`}>
+                          <label className="input-bid-text">
+                            {erc721
+                              ? `Price of NFT`
+                              : `Enter Quantity Max (${orderDetails.available_quantity})`}
+                          </label>
+
+                          {!erc721 ? (
+                            <div className="input-quantity-container">
+                              <input
+                                type="text"
+                                className="input-quantity"
+                                value={buyQuantity}
+                                placeholder="0 NFTs"
+                                onChange={handleBuyInputChange}
+                              />
+                              {/* text-dark -> dark text after entering quantity */}
+                              <span
+                                className={`quantity-to-value ${buy.amountClass}`}
+                              >
+                                {currencyFormat(buyAmount, "USD")}
+                              </span>
+                            </div>
+                          ) : (
+                            <div className="services-fee-box">
+                              <h1>{currencyFormat(buyAmount, "USD")}</h1>
+                            </div>
                           )}
-                        </h1>
+                        </div>
+                      </div>
+
+                      <div className={`input-bid-container`}>
+                        <div className="input-field-bid">
+                          <div className="services-fee-box">
+                            <label className="input-bid-text">
+                              Service Fee
+                            </label>
+                            <h4>{parseFloat(nft.service_fee)}%</h4>
+                          </div>
+                        </div>
+                      </div>
+                      <div className={`input-bid-container`}>
+                        <div className="input-field-bid">
+                          <div className="total-amount-box">
+                            <label className="input-bid-text">
+                              Total Amount
+                            </label>
+                            <h1>
+                              {currencyFormat(
+                                parseFloat(buyAmount) +
+                                  (parseFloat(buyAmount) *
+                                    parseFloat(nft.service_fee)) /
+                                    100,
+                                "USD"
+                              )}
+                            </h1>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="terms text-secondary">
+                        An transaction can't be reversed after NFT is been
+                        purchased.{" "}
+                        <a
+                          href={process.env.REACT_APP_HELP_URL}
+                          target="_blank"
+                        >
+                          Learn more
+                        </a>{" "}
+                        about how it works.
                       </div>
                     </div>
                   </div>
                   <div className="bottom-area">
                     <div className="terms text-secondary">
-                      <>
-                        An nft can't be reversed after it's been purchased.
-                        <a
-                          href={process.env.REACT_APP_HELP_URL}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          Learn more
-                        </a>{" "}
-                        about how it works.
-                      </>
+                      An NFT purchase cannot be refunded or reversed.
+                      <a href={process.env.REACT_APP_HELP_URL} target="_blank">
+                        Learn more
+                      </a>{" "}
+                      to know how NFT purchases work.
                     </div>
 
                     <div className="bottom-content-pop">
@@ -402,26 +417,21 @@ const NFTPlaceBid = ({
                       >
                         Back
                       </div>
-                      <div className="place-buy-button">
-                        <button
-                          disabled={(() => {
-                            if (erc721) {
-                              return false;
-                            } else {
-                              return buy.buttonDisable;
-                            }
-                          })()}
-                          className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-buy-btn-pop ${buy.processClass}`} //process -> proccessing
-                          onClick={handleBuy}
-                        >
-                          {(() => {
-                            if (erc721) {
-                              if (soldOut) {
-                                return "Sold Out";
-                              } else {
-                                return buy.buttonName;
-                              }
-                            } else {
+                      <div className="place-bid-button">
+                        {erc721 ? (
+                          <button
+                            className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop`} //process -> proccessing
+                            onClick={handleBuy}
+                          >
+                            Confirm
+                          </button>
+                        ) : (
+                          <button
+                            disabled={buy.buttonDisable}
+                            className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop ${buy.processClass}`} //process -> proccessing
+                            onClick={handleBuy}
+                          >
+                            {(() => {
                               if (soldOut) {
                                 return "Sold Out";
                               } else if (buyQuantity > 0) {
@@ -429,24 +439,27 @@ const NFTPlaceBid = ({
                               } else {
                                 return "NFT quantity is required";
                               }
-                            }
-                          })()}
-                        </button>
+                            })()}
+                          </button>
+                        )}
                       </div>
                     </div>
                   </div>
                 </>
               ) : (
                 <>
-                  <div className="sucess-title">
+                  {/* <div className="sucess-title">
                     <FaCheckCircle color={"#23bf61"} size={60} />
                     <div className="message mt-3">
-                      You have successfully purchased your NFT. <br /> You can
-                      view them in the 'My NFT' section of your profile.
+                      Your can view your NFT in My NFT page
                     </div>
-                  </div>
-                  <div className="pop-body-buy-content success">
-                    <div className="pop-nft-buy-media mt-4 preview">
+                  </div> */}
+                  <div className="success-preview">
+                    <div className="pop-nft-title text-center mb-1 bold">
+                      You have successfully purchased your NFT. You can view
+                      them in the 'My NFT' section of your profile.
+                    </div>
+                    <div className="pop-nft-media mt-4 preview">
                       {(() => {
                         if (nft?.asset_type?.includes("image")) {
                           return (
@@ -485,10 +498,10 @@ const NFTPlaceBid = ({
                         }
                       })()}
                     </div>
-                    <div className="pop-buy-author-name text-center mt-3">
-                      {nft?.category_name}
+                    <div className="pop-author-name text-center mt-3">
+                      Amitabh Bachchan
                     </div>
-                    <div className="pop-nft-buy-title text-center mb-1">
+                    <div className="pop-nft-title text-center mb-1">
                       {nft?.name}
                     </div>
 
@@ -506,7 +519,7 @@ const NFTPlaceBid = ({
                         </div>
                       )}
                       <div className="success-summary">
-                        <div>{erc721 ? "Bid placed on" : "Time"}</div>
+                        <div>Purchased on</div>
                         <div className="bold">
                           {dayjs(successData.created_at).format(
                             "MMM D, YYYY hh:mm A"
@@ -529,12 +542,12 @@ const NFTPlaceBid = ({
                   </div>
                   <div className="bottom-area">
                     <div className="bottom-content-pop">
-                      <div className="place-buy-button">
+                      <div className="place-bid-button">
                         <button
-                          className="btn btn-dark text-center btn-lg w-75 rounded-pill place-buy-btn-pop "
+                          className="btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop "
                           onClick={handleSuccess}
                         >
-                          Okay
+                          View your NFT
                         </button>
                       </div>
                     </div>
@@ -545,13 +558,20 @@ const NFTPlaceBid = ({
           </>
         ) : (
           <>
-            <div className="pop-nft-buy-details">
+            <div className="pop-nft-details">
               <div className="pop-head-content">
-                <div className="pop-buy-title"></div>
+                <div className="pop-bid-title">
+                  {/* {erc721 ? "Sign in to place bid" : "Sign in to buy"} */}
+                </div>
                 <div
                   className="close-button-pop"
                   onClick={() => setPlaceBuyPop(!placeBuyPop)}
                 >
+                  {/* <BiX
+                    role="button"
+                    size={45}
+                    onClick={() => setPlaceBuyPop(!placeBuyPop)}
+                  /> */}
                   <img
                     alt="bid logo"
                     src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e"
@@ -560,11 +580,11 @@ const NFTPlaceBid = ({
               </div>
               <div className="pop-signin">
                 <div className="pop-signin-title text-center mb-1">
-                  {erc721 ? "Sign in to place bid" : "Sign in to buy"}
+                  {erc721 ? "Sign in to place bid" : "Sign in to place buy"}
                 </div>
-                <div className="pop-nft-buy-media">
+                <div className="pop-nft-media">
                   <button
-                    className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-buy-btn"
+                    className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
                     onClick={() =>
                       window.open(
                         `${process.env.REACT_APP_ACCOUNTS_URL}/signin?redirect=${window.location.href}`,
@@ -584,4 +604,4 @@ const NFTPlaceBid = ({
   );
 };
 
-export default NFTPlaceBid;
+export default NFTPlaceBuy;

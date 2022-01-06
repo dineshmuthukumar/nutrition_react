@@ -12,7 +12,7 @@ import { TableLoader } from "../nft-basic-details/content-loader";
 
 import "./style.scss";
 
-const NFTOrderHistory = () => {
+const NFTOrderHistory = ({ orderList = [] }) => {
   const { user } = useSelector((state) => state.user.data);
 
   return (

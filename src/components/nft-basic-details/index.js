@@ -11,10 +11,7 @@ import { acceptBidApi } from "../../api/methods";
 import NFTTimeLeft from "../nft-time-left";
 import BidValue from "../bid-value";
 import ToolTip from "../tooltip";
-import NFTPlaceBid from "../nft-place-bid";
-import NFTPlaceBuy from "../nft-place-buy";
 import NFTPutOnSale from "../nft-put-on-sale";
-import NFTCancelTheSale from "../nft-cancel-the-sale";
 import HelpLine from "../help-line";
 import { ReactComponent as DiscordSvg } from "./../../icons/discord_logo.svg";
 import { currencyFormat } from "../../utils/common";
@@ -25,65 +22,23 @@ import userImg from "../../images/user_1.png";
 import "./style.scss";
 const NFTBaseDetails = ({
   nft,
-  placeBidPop,
-  setPlaceBidPop,
-  placeBuyPop,
-  setPlaceBuyPop,
   putOnSalePop,
   setPutOnSalePop,
-  cancelTheSalePop,
-  setCancelTheSalePop,
-  totalBuy,
-  userTotalBuys,
-  price,
-  availableQty,
-  userOutBid,
-  userLastBid,
-  isAuctionStarted,
-  isAuctionEnded,
   soldOut,
-  auctionEndTime,
-  handleAuctionStartTimer,
-  handleAuctionEndTimer,
-  winner,
   owners,
-  isOrderOnSale,
-  isOrderSuccess,
-  isOrderCancelled,
   orderSlug,
   latestBid,
 }) => {
   const { user } = useSelector((state) => state.user.data);
   const [modalShow, setModalShow] = useState(false);
-  const [acceptBidConfirm, setAcceptBidConfirm] = useState(false);
-  const [acceptBidSucess, setAcceptBidSucess] = useState(false);
 
   const erc721 = nft.nft_type === "erc721";
-  const isBid = _.get(nft, "order_details.is_bid", false);
-  const isBuy = _.get(nft, "order_details.is_buy", false);
   const isOwner = _.has(nft, "owner_details");
   const isOnSale = _.size(_.get(nft, "owner_details.orders", [])) > 0;
-  const onSaleQty = _.get(nft, "owner_details.available_quantity", 0) != 0;
-  const isOrder = _.has(nft, "order_details");
-  const orderDetails = _.get(nft, "order_details", {});
-  const ownerOrderDetails = _.get(nft, "owner_details.orders", []);
-
-  const handleAcceptBid = async () => {
-    setAcceptBidConfirm(!acceptBidConfirm);
-    try {
-      const result = await acceptBidApi({
-        order_slug: orderSlug,
-        order: { bid_slug: latestBid.bid_slug },
-      });
-      if (result.data.success) {
-        setAcceptBidSucess(true);
-      }
-    } catch (error) {
-      if (error.response.data.status === 422) {
-        console.log(error);
-      }
-    }
-  };
+  const isQuantityAvailable =
+    _.get(nft, "owner_details.available_quantity", 0) > 0;
+  const availableQuantity = _.get(nft, "owner_details.available_quantity", 0);
+  const ownerOrdersList = _.get(nft, "owner_details.orders", []);
 
   return (
     <>
@@ -128,246 +83,60 @@ const NFTBaseDetails = ({
         )}
       </p>
 
-      {!acceptBidConfirm && (
-        <div className="d-flex justify-content-end align-items-center w-100">
-          <HelpLine />
-        </div>
-      )}
-
       <div className="bottom-content">
-        {acceptBidConfirm ? (
-          <>
-            <div className={`assign-card`}>
-              <div className="first-half">
-                <img
-                  alt=""
-                  src={
-                    !latestBid.private && latestBid.avatar_url
-                      ? latestBid.avatar_url
-                      : user?.slug === latestBid.slug
-                      ? latestBid.avatar_url
-                      : userImg
-                  }
-                />
-                <div className="bid-histoy-details">
-                  <div className="time text-secondary">
-                    {dayjs(latestBid.created_at).format("MMM D, YYYY hh:mm A")}
-                  </div>
-                  <div className="bid-owner">
-                    Bid placed by {latestBid.user_name}
-                  </div>
-                </div>
-              </div>
-              <div className="second-half">
-                <div className="highest-bid">
-                  <span className="key">Highest Bid Price</span>
-                  <span className="value">
-                    {currencyFormat(latestBid.bid_amount, "USD")}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div className="d-flex">
-              <BidValue
-                title="Artist fee"
-                value={`${parseFloat(nft.royalties)} %`}
-              />
-
-              <BidValue
-                title="Service fee"
-                value={`${parseFloat(nft.service_fee)} %`}
-              />
-            </div>
-            <hr className="custom-divider" />
-            <div className="d-flex">
-              <BidValue
-                title="You will Get"
-                value={currencyFormat(
-                  parseFloat(latestBid.bid_amount) -
-                    (parseFloat(latestBid.bid_amount) *
-                      (parseFloat(nft.royalties) +
-                        parseFloat(nft.service_fee))) /
-                      100,
-                  "USD"
-                )}
-              />
-            </div>
-            <hr className="custom-divider" />
-          </>
-        ) : (
+        {erc721 && owners.length > 0 && (
           <>
             <div className="d-flex">
-              {(() => {
-                if (isOrderOnSale) {
-                  if (erc721) {
-                    if (isBid) {
-                      return (
-                        <BidValue
-                          title="Minimum Bid"
-                          value={
-                            price
-                              ? currencyFormat(price, "USD")
-                              : currencyFormat(orderDetails.minimum_bid, "USD")
-                          }
-                        />
-                      );
-                    } else {
-                      return (
-                        <BidValue
-                          title="Price"
-                          value={
-                            price
-                              ? currencyFormat(price, "USD")
-                              : currencyFormat(orderDetails.buy_amount, "USD")
-                          }
-                        />
-                      );
-                    }
-                  } else {
-                    return (
-                      <BidValue
-                        title="Price"
-                        value={currencyFormat(orderDetails.buy_amount, "USD")}
-                      />
-                    );
-                  }
-                } else if (isOrderSuccess) {
-                  return (
-                    <BidValue
-                      title="Price"
-                      value={currencyFormat(orderDetails.buy_amount, "USD")}
-                    />
-                  );
-                } else {
-                  return (
-                    <BidValue
-                      title="Sold Price"
-                      value={currencyFormat(nft.price, "USD")}
-                    />
-                  );
-                }
-              })()}
-
-              {(() => {
-                if (user && userLastBid && price) {
-                  return (
-                    <BidValue
-                      title="Your Last Bid"
-                      value={currencyFormat(userLastBid, "USD")}
-                      status={
-                        parseFloat(userLastBid) < parseFloat(price)
-                          ? "Outbid"
-                          : ""
-                      }
-                    />
-                  );
-                } else if (user && orderDetails.user_highest_bid) {
-                  return (
-                    <BidValue
-                      title="Your Last Bid"
-                      value={currencyFormat(
-                        orderDetails.user_highest_bid,
-                        "USD"
-                      )}
-                      status={
-                        parseFloat(orderDetails.user_highest_bid) <
-                        parseFloat(orderDetails.minimum_bid)
-                          ? "Outbid"
-                          : ""
-                      }
-                    />
-                  );
-                } else {
-                  return null;
-                }
-              })()}
-
-              {erc721 && owners.length > 0 && (
-                <BidValue
-                  title="Owned By"
-                  avatar={owners[0].avatar_url}
-                  name={owners[0].user_name}
-                  isEnd
-                />
-              )}
-            </div>
-            <hr className="custom-divider" />
-            <div className="d-flex">
-              <BidValue title="Category" value={nft.category_name} />
-            </div>
-            <hr className="custom-divider" />
-            <div className="d-flex">
-              {(() => {
-                if (erc721 && isOwner) {
-                  return (
-                    <BidValue
-                      title="You Own"
-                      value="1 of 1"
-                      isLeft
-                      isOwner={isOwner}
-                    />
-                  );
-                } else if (erc721 && !isOwner) {
-                  return (
-                    <BidValue title="Limited Edition" value="1 of 1" isLeft />
-                  );
-                } else if (!erc721 && isOwner) {
-                  if (isOrder) {
-                    return (
-                      <BidValue
-                        title="Edition(s)"
-                        value={`${orderDetails.available_quantity} / ${orderDetails.total_quantity}`}
-                      />
-                    );
-                  } else {
-                    return (
-                      <BidValue
-                        title="You Own"
-                        value={`${_.get(
-                          nft,
-                          "owner_details.total_quantity"
-                        )} / ${nft.total_quantity}`}
-                        isOwner
-                      />
-                    );
-                  }
-                } else {
-                  return (
-                    <BidValue
-                      title="Edition(s)"
-                      value={(() => {
-                        if (
-                          availableQty >= 0 &&
-                          availableQty != null &&
-                          isOrderOnSale
-                        ) {
-                          return `${availableQty} / ${orderDetails.total_quantity}`;
-                        } else if (isOrderOnSale) {
-                          return `${orderDetails.available_quantity} / ${orderDetails.total_quantity}`;
-                        } else {
-                          return nft.total_quantity;
-                        }
-                      })()}
-                    />
-                  );
-                }
-              })()}
+              <BidValue
+                title="Owned By"
+                avatar={owners[0].avatar_url}
+                name={owners[0].user_name}
+                isEnd
+              />
             </div>
             <hr className="custom-divider" />
           </>
         )}
+
+        <div className="d-flex">
+          <BidValue title="Category" value={nft.category_name} />
+        </div>
+        <hr className="custom-divider" />
+        <div className="d-flex">
+          {(() => {
+            if (erc721 && isOwner) {
+              return (
+                <BidValue
+                  title="You Own"
+                  value="1 of 1"
+                  isLeft
+                  isOwner={isOwner}
+                />
+              );
+            } else if (erc721 && !isOwner) {
+              return <BidValue title="Limited Edition" value="1 of 1" isLeft />;
+            } else if (!erc721 && isOwner) {
+              return (
+                <BidValue
+                  title="You Own"
+                  value={`${_.get(nft, "owner_details.total_quantity")} / ${
+                    nft.total_quantity
+                  }`}
+                  isOwner
+                />
+              );
+            } else {
+              return <BidValue title="Edition(s)" value={nft.total_quantity} />;
+            }
+          })()}
+        </div>
+        <hr className="custom-divider" />
 
         <div className="text-center">
           <NFTPutOnSale
             nft={nft}
             putOnSalePop={putOnSalePop}
             setPutOnSalePop={setPutOnSalePop}
-            price={price}
-            userTotalBuys={userTotalBuys}
-            isAuctionStarted={isAuctionStarted}
-            isAuctionEnded={isAuctionEnded}
-            soldOut={soldOut}
           />
 
           {(() => {
@@ -387,13 +156,24 @@ const NFTBaseDetails = ({
                 </button>
               );
             } else if (isOwner && !isOnSale) {
-              if (isOrder && !isOrderOnSale) {
+              return (
+                <button
+                  disabled={false}
+                  className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                  onClick={() => setPutOnSalePop(!putOnSalePop)}
+                >
+                  List for sale
+                </button>
+              );
+            } else if (isOwner && isOnSale) {
+              if (isQuantityAvailable) {
                 return (
                   <button
-                    disabled={true}
+                    disabled={false}
                     className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                    onClick={() => setPutOnSalePop(!putOnSalePop)}
                   >
-                    {isOrderSuccess ? "Sold Out" : "Cancelled"}
+                    List for sale ({availableQuantity})
                   </button>
                 );
               } else {
@@ -403,7 +183,7 @@ const NFTBaseDetails = ({
                     className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
                     onClick={() => setPutOnSalePop(!putOnSalePop)}
                   >
-                    Put on sale
+                    Listed on sale
                   </button>
                 );
               }
@@ -440,9 +220,9 @@ const NFTBaseDetails = ({
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="scroll-modal ">
-          {ownerOrderDetails.length > 0 ? (
+          {ownerOrdersList.length > 0 ? (
             <ul className="cancel-nft-list">
-              {ownerOrderDetails.map((order, i) => (
+              {ownerOrdersList.map((order, i) => (
                 <li className="cancel-nft-item">
                   <CancelNft
                     key={i}

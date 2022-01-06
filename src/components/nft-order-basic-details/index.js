@@ -13,7 +13,6 @@ import BidValue from "../bid-value";
 import ToolTip from "../tooltip";
 import NFTPlaceBid from "../nft-place-bid";
 import NFTPlaceBuy from "../nft-place-buy";
-import NFTPutOnSale from "../nft-put-on-sale";
 import NFTCancelTheSale from "../nft-cancel-the-sale";
 import HelpLine from "../help-line";
 import { ReactComponent as DiscordSvg } from "./../../icons/discord_logo.svg";
@@ -29,8 +28,6 @@ const NFTOrderBaseDetails = ({
   setPlaceBidPop,
   placeBuyPop,
   setPlaceBuyPop,
-  putOnSalePop,
-  setPutOnSalePop,
   cancelTheSalePop,
   setCancelTheSalePop,
   totalBuy,
@@ -88,7 +85,7 @@ const NFTOrderBaseDetails = ({
   return (
     <>
       <div className="creator mt-3">
-        {nft.category_name} | Amitabh Bachchan Exclusive NFTs
+        {nft.category_name} | Exclusive NFTs
         <ToolTip
           icon={<FaCheckCircle size={16} className="ms-2 check-icon" />}
           content="Verified Artist"
@@ -109,7 +106,6 @@ const NFTOrderBaseDetails = ({
                 window.open("https://discord.com/invite/87s8ReJ5FA", "_blank")
               }
             >
-              {/* <div className="count">22</div> */}
               <DiscordSvg />
             </div>
           }
@@ -127,12 +123,6 @@ const NFTOrderBaseDetails = ({
           />
         )}
       </p>
-
-      {!acceptBidConfirm && (
-        <div className="d-flex justify-content-end align-items-center w-100">
-          <HelpLine />
-        </div>
-      )}
 
       <div className="bottom-content">
         {acceptBidConfirm ? (
@@ -199,51 +189,35 @@ const NFTOrderBaseDetails = ({
           <>
             <div className="d-flex">
               {(() => {
-                if (isOrderOnSale) {
-                  if (erc721) {
-                    if (isBid) {
-                      return (
-                        <BidValue
-                          title="Minimum Bid"
-                          value={
-                            price
-                              ? currencyFormat(price, "USD")
-                              : currencyFormat(orderDetails.minimum_bid, "USD")
-                          }
-                        />
-                      );
-                    } else {
-                      return (
-                        <BidValue
-                          title="Price"
-                          value={
-                            price
-                              ? currencyFormat(price, "USD")
-                              : currencyFormat(orderDetails.buy_amount, "USD")
-                          }
-                        />
-                      );
-                    }
+                if (erc721) {
+                  if (isBid) {
+                    return (
+                      <BidValue
+                        title="Minimum Bid"
+                        value={
+                          price
+                            ? currencyFormat(price, "USD")
+                            : currencyFormat(orderDetails.minimum_bid, "USD")
+                        }
+                      />
+                    );
                   } else {
                     return (
                       <BidValue
                         title="Price"
-                        value={currencyFormat(orderDetails.buy_amount, "USD")}
+                        value={
+                          price
+                            ? currencyFormat(price, "USD")
+                            : currencyFormat(orderDetails.buy_amount, "USD")
+                        }
                       />
                     );
                   }
-                } else if (isOrderSuccess) {
+                } else {
                   return (
                     <BidValue
                       title="Price"
                       value={currencyFormat(orderDetails.buy_amount, "USD")}
-                    />
-                  );
-                } else {
-                  return (
-                    <BidValue
-                      title="Sold Price"
-                      value={currencyFormat(nft.price, "USD")}
                     />
                   );
                 }
@@ -288,6 +262,7 @@ const NFTOrderBaseDetails = ({
                   title="Owned By"
                   avatar={owners[0].avatar_url}
                   name={owners[0].user_name}
+                  userSlug={owners[0].slug}
                   isEnd
                 />
               )}
@@ -299,56 +274,19 @@ const NFTOrderBaseDetails = ({
             <hr className="custom-divider" />
             <div className="d-flex">
               {(() => {
-                if (erc721 && isOwner) {
-                  return (
-                    <BidValue
-                      title="You Own"
-                      value="1 of 1"
-                      isLeft
-                      isOwner={isOwner}
-                    />
-                  );
-                } else if (erc721 && !isOwner) {
+                if (erc721) {
                   return (
                     <BidValue title="Limited Edition" value="1 of 1" isLeft />
                   );
-                } else if (!erc721 && isOwner) {
-                  if (isOrder) {
-                    return (
-                      <BidValue
-                        title="Edition(s)"
-                        value={`${orderDetails.available_quantity} / ${orderDetails.total_quantity}`}
-                      />
-                    );
-                  } else {
-                    return (
-                      <BidValue
-                        title="You Own"
-                        value={`${_.get(
-                          nft,
-                          "owner_details.total_quantity"
-                        )} / ${nft.total_quantity}`}
-                        isOwner
-                      />
-                    );
-                  }
                 } else {
                   return (
                     <BidValue
                       title="Edition(s)"
-                      value={(() => {
-                        if (
-                          availableQty >= 0 &&
-                          availableQty != null &&
-                          isOrderOnSale
-                        ) {
-                          return `${availableQty} / ${orderDetails.total_quantity}`;
-                        } else if (isOrderOnSale) {
-                          return `${orderDetails.available_quantity} / ${orderDetails.total_quantity}`;
-                        } else {
-                          return nft.total_quantity;
-                        }
-                      })()}
+                      value={
+                        availableQty >= 0 && availableQty != null
+                          ? `${availableQty} / ${orderDetails.total_quantity}`
+                          : `${orderDetails.available_quantity} / ${orderDetails.total_quantity}`
+                      }
                     />
                   );
                 }
@@ -385,16 +323,7 @@ const NFTOrderBaseDetails = ({
             isAuctionEnded={isAuctionEnded}
             soldOut={soldOut}
           />
-          <NFTPutOnSale
-            nft={nft}
-            putOnSalePop={putOnSalePop}
-            setPutOnSalePop={setPutOnSalePop}
-            price={price}
-            userTotalBuys={userTotalBuys}
-            isAuctionStarted={isAuctionStarted}
-            isAuctionEnded={isAuctionEnded}
-            soldOut={soldOut}
-          />
+
           <NFTCancelTheSale
             nft={nft}
             orderDetails={orderDetails}
@@ -424,6 +353,15 @@ const NFTOrderBaseDetails = ({
                   Sign In
                 </button>
               );
+            } else if (soldOut) {
+              return (
+                <button
+                  disabled={true}
+                  className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                >
+                  Sold Out
+                </button>
+              );
             } else if (parseFloat(user?.balance) <= 0 && !isOwner) {
               return (
                 <button
@@ -443,29 +381,17 @@ const NFTOrderBaseDetails = ({
                   Recharge Wallet
                 </button>
               );
-            } else if (isOwner && !isOnSale) {
-              if (isOrder && !isOrderOnSale) {
+            } else if (erc721 && isOwner && isOrderOnSale) {
+              if (acceptBidSucess) {
                 return (
                   <button
                     disabled={true}
                     className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
                   >
-                    {isOrderSuccess ? "Sold Out" : "Cancelled"}
+                    Sold Out
                   </button>
                 );
-              } else {
-                return (
-                  <button
-                    disabled={false}
-                    className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
-                    onClick={() => setPutOnSalePop(!putOnSalePop)}
-                  >
-                    Put on sale
-                  </button>
-                );
-              }
-            } else if (erc721 && isOwner && isOnSale) {
-              if (acceptBidConfirm) {
+              } else if (acceptBidConfirm) {
                 return (
                   <>
                     <button
@@ -483,15 +409,6 @@ const NFTOrderBaseDetails = ({
                       Confirm
                     </button>
                   </>
-                );
-              } else if (acceptBidSucess || isOrderSuccess) {
-                return (
-                  <button
-                    disabled={true}
-                    className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
-                  >
-                    Sold Out
-                  </button>
                 );
               } else {
                 return (
@@ -517,61 +434,18 @@ const NFTOrderBaseDetails = ({
                   </>
                 );
               }
-            } else if (!erc721 && isOwner && isOnSale) {
-              if (onSaleQty) {
-                return (
-                  <>
-                    {orderSlug ? (
-                      <button
-                        disabled={false}
-                        className="btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill place-bid-buy-btn filled-btn"
-                        onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
-                      >
-                        Cancel the sale
-                      </button>
-                    ) : (
-                      <button
-                        disabled={false}
-                        className="btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill place-bid-buy-btn filled-btn"
-                        onClick={() => setModalShow(true)}
-                      >
-                        Cancel the sale
-                      </button>
-                    )}
-
-                    <button
-                      disabled={false}
-                      className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn"
-                      onClick={() => setPutOnSalePop(!putOnSalePop)}
-                    >
-                      Put on sale (
-                      {_.get(nft, "owner_details.available_quantity")}qty)
-                    </button>
-                  </>
-                );
-              } else {
-                return (
-                  <>
-                    {orderSlug ? (
-                      <button
-                        disabled={false}
-                        className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
-                        onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
-                      >
-                        Cancel the sale
-                      </button>
-                    ) : (
-                      <button
-                        disabled={false}
-                        className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
-                        onClick={() => setModalShow(true)}
-                      >
-                        Cancel the sale
-                      </button>
-                    )}
-                  </>
-                );
-              }
+            } else if (!erc721 && isOwner && isOrderOnSale) {
+              return (
+                <>
+                  <button
+                    disabled={false}
+                    className="btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill place-bid-buy-btn filled-btn"
+                    onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
+                  >
+                    Cancel the sale
+                  </button>
+                </>
+              );
             } else if (isBid && isBuy) {
               return (
                 <>
@@ -587,7 +461,7 @@ const NFTOrderBaseDetails = ({
                     className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn"
                     onClick={() => setPlaceBidPop(!placeBidPop)}
                   >
-                    Place a Bid
+                    Place Bid
                   </button>
                 </>
               );
@@ -598,7 +472,7 @@ const NFTOrderBaseDetails = ({
                   className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
                   onClick={() => setPlaceBidPop(!placeBidPop)}
                 >
-                  Place a Bid
+                  Place Bid
                 </button>
               );
             } else if (isBuy) {

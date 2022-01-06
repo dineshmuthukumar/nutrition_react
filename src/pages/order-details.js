@@ -152,14 +152,15 @@ const OrderDetails = () => {
         history.push("/");
       }
 
+      if (NFT?.order_details?.available_quantity === 0) {
+        setSoldOut(true);
+      }
+
       if (NFT.nft_type === "erc721" && orderSlug) {
         let history = await orderBidHistory({ order_slug: orderSlug, page: 1 });
         setBidHistory(history.data.data.histories);
         setTotalCount(history.data.data.total_count);
       } else {
-        if (NFT?.order_details?.available_quantity === 0) {
-          setSoldOut(true);
-        }
         // let history = await nftBuyHistory({ nft_slug: slug, page: 1 });
         // setBuyHistory(history.data.data.histories);
         // setTotalCount(history.data.data.total_count);
@@ -170,7 +171,6 @@ const OrderDetails = () => {
       setNft(response.data.data.nft);
       setLoader(false);
     } catch (err) {
-      // setLoader(false);
       console.log(err);
       toaster(500, "Something went wrong");
     }

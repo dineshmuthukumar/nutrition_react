@@ -84,6 +84,7 @@ const Details = () => {
   const { user } = useSelector((state) => state.user.data);
 
   const isOwner = _.has(nft, "owner_details");
+  const ownerOrdersList = _.get(nft, "owner_details.orders", []);
 
   const inputRef = useRef();
 
@@ -326,10 +327,14 @@ const Details = () => {
             </div>
           )}
 
-          <NFTSectionTitle title="Order Details" />
-          <div className="row mt-5">
-            <NFTOrderHistory />
-          </div>
+          {isOwner && (
+            <>
+              <NFTSectionTitle title="Order Details" />
+              <div className="row mt-5">
+                <NFTOrderHistory orderList={ownerOrdersList} />
+              </div>
+            </>
+          )}
 
           <NFTSectionTitle title="NFT Details" />
           <div className="row mt-5">
