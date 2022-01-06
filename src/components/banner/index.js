@@ -13,29 +13,7 @@ import comic_cover_new from "../../images/marketplace/comic_cover_new.jpg";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./style.scss";
 
-const Banner = () => {
-  const [page, setPage] = useState(1);
-  const [list, setList] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [hasNext, setHasNext] = useState(false);
-  const [loadingMore, setLoadingMore] = useState(false);
-
-  useEffect(() => {
-    categoriesList(page);
-  }, []);
-
-  const categoriesList = async (page) => {
-    try {
-      setLoading(true);
-      let response = await nftCategoriesApi({ page });
-      setList([...list, ...response.data.data.categories]);
-      setHasNext(response.data.data.next_page);
-      setLoading(false);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
+const Banner = ({ list = [] }) => {
   return (
     <>
       <div className="container-fluid mt-4 hero-carousel-desktop">
