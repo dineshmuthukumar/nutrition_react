@@ -41,14 +41,13 @@ import {
 } from "../api/actioncable-methods";
 import OwnerList from "../components/owner-list";
 import Footer from "../components/footer/index";
-import NFTOrderHistory from "../components/nft-order-details/index";
+import NFTOrderSummary from "../components/nft-order-summary";
+import NFTOrderBaseDetails from "../components/nft-order-basic-details";
 
-const Details = () => {
+const OrderDetails = () => {
   const history = useHistory();
   const { slug, orderSlug } = useParams();
-  const [small, setSmall] = useState(false);
   const [nft, setNft] = useState({});
-  const [auctionEndTime, setAuctionEndTime] = useState("");
   const [nftMoreList, setNftMoreList] = useState([]);
   const [buyHistory, setBuyHistory] = useState([]);
   const [bidHistory, setBidHistory] = useState([]);
@@ -56,8 +55,6 @@ const Details = () => {
   const [bidWinner, setBidWinner] = useState(null);
   const [nftOwner, setNFTOwner] = useState([]);
   const [erc721, setErc721] = useState(false);
-  const [isAuctionStarted, setIsAuctionStarted] = useState(false);
-  const [isAuctionEnded, setIsAuctionEnded] = useState(false);
   const [soldOut, setSoldOut] = useState(false);
   const [loader, setLoader] = useState(true);
   const [placeBidPop, setPlaceBidPop] = useState(false);
@@ -85,32 +82,6 @@ const Details = () => {
 
   const isOwner = _.has(nft, "owner_details");
 
-  const inputRef = useRef();
-
-  useEffect(() => {
-    window.addEventListener("scroll", scrollHandler, true);
-    document.addEventListener("contextmenu", (e) => {
-      e.preventDefault();
-    });
-
-    return () => {
-      window.removeEventListener("scroll", scrollHandler, true);
-    };
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const scrollHandler = () => {
-    const position = inputRef.current?.getBoundingClientRect();
-    if (position?.top <= 0) {
-      updateSubHeader(true);
-      localStorage.setItem("sub-header", "true");
-    } else {
-      updateSubHeader(false);
-      localStorage.setItem("sub-header", "false");
-    }
-  };
-
   useEffect(() => {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
@@ -133,9 +104,6 @@ const Details = () => {
       if (data.history) {
         setBidHistory((bidHistory) => [data.history, ...bidHistory]);
       }
-      // if (data.auction_end_time) {
-      //   setAuctionEndTime(data.auction_end_time);
-      // }
     });
     pageView(orderSlug, (data) => {
       setTotalViews(data.page_views);
@@ -145,10 +113,6 @@ const Details = () => {
       setTotalFavourites(data.total_favourites);
     });
 
-    // winnerDetail(slug, (data) => {
-    //   setBidWinner(data.winner);
-    // });
-
     nftDetail(slug, orderSlug);
     // nftMore();
 
@@ -157,31 +121,16 @@ const Details = () => {
 
   useEffect(() => {
     if (user) {
-      if (erc721) {
-        userBidDetail(orderSlug, user.slug, (data) => {
-          setUserLastBid(data.user_bid);
-          setUserOutBid(data.outbid);
-        });
-      } else {
-        userBuyDetail(orderSlug, user.slug, (data) => {
-          setUserTotalBuys(data.user_buys);
-        });
-      }
+      userBidDetail(orderSlug, user.slug, (data) => {
+        setUserLastBid(data.user_bid);
+        setUserOutBid(data.outbid);
+      });
+      userBuyDetail(orderSlug, user.slug, (data) => {
+        setUserTotalBuys(data.user_buys);
+      });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [erc721]);
-
-  const updateSubHeader = (input) => {
-    if (input) {
-      if (localStorage.getItem("sub-header") === "false") {
-        setSmall(input);
-      }
-    } else {
-      if (localStorage.getItem("sub-header") === "true") {
-        setSmall(input);
-      }
-    }
-  };
 
   const nftDetail = async (slug, orderSlug) => {
     try {
@@ -191,6 +140,7 @@ const Details = () => {
         order_slug: orderSlug,
       });
       const NFT = response.data.data.nft;
+      setErc721(NFT.nft_type === "erc721");
 
       if (NFT?.order_details) {
         setIsOrderOnSale(NFT.order_details?.status === "onsale");
@@ -202,15 +152,6 @@ const Details = () => {
         history.push("/");
       }
 
-      setAuctionEndTime(NFT.auction_end_time);
-      setIsAuctionStarted(
-        new Date(NFT.time).getTime() >=
-          new Date(NFT.auction_start_time).getTime()
-      );
-      setIsAuctionEnded(
-        new Date(NFT.time).getTime() > new Date(NFT.auction_end_time).getTime()
-      );
-      setErc721(NFT.nft_type === "erc721");
       if (NFT.nft_type === "erc721" && orderSlug) {
         let history = await orderBidHistory({ order_slug: orderSlug, page: 1 });
         setBidHistory(history.data.data.histories);
@@ -244,13 +185,6 @@ const Details = () => {
     }
   };
 
-  const handleAuctionStartTimer = () => {
-    setIsAuctionStarted(true);
-  };
-  const handleAuctionEndTimer = () => {
-    setIsAuctionEnded(true);
-  };
-
   return (
     <>
       <Header />
@@ -269,7 +203,7 @@ const Details = () => {
                 />
               </div>
               <div className="col-12 col-lg-5">
-                <NFTBaseDetails
+                <NFTOrderBaseDetails
                   nft={nft}
                   placeBidPop={placeBidPop}
                   setPlaceBidPop={setPlaceBidPop}
@@ -292,12 +226,7 @@ const Details = () => {
                   userLastBid={userLastBid}
                   //Socket states end
 
-                  isAuctionStarted={isAuctionStarted}
-                  isAuctionEnded={isAuctionEnded}
                   soldOut={soldOut}
-                  auctionEndTime={auctionEndTime}
-                  handleAuctionStartTimer={handleAuctionStartTimer}
-                  handleAuctionEndTimer={handleAuctionEndTimer}
                   winner={bidWinner}
                   owners={nftOwner}
                   //Order
@@ -312,8 +241,8 @@ const Details = () => {
           </div>
           {orderSlug && (
             <div className="row mt-5">
-              <div className="col-12" ref={inputRef}>
-                <NFTSummary
+              <div className="col-12">
+                <NFTOrderSummary
                   nft={nft}
                   totalBid={totalBid}
                   bidChange={bidChange}
@@ -325,11 +254,6 @@ const Details = () => {
               </div>
             </div>
           )}
-
-          <NFTSectionTitle title="Order Details" />
-          <div className="row mt-5">
-            <NFTOrderHistory />
-          </div>
 
           <NFTSectionTitle title="NFT Details" />
           <div className="row mt-5">
@@ -343,7 +267,6 @@ const Details = () => {
                       isOwner={isOwner}
                       nftOwner={nftOwner[0]}
                       histories={bidHistory}
-                      isAuctionEnded={isAuctionEnded}
                       totalCount={totalCount}
                       isOrderOnSale={isOrderOnSale}
                       isOrderSuccess={isOrderSuccess}
@@ -351,7 +274,9 @@ const Details = () => {
                     />
                   );
                 } else {
-                  return <OwnerList nft={nft} nftOwners={nftOwner} />;
+                  return (
+                    nftOwner && <OwnerList nft={nft} nftOwners={nftOwner} />
+                  );
                 }
               })()}
             </div>
@@ -385,11 +310,11 @@ const Details = () => {
           <div className="mt-5">
             <NFTArtist />
           </div>
-          {nftMoreList.length > 0 && (
+          {/* {nftMoreList.length > 0 && (
             <div className="mt-5">
               <NFTMore nftList={nftMoreList} />
             </div>
-          )}
+          )} */}
           <br />
           <br />
         </div>
@@ -399,4 +324,4 @@ const Details = () => {
   );
 };
 
-export default Details;
+export default OrderDetails;

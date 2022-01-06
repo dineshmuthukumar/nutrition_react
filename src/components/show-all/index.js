@@ -240,7 +240,7 @@ const ShowAll = ({ categories }) => {
           <div className="row">
             <div className="col-sm-12">
               <div className="sec-heading d-flex align-items-end mb-2 showall-heading">
-                <span className="me-4 mt-2">Explore All</span>
+                <span className="me-4 mt-2">Listed NFTs</span>
                 <span className="d-flex flex-wrap mt-2">
                   <Dropdown className="me-3">
                     <Dropdown.Toggle

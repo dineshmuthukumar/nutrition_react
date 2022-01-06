@@ -23,7 +23,7 @@ import CancelNft from "./nft-cancel-box";
 import userImg from "../../images/user_1.png";
 
 import "./style.scss";
-const NFTBaseDetails = ({
+const NFTOrderBaseDetails = ({
   nft,
   placeBidPop,
   setPlaceBidPop,
@@ -359,10 +359,48 @@ const NFTBaseDetails = ({
         )}
 
         <div className="text-center">
+          <NFTPlaceBid
+            nft={nft}
+            orderDetails={orderDetails}
+            placeBidPop={placeBidPop}
+            setPlaceBidPop={setPlaceBidPop}
+            isBid={isBid}
+            isBuy={isBuy}
+            price={price}
+            userTotalBuys={userTotalBuys}
+            isAuctionStarted={isAuctionStarted}
+            isAuctionEnded={isAuctionEnded}
+            soldOut={soldOut}
+          />
+          <NFTPlaceBuy
+            nft={nft}
+            orderDetails={orderDetails}
+            placeBuyPop={placeBuyPop}
+            setPlaceBuyPop={setPlaceBuyPop}
+            isBid={isBid}
+            isBuy={isBuy}
+            price={price}
+            userTotalBuys={userTotalBuys}
+            isAuctionStarted={isAuctionStarted}
+            isAuctionEnded={isAuctionEnded}
+            soldOut={soldOut}
+          />
           <NFTPutOnSale
             nft={nft}
             putOnSalePop={putOnSalePop}
             setPutOnSalePop={setPutOnSalePop}
+            price={price}
+            userTotalBuys={userTotalBuys}
+            isAuctionStarted={isAuctionStarted}
+            isAuctionEnded={isAuctionEnded}
+            soldOut={soldOut}
+          />
+          <NFTCancelTheSale
+            nft={nft}
+            orderDetails={orderDetails}
+            isOwner={isOwner}
+            cancelTheSalePop={cancelTheSalePop}
+            setCancelTheSalePop={setCancelTheSalePop}
             price={price}
             userTotalBuys={userTotalBuys}
             isAuctionStarted={isAuctionStarted}
@@ -386,6 +424,25 @@ const NFTBaseDetails = ({
                   Sign In
                 </button>
               );
+            } else if (parseFloat(user?.balance) <= 0 && !isOwner) {
+              return (
+                <button
+                  disabled={false}
+                  className={`btn ${
+                    isAuctionEnded
+                      ? "btn-dark place-bid-btn"
+                      : "btn-danger text-white recharge-btn"
+                  } text-center btn-lg mt-2 rounded-pill`}
+                  onClick={() =>
+                    window.open(
+                      `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
+                      "_self"
+                    )
+                  }
+                >
+                  Recharge Wallet
+                </button>
+              );
             } else if (isOwner && !isOnSale) {
               if (isOrder && !isOrderOnSale) {
                 return (
@@ -407,6 +464,153 @@ const NFTBaseDetails = ({
                   </button>
                 );
               }
+            } else if (erc721 && isOwner && isOnSale) {
+              if (acceptBidConfirm) {
+                return (
+                  <>
+                    <button
+                      disabled={false}
+                      className="btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill place-bid-buy-btn filled-btn"
+                      onClick={() => setAcceptBidConfirm(!acceptBidConfirm)}
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      disabled={false}
+                      className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn"
+                      onClick={handleAcceptBid}
+                    >
+                      Confirm
+                    </button>
+                  </>
+                );
+              } else if (acceptBidSucess || isOrderSuccess) {
+                return (
+                  <button
+                    disabled={true}
+                    className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                  >
+                    Sold Out
+                  </button>
+                );
+              } else {
+                return (
+                  <>
+                    <button
+                      disabled={false}
+                      className={`btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill ${
+                        isOrder ? `place-bid-buy-btn` : "place-bid-btn"
+                      } filled-btn`}
+                      onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
+                    >
+                      Cancel the sale
+                    </button>
+                    {isOrder && (
+                      <button
+                        disabled={latestBid ? false : true}
+                        className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn"
+                        onClick={() => setAcceptBidConfirm(!acceptBidConfirm)}
+                      >
+                        Accept Bid
+                      </button>
+                    )}
+                  </>
+                );
+              }
+            } else if (!erc721 && isOwner && isOnSale) {
+              if (onSaleQty) {
+                return (
+                  <>
+                    {orderSlug ? (
+                      <button
+                        disabled={false}
+                        className="btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill place-bid-buy-btn filled-btn"
+                        onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
+                      >
+                        Cancel the sale
+                      </button>
+                    ) : (
+                      <button
+                        disabled={false}
+                        className="btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill place-bid-buy-btn filled-btn"
+                        onClick={() => setModalShow(true)}
+                      >
+                        Cancel the sale
+                      </button>
+                    )}
+
+                    <button
+                      disabled={false}
+                      className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn"
+                      onClick={() => setPutOnSalePop(!putOnSalePop)}
+                    >
+                      Put on sale (
+                      {_.get(nft, "owner_details.available_quantity")}qty)
+                    </button>
+                  </>
+                );
+              } else {
+                return (
+                  <>
+                    {orderSlug ? (
+                      <button
+                        disabled={false}
+                        className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                        onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
+                      >
+                        Cancel the sale
+                      </button>
+                    ) : (
+                      <button
+                        disabled={false}
+                        className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                        onClick={() => setModalShow(true)}
+                      >
+                        Cancel the sale
+                      </button>
+                    )}
+                  </>
+                );
+              }
+            } else if (isBid && isBuy) {
+              return (
+                <>
+                  <button
+                    disabled={false}
+                    className="btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill place-bid-buy-btn filled-btn"
+                    onClick={() => setPlaceBuyPop(!placeBuyPop)}
+                  >
+                    Buy {currencyFormat(orderDetails.buy_amount, "USD")}
+                  </button>
+                  <button
+                    disabled={false}
+                    className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn"
+                    onClick={() => setPlaceBidPop(!placeBidPop)}
+                  >
+                    Place a Bid
+                  </button>
+                </>
+              );
+            } else if (isBid) {
+              return (
+                <button
+                  disabled={false}
+                  className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                  onClick={() => setPlaceBidPop(!placeBidPop)}
+                >
+                  Place a Bid
+                </button>
+              );
+            } else if (isBuy) {
+              return (
+                <button
+                  disabled={false}
+                  className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                  onClick={() => setPlaceBuyPop(!placeBuyPop)}
+                >
+                  Buy {currencyFormat(orderDetails.buy_amount, "USD")}
+                </button>
+              );
             } else {
               return (
                 <button
@@ -418,6 +622,12 @@ const NFTBaseDetails = ({
               );
             }
           })()}
+
+          <div className="mt-2 royalty-info">
+            {/* {erc721 &&
+              nft.auction_extend_minutes &&
+              `Counterbid within the last 5 minutes will extend the auction by ${nft.auction_extend_minutes} minutes`} */}
+          </div>
         </div>
       </div>
 
@@ -464,4 +674,4 @@ const NFTBaseDetails = ({
   );
 };
 
-export default NFTBaseDetails;
+export default NFTOrderBaseDetails;

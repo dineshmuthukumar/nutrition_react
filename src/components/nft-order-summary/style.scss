@@ -1,0 +1,67 @@
+@import "../../styles/common";
+
+.nft-summary {
+  border-radius: 1rem;
+  border: 2px solid #000000;
+  .title {
+    font-size: 1.2rem;
+    font-family: $neue-helveticamedium;
+    @media screen and (max-width: 560px) {
+      font-size: 1rem;
+    }
+    @media screen and (max-width: 768px) {
+      font-size: 1rem;
+    }
+
+    svg {
+      vertical-align: unset;
+    }
+  }
+  .value {
+    font-size: 3rem;
+    font-family: $neue-helveticamedium;
+    position: relative;
+    @media screen and (max-width: 991px) {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+    @media screen and (max-width: 560px) {
+      font-size: 2rem;
+    }
+    @media screen and (max-width: 768px) {
+      font-size: 2.2rem;
+    }
+
+    svg {
+      font-size: 1.5rem;
+      margin-top: -3px;
+      margin-right: -2px;
+    }
+
+    .value-diff-range {
+      position: absolute;
+      font-family: $neue-helveticamedium;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      display: inline-flex;
+      margin-left: 0.3rem;
+      @media screen and (max-width: 991px ) {
+        position: relative;
+        font-size: 0.9rem;
+        margin-top: 0.4rem;
+        display: flex;
+        margin-left: 0;
+        margin-bottom: -0.4rem;
+    
+      }
+
+      &.green {
+        color: #00a954;
+      }
+
+      &.red {
+        color: #f21e00;
+      }
+    }
+  }
+}

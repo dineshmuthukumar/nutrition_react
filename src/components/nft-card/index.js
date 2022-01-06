@@ -12,7 +12,7 @@ const NFTCard = ({ nft }) => {
 
   const handleClick = () => {
     if (nft?.is_on_sale) {
-      history.push(`/details/${nft?.slug}/${nft?.order_details?.slug}`);
+      history.push(`/order/details/${nft?.slug}/${nft?.order_details?.slug}`);
     } else {
       history.push(`/details/${nft?.slug}`);
     }
@@ -41,36 +41,42 @@ const NFTCard = ({ nft }) => {
           <div className="more-nft-title">{nft?.name}</div>
           <div className="more-nft-desc">Featured NFT</div>
         </div>
-        <div className="more-bid-details">
-          <div className="text-end">
-            <div className="mb-title text-secondary">
-              {erc721 ? "Bid Price" : "Price"}
+        {nft?.is_on_sale && (
+          <>
+            <div className="more-bid-details">
+              <div className="text-end">
+                <div className="mb-title text-secondary">
+                  {(() => {
+                    if (erc721) {
+                      return nft?.order_details?.is_bid ? "Bid Price" : "Price";
+                    } else {
+                      return "Price";
+                    }
+                  })()}
+                </div>
+                <div className="mb-value">
+                  {(() => {
+                    if (erc721) {
+                      return nft?.order_details?.is_bid
+                        ? currencyFormat(
+                            nft?.order_details?.top_bid
+                              ? nft?.order_details?.top_bid
+                              : nft?.order_details?.minimum_bid,
+                            "USD"
+                          )
+                        : currencyFormat(nft?.order_details?.buy_amount, "USD");
+                    } else {
+                      return currencyFormat(
+                        nft?.order_details?.buy_amount,
+                        "USD"
+                      );
+                    }
+                  })()}
+                </div>
+              </div>
             </div>
-            <div className="mb-value">
-              {(() => {
-                if (nft?.is_on_sale) {
-                  if (erc721) {
-                    return nft?.order_details?.is_bid
-                      ? currencyFormat(
-                          nft?.order_details?.top_bid
-                            ? nft?.order_details?.top_bid
-                            : nft?.order_details?.minimum_bid,
-                          "USD"
-                        )
-                      : currencyFormat(nft?.order_details?.buy_amount, "USD");
-                  } else {
-                    return currencyFormat(
-                      nft?.order_details?.buy_amount,
-                      "USD"
-                    );
-                  }
-                } else {
-                  return "Not For Sale";
-                }
-              })()}
-            </div>
-          </div>
-        </div>
+          </>
+        )}
       </div>
     </div>
   );
