@@ -7,7 +7,7 @@ import BidValue from "../bid-value";
 
 import ErrorText from "./error-text";
 import { bidBuyError, validateQuantity } from "../../utils/common";
-import { bidSaleCancelApi, buySaleCancelApi } from "../../api/methods";
+import { buySaleCancelApi, saleCancelApi } from "../../api/methods";
 
 import "./style.scss";
 
@@ -32,9 +32,9 @@ const NFTCancelTheSale = ({
     errorDescription: "",
   });
 
-  const handleBidCancel = async () => {
+  const handleSaleCancel = async () => {
     try {
-      const result = await bidSaleCancelApi({
+      const result = await saleCancelApi({
         order_slug: isOwner && nft.owner_details.orders[0].slug,
       });
       if (result.data.success) {
@@ -213,79 +213,25 @@ const NFTCancelTheSale = ({
                       )}
                     </div>
                   </div> */}
-                    {!buyCancel && !bidCancel && (
-                      <div className="bottom-area">
-                        <div className="bottom-content-pop">
-                          <div className="place-bid-button">
-                            {/* {(()=>{
-                              if (orderDetails) {
-                                
-                              }
-                            })()} */}
-                            <button
-                              className={`btn btn-outline-dark text-center btn-lg w-75 me-3 rounded-pill place-bid-btn-pop `} //process -> proccessing
-                              onClick={() => setBuyCancel(!buyCancel)}
-                            >
-                              Buy Cancel
-                            </button>
-                            <button
-                              className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop `} //process -> proccessing
-                              onClick={() => setBidCancel(!bidCancel)}
-                            >
-                              Bid Cancel
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    )}
 
-                    {buyCancel && (
-                      <div className="bottom-area">
-                        <div className="bottom-content-pop">
-                          <div
-                            className={`back-button`} //process -> proccessing
-                            onClick={() => {
-                              setBuyCancel(!buyCancel);
-                              setCancelTheSalePop(!cancelTheSalePop);
-                            }}
+                    <div className="bottom-area">
+                      <div className="bottom-content-pop">
+                        <div
+                          className={`back-button`} //process -> proccessing
+                          onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
+                        >
+                          No
+                        </div>
+                        <div className="place-bid-button">
+                          <button
+                            className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop `} //process -> proccessing
+                            onClick={handleSaleCancel}
                           >
-                            No
-                          </div>
-                          <div className="place-bid-button">
-                            <button
-                              className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop `} //process -> proccessing
-                              onClick={handleBuyCancel}
-                            >
-                              Yes
-                            </button>
-                          </div>
+                            Yes
+                          </button>
                         </div>
                       </div>
-                    )}
-
-                    {bidCancel && (
-                      <div className="bottom-area">
-                        <div className="bottom-content-pop">
-                          <div
-                            className={`back-button`} //process -> proccessing
-                            onClick={() => {
-                              setBidCancel(!bidCancel);
-                              setCancelTheSalePop(!cancelTheSalePop);
-                            }}
-                          >
-                            No
-                          </div>
-                          <div className="place-bid-button">
-                            <button
-                              className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop `} //process -> proccessing
-                              onClick={handleBidCancel}
-                            >
-                              Yes
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    )}
+                    </div>
                   </>
                 )
               ) : (
