@@ -55,9 +55,6 @@ const NFTOrderBaseDetails = ({
   const isBid = _.get(nft, "order_details.is_bid", false);
   const isBuy = _.get(nft, "order_details.is_buy", false);
   const isOwner = _.has(nft, "owner_details");
-  const isOnSale = _.size(_.get(nft, "owner_details.orders", [])) > 0;
-  const onSaleQty = _.get(nft, "owner_details.available_quantity", 0) != 0;
-  const isOrder = _.has(nft, "order_details");
   const orderDetails = _.get(nft, "order_details", {});
   const ownerOrderDetails = _.get(nft, "owner_details.orders", []);
 
@@ -358,6 +355,15 @@ const NFTOrderBaseDetails = ({
                   Sold Out
                 </button>
               );
+            } else if (isOrderCancelled) {
+              return (
+                <button
+                  disabled={true}
+                  className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                >
+                  Order Cancelled
+                </button>
+              );
             } else if (parseFloat(user?.balance) <= 0 && !isOwner) {
               return (
                 <button
@@ -407,18 +413,16 @@ const NFTOrderBaseDetails = ({
                   </>
                 );
               } else {
-                return (
-                  <>
-                    <button
-                      disabled={false}
-                      className={`btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill ${
-                        isOrder ? `place-bid-buy-btn` : "place-bid-btn"
-                      } filled-btn`}
-                      onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
-                    >
-                      Cancel the sale
-                    </button>
-                    {isOrder && (
+                if (isBid) {
+                  return (
+                    <>
+                      <button
+                        disabled={false}
+                        className={`btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill place-bid-buy-btn filled-btn`}
+                        onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
+                      >
+                        Cancel the sale
+                      </button>
                       <button
                         disabled={latestBid?.slug ? false : true}
                         className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn"
@@ -426,9 +430,19 @@ const NFTOrderBaseDetails = ({
                       >
                         Accept Bid
                       </button>
-                    )}
-                  </>
-                );
+                    </>
+                  );
+                } else {
+                  return (
+                    <button
+                      disabled={false}
+                      className={`btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill place-bid-btn filled-btn`}
+                      onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
+                    >
+                      Cancel the sale
+                    </button>
+                  );
+                }
               }
             } else if (!erc721 && isOwner && isOrderOnSale) {
               return (
