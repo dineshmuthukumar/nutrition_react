@@ -5,84 +5,21 @@ import { nftCategoriesApi } from "../../api/methods";
 import sample from "../../images/drops/nft_2.png";
 import HeroVideo from "../hero-video";
 import heroVideoBox from "../../images/amithabNft.mp4";
+import silsila_video from "../../images/marketplace/silsila.mp4";
+import bigb_artpunk from "../../images/marketplace/bigb_artpunk.jpg";
+import madhushala_nft from "../../images/marketplace/madhushala_nft.png";
+import chakra_artpunks from "../../images/marketplace/chakra_artpunks.jpg";
+import comic_cover_new from "../../images/marketplace/comic_cover_new.jpg";
+import digital_poster from "../../images/marketplace/digital_poster.gif";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./style.scss";
 
 const Banner = ({ list = [] }) => {
   return (
     <>
-      <div className="container-fluid mt-4 hero-carousel-mobile">
-        <div className="row">
-          <div className="col-12">
-            <div style={{ height: "50vh" }}>
-              {list.length > 0 && (
-                <Carousel
-                  showThumbs={false}
-                  dynamicHeight={true}
-                  useKeyboardArrows
-                  autoPlay
-                  interval={4000}
-                  showArrows={false}
-                  showStatus={false}
-                  stopOnHover
-                  infiniteLoop={true}
-                  swipeable={true}
-                >
-                  {list.map((category, i) => (
-                    <div
-                      key={`category-${i}`}
-                      style={{ overflow: "hidden" }}
-                      className="cat-block"
-                    >
-                      {(() => {
-                        if (category?.asset_type?.includes("video")) {
-                          return (
-                            <>
-                              <video
-                                loop
-                                muted
-                                autoPlay
-                                playsInline
-                                src={
-                                  category?.asset_url
-                                    ? category?.asset_url
-                                    : heroVideoBox
-                                }
-                                className="first-image"
-                                style={{ height: "50vh" }}
-                              ></video>
-                              <h5 className="cat-title">{category.name}</h5>
-                            </>
-                          );
-                        } else {
-                          return (
-                            <>
-                              <h5 className="cat-title">{category.name}</h5>
-                              <img
-                                src={
-                                  category?.asset_url
-                                    ? category?.asset_url
-                                    : sample
-                                }
-                                className="first-image"
-                                style={{ height: "50vh" }}
-                              />
-                            </>
-                          );
-                        }
-                      })()}
-                    </div>
-                  ))}
-                </Carousel>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div className="container-fluid mt-4 hero-carousel-desktop">
         <div className="row">
-          <div className="col-6">
+          <div className="col-5">
             <div style={{ height: "calc((100vw - 13rem)/2)" }}>
               <Carousel
                 showThumbs={false}
@@ -97,154 +34,42 @@ const Banner = ({ list = [] }) => {
                 swipeable={true}
               >
                 <div style={{ overflow: "hidden" }} className="cat-block">
-                  <h5 className="cat-title big-box">{list[0]?.name}</h5>
-                  {(() => {
-                    if (list[0]?.asset_type?.includes("video")) {
-                      return (
-                        <video
-                          loop
-                          muted
-                          autoPlay
-                          playsInline
-                          src={
-                            list[0]?.asset_url
-                              ? list[0]?.asset_url
-                              : heroVideoBox
-                          }
-                          className="first-image"
-                          style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
-                        ></video>
-                      );
-                    } else {
-                      return (
-                        <img
-                          src={list[0]?.asset_url ? list[0]?.asset_url : sample}
-                          className="first-image"
-                          style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
-                        />
-                      );
+                  <h5 className="cat-title big-box">
+                    Autographed Physical Posters
+                  </h5>
+                  <video
+                    loop
+                    muted
+                    autoPlay
+                    playsInline
+                    src={
+                      list[0]?.asset_url ? list[0]?.asset_url : silsila_video
                     }
-                  })()}
+                    className="first-image"
+                    style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
+                  ></video>
                 </div>
-                <div className="cat-block">
-                  <h5 className="cat-title big-box">{list[1]?.name}</h5>
-                  {(() => {
-                    if (list[1]?.asset_type?.includes("video")) {
-                      return (
-                        <video
-                          loop
-                          muted
-                          autoPlay
-                          playsInline
-                          src={
-                            list[1]?.asset_url
-                              ? list[1]?.asset_url
-                              : heroVideoBox
-                          }
-                          className="first-image"
-                          style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
-                        ></video>
-                      );
-                    } else {
-                      return (
-                        <img
-                          src={list[1]?.asset_url ? list[1]?.asset_url : sample}
-                          className="first-image"
-                          style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
-                        />
-                      );
-                    }
-                  })()}
+                <div style={{ overflow: "hidden" }} className="cat-block">
+                  <h5 className="cat-title big-box">
+                    Animated Living Comic Book Cover
+                  </h5>
+                  <video
+                    loop
+                    muted
+                    autoPlay
+                    playsInline
+                    src="https://res.cloudinary.com/dba42nusi/video/upload/v1640657629/Chakra/Chakra_Videos/LivingComicBook_2/2_g1GlPdEH8Zyz5jK0_f8g86c_v40qia.mp4"
+                    className="first-image"
+                    style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
+                  ></video>
                 </div>
-                <div className="cat-block">
-                  <h5 className="cat-title big-box">{list[2]?.name}</h5>
-                  {(() => {
-                    if (list[2]?.asset_type?.includes("video")) {
-                      return (
-                        <video
-                          loop
-                          muted
-                          autoPlay
-                          playsInline
-                          src={
-                            list[2]?.asset_url
-                              ? list[2]?.asset_url
-                              : heroVideoBox
-                          }
-                          className="first-image"
-                          style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
-                        ></video>
-                      );
-                    } else {
-                      return (
-                        <img
-                          src={list[2]?.asset_url ? list[2]?.asset_url : sample}
-                          className="first-image"
-                          style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
-                        />
-                      );
-                    }
-                  })()}
-                </div>
-                <div className="cat-block">
-                  <h5 className="cat-title big-box">{list[3]?.name}</h5>
-                  {(() => {
-                    if (list[3]?.asset_type?.includes("video")) {
-                      return (
-                        <video
-                          loop
-                          muted
-                          autoPlay
-                          playsInline
-                          src={
-                            list[3]?.asset_url
-                              ? list[3]?.asset_url
-                              : heroVideoBox
-                          }
-                          className="first-image"
-                          style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
-                        ></video>
-                      );
-                    } else {
-                      return (
-                        <img
-                          src={list[3]?.asset_url ? list[3]?.asset_url : sample}
-                          className="first-image"
-                          style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
-                        />
-                      );
-                    }
-                  })()}
-                </div>
-                <div className="cat-block">
-                  <h5 className="cat-title big-box">{list[4]?.name}</h5>
-                  {(() => {
-                    if (list[4]?.asset_type?.includes("video")) {
-                      return (
-                        <video
-                          loop
-                          muted
-                          autoPlay
-                          playsInline
-                          src={
-                            list[4]?.asset_url
-                              ? list[4]?.asset_url
-                              : heroVideoBox
-                          }
-                          className="first-image"
-                          style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
-                        ></video>
-                      );
-                    } else {
-                      return (
-                        <img
-                          src={list[4]?.asset_url ? list[4]?.asset_url : sample}
-                          className="first-image"
-                          style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
-                        />
-                      );
-                    }
-                  })()}
+                <div style={{ overflow: "hidden" }} className="cat-block">
+                  <h5 className="cat-title big-box">Digital Posters</h5>
+                  <img
+                    src={digital_poster}
+                    className="first-image"
+                    style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
+                  />
                 </div>
               </Carousel>
             </div>
@@ -259,7 +84,7 @@ const Banner = ({ list = [] }) => {
                       "calc(((((100vw - (7rem + 6rem))/2)/3)*2) - 1.5rem)",
                   }}
                 >
-                  <h5 className="cat-title medium-box">{list[5]?.name}</h5>
+                  <h5 className="cat-title medium-box">BigB Punks NFTs </h5>
                   {(() => {
                     if (list[5]?.asset_type?.includes("video")) {
                       return (
@@ -280,7 +105,7 @@ const Banner = ({ list = [] }) => {
                     } else {
                       return (
                         <img
-                          src={list[5]?.asset_url ? list[5]?.asset_url : sample}
+                          src={bigb_artpunk}
                           className="first-image"
                           style={{ height: "100%" }}
                         />
@@ -299,7 +124,7 @@ const Banner = ({ list = [] }) => {
                     height: "calc(((((100vw - (7rem + 6rem))/2)/3)))",
                   }}
                 >
-                  <h5 className="cat-title">{list[6]?.name}</h5>
+                  <h5 className="cat-title">Chakra Artpunks</h5>
                   {(() => {
                     if (list[6]?.asset_type?.includes("video")) {
                       return (
@@ -320,7 +145,7 @@ const Banner = ({ list = [] }) => {
                     } else {
                       return (
                         <img
-                          src={list[6]?.asset_url ? list[6]?.asset_url : sample}
+                          src={chakra_artpunks}
                           className="first-image"
                           style={{ height: "100%" }}
                         />
@@ -336,39 +161,21 @@ const Banner = ({ list = [] }) => {
                     height: "calc(((((100vw - (7rem + 6rem))/2)/3)))",
                   }}
                 >
-                  <h5 className="cat-title">{list[7]?.name}</h5>
-                  {(() => {
-                    if (list[6]?.asset_type?.includes("video")) {
-                      return (
-                        <video
-                          loop
-                          muted
-                          autoPlay
-                          playsInline
-                          src={
-                            list[7]?.asset_url
-                              ? list[7]?.asset_url
-                              : heroVideoBox
-                          }
-                          className="first-image"
-                          style={{ height: "100%" }}
-                        ></video>
-                      );
-                    } else {
-                      return (
-                        <img
-                          src={list[7]?.asset_url ? list[7]?.asset_url : sample}
-                          className="first-image"
-                          style={{ height: "100%" }}
-                        />
-                      );
-                    }
-                  })()}
+                  <h5 className="cat-title">Stan Lee B'day Special</h5>
+                  <video
+                    loop
+                    muted
+                    autoPlay
+                    playsInline
+                    src="https://res.cloudinary.com/dba42nusi/video/upload/v1640714327/Chakra/Chakra_Videos/Bday/1__LRrZzl7HbqgP6xaK_fpxd7j.mp4"
+                    className="first-image"
+                    style={{ height: "100%" }}
+                  ></video>
                 </div>{" "}
               </div>
             </div>
           </div>
-          <div className="col-2">
+          <div className="col-3">
             <div className="row">
               <div className="col pb-4">
                 <div
@@ -377,34 +184,16 @@ const Banner = ({ list = [] }) => {
                     height: "calc(((((100vw - (7rem + 6rem))/2)/3) ) - 1.5rem)",
                   }}
                 >
-                  <h5 className="cat-title">{list[8]?.name}</h5>
-                  {(() => {
-                    if (list[6]?.asset_type?.includes("video")) {
-                      return (
-                        <video
-                          loop
-                          muted
-                          autoPlay
-                          playsInline
-                          src={
-                            list[8]?.asset_url
-                              ? list[8]?.asset_url
-                              : heroVideoBox
-                          }
-                          className="first-image"
-                          style={{ height: "100%" }}
-                        ></video>
-                      );
-                    } else {
-                      return (
-                        <img
-                          src={list[8]?.asset_url ? list[8]?.asset_url : sample}
-                          className="first-image"
-                          style={{ height: "100%" }}
-                        />
-                      );
-                    }
-                  })()}
+                  <h5 className="cat-title">Seven Chakra's Powers Video</h5>
+                  <video
+                    loop
+                    muted
+                    autoPlay
+                    playsInline
+                    src="https://res.cloudinary.com/dba42nusi/video/upload/v1640657041/Chakra/Chakra_Videos/SevenPowers_7/2_MNYjPOpHrw0zy79K_obmgkq_bbhfcq.mp4"
+                    className="first-image"
+                    style={{ height: "100%" }}
+                  ></video>
                 </div>
               </div>
             </div>
@@ -416,9 +205,9 @@ const Banner = ({ list = [] }) => {
                     height: "calc(((((100vw - (7rem + 6rem))/2)/3)) - 1.5rem)",
                   }}
                 >
-                  <h5 className="cat-title">BigB Punks</h5>
+                  <h5 className="cat-title">Madhushala NFTs</h5>
                   <img
-                    src={sample}
+                    src={madhushala_nft}
                     className="first-image"
                     style={{ height: "100%" }}
                   />
@@ -433,9 +222,9 @@ const Banner = ({ list = [] }) => {
                     height: "calc(((((100vw - (7rem + 6rem))/2)/3)))",
                   }}
                 >
-                  <h5 className="cat-title">BigB Punks</h5>
+                  <h5 className="cat-title">Chakra Comic NFTs</h5>
                   <img
-                    src={sample}
+                    src={comic_cover_new}
                     className="first-image"
                     style={{ height: "100%" }}
                   />

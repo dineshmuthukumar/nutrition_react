@@ -58,7 +58,7 @@ const NFTCancelTheSale = ({
     try {
       const result = await buySaleCancelApi({
         order_slug: orderDetails.slug,
-        order: { quantity: erc721 ? 1 : cancelQuantity },
+        order: { quantity: erc721 ? 1 : parseInt(cancelQuantity) },
       });
       if (result.data.success) {
         setSuccess(true);
@@ -90,6 +90,7 @@ const NFTCancelTheSale = ({
       setCancelQuantity(e.target.value);
     }
   };
+
   return (
     <Offcanvas
       show={cancelTheSalePop}
@@ -97,15 +98,15 @@ const NFTCancelTheSale = ({
       placement="end"
       className="w-100 w-md-50 w-lg-42"
     >
-      <Offcanvas.Body className="p-0 pop-body-container">
+      <Offcanvas.Body className="p-0 pop-cancel-body-container">
         {user ? (
           <>
-            <div className="pop-nft-details">
+            <div className="pop-cancel-nft-details">
               {!success ? (
                 !erc721 ? (
                   <>
-                    <div className="pop-head-content">
-                      <div className="pop-bid-title">Cancel the sale</div>
+                    <div className="pop-cancel-head-content">
+                      <div className="pop-cancel-title">Cancel the sale</div>
                       <div
                         className="close-button-pop"
                         onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
@@ -116,24 +117,24 @@ const NFTCancelTheSale = ({
                         ></img>
                       </div>
                     </div>
-                    <div class="pop-bid-progress ">
+                    <div class="pop-cancel-progress ">
                       <div class="progress-complete"></div>
                     </div>
-                    <div className="pop-bid-bodyContent px-4">
-                      <div className={`input-bid-container mt-5 mb-5`}>
-                        <div className="input-field-bid px-0">
-                          <label className="input-bid-text">
+                    <div className="pop-cancel-bodyContent px-4">
+                      <div className={`input-cancel-container mt-5 mb-5`}>
+                        <div className="input-field-cancel px-0">
+                          <label className="input-cancel-text">
                             No of units to cancel sale
                           </label>
-                          <div className="input-quantity-container bid-input">
+                          <div className="input-cancel-quantity-container bid-input">
                             <input
                               type="text"
-                              className="input-quantity"
+                              className="input-cancel-quantity"
                               value={cancelQuantity}
                               placeholder="0 NFTs"
                               onChange={handleQuantityInputChange}
                             />
-                            <span className="bid-currency">
+                            <span className="cancel-currency">
                               /{orderDetails.available_quantity}
                             </span>
                           </div>
@@ -153,9 +154,9 @@ const NFTCancelTheSale = ({
 
                       <div className="bottom-content-pop">
                         <div className="back-button">Cancel</div>
-                        <div className="place-bid-button">
+                        <div className="place-cancel-button">
                           <button
-                            className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop`} //process -> proccessing
+                            className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-cancel-btn-pop`} //process -> proccessing
                             onClick={handleBuyCancel}
                           >
                             Confirm
@@ -166,8 +167,8 @@ const NFTCancelTheSale = ({
                   </>
                 ) : (
                   <>
-                    <div className="pop-head-content">
-                      <div className="pop-bid-title">Cancel the sale</div>
+                    <div className="pop-cancel-head-content">
+                      <div className="pop-cancel-title">Cancel the sale</div>
                       <div
                         className="close-button-pop"
                         onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
@@ -181,7 +182,9 @@ const NFTCancelTheSale = ({
 
                     {/* error-progress -> error progress , loading -> progressing */}
                     <div
-                      className={`pop-bid-progress ${success ? "error" : ""}`}
+                      className={`pop-cancel-progress ${
+                        success ? "error" : ""
+                      }`}
                     >
                       <div className="progress-complete"></div>
                     </div>
@@ -195,7 +198,7 @@ const NFTCancelTheSale = ({
                       </div>
                     </div>
 
-                    {/* <div className="pop-bid-bodyContent">
+                    {/* <div className="pop-cancel-bodyContent">
                     <div className="error-float-container">
                       {error && (
                         <ErrorText
@@ -222,9 +225,9 @@ const NFTCancelTheSale = ({
                         >
                           No
                         </div>
-                        <div className="place-bid-button">
+                        <div className="place-cancel-button">
                           <button
-                            className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop `} //process -> proccessing
+                            className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-cancel-btn-pop `} //process -> proccessing
                             onClick={handleSaleCancel}
                           >
                             Yes
@@ -239,15 +242,16 @@ const NFTCancelTheSale = ({
                   <div className="sucess-title">
                     <FaTimesCircle color={"#f21e00"} size={60} />
                     <div className="message mt-3">
-                      Your NFT sale has been Removed
+                      Listing canceled successfully. Your NFT is no longer
+                      listed for selling.
                     </div>
                   </div>
 
                   <div className="bottom-area">
                     <div className="bottom-content-pop">
-                      <div className="place-bid-button">
+                      <div className="place-cancel-button">
                         <button
-                          className="btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop "
+                          className="btn btn-dark text-center btn-lg w-75 rounded-pill place-cancel-btn-pop "
                           onClick={() => history.push("/")}
                         >
                           Okay
@@ -261,20 +265,13 @@ const NFTCancelTheSale = ({
           </>
         ) : (
           <>
-            <div className="pop-nft-details">
-              <div className="pop-head-content">
-                <div className="pop-bid-title">
-                  {/* {erc721 ? "Sign in to place a bid" : "Sign in to place a buy"} */}
-                </div>
+            <div className="pop-cancel-nft-details">
+              <div className="pop-cancel-head-content">
+                <div className="pop-cancel-title"></div>
                 <div
                   className="close-button-pop"
                   onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
                 >
-                  {/* <BiX
-                    role="button"
-                    size={45}
-                    onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
-                  /> */}
                   <img
                     alt="bid logo"
                     src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e"
@@ -283,11 +280,11 @@ const NFTCancelTheSale = ({
               </div>
               <div className="pop-signin">
                 <div className="pop-signin-title text-center mb-1">
-                  {erc721 ? "Sign in to place a bid" : "Sign in to place a buy"}
+                  {erc721 ? "Sign in to place bid" : "Sign in to buy"}
                 </div>
-                <div className="pop-nft-media">
+                <div className="pop-cancel-nft-media">
                   <button
-                    className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                    className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-cancel-btn"
                     onClick={() =>
                       window.open(
                         `${process.env.REACT_APP_ACCOUNTS_URL}/signin?redirect=${window.location.href}`,

@@ -134,7 +134,7 @@ const SubHeader = ({
                       } else if (isAuctionEnded) {
                         return "Auction has ended";
                       } else {
-                        return "Place a Bid";
+                        return "Place Bid";
                       }
                     })()}
                   </button>

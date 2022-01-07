@@ -1,0 +1,210 @@
+@import "../../styles/common";
+
+.bid-history {
+  border-radius: 8px;
+  box-shadow: 0 6px 15px 0 rgba(0, 0, 0, 0.15);
+  background-color: #fff;
+  overflow: hidden;
+
+  .history-end-content {
+    font-family: $neue-helveticamedium;
+    color: #9c9c9b;
+    font-size: 0.9rem;
+    text-align: center;
+    flex: 1;
+  }
+
+  .bid-history-title-content {
+    padding: 0.6rem 1.5rem;
+    background-color: #000;
+    display: flex;
+    justify-content: space-between;
+
+    .bid-history-title {
+      font-family: $neue-helveticamedium;
+      font-size: 1.5rem;
+      color: #fff;
+    }
+
+    .bid-history-filter {
+      display: flex;
+      align-items: center;
+
+      .history-dropdown {
+        a.dropdown-toggle {
+          color: white;
+          font-family: $neue-helveticalight;
+          font-size: 0.9rem;
+        }
+        .dropdown-menu {
+          min-width: 1rem !important;
+        }
+      }
+    }
+  }
+
+  .bid-history-content {
+    min-height: calc(100vh - 10rem) !important;
+    max-height: 65vh;
+    border-left: 2px solid #000;
+    border-right: 2px solid #000;
+    border-bottom: 2px solid #000;
+    overflow: hidden;
+    overflow-y: auto;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+
+    .bid-histroy-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid #e7e7e9;
+      margin: 0 2rem;
+
+      .first-half {
+        display: flex;
+        align-items: center;
+
+        img {
+          height: 3rem;
+          width: 3rem;
+          object-fit: cover;
+          border-radius: 50%;
+          margin-right: 1rem;
+          background-color: #ccc;
+        }
+
+        .time {
+          font-size: 1rem;
+          font-family: $neue-helveticamedium;
+        }
+
+        .bid-owner {
+          font-size: 1.5rem;
+          font-family: $neue-helveticabold;
+
+          .owner-id {
+            cursor: pointer;
+
+            &:hover {
+              color: #000 !important;
+            }
+          }
+        }
+      }
+
+      .second-half {
+        .bid-value {
+          font-size: 1.5rem;
+          font-family: $neue-helveticabold;
+        }
+      }
+    }
+  }
+
+  .bid-empty-content {
+    background-color: #000;
+    min-height: 65vh;
+    max-height: 65vh;
+    margin-top: -1px;
+    padding: 1rem;
+
+    .empty-top-container {
+      color: #fff;
+      display: flex;
+      height: 50vh;
+
+      .empty-top-content {
+        flex: 1;
+        align-self: center;
+        text-align: center;
+
+        svg {
+          font-size: 3rem;
+        }
+        .empty-text {
+          font-family: $neue-helveticamedium;
+          font-size: 1.7rem;
+        }
+      }
+    }
+
+    .empty-bottom-content {
+      position: sticky;
+      top: 100vh;
+      display: flex;
+      background-color: #fff;
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      align-items: center;
+
+      img {
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        margin-right: 1rem;
+      }
+
+      .publish-time {
+        font-size: 0.8rem;
+        font-family: $neue-helveticamedium;
+      }
+
+      .nft-owner {
+        font-size: 1rem;
+        font-family: $neue-helveticabold;
+
+        span {
+          cursor: pointer;
+
+          &:hover {
+            color: #000 !important;
+          }
+        }
+      }
+    }
+  }
+}
+.expand-history-owner img {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  margin-right: 0.6rem;
+}
+.orderDetails .expand-history-owner {
+  display: flex;
+  align-items: center;
+}
+.orderDetails td {
+  vertical-align: middle;
+  font-family: "neue_helveticamedium";
+}
+.orderDetails table {
+  position: relative;
+  border-collapse: collapse;
+}
+.orderDetails thead {
+  color: #fff;
+}
+.orderDetails thead th {
+  background-color: #000;
+  padding: 1rem 0.5rem;
+  position: sticky;
+  top: 0;
+}
+.orderDetails thead th:first-child {
+  border-top-left-radius: 10px;
+}
+.orderDetails thead th:last-child {
+  border-top-right-radius: 10px;
+}
+.orderBtn {
+  font-size: 1rem;
+  padding: 6px 15px;
+}
+.orderDetails {
+  max-height: 70vh;
+  overflow: auto;
+  padding-bottom: 0;
+}

@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 import userImg from "../../images/user_1.png";
 
@@ -14,7 +15,9 @@ const BidValue = ({
   isOwner = false,
   name,
   avatar,
+  userSlug,
 }) => {
+  const { user } = useSelector((state) => state.user.data);
   return (
     <div className="current-bid">
       <div className="title">
@@ -25,7 +28,23 @@ const BidValue = ({
         {isEnd ? (
           <div className="user-detail">
             <img alt="" src={avatar ? avatar : userImg} />
-            <div className="win-user-name">{name}</div>
+            {userSlug ? (
+              <div
+                className="win-user-name"
+                role={"button"}
+                onClick={() => {
+                  window.open(
+                    user?.slug === userSlug
+                      ? `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`
+                      : `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/view/${userSlug}`
+                  );
+                }}
+              >
+                {name}
+              </div>
+            ) : (
+              <div className="win-user-name">{name}</div>
+            )}
           </div>
         ) : (
           <>

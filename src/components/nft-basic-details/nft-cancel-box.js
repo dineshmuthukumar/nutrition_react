@@ -30,7 +30,7 @@ const CancelNft = ({ nft, order, image, modalShow, setModalShow }) => {
         onClick={() => {
           setModalShow(!modalShow);
           window.open(
-            `${process.env.REACT_APP_MARKETPLACE_URL}/details/${nft.slug}/${order.slug}`,
+            `${process.env.REACT_APP_MARKETPLACE_URL}/order/details/${nft.slug}/${order.slug}`,
             "_self"
           );
         }}
