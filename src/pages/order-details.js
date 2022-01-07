@@ -261,6 +261,15 @@ const OrderDetails = () => {
             </div>
           )}
 
+          {purchaseList.length > 0 && (
+            <>
+              <NFTSectionTitle title="Purchase Details" />
+              <div className="row mt-5">
+                <NFTPurchaseDetails nft={nft} list={purchaseList} />
+              </div>
+            </>
+          )}
+
           <NFTSectionTitle title="NFT Details" />
           <div className="row mt-5">
             <div className="col-12 col-lg-6 order-lg-2 mb-4">
@@ -311,11 +320,6 @@ const OrderDetails = () => {
               <div className="mt-5"></div>
               <NFTTags tags={nft.tag_names} />
             </div>
-          </div>
-
-          <NFTSectionTitle title="Purchase Details" />
-          <div className="row mt-5">
-            <NFTPurchaseDetails nft={nft} list={purchaseList} />
           </div>
 
           <NFTSectionTitle title="Artist" />

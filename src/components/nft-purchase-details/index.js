@@ -31,6 +31,7 @@ const NFTPurchaseDetails = ({ nft, list = [] }) => {
               <th className="text-center">Service Fee</th>
               <th className="text-center">Status</th>
               <th className="text-center">Bought Date</th>
+              <th className="text-center">Address</th>
             </tr>
           </thead>
           <tbody>
@@ -48,15 +49,11 @@ const NFTPurchaseDetails = ({ nft, list = [] }) => {
                 <td className="text-center">{detail?.buy_quantity}</td>
                 {/* <td className="text-center">Bid</td> */}
                 <td className="text-center">
-                  {/* {currencyFormat(detail?.buy_amount, "USD")} */}
-                  {currencyFormat(20, "USD")}
+                  {currencyFormat(detail?.buy_amount, "USD")}
                 </td>
                 <td className="text-center">
                   {/* {currencyFormat(detail?.buy_amount, "USD")} */}
                   {currencyFormat(detail?.fees, "USD")}
-                </td>
-                <td className="text-center">
-                  {detail?.txid ? detail?.txid : "-"}
                 </td>
                 <td
                   className={`text-center ${
@@ -68,13 +65,16 @@ const NFTPurchaseDetails = ({ nft, list = [] }) => {
                   }`}
                 >
                   {detail?.status}{" "}
-                  {detail?.status === "pending" && <img src={loaderGif} />}
+                  {/* {detail?.status === "pending" && <img src={loaderGif} />} */}
                 </td>
 
                 <td className="text-center">
                   <div className="date">
                     {dayjs(detail?.updated_at).format("MMM D, YYYY hh:mm A")}
                   </div>
+                </td>
+                <td className="text-center">
+                  {detail?.txid ? detail?.txid : "-"}
                 </td>
               </tr>
             ))}

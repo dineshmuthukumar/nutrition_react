@@ -30,8 +30,8 @@ const NFTOrderDetails = ({ nft, orderList = [] }) => {
               <th className="text-center">Edition(s)</th>
               <th className="text-center">Order Views</th>
               <th className="text-center">Status</th>
-              <th className="text-center">Created Date</th>
-              <th className="text-center">Action</th>
+              <th className="text-center">Order Placed On</th>
+              <th className="text-center"></th>
             </tr>
           </thead>
           <tbody>
@@ -64,11 +64,11 @@ const NFTOrderDetails = ({ nft, orderList = [] }) => {
                 <td className="text-center">
                   {(() => {
                     if (erc721) {
-                      return order?.available_quantity > 0
+                      return order?.available_quantity === 0
                         ? "1 of 1 (Sold Out)"
                         : " 1 of 1 (left)";
                     } else {
-                      return order?.available_quantity > 0
+                      return order?.available_quantity === 0
                         ? `Sold Out`
                         : `${order?.available_quantity} / ${order?.total_quantity}`;
                     }
