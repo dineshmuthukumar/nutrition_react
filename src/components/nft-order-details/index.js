@@ -14,6 +14,7 @@ import "./style.scss";
 
 const NFTOrderHistory = ({ nft, orderList = [] }) => {
   const { user } = useSelector((state) => state.user.data);
+  const erc721 = nft?.nft_type === "erc721";
 
   return (
     <>
@@ -22,13 +23,14 @@ const NFTOrderHistory = ({ nft, orderList = [] }) => {
           <thead>
             <tr>
               <th className="text-center">#</th>
-              <th className="text-center">NFT</th>
+              <th className="text-center">NFT Type</th>
               <th className="text-center">Sale Type</th>
-              <th className="text-center">Minimum Bid Price</th>
+              {erc721 && <th className="text-center">Minimum Bid Price</th>}
               <th className="text-center">Sale Price</th>
-              <th className="text-center">Quantity</th>
+              <th className="text-center">Edition(s)</th>
+              <th className="text-center">Order Views</th>
               <th className="text-center">Status</th>
-              {/* <th className="text-center">Date</th> */}
+              <th className="text-center">Created Date</th>
               <th className="text-center">Action</th>
             </tr>
           </thead>
@@ -36,7 +38,7 @@ const NFTOrderHistory = ({ nft, orderList = [] }) => {
             {orderList.map((order, i) => (
               <tr>
                 <td className="text-center">{i + 1}</td>
-                <td className="text-center">{nft?.name}</td>
+                <td className="text-center">{erc721 ? "ERC721" : "ERC1155"}</td>
                 <td className="text-center">
                   {(() => {
                     if (order?.is_bid & order?.is_buy) {
@@ -48,20 +50,38 @@ const NFTOrderHistory = ({ nft, orderList = [] }) => {
                     }
                   })()}
                 </td>
-                <td className="text-center">
-                  <div className="usd-value">
-                    {currencyFormat(order?.minimum_bid, "USD")}
-                  </div>
-                </td>
+                {erc721 && (
+                  <td className="text-center">
+                    <div className="usd-value">
+                      {currencyFormat(order?.minimum_bid, "USD")}
+                    </div>
+                  </td>
+                )}
+
                 <td className="text-center">
                   {currencyFormat(order?.buy_amount, "USD")}
                 </td>
-                <td className="text-center">{order?.total_quantity}</td>
+                <td className="text-center">
+                  {(() => {
+                    if (erc721) {
+                      return order?.available_quantity > 0
+                        ? "1 of 1 (Sold Out)"
+                        : " 1 of 1 (left)";
+                    } else {
+                      return order?.available_quantity > 0
+                        ? `Sold Out`
+                        : `${order?.available_quantity} / ${order?.total_quantity}`;
+                    }
+                  })()}
+                </td>
+                <td className="text-center">{order?.page_views}</td>
                 <td
                   className={`text-center ${
-                    order?.status === "onsale"
+                    order?.status === "onsale" || order?.status === "success"
                       ? "text-success"
-                      : order?.status === "cancelled"
+                      : order?.status === "cancelled" ||
+                        order?.status === "partial_cancelled" ||
+                        order?.status === "blocked"
                       ? "text-danger"
                       : "text-info"
                   }`}
@@ -69,11 +89,11 @@ const NFTOrderHistory = ({ nft, orderList = [] }) => {
                   {order?.status}
                 </td>
 
-                {/* <td className="text-center">
+                <td className="text-center">
                   <div className="date">
-                    {dayjs(new Date()).format("MMM D, YYYY hh:mm A")}
+                    {dayjs(order?.created_at).format("MMM D, YYYY hh:mm A")}
                   </div>
-                </td> */}
+                </td>
                 <td className="text-center">
                   <button
                     class="btn btn-dark text-center btn-lg orderBtn mt-2 rounded-pill"
@@ -90,7 +110,10 @@ const NFTOrderHistory = ({ nft, orderList = [] }) => {
               </tr>
             ))}
             <tr>
-              <td className="text-center text-secondary p-3" colSpan="8">
+              <td
+                className="text-center text-secondary p-3"
+                colSpan={erc721 ? "10" : "9"}
+              >
                 You've reached the end of the list
               </td>
             </tr>
