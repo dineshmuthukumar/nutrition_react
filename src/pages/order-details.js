@@ -43,6 +43,7 @@ import OwnerList from "../components/owner-list";
 import Footer from "../components/footer/index";
 import NFTOrderSummary from "../components/nft-order-summary";
 import NFTOrderBaseDetails from "../components/nft-order-basic-details";
+import NFTPurchaseDetails from "../components/nft-purchase-details/index";
 
 const OrderDetails = () => {
   const history = useHistory();
@@ -306,6 +307,12 @@ const OrderDetails = () => {
               <NFTTags tags={nft.tag_names} />
             </div>
           </div>
+
+          <NFTSectionTitle title="Order Details" />
+          <div className="row mt-5">
+            <NFTPurchaseDetails nft={nft} list={[]} />
+          </div>
+
           <NFTSectionTitle title="Artist" />
           <div className="mt-5">
             <NFTArtist />

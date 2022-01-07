@@ -12,7 +12,7 @@ import { TableLoader } from "../nft-basic-details/content-loader";
 
 import "./style.scss";
 
-const NFTOrderDetails = ({ nft, orderList = [] }) => {
+const NFTPurchaseDetails = ({ nft, orderList = [] }) => {
   const { user } = useSelector((state) => state.user.data);
   const erc721 = nft?.nft_type === "erc721";
 
@@ -124,4 +124,4 @@ const NFTOrderDetails = ({ nft, orderList = [] }) => {
   );
 };
 
-export default NFTOrderDetails;
+export default NFTPurchaseDetails;

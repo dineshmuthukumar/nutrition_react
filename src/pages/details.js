@@ -41,7 +41,7 @@ import {
 } from "../api/actioncable-methods";
 import OwnerList from "../components/owner-list";
 import Footer from "../components/footer/index";
-import NFTOrderHistory from "../components/nft-order-details/index";
+import NFTOrderDetails from "../components/nft-order-details/index";
 
 const Details = () => {
   const history = useHistory();
@@ -327,11 +327,11 @@ const Details = () => {
             </div>
           )}
 
-          {isOwner && (
+          {isOwner && ownerOrdersList.length > 0 && (
             <>
               <NFTSectionTitle title="Order Details" />
               <div className="row mt-5">
-                <NFTOrderHistory nft={nft} orderList={ownerOrdersList} />
+                <NFTOrderDetails nft={nft} orderList={ownerOrdersList} />
               </div>
             </>
           )}
