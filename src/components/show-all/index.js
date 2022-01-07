@@ -182,7 +182,7 @@ const ShowAll = ({ categories }) => {
       .filter((xx) => xx.checked === true)
       .map((obj, i) => obj.value);
 
-    showAllFilteredNFTs(page, categoryFilter, typeFilter, saleTypeFilter);
+    showAllFilteredNFTs(1, categoryFilter, typeFilter, saleTypeFilter);
   };
 
   const handleSaleCheck = (input) => {
@@ -206,7 +206,7 @@ const ShowAll = ({ categories }) => {
       .filter((xx) => xx.checked === true)
       .map((obj, i) => obj.value);
 
-    showAllFilteredNFTs(page, categoryFilter, typeFilter, saleTypeFilter);
+    showAllFilteredNFTs(1, categoryFilter, typeFilter, saleTypeFilter);
   };
 
   const handleNFTCheck = (input) => {
@@ -230,7 +230,7 @@ const ShowAll = ({ categories }) => {
       .filter((xx) => xx.checked === true)
       .map((obj, i) => obj.value);
 
-    showAllFilteredNFTs(page, categoryFilter, typeFilter, saleTypeFilter);
+    showAllFilteredNFTs(1, categoryFilter, typeFilter, saleTypeFilter);
   };
 
   return (

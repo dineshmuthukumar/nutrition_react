@@ -53,13 +53,17 @@ const NFTOrderDetails = ({ nft, orderList = [] }) => {
                 {erc721 && (
                   <td className="text-center">
                     <div className="usd-value">
-                      {currencyFormat(order?.minimum_bid, "USD")}
+                      {order?.minimum_bid
+                        ? currencyFormat(order?.minimum_bid, "USD")
+                        : "-"}
                     </div>
                   </td>
                 )}
 
                 <td className="text-center">
-                  {currencyFormat(order?.buy_amount, "USD")}
+                  {order?.buy_amount
+                    ? currencyFormat(order?.buy_amount, "USD")
+                    : "-"}
                 </td>
                 <td className="text-center">
                   {(() => {
@@ -84,7 +88,7 @@ const NFTOrderDetails = ({ nft, orderList = [] }) => {
                         order?.status === "blocked"
                       ? "text-danger"
                       : "text-info"
-                  }`}
+                  } status`}
                 >
                   {order?.status}
                 </td>

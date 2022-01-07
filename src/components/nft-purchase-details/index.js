@@ -24,7 +24,7 @@ const NFTPurchaseDetails = ({ nft, list = [] }) => {
           <thead>
             <tr>
               <th className="text-center">#</th>
-              <th className="text-center">Buyer</th>
+              <th>Buyer</th>
               {/* <th className="text-center">Purchase Type</th> */}
               <th className="text-center">Edition(s)</th>
               <th className="text-center">Price</th>
@@ -62,7 +62,7 @@ const NFTPurchaseDetails = ({ nft, list = [] }) => {
                       : detail?.status === "expired"
                       ? "text-danger"
                       : "text-info"
-                  }`}
+                  } status`}
                 >
                   {detail?.status}{" "}
                   {/* {detail?.status === "pending" && <img src={loaderGif} />} */}
