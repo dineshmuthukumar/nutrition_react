@@ -7,12 +7,13 @@ import { Table } from "react-bootstrap";
 
 import BidName from "./bid-name";
 import userImg from "../../images/user_1.png";
+import loaderGif from "../../images/loader.gif";
 import { currencyFormat } from "../../utils/common";
 import { TableLoader } from "../nft-basic-details/content-loader";
 
 import "./style.scss";
 
-const NFTPurchaseDetails = ({ nft, orderList = [] }) => {
+const NFTPurchaseDetails = ({ nft, list = [] }) => {
   const { user } = useSelector((state) => state.user.data);
   const erc721 = nft?.nft_type === "erc721";
 
@@ -23,97 +24,62 @@ const NFTPurchaseDetails = ({ nft, orderList = [] }) => {
           <thead>
             <tr>
               <th className="text-center">#</th>
-              <th className="text-center">NFT Type</th>
-              <th className="text-center">Sale Type</th>
-              {erc721 && <th className="text-center">Minimum Bid Price</th>}
-              <th className="text-center">Sale Price</th>
+              <th className="text-center">Buyer</th>
+              {/* <th className="text-center">Purchase Type</th> */}
               <th className="text-center">Edition(s)</th>
-              <th className="text-center">Order Views</th>
+              <th className="text-center">Price</th>
+              <th className="text-center">Service Fee</th>
               <th className="text-center">Status</th>
-              <th className="text-center">Created Date</th>
-              <th className="text-center">Action</th>
+              <th className="text-center">Bought Date</th>
             </tr>
           </thead>
           <tbody>
-            {orderList.map((order, i) => (
+            {list.map((detail, i) => (
               <tr>
                 <td className="text-center">{i + 1}</td>
-                <td className="text-center">{erc721 ? "ERC721" : "ERC1155"}</td>
                 <td className="text-center">
-                  {(() => {
-                    if (order?.is_bid & order?.is_buy) {
-                      return "Bid & Buy";
-                    } else if (order?.is_bid) {
-                      return "Bid";
-                    } else {
-                      return "Buy";
-                    }
-                  })()}
+                  <BidName
+                    imgUrl={detail?.buyer?.avatar_url}
+                    text={detail?.buyer?.user_name}
+                    isTable
+                    slug={detail?.buyer?.slug}
+                  />
                 </td>
-                {erc721 && (
-                  <td className="text-center">
-                    <div className="usd-value">
-                      {currencyFormat(order?.minimum_bid, "USD")}
-                    </div>
-                  </td>
-                )}
-
+                <td className="text-center">{detail?.buy_quantity}</td>
+                {/* <td className="text-center">Bid</td> */}
                 <td className="text-center">
-                  {currencyFormat(order?.buy_amount, "USD")}
+                  {/* {currencyFormat(detail?.buy_amount, "USD")} */}
+                  {currencyFormat(20, "USD")}
                 </td>
                 <td className="text-center">
-                  {(() => {
-                    if (erc721) {
-                      return order?.available_quantity > 0
-                        ? "1 of 1 (Sold Out)"
-                        : " 1 of 1 (left)";
-                    } else {
-                      return order?.available_quantity > 0
-                        ? `Sold Out`
-                        : `${order?.available_quantity} / ${order?.total_quantity}`;
-                    }
-                  })()}
+                  {/* {currencyFormat(detail?.buy_amount, "USD")} */}
+                  {currencyFormat(detail?.fees, "USD")}
                 </td>
-                <td className="text-center">{order?.page_views}</td>
+                <td className="text-center">
+                  {detail?.txid ? detail?.txid : "-"}
+                </td>
                 <td
                   className={`text-center ${
-                    order?.status === "onsale" || order?.status === "success"
+                    detail?.status === "transferred"
                       ? "text-success"
-                      : order?.status === "cancelled" ||
-                        order?.status === "partial_cancelled" ||
-                        order?.status === "blocked"
+                      : detail?.status === "expired"
                       ? "text-danger"
                       : "text-info"
                   }`}
                 >
-                  {order?.status}
+                  {detail?.status}{" "}
+                  {detail?.status === "pending" && <img src={loaderGif} />}
                 </td>
 
                 <td className="text-center">
                   <div className="date">
-                    {dayjs(order?.created_at).format("MMM D, YYYY hh:mm A")}
+                    {dayjs(detail?.updated_at).format("MMM D, YYYY hh:mm A")}
                   </div>
-                </td>
-                <td className="text-center">
-                  <button
-                    class="btn btn-dark text-center btn-lg orderBtn mt-2 rounded-pill"
-                    onClick={() => {
-                      window.open(
-                        `${process.env.REACT_APP_MARKETPLACE_URL}/order/details/${nft.slug}/${order.slug}`,
-                        "_self"
-                      );
-                    }}
-                  >
-                    View
-                  </button>
                 </td>
               </tr>
             ))}
             <tr>
-              <td
-                className="text-center text-secondary p-3"
-                colSpan={erc721 ? "10" : "9"}
-              >
+              <td className="text-center text-secondary p-3" colSpan="9">
                 You've reached the end of the list
               </td>
             </tr>

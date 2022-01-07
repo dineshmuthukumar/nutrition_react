@@ -66,6 +66,7 @@ const OrderDetails = () => {
   const [isOrderOnSale, setIsOrderOnSale] = useState(false);
   const [isOrderSuccess, setIsOrderSuccess] = useState(false);
   const [isOrderCancelled, setIsOrderCancelled] = useState(false);
+  const [purchaseList, setPurchaseList] = useState([]);
 
   // Socket State
   const [totalBid, setTotalBid] = useState(0);
@@ -147,6 +148,10 @@ const OrderDetails = () => {
         setIsOrderOnSale(NFT.order_details?.status === "onsale");
         setIsOrderSuccess(NFT.order_details?.status === "success");
         setIsOrderCancelled(NFT.order_details?.status === "cancelled");
+
+        if (NFT?.order_details?.purchase_details.length > 0) {
+          setPurchaseList(NFT?.order_details?.purchase_details);
+        }
       }
 
       if (NFT?.order_details?.status === "cancelled") {
@@ -308,9 +313,9 @@ const OrderDetails = () => {
             </div>
           </div>
 
-          <NFTSectionTitle title="Order Details" />
+          <NFTSectionTitle title="Purchase Details" />
           <div className="row mt-5">
-            <NFTPurchaseDetails nft={nft} list={[]} />
+            <NFTPurchaseDetails nft={nft} list={purchaseList} />
           </div>
 
           <NFTSectionTitle title="Artist" />
