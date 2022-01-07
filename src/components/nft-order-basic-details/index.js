@@ -39,10 +39,6 @@ const NFTOrderBaseDetails = ({
   isAuctionStarted,
   isAuctionEnded,
   soldOut,
-  auctionEndTime,
-  handleAuctionStartTimer,
-  handleAuctionEndTimer,
-  winner,
   owners,
   isOrderOnSale,
   isOrderSuccess,
@@ -439,7 +435,7 @@ const NFTOrderBaseDetails = ({
                 <>
                   <button
                     disabled={false}
-                    className="btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill place-bid-buy-btn filled-btn"
+                    className="btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill place-bid-btn filled-btn"
                     onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
                   >
                     Cancel the sale

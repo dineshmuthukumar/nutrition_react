@@ -179,9 +179,8 @@ const NFTBaseDetails = ({
               } else {
                 return (
                   <button
-                    disabled={false}
+                    disabled={true}
                     className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
-                    onClick={() => setPutOnSalePop(!putOnSalePop)}
                   >
                     Listed on sale
                   </button>

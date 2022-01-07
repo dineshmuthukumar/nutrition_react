@@ -43,6 +43,7 @@ import OwnerList from "../components/owner-list";
 import Footer from "../components/footer/index";
 import NFTOrderSummary from "../components/nft-order-summary";
 import NFTOrderBaseDetails from "../components/nft-order-basic-details";
+import NFTPurchaseDetails from "../components/nft-purchase-details/index";
 
 const OrderDetails = () => {
   const history = useHistory();
@@ -65,6 +66,7 @@ const OrderDetails = () => {
   const [isOrderOnSale, setIsOrderOnSale] = useState(false);
   const [isOrderSuccess, setIsOrderSuccess] = useState(false);
   const [isOrderCancelled, setIsOrderCancelled] = useState(false);
+  const [purchaseList, setPurchaseList] = useState([]);
 
   // Socket State
   const [totalBid, setTotalBid] = useState(0);
@@ -146,6 +148,10 @@ const OrderDetails = () => {
         setIsOrderOnSale(NFT.order_details?.status === "onsale");
         setIsOrderSuccess(NFT.order_details?.status === "success");
         setIsOrderCancelled(NFT.order_details?.status === "cancelled");
+
+        if (NFT?.order_details?.purchase_details.length > 0) {
+          setPurchaseList(NFT?.order_details?.purchase_details);
+        }
       }
 
       if (NFT?.order_details?.status === "cancelled") {
@@ -255,6 +261,15 @@ const OrderDetails = () => {
             </div>
           )}
 
+          {purchaseList.length > 0 && (
+            <>
+              <NFTSectionTitle title="Purchase Details" />
+              <div className="row mt-5">
+                <NFTPurchaseDetails nft={nft} list={purchaseList} />
+              </div>
+            </>
+          )}
+
           <NFTSectionTitle title="NFT Details" />
           <div className="row mt-5">
             <div className="col-12 col-lg-6 order-lg-2 mb-4">
@@ -306,6 +321,7 @@ const OrderDetails = () => {
               <NFTTags tags={nft.tag_names} />
             </div>
           </div>
+
           <NFTSectionTitle title="Artist" />
           <div className="mt-5">
             <NFTArtist />
