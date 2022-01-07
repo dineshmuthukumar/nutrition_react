@@ -536,6 +536,13 @@ const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
                                     !erc721Sale.isBid
                                   ) {
                                     return "Bid or Buy amount is required";
+                                  } else if (
+                                    erc721Sale.isBuy &&
+                                    !erc721Sale.buyAmount > 0 &&
+                                    erc721Sale.isBid &&
+                                    !erc721Sale.bidAmount > 0
+                                  ) {
+                                    return "Bid and Buy amount is required";
                                   } else {
                                     return "List for sale";
                                   }
@@ -954,8 +961,8 @@ const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
                       <div className="sucess-title">
                         <FaCheckCircle color={"#23bf61"} size={60} />
                         <div className="message mt-3">
-                          Your NFT has been successfully listed for
-                          {erc721 ? "auction/sale" : "sale"}.
+                          Your NFT has been successfully listed for{" "}
+                          {erc721 ? "bidding/sale" : "sale"}.
                         </div>
                       </div>
 
