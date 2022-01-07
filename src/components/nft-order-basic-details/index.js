@@ -420,7 +420,7 @@ const NFTOrderBaseDetails = ({
                     </button>
                     {isOrder && (
                       <button
-                        disabled={latestBid ? false : true}
+                        disabled={latestBid?.slug ? false : true}
                         className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn"
                         onClick={() => setAcceptBidConfirm(!acceptBidConfirm)}
                       >
