@@ -141,7 +141,7 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      margin-top: 2rem;
+      // margin-top: 2rem;
 
       img,
       video {
@@ -179,13 +179,16 @@
     }
 
     .input-sale-container {
-      padding: 0 3rem;
+      padding: 0 1rem;
       .input-sale-text {
         font-size: 1rem;
         color: #000000;
         font-family: $neue-helveticamedium;
         font-weight: normal;
         text-align: start;
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
       }
 
       .input-sale-wrap {
@@ -398,6 +401,55 @@
       }
     }
   }
+  .pop-sale-nft-info {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin: 1rem 0;
+    padding: 0 1rem;
+    .pop-sale-nft-media {
+      // margin-top: 0rem;
+      img,
+      video {
+        max-height: 10rem;
+        object-fit: cover;
+        border-radius: 0.7rem;
+        overflow: hidden;
+        width: 10rem;
+        object-position: top;
+      }
+    }
+    .pop-sale-nft-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding-left: 2rem;
+      .erc-type {
+        font-size: 1.8rem;
+        margin: 0.5rem 0;
+        font-family: $neue-helveticamedium;
+        span {
+          font-size: 1.5rem;
+          color: #000;
+          font-family: $neue-helveticalight;
+        }
+      }
+
+      .pop-author-name {
+        font-size: 1.2rem;
+        font-family: $neue-helveticalight;
+      }
+      .pop-sale-nft-title {
+        font-family: $neue-helveticabold;
+        font-size: 2rem;
+        padding: 0;
+        text-align: left !important;
+        line-height: 1.2;
+        margin-top: 0.2rem;
+      }
+    }
+  }
 }
 
 .pop-body-container .pop-sale-nft-details {
@@ -409,7 +461,7 @@
     margin: 1rem 0;
     padding: 0 1rem;
     .pop-sale-nft-media {
-      margin-top: 2rem;
+      // margin-top: 2rem;
       img,
       video {
         max-height: 12rem;
@@ -508,7 +560,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin-top: 3rem;
+    margin-top: 1.5rem;
     margin-bottom: 0.5rem;
     padding: 0 1rem;
   }
@@ -585,12 +637,81 @@
   width: 100%;
   justify-content: space-between;
   align-items: flex-start;
+  @media screen and (max-width: 450px) {
+    flex-direction: column;
+  }
   .input-field-sale {
     width: 48%;
+    @media screen and (max-width: 450px) {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
   }
   .quantity-to-value.error-msg {
     font-size: 0.9rem;
-    color: red;
-    line-height: 0.2rem !important;
+    color: #000;
+    font-family: $neue-helveticamedium;
+    display: flex;
+    line-height: 1.2;
+    margin-top: 0.5rem;
   }
 }
+
+.text-red {
+  color: red;
+}
+
+.sticky-bottom-fix {
+  position: sticky;
+  top: 100vh;
+}
+
+// .pop-sale-nft-info {
+//   display: flex;
+//   flex-direction: row;
+//   align-items: flex-start;
+//   justify-content: flex-start;
+//   margin: 1rem 0;
+//   padding: 0 1rem;
+//   .pop-sale-nft-media {
+//     // margin-top: 0rem;
+//     img,
+//     video {
+//       max-height: 10rem;
+//       object-fit: cover;
+//       border-radius: 0.7rem;
+//       overflow: hidden;
+//       width: 10rem;
+//       object-position: top;
+//     }
+//   }
+//   .pop-sale-nft-content {
+//     display: flex;
+//     flex-direction: column;
+//     align-items: flex-start;
+//     padding-left: 2rem;
+//     .erc-type {
+//       font-size: 1.8rem;
+//       margin: 0.5rem 0;
+//       font-family: $neue-helveticamedium;
+//       span {
+//         font-size: 1.5rem;
+//         color: #000;
+//         font-family: $neue-helveticalight;
+//       }
+//     }
+
+//     .pop-author-name {
+//       font-size: 1.2rem;
+//       font-family: $neue-helveticalight;
+//     }
+//     .pop-sale-nft-title {
+//       font-family: $neue-helveticabold;
+//       font-size: 2rem;
+//       padding: 0;
+//       text-align: left !important;
+//       line-height: 1.2;
+//       margin-top: 0.2rem;
+//     }
+//   }
+// }

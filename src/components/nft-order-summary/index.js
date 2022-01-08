@@ -97,7 +97,13 @@ const NFTOrderSummary = ({
             ) : (
               <Badge
                 title="Buys"
-                value={totalBuy ? totalBuy : orderDetails.total_buys}
+                value={
+                  totalBuy
+                    ? totalBuy
+                    : orderDetails.total_buys
+                    ? orderDetails.total_buys
+                    : 0
+                }
               />
             )}
           </div>

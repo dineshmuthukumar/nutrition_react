@@ -16,14 +16,15 @@
 
   .bid-history-title-content {
     padding: 0.6rem 1.5rem;
-    background-color: #000;
+    background-color: #fff;
     display: flex;
     justify-content: space-between;
-
+    border-left: 2px solid #000;
+    border-right: 2px solid #000;
     .bid-history-title {
       font-family: $neue-helveticamedium;
       font-size: 1.5rem;
-      color: #fff;
+      color: #000;
     }
 
     .bid-history-filter {
@@ -174,8 +175,8 @@
 
   .bid-empty-content {
     background-color: #000;
-    min-height: 65vh;
-    max-height: 65vh;
+    min-height: calc(100vh - 24rem) !important;
+    max-height: 55vh;
     margin-top: -1px;
     padding: 1rem;
 

@@ -18,12 +18,12 @@ const HistoryHeader = ({ nftOwner }) => {
         <h2 className="bh-user-name">{nftOwner?.user_name}</h2>
         <h4 className="bh-user-status">Owner</h4>
         <div className="bh-user-sold-info">
-          <div className="price">
+          {/* <div className="price">
             <span className="key">NFT sold for</span>
             <span className="value">
               {currencyFormat(nftOwner?.sold_amount, "USD")}
             </span>
-          </div>
+          </div> */}
           <div className="date">
             <span className="key">Sold on</span>
             <span className="value">
