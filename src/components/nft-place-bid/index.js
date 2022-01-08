@@ -259,124 +259,132 @@ const NFTPlaceBid = ({
                         />
                       )}
                     </div>
-
-                    <div className="pop-nft-media">
-                      {(() => {
-                        if (nft?.asset_type?.includes("image")) {
-                          return (
-                            <img
-                              alt="media logo"
-                              className="type_image typeimg_audio"
-                              src={nft.asset_url ? nft.asset_url : sample}
-                            />
-                          );
-                        } else if (nft?.asset_type?.includes("audio")) {
-                          return (
-                            <>
+                    <div className="pop-nft-info">
+                      <div className="pop-nft-media">
+                        {(() => {
+                          if (nft?.asset_type?.includes("image")) {
+                            return (
+                              <img
+                                alt="media logo"
+                                className="type_image typeimg_audio"
+                                src={nft.asset_url ? nft.asset_url : sample}
+                              />
+                            );
+                          } else if (nft?.asset_type?.includes("audio")) {
+                            return (
+                              <>
+                                <img
+                                  alt="media logo"
+                                  className="type_image typeimg_audio"
+                                  src={nft.cover_url ? nft.cover_url : sample}
+                                />
+                              </>
+                            );
+                          } else if (nft?.asset_type?.includes("video")) {
+                            return (
                               <img
                                 alt="media logo"
                                 className="type_image typeimg_audio"
                                 src={nft.cover_url ? nft.cover_url : sample}
                               />
-                            </>
-                          );
-                        } else if (nft?.asset_type?.includes("video")) {
-                          return (
-                            <img
-                              alt="media logo"
-                              className="type_image typeimg_audio"
-                              src={nft.cover_url ? nft.cover_url : sample}
-                            />
-                          );
-                        } else {
-                          return (
-                            <img
-                              alt="media logo"
-                              className="type_image typeimg_audio"
-                              src={nft.asset_url ? nft.asset_url : sample}
-                            />
-                          );
-                        }
-                      })()}
-                    </div>
-                    <div className="pop-author-name text-center mt-3">
-                      {nft?.category_name}
-                    </div>
-                    <div className="pop-nft-title text-center mb-1">
-                      {nft?.name}
-                    </div>
-                    <div className="erc-type text-center mb-1">
-                      1 of 1 <span>left</span>
-                    </div>
-
-                    {/* error-bid -> less value than min bid,  error-balance -> low value, error-balance-float -> low value in quantity  */}
-                    <div className={`input-bid-container mt-5 ${error}`}>
-                      <label className="input-bid-text">
-                        {`Enter ${
-                          price || orderDetails.total_bids > 0
-                            ? "bid amount greater than"
-                            : "minimum bid amount of "
-                        } ${currencyFormat(
-                          price ? price : orderDetails.minimum_bid,
-                          "USD"
-                        )}`}
-                      </label>
-
-                      <div className="input-bid-wrap">
-                        <span className="bid-currency">$</span>
-                        <input
-                          type="text"
-                          className="input-bid"
-                          value={bidAmount}
-                          placeholder="0"
-                          maxLength={20}
-                          disabled={transferringNFT || soldOut}
-                          onChange={handleBidInputChange}
-                        />
+                            );
+                          } else {
+                            return (
+                              <img
+                                alt="media logo"
+                                className="type_image typeimg_audio"
+                                src={nft.asset_url ? nft.asset_url : sample}
+                              />
+                            );
+                          }
+                        })()}
                       </div>
 
-                      <div className="balance-details">
-                        {user &&
-                          `Your wallet balance is ${currencyFormat(
-                            user?.balance,
+                      <div className="pop-nft-content">
+                        <div className="pop-author-name text-center">
+                          {nft?.category_name}
+                        </div>
+                        <div className="pop-nft-title text-center mb-1">
+                          {nft?.name}
+                        </div>
+                        <div className="erc-type text-center mb-1">
+                          1 of 1 <span>left</span>
+                        </div>
+                      </div>
+                    </div>
+                    {/* error-bid -> less value than min bid,  error-balance -> low value, error-balance-float -> low value in quantity  */}
+                    <div className="sticky-bottom-fix">
+                      <div className={`input-bid-container mt-5 ${error}`}>
+                        <label className="input-bid-text">
+                          {`Enter ${
+                            price || orderDetails.total_bids > 0
+                              ? "bid amount greater than"
+                              : "minimum bid amount of "
+                          } ${currencyFormat(
+                            price ? price : orderDetails.minimum_bid,
                             "USD"
                           )}`}
-                      </div>
-                    </div>
-                    <div className={`input-bid-container mt-5`}>
-                      <div className="services-fee-box">
-                        <label className="input-bid-text">
-                          Service Fee{" "}
-                          <ToolTip
-                            icon={
-                              <BsFillQuestionCircleFill
-                                size={16}
-                                className="ms-2 check-icon"
-                              />
-                            }
-                            content={
-                              "The service fee include gas fee and the platform fee."
-                            }
-                            placement="right"
-                          />
                         </label>
-                        <h4>{parseFloat(nft.service_fee)}%</h4>
+
+                        <div className="input-bid-wrap">
+                          <span className="bid-currency">$</span>
+                          <input
+                            type="text"
+                            className="input-bid"
+                            value={bidAmount}
+                            placeholder="0"
+                            disabled={soldOut}
+                            onChange={handleBidInputChange}
+                          />
+                        </div>
+
+                        <div className="balance-details">
+                          {user &&
+                            `Your wallet balance is ${currencyFormat(
+                              user?.balance,
+                              "USD"
+                            )}`}
+                        </div>
                       </div>
-                    </div>
-                    <div className={`input-bid-container`}>
-                      <div className="total-amount-box">
-                        <label className="input-bid-text">Total Amount</label>
-                        <h1>
-                          {bidAmount
-                            ? currencyFormat(
-                                parseFloat(bidAmount) +
-                                  (parseFloat(bidAmount) *
-                                    parseFloat(nft.service_fee)) /
-                                    100,
-                                "USD"
-                              )
-                            : currencyFormat(0, "USD")}
-                        </h1>
+                      <div className={`input-bid-container mt-5`}>
+                        <div className="fee-flexbox">
+                          <div className="services-fee-box">
+                            <label className="input-bid-text">
+                              Service Fee{" "}
+                              <ToolTip
+                                icon={
+                                  <BsFillQuestionCircleFill
+                                    size={16}
+                                    className="ms-2 check-icon"
+                                  />
+                                }
+                                content={
+                                  "The service fee include gas fee and the platform fee."
+                                }
+                                placement="right"
+                              />
+                            </label>
+                            <h4>{parseFloat(nft.service_fee)}%</h4>
+                          </div>
+                          {/* </div>
+                    <div className={`input-bid-container`}> */}
+                          <div className="total-amount-box">
+                            <label className="input-bid-text">
+                              Total Amount
+                            </label>
+                            <h1>
+                              {bidAmount
+                                ? currencyFormat(
+                                    parseFloat(bidAmount) +
+                                      (parseFloat(bidAmount) *
+                                        parseFloat(nft.service_fee)) /
+                                        100,
+                                    "USD"
+                                  )
+                                : currencyFormat(0, "USD")}
+                            </h1>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -485,7 +493,7 @@ const NFTPlaceBid = ({
                         }
                       })()}
                     </div>
-                    <div className="pop-author-name text-center mt-3">
+                    <div className="pop-author-name text-center">
                       {nft?.category_name}
                     </div>
                     <div className="pop-nft-title text-center mb-1">
