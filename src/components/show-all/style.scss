@@ -48,6 +48,15 @@ button.load_more {
   margin-bottom: 0.2rem;
   cursor: pointer;
 }
+.filter-drop-btn + .dropdown-menu .dropdown-item {
+  display: flex;
+  svg {
+    height: 1.2rem;
+    width: 1.2rem;
+    min-height: 1.2rem;
+    min-width: 1.2rem;
+  }
+}
 
 .filter-drop-sort-btn {
   padding: 0.2rem 0.8rem 0.2rem 1.5rem;

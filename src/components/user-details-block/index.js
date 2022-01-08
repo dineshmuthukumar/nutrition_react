@@ -7,11 +7,12 @@ import {
   sellerOwnedNFTsApi,
 } from "../../api/methods";
 import cardImage from "../../images/drops/nft_2.png";
-import userImage from "../../images/amitabh.png";
+import userImage from "../../images/user_1.png";
+
 import NFTCard from "../nft-card/index";
 import "./style.scss";
 
-const UserDetailsBlock = () => {
+const UserDetailsBlock = ({ setBanner }) => {
   const { slug } = useParams();
   const [key, setKey] = useState("owned");
   const [page, setPage] = useState(1);
@@ -58,6 +59,8 @@ const UserDetailsBlock = () => {
       setLoading(true);
       const result = await sellerDetailApi({ slug });
       setSellerDetail(result.data.data);
+      setBanner(result.data.data.users[0]?.banner_url);
+
       setLoading(false);
     } catch (error) {
       console.log(error);
