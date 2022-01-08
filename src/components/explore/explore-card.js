@@ -26,7 +26,7 @@ const ExploreCard = ({
 
   const handleClick = () => {
     if (nft?.is_on_sale) {
-      history.push(`/details/${nft?.slug}/${nft?.order_details?.slug}`);
+      history.push(`/order/details/${nft?.slug}/${nft?.order_details?.slug}`);
     } else {
       history.push(`/details/${nft?.slug}`);
     }

@@ -21,17 +21,7 @@ import { nftBidApi, nftBuyApi, putOnSaleApi } from "../../api/methods";
 import HelpLine from "../help-line";
 import "./style.scss";
 
-const NFTPutOnSale = ({
-  putOnSalePop = false,
-  setPutOnSalePop,
-  nft,
-  // socketData,
-  price,
-  userTotalBuys,
-  isAuctionStarted,
-  isAuctionEnded,
-  soldOut,
-}) => {
+const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
   const { user } = useSelector((state) => state.user.data);
   const { params } = useRouteMatch();
 
@@ -199,16 +189,16 @@ const NFTPutOnSale = ({
       placement="end"
       className="w-100 w-md-50 w-lg-42"
     >
-      <Offcanvas.Body className="p-0 pop-body-container">
+      <Offcanvas.Body className="p-0 pop-sale-body-container">
         {user ? (
           <>
-            <div className="pop-nft-details">
+            <div className="pop-sale-nft-details">
               {(() => {
                 if (!success && !confirm) {
                   return (
                     <>
-                      <div className="pop-head-content">
-                        <div className="pop-bid-title">Put on sale</div>
+                      <div className="pop-sale-head-content">
+                        <div className="pop-sale-title">List for sale</div>
                         <div
                           className="close-button-pop"
                           onClick={() => setPutOnSalePop(!putOnSalePop)}
@@ -227,16 +217,16 @@ const NFTPutOnSale = ({
 
                       {/* error-progress -> error progress , loading -> progressing */}
                       <div
-                        className={`pop-bid-progress ${confirmState.progressError} ${confirmState.progressError}`}
+                        className={`pop-sale-progress ${confirmState.progressError} ${confirmState.progressError}`}
                       >
                         <div className="progress-complete"></div>
                       </div>
-                      <div className="pop-bid-bodyContent">
+                      <div className="pop-sale-bodyContent">
                         <div className="error-float-container">
                           {/* <ErrorText type="ending-time" /> */}
                         </div>
-                        <div className="pop-nft-info">
-                          <div className="pop-nft-media">
+                        <div className="pop-sale-nft-info">
+                          <div className="pop-sale-nft-media">
                             {(() => {
                               if (nft?.asset_type?.includes("image")) {
                                 return (
@@ -277,11 +267,11 @@ const NFTPutOnSale = ({
                               }
                             })()}
                           </div>
-                          <div className="pop-nft-content">
+                          <div className="pop-sale-nft-content">
                             <div className="pop-author-name text-center mt-3">
-                              Amitabh Bachchan
+                              {nft?.category_name}
                             </div>
-                            <div className="pop-nft-title text-center mb-1">
+                            <div className="pop-sale-nft-title text-center mb-1">
                               {nft?.name}
                             </div>
                             {erc721 && (
@@ -368,37 +358,37 @@ const NFTPutOnSale = ({
                         )}
 
                         {/* error-bid -> less value than min bid,  error-balance -> low value, error-balance-float -> low value in quantity  */}
-                        <div className={`input-bid-container mt-5 ${error}`}>
+                        <div className={`input-sale-container mt-5 ${error}`}>
                           {!erc721 ? (
                             <>
-                              <div className={`input-field-bid`}>
-                                <label className="input-bid-text">
+                              <div className={`input-field-sale`}>
+                                <label className="input-sale-text">
                                   Set Sale Cost (Per edition)
                                 </label>
-                                <div className="input-bid-wrap">
-                                  <span className="bid-currency">$</span>
+                                <div className="input-sale-wrap">
+                                  <span className="sale-currency">$</span>
                                   <input
                                     type="text"
-                                    className="input-bid"
+                                    className="input-sale"
                                     value={erc1155Sale.buyAmount}
                                     placeholder="0"
                                     onChange={handleErc1155BuyAmountChange}
                                   />
                                 </div>
                               </div>
-                              <div className="input-field-bid">
-                                <label className="input-bid-text">
+                              <div className="input-field-sale">
+                                <label className="input-sale-text">
                                   Set NFT Count for Sale
                                 </label>
-                                <div className="input-quantity-container bid-input">
+                                <div className="input-sale-quantity-container bid-input">
                                   <input
                                     type="text"
-                                    className="input-quantity"
+                                    className="input-sale-quantity"
                                     value={erc1155Sale.buyQuantity}
                                     placeholder="0 NFTs"
                                     onChange={handleErc1155QuantityInputChange}
                                   />
-                                  <span className="bid-currency">
+                                  <span className="sale-currency">
                                     /
                                     {_.get(
                                       nft,
@@ -411,18 +401,22 @@ const NFTPutOnSale = ({
                           ) : (
                             <>
                               <div
-                                className={`input-field-bid ${
+                                className={`input-field-sale ${
                                   !erc721Sale.isBuy ? "disabled" : ""
                                 }`}
                               >
-                                <label className="input-bid-text">
+                                <label className="input-sale-text">
                                   Set Price
+                                  <span className={`quantity-to-value`}>
+                                    Min.Buy Amount{" "}
+                                    {currencyFormat(nft.floor_price, "USD")}
+                                  </span>
                                 </label>
-                                <div className="input-bid-wrap">
-                                  <span className="bid-currency">$</span>
+                                <div className="input-sale-wrap">
+                                  <span className="sale-currency">$</span>
                                   <input
                                     type="text"
-                                    className="input-bid"
+                                    className="input-sale"
                                     value={erc721Sale.buyAmount}
                                     placeholder="0"
                                     disabled={!erc721Sale.isBuy}
@@ -431,19 +425,22 @@ const NFTPutOnSale = ({
                                 </div>
                               </div>
                               <div
-                                className={`input-field-bid ${
+                                className={`input-field-sale ${
                                   !erc721Sale.isBid ? "disabled" : ""
                                 }`}
                               >
-                                <label className="input-bid-text">
-                                  Min. Bid Amount -
-                                  {currencyFormat(nft.floor_price, "USD")}
+                                <label className="input-sale-text">
+                                  Initial Bid Amount
+                                  <span className={`quantity-to-value`}>
+                                    Min.Bid Amount{" "}
+                                    {currencyFormat(nft.floor_price, "USD")}
+                                  </span>
                                 </label>
-                                <div className="input-bid-wrap">
-                                  <span className="bid-currency">$</span>
+                                <div className="input-sale-wrap">
+                                  <span className="sale-currency">$</span>
                                   <input
                                     type="text"
-                                    className="input-bid"
+                                    className="input-sale"
                                     value={erc721Sale.bidAmount}
                                     placeholder="0"
                                     disabled={!erc721Sale.isBid}
@@ -486,8 +483,8 @@ const NFTPutOnSale = ({
 
                       <div className="bottom-area">
                         <div className="terms text-secondary">
-                          Royalty will be deducted {nft.royalties}% of every
-                          transaction
+                          A royalty fee of {nft.royalties}% will be applicable
+                          for every transaction.
                         </div>
 
                         <div className="bottom-content-pop">
@@ -539,8 +536,15 @@ const NFTPutOnSale = ({
                                     !erc721Sale.isBid
                                   ) {
                                     return "Bid or Buy amount is required";
+                                  } else if (
+                                    erc721Sale.isBuy &&
+                                    !erc721Sale.buyAmount > 0 &&
+                                    erc721Sale.isBid &&
+                                    !erc721Sale.bidAmount > 0
+                                  ) {
+                                    return "Bid and Buy amount is required";
                                   } else {
-                                    return "Put on sale";
+                                    return "List for sale";
                                   }
                                 })()}
                               </button>
@@ -565,7 +569,7 @@ const NFTPutOnSale = ({
                                   } else if (!erc1155Sale.buyQuantity > 0) {
                                     return "Quantity is required";
                                   } else {
-                                    return "Put on sale";
+                                    return "List for sale";
                                   }
                                 })()}
                               </button>
@@ -579,8 +583,8 @@ const NFTPutOnSale = ({
                   if (erc721) {
                     return (
                       <>
-                        <div className="pop-head-content">
-                          <div className="pop-bid-title">Confirm the sale</div>
+                        <div className="pop-sale-head-content">
+                          <div className="pop-sale-title">Confirm the sale</div>
                           <div
                             className="close-button-pop"
                             onClick={() => setPutOnSalePop(!putOnSalePop)}
@@ -594,11 +598,11 @@ const NFTPutOnSale = ({
 
                         {/* error-progress -> error progress , loading -> progressing */}
                         <div
-                          className={`pop-bid-progress ${confirmState.progressError}`}
+                          className={`pop-sale-progress ${confirmState.progressError}`}
                         >
                           <div className="progress-complete"></div>
                         </div>
-                        <div className="pop-bid-bodyContent">
+                        <div className="pop-sale-bodyContent">
                           <div className="error-float-container">
                             {/* <ErrorText type="ending-time" /> */}
                             {/* <ErrorText
@@ -614,8 +618,8 @@ const NFTPutOnSale = ({
                               desc={buy.errorDescription}
                             /> */}
                           </div>
-                          <div className="pop-nft-info">
-                            <div className="pop-nft-media">
+                          <div className="pop-sale-nft-info">
+                            <div className="pop-sale-nft-media">
                               {(() => {
                                 if (nft?.asset_type?.includes("image")) {
                                   return (
@@ -662,11 +666,11 @@ const NFTPutOnSale = ({
                                 }
                               })()}
                             </div>
-                            <div className="pop-nft-content">
+                            <div className="pop-sale-nft-content">
                               <div className="pop-author-name text-center mt-3">
                                 Amitabh Bachchan
                               </div>
-                              <div className="pop-nft-title text-center mb-1">
+                              <div className="pop-sale-nft-title text-center mb-1">
                                 {nft?.name}
                               </div>
                               <div className="erc-type">
@@ -739,7 +743,7 @@ const NFTPutOnSale = ({
                               </li>
                               {erc721Sale.isBuy && (
                                 <li className="final-set">
-                                  <span className="key">Total Amount </span>
+                                  <span className="key">Final Amount </span>
                                   <span className="value">
                                     {currencyFormat(
                                       parseFloat(erc721Sale.buyAmount) -
@@ -752,9 +756,9 @@ const NFTPutOnSale = ({
                                   </span>
                                 </li>
                               )}
-                              {!erc721Sale.isBuy && erc721Sale.isBid && (
+                              {erc721Sale.isBid && (
                                 <li className="final-set">
-                                  <span className="key">
+                                  <span className="key ">
                                     Your final amount will be calculated after
                                     deducting {parseFloat(nft.royalties)}%
                                     artist fees and{" "}
@@ -793,8 +797,8 @@ const NFTPutOnSale = ({
                   } else {
                     return (
                       <>
-                        <div className="pop-head-content">
-                          <div className="pop-bid-title">Confirm the sale</div>
+                        <div className="pop-sale-head-content">
+                          <div className="pop-sale-title">Confirm the sale</div>
                           <div
                             className="close-button-pop"
                             onClick={() => setPutOnSalePop(!putOnSalePop)}
@@ -808,16 +812,16 @@ const NFTPutOnSale = ({
 
                         {/* error-progress -> error progress , loading -> progressing */}
                         <div
-                          className={`pop-bid-progress ${confirmState.progressError}`}
+                          className={`pop-sale-progress ${confirmState.progressError}`}
                         >
                           <div className="progress-complete"></div>
                         </div>
-                        <div className="pop-bid-bodyContent">
+                        <div className="pop-sale-bodyContent">
                           <div className="error-float-container">
                             {/* <ErrorText type="ending-time" /> */}
                           </div>
-                          <div className="pop-nft-info">
-                            <div className="pop-nft-media">
+                          <div className="pop-sale-nft-info">
+                            <div className="pop-sale-nft-media">
                               {(() => {
                                 if (nft?.asset_type?.includes("image")) {
                                   return (
@@ -864,11 +868,11 @@ const NFTPutOnSale = ({
                                 }
                               })()}
                             </div>
-                            <div className="pop-nft-content">
+                            <div className="pop-sale-nft-content">
                               <div className="pop-author-name text-center mt-3">
                                 Amitabh Bachchan
                               </div>
-                              <div className="pop-nft-title text-center mb-1">
+                              <div className="pop-sale-nft-title text-center mb-1">
                                 {nft?.name}
                               </div>
                               {/* <div className="erc-type">
@@ -957,8 +961,8 @@ const NFTPutOnSale = ({
                       <div className="sucess-title">
                         <FaCheckCircle color={"#23bf61"} size={60} />
                         <div className="message mt-3">
-                          Your NFT has been successfully listed for
-                          {erc721 ? "auction/sale" : "sale"}.
+                          Your NFT has been successfully listed for{" "}
+                          {erc721 ? "bidding/sale" : "sale"}.
                         </div>
                       </div>
 
@@ -982,10 +986,10 @@ const NFTPutOnSale = ({
           </>
         ) : (
           <>
-            <div className="pop-nft-details">
-              <div className="pop-head-content">
-                <div className="pop-bid-title">
-                  {/* {erc721 ? "Sign in to place a bid" : "Sign in to place a buy"} */}
+            <div className="pop-sale-nft-details">
+              <div className="pop-sale-head-content">
+                <div className="pop-sale-title">
+                  {/* {erc721 ? "Sign in to place bid" : "Sign in to place buy"} */}
                 </div>
                 <div
                   className="close-button-pop"
@@ -1004,9 +1008,9 @@ const NFTPutOnSale = ({
               </div>
               <div className="pop-signin">
                 <div className="pop-signin-title text-center mb-1">
-                  {erc721 ? "Sign in to place a bid" : "Sign in to place a buy"}
+                  {erc721 ? "Sign in to place bid" : "Sign in to place buy"}
                 </div>
-                <div className="pop-nft-media">
+                <div className="pop-sale-nft-media">
                   <button
                     className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
                     onClick={() =>

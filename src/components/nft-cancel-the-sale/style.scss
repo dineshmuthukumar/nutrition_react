@@ -1,17 +1,17 @@
 @import "../../styles/common";
 
-.pop-body-container {
+.pop-cancel-body-container {
   position: relative;
-  .pop-nft-details {
+  .pop-cancel-nft-details {
     position: relative;
     height: 100vh;
 
-    .pop-head-content {
+    .pop-cancel-head-content {
       display: flex;
       padding: 1rem;
       justify-content: space-between;
 
-      .pop-bid-title {
+      .pop-cancel-title {
         font-size: 2rem;
         font-family: $neue-helveticabold;
       }
@@ -28,7 +28,7 @@
       }
     }
 
-    .pop-bid-progress {
+    .pop-cancel-progress {
       background: #e7e7e9;
       .progress-complete {
         background: #000;
@@ -133,7 +133,7 @@
       }
     }
 
-    .pop-nft-media {
+    .pop-cancel-nft-media {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -164,15 +164,15 @@
       font-size: 1rem;
     }
 
-    .pop-nft-title {
+    .pop-cancel-nft-title {
       font-family: $neue-helveticamedium;
       font-size: 1.4rem;
       padding: 0 1rem;
     }
 
-    .input-bid-container {
+    .input-cancel-container {
       padding: 0 3rem;
-      .input-bid-text {
+      .input-cancel-text {
         font-size: 1rem;
         color: #000000;
         font-family: $neue-helveticamedium;
@@ -180,20 +180,20 @@
         text-align: start;
       }
 
-      .input-bid-wrap {
+      .input-cancel-wrap {
         border: 2px solid #222;
         border-radius: 0.6rem;
         display: flex;
         align-items: center;
 
-        .bid-currency {
+        .cancel-currency {
           color: #000000;
           font-family: $neue-helveticamedium;
           font-size: 1.8rem !important;
           padding-left: 1.1rem;
         }
 
-        .input-bid {
+        .input-cancel {
           width: 100%;
           font-family: $neue-helveticamedium;
           font-size: 1.8rem !important;
@@ -204,13 +204,13 @@
         }
       }
 
-      .input-quantity-container {
+      .input-cancel-quantity-container {
         border: 2px solid #222;
         border-radius: 0.6rem;
         display: flex;
         align-items: center;
 
-        .input-quantity {
+        .input-cancel-quantity {
           width: 100%;
           font-family: $neue-helveticamedium;
           font-size: 1.8rem !important;
@@ -236,26 +236,26 @@
       }
 
       &.error-bid {
-        .input-bid-text {
+        .input-cancel-text {
           color: #f21e00;
         }
 
-        .input-bid-wrap {
+        .input-cancel-wrap {
           border: 2px solid #f21e00;
-          .bid-currency {
+          .cancel-currency {
             color: #f21e00;
           }
-          .input-bid {
+          .input-cancel {
             color: #f21e00;
           }
         }
       }
 
       &.error-balance-float {
-        .input-quantity-container {
+        .input-cancel-quantity-container {
           border: 2px solid #f21e00;
 
-          .input-quantity {
+          .input-cancel-quantity {
             color: #f21e00;
           }
         }
@@ -266,20 +266,20 @@
           color: #f21e00;
         }
 
-        .input-bid-wrap {
+        .input-cancel-wrap {
           border: 2px solid #f21e00;
-          .bid-currency {
+          .cancel-currency {
             color: #f21e00;
           }
-          .input-bid {
+          .input-cancel {
             color: #f21e00;
           }
         }
 
-        .input-quantity-container {
+        .input-cancel-quantity-container {
           border: 2px solid #f21e00;
 
-          .input-quantity {
+          .input-cancel-quantity {
             color: #f21e00;
           }
         }
@@ -349,14 +349,14 @@
           font-size: 1.3rem;
           margin-left: 2rem;
         }
-        .place-bid-button {
+        .place-cancel-button {
           width: 100%;
           text-align: center;
           display: flex;
           align-items: center;
           justify-content: center;
 
-          .place-bid-btn-pop {
+          .place-cancel-btn-pop {
             font-family: $neue-helveticamedium;
             padding-top: 1.2rem;
             padding-bottom: 1.2rem;

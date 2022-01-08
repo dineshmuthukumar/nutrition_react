@@ -40,6 +40,8 @@ import {
   winnerDetail,
 } from "../api/actioncable-methods";
 import OwnerList from "../components/owner-list";
+import Footer from "../components/footer/index";
+import NFTOrderDetails from "../components/nft-order-details/index";
 
 const Details = () => {
   const history = useHistory();
@@ -82,6 +84,7 @@ const Details = () => {
   const { user } = useSelector((state) => state.user.data);
 
   const isOwner = _.has(nft, "owner_details");
+  const ownerOrdersList = _.get(nft, "owner_details.orders", []);
 
   const inputRef = useRef();
 
@@ -324,6 +327,15 @@ const Details = () => {
             </div>
           )}
 
+          {isOwner && ownerOrdersList.length > 0 && (
+            <>
+              <NFTSectionTitle title="Order Details" />
+              <div className="row mt-5">
+                <NFTOrderDetails nft={nft} orderList={ownerOrdersList} />
+              </div>
+            </>
+          )}
+
           <NFTSectionTitle title="NFT Details" />
           <div className="row mt-5">
             <div className="col-12 col-lg-6 order-lg-2 mb-4">
@@ -387,6 +399,7 @@ const Details = () => {
           <br />
         </div>
       )}
+      <Footer />
     </>
   );
 };
