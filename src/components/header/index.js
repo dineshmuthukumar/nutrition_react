@@ -454,7 +454,7 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                             >
                               Outbid NFTs
                             </Dropdown.Item>
-                            <Dropdown.Item
+                            {/* <Dropdown.Item
                               as="button"
                               onClick={() =>
                                 window.open(
@@ -464,7 +464,7 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                               }
                             >
                               Claim NFTs
-                            </Dropdown.Item>
+                            </Dropdown.Item> */}
                             <Dropdown.Item
                               as="button"
                               onClick={() =>

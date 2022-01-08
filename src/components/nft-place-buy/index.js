@@ -375,7 +375,7 @@ const NFTPlaceBid = ({
                               />
                             }
                             content={
-                              "The service fee include gas fee and the platform fee."
+                              "The service fee includes gas fee and the platform fee."
                             }
                             placement="right"
                           />
