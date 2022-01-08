@@ -6,9 +6,9 @@ import sample from "../../images/drops/nft_2.png";
 import HeroVideo from "../hero-video";
 import heroVideoBox from "../../images/amithabNft.mp4";
 import silsila_video from "../../images/marketplace/silsila.mp4";
-import bigb_artpunk from "../../images/marketplace/bigb_artpunk.jpg";
+import bigb_artpunk from "../../images/marketplace/bigb_art_punk.gif";
 import madhushala_nft from "../../images/marketplace/madhushala_nft.png";
-import chakra_artpunks from "../../images/marketplace/chakra_artpunks.jpg";
+import chakra_artpunks from "../../images/marketplace/chakra_artpunks.gif";
 import comic_cover_new from "../../images/marketplace/comic_cover_new.jpg";
 import digital_poster from "../../images/marketplace/digital_poster.gif";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -34,20 +34,34 @@ const Banner = ({ list = [] }) => {
                 swipeable={true}
               >
                 <div style={{ overflow: "hidden" }} className="cat-block">
-                  <h5 className="cat-title big-box">
-                    Autographed Physical Posters
-                  </h5>
-                  <video
-                    loop
-                    muted
-                    autoPlay
-                    playsInline
-                    src={
-                      list[0]?.asset_url ? list[0]?.asset_url : silsila_video
+                  <h5 className="cat-title big-box">Chakra Artpunks</h5>
+                  {(() => {
+                    if (list[6]?.asset_type?.includes("video")) {
+                      return (
+                        <video
+                          loop
+                          muted
+                          autoPlay
+                          playsInline
+                          src={
+                            list[6]?.asset_url
+                              ? list[6]?.asset_url
+                              : heroVideoBox
+                          }
+                          className="first-image"
+                          style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
+                        ></video>
+                      );
+                    } else {
+                      return (
+                        <img
+                          src={chakra_artpunks}
+                          className="first-image"
+                          style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
+                        />
+                      );
                     }
-                    className="first-image"
-                    style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
-                  ></video>
+                  })()}
                 </div>
                 <div style={{ overflow: "hidden" }} className="cat-block">
                   <h5 className="cat-title big-box">
@@ -99,7 +113,7 @@ const Banner = ({ list = [] }) => {
                               : heroVideoBox
                           }
                           className="first-image"
-                          style={{ height: "100%" }}
+                          tyle={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
                         ></video>
                       );
                     } else {
@@ -124,34 +138,16 @@ const Banner = ({ list = [] }) => {
                     height: "calc(((((100vw - (7rem + 6rem))/2)/3)))",
                   }}
                 >
-                  <h5 className="cat-title">Chakra Artpunks</h5>
-                  {(() => {
-                    if (list[6]?.asset_type?.includes("video")) {
-                      return (
-                        <video
-                          loop
-                          muted
-                          autoPlay
-                          playsInline
-                          src={
-                            list[6]?.asset_url
-                              ? list[6]?.asset_url
-                              : heroVideoBox
-                          }
-                          className="first-image"
-                          style={{ height: "100%" }}
-                        ></video>
-                      );
-                    } else {
-                      return (
-                        <img
-                          src={chakra_artpunks}
-                          className="first-image"
-                          style={{ height: "100%" }}
-                        />
-                      );
-                    }
-                  })()}
+                  <h5 className="cat-title"> Autographed Physical Posters</h5>
+                  <video
+                    loop
+                    muted
+                    autoPlay
+                    playsInline
+                    src="https://res.cloudinary.com/dba42nusi/video/upload/v1637072593/beyondlife/Sholay-1-1_g6xfpe_enadhy.mp4"
+                    className="first-image"
+                    style={{ height: "100%" }}
+                  ></video>
                 </div>
               </div>
               <div className="col">
