@@ -57,6 +57,7 @@ const OrderDetails = () => {
   const [nftOwner, setNFTOwner] = useState([]);
   const [erc721, setErc721] = useState(false);
   const [soldOut, setSoldOut] = useState(false);
+  const [transferringNFT, setTransferringNFT] = useState(false);
   const [loader, setLoader] = useState(true);
   const [placeBidPop, setPlaceBidPop] = useState(false);
   const [placeBuyPop, setPlaceBuyPop] = useState(false);
@@ -96,7 +97,8 @@ const OrderDetails = () => {
         setBuyHistory((buyHistory) => [data.history, ...buyHistory]);
       }
       if (data.quantity === 0) {
-        setSoldOut(true);
+        // setSoldOut(true);
+        setTransferringNFT(true);
       }
     });
     bidDetail(orderSlug, (data) => {
@@ -157,9 +159,13 @@ const OrderDetails = () => {
       if (NFT?.order_details?.status === "cancelled") {
         history.push("/");
       }
+      if (NFT?.order_details?.status === "success") {
+        setSoldOut(true);
+      }
 
       if (NFT?.order_details?.available_quantity === 0) {
-        setSoldOut(true);
+        // setSoldOut(true);
+        setTransferringNFT(true);
       }
 
       if (NFT.nft_type === "erc721" && orderSlug) {
@@ -233,6 +239,7 @@ const OrderDetails = () => {
                   //Socket states end
 
                   soldOut={soldOut}
+                  transferringNFT={transferringNFT}
                   winner={bidWinner}
                   owners={nftOwner}
                   //Order

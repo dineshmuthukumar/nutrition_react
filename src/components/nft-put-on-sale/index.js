@@ -500,12 +500,14 @@ const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
                                 disabled={(() => {
                                   if (
                                     erc721Sale.isBuy &&
-                                    !erc721Sale.buyAmount > 0
+                                    !erc721Sale.buyAmount >
+                                      parseFloat(nft?.floor_price)
                                   ) {
                                     return true;
                                   } else if (
                                     erc721Sale.isBid &&
-                                    !erc721Sale.bidAmount > 0
+                                    !erc721Sale.bidAmount >
+                                      parseFloat(nft?.floor_price)
                                   ) {
                                     return true;
                                   } else if (
@@ -523,26 +525,42 @@ const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
                                 {(() => {
                                   if (
                                     erc721Sale.isBuy &&
-                                    !erc721Sale.buyAmount > 0
+                                    !erc721Sale.buyAmount >
+                                      parseFloat(nft?.floor_price)
                                   ) {
-                                    return "Buy amount is required";
+                                    return `Min.Buy Amount ${currencyFormat(
+                                      nft.floor_price,
+                                      "USD"
+                                    )} is required`;
                                   } else if (
                                     erc721Sale.isBid &&
-                                    !erc721Sale.bidAmount > 0
+                                    !erc721Sale.bidAmount >
+                                      parseFloat(nft?.floor_price)
                                   ) {
-                                    return "Bid amount is required";
+                                    return `Min.Bid Amount ${currencyFormat(
+                                      nft.floor_price,
+                                      "USD"
+                                    )} is required`;
                                   } else if (
                                     !erc721Sale.isBuy &&
                                     !erc721Sale.isBid
                                   ) {
-                                    return "Bid or Buy amount is required";
+                                    return `Min.Bid or Buy Amount ${currencyFormat(
+                                      nft.floor_price,
+                                      "USD"
+                                    )} is required`;
                                   } else if (
                                     erc721Sale.isBuy &&
-                                    !erc721Sale.buyAmount > 0 &&
+                                    !erc721Sale.buyAmount >
+                                      parseFloat(nft?.floor_price) &&
                                     erc721Sale.isBid &&
-                                    !erc721Sale.bidAmount > 0
+                                    !erc721Sale.bidAmount >
+                                      parseFloat(nft?.floor_price)
                                   ) {
-                                    return "Bid and Buy amount is required";
+                                    return `Min.Bid & Buy Amount ${currencyFormat(
+                                      nft.floor_price,
+                                      "USD"
+                                    )} is required`;
                                   } else {
                                     return "List for sale";
                                   }
@@ -552,7 +570,8 @@ const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
                               <button
                                 disabled={(() => {
                                   if (
-                                    !erc1155Sale.buyAmount > 0 ||
+                                    !erc1155Sale.buyAmount >
+                                      parseFloat(nft?.floor_price) ||
                                     !erc1155Sale.buyQuantity > 0
                                   ) {
                                     return true;
@@ -564,8 +583,14 @@ const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
                                 onClick={() => setConfirm(true)}
                               >
                                 {(() => {
-                                  if (!erc1155Sale.buyAmount > 0) {
-                                    return "Buy amount is required";
+                                  if (
+                                    !erc1155Sale.buyAmount >
+                                    parseFloat(nft?.floor_price)
+                                  ) {
+                                    return `Min.Buy Amount ${currencyFormat(
+                                      nft.floor_price,
+                                      "USD"
+                                    )} is required`;
                                   } else if (!erc1155Sale.buyQuantity > 0) {
                                     return "Quantity is required";
                                   } else {
@@ -668,7 +693,7 @@ const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
                             </div>
                             <div className="pop-sale-nft-content">
                               <div className="pop-author-name text-center mt-3">
-                                Amitabh Bachchan
+                                {nft?.category_name}
                               </div>
                               <div className="pop-sale-nft-title text-center mb-1">
                                 {nft?.name}
@@ -870,7 +895,7 @@ const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
                             </div>
                             <div className="pop-sale-nft-content">
                               <div className="pop-author-name text-center mt-3">
-                                Amitabh Bachchan
+                                {nft?.category_name}
                               </div>
                               <div className="pop-sale-nft-title text-center mb-1">
                                 {nft?.name}

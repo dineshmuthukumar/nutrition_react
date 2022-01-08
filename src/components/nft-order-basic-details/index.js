@@ -39,6 +39,7 @@ const NFTOrderBaseDetails = ({
   isAuctionStarted,
   isAuctionEnded,
   soldOut,
+  transferringNFT,
   owners,
   isOrderOnSale,
   isOrderSuccess,
@@ -84,8 +85,10 @@ const NFTOrderBaseDetails = ({
           content="Verified Artist"
           placement="right"
         />
-        {soldOut && (
-          <span className="nft-status-tag rounded-pill">Sold Out</span>
+        {transferringNFT && (
+          <span className="nft-status-tag rounded-pill">
+            {soldOut ? "Sold Out" : "Transferring NFT..."}
+          </span>
         )}
       </div>
       <div className="nft-title-container">
@@ -302,6 +305,7 @@ const NFTOrderBaseDetails = ({
             isAuctionStarted={isAuctionStarted}
             isAuctionEnded={isAuctionEnded}
             soldOut={soldOut}
+            transferringNFT={transferringNFT}
           />
           <NFTPlaceBuy
             nft={nft}
@@ -315,6 +319,7 @@ const NFTOrderBaseDetails = ({
             isAuctionStarted={isAuctionStarted}
             isAuctionEnded={isAuctionEnded}
             soldOut={soldOut}
+            transferringNFT={transferringNFT}
           />
 
           <NFTCancelTheSale
@@ -327,7 +332,6 @@ const NFTOrderBaseDetails = ({
             userTotalBuys={userTotalBuys}
             isAuctionStarted={isAuctionStarted}
             isAuctionEnded={isAuctionEnded}
-            soldOut={soldOut}
           />
 
           {(() => {
@@ -353,6 +357,15 @@ const NFTOrderBaseDetails = ({
                   className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
                 >
                   Sold Out
+                </button>
+              );
+            } else if (transferringNFT) {
+              return (
+                <button
+                  disabled={true}
+                  className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                >
+                  Transferring NFT...
                 </button>
               );
             } else if (isOrderCancelled) {
