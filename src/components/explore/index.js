@@ -64,7 +64,7 @@ const Explore = ({ categoryDetail }) => {
                 <div className="col-md-12 ">
                   <div className="about-heading mb-4">
                     <div>
-                      <h3 className="about-title">Showing ({list.length})</h3>
+                      <h3 className="about-title">Listed NFTs</h3>
                     </div>
                     <div>
                       <ul className="nav user-nav">
@@ -90,7 +90,7 @@ const Explore = ({ categoryDetail }) => {
               <div className="row gutters-20">
                 {loading ? (
                   <NFTListLoader />
-                ) : (
+                ) : list.length > 0 ? (
                   <>
                     {list.map((nft, i) => {
                       let label = "",
@@ -140,6 +140,10 @@ const Explore = ({ categoryDetail }) => {
                       );
                     })}
                   </>
+                ) : (
+                  <div className="col-12 text-center">
+                    <h3 className="my-3">No Data Found!</h3>
+                  </div>
                 )}
               </div>
               {hasNext && (
