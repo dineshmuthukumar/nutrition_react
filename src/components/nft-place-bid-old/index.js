@@ -272,7 +272,7 @@ const NFTPlaceBidOld = ({
                           {nft?.name}
                         </div>
                         {erc721 && (
-                          <div className="erc-type">
+                          <div className="erc-type text-center mb-1">
                             1 of 1 <span>left</span>
                           </div>
                         )}

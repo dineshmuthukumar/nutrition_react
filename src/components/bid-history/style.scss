@@ -16,14 +16,15 @@
 
   .bid-history-title-content {
     padding: 0.6rem 1.5rem;
-    background-color: #000;
+    background-color: #fff;
     display: flex;
     justify-content: space-between;
-
+    border-left: 2px solid #000;
+    border-right: 2px solid #000;
     .bid-history-title {
       font-family: $neue-helveticamedium;
       font-size: 1.5rem;
-      color: #fff;
+      color: #000;
     }
 
     .bid-history-filter {
@@ -60,9 +61,10 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.2rem 0;
+      padding: 1.2rem 1rem;
       border-bottom: 1px solid #e7e7e9;
-      margin: 0 2rem;
+      margin: 0 1rem;
+      border-radius: 0.5rem;
 
       .first-half {
         display: flex;
@@ -103,8 +105,8 @@
         }
 
         .bid-owner {
-          font-size: 1.5rem;
-          font-family: $neue-helveticabold;
+          font-size: 1.15rem;
+          font-family: $neue-helveticamedium;
 
           .owner-id {
             cursor: pointer;
@@ -140,13 +142,16 @@
           text-decoration: none;
           display: none;
           @media screen and (max-width: 767px) {
-            margin: 1px 0rem;
+            margin: 0.5rem 0rem;
+            font-size: 0.8rem;
+            padding: 0.2rem 1rem;
           }
         }
       }
     }
     &.owner {
       .active-history-card {
+        margin-top: 1rem !important;
         &:hover,
         &:focus,
         &:active {
@@ -171,8 +176,8 @@
 
   .bid-empty-content {
     background-color: #000;
-    min-height: 65vh;
-    max-height: 65vh;
+    min-height: calc(100vh - 24rem) !important;
+    max-height: 55vh;
     margin-top: -1px;
     padding: 1rem;
 

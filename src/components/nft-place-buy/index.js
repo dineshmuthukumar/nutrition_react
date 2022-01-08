@@ -23,6 +23,7 @@ const NFTPlaceBid = ({
   orderDetails,
   // socketData,
   soldOut,
+  transferringNFT,
 }) => {
   const { user } = useSelector((state) => state.user.data);
   const { orderSlug } = useParams();
@@ -336,7 +337,7 @@ const NFTPlaceBid = ({
                             className="input-buy-quantity"
                             value={buyQuantity}
                             placeholder="0 NFTs"
-                            disabled={soldOut}
+                            disabled={transferringNFT || soldOut}
                             onChange={handleBuyInputChange}
                           />
                           {/* text-dark -> dark text after entering quantity */}
@@ -418,12 +419,16 @@ const NFTPlaceBid = ({
                             if (erc721) {
                               if (soldOut) {
                                 return "Sold Out";
+                              } else if (transferringNFT) {
+                                return "Transferring NFT...";
                               } else {
                                 return buy.buttonName;
                               }
                             } else {
                               if (soldOut) {
                                 return "Sold Out";
+                              } else if (transferringNFT) {
+                                return "Transferring NFT...";
                               } else if (buyQuantity > 0) {
                                 return buy.buttonName;
                               } else {

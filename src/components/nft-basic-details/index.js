@@ -173,7 +173,9 @@ const NFTBaseDetails = ({
                     className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
                     onClick={() => setPutOnSalePop(!putOnSalePop)}
                   >
-                    List for sale ({availableQuantity})
+                    {erc721
+                      ? "List for sale"
+                      : `List for sale (${availableQuantity})`}
                   </button>
                 );
               } else {
