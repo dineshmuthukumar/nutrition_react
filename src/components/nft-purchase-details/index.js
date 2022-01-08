@@ -30,7 +30,7 @@ const NFTPurchaseDetails = ({ nft, list = [] }) => {
               <th className="text-center">Price</th>
               <th className="text-center">Service Fee</th>
               <th className="text-center">Status</th>
-              <th className="text-center">Bought Date</th>
+              <th className="text-center">Purchase Date/Time</th>
               <th className="text-center">Address</th>
             </tr>
           </thead>

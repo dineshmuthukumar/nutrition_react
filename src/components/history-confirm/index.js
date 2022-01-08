@@ -7,6 +7,8 @@ import { FaThumbsUp } from "react-icons/fa";
 import { currencyFormat } from "../../utils/common";
 import { acceptBidApi } from "../../api/methods";
 import "./style.scss";
+import ToolTip from "../tooltip/index";
+import { BsFillQuestionCircleFill } from "react-icons/bs";
 
 const HistoryConfirm = ({
   nft,
@@ -88,7 +90,21 @@ const HistoryConfirm = ({
                 <span className="value">{parseFloat(nft.royalties)}%</span>
               </div>
               <div className="price">
-                <span className="key">Service fee</span>
+                <span className="key">
+                  Service fee{" "}
+                  <ToolTip
+                    icon={
+                      <BsFillQuestionCircleFill
+                        size={16}
+                        className="ms-2 check-icon"
+                      />
+                    }
+                    content={
+                      "The service fee include gas fee and the platform fee."
+                    }
+                    placement="right"
+                  />
+                </span>
                 <span className="value">{parseFloat(nft.service_fee)}%</span>
               </div>
             </div>
