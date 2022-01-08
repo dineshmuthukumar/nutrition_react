@@ -504,13 +504,13 @@ const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
                                 disabled={(() => {
                                   if (
                                     erc721Sale.isBuy &&
-                                    !erc721Sale.buyAmount >
+                                    erc721Sale.buyAmount <
                                       parseFloat(nft?.floor_price)
                                   ) {
                                     return true;
                                   } else if (
                                     erc721Sale.isBid &&
-                                    !erc721Sale.bidAmount >
+                                    erc721Sale.bidAmount <
                                       parseFloat(nft?.floor_price)
                                   ) {
                                     return true;
@@ -529,7 +529,19 @@ const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
                                 {(() => {
                                   if (
                                     erc721Sale.isBuy &&
-                                    !erc721Sale.buyAmount >
+                                    erc721Sale.buyAmount <
+                                      parseFloat(nft?.floor_price) &&
+                                    erc721Sale.isBid &&
+                                    erc721Sale.bidAmount <
+                                      parseFloat(nft?.floor_price)
+                                  ) {
+                                    return `Min.Bid & Buy Amount ${currencyFormat(
+                                      nft.floor_price,
+                                      "USD"
+                                    )} is required`;
+                                  } else if (
+                                    erc721Sale.isBuy &&
+                                    erc721Sale.buyAmount <
                                       parseFloat(nft?.floor_price)
                                   ) {
                                     return `Min.Buy Amount ${currencyFormat(
@@ -538,7 +550,7 @@ const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
                                     )} is required`;
                                   } else if (
                                     erc721Sale.isBid &&
-                                    !erc721Sale.bidAmount >
+                                    erc721Sale.bidAmount <
                                       parseFloat(nft?.floor_price)
                                   ) {
                                     return `Min.Bid Amount ${currencyFormat(
@@ -553,18 +565,6 @@ const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
                                       nft.floor_price,
                                       "USD"
                                     )} is required`;
-                                  } else if (
-                                    erc721Sale.isBuy &&
-                                    !erc721Sale.buyAmount >
-                                      parseFloat(nft?.floor_price) &&
-                                    erc721Sale.isBid &&
-                                    !erc721Sale.bidAmount >
-                                      parseFloat(nft?.floor_price)
-                                  ) {
-                                    return `Min.Bid & Buy Amount ${currencyFormat(
-                                      nft.floor_price,
-                                      "USD"
-                                    )} is required`;
                                   } else {
                                     return "List for sale";
                                   }
@@ -574,7 +574,7 @@ const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
                               <button
                                 disabled={(() => {
                                   if (
-                                    !erc1155Sale.buyAmount >
+                                    erc1155Sale.buyAmount <
                                       parseFloat(nft?.floor_price) ||
                                     !erc1155Sale.buyQuantity > 0
                                   ) {
@@ -588,7 +588,7 @@ const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
                               >
                                 {(() => {
                                   if (
-                                    !erc1155Sale.buyAmount >
+                                    erc1155Sale.buyAmount <
                                     parseFloat(nft?.floor_price)
                                   ) {
                                     return `Min.Buy Amount ${currencyFormat(
