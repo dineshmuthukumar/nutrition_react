@@ -7,12 +7,13 @@ import UserDetailsBlock from "../components/user-details-block";
 import UserBannerImage from "../images/user-banner.png";
 
 const UserDetails = () => {
+  const [banner, setBanner] = useState();
   return (
     <>
       <Header />
       <main>
-        <UserBanner image={UserBannerImage} />
-        <UserDetailsBlock />
+        <UserBanner image={banner ? banner : UserBannerImage} />
+        <UserDetailsBlock setBanner={setBanner} />
       </main>
       <Footer />
     </>
