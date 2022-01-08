@@ -275,7 +275,7 @@ const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
                               {nft?.name}
                             </div>
                             {erc721 && (
-                              <div className="erc-type">
+                              <div className="erc-type text-center mb-1">
                                 1 of 1 <span>left</span>
                               </div>
                             )}
@@ -283,82 +283,86 @@ const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
                         </div>
 
                         {erc721 && (
-                          <div className="toggle-btn-buybid">
-                            <div className="btn-buy">
-                              <label className="toggle-private-title w-100">
-                                Buy
-                              </label>
-                              <div>
-                                <ToggleButton
-                                  inactiveLabel={<BiX size={20} />}
-                                  activeLabel={<BiCheck size={20} />}
-                                  colors={{
-                                    activeThumb: {
-                                      base: "rgb(0,0,0)",
-                                    },
-                                    inactiveThumb: {
-                                      base: "rgb(0,0,0)",
-                                    },
-                                    active: {
-                                      base: "rgb(76, 175, 80)",
-                                      hover: "rgb(76, 175, 80)",
-                                    },
-                                    inactive: {
-                                      base: "rgb(158, 158, 158)",
-                                      hover: "rgb(158, 158, 158)",
-                                    },
-                                  }}
-                                  value={erc721Sale.isBuy}
-                                  onToggle={(value) => {
-                                    setErc721Sale({
-                                      ...erc721Sale,
-                                      isBuy: !value,
-                                      buyAmount: "",
-                                    });
-                                  }}
-                                />
+                          <div className=" input-sale-container mt-5">
+                            <div className="toggle-btn-buybid">
+                              <div className="btn-buy">
+                                <label className="toggle-private-title w-100">
+                                  Buy
+                                </label>
+                                <div>
+                                  <ToggleButton
+                                    inactiveLabel={<BiX size={20} />}
+                                    activeLabel={<BiCheck size={20} />}
+                                    colors={{
+                                      activeThumb: {
+                                        base: "rgb(0,0,0)",
+                                      },
+                                      inactiveThumb: {
+                                        base: "rgb(0,0,0)",
+                                      },
+                                      active: {
+                                        base: "rgb(76, 175, 80)",
+                                        hover: "rgb(76, 175, 80)",
+                                      },
+                                      inactive: {
+                                        base: "rgb(158, 158, 158)",
+                                        hover: "rgb(158, 158, 158)",
+                                      },
+                                    }}
+                                    value={erc721Sale.isBuy}
+                                    onToggle={(value) => {
+                                      setErc721Sale({
+                                        ...erc721Sale,
+                                        isBuy: !value,
+                                        buyAmount: "",
+                                      });
+                                    }}
+                                  />
+                                </div>
                               </div>
-                            </div>
-                            <div className="btn-bid">
-                              <label className="toggle-private-title w-100">
-                                Bid
-                              </label>
-                              <div>
-                                <ToggleButton
-                                  inactiveLabel={<BiX size={20} />}
-                                  activeLabel={<BiCheck size={20} />}
-                                  colors={{
-                                    activeThumb: {
-                                      base: "rgb(0,0,0)",
-                                    },
-                                    inactiveThumb: {
-                                      base: "rgb(0,0,0)",
-                                    },
-                                    active: {
-                                      base: "rgb(76, 175, 80)",
-                                      hover: "rgb(76, 175, 80)",
-                                    },
-                                    inactive: {
-                                      base: "rgb(158, 158, 158)",
-                                      hover: "rgb(158, 158, 158)",
-                                    },
-                                  }}
-                                  value={erc721Sale.isBid}
-                                  onToggle={(value) => {
-                                    setErc721Sale({
-                                      ...erc721Sale,
-                                      isBid: !value,
-                                      bidAmount: "",
-                                    });
-                                  }}
-                                />
+                              <div className="btn-bid">
+                                <label className="toggle-private-title w-100">
+                                  Bid
+                                </label>
+                                <div>
+                                  <ToggleButton
+                                    inactiveLabel={<BiX size={20} />}
+                                    activeLabel={<BiCheck size={20} />}
+                                    colors={{
+                                      activeThumb: {
+                                        base: "rgb(0,0,0)",
+                                      },
+                                      inactiveThumb: {
+                                        base: "rgb(0,0,0)",
+                                      },
+                                      active: {
+                                        base: "rgb(76, 175, 80)",
+                                        hover: "rgb(76, 175, 80)",
+                                      },
+                                      inactive: {
+                                        base: "rgb(158, 158, 158)",
+                                        hover: "rgb(158, 158, 158)",
+                                      },
+                                    }}
+                                    value={erc721Sale.isBid}
+                                    onToggle={(value) => {
+                                      setErc721Sale({
+                                        ...erc721Sale,
+                                        isBid: !value,
+                                        bidAmount: "",
+                                      });
+                                    }}
+                                  />
+                                </div>
                               </div>
                             </div>
                           </div>
                         )}
 
                         {/* error-bid -> less value than min bid,  error-balance -> low value, error-balance-float -> low value in quantity  */}
-                        <div className={`input-sale-container mt-5 ${error}`}>
+                        <div
+                          className={`input-sale-container mt-5 flex-input ${error}`}
+                        >
                           {!erc721 ? (
                             <>
                               <div className={`input-field-sale`}>
@@ -430,7 +434,7 @@ const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
                                 }`}
                               >
                                 <label className="input-sale-text">
-                                  Initial Bid Amount
+                                  {/* Initial Bid Amount */}
                                   <span className={`quantity-to-value`}>
                                     Min.Bid Amount{" "}
                                     {currencyFormat(nft.floor_price, "USD")}
@@ -447,7 +451,7 @@ const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
                                     onChange={handleErc721BidAmountChange}
                                   />
                                 </div>
-                                <span className={`quantity-to-value`}>
+                                <span className={`quantity-to-value error-msg`}>
                                   Bids will expire In 7 days if you do not
                                   acknowledge/accept it.
                                 </span>
@@ -673,7 +677,7 @@ const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
                               <div className="pop-sale-nft-title text-center mb-1">
                                 {nft?.name}
                               </div>
-                              <div className="erc-type">
+                              <div className="erc-type text-center mb-1">
                                 1 of 1 <span>left</span>
                               </div>
                             </div>

@@ -50,7 +50,11 @@
         }
       }
     }
-
+    .pop-sale-bodyContent {
+      height: calc(100vh - 15rem);
+      overflow: hidden;
+      overflow-y: auto;
+    }
     .error-float-container {
       position: absolute;
       top: 8rem;
@@ -137,7 +141,7 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      margin-top: 0;
+      margin-top: 2rem;
 
       img,
       video {
@@ -333,8 +337,9 @@
         font-size: 0.9rem;
         text-align: center;
         margin-bottom: 0.5rem;
-        padding: 0 1rem;
+        padding: 0.8rem 1rem 0.3rem;
         color: #f21e00 !important;
+        background: #fff;
       }
 
       .bottom-content-pop {
@@ -404,7 +409,7 @@
     margin: 1rem 0;
     padding: 0 1rem;
     .pop-sale-nft-media {
-      margin-top: 0;
+      margin-top: 2rem;
       img,
       video {
         max-height: 12rem;
@@ -480,8 +485,8 @@
   .btn-bid {
     display: flex;
     justify-content: space-between;
-    width: 50%;
-    padding: 0 1rem;
+    width: 48%;
+    padding: 0;
     align-items: center;
 
     .toggle-private-title {
@@ -572,5 +577,20 @@
     text-align: center;
     width: 100%;
     margin: 1rem 0;
+  }
+}
+
+.flex-input {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: flex-start;
+  .input-field-sale {
+    width: 48%;
+  }
+  .quantity-to-value.error-msg {
+    font-size: 0.9rem;
+    color: red;
+    line-height: 0.2rem !important;
   }
 }
