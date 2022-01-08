@@ -124,7 +124,7 @@ const NFTCancelTheSale = ({
                       <div className={`input-cancel-container mt-5 mb-5`}>
                         <div className="input-field-cancel px-0">
                           <label className="input-cancel-text">
-                            No of units to cancel sale
+                            No of units to cancel sale?
                           </label>
                           <div className="input-cancel-quantity-container bid-input">
                             <input
@@ -194,7 +194,7 @@ const NFTCancelTheSale = ({
                       <div className="message mt-3">
                         Are you sure want to cancel the {buyCancel && "Buy "}
                         {bidCancel && "Bid "}
-                        sale
+                        sale?
                       </div>
                     </div>
 
