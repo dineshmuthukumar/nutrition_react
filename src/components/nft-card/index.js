@@ -33,7 +33,6 @@ const NFTCard = ({ nft }) => {
           }
         })()}
         role="button"
-        onClick={handleClick}
       />
 
       <div className="top-content-title">

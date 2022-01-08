@@ -187,6 +187,7 @@
 
     .input-bid-container {
       padding: 0 3rem;
+      margin-bottom: 2rem;
       .input-bid-text {
         font-size: 1rem;
         color: #000000;
@@ -299,6 +300,17 @@
           }
         }
       }
+
+      .total-amount-box {
+        border-radius: 0.5rem;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        background: #efeff0;
+        h1 {
+          margin: 0;
+          font-family: $neue-helveticamedium;
+        }
+      }
     }
 
     .sucess-title {
@@ -330,11 +342,11 @@
     }
 
     .pop-body-content {
-      height: calc(100% - 18rem);
+      height: calc(100% - 15rem);
       overflow: hidden;
       overflow-y: auto;
       &.success {
-        height: calc(100% - 22rem);
+        height: calc(100% - 20rem);
       }
     }
 
