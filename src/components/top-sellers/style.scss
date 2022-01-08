@@ -20,8 +20,8 @@
     figure {
       position: relative;
       img {
-        height: 4.5rem;
-        width: 4.5rem;
+        height: 3.8rem;
+        width: 3.8rem;
         border-radius: 50rem;
       }
     }
@@ -40,12 +40,12 @@
     }
     .user {
       &-name {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
         font-family: $neue-helveticabold;
         margin-bottom: 0.2rem;
       }
       &-price {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         font-family: $neue-helveticamedium;
         color: #757575;
       }
