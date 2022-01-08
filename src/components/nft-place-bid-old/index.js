@@ -16,6 +16,8 @@ import {
 import { nftBidApi } from "../../api/methods";
 
 import "./style.scss";
+import ToolTip from "../tooltip/index";
+import { BsFillQuestionCircleFill } from "react-icons/bs";
 
 const NFTPlaceBidOld = ({
   placeBidPop = false,
@@ -299,6 +301,7 @@ const NFTPlaceBidOld = ({
                               className="input-bid"
                               value={bidAmount}
                               placeholder="0"
+                              maxLength={20}
                               onChange={handleBidInputChange}
                             />
                           </div>
@@ -308,7 +311,19 @@ const NFTPlaceBidOld = ({
                         <div className="input-field-bid">
                           <div className="services-fee-box">
                             <label className="input-bid-text">
-                              Service Fee
+                              Service Fee{" "}
+                              <ToolTip
+                                icon={
+                                  <BsFillQuestionCircleFill
+                                    size={16}
+                                    className="ms-2 check-icon"
+                                  />
+                                }
+                                content={
+                                  "The service fee include gas fee and the platform fee."
+                                }
+                                placement="right"
+                              />
                             </label>
                             <h4>{parseFloat(nft.service_fee)}%</h4>
                           </div>
@@ -336,12 +351,13 @@ const NFTPlaceBidOld = ({
                       </div>
                       <div className="terms text-secondary">
                         Once a bid is placed, it cannot be withdrawn.{" "}
-                        <a
-                          href={process.env.REACT_APP_HELP_URL}
-                          target="_blank"
-                        >
-                          Learn more
-                        </a>{" "}
+                        <ToolTip
+                          icon={<u role={"button"}>Learn more</u>}
+                          content={
+                            "The bid, once placed, cannot be canceled until it is outbid. Your bid amount will be reflected in 'Funds on Hold' section of your wallet."
+                          }
+                          placement="top"
+                        />{" "}
                         about how auctions work.
                       </div>
                     </div>

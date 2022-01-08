@@ -12,7 +12,7 @@ const ExploreSearch = () => {
               <h4>Marketplace</h4>
 
               <div className={`input-search-container mt-5 mb-5`}>
-                <input type="text" className="input-search" />
+                <input type="text" className="input-search" maxLength={20} />
                 <VscSearch className="search-icon" />
               </div>
             </div>

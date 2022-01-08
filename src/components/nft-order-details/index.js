@@ -27,7 +27,7 @@ const NFTOrderDetails = ({ nft, orderList = [] }) => {
               <th className="text-center">Sale Type</th>
               {erc721 && <th className="text-center">Minimum Bid Price</th>}
               <th className="text-center">Sale Price</th>
-              <th className="text-center">Edition(s)</th>
+              <th className="text-center">Availability</th>
               <th className="text-center">Order Views</th>
               <th className="text-center">Status</th>
               <th className="text-center">Order Placed On</th>
