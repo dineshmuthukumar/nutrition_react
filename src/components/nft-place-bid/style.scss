@@ -348,6 +348,9 @@
       height: calc(100% - 15rem);
       overflow: hidden;
       overflow-y: auto;
+      @media screen and (max-width: 450px) {
+        height: calc(100% - 18rem);
+      }
       &.success {
         height: calc(100% - 20rem);
       }
