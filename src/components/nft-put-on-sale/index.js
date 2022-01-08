@@ -268,7 +268,7 @@ const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
                             })()}
                           </div>
                           <div className="pop-sale-nft-content">
-                            <div className="pop-author-name text-center mt-3">
+                            <div className="pop-author-name text-center">
                               {nft?.category_name}
                             </div>
                             <div className="pop-sale-nft-title text-center mb-1">
@@ -281,207 +281,218 @@ const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
                             )}
                           </div>
                         </div>
-
-                        {erc721 && (
-                          <div className=" input-sale-container mt-5">
-                            <div className="toggle-btn-buybid">
-                              <div className="btn-buy">
-                                <label className="toggle-private-title w-100">
-                                  Buy
-                                </label>
-                                <div>
-                                  <ToggleButton
-                                    inactiveLabel={<BiX size={20} />}
-                                    activeLabel={<BiCheck size={20} />}
-                                    colors={{
-                                      activeThumb: {
-                                        base: "rgb(0,0,0)",
-                                      },
-                                      inactiveThumb: {
-                                        base: "rgb(0,0,0)",
-                                      },
-                                      active: {
-                                        base: "rgb(76, 175, 80)",
-                                        hover: "rgb(76, 175, 80)",
-                                      },
-                                      inactive: {
-                                        base: "rgb(158, 158, 158)",
-                                        hover: "rgb(158, 158, 158)",
-                                      },
-                                    }}
-                                    value={erc721Sale.isBuy}
-                                    onToggle={(value) => {
-                                      setErc721Sale({
-                                        ...erc721Sale,
-                                        isBuy: !value,
-                                        buyAmount: "",
-                                      });
-                                    }}
-                                  />
+                        <div className="sticky-bottom-fix">
+                          {erc721 && (
+                            <div className=" input-sale-container mt-3">
+                              <div className="toggle-btn-buybid">
+                                <div className="btn-buy">
+                                  <label className="toggle-private-title w-100">
+                                    Buy
+                                  </label>
+                                  <div>
+                                    <ToggleButton
+                                      inactiveLabel={<BiX size={20} />}
+                                      activeLabel={<BiCheck size={20} />}
+                                      colors={{
+                                        activeThumb: {
+                                          base: "rgb(0,0,0)",
+                                        },
+                                        inactiveThumb: {
+                                          base: "rgb(0,0,0)",
+                                        },
+                                        active: {
+                                          base: "rgb(76, 175, 80)",
+                                          hover: "rgb(76, 175, 80)",
+                                        },
+                                        inactive: {
+                                          base: "rgb(158, 158, 158)",
+                                          hover: "rgb(158, 158, 158)",
+                                        },
+                                      }}
+                                      value={erc721Sale.isBuy}
+                                      onToggle={(value) => {
+                                        setErc721Sale({
+                                          ...erc721Sale,
+                                          isBuy: !value,
+                                          buyAmount: "",
+                                        });
+                                      }}
+                                    />
+                                  </div>
                                 </div>
-                              </div>
-                              <div className="btn-bid">
-                                <label className="toggle-private-title w-100">
-                                  Bid
-                                </label>
-                                <div>
-                                  <ToggleButton
-                                    inactiveLabel={<BiX size={20} />}
-                                    activeLabel={<BiCheck size={20} />}
-                                    colors={{
-                                      activeThumb: {
-                                        base: "rgb(0,0,0)",
-                                      },
-                                      inactiveThumb: {
-                                        base: "rgb(0,0,0)",
-                                      },
-                                      active: {
-                                        base: "rgb(76, 175, 80)",
-                                        hover: "rgb(76, 175, 80)",
-                                      },
-                                      inactive: {
-                                        base: "rgb(158, 158, 158)",
-                                        hover: "rgb(158, 158, 158)",
-                                      },
-                                    }}
-                                    value={erc721Sale.isBid}
-                                    onToggle={(value) => {
-                                      setErc721Sale({
-                                        ...erc721Sale,
-                                        isBid: !value,
-                                        bidAmount: "",
-                                      });
-                                    }}
-                                  />
+                                <div className="btn-bid">
+                                  <label className="toggle-private-title w-100">
+                                    Bid
+                                  </label>
+                                  <div>
+                                    <ToggleButton
+                                      inactiveLabel={<BiX size={20} />}
+                                      activeLabel={<BiCheck size={20} />}
+                                      colors={{
+                                        activeThumb: {
+                                          base: "rgb(0,0,0)",
+                                        },
+                                        inactiveThumb: {
+                                          base: "rgb(0,0,0)",
+                                        },
+                                        active: {
+                                          base: "rgb(76, 175, 80)",
+                                          hover: "rgb(76, 175, 80)",
+                                        },
+                                        inactive: {
+                                          base: "rgb(158, 158, 158)",
+                                          hover: "rgb(158, 158, 158)",
+                                        },
+                                      }}
+                                      value={erc721Sale.isBid}
+                                      onToggle={(value) => {
+                                        setErc721Sale({
+                                          ...erc721Sale,
+                                          isBid: !value,
+                                          bidAmount: "",
+                                        });
+                                      }}
+                                    />
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                        )}
-
-                        {/* error-bid -> less value than min bid,  error-balance -> low value, error-balance-float -> low value in quantity  */}
-                        <div
-                          className={`input-sale-container mt-5 flex-input ${error}`}
-                        >
-                          {!erc721 ? (
-                            <>
-                              <div className={`input-field-sale`}>
-                                <label className="input-sale-text">
-                                  Set Sale Cost (Per edition)
-                                </label>
-                                <div className="input-sale-wrap">
-                                  <span className="sale-currency">$</span>
-                                  <input
-                                    type="text"
-                                    className="input-sale"
-                                    value={erc1155Sale.buyAmount}
-                                    placeholder="0"
-                                    onChange={handleErc1155BuyAmountChange}
-                                  />
-                                </div>
-                              </div>
-                              <div className="input-field-sale">
-                                <label className="input-sale-text">
-                                  Set NFT Count for Sale
-                                </label>
-                                <div className="input-sale-quantity-container bid-input">
-                                  <input
-                                    type="text"
-                                    className="input-sale-quantity"
-                                    value={erc1155Sale.buyQuantity}
-                                    placeholder="0 NFTs"
-                                    onChange={handleErc1155QuantityInputChange}
-                                  />
-                                  <span className="sale-currency">
-                                    /
-                                    {_.get(
-                                      nft,
-                                      "owner_details.available_quantity"
-                                    )}
-                                  </span>
-                                </div>
-                              </div>
-                            </>
-                          ) : (
-                            <>
-                              <div
-                                className={`input-field-sale ${
-                                  !erc721Sale.isBuy ? "disabled" : ""
-                                }`}
-                              >
-                                <label className="input-sale-text">
-                                  Set Price
-                                  <span className={`quantity-to-value`}>
-                                    Min.Buy Amount{" "}
-                                    {currencyFormat(nft.floor_price, "USD")}
-                                  </span>
-                                </label>
-                                <div className="input-sale-wrap">
-                                  <span className="sale-currency">$</span>
-                                  <input
-                                    type="text"
-                                    className="input-sale"
-                                    value={erc721Sale.buyAmount}
-                                    placeholder="0"
-                                    disabled={!erc721Sale.isBuy}
-                                    onChange={handleErc721BuyAmountChange}
-                                  />
-                                </div>
-                              </div>
-                              <div
-                                className={`input-field-sale ${
-                                  !erc721Sale.isBid ? "disabled" : ""
-                                }`}
-                              >
-                                <label className="input-sale-text">
-                                  {/* Initial Bid Amount */}
-                                  <span className={`quantity-to-value`}>
-                                    Min.Bid Amount{" "}
-                                    {currencyFormat(nft.floor_price, "USD")}
-                                  </span>
-                                </label>
-                                <div className="input-sale-wrap">
-                                  <span className="sale-currency">$</span>
-                                  <input
-                                    type="text"
-                                    className="input-sale"
-                                    value={erc721Sale.bidAmount}
-                                    placeholder="0"
-                                    disabled={!erc721Sale.isBid}
-                                    onChange={handleErc721BidAmountChange}
-                                  />
-                                </div>
-                                <span className={`quantity-to-value error-msg`}>
-                                  Bids will expire In 7 days if you do not
-                                  acknowledge/accept it.
-                                </span>
-                              </div>
-                            </>
                           )}
-                        </div>
 
-                        {erc721 ? (
-                          <div className="you-own-block">
-                            <span className="you-own-title">You Own</span>
-                            <div className="you-own">
-                              <h3>
-                                1 of 1 <span>left</span>
-                              </h3>
-                              <h3>Edition</h3>
-                            </div>
+                          {/* error-bid -> less value than min bid,  error-balance -> low value, error-balance-float -> low value in quantity  */}
+                          <div
+                            className={`input-sale-container mt-3 flex-input ${error}`}
+                          >
+                            {!erc721 ? (
+                              <>
+                                <div className={`input-field-sale`}>
+                                  <label className="input-sale-text">
+                                    Set Sale Cost (Per edition)
+                                  </label>
+                                  <div className="input-sale-wrap">
+                                    <span className="sale-currency">$</span>
+                                    <input
+                                      type="text"
+                                      className="input-sale"
+                                      value={erc1155Sale.buyAmount}
+                                      placeholder="0"
+                                      onChange={handleErc1155BuyAmountChange}
+                                    />
+                                  </div>
+                                </div>
+                                <div className="input-field-sale">
+                                  <label className="input-sale-text">
+                                    Set NFT Count for Sale
+                                  </label>
+                                  <div className="input-sale-quantity-container bid-input">
+                                    <input
+                                      type="text"
+                                      className="input-sale-quantity"
+                                      value={erc1155Sale.buyQuantity}
+                                      placeholder="0 NFTs"
+                                      onChange={
+                                        handleErc1155QuantityInputChange
+                                      }
+                                    />
+                                    <span className="sale-currency">
+                                      /
+                                      {_.get(
+                                        nft,
+                                        "owner_details.available_quantity"
+                                      )}
+                                    </span>
+                                  </div>
+                                </div>
+                              </>
+                            ) : (
+                              <>
+                                <div
+                                  className={`input-field-sale ${
+                                    !erc721Sale.isBuy ? "disabled" : ""
+                                  }`}
+                                >
+                                  <label className="input-sale-text">
+                                    Set Price{" "}
+                                    <span
+                                      className={`quantity-to-value text-red`}
+                                    >
+                                      Min.{" "}
+                                      {currencyFormat(nft.floor_price, "USD")}
+                                    </span>
+                                  </label>
+                                  <div className="input-sale-wrap">
+                                    <span className="sale-currency">$</span>
+                                    <input
+                                      type="text"
+                                      className="input-sale"
+                                      value={erc721Sale.buyAmount}
+                                      placeholder="0"
+                                      disabled={!erc721Sale.isBuy}
+                                      onChange={handleErc721BuyAmountChange}
+                                    />
+                                  </div>
+                                </div>
+                                <div
+                                  className={`input-field-sale ${
+                                    !erc721Sale.isBid ? "disabled" : ""
+                                  }`}
+                                >
+                                  <label className="input-sale-text">
+                                    Bid Amount{" "}
+                                    <span
+                                      className={`quantity-to-value text-red`}
+                                    >
+                                      Min{" "}
+                                      {currencyFormat(nft.floor_price, "USD")}
+                                    </span>
+                                  </label>
+                                  <div className="input-sale-wrap">
+                                    <span className="sale-currency">$</span>
+                                    <input
+                                      type="text"
+                                      className="input-sale"
+                                      value={erc721Sale.bidAmount}
+                                      placeholder="0"
+                                      disabled={!erc721Sale.isBid}
+                                      onChange={handleErc721BidAmountChange}
+                                    />
+                                  </div>
+                                  <span
+                                    className={`quantity-to-value error-msg`}
+                                  >
+                                    Bids will expire In 7 days if you do not
+                                    acknowledge/accept it.
+                                  </span>
+                                </div>
+                              </>
+                            )}
                           </div>
-                        ) : (
-                          <div className="you-own-block">
-                            <span className="you-own-title">Total Amount</span>
-                            <div className="you-own">
-                              <h3>$ {erc1155Sale.totalAmount}</h3>
-                              <h3>{erc1155Sale.buyQuantity} Edition</h3>
-                            </div>
-                          </div>
-                        )}
 
-                        <div className="px-3">
-                          <HelpLine />
+                          {erc721 ? (
+                            <div className="you-own-block">
+                              <span className="you-own-title">You Own</span>
+                              <div className="you-own">
+                                <h3>
+                                  1 of 1 <span>left</span>
+                                </h3>
+                                <h3>Edition</h3>
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="you-own-block">
+                              <span className="you-own-title">
+                                Total Amount
+                              </span>
+                              <div className="you-own">
+                                <h3>$ {erc1155Sale.totalAmount}</h3>
+                                <h3>{erc1155Sale.buyQuantity} Edition</h3>
+                              </div>
+                            </div>
+                          )}
+
+                          <div className="px-3">
+                            <HelpLine />
+                          </div>
                         </div>
                       </div>
 
@@ -696,7 +707,7 @@ const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
                               })()}
                             </div>
                             <div className="pop-sale-nft-content">
-                              <div className="pop-author-name text-center mt-3">
+                              <div className="pop-author-name text-center">
                                 {nft?.category_name}
                               </div>
                               <div className="pop-sale-nft-title text-center mb-1">
@@ -898,7 +909,7 @@ const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
                               })()}
                             </div>
                             <div className="pop-sale-nft-content">
-                              <div className="pop-author-name text-center mt-3">
+                              <div className="pop-author-name text-center">
                                 {nft?.category_name}
                               </div>
                               <div className="pop-sale-nft-title text-center mb-1">

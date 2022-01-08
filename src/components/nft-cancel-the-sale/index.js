@@ -8,6 +8,7 @@ import BidValue from "../bid-value";
 import ErrorText from "./error-text";
 import { bidBuyError, validateQuantity } from "../../utils/common";
 import { buySaleCancelApi, saleCancelApi } from "../../api/methods";
+import sample from "../../images/sampleNFT.jpg";
 
 import "./style.scss";
 
@@ -121,6 +122,61 @@ const NFTCancelTheSale = ({
                       <div class="progress-complete"></div>
                     </div>
                     <div className="pop-cancel-bodyContent px-4">
+                      <div className="pop-nft-info">
+                        <div className="pop-nft-media">
+                          {(() => {
+                            if (nft?.asset_type?.includes("image")) {
+                              return (
+                                <img
+                                  alt="media logo"
+                                  className="type_image typeimg_audio"
+                                  src={nft.asset_url ? nft.asset_url : sample}
+                                />
+                              );
+                            } else if (nft?.asset_type?.includes("audio")) {
+                              return (
+                                <>
+                                  <img
+                                    alt="media logo"
+                                    className="type_image typeimg_audio"
+                                    src={nft.cover_url ? nft.cover_url : sample}
+                                  />
+                                </>
+                              );
+                            } else if (nft?.asset_type?.includes("video")) {
+                              return (
+                                <img
+                                  alt="media logo"
+                                  className="type_image typeimg_audio"
+                                  src={nft.cover_url ? nft.cover_url : sample}
+                                />
+                              );
+                            } else {
+                              return (
+                                <img
+                                  alt="media logo"
+                                  className="type_image typeimg_audio"
+                                  src={nft.asset_url ? nft.asset_url : sample}
+                                />
+                              );
+                            }
+                          })()}
+                        </div>
+                        <div className="pop-nft-content">
+                          <div className="pop-author-name text-center">
+                            Amitabh Bachchan
+                          </div>
+                          <div className="pop-nft-title text-center mb-1">
+                            {nft?.name}
+                          </div>
+                          {erc721 && (
+                            <div className="erc-type text-center mb-1">
+                              1 of 1 <span>left</span>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
                       <div className={`input-cancel-container mt-5 mb-5`}>
                         <div className="input-field-cancel px-0">
                           <label className="input-cancel-text">
@@ -189,13 +245,69 @@ const NFTCancelTheSale = ({
                       <div className="progress-complete"></div>
                     </div>
 
-                    <div className="sucess-title">
-                      <FaTimesCircle color={"#f21e00"} size={60} />
-                      <div className="message mt-3">
-                        Are you sure want to cancel the {buyCancel && "Buy "}
-                        {bidCancel && "Bid "}
-                        sale?
+                    <div className="sucess-title cancel-confirm">
+                      <div className="pop-nft-info">
+                        <div className="pop-nft-media">
+                          {(() => {
+                            if (nft?.asset_type?.includes("image")) {
+                              return (
+                                <img
+                                  alt="media logo"
+                                  className="type_image typeimg_audio"
+                                  src={nft.asset_url ? nft.asset_url : sample}
+                                />
+                              );
+                            } else if (nft?.asset_type?.includes("audio")) {
+                              return (
+                                <>
+                                  <img
+                                    alt="media logo"
+                                    className="type_image typeimg_audio"
+                                    src={nft.cover_url ? nft.cover_url : sample}
+                                  />
+                                </>
+                              );
+                            } else if (nft?.asset_type?.includes("video")) {
+                              return (
+                                <img
+                                  alt="media logo"
+                                  className="type_image typeimg_audio"
+                                  src={nft.cover_url ? nft.cover_url : sample}
+                                />
+                              );
+                            } else {
+                              return (
+                                <img
+                                  alt="media logo"
+                                  className="type_image typeimg_audio"
+                                  src={nft.asset_url ? nft.asset_url : sample}
+                                />
+                              );
+                            }
+                          })()}
+                        </div>
+
+                        <div className="pop-nft-content">
+                          <div className="pop-author-name text-center">
+                            {nft?.category_name}
+                          </div>
+                          <div className="pop-nft-title text-center mb-1">
+                            {nft?.name}
+                          </div>
+                          <div className="erc-type text-center mb-1">
+                            1 of 1 <span>left</span>
+                          </div>
+                        </div>
                       </div>
+
+                      {/* <div>
+                        <FaTimesCircle color={"#f21e00"} size={60} />
+                        <div className="message mt-3">
+                          Are you sure want to cancel the {buyCancel && "Buy "}
+                          {bidCancel && "Bid "}
+                          sale?
+                        </div>
+                      </div> */}
                     </div>
 
                     {/* <div className="pop-cancel-bodyContent">
@@ -218,6 +330,11 @@ const NFTCancelTheSale = ({
                   </div> */}
 
                     <div className="bottom-area">
+                      <h5 className="text-center">
+                        Are you sure want to cancel the {buyCancel && "Buy "}
+                        {bidCancel && "Bid "}
+                        sale?
+                      </h5>
                       <div className="bottom-content-pop">
                         <div
                           className={`back-button`} //process -> proccessing

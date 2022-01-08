@@ -171,7 +171,7 @@
     }
 
     .input-cancel-container {
-      padding: 0 3rem;
+      padding: 0 1.5rem;
       .input-cancel-text {
         font-size: 1rem;
         color: #000000;
@@ -209,7 +209,11 @@
         border-radius: 0.6rem;
         display: flex;
         align-items: center;
-
+        .cancel-currency {
+          font-size: 2rem;
+          padding-right: 0.3rem;
+          font-family: $neue-helveticamedium;
+        }
         .input-cancel-quantity {
           width: 100%;
           font-family: $neue-helveticamedium;
@@ -295,6 +299,12 @@
       align-items: center;
       justify-content: center;
       height: calc(100vh - 13rem);
+      &.cancel-confirm {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+      }
 
       .message {
         font-family: $neue-helveticamedium;
@@ -387,6 +397,65 @@
         font-size: 2rem;
         font-family: $neue-helveticabold;
       }
+    }
+  }
+}
+
+.pop-cancel-bodyContent {
+  height: calc(100% - 15rem);
+  overflow: hidden;
+  overflow-y: auto;
+  &.success {
+    height: calc(100% - 20rem);
+  }
+}
+
+.pop-nft-info {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin: 1rem 0;
+  padding: 0 1rem;
+  .pop-nft-media {
+    margin-top: 0;
+    img,
+    video {
+      max-height: 12rem;
+      object-fit: cover;
+      border-radius: 0.7rem;
+      overflow: hidden;
+      width: 12rem;
+      object-position: top;
+    }
+  }
+  .pop-nft-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 1rem;
+    .erc-type {
+      font-size: 1.8rem;
+      margin: 0.5rem 0;
+      font-family: $neue-helveticamedium;
+      span {
+        font-size: 1.5rem;
+        color: #000;
+        font-family: $neue-helveticalight;
+      }
+    }
+
+    .pop-author-name {
+      font-size: 1.2rem;
+      font-family: $neue-helveticalight;
+    }
+    .pop-nft-title {
+      font-family: $neue-helveticabold;
+      font-size: 2rem;
+      padding: 0;
+      text-align: left !important;
+      line-height: 1.2;
+      margin-top: 0.2rem;
     }
   }
 }
