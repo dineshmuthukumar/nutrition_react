@@ -279,9 +279,9 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
           {!hideOptions && (
             <>
               <Nav className="d-flex me-0 ms-auto">
-                <Nav.Link id="drop_outer" href="/">
+                {/* <Nav.Link id="drop_outer" href="/">
                   Explore
-                </Nav.Link>
+                </Nav.Link> */}
                 <Dropdown autoClose={["inside", "outside"]} className="me-0">
                   <Dropdown.Toggle
                     align="start"
