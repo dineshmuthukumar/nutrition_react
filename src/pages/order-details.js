@@ -331,7 +331,7 @@ const OrderDetails = () => {
 
           <NFTSectionTitle title="Artist" />
           <div className="mt-5">
-            <NFTArtist />
+            <NFTArtist id={nft.celebrity_id} />
           </div>
           {/* {nftMoreList.length > 0 && (
             <div className="mt-5">

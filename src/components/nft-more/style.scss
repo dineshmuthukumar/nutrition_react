@@ -162,8 +162,9 @@
     background-color: white;
     padding: 0.7rem;
     outline: none;
-    border: none;
+
     border-radius: 50%;
+    border: 1px solid #ccc;
     left: 0;
 
     svg {
@@ -181,9 +182,10 @@
     position: absolute;
     top: 40%;
     background-color: white;
+    border: 1px solid #ccc;
     padding: 0.7rem;
     outline: none;
-    border: none;
+
     border-radius: 50%;
     right: 0;
 

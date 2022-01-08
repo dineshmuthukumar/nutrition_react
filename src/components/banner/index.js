@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
+import { useHistory } from "react-router-dom";
 
 import { nftCategoriesApi } from "../../api/methods";
 import sample from "../../images/drops/nft_2.png";
@@ -15,6 +16,14 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./style.scss";
 
 const Banner = ({ list = [] }) => {
+  const history = useHistory();
+
+  const handleNavigate = (input) => {
+    const data = list.find((obj) => obj.name === input);
+
+    history.push(`/explore/category/${data.slug}`);
+  };
+
   return (
     <>
       <div className="container-fluid mt-4 hero-carousel-desktop">
@@ -33,37 +42,27 @@ const Banner = ({ list = [] }) => {
                 infiniteLoop={true}
                 swipeable={true}
               >
-                <div style={{ overflow: "hidden" }} className="cat-block">
+                <div
+                  style={{ overflow: "hidden" }}
+                  className="cat-block"
+                  role={"button"}
+                  onClick={() => handleNavigate("Chakra Artpunks Loot Box")}
+                >
                   <h5 className="cat-title big-box">Chakra Artpunks</h5>
-                  {(() => {
-                    if (list[6]?.asset_type?.includes("video")) {
-                      return (
-                        <video
-                          loop
-                          muted
-                          autoPlay
-                          playsInline
-                          src={
-                            list[6]?.asset_url
-                              ? list[6]?.asset_url
-                              : heroVideoBox
-                          }
-                          className="first-image"
-                          style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
-                        ></video>
-                      );
-                    } else {
-                      return (
-                        <img
-                          src={chakra_artpunks}
-                          className="first-image"
-                          style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
-                        />
-                      );
-                    }
-                  })()}
+                  <img
+                    src={chakra_artpunks}
+                    className="first-image"
+                    style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
+                  />
                 </div>
-                <div style={{ overflow: "hidden" }} className="cat-block">
+                <div
+                  style={{ overflow: "hidden" }}
+                  className="cat-block"
+                  role={"button"}
+                  onClick={() =>
+                    handleNavigate("Animated Living Comic Book Cover")
+                  }
+                >
                   <h5 className="cat-title big-box">
                     Animated Living Comic Book Cover
                   </h5>
@@ -77,7 +76,12 @@ const Banner = ({ list = [] }) => {
                     style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
                   ></video>
                 </div>
-                <div style={{ overflow: "hidden" }} className="cat-block">
+                <div
+                  style={{ overflow: "hidden" }}
+                  className="cat-block"
+                  role={"button"}
+                  onClick={() => handleNavigate("LOOT BOX")}
+                >
                   <h5 className="cat-title big-box">Digital Posters</h5>
                   <img
                     src={digital_poster}
@@ -93,10 +97,12 @@ const Banner = ({ list = [] }) => {
               <div className="col pb-4">
                 <div
                   className="cat-block"
+                  role={"button"}
                   style={{
                     height:
                       "calc(((((100vw - (7rem + 6rem))/2)/3)*2) - 1.5rem)",
                   }}
+                  onClick={() => handleNavigate("BigB Punks")}
                 >
                   <h5 className="cat-title medium-box">BigB Punks NFTs </h5>
                   {(() => {
@@ -134,9 +140,11 @@ const Banner = ({ list = [] }) => {
               <div className="col">
                 <div
                   className="cat-block"
+                  role={"button"}
                   style={{
                     height: "calc(((((100vw - (7rem + 6rem))/2)/3)))",
                   }}
+                  onClick={() => handleNavigate("Physical Posters")}
                 >
                   <h5 className="cat-title"> Autographed Physical Posters</h5>
                   <video
@@ -153,9 +161,11 @@ const Banner = ({ list = [] }) => {
               <div className="col">
                 <div
                   className="cat-block"
+                  role={"button"}
                   style={{
                     height: "calc(((((100vw - (7rem + 6rem))/2)/3)))",
                   }}
+                  onClick={() => handleNavigate("Stan Lee B'day Special")}
                 >
                   <h5 className="cat-title">Stan Lee B'day Special</h5>
                   <video
@@ -176,9 +186,11 @@ const Banner = ({ list = [] }) => {
               <div className="col pb-4">
                 <div
                   className="cat-block"
+                  role={"button"}
                   style={{
                     height: "calc(((((100vw - (7rem + 6rem))/2)/3) ) - 1.5rem)",
                   }}
+                  onClick={() => handleNavigate("Seven Chakra’s Powers")}
                 >
                   <h5 className="cat-title">Seven Chakra's Powers Video</h5>
                   <video
@@ -197,9 +209,11 @@ const Banner = ({ list = [] }) => {
               <div className="col pb-4">
                 <div
                   className="cat-block"
+                  role={"button"}
                   style={{
                     height: "calc(((((100vw - (7rem + 6rem))/2)/3)) - 1.5rem)",
                   }}
+                  onClick={() => handleNavigate("Madhushala")}
                 >
                   <h5 className="cat-title">Madhushala NFTs</h5>
                   <img
@@ -214,6 +228,7 @@ const Banner = ({ list = [] }) => {
               <div className="col">
                 <div
                   className="cat-block"
+                  role={"button"}
                   style={{
                     height: "calc(((((100vw - (7rem + 6rem))/2)/3)))",
                   }}

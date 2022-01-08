@@ -359,7 +359,7 @@ const NFTPlaceBid = ({
                                   />
                                 }
                                 content={
-                                  "The service fee include gas fee and the platform fee."
+                                  "The service fee includes gas fee and the platform fee."
                                 }
                                 placement="right"
                               />
@@ -395,11 +395,11 @@ const NFTPlaceBid = ({
                         <ToolTip
                           icon={<u role={"button"}>Learn more</u>}
                           content={
-                            "The bid, once placed, cannot be canceled until it is outbid. Your bid amount will be reflected in 'Funds on Hold' section of your wallet."
+                            "The bid, once placed, cannot be cancelled until it is outbid. Your bid amount will be reflected in 'Funds on Hold' section of your wallet."
                           }
                           placement="top"
                         />{" "}
-                        about how auctions work.
+                        about bid.
                       </>
                     </div>
 
