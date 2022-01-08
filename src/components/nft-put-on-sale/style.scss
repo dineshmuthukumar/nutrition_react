@@ -646,6 +646,9 @@
       width: 100%;
       margin-bottom: 1rem;
     }
+    &.disabled {
+      opacity: 0.3;
+    }
   }
   .quantity-to-value.error-msg {
     font-size: 0.9rem;

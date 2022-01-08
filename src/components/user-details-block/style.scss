@@ -14,7 +14,7 @@
     &-box {
       width: 100%;
       max-width: 26rem;
-      border: 0.3rem solid #000;
+      border: 0.2rem solid #000;
       height: 100%;
       position: relative;
       background: #fff;
@@ -36,14 +36,14 @@
       margin-bottom: 2rem;
     }
     &-name {
-      font-size: 2rem;
+      font-size: 1.8rem;
       font-family: $neue-helveticabold;
       margin-bottom: 1rem;
     }
     &-subname {
-      font-size: 1.6rem;
-      font-family: $neue-helveticalight;
-      margin-bottom: 1rem;
+      font-size: 1.2rem;
+      font-family: $neue-helveticamedium;
+      margin-bottom: 0;
       color: #999999;
     }
     &-list {
@@ -58,9 +58,12 @@
         display: flex;
         justify-content: space-between;
         width: 100%;
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
         list-style: none;
-        font-size: 1.4rem;
+        font-size: 1.2rem;
+        .value {
+          font-family: $neue-helveticamedium;
+        }
         .value {
           font-family: $neue-helveticabold;
         }
@@ -85,17 +88,18 @@
 .user-block-nav {
   margin: 0 0 2rem 0;
   .nav-item {
-    padding: 0 1rem;
+    padding: 0 0rem;
     @media screen and (max-width: 425px) {
       padding: 0;
     }
     .nav-link {
-      font-size: 1.3rem;
+      font-size: 1.1rem;
       color: #9c9c9b !important;
-      font-family: $neue-helveticamedium;
+      font-family: $neue-helveticalight;
       user-select: none;
+      color: #000 !important;
       &.active {
-        color: #000 !important;
+        font-family: $neue-helveticabold;
       }
     }
   }

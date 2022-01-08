@@ -7,11 +7,12 @@ import {
   sellerOwnedNFTsApi,
 } from "../../api/methods";
 import cardImage from "../../images/drops/nft_2.png";
-import userImage from "../../images/amitabh.png";
-import SellerNFTCard from "../seller-nft-card/index";
+import userImage from "../../images/user_1.png";
+
+import NFTCard from "../nft-card/index";
 import "./style.scss";
 
-const UserDetailsBlock = () => {
+const UserDetailsBlock = ({ setBanner }) => {
   const { slug } = useParams();
   const [key, setKey] = useState("owned");
   const [page, setPage] = useState(1);
@@ -58,6 +59,8 @@ const UserDetailsBlock = () => {
       setLoading(true);
       const result = await sellerDetailApi({ slug });
       setSellerDetail(result.data.data);
+      setBanner(result.data.data.users[0]?.banner_url);
+
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -94,7 +97,7 @@ const UserDetailsBlock = () => {
                     </h6>
                     <ul className="user-info-list">
                       <li>
-                        <span className="key">Favourites</span>
+                        <span className="key">Favorites</span>
                         <span className="value">
                           {sellerDetail.faved_count}
                         </span>
@@ -117,7 +120,7 @@ const UserDetailsBlock = () => {
                     <div className="col-sm-12">
                       {/* Place tab and filter here */}
                       <ul className="nav user-block-nav">
-                        <li className="nav-item">
+                        {/* <li className="nav-item">
                           <a
                             className={`nav-link ${
                               key === "onsale" ? "active" : ""
@@ -128,7 +131,7 @@ const UserDetailsBlock = () => {
                           >
                             On Sale ({onSaleCount})
                           </a>
-                        </li>
+                        </li> */}
                         <li className="nav-item">
                           <a
                             className={`nav-link ${
@@ -150,7 +153,7 @@ const UserDetailsBlock = () => {
                             role="button"
                             onClick={() => setKey("liked")}
                           >
-                            Liked ({favedCount})
+                            Favorites ({favedCount})
                           </a>
                         </li>
                       </ul>
@@ -161,9 +164,14 @@ const UserDetailsBlock = () => {
                       if (key === "owned") {
                         return ownedList.map((nft, i) => (
                           <div class="col-xl-4 col-lg-4 col-md- col-sm-6">
-                            <SellerNFTCard
+                            {/* <SellerNFTCard
                               key={`owned-${i}`}
                               nft={nft}
+                              image={cardImage}
+                            /> */}
+                            <NFTCard
+                              nft={nft}
+                              key={`owned-${i}`}
                               image={cardImage}
                             />
                           </div>
@@ -171,9 +179,14 @@ const UserDetailsBlock = () => {
                       } else if (key === "liked") {
                         return favedList.map((nft, i) => (
                           <div class="col-xl-4 col-lg-4 col-md- col-sm-6">
-                            <SellerNFTCard
-                              key={`owned-${i}`}
+                            {/* <SellerNFTCard
+                              key={`liked-${i}`}
                               nft={nft}
+                              image={cardImage}
+                            /> */}
+                            <NFTCard
+                              nft={nft}
+                              key={`liked-${i}`}
                               image={cardImage}
                             />
                           </div>
@@ -181,9 +194,14 @@ const UserDetailsBlock = () => {
                       } else {
                         return onSaleList.map((nft, i) => (
                           <div class="col-xl-4 col-lg-4 col-md- col-sm-6">
-                            <SellerNFTCard
-                              key={`owned-${i}`}
+                            {/* <SellerNFTCard
+                              key={`onsale-${i}`}
                               nft={nft}
+                              image={cardImage}
+                            /> */}
+                            <NFTCard
+                              nft={nft}
+                              key={`onsale-${i}`}
                               image={cardImage}
                             />
                           </div>

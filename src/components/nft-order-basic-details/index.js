@@ -56,7 +56,7 @@ const NFTOrderBaseDetails = ({
   const erc721 = nft.nft_type === "erc721";
   const isBid = _.get(nft, "order_details.is_bid", false);
   const isBuy = _.get(nft, "order_details.is_buy", false);
-  const isOwner = _.has(nft, "owner_details");
+  const isOwner = _.get(nft, "order_details.owned", false);
   const orderDetails = _.get(nft, "order_details", {});
   const ownerOrderDetails = _.get(nft, "owner_details.orders", []);
 
