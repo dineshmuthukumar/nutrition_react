@@ -84,7 +84,7 @@ const NFTOrderSummary = ({
                         orderDetails.minimum_bid
                       )
                 }
-                tooltip="Base Price"
+                tooltip="Initial Seller-Listed Price"
               />
             </div>
           )}

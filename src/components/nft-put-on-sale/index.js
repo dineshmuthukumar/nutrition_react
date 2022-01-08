@@ -20,6 +20,8 @@ import {
 import { nftBidApi, nftBuyApi, putOnSaleApi } from "../../api/methods";
 import HelpLine from "../help-line";
 import "./style.scss";
+import ToolTip from "../tooltip/index";
+import { BsFillQuestionCircleFill } from "react-icons/bs";
 
 const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
   const { user } = useSelector((state) => state.user.data);
@@ -376,6 +378,7 @@ const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
                                     className="input-sale"
                                     value={erc1155Sale.buyAmount}
                                     placeholder="0"
+                                    maxLength={20}
                                     onChange={handleErc1155BuyAmountChange}
                                   />
                                 </div>
@@ -388,6 +391,7 @@ const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
                                   <input
                                     type="text"
                                     className="input-sale-quantity"
+                                    maxLength={20}
                                     value={erc1155Sale.buyQuantity}
                                     placeholder="0 NFTs"
                                     onChange={handleErc1155QuantityInputChange}
@@ -423,6 +427,7 @@ const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
                                     className="input-sale"
                                     value={erc721Sale.buyAmount}
                                     placeholder="0"
+                                    maxLength={20}
                                     disabled={!erc721Sale.isBuy}
                                     onChange={handleErc721BuyAmountChange}
                                   />
@@ -446,6 +451,7 @@ const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
                                     type="text"
                                     className="input-sale"
                                     value={erc721Sale.bidAmount}
+                                    maxLength={20}
                                     placeholder="0"
                                     disabled={!erc721Sale.isBid}
                                     onChange={handleErc721BidAmountChange}
@@ -487,7 +493,7 @@ const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
 
                       <div className="bottom-area">
                         <div className="terms text-secondary">
-                          A royalty fee of {nft.royalties}% will be applicable
+                          A artist fee of {nft.royalties}% will be applicable
                           for every transaction.
                         </div>
 
@@ -759,13 +765,41 @@ const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
                                 </li>
                               )}
                               <li>
-                                <span className="key">Artist Fee</span>
+                                <span className="key">
+                                  Artist Fee{" "}
+                                  <ToolTip
+                                    icon={
+                                      <BsFillQuestionCircleFill
+                                        size={16}
+                                        className="ms-2 check-icon"
+                                      />
+                                    }
+                                    content={
+                                      "The royalty paid to the artist or the inspiration."
+                                    }
+                                    placement="right"
+                                  />
+                                </span>
                                 <span className="value">
                                   - {parseFloat(nft.royalties)}%
                                 </span>
                               </li>
                               <li>
-                                <span className="key">Service Fee</span>
+                                <span className="key">
+                                  Service Fee{" "}
+                                  <ToolTip
+                                    icon={
+                                      <BsFillQuestionCircleFill
+                                        size={16}
+                                        className="ms-2 check-icon"
+                                      />
+                                    }
+                                    content={
+                                      "The service fee include gas fee and the platform fee."
+                                    }
+                                    placement="right"
+                                  />
+                                </span>
                                 <span className="value">
                                   - {parseFloat(nft.service_fee)}%
                                 </span>
@@ -938,7 +972,21 @@ const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
                                 </span>
                               </li>
                               <li>
-                                <span className="key">Service Fee</span>
+                                <span className="key">
+                                  Service Fee{" "}
+                                  <ToolTip
+                                    icon={
+                                      <BsFillQuestionCircleFill
+                                        size={16}
+                                        className="ms-2 check-icon"
+                                      />
+                                    }
+                                    content={
+                                      "The service fee include gas fee and the platform fee."
+                                    }
+                                    placement="right"
+                                  />
+                                </span>
                                 <span className="value">
                                   - {parseFloat(nft.service_fee)}%
                                 </span>

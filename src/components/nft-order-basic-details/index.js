@@ -22,6 +22,7 @@ import CancelNft from "./nft-cancel-box";
 import userImg from "../../images/user_1.png";
 
 import "./style.scss";
+import { BsFillQuestionCircleFill } from "react-icons/bs";
 const NFTOrderBaseDetails = ({
   nft,
   placeBidPop,
@@ -87,7 +88,25 @@ const NFTOrderBaseDetails = ({
         />
         {transferringNFT && (
           <span className="nft-status-tag rounded-pill">
-            {soldOut ? "Sold Out" : "Transferring NFT..."}
+            {soldOut ? (
+              "Sold Out"
+            ) : (
+              <>
+                Token Transfer Initiated{" "}
+                <ToolTip
+                  icon={
+                    <BsFillQuestionCircleFill
+                      size={16}
+                      className="ms-2 check-icon"
+                    />
+                  }
+                  content={
+                    "The service fee include gas fee and the platform fee."
+                  }
+                  placement="top"
+                />
+              </>
+            )}
           </span>
         )}
       </div>
@@ -361,12 +380,24 @@ const NFTOrderBaseDetails = ({
               );
             } else if (transferringNFT) {
               return (
-                <button
-                  disabled={true}
-                  className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
-                >
-                  Transferring NFT...
-                </button>
+                <ToolTip
+                  icon={
+                    <button
+                      disabled={true}
+                      className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                    >
+                      Token Transfer Initiated{" "}
+                      <BsFillQuestionCircleFill
+                        size={16}
+                        className="ms-2 check-icon"
+                      />
+                    </button>
+                  }
+                  content={
+                    "The NFT's transfer/transaction is in process on the blockchain. Visit again for latest sale-status."
+                  }
+                  placement="top"
+                />
               );
             } else if (isOrderCancelled) {
               return (

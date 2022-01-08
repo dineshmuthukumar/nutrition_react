@@ -17,6 +17,8 @@ import { nftBidApi, nftBuyApi } from "../../api/methods";
 
 import "./style.scss";
 import { useParams } from "react-router-dom";
+import ToolTip from "../tooltip/index";
+import { BsFillQuestionCircleFill } from "react-icons/bs";
 
 const NFTPlaceBuy = ({
   placeBuyPop = false,
@@ -343,6 +345,7 @@ const NFTPlaceBuy = ({
                                 className="input-quantity"
                                 value={buyQuantity}
                                 placeholder="0 NFTs"
+                                maxLength={20}
                                 onChange={handleBuyInputChange}
                               />
                               {/* text-dark -> dark text after entering quantity */}
@@ -364,7 +367,19 @@ const NFTPlaceBuy = ({
                         <div className="input-field-bid">
                           <div className="services-fee-box">
                             <label className="input-bid-text">
-                              Service Fee
+                              Service Fee{" "}
+                              <ToolTip
+                                icon={
+                                  <BsFillQuestionCircleFill
+                                    size={16}
+                                    className="ms-2 check-icon"
+                                  />
+                                }
+                                content={
+                                  "The service fee include gas fee and the platform fee."
+                                }
+                                placement="right"
+                              />
                             </label>
                             <h4>{parseFloat(nft.service_fee)}%</h4>
                           </div>

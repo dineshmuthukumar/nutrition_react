@@ -15,6 +15,8 @@ import {
 import { nftBidApi } from "../../api/methods";
 
 import "./style.scss";
+import ToolTip from "../tooltip/index";
+import { BsFillQuestionCircleFill } from "react-icons/bs";
 
 const NFTPlaceBid = ({
   placeBidPop = false,
@@ -327,6 +329,7 @@ const NFTPlaceBid = ({
                           className="input-bid"
                           value={bidAmount}
                           placeholder="0"
+                          maxLength={20}
                           disabled={transferringNFT || soldOut}
                           onChange={handleBidInputChange}
                         />
@@ -342,7 +345,21 @@ const NFTPlaceBid = ({
                     </div>
                     <div className={`input-bid-container mt-5`}>
                       <div className="services-fee-box">
-                        <label className="input-bid-text">Service Fee</label>
+                        <label className="input-bid-text">
+                          Service Fee{" "}
+                          <ToolTip
+                            icon={
+                              <BsFillQuestionCircleFill
+                                size={16}
+                                className="ms-2 check-icon"
+                              />
+                            }
+                            content={
+                              "The service fee include gas fee and the platform fee."
+                            }
+                            placement="right"
+                          />
+                        </label>
                         <h4>{parseFloat(nft.service_fee)}%</h4>
                       </div>
                     </div>
@@ -366,14 +383,14 @@ const NFTPlaceBid = ({
                   <div className="bottom-area">
                     <div className="terms text-secondary">
                       <>
-                        Once a bid is placed, it cannot be withdrawn.
-                        <a
-                          href={process.env.REACT_APP_HELP_URL}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          Learn more
-                        </a>{" "}
+                        Once a bid is placed, it cannot be withdrawn.{" "}
+                        <ToolTip
+                          icon={<u role={"button"}>Learn more</u>}
+                          content={
+                            "The bid, once placed, cannot be canceled until it is outbid. Your bid amount will be reflected in 'Funds on Hold' section of your wallet."
+                          }
+                          placement="top"
+                        />{" "}
                         about how auctions work.
                       </>
                     </div>
@@ -386,23 +403,35 @@ const NFTPlaceBid = ({
                         Back
                       </div>
                       <div className="place-bid-button">
-                        <button
-                          disabled={bid.buttonDisable}
-                          className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop ${bid.processClass}`} //process -> proccessing
-                          onClick={handleBid}
-                        >
-                          {(() => {
-                            if (soldOut) {
-                              return "Sold Out";
-                            } else if (transferringNFT) {
-                              return "Transferring NFT...";
-                            } else if (bidAmount > 0) {
-                              return bid.buttonName;
-                            } else {
-                              return "Bid amount is required";
+                        {transferringNFT ? (
+                          <ToolTip
+                            icon={
+                              <button disabled>Token Transfer Initiated</button>
                             }
-                          })()}
-                        </button>
+                            content={
+                              "The NFT's transfer/transaction is in process on the blockchain. Visit again for latest sale-status."
+                            }
+                            placement="top"
+                          />
+                        ) : (
+                          <button
+                            disabled={bid.buttonDisable}
+                            className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop ${bid.processClass}`} //process -> proccessing
+                            onClick={handleBid}
+                          >
+                            {(() => {
+                              if (soldOut) {
+                                return "Sold Out";
+                              } else if (transferringNFT) {
+                                return "Token Transfer Initiated";
+                              } else if (bidAmount > 0) {
+                                return bid.buttonName;
+                              } else {
+                                return "Bid amount is required";
+                              }
+                            })()}
+                          </button>
+                        )}
                       </div>
                     </div>
                   </div>

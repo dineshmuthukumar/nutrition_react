@@ -15,6 +15,8 @@ import {
 import { nftBuyApi } from "../../api/methods";
 
 import "./style.scss";
+import ToolTip from "../tooltip/index";
+import { BsFillQuestionCircleFill } from "react-icons/bs";
 
 const NFTPlaceBid = ({
   placeBuyPop = false,
@@ -337,6 +339,7 @@ const NFTPlaceBid = ({
                             className="input-buy-quantity"
                             value={buyQuantity}
                             placeholder="0 NFTs"
+                            maxLength={20}
                             disabled={transferringNFT || soldOut}
                             onChange={handleBuyInputChange}
                           />
@@ -362,7 +365,21 @@ const NFTPlaceBid = ({
                     </div>
                     <div className={`input-buy-container mt-3`}>
                       <div className="services-fee-box">
-                        <label className="input-buy-text">Service Fee</label>
+                        <label className="input-buy-text">
+                          Service Fee{" "}
+                          <ToolTip
+                            icon={
+                              <BsFillQuestionCircleFill
+                                size={16}
+                                className="ms-2 check-icon"
+                              />
+                            }
+                            content={
+                              "The service fee include gas fee and the platform fee."
+                            }
+                            placement="right"
+                          />
+                        </label>
                         <h4>{parseFloat(nft.service_fee)}%</h4>
                       </div>
                     </div>
@@ -383,17 +400,7 @@ const NFTPlaceBid = ({
                   </div>
                   <div className="bottom-area">
                     <div className="terms text-secondary">
-                      <>
-                        An nft can't be reversed after it's been purchased.
-                        <a
-                          href={process.env.REACT_APP_HELP_URL}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          Learn more
-                        </a>{" "}
-                        about how it works.
-                      </>
+                      <>An nft can't be reversed after it's been purchased.</>
                     </div>
 
                     <div className="bottom-content-pop">
@@ -404,39 +411,93 @@ const NFTPlaceBid = ({
                         Back
                       </div>
                       <div className="place-buy-button">
-                        <button
-                          disabled={(() => {
-                            if (erc721) {
-                              return false;
-                            } else {
-                              return buy.buttonDisable;
+                        {transferringNFT ? (
+                          <ToolTip
+                            icon={
+                              <button
+                                disabled
+                                className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-buy-btn-pop ${buy.processClass}`} //process -> proccessing
+                                onClick={handleBuy}
+                              >
+                                Token Transfer Initiated{" "}
+                                <BsFillQuestionCircleFill
+                                  size={16}
+                                  className="ms-2 check-icon"
+                                />
+                              </button>
                             }
-                          })()}
-                          className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-buy-btn-pop ${buy.processClass}`} //process -> proccessing
-                          onClick={handleBuy}
-                        >
-                          {(() => {
-                            if (erc721) {
-                              if (soldOut) {
-                                return "Sold Out";
-                              } else if (transferringNFT) {
-                                return "Transferring NFT...";
-                              } else {
-                                return buy.buttonName;
-                              }
-                            } else {
-                              if (soldOut) {
-                                return "Sold Out";
-                              } else if (transferringNFT) {
-                                return "Transferring NFT...";
-                              } else if (buyQuantity > 0) {
-                                return buy.buttonName;
-                              } else {
-                                return "NFT quantity is required";
-                              }
+                            content={
+                              "The NFT's transfer/transaction is in process on the blockchain. Visit again for latest sale-status."
                             }
-                          })()}
-                        </button>
+                            placement="top"
+                          />
+                        ) : (
+                          <button
+                            disabled={(() => {
+                              if (erc721) {
+                                return false;
+                              } else {
+                                return buy.buttonDisable;
+                              }
+                            })()}
+                            className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-buy-btn-pop ${buy.processClass}`} //process -> proccessing
+                            onClick={handleBuy}
+                          >
+                            {(() => {
+                              if (erc721) {
+                                if (soldOut) {
+                                  return "Sold Out";
+                                } else if (transferringNFT) {
+                                  return (
+                                    <>
+                                      Token Transfer Initiated{" "}
+                                      <ToolTip
+                                        icon={
+                                          <BsFillQuestionCircleFill
+                                            size={16}
+                                            className="ms-2 check-icon"
+                                          />
+                                        }
+                                        content={
+                                          "The NFT's transfer/transaction is in process on the blockchain. Visit again for latest sale-status."
+                                        }
+                                        placement="top"
+                                      />
+                                    </>
+                                  );
+                                } else {
+                                  return buy.buttonName;
+                                }
+                              } else {
+                                if (soldOut) {
+                                  return "Sold Out";
+                                } else if (transferringNFT) {
+                                  return (
+                                    <>
+                                      Token Transfer Initiated{" "}
+                                      <ToolTip
+                                        icon={
+                                          <BsFillQuestionCircleFill
+                                            size={16}
+                                            className="ms-2 check-icon "
+                                          />
+                                        }
+                                        content={
+                                          "The NFT's transfer/transaction is in process on the blockchain. Visit again for latest sale-status."
+                                        }
+                                        placement="top"
+                                      />
+                                    </>
+                                  );
+                                } else if (buyQuantity > 0) {
+                                  return buy.buttonName;
+                                } else {
+                                  return "NFT quantity is required";
+                                }
+                              }
+                            })()}
+                          </button>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -506,7 +567,7 @@ const NFTPlaceBid = ({
                       </div>
                       {!erc721 && (
                         <div className="success-summary">
-                          <div>Quantity</div>
+                          <div>Edition(s)</div>
                           <div className="bold">{successData.quantity}</div>
                         </div>
                       )}
