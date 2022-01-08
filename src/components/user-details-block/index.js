@@ -8,7 +8,8 @@ import {
 } from "../../api/methods";
 import cardImage from "../../images/drops/nft_2.png";
 import userImage from "../../images/user_1.png";
-import SellerNFTCard from "../seller-nft-card/index";
+
+import NFTCard from "../nft-card/index";
 import "./style.scss";
 
 const UserDetailsBlock = ({ setBanner }) => {
@@ -96,7 +97,7 @@ const UserDetailsBlock = ({ setBanner }) => {
                     </h6>
                     <ul className="user-info-list">
                       <li>
-                        <span className="key">Favourites</span>
+                        <span className="key">Favorites</span>
                         <span className="value">
                           {sellerDetail.faved_count}
                         </span>
@@ -119,7 +120,7 @@ const UserDetailsBlock = ({ setBanner }) => {
                     <div className="col-sm-12">
                       {/* Place tab and filter here */}
                       <ul className="nav user-block-nav">
-                        <li className="nav-item">
+                        {/* <li className="nav-item">
                           <a
                             className={`nav-link ${
                               key === "onsale" ? "active" : ""
@@ -130,7 +131,7 @@ const UserDetailsBlock = ({ setBanner }) => {
                           >
                             On Sale ({onSaleCount})
                           </a>
-                        </li>
+                        </li> */}
                         <li className="nav-item">
                           <a
                             className={`nav-link ${
@@ -152,7 +153,7 @@ const UserDetailsBlock = ({ setBanner }) => {
                             role="button"
                             onClick={() => setKey("liked")}
                           >
-                            Liked ({favedCount})
+                            Favorites ({favedCount})
                           </a>
                         </li>
                       </ul>
@@ -163,9 +164,14 @@ const UserDetailsBlock = ({ setBanner }) => {
                       if (key === "owned") {
                         return ownedList.map((nft, i) => (
                           <div class="col-xl-4 col-lg-4 col-md- col-sm-6">
-                            <SellerNFTCard
+                            {/* <SellerNFTCard
                               key={`owned-${i}`}
                               nft={nft}
+                              image={cardImage}
+                            /> */}
+                            <NFTCard
+                              nft={nft}
+                              key={`owned-${i}`}
                               image={cardImage}
                             />
                           </div>
@@ -173,9 +179,14 @@ const UserDetailsBlock = ({ setBanner }) => {
                       } else if (key === "liked") {
                         return favedList.map((nft, i) => (
                           <div class="col-xl-4 col-lg-4 col-md- col-sm-6">
-                            <SellerNFTCard
-                              key={`owned-${i}`}
+                            {/* <SellerNFTCard
+                              key={`liked-${i}`}
                               nft={nft}
+                              image={cardImage}
+                            /> */}
+                            <NFTCard
+                              nft={nft}
+                              key={`liked-${i}`}
                               image={cardImage}
                             />
                           </div>
@@ -183,9 +194,14 @@ const UserDetailsBlock = ({ setBanner }) => {
                       } else {
                         return onSaleList.map((nft, i) => (
                           <div class="col-xl-4 col-lg-4 col-md- col-sm-6">
-                            <SellerNFTCard
-                              key={`owned-${i}`}
+                            {/* <SellerNFTCard
+                              key={`onsale-${i}`}
                               nft={nft}
+                              image={cardImage}
+                            /> */}
+                            <NFTCard
+                              nft={nft}
+                              key={`onsale-${i}`}
                               image={cardImage}
                             />
                           </div>
