@@ -167,8 +167,32 @@
     margin: 1.5rem 0;
     color: #ffffff;
   }
+
+  #drop_outer {
+    display: block;
+    font-size: 1.2rem;
+    font-family: "neue_helveticamedium" !important;
+    border-radius: 0.2rem;
+    margin: 1.5rem 0;
+    display: block;
+    width: 100%;
+    padding: 0.25rem 1rem;
+    clear: both;
+    font-weight: 400;
+    text-align: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    color: #ffffff;
+  }
 }
 
+.side-menu #drop_outer + .dropdown-menu-end {
+  position: relative;
+  transition: 0.5s all ease;
+  background: #222127;
+}
 .menu-icon {
   margin-left: 1rem;
   display: block;

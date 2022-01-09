@@ -48,7 +48,7 @@ const BidValue = ({
           </div>
         ) : (
           <>
-            <div className="crypto me-3">
+            <div className="crypto me-2">
               {currency} {value}
               {isLeft && <div className="edition">left</div>}
             </div>

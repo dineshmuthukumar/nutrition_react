@@ -573,8 +573,40 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                     drop="start"
                     as={HeaderMobileMenuCloseIcon}
                   ></Dropdown.Item>
-                  <Dropdown.Item href="/">Explore</Dropdown.Item>
-                  <Dropdown.Item href="/">Drops</Dropdown.Item>
+                  {/* <Dropdown.Item href="/">Drops</Dropdown.Item> */}
+                  <Dropdown autoClose={["inside", "outside"]} className="me-0">
+                    <Dropdown.Toggle
+                      align="start"
+                      drop="start"
+                      as={DropToggle}
+                    ></Dropdown.Toggle>
+
+                    <Dropdown.Menu align="end">
+                      <Dropdown.Item
+                        as="button"
+                        onClick={() =>
+                          window.open(
+                            `${process.env.REACT_APP_CHAKRA_URL}`,
+                            "_blank"
+                          )
+                        }
+                      >
+                        Chakra The Invincible NFTs
+                      </Dropdown.Item>
+                      <Dropdown.Item
+                        as="button"
+                        onClick={() =>
+                          window.open(
+                            `${process.env.REACT_APP_AMITABH_URL}`,
+                            "_blank"
+                          )
+                        }
+                      >
+                        BigB Punks NFTs
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+
                   <Dropdown.Item href="/">Marketplace</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
