@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { Modal, Table } from "react-bootstrap";
 import { IoIosRocket } from "react-icons/io";
 import { BiX } from "react-icons/bi";
+import _ from "lodash";
 
 import BidCard from "./bid-card";
 import BidName from "./bid-name";
@@ -39,6 +40,7 @@ const BidHistory = ({
   const [loading, setLoading] = useState(false);
   const [acceptBidConfirm, setAcceptBidConfirm] = useState(false);
   const [acceptBidDetail, setAcceptBidDetail] = useState({});
+  const isBid = _.get(nft, "order_details.is_bid", false);
 
   const fetchHistory = async (pageNo) => {
     try {
@@ -95,7 +97,7 @@ const BidHistory = ({
       ) : (
         <div className="bid-history if_bid_empty_cell">
           <HistoryHeader nftOwner={nftOwner} />
-          {orderDetails.is_bid && (
+          {isBid && (
             <>
               {isOrderOnSale && (
                 <div className="bid-history-title-content">
