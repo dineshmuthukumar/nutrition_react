@@ -382,7 +382,7 @@ const ShowAll = ({ categories }) => {
                         ))}
                       </Dropdown.Menu>
                     </Dropdown>
-                    <Dropdown className="me-3">
+                    <Dropdown className="me-2">
                       <Dropdown.Toggle
                         align="start"
                         drop="start"

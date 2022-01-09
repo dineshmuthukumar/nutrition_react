@@ -270,8 +270,69 @@ const NFTPlaceBid = ({
                         />
                       )}
                     </div>
+                    <div className="pop-nft-info">
+                      <div className="pop-nft-media">
+                        {(() => {
+                          if (nft?.asset_type?.includes("image")) {
+                            return (
+                              <img
+                                alt="media logo"
+                                className="type_image typeimg_audio"
+                                src={nft.asset_url ? nft.asset_url : sample}
+                              />
+                            );
+                          } else if (nft?.asset_type?.includes("audio")) {
+                            return (
+                              <>
+                                <img
+                                  alt="media logo"
+                                  className="type_image typeimg_audio"
+                                  src={nft.cover_url ? nft.cover_url : sample}
+                                />
+                              </>
+                            );
+                          } else if (nft?.asset_type?.includes("video")) {
+                            return (
+                              <img
+                                alt="media logo"
+                                className="type_image typeimg_audio"
+                                src={nft.cover_url ? nft.cover_url : sample}
+                              />
+                            );
+                          } else {
+                            return (
+                              <img
+                                alt="media logo"
+                                className="type_image typeimg_audio"
+                                src={nft.asset_url ? nft.asset_url : sample}
+                              />
+                            );
+                          }
+                        })()}
+                      </div>
 
-                    <div className="pop-nft-buy-media">
+                      <div className="pop-nft-content">
+                        <div className="pop-author-name text-center">
+                          {nft?.category_name}
+                        </div>
+                        <div className="pop-nft-title text-center mb-1">
+                          {nft?.name}
+                        </div>
+                        {/* <div className="erc-type text-center mb-1">
+                          1 of 1 <span>left</span>
+                        </div> */}
+                        {erc721 ? (
+                          <div className="erc-type text-center mb-1">
+                            1 of 1 <span>left</span>
+                          </div>
+                        ) : (
+                          <div className="erc-type text-center mb-1">
+                            {`${orderDetails.available_quantity} / ${orderDetails.total_quantity}`}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                    {/* <div className="pop-nft-buy-media">
                       {(() => {
                         if (nft?.asset_type?.includes("image")) {
                           return (
@@ -315,8 +376,8 @@ const NFTPlaceBid = ({
                     </div>
                     <div className="pop-nft-buy-title text-center mb-1">
                       {nft?.name}
-                    </div>
-                    {erc721 ? (
+                    </div> */}
+                    {/* {erc721 ? (
                       <div className="erc-quantity text-center mb-1">
                         1 of 1 <span>left</span>
                       </div>
@@ -324,79 +385,88 @@ const NFTPlaceBid = ({
                       <div className="erc-quantity text-center mb-1">
                         {`${orderDetails.available_quantity} / ${orderDetails.total_quantity}`}
                       </div>
-                    )}
+                    )} */}
                     {/* error-bid -> less value than min bid,  error-balance -> low value, error-balance-float -> low value in quantity  */}
-                    <div className={`input-buy-container mt-4 ${error}`}>
-                      <label className="input-buy-text">
-                        {erc721
-                          ? `Price of NFT`
-                          : `Enter Quantity Max (${orderDetails.available_quantity})`}
-                      </label>
+                    <div className="sticky-bottom-fix buyfee-block">
+                      <div className={`input-buy-container mt-4 ${error}`}>
+                        <label className="input-buy-text">
+                          {erc721
+                            ? `Price of NFT`
+                            : `Enter Quantity Max (${orderDetails.available_quantity})`}
+                        </label>
 
-                      {!erc721 ? (
-                        <div className="input-buy-quantity-container">
-                          <input
-                            type="text"
-                            className="input-buy-quantity"
-                            value={buyQuantity}
-                            placeholder="0 NFTs"
-                            maxLength={20}
-                            disabled={transferringNFT || soldOut}
-                            onChange={handleBuyInputChange}
-                          />
-                          {/* text-dark -> dark text after entering quantity */}
-                          <span
-                            className={`quantity-to-value ${buy.amountClass}`}
-                          >
-                            {currencyFormat(buyAmount, "USD")}
-                          </span>
-                        </div>
-                      ) : (
-                        // <div className="input-buy-wrap">
-                        <h1>{currencyFormat(buyAmount, "USD")}</h1>
-                        // </div>
-                      )}
-                      {/* <div className="balance-details">
+                        {!erc721 ? (
+                          <div className="input-buy-quantity-container">
+                            <input
+                              type="text"
+                              className="input-buy-quantity"
+                              value={buyQuantity}
+                              placeholder="0 NFTs"
+                              maxLength={20}
+                              disabled={transferringNFT || soldOut}
+                              onChange={handleBuyInputChange}
+                            />
+                            {/* text-dark -> dark text after entering quantity */}
+                            <span
+                              className={`quantity-to-value ${buy.amountClass}`}
+                            >
+                              {currencyFormat(buyAmount, "USD")}
+                            </span>
+                          </div>
+                        ) : (
+                          // <div className="input-buy-wrap">
+                          <h1>{currencyFormat(buyAmount, "USD")}</h1>
+                          // </div>
+                        )}
+                        {/* <div className="balance-details">
                         {user &&
                           `Your wallet balance is ${currencyFormat(
                             user?.balance,
                             "USD"
                           )}`}
                       </div> */}
-                    </div>
-                    <div className={`input-buy-container mt-3`}>
-                      <div className="services-fee-box">
-                        <label className="input-buy-text">
-                          Service Fee{" "}
-                          <ToolTip
-                            icon={
-                              <BsFillQuestionCircleFill
-                                size={16}
-                                className="ms-2 check-icon"
+                        <hr class="custom-divider"></hr>
+                      </div>
+
+                      <div className="input-buyfee-wrap mt-4">
+                        <div className={`input-buy-container`}>
+                          <div className="services-fee-box">
+                            <label className="input-buy-text">
+                              Service Fee{" "}
+                              <ToolTip
+                                icon={
+                                  <BsFillQuestionCircleFill
+                                    size={16}
+                                    className="ms-2 check-icon"
+                                  />
+                                }
+                                content={
+                                  "The service fee includes gas fee and the platform fee."
+                                }
+                                placement="right"
                               />
-                            }
-                            content={
-                              "The service fee includes gas fee and the platform fee."
-                            }
-                            placement="right"
-                          />
-                        </label>
-                        <h4>{parseFloat(nft.service_fee)}%</h4>
+                            </label>
+                            <h4>{parseFloat(nft.service_fee)}%</h4>
+                          </div>
+                        </div>
+                        <div className={`input-buy-container`}>
+                          <div className="total-amount-box">
+                            <label className="input-buy-text">
+                              Total Amount
+                            </label>
+                            <h1>
+                              {currencyFormat(
+                                parseFloat(buyAmount) +
+                                  (parseFloat(buyAmount) *
+                                    parseFloat(nft.service_fee)) /
+                                    100,
+                                "USD"
+                              )}
+                            </h1>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                    <div className={`input-buy-container mt-4`}>
-                      <div className="total-amount-box">
-                        <label className="input-buy-text">Total Amount</label>
-                        <h1>
-                          {currencyFormat(
-                            parseFloat(buyAmount) +
-                              (parseFloat(buyAmount) *
-                                parseFloat(nft.service_fee)) /
-                                100,
-                            "USD"
-                          )}
-                        </h1>
-                      </div>
+                      <hr class="custom-divider"></hr>
                     </div>
                   </div>
                   <div className="bottom-area">
@@ -505,14 +575,16 @@ const NFTPlaceBid = ({
                 </>
               ) : (
                 <>
-                  <div className="sucess-title">
-                    <FaCheckCircle color={"#23bf61"} size={60} />
-                    <div className="message mt-3">
-                      You have successfully purchased your NFT. <br /> You can
-                      view them in the 'My NFT' section of your profile.
-                    </div>
-                  </div>
                   <div className="pop-body-buy-content success">
+                    <div className="sucess-title">
+                      <FaCheckCircle color={"#23bf61"} size={60} />
+                      <div className="message mt-3">
+                        We have initiated the purchase of your NFT. <br /> Once
+                        the blockchain transfer is complete, we will notify you,
+                        after which you can view them in the 'My NFTs' section
+                        of your profile.
+                      </div>
+                    </div>
                     <div className="pop-nft-buy-media mt-4 preview">
                       {(() => {
                         if (nft?.asset_type?.includes("image")) {
