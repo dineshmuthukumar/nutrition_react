@@ -83,7 +83,8 @@ const OrderDetails = () => {
 
   const { user } = useSelector((state) => state.user.data);
 
-  const isOwner = _.has(nft, "owner_details");
+  const isOwner = _.get(nft, "order_details.owned", false);
+  const orderDetails = _.get(nft, "order_details", {});
 
   useEffect(() => {
     document.body.scrollTop = 0;
@@ -293,6 +294,7 @@ const OrderDetails = () => {
                       isOrderOnSale={isOrderOnSale}
                       isOrderSuccess={isOrderSuccess}
                       isOrderCancelled={isOrderCancelled}
+                      orderDetails={orderDetails}
                     />
                   );
                 } else {
