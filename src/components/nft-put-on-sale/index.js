@@ -492,9 +492,9 @@ const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
                             </div>
                           )}
 
-                          <div className="px-3">
+                          {/* <div className="px-3">
                             <HelpLine />
-                          </div>
+                          </div> */}
                         </div>
                       </div>
 
