@@ -186,7 +186,7 @@
     }
 
     .input-buy-container {
-      padding: 0 3rem;
+      padding: 0 0rem;
       .input-buy-text {
         font-size: 1rem;
         color: #000000;
@@ -300,6 +300,14 @@
         }
       }
     }
+    .input-buyfee-wrap {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      .input-buy-container {
+        padding: 0 0;
+      }
+    }
 
     .sucess-title {
       text-align: center;
@@ -330,11 +338,11 @@
     }
 
     .pop-body-buy-content {
-      height: calc(100% - 18rem);
+      height: calc(100% - 15rem);
       overflow: hidden;
       overflow-y: auto;
       &.success {
-        height: calc(100% - 22rem);
+        height: calc(100% - 9rem);
       }
     }
 
@@ -406,5 +414,13 @@
         font-family: $neue-helveticabold;
       }
     }
+  }
+}
+
+.sticky-bottom-fix {
+  position: sticky;
+  top: 100vh;
+  &.buyfee-block {
+    padding: 0 2rem;
   }
 }
