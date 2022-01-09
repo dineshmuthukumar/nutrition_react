@@ -414,9 +414,12 @@ const NFTPlaceBid = ({
                             </span>
                           </div>
                         ) : (
-                          // <div className="input-buy-wrap">
-                          <h1>{currencyFormat(buyAmount, "USD")}</h1>
-                          // </div>
+                          <>
+                            {/* <div className="input-buy-wrap"> */}
+                            <h1>{currencyFormat(buyAmount, "USD")}</h1>
+                            {/* </div> */}
+                            <hr class="custom-divider"></hr>
+                          </>
                         )}
                         {/* <div className="balance-details">
                         {user &&
@@ -425,7 +428,6 @@ const NFTPlaceBid = ({
                             "USD"
                           )}`}
                       </div> */}
-                        <hr class="custom-divider"></hr>
                       </div>
 
                       <div className="input-buyfee-wrap mt-4">
