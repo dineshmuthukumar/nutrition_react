@@ -69,6 +69,7 @@ const NFTOrderBaseDetails = ({
       });
       if (result.data.success) {
         setAcceptBidSucess(true);
+        window.location.reload(); //temp
       }
     } catch (error) {
       if (error.response.data.status === 422) {

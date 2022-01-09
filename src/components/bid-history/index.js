@@ -29,6 +29,7 @@ const BidHistory = ({
   isOrderOnSale,
   isOrderSuccess,
   isOrderCancelled,
+  orderDetails,
 }) => {
   const { slug } = useParams();
   const [modalShow, setModalShow] = useState(false);
@@ -94,52 +95,56 @@ const BidHistory = ({
       ) : (
         <div className="bid-history if_bid_empty_cell">
           <HistoryHeader nftOwner={nftOwner} />
-          {isOrderOnSale && (
-            <div className="bid-history-title-content">
-              <div className="bid-history-title">History</div>
-              <div className="bid-history-filter"></div>
-            </div>
-          )}
-
-          {histories.length > 0 && isOrderOnSale ? (
-            <div className={`bid-history-content ${isOwner ? "owner" : ""}`}>
-              {histories.map((history, i) => (
-                <BidCard
-                  key={`bid-history${i}`}
-                  latestIndex={i}
-                  history={history}
-                  acceptBidConfirm={acceptBidConfirm}
-                  setAcceptBidConfirm={setAcceptBidConfirm}
-                  setAcceptBidDetail={setAcceptBidDetail}
-                />
-              ))}
-
-              {totalCount <= histories.length ? (
-                <BidCard isEnd />
-              ) : (
-                <div className="bid-histroy-card">
-                  <div className="history-end-content">
-                    <span role="button" onClick={handleClick}>
-                      View More
-                    </span>
-                  </div>
+          {orderDetails.is_bid && (
+            <>
+              {isOrderOnSale && (
+                <div className="bid-history-title-content">
+                  <div className="bid-history-title">History</div>
+                  <div className="bid-history-filter"></div>
                 </div>
               )}
-            </div>
-          ) : (
-            isOrderOnSale && (
-              <div className="bid-empty-content">
-                <div className="empty-top-container">
-                  <div className="empty-top-content">
-                    <IoIosRocket color="white" />
-                    <div className="empty-text">
-                      No active bids yet. <br />
-                      {!isOwner && "Be the first to make a bid."}
-                    </div>
-                  </div>
-                </div>
 
-                {/* <div className="empty-bottom-content">
+              {histories.length > 0 && isOrderOnSale ? (
+                <div
+                  className={`bid-history-content ${isOwner ? "owner" : ""}`}
+                >
+                  {histories.map((history, i) => (
+                    <BidCard
+                      key={`bid-history${i}`}
+                      latestIndex={i}
+                      history={history}
+                      acceptBidConfirm={acceptBidConfirm}
+                      setAcceptBidConfirm={setAcceptBidConfirm}
+                      setAcceptBidDetail={setAcceptBidDetail}
+                    />
+                  ))}
+
+                  {totalCount <= histories.length ? (
+                    <BidCard isEnd />
+                  ) : (
+                    <div className="bid-histroy-card">
+                      <div className="history-end-content">
+                        <span role="button" onClick={handleClick}>
+                          View More
+                        </span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                isOrderOnSale && (
+                  <div className="bid-empty-content">
+                    <div className="empty-top-container">
+                      <div className="empty-top-content">
+                        <IoIosRocket color="white" />
+                        <div className="empty-text">
+                          No active bids yet. <br />
+                          {!isOwner && "Be the first to make a bid."}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* <div className="empty-bottom-content">
               <img src={amitabh} alt="" />
               <div className="nft-owner-history-details">
                 <div className="publish-time text-secondary">
@@ -152,8 +157,10 @@ const BidHistory = ({
                 </div>
               </div>
             </div> */}
-              </div>
-            )
+                  </div>
+                )
+              )}
+            </>
           )}
         </div>
       )}

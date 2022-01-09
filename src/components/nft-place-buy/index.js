@@ -137,6 +137,7 @@ const NFTPlaceBid = ({
       amountClass: "",
       buttonDisable: true,
     });
+    window.location.reload(); //temp
   };
 
   const handleBuyInputChange = (e) => {
