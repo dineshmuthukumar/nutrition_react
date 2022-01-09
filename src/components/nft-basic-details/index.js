@@ -43,7 +43,7 @@ const NFTBaseDetails = ({
   return (
     <>
       <div className="creator mt-3">
-        {nft.category_name} | Amitabh Bachchan Exclusive NFTs
+        {nft.category_name} | Exclusive NFTs
         <ToolTip
           icon={<FaCheckCircle size={16} className="ms-2 check-icon" />}
           content="Verified Artist"
