@@ -394,7 +394,7 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                             </div>
                           </Dropdown.Menu>
                         </Dropdown>
-                        <Dropdown autoClose="outside">
+                        <Dropdown autoClose="outside" className="mx-0">
                           <Dropdown.Toggle
                             align="start"
                             drop="start"
