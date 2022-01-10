@@ -342,21 +342,27 @@ const Details = () => {
               {(() => {
                 if (erc721) {
                   return (
-                    <BidHistory
-                      nft={nft}
-                      orderSlug={orderSlug}
-                      isOwner={isOwner}
-                      nftOwner={nftOwner[0]}
-                      histories={bidHistory}
-                      isAuctionEnded={isAuctionEnded}
-                      totalCount={totalCount}
-                      isOrderOnSale={isOrderOnSale}
-                      isOrderSuccess={isOrderSuccess}
-                      isOrderCancelled={isOrderCancelled}
-                    />
+                    nftOwner.length > 0 && (
+                      <BidHistory
+                        nft={nft}
+                        orderSlug={orderSlug}
+                        isOwner={isOwner}
+                        nftOwner={nftOwner[0]}
+                        histories={bidHistory}
+                        isAuctionEnded={isAuctionEnded}
+                        totalCount={totalCount}
+                        isOrderOnSale={isOrderOnSale}
+                        isOrderSuccess={isOrderSuccess}
+                        isOrderCancelled={isOrderCancelled}
+                      />
+                    )
                   );
                 } else {
-                  return <OwnerList nft={nft} nftOwners={nftOwner} />;
+                  return (
+                    nftOwner.length > 0 && (
+                      <OwnerList nft={nft} nftOwners={nftOwner} />
+                    )
+                  );
                 }
               })()}
             </div>
