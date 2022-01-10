@@ -486,7 +486,12 @@ const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
                               </span>
                               <div className="you-own">
                                 <h3>$ {erc1155Sale.totalAmount}</h3>
-                                <h3>{erc1155Sale.buyQuantity} Edition</h3>
+                                <h3>
+                                  {erc1155Sale.buyQuantity}
+                                  {parseInt(erc1155Sale.buyQuantity) > 1
+                                    ? ` Edition(s)`
+                                    : ` Edition`}
+                                </h3>
                               </div>
                             </div>
                           )}
