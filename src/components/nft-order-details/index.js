@@ -101,6 +101,17 @@ const NFTOrderDetails = ({ nft, orderList = [] }) => {
                 <td className="text-center">
                   <button
                     className="btn btn-dark text-center btn-lg orderBtn mt-2 rounded-pill"
+                    disabled={(() => {
+                      if (
+                        order?.status === "cancelled" ||
+                        order?.status === "partial_cancelled" ||
+                        order?.status === "blocked"
+                      ) {
+                        return true;
+                      } else {
+                        return false;
+                      }
+                    })()}
                     onClick={() => {
                       window.open(
                         `${process.env.REACT_APP_MARKETPLACE_URL}/order/details/${nft.slug}/${order.slug}`,

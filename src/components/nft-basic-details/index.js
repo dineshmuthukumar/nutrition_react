@@ -16,7 +16,7 @@ const NFTBaseDetails = ({
   nft,
   putOnSalePop,
   setPutOnSalePop,
-  soldOut,
+  isQuantityAvailable,
   owners,
 }) => {
   const { user } = useSelector((state) => state.user.data);
@@ -24,8 +24,6 @@ const NFTBaseDetails = ({
   const erc721 = nft.nft_type === "erc721";
   const isOwner = _.has(nft, "owner_details");
   const isOnSale = _.size(_.get(nft, "owner_details.orders", [])) > 0;
-  const isQuantityAvailable =
-    _.get(nft, "owner_details.available_quantity", 0) > 0;
   const availableQuantity = _.get(nft, "owner_details.available_quantity", 0);
 
   return (
@@ -39,9 +37,6 @@ const NFTBaseDetails = ({
           content="Verified Artist"
           placement="right"
         />
-        {soldOut && (
-          <span className="nft-status-tag rounded-pill">Sold Out</span>
-        )}
       </div>
       <div className="nft-title-container">
         <div className="nft-title">{nft.name}</div>
@@ -156,7 +151,7 @@ const NFTBaseDetails = ({
                 </button>
               );
             } else if (isOwner && isOnSale) {
-              if (isQuantityAvailable) {
+              if (isQuantityAvailable > 0) {
                 return (
                   <button
                     disabled={false}

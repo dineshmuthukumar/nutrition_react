@@ -29,6 +29,7 @@ const Details = () => {
   const [ownerLoader, setOwnerLoader] = useState(true);
   const [putOnSalePop, setPutOnSalePop] = useState(false);
   const [ownerOrdersList, setOwnerOrdersList] = useState([]);
+  const [isQuantityAvailable, setIsQuantityAvailable] = useState(0);
 
   const { user } = useSelector((state) => state.user.data);
   const isOwner = _.has(nft, "owner_details");
@@ -42,7 +43,11 @@ const Details = () => {
   useEffect(() => {
     if (user && isOwner) {
       listForSaleDetail(slug, user.slug, (data) => {
-        setOwnerOrdersList((ownerOrdersList) => [data, ...ownerOrdersList]);
+        setIsQuantityAvailable(data.available);
+        setOwnerOrdersList((ownerOrdersList) => [
+          data.order,
+          ...ownerOrdersList,
+        ]);
       });
     }
   }, [isOwner]);
@@ -57,6 +62,7 @@ const Details = () => {
       setNft(NFT);
       setErc721(NFT.nft_type === "erc721");
       if (NFT.owner_details) {
+        setIsQuantityAvailable(NFT.owner_details.available_quantity);
         setOwnerOrdersList(NFT.owner_details.orders);
       }
       setLoader(false);
@@ -100,6 +106,7 @@ const Details = () => {
                   nft={nft}
                   putOnSalePop={putOnSalePop}
                   setPutOnSalePop={setPutOnSalePop}
+                  isQuantityAvailable={isQuantityAvailable}
                   owners={nftOwner}
                 />
               </div>
