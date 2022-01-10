@@ -160,7 +160,11 @@ const NFTBaseDetails = ({
                   >
                     {erc721
                       ? "List for sale"
-                      : `List for sale (${availableQuantity})`}
+                      : `List for sale (${
+                          isQuantityAvailable
+                            ? isQuantityAvailable
+                            : availableQuantity
+                        })`}
                   </button>
                 );
               } else {
