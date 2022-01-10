@@ -358,7 +358,7 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                               {notification?.notifications.length > 0 ? (
                                 <>
                                   {notification?.notifications.map((o, i) => (
-                                    <Dropdown.Item>
+                                    <Dropdown.Item key={`noti-item${i}`}>
                                       <NotiCard key={`noti${i}`} data={o} />
                                     </Dropdown.Item>
                                   ))}

@@ -38,7 +38,9 @@ const NFTCard = ({ nft }) => {
       <div className="top-content-title">
         <div>
           <div className="more-nft-title">{nft?.name}</div>
-          <div className="more-nft-desc">Featured NFT</div>
+          {nft?.owner_name && (
+            <div className="more-nft-desc">{nft?.owner_name}</div>
+          )}
         </div>
         {nft?.is_on_sale && (
           <>

@@ -2,21 +2,13 @@ import React, { useState } from "react";
 import ReadMoreReact from "read-more-react";
 import { useSelector } from "react-redux";
 import { FaCheckCircle } from "react-icons/fa";
-import { BiX } from "react-icons/bi";
-import { Modal } from "react-bootstrap";
 import _ from "lodash";
-import dayjs from "dayjs";
 
-import { acceptBidApi } from "../../api/methods";
-import NFTTimeLeft from "../nft-time-left";
 import BidValue from "../bid-value";
 import ToolTip from "../tooltip";
 import NFTPutOnSale from "../nft-put-on-sale";
-import HelpLine from "../help-line";
 import { ReactComponent as DiscordSvg } from "./../../icons/discord_logo.svg";
-import { currencyFormat } from "../../utils/common";
 import postImages from "../../images/post1.png";
-import CancelNft from "./nft-cancel-box";
 import userImg from "../../images/user_1.png";
 
 import "./style.scss";
@@ -26,11 +18,8 @@ const NFTBaseDetails = ({
   setPutOnSalePop,
   soldOut,
   owners,
-  orderSlug,
-  latestBid,
 }) => {
   const { user } = useSelector((state) => state.user.data);
-  const [modalShow, setModalShow] = useState(false);
 
   const erc721 = nft.nft_type === "erc721";
   const isOwner = _.has(nft, "owner_details");
@@ -38,12 +27,13 @@ const NFTBaseDetails = ({
   const isQuantityAvailable =
     _.get(nft, "owner_details.available_quantity", 0) > 0;
   const availableQuantity = _.get(nft, "owner_details.available_quantity", 0);
-  const ownerOrdersList = _.get(nft, "owner_details.orders", []);
 
   return (
     <>
       <div className="creator mt-3">
-        {nft.category_name} | Exclusive NFTs
+        {nft.category_name} |
+        {nft.celebrity_id === 1 ? " Amitabh Bachchan" : " Stan Lee's"} Exclusive
+        NFTs
         <ToolTip
           icon={<FaCheckCircle size={16} className="ms-2 check-icon" />}
           content="Verified Artist"
@@ -201,46 +191,6 @@ const NFTBaseDetails = ({
           })()}
         </div>
       </div>
-
-      <Modal size="lg" centered show={modalShow} className="history-modal">
-        <Modal.Header className="bg-dark p-0">
-          <Modal.Title className="flex-fill">
-            <div className="modal-bid-history-title-content">
-              <div className="modal-bid-history-title">
-                Select Sale-Order for Cancelation
-              </div>
-              <div className="modal-bid-history-filter">
-                <BiX
-                  role="button"
-                  style={{ color: "#fff" }}
-                  size={25}
-                  onClick={() => setModalShow(false)}
-                />
-              </div>
-            </div>
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="scroll-modal ">
-          {ownerOrdersList.length > 0 ? (
-            <ul className="cancel-nft-list">
-              {ownerOrdersList.map((order, i) => (
-                <li className="cancel-nft-item">
-                  <CancelNft
-                    key={i}
-                    nft={nft}
-                    order={order}
-                    image={postImages}
-                    modalShow={modalShow}
-                    setModalShow={setModalShow}
-                  />
-                </li>
-              ))}
-            </ul>
-          ) : (
-            "No Orders Found"
-          )}
-        </Modal.Body>
-      </Modal>
     </>
   );
 };

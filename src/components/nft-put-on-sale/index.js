@@ -181,7 +181,6 @@ const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
 
   const handleSuccess = () => {
     setPutOnSalePop(!putOnSalePop);
-    window.location.reload();
   };
 
   return (

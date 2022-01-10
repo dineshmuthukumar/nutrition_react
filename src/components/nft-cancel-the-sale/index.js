@@ -118,8 +118,8 @@ const NFTCancelTheSale = ({
                         ></img>
                       </div>
                     </div>
-                    <div class="pop-cancel-progress ">
-                      <div class="progress-complete"></div>
+                    <div className="pop-cancel-progress ">
+                      <div className="progress-complete"></div>
                     </div>
                     <div className="pop-cancel-bodyContent px-4">
                       <div className="pop-nft-info">

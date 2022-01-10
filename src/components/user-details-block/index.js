@@ -163,7 +163,7 @@ const UserDetailsBlock = ({ setBanner }) => {
                     {(() => {
                       if (key === "owned") {
                         return ownedList.map((nft, i) => (
-                          <div class="col-xl-4 col-lg-4 col-md- col-sm-6">
+                          <div className="col-xl-4 col-lg-4 col-md- col-sm-6">
                             {/* <SellerNFTCard
                               key={`owned-${i}`}
                               nft={nft}
@@ -178,7 +178,7 @@ const UserDetailsBlock = ({ setBanner }) => {
                         ));
                       } else if (key === "liked") {
                         return favedList.map((nft, i) => (
-                          <div class="col-xl-4 col-lg-4 col-md- col-sm-6">
+                          <div className="col-xl-4 col-lg-4 col-md- col-sm-6">
                             {/* <SellerNFTCard
                               key={`liked-${i}`}
                               nft={nft}
@@ -193,7 +193,7 @@ const UserDetailsBlock = ({ setBanner }) => {
                         ));
                       } else {
                         return onSaleList.map((nft, i) => (
-                          <div class="col-xl-4 col-lg-4 col-md- col-sm-6">
+                          <div className="col-xl-4 col-lg-4 col-md- col-sm-6">
                             {/* <SellerNFTCard
                               key={`onsale-${i}`}
                               nft={nft}

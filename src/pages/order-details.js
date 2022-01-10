@@ -1,34 +1,19 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import _ from "lodash";
 
-import {
-  nftBidHistory,
-  nftBidWinner,
-  nftBuyHistory,
-  nftDetailApi,
-  nftMoreApi,
-  orderBidHistory,
-  nftOwnerApi,
-} from "../api/methods";
-import BidAuction from "../components/bid-auction";
+import { nftDetailApi, orderBidHistory, nftOwnerApi } from "../api/methods";
 import BidHistory from "../components/bid-history";
-import BuyHistory from "../components/buy-history/index";
-import BidWinner from "../components/bid-winner";
 import ChainAttributes from "../components/chain-attributes";
 import Header from "../components/header";
 import NFTArtist from "../components/nft-artist";
-import NFTBaseDetails from "../components/nft-basic-details";
 import NFTMedia from "../components/nft-media";
-import NFTMore from "../components/nft-more";
 import NFTProperties from "../components/nft-properties";
 import NFTSectionTitle from "../components/nft-section-title";
 import NFTTags from "../components/nft-tags";
 import toaster from "../utils/toaster";
-import NFTSummary from "../components/nft-summary";
-import SubHeader from "../components/sub-header";
 import { NFTLoader } from "../components/nft-basic-details/content-loader";
 import {
   bidDetail,
@@ -37,7 +22,6 @@ import {
   totalFav,
   userBidDetail,
   userBuyDetail,
-  winnerDetail,
 } from "../api/actioncable-methods";
 import OwnerList from "../components/owner-list";
 import Footer from "../components/footer/index";
@@ -49,7 +33,6 @@ const OrderDetails = () => {
   const history = useHistory();
   const { slug, orderSlug } = useParams();
   const [nft, setNft] = useState({});
-  const [nftMoreList, setNftMoreList] = useState([]);
   const [buyHistory, setBuyHistory] = useState([]);
   const [bidHistory, setBidHistory] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
@@ -59,6 +42,7 @@ const OrderDetails = () => {
   const [soldOut, setSoldOut] = useState(false);
   const [transferringNFT, setTransferringNFT] = useState(false);
   const [loader, setLoader] = useState(true);
+  const [ownerLoader, setOwnerLoader] = useState(true);
   const [placeBidPop, setPlaceBidPop] = useState(false);
   const [placeBuyPop, setPlaceBuyPop] = useState(false);
   const [putOnSalePop, setPutOnSalePop] = useState(false);
@@ -87,9 +71,6 @@ const OrderDetails = () => {
   const orderDetails = _.get(nft, "order_details", {});
 
   useEffect(() => {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-
     buyDetail(orderSlug, (data) => {
       console.log(data);
       setAvailableQty(data.quantity);
@@ -119,7 +100,7 @@ const OrderDetails = () => {
     });
 
     nftDetail(slug, orderSlug);
-    // nftMore();
+    nftOwners();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -145,6 +126,7 @@ const OrderDetails = () => {
         order_slug: orderSlug,
       });
       const NFT = response.data.data.nft;
+      setNft(NFT);
       setErc721(NFT.nft_type === "erc721");
 
       if (NFT?.order_details) {
@@ -178,10 +160,7 @@ const OrderDetails = () => {
         // setBuyHistory(history.data.data.histories);
         // setTotalCount(history.data.data.total_count);
       }
-      let owners = await nftOwnerApi({ nft_slug: slug });
-      setNFTOwner(owners.data.data.owners);
 
-      setNft(response.data.data.nft);
       setLoader(false);
     } catch (err) {
       console.log(err);
@@ -189,10 +168,12 @@ const OrderDetails = () => {
     }
   };
 
-  const nftMore = async () => {
+  const nftOwners = async () => {
     try {
-      let response = await nftMoreApi({ page: 1 });
-      setNftMoreList(response.data.data.nfts);
+      setOwnerLoader(true);
+      let owners = await nftOwnerApi({ nft_slug: slug });
+      setNFTOwner(owners.data.data.owners);
+      setOwnerLoader(false);
     } catch (error) {
       console.log(error);
     }

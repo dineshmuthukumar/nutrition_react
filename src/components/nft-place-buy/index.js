@@ -418,7 +418,7 @@ const NFTPlaceBid = ({
                             {/* <div className="input-buy-wrap"> */}
                             <h1>{currencyFormat(buyAmount, "USD")}</h1>
                             {/* </div> */}
-                            <hr class="custom-divider"></hr>
+                            <hr className="custom-divider"></hr>
                           </>
                         )}
                         {/* <div className="balance-details">
@@ -468,7 +468,7 @@ const NFTPlaceBid = ({
                           </div>
                         </div>
                       </div>
-                      <hr class="custom-divider"></hr>
+                      <hr className="custom-divider"></hr>
                     </div>
                   </div>
                   <div className="bottom-area">
