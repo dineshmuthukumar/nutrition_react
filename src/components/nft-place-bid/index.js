@@ -121,6 +121,15 @@ const NFTPlaceBid = ({
           errorTitle: err.title,
           errorDescription: err.description,
         });
+      } else if (error.response.data.status === 404) {
+        const err = bidBuyError(404);
+        setBid({
+          ...buy,
+          isError: true,
+          progressError: "error-progress",
+          errorTitle: err.title,
+          errorDescription: err.description,
+        });
       }
 
       const err = bidBuyError(error.response.data.fail_status);
@@ -136,7 +145,6 @@ const NFTPlaceBid = ({
 
   const handleSuccess = () => {
     setPlaceBidPop(!placeBidPop);
-    // window.location.reload();
     setSuccess(false);
     setBuyQuantity("");
     setBuyAmount(0);
