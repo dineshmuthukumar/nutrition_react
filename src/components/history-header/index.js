@@ -12,7 +12,16 @@ const HistoryHeader = ({ nftOwner }) => {
   return (
     <div className="bid-history--header">
       <div className="bh-user-image">
-        <img src={userImg} alt="bid-user" />
+        <img
+          src={
+            !nftOwner.private && nftOwner.avatar_url
+              ? nftOwner.avatar_url
+              : user?.slug === nftOwner.slug && nftOwner.avatar_url
+              ? nftOwner.avatar_url
+              : userImg
+          }
+          alt="bid-user"
+        />
       </div>
       <div className="bh-user-details">
         <h2 className="bh-user-name">{nftOwner?.user_name}</h2>

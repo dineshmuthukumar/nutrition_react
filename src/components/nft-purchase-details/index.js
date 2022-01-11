@@ -40,7 +40,14 @@ const NFTPurchaseDetails = ({ nft, list = [] }) => {
                 <td className="text-center">{i + 1}</td>
                 <td className="text-center">
                   <BidName
-                    imgUrl={detail?.buyer?.avatar_url}
+                    imgUrl={
+                      !detail?.buyer?.private && detail?.buyer?.avatar_url
+                        ? detail?.buyer?.avatar_url
+                        : user?.slug === detail?.buyer?.slug &&
+                          detail?.buyer?.avatar_url
+                        ? detail?.buyer?.avatar_url
+                        : userImg
+                    }
                     text={detail?.buyer?.user_name}
                     isTable
                     slug={detail?.buyer?.slug}

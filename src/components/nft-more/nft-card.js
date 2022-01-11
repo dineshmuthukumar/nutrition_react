@@ -28,8 +28,10 @@ const CollectionCard = ({ nft }) => {
         src={(() => {
           if (nft?.asset_type?.includes("image")) {
             return nft.asset_url ? nft.asset_url : cardImage;
-          } else {
+          } else if (nft?.cover_url) {
             return nft.cover_url ? nft.cover_url : cardImage;
+          } else {
+            return nft.asset_url ? nft.asset_url : cardImage;
           }
         })()}
         role="button"
