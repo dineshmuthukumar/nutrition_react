@@ -118,18 +118,18 @@ const OrderDetails = () => {
       });
     }
 
-    if (isOwner) {
-      cancelSaleDetail(slug, orderSlug, (data) => {
-        setTotalQty(data.total_quantity);
-        setAvailableQty(data.available_quantity);
-        if (data.status === "cancelled") {
-          setIsOrderCancelled(true);
-        }
-        if (data.available_quantity === 0 && data.total_quantity > 0) {
-          setTransferringNFT(true);
-        }
-      });
-    }
+    // if (isOwner) {
+    cancelSaleDetail(slug, orderSlug, (data) => {
+      setTotalQty(data.total_quantity);
+      setAvailableQty(data.available_quantity);
+      if (data.status === "cancelled") {
+        setIsOrderCancelled(true);
+      }
+      if (data.available_quantity === 0 && data.total_quantity > 0) {
+        setTransferringNFT(true);
+      }
+    });
+    // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, isOwner]);
 
