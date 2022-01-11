@@ -18,6 +18,7 @@ import { NFTLoader } from "../components/nft-basic-details/content-loader";
 import {
   bidDetail,
   buyDetail,
+  cancelSaleDetail,
   pageView,
   totalFav,
   userBidDetail,
@@ -61,6 +62,7 @@ const OrderDetails = () => {
   const [totalViews, setTotalViews] = useState(0);
   const [totalFavourites, setTotalFavourites] = useState(0);
   const [availableQty, setAvailableQty] = useState(null);
+  const [totalQty, setTotalQty] = useState(null);
   const [userTotalBuys, setUserTotalBuys] = useState(0);
   const [userOutBid, setUserOutBid] = useState(false);
   const [userLastBid, setUserLastBid] = useState(0);
@@ -115,8 +117,19 @@ const OrderDetails = () => {
         setUserTotalBuys(data.user_buys);
       });
     }
+
+    if (isOwner) {
+      cancelSaleDetail(slug, orderSlug, (data) => {
+        console.log(data);
+        // setTotalQty(data.total_quantity);
+        // setAvailableQty(data.available_quantity);
+        // if (data.status === "cancelled") {
+        //   setIsOrderCancelled(true);
+        // }
+      });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [erc721]);
+  }, [user, isOwner]);
 
   const nftDetail = async (slug, orderSlug) => {
     try {

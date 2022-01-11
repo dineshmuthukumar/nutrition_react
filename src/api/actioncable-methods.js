@@ -60,9 +60,9 @@ export const totalFav = (slug, value) => {
   );
 };
 
-export const userBuyDetail = (nftSlug, userSlug, value) => {
+export const userBuyDetail = (orderSlug, userSlug, value) => {
   nftCable.subscriptions.create(
-    { channel: "NftChannel", room: `buy_detail_${nftSlug}_${userSlug}` },
+    { channel: "NftChannel", room: `buy_detail_${orderSlug}_${userSlug}` },
     {
       connected: () => {
         console.log("BL/AC5:Connected");
@@ -75,9 +75,9 @@ export const userBuyDetail = (nftSlug, userSlug, value) => {
   );
 };
 
-export const userBidDetail = (nftSlug, userSlug, value) => {
+export const userBidDetail = (orderSlug, userSlug, value) => {
   nftCable.subscriptions.create(
-    { channel: "NftChannel", room: `bid_detail_${nftSlug}_${userSlug}` },
+    { channel: "NftChannel", room: `bid_detail_${orderSlug}_${userSlug}` },
     {
       connected: () => {
         console.log("BL/AC6:Connected");
@@ -99,6 +99,21 @@ export const listForSaleDetail = (nftSlug, userSlug, value) => {
       },
       received: (data) => {
         console.log("BL/AC7:Success");
+        value(data);
+      },
+    }
+  );
+};
+
+export const cancelSaleDetail = (nftSlug, orderSlug, value) => {
+  nftCable.subscriptions.create(
+    { channel: "NftChannel", room: `${nftSlug}_order_cancel_${orderSlug}` },
+    {
+      connected: () => {
+        console.log("BL/AC8:Connected");
+      },
+      received: (data) => {
+        console.log("BL/AC8:Success");
         value(data);
       },
     }

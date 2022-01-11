@@ -36,7 +36,7 @@ const NFTOrderDetails = ({ nft, orderList = [] }) => {
           </thead>
           <tbody>
             {orderList.map((order, i) => (
-              <tr key={`order-${order.slug}`}>
+              <tr key={`order-${order?.slug}`}>
                 <td className="text-center">{i + 1}</td>
                 <td className="text-center">{erc721 ? "ERC721" : "ERC1155"}</td>
                 <td className="text-center">

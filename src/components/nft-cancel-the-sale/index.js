@@ -369,7 +369,8 @@ const NFTCancelTheSale = ({
                       <div className="place-cancel-button">
                         <button
                           className="btn btn-dark text-center btn-lg w-75 rounded-pill place-cancel-btn-pop "
-                          onClick={() => history.push("/")}
+                          // onClick={() => history.push("/")}
+                          onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
                         >
                           Okay
                         </button>
