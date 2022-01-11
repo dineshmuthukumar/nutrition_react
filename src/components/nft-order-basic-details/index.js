@@ -35,6 +35,7 @@ const NFTOrderBaseDetails = ({
   userTotalBuys,
   price,
   availableQty,
+  totalQty,
   userOutBid,
   userLastBid,
   isAuctionStarted,
@@ -81,7 +82,9 @@ const NFTOrderBaseDetails = ({
   return (
     <>
       <div className="creator mt-3">
-        {nft.category_name} | Exclusive NFTs
+        {nft.category_name} |
+        {nft.celebrity_id === 1 ? " Amitabh Bachchan" : " Stan Lee's"} Exclusive
+        NFTs
         <ToolTip
           icon={<FaCheckCircle size={16} className="ms-2 check-icon" />}
           content="Verified Artist"
@@ -300,7 +303,11 @@ const NFTOrderBaseDetails = ({
                       title="Edition(s)"
                       value={
                         availableQty >= 0 && availableQty != null
-                          ? `${availableQty} / ${orderDetails.total_quantity}`
+                          ? `${availableQty} / ${
+                              totalQty != null
+                                ? totalQty
+                                : orderDetails.total_quantity
+                            }`
                           : `${orderDetails.available_quantity} / ${orderDetails.total_quantity}`
                       }
                     />
@@ -349,9 +356,9 @@ const NFTOrderBaseDetails = ({
             cancelTheSalePop={cancelTheSalePop}
             setCancelTheSalePop={setCancelTheSalePop}
             price={price}
-            userTotalBuys={userTotalBuys}
-            isAuctionStarted={isAuctionStarted}
-            isAuctionEnded={isAuctionEnded}
+            availableQty={availableQty}
+            isOrderCancelled={isOrderCancelled}
+            totalQty={totalQty}
           />
 
           {(() => {

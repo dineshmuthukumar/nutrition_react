@@ -70,6 +70,7 @@ export const validateQuantity = (value) => {
 export const bidBuyError = (code) => {
   // const OK = 200;
   const ERROR = 500;
+  const ERROR404 = 404;
   const UNAUTHORIZED = 401;
   const AUCTION_UNBEGUN = 701;
   const AUCTION_ENDED = 702;
@@ -87,6 +88,8 @@ export const bidBuyError = (code) => {
   switch (code) {
     case ERROR:
       return { title: "Error", description: "Something went wrong!" };
+    case ERROR404:
+      return { title: "Error", description: "Not found!" };
     case UNAUTHORIZED:
       return { title: "Error", description: "Unauthorized" };
     case AUCTION_UNBEGUN:

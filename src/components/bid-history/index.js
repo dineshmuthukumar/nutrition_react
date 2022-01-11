@@ -24,13 +24,11 @@ const BidHistory = ({
   orderSlug,
   isOwner,
   histories = [],
-  isAuctionEnded,
   totalCount,
   nftOwner,
   isOrderOnSale,
   isOrderSuccess,
   isOrderCancelled,
-  orderDetails,
 }) => {
   const { slug } = useParams();
   const [modalShow, setModalShow] = useState(false);

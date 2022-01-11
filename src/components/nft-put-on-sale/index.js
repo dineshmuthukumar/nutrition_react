@@ -23,7 +23,12 @@ import "./style.scss";
 import ToolTip from "../tooltip/index";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
 
-const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
+const NFTPutOnSale = ({
+  putOnSalePop = false,
+  setPutOnSalePop,
+  nft,
+  isQuantityAvailable,
+}) => {
   const { user } = useSelector((state) => state.user.data);
   const { params } = useRouteMatch();
 
@@ -31,8 +36,6 @@ const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
   const [successData, setSuccessData] = useState({});
 
   const erc721 = nft.nft_type === "erc721";
-  const [noBalance, setNoBalance] = useState(false);
-
   const [error, setError] = useState("");
   const [confirm, setConfirm] = useState(false);
 
@@ -98,10 +101,14 @@ const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
   };
 
   const handleErc1155QuantityInputChange = (e) => {
+    let availableQty =
+      isQuantityAvailable != null
+        ? isQuantityAvailable
+        : nft.owner_details.available_quantity;
     if (e.target.value) {
       if (
         validateQuantity(e.target.value) &&
-        e.target.value <= nft.owner_details.available_quantity &&
+        e.target.value <= availableQty &&
         e.target.value !== 0
       ) {
         setErc1155Sale({
@@ -181,7 +188,30 @@ const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
 
   const handleSuccess = () => {
     setPutOnSalePop(!putOnSalePop);
-    window.location.reload();
+    setSuccess(false);
+    setError("");
+    setErc721Sale({
+      ...erc721Sale,
+      isBid: false,
+      isBuy: true,
+      bidAmount: "",
+      buyAmount: "",
+      buyQuantity: 1,
+      totalAmount: 0,
+    });
+    setErc1155Sale({
+      ...erc1155Sale,
+      buyAmount: "",
+      buyQuantity: "",
+      totalAmount: 0,
+    });
+    setConfirmState({
+      ...confirmState,
+      progressError: "",
+      buttonDisable: false,
+      processClass: "",
+      buttonName: "Confirm",
+    });
   };
 
   return (
@@ -398,10 +428,12 @@ const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
                                     />
                                     <span className="sale-currency">
                                       /
-                                      {_.get(
-                                        nft,
-                                        "owner_details.available_quantity"
-                                      )}
+                                      {isQuantityAvailable != null
+                                        ? isQuantityAvailable
+                                        : _.get(
+                                            nft,
+                                            "owner_details.available_quantity"
+                                          )}
                                     </span>
                                   </div>
                                 </div>
@@ -487,7 +519,12 @@ const NFTPutOnSale = ({ putOnSalePop = false, setPutOnSalePop, nft }) => {
                               </span>
                               <div className="you-own">
                                 <h3>$ {erc1155Sale.totalAmount}</h3>
-                                <h3>{erc1155Sale.buyQuantity} Edition</h3>
+                                <h3>
+                                  {erc1155Sale.buyQuantity}
+                                  {parseInt(erc1155Sale.buyQuantity) > 1
+                                    ? ` Edition(s)`
+                                    : ` Edition`}
+                                </h3>
                               </div>
                             </div>
                           )}

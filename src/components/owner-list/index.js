@@ -16,7 +16,7 @@ import { currencyFormat } from "../../utils/common";
 
 import "./style.scss";
 
-const OwnerList = ({ nft, nftOwners = [], isAuctionEnded, totalCount }) => {
+const OwnerList = ({ nft, nftOwners = [], totalCount }) => {
   const { slug } = useParams();
   const [modalShow, setModalShow] = useState(false);
   const [buyHistories, setBuyHistories] = useState({});

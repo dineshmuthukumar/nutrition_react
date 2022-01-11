@@ -1177,8 +1177,8 @@ input::-webkit-inner-spin-button {
   align-items: center;
   flex-direction: row;
   svg {
-    height: 1.6rem;
-    width: 1.6rem;
+    height: 1.8rem;
+    width: 1.8rem;
   }
 }
 
@@ -1314,6 +1314,7 @@ input::-webkit-inner-spin-button {
     }
     &:last-child {
       margin-right: 0;
+      margin-left: 1rem;
       // background: #fff;
       // color: #000 !important;
       border: none !important;

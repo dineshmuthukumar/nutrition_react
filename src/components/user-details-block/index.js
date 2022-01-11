@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import {
   sellerDetailApi,
@@ -25,6 +26,8 @@ const UserDetailsBlock = ({ setBanner }) => {
   const [onSaleCount, setOnSaleCount] = useState(0);
   const [ownedCount, setOwnedCount] = useState(0);
   const [hasNext, setHasNext] = useState(false);
+
+  const { user } = useSelector((state) => state.user.data);
 
   const getSellerOwnedNFTs = async (page) => {
     try {
@@ -86,7 +89,11 @@ const UserDetailsBlock = ({ setBanner }) => {
                     <img
                       className="user-info-image"
                       src={
+                        !sellerDetail?.users[0]?.private &&
                         sellerDetail?.users[0]?.avatar_url
+                          ? sellerDetail?.users[0]?.avatar_url
+                          : user?.slug === sellerDetail?.users[0]?.slug &&
+                            sellerDetail?.users[0]?.avatar_url
                           ? sellerDetail?.users[0]?.avatar_url
                           : userImage
                       }
@@ -163,7 +170,7 @@ const UserDetailsBlock = ({ setBanner }) => {
                     {(() => {
                       if (key === "owned") {
                         return ownedList.map((nft, i) => (
-                          <div class="col-xl-4 col-lg-4 col-md- col-sm-6">
+                          <div className="col-xl-4 col-lg-4 col-md- col-sm-6">
                             {/* <SellerNFTCard
                               key={`owned-${i}`}
                               nft={nft}
@@ -178,7 +185,7 @@ const UserDetailsBlock = ({ setBanner }) => {
                         ));
                       } else if (key === "liked") {
                         return favedList.map((nft, i) => (
-                          <div class="col-xl-4 col-lg-4 col-md- col-sm-6">
+                          <div className="col-xl-4 col-lg-4 col-md- col-sm-6">
                             {/* <SellerNFTCard
                               key={`liked-${i}`}
                               nft={nft}
@@ -193,7 +200,7 @@ const UserDetailsBlock = ({ setBanner }) => {
                         ));
                       } else {
                         return onSaleList.map((nft, i) => (
-                          <div class="col-xl-4 col-lg-4 col-md- col-sm-6">
+                          <div className="col-xl-4 col-lg-4 col-md- col-sm-6">
                             {/* <SellerNFTCard
                               key={`onsale-${i}`}
                               nft={nft}

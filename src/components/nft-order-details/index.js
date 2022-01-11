@@ -36,7 +36,7 @@ const NFTOrderDetails = ({ nft, orderList = [] }) => {
           </thead>
           <tbody>
             {orderList.map((order, i) => (
-              <tr>
+              <tr key={`order-${order?.slug}`}>
                 <td className="text-center">{i + 1}</td>
                 <td className="text-center">{erc721 ? "ERC721" : "ERC1155"}</td>
                 <td className="text-center">
@@ -68,13 +68,21 @@ const NFTOrderDetails = ({ nft, orderList = [] }) => {
                 <td className="text-center">
                   {(() => {
                     if (erc721) {
-                      return order?.available_quantity === 0
-                        ? "1 of 1 (Sold Out)"
-                        : " 1 of 1 (left)";
+                      if (order?.status === "cancelled") {
+                        return "-";
+                      } else {
+                        return order?.available_quantity === 0
+                          ? "1 of 1 (Sold Out)"
+                          : " 1 of 1 (left)";
+                      }
                     } else {
-                      return order?.available_quantity === 0
-                        ? `Sold Out`
-                        : `${order?.available_quantity} / ${order?.total_quantity}`;
+                      if (order?.status === "cancelled") {
+                        return "-";
+                      } else {
+                        return order?.available_quantity === 0
+                          ? `Sold Out`
+                          : `${order?.available_quantity} / ${order?.total_quantity}`;
+                      }
                     }
                   })()}
                 </td>
@@ -90,7 +98,7 @@ const NFTOrderDetails = ({ nft, orderList = [] }) => {
                       : "text-info"
                   } status`}
                 >
-                  {order?.status}
+                  {order?.status.replace("_", " ")}
                 </td>
 
                 <td className="text-center">
@@ -100,7 +108,18 @@ const NFTOrderDetails = ({ nft, orderList = [] }) => {
                 </td>
                 <td className="text-center">
                   <button
-                    class="btn btn-dark text-center btn-lg orderBtn mt-2 rounded-pill"
+                    className="btn btn-dark text-center btn-lg orderBtn mt-2 rounded-pill"
+                    disabled={(() => {
+                      if (
+                        order?.status === "cancelled" ||
+                        order?.status === "partial_cancelled" ||
+                        order?.status === "blocked"
+                      ) {
+                        return true;
+                      } else {
+                        return false;
+                      }
+                    })()}
                     onClick={() => {
                       window.open(
                         `${process.env.REACT_APP_MARKETPLACE_URL}/order/details/${nft.slug}/${order.slug}`,

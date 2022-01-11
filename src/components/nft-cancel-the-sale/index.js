@@ -18,6 +18,9 @@ const NFTCancelTheSale = ({
   nft,
   isOwner,
   orderDetails,
+  availableQty,
+  isOrderCancelled,
+  totalQty,
 }) => {
   const history = useHistory();
   const { user } = useSelector((state) => state.user.data);
@@ -29,6 +32,7 @@ const NFTCancelTheSale = ({
 
   const [error, setError] = useState({
     isError: false,
+    progressError: "",
     errorTitle: "",
     errorDescription: "",
   });
@@ -92,6 +96,22 @@ const NFTCancelTheSale = ({
     }
   };
 
+  const handleSuccess = () => {
+    if (isOrderCancelled) {
+      history.push(`/details/${nft?.slug}`);
+    } else {
+      setCancelTheSalePop(!cancelTheSalePop);
+      setSuccess(false);
+      setCancelQuantity("");
+      setError({
+        isError: false,
+        progressError: "",
+        errorTitle: "",
+        errorDescription: "",
+      });
+    }
+  };
+
   return (
     <Offcanvas
       show={cancelTheSalePop}
@@ -118,8 +138,8 @@ const NFTCancelTheSale = ({
                         ></img>
                       </div>
                     </div>
-                    <div class="pop-cancel-progress ">
-                      <div class="progress-complete"></div>
+                    <div className="pop-cancel-progress ">
+                      <div className="progress-complete"></div>
                     </div>
                     <div className="pop-cancel-bodyContent px-4">
                       <div className="pop-nft-info">
@@ -191,7 +211,10 @@ const NFTCancelTheSale = ({
                               onChange={handleQuantityInputChange}
                             />
                             <span className="cancel-currency">
-                              /{orderDetails.available_quantity}
+                              /
+                              {availableQty != null
+                                ? availableQty
+                                : orderDetails.available_quantity}
                             </span>
                           </div>
                         </div>
@@ -213,9 +236,22 @@ const NFTCancelTheSale = ({
                         <div className="place-cancel-button">
                           <button
                             className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-cancel-btn-pop`} //process -> proccessing
+                            disabled={(() => {
+                              if (availableQty != null && availableQty === 0) {
+                                return true;
+                              } else {
+                                return false;
+                              }
+                            })()}
                             onClick={handleBuyCancel}
                           >
-                            Confirm
+                            {(() => {
+                              if (availableQty != null && availableQty === 0) {
+                                return "Sold Out";
+                              } else {
+                                return "Confirm";
+                              }
+                            })()}
                           </button>
                         </div>
                       </div>
@@ -369,7 +405,7 @@ const NFTCancelTheSale = ({
                       <div className="place-cancel-button">
                         <button
                           className="btn btn-dark text-center btn-lg w-75 rounded-pill place-cancel-btn-pop "
-                          onClick={() => history.push("/")}
+                          onClick={handleSuccess}
                         >
                           Okay
                         </button>

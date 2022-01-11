@@ -113,6 +113,15 @@ const NFTPlaceBid = ({
           errorTitle: err.title,
           errorDescription: err.description,
         });
+      } else if (error.response.data.status === 404) {
+        const err = bidBuyError(404);
+        setBuy({
+          ...buy,
+          isError: true,
+          progressError: "error-progress",
+          errorTitle: err.title,
+          errorDescription: err.description,
+        });
       }
 
       const err = bidBuyError(error.response.data.fail_status);
@@ -418,7 +427,7 @@ const NFTPlaceBid = ({
                             {/* <div className="input-buy-wrap"> */}
                             <h1>{currencyFormat(buyAmount, "USD")}</h1>
                             {/* </div> */}
-                            <hr class="custom-divider"></hr>
+                            <hr className="custom-divider"></hr>
                           </>
                         )}
                         {/* <div className="balance-details">
@@ -468,7 +477,7 @@ const NFTPlaceBid = ({
                           </div>
                         </div>
                       </div>
-                      <hr class="custom-divider"></hr>
+                      <hr className="custom-divider"></hr>
                     </div>
                   </div>
                   <div className="bottom-area">
