@@ -30,11 +30,6 @@ const ShowAll = ({ categories }) => {
         value: "buy",
         checked: false,
       },
-      {
-        name: "Bid & Buy",
-        value: "bid_buy",
-        checked: false,
-      },
     ],
     nft: [
       {
