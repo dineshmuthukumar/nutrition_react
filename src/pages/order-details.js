@@ -97,7 +97,7 @@ const OrderDetails = () => {
       setTotalViews(data.page_views);
     });
 
-    totalFav(orderSlug, (data) => {
+    totalFav(slug, (data) => {
       setTotalFavourites(data.total_favourites);
     });
 
@@ -120,12 +120,14 @@ const OrderDetails = () => {
 
     if (isOwner) {
       cancelSaleDetail(slug, orderSlug, (data) => {
-        console.log(data);
-        // setTotalQty(data.total_quantity);
-        // setAvailableQty(data.available_quantity);
-        // if (data.status === "cancelled") {
-        //   setIsOrderCancelled(true);
-        // }
+        setTotalQty(data.total_quantity);
+        setAvailableQty(data.available_quantity);
+        if (data.status === "cancelled") {
+          setIsOrderCancelled(true);
+        }
+        if (data.available_quantity === 0 && data.total_quantity > 0) {
+          setTransferringNFT(true);
+        }
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -228,6 +230,7 @@ const OrderDetails = () => {
                   totalViews={totalViews}
                   totalFavourites={totalFavourites}
                   availableQty={availableQty}
+                  totalQty={totalQty}
                   userTotalBuys={userTotalBuys}
                   userOutBid={userOutBid}
                   userLastBid={userLastBid}

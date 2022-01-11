@@ -29,7 +29,7 @@ const Details = () => {
   const [ownerLoader, setOwnerLoader] = useState(true);
   const [putOnSalePop, setPutOnSalePop] = useState(false);
   const [ownerOrdersList, setOwnerOrdersList] = useState([]);
-  const [isQuantityAvailable, setIsQuantityAvailable] = useState(0);
+  const [isQuantityAvailable, setIsQuantityAvailable] = useState(null);
 
   const { user } = useSelector((state) => state.user.data);
   const isOwner = _.has(nft, "owner_details");
@@ -107,6 +107,7 @@ const Details = () => {
                   putOnSalePop={putOnSalePop}
                   setPutOnSalePop={setPutOnSalePop}
                   isQuantityAvailable={isQuantityAvailable}
+                  ownerOrdersList={ownerOrdersList}
                   owners={nftOwner}
                 />
               </div>

@@ -68,13 +68,21 @@ const NFTOrderDetails = ({ nft, orderList = [] }) => {
                 <td className="text-center">
                   {(() => {
                     if (erc721) {
-                      return order?.available_quantity === 0
-                        ? "1 of 1 (Sold Out)"
-                        : " 1 of 1 (left)";
+                      if (order?.status === "cancelled") {
+                        return "-";
+                      } else {
+                        return order?.available_quantity === 0
+                          ? "1 of 1 (Sold Out)"
+                          : " 1 of 1 (left)";
+                      }
                     } else {
-                      return order?.available_quantity === 0
-                        ? `Sold Out`
-                        : `${order?.available_quantity} / ${order?.total_quantity}`;
+                      if (order?.status === "cancelled") {
+                        return "-";
+                      } else {
+                        return order?.available_quantity === 0
+                          ? `Sold Out`
+                          : `${order?.available_quantity} / ${order?.total_quantity}`;
+                      }
                     }
                   })()}
                 </td>

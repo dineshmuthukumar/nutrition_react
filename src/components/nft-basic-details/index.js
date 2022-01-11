@@ -17,13 +17,13 @@ const NFTBaseDetails = ({
   putOnSalePop,
   setPutOnSalePop,
   isQuantityAvailable,
+  ownerOrdersList,
   owners,
 }) => {
   const { user } = useSelector((state) => state.user.data);
 
   const erc721 = nft.nft_type === "erc721";
   const isOwner = _.has(nft, "owner_details");
-  const isOnSale = _.size(_.get(nft, "owner_details.orders", [])) > 0;
   const availableQuantity = _.get(nft, "owner_details.available_quantity", 0);
 
   return (
@@ -122,6 +122,7 @@ const NFTBaseDetails = ({
             nft={nft}
             putOnSalePop={putOnSalePop}
             setPutOnSalePop={setPutOnSalePop}
+            isQuantityAvailable={isQuantityAvailable}
           />
 
           {(() => {
@@ -140,7 +141,7 @@ const NFTBaseDetails = ({
                   Sign In
                 </button>
               );
-            } else if (isOwner && !isOnSale) {
+            } else if (isOwner && ownerOrdersList.length === 0) {
               return (
                 <button
                   disabled={false}
@@ -150,8 +151,8 @@ const NFTBaseDetails = ({
                   List for sale
                 </button>
               );
-            } else if (isOwner && isOnSale) {
-              if (isQuantityAvailable > 0) {
+            } else if (isOwner && ownerOrdersList.length > 0) {
+              if (isQuantityAvailable != null && isQuantityAvailable > 0) {
                 return (
                   <button
                     disabled={false}

@@ -35,6 +35,7 @@ const NFTOrderBaseDetails = ({
   userTotalBuys,
   price,
   availableQty,
+  totalQty,
   userOutBid,
   userLastBid,
   isAuctionStarted,
@@ -302,7 +303,11 @@ const NFTOrderBaseDetails = ({
                       title="Edition(s)"
                       value={
                         availableQty >= 0 && availableQty != null
-                          ? `${availableQty} / ${orderDetails.total_quantity}`
+                          ? `${availableQty} / ${
+                              totalQty != null
+                                ? totalQty
+                                : orderDetails.total_quantity
+                            }`
                           : `${orderDetails.available_quantity} / ${orderDetails.total_quantity}`
                       }
                     />
@@ -351,9 +356,9 @@ const NFTOrderBaseDetails = ({
             cancelTheSalePop={cancelTheSalePop}
             setCancelTheSalePop={setCancelTheSalePop}
             price={price}
-            userTotalBuys={userTotalBuys}
-            isAuctionStarted={isAuctionStarted}
-            isAuctionEnded={isAuctionEnded}
+            availableQty={availableQty}
+            isOrderCancelled={isOrderCancelled}
+            totalQty={totalQty}
           />
 
           {(() => {
