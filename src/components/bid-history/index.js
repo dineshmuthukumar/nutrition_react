@@ -29,6 +29,8 @@ const BidHistory = ({
   isOrderOnSale,
   isOrderSuccess,
   isOrderCancelled,
+  soldOut,
+  transferringNFT,
 }) => {
   const { slug } = useParams();
   const [modalShow, setModalShow] = useState(false);
@@ -81,7 +83,7 @@ const BidHistory = ({
 
   return (
     <>
-      {acceptBidConfirm || isOrderSuccess ? (
+      {acceptBidConfirm || soldOut || transferringNFT ? (
         <HistoryConfirm
           nft={nft}
           orderSlug={orderSlug}
@@ -91,6 +93,8 @@ const BidHistory = ({
           isOrderOnSale={isOrderOnSale}
           isOrderSuccess={isOrderSuccess}
           isOrderCancelled={isOrderCancelled}
+          soldOut={soldOut}
+          transferringNFT={transferringNFT}
         />
       ) : (
         <div className="bid-history if_bid_empty_cell">

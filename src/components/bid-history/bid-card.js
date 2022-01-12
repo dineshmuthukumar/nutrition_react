@@ -48,13 +48,16 @@ const BidCard = ({
                 {dayjs(history.created_at).format("MMM D, YYYY hh:mm A")}
                 <span
                   className={`expire-pill ${
-                    history?.status === "active" && latestIndex === 0
+                    (history?.status === "active" && latestIndex === 0) ||
+                    (history?.status === "success" && latestIndex === 0)
                       ? "active"
                       : ""
                   }`}
                 >
                   {history?.status === "active" && latestIndex === 0
                     ? "Active"
+                    : history?.status === "success" && latestIndex === 0
+                    ? "Success"
                     : "Expired"}
                 </span>
               </div>

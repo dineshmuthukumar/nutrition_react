@@ -36,7 +36,7 @@ const NFTPurchaseDetails = ({ nft, list = [] }) => {
           </thead>
           <tbody>
             {list.map((detail, i) => (
-              <tr>
+              <tr key={`purchase-${i}`}>
                 <td className="text-center">{i + 1}</td>
                 <td className="text-center">
                   <BidName
