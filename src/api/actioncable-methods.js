@@ -120,6 +120,21 @@ export const cancelSaleDetail = (nftSlug, orderSlug, value) => {
   );
 };
 
+export const acceptBid = (nftSlug, orderSlug, value) => {
+  nftCable.subscriptions.create(
+    { channel: "NftChannel", room: `${nftSlug}_accept_bid_${orderSlug}` },
+    {
+      connected: () => {
+        console.log("BL/AC9:Connected");
+      },
+      received: (data) => {
+        console.log("BL/AC9:Success");
+        value(data);
+      },
+    }
+  );
+};
+
 export const accountDetail = (slug, value) => {
   baseCable.subscriptions.create(
     { channel: "UserChannel", room: `account_${slug}` },

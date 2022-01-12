@@ -16,6 +16,7 @@ import NFTTags from "../components/nft-tags";
 import toaster from "../utils/toaster";
 import { NFTLoader } from "../components/nft-basic-details/content-loader";
 import {
+  acceptBid,
   bidDetail,
   buyDetail,
   cancelSaleDetail,
@@ -132,8 +133,26 @@ const OrderDetails = () => {
         setTransferringNFT(true);
       }
     });
+
+    acceptBid(slug, orderSlug, (data) => {
+      console.log(data);
+      console.log(data.accepted_bid);
+      setAvailableQty(data.available_quantity);
+      if (data.purchase_details) {
+        setPurchaseList((purchaseList) => [
+          data.purchase_details,
+          ...purchaseList,
+        ]);
+      }
+      if (data.available_quantity === 0) {
+        setTransferringNFT(true);
+      }
+      if (data.order_completed) {
+        setSoldOut(true);
+      }
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user, isOwner]);
+  }, [user]);
 
   const nftDetail = async (slug, orderSlug) => {
     try {
@@ -293,6 +312,8 @@ const OrderDetails = () => {
                       isOrderSuccess={isOrderSuccess}
                       isOrderCancelled={isOrderCancelled}
                       orderDetails={orderDetails}
+                      soldOut={soldOut}
+                      transferringNFT={transferringNFT}
                     />
                   );
                 } else {
