@@ -73,14 +73,17 @@ const OrderDetails = () => {
   const orderDetails = _.get(nft, "order_details", {});
 
   useEffect(() => {
-    buyDetail(orderSlug, (data) => {
+    buyDetail(slug, orderSlug, (data) => {
       console.log(data);
-      setAvailableQty(data.quantity);
+      setAvailableQty(data.available_quantity);
       setTotalBuy(data.total_buys);
-      if (data.history) {
-        setBuyHistory((buyHistory) => [data.history, ...buyHistory]);
+      if (data.purchase_details) {
+        setPurchaseList((purchaseList) => [
+          data.purchase_details,
+          ...purchaseList,
+        ]);
       }
-      if (data.quantity === 0) {
+      if (data.available_quantity === 0) {
         // setSoldOut(true);
         setTransferringNFT(true);
       }

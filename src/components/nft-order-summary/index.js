@@ -15,13 +15,14 @@ const NFTOrderSummary = ({
   totalFavourites,
 }) => {
   const erc721 = nft.nft_type === "erc721";
+  const isBid = _.get(nft, "order_details.is_bid", false);
   const orderDetails = _.get(nft, "order_details", {});
   return (
     <div className="bg-white shadow-sm nft-summary">
       <div className="row">
         <div className="d-flex justify-content-around flex-wrap flex-row point-box">
           <div className="p-4 point-list">
-            {erc721 ? (
+            {erc721 && isBid ? (
               <Badge
                 title="Price"
                 // value={
@@ -63,7 +64,7 @@ const NFTOrderSummary = ({
               />
             )}
           </div>
-          {erc721 && (
+          {erc721 && isBid && (
             <div className="p-4 point-list">
               <Badge
                 title="Base Price"
@@ -89,7 +90,7 @@ const NFTOrderSummary = ({
             </div>
           )}
           <div className="p-4 point-list">
-            {erc721 ? (
+            {erc721 && isBid ? (
               <Badge
                 title="Bids"
                 value={totalBid ? totalBid : orderDetails.total_bids}

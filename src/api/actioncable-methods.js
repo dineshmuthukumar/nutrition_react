@@ -1,8 +1,8 @@
 import { baseCable, nftCable } from "./actioncable-utils";
 
-export const buyDetail = (slug, value) => {
+export const buyDetail = (nftSlug, orderSlug, value) => {
   nftCable.subscriptions.create(
-    { channel: "NftChannel", room: `buy_detail_${slug}` },
+    { channel: "NftChannel", room: `${nftSlug}_order_buy_${orderSlug}` },
     {
       connected: () => {
         console.log("BL/AC1:Connected");
