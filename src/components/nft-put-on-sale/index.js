@@ -494,7 +494,7 @@ const NFTPutOnSale = ({
                                   <span
                                     className={`quantity-to-value error-msg`}
                                   >
-                                    Bids will expire In 7 days if you do not
+                                    Bids will expire in 7 days if you do not
                                     acknowledge/accept it.
                                   </span>
                                 </div>
