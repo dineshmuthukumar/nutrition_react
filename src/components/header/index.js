@@ -170,6 +170,9 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
             case "bid_expired":
               return <img src={outbidIcon} alt="notification icon" />;
 
+            case "bid_received":
+              return <img src={outbidIcon} alt="notification icon" />;
+
             default:
               return "";
           }
@@ -238,6 +241,21 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                     <div className="desc text-secondary">
                       You're no longer the highest bidder. You can, however
                       still place a higher bid, and win the auction!
+                    </div>
+                    <div className="noti-time">
+                      {dayjs(data.created_at).format("DD MMM YYYY hh:mma")}
+                    </div>
+                  </>
+                );
+
+              case "bid_received":
+                return (
+                  <>
+                    <div className="title">{data.nft_name} - Bid Received!</div>
+                    <div className="desc text-secondary">
+                      You received {currencyFormat(data.amount, "USD")} bid for{" "}
+                      {data.celebrity_name} {data.nft_name} from{" "}
+                      {data.buyer_name}
                     </div>
                     <div className="noti-time">
                       {dayjs(data.created_at).format("DD MMM YYYY hh:mma")}
