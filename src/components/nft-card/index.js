@@ -1,8 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { FaHeart } from "react-icons/fa";
 import { currencyFormat } from "../../utils/common";
-import cardImage from "../../images/drops/nft_2.png";
+import sample from "../../images/sampleNFT.jpg";
 
 import "./style.scss";
 
@@ -19,17 +18,16 @@ const NFTCard = ({ nft }) => {
   };
   return (
     <div className="more-card" role="button" onClick={handleClick}>
-      {/* <span className="nft-like-btn">
-        <FaHeart size={30} color="#ccc" />
-      </span> */}
       <span className="nft-type-badge">{nft.nft_type.toUpperCase()}</span>
       <img
         alt="media logo"
         src={(() => {
           if (nft?.asset_type?.includes("image")) {
-            return nft.asset_url ? nft.asset_url : cardImage;
+            return nft.asset_url ? nft.asset_url : sample;
+          } else if (nft?.cover_url) {
+            return nft.cover_url ? nft.cover_url : sample;
           } else {
-            return nft.cover_url ? nft.cover_url : cardImage;
+            return nft.asset_url ? nft.asset_url : sample;
           }
         })()}
         role="button"

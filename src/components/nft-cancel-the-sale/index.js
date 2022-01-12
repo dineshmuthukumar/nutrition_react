@@ -6,6 +6,8 @@ import { FaTimesCircle } from "react-icons/fa";
 import BidValue from "../bid-value";
 
 import ErrorText from "./error-text";
+import ToolTip from "../tooltip";
+import { BsFillQuestionCircleFill } from "react-icons/bs";
 import { bidBuyError, validateQuantity } from "../../utils/common";
 import { buySaleCancelApi, saleCancelApi } from "../../api/methods";
 import sample from "../../images/sampleNFT.jpg";
@@ -21,6 +23,8 @@ const NFTCancelTheSale = ({
   availableQty,
   isOrderCancelled,
   totalQty,
+  soldOut,
+  transferringNFT,
 }) => {
   const history = useHistory();
   const { user } = useSelector((state) => state.user.data);
@@ -184,7 +188,7 @@ const NFTCancelTheSale = ({
                         </div>
                         <div className="pop-nft-content">
                           <div className="pop-author-name text-center">
-                            Amitabh Bachchan
+                            {nft?.category_name}
                           </div>
                           <div className="pop-nft-title text-center mb-1">
                             {nft?.name}
@@ -208,6 +212,15 @@ const NFTCancelTheSale = ({
                               className="input-cancel-quantity"
                               value={cancelQuantity}
                               placeholder="0 NFTs"
+                              disabled={(() => {
+                                if (soldOut) {
+                                  return true;
+                                } else if (transferringNFT) {
+                                  return true;
+                                } else {
+                                  return false;
+                                }
+                              })()}
                               onChange={handleQuantityInputChange}
                             />
                             <span className="cancel-currency">
@@ -219,12 +232,6 @@ const NFTCancelTheSale = ({
                           </div>
                         </div>
                       </div>
-
-                      {/* <div className="d-flex">
-                        <BidValue title="Artist fee" value={"10 %"} />
-                        <BidValue title="Service fee" value={"10 %"} />
-                      </div>
-                      <hr className="custom-divider" /> */}
                     </div>
                     <div className="bottom-area">
                       <h5 className="text-center">
@@ -237,7 +244,9 @@ const NFTCancelTheSale = ({
                           <button
                             className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-cancel-btn-pop`} //process -> proccessing
                             disabled={(() => {
-                              if (availableQty != null && availableQty === 0) {
+                              if (soldOut) {
+                                return true;
+                              } else if (transferringNFT) {
                                 return true;
                               } else {
                                 return false;
@@ -246,8 +255,26 @@ const NFTCancelTheSale = ({
                             onClick={handleBuyCancel}
                           >
                             {(() => {
-                              if (availableQty != null && availableQty === 0) {
+                              if (soldOut) {
                                 return "Sold Out";
+                              } else if (transferringNFT) {
+                                return (
+                                  <ToolTip
+                                    icon={
+                                      <>
+                                        Token Transfer Initiated{" "}
+                                        <BsFillQuestionCircleFill
+                                          size={16}
+                                          className="ms-2 check-icon"
+                                        />
+                                      </>
+                                    }
+                                    content={
+                                      "The NFT's transfer/transaction is in process on the blockchain. Visit again for latest sale-status."
+                                    }
+                                    placement="top"
+                                  />
+                                );
                               } else {
                                 return "Confirm";
                               }

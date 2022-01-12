@@ -73,16 +73,20 @@ const OrderDetails = () => {
   const orderDetails = _.get(nft, "order_details", {});
 
   useEffect(() => {
-    buyDetail(orderSlug, (data) => {
-      console.log(data);
-      setAvailableQty(data.quantity);
+    buyDetail(slug, orderSlug, (data) => {
+      setAvailableQty(data.available_quantity);
       setTotalBuy(data.total_buys);
-      if (data.history) {
-        setBuyHistory((buyHistory) => [data.history, ...buyHistory]);
+      if (data.purchase_details) {
+        setPurchaseList((purchaseList) => [
+          data.purchase_details,
+          ...purchaseList,
+        ]);
       }
-      if (data.quantity === 0) {
-        // setSoldOut(true);
+      if (data.available_quantity === 0) {
         setTransferringNFT(true);
+      }
+      if (data.order_completed) {
+        setSoldOut(true);
       }
     });
     bidDetail(orderSlug, (data) => {
@@ -118,7 +122,6 @@ const OrderDetails = () => {
       });
     }
 
-    // if (isOwner) {
     cancelSaleDetail(slug, orderSlug, (data) => {
       setTotalQty(data.total_quantity);
       setAvailableQty(data.available_quantity);
@@ -129,7 +132,6 @@ const OrderDetails = () => {
         setTransferringNFT(true);
       }
     });
-    // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, isOwner]);
 
@@ -154,15 +156,14 @@ const OrderDetails = () => {
         }
       }
 
-      if (NFT?.order_details?.status === "cancelled") {
-        history.push("/");
-      }
-      if (NFT?.order_details?.status === "success") {
+      // if (NFT?.order_details?.status === "cancelled") {
+      //   history.push("/");
+      // }
+      if (NFT?.order_details?.order_completed) {
         setSoldOut(true);
       }
 
       if (NFT?.order_details?.available_quantity === 0) {
-        // setSoldOut(true);
         setTransferringNFT(true);
       }
 

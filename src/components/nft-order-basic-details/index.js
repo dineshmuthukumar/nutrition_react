@@ -38,8 +38,6 @@ const NFTOrderBaseDetails = ({
   totalQty,
   userOutBid,
   userLastBid,
-  isAuctionStarted,
-  isAuctionEnded,
   soldOut,
   transferringNFT,
   owners,
@@ -105,7 +103,7 @@ const NFTOrderBaseDetails = ({
                     />
                   }
                   content={
-                    "The service fee includes gas fee and the platform fee."
+                    "The NFT's transfer/transaction is in process on the blockchain. Visit again for latest sale-status."
                   }
                   placement="top"
                 />
@@ -329,8 +327,6 @@ const NFTOrderBaseDetails = ({
             isBuy={isBuy}
             price={price}
             userTotalBuys={userTotalBuys}
-            isAuctionStarted={isAuctionStarted}
-            isAuctionEnded={isAuctionEnded}
             soldOut={soldOut}
             transferringNFT={transferringNFT}
           />
@@ -343,8 +339,6 @@ const NFTOrderBaseDetails = ({
             isBuy={isBuy}
             price={price}
             userTotalBuys={userTotalBuys}
-            isAuctionStarted={isAuctionStarted}
-            isAuctionEnded={isAuctionEnded}
             soldOut={soldOut}
             transferringNFT={transferringNFT}
           />
@@ -359,6 +353,8 @@ const NFTOrderBaseDetails = ({
             availableQty={availableQty}
             isOrderCancelled={isOrderCancelled}
             totalQty={totalQty}
+            soldOut={soldOut}
+            transferringNFT={transferringNFT}
           />
 
           {(() => {
@@ -420,11 +416,8 @@ const NFTOrderBaseDetails = ({
               return (
                 <button
                   disabled={false}
-                  className={`btn ${
-                    isAuctionEnded
-                      ? "btn-dark place-bid-btn"
-                      : "btn-danger text-white recharge-btn"
-                  } text-center btn-lg mt-2 rounded-pill`}
+                  className={`btn btn-danger text-white recharge-btn
+                   text-center btn-lg mt-2 rounded-pill`}
                   onClick={() =>
                     window.open(
                       `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
