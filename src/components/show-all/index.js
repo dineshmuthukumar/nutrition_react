@@ -33,12 +33,12 @@ const ShowAll = ({ categories }) => {
     ],
     nft: [
       {
-        name: "ERC721",
+        name: "Single",
         value: "erc721",
         checked: false,
       },
       {
-        name: "ERC1155",
+        name: "Multiple",
         value: "erc1155",
         checked: false,
       },

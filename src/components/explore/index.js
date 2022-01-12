@@ -35,12 +35,12 @@ const Explore = ({ categoryDetail }) => {
     ],
     nft: [
       {
-        name: "ERC721",
+        name: "Single",
         value: "erc721",
         checked: false,
       },
       {
-        name: "ERC1155",
+        name: "Multiple",
         value: "erc1155",
         checked: false,
       },
@@ -389,7 +389,7 @@ const Explore = ({ categoryDetail }) => {
                       </div>
                     ))
                   ) : (
-                    <div className="col-12 text-center">
+                    <div className="col-12 text-center mb-5">
                       <h3 className="my-3">No Data Found!</h3>
                     </div>
                   )}

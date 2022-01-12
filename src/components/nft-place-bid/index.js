@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Offcanvas } from "react-bootstrap";
 import { FaCheckCircle } from "react-icons/fa";
+import { BsFillQuestionCircleFill } from "react-icons/bs";
 
 import ErrorText from "./error-text";
 import sample from "../../images/sampleNFT.jpg";
@@ -16,7 +17,6 @@ import { nftBidApi } from "../../api/methods";
 
 import "./style.scss";
 import ToolTip from "../tooltip/index";
-import { BsFillQuestionCircleFill } from "react-icons/bs";
 
 const NFTPlaceBid = ({
   placeBidPop = false,
@@ -419,35 +419,39 @@ const NFTPlaceBid = ({
                         Back
                       </div>
                       <div className="place-bid-button">
-                        {transferringNFT ? (
-                          <ToolTip
-                            icon={
-                              <button disabled>Token Transfer Initiated</button>
+                        <button
+                          disabled={bid.buttonDisable}
+                          className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop ${bid.processClass}`} //process -> proccessing
+                          onClick={handleBid}
+                        >
+                          {(() => {
+                            if (soldOut) {
+                              return "Sold Out";
+                            } else if (transferringNFT) {
+                              return (
+                                <ToolTip
+                                  icon={
+                                    <>
+                                      Token Transfer Initiated{" "}
+                                      <BsFillQuestionCircleFill
+                                        size={16}
+                                        className="ms-2 check-icon"
+                                      />
+                                    </>
+                                  }
+                                  content={
+                                    "The NFT's transfer/transaction is in process on the blockchain. Visit again for latest sale-status."
+                                  }
+                                  placement="top"
+                                />
+                              );
+                            } else if (bidAmount > 0) {
+                              return bid.buttonName;
+                            } else {
+                              return "Bid amount is required";
                             }
-                            content={
-                              "The NFT's transfer/transaction is in process on the blockchain. Visit again for latest sale-status."
-                            }
-                            placement="top"
-                          />
-                        ) : (
-                          <button
-                            disabled={bid.buttonDisable}
-                            className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop ${bid.processClass}`} //process -> proccessing
-                            onClick={handleBid}
-                          >
-                            {(() => {
-                              if (soldOut) {
-                                return "Sold Out";
-                              } else if (transferringNFT) {
-                                return "Token Transfer Initiated";
-                              } else if (bidAmount > 0) {
-                                return bid.buttonName;
-                              } else {
-                                return "Bid amount is required";
-                              }
-                            })()}
-                          </button>
-                        )}
+                          })()}
+                        </button>
                       </div>
                     </div>
                   </div>
