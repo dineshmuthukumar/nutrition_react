@@ -33,6 +33,7 @@ const Details = () => {
   const [ownerLoader, setOwnerLoader] = useState(true);
   const [putOnSalePop, setPutOnSalePop] = useState(false);
   const [ownerOrdersList, setOwnerOrdersList] = useState([]);
+  const [ownerCount, setOwnerCount] = useState(0);
   const [isQuantityAvailable, setIsQuantityAvailable] = useState(null);
   const [page, setPage] = useState(1);
 
@@ -82,8 +83,9 @@ const Details = () => {
   const nftOwners = async () => {
     try {
       setOwnerLoader(true);
-      let owners = await nftOwnerApi({ nft_slug: slug });
+      let owners = await nftOwnerApi({ nft_slug: slug, page: 1 });
       setNFTOwner(owners.data.data.owners);
+      setOwnerCount(owners.data.data.total_count);
       setOwnerLoader(false);
     } catch (error) {
       console.log(error);
@@ -158,7 +160,11 @@ const Details = () => {
                 } else {
                   return (
                     nftOwner.length > 0 && (
-                      <OwnerList nft={nft} nftOwners={nftOwner} />
+                      <OwnerList
+                        nft={nft}
+                        nftOwners={nftOwner}
+                        totalCount={ownerCount}
+                      />
                     )
                   );
                 }

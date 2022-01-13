@@ -55,8 +55,8 @@ export const orderBidHistory = ({ order_slug, page }) =>
 export const nftBidWinner = ({ nft_slug }) =>
   appAxios.get(`/nfts/${nft_slug}/bid_winner`);
 
-export const nftOwnerApi = ({ nft_slug }) =>
-  appAxios.get(`/nfts/${nft_slug}/owners`);
+export const nftOwnerApi = ({ nft_slug, page }) =>
+  appAxios.get(`/nfts/${nft_slug}/owners?page=${page}`);
 
 // export const nftBuyApi = (props) =>
 //   appAxios.post("/buys", { order: { ...props } });
