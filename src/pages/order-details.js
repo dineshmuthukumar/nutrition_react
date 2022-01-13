@@ -182,7 +182,10 @@ const OrderDetails = () => {
         setSoldOut(true);
       }
 
-      if (NFT?.order_details?.available_quantity === 0) {
+      if (
+        NFT?.order_details?.available_quantity === 0 &&
+        NFT?.order_details?.total_quantity > 0
+      ) {
         setTransferringNFT(true);
       }
 

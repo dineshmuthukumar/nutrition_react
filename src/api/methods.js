@@ -46,6 +46,9 @@ export const nftBuyHistory = ({ nft_slug, page }) =>
 export const nftBidHistory = ({ nft_slug, page }) =>
   appAxios.get(`/nfts/${nft_slug}/bid_history?page=${page}`);
 
+export const nftTransactionHistory = ({ nft_slug, page }) =>
+  appAxios.get(`/nfts/${nft_slug}/transaction_histories?page=${page}`);
+
 export const orderBidHistory = ({ order_slug, page }) =>
   appAxios.get(`/orders/${order_slug}/bid_history?page=${page}`);
 
