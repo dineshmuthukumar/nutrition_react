@@ -25,7 +25,7 @@ const Seller = ({ index, seller, image }) => {
               }
               alt="userImge"
               role={"button"}
-              onClick={() => history.push(`/top-seller/${seller.slug}/details`)}
+              onClick={() => history.push(`/seller/${seller.slug}/details`)}
             />
             <IoIosCheckmark className="user-verify" />
           </figure>
@@ -33,7 +33,7 @@ const Seller = ({ index, seller, image }) => {
             <h3
               className="user-name"
               role={"button"}
-              onClick={() => history.push(`/top-seller/${seller.slug}/details`)}
+              onClick={() => history.push(`/seller/${seller.slug}/details`)}
             >
               {seller.user_name}
             </h3>

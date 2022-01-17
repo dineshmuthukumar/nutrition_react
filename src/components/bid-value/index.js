@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import userImg from "../../images/user_1.png";
@@ -16,7 +17,9 @@ const BidValue = ({
   name,
   avatar,
   userSlug,
+  seller = false,
 }) => {
+  const history = useHistory();
   const { user } = useSelector((state) => state.user.data);
   return (
     <div className="current-bid">
@@ -33,11 +36,21 @@ const BidValue = ({
                 className="win-user-name"
                 role={"button"}
                 onClick={() => {
-                  window.open(
-                    user?.slug === userSlug
-                      ? `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`
-                      : `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/view/${userSlug}`
-                  );
+                  if (seller) {
+                    if (user?.slug === userSlug) {
+                      window.open(
+                        `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`
+                      );
+                    } else {
+                      history.push(`/seller/${userSlug}/details`);
+                    }
+                  } else {
+                    window.open(
+                      user?.slug === userSlug
+                        ? `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`
+                        : `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/view/${userSlug}`
+                    );
+                  }
                 }}
               >
                 {name}

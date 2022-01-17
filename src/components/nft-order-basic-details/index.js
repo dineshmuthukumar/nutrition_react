@@ -275,6 +275,7 @@ const NFTOrderBaseDetails = ({
                   avatar={owners[0].avatar_url}
                   name={owners[0].user_name}
                   userSlug={owners[0].slug}
+                  seller={true}
                   isEnd
                 />
               )}

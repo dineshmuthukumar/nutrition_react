@@ -39,6 +39,7 @@ const OwnerCard = ({ owner, isEnd = false, totalQuantity }) => {
                   imgUrl={owner.avatar_url}
                   text={owner.user_name}
                   slug={owner.slug}
+                  seller={true}
                 />
               </div>
             </div>

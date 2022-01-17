@@ -101,12 +101,12 @@ const NFTSummary = ({
               />
             )}
           </div>
-          <div className="p-4 point-list">
+          {/* <div className="p-4 point-list">
             <Badge
               title="Views"
               value={totalViews ? totalViews : orderDetails.page_views}
             />
-          </div>
+          </div> */}
           <div className="p-4 point-list">
             <Badge
               title="Favourites"
