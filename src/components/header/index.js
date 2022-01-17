@@ -157,114 +157,255 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
     return (
       <div className="noti-message" role="button" onClick={handleNotiClick}>
         {(() => {
-          switch (data.reason) {
-            case "deposit":
-              return <img src={depositIcon} alt="notification icon" />;
-
-            case "buy_success":
-              return <img src={buyIcon} alt="notification icon" />;
-
-            case "bid_success":
+          if (data.activity_type === "deposit") {
+            return <img src={depositIcon} alt="notification icon" />;
+          } else if (data.activity_type === "bid") {
+            if (data.reason === "bid_lock") {
               return <img src={bidIcon} alt="notification icon" />;
-
-            case "bid_expired":
+            } else if (data.reason === "bid_expired") {
               return <img src={outbidIcon} alt="notification icon" />;
-
-            case "bid_received":
+            } else if (data.reason === "bid_success") {
+              return <img src={bidIcon} alt="notification icon" />;
+            } else if (data.reason === "bid_received") {
               return <img src={outbidIcon} alt="notification icon" />;
-
-            default:
-              return "";
+            }
+          } else if (data.activity_type === "buy") {
+            if (data.payment_type === "debit") {
+              return <img src={buyIcon} alt="notification icon" />;
+            } else {
+              return <img src={buyIcon} alt="notification icon" />;
+            }
+          } else if (data.activity_type === "withdraw") {
+            if (data.reason === "withdraw_requested") {
+              return <img src={depositIcon} alt="notification icon" />;
+            } else if (data.reason === "withdraw_cancelled") {
+              return <img src={depositIcon} alt="notification icon" />;
+            } else if (data.reason === "withdraw_success") {
+              return <img src={depositIcon} alt="notification icon" />;
+            }
+          } else {
+            return "";
           }
         })()}
 
         <div className="noti-message-content">
           {(() => {
-            switch (data.reason) {
-              case "deposit":
-                return (
-                  <>
-                    <div className="title">Deposit Successful</div>
-                    <div className="desc text-secondary">
-                      Your payment of{" "}
-                      {currencyFormat(
-                        data.amount,
-                        user.data.user.currency_name
-                      )}{" "}
-                      was successfully processed to your wallet! Happy NFT
-                      buying.
-                    </div>
-                    <div className="noti-time">
-                      {dayjs(data.created_at).format("DD MMM YYYY hh:mma")}
-                    </div>
-                  </>
-                );
-
-              case "buy_success":
-                return (
-                  <>
-                    <div className="title">
-                      {data.nft_name} - Your NFT is Yours!
-                    </div>
-                    <div className="desc text-secondary">
-                      Congratulations! You've successfully purchased your NFT.
-                      Check it out in your collections.
-                    </div>
-                    <div className="noti-time">
-                      {dayjs(data.created_at).format("DD MMM YYYY hh:mma")}
-                    </div>
-                  </>
-                );
-
-              case "bid_success":
-                return (
-                  <>
-                    <div className="title">
-                      {data.nft_name} - Your Bid Has Been Placed!
-                    </div>
-                    <div className="desc text-secondary">
-                      Congratulations. Your bid has been successfully placed.
-                      All the best for winning the auction.
-                    </div>
-                    <div className="noti-time">
-                      {dayjs(data.created_at).format("DD MMM YYYY hh:mma")}
-                    </div>
-                  </>
-                );
-
-              case "bid_expired":
-                return (
-                  <>
-                    <div className="title">
-                      {data.nft_name} - You've been outbid!
-                    </div>
-                    <div className="desc text-secondary">
-                      You're no longer the highest bidder. You can, however
-                      still place a higher bid, and win the auction!
-                    </div>
-                    <div className="noti-time">
-                      {dayjs(data.created_at).format("DD MMM YYYY hh:mma")}
-                    </div>
-                  </>
-                );
-
-              case "bid_received":
-                return (
-                  <>
-                    <div className="title">{data.nft_name} - Bid Received!</div>
-                    <div className="desc text-secondary">
-                      You received {currencyFormat(data.amount, "USD")} bid for{" "}
-                      {data.celebrity_name} {data.nft_name} from{" "}
-                      {data.buyer_name}
-                    </div>
-                    <div className="noti-time">
-                      {dayjs(data.created_at).format("DD MMM YYYY hh:mma")}
-                    </div>
-                  </>
-                );
-
-              default:
-                return "";
+            if (data.activity_type === "deposit") {
+              return (
+                <>
+                  <div className="title">Deposit Successful</div>
+                  <div className="desc text-secondary">
+                    Your payment of {currencyFormat(data.amount, "USD")} was
+                    successfully processed to your wallet! Happy NFT buying.
+                  </div>
+                  <div className="noti-time">
+                    {dayjs(data.created_at).format("DD MMM YYYY hh:mma")}
+                  </div>
+                </>
+              );
+            } else if (data.activity_type === "bid") {
+              return (
+                <>
+                  {(() => {
+                    if (data.reason === "bid_lock") {
+                      return (
+                        <>
+                          <div className="title">Bid Locked</div>
+                          <div className="desc text-secondary">
+                            <>
+                              Your bid of{" "}
+                              <b>{currencyFormat(data.amount, "USD")}</b> is
+                              locked for{" "}
+                              <b>
+                                {data.celebrity_name}
+                                's {data.nft_name}
+                              </b>{" "}
+                              from <b>{data.buyer_name}</b>{" "}
+                            </>
+                          </div>
+                          <div className="noti-time">
+                            {dayjs(data.created_at).format(
+                              "DD MMM YYYY hh:mma"
+                            )}
+                          </div>
+                        </>
+                      );
+                    } else if (data.reason === "bid_expired") {
+                      return (
+                        <>
+                          <div className="title">Bid Expired</div>
+                          <div className="desc text-secondary">
+                            <>
+                              Your bid{" "}
+                              <b>{currencyFormat(data.amount, "USD")}</b> was
+                              expired for{" "}
+                              <b>
+                                {data.celebrity_name}
+                                's {data.nft_name}
+                              </b>{" "}
+                              from <b>{data.buyer_name}</b>
+                            </>
+                          </div>
+                          <div className="noti-time">
+                            {dayjs(data.created_at).format(
+                              "DD MMM YYYY hh:mma"
+                            )}
+                          </div>
+                        </>
+                      );
+                    } else if (data.reason === "bid_success") {
+                      return (
+                        <>
+                          {data.payment_type === "debit" ? (
+                            <>
+                              <div className="title">Bid Successfull</div>
+                              <div className="desc text-secondary">
+                                <>
+                                  Your bid{" "}
+                                  <b> {currencyFormat(data.amount, "USD")}</b>{" "}
+                                  was successful for{" "}
+                                  <b>
+                                    {" "}
+                                    {data.celebrity_name}
+                                    's {data.nft_name}
+                                  </b>{" "}
+                                  from <b>{data.buyer_name}</b>
+                                </>
+                              </div>
+                              <div className="noti-time">
+                                {dayjs(data.created_at).format(
+                                  "DD MMM YYYY hh:mma"
+                                )}
+                              </div>
+                            </>
+                          ) : (
+                            <>
+                              <div className="title">Bid Successfull</div>
+                              <div className="desc text-secondary">
+                                <>
+                                  Your{" "}
+                                  <b>
+                                    {data.celebrity_name}
+                                    's {data.nft_name}
+                                  </b>{" "}
+                                  was sold for{" "}
+                                  <b>{currencyFormat(data.amount, "USD")}</b> to{" "}
+                                  <b>{data.buyer_name}</b>
+                                </>
+                              </div>
+                              <div className="noti-time">
+                                {dayjs(data.created_at).format(
+                                  "DD MMM YYYY hh:mma"
+                                )}
+                              </div>
+                            </>
+                          )}
+                        </>
+                      );
+                    } else if (data.reason === "bid_received") {
+                      return (
+                        <>
+                          <div className="title">Bid Received</div>
+                          <div className="desc text-secondary">
+                            <>
+                              You received{" "}
+                              <b> {currencyFormat(data.amount, "USD")}</b> bid
+                              for{" "}
+                              <b>
+                                {data.celebrity_name}
+                                's {data.nft_name}
+                              </b>{" "}
+                              from <b>{data.buyer_name}</b>
+                            </>
+                          </div>
+                          <div className="noti-time">
+                            {dayjs(data.created_at).format(
+                              "DD MMM YYYY hh:mma"
+                            )}
+                          </div>
+                        </>
+                      );
+                    }
+                  })()}
+                </>
+              );
+            } else if (data.activity_type === "buy") {
+              return (
+                <>
+                  {data.payment_type === "debit" ? (
+                    <>
+                      <div className="title">You Bought</div>
+                      <div className="desc text-secondary">
+                        <>
+                          You bought{" "}
+                          <b>
+                            {data.celebrity_name}
+                            's NFT{" "}
+                          </b>
+                          from <b>{data.seller_name}</b> for{" "}
+                          <b> {currencyFormat(data.amount, "USD")}</b>
+                        </>
+                      </div>
+                      <div className="noti-time">
+                        {dayjs(data.created_at).format("DD MMM YYYY hh:mma")}
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="title">You Sold</div>
+                      <div className="desc text-secondary">
+                        <>
+                          You sold <b>{data.celebrity_name}'s NFT</b> to{" "}
+                          <b>{data.buyer_name}</b> for{" "}
+                          <b> {currencyFormat(data.amount, "USD")}</b>
+                        </>
+                      </div>
+                      <div className="noti-time">
+                        {dayjs(data.created_at).format("DD MMM YYYY hh:mma")}
+                      </div>
+                    </>
+                  )}
+                </>
+              );
+            } else if (data.activity_type === "withdraw") {
+              return (
+                <>
+                  <div className="title">Withdraw</div>
+                  <div className="desc text-secondary">
+                    <>
+                      {(() => {
+                        if (data.reason === "withdraw_requested") {
+                          return (
+                            <>
+                              {" "}
+                              You <b>requested a withdraw</b> of{" "}
+                              <b>{currencyFormat(data.amount, "USD")}</b>{" "}
+                            </>
+                          );
+                        } else if (data.reason === "withdraw_cancelled") {
+                          return (
+                            <>
+                              You <b>cancelled a withdraw request</b> of{" "}
+                              <b>{currencyFormat(data.amount, "USD")}</b>
+                            </>
+                          );
+                        } else if (data.reason === "withdraw_success") {
+                          return (
+                            <>
+                              You <b>withdraw request</b> of{" "}
+                              <b>{currencyFormat(data.amount, "USD")}</b> was{" "}
+                              <b>successful</b>
+                            </>
+                          );
+                        }
+                      })()}
+                    </>
+                  </div>
+                  <div className="noti-time">
+                    {dayjs(data.created_at).format("DD MMM YYYY hh:mma")}
+                  </div>
+                </>
+              );
             }
           })()}
         </div>
