@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import userImg from "../../images/user_1.png";
 
@@ -9,7 +10,9 @@ const OwnerName = ({
   isTable = false,
   slug,
   static_name = false,
+  seller = false,
 }) => {
+  const history = useHistory();
   const { user } = useSelector((state) => state.user.data);
 
   const username =
@@ -22,14 +25,18 @@ const OwnerName = ({
         <div
           className="text-secondary"
           role={static_name ? "none" : "button"}
-          onClick={() =>
-            !static_name &&
-            window.open(
-              user?.slug === slug
-                ? `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`
-                : `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/view/${slug}`
-            )
-          }
+          onClick={() => {
+            if (seller) {
+              history.push(`/seller/${slug}/details`);
+            } else {
+              !static_name &&
+                window.open(
+                  user?.slug === slug
+                    ? `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`
+                    : `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/view/${slug}`
+                );
+            }
+          }}
         >
           {username}
         </div>
@@ -39,14 +46,18 @@ const OwnerName = ({
     <span
       className="text-secondary"
       role={static_name ? "none" : "button"}
-      onClick={() =>
-        !static_name &&
-        window.open(
-          user?.slug === slug
-            ? `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`
-            : `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/view/${slug}`
-        )
-      }
+      onClick={() => {
+        if (seller) {
+          history.push(`/seller/${slug}/details`);
+        } else {
+          !static_name &&
+            window.open(
+              user?.slug === slug
+                ? `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`
+                : `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/view/${slug}`
+            );
+        }
+      }}
     >
       {username}
     </span>
