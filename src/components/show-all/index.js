@@ -33,12 +33,12 @@ const ShowAll = ({ categories }) => {
     ],
     nft: [
       {
-        name: "ERC721",
+        name: "Single",
         value: "erc721",
         checked: false,
       },
       {
-        name: "ERC1155",
+        name: "Multiple",
         value: "erc1155",
         checked: false,
       },
@@ -511,7 +511,10 @@ const ShowAll = ({ categories }) => {
                 <div className="row">
                   {list.length > 0 ? (
                     list.map((nft, i) => (
-                      <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                      <div
+                        key={`list-nft-${i}`}
+                        className="col-xl-3 col-lg-4 col-md-6 col-sm-6"
+                      >
                         <NFTCard nft={nft} key={i} image={cardImage} />
                       </div>
                     ))
@@ -562,20 +565,6 @@ const NFTCardLoader = (props) => (
     <rect x="228" y="5" rx="2" ry="2" width="218" height="280" />
     <rect x="456" y="5" rx="2" ry="2" width="218" height="280" />
     <rect x="684" y="5" rx="2" ry="2" width="218" height="280" />
-  </ContentLoader>
-);
-
-const ShowCount = (props) => (
-  <ContentLoader
-    speed={2}
-    width={300}
-    height={50}
-    viewBox="0 0 300 50"
-    backgroundColor="#d9d9d9"
-    foregroundColor="#ededed"
-    {...props}
-  >
-    <rect x="0" y="6" rx="0" ry="0" width="343" height="38" />
   </ContentLoader>
 );
 

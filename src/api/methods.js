@@ -6,8 +6,13 @@ export const nftCategoriesApi = ({ page }) =>
 export const nftCategoryDetailApi = ({ slug }) =>
   appAxios.get(`/categories/${slug}`);
 
-export const nftCategoryListApi = ({ slug, page }) =>
-  appAxios.get(`/categories/${slug}/nfts?page=${page}`);
+export const nftCategoryListApi = ({ slug, page, filter, sort }) =>
+  appAxios.get(`/categories/${slug}/nfts?page=${page}`, {
+    params: {
+      filter,
+      sort,
+    },
+  });
 
 export const nftShowAllApi = ({ page, filter, sort }) =>
   appAxios.get(`/dashboard/index?page=${page}`, {
@@ -41,14 +46,17 @@ export const nftBuyHistory = ({ nft_slug, page }) =>
 export const nftBidHistory = ({ nft_slug, page }) =>
   appAxios.get(`/nfts/${nft_slug}/bid_history?page=${page}`);
 
+export const nftTransactionHistory = ({ nft_slug, page }) =>
+  appAxios.get(`/nfts/${nft_slug}/transaction_histories?page=${page}`);
+
 export const orderBidHistory = ({ order_slug, page }) =>
   appAxios.get(`/orders/${order_slug}/bid_history?page=${page}`);
 
 export const nftBidWinner = ({ nft_slug }) =>
   appAxios.get(`/nfts/${nft_slug}/bid_winner`);
 
-export const nftOwnerApi = ({ nft_slug }) =>
-  appAxios.get(`/nfts/${nft_slug}/owners`);
+export const nftOwnerApi = ({ nft_slug, page }) =>
+  appAxios.get(`/nfts/${nft_slug}/owners?page=${page}`);
 
 // export const nftBuyApi = (props) =>
 //   appAxios.post("/buys", { order: { ...props } });

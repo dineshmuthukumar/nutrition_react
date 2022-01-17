@@ -110,7 +110,7 @@ function App(props) {
 
               <Route
                 exact
-                path="/top-seller/:slug/details"
+                path="/seller/:slug/details"
                 component={UserDetails}
               />
               <Route path="/not-found" component={NotFound} />

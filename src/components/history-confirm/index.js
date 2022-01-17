@@ -19,6 +19,8 @@ const HistoryConfirm = ({
   isOrderOnSale,
   isOrderSuccess,
   isOrderCancelled,
+  soldOut,
+  transferringNFT,
 }) => {
   const { user } = useSelector((state) => state.user.data);
   const [success, setSuccess] = useState(false);
@@ -31,7 +33,6 @@ const HistoryConfirm = ({
       });
       if (result.data.success) {
         setSuccess(true);
-        window.location.reload(); //temp
       }
     } catch (error) {
       if (error.response.data.status === 422) {
@@ -42,11 +43,29 @@ const HistoryConfirm = ({
 
   return (
     <>
-      {success || isOrderSuccess ? (
+      {success || transferringNFT || soldOut ? (
         <div className="bid-history-confirm">
           <div className="success-msg">
             <FaThumbsUp className="thumbUp-icon" />
-            <h3>Collectible Sold</h3>
+            {soldOut ? (
+              <h3>Collectible Sold</h3>
+            ) : (
+              <h3>
+                Token Transfer Initiated{" "}
+                <ToolTip
+                  icon={
+                    <BsFillQuestionCircleFill
+                      size={16}
+                      className="ms-2 check-icon"
+                    />
+                  }
+                  content={
+                    "The NFT's transfer/transaction is in process on the blockchain. Visit again for latest sale-status."
+                  }
+                  placement="top"
+                />{" "}
+              </h3>
+            )}
           </div>
           {/* <div className="owned-user-details">
             <div className="owned-user-image">

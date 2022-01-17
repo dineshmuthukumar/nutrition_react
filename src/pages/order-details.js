@@ -16,6 +16,7 @@ import NFTTags from "../components/nft-tags";
 import toaster from "../utils/toaster";
 import { NFTLoader } from "../components/nft-basic-details/content-loader";
 import {
+  acceptBid,
   bidDetail,
   buyDetail,
   cancelSaleDetail,
@@ -44,6 +45,7 @@ const OrderDetails = () => {
   const [transferringNFT, setTransferringNFT] = useState(false);
   const [loader, setLoader] = useState(true);
   const [ownerLoader, setOwnerLoader] = useState(true);
+  const [ownerCount, setOwnerCount] = useState(0);
   const [placeBidPop, setPlaceBidPop] = useState(false);
   const [placeBuyPop, setPlaceBuyPop] = useState(false);
   const [putOnSalePop, setPutOnSalePop] = useState(false);
@@ -73,16 +75,20 @@ const OrderDetails = () => {
   const orderDetails = _.get(nft, "order_details", {});
 
   useEffect(() => {
-    buyDetail(orderSlug, (data) => {
-      console.log(data);
-      setAvailableQty(data.quantity);
+    buyDetail(slug, orderSlug, (data) => {
+      setAvailableQty(data.available_quantity);
       setTotalBuy(data.total_buys);
-      if (data.history) {
-        setBuyHistory((buyHistory) => [data.history, ...buyHistory]);
+      if (data.purchase_details) {
+        setPurchaseList((purchaseList) => [
+          data.purchase_details,
+          ...purchaseList,
+        ]);
       }
-      if (data.quantity === 0) {
-        // setSoldOut(true);
+      if (data.available_quantity === 0) {
         setTransferringNFT(true);
+      }
+      if (data.order_completed) {
+        setSoldOut(true);
       }
     });
     bidDetail(orderSlug, (data) => {
@@ -118,7 +124,6 @@ const OrderDetails = () => {
       });
     }
 
-    // if (isOwner) {
     cancelSaleDetail(slug, orderSlug, (data) => {
       setTotalQty(data.total_quantity);
       setAvailableQty(data.available_quantity);
@@ -129,9 +134,26 @@ const OrderDetails = () => {
         setTransferringNFT(true);
       }
     });
-    // }
+
+    acceptBid(slug, orderSlug, (data) => {
+      console.log(data);
+      console.log(data.accepted_bid);
+      setAvailableQty(data.available_quantity);
+      if (data.purchase_details) {
+        setPurchaseList((purchaseList) => [
+          data.purchase_details,
+          ...purchaseList,
+        ]);
+      }
+      if (data.available_quantity === 0) {
+        setTransferringNFT(true);
+      }
+      if (data.order_completed) {
+        setSoldOut(true);
+      }
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user, isOwner]);
+  }, [user]);
 
   const nftDetail = async (slug, orderSlug) => {
     try {
@@ -154,15 +176,17 @@ const OrderDetails = () => {
         }
       }
 
-      if (NFT?.order_details?.status === "cancelled") {
-        history.push("/");
-      }
-      if (NFT?.order_details?.status === "success") {
+      // if (NFT?.order_details?.status === "cancelled") {
+      //   history.push("/");
+      // }
+      if (NFT?.order_details?.order_completed) {
         setSoldOut(true);
       }
 
-      if (NFT?.order_details?.available_quantity === 0) {
-        // setSoldOut(true);
+      if (
+        NFT?.order_details?.available_quantity === 0 &&
+        NFT?.order_details?.total_quantity > 0
+      ) {
         setTransferringNFT(true);
       }
 
@@ -186,8 +210,9 @@ const OrderDetails = () => {
   const nftOwners = async () => {
     try {
       setOwnerLoader(true);
-      let owners = await nftOwnerApi({ nft_slug: slug });
+      let owners = await nftOwnerApi({ nft_slug: slug, page: 1 });
       setNFTOwner(owners.data.data.owners);
+      setOwnerCount(owners.data.data.total_count);
       setOwnerLoader(false);
     } catch (error) {
       console.log(error);
@@ -292,11 +317,19 @@ const OrderDetails = () => {
                       isOrderSuccess={isOrderSuccess}
                       isOrderCancelled={isOrderCancelled}
                       orderDetails={orderDetails}
+                      soldOut={soldOut}
+                      transferringNFT={transferringNFT}
                     />
                   );
                 } else {
                   return (
-                    nftOwner && <OwnerList nft={nft} nftOwners={nftOwner} />
+                    nftOwner && (
+                      <OwnerList
+                        nft={nft}
+                        nftOwners={nftOwner}
+                        totalCount={ownerCount}
+                      />
+                    )
                   );
                 }
               })()}

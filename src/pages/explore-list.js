@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 
 import Explore from "../components/explore";
 import Header from "../components/header";
+import Footer from "../components/footer";
 import { nftCategoryDetailApi } from "../api/methods";
 
 const ExploreList = () => {
@@ -29,6 +30,7 @@ const ExploreList = () => {
     <>
       <Header />
       <Explore categoryDetail={categoryDetail} />
+      <Footer />
     </>
   );
 };

@@ -76,6 +76,7 @@ const NFTBaseDetails = ({
                 title="Owned By"
                 avatar={owners[0].avatar_url}
                 name={owners[0].user_name}
+                seller={true}
                 isEnd
               />
             </div>

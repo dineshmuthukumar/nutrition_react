@@ -3,7 +3,11 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import _ from "lodash";
 
-import { nftDetailApi, nftOwnerApi } from "../api/methods";
+import {
+  nftDetailApi,
+  nftOwnerApi,
+  nftTransactionHistory,
+} from "../api/methods";
 import BidHistory from "../components/bid-history";
 import ChainAttributes from "../components/chain-attributes";
 import Header from "../components/header";
@@ -29,7 +33,9 @@ const Details = () => {
   const [ownerLoader, setOwnerLoader] = useState(true);
   const [putOnSalePop, setPutOnSalePop] = useState(false);
   const [ownerOrdersList, setOwnerOrdersList] = useState([]);
+  const [ownerCount, setOwnerCount] = useState(0);
   const [isQuantityAvailable, setIsQuantityAvailable] = useState(null);
+  const [page, setPage] = useState(1);
 
   const { user } = useSelector((state) => state.user.data);
   const isOwner = _.has(nft, "owner_details");
@@ -37,6 +43,7 @@ const Details = () => {
   useEffect(() => {
     nftDetail(slug);
     nftOwners();
+    // nftTransaction();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -76,9 +83,22 @@ const Details = () => {
   const nftOwners = async () => {
     try {
       setOwnerLoader(true);
-      let owners = await nftOwnerApi({ nft_slug: slug });
+      let owners = await nftOwnerApi({ nft_slug: slug, page: 1 });
       setNFTOwner(owners.data.data.owners);
+      setOwnerCount(owners.data.data.total_count);
       setOwnerLoader(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const nftTransaction = async () => {
+    try {
+      let transactions = await nftTransactionHistory({
+        nft_slug: slug,
+        page: page,
+      });
+      console.log(transactions);
     } catch (error) {
       console.log(error);
     }
@@ -140,7 +160,11 @@ const Details = () => {
                 } else {
                   return (
                     nftOwner.length > 0 && (
-                      <OwnerList nft={nft} nftOwners={nftOwner} />
+                      <OwnerList
+                        nft={nft}
+                        nftOwners={nftOwner}
+                        totalCount={ownerCount}
+                      />
                     )
                   );
                 }

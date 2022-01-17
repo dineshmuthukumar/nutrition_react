@@ -40,16 +40,25 @@ const CollectionCard = ({ nft }) => {
       <div className="top-content-title">
         <div>
           <div className="more-nft-title">{nft?.name}</div>
-          <div className="more-nft-desc">Featured NFT</div>
+          {nft?.owner_name && (
+            <div className="more-nft-desc">{nft?.owner_name}</div>
+          )}
         </div>
-        <div className="more-bid-details">
-          <div className="text-end">
-            <div className="mb-title text-secondary">
-              {erc721 ? "Bid Price" : "Price"}
-            </div>
-            <div className="mb-value">
-              {(() => {
-                if (nft?.is_on_sale) {
+
+        {nft?.is_on_sale && (
+          <div className="more-bid-details">
+            <div className="text-end">
+              <div className="mb-title text-secondary">
+                {(() => {
+                  if (erc721) {
+                    return nft?.order_details?.is_bid ? "Bid Price" : "Price";
+                  } else {
+                    return "Price";
+                  }
+                })()}
+              </div>
+              <div className="mb-value">
+                {(() => {
                   if (erc721) {
                     return nft?.order_details?.is_bid
                       ? currencyFormat(
@@ -65,13 +74,11 @@ const CollectionCard = ({ nft }) => {
                       "USD"
                     );
                   }
-                } else {
-                  return "Not For Sale";
-                }
-              })()}
+                })()}
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

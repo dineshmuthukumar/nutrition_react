@@ -2,13 +2,10 @@ import React, { useState } from "react";
 import ReadMoreReact from "read-more-react";
 import { useSelector } from "react-redux";
 import { FaCheckCircle } from "react-icons/fa";
-import { BiX } from "react-icons/bi";
-import { Modal } from "react-bootstrap";
 import _ from "lodash";
 import dayjs from "dayjs";
 
 import { acceptBidApi } from "../../api/methods";
-import NFTTimeLeft from "../nft-time-left";
 import BidValue from "../bid-value";
 import ToolTip from "../tooltip";
 import NFTPlaceBid from "../nft-place-bid";
@@ -18,7 +15,6 @@ import HelpLine from "../help-line";
 import { ReactComponent as DiscordSvg } from "./../../icons/discord_logo.svg";
 import { currencyFormat } from "../../utils/common";
 import postImages from "../../images/post1.png";
-import CancelNft from "./nft-cancel-box";
 import userImg from "../../images/user_1.png";
 
 import "./style.scss";
@@ -38,8 +34,6 @@ const NFTOrderBaseDetails = ({
   totalQty,
   userOutBid,
   userLastBid,
-  isAuctionStarted,
-  isAuctionEnded,
   soldOut,
   transferringNFT,
   owners,
@@ -70,7 +64,6 @@ const NFTOrderBaseDetails = ({
       });
       if (result.data.success) {
         setAcceptBidSucess(true);
-        window.location.reload(); //temp
       }
     } catch (error) {
       if (error.response.data.status === 422) {
@@ -105,7 +98,7 @@ const NFTOrderBaseDetails = ({
                     />
                   }
                   content={
-                    "The service fee includes gas fee and the platform fee."
+                    "The NFT's transfer/transaction is in process on the blockchain. Visit again for latest sale-status."
                   }
                   placement="top"
                 />
@@ -282,6 +275,7 @@ const NFTOrderBaseDetails = ({
                   avatar={owners[0].avatar_url}
                   name={owners[0].user_name}
                   userSlug={owners[0].slug}
+                  seller={true}
                   isEnd
                 />
               )}
@@ -329,8 +323,6 @@ const NFTOrderBaseDetails = ({
             isBuy={isBuy}
             price={price}
             userTotalBuys={userTotalBuys}
-            isAuctionStarted={isAuctionStarted}
-            isAuctionEnded={isAuctionEnded}
             soldOut={soldOut}
             transferringNFT={transferringNFT}
           />
@@ -343,8 +335,6 @@ const NFTOrderBaseDetails = ({
             isBuy={isBuy}
             price={price}
             userTotalBuys={userTotalBuys}
-            isAuctionStarted={isAuctionStarted}
-            isAuctionEnded={isAuctionEnded}
             soldOut={soldOut}
             transferringNFT={transferringNFT}
           />
@@ -359,6 +349,8 @@ const NFTOrderBaseDetails = ({
             availableQty={availableQty}
             isOrderCancelled={isOrderCancelled}
             totalQty={totalQty}
+            soldOut={soldOut}
+            transferringNFT={transferringNFT}
           />
 
           {(() => {
@@ -420,11 +412,8 @@ const NFTOrderBaseDetails = ({
               return (
                 <button
                   disabled={false}
-                  className={`btn ${
-                    isAuctionEnded
-                      ? "btn-dark place-bid-btn"
-                      : "btn-danger text-white recharge-btn"
-                  } text-center btn-lg mt-2 rounded-pill`}
+                  className={`btn btn-danger text-white recharge-btn
+                   text-center btn-lg mt-2 rounded-pill`}
                   onClick={() =>
                     window.open(
                       `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
@@ -566,46 +555,6 @@ const NFTOrderBaseDetails = ({
           </div>
         </div>
       </div>
-
-      <Modal size="lg" centered show={modalShow} className="history-modal">
-        <Modal.Header className="bg-dark p-0">
-          <Modal.Title className="flex-fill">
-            <div className="modal-bid-history-title-content">
-              <div className="modal-bid-history-title">
-                Select Sale-Order for Cancelation
-              </div>
-              <div className="modal-bid-history-filter">
-                <BiX
-                  role="button"
-                  style={{ color: "#fff" }}
-                  size={25}
-                  onClick={() => setModalShow(false)}
-                />
-              </div>
-            </div>
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="scroll-modal ">
-          {ownerOrderDetails.length > 0 ? (
-            <ul className="cancel-nft-list">
-              {ownerOrderDetails.map((order, i) => (
-                <li className="cancel-nft-item">
-                  <CancelNft
-                    key={i}
-                    nft={nft}
-                    order={order}
-                    image={postImages}
-                    modalShow={modalShow}
-                    setModalShow={setModalShow}
-                  />
-                </li>
-              ))}
-            </ul>
-          ) : (
-            "No Orders Found"
-          )}
-        </Modal.Body>
-      </Modal>
     </>
   );
 };

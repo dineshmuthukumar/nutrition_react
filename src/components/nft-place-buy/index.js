@@ -146,7 +146,6 @@ const NFTPlaceBid = ({
       amountClass: "",
       buttonDisable: true,
     });
-    window.location.reload(); //temp
   };
 
   const handleBuyInputChange = (e) => {
@@ -482,7 +481,7 @@ const NFTPlaceBid = ({
                   </div>
                   <div className="bottom-area">
                     <div className="terms text-secondary">
-                      <>An nft can't be reversed after it's been purchased.</>
+                      <>An nft cannot be reversed after it's been purchased.</>
                     </div>
 
                     <div className="bottom-content-pop">
@@ -493,93 +492,75 @@ const NFTPlaceBid = ({
                         Back
                       </div>
                       <div className="place-buy-button">
-                        {transferringNFT ? (
-                          <ToolTip
-                            icon={
-                              <button
-                                disabled
-                                className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-buy-btn-pop ${buy.processClass}`} //process -> proccessing
-                                onClick={handleBuy}
-                              >
-                                Token Transfer Initiated{" "}
-                                <BsFillQuestionCircleFill
-                                  size={16}
-                                  className="ms-2 check-icon"
-                                />
-                              </button>
+                        <button
+                          disabled={(() => {
+                            if (soldOut) {
+                              return true;
+                            } else if (transferringNFT) {
+                              return true;
+                            } else if (erc721) {
+                              return false;
+                            } else {
+                              return buy.buttonDisable;
                             }
-                            content={
-                              "The NFT's transfer/transaction is in process on the blockchain. Visit again for latest sale-status."
+                          })()}
+                          className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-buy-btn-pop ${buy.processClass}`} //process -> proccessing
+                          onClick={handleBuy}
+                        >
+                          {(() => {
+                            if (erc721) {
+                              if (soldOut) {
+                                return "Sold Out";
+                              } else if (transferringNFT) {
+                                return (
+                                  <>
+                                    Token Transfer Initiated{" "}
+                                    <ToolTip
+                                      icon={
+                                        <BsFillQuestionCircleFill
+                                          size={16}
+                                          className="ms-2 check-icon"
+                                        />
+                                      }
+                                      content={
+                                        "The NFT's transfer/transaction is in process on the blockchain. Visit again for latest sale-status."
+                                      }
+                                      placement="top"
+                                    />
+                                  </>
+                                );
+                              } else {
+                                return buy.buttonName;
+                              }
+                            } else {
+                              if (soldOut) {
+                                return "Sold Out";
+                              } else if (transferringNFT) {
+                                return (
+                                  <>
+                                    Token Transfer Initiated{" "}
+                                    <ToolTip
+                                      icon={
+                                        <BsFillQuestionCircleFill
+                                          size={16}
+                                          className="ms-2 check-icon "
+                                        />
+                                      }
+                                      content={
+                                        "The NFT's transfer/transaction is in process on the blockchain. Visit again for latest sale-status."
+                                      }
+                                      placement="top"
+                                    />
+                                  </>
+                                );
+                              } else if (buyQuantity > 0) {
+                                return buy.buttonName;
+                              } else {
+                                return "NFT quantity is required";
+                              }
                             }
-                            placement="top"
-                          />
-                        ) : (
-                          <button
-                            disabled={(() => {
-                              if (erc721) {
-                                return false;
-                              } else {
-                                return buy.buttonDisable;
-                              }
-                            })()}
-                            className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-buy-btn-pop ${buy.processClass}`} //process -> proccessing
-                            onClick={handleBuy}
-                          >
-                            {(() => {
-                              if (erc721) {
-                                if (soldOut) {
-                                  return "Sold Out";
-                                } else if (transferringNFT) {
-                                  return (
-                                    <>
-                                      Token Transfer Initiated{" "}
-                                      <ToolTip
-                                        icon={
-                                          <BsFillQuestionCircleFill
-                                            size={16}
-                                            className="ms-2 check-icon"
-                                          />
-                                        }
-                                        content={
-                                          "The NFT's transfer/transaction is in process on the blockchain. Visit again for latest sale-status."
-                                        }
-                                        placement="top"
-                                      />
-                                    </>
-                                  );
-                                } else {
-                                  return buy.buttonName;
-                                }
-                              } else {
-                                if (soldOut) {
-                                  return "Sold Out";
-                                } else if (transferringNFT) {
-                                  return (
-                                    <>
-                                      Token Transfer Initiated{" "}
-                                      <ToolTip
-                                        icon={
-                                          <BsFillQuestionCircleFill
-                                            size={16}
-                                            className="ms-2 check-icon "
-                                          />
-                                        }
-                                        content={
-                                          "The NFT's transfer/transaction is in process on the blockchain. Visit again for latest sale-status."
-                                        }
-                                        placement="top"
-                                      />
-                                    </>
-                                  );
-                                } else if (buyQuantity > 0) {
-                                  return buy.buttonName;
-                                } else {
-                                  return "NFT quantity is required";
-                                }
-                              }
-                            })()}
-                          </button>
-                        )}
+                          })()}
+                        </button>
                       </div>
                     </div>
                   </div>
