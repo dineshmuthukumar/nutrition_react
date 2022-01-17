@@ -147,6 +147,7 @@ const OwnerList = ({ nft, nftOwners = [], totalCount }) => {
                         }
                         isTable
                         slug={owner?.slug}
+                        seller={true}
                       />
                     </td>
                     <td className="text-center">

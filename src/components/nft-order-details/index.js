@@ -28,7 +28,7 @@ const NFTOrderDetails = ({ nft, orderList = [] }) => {
               {erc721 && <th className="text-center">Minimum Bid Price</th>}
               <th className="text-center">Sale Price</th>
               <th className="text-center">Availability</th>
-              <th className="text-center">Order Views</th>
+              {/* <th className="text-center">Order Views</th> */}
               <th className="text-center">Status</th>
               <th className="text-center">Order Placed On</th>
               <th className="text-center"></th>
@@ -86,7 +86,7 @@ const NFTOrderDetails = ({ nft, orderList = [] }) => {
                     }
                   })()}
                 </td>
-                <td className="text-center">{order?.page_views}</td>
+                {/* <td className="text-center">{order?.page_views}</td> */}
                 <td
                   className={`text-center ${
                     order?.status === "onsale" || order?.status === "success"
@@ -135,7 +135,7 @@ const NFTOrderDetails = ({ nft, orderList = [] }) => {
             <tr>
               <td
                 className="text-center text-secondary p-3"
-                colSpan={erc721 ? "10" : "9"}
+                colSpan={erc721 ? "9" : "8"}
               >
                 You've reached the end of the list
               </td>
