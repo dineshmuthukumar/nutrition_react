@@ -8,7 +8,7 @@ import { BsFillQuestionCircleFill } from "react-icons/bs";
 
 import BidName from "./bid-name";
 import ToolTip from "../tooltip";
-import userImg from "../../images/user_1.png";
+import userImg from "../../images/user_1.jpg";
 import loaderGif from "../../images/loader.gif";
 import polygon from "../../images/marketplace/polygon.svg";
 import { currencyFormat } from "../../utils/common";

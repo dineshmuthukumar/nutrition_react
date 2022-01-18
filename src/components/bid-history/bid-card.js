@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 import { useSelector } from "react-redux";
 
 import BidName from "./bid-name";
-import userImg from "../../images/user_1.png";
+import userImg from "../../images/user_1.jpg";
 import { currencyFormat } from "../../utils/common";
 
 import "./style.scss";

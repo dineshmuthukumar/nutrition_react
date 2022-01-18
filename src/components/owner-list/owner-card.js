@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 import { useSelector } from "react-redux";
 
 import OwnerName from "./owner-name";
-import userImg from "../../images/user_1.png";
+import userImg from "../../images/user_1.jpg";
 
 import "./style.scss";
 

@@ -12,7 +12,7 @@ import depositIcon from "../../images/deposit.svg";
 import bidIcon from "../../images/bid.svg";
 import buyIcon from "../../images/buy.svg";
 import outbidIcon from "../../images/outbid.svg";
-import userImg from "../../images/user_1.png";
+import userImg from "../../images/user_1.jpg";
 import { user_logout_thunk } from "../../redux/thunk/user_thunk";
 import { accountDetail } from "../../api/actioncable-methods";
 import { currencyFormat } from "../../utils/common";

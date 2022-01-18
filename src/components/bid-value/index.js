@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import userImg from "../../images/user_1.png";
+import userImg from "../../images/user_1.jpg";
 
 import "./style.scss";
 

@@ -9,7 +9,7 @@ import { BiX } from "react-icons/bi";
 import BuyCard from "./buy-card";
 import BuyName from "./buy-name";
 import amitabh from "../../images/amitabh.png";
-import userImg from "../../images/user_1.png";
+import userImg from "../../images/user_1.jpg";
 import { TableLoader } from "../nft-basic-details/content-loader";
 import { nftBuyHistory } from "../../api/methods";
 import { currencyFormat } from "../../utils/common";

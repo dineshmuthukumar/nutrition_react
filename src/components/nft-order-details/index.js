@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { Table } from "react-bootstrap";
 
 import BidName from "./bid-name";
-import userImg from "../../images/user_1.png";
+import userImg from "../../images/user_1.jpg";
 import { currencyFormat } from "../../utils/common";
 import { TableLoader } from "../nft-basic-details/content-loader";
 

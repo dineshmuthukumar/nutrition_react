@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-import userImg from "../../images/user_1.png";
+import userImg from "../../images/user_1.jpg";
 
 const OwnerName = ({
   imgUrl,
