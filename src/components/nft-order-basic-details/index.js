@@ -15,7 +15,7 @@ import HelpLine from "../help-line";
 import { ReactComponent as DiscordSvg } from "./../../icons/discord_logo.svg";
 import { currencyFormat } from "../../utils/common";
 import postImages from "../../images/post1.png";
-import userImg from "../../images/user_1.png";
+import userImg from "../../images/user_1.jpg";
 
 import "./style.scss";
 import { BsFillQuestionCircleFill } from "react-icons/bs";

@@ -11,7 +11,7 @@ import BidCard from "./bid-card";
 import BidName from "./bid-name";
 import HistoryHeader from "../history-header";
 import HistoryConfirm from "../history-confirm";
-import userImg from "../../images/user_1.png";
+import userImg from "../../images/user_1.jpg";
 import amitabh from "../../images/amitabh.png";
 import { nftBidHistory } from "../../api/methods";
 import { currencyFormat } from "../../utils/common";

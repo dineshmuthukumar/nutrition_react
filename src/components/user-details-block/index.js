@@ -8,7 +8,7 @@ import {
   sellerOwnedNFTsApi,
 } from "../../api/methods";
 import cardImage from "../../images/drops/nft_2.png";
-import userImage from "../../images/user_1.png";
+import userImage from "../../images/user_1.jpg";
 
 import NFTCard from "../nft-card/index";
 import "./style.scss";

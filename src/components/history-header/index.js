@@ -1,7 +1,7 @@
 import React from "react";
 import dayjs from "dayjs";
 import { useSelector } from "react-redux";
-import userImg from "../../images/user_1.png";
+import userImg from "../../images/user_1.jpg";
 import "./style.scss";
 
 import { currencyFormat } from "../../utils/common";

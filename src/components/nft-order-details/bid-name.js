@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import userImg from "../../images/user_1.png";
+import userImg from "../../images/user_1.jpg";
 
 const BidName = ({
   imgUrl,

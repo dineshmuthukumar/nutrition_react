@@ -6,7 +6,7 @@ import { Modal, Table } from "react-bootstrap";
 import { BiX } from "react-icons/bi";
 
 import BidName from "../bid-history/bid-name";
-import userImg from "../../images/user_1.png";
+import userImg from "../../images/user_1.jpg";
 import { nftBidHistory } from "../../api/methods";
 import { currencyFormat } from "../../utils/common";
 import { TableLoader } from "../nft-basic-details/content-loader";

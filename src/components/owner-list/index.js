@@ -8,7 +8,7 @@ import { BiX } from "react-icons/bi";
 
 import OwnerCard from "./owner-card";
 import OwnerName from "./owner-name";
-import userImg from "../../images/user_1.png";
+import userImg from "../../images/user_1.jpg";
 import { OwnersTableLoader } from "../nft-basic-details/content-loader";
 import { nftOwnerApi } from "../../api/methods";
 
