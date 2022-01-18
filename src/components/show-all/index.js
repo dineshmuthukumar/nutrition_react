@@ -513,6 +513,12 @@ const ShowAll = ({ categories, query }) => {
     }
   };
 
+  const handleKeyPressEvent = (event) => {
+    if (event.key === "Enter") {
+      handleTextSearch();
+    }
+  };
+
   return (
     <>
       <section className="showall-nft-section">
@@ -601,6 +607,7 @@ const ShowAll = ({ categories, query }) => {
                         type="text"
                         className="search-box-add"
                         value={search}
+                        onKeyPress={handleKeyPressEvent}
                         onChange={(e) => setSearch(e.target.value)}
                       />{" "}
                       <span
