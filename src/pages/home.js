@@ -17,12 +17,7 @@ import {
 } from "../utils/cookies";
 import { user_load_by_token_thunk } from "../redux/thunk/user_thunk";
 import { nftCategoriesApi } from "../api/methods";
-
-function useQuery() {
-  const { search } = useLocation();
-
-  return React.useMemo(() => new URLSearchParams(search), [search]);
-}
+import useQuery from "../hook/useQuery";
 
 const Home = () => {
   const { url } = useRouteMatch();
@@ -78,7 +73,7 @@ const Home = () => {
         {/* <Collections /> */}
         <HotCollections />
         <TopSellers />
-        <ShowAll categories={list} />
+        <ShowAll categories={list} query={query} />
       </main>
       <Footer />
     </>
