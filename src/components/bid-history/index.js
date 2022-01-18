@@ -124,7 +124,7 @@ const BidHistory = ({
                   ))}
 
                   {totalCount <= histories.length ? (
-                    <BidCard isEnd />
+                    <>{/* <BidCard isEnd /> */}</>
                   ) : (
                     <div className="bid-histroy-card">
                       <div className="history-end-content">

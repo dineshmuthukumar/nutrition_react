@@ -31,7 +31,7 @@ const NFTPurchaseDetails = ({ nft, list = [] }) => {
               <th className="text-center">Service Fee</th>
               <th className="text-center">Status</th>
               <th className="text-center">Purchase Date/Time</th>
-              <th className="text-center">Address</th>
+              <th className="text-center">Txid</th>
             </tr>
           </thead>
           <tbody>
@@ -85,11 +85,11 @@ const NFTPurchaseDetails = ({ nft, list = [] }) => {
                 </td>
               </tr>
             ))}
-            <tr>
+            {/* <tr>
               <td className="text-center text-secondary p-3" colSpan="9">
                 You've reached the end of the list
               </td>
-            </tr>
+            </tr> */}
           </tbody>
         </Table>
       </div>

@@ -108,7 +108,7 @@ const OrderBuyHistory = ({
             ))}
 
             {totalCount <= histories.length ? (
-              <BuyCard isEnd />
+              <>{/* <BuyCard isEnd /> */}</>
             ) : (
               <div className="bid-histroy-card">
                 <div className="history-end-content">
@@ -235,18 +235,12 @@ const OrderBuyHistory = ({
                   </tr>
                 ))}
 
-                {buyHistories.next_page ? (
+                {buyHistories.next_page && (
                   <tr>
                     <td className="text-center text-secondary p-3" colSpan="6">
                       <span role="button" onClick={fetchMoreHistory}>
                         Load More
                       </span>
-                    </td>
-                  </tr>
-                ) : (
-                  <tr>
-                    <td className="text-center text-secondary p-3" colSpan="6">
-                      You've reached the end of the list
                     </td>
                   </tr>
                 )}

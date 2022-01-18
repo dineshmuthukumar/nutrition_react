@@ -211,7 +211,7 @@ const NFTCancelTheSale = ({
                               type="text"
                               className="input-cancel-quantity"
                               value={cancelQuantity}
-                              placeholder="0 NFTs"
+                              placeholder="0 NFT"
                               disabled={(() => {
                                 if (soldOut) {
                                   return true;
