@@ -24,7 +24,6 @@ const Details = lazy(() => import("./pages/details"));
 const OrderDetails = lazy(() => import("./pages/order-details"));
 const NotFound = lazy(() => import("./pages/not-found"));
 const HelpLine = lazy(() => import("./pages/help-line"));
-const ExploreNft = lazy(() => import("./pages/explore-nft"));
 const UserDetails = lazy(() => import("./pages/user-details"));
 
 function App(props) {
@@ -106,7 +105,6 @@ function App(props) {
               <Route exact path="/explore/category/:slug" component={Explore} />
               <Route exact path="/" component={Home} />
               <Route exact path="/help-line" component={HelpLine} />
-              <Route exact path="/explore-nft" component={ExploreNft} />
 
               <Route
                 exact

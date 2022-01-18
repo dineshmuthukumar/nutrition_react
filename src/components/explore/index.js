@@ -11,8 +11,12 @@ import ExploreTitle from "./explore-title";
 import sample from "../../images/sampleNFT.jpg";
 import "./style.scss";
 import { BiCaretDown, BiX } from "react-icons/bi";
+import useQuery from "../../hook/useQuery";
+import { useHistory } from "react-router-dom";
 
 const Explore = ({ categoryDetail }) => {
+  const history = useHistory();
+  const query = useQuery();
   const { slug } = useParams();
   const [page, setPage] = useState(1);
   const [list, setList] = useState([]);
@@ -65,8 +69,39 @@ const Explore = ({ categoryDetail }) => {
   });
 
   useEffect(() => {
-    showAllNFTs(page);
-  }, [slug]);
+    const sale_filters = query.get("sale") ? query.get("sale").split(",") : [];
+    const nft_filters = query.get("nft") ? query.get("nft").split(",") : [];
+    const sort_filters = query.get("sort")
+      ? query.get("sort")
+      : "recently_listed";
+
+    const info = { ...filter };
+
+    info.sale = filter.sale.map((obj) => ({
+      ...obj,
+      checked: sale_filters.includes(obj.value),
+    }));
+    info.nft = filter.nft.map((obj) => ({
+      ...obj,
+      checked: nft_filters.includes(obj.value),
+    }));
+    info.sort = filter.sort.map((obj) => ({
+      ...obj,
+      checked: sort_filters ? sort_filters === obj.value : false,
+    }));
+
+    setFilter(info);
+  }, [query]);
+
+  useEffect(() => {
+    const sale_filters = query.get("sale") ? query.get("sale").split(",") : [];
+    const nft_filters = query.get("nft") ? query.get("nft").split(",") : [];
+    const sort_filters = query.get("sort")
+      ? query.get("sort")
+      : "recently_listed";
+
+    showAllFilteredNFTs(1, nft_filters, sale_filters, sort_filters);
+  }, [slug, query]);
 
   const showAllNFTs = async (
     page,
@@ -124,16 +159,15 @@ const Explore = ({ categoryDetail }) => {
 
   const fetchMore = () => {
     if (hasNext) {
-      const typeFilter = filter.nft
-        .filter((xx) => xx.checked === true)
-        .map((obj, i) => obj.value);
+      const sale_filters = query.get("sale")
+        ? query.get("sale").split(",")
+        : [];
+      const nft_filters = query.get("nft") ? query.get("nft").split(",") : [];
+      const sort_filters = query.get("sort")
+        ? query.get("sort")
+        : "recently_listed";
 
-      const saleTypeFilter = filter.sale
-        .filter((xx) => xx.checked === true)
-        .map((obj, i) => obj.value);
-
-      const sortType = filter.sort.find((obj) => obj.checked === true).value;
-      showAllNFTs(page + 1, typeFilter, saleTypeFilter, sortType);
+      showAllNFTs(page + 1, nft_filters, sale_filters, sort_filters);
       setPage(page + 1);
     }
   };
@@ -181,74 +215,105 @@ const Explore = ({ categoryDetail }) => {
   ));
 
   const handleSaleCheck = (input) => {
-    const info = { ...filter };
-    const index = info.sale.findIndex((obj) => obj.value === input.value);
-    info.sale[index] = {
-      ...info.sale[index],
-      checked: !info.sale[index].checked,
-    };
-    setFilter(info);
+    let sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
+    const nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
+    const sort_exist = query.get("sort");
 
-    const typeFilter = filter.nft
-      .filter((xx) => xx.checked === true)
-      .map((obj, i) => obj.value);
+    if (sale_exist.includes(input.value)) {
+      sale_exist = sale_exist.filter((obj) => obj !== input.value);
+    } else {
+      sale_exist.push(input.value);
+    }
 
-    const saleTypeFilter = filter.sale
-      .filter((xx) => xx.checked === true)
-      .map((obj, i) => obj.value);
+    let query_string = "";
 
-    const sortType = filter.sort.find((obj) => obj.checked === true).value;
+    if (sale_exist.length > 0) {
+      query_string += query_string
+        ? `&sale=${sale_exist}`
+        : `sale=${sale_exist}`;
+    }
 
-    showAllFilteredNFTs(1, typeFilter, saleTypeFilter, sortType);
+    if (nft_exist.length > 0) {
+      query_string += query_string ? `&nft=${nft_exist}` : `nft=${nft_exist}`;
+    }
+
+    if (sort_exist) {
+      query_string += query_string
+        ? `&sort=${sort_exist}`
+        : `sort=${sort_exist}`;
+    }
+
+    if (query_string) {
+      history.push(`/explore/category/${slug}?${query_string}`);
+    } else {
+      history.push(`/explore/category/${slug}`);
+    }
   };
 
   const handleNFTCheck = (input) => {
-    const info = { ...filter };
-    const index = info.nft.findIndex((obj) => obj.value === input.value);
-    info.nft[index] = {
-      ...info.nft[index],
-      checked: !info.nft[index].checked,
-    };
-    setFilter(info);
+    const sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
+    let nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
+    const sort_exist = query.get("sort");
 
-    const typeFilter = filter.nft
-      .filter((xx) => xx.checked === true)
-      .map((obj, i) => obj.value);
+    if (nft_exist.includes(input.value)) {
+      nft_exist = nft_exist.filter((obj) => obj !== input.value);
+    } else {
+      nft_exist.push(input.value);
+    }
 
-    const saleTypeFilter = filter.sale
-      .filter((xx) => xx.checked === true)
-      .map((obj, i) => obj.value);
+    let query_string = "";
 
-    const sortType = filter.sort.find((obj) => obj.checked === true).value;
+    if (sale_exist.length > 0) {
+      query_string += query_string
+        ? `&sale=${sale_exist}`
+        : `sale=${sale_exist}`;
+    }
 
-    showAllFilteredNFTs(1, typeFilter, saleTypeFilter, sortType);
+    if (nft_exist.length > 0) {
+      query_string += query_string ? `&nft=${nft_exist}` : `nft=${nft_exist}`;
+    }
+
+    if (sort_exist) {
+      query_string += query_string
+        ? `&sort=${sort_exist}`
+        : `sort=${sort_exist}`;
+    }
+
+    if (query_string) {
+      history.push(`/explore/category/${slug}?${query_string}`);
+    } else {
+      history.push(`/explore/category/${slug}`);
+    }
   };
 
   const handleSortNFT = (input) => {
-    const info = { ...filter };
-    const index = info.sort.findIndex((obj) => obj.value === input.value);
+    const sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
+    const nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
+    const sort_exist = input.value;
 
-    for (let xx = 0; xx < info.sort.length; xx++) {
-      info.sort[xx].checked = false;
+    let query_string = "";
+
+    if (sale_exist.length > 0) {
+      query_string += query_string
+        ? `&sale=${sale_exist}`
+        : `sale=${sale_exist}`;
     }
 
-    info.sort[index] = {
-      ...info.sort[index],
-      checked: !info.sort[index].checked,
-    };
-    setFilter(info);
+    if (nft_exist.length > 0) {
+      query_string += query_string ? `&nft=${nft_exist}` : `nft=${nft_exist}`;
+    }
 
-    const typeFilter = filter.nft
-      .filter((xx) => xx.checked === true)
-      .map((obj, i) => obj.value);
+    if (sort_exist) {
+      query_string += query_string
+        ? `&sort=${sort_exist}`
+        : `sort=${sort_exist}`;
+    }
 
-    const saleTypeFilter = filter.sale
-      .filter((xx) => xx.checked === true)
-      .map((obj, i) => obj.value);
-
-    const sortType = filter.sort.find((obj) => obj.checked === true).value;
-
-    showAllFilteredNFTs(1, typeFilter, saleTypeFilter, sortType);
+    if (query_string) {
+      history.push(`/explore/category/${slug}?${query_string}`);
+    } else {
+      history.push(`/explore/category/${slug}`);
+    }
   };
 
   return (

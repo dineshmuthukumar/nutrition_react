@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import ContentLoader from "react-content-loader";
 import { Dropdown } from "react-bootstrap";
 import { BiCaretDown } from "react-icons/bi";
 import { FaCheckCircle } from "react-icons/fa";
@@ -8,41 +9,38 @@ import userImage from "../../images/artist-image.png";
 import "./style.scss";
 
 const TopSellers = () => {
-  const [page, setPage] = useState(1);
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [hasNext, setHasNext] = useState(false);
 
   const [filter, setFilter] = useState({
     timeFormat: [
       {
-        name: "Day",
+        name: "This Day",
         value: "day",
-        checked: false,
+        checked: true,
       },
       {
-        name: "Week",
+        name: "This Week",
         value: "week",
         checked: false,
       },
       {
-        name: "Month",
+        name: "This Month",
         value: "month",
-        checked: true,
+        checked: false,
       },
     ],
   });
 
   useEffect(() => {
-    topSellers(page);
+    topSellers();
   }, []);
 
-  const topSellers = async (page, timeFormat = "month") => {
+  const topSellers = async (timeFormat = "day") => {
     try {
       setLoading(true);
-      let response = await topSellersApi({ page, time_format: timeFormat });
+      let response = await topSellersApi({ page: 1, time_format: timeFormat });
       setList(response.data.data.users);
-      setHasNext(response.data.data.next_page);
       setLoading(false);
     } catch (err) {
       console.log(err);
@@ -80,7 +78,7 @@ const TopSellers = () => {
     const timeFormatType = filter.timeFormat.find(
       (obj) => obj.checked === true
     ).value;
-    topSellers(page, timeFormatType);
+    topSellers(timeFormatType);
   };
 
   return (
@@ -122,19 +120,25 @@ const TopSellers = () => {
               </div>
 
               <div className="row">
-                {list.length > 0 ? (
-                  list.map((seller, i) => (
-                    <Seller
-                      key={`user-${i}`}
-                      index={i}
-                      seller={seller}
-                      image={userImage}
-                    />
-                  ))
+                {loading ? (
+                  <TopSellerLoader />
                 ) : (
-                  <div className="col-12 text-center">
-                    <h3 className="my-3">No Data Found!</h3>
-                  </div>
+                  <>
+                    {list.length > 0 ? (
+                      list.map((seller, i) => (
+                        <Seller
+                          key={`user-${i}`}
+                          index={i}
+                          seller={seller}
+                          image={userImage}
+                        />
+                      ))
+                    ) : (
+                      <div className="col-12 text-center">
+                        <h3 className="my-3">No Data Found!</h3>
+                      </div>
+                    )}
+                  </>
                 )}
               </div>
             </div>
@@ -144,5 +148,22 @@ const TopSellers = () => {
     </>
   );
 };
+
+const TopSellerLoader = (props) => (
+  <ContentLoader
+    viewBox="0 50 900 400"
+    width={"100%"}
+    height={"100%"}
+    backgroundColor="#f5f5f5"
+    foregroundColor="#dbdbdb"
+    className="mt-1"
+    {...props}
+  >
+    <rect x="0" y="5" rx="2" ry="2" width="218" height="100" />
+    <rect x="228" y="5" rx="2" ry="2" width="218" height="100" />
+    <rect x="456" y="5" rx="2" ry="2" width="218" height="100" />
+    <rect x="684" y="5" rx="2" ry="2" width="218" height="100" />
+  </ContentLoader>
+);
 
 export default TopSellers;
