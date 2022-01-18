@@ -11,7 +11,7 @@ import { BiCaretDown, BiX } from "react-icons/bi";
 import { useHistory } from "react-router-dom";
 
 const ShowAll = ({ categories, query }) => {
-  const histroy = useHistory();
+  const history = useHistory();
   const [page, setPage] = useState(1);
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -296,9 +296,9 @@ const ShowAll = ({ categories, query }) => {
     }
 
     if (query_string) {
-      histroy.push(`/?${query_string}`);
+      history.push(`/?${query_string}`);
     } else {
-      histroy.push("/");
+      history.push("/");
     }
   };
 
@@ -340,9 +340,9 @@ const ShowAll = ({ categories, query }) => {
     }
 
     if (query_string) {
-      histroy.push(`/?${query_string}`);
+      history.push(`/?${query_string}`);
     } else {
-      histroy.push("/");
+      history.push("/");
     }
   };
 
@@ -384,9 +384,9 @@ const ShowAll = ({ categories, query }) => {
     }
 
     if (query_string) {
-      histroy.push(`/?${query_string}`);
+      history.push(`/?${query_string}`);
     } else {
-      histroy.push("/");
+      history.push("/");
     }
   };
 
@@ -422,9 +422,9 @@ const ShowAll = ({ categories, query }) => {
     }
 
     if (query_string) {
-      histroy.push(`/?${query_string}`);
+      history.push(`/?${query_string}`);
     } else {
-      histroy.push("/");
+      history.push("/");
     }
   };
 
