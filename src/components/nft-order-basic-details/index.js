@@ -19,6 +19,7 @@ import userImg from "../../images/user_1.jpg";
 
 import "./style.scss";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
+import {VscChevronRight} from "react-icons/vsc"
 const NFTOrderBaseDetails = ({
   nft,
   placeBidPop,
@@ -74,6 +75,12 @@ const NFTOrderBaseDetails = ({
 
   return (
     <>
+      <ul className="bredcrumb-link">
+        <li><a href="javascript:void(0);">Level 1 link <VscChevronRight className="icon" /> </a></li>
+        <li><a href="javascript:void(0);">Level 2 link<VscChevronRight className="icon" /></a></li>
+        <li><a href="javascript:void(0);">Level 3 link<VscChevronRight className="icon" /></a></li>
+        <li><a href="javascript:void(0);">Level 4 link<VscChevronRight className="icon" /></a></li>
+        </ul>
       <div className="creator mt-3">
         {nft.category_name} |
         {nft.celebrity_id === 1 ? " Amitabh Bachchan" : " Stan Lee's"} Exclusive

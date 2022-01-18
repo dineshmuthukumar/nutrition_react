@@ -187,6 +187,10 @@
 
     .input-buy-container {
       padding: 0 0rem;
+      h1 {
+        margin: 0;
+        font-family: $neue-helveticamedium;
+      }
       .input-buy-text {
         font-size: 1rem;
         color: #000000;
@@ -297,6 +301,17 @@
           .input-buy-quantity {
             color: #f21e00;
           }
+        }
+      }
+
+      .total-amount-box {
+        border-radius: 0.5rem;
+        margin-bottom: 0rem;
+        padding: 0 1rem;
+        background: transparent;
+        h1 {
+          margin: 0;
+          font-family: $neue-helveticamedium;
         }
       }
     }
