@@ -4,10 +4,13 @@ import { useParams } from "react-router";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { Table } from "react-bootstrap";
+import { BsFillQuestionCircleFill } from "react-icons/bs";
 
 import BidName from "./bid-name";
+import ToolTip from "../tooltip";
 import userImg from "../../images/user_1.png";
 import loaderGif from "../../images/loader.gif";
+import polygon from "../../images/marketplace/polygon.svg";
 import { currencyFormat } from "../../utils/common";
 import { TableLoader } from "../nft-basic-details/content-loader";
 
@@ -71,8 +74,24 @@ const NFTPurchaseDetails = ({ nft, list = [] }) => {
                       : "text-info"
                   } status`}
                 >
-                  {detail?.status}{" "}
-                  {/* {detail?.status === "pending" && <img src={loaderGif} />} */}
+                  {detail?.status === "pending"
+                    ? "Transaction Pending"
+                    : detail?.status}{" "}
+                  {detail?.status === "pending" && (
+                    <ToolTip
+                      icon={
+                        <BsFillQuestionCircleFill
+                          size={16}
+                          color={"#000"}
+                          className="ms-2 check-icon"
+                        />
+                      }
+                      content={
+                        "The NFT's transfer/transaction is in process on the blockchain. Visit again for latest sale-status."
+                      }
+                      placement="right"
+                    />
+                  )}
                 </td>
 
                 <td className="text-center">
@@ -81,7 +100,15 @@ const NFTPurchaseDetails = ({ nft, list = [] }) => {
                   </div>
                 </td>
                 <td className="text-center">
-                  {detail?.txid ? detail?.txid : "-"}
+                  {detail?.txid ? (
+                    <>
+                      <a href={detail?.txid} target={"_blank"}>
+                        <img src={polygon} />
+                      </a>
+                    </>
+                  ) : (
+                    "-"
+                  )}
                 </td>
               </tr>
             ))}
