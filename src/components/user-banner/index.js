@@ -2,15 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import {
-  sellerDetailApi
-} from "../../api/methods";
+import { sellerDetailApi } from "../../api/methods";
 
-import userImage from "../../images/user_1.png";
+import userImage from "../../images/user_1.jpg";
 import "./style.scss";
 
 const UserBanner = ({ image, setBanner }) => {
-
   const { slug } = useParams();
   const [loading, setLoading] = useState(false);
   const [sellerDetail, setSellerDetail] = useState({ users: [] });
@@ -38,9 +35,12 @@ const UserBanner = ({ image, setBanner }) => {
       <article
         className="user-hero-section"
         style={{
-          backgroundImage: `url("${image}")`,
+          backgroundImage: `url("${
+            sellerDetail?.users[0]?.banner_url
+              ? sellerDetail?.users[0]?.banner_url
+              : image
+          }")`,
         }}
-        
       >
         <div className="container-fluid">
           <div className="row">
@@ -60,11 +60,10 @@ const UserBanner = ({ image, setBanner }) => {
                     }
                   />
                   <div>
-                    
                     <h6 className="user-info-subname">
                       {sellerDetail?.users[0]?.user_name}
                     </h6>
-                    <h4 className="user-info-name">James</h4>
+                    {/* <h4 className="user-info-name">James</h4> */}
                   </div>
                   {/* <ul className="user-info-list">
                     <li>
@@ -85,8 +84,6 @@ const UserBanner = ({ image, setBanner }) => {
             </div>
           </div>
         </div>
-
-              
       </article>
     </>
   );
