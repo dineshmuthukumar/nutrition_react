@@ -197,18 +197,12 @@ const BidWinner = ({ winner, histories }) => {
                   </tr>
                 ))}
 
-                {bidHistories.next_page ? (
+                {bidHistories.next_page && (
                   <tr>
                     <td className="text-center text-secondary p-3" colSpan="6">
                       <span role="button" onClick={fetchMoreHistory}>
                         Load More
                       </span>
-                    </td>
-                  </tr>
-                ) : (
-                  <tr>
-                    <td className="text-center text-secondary p-3" colSpan="6">
-                      You've reached the end of the list
                     </td>
                   </tr>
                 )}

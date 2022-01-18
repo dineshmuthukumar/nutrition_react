@@ -82,7 +82,7 @@ const OwnerList = ({ nft, nftOwners = [], totalCount }) => {
             ))}
 
             {totalCount <= nftOwners.length ? (
-              <OwnerCard isEnd />
+              <>{/* <OwnerCard isEnd /> */}</>
             ) : (
               <div className="bid-histroy-card">
                 <div className="history-end-content">
@@ -162,18 +162,12 @@ const OwnerList = ({ nft, nftOwners = [], totalCount }) => {
                     </td>
                   </tr>
                 ))}
-                {owners.next_page ? (
+                {owners.next_page && (
                   <tr>
                     <td className="text-center text-secondary p-3" colSpan="4">
                       <span role="button" onClick={fetchMoreHistory}>
                         Load More
                       </span>
-                    </td>
-                  </tr>
-                ) : (
-                  <tr>
-                    <td className="text-center text-secondary p-3" colSpan="4">
-                      You've reached the end of the list
                     </td>
                   </tr>
                 )}
