@@ -10,70 +10,11 @@
       align-items: center;
     }
   }
-  &-info {
-    &-box {
-      width: 100%;
-      max-width: 26rem;
-      border: 0.2rem solid #000;
-      height: 100%;
-      position: relative;
-      background: #fff;
-      top: -9rem;
-      border-radius: 1rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 3rem 1rem;
-      @media screen and (max-width: 991px) {
-        width: 100%;
-      }
-    }
-    &-image {
-      height: 12rem;
-      width: 12rem;
-      border-radius: 50%;
-      margin-bottom: 2rem;
-    }
-    &-name {
-      font-size: 1.8rem;
-      font-family: $neue-helveticabold;
-      margin-bottom: 1rem;
-    }
-    &-subname {
-      font-size: 1.2rem;
-      font-family: $neue-helveticamedium;
-      margin-bottom: 0;
-      color: #999999;
-    }
-    &-list {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-top: 3rem;
-      padding: 0 1.5rem;
-      li {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        margin-bottom: 1.5rem;
-        list-style: none;
-        font-size: 1.2rem;
-        .value {
-          font-family: $neue-helveticamedium;
-        }
-        .value {
-          font-family: $neue-helveticabold;
-        }
-      }
-    }
-  }
+  
   &-collection {
     &-box {
       padding-left: 2rem;
-      width: calc(100% - 26rem);
+      width: 100%;
       margin-bottom: 2rem;
       margin-top: 3rem;
       @media screen and (max-width: 991px) {
@@ -87,6 +28,8 @@
 
 .user-block-nav {
   margin: 0 0 2rem 0;
+  padding-bottom: 1rem;
+    border-bottom: 0.2rem solid #000;
   .nav-item {
     padding: 0 0rem;
     @media screen and (max-width: 425px) {
@@ -104,3 +47,4 @@
     }
   }
 }
+

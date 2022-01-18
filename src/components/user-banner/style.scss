@@ -1,7 +1,7 @@
 @import "../../styles/common";
 
 .user-hero-section {
-  min-height: 25rem;
+  min-height: 20rem;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -9,4 +9,93 @@
   overflow: hidden;
   background-position: center;
   background-size: cover;
+  padding: 2rem 0;
+  &:before {
+    content: "";
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    border-radius: 0rem;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+}
+
+.user{
+  &-info {
+    &-box {
+      // width: 100%;
+      // max-width: 26rem;
+      // border: 0.2rem solid #000;
+      // height: 100%;
+      // position: relative;
+      // background: #fff;
+      // top: -9rem;
+      // border-radius: 1rem;
+      // display: flex;
+      // flex-direction: column;
+      // align-items: center;
+      // justify-content: center;
+      // padding: 3rem 1rem;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      border-radius: 1rem;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    &-image {
+      min-height: 7.75rem;
+      min-width: 7.75rem;
+      margin-right: 1rem;
+      border-radius: 50%;
+      width: 7.75rem;
+      height: 7.75rem;
+      object-fit: cover;
+      background: #fff;
+      padding: 0.5rem;
+    }
+    &-name {
+      font-size: 1.8rem;
+      font-family: $neue-helveticabold;
+      margin-bottom: 1rem;
+      word-break: break-word;
+      color: #ffffff;
+    }
+    &-subname {
+      font-size: 1.2rem;
+      font-family: $neue-helveticamedium;
+      margin-bottom: 0;
+      color: #ffffff;
+      word-break: break-word;
+    }
+    &-list {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-top: 3rem;
+      padding: 0 1.5rem;
+      li {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin-bottom: 1.5rem;
+        list-style: none;
+        font-size: 1.2rem;
+        .value {
+          font-family: $neue-helveticamedium;
+        }
+        .value {
+          font-family: $neue-helveticabold;
+        }
+      }
+    }
+  }
 }

@@ -211,7 +211,7 @@ const NFTCancelTheSale = ({
                               type="text"
                               className="input-cancel-quantity"
                               value={cancelQuantity}
-                              placeholder="0 NFTs"
+                              placeholder="0 NFT"
                               disabled={(() => {
                                 if (soldOut) {
                                   return true;
@@ -248,6 +248,8 @@ const NFTCancelTheSale = ({
                                 return true;
                               } else if (transferringNFT) {
                                 return true;
+                              } else if (!erc721 && !cancelQuantity > 0) {
+                                return true;
                               } else {
                                 return false;
                               }
@@ -275,6 +277,8 @@ const NFTCancelTheSale = ({
                                     placement="top"
                                   />
                                 );
+                              } else if (!erc721 && !cancelQuantity > 0) {
+                                return "No of unit is required";
                               } else {
                                 return "Confirm";
                               }

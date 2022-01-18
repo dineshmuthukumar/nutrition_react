@@ -12,7 +12,7 @@ const UserDetails = () => {
     <>
       <Header />
       <main>
-        <UserBanner image={banner ? banner : UserBannerImage} />
+        <UserBanner image={banner ? banner : UserBannerImage} setBanner={setBanner} />
         <UserDetailsBlock setBanner={setBanner} />
       </main>
       <Footer />

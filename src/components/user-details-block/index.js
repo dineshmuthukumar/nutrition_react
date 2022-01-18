@@ -3,12 +3,12 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import {
-  sellerDetailApi,
+  // sellerDetailApi,
   sellerFavedNFTSApi,
   sellerOwnedNFTsApi,
 } from "../../api/methods";
 import cardImage from "../../images/drops/nft_2.png";
-import userImage from "../../images/user_1.png";
+// import userImage from "../../images/user_1.png";
 
 import NFTCard from "../nft-card/index";
 import "./style.scss";
@@ -21,7 +21,7 @@ const UserDetailsBlock = ({ setBanner }) => {
   const [ownedList, setOwnedList] = useState([]);
   const [favedList, setFavedList] = useState([]);
   const [onSaleList, setOnSaleList] = useState([]);
-  const [sellerDetail, setSellerDetail] = useState({ users: [] });
+  // const [sellerDetail, setSellerDetail] = useState({ users: [] });
   const [favedCount, setFavedCount] = useState(0);
   const [onSaleCount, setOnSaleCount] = useState(0);
   const [ownedCount, setOwnedCount] = useState(0);
@@ -57,22 +57,22 @@ const UserDetailsBlock = ({ setBanner }) => {
     }
   };
 
-  const getSellerDetail = async () => {
-    try {
-      setLoading(true);
-      const result = await sellerDetailApi({ slug });
-      setSellerDetail(result.data.data);
-      setBanner(result.data.data.users[0]?.banner_url);
+  // const getSellerDetail = async () => {
+  //   try {
+  //     setLoading(true);
+  //     const result = await sellerDetailApi({ slug });
+  //     setSellerDetail(result.data.data);
+  //     setBanner(result.data.data.users[0]?.banner_url);
 
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-      // setLoading(false);
-    }
-  };
+  //     setLoading(false);
+  //   } catch (error) {
+  //     console.log(error);
+  //     // setLoading(false);
+  //   }
+  // };
 
   useEffect(() => {
-    getSellerDetail();
+    // getSellerDetail();
     getSellerOwnedNFTs(page);
     getSellerFavedNFTs(page);
   }, []);
@@ -84,7 +84,7 @@ const UserDetailsBlock = ({ setBanner }) => {
           <div className="row">
             <div className="col-sm-12">
               <div className="user-flexblock">
-                {sellerDetail && (
+                {/* {sellerDetail && (
                   <article className="user-info-box">
                     <img
                       className="user-info-image"
@@ -98,7 +98,6 @@ const UserDetailsBlock = ({ setBanner }) => {
                           : userImage
                       }
                     />
-                    {/* <h4 className="user-info-name">James</h4> */}
                     <h6 className="user-info-subname">
                       {sellerDetail?.users[0]?.user_name}
                     </h6>
@@ -115,13 +114,9 @@ const UserDetailsBlock = ({ setBanner }) => {
                           {sellerDetail.owned_count}
                         </span>
                       </li>
-                      {/* <li>
-                      <span className="key">Sold</span>
-                      <span className="value">10</span>
-                    </li> */}
                     </ul>
                   </article>
-                )}
+                )} */}
                 <div className="user-collection-box">
                   <div className="row">
                     <div className="col-sm-12">
@@ -170,7 +165,7 @@ const UserDetailsBlock = ({ setBanner }) => {
                     {(() => {
                       if (key === "owned") {
                         return ownedList.map((nft, i) => (
-                          <div className="col-xl-4 col-lg-4 col-md- col-sm-6">
+                          <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6">
                             {/* <SellerNFTCard
                               key={`owned-${i}`}
                               nft={nft}
@@ -185,7 +180,7 @@ const UserDetailsBlock = ({ setBanner }) => {
                         ));
                       } else if (key === "liked") {
                         return favedList.map((nft, i) => (
-                          <div className="col-xl-4 col-lg-4 col-md- col-sm-6">
+                          <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6">
                             {/* <SellerNFTCard
                               key={`liked-${i}`}
                               nft={nft}

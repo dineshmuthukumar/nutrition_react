@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { Table } from "react-bootstrap";
 
 import BidName from "./bid-name";
-import userImg from "../../images/user_1.png";
+import userImg from "../../images/user_1.jpg";
 import { currencyFormat } from "../../utils/common";
 import { TableLoader } from "../nft-basic-details/content-loader";
 
@@ -112,7 +112,6 @@ const NFTOrderDetails = ({ nft, orderList = [] }) => {
                     disabled={(() => {
                       if (
                         order?.status === "cancelled" ||
-                        order?.status === "partial_cancelled" ||
                         order?.status === "blocked"
                       ) {
                         return true;
@@ -132,14 +131,14 @@ const NFTOrderDetails = ({ nft, orderList = [] }) => {
                 </td>
               </tr>
             ))}
-            <tr>
+            {/* <tr>
               <td
                 className="text-center text-secondary p-3"
                 colSpan={erc721 ? "9" : "8"}
               >
                 You've reached the end of the list
               </td>
-            </tr>
+            </tr> */}
           </tbody>
         </Table>
       </div>

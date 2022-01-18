@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { IoIosCheckmark } from "react-icons/io";
 import { currencyFormat } from "../../utils/common";
-import userImg from "../../images/user_1.png";
+import userImg from "../../images/user_1.jpg";
 import "./style.scss";
 
 const Seller = ({ index, seller, image }) => {

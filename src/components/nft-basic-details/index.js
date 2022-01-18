@@ -9,7 +9,7 @@ import ToolTip from "../tooltip";
 import NFTPutOnSale from "../nft-put-on-sale";
 import { ReactComponent as DiscordSvg } from "./../../icons/discord_logo.svg";
 import postImages from "../../images/post1.png";
-import userImg from "../../images/user_1.png";
+import userImg from "../../images/user_1.jpg";
 
 import "./style.scss";
 const NFTBaseDetails = ({
