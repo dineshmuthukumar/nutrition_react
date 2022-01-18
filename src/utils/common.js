@@ -87,7 +87,11 @@ export const bidBuyError = (code) => {
 
   switch (code) {
     case ERROR:
-      return { title: "Error", description: "Something went wrong!" };
+      return {
+        title: "Error",
+        description:
+          "The request could not be processed at this time. Please try again.!",
+      };
     case ERROR404:
       return { title: "Error", description: "Not found!" };
     case UNAUTHORIZED:
@@ -120,6 +124,10 @@ export const bidBuyError = (code) => {
         description: "Please complete your KYC verification",
       };
     default:
-      return { title: "Error", description: "Something went wrong!" };
+      return {
+        title: "Error",
+        description:
+          "The request could not be processed at this time. Please try again.!",
+      };
   }
 };
