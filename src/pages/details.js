@@ -19,7 +19,7 @@ import NFTSectionTitle from "../components/nft-section-title";
 import NFTTags from "../components/nft-tags";
 import toaster from "../utils/toaster";
 import { NFTLoader } from "../components/nft-basic-details/content-loader";
-import { listForSaleDetail } from "../api/actioncable-methods";
+import { listForSaleDetail, ownerDetails } from "../api/actioncable-methods";
 import OwnerList from "../components/owner-list";
 import Footer from "../components/footer/index";
 import NFTOrderDetails from "../components/nft-order-details/index";
@@ -58,6 +58,29 @@ const Details = () => {
       });
     }
   }, [isOwner]);
+
+  useEffect(() => {
+    ownerDetails(slug, (data) => {
+      // console.log(data);
+      // if (data?.owners?.length > 0) {
+      //   let owners = [...nftOwner];
+      //   const latest = data.owners?.[0];
+      //   const index = owners.findIndex((obj) => obj.slug === latest.slug);
+      //   console.log(index, "index");
+      //   if (index !== -1) {
+      //     let owner = {
+      //       ...owners[index],
+      //       sold_quantity: latest.sold_quantity,
+      //     };
+      //     owners[index] = owner;
+      //     setNFTOwner(owners);
+      //   } else {
+      //     setNFTOwner((nftOwner) => [latest, ...nftOwner]);
+      //   }
+      // }
+      nftOwners();
+    });
+  }, []);
 
   const nftDetail = async (slug) => {
     try {

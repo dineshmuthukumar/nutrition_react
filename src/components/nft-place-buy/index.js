@@ -24,6 +24,8 @@ const NFTPlaceBid = ({
   nft,
   orderDetails,
   // socketData,
+  availableQty,
+  totalQty,
   soldOut,
   transferringNFT,
 }) => {
@@ -335,7 +337,13 @@ const NFTPlaceBid = ({
                           </div>
                         ) : (
                           <div className="erc-type text-center mb-1">
-                            {`${orderDetails.available_quantity} / ${orderDetails.total_quantity}`}
+                            {availableQty >= 0 && availableQty != null
+                              ? `${availableQty} / ${
+                                  totalQty != null
+                                    ? totalQty
+                                    : orderDetails.total_quantity
+                                }`
+                              : `${orderDetails.available_quantity} / ${orderDetails.total_quantity}`}
                           </div>
                         )}
                       </div>
@@ -400,7 +408,11 @@ const NFTPlaceBid = ({
                         <label className="input-buy-text">
                           {erc721
                             ? `Price of NFT`
-                            : `Enter Quantity Max (${orderDetails.available_quantity})`}
+                            : `Enter Quantity Max (${
+                                availableQty >= 0 && availableQty != null
+                                  ? availableQty
+                                  : orderDetails.available_quantity
+                              })`}
                         </label>
 
                         {!erc721 ? (
