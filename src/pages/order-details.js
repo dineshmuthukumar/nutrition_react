@@ -20,6 +20,7 @@ import {
   bidDetail,
   buyDetail,
   cancelSaleDetail,
+  ownerDetails,
   pageView,
   totalFav,
   userBidDetail,
@@ -156,6 +157,12 @@ const OrderDetails = () => {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
+
+  useEffect(() => {
+    ownerDetails(slug, (data) => {
+      nftOwners();
+    });
+  }, []);
 
   const nftDetail = async (slug, orderSlug) => {
     try {
