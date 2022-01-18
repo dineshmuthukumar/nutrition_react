@@ -31,7 +31,9 @@ const BuyHistory = ({ nft, histories = [], isAuctionEnded, totalCount }) => {
       setBuyHistoryList([...buyHistoryList, ...result.data.data.histories]);
     } catch (error) {
       console.log(error);
-      toast.error("Something went wrong");
+      toast.error(
+        "The request could not be processed at this time. Please try again."
+      );
     }
   };
 
@@ -52,7 +54,9 @@ const BuyHistory = ({ nft, histories = [], isAuctionEnded, totalCount }) => {
       setLoading(false);
     } catch (error) {
       console.log(error);
-      toast.error("Something went wrong");
+      toast.error(
+        "The request could not be processed at this time. Please try again."
+      );
     }
   };
 

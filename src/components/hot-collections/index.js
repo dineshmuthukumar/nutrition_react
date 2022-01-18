@@ -27,7 +27,9 @@ const HotCollections = () => {
       setLoading(false);
     } catch (err) {
       console.log(err);
-      toast.error("Something went wrong");
+      toast.error(
+        "The request could not be processed at this time. Please try again."
+      );
     }
   };
 
