@@ -99,7 +99,10 @@ const Details = () => {
     } catch (err) {
       // setLoader(false);
       console.log(err);
-      toaster(500, "Something went wrong");
+      toaster(
+        500,
+        "The request could not be processed at this time. Please try again."
+      );
     }
   };
 

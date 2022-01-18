@@ -164,6 +164,8 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
               return <img src={bidIcon} alt="notification icon" />;
             } else if (data.reason === "bid_expired") {
               return <img src={outbidIcon} alt="notification icon" />;
+            } else if (data.reason === "bid_cancelled") {
+              return <img src={outbidIcon} alt="notification icon" />;
             } else if (data.reason === "bid_success") {
               return <img src={bidIcon} alt="notification icon" />;
             } else if (data.reason === "bid_received") {
@@ -239,6 +241,29 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                               Your bid{" "}
                               <b>{currencyFormat(data.amount, "USD")}</b> was
                               expired for{" "}
+                              <b>
+                                {data.celebrity_name}
+                                's {data.nft_name}
+                              </b>{" "}
+                              from <b>{data.buyer_name}</b>
+                            </>
+                          </div>
+                          <div className="noti-time">
+                            {dayjs(data.created_at).format(
+                              "DD MMM YYYY hh:mma"
+                            )}
+                          </div>
+                        </>
+                      );
+                    } else if (data.reason === "bid_cancelled") {
+                      return (
+                        <>
+                          <div className="title">Bid Cancelled</div>
+                          <div className="desc text-secondary">
+                            <>
+                              Your bid{" "}
+                              <b>{currencyFormat(data.amount, "USD")}</b> was
+                              cancelled for{" "}
                               <b>
                                 {data.celebrity_name}
                                 's {data.nft_name}

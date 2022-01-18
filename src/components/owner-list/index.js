@@ -31,7 +31,9 @@ const OwnerList = ({ nft, nftOwners = [], totalCount }) => {
       setOwners(owners.data.data);
     } catch (error) {
       console.log(error);
-      toast.error("Something went wrong");
+      toast.error(
+        "The request could not be processed at this time. Please try again."
+      );
     }
   };
 
@@ -52,7 +54,9 @@ const OwnerList = ({ nft, nftOwners = [], totalCount }) => {
       setLoading(false);
     } catch (error) {
       console.log(error);
-      toast.error("Something went wrong");
+      toast.error(
+        "The request could not be processed at this time. Please try again."
+      );
     }
   };
 
