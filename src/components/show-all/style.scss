@@ -130,3 +130,34 @@ button.load_more {
     align-items: flex-start !important;
   }
 }
+
+.search-box-add {
+  border-radius: 50rem;
+  padding: 0.5rem;
+  height: 2.2rem;
+  border: 1px solid #000;
+  margin-left: 0.5rem;
+  outline: none;
+}
+
+.search-button {
+  background: #fff;
+  border: 1px solid #000;
+  border-radius: 50rem;
+  margin-left: 0.2rem;
+  height: 34px;
+  width: 34px;
+
+  svg {
+    margin-top: -15px;
+    margin-left: 9px;
+  }
+
+  &:hover {
+    background-color: #000;
+
+    svg {
+      fill: #fff;
+    }
+  }
+}
