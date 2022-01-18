@@ -344,7 +344,7 @@ const NFTPlaceBuy = ({
                                 type="text"
                                 className="input-quantity"
                                 value={buyQuantity}
-                                placeholder="0 NFTs"
+                                placeholder="0 NFT"
                                 maxLength={20}
                                 onChange={handleBuyInputChange}
                               />

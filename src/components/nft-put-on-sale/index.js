@@ -421,7 +421,7 @@ const NFTPutOnSale = ({
                                       type="text"
                                       className="input-sale-quantity"
                                       value={erc1155Sale.buyQuantity}
-                                      placeholder="0 NFTs"
+                                      placeholder="0 NFT"
                                       onChange={
                                         handleErc1155QuantityInputChange
                                       }
