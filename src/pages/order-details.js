@@ -132,6 +132,7 @@ const OrderDetails = () => {
       setAvailableQty(data.available_quantity);
       if (data.status === "cancelled") {
         setIsOrderCancelled(true);
+        setIsOrderOnSale(false);
       }
       if (data.available_quantity === 0 && data.total_quantity > 0) {
         setTransferringNFT(true);
