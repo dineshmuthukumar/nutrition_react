@@ -32,9 +32,17 @@ export const topSellersApi = ({ page, time_format }) =>
 
 export const nftDetailApi = ({ nft_slug, order_slug }) => {
   if (order_slug) {
-    return appAxios.get(`/nfts/${nft_slug}?order_slug=${order_slug}`);
+    return appAxios.get(`/nfts/${nft_slug}?order_slug=${order_slug}`, {
+      params: {
+        time: new Date().getTime(),
+      },
+    });
   } else {
-    return appAxios.get(`/nfts/${nft_slug}`);
+    return appAxios.get(`/nfts/${nft_slug}`, {
+      params: {
+        time: new Date().getTime(),
+      },
+    });
   }
 };
 
