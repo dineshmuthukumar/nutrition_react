@@ -32,9 +32,11 @@
     padding: 0 1rem;
     font-size: 1.4rem;
     margin: 0;
+    width: 4rem;
+    text-align: center;
   }
   &-content {
-    width: calc(100% - 7rem);
+    width: calc(100% - 11rem);
     padding-left: 1rem;
     h3,
     h4 {

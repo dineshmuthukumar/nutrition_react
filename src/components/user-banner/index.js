@@ -32,6 +32,7 @@ const UserBanner = ({ image, setBanner }) => {
   }, []);
   return (
     <>
+
       <article
         className="user-hero-section"
         style={{
@@ -42,49 +43,45 @@ const UserBanner = ({ image, setBanner }) => {
           }")`,
         }}
       >
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-sm-12">
-              {sellerDetail && (
-                <article className="user-info-box">
-                  <img
-                    className="user-info-image"
-                    src={
-                      !sellerDetail?.users[0]?.private &&
-                      sellerDetail?.users[0]?.avatar_url
-                        ? sellerDetail?.users[0]?.avatar_url
-                        : user?.slug === sellerDetail?.users[0]?.slug &&
-                          sellerDetail?.users[0]?.avatar_url
-                        ? sellerDetail?.users[0]?.avatar_url
-                        : userImage
-                    }
-                  />
-                  <div>
-                    <h6 className="user-info-subname">
-                      {sellerDetail?.users[0]?.user_name}
-                    </h6>
-                    {/* <h4 className="user-info-name">James</h4> */}
-                  </div>
-                  {/* <ul className="user-info-list">
-                    <li>
-                      <span className="key">Favorites</span>
-                      <span className="value">
-                        {sellerDetail.faved_count}
-                      </span>
-                    </li>
-                    <li>
-                      <span className="key">Owned</span>
-                      <span className="value">
-                        {sellerDetail.owned_count}
-                      </span>
-                    </li>
-                  </ul> */}
-                </article>
-              )}
-            </div>
-          </div>
-        </div>
+              
+            
       </article>
+      {sellerDetail && (
+        <article className="user-info-box">
+          <img
+            className="user-info-image"
+            src={
+              !sellerDetail?.users[0]?.private &&
+              sellerDetail?.users[0]?.avatar_url
+                ? sellerDetail?.users[0]?.avatar_url
+                : user?.slug === sellerDetail?.users[0]?.slug &&
+                  sellerDetail?.users[0]?.avatar_url
+                ? sellerDetail?.users[0]?.avatar_url
+                : userImage
+            }
+          />
+          <div>
+            <h6 className="user-info-subname">
+              {sellerDetail?.users[0]?.user_name}
+            </h6>
+            {/* <h4 className="user-info-name">James</h4> */}
+          </div>
+          {/* <ul className="user-info-list">
+            <li>
+              <span className="key">Favorites</span>
+              <span className="value">
+                {sellerDetail.faved_count}
+              </span>
+            </li>
+            <li>
+              <span className="key">Owned</span>
+              <span className="value">
+                {sellerDetail.owned_count}
+              </span>
+            </li>
+          </ul> */}
+        </article>
+      )}
     </>
   );
 };
