@@ -5,9 +5,10 @@ import { useSelector } from "react-redux";
 import { sellerDetailApi } from "../../api/methods";
 
 import userImage from "../../images/user_1.jpg";
+import userBanner from "../../images/user-banner.jpg";
 import "./style.scss";
 
-const UserBanner = ({ image, setBanner }) => {
+const UserBanner = () => {
   const { slug } = useParams();
   const [loading, setLoading] = useState(false);
   const [sellerDetail, setSellerDetail] = useState({ users: [] });
@@ -18,8 +19,6 @@ const UserBanner = ({ image, setBanner }) => {
       setLoading(true);
       const result = await sellerDetailApi({ slug });
       setSellerDetail(result.data.data);
-      setBanner(result.data.data.users[0]?.banner_url);
-
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -32,20 +31,16 @@ const UserBanner = ({ image, setBanner }) => {
   }, []);
   return (
     <>
-
       <article
         className="user-hero-section"
         style={{
           backgroundImage: `url("${
             sellerDetail?.users[0]?.banner_url
               ? sellerDetail?.users[0]?.banner_url
-              : image
+              : userBanner
           }")`,
         }}
-      >
-              
-            
-      </article>
+      ></article>
       {sellerDetail && (
         <article className="user-info-box">
           <img
