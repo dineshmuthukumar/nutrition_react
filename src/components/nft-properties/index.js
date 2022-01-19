@@ -27,7 +27,6 @@ const NFTProperties = ({ properties }) => {
           if (properties) {
             if (properties && typeof properties === "string") {
               let propertiesData = JSON.parse(properties);
-              console.log(propertiesData);
               return Object.keys(propertiesData).map((property) => {
                 return (
                   <NFTPropPills
@@ -37,9 +36,10 @@ const NFTProperties = ({ properties }) => {
                 );
               });
             } else {
-              return Object.keys(properties).map((property) => {
+              return Object.keys(properties).map((property, i) => {
                 return (
                   <NFTPropPills
+                    key={`prop-${i}`}
                     property={properties[property]}
                     propertyType={property}
                   />
