@@ -337,6 +337,7 @@ const OrderDetails = () => {
                   return (
                     nftOwner && (
                       <OwnerList
+                        isLoading={ownerLoader}
                         nft={nft}
                         nftOwners={nftOwner}
                         totalCount={ownerCount}
