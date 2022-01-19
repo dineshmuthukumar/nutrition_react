@@ -488,7 +488,7 @@ const Explore = ({ categoryDetail }) => {
 
 const NFTCardLoader = (props) => (
   <ContentLoader
-    viewBox="0 50 900 400"
+    viewBox="0 50 900 300"
     width={"100%"}
     height={"100%"}
     backgroundColor="#f5f5f5"
