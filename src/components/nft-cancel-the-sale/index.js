@@ -397,11 +397,18 @@ const NFTCancelTheSale = ({
                   </div> */}
 
                     <div className="bottom-area">
-                      <h5 className="text-center">
-                        Are you sure want to cancel the {buyCancel && "Buy "}
-                        {bidCancel && "Bid "}
-                        sale?
-                      </h5>
+                      {orderDetails?.is_bid && orderDetails?.is_buy ? (
+                        <h5 className="text-center mb-3">
+                          Are you sure you want to proceed with the cancelation?{" "}
+                          <br /> This action will cancel both your bid-listing
+                          and sale-listing
+                        </h5>
+                      ) : (
+                        <h5 className="text-center">
+                          Are you sure want to cancel the sale?
+                        </h5>
+                      )}
+
                       <div className="bottom-content-pop">
                         <div
                           className={`back-button`} //process -> proccessing
