@@ -282,6 +282,7 @@ const OrderDetails = () => {
                   isOrderSuccess={isOrderSuccess}
                   isOrderCancelled={isOrderCancelled}
                   orderSlug={orderSlug}
+                  slug={slug}
                   latestBid={bidHistory.length > 0 ? bidHistory[0] : {}}
                 />
               </div>

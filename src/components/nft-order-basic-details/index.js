@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import ReadMoreReact from "read-more-react";
 import { useSelector } from "react-redux";
 import { FaCheckCircle } from "react-icons/fa";
+import { BsFillQuestionCircleFill } from "react-icons/bs";
+import { VscChevronRight } from "react-icons/vsc";
 import _ from "lodash";
 import dayjs from "dayjs";
 
@@ -18,8 +21,7 @@ import postImages from "../../images/post1.png";
 import userImg from "../../images/user_1.jpg";
 
 import "./style.scss";
-import { BsFillQuestionCircleFill } from "react-icons/bs";
-import {VscChevronRight} from "react-icons/vsc"
+
 const NFTOrderBaseDetails = ({
   nft,
   placeBidPop,
@@ -42,8 +44,10 @@ const NFTOrderBaseDetails = ({
   isOrderSuccess,
   isOrderCancelled,
   orderSlug,
+  slug,
   latestBid,
 }) => {
+  const history = useHistory();
   const { user } = useSelector((state) => state.user.data);
   const [modalShow, setModalShow] = useState(false);
   const [acceptBidConfirm, setAcceptBidConfirm] = useState(false);
@@ -76,11 +80,23 @@ const NFTOrderBaseDetails = ({
   return (
     <>
       <ul className="bredcrumb-link">
-        <li><a href="javascript:void(0);">Level 1 link <VscChevronRight className="icon" /> </a></li>
-        <li><a href="javascript:void(0);">Level 2 link<VscChevronRight className="icon" /></a></li>
-        <li><a href="javascript:void(0);">Level 3 link<VscChevronRight className="icon" /></a></li>
-        <li><a href="javascript:void(0);">Level 4 link<VscChevronRight className="icon" /></a></li>
-        </ul>
+        <li>
+          <a href="#" onClick={() => history.push(`/details/${slug}`)}>
+            NFT <VscChevronRight className="icon" />
+          </a>
+        </li>
+        <li>
+          <a
+            href="#"
+            onClick={() => history.push(`/order/details/${slug}/${orderSlug}`)}
+          >
+            Order Detail
+            <VscChevronRight className="icon" />
+          </a>
+        </li>
+        {/* <li><a href="javascript:void(0);">Level 3 link<VscChevronRight className="icon" /></a></li>
+        <li><a href="javascript:void(0);">Level 4 link<VscChevronRight className="icon" /></a></li> */}
+      </ul>
       <div className="creator mt-3">
         {nft.category_name} |
         {nft.celebrity_id === 1 ? " Amitabh Bachchan" : " Stan Lee's"} Exclusive
