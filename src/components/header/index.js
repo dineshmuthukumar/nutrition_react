@@ -499,7 +499,10 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                   </Dropdown.Menu>
                 </Dropdown>
                 <Nav.Link id="drop_outer" href="/">
-                  Marketplace
+                  <span className="beta-container">
+                    <span className="beta-tag">Beta</span>
+                    Marketplace
+                  </span>
                 </Nav.Link>
                 {!hideSign && (
                   <>
