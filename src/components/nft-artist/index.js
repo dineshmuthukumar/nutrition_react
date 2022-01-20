@@ -27,7 +27,7 @@ const NFTArtist = ({ id }) => {
           <div className="artist-desc mt-5">
             <ReadMoreReact
               min={300}
-              ideal={300}
+              ideal={500}
               max={700}
               text={
                 id === 1

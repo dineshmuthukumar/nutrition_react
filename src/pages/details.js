@@ -187,6 +187,7 @@ const Details = () => {
                   return (
                     nftOwner.length > 0 && (
                       <OwnerList
+                        isLoading={ownerLoader}
                         nft={nft}
                         nftOwners={nftOwner}
                         totalCount={ownerCount}

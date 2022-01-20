@@ -5,16 +5,17 @@ import { useParams } from "react-router";
 import { toast } from "react-toastify";
 import { Modal, Table } from "react-bootstrap";
 import { BiX } from "react-icons/bi";
+import ContentLoader from "react-content-loader";
 
 import OwnerCard from "./owner-card";
 import OwnerName from "./owner-name";
-import userImg from "../../images/user_1.png";
+import userImg from "../../images/user_1.jpg";
 import { OwnersTableLoader } from "../nft-basic-details/content-loader";
 import { nftOwnerApi } from "../../api/methods";
 
 import "./style.scss";
 
-const OwnerList = ({ nft, nftOwners = [], totalCount }) => {
+const OwnerList = ({ nft, nftOwners = [], totalCount, isLoading = false }) => {
   const { slug } = useParams();
   const [modalShow, setModalShow] = useState(false);
   const [owners, setOwners] = useState({});
@@ -69,34 +70,39 @@ const OwnerList = ({ nft, nftOwners = [], totalCount }) => {
 
   return (
     <>
-      <div className="bid-history">
+      <div className="bid-history listofHistory">
         <div className="owner-history-title-content">
           <div className="bid-history-title">List of Owners</div>
           <div className="bid-history-filter"></div>
         </div>
+        {!isLoading ? (
+          <>
+            {nftOwners.length > 0 && (
+              <div className="bid-history-content">
+                {nftOwners.map((owner, i) => (
+                  <OwnerCard
+                    key={`buy-owner${i}`}
+                    owner={owner}
+                    totalQuantity={nft.total_quantity}
+                  />
+                ))}
 
-        {nftOwners.length > 0 && (
-          <div className="bid-history-content">
-            {nftOwners.map((owner, i) => (
-              <OwnerCard
-                key={`buy-owner${i}`}
-                owner={owner}
-                totalQuantity={nft.total_quantity}
-              />
-            ))}
-
-            {totalCount <= nftOwners.length ? (
-              <OwnerCard isEnd />
-            ) : (
-              <div className="bid-histroy-card">
-                <div className="history-end-content">
-                  <span role="button" onClick={handleClick}>
-                    View More
-                  </span>
-                </div>
+                {totalCount <= nftOwners.length ? (
+                  <>{/* <OwnerCard isEnd /> */}</>
+                ) : (
+                  <div className="bid-histroy-card">
+                    <div className="history-end-content">
+                      <span role="button" onClick={handleClick}>
+                        View More
+                      </span>
+                    </div>
+                  </div>
+                )}
               </div>
             )}
-          </div>
+          </>
+        ) : (
+          <ListLoader />
         )}
       </div>
 
@@ -166,18 +172,12 @@ const OwnerList = ({ nft, nftOwners = [], totalCount }) => {
                     </td>
                   </tr>
                 ))}
-                {owners.next_page ? (
+                {owners.next_page && (
                   <tr>
                     <td className="text-center text-secondary p-3" colSpan="4">
                       <span role="button" onClick={fetchMoreHistory}>
                         Load More
                       </span>
-                    </td>
-                  </tr>
-                ) : (
-                  <tr>
-                    <td className="text-center text-secondary p-3" colSpan="4">
-                      You've reached the end of the list
                     </td>
                   </tr>
                 )}
@@ -187,6 +187,27 @@ const OwnerList = ({ nft, nftOwners = [], totalCount }) => {
         </Modal.Body>
       </Modal>
     </>
+  );
+};
+
+const ListLoader = (props) => {
+  return (
+    <ContentLoader
+      speed={2}
+      width={700}
+      height={160}
+      viewBox="0 0 700 160"
+      backgroundColor="#d9d9d9"
+      foregroundColor="#ededed"
+      {...props}
+    >
+      <rect x="50" y="6" rx="4" ry="4" width="630" height="38" />
+      <rect x="8" y="6" rx="4" ry="4" width="35" height="38" />
+      <rect x="50" y="55" rx="4" ry="4" width="630" height="38" />
+      <rect x="8" y="55" rx="4" ry="4" width="35" height="38" />
+      <rect x="50" y="104" rx="4" ry="4" width="630" height="38" />
+      <rect x="8" y="104" rx="4" ry="4" width="35" height="38" />
+    </ContentLoader>
   );
 };
 

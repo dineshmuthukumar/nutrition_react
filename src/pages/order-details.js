@@ -132,6 +132,7 @@ const OrderDetails = () => {
       setAvailableQty(data.available_quantity);
       if (data.status === "cancelled") {
         setIsOrderCancelled(true);
+        setIsOrderOnSale(false);
       }
       if (data.available_quantity === 0 && data.total_quantity > 0) {
         setTransferringNFT(true);
@@ -282,6 +283,7 @@ const OrderDetails = () => {
                   isOrderSuccess={isOrderSuccess}
                   isOrderCancelled={isOrderCancelled}
                   orderSlug={orderSlug}
+                  slug={slug}
                   latestBid={bidHistory.length > 0 ? bidHistory[0] : {}}
                 />
               </div>
@@ -337,6 +339,7 @@ const OrderDetails = () => {
                   return (
                     nftOwner && (
                       <OwnerList
+                        isLoading={ownerLoader}
                         nft={nft}
                         nftOwners={nftOwner}
                         totalCount={ownerCount}

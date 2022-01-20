@@ -4,10 +4,13 @@ import { useParams } from "react-router";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { Table } from "react-bootstrap";
+import { BsFillQuestionCircleFill } from "react-icons/bs";
 
 import BidName from "./bid-name";
-import userImg from "../../images/user_1.png";
+import ToolTip from "../tooltip";
+import userImg from "../../images/user_1.jpg";
 import loaderGif from "../../images/loader.gif";
+import polygon from "../../images/marketplace/polygon.svg";
 import { currencyFormat } from "../../utils/common";
 import { TableLoader } from "../nft-basic-details/content-loader";
 
@@ -31,7 +34,7 @@ const NFTPurchaseDetails = ({ nft, list = [] }) => {
               <th className="text-center">Service Fee</th>
               <th className="text-center">Status</th>
               <th className="text-center">Purchase Date/Time</th>
-              <th className="text-center">Address</th>
+              <th className="text-center">Txid</th>
             </tr>
           </thead>
           <tbody>
@@ -71,8 +74,24 @@ const NFTPurchaseDetails = ({ nft, list = [] }) => {
                       : "text-info"
                   } status`}
                 >
-                  {detail?.status}{" "}
-                  {/* {detail?.status === "pending" && <img src={loaderGif} />} */}
+                  {detail?.status === "pending"
+                    ? "Transaction Pending"
+                    : detail?.status}{" "}
+                  {detail?.status === "pending" && (
+                    <ToolTip
+                      icon={
+                        <BsFillQuestionCircleFill
+                          size={16}
+                          color={"#000"}
+                          className="ms-2 check-icon"
+                        />
+                      }
+                      content={
+                        "The NFT's transfer/transaction is in process on the blockchain. Visit again for latest sale-status."
+                      }
+                      placement="right"
+                    />
+                  )}
                 </td>
 
                 <td className="text-center">
@@ -81,15 +100,23 @@ const NFTPurchaseDetails = ({ nft, list = [] }) => {
                   </div>
                 </td>
                 <td className="text-center">
-                  {detail?.txid ? detail?.txid : "-"}
+                  {detail?.txid ? (
+                    <>
+                      <a href={detail?.txid} target={"_blank"}>
+                        <img src={polygon} />
+                      </a>
+                    </>
+                  ) : (
+                    "-"
+                  )}
                 </td>
               </tr>
             ))}
-            <tr>
+            {/* <tr>
               <td className="text-center text-secondary p-3" colSpan="9">
                 You've reached the end of the list
               </td>
-            </tr>
+            </tr> */}
           </tbody>
         </Table>
       </div>

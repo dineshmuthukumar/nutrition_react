@@ -181,7 +181,7 @@ const Explore = ({ categoryDetail }) => {
         onClick(e);
       }}
     >
-      Sale Type <BiCaretDown className="mb-1" />
+      Sale Type <BiCaretDown />
     </div>
   ));
 
@@ -194,7 +194,7 @@ const Explore = ({ categoryDetail }) => {
         onClick(e);
       }}
     >
-      NFT Type <BiCaretDown className="mb-1" />
+      NFT Type <BiCaretDown />
     </div>
   ));
 
@@ -210,7 +210,7 @@ const Explore = ({ categoryDetail }) => {
       {filter.sort.find((obj) => obj.checked === true)?.name
         ? filter.sort.find((obj) => obj.checked === true).name
         : "Sort By"}{" "}
-      <BiCaretDown className="mb-1" />
+      <BiCaretDown />
     </div>
   ));
 
@@ -488,7 +488,7 @@ const Explore = ({ categoryDetail }) => {
 
 const NFTCardLoader = (props) => (
   <ContentLoader
-    viewBox="0 50 900 400"
+    viewBox="0 50 900 300"
     width={"100%"}
     height={"100%"}
     backgroundColor="#f5f5f5"

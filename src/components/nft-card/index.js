@@ -5,7 +5,7 @@ import sample from "../../images/sampleNFT.jpg";
 
 import "./style.scss";
 
-const NFTCard = ({ nft }) => {
+const NFTCard = ({ nft, ownedCard = false }) => {
   const erc721 = nft?.nft_type === "erc721";
   const history = useHistory();
 
@@ -72,6 +72,16 @@ const NFTCard = ({ nft }) => {
                     }
                   })()}
                 </div>
+              </div>
+            </div>
+          </>
+        )}
+        {ownedCard && nft?.quantity && (
+          <>
+            <div className="more-bid-details">
+              <div className="text-end">
+                <div className="mb-title text-secondary">Owned</div>
+                <div className="mb-value">{nft?.quantity}</div>
               </div>
             </div>
           </>

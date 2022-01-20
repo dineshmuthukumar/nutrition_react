@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import userImg from "../../images/user_1.png";
+import userImg from "../../images/user_1.jpg";
 import UserImage from "../../images/amitabh.png";
 import { FaThumbsUp } from "react-icons/fa";
 

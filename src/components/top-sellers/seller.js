@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { IoIosCheckmark } from "react-icons/io";
 import { currencyFormat } from "../../utils/common";
-import userImg from "../../images/user_1.png";
+import userImg from "../../images/user_1.jpg";
 import "./style.scss";
 
 const Seller = ({ index, seller, image }) => {
@@ -11,7 +11,7 @@ const Seller = ({ index, seller, image }) => {
   const { user } = useSelector((state) => state.user.data);
   return (
     <>
-      <div className="col-xl-3 col-lg-3 col-sm-6">
+      <div className="col-xl-3 col-lg-4 col-sm-6">
         <article className="user-card">
           <h5 className="user-count"> {index + 1} </h5>
           <figure>
