@@ -4,7 +4,12 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import _ from "lodash";
 
-import { nftDetailApi, orderBidHistory, nftOwnerApi } from "../api/methods";
+import {
+  nftDetailApi,
+  orderBidHistory,
+  nftOwnerApi,
+  nftTransactionHistory,
+} from "../api/methods";
 import BidHistory from "../components/bid-history";
 import ChainAttributes from "../components/chain-attributes";
 import Header from "../components/header";
@@ -51,6 +56,7 @@ const OrderDetails = () => {
   const [placeBuyPop, setPlaceBuyPop] = useState(false);
   const [putOnSalePop, setPutOnSalePop] = useState(false);
   const [cancelTheSalePop, setCancelTheSalePop] = useState(false);
+  const [page, setPage] = useState(1);
 
   const [isOrderOnSale, setIsOrderOnSale] = useState(false);
   const [isOrderSuccess, setIsOrderSuccess] = useState(false);
@@ -112,6 +118,7 @@ const OrderDetails = () => {
 
     nftDetail(slug, orderSlug);
     nftOwners();
+    nftTransaction();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -186,9 +193,6 @@ const OrderDetails = () => {
         }
       }
 
-      // if (NFT?.order_details?.status === "cancelled") {
-      //   history.push("/");
-      // }
       if (NFT?.order_details?.order_completed) {
         setSoldOut(true);
       }
@@ -204,10 +208,6 @@ const OrderDetails = () => {
         let history = await orderBidHistory({ order_slug: orderSlug, page: 1 });
         setBidHistory(history.data.data.histories);
         setTotalCount(history.data.data.total_count);
-      } else {
-        // let history = await nftBuyHistory({ nft_slug: slug, page: 1 });
-        // setBuyHistory(history.data.data.histories);
-        // setTotalCount(history.data.data.total_count);
       }
 
       setLoader(false);
@@ -227,6 +227,19 @@ const OrderDetails = () => {
       setNFTOwner(owners.data.data.owners);
       setOwnerCount(owners.data.data.total_count);
       setOwnerLoader(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const nftTransaction = async () => {
+    try {
+      let transactions = await nftTransactionHistory({
+        nft_slug: slug,
+        page: page,
+        order_slug: orderSlug,
+      });
+      console.log(transactions);
     } catch (error) {
       console.log(error);
     }

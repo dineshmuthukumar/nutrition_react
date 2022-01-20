@@ -43,7 +43,7 @@ const Details = () => {
   useEffect(() => {
     nftDetail(slug);
     nftOwners();
-    // nftTransaction();
+    nftTransaction();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
