@@ -28,7 +28,6 @@
 
 .user-block-nav {
   padding-bottom: 0.5rem;
-  border-bottom: 0.2rem solid #000;
   max-width: 20rem;
   margin: auto;
   margin-bottom: 2rem;
@@ -46,8 +45,10 @@
       font-family: $neue-helveticalight;
       user-select: none;
       color: #000 !important;
+      border-bottom: 0.2rem solid transparent;
       &.active {
         font-family: $neue-helveticabold;
+        border-bottom: 0.2rem solid #000;
       }
     }
   }
