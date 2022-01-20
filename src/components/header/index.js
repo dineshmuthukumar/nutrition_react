@@ -794,7 +794,12 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                     </Dropdown.Menu>
                   </Dropdown>
 
-                  <Dropdown.Item href="/">Marketplace</Dropdown.Item>
+                  <Dropdown.Item href="/">
+                    <span className="beta-container">
+                      <span className="beta-tag">Beta</span>
+                      Marketplace
+                    </span>
+                  </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </>
