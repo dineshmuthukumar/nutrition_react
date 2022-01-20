@@ -23,7 +23,6 @@ const Banner = ({ list = [] }) => {
 
     history.push(`/explore/category/${data.slug}`);
   };
-  console.log(list);
   return (
     <>
       <div className="container-fluid mt-4 hero-carousel-mobile">
@@ -31,7 +30,6 @@ const Banner = ({ list = [] }) => {
           <div className="col-12">
             <div style={{ height: "50vh" }}>
               {list.length > 0 && (
-                    
                 <Carousel
                   showThumbs={false}
                   dynamicHeight={true}
@@ -173,7 +171,7 @@ const Banner = ({ list = [] }) => {
                   }}
                   onClick={() => handleNavigate("BigB Punks")}
                 >
-                  <h5 className="cat-title medium-box">BigB Punks NFTs </h5>
+                  <h5 className="cat-title medium-box">BigB Punks </h5>
                   {(() => {
                     if (list[5]?.asset_type?.includes("video")) {
                       return (
