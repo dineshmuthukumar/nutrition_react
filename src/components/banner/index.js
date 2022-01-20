@@ -23,9 +23,78 @@ const Banner = ({ list = [] }) => {
 
     history.push(`/explore/category/${data.slug}`);
   };
-
+  console.log(list);
   return (
     <>
+      <div className="container-fluid mt-4 hero-carousel-mobile">
+        <div className="row">
+          <div className="col-12">
+            <div style={{ height: "50vh" }}>
+              {list.length > 0 && (
+                    
+                <Carousel
+                  showThumbs={false}
+                  dynamicHeight={true}
+                  useKeyboardArrows
+                  autoPlay
+                  interval={4000}
+                  showArrows={false}
+                  showStatus={false}
+                  stopOnHover
+                  infiniteLoop={true}
+                  swipeable={true}
+                >
+                  {list.map((category, i) => (
+                    <div
+                      key={`category-${i}`}
+                      style={{ overflow: "hidden" }}
+                      className="cat-block"
+                    >
+                      {(() => {
+                        if (category?.asset_type?.includes("video")) {
+                          return (
+                            <>
+                              <video
+                                loop
+                                muted
+                                autoPlay
+                                playsInline
+                                src={
+                                  category?.asset_url
+                                    ? category?.asset_url
+                                    : heroVideoBox
+                                }
+                                className="first-image"
+                                style={{ height: "50vh" }}
+                              ></video>
+                              <h5 className="cat-title">{category.name}</h5>
+                            </>
+                          );
+                        } else {
+                          return (
+                            <>
+                              <h5 className="cat-title">{category.name}</h5>
+                              <img
+                                src={
+                                  category?.asset_url
+                                    ? category?.asset_url
+                                    : sample
+                                }
+                                className="first-image"
+                                style={{ height: "50vh" }}
+                              />
+                            </>
+                          );
+                        }
+                      })()}
+                    </div>
+                  ))}
+                </Carousel>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="container-fluid mt-4 hero-carousel-desktop">
         <div className="row">
           <div className="col-5">

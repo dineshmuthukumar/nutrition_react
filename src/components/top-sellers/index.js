@@ -89,7 +89,7 @@ const TopSellers = () => {
             <div className="col-sm-12">
               <div className="sec-heading d-flex align-items-center mb-5 explore-heading">
                 <span className="me-4 text-nowrap">Top Sellers</span>
-                <span className="d-flex justify-content-between mt-2 w-100 filter-blocks">
+                <span className="d-flex justify-content-between mt-2 w-100 filter-blocks days">
                   <div className="d-flex flex-wrap filter-box">
                     <Dropdown className="me-2">
                       <Dropdown.Toggle

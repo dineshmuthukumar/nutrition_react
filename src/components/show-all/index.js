@@ -224,7 +224,7 @@ const ShowAll = ({ categories, query }) => {
         onClick(e);
       }}
     >
-      Category <BiCaretDown className="mb-1" />
+      Category <BiCaretDown />
     </div>
   ));
 
@@ -237,7 +237,7 @@ const ShowAll = ({ categories, query }) => {
         onClick(e);
       }}
     >
-      Sale Type <BiCaretDown className="mb-1" />
+      Sale Type <BiCaretDown />
     </div>
   ));
 
@@ -250,7 +250,7 @@ const ShowAll = ({ categories, query }) => {
         onClick(e);
       }}
     >
-      NFT Type <BiCaretDown className="mb-1" />
+      NFT Type <BiCaretDown />
     </div>
   ));
 
@@ -266,7 +266,7 @@ const ShowAll = ({ categories, query }) => {
       {filter.sort.find((obj) => obj.checked === true)?.name
         ? filter.sort.find((obj) => obj.checked === true).name
         : "Sort By"}{" "}
-      <BiCaretDown className="mb-1" />
+      <BiCaretDown />
     </div>
   ));
 
@@ -602,24 +602,9 @@ const ShowAll = ({ categories, query }) => {
                       </Dropdown.Menu>
                     </Dropdown>
 
-                    <div className="d-flex">
-                      <input
-                        type="text"
-                        className="search-box-add"
-                        value={search}
-                        onKeyPress={handleKeyPressEvent}
-                        onChange={(e) => setSearch(e.target.value)}
-                      />{" "}
-                      <span
-                        role="button"
-                        className="search-button"
-                        onClick={handleTextSearch}
-                      >
-                        <BiSearch size={15} />
-                      </span>
-                    </div>
+                    
                   </div>
-                  <div>
+                  <div className="filt-flex-box">
                     <Dropdown>
                       <Dropdown.Toggle
                         align="start"
@@ -646,6 +631,22 @@ const ShowAll = ({ categories, query }) => {
                     </Dropdown>
                   </div>
                 </span>
+                <div className="filt-flex-search">
+                      <input
+                        type="text"
+                        className="search-box-add"
+                        value={search}
+                        onKeyPress={handleKeyPressEvent}
+                        onChange={(e) => setSearch(e.target.value)}
+                      />{" "}
+                      <span
+                        role="button"
+                        className="search-button"
+                        onClick={handleTextSearch}
+                      >
+                        <BiSearch size={15} />
+                      </span>
+                    </div>
               </div>
 
               <div className="mt-4 mb-4 d-flex flex-wrap">
