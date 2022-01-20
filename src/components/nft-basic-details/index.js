@@ -179,15 +179,6 @@ const NFTBaseDetails = ({
                   </button>
                 );
               }
-            } else {
-              return (
-                <button
-                  disabled={true}
-                  className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
-                >
-                  Yet To Be Listed!
-                </button>
-              );
             }
           })()}
         </div>
