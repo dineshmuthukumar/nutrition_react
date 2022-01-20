@@ -115,7 +115,18 @@ const BidHistory = ({
             <>
               {isOrderOnSale && (
                 <div className="bid-history-title-content">
-                  <div className="bid-history-title">History</div>
+                  <div className="bid-history-title">
+                    <ul className="nav-btn-grp">
+                      <li>
+                        <a href="javascript:void(0)" className="active">
+                          History
+                        </a>
+                      </li>
+                      <li>
+                        <a href="javascript:void(0)">Transaction History</a>
+                      </li>
+                    </ul>
+                  </div>
                   <div className="bid-history-filter"></div>
                 </div>
               )}

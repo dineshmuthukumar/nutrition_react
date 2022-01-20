@@ -10,6 +10,9 @@
 
     .artist-details-content {
       min-height: 45vh;
+      @media screen and (min-height: 1024px) {
+        min-height: unset !important;
+      }
 
       .artist-name {
         font-size: 2.9rem;

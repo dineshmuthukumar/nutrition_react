@@ -81,18 +81,17 @@ const NFTOrderBaseDetails = ({
     <>
       <ul className="bredcrumb-link">
         <li>
-          <a href="#" onClick={() => history.push(`/details/${slug}`)}>
+          <span onClick={() => history.push(`/details/${slug}`)}>
             NFT <VscChevronRight className="icon" />
-          </a>
+          </span>
         </li>
         <li>
-          <a
-            href="#"
+          <span
             onClick={() => history.push(`/order/details/${slug}/${orderSlug}`)}
           >
             Order Detail
             <VscChevronRight className="icon" />
-          </a>
+          </span>
         </li>
         {/* <li><a href="javascript:void(0);">Level 3 link<VscChevronRight className="icon" /></a></li>
         <li><a href="javascript:void(0);">Level 4 link<VscChevronRight className="icon" /></a></li> */}

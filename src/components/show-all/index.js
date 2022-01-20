@@ -812,6 +812,7 @@ const ShowAll = ({ categories, query }) => {
                     value={search}
                     onKeyPress={handleKeyPressEvent}
                     onChange={(e) => setSearch(e.target.value)}
+                    placeholder="Search here"
                   />{" "}
                   <span
                     role="button"

@@ -72,7 +72,18 @@ const OwnerList = ({ nft, nftOwners = [], totalCount, isLoading = false }) => {
     <>
       <div className="bid-history listofHistory">
         <div className="owner-history-title-content">
-          <div className="bid-history-title">List of Owners</div>
+          <div className="bid-history-title">
+            <ul className="nav-btn-grp">
+              <li>
+                <a href="javascript:void(0)" className="active">
+                  List of Owners
+                </a>
+              </li>
+              <li>
+                <a href="javascript:void(0)">List of SubOwners</a>
+              </li>
+            </ul>
+          </div>
           <div className="bid-history-filter"></div>
         </div>
         {!isLoading ? (
