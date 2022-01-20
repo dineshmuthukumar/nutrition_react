@@ -16,7 +16,7 @@ export const currencyFormat = (value, type) => {
     style: "currency",
     currency: type,
   });
-  return formatter.format(parseFloat(value));
+  return formatter.format(parseFloat(value ? value : 0));
 };
 
 // export const abbreviateNumber = (value) => {
