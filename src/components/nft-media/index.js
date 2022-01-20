@@ -41,48 +41,96 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
 
   const static_url = [
     {
+      id: "m61vPEMHWqEPRrjq",
+      url: "https://cdn.beyondlife.club/media/video/2_m61vPEMHWqEPRrjq.mp4",
+    },
+    {
+      id: "4pVrXypHaOlnbOkl",
+      url: "https://cdn.beyondlife.club/media/video/1_4pVrXypHaOlnbOkl.mp4",
+    },
+    {
+      id: "g1GlPdEH8Zyz5jK0",
+      url: "https://cdn.beyondlife.club/media/video/2_g1GlPdEH8Zyz5jK0.mp4",
+    },
+    {
+      id: "3jOEzRKHvY7n2Vxl",
+      url: "https://cdn.beyondlife.club/media/video/1_3jOEzRKHvY7n2Vxl.mp4",
+    },
+    {
+      id: "dqlYXN6HgrDXJ1gA",
+      url: "https://cdn.beyondlife.club/media/video/6_dqlYXN6HgrDXJ1gA.mp4",
+    },
+    {
+      id: "gBEWPQWHRDQnwvbV",
+      url: "https://cdn.beyondlife.club/media/video/4_gBEWPQWHRDQnwvbV.mp4",
+    },
+    {
+      id: "MQ7vPjNHvDbP08wb",
+      url: "https://cdn.beyondlife.club/media/video/3_MQ7vPjNHvDbP08wb.mp4",
+    },
+    {
+      id: "OgWRnJvHb5WnbMeG",
+      url: "https://cdn.beyondlife.club/media/video/1_OgWRnJvHb5WnbMeG.mp4",
+    },
+    {
+      id: "JA5VnblHDk6PYRNO",
+      url: "https://cdn.beyondlife.club/media/video/5_JA5VnblHDk6PYRNO.mp4",
+    },
+    {
+      id: "MNYjPOpHrw0zy79K",
+      url: "https://cdn.beyondlife.club/media/video/2_MNYjPOpHrw0zy79K.mp4",
+    },
+    {
+      id: "paGrzGVHOK0PBO5K",
+      url: "https://cdn.beyondlife.club/media/video/7_paGrzGVHOK0PBO5K.mp4",
+    },
+    {
+      id: "LRrZzl7HbqgP6xaK",
+      url: "https://cdn.beyondlife.club/media/video/preview.mp4",
+    },
+    {
       id: "Vj6ZeNAwFOYbad2n",
-      url: "https://res.cloudinary.com/dba42nusi/video/upload/v1637072598/beyondlife/Sehenshah-2-1_tjshyo_irt13s.mp4",
+      url: "https://cdn.beyondlife.club/media/video/Sehenshah.mp4",
     },
     {
       id: "BxRM51oLFgY7AdoP",
-      url: "https://res.cloudinary.com/dba42nusi/video/upload/v1637072602/beyondlife/Silsila-1_g5ltpg_my04qu.mp4",
+      url: "https://cdn.beyondlife.club/media/video/Silsila.mp4",
     },
     {
       id: "GaDEQYvAFO1lRxdZ",
-      url: "https://res.cloudinary.com/dba42nusi/video/upload/v1637072592/beyondlife/Don-1_ipyhxt_lpg9u0.mp4",
+      url: "https://cdn.beyondlife.club/media/video/Don.mp4",
     },
     {
       id: "mJGgB1R9FbNoXWPr",
-      url: "https://res.cloudinary.com/dba42nusi/video/upload/v1637072593/beyondlife/Sholay-1-1_g6xfpe_enadhy.mp4",
+      url: "https://cdn.beyondlife.club/media/video/sholay.mp4",
     },
     {
       id: "Ma498YyXFk1wBnL6",
-      url: "https://res.cloudinary.com/dba42nusi/video/upload/v1637072596/beyondlife/Dewar-1_Low_uqtjre_jou3y2.mp4",
+      url: "https://cdn.beyondlife.club/media/video/Dewar.mp4",
     },
     {
       id: "lqgR23zJF83Xa8Kx",
-      url: "https://res.cloudinary.com/dba42nusi/video/upload/v1637072590/beyondlife/Hum_oz9bj1_baffr1.mp4",
+      url: "https://cdn.beyondlife.club/media/video/Hum.mp4",
     },
     {
       id: "46RDA3OXFLNM8ZmW",
-      url: "https://res.cloudinary.com/dba42nusi/video/upload/v1637072593/beyondlife/Kabikabi-1_iovca0_zbzxk7.mp4",
+      url: "https://cdn.beyondlife.club/media/video/Kabikabi.mp4",
     },
     {
       id: "wnJMy1xzFm36A09X",
-      url: "https://res.cloudinary.com/dba42nusi/video/upload/v1637072595/beyondlife/Loot-Mrnatwarlal-wnJMy1xzFm36A09X_pky3cn_xdlovc.mp4",
+      url: "https://cdn.beyondlife.club/media/video/Mrnatwarlal-loot.mp4",
     },
     {
       id: "PxR5B1r4FA3GnjAM",
-      url: "https://res.cloudinary.com/dba42nusi/video/upload/v1637072602/beyondlife/Loot-Sehenshah-PxR5B1r4FA3GnjAM_r9tfb3_qftuod.mp4",
+      url: "https://cdn.beyondlife.club/media/video/Sehenshah-loot.mp4",
     },
     {
       id: "GB8OzYpaFy3Rb6vm",
-      url: "https://res.cloudinary.com/dba42nusi/video/upload/v1637072593/beyondlife/Loot-Trishul-GB8OzYpaFy3Rb6vm_hzjy28_pkgdyi.mp4",
+      url: "https://cdn.beyondlife.club/media/video/Trishul-loot.mp4",
     },
     {
       id: "AJWQV1MOFl3w6mOX",
-      url: "https://res.cloudinary.com/dba42nusi/video/upload/v1637072599/beyondlife/Loot-Deewaar-AJWQV1MOFl3w6mOX_gh2zha_q0vlla.mp4",
+      url: "https://cdn.beyondlife.club/media/video/Dewar-loot.mp4",
     },
   ];
 

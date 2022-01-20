@@ -71,7 +71,7 @@ const Banner = ({ list = [] }) => {
                     muted
                     autoPlay
                     playsInline
-                    src="https://res.cloudinary.com/dba42nusi/video/upload/v1640657629/Chakra/Chakra_Videos/LivingComicBook_2/2_g1GlPdEH8Zyz5jK0_f8g86c_v40qia.mp4"
+                    src="https://cdn.beyondlife.club/media/video/2_g1GlPdEH8Zyz5jK0.mp4"
                     className="first-image"
                     style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
                   ></video>
@@ -152,7 +152,7 @@ const Banner = ({ list = [] }) => {
                     muted
                     autoPlay
                     playsInline
-                    src="https://res.cloudinary.com/dba42nusi/video/upload/v1637072593/beyondlife/Sholay-1-1_g6xfpe_enadhy.mp4"
+                    src="https://cdn.beyondlife.club/media/video/sholay.mp4"
                     className="first-image"
                     style={{ height: "100%" }}
                   ></video>
@@ -173,7 +173,7 @@ const Banner = ({ list = [] }) => {
                     muted
                     autoPlay
                     playsInline
-                    src="https://res.cloudinary.com/dba42nusi/video/upload/v1640714327/Chakra/Chakra_Videos/Bday/1__LRrZzl7HbqgP6xaK_fpxd7j.mp4"
+                    src="https://cdn.beyondlife.club/media/video/preview.mp4"
                     className="first-image"
                     style={{ height: "100%" }}
                   ></video>
@@ -190,7 +190,7 @@ const Banner = ({ list = [] }) => {
                   style={{
                     height: "calc(((((100vw - (7rem + 6rem))/2)/3) ) - 1.5rem)",
                   }}
-                  onClick={() => handleNavigate("Seven Chakra’s Powers")}
+                  onClick={() => handleNavigate("Seven Chakra's Powers")}
                 >
                   <h5 className="cat-title">Seven Chakra's Powers Video</h5>
                   <video
@@ -198,7 +198,7 @@ const Banner = ({ list = [] }) => {
                     muted
                     autoPlay
                     playsInline
-                    src="https://res.cloudinary.com/dba42nusi/video/upload/v1640657041/Chakra/Chakra_Videos/SevenPowers_7/2_MNYjPOpHrw0zy79K_obmgkq_bbhfcq.mp4"
+                    src="https://cdn.beyondlife.club/media/video/2_MNYjPOpHrw0zy79K.mp4"
                     className="first-image"
                     style={{ height: "100%" }}
                   ></video>
