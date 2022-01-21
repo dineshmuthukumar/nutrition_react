@@ -41,8 +41,8 @@ const OrderDetails = () => {
   const history = useHistory();
   const { slug, orderSlug } = useParams();
   const [nft, setNft] = useState({});
-  const [buyHistory, setBuyHistory] = useState([]);
   const [bidHistory, setBidHistory] = useState([]);
+  const [transactionHistory, setTransactionHistory] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
   const [bidWinner, setBidWinner] = useState(null);
   const [nftOwner, setNFTOwner] = useState([]);
@@ -51,6 +51,8 @@ const OrderDetails = () => {
   const [transferringNFT, setTransferringNFT] = useState(false);
   const [loader, setLoader] = useState(true);
   const [ownerLoader, setOwnerLoader] = useState(true);
+  const [transactionLoader, setTransactionLoader] = useState(false);
+  const [transactionHasNext, setTransactionHasNext] = useState(false);
   const [ownerCount, setOwnerCount] = useState(0);
   const [placeBidPop, setPlaceBidPop] = useState(false);
   const [placeBuyPop, setPlaceBuyPop] = useState(false);
@@ -234,12 +236,15 @@ const OrderDetails = () => {
 
   const nftTransaction = async () => {
     try {
+      setTransactionLoader(true);
       let transactions = await nftTransactionHistory({
         nft_slug: slug,
         page: page,
         order_slug: orderSlug,
       });
-      console.log(transactions);
+      setTransactionHistory(transactions.data.data.nfts);
+      setTransactionHasNext(transactions.data.data.next_page);
+      setTransactionLoader(false);
     } catch (error) {
       console.log(error);
     }
@@ -346,6 +351,10 @@ const OrderDetails = () => {
                       orderDetails={orderDetails}
                       soldOut={soldOut}
                       transferringNFT={transferringNFT}
+                      // Transaction History
+                      transactionHistory={transactionHistory}
+                      transactionLoader={transactionLoader}
+                      transactionHasNext={transactionHasNext}
                     />
                   );
                 } else {
@@ -356,6 +365,11 @@ const OrderDetails = () => {
                         nft={nft}
                         nftOwners={nftOwner}
                         totalCount={ownerCount}
+                        orderSlug={orderSlug}
+                        // Transaction History
+                        transactionHistory={transactionHistory}
+                        transactionLoader={transactionLoader}
+                        transactionHasNext={transactionHasNext}
                       />
                     )
                   );

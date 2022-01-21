@@ -92,6 +92,7 @@ const UserDetailsBlock = () => {
                       <ul className="nav user-block-nav">
                         <li className="nav-item">
                           <a
+                            href="#"
                             className={`nav-link ${
                               key === "owned" ? "active" : ""
                             }`}
@@ -104,6 +105,7 @@ const UserDetailsBlock = () => {
                         </li>
                         <li className="nav-item">
                           <a
+                            href="#"
                             className={`nav-link ${
                               key === "liked" ? "active" : ""
                             }`}

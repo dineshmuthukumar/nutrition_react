@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
@@ -12,6 +12,7 @@ import BidCard from "./bid-card";
 import BidName from "./bid-name";
 import HistoryHeader from "../history-header";
 import HistoryConfirm from "../history-confirm";
+import TransactionCard from "./transaction-card";
 import userImg from "../../images/user_1.jpg";
 import { orderBidHistory } from "../../api/methods";
 import { currencyFormat } from "../../utils/common";
@@ -31,6 +32,9 @@ const BidHistory = ({
   isOrderCancelled,
   soldOut,
   transferringNFT,
+  transactionHistory = [],
+  transactionLoader,
+  transactionHasNext,
 }) => {
   const { slug } = useParams();
   const [modalShow, setModalShow] = useState(false);
@@ -41,8 +45,17 @@ const BidHistory = ({
   const [acceptBidConfirm, setAcceptBidConfirm] = useState(false);
   const [acceptBidDetail, setAcceptBidDetail] = useState({});
   const isBid = _.get(nft, "order_details.is_bid", false);
+  const [key, setKey] = useState("bid-history");
 
   const { user } = useSelector((state) => state.user.data);
+
+  useEffect(() => {
+    if (orderSlug) {
+      setKey("bid-history");
+    } else {
+      setKey("transaction-history");
+    }
+  }, []);
 
   const fetchHistory = async (pageNo) => {
     try {
@@ -111,70 +124,115 @@ const BidHistory = ({
       ) : (
         <div className="bid-history if_bid_empty_cell">
           <HistoryHeader nftOwner={nftOwner} />
-          {isBid && (
-            <>
-              {isOrderOnSale && (
-                <div className="bid-history-title-content">
-                  <div className="bid-history-title">
-                    <ul className="nav-btn-grp">
-                      <li>
-                        <a href="javascript:void(0)" className="active">
-                          History
-                        </a>
-                      </li>
-                      <li>
-                        <a href="javascript:void(0)">Transaction History</a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="bid-history-filter"></div>
-                </div>
-              )}
 
-              {histories.length > 0 && isOrderOnSale ? (
-                <div
-                  className={`bid-history-content ${isOwner ? "owner" : ""}`}
-                >
-                  {histories.map((history, i) => (
-                    <BidCard
-                      key={`bid-history${i}`}
-                      latestIndex={i}
-                      history={history}
-                      acceptBidConfirm={acceptBidConfirm}
-                      setAcceptBidConfirm={setAcceptBidConfirm}
-                      setAcceptBidDetail={setAcceptBidDetail}
-                    />
-                  ))}
+          <div className="bid-history-title-content">
+            <div className="bid-history-title">
+              <ul className="nav-btn-grp">
+                {isBid && isOrderOnSale && (
+                  <li>
+                    <a
+                      href="javascript:void(0)"
+                      className={`${key === "bid-history" ? "active" : ""}`}
+                      onClick={() => setKey("bid-history")}
+                    >
+                      Bid History
+                    </a>
+                  </li>
+                )}
+                {transactionHistory.length > 0 && (
+                  <li>
+                    <a
+                      href="javascript:void(0)"
+                      className={`${
+                        key === "transaction-history" ? "active" : ""
+                      }`}
+                      onClick={() => setKey("transaction-history")}
+                    >
+                      Transaction History
+                    </a>
+                  </li>
+                )}
+              </ul>
+            </div>
+            <div className="bid-history-filter"></div>
+          </div>
 
-                  {totalCount <= histories.length ? (
-                    <>{/* <BidCard isEnd /> */}</>
-                  ) : (
-                    <div className="bid-histroy-card">
-                      <div className="history-end-content">
-                        <span role="button" onClick={handleClick}>
-                          View More
-                        </span>
+          {(() => {
+            if (key === "bid-history") {
+              return (
+                isBid && (
+                  <>
+                    {histories.length > 0 && isOrderOnSale ? (
+                      <div
+                        className={`bid-history-content ${
+                          isOwner ? "owner" : ""
+                        }`}
+                      >
+                        {histories.map((history, i) => (
+                          <BidCard
+                            key={`bid-history${i}`}
+                            latestIndex={i}
+                            history={history}
+                            acceptBidConfirm={acceptBidConfirm}
+                            setAcceptBidConfirm={setAcceptBidConfirm}
+                            setAcceptBidDetail={setAcceptBidDetail}
+                          />
+                        ))}
+
+                        {totalCount <= histories.length ? (
+                          <>{/* <BidCard isEnd /> */}</>
+                        ) : (
+                          <div className="bid-histroy-card">
+                            <div className="history-end-content">
+                              <span role="button" onClick={handleClick}>
+                                View More
+                              </span>
+                            </div>
+                          </div>
+                        )}
                       </div>
-                    </div>
-                  )}
-                </div>
-              ) : (
-                isOrderOnSale && (
-                  <div className="bid-empty-content">
-                    <div className="empty-top-container">
-                      <div className="empty-top-content">
-                        <IoIosRocket color="white" />
-                        <div className="empty-text">
-                          No active bids yet. <br />
-                          {!isOwner && "Be the first to make a bid."}
+                    ) : (
+                      isOrderOnSale && (
+                        <div className="bid-empty-content">
+                          <div className="empty-top-container">
+                            <div className="empty-top-content">
+                              <IoIosRocket color="white" />
+                              <div className="empty-text">
+                                No active bids yet. <br />
+                                {!isOwner && "Be the first to make a bid."}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )
+                    )}
+                  </>
+                )
+              );
+            } else if (key === "transaction-history") {
+              return (
+                transactionHistory.length > 0 && (
+                  <div className="bid-history-content">
+                    {transactionHistory.map((history, i) => (
+                      <TransactionCard
+                        key={`transaction-history${i}`}
+                        history={history}
+                      />
+                    ))}
+                    {transactionHasNext && (
+                      <div className="bid-histroy-card">
+                        <div className="history-end-content">
+                          <span role="button" onClick={handleClick}>
+                            View More
+                          </span>
                         </div>
                       </div>
-                    </div>
+                    )}
                   </div>
                 )
-              )}
-            </>
-          )}
+              );
+            }
+          })()}
         </div>
       )}
 
