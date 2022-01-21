@@ -282,7 +282,7 @@ const Banner = ({ list = [] }) => {
                   }}
                   onClick={() => handleNavigate("Madhushala")}
                 >
-                  <h5 className="cat-title">Madhushala NFTs</h5>
+                  <h5 className="cat-title">Madhushala</h5>
                   <img
                     src={madhushala_nft}
                     className="first-image"
@@ -300,7 +300,7 @@ const Banner = ({ list = [] }) => {
                     height: "calc(((((100vw - (7rem + 6rem))/2)/3)))",
                   }}
                 >
-                  <h5 className="cat-title">Chakra Comic NFTs</h5>
+                  <h5 className="cat-title">Chakra Comic</h5>
                   <img
                     src={comic_cover_new}
                     className="first-image"
