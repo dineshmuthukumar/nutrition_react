@@ -149,8 +149,6 @@ const OrderDetails = () => {
     });
 
     acceptBid(slug, orderSlug, (data) => {
-      console.log(data);
-      console.log(data.accepted_bid);
       setAvailableQty(data.available_quantity);
       if (data.purchase_details) {
         setPurchaseList((purchaseList) => [
