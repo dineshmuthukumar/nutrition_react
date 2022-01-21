@@ -257,9 +257,9 @@ const Banner = ({ list = [] }) => {
                   style={{
                     height: "calc(((((100vw - (7rem + 6rem))/2)/3) ) - 1.5rem)",
                   }}
-                  onClick={() => handleNavigate("Seven Chakra's Powers")}
+                  onClick={() => handleNavigate("Seven Chakra’s Powers")}
                 >
-                  <h5 className="cat-title">Seven Chakra's Powers Video</h5>
+                  <h5 className="cat-title">Seven Chakra's Powers</h5>
                   <video
                     loop
                     muted
@@ -282,7 +282,7 @@ const Banner = ({ list = [] }) => {
                   }}
                   onClick={() => handleNavigate("Madhushala")}
                 >
-                  <h5 className="cat-title">Madhushala NFTs</h5>
+                  <h5 className="cat-title">Madhushala</h5>
                   <img
                     src={madhushala_nft}
                     className="first-image"
@@ -299,8 +299,9 @@ const Banner = ({ list = [] }) => {
                   style={{
                     height: "calc(((((100vw - (7rem + 6rem))/2)/3)))",
                   }}
+                  onClick={() => handleNavigate("The Jumbo Juke Box")}
                 >
-                  <h5 className="cat-title">Chakra Comic NFTs</h5>
+                  <h5 className="cat-title">The Jumbo Juke Box</h5>
                   <img
                     src={comic_cover_new}
                     className="first-image"
