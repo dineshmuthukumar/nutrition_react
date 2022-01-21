@@ -424,7 +424,17 @@ const NFTPlaceBid = ({
                       </div>
                       <div className="place-bid-button">
                         <button
-                          disabled={bid.buttonDisable}
+                          disabled={(() => {
+                            if (soldOut) {
+                              return soldOut;
+                            } else if (transferringNFT) {
+                              return transferringNFT;
+                            } else if (isOrderCancelled) {
+                              return isOrderCancelled;
+                            } else {
+                              return bid.buttonDisable;
+                            }
+                          })()}
                           className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop ${bid.processClass}`} //process -> proccessing
                           onClick={handleBid}
                         >
