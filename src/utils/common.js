@@ -88,12 +88,12 @@ export const bidBuyError = (code) => {
   switch (code) {
     case ERROR:
       return {
-        title: "Error",
+        title: "Oops!",
         description:
           "The request could not be processed at this time. Please try again.!",
       };
     case ERROR404:
-      return { title: "Error", description: "Not found!" };
+      return { title: "Oops!", description: "Not found!" };
     case UNAUTHORIZED:
       return { title: "Error", description: "Unauthorized" };
     case AUCTION_UNBEGUN:
@@ -103,9 +103,9 @@ export const bidBuyError = (code) => {
     case INVALID_QUANTITY:
       return { title: "Error", description: "Invalid Quantity" };
     case SOLD:
-      return { title: "Error", description: "Sold out" };
+      return { title: "Oops!", description: "Sold out" };
     case OUT_OF_STOCK:
-      return { title: "Error", description: "Out of stock" };
+      return { title: "Oops!", description: "Out of stock" };
     case LIMITED_OUT:
       return { title: "Error", description: "Limited out" };
     case INSUFFICIENT_BALANCE:
@@ -125,7 +125,7 @@ export const bidBuyError = (code) => {
       };
     default:
       return {
-        title: "Error",
+        title: "Oops!",
         description:
           "The request could not be processed at this time. Please try again.!",
       };

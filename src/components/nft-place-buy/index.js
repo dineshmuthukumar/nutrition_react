@@ -28,6 +28,7 @@ const NFTPlaceBid = ({
   totalQty,
   soldOut,
   transferringNFT,
+  isOrderCancelled,
 }) => {
   const { user } = useSelector((state) => state.user.data);
   const { orderSlug } = useParams();
@@ -423,7 +424,9 @@ const NFTPlaceBid = ({
                               value={buyQuantity}
                               placeholder="0 NFT"
                               maxLength={20}
-                              disabled={transferringNFT || soldOut}
+                              disabled={
+                                transferringNFT || soldOut || isOrderCancelled
+                              }
                               onChange={handleBuyInputChange}
                             />
                             {/* text-dark -> dark text after entering quantity */}
@@ -510,6 +513,8 @@ const NFTPlaceBid = ({
                               return true;
                             } else if (transferringNFT) {
                               return true;
+                            } else if (isOrderCancelled) {
+                              return true;
                             } else if (erc721) {
                               return false;
                             } else {
@@ -541,6 +546,8 @@ const NFTPlaceBid = ({
                                     />
                                   </>
                                 );
+                              } else if (isOrderCancelled) {
+                                return "Order Cancelled";
                               } else {
                                 return buy.buttonName;
                               }
@@ -565,6 +572,8 @@ const NFTPlaceBid = ({
                                     />
                                   </>
                                 );
+                              } else if (isOrderCancelled) {
+                                return "Order Cancelled";
                               } else if (buyQuantity > 0) {
                                 return buy.buttonName;
                               } else {

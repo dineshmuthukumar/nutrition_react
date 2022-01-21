@@ -9,19 +9,30 @@ import ContentLoader from "react-content-loader";
 
 import OwnerCard from "./owner-card";
 import OwnerName from "./owner-name";
+import TransactionCard from "../bid-history/transaction-card";
 import userImg from "../../images/user_1.jpg";
 import { OwnersTableLoader } from "../nft-basic-details/content-loader";
 import { nftOwnerApi } from "../../api/methods";
 
 import "./style.scss";
 
-const OwnerList = ({ nft, nftOwners = [], totalCount, isLoading = false }) => {
+const OwnerList = ({
+  nft,
+  nftOwners = [],
+  totalCount,
+  isLoading = false,
+  orderSlug,
+  transactionHistory = [],
+  transactionLoader = false,
+  transactionHasNext,
+}) => {
   const { slug } = useParams();
   const [modalShow, setModalShow] = useState(false);
   const [owners, setOwners] = useState({});
   const [ownersList, setOwnersList] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [key, setKey] = useState("owner-list");
 
   const { user } = useSelector((state) => state.user.data);
 
@@ -72,38 +83,95 @@ const OwnerList = ({ nft, nftOwners = [], totalCount, isLoading = false }) => {
     <>
       <div className="bid-history listofHistory">
         <div className="owner-history-title-content">
-          <div className="bid-history-title">List of Owners</div>
+          <div className="bid-history-title">
+            <ul className="nav-btn-grp">
+              <li>
+                <a
+                  href="javascript:void(0)"
+                  className={`${key === "owner-list" ? "active" : ""}`}
+                  onClick={() => setKey("owner-list")}
+                >
+                  List of Owners
+                </a>
+              </li>
+              {transactionHistory.length > 0 && (
+                <li>
+                  <a
+                    href="javascript:void(0)"
+                    className={`${
+                      key === "transaction-history" ? "active" : ""
+                    }`}
+                    onClick={() => setKey("transaction-history")}
+                  >
+                    Transaction History
+                  </a>
+                </li>
+              )}
+            </ul>
+          </div>
           <div className="bid-history-filter"></div>
         </div>
-        {!isLoading ? (
-          <>
-            {nftOwners.length > 0 && (
-              <div className="bid-history-content">
-                {nftOwners.map((owner, i) => (
-                  <OwnerCard
-                    key={`buy-owner${i}`}
-                    owner={owner}
-                    totalQuantity={nft.total_quantity}
-                  />
-                ))}
 
-                {totalCount <= nftOwners.length ? (
-                  <>{/* <OwnerCard isEnd /> */}</>
-                ) : (
-                  <div className="bid-histroy-card">
-                    <div className="history-end-content">
-                      <span role="button" onClick={handleClick}>
-                        View More
-                      </span>
-                    </div>
+        {(() => {
+          if (key === "owner-list") {
+            return !isLoading ? (
+              <>
+                {nftOwners.length > 0 && (
+                  <div className="bid-history-content">
+                    {nftOwners.map((owner, i) => (
+                      <OwnerCard
+                        key={`buy-owner${i}`}
+                        owner={owner}
+                        totalQuantity={nft.total_quantity}
+                      />
+                    ))}
+
+                    {totalCount <= nftOwners.length ? (
+                      <>{/* <OwnerCard isEnd /> */}</>
+                    ) : (
+                      <div className="bid-histroy-card">
+                        <div className="history-end-content">
+                          <span role="button" onClick={handleClick}>
+                            View More
+                          </span>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 )}
-              </div>
-            )}
-          </>
-        ) : (
-          <ListLoader />
-        )}
+              </>
+            ) : (
+              <ListLoader />
+            );
+          } else if (key === "transaction-history") {
+            return !transactionLoader ? (
+              <>
+                {transactionHistory.length > 0 && (
+                  <div className="bid-history-content">
+                    {transactionHistory.map((history, i) => (
+                      <TransactionCard
+                        key={`transaction-history${i}`}
+                        history={history}
+                      />
+                    ))}
+
+                    {transactionHasNext && (
+                      <div className="bid-histroy-card">
+                        <div className="history-end-content">
+                          <span role="button" onClick={handleClick}>
+                            View More
+                          </span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </>
+            ) : (
+              <ListLoader />
+            );
+          }
+        })()}
       </div>
 
       <Modal size="xl" centered show={modalShow} className="history-modal">

@@ -65,6 +65,18 @@ const ShowAll = ({ categories, query }) => {
         checked: false,
       },
     ],
+    status: [
+      {
+        name: "Listed for sale",
+        value: "listed_for_sale",
+        checked: false,
+      },
+      {
+        name: "Not on sale",
+        value: "not_on_sale",
+        checked: false,
+      },
+    ],
   });
 
   useEffect(() => {
@@ -76,6 +88,7 @@ const ShowAll = ({ categories, query }) => {
     const sort_filters = query.get("sort")
       ? query.get("sort")
       : "recently_listed";
+    const sale_status = query.get("status");
 
     let categoryList = [];
     categories.forEach((category) => {
@@ -101,6 +114,10 @@ const ShowAll = ({ categories, query }) => {
       ...obj,
       checked: sort_filters ? sort_filters === obj.value : false,
     }));
+    info.status = filter.status.map((obj) => ({
+      ...obj,
+      checked: sale_status ? sale_status === obj.value : false,
+    }));
 
     setFilter(info);
   }, [categories, query]);
@@ -116,6 +133,7 @@ const ShowAll = ({ categories, query }) => {
       : "recently_listed";
 
     const search_filter = query.get("search");
+    const sale_status = query.get("status");
 
     showAllFilteredNFTs(
       1,
@@ -123,7 +141,8 @@ const ShowAll = ({ categories, query }) => {
       nft_filters,
       sale_filters,
       sort_filters,
-      search_filter
+      search_filter,
+      sale_status
     );
   }, [query]);
 
@@ -133,19 +152,33 @@ const ShowAll = ({ categories, query }) => {
     type,
     saleType,
     sort = "recently_listed",
-    searchText
+    searchText,
+    saleStatus
   ) => {
     try {
-      page === 1 && setLoading(true);
-      setLoadingMore(true);
-      let response = await nftShowAllApi({
-        page,
-        filter: {
+      let filter = {};
+      if (saleStatus !== null) {
+        filter = {
           category: category,
           type: type,
           sale_type: saleType,
           keyword: searchText,
-        },
+          onsale: saleStatus === "listed_for_sale" ? true : false,
+        };
+      } else {
+        filter = {
+          category: category,
+          type: type,
+          sale_type: saleType,
+          keyword: searchText,
+        };
+      }
+
+      page === 1 && setLoading(true);
+      setLoadingMore(true);
+      let response = await nftShowAllApi({
+        page,
+        filter,
         sort,
       });
       setList([...list, ...response.data.data.nfts]);
@@ -164,19 +197,33 @@ const ShowAll = ({ categories, query }) => {
     type,
     saleType,
     sort = "recently_listed",
-    searchText
+    searchText,
+    saleStatus
   ) => {
     try {
-      page === 1 && setLoading(true);
-      setLoadingMore(true);
-      let response = await nftShowAllApi({
-        page,
-        filter: {
+      let filter = {};
+      if (saleStatus !== null) {
+        filter = {
           category: category,
           type: type,
           sale_type: saleType,
           keyword: searchText,
-        },
+          onsale: saleStatus === "listed_for_sale" ? true : false,
+        };
+      } else {
+        filter = {
+          category: category,
+          type: type,
+          sale_type: saleType,
+          keyword: searchText,
+        };
+      }
+
+      page === 1 && setLoading(true);
+      setLoadingMore(true);
+      let response = await nftShowAllApi({
+        page,
+        filter,
         sort,
       });
       setList(response.data.data.nfts);
@@ -202,6 +249,7 @@ const ShowAll = ({ categories, query }) => {
         ? query.get("sort")
         : "recently_listed";
       const search_filters = query.get("search");
+      const sale_status = query.get("status");
 
       showAllNFTs(
         page + 1,
@@ -209,7 +257,8 @@ const ShowAll = ({ categories, query }) => {
         nft_filters,
         sale_filters,
         sort_filters,
-        search_filters
+        search_filters,
+        sale_status
       );
       setPage(page + 1);
     }
@@ -270,6 +319,22 @@ const ShowAll = ({ categories, query }) => {
     </div>
   ));
 
+  const SaleStatus = React.forwardRef(({ onClick }, ref) => (
+    <div
+      className="filter-drop-btn"
+      ref={ref}
+      onClick={(e) => {
+        e.preventDefault();
+        onClick(e);
+      }}
+    >
+      {filter.status.find((obj) => obj.checked === true)?.name
+        ? filter.status.find((obj) => obj.checked === true).name
+        : "Sale Status"}{" "}
+      <BiCaretDown />
+    </div>
+  ));
+
   const handleCategoryCheck = (input) => {
     let category_exist = query.get("category")
       ? query.get("category").split(",")
@@ -278,6 +343,7 @@ const ShowAll = ({ categories, query }) => {
     const nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
     const sort_exist = query.get("sort");
     const search_exist = query.get("search");
+    const sale_status = query.get("status");
 
     if (category_exist.includes(input.value)) {
       category_exist = category_exist.filter((obj) => obj !== input.value);
@@ -314,6 +380,12 @@ const ShowAll = ({ categories, query }) => {
         : `search=${search_exist}`;
     }
 
+    if (sale_status) {
+      query_string += query_string
+        ? `&status=${sale_status}`
+        : `status=${sale_status}`;
+    }
+
     if (query_string) {
       history.push(`/?${query_string}`);
     } else {
@@ -329,6 +401,7 @@ const ShowAll = ({ categories, query }) => {
     const nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
     const sort_exist = query.get("sort");
     const search_exist = query.get("search");
+    const sale_status = query.get("status");
 
     if (sale_exist.includes(input.value)) {
       sale_exist = sale_exist.filter((obj) => obj !== input.value);
@@ -365,6 +438,12 @@ const ShowAll = ({ categories, query }) => {
         : `search=${search_exist}`;
     }
 
+    if (sale_status) {
+      query_string += query_string
+        ? `&status=${sale_status}`
+        : `status=${sale_status}`;
+    }
+
     if (query_string) {
       history.push(`/?${query_string}`);
     } else {
@@ -380,6 +459,7 @@ const ShowAll = ({ categories, query }) => {
     let nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
     const sort_exist = query.get("sort");
     const search_exist = query.get("search");
+    const sale_status = query.get("status");
 
     if (nft_exist.includes(input.value)) {
       nft_exist = nft_exist.filter((obj) => obj !== input.value);
@@ -416,6 +496,12 @@ const ShowAll = ({ categories, query }) => {
         : `search=${search_exist}`;
     }
 
+    if (sale_status) {
+      query_string += query_string
+        ? `&status=${sale_status}`
+        : `status=${sale_status}`;
+    }
+
     if (query_string) {
       history.push(`/?${query_string}`);
     } else {
@@ -431,6 +517,7 @@ const ShowAll = ({ categories, query }) => {
     const nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
     const sort_exist = input.value;
     const search_exist = query.get("search");
+    const sale_status = query.get("status");
 
     let query_string = "";
     if (category_exist.length > 0) {
@@ -459,6 +546,64 @@ const ShowAll = ({ categories, query }) => {
       query_string += query_string
         ? `&search=${search_exist}`
         : `search=${search_exist}`;
+    }
+
+    if (sale_status) {
+      query_string += query_string
+        ? `&status=${sale_status}`
+        : `status=${sale_status}`;
+    }
+
+    if (query_string) {
+      history.push(`/?${query_string}`);
+    } else {
+      history.push("/");
+    }
+  };
+
+  const handleSaleStatusNFT = (input) => {
+    const category_exist = query.get("category")
+      ? query.get("category").split(",")
+      : [];
+    const sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
+    const nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
+    const sort_exist = query.get("sort");
+    const search_exist = query.get("search");
+    const sale_status = input.value;
+
+    let query_string = "";
+    if (category_exist.length > 0) {
+      query_string += query_string
+        ? `&category=${category_exist}`
+        : `category=${category_exist}`;
+    }
+
+    if (sale_exist.length > 0) {
+      query_string += query_string
+        ? `&sale=${sale_exist}`
+        : `sale=${sale_exist}`;
+    }
+
+    if (nft_exist.length > 0) {
+      query_string += query_string ? `&nft=${nft_exist}` : `nft=${nft_exist}`;
+    }
+
+    if (sort_exist) {
+      query_string += query_string
+        ? `&sort=${sort_exist}`
+        : `sort=${sort_exist}`;
+    }
+
+    if (search_exist) {
+      query_string += query_string
+        ? `&search=${search_exist}`
+        : `search=${search_exist}`;
+    }
+
+    if (sale_status) {
+      query_string += query_string
+        ? `&status=${sale_status}`
+        : `status=${sale_status}`;
     }
 
     if (query_string) {
@@ -476,6 +621,7 @@ const ShowAll = ({ categories, query }) => {
     const nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
     const sort_exist = query.get("sort");
     const search_exist = search;
+    const sale_status = query.get("status");
 
     let query_string = "";
     if (category_exist.length > 0) {
@@ -504,6 +650,12 @@ const ShowAll = ({ categories, query }) => {
       query_string += query_string
         ? `&search=${search_exist}`
         : `search=${search_exist}`;
+    }
+
+    if (sale_status) {
+      query_string += query_string
+        ? `&status=${sale_status}`
+        : `status=${sale_status}`;
     }
 
     if (query_string) {
@@ -577,7 +729,7 @@ const ShowAll = ({ categories, query }) => {
                         ))}
                       </Dropdown.Menu>
                     </Dropdown>
-                    <Dropdown>
+                    <Dropdown className="me-2">
                       <Dropdown.Toggle
                         align="start"
                         drop="start"
@@ -601,8 +753,30 @@ const ShowAll = ({ categories, query }) => {
                         ))}
                       </Dropdown.Menu>
                     </Dropdown>
+                    <Dropdown>
+                      <Dropdown.Toggle
+                        align="start"
+                        drop="start"
+                        as={SaleStatus}
+                      ></Dropdown.Toggle>
 
-                    
+                      <Dropdown.Menu align="start">
+                        {filter.status.map((obj, i) => (
+                          <Dropdown.Item
+                            key={`nft${i}`}
+                            as="button"
+                            onClick={() => handleSaleStatusNFT(obj)}
+                          >
+                            <FaCheckCircle
+                              color={obj.checked ? "green" : "#ccc"}
+                              className="mb-1 me-2"
+                              size={17}
+                            />{" "}
+                            {obj.name}
+                          </Dropdown.Item>
+                        ))}
+                      </Dropdown.Menu>
+                    </Dropdown>
                   </div>
                   <div className="filt-flex-box">
                     <Dropdown>
@@ -632,21 +806,22 @@ const ShowAll = ({ categories, query }) => {
                   </div>
                 </span>
                 <div className="filt-flex-search">
-                      <input
-                        type="text"
-                        className="search-box-add"
-                        value={search}
-                        onKeyPress={handleKeyPressEvent}
-                        onChange={(e) => setSearch(e.target.value)}
-                      />{" "}
-                      <span
-                        role="button"
-                        className="search-button"
-                        onClick={handleTextSearch}
-                      >
-                        <BiSearch size={15} />
-                      </span>
-                    </div>
+                  <input
+                    type="text"
+                    className="search-box-add"
+                    value={search}
+                    onKeyPress={handleKeyPressEvent}
+                    onChange={(e) => setSearch(e.target.value)}
+                    placeholder="Search here"
+                  />{" "}
+                  <span
+                    role="button"
+                    className="search-button"
+                    onClick={handleTextSearch}
+                  >
+                    <BiSearch size={15} />
+                  </span>
+                </div>
               </div>
 
               <div className="mt-4 mb-4 d-flex flex-wrap">

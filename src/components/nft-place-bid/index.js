@@ -27,6 +27,7 @@ const NFTPlaceBid = ({
   price,
   soldOut,
   transferringNFT,
+  isOrderCancelled,
 }) => {
   const { user } = useSelector((state) => state.user.data);
   const { orderSlug } = useParams();
@@ -341,7 +342,9 @@ const NFTPlaceBid = ({
                             className="input-bid"
                             value={bidAmount}
                             placeholder="0"
-                            disabled={soldOut}
+                            disabled={
+                              soldOut || transferringNFT || isOrderCancelled
+                            }
                             onChange={handleBidInputChange}
                           />
                         </div>
@@ -446,6 +449,8 @@ const NFTPlaceBid = ({
                                   placement="top"
                                 />
                               );
+                            } else if (isOrderCancelled) {
+                              return "Order Cancelled";
                             } else if (bidAmount > 0) {
                               return bid.buttonName;
                             } else {

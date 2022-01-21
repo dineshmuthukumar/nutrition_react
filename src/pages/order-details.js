@@ -4,7 +4,12 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import _ from "lodash";
 
-import { nftDetailApi, orderBidHistory, nftOwnerApi } from "../api/methods";
+import {
+  nftDetailApi,
+  orderBidHistory,
+  nftOwnerApi,
+  nftTransactionHistory,
+} from "../api/methods";
 import BidHistory from "../components/bid-history";
 import ChainAttributes from "../components/chain-attributes";
 import Header from "../components/header";
@@ -36,8 +41,8 @@ const OrderDetails = () => {
   const history = useHistory();
   const { slug, orderSlug } = useParams();
   const [nft, setNft] = useState({});
-  const [buyHistory, setBuyHistory] = useState([]);
   const [bidHistory, setBidHistory] = useState([]);
+  const [transactionHistory, setTransactionHistory] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
   const [bidWinner, setBidWinner] = useState(null);
   const [nftOwner, setNFTOwner] = useState([]);
@@ -46,11 +51,14 @@ const OrderDetails = () => {
   const [transferringNFT, setTransferringNFT] = useState(false);
   const [loader, setLoader] = useState(true);
   const [ownerLoader, setOwnerLoader] = useState(true);
+  const [transactionLoader, setTransactionLoader] = useState(false);
+  const [transactionHasNext, setTransactionHasNext] = useState(false);
   const [ownerCount, setOwnerCount] = useState(0);
   const [placeBidPop, setPlaceBidPop] = useState(false);
   const [placeBuyPop, setPlaceBuyPop] = useState(false);
   const [putOnSalePop, setPutOnSalePop] = useState(false);
   const [cancelTheSalePop, setCancelTheSalePop] = useState(false);
+  const [page, setPage] = useState(1);
 
   const [isOrderOnSale, setIsOrderOnSale] = useState(false);
   const [isOrderSuccess, setIsOrderSuccess] = useState(false);
@@ -112,6 +120,7 @@ const OrderDetails = () => {
 
     nftDetail(slug, orderSlug);
     nftOwners();
+    nftTransaction();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -186,9 +195,6 @@ const OrderDetails = () => {
         }
       }
 
-      // if (NFT?.order_details?.status === "cancelled") {
-      //   history.push("/");
-      // }
       if (NFT?.order_details?.order_completed) {
         setSoldOut(true);
       }
@@ -204,10 +210,6 @@ const OrderDetails = () => {
         let history = await orderBidHistory({ order_slug: orderSlug, page: 1 });
         setBidHistory(history.data.data.histories);
         setTotalCount(history.data.data.total_count);
-      } else {
-        // let history = await nftBuyHistory({ nft_slug: slug, page: 1 });
-        // setBuyHistory(history.data.data.histories);
-        // setTotalCount(history.data.data.total_count);
       }
 
       setLoader(false);
@@ -227,6 +229,22 @@ const OrderDetails = () => {
       setNFTOwner(owners.data.data.owners);
       setOwnerCount(owners.data.data.total_count);
       setOwnerLoader(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const nftTransaction = async () => {
+    try {
+      setTransactionLoader(true);
+      let transactions = await nftTransactionHistory({
+        nft_slug: slug,
+        page: page,
+        order_slug: orderSlug,
+      });
+      setTransactionHistory(transactions.data.data.nfts);
+      setTransactionHasNext(transactions.data.data.next_page);
+      setTransactionLoader(false);
     } catch (error) {
       console.log(error);
     }
@@ -333,6 +351,10 @@ const OrderDetails = () => {
                       orderDetails={orderDetails}
                       soldOut={soldOut}
                       transferringNFT={transferringNFT}
+                      // Transaction History
+                      transactionHistory={transactionHistory}
+                      transactionLoader={transactionLoader}
+                      transactionHasNext={transactionHasNext}
                     />
                   );
                 } else {
@@ -343,6 +365,11 @@ const OrderDetails = () => {
                         nft={nft}
                         nftOwners={nftOwner}
                         totalCount={ownerCount}
+                        orderSlug={orderSlug}
+                        // Transaction History
+                        transactionHistory={transactionHistory}
+                        transactionLoader={transactionLoader}
+                        transactionHasNext={transactionHasNext}
                       />
                     )
                   );

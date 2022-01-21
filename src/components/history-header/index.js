@@ -24,7 +24,11 @@ const HistoryHeader = ({ nftOwner }) => {
         />
       </div>
       <div className="bh-user-details">
-        <h2 className="bh-user-name">{nftOwner?.user_name}</h2>
+        <h2 className="bh-user-name">
+          {user?.slug === nftOwner?.slug
+            ? `@${user?.first_name}${user?.last_name}`
+            : nftOwner?.user_name}
+        </h2>
         <h4 className="bh-user-status">Owner</h4>
         <div className="bh-user-sold-info">
           {/* <div className="price">

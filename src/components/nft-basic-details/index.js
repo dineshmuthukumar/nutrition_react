@@ -76,7 +76,9 @@ const NFTBaseDetails = ({
                 title="Owned By"
                 avatar={owners[0].avatar_url}
                 name={owners[0].user_name}
+                userSlug={owners[0].slug}
                 seller={true}
+                owner={owners[0]}
                 isEnd
               />
             </div>
@@ -179,15 +181,6 @@ const NFTBaseDetails = ({
                   </button>
                 );
               }
-            } else {
-              return (
-                <button
-                  disabled={true}
-                  className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
-                >
-                  Yet To Be Listed!
-                </button>
-              );
             }
           })()}
         </div>

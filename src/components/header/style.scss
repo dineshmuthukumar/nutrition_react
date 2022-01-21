@@ -164,8 +164,9 @@
     font-size: 1.2rem;
     font-family: "neue_helveticamedium" !important;
     border-radius: 0.2rem;
-    margin: 1.5rem 0;
+    margin: 0.5rem 0;
     color: #ffffff;
+    padding: 1rem 1rem;
   }
 
   #drop_outer {
@@ -173,10 +174,10 @@
     font-size: 1.2rem;
     font-family: "neue_helveticamedium" !important;
     border-radius: 0.2rem;
-    margin: 1.5rem 0;
+    margin: 0.5rem 0;
     display: block;
     width: 100%;
-    padding: 0.25rem 1rem;
+    padding: 1rem 1rem;
     clear: both;
     font-weight: 400;
     text-align: inherit;
@@ -185,6 +186,12 @@
     background-color: transparent;
     border: 0;
     color: #ffffff;
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: #fff;
+      color: #000;
+    }
   }
 }
 
