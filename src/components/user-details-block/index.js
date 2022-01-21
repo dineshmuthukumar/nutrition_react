@@ -91,8 +91,7 @@ const UserDetailsBlock = () => {
                       {/* Place tab and filter here */}
                       <ul className="nav user-block-nav">
                         <li className="nav-item">
-                          <a
-                            href="#"
+                          <span
                             className={`nav-link ${
                               key === "owned" ? "active" : ""
                             }`}
@@ -101,11 +100,10 @@ const UserDetailsBlock = () => {
                             onClick={() => setKey("owned")}
                           >
                             Owned ({ownedCount})
-                          </a>
+                          </span>
                         </li>
                         <li className="nav-item">
-                          <a
-                            href="#"
+                          <span
                             className={`nav-link ${
                               key === "liked" ? "active" : ""
                             }`}
@@ -114,7 +112,7 @@ const UserDetailsBlock = () => {
                             onClick={() => setKey("liked")}
                           >
                             Favorites ({favedCount})
-                          </a>
+                          </span>
                         </li>
                       </ul>
                     </div>
