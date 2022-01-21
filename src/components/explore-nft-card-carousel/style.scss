@@ -64,8 +64,8 @@
       font-size: 1.3rem;
       font-family: $neue-helveticabold;
       position: relative;
-      display: flex;
-      align-items: center;
+      display: block;
+      @include text-ellipsis;
 
       .right-content {
         width: calc(100% - 8rem);
@@ -90,7 +90,7 @@
     .more-nft-desc {
       font-size: 1rem;
       font-family: $neue-helveticamedium;
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
     }
   }
 
@@ -99,13 +99,13 @@
     justify-content: space-between;
 
     .mb-title {
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-family: $neue-helveticamedium;
       white-space: nowrap;
     }
 
     .mb-value {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       font-family: $neue-helveticabold;
     }
   }

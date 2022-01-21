@@ -130,26 +130,24 @@ const BidHistory = ({
               <ul className="nav-btn-grp">
                 {isBid && isOrderOnSale && (
                   <li>
-                    <a
-                      href="javascript:void(0)"
+                    <span
                       className={`${key === "bid-history" ? "active" : ""}`}
                       onClick={() => setKey("bid-history")}
                     >
                       Bid History
-                    </a>
+                    </span>
                   </li>
                 )}
                 {transactionHistory.length > 0 && (
                   <li>
-                    <a
-                      href="javascript:void(0)"
+                    <span
                       className={`${
                         key === "transaction-history" ? "active" : ""
                       }`}
                       onClick={() => setKey("transaction-history")}
                     >
                       Transaction History
-                    </a>
+                    </span>
                   </li>
                 )}
               </ul>
@@ -216,6 +214,7 @@ const BidHistory = ({
                     {transactionHistory.map((history, i) => (
                       <TransactionCard
                         key={`transaction-history${i}`}
+                        nft={nft}
                         history={history}
                       />
                     ))}
