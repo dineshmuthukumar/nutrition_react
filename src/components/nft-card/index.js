@@ -106,42 +106,21 @@ const NFTCard = ({ nft, ownedCard = false }) => {
                   })()}
                 </div>
               </div>
-              <div className="text-end">
-                <div className="mb-title text-secondary">
-                  {(() => {
-                    if (erc721) {
-                      return nft?.order_details?.is_bid ? "Bid Price" : "Price";
-                    } else {
-                      return "Price";
-                    }
-                  })()}
+              {erc721 && nft?.order_details?.is_buy && (
+                <div className="text-end">
+                  <div className="mb-title text-secondary">Price</div>
+                  <div className="mb-value">
+                    {currencyFormat(nft?.order_details?.buy_amount, "USD")}
+                  </div>
                 </div>
-                <div className="mb-value">
-                  {(() => {
-                    if (erc721) {
-                      return nft?.order_details?.is_bid
-                        ? currencyFormat(
-                            nft?.order_details?.top_bid
-                              ? nft?.order_details?.top_bid
-                              : nft?.order_details?.minimum_bid,
-                            "USD"
-                          )
-                        : currencyFormat(nft?.order_details?.buy_amount, "USD");
-                    } else {
-                      return currencyFormat(
-                        nft?.order_details?.buy_amount,
-                        "USD"
-                      );
-                    }
-                  })()}
-                </div>
-              </div>
+              )}
             </div>
           </>
         )}
         {ownedCard && nft?.quantity && (
           <>
             <div className="more-bid-details">
+              <div className="text-start"></div>
               <div className="text-end">
                 <div className="mb-title text-secondary">Owned</div>
                 <div className="mb-value">{nft?.quantity}</div>
