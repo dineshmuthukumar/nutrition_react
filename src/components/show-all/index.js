@@ -330,7 +330,7 @@ const ShowAll = ({ categories, query }) => {
     >
       {filter.status.find((obj) => obj.checked === true)?.name
         ? filter.status.find((obj) => obj.checked === true).name
-        : "Sale status"}{" "}
+        : "Sale Status"}{" "}
       <BiCaretDown />
     </div>
   ));

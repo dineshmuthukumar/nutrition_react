@@ -348,6 +348,7 @@ const NFTOrderBaseDetails = ({
             userTotalBuys={userTotalBuys}
             soldOut={soldOut}
             transferringNFT={transferringNFT}
+            isOrderCancelled={isOrderCancelled}
           />
           <NFTPlaceBuy
             nft={nft}
@@ -362,6 +363,7 @@ const NFTOrderBaseDetails = ({
             userTotalBuys={userTotalBuys}
             soldOut={soldOut}
             transferringNFT={transferringNFT}
+            isOrderCancelled={isOrderCancelled}
           />
 
           <NFTCancelTheSale
