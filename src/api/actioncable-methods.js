@@ -150,6 +150,21 @@ export const ownerDetails = (slug, value) => {
   );
 };
 
+export const orderPurchaseDetails = (nftSlug, orderSlug, value) => {
+  nftCable.subscriptions.create(
+    { channel: "NftChannel", room: `${nftSlug}_order_purchase_${orderSlug}` },
+    {
+      connected: () => {
+        console.log("BL/AC11:Connected");
+      },
+      received: (data) => {
+        console.log("BL/AC11:Success");
+        value(data);
+      },
+    }
+  );
+};
+
 export const accountDetail = (slug, value) => {
   baseCable.subscriptions.create(
     { channel: "UserChannel", room: `account_${slug}` },

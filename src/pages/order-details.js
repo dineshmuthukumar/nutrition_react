@@ -25,6 +25,7 @@ import {
   bidDetail,
   buyDetail,
   cancelSaleDetail,
+  orderPurchaseDetails,
   ownerDetails,
   pageView,
   totalFav,
@@ -162,6 +163,10 @@ const OrderDetails = () => {
       if (data.order_completed) {
         setSoldOut(true);
       }
+    });
+
+    orderPurchaseDetails(slug, orderSlug, (data) => {
+      console.log(data);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
