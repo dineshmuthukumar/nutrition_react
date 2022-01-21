@@ -159,7 +159,10 @@ const NFTOrderBaseDetails = ({
       </p>
 
       <div className="bottom-content">
-        {acceptBidConfirm ? (
+        {!transferringNFT &&
+        !soldOut &&
+        !isOrderCancelled &&
+        acceptBidConfirm ? (
           <>
             <div className={`assign-card`}>
               <div className="first-half">
