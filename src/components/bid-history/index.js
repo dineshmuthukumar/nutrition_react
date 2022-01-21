@@ -125,35 +125,37 @@ const BidHistory = ({
         <div className="bid-history if_bid_empty_cell">
           <HistoryHeader nftOwner={nftOwner} />
 
-          <div className="bid-history-title-content">
-            <div className="bid-history-title">
-              <ul className="nav-btn-grp">
-                {isBid && isOrderOnSale && (
-                  <li>
-                    <span
-                      className={`${key === "bid-history" ? "active" : ""}`}
-                      onClick={() => setKey("bid-history")}
-                    >
-                      Bid History
-                    </span>
-                  </li>
-                )}
-                {transactionHistory.length > 0 && (
-                  <li>
-                    <span
-                      className={`${
-                        key === "transaction-history" ? "active" : ""
-                      }`}
-                      onClick={() => setKey("transaction-history")}
-                    >
-                      Transaction History
-                    </span>
-                  </li>
-                )}
-              </ul>
+          {(transactionHistory.length > 0 || (isBid && isOrderOnSale)) && (
+            <div className="bid-history-title-content">
+              <div className="bid-history-title">
+                <ul className="nav-btn-grp">
+                  {isBid && isOrderOnSale && (
+                    <li>
+                      <span
+                        className={`${key === "bid-history" ? "active" : ""}`}
+                        onClick={() => setKey("bid-history")}
+                      >
+                        Bid History
+                      </span>
+                    </li>
+                  )}
+                  {transactionHistory.length > 0 && (
+                    <li>
+                      <span
+                        className={`${
+                          key === "transaction-history" ? "active" : ""
+                        }`}
+                        onClick={() => setKey("transaction-history")}
+                      >
+                        Transaction History
+                      </span>
+                    </li>
+                  )}
+                </ul>
+              </div>
+              <div className="bid-history-filter"></div>
             </div>
-            <div className="bid-history-filter"></div>
-          </div>
+          )}
 
           {(() => {
             if (key === "bid-history") {
