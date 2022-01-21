@@ -108,14 +108,16 @@ const NFTCard = ({ nft, ownedCard = false }) => {
                   })()}
                 </div>
               </div>
-              {erc721 && nft?.order_details?.is_buy && (
-                <div className="text-end">
-                  <div className="mb-title text-secondary">Buy Price</div>
-                  <div className="mb-value">
-                    {currencyFormat(nft?.order_details?.buy_amount, "USD")}
+              {erc721 &&
+                nft?.order_details?.is_bid &&
+                nft?.order_details?.is_buy && (
+                  <div className="text-end">
+                    <div className="mb-title text-secondary">Buy Price</div>
+                    <div className="mb-value">
+                      {currencyFormat(nft?.order_details?.buy_amount, "USD")}
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
             </div>
           </>
         )}
