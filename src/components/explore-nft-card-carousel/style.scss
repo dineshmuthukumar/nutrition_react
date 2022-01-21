@@ -58,9 +58,10 @@
   .top-content-title {
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
 
     .more-nft-title {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       font-family: $neue-helveticabold;
       position: relative;
       display: flex;
@@ -98,7 +99,7 @@
     justify-content: space-between;
 
     .mb-title {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-family: $neue-helveticamedium;
       white-space: nowrap;
     }
