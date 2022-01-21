@@ -19,17 +19,17 @@ const TransactionCard = ({ history, isEnd = false }) => {
         </div>
       ) : (
         <>
-          <div className="first-half">
+          <div className="first-half full-width">
             <div className="bid-histoy-details">
               <div className="time text-secondary">
                 Transfered on :{" "}
                 {dayjs(history.transfered_at).format("MMM D, YYYY hh:mm A")}
               </div>
               <div className="bid-owner">
-                <span className="transaction-value">{history.buyer_name}</span>{" "}
-                bought this NFT from{" "}
-                <span className="transaction-value">{history.seller_name}</span>{" "}
-                for{" "}
+                <span className="transaction-value">{history.buyer_name}</span>
+                &nbsp;bought this NFT from&nbsp;
+                <span className="transaction-value">{history.seller_name}</span>
+                &nbsp;for&nbsp;
                 <span className="transaction-value">
                   {currencyFormat(history.total_amount, "USD")}
                 </span>

@@ -52,13 +52,17 @@ button.load_more {
       margin-top: 0.5rem;
       width: 100%;
     }
-    .dropdown{
+    .dropdown {
       @media screen and (max-width: 575px) {
         width: 32.33%;
       }
       @media screen and (max-width: 425px) {
         width: 31.55%;
       }
+    }
+    .dropdown-menu {
+      max-height: 320px;
+      overflow-y: auto;
     }
   }
 }

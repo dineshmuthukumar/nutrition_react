@@ -86,25 +86,23 @@ const OwnerList = ({
           <div className="bid-history-title">
             <ul className="nav-btn-grp">
               <li>
-                <a
-                  href="javascript:void(0)"
+                <span
                   className={`${key === "owner-list" ? "active" : ""}`}
                   onClick={() => setKey("owner-list")}
                 >
                   List of Owners
-                </a>
+                </span>
               </li>
               {transactionHistory.length > 0 && (
                 <li>
-                  <a
-                    href="javascript:void(0)"
+                  <span
                     className={`${
                       key === "transaction-history" ? "active" : ""
                     }`}
                     onClick={() => setKey("transaction-history")}
                   >
                     Transaction History
-                  </a>
+                  </span>
                 </li>
               )}
             </ul>
