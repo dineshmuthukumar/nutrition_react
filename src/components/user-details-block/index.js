@@ -155,7 +155,7 @@ const UserDetailsBlock = () => {
                             </>
                           ) : (
                             <div className="col-12 text-center">
-                              <h3 className="my-3">No Data Found!</h3>
+                              <h3 className="my-3">No Owned NFTs Yet!</h3>
                             </div>
                           )
                         ) : (
@@ -193,7 +193,7 @@ const UserDetailsBlock = () => {
                             </>
                           ) : (
                             <div className="col-12 text-center">
-                              <h3 className="my-3">No Data Found!</h3>
+                              <h3 className="my-3">No Favorites Yet!</h3>
                             </div>
                           )
                         ) : (

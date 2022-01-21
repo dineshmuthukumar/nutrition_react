@@ -214,6 +214,7 @@ const BidHistory = ({
                     {transactionHistory.map((history, i) => (
                       <TransactionCard
                         key={`transaction-history${i}`}
+                        nft={nft}
                         history={history}
                       />
                     ))}

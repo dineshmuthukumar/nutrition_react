@@ -1,5 +1,6 @@
 import React from "react";
 import dayjs from "dayjs";
+import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import BidName from "./bid-name";
@@ -8,7 +9,8 @@ import { currencyFormat } from "../../utils/common";
 
 import "./style.scss";
 
-const TransactionCard = ({ history, isEnd = false }) => {
+const TransactionCard = ({ nft, history, isEnd = false }) => {
+  const routeHistory = useHistory();
   const { user } = useSelector((state) => state.user.data);
 
   return (
@@ -26,9 +28,27 @@ const TransactionCard = ({ history, isEnd = false }) => {
                 {dayjs(history.transfered_at).format("MMM D, YYYY hh:mm A")}
               </div>
               <div className="bid-owner">
-                <span className="transaction-value">{history.buyer_name}</span>
-                &nbsp;bought this NFT from&nbsp;
-                <span className="transaction-value">{history.seller_name}</span>
+                <span
+                  className="transaction-value"
+                  role={"button"}
+                  onClick={() =>
+                    routeHistory.push(`/seller/${history.buyer_slug}/details`)
+                  }
+                >
+                  {history.buyer_name}
+                </span>
+                &nbsp;has bought{" "}
+                {nft?.nft_type === "erc721" ? "this" : history.quantity} NFT
+                from&nbsp;
+                <span
+                  className="transaction-value"
+                  role={"button"}
+                  onClick={() =>
+                    routeHistory.push(`/seller/${history.seller_slug}/details`)
+                  }
+                >
+                  {history.seller_name}
+                </span>
                 &nbsp;for&nbsp;
                 <span className="transaction-value">
                   {currencyFormat(history.total_amount, "USD")}
