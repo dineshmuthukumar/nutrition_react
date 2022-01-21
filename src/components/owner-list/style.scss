@@ -35,11 +35,12 @@
             text-decoration: none;
             padding: 0.2rem 1.5rem;
             border-radius: 50rem;
-            background-color: #e7e7e7;
+            background-color: #4a4949;
+            cursor: pointer;
             &:hover,
             &:focus,
             &:active {
-              background-color: #d3d3d3;
+              background-color: #555454;
             }
             &.active {
               background-color: #fff;

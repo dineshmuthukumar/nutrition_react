@@ -29,7 +29,7 @@ const TransactionCard = ({ nft, history, isEnd = false }) => {
               </div>
               <div className="bid-owner">
                 <span
-                  className="transaction-value"
+                  className="transaction-value text-secondary"
                   role={"button"}
                   onClick={() =>
                     routeHistory.push(`/seller/${history.buyer_slug}/details`)
@@ -41,7 +41,7 @@ const TransactionCard = ({ nft, history, isEnd = false }) => {
                 {nft?.nft_type === "erc721" ? "this" : history.quantity} NFT
                 from&nbsp;
                 <span
-                  className="transaction-value"
+                  className="transaction-value text-secondary"
                   role={"button"}
                   onClick={() =>
                     routeHistory.push(`/seller/${history.seller_slug}/details`)

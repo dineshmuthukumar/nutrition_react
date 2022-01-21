@@ -80,9 +80,11 @@ const NFTCard = ({ nft, ownedCard = false }) => {
                 <div className="mb-title text-secondary">
                   {(() => {
                     if (erc721) {
-                      return nft?.order_details?.is_bid ? "Bid Price" : "Price";
+                      return nft?.order_details?.is_bid
+                        ? "Bid Price"
+                        : "Buy Price";
                     } else {
-                      return "Price";
+                      return "Buy Price";
                     }
                   })()}
                 </div>
@@ -106,14 +108,16 @@ const NFTCard = ({ nft, ownedCard = false }) => {
                   })()}
                 </div>
               </div>
-              {erc721 && nft?.order_details?.is_buy && (
-                <div className="text-end">
-                  <div className="mb-title text-secondary">Price</div>
-                  <div className="mb-value">
-                    {currencyFormat(nft?.order_details?.buy_amount, "USD")}
+              {erc721 &&
+                nft?.order_details?.is_bid &&
+                nft?.order_details?.is_buy && (
+                  <div className="text-end">
+                    <div className="mb-title text-secondary">Buy Price</div>
+                    <div className="mb-value">
+                      {currencyFormat(nft?.order_details?.buy_amount, "USD")}
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
             </div>
           </>
         )}
