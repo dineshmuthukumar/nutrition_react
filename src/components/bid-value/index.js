@@ -18,6 +18,7 @@ const BidValue = ({
   avatar,
   userSlug,
   seller = false,
+  owner,
 }) => {
   const history = useHistory();
   const { user } = useSelector((state) => state.user.data);
@@ -30,7 +31,16 @@ const BidValue = ({
       <div className="value">
         {isEnd ? (
           <div className="user-detail">
-            <img alt="" src={avatar ? avatar : userImg} />
+            <img
+              alt="user"
+              src={
+                !owner?.private && avatar
+                  ? avatar
+                  : user?.slug === owner?.slug && avatar
+                  ? avatar
+                  : userImg
+              }
+            />
             {userSlug ? (
               <div
                 className="win-user-name"
@@ -53,7 +63,9 @@ const BidValue = ({
                   }
                 }}
               >
-                {name}
+                {user?.slug === userSlug
+                  ? `@${user?.first_name}${user?.last_name}`
+                  : name}
               </div>
             ) : (
               <div className="win-user-name">{name}</div>

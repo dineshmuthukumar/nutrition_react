@@ -32,7 +32,7 @@ const Details = () => {
   const [loader, setLoader] = useState(true);
   const [ownerLoader, setOwnerLoader] = useState(true);
   const [transactionHistory, setTransactionHistory] = useState([]);
-  const [transactionLoader, setTransactionLoader] = useState(true);
+  const [transactionLoader, setTransactionLoader] = useState(false);
   const [transactionHasNext, setTransactionHasNext] = useState(false);
   const [putOnSalePop, setPutOnSalePop] = useState(false);
   const [ownerOrdersList, setOwnerOrdersList] = useState([]);
