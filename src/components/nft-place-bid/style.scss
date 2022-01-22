@@ -5,11 +5,7 @@
   .pop-nft-details {
     position: relative;
     height: 100vh;
-    .pop-bid-bodyContent {
-      height: calc(100vh - 15rem);
-      overflow: hidden;
-      overflow-y: auto;
-    }
+
     .pop-head-content {
       display: flex;
       padding: 1rem;
@@ -141,14 +137,20 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      margin-top: 2rem;
+      // margin-top: 2rem;
 
       img,
       video {
-        max-height: 25vh;
-        object-fit: scale-down;
+        max-height: 12rem;
+        object-fit: cover;
         border-radius: 0.7rem;
         overflow: hidden;
+        width: 12rem;
+        object-position: top;
+        // @media screen and (max-width: 425px) {
+        //   max-height: none;
+        //   width: 80%;
+        // }
       }
 
       audio {
@@ -160,6 +162,10 @@
         img,
         video {
           max-height: 25vh;
+          @media screen and (max-width: 425px) {
+            max-height: none;
+            width: 80%;
+          }
         }
       }
     }
@@ -171,11 +177,20 @@
     .pop-nft-title {
       font-family: $neue-helveticamedium;
       font-size: 1.4rem;
-      padding: 0 1rem;
+      padding: 0rem;
+    }
+    .erc-type {
+      font-family: $neue-helveticamedium;
+      font-size: 1.8rem;
+      span {
+        color: #a0a09f;
+        font-size: 1.5rem;
+      }
     }
 
     .input-bid-container {
-      padding: 0 3rem;
+      padding: 0 1.5rem;
+      margin-bottom: 2rem;
       .input-bid-text {
         font-size: 1rem;
         color: #000000;
@@ -288,6 +303,17 @@
           }
         }
       }
+
+      .total-amount-box {
+        border-radius: 0.5rem;
+        margin-bottom: 0rem;
+        padding: 0 1rem;
+        background: transparent;
+        h1 {
+          margin: 0;
+          font-family: $neue-helveticamedium;
+        }
+      }
     }
 
     .sucess-title {
@@ -315,6 +341,18 @@
           font-family: $neue-helveticabold;
           font-size: 1.1rem;
         }
+      }
+    }
+
+    .pop-body-content {
+      height: calc(100% - 15rem);
+      overflow: hidden;
+      overflow-y: auto;
+      @media screen and (max-width: 450px) {
+        height: calc(100% - 18rem);
+      }
+      &.success {
+        height: calc(100% - 20rem);
       }
     }
 
@@ -389,108 +427,64 @@
   }
 }
 
-.pop-body-container .pop-nft-details {
-  .pop-nft-info {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: flex-start;
-    margin: 1rem 0;
-    padding: 0 1rem;
-    .pop-nft-media {
-      margin-top: 0;
-      img,
-      video {
-        max-height: 12rem;
-        object-fit: cover;
-        border-radius: 0.7rem;
-        overflow: hidden;
-        width: 12rem;
-        object-position: top;
-      }
-    }
-    .pop-nft-content {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      padding-left: 2rem;
-      .erc-type {
-        font-size: 1.8rem;
-        margin: 0.5rem 0;
-        font-family: $neue-helveticamedium;
-        span {
-          font-size: 1.5rem;
-          color: #000;
-          font-family: $neue-helveticalight;
-        }
-      }
-
-      .pop-author-name {
-        font-size: 1.2rem;
-        font-family: $neue-helveticalight;
-      }
-      .pop-nft-title {
-        font-family: $neue-helveticamedium;
-        font-size: 2rem;
-        padding: 0;
-        text-align: left !important;
-        line-height: 1.2;
-        margin-top: 0.2rem;
-      }
+.pop-nft-info {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin: 1rem 0;
+  padding: 0 1.5rem;
+  .pop-nft-media {
+    margin-top: 0;
+    img,
+    video {
+      max-height: 12rem;
+      object-fit: cover;
+      border-radius: 0.7rem;
+      overflow: hidden;
+      width: 12rem;
+      object-position: top;
     }
   }
-
-  .input-bid-container {
+  .pop-nft-content {
     display: flex;
+    flex-direction: column;
     align-items: flex-start;
-    justify-content: space-between;
-    padding: 0rem !important;
-    @media screen and (min-width: 1200px) {
-      margin-top: 0.5rem;
-    }
-    span.quantity-to-value {
-      color: red;
+    padding-left: 1rem;
+    .erc-type {
+      font-size: 1.8rem;
+      margin: 0.5rem 0;
       font-family: $neue-helveticamedium;
-      margin-top: 0.5rem;
-      display: flex;
-      font-size: 0.8rem;
-    }
-    .input-field-bid {
-      padding: 0 1rem;
-      width: 100%;
-      h1 {
+      span {
+        font-size: 1.5rem;
+        color: #000;
         font-family: $neue-helveticalight;
       }
-      &.disabled {
-        opacity: 0.3;
-      }
-      .total-amount-box {
-        border: 0.2rem solid #000;
-        padding: 2rem;
-        border-radius: 0.5rem;
-        margin-bottom: 1rem;
-        h1 {
-          margin: 0;
-        }
-      }
+    }
+
+    .pop-author-name {
+      font-size: 1.2rem;
+      font-family: $neue-helveticalight;
+    }
+    .pop-nft-title {
+      font-family: $neue-helveticabold;
+      font-size: 2rem;
+      padding: 0;
+      text-align: left !important;
+      line-height: 1.2;
+      margin-top: 0.2rem;
     }
   }
 }
 
-.success-preview {
-  text-align: center;
-  padding-top: 2.5rem;
+.fee-flexbox {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-  height: calc(100vh - 9rem);
-  position: relative;
-  overflow: hidden;
-  overflow-y: auto;
-  .success-summary-container,
-  .pop-author-name .pop-nft-title {
-    width: 100%;
-  }
+  justify-content: space-between;
+  margin: 0rem 0;
+  flex-direction: row;
+  align-items: flex-start;
+}
+.sticky-bottom-fix {
+  position: sticky;
+  top: 100vh;
 }

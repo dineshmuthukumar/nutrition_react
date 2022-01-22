@@ -4,20 +4,18 @@
   box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.15);
   .recharge-btn {
     font-family: $neue-helveticamedium;
-  
-      padding-top: 1rem;
-      padding-bottom: 1rem;
-      padding-left: 1rem;
-      padding-right: 1rem;
-      width: 100%;
-  
-  
+
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    width: 100%;
+
     &:hover {
       background-color: #ffffff;
       color: rgb(236, 41, 41) !important;
     }
   }
-
 
   .band_btn.navbar-text {
     width: 20rem;
@@ -59,7 +57,6 @@
         display: block;
         text-overflow: ellipsis;
         width: 100%;
-
       }
       .sub-nft-title {
         font-family: $neue-helveticamedium;
@@ -69,7 +66,7 @@
         text-overflow: ellipsis;
         width: 100%;
         @media screen and (max-width: 767px) {
-            font-size: 1.4rem !important;
+          font-size: 1.4rem !important;
         }
       }
     }
@@ -85,7 +82,7 @@
 
     .bid-value {
       font-family: $neue-helveticamedium;
-      font-size: 1.4rem;
+      font-size: 1.2rem;
     }
   }
 
@@ -94,7 +91,7 @@
     font-size: 1.2rem;
     padding: 0.5rem 2.5rem;
     font-weight: 800;
-    letter-spacing: .1rem;
+    letter-spacing: 0.1rem;
     @media screen and (max-width: 767px) {
       font-size: 0.9rem !important;
       padding: 0.5rem 1rem !important;

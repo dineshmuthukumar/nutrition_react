@@ -6,8 +6,11 @@ import { FaTimesCircle } from "react-icons/fa";
 import BidValue from "../bid-value";
 
 import ErrorText from "./error-text";
+import ToolTip from "../tooltip";
+import { BsFillQuestionCircleFill } from "react-icons/bs";
 import { bidBuyError, validateQuantity } from "../../utils/common";
-import { bidSaleCancelApi, buySaleCancelApi } from "../../api/methods";
+import { buySaleCancelApi, saleCancelApi } from "../../api/methods";
+import sample from "../../images/sampleNFT.jpg";
 
 import "./style.scss";
 
@@ -17,6 +20,11 @@ const NFTCancelTheSale = ({
   nft,
   isOwner,
   orderDetails,
+  availableQty,
+  isOrderCancelled,
+  totalQty,
+  soldOut,
+  transferringNFT,
 }) => {
   const history = useHistory();
   const { user } = useSelector((state) => state.user.data);
@@ -28,13 +36,14 @@ const NFTCancelTheSale = ({
 
   const [error, setError] = useState({
     isError: false,
+    progressError: "",
     errorTitle: "",
     errorDescription: "",
   });
 
-  const handleBidCancel = async () => {
+  const handleSaleCancel = async () => {
     try {
-      const result = await bidSaleCancelApi({
+      const result = await saleCancelApi({
         order_slug: isOwner && nft.owner_details.orders[0].slug,
       });
       if (result.data.success) {
@@ -58,7 +67,7 @@ const NFTCancelTheSale = ({
     try {
       const result = await buySaleCancelApi({
         order_slug: orderDetails.slug,
-        order: { quantity: erc721 ? 1 : cancelQuantity },
+        order: { quantity: erc721 ? 1 : parseInt(cancelQuantity) },
       });
       if (result.data.success) {
         setSuccess(true);
@@ -90,6 +99,23 @@ const NFTCancelTheSale = ({
       setCancelQuantity(e.target.value);
     }
   };
+
+  const handleSuccess = () => {
+    if (isOrderCancelled) {
+      history.push(`/details/${nft?.slug}`);
+    } else {
+      setCancelTheSalePop(!cancelTheSalePop);
+      setSuccess(false);
+      setCancelQuantity("");
+      setError({
+        isError: false,
+        progressError: "",
+        errorTitle: "",
+        errorDescription: "",
+      });
+    }
+  };
+
   return (
     <Offcanvas
       show={cancelTheSalePop}
@@ -97,15 +123,15 @@ const NFTCancelTheSale = ({
       placement="end"
       className="w-100 w-md-50 w-lg-42"
     >
-      <Offcanvas.Body className="p-0 pop-body-container">
+      <Offcanvas.Body className="p-0 pop-cancel-body-container">
         {user ? (
           <>
-            <div className="pop-nft-details">
+            <div className="pop-cancel-nft-details">
               {!success ? (
                 !erc721 ? (
                   <>
-                    <div className="pop-head-content">
-                      <div className="pop-bid-title">Cancel the sale</div>
+                    <div className="pop-cancel-head-content">
+                      <div className="pop-cancel-title">Cancel the sale</div>
                       <div
                         className="close-button-pop"
                         onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
@@ -116,35 +142,96 @@ const NFTCancelTheSale = ({
                         ></img>
                       </div>
                     </div>
-                    <div class="pop-bid-progress ">
-                      <div class="progress-complete"></div>
+                    <div className="pop-cancel-progress ">
+                      <div className="progress-complete"></div>
                     </div>
-                    <div className="pop-bid-bodyContent px-4">
-                      <div className={`input-bid-container mt-5 mb-5`}>
-                        <div className="input-field-bid px-0">
-                          <label className="input-bid-text">
-                            No of units to cancel sale
+                    <div className="pop-cancel-bodyContent px-4">
+                      <div className="pop-nft-info">
+                        <div className="pop-nft-media">
+                          {(() => {
+                            if (nft?.asset_type?.includes("image")) {
+                              return (
+                                <img
+                                  alt="media logo"
+                                  className="type_image typeimg_audio"
+                                  src={nft.asset_url ? nft.asset_url : sample}
+                                />
+                              );
+                            } else if (nft?.asset_type?.includes("audio")) {
+                              return (
+                                <>
+                                  <img
+                                    alt="media logo"
+                                    className="type_image typeimg_audio"
+                                    src={nft.cover_url ? nft.cover_url : sample}
+                                  />
+                                </>
+                              );
+                            } else if (nft?.asset_type?.includes("video")) {
+                              return (
+                                <img
+                                  alt="media logo"
+                                  className="type_image typeimg_audio"
+                                  src={nft.cover_url ? nft.cover_url : sample}
+                                />
+                              );
+                            } else {
+                              return (
+                                <img
+                                  alt="media logo"
+                                  className="type_image typeimg_audio"
+                                  src={nft.asset_url ? nft.asset_url : sample}
+                                />
+                              );
+                            }
+                          })()}
+                        </div>
+                        <div className="pop-nft-content">
+                          <div className="pop-author-name text-center">
+                            {nft?.category_name}
+                          </div>
+                          <div className="pop-nft-title text-center mb-1">
+                            {nft?.name}
+                          </div>
+                          {erc721 && (
+                            <div className="erc-type text-center mb-1">
+                              1 of 1 <span>left</span>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      <div className={`input-cancel-container mt-5 mb-5`}>
+                        <div className="input-field-cancel px-0">
+                          <label className="input-cancel-text">
+                            No of units to cancel sale?
                           </label>
-                          <div className="input-quantity-container bid-input">
+                          <div className="input-cancel-quantity-container bid-input">
                             <input
                               type="text"
-                              className="input-quantity"
+                              className="input-cancel-quantity"
                               value={cancelQuantity}
-                              placeholder="0 NFTs"
+                              placeholder="0 NFT"
+                              disabled={(() => {
+                                if (soldOut) {
+                                  return true;
+                                } else if (transferringNFT) {
+                                  return true;
+                                } else {
+                                  return false;
+                                }
+                              })()}
                               onChange={handleQuantityInputChange}
                             />
-                            <span className="bid-currency">
-                              /{orderDetails.available_quantity}
+                            <span className="cancel-currency">
+                              /
+                              {availableQty != null
+                                ? availableQty
+                                : orderDetails.available_quantity}
                             </span>
                           </div>
                         </div>
                       </div>
-
-                      {/* <div className="d-flex">
-                        <BidValue title="Artist fee" value={"10 %"} />
-                        <BidValue title="Service fee" value={"10 %"} />
-                      </div>
-                      <hr className="custom-divider" /> */}
                     </div>
                     <div className="bottom-area">
                       <h5 className="text-center">
@@ -153,12 +240,49 @@ const NFTCancelTheSale = ({
 
                       <div className="bottom-content-pop">
                         <div className="back-button">Cancel</div>
-                        <div className="place-bid-button">
+                        <div className="place-cancel-button">
                           <button
-                            className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop`} //process -> proccessing
+                            className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-cancel-btn-pop`} //process -> proccessing
+                            disabled={(() => {
+                              if (soldOut) {
+                                return true;
+                              } else if (transferringNFT) {
+                                return true;
+                              } else if (!erc721 && !cancelQuantity > 0) {
+                                return true;
+                              } else {
+                                return false;
+                              }
+                            })()}
                             onClick={handleBuyCancel}
                           >
-                            Confirm
+                            {(() => {
+                              if (soldOut) {
+                                return "Sold Out";
+                              } else if (transferringNFT) {
+                                return (
+                                  <ToolTip
+                                    icon={
+                                      <>
+                                        Token Transfer Initiated{" "}
+                                        <BsFillQuestionCircleFill
+                                          size={16}
+                                          className="ms-2 check-icon"
+                                        />
+                                      </>
+                                    }
+                                    content={
+                                      "The NFT's transfer/transaction is in process on the blockchain. Visit again for latest sale-status."
+                                    }
+                                    placement="top"
+                                  />
+                                );
+                              } else if (!erc721 && !cancelQuantity > 0) {
+                                return "No of unit is required";
+                              } else {
+                                return "Confirm";
+                              }
+                            })()}
                           </button>
                         </div>
                       </div>
@@ -166,8 +290,8 @@ const NFTCancelTheSale = ({
                   </>
                 ) : (
                   <>
-                    <div className="pop-head-content">
-                      <div className="pop-bid-title">Cancel the sale</div>
+                    <div className="pop-cancel-head-content">
+                      <div className="pop-cancel-title">Cancel the sale</div>
                       <div
                         className="close-button-pop"
                         onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
@@ -181,21 +305,79 @@ const NFTCancelTheSale = ({
 
                     {/* error-progress -> error progress , loading -> progressing */}
                     <div
-                      className={`pop-bid-progress ${success ? "error" : ""}`}
+                      className={`pop-cancel-progress ${
+                        success ? "error" : ""
+                      }`}
                     >
                       <div className="progress-complete"></div>
                     </div>
 
-                    <div className="sucess-title">
-                      <FaTimesCircle color={"#f21e00"} size={60} />
-                      <div className="message mt-3">
-                        Are you sure want to cancel the {buyCancel && "Buy "}
-                        {bidCancel && "Bid "}
-                        sale
+                    <div className="sucess-title cancel-confirm">
+                      <div className="pop-nft-info">
+                        <div className="pop-nft-media">
+                          {(() => {
+                            if (nft?.asset_type?.includes("image")) {
+                              return (
+                                <img
+                                  alt="media logo"
+                                  className="type_image typeimg_audio"
+                                  src={nft.asset_url ? nft.asset_url : sample}
+                                />
+                              );
+                            } else if (nft?.asset_type?.includes("audio")) {
+                              return (
+                                <>
+                                  <img
+                                    alt="media logo"
+                                    className="type_image typeimg_audio"
+                                    src={nft.cover_url ? nft.cover_url : sample}
+                                  />
+                                </>
+                              );
+                            } else if (nft?.asset_type?.includes("video")) {
+                              return (
+                                <img
+                                  alt="media logo"
+                                  className="type_image typeimg_audio"
+                                  src={nft.cover_url ? nft.cover_url : sample}
+                                />
+                              );
+                            } else {
+                              return (
+                                <img
+                                  alt="media logo"
+                                  className="type_image typeimg_audio"
+                                  src={nft.asset_url ? nft.asset_url : sample}
+                                />
+                              );
+                            }
+                          })()}
+                        </div>
+
+                        <div className="pop-nft-content">
+                          <div className="pop-author-name text-center">
+                            {nft?.category_name}
+                          </div>
+                          <div className="pop-nft-title text-center mb-1">
+                            {nft?.name}
+                          </div>
+                          <div className="erc-type text-center mb-1">
+                            1 of 1 <span>left</span>
+                          </div>
+                        </div>
                       </div>
+
+                      {/* <div>
+                        <FaTimesCircle color={"#f21e00"} size={60} />
+                        <div className="message mt-3">
+                          Are you sure want to cancel the {buyCancel && "Buy "}
+                          {bidCancel && "Bid "}
+                          sale?
+                        </div>
+                      </div> */}
                     </div>
 
-                    {/* <div className="pop-bid-bodyContent">
+                    {/* <div className="pop-cancel-bodyContent">
                     <div className="error-float-container">
                       {error && (
                         <ErrorText
@@ -213,79 +395,37 @@ const NFTCancelTheSale = ({
                       )}
                     </div>
                   </div> */}
-                    {!buyCancel && !bidCancel && (
-                      <div className="bottom-area">
-                        <div className="bottom-content-pop">
-                          <div className="place-bid-button">
-                            {/* {(()=>{
-                              if (orderDetails) {
-                                
-                              }
-                            })()} */}
-                            <button
-                              className={`btn btn-outline-dark text-center btn-lg w-75 me-3 rounded-pill place-bid-btn-pop `} //process -> proccessing
-                              onClick={() => setBuyCancel(!buyCancel)}
-                            >
-                              Buy Cancel
-                            </button>
-                            <button
-                              className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop `} //process -> proccessing
-                              onClick={() => setBidCancel(!bidCancel)}
-                            >
-                              Bid Cancel
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    )}
 
-                    {buyCancel && (
-                      <div className="bottom-area">
-                        <div className="bottom-content-pop">
-                          <div
-                            className={`back-button`} //process -> proccessing
-                            onClick={() => {
-                              setBuyCancel(!buyCancel);
-                              setCancelTheSalePop(!cancelTheSalePop);
-                            }}
-                          >
-                            No
-                          </div>
-                          <div className="place-bid-button">
-                            <button
-                              className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop `} //process -> proccessing
-                              onClick={handleBuyCancel}
-                            >
-                              Yes
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    )}
+                    <div className="bottom-area">
+                      {orderDetails?.is_bid && orderDetails?.is_buy ? (
+                        <h5 className="text-center mb-3">
+                          Are you sure you want to proceed with the cancelation?{" "}
+                          <br /> This action will cancel both your bid-listing
+                          and sale-listing
+                        </h5>
+                      ) : (
+                        <h5 className="text-center">
+                          Are you sure want to cancel the sale?
+                        </h5>
+                      )}
 
-                    {bidCancel && (
-                      <div className="bottom-area">
-                        <div className="bottom-content-pop">
-                          <div
-                            className={`back-button`} //process -> proccessing
-                            onClick={() => {
-                              setBidCancel(!bidCancel);
-                              setCancelTheSalePop(!cancelTheSalePop);
-                            }}
+                      <div className="bottom-content-pop">
+                        <div
+                          className={`back-button`} //process -> proccessing
+                          onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
+                        >
+                          No
+                        </div>
+                        <div className="place-cancel-button">
+                          <button
+                            className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-cancel-btn-pop `} //process -> proccessing
+                            onClick={handleSaleCancel}
                           >
-                            No
-                          </div>
-                          <div className="place-bid-button">
-                            <button
-                              className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop `} //process -> proccessing
-                              onClick={handleBidCancel}
-                            >
-                              Yes
-                            </button>
-                          </div>
+                            Yes
+                          </button>
                         </div>
                       </div>
-                    )}
+                    </div>
                   </>
                 )
               ) : (
@@ -293,16 +433,17 @@ const NFTCancelTheSale = ({
                   <div className="sucess-title">
                     <FaTimesCircle color={"#f21e00"} size={60} />
                     <div className="message mt-3">
-                      Your NFT sale has been Removed
+                      Listing cancelled successfully. Your NFT is no longer
+                      listed for selling.
                     </div>
                   </div>
 
                   <div className="bottom-area">
                     <div className="bottom-content-pop">
-                      <div className="place-bid-button">
+                      <div className="place-cancel-button">
                         <button
-                          className="btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop "
-                          onClick={() => history.push("/")}
+                          className="btn btn-dark text-center btn-lg w-75 rounded-pill place-cancel-btn-pop "
+                          onClick={handleSuccess}
                         >
                           Okay
                         </button>
@@ -315,20 +456,13 @@ const NFTCancelTheSale = ({
           </>
         ) : (
           <>
-            <div className="pop-nft-details">
-              <div className="pop-head-content">
-                <div className="pop-bid-title">
-                  {/* {erc721 ? "Sign in to place a bid" : "Sign in to place a buy"} */}
-                </div>
+            <div className="pop-cancel-nft-details">
+              <div className="pop-cancel-head-content">
+                <div className="pop-cancel-title"></div>
                 <div
                   className="close-button-pop"
                   onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
                 >
-                  {/* <BiX
-                    role="button"
-                    size={45}
-                    onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
-                  /> */}
                   <img
                     alt="bid logo"
                     src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e"
@@ -337,11 +471,11 @@ const NFTCancelTheSale = ({
               </div>
               <div className="pop-signin">
                 <div className="pop-signin-title text-center mb-1">
-                  {erc721 ? "Sign in to place a bid" : "Sign in to place a buy"}
+                  {erc721 ? "Sign in to place bid" : "Sign in to buy"}
                 </div>
-                <div className="pop-nft-media">
+                <div className="pop-cancel-nft-media">
                   <button
-                    className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                    className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-cancel-btn"
                     onClick={() =>
                       window.open(
                         `${process.env.REACT_APP_ACCOUNTS_URL}/signin?redirect=${window.location.href}`,

@@ -16,25 +16,33 @@ import {
   setCookies,
 } from "../utils/cookies";
 import { user_load_by_token_thunk } from "../redux/thunk/user_thunk";
-
-function useQuery() {
-  const { search } = useLocation();
-
-  return React.useMemo(() => new URLSearchParams(search), [search]);
-}
+import { nftCategoriesApi } from "../api/methods";
+import useQuery from "../hook/useQuery";
 
 const Home = () => {
   const { url } = useRouteMatch();
-
-  const dispatch = useDispatch();
-
   const history = useHistory();
-
+  const dispatch = useDispatch();
   let query = useQuery();
-
   const fsz = query.get("fsz");
-
   const token = query.get("token");
+
+  const [page, setPage] = useState(1);
+  const [list, setList] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [hasNext, setHasNext] = useState(false);
+
+  const categoriesList = async (page) => {
+    try {
+      setLoading(true);
+      let response = await nftCategoriesApi({ page });
+      setList([...list, ...response.data.data.categories]);
+      setHasNext(response.data.data.next_page);
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   useEffect(() => {
     if (fsz) {
@@ -52,6 +60,8 @@ const Home = () => {
     } else {
       removeCookiesByName("source");
     }
+
+    categoriesList(page);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -59,11 +69,11 @@ const Home = () => {
     <>
       <Header />
       <main>
-        <Banner />
+        <Banner list={list} />
         {/* <Collections /> */}
         <HotCollections />
         <TopSellers />
-        <ShowAll />
+        <ShowAll categories={list} query={query} />
       </main>
       <Footer />
     </>

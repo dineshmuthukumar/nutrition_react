@@ -6,7 +6,7 @@ import { Modal, Table } from "react-bootstrap";
 import { BiX } from "react-icons/bi";
 
 import BidName from "../bid-history/bid-name";
-import userImg from "../../images/user_1.png";
+import userImg from "../../images/user_1.jpg";
 import { nftBidHistory } from "../../api/methods";
 import { currencyFormat } from "../../utils/common";
 import { TableLoader } from "../nft-basic-details/content-loader";
@@ -27,7 +27,9 @@ const BidWinner = ({ winner, histories }) => {
       setBidHistories(result.data.data);
     } catch (error) {
       console.log(error);
-      toast.error("Something went wrong");
+      toast.error(
+        "The request could not be processed at this time. Please try again."
+      );
     }
   };
 
@@ -48,7 +50,9 @@ const BidWinner = ({ winner, histories }) => {
       setLoading(false);
     } catch (error) {
       console.log(error);
-      toast.error("Something went wrong");
+      toast.error(
+        "The request could not be processed at this time. Please try again."
+      );
     }
   };
 
@@ -197,18 +201,12 @@ const BidWinner = ({ winner, histories }) => {
                   </tr>
                 ))}
 
-                {bidHistories.next_page ? (
+                {bidHistories.next_page && (
                   <tr>
                     <td className="text-center text-secondary p-3" colSpan="6">
                       <span role="button" onClick={fetchMoreHistory}>
                         Load More
                       </span>
-                    </td>
-                  </tr>
-                ) : (
-                  <tr>
-                    <td className="text-center text-secondary p-3" colSpan="6">
-                      You've reached the end of the list
                     </td>
                   </tr>
                 )}

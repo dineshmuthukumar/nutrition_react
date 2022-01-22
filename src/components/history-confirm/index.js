@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import userImg from "../../images/user_1.png";
+import userImg from "../../images/user_1.jpg";
 import UserImage from "../../images/amitabh.png";
 import { FaThumbsUp } from "react-icons/fa";
+import { BsFillQuestionCircleFill } from "react-icons/bs";
+
+import ToolTip from "../tooltip/index";
 
 import { currencyFormat } from "../../utils/common";
 import { acceptBidApi } from "../../api/methods";
@@ -17,6 +20,8 @@ const HistoryConfirm = ({
   isOrderOnSale,
   isOrderSuccess,
   isOrderCancelled,
+  soldOut,
+  transferringNFT,
 }) => {
   const { user } = useSelector((state) => state.user.data);
   const [success, setSuccess] = useState(false);
@@ -39,11 +44,29 @@ const HistoryConfirm = ({
 
   return (
     <>
-      {success || isOrderSuccess ? (
+      {success || transferringNFT || soldOut ? (
         <div className="bid-history-confirm">
           <div className="success-msg">
             <FaThumbsUp className="thumbUp-icon" />
-            <h3>Collectible Sold</h3>
+            {soldOut ? (
+              <h3>Collectible Sold</h3>
+            ) : (
+              <h3>
+                Token Transfer Initiated{" "}
+                <ToolTip
+                  icon={
+                    <BsFillQuestionCircleFill
+                      size={16}
+                      className="ms-2 check-icon"
+                    />
+                  }
+                  content={
+                    "The NFT's transfer/transaction is in process on the blockchain. Visit again for latest sale-status."
+                  }
+                  placement="top"
+                />{" "}
+              </h3>
+            )}
           </div>
           {/* <div className="owned-user-details">
             <div className="owned-user-image">
@@ -78,22 +101,50 @@ const HistoryConfirm = ({
           <div className="bh-user-sold-details">
             <div className="sold-info">
               <div className="price">
-                <span className="key">Bid amount</span>
+                <span className="key">Highest Bid Price</span>
                 <span className="value">
                   {currencyFormat(acceptBidDetail.bid_amount, "USD")}
                 </span>
               </div>
               <div className="price">
-                <span className="key">Artist fee</span>
+                <span className="key">
+                  Artist fee{" "}
+                  <ToolTip
+                    icon={
+                      <BsFillQuestionCircleFill
+                        size={16}
+                        className="ms-2 check-icon"
+                      />
+                    }
+                    content={
+                      "The royalty paid to the artist or the inspiration."
+                    }
+                    placement="right"
+                  />
+                </span>
                 <span className="value">{parseFloat(nft.royalties)}%</span>
               </div>
               <div className="price">
-                <span className="key">Service fee</span>
+                <span className="key">
+                  Service fee{" "}
+                  <ToolTip
+                    icon={
+                      <BsFillQuestionCircleFill
+                        size={16}
+                        className="ms-2 check-icon"
+                      />
+                    }
+                    content={
+                      "The service fee includes gas fee and the platform fee."
+                    }
+                    placement="right"
+                  />
+                </span>
                 <span className="value">{parseFloat(nft.service_fee)}%</span>
               </div>
             </div>
             <div className="total">
-              <span className="key">Total Amount</span>
+              <span className="key">You will Get</span>
               <span className="value">
                 {currencyFormat(
                   parseFloat(acceptBidDetail.bid_amount) -
@@ -109,8 +160,8 @@ const HistoryConfirm = ({
             <div className="footer-btn-box">
               <div className="notes-box">
                 <p>
-                  Note: Once you sell the NFT, the collective will be removed
-                  from My NFT page
+                  Note: Once you sell your NFT, it will be moved from your
+                  collectibles in the 'My NFTs' section.
                 </p>
               </div>
               <div className="btn-block">

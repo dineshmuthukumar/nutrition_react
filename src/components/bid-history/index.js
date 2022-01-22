@@ -1,18 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import dayjs from "dayjs";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { toast } from "react-toastify";
 import { Modal, Table } from "react-bootstrap";
 import { IoIosRocket } from "react-icons/io";
 import { BiX } from "react-icons/bi";
+import _ from "lodash";
 
 import BidCard from "./bid-card";
 import BidName from "./bid-name";
 import HistoryHeader from "../history-header";
 import HistoryConfirm from "../history-confirm";
-import userImg from "../../images/user_1.png";
-import amitabh from "../../images/amitabh.png";
-import { nftBidHistory } from "../../api/methods";
+import TransactionCard from "./transaction-card";
+import userImg from "../../images/user_1.jpg";
+import { orderBidHistory } from "../../api/methods";
 import { currencyFormat } from "../../utils/common";
 import { TableLoader } from "../nft-basic-details/content-loader";
 
@@ -23,12 +25,16 @@ const BidHistory = ({
   orderSlug,
   isOwner,
   histories = [],
-  isAuctionEnded,
   totalCount,
   nftOwner,
   isOrderOnSale,
   isOrderSuccess,
   isOrderCancelled,
+  soldOut,
+  transferringNFT,
+  transactionHistory = [],
+  transactionLoader,
+  transactionHasNext,
 }) => {
   const { slug } = useParams();
   const [modalShow, setModalShow] = useState(false);
@@ -38,15 +44,36 @@ const BidHistory = ({
   const [loading, setLoading] = useState(false);
   const [acceptBidConfirm, setAcceptBidConfirm] = useState(false);
   const [acceptBidDetail, setAcceptBidDetail] = useState({});
+  const isBid = _.get(nft, "order_details.is_bid", false);
+  const [key, setKey] = useState("bid-history");
+
+  const { user } = useSelector((state) => state.user.data);
+
+  useEffect(() => {
+    if (orderSlug && isOrderOnSale && isBid) {
+      setKey("bid-history");
+    } else {
+      setKey("transaction-history");
+    }
+  }, [orderSlug, isOrderOnSale]);
+
+  useEffect(() => {
+    setAcceptBidConfirm(false);
+  }, [histories]);
 
   const fetchHistory = async (pageNo) => {
     try {
-      let result = await nftBidHistory({ nft_slug: slug, page: pageNo });
+      let result = await orderBidHistory({
+        order_slug: orderSlug,
+        page: pageNo,
+      });
       setBidHistoryList([...bidHistoryList, ...result.data.data.histories]);
       setBidHistories(result.data.data);
     } catch (error) {
       console.log(error);
-      toast.error("Something went wrong");
+      toast.error(
+        "The request could not be processed at this time. Please try again."
+      );
     }
   };
 
@@ -61,13 +88,18 @@ const BidHistory = ({
     setModalShow(true);
     try {
       setLoading(true);
-      let history = await nftBidHistory({ nft_slug: slug, page: page });
+      let history = await orderBidHistory({
+        order_slug: orderSlug,
+        page: page,
+      });
       setBidHistories(history.data.data);
       setBidHistoryList(history.data.data.histories);
       setLoading(false);
     } catch (error) {
       console.log(error);
-      toast.error("Something went wrong");
+      toast.error(
+        "The request could not be processed at this time. Please try again."
+      );
     }
   };
 
@@ -80,7 +112,7 @@ const BidHistory = ({
 
   return (
     <>
-      {acceptBidConfirm || isOrderSuccess ? (
+      {acceptBidConfirm || soldOut || transferringNFT ? (
         <HistoryConfirm
           nft={nft}
           orderSlug={orderSlug}
@@ -90,69 +122,218 @@ const BidHistory = ({
           isOrderOnSale={isOrderOnSale}
           isOrderSuccess={isOrderSuccess}
           isOrderCancelled={isOrderCancelled}
+          soldOut={soldOut}
+          transferringNFT={transferringNFT}
         />
       ) : (
         <div className="bid-history if_bid_empty_cell">
           <HistoryHeader nftOwner={nftOwner} />
-          <div className="bid-history-title-content">
-            <div className="bid-history-title">History</div>
-            <div className="bid-history-filter"></div>
-          </div>
 
-          {histories.length > 0 ? (
-            <div className={`bid-history-content ${isOwner ? "owner" : ""}`}>
-              {histories.map((history, i) => (
-                <BidCard
-                  key={`bid-history${i}`}
-                  latestIndex={i}
-                  history={history}
-                  acceptBidConfirm={acceptBidConfirm}
-                  setAcceptBidConfirm={setAcceptBidConfirm}
-                  setAcceptBidDetail={setAcceptBidDetail}
-                />
-              ))}
-
-              {totalCount <= histories.length ? (
-                <BidCard isEnd />
-              ) : (
-                <div className="bid-histroy-card">
-                  <div className="history-end-content">
-                    <span role="button" onClick={handleClick}>
-                      View More
-                    </span>
-                  </div>
-                </div>
-              )}
-            </div>
-          ) : (
-            <div className="bid-empty-content">
-              <div className="empty-top-container">
-                <div className="empty-top-content">
-                  <IoIosRocket color="white" />
-                  <div className="empty-text">
-                    No active bids yet. <br />
-                    Be the first to make a bid.
-                  </div>
-                </div>
-              </div>
-
-              {/* <div className="empty-bottom-content">
-              <img src={amitabh} alt="" />
-              <div className="nft-owner-history-details">
-                <div className="publish-time text-secondary">
-                  {dayjs(nft.auction_start_time).format(
-                    "MMM D, YYYY hh:mm A"
+          {(transactionHistory.length > 0 || (isBid && isOrderOnSale)) && (
+            <div className="bid-history-title-content">
+              <div className="bid-history-title">
+                <ul className="nav-btn-grp">
+                  {isBid && isOrderOnSale && (
+                    <li>
+                      <span
+                        className={`${key === "bid-history" ? "active" : ""}`}
+                        onClick={() => setKey("bid-history")}
+                      >
+                        Bid History
+                      </span>
+                    </li>
                   )}
-                </div>
-                <div className="nft-owner">
-                  Bid listed by @beyondlife.club
-                </div>
+                  {transactionHistory.length > 0 && (
+                    <li>
+                      <span
+                        className={`${
+                          key === "transaction-history" ? "active" : ""
+                        }`}
+                        onClick={() => setKey("transaction-history")}
+                      >
+                        Transaction History
+                      </span>
+                    </li>
+                  )}
+                </ul>
               </div>
-            </div> */}
+              <div className="bid-history-filter"></div>
             </div>
           )}
+
+          {(() => {
+            if (key === "bid-history") {
+              return (
+                isBid && (
+                  <>
+                    {histories.length > 0 && isOrderOnSale ? (
+                      <div
+                        className={`bid-history-content ${
+                          isOwner ? "owner" : ""
+                        }`}
+                      >
+                        {histories.map((history, i) => (
+                          <BidCard
+                            key={`bid-history${i}`}
+                            latestIndex={i}
+                            history={history}
+                            acceptBidConfirm={acceptBidConfirm}
+                            setAcceptBidConfirm={setAcceptBidConfirm}
+                            setAcceptBidDetail={setAcceptBidDetail}
+                          />
+                        ))}
+
+                        {totalCount <= histories.length ? (
+                          <>{/* <BidCard isEnd /> */}</>
+                        ) : (
+                          <div className="bid-histroy-card">
+                            <div className="history-end-content">
+                              <span role="button" onClick={handleClick}>
+                                View More
+                              </span>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      isOrderOnSale && (
+                        <div className="bid-empty-content">
+                          <div className="empty-top-container">
+                            <div className="empty-top-content">
+                              <IoIosRocket color="white" />
+                              <div className="empty-text">
+                                No active bids yet. <br />
+                                {!isOwner && "Be the first to make a bid."}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )
+                    )}
+                  </>
+                )
+              );
+            } else if (key === "transaction-history") {
+              return (
+                transactionHistory.length > 0 && (
+                  <div className="bid-history-content">
+                    {transactionHistory.map((history, i) => (
+                      <TransactionCard
+                        key={`transaction-history${i}`}
+                        nft={nft}
+                        history={history}
+                      />
+                    ))}
+                    {transactionHasNext && (
+                      <div className="bid-histroy-card">
+                        <div className="history-end-content">
+                          <span role="button" onClick={handleClick}>
+                            View More
+                          </span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )
+              );
+            }
+          })()}
         </div>
       )}
+
+      <Modal size="xl" centered show={modalShow} className="history-modal">
+        <Modal.Header className="bg-dark p-0">
+          <Modal.Title className="flex-fill">
+            <div className="modal-bid-history-title-content">
+              <div className="modal-bid-history-title">History</div>
+              <div className="modal-bid-history-filter">
+                <BiX
+                  role="button"
+                  style={{ color: "#fff" }}
+                  size={25}
+                  onClick={handleClose}
+                />
+              </div>
+            </div>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {loading ? (
+            <TableLoader />
+          ) : (
+            <Table responsive="lg" className="history-table-expand mb-0">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Event</th>
+                  <th>Bider</th>
+                  <th className="text-center">Price</th>
+                  <th className="text-center">Price Change</th>
+                  <th className="text-center">Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {bidHistoryList.map((history, i) => (
+                  <tr>
+                    <td>{i + 1}</td>
+                    <td>Bid placed by</td>
+                    <td>
+                      <BidName
+                        imgUrl={
+                          !history.private && history.avatar_url
+                            ? history.avatar_url
+                            : user?.slug === history.slug && history.avatar_url
+                            ? history.avatar_url
+                            : userImg
+                        }
+                        text={
+                          !history.private && history.user_name
+                            ? history.user_name
+                            : user?.slug === history.slug
+                            ? `@${user.first_name}${user.last_name}`
+                            : history.user_name
+                        }
+                        isTable
+                        slug={history.slug}
+                      />
+                    </td>
+                    <td className="text-center">
+                      <div className="usd-value">
+                        {currencyFormat(history.bid_amount, "USD")}
+                      </div>
+                    </td>
+                    <td className="text-center text-success">
+                      {`${history.bid_change.toFixed(2)}%`}
+                    </td>
+                    <td className="text-center">
+                      <div className="date">
+                        {dayjs(history.created_at).format(
+                          "MMM D, YYYY hh:mm A"
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+                {bidHistories.next_page ? (
+                  <tr>
+                    <td className="text-center text-secondary p-3" colSpan="6">
+                      <span role="button" onClick={fetchMoreHistory}>
+                        Load More
+                      </span>
+                    </td>
+                  </tr>
+                ) : (
+                  <tr>
+                    <td className="text-center text-secondary p-3" colSpan="6">
+                      {/* You've reached the end of the list */}
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </Table>
+          )}
+        </Modal.Body>
+      </Modal>
     </>
   );
 };

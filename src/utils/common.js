@@ -16,7 +16,7 @@ export const currencyFormat = (value, type) => {
     style: "currency",
     currency: type,
   });
-  return formatter.format(parseFloat(value));
+  return formatter.format(parseFloat(value ? value : 0));
 };
 
 // export const abbreviateNumber = (value) => {
@@ -57,7 +57,8 @@ export const percDiff = (basePrice, newPrice) => {
 
 export const validateCurrency = (value) => {
   // const re = /^(\d*)\.?(\d){0,10}$/;
-  const re = /^\d*\.?\d{0,2}$/;
+  // const re = /^\d*\.?\d{0,2}$/;
+  const re = /^[1-9][0-9]*$/;
   return re.test(value);
 };
 
@@ -69,6 +70,7 @@ export const validateQuantity = (value) => {
 export const bidBuyError = (code) => {
   // const OK = 200;
   const ERROR = 500;
+  const ERROR404 = 404;
   const UNAUTHORIZED = 401;
   const AUCTION_UNBEGUN = 701;
   const AUCTION_ENDED = 702;
@@ -80,11 +82,18 @@ export const bidBuyError = (code) => {
   const INVALID_BID = 708;
   const LOW_BID = 709;
   const INVALID_NFT = 710;
+  const INVALID_CATEGORY = 711;
   const KYC_VERIFY = 715;
 
   switch (code) {
     case ERROR:
-      return { title: "Error", description: "Something went wrong!" };
+      return {
+        title: "Oops!",
+        description:
+          "The request could not be processed at this time. Please try again.!",
+      };
+    case ERROR404:
+      return { title: "Oops!", description: "Not found!" };
     case UNAUTHORIZED:
       return { title: "Error", description: "Unauthorized" };
     case AUCTION_UNBEGUN:
@@ -94,9 +103,9 @@ export const bidBuyError = (code) => {
     case INVALID_QUANTITY:
       return { title: "Error", description: "Invalid Quantity" };
     case SOLD:
-      return { title: "Error", description: "Sold out" };
+      return { title: "Oops!", description: "Sold out" };
     case OUT_OF_STOCK:
-      return { title: "Error", description: "Out of stock" };
+      return { title: "Oops!", description: "Out of stock" };
     case LIMITED_OUT:
       return { title: "Error", description: "Limited out" };
     case INSUFFICIENT_BALANCE:
@@ -107,12 +116,18 @@ export const bidBuyError = (code) => {
       return { title: "Error", description: "Low Bid" };
     case INVALID_NFT:
       return { title: "Error", description: "Invalid NFT" };
+    case INVALID_CATEGORY:
+      return { title: "Error", description: "Invalid Category" };
     case KYC_VERIFY:
       return {
         title: "Error",
         description: "Please complete your KYC verification",
       };
     default:
-      return { title: "Error", description: "Something went wrong!" };
+      return {
+        title: "Oops!",
+        description:
+          "The request could not be processed at this time. Please try again.!",
+      };
   }
 };

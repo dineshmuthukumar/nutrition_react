@@ -9,6 +9,9 @@
   padding-top: 2.1rem;
   overflow: hidden;
   padding-bottom: 2.1rem;
+  @media screen and (min-height: 1024px) {
+    min-height: 50rem !important;
+  }
 }
 .creator {
   font-size: 1.2rem;
@@ -296,11 +299,12 @@
       @media screen and (max-width: 767px) {
         display: flex;
         flex-direction: column-reverse;
+        align-items: flex-start;
       }
     }
 
     .bid-owner {
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       font-family: $neue-helveticamedium;
 
       .owner-id {

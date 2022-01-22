@@ -21,9 +21,9 @@ import "./App.css";
 const Home = lazy(() => import("./pages/home"));
 const Explore = lazy(() => import("./pages/explore-list"));
 const Details = lazy(() => import("./pages/details"));
+const OrderDetails = lazy(() => import("./pages/order-details"));
 const NotFound = lazy(() => import("./pages/not-found"));
 const HelpLine = lazy(() => import("./pages/help-line"));
-const ExploreNft = lazy(() => import("./pages/explore-nft"));
 const UserDetails = lazy(() => import("./pages/user-details"));
 
 function App(props) {
@@ -96,19 +96,19 @@ function App(props) {
             }
           >
             <Switch>
+              <Route exact path="/details/:slug" component={Details} />
               <Route
                 exact
-                path="/details/:slug/:orderSlug?"
-                component={Details}
+                path="/order/details/:slug/:orderSlug"
+                component={OrderDetails}
               />
               <Route exact path="/explore/category/:slug" component={Explore} />
               <Route exact path="/" component={Home} />
               <Route exact path="/help-line" component={HelpLine} />
-              <Route exact path="/explore-nft" component={ExploreNft} />
 
               <Route
                 exact
-                path="/top-seller/:slug/details"
+                path="/seller/:slug/details"
                 component={UserDetails}
               />
               <Route path="/not-found" component={NotFound} />

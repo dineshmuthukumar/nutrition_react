@@ -56,6 +56,10 @@
     overflow-y: auto;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
+    @media screen and (min-height: 1024px) {
+      min-height: unset !important;
+      max-height: 35rem !important;
+    }
 
     .bid-histroy-card {
       display: flex;
@@ -72,6 +76,8 @@
         img {
           height: 3rem;
           width: 3rem;
+          min-height: 3rem;
+          min-width: 3rem;
           object-fit: cover;
           border-radius: 50%;
           margin-right: 1rem;
@@ -104,7 +110,7 @@
 
         .bid-owner {
           font-size: 1.15rem;
-          font-family: $neue-helveticabold;
+          font-family: $neue-helveticamedium;
           width: calc(100%);
           word-wrap: break-word;
           .owner-id {
@@ -140,8 +146,11 @@
           color: #000;
           text-decoration: none;
           display: none;
+          border: none !important;
           @media screen and (max-width: 767px) {
-            margin: 1px 0rem;
+            margin: 0.5rem 0rem;
+            font-size: 0.8rem;
+            padding: 0.2rem 1rem;
           }
         }
       }

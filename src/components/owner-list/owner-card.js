@@ -3,8 +3,7 @@ import dayjs from "dayjs";
 import { useSelector } from "react-redux";
 
 import OwnerName from "./owner-name";
-import userImg from "../../images/user_1.png";
-import { currencyFormat } from "../../utils/common";
+import userImg from "../../images/user_1.jpg";
 
 import "./style.scss";
 
@@ -25,7 +24,7 @@ const OwnerCard = ({ owner, isEnd = false, totalQuantity }) => {
               src={
                 !owner.private && owner.avatar_url
                   ? owner.avatar_url
-                  : user?.slug === owner.slug
+                  : user?.slug === owner.slug && owner.avatar_url
                   ? owner.avatar_url
                   : userImg
               }
@@ -40,6 +39,7 @@ const OwnerCard = ({ owner, isEnd = false, totalQuantity }) => {
                   imgUrl={owner.avatar_url}
                   text={owner.user_name}
                   slug={owner.slug}
+                  seller={true}
                 />
               </div>
             </div>

@@ -1,17 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import UserBanner from "../components/user-banner";
 import UserDetailsBlock from "../components/user-details-block";
 
-import UserBannerImage from "../images/user-banner.png";
-
 const UserDetails = () => {
+  useEffect(() => {
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+  }, []);
   return (
     <>
       <Header />
       <main>
-        <UserBanner image={UserBannerImage} />
+        <UserBanner />
         <UserDetailsBlock />
       </main>
       <Footer />

@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 import { useSelector } from "react-redux";
 
 import BidName from "./bid-name";
-import userImg from "../../images/user_1.png";
+import userImg from "../../images/user_1.jpg";
 import { currencyFormat } from "../../utils/common";
 
 import "./style.scss";
@@ -48,13 +48,16 @@ const BidCard = ({
                 {dayjs(history.created_at).format("MMM D, YYYY hh:mm A")}
                 <span
                   className={`expire-pill ${
-                    history?.status === "active" && latestIndex === 0
+                    (history?.status === "active" && latestIndex === 0) ||
+                    (history?.status === "success" && latestIndex === 0)
                       ? "active"
                       : ""
                   }`}
                 >
                   {history?.status === "active" && latestIndex === 0
                     ? "Active"
+                    : history?.status === "success" && latestIndex === 0
+                    ? "Success"
                     : "Expired"}
                 </span>
               </div>

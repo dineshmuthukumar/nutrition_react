@@ -1,17 +1,17 @@
 @import "../../styles/common";
 
-.pop-body-container {
+.pop-sale-body-container {
   position: relative;
-  .pop-nft-details {
+  .pop-sale-nft-details {
     position: relative;
     height: 100vh;
 
-    .pop-head-content {
+    .pop-sale-head-content {
       display: flex;
       padding: 1rem;
       justify-content: space-between;
 
-      .pop-bid-title {
+      .pop-sale-title {
         font-size: 2rem;
         font-family: $neue-helveticabold;
       }
@@ -28,7 +28,7 @@
       }
     }
 
-    .pop-bid-progress {
+    .pop-sale-progress {
       background: #e7e7e9;
       .progress-complete {
         background: #000;
@@ -50,7 +50,11 @@
         }
       }
     }
-
+    .pop-sale-bodyContent {
+      height: calc(100vh - 15rem);
+      overflow: hidden;
+      overflow-y: auto;
+    }
     .error-float-container {
       position: absolute;
       top: 8rem;
@@ -133,11 +137,11 @@
       }
     }
 
-    .pop-nft-media {
+    .pop-sale-nft-media {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      margin-top: 0;
+      // margin-top: 2rem;
 
       img,
       video {
@@ -167,37 +171,40 @@
       margin-top: 0 !important;
     }
 
-    .pop-nft-title {
-      font-family: $neue-helveticamedium;
+    .pop-sale-nft-title {
+      font-family: $neue-helveticabold;
       font-size: 1.4rem;
       padding: 0 1rem;
       margin-top: 0.5rem;
     }
 
-    .input-bid-container {
-      padding: 0 3rem;
-      .input-bid-text {
+    .input-sale-container {
+      padding: 0 1rem;
+      .input-sale-text {
         font-size: 1rem;
         color: #000000;
         font-family: $neue-helveticamedium;
         font-weight: normal;
         text-align: start;
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
       }
 
-      .input-bid-wrap {
+      .input-sale-wrap {
         border: 2px solid #222;
         border-radius: 0.6rem;
         display: flex;
         align-items: center;
 
-        .bid-currency {
+        .sale-currency {
           color: #000000;
           font-family: $neue-helveticamedium;
           font-size: 1.8rem !important;
           padding-left: 1.1rem;
         }
 
-        .input-bid {
+        .input-sale {
           width: 100%;
           font-family: $neue-helveticamedium;
           font-size: 1.8rem !important;
@@ -208,13 +215,13 @@
         }
       }
 
-      .input-quantity-container {
+      .input-sale-quantity-container {
         border: 2px solid #222;
         border-radius: 0.6rem;
         display: flex;
         align-items: center;
 
-        .input-quantity {
+        .input-sale-quantity {
           width: 100%;
           font-family: $neue-helveticamedium;
           font-size: 1.8rem !important;
@@ -240,26 +247,26 @@
       }
 
       &.error-bid {
-        .input-bid-text {
+        .input-sale-text {
           color: #f21e00;
         }
 
-        .input-bid-wrap {
+        .input-sale-wrap {
           border: 2px solid #f21e00;
-          .bid-currency {
+          .sale-currency {
             color: #f21e00;
           }
-          .input-bid {
+          .input-sale {
             color: #f21e00;
           }
         }
       }
 
       &.error-balance-float {
-        .input-quantity-container {
+        .input-sale-quantity-container {
           border: 2px solid #f21e00;
 
-          .input-quantity {
+          .input-sale-quantity {
             color: #f21e00;
           }
         }
@@ -270,20 +277,20 @@
           color: #f21e00;
         }
 
-        .input-bid-wrap {
+        .input-sale-wrap {
           border: 2px solid #f21e00;
-          .bid-currency {
+          .sale-currency {
             color: #f21e00;
           }
-          .input-bid {
+          .input-sale {
             color: #f21e00;
           }
         }
 
-        .input-quantity-container {
+        .input-sale-quantity-container {
           border: 2px solid #f21e00;
 
-          .input-quantity {
+          .input-sale-quantity {
             color: #f21e00;
           }
         }
@@ -333,8 +340,9 @@
         font-size: 0.9rem;
         text-align: center;
         margin-bottom: 0.5rem;
-        padding: 0 1rem;
+        padding: 0.8rem 1rem 0.3rem;
         color: #f21e00 !important;
+        background: #fff;
       }
 
       .bottom-content-pop {
@@ -393,29 +401,26 @@
       }
     }
   }
-}
-
-.pop-body-container .pop-nft-details {
-  .pop-nft-info {
+  .pop-sale-nft-info {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     justify-content: flex-start;
     margin: 1rem 0;
     padding: 0 1rem;
-    .pop-nft-media {
-      margin-top: 0;
+    .pop-sale-nft-media {
+      // margin-top: 0rem;
       img,
       video {
-        max-height: 12rem;
+        max-height: 10rem;
         object-fit: cover;
         border-radius: 0.7rem;
         overflow: hidden;
-        width: 12rem;
+        width: 10rem;
         object-position: top;
       }
     }
-    .pop-nft-content {
+    .pop-sale-nft-content {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -435,8 +440,60 @@
         font-size: 1.2rem;
         font-family: $neue-helveticalight;
       }
-      .pop-nft-title {
+      .pop-sale-nft-title {
+        font-family: $neue-helveticabold;
+        font-size: 2rem;
+        padding: 0;
+        text-align: left !important;
+        line-height: 1.2;
+        margin-top: 0.2rem;
+      }
+    }
+  }
+}
+
+.pop-body-container .pop-sale-nft-details {
+  .pop-sale-nft-info {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin: 1rem 0;
+    padding: 0 1rem;
+    .pop-sale-nft-media {
+      // margin-top: 2rem;
+      img,
+      video {
+        max-height: 12rem;
+        object-fit: cover;
+        border-radius: 0.7rem;
+        overflow: hidden;
+        width: 12rem;
+        object-position: top;
+      }
+    }
+    .pop-sale-nft-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding-left: 2rem;
+      .erc-type {
+        font-size: 1.8rem;
+        margin: 0.5rem 0;
         font-family: $neue-helveticamedium;
+        span {
+          font-size: 1.5rem;
+          color: #000;
+          font-family: $neue-helveticalight;
+        }
+      }
+
+      .pop-author-name {
+        font-size: 1.2rem;
+        font-family: $neue-helveticalight;
+      }
+      .pop-sale-nft-title {
+        font-family: $neue-helveticabold;
         font-size: 2rem;
         padding: 0;
         text-align: left !important;
@@ -446,7 +503,7 @@
     }
   }
 
-  .input-bid-container {
+  .input-sale-container {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -461,7 +518,7 @@
       display: flex;
       font-size: 0.8rem;
     }
-    .input-field-bid {
+    .input-field-sale {
       padding: 0 1rem;
       &.disabled {
         opacity: 0.3;
@@ -480,14 +537,14 @@
   .btn-bid {
     display: flex;
     justify-content: space-between;
-    width: 50%;
-    padding: 0 1rem;
+    width: 48%;
+    padding: 0;
     align-items: center;
 
     .toggle-private-title {
       font-size: 1.5rem;
       color: #000;
-      font-family: $neue-helveticalight;
+      font-family: $neue-helveticamedium;
     }
   }
 }
@@ -498,17 +555,18 @@
   margin-top: 1rem;
   padding: 0 1.3rem;
   margin-bottom: 2rem;
-  border-bottom: 3px solid #000;
+  border-bottom: 2px solid #000;
   &-block {
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin-top: 3rem;
+    margin-top: 1.5rem;
     margin-bottom: 0.5rem;
     padding: 0 1rem;
   }
   &-title {
     font-size: 1.5rem;
+    font-family: $neue-helveticamedium;
   }
   h3 {
     font-size: 2rem;
@@ -521,10 +579,10 @@
 }
 
 .bid-input {
-  .input-quantity {
+  .input-sale-quantity {
     width: calc(100% - 4rem);
   }
-  .bid-currency {
+  .sale-currency {
     font-family: $neue-helveticamedium;
     font-size: 2rem;
     width: 10rem;
@@ -574,3 +632,90 @@
     margin: 1rem 0;
   }
 }
+
+.flex-input {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: flex-start;
+  @media screen and (max-width: 450px) {
+    flex-direction: column;
+  }
+  .input-field-sale {
+    width: 48%;
+    @media screen and (max-width: 450px) {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+    &.disabled {
+      opacity: 0.3;
+    }
+  }
+  .quantity-to-value.error-msg {
+    font-size: 0.9rem;
+    color: #000;
+    font-family: $neue-helveticamedium;
+    display: flex;
+    line-height: 1.2;
+    margin-top: 0.5rem;
+  }
+}
+
+.text-red {
+  color: red;
+}
+
+.sticky-bottom-fix {
+  position: sticky;
+  top: 100vh;
+}
+
+// .pop-sale-nft-info {
+//   display: flex;
+//   flex-direction: row;
+//   align-items: flex-start;
+//   justify-content: flex-start;
+//   margin: 1rem 0;
+//   padding: 0 1rem;
+//   .pop-sale-nft-media {
+//     // margin-top: 0rem;
+//     img,
+//     video {
+//       max-height: 10rem;
+//       object-fit: cover;
+//       border-radius: 0.7rem;
+//       overflow: hidden;
+//       width: 10rem;
+//       object-position: top;
+//     }
+//   }
+//   .pop-sale-nft-content {
+//     display: flex;
+//     flex-direction: column;
+//     align-items: flex-start;
+//     padding-left: 2rem;
+//     .erc-type {
+//       font-size: 1.8rem;
+//       margin: 0.5rem 0;
+//       font-family: $neue-helveticamedium;
+//       span {
+//         font-size: 1.5rem;
+//         color: #000;
+//         font-family: $neue-helveticalight;
+//       }
+//     }
+
+//     .pop-author-name {
+//       font-size: 1.2rem;
+//       font-family: $neue-helveticalight;
+//     }
+//     .pop-sale-nft-title {
+//       font-family: $neue-helveticabold;
+//       font-size: 2rem;
+//       padding: 0;
+//       text-align: left !important;
+//       line-height: 1.2;
+//       margin-top: 0.2rem;
+//     }
+//   }
+// }

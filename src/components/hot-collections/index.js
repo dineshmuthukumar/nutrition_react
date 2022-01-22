@@ -27,7 +27,9 @@ const HotCollections = () => {
       setLoading(false);
     } catch (err) {
       console.log(err);
-      toast.error("Something went wrong");
+      toast.error(
+        "The request could not be processed at this time. Please try again."
+      );
     }
   };
 
@@ -54,7 +56,9 @@ const HotCollections = () => {
                   {list.length > 0 ? (
                     <NFTMore nftList={list} hideTitle />
                   ) : (
-                    "No Data Found!"
+                    <div className="col-12 text-center">
+                      <h3 className="my-3">No Data Found!</h3>
+                    </div>
                   )}
 
                   {/* {list.length > 0
@@ -78,7 +82,7 @@ const HotCollections = () => {
 
 const NFTCardLoader = (props) => (
   <ContentLoader
-    viewBox="0 50 900 400"
+    viewBox="0 50 900 300"
     width={"100%"}
     height={"100%"}
     backgroundColor="#f5f5f5"
@@ -86,9 +90,10 @@ const NFTCardLoader = (props) => (
     className="mt-1"
     {...props}
   >
-    <rect x="12" y="5" rx="2" ry="2" width="280" height="300" />
-    <rect x="308" y="5" rx="2" ry="2" width="280" height="300" />
-    <rect x="600" y="5" rx="2" ry="2" width="280" height="300" />
+    <rect x="0" y="5" rx="2" ry="2" width="218" height="280" />
+    <rect x="228" y="5" rx="2" ry="2" width="218" height="280" />
+    <rect x="456" y="5" rx="2" ry="2" width="218" height="280" />
+    <rect x="684" y="5" rx="2" ry="2" width="218" height="280" />
   </ContentLoader>
 );
 

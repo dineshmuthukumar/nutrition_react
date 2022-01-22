@@ -1,252 +1,139 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router";
 import _ from "lodash";
 
 import {
-  nftBidHistory,
-  nftBidWinner,
-  nftBuyHistory,
   nftDetailApi,
-  nftMoreApi,
-  orderBidHistory,
   nftOwnerApi,
+  nftTransactionHistory,
 } from "../api/methods";
-import BidAuction from "../components/bid-auction";
 import BidHistory from "../components/bid-history";
-import BuyHistory from "../components/buy-history/index";
-import BidWinner from "../components/bid-winner";
 import ChainAttributes from "../components/chain-attributes";
 import Header from "../components/header";
 import NFTArtist from "../components/nft-artist";
 import NFTBaseDetails from "../components/nft-basic-details";
 import NFTMedia from "../components/nft-media";
-import NFTMore from "../components/nft-more";
 import NFTProperties from "../components/nft-properties";
 import NFTSectionTitle from "../components/nft-section-title";
 import NFTTags from "../components/nft-tags";
 import toaster from "../utils/toaster";
-import NFTSummary from "../components/nft-summary";
-import SubHeader from "../components/sub-header";
 import { NFTLoader } from "../components/nft-basic-details/content-loader";
-import {
-  bidDetail,
-  buyDetail,
-  pageView,
-  totalFav,
-  userBidDetail,
-  userBuyDetail,
-  winnerDetail,
-} from "../api/actioncable-methods";
+import { listForSaleDetail, ownerDetails } from "../api/actioncable-methods";
 import OwnerList from "../components/owner-list";
+import Footer from "../components/footer/index";
+import NFTOrderDetails from "../components/nft-order-details/index";
 
 const Details = () => {
-  const history = useHistory();
-  const { slug, orderSlug } = useParams();
-  const [small, setSmall] = useState(false);
+  const { slug } = useParams();
   const [nft, setNft] = useState({});
-  const [auctionEndTime, setAuctionEndTime] = useState("");
-  const [nftMoreList, setNftMoreList] = useState([]);
-  const [buyHistory, setBuyHistory] = useState([]);
-  const [bidHistory, setBidHistory] = useState([]);
-  const [totalCount, setTotalCount] = useState(0);
-  const [bidWinner, setBidWinner] = useState(null);
   const [nftOwner, setNFTOwner] = useState([]);
   const [erc721, setErc721] = useState(false);
-  const [isAuctionStarted, setIsAuctionStarted] = useState(false);
-  const [isAuctionEnded, setIsAuctionEnded] = useState(false);
-  const [soldOut, setSoldOut] = useState(false);
   const [loader, setLoader] = useState(true);
-  const [placeBidPop, setPlaceBidPop] = useState(false);
-  const [placeBuyPop, setPlaceBuyPop] = useState(false);
+  const [ownerLoader, setOwnerLoader] = useState(true);
+  const [transactionHistory, setTransactionHistory] = useState([]);
+  const [transactionLoader, setTransactionLoader] = useState(false);
+  const [transactionHasNext, setTransactionHasNext] = useState(false);
   const [putOnSalePop, setPutOnSalePop] = useState(false);
-  const [cancelTheSalePop, setCancelTheSalePop] = useState(false);
-
-  const [isOrderOnSale, setIsOrderOnSale] = useState(false);
-  const [isOrderSuccess, setIsOrderSuccess] = useState(false);
-  const [isOrderCancelled, setIsOrderCancelled] = useState(false);
-
-  // Socket State
-  const [totalBid, setTotalBid] = useState(0);
-  const [bidChange, setBidChange] = useState(0);
-  const [totalBuy, setTotalBuy] = useState(0);
-  const [price, setPrice] = useState(0);
-  const [totalViews, setTotalViews] = useState(0);
-  const [totalFavourites, setTotalFavourites] = useState(0);
-  const [availableQty, setAvailableQty] = useState(null);
-  const [userTotalBuys, setUserTotalBuys] = useState(0);
-  const [userOutBid, setUserOutBid] = useState(false);
-  const [userLastBid, setUserLastBid] = useState(0);
+  const [ownerOrdersList, setOwnerOrdersList] = useState([]);
+  const [ownerCount, setOwnerCount] = useState(0);
+  const [isQuantityAvailable, setIsQuantityAvailable] = useState(null);
+  const [page, setPage] = useState(1);
 
   const { user } = useSelector((state) => state.user.data);
-
   const isOwner = _.has(nft, "owner_details");
 
-  const inputRef = useRef();
-
   useEffect(() => {
-    window.addEventListener("scroll", scrollHandler, true);
-    document.addEventListener("contextmenu", (e) => {
-      e.preventDefault();
-    });
-
-    return () => {
-      window.removeEventListener("scroll", scrollHandler, true);
-    };
-
+    nftDetail(slug);
+    nftOwners();
+    nftTransaction();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const scrollHandler = () => {
-    const position = inputRef.current?.getBoundingClientRect();
-    if (position?.top <= 0) {
-      updateSubHeader(true);
-      localStorage.setItem("sub-header", "true");
-    } else {
-      updateSubHeader(false);
-      localStorage.setItem("sub-header", "false");
+  useEffect(() => {
+    if (user && isOwner) {
+      listForSaleDetail(slug, user.slug, (data) => {
+        setIsQuantityAvailable(data.available);
+        setOwnerOrdersList((ownerOrdersList) => [
+          data.order,
+          ...ownerOrdersList,
+        ]);
+      });
     }
-  };
+  }, [isOwner]);
 
   useEffect(() => {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-
-    buyDetail(orderSlug, (data) => {
-      console.log(data);
-      setAvailableQty(data.quantity);
-      setTotalBuy(data.total_buys);
-      if (data.history) {
-        setBuyHistory((buyHistory) => [data.history, ...buyHistory]);
-      }
-      if (data.quantity === 0) {
-        setSoldOut(true);
-      }
-    });
-    bidDetail(orderSlug, (data) => {
-      setTotalBid(data.total_bids);
-      setBidChange(data.bid_change);
-      setPrice(data.minimum_bid);
-      if (data.history) {
-        setBidHistory((bidHistory) => [data.history, ...bidHistory]);
-      }
-      // if (data.auction_end_time) {
-      //   setAuctionEndTime(data.auction_end_time);
+    ownerDetails(slug, (data) => {
+      // console.log(data);
+      // if (data?.owners?.length > 0) {
+      //   let owners = [...nftOwner];
+      //   const latest = data.owners?.[0];
+      //   const index = owners.findIndex((obj) => obj.slug === latest.slug);
+      //   console.log(index, "index");
+      //   if (index !== -1) {
+      //     let owner = {
+      //       ...owners[index],
+      //       sold_quantity: latest.sold_quantity,
+      //     };
+      //     owners[index] = owner;
+      //     setNFTOwner(owners);
+      //   } else {
+      //     setNFTOwner((nftOwner) => [latest, ...nftOwner]);
+      //   }
       // }
+      nftOwners();
     });
-    pageView(orderSlug, (data) => {
-      setTotalViews(data.page_views);
-    });
-
-    totalFav(orderSlug, (data) => {
-      setTotalFavourites(data.total_favourites);
-    });
-
-    // winnerDetail(slug, (data) => {
-    //   setBidWinner(data.winner);
-    // });
-
-    nftDetail(slug, orderSlug);
-    // nftMore();
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    if (user) {
-      if (erc721) {
-        userBidDetail(orderSlug, user.slug, (data) => {
-          setUserLastBid(data.user_bid);
-          setUserOutBid(data.outbid);
-        });
-      } else {
-        userBuyDetail(orderSlug, user.slug, (data) => {
-          setUserTotalBuys(data.user_buys);
-        });
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [erc721]);
-
-  const updateSubHeader = (input) => {
-    if (input) {
-      if (localStorage.getItem("sub-header") === "false") {
-        setSmall(input);
-      }
-    } else {
-      if (localStorage.getItem("sub-header") === "true") {
-        setSmall(input);
-      }
-    }
-  };
-
-  const nftDetail = async (slug, orderSlug) => {
+  const nftDetail = async (slug) => {
     try {
       setLoader(true);
       let response = await nftDetailApi({
         nft_slug: slug,
-        order_slug: orderSlug,
       });
       const NFT = response.data.data.nft;
-
-      if (NFT?.order_details) {
-        setIsOrderOnSale(NFT.order_details?.status === "onsale");
-        setIsOrderSuccess(NFT.order_details?.status === "success");
-        setIsOrderCancelled(NFT.order_details?.status === "cancelled");
-      }
-
-      if (NFT?.order_details?.status === "cancelled") {
-        history.push("/");
-      }
-
-      setAuctionEndTime(NFT.auction_end_time);
-      setIsAuctionStarted(
-        new Date(NFT.time).getTime() >=
-          new Date(NFT.auction_start_time).getTime()
-      );
-      setIsAuctionEnded(
-        new Date(NFT.time).getTime() > new Date(NFT.auction_end_time).getTime()
-      );
+      setNft(NFT);
       setErc721(NFT.nft_type === "erc721");
-      if (NFT.nft_type === "erc721" && orderSlug) {
-        let history = await orderBidHistory({ order_slug: orderSlug, page: 1 });
-        setBidHistory(history.data.data.histories);
-        setTotalCount(history.data.data.total_count);
-      } else {
-        if (NFT?.order_details?.available_quantity === 0) {
-          setSoldOut(true);
-        }
-        // let history = await nftBuyHistory({ nft_slug: slug, page: 1 });
-        // setBuyHistory(history.data.data.histories);
-        // setTotalCount(history.data.data.total_count);
+      if (NFT.owner_details) {
+        setIsQuantityAvailable(NFT.owner_details.available_quantity);
+        setOwnerOrdersList(NFT.owner_details.orders);
       }
-      let owners = await nftOwnerApi({ nft_slug: slug });
-      setNFTOwner(owners.data.data.owners);
-
-      setNft(response.data.data.nft);
       setLoader(false);
     } catch (err) {
       // setLoader(false);
       console.log(err);
-      toaster(500, "Something went wrong");
+      toaster(
+        500,
+        "The request could not be processed at this time. Please try again."
+      );
     }
   };
 
-  const nftMore = async () => {
+  const nftOwners = async () => {
     try {
-      let response = await nftMoreApi({ page: 1 });
-      setNftMoreList(response.data.data.nfts);
+      setOwnerLoader(true);
+      let owners = await nftOwnerApi({ nft_slug: slug, page: 1 });
+      setNFTOwner(owners.data.data.owners);
+      setOwnerCount(owners.data.data.total_count);
+      setOwnerLoader(false);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const handleAuctionStartTimer = () => {
-    setIsAuctionStarted(true);
-  };
-  const handleAuctionEndTimer = () => {
-    setIsAuctionEnded(true);
+  const nftTransaction = async () => {
+    try {
+      setTransactionLoader(true);
+      let transactions = await nftTransactionHistory({
+        nft_slug: slug,
+        page: page,
+      });
+      setTransactionHistory(transactions.data.data.nfts);
+      setTransactionHasNext(transactions.data.data.next_page);
+      setTransactionLoader(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -269,59 +156,23 @@ const Details = () => {
               <div className="col-12 col-lg-5">
                 <NFTBaseDetails
                   nft={nft}
-                  placeBidPop={placeBidPop}
-                  setPlaceBidPop={setPlaceBidPop}
-                  placeBuyPop={placeBuyPop}
-                  setPlaceBuyPop={setPlaceBuyPop}
                   putOnSalePop={putOnSalePop}
                   setPutOnSalePop={setPutOnSalePop}
-                  cancelTheSalePop={cancelTheSalePop}
-                  setCancelTheSalePop={setCancelTheSalePop}
-                  //Socket states start
-                  totalBid={totalBid}
-                  bidChange={bidChange}
-                  totalBuy={totalBuy}
-                  price={price}
-                  totalViews={totalViews}
-                  totalFavourites={totalFavourites}
-                  availableQty={availableQty}
-                  userTotalBuys={userTotalBuys}
-                  userOutBid={userOutBid}
-                  userLastBid={userLastBid}
-                  //Socket states end
-
-                  isAuctionStarted={isAuctionStarted}
-                  isAuctionEnded={isAuctionEnded}
-                  soldOut={soldOut}
-                  auctionEndTime={auctionEndTime}
-                  handleAuctionStartTimer={handleAuctionStartTimer}
-                  handleAuctionEndTimer={handleAuctionEndTimer}
-                  winner={bidWinner}
+                  isQuantityAvailable={isQuantityAvailable}
+                  ownerOrdersList={ownerOrdersList}
                   owners={nftOwner}
-                  //Order
-                  isOrderOnSale={isOrderOnSale}
-                  isOrderSuccess={isOrderSuccess}
-                  isOrderCancelled={isOrderCancelled}
-                  orderSlug={orderSlug}
-                  latestBid={bidHistory.length > 0 ? bidHistory[0] : {}}
                 />
               </div>
             </div>
           </div>
-          {orderSlug && (
-            <div className="row mt-5">
-              <div className="col-12" ref={inputRef}>
-                <NFTSummary
-                  nft={nft}
-                  totalBid={totalBid}
-                  bidChange={bidChange}
-                  totalBuy={totalBuy}
-                  price={price}
-                  totalViews={totalViews}
-                  totalFavourites={totalFavourites}
-                />
+
+          {isOwner && ownerOrdersList.length > 0 && (
+            <>
+              <NFTSectionTitle title="Order Details" />
+              <div className="row mt-5">
+                <NFTOrderDetails nft={nft} orderList={ownerOrdersList} />
               </div>
-            </div>
+            </>
           )}
 
           <NFTSectionTitle title="NFT Details" />
@@ -330,21 +181,33 @@ const Details = () => {
               {(() => {
                 if (erc721) {
                   return (
-                    <BidHistory
-                      nft={nft}
-                      orderSlug={orderSlug}
-                      isOwner={isOwner}
-                      nftOwner={nftOwner[0]}
-                      histories={bidHistory}
-                      isAuctionEnded={isAuctionEnded}
-                      totalCount={totalCount}
-                      isOrderOnSale={isOrderOnSale}
-                      isOrderSuccess={isOrderSuccess}
-                      isOrderCancelled={isOrderCancelled}
-                    />
+                    nftOwner.length > 0 && (
+                      <BidHistory
+                        nft={nft}
+                        isOwner={isOwner}
+                        nftOwner={nftOwner[0]}
+                        // Transaction History
+                        transactionHistory={transactionHistory}
+                        transactionLoader={transactionLoader}
+                        transactionHasNext={transactionHasNext}
+                      />
+                    )
                   );
                 } else {
-                  return <OwnerList nft={nft} nftOwners={nftOwner} />;
+                  return (
+                    nftOwner.length > 0 && (
+                      <OwnerList
+                        isLoading={ownerLoader}
+                        nft={nft}
+                        nftOwners={nftOwner}
+                        totalCount={ownerCount}
+                        // Transaction History
+                        transactionHistory={transactionHistory}
+                        transactionLoader={transactionLoader}
+                        transactionHasNext={transactionHasNext}
+                      />
+                    )
+                  );
                 }
               })()}
             </div>
@@ -376,17 +239,13 @@ const Details = () => {
           </div>
           <NFTSectionTitle title="Artist" />
           <div className="mt-5">
-            <NFTArtist />
+            <NFTArtist id={nft.celebrity_id} />
           </div>
-          {nftMoreList.length > 0 && (
-            <div className="mt-5">
-              <NFTMore nftList={nftMoreList} />
-            </div>
-          )}
           <br />
           <br />
         </div>
       )}
+      <Footer />
     </>
   );
 };
