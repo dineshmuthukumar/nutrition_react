@@ -190,6 +190,7 @@ const OrderDetails = () => {
   useEffect(() => {
     ownerDetails(slug, (data) => {
       nftOwners();
+      nftTransaction();
     });
   }, []);
 

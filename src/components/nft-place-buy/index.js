@@ -104,7 +104,7 @@ const NFTPlaceBid = ({
     if (erc721) {
       setBuyAmount(orderDetails?.buy_amount);
     }
-  }, [isOrderOnSale]);
+  }, [isOrderOnSale, availableQty]);
 
   const handleBuy = async () => {
     if (!user)
@@ -177,7 +177,7 @@ const NFTPlaceBid = ({
     setBuy({
       ...buy,
       amountClass: "",
-      buttonDisable: true,
+      buttonDisable: erc721 ? false : true,
     });
   };
 

@@ -82,6 +82,7 @@ const Details = () => {
       //   }
       // }
       nftOwners();
+      nftTransaction();
     });
   }, []);
 
