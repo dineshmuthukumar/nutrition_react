@@ -751,6 +751,31 @@ const ShowAll = ({ categories, query }) => {
                         ))}
                       </Dropdown.Menu>
                     </Dropdown>
+
+                    <Dropdown>
+                      <Dropdown.Toggle
+                        align="start"
+                        drop="start"
+                        as={SaleStatus}
+                      ></Dropdown.Toggle>
+
+                      <Dropdown.Menu align="start">
+                        {filter.status.map((obj, i) => (
+                          <Dropdown.Item
+                            key={`nft${i}`}
+                            as="button"
+                            onClick={() => handleSaleStatusNFT(obj)}
+                          >
+                            <FaCheckCircle
+                              color={obj.checked ? "green" : "#ccc"}
+                              className="mb-1 me-2"
+                              size={17}
+                            />{" "}
+                            {obj.name}
+                          </Dropdown.Item>
+                        ))}
+                      </Dropdown.Menu>
+                    </Dropdown>
                   </div>
                   <div className="filt-flex-box">
                     <Dropdown>
@@ -784,6 +809,7 @@ const ShowAll = ({ categories, query }) => {
                     type="text"
                     className="search-box-add"
                     value={search}
+                    placeholder="Search here"
                     onKeyPress={handleKeyPressEvent}
                     onChange={(e) => setSearch(e.target.value)}
                   />{" "}
