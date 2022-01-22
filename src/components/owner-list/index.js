@@ -90,7 +90,7 @@ const OwnerList = ({
                   className={`${key === "owner-list" ? "active" : ""}`}
                   onClick={() => setKey("owner-list")}
                 >
-                  List of Owners
+                  List of Owners ({totalCount})
                 </span>
               </li>
               {transactionHistory.length > 0 && (
@@ -177,7 +177,9 @@ const OwnerList = ({
         <Modal.Header className="bg-dark p-0">
           <Modal.Title className="flex-fill">
             <div className="modal-bid-history-title-content">
-              <div className="modal-bid-history-title">List of Owners</div>
+              <div className="modal-bid-history-title">
+                List of Owners ({totalCount})
+              </div>
               <div className="modal-bid-history-filter">
                 <BiX
                   role="button"
