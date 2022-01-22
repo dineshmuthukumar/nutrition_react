@@ -23,6 +23,9 @@ const Explore = ({ categoryDetail }) => {
   const [loading, setLoading] = useState(false);
   const [hasNext, setHasNext] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
+  const [search, setSearch] = useState(
+    query.get("search") ? query.get("search") : ""
+  );
 
   const [filter, setFilter] = useState({
     sale: [
@@ -100,14 +103,23 @@ const Explore = ({ categoryDetail }) => {
       ? query.get("sort")
       : "recently_listed";
 
-    showAllFilteredNFTs(1, nft_filters, sale_filters, sort_filters);
+    const search_filter = query.get("search");
+
+    showAllFilteredNFTs(
+      1,
+      nft_filters,
+      sale_filters,
+      sort_filters,
+      search_filter
+    );
   }, [slug, query]);
 
   const showAllNFTs = async (
     page,
     type,
     saleType,
-    sort = "recently_listed"
+    sort = "recently_listed",
+    searchText
   ) => {
     try {
       page === 1 && setLoading(true);
@@ -118,6 +130,7 @@ const Explore = ({ categoryDetail }) => {
         filter: {
           type: type,
           sale_type: saleType,
+          keyword: searchText,
         },
         sort,
       });
@@ -134,7 +147,8 @@ const Explore = ({ categoryDetail }) => {
     page,
     type,
     saleType,
-    sort = "recently_listed"
+    sort = "recently_listed",
+    searchText
   ) => {
     try {
       page === 1 && setLoading(true);
@@ -145,6 +159,7 @@ const Explore = ({ categoryDetail }) => {
         filter: {
           type: type,
           sale_type: saleType,
+          keyword: searchText,
         },
         sort,
       });
@@ -166,8 +181,15 @@ const Explore = ({ categoryDetail }) => {
       const sort_filters = query.get("sort")
         ? query.get("sort")
         : "recently_listed";
+      const search_filters = query.get("search");
 
-      showAllNFTs(page + 1, nft_filters, sale_filters, sort_filters);
+      showAllNFTs(
+        page + 1,
+        nft_filters,
+        sale_filters,
+        sort_filters,
+        search_filters
+      );
       setPage(page + 1);
     }
   };
@@ -218,6 +240,7 @@ const Explore = ({ categoryDetail }) => {
     let sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
     const nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
     const sort_exist = query.get("sort");
+    const search_exist = query.get("search");
 
     if (sale_exist.includes(input.value)) {
       sale_exist = sale_exist.filter((obj) => obj !== input.value);
@@ -243,6 +266,12 @@ const Explore = ({ categoryDetail }) => {
         : `sort=${sort_exist}`;
     }
 
+    if (search_exist) {
+      query_string += query_string
+        ? `&search=${search_exist}`
+        : `search=${search_exist}`;
+    }
+
     if (query_string) {
       history.push(`/explore/category/${slug}?${query_string}`);
     } else {
@@ -254,6 +283,7 @@ const Explore = ({ categoryDetail }) => {
     const sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
     let nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
     const sort_exist = query.get("sort");
+    const search_exist = query.get("search");
 
     if (nft_exist.includes(input.value)) {
       nft_exist = nft_exist.filter((obj) => obj !== input.value);
@@ -279,6 +309,12 @@ const Explore = ({ categoryDetail }) => {
         : `sort=${sort_exist}`;
     }
 
+    if (search_exist) {
+      query_string += query_string
+        ? `&search=${search_exist}`
+        : `search=${search_exist}`;
+    }
+
     if (query_string) {
       history.push(`/explore/category/${slug}?${query_string}`);
     } else {
@@ -290,6 +326,7 @@ const Explore = ({ categoryDetail }) => {
     const sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
     const nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
     const sort_exist = input.value;
+    const search_exist = query.get("search");
 
     let query_string = "";
 
@@ -309,10 +346,59 @@ const Explore = ({ categoryDetail }) => {
         : `sort=${sort_exist}`;
     }
 
+    if (search_exist) {
+      query_string += query_string
+        ? `&search=${search_exist}`
+        : `search=${search_exist}`;
+    }
+
     if (query_string) {
       history.push(`/explore/category/${slug}?${query_string}`);
     } else {
       history.push(`/explore/category/${slug}`);
+    }
+  };
+
+  const handleTextSearch = () => {
+    const sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
+    const nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
+    const sort_exist = query.get("sort");
+    const search_exist = search;
+
+    let query_string = "";
+
+    if (sale_exist.length > 0) {
+      query_string += query_string
+        ? `&sale=${sale_exist}`
+        : `sale=${sale_exist}`;
+    }
+
+    if (nft_exist.length > 0) {
+      query_string += query_string ? `&nft=${nft_exist}` : `nft=${nft_exist}`;
+    }
+
+    if (sort_exist) {
+      query_string += query_string
+        ? `&sort=${sort_exist}`
+        : `sort=${sort_exist}`;
+    }
+
+    if (search_exist) {
+      query_string += query_string
+        ? `&search=${search_exist}`
+        : `search=${search_exist}`;
+    }
+
+    if (query_string) {
+      history.push(`/explore/category/${slug}?${query_string}`);
+    } else {
+      history.push(`/explore/category/${slug}`);
+    }
+  };
+
+  const handleKeyPressEvent = (event) => {
+    if (event.key === "Enter") {
+      handleTextSearch();
     }
   };
 
@@ -412,15 +498,15 @@ const Explore = ({ categoryDetail }) => {
                   <input
                     type="text"
                     className="search-box-add"
-                    // value={search}
-                    // onKeyPress={handleKeyPressEvent}
-                    // onChange={(e) => setSearch(e.target.value)}
+                    value={search}
+                    onKeyPress={handleKeyPressEvent}
+                    onChange={(e) => setSearch(e.target.value)}
                     placeholder="Search here"
                   />{" "}
                   <span
                     role="button"
                     className="search-button"
-                    // onClick={handleTextSearch}
+                    onClick={handleTextSearch}
                   >
                     <BiSearch size={15} />
                   </span>
