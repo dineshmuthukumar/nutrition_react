@@ -27,6 +27,7 @@ const NFTPlaceBid = ({
   price,
   soldOut,
   transferringNFT,
+  isOrderOnSale,
   isOrderCancelled,
 }) => {
   const { user } = useSelector((state) => state.user.data);

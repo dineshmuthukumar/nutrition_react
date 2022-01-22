@@ -28,6 +28,7 @@ const NFTPlaceBid = ({
   totalQty,
   soldOut,
   transferringNFT,
+  isOrderOnSale,
   isOrderCancelled,
 }) => {
   const { user } = useSelector((state) => state.user.data);
@@ -98,6 +99,12 @@ const NFTPlaceBid = ({
     }
     setBuyQuantity("");
   }, []);
+
+  useEffect(() => {
+    if (erc721) {
+      setBuyAmount(orderDetails?.buy_amount);
+    }
+  }, [isOrderOnSale, availableQty]);
 
   const handleBuy = async () => {
     if (!user)
@@ -170,12 +177,13 @@ const NFTPlaceBid = ({
     setBuy({
       ...buy,
       amountClass: "",
-      buttonDisable: true,
+      buttonDisable: erc721 ? false : true,
     });
   };
 
   const handleBuyInputChange = (e) => {
-    let count = orderDetails.available_quantity;
+    let count =
+      availableQty != null ? availableQty : orderDetails.available_quantity;
     if (e.target.value) {
       if (
         validateQuantity(e.target.value) &&

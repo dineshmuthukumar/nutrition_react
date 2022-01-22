@@ -355,6 +355,7 @@ const NFTOrderBaseDetails = ({
             userTotalBuys={userTotalBuys}
             soldOut={soldOut}
             transferringNFT={transferringNFT}
+            isOrderOnSale={isOrderOnSale}
             isOrderCancelled={isOrderCancelled}
           />
           <NFTPlaceBuy
@@ -370,6 +371,7 @@ const NFTOrderBaseDetails = ({
             userTotalBuys={userTotalBuys}
             soldOut={soldOut}
             transferringNFT={transferringNFT}
+            isOrderOnSale={isOrderOnSale}
             isOrderCancelled={isOrderCancelled}
           />
 
@@ -381,6 +383,7 @@ const NFTOrderBaseDetails = ({
             setCancelTheSalePop={setCancelTheSalePop}
             price={price}
             availableQty={availableQty}
+            isOrderOnSale={isOrderOnSale}
             isOrderCancelled={isOrderCancelled}
             totalQty={totalQty}
             soldOut={soldOut}
@@ -459,16 +462,7 @@ const NFTOrderBaseDetails = ({
                 </button>
               );
             } else if (erc721 && isOwner && isOrderOnSale) {
-              if (acceptBidSucess) {
-                return (
-                  <button
-                    disabled={true}
-                    className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
-                  >
-                    Sold Out
-                  </button>
-                );
-              } else if (acceptBidConfirm) {
+              if (acceptBidConfirm) {
                 return (
                   <>
                     <button

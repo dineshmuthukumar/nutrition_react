@@ -6,6 +6,7 @@ import {
   Redirect,
 } from "react-router-dom";
 
+import { FaTimes } from "react-icons/fa";
 import { useSelector, connect, useDispatch } from "react-redux";
 
 import { change_lang_action } from "./redux/actions/lang_action";
@@ -76,7 +77,12 @@ function App(props) {
     <>
       {!online && (
         <div className="offline-ribbon">
-          You are offline, please check you internet connection
+          <div className="first">
+            You are offline, please check you internet connection
+          </div>
+          <div>
+            <FaTimes onClick={() => setOnline(true)} role={"button"} />
+          </div>
         </div>
       )}
 
