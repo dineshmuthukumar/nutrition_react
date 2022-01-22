@@ -9,6 +9,7 @@ import {
   orderBidHistory,
   nftOwnerApi,
   nftTransactionHistory,
+  orderPurchaseDetailsApi,
 } from "../api/methods";
 import BidHistory from "../components/bid-history";
 import ChainAttributes from "../components/chain-attributes";
@@ -88,14 +89,15 @@ const OrderDetails = () => {
     document.body.scrollTop = document.documentElement.scrollTop = 0;
 
     buyDetail(slug, orderSlug, (data) => {
+      purchaseDetails();
       setAvailableQty(data.available_quantity);
       setTotalBuy(data.total_buys);
-      if (data.purchase_details) {
-        setPurchaseList((purchaseList) => [
-          data.purchase_details,
-          ...purchaseList,
-        ]);
-      }
+      // if (data.purchase_details) {
+      //   setPurchaseList((purchaseList) => [
+      //     data.purchase_details,
+      //     ...purchaseList,
+      //   ]);
+      // }
       if (data.available_quantity === 0) {
         setTransferringNFT(true);
       }
@@ -122,6 +124,7 @@ const OrderDetails = () => {
     nftDetail(slug, orderSlug);
     nftOwners();
     nftTransaction();
+    purchaseDetails();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -150,13 +153,14 @@ const OrderDetails = () => {
     });
 
     acceptBid(slug, orderSlug, (data) => {
+      purchaseDetails();
       setAvailableQty(data.available_quantity);
-      if (data.purchase_details) {
-        setPurchaseList((purchaseList) => [
-          data.purchase_details,
-          ...purchaseList,
-        ]);
-      }
+      // if (data.purchase_details) {
+      //   setPurchaseList((purchaseList) => [
+      //     data.purchase_details,
+      //     ...purchaseList,
+      //   ]);
+      // }
       if (data.available_quantity === 0) {
         setTransferringNFT(true);
       }
@@ -166,7 +170,19 @@ const OrderDetails = () => {
     });
 
     orderPurchaseDetails(slug, orderSlug, (data) => {
-      console.log(data);
+      purchaseDetails();
+      setAvailableQty(data.available_quantity);
+      if (data.status === "onsale") {
+        setIsOrderOnSale(true);
+      }
+      if (data.available_quantity === 0) {
+        setTransferringNFT(true);
+      } else {
+        setTransferringNFT(false);
+      }
+      if (data.order_completed) {
+        setSoldOut(true);
+      }
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
@@ -248,6 +264,18 @@ const OrderDetails = () => {
       setTransactionHistory(transactions.data.data.nfts);
       setTransactionHasNext(transactions.data.data.next_page);
       setTransactionLoader(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const purchaseDetails = async () => {
+    try {
+      let response = await orderPurchaseDetailsApi({
+        order_slug: orderSlug,
+        page: 1,
+      });
+      setPurchaseList(response.data.data.purchase_details);
     } catch (error) {
       console.log(error);
     }
