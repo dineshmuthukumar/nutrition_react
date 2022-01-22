@@ -116,11 +116,20 @@ const Banner = ({ list = [] }) => {
                   onClick={() => handleNavigate("Chakra Artpunks Loot Box")}
                 >
                   <h5 className="cat-title big-box">Chakra Artpunks</h5>
-                  <img
+                  {/* <img
                     src={chakra_artpunks}
                     className="first-image"
                     style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
-                  />
+                  /> */}
+                  <video
+                    loop
+                    muted
+                    autoPlay
+                    playsInline
+                    src="https://cdn.beyondlife.club/media/video/Artpunk_15.mp4"
+                    className="first-image"
+                    style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
+                  ></video>
                 </div>
                 <div
                   style={{ overflow: "hidden" }}
@@ -138,7 +147,7 @@ const Banner = ({ list = [] }) => {
                     muted
                     autoPlay
                     playsInline
-                    src="https://cdn.beyondlife.club/media/video/2_g1GlPdEH8Zyz5jK0.mp4"
+                    src="https://cdn.beyondlife.club/media/video/LivingComicBook_2.mp4"
                     className="first-image"
                     style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
                   ></video>
@@ -299,13 +308,23 @@ const Banner = ({ list = [] }) => {
                   style={{
                     height: "calc(((((100vw - (7rem + 6rem))/2)/3)))",
                   }}
+                  onClick={() => handleNavigate("The Jumbo Juke Box")}
                 >
                   <h5 className="cat-title">Chakra Comic</h5>
-                  <img
+                  {/* <img
                     src={comic_cover_new}
                     className="first-image"
                     style={{ height: "100%" }}
-                  />
+                  /> */}
+                  <video
+                    loop
+                    muted
+                    autoPlay
+                    playsInline
+                    src="https://cdn.beyondlife.club/media/video/Juke_25_2.mp4"
+                    className="first-image"
+                    style={{ height: "100%" }}
+                  ></video>
                 </div>
               </div>
             </div>
