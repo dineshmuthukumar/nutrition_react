@@ -21,6 +21,7 @@ const NFTCancelTheSale = ({
   isOwner,
   orderDetails,
   availableQty,
+  isOrderOnSale,
   isOrderCancelled,
   totalQty,
   soldOut,

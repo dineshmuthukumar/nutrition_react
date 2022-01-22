@@ -355,6 +355,7 @@ const NFTOrderBaseDetails = ({
             userTotalBuys={userTotalBuys}
             soldOut={soldOut}
             transferringNFT={transferringNFT}
+            isOrderOnSale={isOrderOnSale}
             isOrderCancelled={isOrderCancelled}
           />
           <NFTPlaceBuy
@@ -370,6 +371,7 @@ const NFTOrderBaseDetails = ({
             userTotalBuys={userTotalBuys}
             soldOut={soldOut}
             transferringNFT={transferringNFT}
+            isOrderOnSale={isOrderOnSale}
             isOrderCancelled={isOrderCancelled}
           />
 
@@ -381,6 +383,7 @@ const NFTOrderBaseDetails = ({
             setCancelTheSalePop={setCancelTheSalePop}
             price={price}
             availableQty={availableQty}
+            isOrderOnSale={isOrderOnSale}
             isOrderCancelled={isOrderCancelled}
             totalQty={totalQty}
             soldOut={soldOut}
