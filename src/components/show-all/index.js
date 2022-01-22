@@ -270,6 +270,20 @@ const ShowAll = ({ categories, query }) => {
     </div>
   ));
 
+  const SaleStatus = React.forwardRef(({ onClick }, ref) => (
+    <div
+      className="filter-drop-btn"
+      ref={ref}
+      onClick={(e) => {
+        e.preventDefault();
+        onClick(e);
+      }}
+    >
+      Sale Status
+      <BiCaretDown />
+    </div>
+  ));
+
   const handleCategoryCheck = (input) => {
     let category_exist = query.get("category")
       ? query.get("category").split(",")
@@ -431,6 +445,59 @@ const ShowAll = ({ categories, query }) => {
     const nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
     const sort_exist = input.value;
     const search_exist = query.get("search");
+    const sale_status = query.get("status");
+
+    let query_string = "";
+    if (category_exist.length > 0) {
+      query_string += query_string
+        ? `&category=${category_exist}`
+        : `category=${category_exist}`;
+    }
+
+    if (sale_exist.length > 0) {
+      query_string += query_string
+        ? `&sale=${sale_exist}`
+        : `sale=${sale_exist}`;
+    }
+
+    if (nft_exist.length > 0) {
+      query_string += query_string ? `&nft=${nft_exist}` : `nft=${nft_exist}`;
+    }
+
+    if (sort_exist) {
+      query_string += query_string
+        ? `&sort=${sort_exist}`
+        : `sort=${sort_exist}`;
+    }
+
+    if (search_exist) {
+      query_string += query_string
+        ? `&search=${search_exist}`
+        : `search=${search_exist}`;
+    }
+
+    if (sale_status) {
+      query_string += query_string
+        ? `&status=${sale_status}`
+        : `status=${sale_status}`;
+    }
+
+    if (query_string) {
+      history.push(`/?${query_string}`);
+    } else {
+      history.push("/");
+    }
+  };
+
+  const handleSaleStatusNFT = (input, remove = false) => {
+    const category_exist = query.get("category")
+      ? query.get("category").split(",")
+      : [];
+    const sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
+    const nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
+    const sort_exist = query.get("sort");
+    const search_exist = query.get("search");
+    const sale_status = remove ? null : input.value;
 
     let query_string = "";
     if (category_exist.length > 0) {
@@ -601,8 +668,6 @@ const ShowAll = ({ categories, query }) => {
                         ))}
                       </Dropdown.Menu>
                     </Dropdown>
-
-                    
                   </div>
                   <div className="filt-flex-box">
                     <Dropdown>
@@ -632,21 +697,21 @@ const ShowAll = ({ categories, query }) => {
                   </div>
                 </span>
                 <div className="filt-flex-search">
-                      <input
-                        type="text"
-                        className="search-box-add"
-                        value={search}
-                        onKeyPress={handleKeyPressEvent}
-                        onChange={(e) => setSearch(e.target.value)}
-                      />{" "}
-                      <span
-                        role="button"
-                        className="search-button"
-                        onClick={handleTextSearch}
-                      >
-                        <BiSearch size={15} />
-                      </span>
-                    </div>
+                  <input
+                    type="text"
+                    className="search-box-add"
+                    value={search}
+                    onKeyPress={handleKeyPressEvent}
+                    onChange={(e) => setSearch(e.target.value)}
+                  />{" "}
+                  <span
+                    role="button"
+                    className="search-button"
+                    onClick={handleTextSearch}
+                  >
+                    <BiSearch size={15} />
+                  </span>
+                </div>
               </div>
 
               <div className="mt-4 mb-4 d-flex flex-wrap">
@@ -690,6 +755,21 @@ const ShowAll = ({ categories, query }) => {
                           role="button"
                           size={20}
                           onClick={() => handleNFTCheck(obj)}
+                        />
+                      </div>
+                    </div>
+                  ))}
+
+                {filter.status
+                  .filter((xx) => xx.checked === true)
+                  .map((obj, i) => (
+                    <div key={`filter-pill${i}`} className="filter-pill-button">
+                      <div className="first">{obj.name}</div>
+                      <div className="last">
+                        <BiX
+                          role="button"
+                          size={20}
+                          onClick={() => handleSaleStatusNFT(obj, true)}
                         />
                       </div>
                     </div>
