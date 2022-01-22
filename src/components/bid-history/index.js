@@ -50,12 +50,12 @@ const BidHistory = ({
   const { user } = useSelector((state) => state.user.data);
 
   useEffect(() => {
-    if (orderSlug) {
+    if (orderSlug && isOrderOnSale && isBid) {
       setKey("bid-history");
     } else {
       setKey("transaction-history");
     }
-  }, []);
+  }, [orderSlug, isOrderOnSale]);
 
   useEffect(() => {
     setAcceptBidConfirm(false);
