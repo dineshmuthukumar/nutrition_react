@@ -1,7 +1,9 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { BsFillQuestionCircleFill } from "react-icons/bs";
 
+import ToolTip from "../tooltip/index";
 import userImg from "../../images/user_1.jpg";
 
 import "./style.scss";
@@ -18,19 +20,39 @@ const BidValue = ({
   avatar,
   userSlug,
   seller = false,
+  owner,
+  toolTip,
 }) => {
   const history = useHistory();
   const { user } = useSelector((state) => state.user.data);
   return (
     <div className="current-bid">
       <div className="title">
-        {title}
+        {title}{" "}
+        {toolTip && (
+          <ToolTip
+            icon={
+              <BsFillQuestionCircleFill size={16} className="ms-2 check-icon" />
+            }
+            content={toolTip}
+            placement="right"
+          />
+        )}
         {status && <span className="status-tag rounded-pill">{status}</span>}
       </div>
       <div className="value">
         {isEnd ? (
           <div className="user-detail">
-            <img alt="" src={avatar ? avatar : userImg} />
+            <img
+              alt="user"
+              src={
+                !owner?.private && avatar
+                  ? avatar
+                  : user?.slug === owner?.slug && avatar
+                  ? avatar
+                  : userImg
+              }
+            />
             {userSlug ? (
               <div
                 className="win-user-name"
@@ -53,7 +75,9 @@ const BidValue = ({
                   }
                 }}
               >
-                {name}
+                {user?.slug === userSlug
+                  ? `@${user?.first_name}${user?.last_name}`
+                  : name}
               </div>
             ) : (
               <div className="win-user-name">{name}</div>

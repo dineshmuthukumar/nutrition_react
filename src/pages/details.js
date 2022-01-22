@@ -31,6 +31,9 @@ const Details = () => {
   const [erc721, setErc721] = useState(false);
   const [loader, setLoader] = useState(true);
   const [ownerLoader, setOwnerLoader] = useState(true);
+  const [transactionHistory, setTransactionHistory] = useState([]);
+  const [transactionLoader, setTransactionLoader] = useState(false);
+  const [transactionHasNext, setTransactionHasNext] = useState(false);
   const [putOnSalePop, setPutOnSalePop] = useState(false);
   const [ownerOrdersList, setOwnerOrdersList] = useState([]);
   const [ownerCount, setOwnerCount] = useState(0);
@@ -120,11 +123,14 @@ const Details = () => {
 
   const nftTransaction = async () => {
     try {
+      setTransactionLoader(true);
       let transactions = await nftTransactionHistory({
         nft_slug: slug,
         page: page,
       });
-      console.log(transactions);
+      setTransactionHistory(transactions.data.data.nfts);
+      setTransactionHasNext(transactions.data.data.next_page);
+      setTransactionLoader(false);
     } catch (error) {
       console.log(error);
     }
@@ -180,6 +186,10 @@ const Details = () => {
                         nft={nft}
                         isOwner={isOwner}
                         nftOwner={nftOwner[0]}
+                        // Transaction History
+                        transactionHistory={transactionHistory}
+                        transactionLoader={transactionLoader}
+                        transactionHasNext={transactionHasNext}
                       />
                     )
                   );
@@ -191,6 +201,10 @@ const Details = () => {
                         nft={nft}
                         nftOwners={nftOwner}
                         totalCount={ownerCount}
+                        // Transaction History
+                        transactionHistory={transactionHistory}
+                        transactionLoader={transactionLoader}
+                        transactionHasNext={transactionHasNext}
                       />
                     )
                   );

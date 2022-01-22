@@ -27,6 +27,7 @@ const NFTPlaceBid = ({
   price,
   soldOut,
   transferringNFT,
+  isOrderCancelled,
 }) => {
   const { user } = useSelector((state) => state.user.data);
   const { orderSlug } = useParams();
@@ -341,7 +342,9 @@ const NFTPlaceBid = ({
                             className="input-bid"
                             value={bidAmount}
                             placeholder="0"
-                            disabled={soldOut}
+                            disabled={
+                              soldOut || transferringNFT || isOrderCancelled
+                            }
                             onChange={handleBidInputChange}
                           />
                         </div>
@@ -421,7 +424,17 @@ const NFTPlaceBid = ({
                       </div>
                       <div className="place-bid-button">
                         <button
-                          disabled={bid.buttonDisable}
+                          disabled={(() => {
+                            if (soldOut) {
+                              return soldOut;
+                            } else if (transferringNFT) {
+                              return transferringNFT;
+                            } else if (isOrderCancelled) {
+                              return isOrderCancelled;
+                            } else {
+                              return bid.buttonDisable;
+                            }
+                          })()}
                           className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop ${bid.processClass}`} //process -> proccessing
                           onClick={handleBid}
                         >
@@ -446,6 +459,8 @@ const NFTPlaceBid = ({
                                   placement="top"
                                 />
                               );
+                            } else if (isOrderCancelled) {
+                              return "Order Cancelled";
                             } else if (bidAmount > 0) {
                               return bid.buttonName;
                             } else {

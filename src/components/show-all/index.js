@@ -65,6 +65,18 @@ const ShowAll = ({ categories, query }) => {
         checked: false,
       },
     ],
+    status: [
+      {
+        name: "Listed for sale",
+        value: "listed_for_sale",
+        checked: false,
+      },
+      {
+        name: "Not on sale",
+        value: "not_on_sale",
+        checked: false,
+      },
+    ],
   });
 
   useEffect(() => {
@@ -76,6 +88,7 @@ const ShowAll = ({ categories, query }) => {
     const sort_filters = query.get("sort")
       ? query.get("sort")
       : "recently_listed";
+    const sale_status = query.get("status");
 
     let categoryList = [];
     categories.forEach((category) => {
@@ -101,6 +114,10 @@ const ShowAll = ({ categories, query }) => {
       ...obj,
       checked: sort_filters ? sort_filters === obj.value : false,
     }));
+    info.status = filter.status.map((obj) => ({
+      ...obj,
+      checked: sale_status ? sale_status === obj.value : false,
+    }));
 
     setFilter(info);
   }, [categories, query]);
@@ -116,6 +133,7 @@ const ShowAll = ({ categories, query }) => {
       : "recently_listed";
 
     const search_filter = query.get("search");
+    const sale_status = query.get("status");
 
     showAllFilteredNFTs(
       1,
@@ -123,7 +141,8 @@ const ShowAll = ({ categories, query }) => {
       nft_filters,
       sale_filters,
       sort_filters,
-      search_filter
+      search_filter,
+      sale_status
     );
   }, [query]);
 
@@ -133,19 +152,33 @@ const ShowAll = ({ categories, query }) => {
     type,
     saleType,
     sort = "recently_listed",
-    searchText
+    searchText,
+    saleStatus
   ) => {
     try {
-      page === 1 && setLoading(true);
-      setLoadingMore(true);
-      let response = await nftShowAllApi({
-        page,
-        filter: {
+      let filter = {};
+      if (saleStatus !== null) {
+        filter = {
           category: category,
           type: type,
           sale_type: saleType,
           keyword: searchText,
-        },
+          onsale: saleStatus === "listed_for_sale" ? true : false,
+        };
+      } else {
+        filter = {
+          category: category,
+          type: type,
+          sale_type: saleType,
+          keyword: searchText,
+        };
+      }
+
+      page === 1 && setLoading(true);
+      setLoadingMore(true);
+      let response = await nftShowAllApi({
+        page,
+        filter,
         sort,
       });
       setList([...list, ...response.data.data.nfts]);
@@ -164,19 +197,33 @@ const ShowAll = ({ categories, query }) => {
     type,
     saleType,
     sort = "recently_listed",
-    searchText
+    searchText,
+    saleStatus
   ) => {
     try {
-      page === 1 && setLoading(true);
-      setLoadingMore(true);
-      let response = await nftShowAllApi({
-        page,
-        filter: {
+      let filter = {};
+      if (saleStatus !== null) {
+        filter = {
           category: category,
           type: type,
           sale_type: saleType,
           keyword: searchText,
-        },
+          onsale: saleStatus === "listed_for_sale" ? true : false,
+        };
+      } else {
+        filter = {
+          category: category,
+          type: type,
+          sale_type: saleType,
+          keyword: searchText,
+        };
+      }
+
+      page === 1 && setLoading(true);
+      setLoadingMore(true);
+      let response = await nftShowAllApi({
+        page,
+        filter,
         sort,
       });
       setList(response.data.data.nfts);
@@ -202,6 +249,7 @@ const ShowAll = ({ categories, query }) => {
         ? query.get("sort")
         : "recently_listed";
       const search_filters = query.get("search");
+      const sale_status = query.get("status");
 
       showAllNFTs(
         page + 1,
@@ -209,7 +257,8 @@ const ShowAll = ({ categories, query }) => {
         nft_filters,
         sale_filters,
         sort_filters,
-        search_filters
+        search_filters,
+        sale_status
       );
       setPage(page + 1);
     }
@@ -292,6 +341,7 @@ const ShowAll = ({ categories, query }) => {
     const nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
     const sort_exist = query.get("sort");
     const search_exist = query.get("search");
+    const sale_status = query.get("status");
 
     if (category_exist.includes(input.value)) {
       category_exist = category_exist.filter((obj) => obj !== input.value);
@@ -328,6 +378,12 @@ const ShowAll = ({ categories, query }) => {
         : `search=${search_exist}`;
     }
 
+    if (sale_status) {
+      query_string += query_string
+        ? `&status=${sale_status}`
+        : `status=${sale_status}`;
+    }
+
     if (query_string) {
       history.push(`/?${query_string}`);
     } else {
@@ -343,6 +399,7 @@ const ShowAll = ({ categories, query }) => {
     const nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
     const sort_exist = query.get("sort");
     const search_exist = query.get("search");
+    const sale_status = query.get("status");
 
     if (sale_exist.includes(input.value)) {
       sale_exist = sale_exist.filter((obj) => obj !== input.value);
@@ -379,6 +436,12 @@ const ShowAll = ({ categories, query }) => {
         : `search=${search_exist}`;
     }
 
+    if (sale_status) {
+      query_string += query_string
+        ? `&status=${sale_status}`
+        : `status=${sale_status}`;
+    }
+
     if (query_string) {
       history.push(`/?${query_string}`);
     } else {
@@ -394,6 +457,7 @@ const ShowAll = ({ categories, query }) => {
     let nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
     const sort_exist = query.get("sort");
     const search_exist = query.get("search");
+    const sale_status = query.get("status");
 
     if (nft_exist.includes(input.value)) {
       nft_exist = nft_exist.filter((obj) => obj !== input.value);
@@ -428,6 +492,12 @@ const ShowAll = ({ categories, query }) => {
       query_string += query_string
         ? `&search=${search_exist}`
         : `search=${search_exist}`;
+    }
+
+    if (sale_status) {
+      query_string += query_string
+        ? `&status=${sale_status}`
+        : `status=${sale_status}`;
     }
 
     if (query_string) {
@@ -528,6 +598,12 @@ const ShowAll = ({ categories, query }) => {
         : `search=${search_exist}`;
     }
 
+    if (sale_status) {
+      query_string += query_string
+        ? `&status=${sale_status}`
+        : `status=${sale_status}`;
+    }
+
     if (query_string) {
       history.push(`/?${query_string}`);
     } else {
@@ -543,6 +619,7 @@ const ShowAll = ({ categories, query }) => {
     const nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
     const sort_exist = query.get("sort");
     const search_exist = search;
+    const sale_status = query.get("status");
 
     let query_string = "";
     if (category_exist.length > 0) {
@@ -571,6 +648,12 @@ const ShowAll = ({ categories, query }) => {
       query_string += query_string
         ? `&search=${search_exist}`
         : `search=${search_exist}`;
+    }
+
+    if (sale_status) {
+      query_string += query_string
+        ? `&status=${sale_status}`
+        : `status=${sale_status}`;
     }
 
     if (query_string) {
@@ -644,7 +727,7 @@ const ShowAll = ({ categories, query }) => {
                         ))}
                       </Dropdown.Menu>
                     </Dropdown>
-                    <Dropdown>
+                    <Dropdown className="me-2">
                       <Dropdown.Toggle
                         align="start"
                         drop="start"

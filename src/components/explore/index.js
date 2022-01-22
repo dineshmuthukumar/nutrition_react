@@ -10,7 +10,7 @@ import { nftCategoryListApi } from "../../api/methods";
 import ExploreTitle from "./explore-title";
 import sample from "../../images/sampleNFT.jpg";
 import "./style.scss";
-import { BiCaretDown, BiX } from "react-icons/bi";
+import { BiCaretDown, BiX, BiSearch } from "react-icons/bi";
 import useQuery from "../../hook/useQuery";
 import { useHistory } from "react-router-dom";
 

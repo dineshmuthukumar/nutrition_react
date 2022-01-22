@@ -35,7 +35,11 @@ const UserBanner = () => {
         className="user-hero-section"
         style={{
           backgroundImage: `url("${
+            !sellerDetail?.users[0]?.private &&
             sellerDetail?.users[0]?.banner_url
+              ? sellerDetail?.users[0]?.banner_url
+              : user?.slug === sellerDetail?.users[0]?.slug &&
+                sellerDetail?.users[0]?.banner_url
               ? sellerDetail?.users[0]?.banner_url
               : userBanner
           }")`,
@@ -56,9 +60,14 @@ const UserBanner = () => {
             }
           />
           <div>
-            <h6 className="user-info-subname">
-              {sellerDetail?.users[0]?.user_name}
-            </h6>
+            {sellerDetail?.users[0]?.slug && (
+              <h6 className="user-info-subname">
+                {user?.slug === sellerDetail?.users[0]?.slug
+                  ? `@${user?.first_name}${user?.last_name}`
+                  : sellerDetail?.users[0]?.user_name}
+              </h6>
+            )}
+
             {/* <h4 className="user-info-name">James</h4> */}
           </div>
           {/* <ul className="user-info-list">

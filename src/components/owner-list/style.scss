@@ -15,14 +15,40 @@
   }
 
   .owner-history-title-content {
-    padding: 0.6rem 1.5rem;
+    padding: 1.2rem 1.5rem;
     background-color: #000;
     display: flex;
     justify-content: space-between;
     .bid-history-title {
-      font-family: $neue-helveticamedium;
-      font-size: 1.5rem;
-      color: #fff;
+      ul.nav-btn-grp {
+        display: flex;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        li {
+          span {
+            font-family: $neue-helveticamedium;
+            font-size: 1.2rem;
+            color: #fff;
+            display: flex;
+            margin-right: 1.2rem;
+            text-decoration: none;
+            padding: 0.2rem 1.5rem;
+            border-radius: 50rem;
+            background-color: #4a4949;
+            cursor: pointer;
+            &:hover,
+            &:focus,
+            &:active {
+              background-color: #555454;
+            }
+            &.active {
+              background-color: #fff;
+              color: #000;
+            }
+          }
+        }
+      }
     }
 
     .bid-history-filter {
@@ -54,6 +80,10 @@
     overflow-y: auto;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
+    @media screen and (min-height: 1024px) {
+      min-height: unset !important;
+      max-height: 35rem !important;
+    }
 
     .bid-histroy-card {
       display: flex;
@@ -249,8 +279,8 @@
     }
   }
 
-  &.listofHistory{
-    .bid-history-content{
+  &.listofHistory {
+    .bid-history-content {
       min-height: auto !important;
     }
   }

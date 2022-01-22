@@ -40,13 +40,13 @@ button.load_more {
 }
 
 .filter-blocks {
-  &.days{
+  &.days {
     margin-top: 0rem !important;
-    .dropdown{
+    .dropdown {
       width: initial !important;
     }
   }
-  @media screen and (max-width: 575px) {
+  @media screen and (max-width: 767px) {
     display: flex;
     flex-direction: column-reverse;
     align-items: flex-end;
@@ -54,19 +54,28 @@ button.load_more {
     margin-top: -2.5rem !important;
   }
   .filter-box {
-    @media screen and (max-width: 575px) {
+    @media screen and (max-width: 767px) {
       margin-top: 0.5rem;
       width: 100%;
     }
-    .dropdown{
-      @media screen and (max-width: 575px) {
-        width: 32.33%;
+    .dropdown {
+      @media screen and (max-width: 767px) {
+        width: 24%;
+      }
+      @media screen and (max-width: 580px) {
+        width: 23.5%;
       }
       @media screen and (max-width: 425px) {
-        width: 31.55%;
+        width: 48%;
+      }
+      @media screen and (max-width: 375px) {
+        width: 47%;
       }
     }
-    
+    .dropdown-menu {
+      max-height: 320px;
+      overflow-y: auto;
+    }
   }
 }
 .filter-drop-btn {
@@ -82,7 +91,7 @@ button.load_more {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  @media screen and (max-width: 575px) {
+  @media screen and (max-width: 767px) {
     padding: 0.2rem 0.3rem 0.2rem 1rem;
   }
 }
@@ -170,7 +179,7 @@ button.load_more {
     margin-top: 0.5rem;
   }
 }
-.search{
+.search {
   &-box-add {
     border-radius: 50rem;
     padding: 0.5rem;
@@ -180,6 +189,10 @@ button.load_more {
     outline: none;
     width: 100%;
     padding-right: 2rem;
+    &::placeholder {
+      color: #8f8f8f;
+      font-size: 1rem;
+    }
   }
   &-button {
     border-radius: 50rem;
@@ -194,5 +207,9 @@ button.load_more {
     right: 0;
     top: 0;
     bottom: 0;
+    svg {
+      height: 1.2rem;
+      width: 1.2rem;
+    }
   }
 }

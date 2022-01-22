@@ -28,7 +28,7 @@ const NFTPurchaseDetails = ({ nft, list = [] }) => {
             <tr>
               <th className="text-center">#</th>
               <th>Buyer</th>
-              {/* <th className="text-center">Purchase Type</th> */}
+              <th className="text-center">Purchase Type</th>
               <th className="text-center">Edition(s)</th>
               <th className="text-center">Price</th>
               <th className="text-center">Service Fee</th>
@@ -56,8 +56,8 @@ const NFTPurchaseDetails = ({ nft, list = [] }) => {
                     slug={detail?.buyer?.slug}
                   />
                 </td>
+                <td className="text-center status">{detail?.sale_type}</td>
                 <td className="text-center">{detail?.buy_quantity}</td>
-                {/* <td className="text-center">Bid</td> */}
                 <td className="text-center">
                   {currencyFormat(detail?.buy_amount, "USD")}
                 </td>

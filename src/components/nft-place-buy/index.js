@@ -28,6 +28,7 @@ const NFTPlaceBid = ({
   totalQty,
   soldOut,
   transferringNFT,
+  isOrderCancelled,
 }) => {
   const { user } = useSelector((state) => state.user.data);
   const { orderSlug } = useParams();
@@ -57,22 +58,45 @@ const NFTPlaceBid = ({
   useEffect(() => {
     setNoBalance(false);
     if (erc721) {
-      setBuyAmount(orderDetails.buy_amount);
+      if (parseFloat(user?.balance) < parseFloat(orderDetails?.buy_amount)) {
+        setBuy({
+          ...buy,
+          amountClass: "text-dark",
+          progressError: "error-progress",
+          buttonDisable: true,
+          buttonName: "Buy NFTs",
+        });
+        setError("error-balance-float");
+        setNoBalance(true);
+      } else {
+        setBuy({
+          amountClass: "",
+          progressError: "",
+          buttonDisable: false,
+          processClass: "",
+          buttonName: "Buy NFTs",
+          isError: false,
+          errorTitle: "",
+          errorDescription: "",
+        });
+        setError("");
+      }
+      setBuyAmount(orderDetails?.buy_amount);
     } else {
       setBuyAmount(0);
+      setBuy({
+        amountClass: "",
+        progressError: "",
+        buttonDisable: true,
+        processClass: "",
+        buttonName: "Buy NFTs",
+        isError: false,
+        errorTitle: "",
+        errorDescription: "",
+      });
+      setError("");
     }
     setBuyQuantity("");
-    setError("");
-    setBuy({
-      amountClass: "",
-      progressError: "",
-      buttonDisable: true,
-      processClass: "",
-      buttonName: "Buy NFTs",
-      isError: false,
-      errorTitle: "",
-      errorDescription: "",
-    });
   }, []);
 
   const handleBuy = async () => {
@@ -160,7 +184,7 @@ const NFTPlaceBid = ({
       ) {
         let amount = e.target.value * parseFloat(orderDetails.buy_amount);
         if (user) {
-          if (parseFloat(user.balance) <= parseFloat(amount)) {
+          if (parseFloat(user.balance) < parseFloat(amount)) {
             setBuyQuantity(e.target.value);
             setBuyAmount(amount);
             setBuy({
@@ -423,7 +447,9 @@ const NFTPlaceBid = ({
                               value={buyQuantity}
                               placeholder="0 NFT"
                               maxLength={20}
-                              disabled={transferringNFT || soldOut}
+                              disabled={
+                                transferringNFT || soldOut || isOrderCancelled
+                              }
                               onChange={handleBuyInputChange}
                             />
                             {/* text-dark -> dark text after entering quantity */}
@@ -510,8 +536,8 @@ const NFTPlaceBid = ({
                               return true;
                             } else if (transferringNFT) {
                               return true;
-                            } else if (erc721) {
-                              return false;
+                            } else if (isOrderCancelled) {
+                              return true;
                             } else {
                               return buy.buttonDisable;
                             }
@@ -541,6 +567,8 @@ const NFTPlaceBid = ({
                                     />
                                   </>
                                 );
+                              } else if (isOrderCancelled) {
+                                return "Order Cancelled";
                               } else {
                                 return buy.buttonName;
                               }
@@ -565,6 +593,8 @@ const NFTPlaceBid = ({
                                     />
                                   </>
                                 );
+                              } else if (isOrderCancelled) {
+                                return "Order Cancelled";
                               } else if (buyQuantity > 0) {
                                 return buy.buttonName;
                               } else {

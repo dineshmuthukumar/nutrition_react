@@ -81,18 +81,17 @@ const NFTOrderBaseDetails = ({
     <>
       <ul className="bredcrumb-link">
         <li>
-          <a href="#" onClick={() => history.push(`/details/${slug}`)}>
+          <span onClick={() => history.push(`/details/${slug}`)}>
             NFT <VscChevronRight className="icon" />
-          </a>
+          </span>
         </li>
         <li>
-          <a
-            href="#"
+          <span
             onClick={() => history.push(`/order/details/${slug}/${orderSlug}`)}
           >
             Order Detail
             <VscChevronRight className="icon" />
-          </a>
+          </span>
         </li>
         {/* <li><a href="javascript:void(0);">Level 3 link<VscChevronRight className="icon" /></a></li>
         <li><a href="javascript:void(0);">Level 4 link<VscChevronRight className="icon" /></a></li> */}
@@ -160,7 +159,10 @@ const NFTOrderBaseDetails = ({
       </p>
 
       <div className="bottom-content">
-        {acceptBidConfirm ? (
+        {!transferringNFT &&
+        !soldOut &&
+        !isOrderCancelled &&
+        acceptBidConfirm ? (
           <>
             <div className={`assign-card`}>
               <div className="first-half">
@@ -197,11 +199,15 @@ const NFTOrderBaseDetails = ({
               <BidValue
                 title="Artist fee"
                 value={`${parseFloat(nft.royalties)} %`}
+                toolTip={"The royalty paid to the artist or the inspiration."}
               />
 
               <BidValue
                 title="Service fee"
                 value={`${parseFloat(nft.service_fee)} %`}
+                toolTip={
+                  "The service fee includes gas fee and the platform fee."
+                }
               />
             </div>
             <hr className="custom-divider" />
@@ -299,6 +305,7 @@ const NFTOrderBaseDetails = ({
                   name={owners[0].user_name}
                   userSlug={owners[0].slug}
                   seller={true}
+                  owner={owners[0]}
                   isEnd
                 />
               )}
@@ -348,6 +355,7 @@ const NFTOrderBaseDetails = ({
             userTotalBuys={userTotalBuys}
             soldOut={soldOut}
             transferringNFT={transferringNFT}
+            isOrderCancelled={isOrderCancelled}
           />
           <NFTPlaceBuy
             nft={nft}
@@ -362,6 +370,7 @@ const NFTOrderBaseDetails = ({
             userTotalBuys={userTotalBuys}
             soldOut={soldOut}
             transferringNFT={transferringNFT}
+            isOrderCancelled={isOrderCancelled}
           />
 
           <NFTCancelTheSale
