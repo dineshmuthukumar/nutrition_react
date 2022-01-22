@@ -50,12 +50,16 @@ const BidHistory = ({
   const { user } = useSelector((state) => state.user.data);
 
   useEffect(() => {
-    if (orderSlug) {
+    if (orderSlug && isOrderOnSale && isBid) {
       setKey("bid-history");
     } else {
       setKey("transaction-history");
     }
-  }, []);
+  }, [orderSlug, isOrderOnSale]);
+
+  useEffect(() => {
+    setAcceptBidConfirm(false);
+  }, [histories]);
 
   const fetchHistory = async (pageNo) => {
     try {
@@ -125,37 +129,37 @@ const BidHistory = ({
         <div className="bid-history if_bid_empty_cell">
           <HistoryHeader nftOwner={nftOwner} />
 
-          <div className="bid-history-title-content">
-            <div className="bid-history-title">
-              <ul className="nav-btn-grp">
-                {isBid && isOrderOnSale && (
-                  <li>
-                    <a
-                      href="javascript:void(0)"
-                      className={`${key === "bid-history" ? "active" : ""}`}
-                      onClick={() => setKey("bid-history")}
-                    >
-                      Bid History
-                    </a>
-                  </li>
-                )}
-                {transactionHistory.length > 0 && (
-                  <li>
-                    <a
-                      href="javascript:void(0)"
-                      className={`${
-                        key === "transaction-history" ? "active" : ""
-                      }`}
-                      onClick={() => setKey("transaction-history")}
-                    >
-                      Transaction History
-                    </a>
-                  </li>
-                )}
-              </ul>
+          {(transactionHistory.length > 0 || (isBid && isOrderOnSale)) && (
+            <div className="bid-history-title-content">
+              <div className="bid-history-title">
+                <ul className="nav-btn-grp">
+                  {isBid && isOrderOnSale && (
+                    <li>
+                      <span
+                        className={`${key === "bid-history" ? "active" : ""}`}
+                        onClick={() => setKey("bid-history")}
+                      >
+                        Bid History
+                      </span>
+                    </li>
+                  )}
+                  {transactionHistory.length > 0 && (
+                    <li>
+                      <span
+                        className={`${
+                          key === "transaction-history" ? "active" : ""
+                        }`}
+                        onClick={() => setKey("transaction-history")}
+                      >
+                        Transaction History
+                      </span>
+                    </li>
+                  )}
+                </ul>
+              </div>
+              <div className="bid-history-filter"></div>
             </div>
-            <div className="bid-history-filter"></div>
-          </div>
+          )}
 
           {(() => {
             if (key === "bid-history") {
@@ -216,6 +220,7 @@ const BidHistory = ({
                     {transactionHistory.map((history, i) => (
                       <TransactionCard
                         key={`transaction-history${i}`}
+                        nft={nft}
                         history={history}
                       />
                     ))}

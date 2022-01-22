@@ -86,25 +86,23 @@ const OwnerList = ({
           <div className="bid-history-title">
             <ul className="nav-btn-grp">
               <li>
-                <a
-                  href="javascript:void(0)"
+                <span
                   className={`${key === "owner-list" ? "active" : ""}`}
                   onClick={() => setKey("owner-list")}
                 >
-                  List of Owners
-                </a>
+                  List of Owners ({totalCount})
+                </span>
               </li>
               {transactionHistory.length > 0 && (
                 <li>
-                  <a
-                    href="javascript:void(0)"
+                  <span
                     className={`${
                       key === "transaction-history" ? "active" : ""
                     }`}
                     onClick={() => setKey("transaction-history")}
                   >
                     Transaction History
-                  </a>
+                  </span>
                 </li>
               )}
             </ul>
@@ -151,6 +149,7 @@ const OwnerList = ({
                     {transactionHistory.map((history, i) => (
                       <TransactionCard
                         key={`transaction-history${i}`}
+                        nft={nft}
                         history={history}
                       />
                     ))}
@@ -178,7 +177,9 @@ const OwnerList = ({
         <Modal.Header className="bg-dark p-0">
           <Modal.Title className="flex-fill">
             <div className="modal-bid-history-title-content">
-              <div className="modal-bid-history-title">List of Owners</div>
+              <div className="modal-bid-history-title">
+                List of Owners ({totalCount})
+              </div>
               <div className="modal-bid-history-filter">
                 <BiX
                   role="button"

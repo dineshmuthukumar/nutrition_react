@@ -91,8 +91,7 @@ const UserDetailsBlock = () => {
                       {/* Place tab and filter here */}
                       <ul className="nav user-block-nav">
                         <li className="nav-item">
-                          <a
-                            href="#"
+                          <span
                             className={`nav-link ${
                               key === "owned" ? "active" : ""
                             }`}
@@ -101,11 +100,10 @@ const UserDetailsBlock = () => {
                             onClick={() => setKey("owned")}
                           >
                             Owned ({ownedCount})
-                          </a>
+                          </span>
                         </li>
                         <li className="nav-item">
-                          <a
-                            href="#"
+                          <span
                             className={`nav-link ${
                               key === "liked" ? "active" : ""
                             }`}
@@ -114,7 +112,7 @@ const UserDetailsBlock = () => {
                             onClick={() => setKey("liked")}
                           >
                             Favorites ({favedCount})
-                          </a>
+                          </span>
                         </li>
                       </ul>
                     </div>
@@ -155,7 +153,7 @@ const UserDetailsBlock = () => {
                             </>
                           ) : (
                             <div className="col-12 text-center">
-                              <h3 className="my-3">No Data Found!</h3>
+                              <h3 className="my-3">No Owned NFTs Yet!</h3>
                             </div>
                           )
                         ) : (
@@ -193,7 +191,7 @@ const UserDetailsBlock = () => {
                             </>
                           ) : (
                             <div className="col-12 text-center">
-                              <h3 className="my-3">No Data Found!</h3>
+                              <h3 className="my-3">No Favorites Yet!</h3>
                             </div>
                           )
                         ) : (

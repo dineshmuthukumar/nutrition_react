@@ -159,7 +159,10 @@ const NFTOrderBaseDetails = ({
       </p>
 
       <div className="bottom-content">
-        {acceptBidConfirm ? (
+        {!transferringNFT &&
+        !soldOut &&
+        !isOrderCancelled &&
+        acceptBidConfirm ? (
           <>
             <div className={`assign-card`}>
               <div className="first-half">
@@ -196,11 +199,15 @@ const NFTOrderBaseDetails = ({
               <BidValue
                 title="Artist fee"
                 value={`${parseFloat(nft.royalties)} %`}
+                toolTip={"The royalty paid to the artist or the inspiration."}
               />
 
               <BidValue
                 title="Service fee"
                 value={`${parseFloat(nft.service_fee)} %`}
+                toolTip={
+                  "The service fee includes gas fee and the platform fee."
+                }
               />
             </div>
             <hr className="custom-divider" />

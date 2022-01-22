@@ -113,14 +113,23 @@ const Banner = ({ list = [] }) => {
                   style={{ overflow: "hidden" }}
                   className="cat-block"
                   role={"button"}
-                  onClick={() => handleNavigate("Chakra Artpunks Loot Box")}
+                  onClick={() => handleNavigate("Chakra Artpunks")}
                 >
                   <h5 className="cat-title big-box">Chakra Artpunks</h5>
-                  <img
+                  {/* <img
                     src={chakra_artpunks}
                     className="first-image"
                     style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
-                  />
+                  /> */}
+                  <video
+                    loop
+                    muted
+                    autoPlay
+                    playsInline
+                    src="https://cdn.beyondlife.club/media/video/Artpunk_15.mp4"
+                    className="first-image"
+                    style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
+                  ></video>
                 </div>
                 <div
                   style={{ overflow: "hidden" }}
@@ -138,23 +147,10 @@ const Banner = ({ list = [] }) => {
                     muted
                     autoPlay
                     playsInline
-                    src="https://cdn.beyondlife.club/media/video/2_g1GlPdEH8Zyz5jK0.mp4"
+                    src="https://cdn.beyondlife.club/media/video/LivingComicBook_2.mp4"
                     className="first-image"
                     style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
                   ></video>
-                </div>
-                <div
-                  style={{ overflow: "hidden" }}
-                  className="cat-block"
-                  role={"button"}
-                  onClick={() => handleNavigate("LOOT BOX")}
-                >
-                  <h5 className="cat-title big-box">Digital Posters</h5>
-                  <img
-                    src={digital_poster}
-                    className="first-image"
-                    style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
-                  />
                 </div>
               </Carousel>
             </div>
@@ -171,7 +167,7 @@ const Banner = ({ list = [] }) => {
                   }}
                   onClick={() => handleNavigate("BigB Punks")}
                 >
-                  <h5 className="cat-title medium-box">BigB Punks </h5>
+                  <h5 className="cat-title medium-box">BigB Punks</h5>
                   {(() => {
                     if (list[5]?.asset_type?.includes("video")) {
                       return (
@@ -213,7 +209,7 @@ const Banner = ({ list = [] }) => {
                   }}
                   onClick={() => handleNavigate("Physical Posters")}
                 >
-                  <h5 className="cat-title"> Autographed Physical Posters</h5>
+                  <h5 className="cat-title">Physical Posters</h5>
                   <video
                     loop
                     muted
@@ -259,7 +255,7 @@ const Banner = ({ list = [] }) => {
                   }}
                   onClick={() => handleNavigate("Seven Chakra’s Powers")}
                 >
-                  <h5 className="cat-title">Seven Chakra's Powers</h5>
+                  <h5 className="cat-title">Seven Chakra’s Powers</h5>
                   <video
                     loop
                     muted
@@ -302,11 +298,20 @@ const Banner = ({ list = [] }) => {
                   onClick={() => handleNavigate("The Jumbo Juke Box")}
                 >
                   <h5 className="cat-title">The Jumbo Juke Box</h5>
-                  <img
+                  {/* <img
                     src={comic_cover_new}
                     className="first-image"
                     style={{ height: "100%" }}
-                  />
+                  /> */}
+                  <video
+                    loop
+                    muted
+                    autoPlay
+                    playsInline
+                    src="https://cdn.beyondlife.club/media/video/Juke_25_2.mp4"
+                    className="first-image"
+                    style={{ height: "100%" }}
+                  ></video>
                 </div>
               </div>
             </div>

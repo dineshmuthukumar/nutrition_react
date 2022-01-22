@@ -1151,6 +1151,9 @@ input::-webkit-inner-spin-button {
     display: flex;
     justify-content: center;
     align-items: center;
+    @media screen and (max-width: 560px) {
+      display: none;
+    }
   }
 
   .user-image {
@@ -1464,9 +1467,9 @@ input::-webkit-inner-spin-button {
   }
 }
 @media screen and (max-width: 560px) {
-  .user-name {
-    display: none !important;
-  }
+  // .user-name {
+  //   display: none !important;
+  // }
   .dropdown-menu.show.dropdown-menu-end {
     .header-user-details {
       display: block;
@@ -1518,8 +1521,7 @@ input::-webkit-inner-spin-button {
   }
 }
 @media screen and (max-width: 767px) {
-  #drop_outer,
-  .user-name {
+  #drop_outer {
     display: none;
   }
   #drop_inner {

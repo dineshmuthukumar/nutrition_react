@@ -1,5 +1,6 @@
 import React from "react";
 import dayjs from "dayjs";
+import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import BidName from "./bid-name";
@@ -8,7 +9,8 @@ import { currencyFormat } from "../../utils/common";
 
 import "./style.scss";
 
-const TransactionCard = ({ history, isEnd = false }) => {
+const TransactionCard = ({ nft, history, isEnd = false }) => {
+  const routeHistory = useHistory();
   const { user } = useSelector((state) => state.user.data);
 
   return (
@@ -19,17 +21,35 @@ const TransactionCard = ({ history, isEnd = false }) => {
         </div>
       ) : (
         <>
-          <div className="first-half">
+          <div className="first-half full-width">
             <div className="bid-histoy-details">
               <div className="time text-secondary">
                 Transfered on :{" "}
                 {dayjs(history.transfered_at).format("MMM D, YYYY hh:mm A")}
               </div>
               <div className="bid-owner">
-                <span className="transaction-value">{history.buyer_name}</span>{" "}
-                bought this NFT from{" "}
-                <span className="transaction-value">{history.seller_name}</span>{" "}
-                for{" "}
+                <span
+                  className="transaction-value text-secondary"
+                  role={"button"}
+                  onClick={() =>
+                    routeHistory.push(`/seller/${history.buyer_slug}/details`)
+                  }
+                >
+                  {history.buyer_name}
+                </span>
+                &nbsp;has bought{" "}
+                {nft?.nft_type === "erc721" ? "this" : history.quantity} NFT
+                from&nbsp;
+                <span
+                  className="transaction-value text-secondary"
+                  role={"button"}
+                  onClick={() =>
+                    routeHistory.push(`/seller/${history.seller_slug}/details`)
+                  }
+                >
+                  {history.seller_name}
+                </span>
+                &nbsp;for&nbsp;
                 <span className="transaction-value">
                   {currencyFormat(history.total_amount, "USD")}
                 </span>

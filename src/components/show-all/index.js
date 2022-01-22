@@ -328,9 +328,7 @@ const ShowAll = ({ categories, query }) => {
         onClick(e);
       }}
     >
-      {filter.status.find((obj) => obj.checked === true)?.name
-        ? filter.status.find((obj) => obj.checked === true).name
-        : "Sale Status"}{" "}
+      Sale Status
       <BiCaretDown />
     </div>
   ));
@@ -561,7 +559,7 @@ const ShowAll = ({ categories, query }) => {
     }
   };
 
-  const handleSaleStatusNFT = (input) => {
+  const handleSaleStatusNFT = (input, remove = false) => {
     const category_exist = query.get("category")
       ? query.get("category").split(",")
       : [];
@@ -569,7 +567,7 @@ const ShowAll = ({ categories, query }) => {
     const nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
     const sort_exist = query.get("sort");
     const search_exist = query.get("search");
-    const sale_status = input.value;
+    const sale_status = remove ? null : input.value;
 
     let query_string = "";
     if (category_exist.length > 0) {
@@ -753,6 +751,7 @@ const ShowAll = ({ categories, query }) => {
                         ))}
                       </Dropdown.Menu>
                     </Dropdown>
+
                     <Dropdown>
                       <Dropdown.Toggle
                         align="start"
@@ -810,9 +809,9 @@ const ShowAll = ({ categories, query }) => {
                     type="text"
                     className="search-box-add"
                     value={search}
+                    placeholder="Search here"
                     onKeyPress={handleKeyPressEvent}
                     onChange={(e) => setSearch(e.target.value)}
-                    placeholder="Search here"
                   />{" "}
                   <span
                     role="button"
@@ -865,6 +864,21 @@ const ShowAll = ({ categories, query }) => {
                           role="button"
                           size={20}
                           onClick={() => handleNFTCheck(obj)}
+                        />
+                      </div>
+                    </div>
+                  ))}
+
+                {filter.status
+                  .filter((xx) => xx.checked === true)
+                  .map((obj, i) => (
+                    <div key={`filter-pill${i}`} className="filter-pill-button">
+                      <div className="first">{obj.name}</div>
+                      <div className="last">
+                        <BiX
+                          role="button"
+                          size={20}
+                          onClick={() => handleSaleStatusNFT(obj, true)}
                         />
                       </div>
                     </div>

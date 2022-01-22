@@ -58,22 +58,45 @@ const NFTPlaceBid = ({
   useEffect(() => {
     setNoBalance(false);
     if (erc721) {
-      setBuyAmount(orderDetails.buy_amount);
+      if (parseFloat(user?.balance) < parseFloat(orderDetails?.buy_amount)) {
+        setBuy({
+          ...buy,
+          amountClass: "text-dark",
+          progressError: "error-progress",
+          buttonDisable: true,
+          buttonName: "Buy NFTs",
+        });
+        setError("error-balance-float");
+        setNoBalance(true);
+      } else {
+        setBuy({
+          amountClass: "",
+          progressError: "",
+          buttonDisable: false,
+          processClass: "",
+          buttonName: "Buy NFTs",
+          isError: false,
+          errorTitle: "",
+          errorDescription: "",
+        });
+        setError("");
+      }
+      setBuyAmount(orderDetails?.buy_amount);
     } else {
       setBuyAmount(0);
+      setBuy({
+        amountClass: "",
+        progressError: "",
+        buttonDisable: true,
+        processClass: "",
+        buttonName: "Buy NFTs",
+        isError: false,
+        errorTitle: "",
+        errorDescription: "",
+      });
+      setError("");
     }
     setBuyQuantity("");
-    setError("");
-    setBuy({
-      amountClass: "",
-      progressError: "",
-      buttonDisable: true,
-      processClass: "",
-      buttonName: "Buy NFTs",
-      isError: false,
-      errorTitle: "",
-      errorDescription: "",
-    });
   }, []);
 
   const handleBuy = async () => {
@@ -161,7 +184,7 @@ const NFTPlaceBid = ({
       ) {
         let amount = e.target.value * parseFloat(orderDetails.buy_amount);
         if (user) {
-          if (parseFloat(user.balance) <= parseFloat(amount)) {
+          if (parseFloat(user.balance) < parseFloat(amount)) {
             setBuyQuantity(e.target.value);
             setBuyAmount(amount);
             setBuy({
@@ -515,8 +538,6 @@ const NFTPlaceBid = ({
                               return true;
                             } else if (isOrderCancelled) {
                               return true;
-                            } else if (erc721) {
-                              return false;
                             } else {
                               return buy.buttonDisable;
                             }

@@ -6,6 +6,9 @@
       width: 85% !important;
       max-height: 100%;
       object-fit: cover;
+      @media screen and (max-width: 460px) {
+        width: 100% !important;
+      }
     }
 
     .artist-details-content {

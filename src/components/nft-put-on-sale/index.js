@@ -868,8 +868,33 @@ const NFTPutOnSale = ({
                                   <span className="key ">
                                     Your final amount will be calculated after
                                     deducting {parseFloat(nft.royalties)}%
-                                    artist fees and{" "}
-                                    {parseFloat(nft.service_fee)}% service fees
+                                    artist fee
+                                    <ToolTip
+                                      icon={
+                                        <BsFillQuestionCircleFill
+                                          size={16}
+                                          className="ms-2 check-icon"
+                                        />
+                                      }
+                                      content={
+                                        "The royalty paid to the artist or the inspiration."
+                                      }
+                                      placement="right"
+                                    />{" "}
+                                    and {parseFloat(nft.service_fee)}% service
+                                    fee
+                                    <ToolTip
+                                      icon={
+                                        <BsFillQuestionCircleFill
+                                          size={16}
+                                          className="ms-2 check-icon"
+                                        />
+                                      }
+                                      content={
+                                        "The service fee includes gas fee and the platform fee."
+                                      }
+                                      placement="right"
+                                    />{" "}
                                     based on your final accepted bid amount.
                                   </span>
                                 </li>
@@ -1010,7 +1035,21 @@ const NFTPutOnSale = ({
                                 </span>
                               </li>
                               <li>
-                                <span className="key">Artist Fee</span>
+                                <span className="key">
+                                  Artist Fee{" "}
+                                  <ToolTip
+                                    icon={
+                                      <BsFillQuestionCircleFill
+                                        size={16}
+                                        className="ms-2 check-icon"
+                                      />
+                                    }
+                                    content={
+                                      "The royalty paid to the artist or the inspiration."
+                                    }
+                                    placement="right"
+                                  />
+                                </span>
                                 <span className="value">
                                   - {parseFloat(nft.royalties)}%
                                 </span>

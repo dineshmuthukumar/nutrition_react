@@ -25,6 +25,7 @@ import {
   bidDetail,
   buyDetail,
   cancelSaleDetail,
+  orderPurchaseDetails,
   ownerDetails,
   pageView,
   totalFav,
@@ -149,8 +150,6 @@ const OrderDetails = () => {
     });
 
     acceptBid(slug, orderSlug, (data) => {
-      console.log(data);
-      console.log(data.accepted_bid);
       setAvailableQty(data.available_quantity);
       if (data.purchase_details) {
         setPurchaseList((purchaseList) => [
@@ -164,6 +163,10 @@ const OrderDetails = () => {
       if (data.order_completed) {
         setSoldOut(true);
       }
+    });
+
+    orderPurchaseDetails(slug, orderSlug, (data) => {
+      console.log(data);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
