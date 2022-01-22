@@ -57,6 +57,10 @@ const BidHistory = ({
     }
   }, []);
 
+  useEffect(() => {
+    setAcceptBidConfirm(false);
+  }, [histories]);
+
   const fetchHistory = async (pageNo) => {
     try {
       let result = await orderBidHistory({

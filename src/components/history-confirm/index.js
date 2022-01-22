@@ -3,12 +3,13 @@ import { useSelector } from "react-redux";
 import userImg from "../../images/user_1.jpg";
 import UserImage from "../../images/amitabh.png";
 import { FaThumbsUp } from "react-icons/fa";
+import { BsFillQuestionCircleFill } from "react-icons/bs";
+
+import ToolTip from "../tooltip/index";
 
 import { currencyFormat } from "../../utils/common";
 import { acceptBidApi } from "../../api/methods";
 import "./style.scss";
-import ToolTip from "../tooltip/index";
-import { BsFillQuestionCircleFill } from "react-icons/bs";
 
 const HistoryConfirm = ({
   nft,
@@ -100,13 +101,27 @@ const HistoryConfirm = ({
           <div className="bh-user-sold-details">
             <div className="sold-info">
               <div className="price">
-                <span className="key">Bid amount</span>
+                <span className="key">Highest Bid Price</span>
                 <span className="value">
                   {currencyFormat(acceptBidDetail.bid_amount, "USD")}
                 </span>
               </div>
               <div className="price">
-                <span className="key">Artist fee</span>
+                <span className="key">
+                  Artist fee{" "}
+                  <ToolTip
+                    icon={
+                      <BsFillQuestionCircleFill
+                        size={16}
+                        className="ms-2 check-icon"
+                      />
+                    }
+                    content={
+                      "The royalty paid to the artist or the inspiration."
+                    }
+                    placement="right"
+                  />
+                </span>
                 <span className="value">{parseFloat(nft.royalties)}%</span>
               </div>
               <div className="price">
@@ -129,7 +144,7 @@ const HistoryConfirm = ({
               </div>
             </div>
             <div className="total">
-              <span className="key">Total Amount</span>
+              <span className="key">You will Get</span>
               <span className="value">
                 {currencyFormat(
                   parseFloat(acceptBidDetail.bid_amount) -

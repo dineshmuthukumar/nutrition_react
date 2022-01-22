@@ -60,11 +60,14 @@ const UserBanner = () => {
             }
           />
           <div>
-            <h6 className="user-info-subname">
-              {user?.slug === sellerDetail?.users[0]?.slug
-                ? `@${user?.first_name}${user?.last_name}`
-                : sellerDetail?.users[0]?.user_name}
-            </h6>
+            {sellerDetail?.users[0]?.slug && (
+              <h6 className="user-info-subname">
+                {user?.slug === sellerDetail?.users[0]?.slug
+                  ? `@${user?.first_name}${user?.last_name}`
+                  : sellerDetail?.users[0]?.user_name}
+              </h6>
+            )}
+
             {/* <h4 className="user-info-name">James</h4> */}
           </div>
           {/* <ul className="user-info-list">
