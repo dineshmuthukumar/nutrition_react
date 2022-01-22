@@ -10,7 +10,7 @@ import { nftCategoryListApi } from "../../api/methods";
 import ExploreTitle from "./explore-title";
 import sample from "../../images/sampleNFT.jpg";
 import "./style.scss";
-import { BiCaretDown, BiX } from "react-icons/bi";
+import { BiCaretDown, BiX, BiSearch } from "react-icons/bi";
 import useQuery from "../../hook/useQuery";
 import { useHistory } from "react-router-dom";
 
@@ -408,6 +408,23 @@ const Explore = ({ categoryDetail }) => {
                     </Dropdown>
                   </div>
                 </span>
+                <div className="filt-flex-search">
+                  <input
+                    type="text"
+                    className="search-box-add"
+                    // value={search}
+                    // onKeyPress={handleKeyPressEvent}
+                    // onChange={(e) => setSearch(e.target.value)}
+                    placeholder="Search here"
+                  />{" "}
+                  <span
+                    role="button"
+                    className="search-button"
+                    // onClick={handleTextSearch}
+                  >
+                    <BiSearch size={15} />
+                  </span>
+                </div>
               </div>
 
               <div className="mt-4 mb-4 d-flex flex-wrap">

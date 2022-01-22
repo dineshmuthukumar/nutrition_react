@@ -1151,6 +1151,9 @@ input::-webkit-inner-spin-button {
     display: flex;
     justify-content: center;
     align-items: center;
+    @media screen and (max-width: 560px) {
+      display: none;
+    }
   }
 
   .user-image {
