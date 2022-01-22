@@ -113,7 +113,7 @@ const Banner = ({ list = [] }) => {
                   style={{ overflow: "hidden" }}
                   className="cat-block"
                   role={"button"}
-                  onClick={() => handleNavigate("Chakra Artpunks Loot Box")}
+                  onClick={() => handleNavigate("Chakra Artpunks")}
                 >
                   <h5 className="cat-title big-box">Chakra Artpunks</h5>
                   {/* <img
@@ -152,19 +152,6 @@ const Banner = ({ list = [] }) => {
                     style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
                   ></video>
                 </div>
-                <div
-                  style={{ overflow: "hidden" }}
-                  className="cat-block"
-                  role={"button"}
-                  onClick={() => handleNavigate("LOOT BOX")}
-                >
-                  <h5 className="cat-title big-box">Digital Posters</h5>
-                  <img
-                    src={digital_poster}
-                    className="first-image"
-                    style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
-                  />
-                </div>
               </Carousel>
             </div>
           </div>
@@ -180,7 +167,7 @@ const Banner = ({ list = [] }) => {
                   }}
                   onClick={() => handleNavigate("BigB Punks")}
                 >
-                  <h5 className="cat-title medium-box">BigB Punks </h5>
+                  <h5 className="cat-title medium-box">BigB Punks</h5>
                   {(() => {
                     if (list[5]?.asset_type?.includes("video")) {
                       return (
@@ -222,7 +209,7 @@ const Banner = ({ list = [] }) => {
                   }}
                   onClick={() => handleNavigate("Physical Posters")}
                 >
-                  <h5 className="cat-title"> Autographed Physical Posters</h5>
+                  <h5 className="cat-title">Physical Posters</h5>
                   <video
                     loop
                     muted
@@ -266,9 +253,9 @@ const Banner = ({ list = [] }) => {
                   style={{
                     height: "calc(((((100vw - (7rem + 6rem))/2)/3) ) - 1.5rem)",
                   }}
-                  onClick={() => handleNavigate("Seven Chakra's Powers")}
+                  onClick={() => handleNavigate("Seven Chakra’s Powers")}
                 >
-                  <h5 className="cat-title">Seven Chakra's Powers Video</h5>
+                  <h5 className="cat-title">Seven Chakra’s Powers</h5>
                   <video
                     loop
                     muted
@@ -310,7 +297,7 @@ const Banner = ({ list = [] }) => {
                   }}
                   onClick={() => handleNavigate("The Jumbo Juke Box")}
                 >
-                  <h5 className="cat-title">Chakra Comic</h5>
+                  <h5 className="cat-title">The Jumbo Juke Box</h5>
                   {/* <img
                     src={comic_cover_new}
                     className="first-image"

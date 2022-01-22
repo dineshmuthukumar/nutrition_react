@@ -12,6 +12,10 @@
     display: flex;
     align-items: center;
 
+    a {
+      text-decoration: none;
+    }
+
     .second {
       font-size: 1rem;
       font-family: $neue-helveticabold;

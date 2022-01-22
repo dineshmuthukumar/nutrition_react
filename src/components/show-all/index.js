@@ -751,6 +751,7 @@ const ShowAll = ({ categories, query }) => {
                         ))}
                       </Dropdown.Menu>
                     </Dropdown>
+
                     <Dropdown>
                       <Dropdown.Toggle
                         align="start"
@@ -808,9 +809,9 @@ const ShowAll = ({ categories, query }) => {
                     type="text"
                     className="search-box-add"
                     value={search}
+                    placeholder="Search here"
                     onKeyPress={handleKeyPressEvent}
                     onChange={(e) => setSearch(e.target.value)}
-                    placeholder="Search here"
                   />{" "}
                   <span
                     role="button"
