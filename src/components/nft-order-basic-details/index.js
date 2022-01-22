@@ -199,11 +199,15 @@ const NFTOrderBaseDetails = ({
               <BidValue
                 title="Artist fee"
                 value={`${parseFloat(nft.royalties)} %`}
+                toolTip={"The royalty paid to the artist or the inspiration."}
               />
 
               <BidValue
                 title="Service fee"
                 value={`${parseFloat(nft.service_fee)} %`}
+                toolTip={
+                  "The service fee includes gas fee and the platform fee."
+                }
               />
             </div>
             <hr className="custom-divider" />
