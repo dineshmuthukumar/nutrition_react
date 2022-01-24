@@ -88,9 +88,13 @@ function NFTCounter({
         custom_interval = "";
         break;
     }
+    const x = Math.floor(Math.random() * 100 + 1);
 
     timerComponents.push(
-      <span className={`counter-time ${timeClass}`}>
+      <span
+        className={`counter-time ${timeClass}`}
+        key={`${custom_interval}${x}`}
+      >
         {timeLeft[interval]}
         <span
           className={`counter-interval interval-gap ${intervalClass} ${intervalGapClass}`}
