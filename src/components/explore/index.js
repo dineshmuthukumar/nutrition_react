@@ -466,7 +466,7 @@ const Explore = ({ categoryDetail }) => {
                       </Dropdown.Menu>
                     </Dropdown>
                   </div>
-                  <div>
+                  <div className="filt-flex-box">
                     <Dropdown>
                       <Dropdown.Toggle
                         align="start"

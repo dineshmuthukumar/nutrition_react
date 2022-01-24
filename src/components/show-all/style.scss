@@ -53,6 +53,10 @@ button.load_more {
     position: relative;
     margin-top: -2.5rem !important;
   }
+
+  @media screen and (max-width: 425px) {
+    margin-top: 0.5rem !important;
+  }
   .filter-box {
     @media screen and (max-width: 767px) {
       margin-top: 0.5rem;
@@ -159,6 +163,17 @@ button.load_more {
 }
 .filt-flex-box {
   display: flex;
+  @media screen and (max-width: 425px) {
+    width: 100%;
+    .dropdown {
+      width: 100%;
+      .filter-drop-sort-btn {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+  }
 }
 
 .filt-flex-search {
