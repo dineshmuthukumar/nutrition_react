@@ -39,17 +39,7 @@ const HotCollections = () => {
         <div className="container-fluid">
           <div className="row">
             <div className="col-sm-12">
-              <h1 className="sec-heading">
-                Hot Collections
-                {/* <div className="carousel-btn-box">
-                  <a className="carousel-btn">
-                    <VscChevronLeft />
-                  </a>
-                  <a className="carousel-btn">
-                    <VscChevronRight />
-                  </a>
-                </div> */}
-              </h1>
+              <h1 className="sec-heading">Hot Collections</h1>
 
               {!loading ? (
                 <div className="row">
