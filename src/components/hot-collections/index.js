@@ -47,7 +47,10 @@ const HotCollections = () => {
                     <NFTMore nftList={list} hideTitle />
                   ) : (
                     <div className="col-12 text-center">
-                      <h3 className="my-3">No Data Found!</h3>
+                      <h3 className="my-3">
+                        You'll Soon See A Collection Of NFTs That Buyers Like
+                        You Find To Be The Best!
+                      </h3>
                     </div>
                   )}
 
