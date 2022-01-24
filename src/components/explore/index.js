@@ -64,12 +64,12 @@ const Explore = ({ categoryDetail }) => {
         checked: false,
       },
       {
-        name: "Price: High to Low",
+        name: "Price - High to Low",
         value: "price_desc",
         checked: false,
       },
       {
-        name: "Price: Low to High",
+        name: "Price - Low to High",
         value: "price",
         checked: false,
       },
@@ -229,8 +229,8 @@ const Explore = ({ categoryDetail }) => {
       }}
     >
       {filter.sort.find((obj) => obj.checked === true)?.name
-        ? filter.sort.find((obj) => obj.checked === true).name
-        : "Sort By"}{" "}
+        ? `Sort By: ${filter.sort.find((obj) => obj.checked === true).name}`
+        : "Sort By"}
       <BiCaretDown />
     </div>
   ));
