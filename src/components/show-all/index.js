@@ -679,7 +679,7 @@ const ShowAll = ({ categories, query }) => {
                 <span className="me-4 mt-2 text-nowrap">Listed NFTs</span>
                 <span className="d-flex justify-content-between mt-2 w-100 filter-blocks">
                   <div className="d-flex flex-wrap filter-box">
-                    <Dropdown className="me-2">
+                    <Dropdown>
                       <Dropdown.Toggle
                         align="start"
                         drop="start"
@@ -703,7 +703,7 @@ const ShowAll = ({ categories, query }) => {
                         ))}
                       </Dropdown.Menu>
                     </Dropdown>
-                    <Dropdown className="me-2">
+                    <Dropdown>
                       <Dropdown.Toggle
                         align="start"
                         drop="start"
@@ -727,7 +727,7 @@ const ShowAll = ({ categories, query }) => {
                         ))}
                       </Dropdown.Menu>
                     </Dropdown>
-                    <Dropdown className="me-2">
+                    <Dropdown>
                       <Dropdown.Toggle
                         align="start"
                         drop="start"
