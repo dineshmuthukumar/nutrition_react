@@ -94,7 +94,7 @@ const ShowAll = ({ categories, query }) => {
     categories.forEach((category) => {
       const categoryDetail = {
         name: category.name,
-        value: category.name,
+        value: category.slug,
         checked: category_filters.includes(category.name) ? true : false,
       };
       categoryList.push(categoryDetail);
