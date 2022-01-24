@@ -44,6 +44,8 @@ const Details = () => {
   const isOwner = _.has(nft, "owner_details");
 
   useEffect(() => {
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+
     nftDetail(slug);
     nftOwners();
     nftTransaction();

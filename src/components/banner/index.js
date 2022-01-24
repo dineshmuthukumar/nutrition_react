@@ -23,13 +23,66 @@ const Banner = ({ list = [] }) => {
 
     history.push(`/explore/category/${data.slug}`);
   };
+
+  const static_url = [
+    {
+      name: "Chakra Artpunks",
+      type: "video",
+      url: "https://cdn.beyondlife.club/media/video/Artpunk_15.mp4",
+    },
+    {
+      name: "Poster Signed Moments",
+      type: "video",
+      url: "https://cdn.beyondlife.club/media/video/sholay.mp4",
+    },
+    {
+      name: "Animated Living Comic Book Cover",
+      type: "video",
+      url: "https://cdn.beyondlife.club/media/video/LivingComicBook_2.mp4",
+    },
+    {
+      name: "Chakra Comic Book Cover",
+      type: "video",
+      url: "https://cdn.beyondlife.club/media/video/Juke_25_2.mp4",
+    },
+    {
+      name: "BigB Punks",
+      type: "image",
+      url: bigb_artpunk,
+    },
+    {
+      name: "Digitised Vintage Posters",
+      type: "video",
+      url: "https://cdn.beyondlife.club/Amitabh_posters.mp4",
+    },
+    {
+      name: "Stan Lee B'day Special",
+      type: "video",
+      url: "https://cdn.beyondlife.club/media/video/preview.mp4",
+    },
+    {
+      name: "Seven Chakra's Powers",
+      type: "video",
+      url: "https://cdn.beyondlife.club/media/video/seven_power_chakra_video.mp4",
+    },
+    {
+      name: "Madhushala",
+      type: "image",
+      url: madhushala_nft,
+    },
+    {
+      name: "Animated Chakra",
+      type: "video",
+      url: "https://cdn.beyondlife.club/chakra_loop.mp4",
+    },
+  ];
   return (
     <>
       <div className="container-fluid mt-4 hero-carousel-mobile">
         <div className="row">
           <div className="col-12">
             <div style={{ height: "50vh" }}>
-              {list.length > 0 && (
+              {/* {list.length > 0 && (
                 <Carousel
                   showThumbs={false}
                   dynamicHeight={true}
@@ -88,6 +141,59 @@ const Banner = ({ list = [] }) => {
                     </div>
                   ))}
                 </Carousel>
+              )} */}
+
+              {static_url.length > 0 && (
+                <Carousel
+                  showThumbs={false}
+                  dynamicHeight={true}
+                  useKeyboardArrows
+                  autoPlay
+                  interval={4000}
+                  showArrows={false}
+                  showStatus={false}
+                  stopOnHover
+                  infiniteLoop={true}
+                  swipeable={true}
+                >
+                  {static_url.map((category, i) => (
+                    <div
+                      key={`category-${i}`}
+                      style={{ overflow: "hidden" }}
+                      className="cat-block"
+                    >
+                      {(() => {
+                        if (category.type === "video") {
+                          return (
+                            <>
+                              <video
+                                loop
+                                muted
+                                autoPlay
+                                playsInline
+                                src={category.url}
+                                className="first-image"
+                                style={{ height: "50vh" }}
+                              ></video>
+                              <h5 className="cat-title">{category.name}</h5>
+                            </>
+                          );
+                        } else {
+                          return (
+                            <>
+                              <h5 className="cat-title">{category.name}</h5>
+                              <img
+                                src={category.url}
+                                className="first-image"
+                                style={{ height: "50vh" }}
+                              />
+                            </>
+                          );
+                        }
+                      })()}
+                    </div>
+                  ))}
+                </Carousel>
               )}
             </div>
           </div>
@@ -135,6 +241,23 @@ const Banner = ({ list = [] }) => {
                   style={{ overflow: "hidden" }}
                   className="cat-block"
                   role={"button"}
+                  onClick={() => handleNavigate("Poster Signed Moments")}
+                >
+                  <h5 className="cat-title big-box">Poster Signed Moments</h5>
+                  <video
+                    loop
+                    muted
+                    autoPlay
+                    playsInline
+                    src="https://cdn.beyondlife.club/media/video/sholay.mp4"
+                    className="first-image"
+                    style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
+                  ></video>
+                </div>
+                <div
+                  style={{ overflow: "hidden" }}
+                  className="cat-block"
+                  role={"button"}
                   onClick={() =>
                     handleNavigate("Animated Living Comic Book Cover")
                   }
@@ -148,6 +271,23 @@ const Banner = ({ list = [] }) => {
                     autoPlay
                     playsInline
                     src="https://cdn.beyondlife.club/media/video/LivingComicBook_2.mp4"
+                    className="first-image"
+                    style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
+                  ></video>
+                </div>
+                <div
+                  style={{ overflow: "hidden" }}
+                  className="cat-block"
+                  role={"button"}
+                  onClick={() => handleNavigate("Chakra Comic Book Cover")}
+                >
+                  <h5 className="cat-title big-box">Chakra Comic Book Cover</h5>
+                  <video
+                    loop
+                    muted
+                    autoPlay
+                    playsInline
+                    src="https://cdn.beyondlife.club/media/video/Juke_25_2.mp4"
                     className="first-image"
                     style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
                   ></video>
@@ -207,15 +347,15 @@ const Banner = ({ list = [] }) => {
                   style={{
                     height: "calc(((((100vw - (7rem + 6rem))/2)/3)))",
                   }}
-                  onClick={() => handleNavigate("Physical Posters")}
+                  onClick={() => handleNavigate("Digitised Vintage Posters")}
                 >
-                  <h5 className="cat-title">Physical Posters</h5>
+                  <h5 className="cat-title">Digitised Vintage Posters</h5>
                   <video
                     loop
                     muted
                     autoPlay
                     playsInline
-                    src="https://cdn.beyondlife.club/media/video/sholay.mp4"
+                    src="https://cdn.beyondlife.club/Amitabh_posters.mp4"
                     className="first-image"
                     style={{ height: "100%" }}
                   ></video>
@@ -240,7 +380,7 @@ const Banner = ({ list = [] }) => {
                     className="first-image"
                     style={{ height: "100%" }}
                   ></video>
-                </div>{" "}
+                </div>
               </div>
             </div>
           </div>
@@ -253,9 +393,9 @@ const Banner = ({ list = [] }) => {
                   style={{
                     height: "calc(((((100vw - (7rem + 6rem))/2)/3) ) - 1.5rem)",
                   }}
-                  onClick={() => handleNavigate("Seven Chakra’s Powers")}
+                  onClick={() => handleNavigate("Seven Chakra's Powers")}
                 >
-                  <h5 className="cat-title">Seven Chakra’s Powers</h5>
+                  <h5 className="cat-title">Seven Chakra's Powers</h5>
                   <video
                     loop
                     muted
@@ -295,9 +435,9 @@ const Banner = ({ list = [] }) => {
                   style={{
                     height: "calc(((((100vw - (7rem + 6rem))/2)/3)))",
                   }}
-                  onClick={() => handleNavigate("The Jumbo Juke Box")}
+                  onClick={() => handleNavigate("Animated Chakra")}
                 >
-                  <h5 className="cat-title">The Jumbo Juke Box</h5>
+                  <h5 className="cat-title">Animated Chakra</h5>
                   {/* <img
                     src={comic_cover_new}
                     className="first-image"
@@ -308,7 +448,7 @@ const Banner = ({ list = [] }) => {
                     muted
                     autoPlay
                     playsInline
-                    src="https://cdn.beyondlife.club/media/video/Juke_25_2.mp4"
+                    src="https://cdn.beyondlife.club/chakra_loop.mp4"
                     className="first-image"
                     style={{ height: "100%" }}
                   ></video>
