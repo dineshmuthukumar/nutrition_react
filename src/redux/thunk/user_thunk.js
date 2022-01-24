@@ -5,6 +5,7 @@ import { userApi } from "../../api/base-methods";
 import {
   user_login_action_success,
   user_logout_action,
+  market_live,
 } from "../actions/user_action";
 
 export const user_logout_thunk = () => {
@@ -29,5 +30,11 @@ export const user_load_by_token_thunk = (token) => {
     } catch (err) {
       console.log("🚀 ~ file: user_thunk.js ~ line 58 ~ return ~ err", err);
     }
+  };
+};
+
+export const market_live_thunk = () => {
+  return async (dispatch) => {
+    dispatch(market_live());
   };
 };

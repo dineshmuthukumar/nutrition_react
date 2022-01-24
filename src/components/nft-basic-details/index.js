@@ -12,6 +12,8 @@ import postImages from "../../images/post1.png";
 import userImg from "../../images/user_1.jpg";
 
 import "./style.scss";
+import { OverlayTrigger } from "react-bootstrap";
+import { Popover } from "react-bootstrap";
 const NFTBaseDetails = ({
   nft,
   putOnSalePop,
@@ -20,11 +22,25 @@ const NFTBaseDetails = ({
   ownerOrdersList,
   owners,
 }) => {
-  const { user } = useSelector((state) => state.user.data);
+  const state = useSelector((state) => state.user);
+
+  const { user } = state.data;
 
   const erc721 = nft.nft_type === "erc721";
   const isOwner = _.has(nft, "owner_details");
   const availableQuantity = _.get(nft, "owner_details.available_quantity", 0);
+
+  const popover = () => (
+    <Popover>
+      <Popover.Body>
+        <p className="password-terms">
+          Your NFT will be available to be listed for sale as soon as the
+          marketplace launches on <b>Jan 26th, 2022.</b> Stay tuned for the
+          grand opening of the BeyondLife.club marketplace.
+        </p>
+      </Popover.Body>
+    </Popover>
+  );
 
   return (
     <>
@@ -145,7 +161,7 @@ const NFTBaseDetails = ({
                 </button>
               );
             } else if (isOwner && ownerOrdersList.length === 0) {
-              return (
+              return state.marketLive ? (
                 <button
                   disabled={false}
                   className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
@@ -153,10 +169,24 @@ const NFTBaseDetails = ({
                 >
                   List for sale
                 </button>
+              ) : (
+                <OverlayTrigger
+                  trigger={["click"]}
+                  rootClose={true}
+                  placement="top"
+                  overlay={popover()}
+                >
+                  <button
+                    disabled={false}
+                    className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                  >
+                    List for sale
+                  </button>
+                </OverlayTrigger>
               );
             } else if (isOwner && ownerOrdersList.length > 0) {
               if (isQuantityAvailable != null && isQuantityAvailable > 0) {
-                return (
+                return state.marketLive ? (
                   <button
                     disabled={false}
                     className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
@@ -170,6 +200,26 @@ const NFTBaseDetails = ({
                             : availableQuantity
                         })`}
                   </button>
+                ) : (
+                  <OverlayTrigger
+                    trigger={["click"]}
+                    rootClose={true}
+                    placement="top"
+                    overlay={popover()}
+                  >
+                    <button
+                      disabled={false}
+                      className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                    >
+                      {erc721
+                        ? "List for sale"
+                        : `List for sale (${
+                            isQuantityAvailable
+                              ? isQuantityAvailable
+                              : availableQuantity
+                          })`}
+                    </button>
+                  </OverlayTrigger>
                 );
               } else {
                 return (

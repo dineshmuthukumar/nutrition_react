@@ -4,6 +4,7 @@ import {
   USER_LOGIN_FAILURE,
   USER_WALLET_UPDATE,
   USER_LOGOUT,
+  MARKET_LIVE,
 } from "./../actions/user_action";
 
 const initState = {
@@ -12,6 +13,7 @@ const initState = {
   loading: false,
   error: false,
   errorData: {},
+  marketLive: false,
 };
 
 const user_reducer = (state = initState, { payload, type }) => {
@@ -29,6 +31,7 @@ const user_reducer = (state = initState, { payload, type }) => {
 
   if (type === USER_LOGOUT) {
     state = {
+      ...state,
       data: {},
       login: false,
       loading: false,
@@ -48,6 +51,10 @@ const user_reducer = (state = initState, { payload, type }) => {
         },
       },
     };
+  }
+
+  if (type === MARKET_LIVE) {
+    state = { ...state, marketLive: true };
   }
 
   return state;

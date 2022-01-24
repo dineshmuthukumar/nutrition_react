@@ -9,6 +9,7 @@ import {
 import { FaTimes } from "react-icons/fa";
 import { useSelector, connect, useDispatch } from "react-redux";
 
+import NFTCounter from "./components/nft-counter";
 import { change_lang_action } from "./redux/actions/lang_action";
 import { setLanguage } from "react-multi-lang";
 import { getCookies } from "./utils/cookies";
@@ -16,6 +17,7 @@ import { getServerTimeApi } from "./api/base-methods";
 import {
   user_load_by_token_thunk,
   user_logout_thunk,
+  market_live_thunk,
 } from "./redux/thunk/user_thunk";
 import "./App.css";
 
@@ -28,10 +30,42 @@ const HelpLine = lazy(() => import("./pages/help-line"));
 const UserDetails = lazy(() => import("./pages/user-details"));
 
 function App(props) {
+  const market_start_date = "Jan 26, 2022 03:30:00";
+
+  const [market_time, set_market_time] = useState();
+
   const dispatch = useDispatch();
   const [online, setOnline] = useState(true);
 
   const { lang, user } = useSelector((state) => state);
+
+  const timeFunction = (check = false) => {
+    var offset = new Date().getTimezoneOffset();
+
+    var market_start_date_utc = new Date(market_start_date);
+    market_start_date_utc.setMinutes(
+      market_start_date_utc.getMinutes() - offset
+    );
+
+    var s_time = new Date();
+
+    if (check) s_time.setSeconds(s_time.getSeconds() + 2);
+
+    if (new Date(market_start_date_utc) < s_time) {
+      dispatch(market_live_thunk());
+    } else {
+      set_market_time(market_start_date_utc);
+    }
+  };
+
+  useEffect(() => {
+    timeFunction(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleCheck = () => {
+    timeFunction(true);
+  };
 
   useEffect(() => {
     props.change_lang(lang);
@@ -75,6 +109,12 @@ function App(props) {
 
   return (
     <>
+      <div style={{ display: "none" }}>
+        {market_time && (
+          <NFTCounter time={market_time} handleEndEvent={handleCheck} />
+        )}
+      </div>
+
       {!online && (
         <div className="offline-ribbon">
           <div className="first">
