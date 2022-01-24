@@ -261,7 +261,7 @@ const Banner = ({ list = [] }) => {
                     muted
                     autoPlay
                     playsInline
-                    src="https://cdn.beyondlife.club/media/video/2_MNYjPOpHrw0zy79K.mp4"
+                    src="https://cdn.beyondlife.club/media/video/seven_power_chakra_video.mp4"
                     className="first-image"
                     style={{ height: "100%" }}
                   ></video>

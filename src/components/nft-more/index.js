@@ -57,7 +57,7 @@ const NFTMore = ({
       )}
 
       <div ref={ref} className="nft-more-content">
-        {nftList.map((nft) => {
+        {nftList.map((nft, i) => {
           let label = "",
             time,
             isEnded = false,
@@ -76,17 +76,7 @@ const NFTMore = ({
             isEnded = true;
           }
 
-          return (
-            // <MoreCard
-            //   nft={nft}
-            //   isStarted={isStarted}
-            //   isEnded={isEnded}
-            //   time={time}
-            //   label={label}
-            // />
-
-            <CollectionCard nft={nft} />
-          );
+          return <CollectionCard key={`nft-more-${i}`} nft={nft} />;
         })}
       </div>
 

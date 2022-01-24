@@ -5,6 +5,7 @@ import { useParams } from "react-router";
 import { toast } from "react-toastify";
 import { Modal, Table } from "react-bootstrap";
 import { BiX } from "react-icons/bi";
+import { IoIosRocket } from "react-icons/io";
 import ContentLoader from "react-content-loader";
 
 import OwnerCard from "./owner-card";
@@ -90,7 +91,9 @@ const OwnerList = ({
                   className={`${key === "owner-list" ? "active" : ""}`}
                   onClick={() => setKey("owner-list")}
                 >
-                  List of Owners ({totalCount})
+                  {totalCount > 0
+                    ? `List of Owners (${totalCount})`
+                    : `List of Owners`}
                 </span>
               </li>
               {transactionHistory.length > 0 && (
@@ -114,7 +117,7 @@ const OwnerList = ({
           if (key === "owner-list") {
             return !isLoading ? (
               <>
-                {nftOwners.length > 0 && (
+                {nftOwners.length > 0 ? (
                   <div className="bid-history-content">
                     {nftOwners.map((owner, i) => (
                       <OwnerCard
@@ -135,6 +138,15 @@ const OwnerList = ({
                         </div>
                       </div>
                     )}
+                  </div>
+                ) : (
+                  <div className="bid-empty-content">
+                    <div className="empty-top-container">
+                      <div className="empty-top-content">
+                        <IoIosRocket color="white" />
+                        <div className="empty-text">No Owners Found!</div>
+                      </div>
+                    </div>
                   </div>
                 )}
               </>
