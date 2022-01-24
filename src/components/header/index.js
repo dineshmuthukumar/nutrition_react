@@ -494,7 +494,7 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                         )
                       }
                     >
-                      BigB Punks NFTs
+                      Amitabh NFTs
                     </Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
@@ -789,7 +789,7 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                           )
                         }
                       >
-                        BigB Punks NFTs
+                        Amitabh NFTs
                       </Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
