@@ -161,6 +161,7 @@ const Banner = ({ list = [] }) => {
                       key={`category-${i}`}
                       style={{ overflow: "hidden" }}
                       className="cat-block"
+                      onClick={() => handleNavigate(category.name)}
                     >
                       {(() => {
                         if (category.type === "video") {
