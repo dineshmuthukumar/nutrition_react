@@ -17,6 +17,7 @@
       vertical-align: unset;
       height: 1rem;
       width: 1rem;
+      max-width: fit-content;
     }
   }
   .value {
@@ -38,6 +39,7 @@
       font-size: 1.5rem;
       margin-top: -3px;
       margin-right: -2px;
+      max-width: fit-content;
     }
 
     .value-diff-range {

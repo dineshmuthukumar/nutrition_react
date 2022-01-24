@@ -135,7 +135,10 @@ const TopSellers = () => {
                       ))
                     ) : (
                       <div className="col-12 text-center">
-                        <h3 className="my-3">No Data Found!</h3>
+                        <h3 className="my-3">
+                          The Sellers You'll Need To Watch Out For Because Of
+                          Their NFT Collections!
+                        </h3>
                       </div>
                     )}
                   </>

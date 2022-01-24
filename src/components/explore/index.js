@@ -54,17 +54,22 @@ const Explore = ({ categoryDetail }) => {
     ],
     sort: [
       {
-        name: "Recently Listed",
-        value: "recently_listed",
+        name: "Relevance",
+        value: "relevance",
         checked: true,
       },
       {
-        name: "Price: High to Low",
+        name: "Recently Listed",
+        value: "recently_listed",
+        checked: false,
+      },
+      {
+        name: "Price - High to Low",
         value: "price_desc",
         checked: false,
       },
       {
-        name: "Price: Low to High",
+        name: "Price - Low to High",
         value: "price",
         checked: false,
       },
@@ -74,9 +79,7 @@ const Explore = ({ categoryDetail }) => {
   useEffect(() => {
     const sale_filters = query.get("sale") ? query.get("sale").split(",") : [];
     const nft_filters = query.get("nft") ? query.get("nft").split(",") : [];
-    const sort_filters = query.get("sort")
-      ? query.get("sort")
-      : "recently_listed";
+    const sort_filters = query.get("sort") ? query.get("sort") : "relevance";
 
     const info = { ...filter };
 
@@ -99,9 +102,7 @@ const Explore = ({ categoryDetail }) => {
   useEffect(() => {
     const sale_filters = query.get("sale") ? query.get("sale").split(",") : [];
     const nft_filters = query.get("nft") ? query.get("nft").split(",") : [];
-    const sort_filters = query.get("sort")
-      ? query.get("sort")
-      : "recently_listed";
+    const sort_filters = query.get("sort") ? query.get("sort") : "relevance";
 
     const search_filter = query.get("search");
 
@@ -118,7 +119,7 @@ const Explore = ({ categoryDetail }) => {
     page,
     type,
     saleType,
-    sort = "recently_listed",
+    sort = "relevance",
     searchText
   ) => {
     try {
@@ -132,7 +133,7 @@ const Explore = ({ categoryDetail }) => {
           sale_type: saleType,
           keyword: searchText,
         },
-        sort,
+        sort: sort === "relevance" ? null : sort,
       });
       setList([...list, ...response.data.data.nfts]);
       setHasNext(response.data.data.next_page);
@@ -147,7 +148,7 @@ const Explore = ({ categoryDetail }) => {
     page,
     type,
     saleType,
-    sort = "recently_listed",
+    sort = "relevance",
     searchText
   ) => {
     try {
@@ -161,7 +162,7 @@ const Explore = ({ categoryDetail }) => {
           sale_type: saleType,
           keyword: searchText,
         },
-        sort,
+        sort: sort === "relevance" ? null : sort,
       });
       setList(response.data.data.nfts);
       setHasNext(response.data.data.next_page);
@@ -178,9 +179,7 @@ const Explore = ({ categoryDetail }) => {
         ? query.get("sale").split(",")
         : [];
       const nft_filters = query.get("nft") ? query.get("nft").split(",") : [];
-      const sort_filters = query.get("sort")
-        ? query.get("sort")
-        : "recently_listed";
+      const sort_filters = query.get("sort") ? query.get("sort") : "relevance";
       const search_filters = query.get("search");
 
       showAllNFTs(
@@ -230,8 +229,8 @@ const Explore = ({ categoryDetail }) => {
       }}
     >
       {filter.sort.find((obj) => obj.checked === true)?.name
-        ? filter.sort.find((obj) => obj.checked === true).name
-        : "Sort By"}{" "}
+        ? `Sort By: ${filter.sort.find((obj) => obj.checked === true).name}`
+        : "Sort By"}
       <BiCaretDown />
     </div>
   ));
@@ -418,7 +417,7 @@ const Explore = ({ categoryDetail }) => {
                 <span className="me-4 mt-2 text-nowrap">Listed NFTs</span>
                 <span className="d-flex justify-content-between mt-2 w-100 filter-blocks">
                   <div className="d-flex flex-wrap filter-box">
-                    <Dropdown className="me-2">
+                    <Dropdown>
                       <Dropdown.Toggle
                         align="start"
                         drop="start"
@@ -467,7 +466,7 @@ const Explore = ({ categoryDetail }) => {
                       </Dropdown.Menu>
                     </Dropdown>
                   </div>
-                  <div>
+                  <div className="filt-flex-box">
                     <Dropdown>
                       <Dropdown.Toggle
                         align="start"
