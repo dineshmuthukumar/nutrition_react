@@ -1596,3 +1596,12 @@ button,
 .btn {
   box-shadow: none !important;
 }
+
+div[aria-modal="true"].w-100.w-md-50 {
+  @media screen and (max-width: 991px) {
+    width: 60% !important;
+  }
+  @media screen and (max-width: 767px) {
+    width: 100% !important;
+  }
+}

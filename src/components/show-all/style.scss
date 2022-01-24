@@ -57,19 +57,16 @@ button.load_more {
     @media screen and (max-width: 767px) {
       margin-top: 0.5rem;
       width: 100%;
+      justify-content: space-between;
     }
     .dropdown {
+      margin-right: 0.5rem;
       @media screen and (max-width: 767px) {
         width: 24%;
-      }
-      @media screen and (max-width: 580px) {
-        width: 23.5%;
+        margin-right: 0rem;
       }
       @media screen and (max-width: 425px) {
-        width: 48%;
-      }
-      @media screen and (max-width: 375px) {
-        width: 47%;
+        width: 49%;
       }
     }
     .dropdown-menu {
