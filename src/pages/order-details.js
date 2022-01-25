@@ -24,10 +24,10 @@ import { NFTLoader } from "../components/nft-basic-details/content-loader";
 import {
   acceptBid,
   bidDetail,
-  bidOutDated,
   buyDetail,
   cancelSaleDetail,
   orderPurchaseDetails,
+  outDatedBid,
   ownerDetails,
   pageView,
   totalFav,
@@ -192,7 +192,7 @@ const OrderDetails = () => {
       }
     });
 
-    bidOutDated(slug, orderSlug, (data) => {
+    outDatedBid(slug, orderSlug, (data) => {
       setBidOutDated(true);
       setPrice(data.minimum_bid);
       if (data.history) {

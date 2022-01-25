@@ -165,7 +165,7 @@ export const orderPurchaseDetails = (nftSlug, orderSlug, value) => {
   );
 };
 
-export const bidOutDated = (nftSlug, orderSlug, value) => {
+export const outDatedBid = (nftSlug, orderSlug, value) => {
   nftCable.subscriptions.create(
     { channel: "NftChannel", room: `${nftSlug}_bid_outdated_${orderSlug}` },
     {
