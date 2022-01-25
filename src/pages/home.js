@@ -48,8 +48,6 @@ const Home = () => {
     if (fsz) {
       sessionStorage.setItem("fsz", fsz);
       setCookiesByName("source", fsz);
-    } else {
-      removeCookiesByName("source");
     }
 
     if (token) {
@@ -57,8 +55,6 @@ const Home = () => {
 
       history.replace(url);
       dispatch(user_load_by_token_thunk(token));
-    } else {
-      removeCookiesByName("source");
     }
 
     categoriesList(page);
