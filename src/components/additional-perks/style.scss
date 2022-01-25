@@ -1,10 +1,7 @@
 @import "../../styles/common";
 
-.nft-tags {
-  @media screen and (max-width: 991px) {
-    margin-bottom: 2rem;
-  }
-  .nft-tag-title {
+.chain-attributes {
+  .chain-att-title {
     font-size: 1.5rem;
     font-family: $neue-helveticamedium;
     position: relative;
@@ -19,20 +16,8 @@
     }
   }
 
-  .nft-tag-content {
+  .chain-att-content {
     display: flex;
     flex-wrap: wrap;
-
-    .tag {
-      padding: 0.5rem 1.5rem;
-      font-family: $neue-helveticabold;
-      font-size: 1rem;
-      margin-right: 1rem;
-      margin-bottom: 1rem;
-
-      &:last-child {
-        margin-right: 0;
-      }
-    }
   }
 }
