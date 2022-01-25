@@ -108,36 +108,36 @@ const HistoryConfirm = ({
               </div>
               <div className="price">
                 <span className="key">
-                  Artist fee{" "}
+                  Artist Fee{" "}
                   <ToolTip
                     icon={
                       <BsFillQuestionCircleFill
                         size={16}
-                        className="ms-2 check-icon"
+                        className="mb-1 check-icon"
                       />
                     }
                     content={
                       "The royalty paid to the artist or the inspiration."
                     }
-                    placement="right"
+                    placement="top"
                   />
                 </span>
                 <span className="value">{parseFloat(nft.royalties)}%</span>
               </div>
               <div className="price">
                 <span className="key">
-                  Service fee{" "}
+                  Service Fee{" "}
                   <ToolTip
                     icon={
                       <BsFillQuestionCircleFill
                         size={16}
-                        className="ms-2 check-icon"
+                        className="mb-1 check-icon"
                       />
                     }
                     content={
                       "The service fee includes gas fee and the platform fee."
                     }
-                    placement="right"
+                    placement="top"
                   />
                 </span>
                 <span className="value">{parseFloat(nft.service_fee)}%</span>
