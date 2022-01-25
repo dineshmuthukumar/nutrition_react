@@ -46,6 +46,7 @@ const NFTOrderBaseDetails = ({
   orderSlug,
   slug,
   latestBid,
+  bidOutDated,
 }) => {
   const history = useHistory();
   const { user } = useSelector((state) => state.user.data);
@@ -162,6 +163,7 @@ const NFTOrderBaseDetails = ({
         {!transferringNFT &&
         !soldOut &&
         !isOrderCancelled &&
+        !bidOutDated &&
         acceptBidConfirm ? (
           <>
             <div className={`assign-card`}>
@@ -169,19 +171,19 @@ const NFTOrderBaseDetails = ({
                 <img
                   alt=""
                   src={
-                    !latestBid.private && latestBid.avatar_url
-                      ? latestBid.avatar_url
-                      : user?.slug === latestBid.slug
-                      ? latestBid.avatar_url
+                    !latestBid?.private && latestBid?.avatar_url
+                      ? latestBid?.avatar_url
+                      : user?.slug === latestBid?.slug && latestBid?.avatar_url
+                      ? latestBid?.avatar_url
                       : userImg
                   }
                 />
                 <div className="bid-histoy-details">
                   <div className="time text-secondary">
-                    {dayjs(latestBid.created_at).format("MMM D, YYYY hh:mm A")}
+                    {dayjs(latestBid?.created_at).format("MMM D, YYYY hh:mm A")}
                   </div>
                   <div className="bid-owner">
-                    Bid placed by {latestBid.user_name}
+                    Bid placed by {latestBid?.user_name}
                   </div>
                 </div>
               </div>
@@ -189,7 +191,7 @@ const NFTOrderBaseDetails = ({
                 <div className="highest-bid">
                   <span className="key">Highest Bid Price</span>
                   <span className="value">
-                    {currencyFormat(latestBid.bid_amount, "USD")}
+                    {currencyFormat(latestBid?.bid_amount, "USD")}
                   </span>
                 </div>
               </div>
@@ -215,8 +217,8 @@ const NFTOrderBaseDetails = ({
               <BidValue
                 title="You will Get"
                 value={currencyFormat(
-                  parseFloat(latestBid.bid_amount) -
-                    (parseFloat(latestBid.bid_amount) *
+                  parseFloat(latestBid?.bid_amount) -
+                    (parseFloat(latestBid?.bid_amount) *
                       (parseFloat(nft.royalties) +
                         parseFloat(nft.service_fee))) /
                       100,
@@ -462,7 +464,7 @@ const NFTOrderBaseDetails = ({
                 </button>
               );
             } else if (erc721 && isOwner && isOrderOnSale) {
-              if (acceptBidConfirm) {
+              if (!bidOutDated && acceptBidConfirm) {
                 return (
                   <>
                     <button

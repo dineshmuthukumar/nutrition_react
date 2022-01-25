@@ -81,6 +81,7 @@ const OrderDetails = () => {
   const [userTotalBuys, setUserTotalBuys] = useState(0);
   const [userOutBid, setUserOutBid] = useState(false);
   const [userLastBid, setUserLastBid] = useState(0);
+  const [bidOutDated, setBidOutDated] = useState(false);
 
   const { user } = useSelector((state) => state.user.data);
 
@@ -114,6 +115,7 @@ const OrderDetails = () => {
       if (data.history) {
         setBidHistory((bidHistory) => [data.history, ...bidHistory]);
       }
+      setBidOutDated(false);
     });
     pageView(orderSlug, (data) => {
       setTotalViews(data.page_views);
@@ -191,6 +193,7 @@ const OrderDetails = () => {
     });
 
     bidOutDated(slug, orderSlug, (data) => {
+      setBidOutDated(true);
       setPrice(data.minimum_bid);
       if (data.history) {
         bidHistories();
@@ -356,6 +359,7 @@ const OrderDetails = () => {
                   orderSlug={orderSlug}
                   slug={slug}
                   latestBid={bidHistory.length > 0 ? bidHistory[0] : {}}
+                  bidOutDated={bidOutDated}
                 />
               </div>
             </div>
