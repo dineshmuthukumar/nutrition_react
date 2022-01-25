@@ -527,7 +527,10 @@ const NFTPlaceBid = ({
                   </div>
                   <div className="bottom-area">
                     <div className="terms text-secondary">
-                      <>An nft cannot be reversed after it's been purchased.</>
+                      <>
+                        An NFT Sale Cannot Be Reversed Or Refunded After
+                        Purchase.
+                      </>
                     </div>
 
                     <div className="bottom-content-pop">
