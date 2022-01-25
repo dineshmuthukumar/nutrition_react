@@ -64,11 +64,6 @@ const ShowAll = ({ categories, query }) => {
         value: "price",
         checked: false,
       },
-      {
-        name: "Relevance",
-        value: "relevance",
-        checked: false,
-      },
     ],
     status: [
       {
@@ -184,7 +179,7 @@ const ShowAll = ({ categories, query }) => {
       let response = await nftShowAllApi({
         page,
         filter,
-        sort: sort === "relevance" ? null : sort,
+        sort,
       });
       setList([...list, ...response.data.data.nfts]);
       setHasNext(response.data.data.next_page);
@@ -229,7 +224,7 @@ const ShowAll = ({ categories, query }) => {
       let response = await nftShowAllApi({
         page,
         filter,
-        sort: sort === "relevance" ? null : sort,
+        sort,
       });
       setList(response.data.data.nfts);
       setHasNext(response.data.data.next_page);

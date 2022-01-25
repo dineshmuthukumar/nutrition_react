@@ -32,10 +32,10 @@ const BidValue = ({
         {toolTip && (
           <ToolTip
             icon={
-              <BsFillQuestionCircleFill size={16} className="ms-2 check-icon" />
+              <BsFillQuestionCircleFill size={16} className="mb-1 check-icon" />
             }
             content={toolTip}
-            placement="right"
+            placement="top"
           />
         )}
         {status && <span className="status-tag rounded-pill">{status}</span>}
