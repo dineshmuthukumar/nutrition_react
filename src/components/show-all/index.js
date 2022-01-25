@@ -55,12 +55,12 @@ const ShowAll = ({ categories, query }) => {
         checked: true,
       },
       {
-        name: "Price: High to Low",
+        name: "Price - High to Low",
         value: "price_desc",
         checked: false,
       },
       {
-        name: "Price: Low to High",
+        name: "Price - Low to High",
         value: "price",
         checked: false,
       },
@@ -94,8 +94,8 @@ const ShowAll = ({ categories, query }) => {
     categories.forEach((category) => {
       const categoryDetail = {
         name: category.name,
-        value: category.name,
-        checked: category_filters.includes(category.name) ? true : false,
+        value: category.slug,
+        checked: category_filters.includes(category.slug) ? true : false,
       };
       categoryList.push(categoryDetail);
     });
@@ -313,8 +313,8 @@ const ShowAll = ({ categories, query }) => {
       }}
     >
       {filter.sort.find((obj) => obj.checked === true)?.name
-        ? filter.sort.find((obj) => obj.checked === true).name
-        : "Sort By"}{" "}
+        ? `Sort By: ${filter.sort.find((obj) => obj.checked === true).name}`
+        : "Sort By"}
       <BiCaretDown />
     </div>
   ));
@@ -898,7 +898,7 @@ const ShowAll = ({ categories, query }) => {
                     ))
                   ) : (
                     <div className="col-12 text-center">
-                      <h3 className="my-3">No Data Found!</h3>
+                      <h3 className="my-3">No Records Found!</h3>
                     </div>
                   )}
 

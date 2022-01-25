@@ -39,17 +39,7 @@ const HotCollections = () => {
         <div className="container-fluid">
           <div className="row">
             <div className="col-sm-12">
-              <h1 className="sec-heading">
-                Hot Collections
-                {/* <div className="carousel-btn-box">
-                  <a className="carousel-btn">
-                    <VscChevronLeft />
-                  </a>
-                  <a className="carousel-btn">
-                    <VscChevronRight />
-                  </a>
-                </div> */}
-              </h1>
+              <h1 className="sec-heading">Hot Collections</h1>
 
               {!loading ? (
                 <div className="row">
@@ -57,7 +47,10 @@ const HotCollections = () => {
                     <NFTMore nftList={list} hideTitle />
                   ) : (
                     <div className="col-12 text-center">
-                      <h3 className="my-3">No Data Found!</h3>
+                      <h3 className="my-3">
+                        You'll Soon See A Collection Of NFTs That Buyers Like
+                        You Find To Be The Best!
+                      </h3>
                     </div>
                   )}
 
@@ -67,7 +60,7 @@ const HotCollections = () => {
                           <NFTCard nft={nft} key={i} image={cardImage} />
                         </div>
                       ))
-                    : "No Data Found!"} */}
+                    : "No Records Found!"} */}
                 </div>
               ) : (
                 <NFTCardLoader />
