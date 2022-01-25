@@ -197,13 +197,13 @@ const NFTOrderBaseDetails = ({
 
             <div className="d-flex">
               <BidValue
-                title="Artist fee"
+                title="Artist Fee"
                 value={`${parseFloat(nft.royalties)} %`}
                 toolTip={"The royalty paid to the artist or the inspiration."}
               />
 
               <BidValue
-                title="Service fee"
+                title="Service Fee"
                 value={`${parseFloat(nft.service_fee)} %`}
                 toolTip={
                   "The service fee includes gas fee and the platform fee."
@@ -493,7 +493,11 @@ const NFTOrderBaseDetails = ({
                         Cancel the sale
                       </button>
                       <button
-                        disabled={latestBid?.slug ? false : true}
+                        disabled={
+                          latestBid?.slug && latestBid?.status === "active"
+                            ? false
+                            : true
+                        }
                         className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn"
                         onClick={() => setAcceptBidConfirm(!acceptBidConfirm)}
                       >

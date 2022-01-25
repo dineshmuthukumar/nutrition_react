@@ -493,13 +493,13 @@ const NFTPlaceBid = ({
                                 icon={
                                   <BsFillQuestionCircleFill
                                     size={16}
-                                    className="ms-2 check-icon"
+                                    className="mb-1 check-icon"
                                   />
                                 }
                                 content={
                                   "The service fee includes gas fee and the platform fee."
                                 }
-                                placement="right"
+                                placement="top"
                               />
                             </label>
                             <h4>{parseFloat(nft.service_fee)}%</h4>
@@ -527,7 +527,10 @@ const NFTPlaceBid = ({
                   </div>
                   <div className="bottom-area">
                     <div className="terms text-secondary">
-                      <>An nft cannot be reversed after it's been purchased.</>
+                      <>
+                        An NFT Sale Cannot Be Reversed Or Refunded After
+                        Purchase.
+                      </>
                     </div>
 
                     <div className="bottom-content-pop">

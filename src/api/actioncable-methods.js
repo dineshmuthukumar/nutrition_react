@@ -165,6 +165,21 @@ export const orderPurchaseDetails = (nftSlug, orderSlug, value) => {
   );
 };
 
+export const bidOutDated = (nftSlug, orderSlug, value) => {
+  nftCable.subscriptions.create(
+    { channel: "NftChannel", room: `${nftSlug}_bid_outdated_${orderSlug}` },
+    {
+      connected: () => {
+        console.log("BL/AC12:Connected");
+      },
+      received: (data) => {
+        console.log("BL/AC12:Success");
+        value(data);
+      },
+    }
+  );
+};
+
 export const accountDetail = (slug, value) => {
   baseCable.subscriptions.create(
     { channel: "UserChannel", room: `account_${slug}` },

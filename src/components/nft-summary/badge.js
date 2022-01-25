@@ -15,7 +15,7 @@ const Badge = ({ title, value, currency, diff = 0, tooltip }) => {
               <BsFillQuestionCircleFill size={16} className="ms-2 check-icon" />
             }
             content={tooltip}
-            placement="right"
+            placement="top"
           />
         )}
       </div>
