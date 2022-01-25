@@ -191,6 +191,7 @@ const OrderDetails = () => {
     });
 
     bidOutDated(slug, orderSlug, (data) => {
+      setPrice(data.minimum_bid);
       if (data.history) {
         bidHistories();
       }
@@ -200,7 +201,7 @@ const OrderDetails = () => {
       nftOwners();
       nftTransaction();
     });
-  }, [slug, orderSlug]);
+  }, []);
 
   const nftDetail = async (slug, orderSlug) => {
     try {
