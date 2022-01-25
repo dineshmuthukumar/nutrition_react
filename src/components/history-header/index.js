@@ -14,10 +14,10 @@ const HistoryHeader = ({ nftOwner }) => {
       <div className="bh-user-image">
         <img
           src={
-            !nftOwner.private && nftOwner.avatar_url
-              ? nftOwner.avatar_url
-              : user?.slug === nftOwner.slug && nftOwner.avatar_url
-              ? nftOwner.avatar_url
+            !nftOwner?.private && nftOwner?.avatar_url
+              ? nftOwner?.avatar_url
+              : user?.slug === nftOwner?.slug && nftOwner?.avatar_url
+              ? nftOwner?.avatar_url
               : userImg
           }
           alt="bid-user"
@@ -40,7 +40,7 @@ const HistoryHeader = ({ nftOwner }) => {
           <div className="date">
             <span className="key">Sold on</span>
             <span className="value">
-              {dayjs(nftOwner.sold_at).format("MMM D, YYYY hh:mm A")}
+              {dayjs(nftOwner?.sold_at).format("MMM D, YYYY hh:mm A")}
             </span>
           </div>
         </div>
