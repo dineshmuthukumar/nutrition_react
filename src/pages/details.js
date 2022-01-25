@@ -236,8 +236,12 @@ const Details = () => {
 
               <div className="mt-5"></div>
               <ChainAttributes chains={nft.chain_attributes} />
-              <div className="mt-5"></div>
-              <NFTTags tags={nft.tag_names} />
+              {nft?.tag_names?.length > 0 && (
+                <>
+                  <div className="mt-5"></div>
+                  <NFTTags tags={nft.tag_names} />
+                </>
+              )}
             </div>
           </div>
           <NFTSectionTitle title="Artist" />

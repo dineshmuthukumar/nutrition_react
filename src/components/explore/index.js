@@ -54,9 +54,14 @@ const Explore = ({ categoryDetail }) => {
     ],
     sort: [
       {
+        name: "Relevance",
+        value: "relevance",
+        checked: true,
+      },
+      {
         name: "Recently Listed",
         value: "recently_listed",
-        checked: true,
+        checked: false,
       },
       {
         name: "Price - High to Low",
@@ -68,20 +73,13 @@ const Explore = ({ categoryDetail }) => {
         value: "price",
         checked: false,
       },
-      {
-        name: "Relevance",
-        value: "relevance",
-        checked: false,
-      },
     ],
   });
 
   useEffect(() => {
     const sale_filters = query.get("sale") ? query.get("sale").split(",") : [];
     const nft_filters = query.get("nft") ? query.get("nft").split(",") : [];
-    const sort_filters = query.get("sort")
-      ? query.get("sort")
-      : "recently_listed";
+    const sort_filters = query.get("sort") ? query.get("sort") : "relevance";
 
     const info = { ...filter };
 
@@ -104,9 +102,7 @@ const Explore = ({ categoryDetail }) => {
   useEffect(() => {
     const sale_filters = query.get("sale") ? query.get("sale").split(",") : [];
     const nft_filters = query.get("nft") ? query.get("nft").split(",") : [];
-    const sort_filters = query.get("sort")
-      ? query.get("sort")
-      : "recently_listed";
+    const sort_filters = query.get("sort") ? query.get("sort") : "relevance";
 
     const search_filter = query.get("search");
 
@@ -123,7 +119,7 @@ const Explore = ({ categoryDetail }) => {
     page,
     type,
     saleType,
-    sort = "recently_listed",
+    sort = "relevance",
     searchText
   ) => {
     try {
@@ -152,7 +148,7 @@ const Explore = ({ categoryDetail }) => {
     page,
     type,
     saleType,
-    sort = "recently_listed",
+    sort = "relevance",
     searchText
   ) => {
     try {
@@ -183,9 +179,7 @@ const Explore = ({ categoryDetail }) => {
         ? query.get("sale").split(",")
         : [];
       const nft_filters = query.get("nft") ? query.get("nft").split(",") : [];
-      const sort_filters = query.get("sort")
-        ? query.get("sort")
-        : "recently_listed";
+      const sort_filters = query.get("sort") ? query.get("sort") : "relevance";
       const search_filters = query.get("search");
 
       showAllNFTs(
@@ -563,7 +557,7 @@ const Explore = ({ categoryDetail }) => {
                     ))
                   ) : (
                     <div className="col-12 text-center mb-5">
-                      <h3 className="my-3">No Data Found!</h3>
+                      <h3 className="my-3">No Records Found!</h3>
                     </div>
                   )}
 

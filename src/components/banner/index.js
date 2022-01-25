@@ -81,7 +81,7 @@ const Banner = ({ list = [] }) => {
       <div className="container-fluid mt-4 hero-carousel-mobile">
         <div className="row">
           <div className="col-12">
-            <div style={{ height: "50vh" }}>
+            <div style={{ height: "60vh" }}>
               {/* {list.length > 0 && (
                 <Carousel
                   showThumbs={false}
@@ -174,7 +174,7 @@ const Banner = ({ list = [] }) => {
                                 playsInline
                                 src={category.url}
                                 className="first-image"
-                                style={{ height: "50vh" }}
+                                style={{ height: "60vh" }}
                               ></video>
                               <h5 className="cat-title">{category.name}</h5>
                             </>
@@ -186,7 +186,7 @@ const Banner = ({ list = [] }) => {
                               <img
                                 src={category.url}
                                 className="first-image"
-                                style={{ height: "50vh" }}
+                                style={{ height: "60vh" }}
                               />
                             </>
                           );

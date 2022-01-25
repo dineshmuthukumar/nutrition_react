@@ -634,6 +634,17 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                               as="button"
                               onClick={() =>
                                 window.open(
+                                  `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/my-orders`,
+                                  "_self"
+                                )
+                              }
+                            >
+                              My Orders
+                            </Dropdown.Item>
+                            <Dropdown.Item
+                              as="button"
+                              onClick={() =>
+                                window.open(
                                   `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/bid-activity`,
                                   "_self"
                                 )
