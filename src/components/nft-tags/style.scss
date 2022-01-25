@@ -1,6 +1,9 @@
 @import "../../styles/common";
 
 .nft-tags {
+  @media screen and (max-width: 991px) {
+    margin-bottom: 2rem;
+  }
   .nft-tag-title {
     font-size: 1.5rem;
     font-family: $neue-helveticamedium;

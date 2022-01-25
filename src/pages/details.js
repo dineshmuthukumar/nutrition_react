@@ -180,7 +180,7 @@ const Details = () => {
 
           <NFTSectionTitle title="NFT Details" />
           <div className="row mt-5">
-            <div className="col-12 col-lg-6 order-lg-2 order-1 mb-4">
+            <div className="col-12 col-lg-6 order-lg-2 order-2 mb-4">
               {(() => {
                 if (erc721) {
                   return (
@@ -214,7 +214,7 @@ const Details = () => {
                 }
               })()}
             </div>
-            <div className="col-12 col-lg-6 order-lg-1 order-2">
+            <div className="col-12 col-lg-6 order-lg-1 order-1">
               {(() => {
                 if (nft.properties && typeof nft.properties === "string") {
                   let propertiesData = JSON.parse(nft.properties);
