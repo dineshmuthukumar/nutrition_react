@@ -2,7 +2,7 @@ import React from "react";
 
 import "./style.scss";
 
-const ChainPills = ({ first, second, type }) => {
+const ChainPills = ({ first, second, type, pdf = false }) => {
   return (
     <div
       className={`chain-pills rounded-pill border border-dark ${
@@ -27,7 +27,17 @@ const ChainPills = ({ first, second, type }) => {
               {second}
             </div>
           )}
-          {first}
+          {(() => {
+            if (pdf) {
+              return (
+                <a href={first} role={"button"} target="_blank" download>
+                  PDF
+                </a>
+              );
+            } else {
+              return first;
+            }
+          })()}
         </div>
       )}
     </div>

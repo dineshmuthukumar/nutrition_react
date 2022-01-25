@@ -39,6 +39,7 @@ import Footer from "../components/footer/index";
 import NFTOrderSummary from "../components/nft-order-summary";
 import NFTOrderBaseDetails from "../components/nft-order-basic-details";
 import NFTPurchaseDetails from "../components/nft-purchase-details/index";
+import AdditionalPerks from "../components/additional-perks/index";
 
 const OrderDetails = () => {
   const history = useHistory();
@@ -451,6 +452,12 @@ const OrderDetails = () => {
                 <>
                   <div className="mt-5"></div>
                   <NFTTags tags={nft.tag_names} />
+                </>
+              )}
+              {nft?.comic?.length > 0 && (
+                <>
+                  <div className="mt-5"></div>
+                  <AdditionalPerks comics={nft.comic} />
                 </>
               )}
             </div>

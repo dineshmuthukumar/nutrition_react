@@ -23,6 +23,7 @@ import { listForSaleDetail, ownerDetails } from "../api/actioncable-methods";
 import OwnerList from "../components/owner-list";
 import Footer from "../components/footer/index";
 import NFTOrderDetails from "../components/nft-order-details/index";
+import AdditionalPerks from "../components/additional-perks/index";
 
 const Details = () => {
   const { slug } = useParams();
@@ -240,6 +241,13 @@ const Details = () => {
                 <>
                   <div className="mt-5"></div>
                   <NFTTags tags={nft.tag_names} />
+                </>
+              )}
+
+              {nft?.comic?.length > 0 && (
+                <>
+                  <div className="mt-5"></div>
+                  <AdditionalPerks comics={nft.comic} />
                 </>
               )}
             </div>
