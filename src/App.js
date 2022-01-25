@@ -30,7 +30,7 @@ const HelpLine = lazy(() => import("./pages/help-line"));
 const UserDetails = lazy(() => import("./pages/user-details"));
 
 function App(props) {
-  const market_start_date = "Jan 22, 2022 03:30:00";
+  const market_start_date = "Jan 26, 2022 03:30:00";
 
   const [market_time, set_market_time] = useState();
 
