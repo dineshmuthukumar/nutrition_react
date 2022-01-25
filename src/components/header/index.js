@@ -11,6 +11,7 @@ import { VscChromeClose } from "react-icons/vsc";
 import depositIcon from "../../images/deposit.svg";
 import bidIcon from "../../images/bid.svg";
 import buyIcon from "../../images/buy.svg";
+import moneyWithdraw from "../../images/withdraw-money.svg";
 import outbidIcon from "../../images/outbid.svg";
 import userImg from "../../images/user_1.jpg";
 import { user_logout_thunk } from "../../redux/thunk/user_thunk";
@@ -162,7 +163,12 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
           } else if (data.activity_type === "bid") {
             if (data.reason === "bid_lock") {
               return <img src={bidIcon} alt="notification icon" />;
-            } else if (data.reason === "bid_expired") {
+            } else if (
+              data.reason === "bid_expired" ||
+              data.reason === "bid_closed"
+            ) {
+              return <img src={outbidIcon} alt="notification icon" />;
+            } else if (data.reason === "bid_outdated") {
               return <img src={outbidIcon} alt="notification icon" />;
             } else if (data.reason === "bid_cancelled") {
               return <img src={outbidIcon} alt="notification icon" />;
@@ -179,11 +185,11 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
             }
           } else if (data.activity_type === "withdraw") {
             if (data.reason === "withdraw_requested") {
-              return <img src={depositIcon} alt="notification icon" />;
+              return <img src={moneyWithdraw} alt="notification icon" />;
             } else if (data.reason === "withdraw_cancelled") {
-              return <img src={depositIcon} alt="notification icon" />;
+              return <img src={moneyWithdraw} alt="notification icon" />;
             } else if (data.reason === "withdraw_success") {
-              return <img src={depositIcon} alt="notification icon" />;
+              return <img src={moneyWithdraw} alt="notification icon" />;
             }
           } else {
             return "";
@@ -197,7 +203,8 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                 <>
                   <div className="title">Deposit Successful</div>
                   <div className="desc text-secondary">
-                    Your payment of {currencyFormat(data.amount, "USD")} was
+                    Your payment of{" "}
+                    {currencyFormat(Math.round(data.amount), "USD")} was
                     successfully processed to your wallet! Happy NFT buying.
                   </div>
                   <div className="noti-time">
@@ -216,8 +223,10 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                           <div className="desc text-secondary">
                             <>
                               Your bid of{" "}
-                              <b>{currencyFormat(data.amount, "USD")}</b> is
-                              locked for{" "}
+                              <b>
+                                {currencyFormat(Math.round(data.amount), "USD")}
+                              </b>{" "}
+                              is locked for{" "}
                               <b>
                                 {data.celebrity_name}
                                 's {data.nft_name}
@@ -232,15 +241,45 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                           </div>
                         </>
                       );
-                    } else if (data.reason === "bid_expired") {
+                    } else if (
+                      data.reason === "bid_expired" ||
+                      data.reason === "bid_closed"
+                    ) {
                       return (
                         <>
                           <div className="title">Bid Expired</div>
                           <div className="desc text-secondary">
                             <>
                               Your bid{" "}
-                              <b>{currencyFormat(data.amount, "USD")}</b> was
-                              expired for{" "}
+                              <b>
+                                {currencyFormat(Math.round(data.amount), "USD")}
+                              </b>{" "}
+                              was expired for{" "}
+                              <b>
+                                {data.celebrity_name}
+                                's {data.nft_name}
+                              </b>{" "}
+                              from <b>{data.buyer_name}</b>
+                            </>
+                          </div>
+                          <div className="noti-time">
+                            {dayjs(data.created_at).format(
+                              "DD MMM YYYY hh:mma"
+                            )}
+                          </div>
+                        </>
+                      );
+                    } else if (data.reason === "bid_outdated") {
+                      return (
+                        <>
+                          <div className="title">Bid Outdated</div>
+                          <div className="desc text-secondary">
+                            <>
+                              Your bid{" "}
+                              <b>
+                                {currencyFormat(Math.round(data.amount), "USD")}
+                              </b>{" "}
+                              was outdated for{" "}
                               <b>
                                 {data.celebrity_name}
                                 's {data.nft_name}
@@ -262,8 +301,10 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                           <div className="desc text-secondary">
                             <>
                               Your bid{" "}
-                              <b>{currencyFormat(data.amount, "USD")}</b> was
-                              cancelled for{" "}
+                              <b>
+                                {currencyFormat(Math.round(data.amount), "USD")}
+                              </b>{" "}
+                              was cancelled for{" "}
                               <b>
                                 {data.celebrity_name}
                                 's {data.nft_name}
@@ -287,7 +328,13 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                               <div className="desc text-secondary">
                                 <>
                                   Your bid{" "}
-                                  <b> {currencyFormat(data.amount, "USD")}</b>{" "}
+                                  <b>
+                                    {" "}
+                                    {currencyFormat(
+                                      Math.round(data.amount),
+                                      "USD"
+                                    )}
+                                  </b>{" "}
                                   was successful for{" "}
                                   <b>
                                     {" "}
@@ -314,8 +361,13 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                                     's {data.nft_name}
                                   </b>{" "}
                                   was sold for{" "}
-                                  <b>{currencyFormat(data.amount, "USD")}</b> to{" "}
-                                  <b>{data.buyer_name}</b>
+                                  <b>
+                                    {currencyFormat(
+                                      Math.round(data.amount),
+                                      "USD"
+                                    )}
+                                  </b>{" "}
+                                  to <b>{data.buyer_name}</b>
                                 </>
                               </div>
                               <div className="noti-time">
@@ -334,8 +386,11 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                           <div className="desc text-secondary">
                             <>
                               You received{" "}
-                              <b> {currencyFormat(data.amount, "USD")}</b> bid
-                              for{" "}
+                              <b>
+                                {" "}
+                                {currencyFormat(Math.round(data.amount), "USD")}
+                              </b>{" "}
+                              bid for{" "}
                               <b>
                                 {data.celebrity_name}
                                 's {data.nft_name}
@@ -368,7 +423,10 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                             's NFT{" "}
                           </b>
                           from <b>{data.seller_name}</b> for{" "}
-                          <b> {currencyFormat(data.amount, "USD")}</b>
+                          <b>
+                            {" "}
+                            {currencyFormat(Math.round(data.amount), "USD")}
+                          </b>
                         </>
                       </div>
                       <div className="noti-time">
@@ -382,7 +440,10 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                         <>
                           You sold <b>{data.celebrity_name}'s NFT</b> to{" "}
                           <b>{data.buyer_name}</b> for{" "}
-                          <b> {currencyFormat(data.amount, "USD")}</b>
+                          <b>
+                            {" "}
+                            {currencyFormat(Math.round(data.amount), "USD")}
+                          </b>
                         </>
                       </div>
                       <div className="noti-time">
@@ -404,22 +465,28 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                             <>
                               {" "}
                               You <b>requested a withdraw</b> of{" "}
-                              <b>{currencyFormat(data.amount, "USD")}</b>{" "}
+                              <b>
+                                {currencyFormat(Math.round(data.amount), "USD")}
+                              </b>{" "}
                             </>
                           );
                         } else if (data.reason === "withdraw_cancelled") {
                           return (
                             <>
                               You <b>cancelled a withdraw request</b> of{" "}
-                              <b>{currencyFormat(data.amount, "USD")}</b>
+                              <b>
+                                {currencyFormat(Math.round(data.amount), "USD")}
+                              </b>
                             </>
                           );
                         } else if (data.reason === "withdraw_success") {
                           return (
                             <>
                               You <b>withdraw request</b> of{" "}
-                              <b>{currencyFormat(data.amount, "USD")}</b> was{" "}
-                              <b>successful</b>
+                              <b>
+                                {currencyFormat(Math.round(data.amount), "USD")}
+                              </b>{" "}
+                              was <b>successful</b>
                             </>
                           );
                         }
