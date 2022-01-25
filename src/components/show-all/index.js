@@ -50,14 +50,9 @@ const ShowAll = ({ categories, query }) => {
     ],
     sort: [
       {
-        name: "Relevance",
-        value: "relevance",
-        checked: true,
-      },
-      {
         name: "Recently Listed",
         value: "recently_listed",
-        checked: false,
+        checked: true,
       },
       {
         name: "Price - High to Low",
@@ -90,7 +85,9 @@ const ShowAll = ({ categories, query }) => {
       : [];
     const sale_filters = query.get("sale") ? query.get("sale").split(",") : [];
     const nft_filters = query.get("nft") ? query.get("nft").split(",") : [];
-    const sort_filters = query.get("sort") ? query.get("sort") : "relevance";
+    const sort_filters = query.get("sort")
+      ? query.get("sort")
+      : "recently_listed";
     const sale_status = query.get("status");
 
     let categoryList = [];
@@ -131,7 +128,9 @@ const ShowAll = ({ categories, query }) => {
       : [];
     const sale_filters = query.get("sale") ? query.get("sale").split(",") : [];
     const nft_filters = query.get("nft") ? query.get("nft").split(",") : [];
-    const sort_filters = query.get("sort") ? query.get("sort") : "relevance";
+    const sort_filters = query.get("sort")
+      ? query.get("sort")
+      : "recently_listed";
 
     const search_filter = query.get("search");
     const sale_status = query.get("status");
@@ -152,7 +151,7 @@ const ShowAll = ({ categories, query }) => {
     category,
     type,
     saleType,
-    sort = "relevance",
+    sort = "recently_listed",
     searchText,
     saleStatus
   ) => {
@@ -180,7 +179,7 @@ const ShowAll = ({ categories, query }) => {
       let response = await nftShowAllApi({
         page,
         filter,
-        sort: sort === "relevance" ? null : sort,
+        sort,
       });
       setList([...list, ...response.data.data.nfts]);
       setHasNext(response.data.data.next_page);
@@ -197,7 +196,7 @@ const ShowAll = ({ categories, query }) => {
     category,
     type,
     saleType,
-    sort = "relevance",
+    sort = "recently_listed",
     searchText,
     saleStatus
   ) => {
@@ -225,7 +224,7 @@ const ShowAll = ({ categories, query }) => {
       let response = await nftShowAllApi({
         page,
         filter,
-        sort: sort === "relevance" ? null : sort,
+        sort,
       });
       setList(response.data.data.nfts);
       setHasNext(response.data.data.next_page);
@@ -246,7 +245,9 @@ const ShowAll = ({ categories, query }) => {
         ? query.get("sale").split(",")
         : [];
       const nft_filters = query.get("nft") ? query.get("nft").split(",") : [];
-      const sort_filters = query.get("sort") ? query.get("sort") : "relevance";
+      const sort_filters = query.get("sort")
+        ? query.get("sort")
+        : "recently_listed";
       const search_filters = query.get("search");
       const sale_status = query.get("status");
 
