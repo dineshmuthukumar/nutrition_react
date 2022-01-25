@@ -141,7 +141,10 @@ const OrderDetails = () => {
         setUserTotalBuys(data.user_buys);
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
+  useEffect(() => {
     cancelSaleDetail(slug, orderSlug, (data) => {
       setTotalQty(data.total_quantity);
       setAvailableQty(data.available_quantity);
@@ -189,28 +192,15 @@ const OrderDetails = () => {
 
     bidOutDated(slug, orderSlug, (data) => {
       if (data.history) {
-        const latest = data.history;
-        const index = bidHistory.findIndex((obj) => obj.slug === latest.slug);
-        if (index !== -1) {
-          let expired = {
-            ...bidHistory[index],
-            status: latest.status,
-          };
-          bidHistory[index] = expired;
-          setBidHistory(bidHistory);
-        }
-        // setBidHistory((bidHistory) => [data.history, ...bidHistory]);
+        bidHistories();
       }
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
 
-  useEffect(() => {
     ownerDetails(slug, (data) => {
       nftOwners();
       nftTransaction();
     });
-  }, []);
+  }, [slug, orderSlug]);
 
   const nftDetail = async (slug, orderSlug) => {
     try {
@@ -295,6 +285,18 @@ const OrderDetails = () => {
         page: 1,
       });
       setPurchaseList(response.data.data.purchase_details);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const bidHistories = async () => {
+    try {
+      let history = await orderBidHistory({ order_slug: orderSlug, page: 1 });
+      if (history.data.success) {
+        setBidHistory(history.data.data.histories);
+        setTotalCount(history.data.data.total_count);
+      }
     } catch (error) {
       console.log(error);
     }
