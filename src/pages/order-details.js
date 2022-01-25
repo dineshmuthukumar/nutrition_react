@@ -24,6 +24,7 @@ import { NFTLoader } from "../components/nft-basic-details/content-loader";
 import {
   acceptBid,
   bidDetail,
+  bidOutDated,
   buyDetail,
   cancelSaleDetail,
   orderPurchaseDetails,
@@ -182,6 +183,12 @@ const OrderDetails = () => {
       }
       if (data.order_completed) {
         setSoldOut(true);
+      }
+    });
+
+    bidOutDated(slug, orderSlug, (data) => {
+      if (data.history) {
+        setBidHistory((bidHistory) => [data.history, ...bidHistory]);
       }
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
