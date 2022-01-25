@@ -188,7 +188,17 @@ const OrderDetails = () => {
 
     bidOutDated(slug, orderSlug, (data) => {
       if (data.history) {
-        setBidHistory((bidHistory) => [data.history, ...bidHistory]);
+        const latest = data.history;
+        const index = bidHistory.findIndex((obj) => obj.slug === latest.slug);
+        if (index !== -1) {
+          let expired = {
+            ...bidHistory[index],
+            status: latest.status,
+          };
+          bidHistory[index] = expired;
+          setBidHistory(bidHistory);
+        }
+        // setBidHistory((bidHistory) => [data.history, ...bidHistory]);
       }
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
