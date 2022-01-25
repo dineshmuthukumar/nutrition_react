@@ -60,7 +60,7 @@ const HotCollections = () => {
                           <NFTCard nft={nft} key={i} image={cardImage} />
                         </div>
                       ))
-                    : "No Data Found!"} */}
+                    : "No Records Found!"} */}
                 </div>
               ) : (
                 <NFTCardLoader />
