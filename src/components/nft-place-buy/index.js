@@ -493,13 +493,13 @@ const NFTPlaceBid = ({
                                 icon={
                                   <BsFillQuestionCircleFill
                                     size={16}
-                                    className="ms-2 check-icon"
+                                    className="mb-1 check-icon"
                                   />
                                 }
                                 content={
                                   "The service fee includes gas fee and the platform fee."
                                 }
-                                placement="right"
+                                placement="top"
                               />
                             </label>
                             <h4>{parseFloat(nft.service_fee)}%</h4>
