@@ -68,11 +68,6 @@ const Explore = ({ categoryDetail }) => {
         value: "price",
         checked: false,
       },
-      {
-        name: "Relevance",
-        value: "relevance",
-        checked: false,
-      },
     ],
   });
 
@@ -137,7 +132,7 @@ const Explore = ({ categoryDetail }) => {
           sale_type: saleType,
           keyword: searchText,
         },
-        sort: sort === "relevance" ? null : sort,
+        sort,
       });
       setList([...list, ...response.data.data.nfts]);
       setHasNext(response.data.data.next_page);
@@ -166,7 +161,7 @@ const Explore = ({ categoryDetail }) => {
           sale_type: saleType,
           keyword: searchText,
         },
-        sort: sort === "relevance" ? null : sort,
+        sort,
       });
       setList(response.data.data.nfts);
       setHasNext(response.data.data.next_page);

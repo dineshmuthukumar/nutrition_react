@@ -20,12 +20,25 @@
     display: flex;
     justify-content: space-between;
     .bid-history-title {
+      @media screen and (max-width: 450px) {
+        width: 100%;
+      }
       ul.nav-btn-grp {
         display: flex;
         padding: 0;
         margin: 0;
         list-style: none;
+        @media screen and (max-width: 450px) {
+          flex-direction: column;
+          width: 100%;
+        }
         li {
+          @media screen and (max-width: 450px) {
+            width: 100%;
+            &:first-child {
+              margin-bottom: 1rem;
+            }
+          }
           span {
             font-family: $neue-helveticamedium;
             font-size: 1.2rem;
@@ -37,6 +50,10 @@
             border-radius: 50rem;
             background-color: #4a4949;
             cursor: pointer;
+            @media screen and (max-width: 450px) {
+              width: 100%;
+              justify-content: center;
+            }
             &:hover,
             &:focus,
             &:active {

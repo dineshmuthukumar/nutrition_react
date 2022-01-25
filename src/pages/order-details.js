@@ -27,6 +27,7 @@ import {
   buyDetail,
   cancelSaleDetail,
   orderPurchaseDetails,
+  outDatedBid,
   ownerDetails,
   pageView,
   totalFav,
@@ -38,6 +39,7 @@ import Footer from "../components/footer/index";
 import NFTOrderSummary from "../components/nft-order-summary";
 import NFTOrderBaseDetails from "../components/nft-order-basic-details";
 import NFTPurchaseDetails from "../components/nft-purchase-details/index";
+import AdditionalPerks from "../components/additional-perks/index";
 
 const OrderDetails = () => {
   const history = useHistory();
@@ -79,6 +81,7 @@ const OrderDetails = () => {
   const [userTotalBuys, setUserTotalBuys] = useState(0);
   const [userOutBid, setUserOutBid] = useState(false);
   const [userLastBid, setUserLastBid] = useState(0);
+  const [bidOutDated, setBidOutDated] = useState(false);
 
   const { user } = useSelector((state) => state.user.data);
 
@@ -112,6 +115,7 @@ const OrderDetails = () => {
       if (data.history) {
         setBidHistory((bidHistory) => [data.history, ...bidHistory]);
       }
+      setBidOutDated(false);
     });
     pageView(orderSlug, (data) => {
       setTotalViews(data.page_views);
@@ -139,7 +143,10 @@ const OrderDetails = () => {
         setUserTotalBuys(data.user_buys);
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
+  useEffect(() => {
     cancelSaleDetail(slug, orderSlug, (data) => {
       setTotalQty(data.total_quantity);
       setAvailableQty(data.available_quantity);
@@ -184,10 +191,15 @@ const OrderDetails = () => {
         setSoldOut(true);
       }
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
 
-  useEffect(() => {
+    outDatedBid(slug, orderSlug, (data) => {
+      setBidOutDated(true);
+      setPrice(data.minimum_bid);
+      if (data.history) {
+        bidHistories();
+      }
+    });
+
     ownerDetails(slug, (data) => {
       nftOwners();
       nftTransaction();
@@ -282,6 +294,18 @@ const OrderDetails = () => {
     }
   };
 
+  const bidHistories = async () => {
+    try {
+      let history = await orderBidHistory({ order_slug: orderSlug, page: 1 });
+      if (history.data.success) {
+        setBidHistory(history.data.data.histories);
+        setTotalCount(history.data.data.total_count);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <Header />
@@ -335,6 +359,7 @@ const OrderDetails = () => {
                   orderSlug={orderSlug}
                   slug={slug}
                   latestBid={bidHistory.length > 0 ? bidHistory[0] : {}}
+                  bidOutDated={bidOutDated}
                 />
               </div>
             </div>
@@ -366,7 +391,7 @@ const OrderDetails = () => {
 
           <NFTSectionTitle title="NFT Details" />
           <div className="row mt-5">
-            <div className="col-12 col-lg-6 order-lg-2 mb-4">
+            <div className="col-12 col-lg-6 order-lg-2 order-1 mb-4">
               {(() => {
                 if (erc721) {
                   return (
@@ -408,7 +433,7 @@ const OrderDetails = () => {
                 }
               })()}
             </div>
-            <div className="col-12 col-lg-6 order-lg-1">
+            <div className="col-12 col-lg-6 order-lg-1 order-2">
               {(() => {
                 if (nft.properties && typeof nft.properties === "string") {
                   let propertiesData = JSON.parse(nft.properties);
@@ -430,8 +455,18 @@ const OrderDetails = () => {
 
               <div className="mt-5"></div>
               <ChainAttributes chains={nft.chain_attributes} />
-              <div className="mt-5"></div>
-              <NFTTags tags={nft.tag_names} />
+              {nft?.tag_names?.length > 0 && (
+                <>
+                  <div className="mt-5"></div>
+                  <NFTTags tags={nft.tag_names} />
+                </>
+              )}
+              {nft?.comic?.length > 0 && (
+                <>
+                  <div className="mt-5"></div>
+                  <AdditionalPerks comics={nft.comic} />
+                </>
+              )}
             </div>
           </div>
 

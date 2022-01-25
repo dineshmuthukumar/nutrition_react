@@ -641,12 +641,12 @@ const NFTPutOnSale = ({
                                     erc1155Sale.buyAmount <
                                     parseFloat(nft?.floor_price)
                                   ) {
-                                    return `Min.Buy Amount ${currencyFormat(
+                                    return `Set a Minimum Price of ${currencyFormat(
                                       nft.floor_price,
                                       "USD"
-                                    )} is required`;
+                                    )} For Your NFT`;
                                   } else if (!erc1155Sale.buyQuantity > 0) {
-                                    return "Quantity is required";
+                                    return "Specify Quantity";
                                   } else {
                                     return "List for sale";
                                   }
@@ -788,7 +788,7 @@ const NFTPutOnSale = ({
                               </li>
                               {erc721Sale.isBid && (
                                 <li>
-                                  <span className="key">Bid amount</span>
+                                  <span className="key">Bid Amount</span>
                                   <span className="value">
                                     {currencyFormat(
                                       erc721Sale.bidAmount,
@@ -799,7 +799,7 @@ const NFTPutOnSale = ({
                               )}
                               {erc721Sale.isBuy && (
                                 <li>
-                                  <span className="key">Buy amount</span>
+                                  <span className="key">Buy Amount</span>
                                   <span className="value">
                                     {currencyFormat(
                                       erc721Sale.buyAmount,
@@ -815,13 +815,13 @@ const NFTPutOnSale = ({
                                     icon={
                                       <BsFillQuestionCircleFill
                                         size={16}
-                                        className="ms-2 check-icon"
+                                        className="check-icon"
                                       />
                                     }
                                     content={
                                       "The royalty paid to the artist or the inspiration."
                                     }
-                                    placement="right"
+                                    placement="top"
                                   />
                                 </span>
                                 <span className="value">
@@ -835,13 +835,13 @@ const NFTPutOnSale = ({
                                     icon={
                                       <BsFillQuestionCircleFill
                                         size={16}
-                                        className="ms-2 check-icon"
+                                        className="mb-1 check-icon"
                                       />
                                     }
                                     content={
                                       "The service fee includes gas fee and the platform fee."
                                     }
-                                    placement="right"
+                                    placement="top"
                                   />
                                 </span>
                                 <span className="value">
@@ -868,32 +868,32 @@ const NFTPutOnSale = ({
                                   <span className="key ">
                                     Your final amount will be calculated after
                                     deducting {parseFloat(nft.royalties)}%
-                                    artist fee
+                                    artist fee{" "}
                                     <ToolTip
                                       icon={
                                         <BsFillQuestionCircleFill
                                           size={16}
-                                          className="ms-2 check-icon"
+                                          className="mb-1 check-icon"
                                         />
                                       }
                                       content={
                                         "The royalty paid to the artist or the inspiration."
                                       }
-                                      placement="right"
+                                      placement="top"
                                     />{" "}
                                     and {parseFloat(nft.service_fee)}% service
-                                    fee
+                                    fee{" "}
                                     <ToolTip
                                       icon={
                                         <BsFillQuestionCircleFill
                                           size={16}
-                                          className="ms-2 check-icon"
+                                          className="mb-1 check-icon"
                                         />
                                       }
                                       content={
                                         "The service fee includes gas fee and the platform fee."
                                       }
-                                      placement="right"
+                                      placement="top"
                                     />{" "}
                                     based on your final accepted bid amount.
                                   </span>
@@ -1026,7 +1026,7 @@ const NFTPutOnSale = ({
                                 )}`}</span>
                               </li>
                               <li>
-                                <span className="key">Buy amount</span>
+                                <span className="key">Buy Amount</span>
                                 <span className="value">
                                   {currencyFormat(
                                     erc1155Sale.totalAmount,
@@ -1041,13 +1041,13 @@ const NFTPutOnSale = ({
                                     icon={
                                       <BsFillQuestionCircleFill
                                         size={16}
-                                        className="ms-2 check-icon"
+                                        className="mb-1 check-icon"
                                       />
                                     }
                                     content={
                                       "The royalty paid to the artist or the inspiration."
                                     }
-                                    placement="right"
+                                    placement="top"
                                   />
                                 </span>
                                 <span className="value">
@@ -1061,13 +1061,13 @@ const NFTPutOnSale = ({
                                     icon={
                                       <BsFillQuestionCircleFill
                                         size={16}
-                                        className="ms-2 check-icon"
+                                        className="mb-1 check-icon"
                                       />
                                     }
                                     content={
                                       "The service fee includes gas fee and the platform fee."
                                     }
-                                    placement="right"
+                                    placement="top"
                                   />
                                 </span>
                                 <span className="value">
