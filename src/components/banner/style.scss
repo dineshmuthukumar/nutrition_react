@@ -44,6 +44,7 @@
   width: 100%;
   // margin-bottom: 1.4rem;
   object-fit: cover;
+  object-position: top;
   border-radius: 0.8rem;
 }
 .cat-block {
@@ -140,6 +141,7 @@
   left: 0;
   border-radius: 0.8rem;
 }
+.carousel .slide:before,
 .cat-block:before {
   height: 5em;
 }
@@ -159,6 +161,5 @@
     height: 0.5rem;
     width: 1.3em;
     margin: 0 3px;
-
   }
 }

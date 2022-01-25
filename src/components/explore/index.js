@@ -557,7 +557,7 @@ const Explore = ({ categoryDetail }) => {
                     ))
                   ) : (
                     <div className="col-12 text-center mb-5">
-                      <h3 className="my-3">No Data Found!</h3>
+                      <h3 className="my-3">No Records Found!</h3>
                     </div>
                   )}
 
