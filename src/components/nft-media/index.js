@@ -486,7 +486,9 @@ const SharePopover = ({ icon, placement, title }) => {
                 style={{ color: "#4267B2" }}
                 onClick={() =>
                   window.open(
-                    `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${title}`
+                    `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${encodeURIComponent(
+                      title
+                    )}`
                   )
                 }
               />
@@ -495,7 +497,9 @@ const SharePopover = ({ icon, placement, title }) => {
                 style={{ color: "#1DA1F2" }}
                 onClick={() =>
                   window.open(
-                    `https://twitter.com/intent/tweet?url=${url}&text=${title}&hashtags=${hashtags}&via=${via}`
+                    `https://twitter.com/intent/tweet?url=${url}&text=${encodeURIComponent(
+                      title
+                    )}&hashtags=${hashtags}&via=${via}`
                   )
                 }
               />
@@ -504,7 +508,9 @@ const SharePopover = ({ icon, placement, title }) => {
                 style={{ color: "#0088cc" }}
                 onClick={() =>
                   window.open(
-                    `https://telegram.me/share/?url=${url}&title=${title}`
+                    `https://telegram.me/share/?url=${url}&title=${encodeURIComponent(
+                      title
+                    )}`
                   )
                 }
               />
