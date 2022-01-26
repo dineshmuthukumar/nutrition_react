@@ -4,9 +4,9 @@ import { useDispatch } from "react-redux";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Banner from "../components/banner";
-import Collections from "../components/collections";
 import HotCollections from "../components/hot-collections";
 import TopSellers from "../components/top-sellers";
+import RecentlySoldNFT from "../components/recently-sold-nft";
 import ShowAll from "../components/show-all";
 import { useHistory, useRouteMatch } from "react-router";
 
@@ -66,8 +66,8 @@ const Home = () => {
       <Header />
       <main>
         <Banner list={list} />
-        {/* <Collections /> */}
         <HotCollections />
+        <RecentlySoldNFT />
         <TopSellers />
         <ShowAll categories={list} query={query} />
       </main>

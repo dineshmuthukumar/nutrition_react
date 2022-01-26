@@ -28,6 +28,7 @@ const OrderDetails = lazy(() => import("./pages/order-details"));
 const NotFound = lazy(() => import("./pages/not-found"));
 const HelpLine = lazy(() => import("./pages/help-line"));
 const UserDetails = lazy(() => import("./pages/user-details"));
+const RecentlySold = lazy(() => import("./pages/recently-sold"));
 
 function App(props) {
   const market_start_date = "Jan 22, 2022 03:30:00";
@@ -151,6 +152,11 @@ function App(props) {
               <Route exact path="/explore/category/:slug" component={Explore} />
               <Route exact path="/" component={Home} />
               <Route exact path="/help-line" component={HelpLine} />
+              <Route
+                exact
+                path="/nfts/recently-sold"
+                component={RecentlySold}
+              />
 
               <Route
                 exact
