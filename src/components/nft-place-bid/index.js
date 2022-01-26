@@ -163,7 +163,10 @@ const NFTPlaceBid = ({
   };
 
   const handleBidInputChange = (e) => {
-    if (e.target.value) {
+    if (
+      e.target.value &&
+      e.target.value.length <= process.env.REACT_APP_AMOUNT_MAX_LENGTH
+    ) {
       const minimumBid = price ? price : orderDetails.minimum_bid;
       if (validateCurrency(e.target.value)) {
         if (user) {
@@ -212,7 +215,7 @@ const NFTPlaceBid = ({
         }
       }
     } else {
-      setBidAmount(e.target.value);
+      setBidAmount("");
       setNoBalance(false);
       setError("");
       setBid({ ...bid, bidError: "", progressError: "", buttonDisable: true });
