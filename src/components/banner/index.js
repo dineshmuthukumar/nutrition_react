@@ -20,8 +20,7 @@ const Banner = ({ list = [] }) => {
 
   const handleNavigate = (input) => {
     const data = list.find((obj) => obj.name === input);
-
-    history.push(`/explore/category/${data.slug}`);
+    data?.slug && history.push(`/explore/category/${data?.slug}`);
   };
 
   const static_url = [
@@ -74,6 +73,11 @@ const Banner = ({ list = [] }) => {
       name: "Animated Chakra",
       type: "video",
       url: "https://cdn.beyondlife.club/chakra_loop.mp4",
+    },
+    {
+      name: "Hindustan Times NFT",
+      type: "image",
+      url: "https://cdn.beyondlife.club/media/social/hindustan_3.gif",
     },
   ];
   return (
@@ -293,6 +297,19 @@ const Banner = ({ list = [] }) => {
                     style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
                   ></video>
                 </div>
+                <div
+                  style={{ overflow: "hidden" }}
+                  className="cat-block"
+                  role={"button"}
+                  onClick={() => handleNavigate("Madhushala")}
+                >
+                  <h5 className="cat-title big-box">Madhushala</h5>
+                  <img
+                    src={madhushala_nft}
+                    className="first-image"
+                    style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
+                  />
+                </div>
               </Carousel>
             </div>
           </div>
@@ -417,11 +434,13 @@ const Banner = ({ list = [] }) => {
                   style={{
                     height: "calc(((((100vw - (7rem + 6rem))/2)/3)) - 1.5rem)",
                   }}
-                  onClick={() => handleNavigate("Madhushala")}
+                  onClick={() => handleNavigate("Hindustan Times NFT")}
                 >
-                  <h5 className="cat-title">Madhushala</h5>
+                  <h5 className="cat-title">Hindustan Times NFT</h5>
                   <img
-                    src={madhushala_nft}
+                    src={
+                      "https://cdn.beyondlife.club/media/social/hindustan-horizondal.gif"
+                    }
                     className="first-image"
                     style={{ height: "100%" }}
                   />

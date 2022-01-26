@@ -40,6 +40,7 @@ import NFTOrderSummary from "../components/nft-order-summary";
 import NFTOrderBaseDetails from "../components/nft-order-basic-details";
 import NFTPurchaseDetails from "../components/nft-purchase-details/index";
 import AdditionalPerks from "../components/additional-perks/index";
+import AppHelmet from "../components/helmet";
 
 const OrderDetails = () => {
   const history = useHistory();
@@ -309,6 +310,7 @@ const OrderDetails = () => {
   return (
     <>
       <Header />
+      <AppHelmet title={nft?.name} image={nft?.asset_url} />
       {loader ? (
         <NFTLoader />
       ) : (

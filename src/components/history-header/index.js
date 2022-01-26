@@ -6,7 +6,7 @@ import "./style.scss";
 
 import { currencyFormat } from "../../utils/common";
 
-const HistoryHeader = ({ nftOwner }) => {
+const HistoryHeader = ({ nftOwner, nft }) => {
   const { user } = useSelector((state) => state.user.data);
 
   return (
@@ -38,10 +38,15 @@ const HistoryHeader = ({ nftOwner }) => {
             </span>
           </div> */}
           <div className="date">
-            <span className="key">Sold on</span>
-            <span className="value">
-              {dayjs(nftOwner?.sold_at).format("MMM D, YYYY hh:mm A")}
-            </span>
+            {!parseInt(process.env.REACT_APP_HINDUSTAN_TIMES_ID) ===
+              nft?.celebrity_id && (
+              <>
+                <span className="key">Sold on</span>
+                <span className="value">
+                  {dayjs(nftOwner?.sold_at).format("MMM D, YYYY hh:mm A")}
+                </span>
+              </>
+            )}
           </div>
         </div>
       </div>

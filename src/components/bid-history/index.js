@@ -127,7 +127,7 @@ const BidHistory = ({
         />
       ) : (
         <div className="bid-history if_bid_empty_cell">
-          <HistoryHeader nftOwner={nftOwner} />
+          <HistoryHeader nftOwner={nftOwner} nft={nft} />
 
           {(transactionHistory.length > 0 || (isBid && isOrderOnSale)) && (
             <div className="bid-history-title-content">

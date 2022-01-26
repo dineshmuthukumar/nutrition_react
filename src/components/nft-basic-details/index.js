@@ -45,9 +45,20 @@ const NFTBaseDetails = ({
   return (
     <>
       <div className="creator mt-3">
-        {nft.category_name} |
-        {nft.celebrity_id === 1 ? " Amitabh Bachchan" : " Stan Lee's"} Exclusive
-        NFTs
+        {nft.category_name} |{" "}
+        {(() => {
+          if (nft.celebrity_id === 1) {
+            return "Amitabh Bachchan";
+          } else if (
+            nft.celebrity_id ===
+            parseInt(process.env.REACT_APP_HINDUSTAN_TIMES_ID)
+          ) {
+            return "Hindustan Times";
+          } else {
+            return "Stan Lee";
+          }
+        })()}{" "}
+        Exclusive NFTs
         <ToolTip
           icon={<FaCheckCircle size={16} className="ms-2 check-icon" />}
           content="Verified Artist"
