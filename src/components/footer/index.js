@@ -15,6 +15,7 @@ import {
 import "./style.scss";
 import { validateEmail } from "../../utils/common";
 import { sendEmailNewletter } from "../../api/axios-newsletter";
+import guardianLinkLogo from "../../images/guardianlink.svg";
 
 const Footer = () => {
   const [email, setEmail] = useState();
@@ -233,10 +234,7 @@ const Footer = () => {
           </div>
           <div className="submenu">
             <a target="_self" href="https://www.guardianlink.io">
-              <Image
-                src="https://cdn.beyondlife.club/media/logo_horizondal.png"
-                alt="alt"
-              />
+              <Image src={guardianLinkLogo} alt="alt" />
             </a>
           </div>
         </div>
