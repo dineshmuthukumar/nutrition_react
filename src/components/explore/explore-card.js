@@ -24,16 +24,24 @@ const ExploreCard = ({
   const erc721 = nftType === "erc721";
   const history = useHistory();
 
-  const handleClick = () => {
-    if (nft?.is_on_sale) {
-      history.push(`/order/details/${nft?.slug}/${nft?.order_details?.slug}`);
-    } else {
-      history.push(`/details/${nft?.slug}`);
-    }
-  };
+  // const handleClick = () => {
+  //   if (nft?.is_on_sale) {
+  //     history.push(`/order/details/${nft?.slug}/${nft?.order_details?.slug}`);
+  //   } else {
+  //     history.push(`/details/${nft?.slug}`);
+  //   }
+  // };
   return (
     <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-      <div className="more-card" role="button" onClick={handleClick}>
+      <a
+        className="more-card"
+        role="button"
+        href={
+          nft?.is_on_sale
+            ? `/order/details/${nft?.slug}/${nft?.order_details?.slug}`
+            : `/details/${nft?.slug}`
+        }
+      >
         <span className="nft-type-badge">{nft.nft_type.toUpperCase()}</span>
         <img
           alt="item logo "
@@ -50,7 +58,6 @@ const ExploreCard = ({
           width="100%"
           align="post"
           role="button"
-          onClick={handleClick}
         />
 
         <div className="top-content-title">
@@ -137,7 +144,7 @@ const ExploreCard = ({
             </>
           )}
         </div>
-      </div>
+      </a>
     </div>
   );
 };
