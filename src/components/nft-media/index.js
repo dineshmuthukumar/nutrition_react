@@ -10,7 +10,6 @@ import {
   AiFillTwitterCircle,
 } from "react-icons/ai";
 import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
 import { FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { toast } from "react-toastify";
@@ -417,11 +416,8 @@ const CustomPopover = ({ icon, placement, text }) => {
 };
 
 const SharePopover = ({ icon, placement, title }) => {
-  const location = useLocation();
-  const url = process.env.REACT_APP_MARKETPLACE_URL + location.pathname;
-
+  const url = window.location.href;
   var hashtags = "beyondlife.club,NFT,popularNFT,rareNFT,NFTMarketplace";
-
   const via = "beyondlife.club";
 
   const detectWhatsapp = (uri) => {
@@ -518,7 +514,9 @@ const SharePopover = ({ icon, placement, title }) => {
                 style={{ color: "#25D366" }}
                 onClick={() => {
                   detectWhatsapp(
-                    `whatsapp://send?text=Hey ! I found an awesome NFT here%0a%0a${title}%0a%0aCheck it out in below link%0a%0a${url}`
+                    `whatsapp://send?text=Hey ! I found an awesome NFT here%0a%0a${encodeURIComponent(
+                      title
+                    )}%0a%0aCheck it out in below link%0a%0a${url}`
                   ).then((hasWhatsapp) => {
                     if (!hasWhatsapp) {
                       alert(
