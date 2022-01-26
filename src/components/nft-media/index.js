@@ -10,6 +10,7 @@ import {
   AiFillTwitterCircle,
 } from "react-icons/ai";
 import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import { FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { toast } from "react-toastify";
@@ -416,9 +417,11 @@ const CustomPopover = ({ icon, placement, text }) => {
 };
 
 const SharePopover = ({ icon, placement, title }) => {
-  const url = window.location.href;
-  const hashtags =
-    "beyondlife.club,nft,amitabh,bachchan,amitabh_bachchan,bollywood,popular,recent";
+  const location = useLocation();
+  const url = process.env.REACT_APP_MARKETPLACE_URL + location.pathname;
+
+  var hashtags = "beyondlife.club,NFT,popularNFT,rareNFT,NFTMarketplace";
+
   const via = "beyondlife.club";
 
   const detectWhatsapp = (uri) => {
