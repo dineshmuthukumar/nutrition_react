@@ -54,9 +54,14 @@ const Explore = ({ categoryDetail }) => {
     ],
     sort: [
       {
+        name: "Relevance",
+        value: "relevance",
+        checked: true,
+      },
+      {
         name: "Recently Listed",
         value: "recently_listed",
-        checked: true,
+        checked: false,
       },
       {
         name: "Price - High to Low",
@@ -74,9 +79,7 @@ const Explore = ({ categoryDetail }) => {
   useEffect(() => {
     const sale_filters = query.get("sale") ? query.get("sale").split(",") : [];
     const nft_filters = query.get("nft") ? query.get("nft").split(",") : [];
-    const sort_filters = query.get("sort")
-      ? query.get("sort")
-      : "recently_listed";
+    const sort_filters = query.get("sort") ? query.get("sort") : "relevance";
 
     const info = { ...filter };
 
@@ -99,9 +102,7 @@ const Explore = ({ categoryDetail }) => {
   useEffect(() => {
     const sale_filters = query.get("sale") ? query.get("sale").split(",") : [];
     const nft_filters = query.get("nft") ? query.get("nft").split(",") : [];
-    const sort_filters = query.get("sort")
-      ? query.get("sort")
-      : "recently_listed";
+    const sort_filters = query.get("sort") ? query.get("sort") : "relevance";
 
     const search_filter = query.get("search");
 
@@ -118,7 +119,7 @@ const Explore = ({ categoryDetail }) => {
     page,
     type,
     saleType,
-    sort = "recently_listed",
+    sort = "relevance",
     searchText
   ) => {
     try {
@@ -132,7 +133,7 @@ const Explore = ({ categoryDetail }) => {
           sale_type: saleType,
           keyword: searchText,
         },
-        sort,
+        sort: sort === "relevance" ? null : sort,
       });
       setList([...list, ...response.data.data.nfts]);
       setHasNext(response.data.data.next_page);
@@ -147,7 +148,7 @@ const Explore = ({ categoryDetail }) => {
     page,
     type,
     saleType,
-    sort = "recently_listed",
+    sort = "relevance",
     searchText
   ) => {
     try {
@@ -161,7 +162,7 @@ const Explore = ({ categoryDetail }) => {
           sale_type: saleType,
           keyword: searchText,
         },
-        sort,
+        sort: sort === "relevance" ? null : sort,
       });
       setList(response.data.data.nfts);
       setHasNext(response.data.data.next_page);
@@ -178,9 +179,7 @@ const Explore = ({ categoryDetail }) => {
         ? query.get("sale").split(",")
         : [];
       const nft_filters = query.get("nft") ? query.get("nft").split(",") : [];
-      const sort_filters = query.get("sort")
-        ? query.get("sort")
-        : "recently_listed";
+      const sort_filters = query.get("sort") ? query.get("sort") : "relevance";
       const search_filters = query.get("search");
 
       showAllNFTs(
