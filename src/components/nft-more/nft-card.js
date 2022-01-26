@@ -7,43 +7,45 @@ import cardImage from "../../images/drops/nft_2.png";
 
 import "./style.scss";
 
-const CollectionCard = ({ nft }) => {
+const CollectionCard = ({ nft, recentSold = false }) => {
   const erc721 = nft?.nft_type === "erc721";
   const history = useHistory();
   const [bgColor, setBgColor] = useState();
 
-  useEffect(() => {
-    if (nft?.asset_type?.includes("image")) {
-      getBgColor(nft?.asset_url);
-    } else if (nft?.cover_url) {
-      getBgColor(nft?.cover_url);
-    } else {
-      getBgColor(nft?.asset_url);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   if (nft?.asset_type?.includes("image")) {
+  //     getBgColor(nft?.asset_url);
+  //   } else if (nft?.cover_url) {
+  //     getBgColor(nft?.cover_url);
+  //   } else {
+  //     getBgColor(nft?.asset_url);
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
-  const getBgColor = async (input) => {
-    if (input) {
-      const image = nft.asset_type.includes("image")
-        ? nft.asset_url
-        : nft.cover_url
-        ? nft.cover_url
-        : nft.asset_url;
-      const color = await prominent(image, { amount: 1 });
-      if (nft.asset_type.includes("image")) {
-        setBgColor(`rgb(${color[0]},${color[1]},${color[2]},0.3)`);
-      } else {
-        setBgColor(`#020001`);
-      }
-    } else {
-      setBgColor(`rgb(0,0,0,0.1)`);
-    }
-  };
+  // const getBgColor = async (input) => {
+  //   if (input) {
+  //     const image = nft.asset_type.includes("image")
+  //       ? nft.asset_url
+  //       : nft.cover_url
+  //       ? nft.cover_url
+  //       : nft.asset_url;
+  //     const color = await prominent(image, { amount: 1 });
+  //     if (nft.asset_type.includes("image")) {
+  //       setBgColor(`rgb(${color[0]},${color[1]},${color[2]},0.3)`);
+  //     } else {
+  //       setBgColor(`#020001`);
+  //     }
+  //   } else {
+  //     setBgColor(`rgb(0,0,0,0.1)`);
+  //   }
+  // };
 
   // const handleClick = () => {
   //   if (nft?.is_on_sale) {
   //     history.push(`/order/details/${nft?.slug}/${nft?.order_details?.slug}`);
+  //   } else if (recentSold) {
+  //     history.push(`/order/details/${nft?.slug}/${nft?.order_slug}`);
   //   } else {
   //     history.push(`/details/${nft?.slug}`);
   //   }
@@ -55,15 +57,14 @@ const CollectionCard = ({ nft }) => {
       href={
         nft?.is_on_sale
           ? `/order/details/${nft?.slug}/${nft?.order_details?.slug}`
+          : recentSold
+          ? `/order/details/${nft?.slug}/${nft?.order_slug}`
           : `/details/${nft?.slug}`
       }
     >
-      {/* <span className="nft-like-btn">
-        <FaHeart size={30} color="#ccc" />
-      </span> */}
       <span className="nft-type-badge">{nft.nft_type.toUpperCase()}</span>
       <img
-        style={{ background: bgColor }}
+        // style={{ background: bgColor }}
         alt="media logo"
         src={(() => {
           if (nft?.asset_type?.includes("image")) {
@@ -82,6 +83,9 @@ const CollectionCard = ({ nft }) => {
           <div className="more-nft-title">{nft?.name}</div>
           {nft?.owner_name && (
             <div className="more-nft-desc">{nft?.owner_name}</div>
+          )}
+          {recentSold && nft?.seller?.user_name && (
+            <div className="more-nft-desc">{nft?.seller?.user_name}</div>
           )}
         </div>
 
@@ -129,6 +133,16 @@ const CollectionCard = ({ nft }) => {
                   </div>
                 </div>
               )}
+          </div>
+        )}
+        {recentSold && (
+          <div className="more-bid-details">
+            <div className="text-start">
+              <div className="mb-title text-secondary">Buy Price</div>
+              <div className="mb-value">
+                {currencyFormat(nft?.amount, "USD")}
+              </div>
+            </div>
           </div>
         )}
       </div>
