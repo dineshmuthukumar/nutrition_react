@@ -1,17 +1,14 @@
 import React, { useRef } from "react";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
-import cardImage from "../../images/drops/nft_2.png";
-
-import MoreCard from "./more-card";
 import CollectionCard from "./nft-card";
 
 import "./style.scss";
-import NFTCard from "../nft-card/index";
 
 const NFTMore = ({
   nftList = [],
   hideNavigation = false,
   hideTitle = false,
+  recentSold = false,
 }) => {
   const ref = useRef(0);
   const scroll = (type) => {
@@ -76,7 +73,13 @@ const NFTMore = ({
             isEnded = true;
           }
 
-          return <CollectionCard key={`nft-more-${i}`} nft={nft} />;
+          return (
+            <CollectionCard
+              key={`nft-more-${i}`}
+              nft={nft}
+              recentSold={recentSold}
+            />
+          );
         })}
       </div>
 
