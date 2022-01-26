@@ -63,27 +63,36 @@ const NFTPutOnSale = ({
   });
 
   const handleErc721BidAmountChange = (e) => {
-    if (e.target.value) {
+    if (
+      e.target.value &&
+      e.target.value.length <= process.env.REACT_APP_AMOUNT_MAX_LENGTH
+    ) {
       if (validateCurrency(e.target.value)) {
         setErc721Sale({ ...erc721Sale, bidAmount: e.target.value });
       }
     } else {
-      setErc721Sale({ ...erc721Sale, bidAmount: e.target.value });
+      setErc721Sale({ ...erc721Sale, bidAmount: "" });
     }
   };
 
   const handleErc721BuyAmountChange = (e) => {
-    if (e.target.value) {
+    if (
+      e.target.value &&
+      e.target.value.length <= process.env.REACT_APP_AMOUNT_MAX_LENGTH
+    ) {
       if (validateCurrency(e.target.value)) {
         setErc721Sale({ ...erc721Sale, buyAmount: e.target.value });
       }
     } else {
-      setErc721Sale({ ...erc721Sale, buyAmount: e.target.value });
+      setErc721Sale({ ...erc721Sale, buyAmount: "" });
     }
   };
 
   const handleErc1155BuyAmountChange = (e) => {
-    if (e.target.value) {
+    if (
+      e.target.value &&
+      e.target.value.length <= process.env.REACT_APP_AMOUNT_MAX_LENGTH
+    ) {
       if (validateCurrency(e.target.value)) {
         setErc1155Sale({
           ...erc1155Sale,
@@ -94,7 +103,7 @@ const NFTPutOnSale = ({
     } else {
       setErc1155Sale({
         ...erc1155Sale,
-        buyAmount: e.target.value,
+        buyAmount: "",
         totalAmount: 0,
       });
     }
