@@ -417,8 +417,7 @@ const CustomPopover = ({ icon, placement, text }) => {
 
 const SharePopover = ({ icon, placement, title }) => {
   const url = window.location.href;
-  const hashtags =
-    "beyondlife.club,nft,amitabh,bachchan,amitabh_bachchan,bollywood,popular,recent";
+  var hashtags = "beyondlife.club,NFT,popularNFT,rareNFT,NFTMarketplace";
   const via = "beyondlife.club";
 
   const detectWhatsapp = (uri) => {
@@ -515,7 +514,9 @@ const SharePopover = ({ icon, placement, title }) => {
                 style={{ color: "#25D366" }}
                 onClick={() => {
                   detectWhatsapp(
-                    `whatsapp://send?text=Hey ! I found an awesome NFT here%0a%0a${title}%0a%0aCheck it out in below link%0a%0a${url}`
+                    `whatsapp://send?text=Hey ! I found an awesome NFT here%0a%0a${encodeURIComponent(
+                      title
+                    )}%0a%0aCheck it out in below link%0a%0a${url}`
                   ).then((hasWhatsapp) => {
                     if (!hasWhatsapp) {
                       alert(
