@@ -420,6 +420,8 @@ const SharePopover = ({ icon, placement, title }) => {
   const location = useLocation();
   const url = process.env.REACT_APP_MARKETPLACE_URL + location.pathname;
 
+  alert(url);
+
   var hashtags = "beyondlife.club,NFT,popularNFT,rareNFT,NFTMarketplace";
 
   const via = "beyondlife.club";
