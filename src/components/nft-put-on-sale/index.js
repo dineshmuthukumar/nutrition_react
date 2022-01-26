@@ -8,6 +8,12 @@ import { BiCheck, BiX } from "react-icons/bi";
 import { FaCheckCircle } from "react-icons/fa";
 import _ from "lodash";
 import { toast } from "react-toastify";
+import {
+  AiFillFacebook,
+  AiFillTwitterCircle,
+  AiOutlineLink,
+} from "react-icons/ai";
+import { FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
 
 import ErrorText from "./error-text";
 import sample from "../../images/sampleNFT.jpg";
@@ -22,6 +28,7 @@ import HelpLine from "../help-line";
 import "./style.scss";
 import ToolTip from "../tooltip/index";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 const NFTPutOnSale = ({
   putOnSalePop = false,
@@ -29,11 +36,15 @@ const NFTPutOnSale = ({
   nft,
   isQuantityAvailable,
 }) => {
+  const url = window.location.href;
+  const hashtags = "NFT,NFTCollector,NFTCollection,BeyondLife,GuardianLink";
+  const via = "beyondlife.club";
+
   const { user } = useSelector((state) => state.user.data);
   const { params } = useRouteMatch();
 
   const [success, setSuccess] = useState(false);
-  const [successData, setSuccessData] = useState({});
+  const [orderId, setOrderId] = useState("");
 
   const erc721 = nft.nft_type === "erc721";
   const [error, setError] = useState("");
@@ -176,6 +187,7 @@ const NFTPutOnSale = ({
           buttonName: "Confirm",
           buttonDisable: false,
         });
+        setOrderId(result.data?.data?.order_slug);
         // setSuccessData(result.data.data.buy);
       }
     } catch (error) {
@@ -221,6 +233,49 @@ const NFTPutOnSale = ({
       processClass: "",
       buttonName: "Confirm",
     });
+  };
+
+  const detectWhatsapp = (uri) => {
+    const onIE = () => {
+      return new Promise((resolve) => {
+        window.navigator.msLaunchUri(
+          uri,
+          () => resolve(true),
+          () => resolve(false)
+        );
+      });
+    };
+
+    const notOnIE = () => {
+      return new Promise((resolve) => {
+        const a =
+          document.getElementById("wapp-launcher") ||
+          document.createElement("a");
+        a.id = "wapp-launcher";
+        a.href = uri;
+        a.style.display = "none";
+        document.body.appendChild(a);
+
+        const start = Date.now();
+        const timeoutToken = setTimeout(() => {
+          if (Date.now() - start > 1250) {
+            resolve(true);
+          } else {
+            resolve(false);
+          }
+        }, 1000);
+
+        const handleBlur = () => {
+          clearTimeout(timeoutToken);
+          resolve(true);
+        };
+        window.addEventListener("blur", handleBlur);
+
+        a.click();
+      });
+    };
+
+    return window.navigator.msLaunchUri ? onIE() : notOnIE();
   };
 
   return (
@@ -1133,6 +1188,85 @@ const NFTPutOnSale = ({
                           Your NFT has been successfully listed for{" "}
                           {erc721 ? "bidding/sale" : "sale"}.
                         </div>
+
+                        {orderId && (
+                          <div className="success-share-block">
+                            <div className="d-flex share-icon-block">
+                              <CopyToClipboard
+                                role="button"
+                                className="me-2"
+                                text={`${process.env.REACT_APP_MARKETPLACE_URL}/order/details/${nft.slug}/${orderId}`}
+                                onCopy={() => {
+                                  toast.success("Copied to Clipboard");
+                                }}
+                              >
+                                <AiOutlineLink size={35} />
+                              </CopyToClipboard>
+                              <AiFillFacebook
+                                role="button"
+                                className="me-2"
+                                size={35}
+                                style={{ color: "#4267B2" }}
+                                onClick={() =>
+                                  window.open(
+                                    `https://www.facebook.com/sharer/sharer.php?u=${`${process.env.REACT_APP_MARKETPLACE_URL}/order/details/${nft.slug}/${orderId}`}&quote=${encodeURIComponent(
+                                      `Hey!! Check out this awesome NFT I've listed for sale! You can buy it on BeyondLife.club marketplace featuring NFT collections of Amitabh Bachchan and Stan Lee's Chakra the Invincible!`
+                                    )}`
+                                  )
+                                }
+                              />
+                              <AiFillTwitterCircle
+                                role="button"
+                                className="me-2"
+                                size={35}
+                                style={{ color: "#1DA1F2" }}
+                                onClick={() =>
+                                  window.open(
+                                    `https://twitter.com/intent/tweet?url=${`${process.env.REACT_APP_MARKETPLACE_URL}/order/details/${nft.slug}/${orderId}`}&text=${encodeURIComponent(
+                                      `Hey y'all! Here is the #NFT I've listed for sale on @beyondlifeclub marketplace powered by @Guardian_NFT! Check it out if you wanna buy this NFT and more NFTs? Sign up and gear up! #NFTCollection`
+                                    )}`
+                                  )
+                                }
+                              />
+                              <FaTelegramPlane
+                                role="button"
+                                className="me-2"
+                                size={35}
+                                style={{ color: "#0088cc" }}
+                                onClick={() =>
+                                  window.open(
+                                    `https://telegram.me/share/?url=${`${process.env.REACT_APP_MARKETPLACE_URL}/order/details/${nft.slug}/${orderId}`}&title=${encodeURIComponent(
+                                      `Hey!! Check out this awesome NFT I've listed for sale! You can buy it on BeyondLife.club marketplace featuring NFT collections of Amitabh Bachchan and Stan Lee's Chakra the Invincible!`
+                                    )}`
+                                  )
+                                }
+                              />
+
+                              <FaWhatsapp
+                                role="button"
+                                size={35}
+                                style={{ color: "#25D366" }}
+                                onClick={() => {
+                                  detectWhatsapp(
+                                    `whatsapp://send?text=Hey ! I found an awesome NFT here%0a%0a${encodeURIComponent(
+                                      `Hey!! Check out this awesome NFT I've listed for sale! You can buy it on BeyondLife.club marketplace featuring NFT collections of Amitabh Bachchan and Stan Lee's Chakra the Invincible!`
+                                    )}%0a%0aCheck it out in below link%0a%0a${`${process.env.REACT_APP_MARKETPLACE_URL}/order/details/${nft.slug}/${orderId}`}`
+                                  ).then((hasWhatsapp) => {
+                                    if (!hasWhatsapp) {
+                                      alert(
+                                        "You don't have WhatsApp, kindly install it and try again"
+                                      );
+                                    }
+                                  });
+                                }}
+                              />
+                            </div>
+                            <div className="share-message mt-2">
+                              Spread the word and share in your circles to sell
+                              it soon!
+                            </div>
+                          </div>
+                        )}
                       </div>
 
                       <div className="bottom-area">

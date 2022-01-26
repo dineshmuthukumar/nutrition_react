@@ -5,6 +5,7 @@ import ReadMoreReact from "read-more-react";
 import AritstPills from "./artist-pills";
 import amitabh_img from "../../images/artist-image.png";
 import stanlee_img from "../../images/stanlee.jpg";
+import ht_img from "../../images/ht_logo.png";
 
 import "./style.scss";
 
@@ -15,25 +16,50 @@ const NFTArtist = ({ id }) => {
         <div className="col-12 col-md-5">
           <img
             className="artist-img"
-            src={id === 1 ? amitabh_img : stanlee_img}
+            src={(() => {
+              if (id === 1) {
+                return amitabh_img;
+              } else if (
+                id === parseInt(process.env.REACT_APP_HINDUSTAN_TIMES_ID)
+              ) {
+                return ht_img;
+              } else {
+                return stanlee_img;
+              }
+            })()}
             alt="artist logo"
           />
         </div>
         <div className="col-12 col-md-7 mt-4 mt-md-0 artist-details-content">
           <div className="artist-name">The Inspiration</div>
           <div className="at-name">
-            {id === 1 ? "Amitabh Bachchan" : "Stan Lee"}
+            {(() => {
+              if (id === 1) {
+                return "Amitabh Bachchan";
+              } else if (
+                id === parseInt(process.env.REACT_APP_HINDUSTAN_TIMES_ID)
+              ) {
+                return "Hindustan Times";
+              } else {
+                return "Stan Lee";
+              }
+            })()}
           </div>
           <div className="artist-desc mt-5">
             <ReadMoreReact
               min={300}
               ideal={500}
               max={700}
-              text={
-                id === 1
-                  ? `Amitabh Bachchan is, without question, the most influential film personality of the last century. In an illustrious career that spans four decades, he’s donned multiple portfolios like acting, production, television hosting, and singing!`
-                  : `The inspiration behind the creation of all our art NFTs - both illustrations and video - is none other than the creation of the legendary Stan Lee. Stan Lee is one of the most prolific and formidable creator of superheroes in the last 100 years, and he has been the creative brain behind the creation of some memorable multiverses. Chakra is the only Indian superhero that Stan Lee has co-created!`
-              }
+              text={(() => {
+                if (id === 1)
+                  return `Amitabh Bachchan is, without question, the most influential film personality of the last century. In an illustrious career that spans four decades, he's donned multiple portfolios like acting, production, television hosting, and singing!`;
+                else if (
+                  id === parseInt(process.env.REACT_APP_HINDUSTAN_TIMES_ID)
+                )
+                  return `Hindustan Times is one of India's most respected and leading English news destination, with a legacy of close to a hundred years. Through the course of the century, HT has witnessed and set forth India's most iconic moments to its citizenry. As India celebrates its 73rd Republic Day on 26th January 2022, we invite you to stake claim to piece of India's glorious history through the lens of the Hindustan Times. HT's foray into Web 3.0 through its NFTs is an attempt in bringing its storied past into the future. This would include timeless tokens of spectacular landmarks and milestones in Indian history which was published in the daily through the course of the last century Many such iconic timeless tokens are being put up for an auction on 26th Jan. For any further details on this please log on www.nft.hindustantimes.com and stake your claim to a piece of history.`;
+                else
+                  return `The inspiration behind the creation of all our art NFTs - both illustrations and video - is none other than the creation of the legendary Stan Lee. Stan Lee is one of the most prolific and formidable creator of superheroes in the last 100 years, and he has been the creative brain behind the creation of some memorable multiverses. Chakra is the only Indian superhero that Stan Lee has co-created!`;
+              })()}
             />
           </div>
           <div className="artist-pill-container mt-4">

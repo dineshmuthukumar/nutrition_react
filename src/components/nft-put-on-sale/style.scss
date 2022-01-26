@@ -311,6 +311,12 @@
         font-size: 1.6rem;
         padding: 0 2rem;
       }
+
+      .share-message {
+        font-family: $neue-helveticamedium;
+        font-size: 1rem;
+        padding: 0 2rem;
+      }
     }
 
     .success-summary-container {
@@ -720,3 +726,25 @@
 //     }
 //   }
 // }
+
+.success-share-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f1f1f1;
+  max-width: 340px;
+  padding: 1rem 2rem;
+  margin-top: 2rem;
+  border-radius: 1rem;
+  width: 90%;
+  .share-icon-block {
+    svg {
+      background: #fff;
+      padding: 0.6rem;
+      border-radius: 5rem;
+      min-height: 3rem;
+      min-width: 3rem;
+    }
+  }
+}
