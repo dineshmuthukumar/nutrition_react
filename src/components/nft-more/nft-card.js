@@ -41,17 +41,27 @@ const CollectionCard = ({ nft, recentSold = false }) => {
   //   }
   // };
 
-  const handleClick = () => {
-    if (nft?.is_on_sale) {
-      history.push(`/order/details/${nft?.slug}/${nft?.order_details?.slug}`);
-    } else if (recentSold) {
-      history.push(`/order/details/${nft?.slug}/${nft?.order_slug}`);
-    } else {
-      history.push(`/details/${nft?.slug}`);
-    }
-  };
+  // const handleClick = () => {
+  //   if (nft?.is_on_sale) {
+  //     history.push(`/order/details/${nft?.slug}/${nft?.order_details?.slug}`);
+  //   } else if (recentSold) {
+  //     history.push(`/order/details/${nft?.slug}/${nft?.order_slug}`);
+  //   } else {
+  //     history.push(`/details/${nft?.slug}`);
+  //   }
+  // };
   return (
-    <div className="more-card" role="button" onClick={handleClick}>
+    <a
+      className="more-card"
+      role="button"
+      href={
+        nft?.is_on_sale
+          ? `/order/details/${nft?.slug}/${nft?.order_details?.slug}`
+          : recentSold
+          ? `/order/details/${nft?.slug}/${nft?.order_slug}`
+          : `/details/${nft?.slug}`
+      }
+    >
       <span className="nft-type-badge">{nft.nft_type.toUpperCase()}</span>
       <img
         // style={{ background: bgColor }}
@@ -136,7 +146,7 @@ const CollectionCard = ({ nft, recentSold = false }) => {
           </div>
         )}
       </div>
-    </div>
+    </a>
   );
 };
 

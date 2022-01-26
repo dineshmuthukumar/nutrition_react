@@ -12,7 +12,7 @@ import "./style.scss";
 const MoreCard = ({ nft, isStarted = false, isEnded, time, label }) => {
   const erc721 = nft.nft_type === "erc721";
   return (
-    <div className="more-card">
+    <a className="more-card" href={`/details/${nft.slug}`} target="_blank">
       <span className="nft-type-badge">{nft.nft_type.toUpperCase()}</span>
       <img
         alt="media logo"
@@ -24,9 +24,6 @@ const MoreCard = ({ nft, isStarted = false, isEnded, time, label }) => {
           }
         })()}
         role="button"
-        onClick={() => {
-          window.open(`/details/${nft.slug}`, "_self");
-        }}
       />
       <div className="more-nft-title">
         <span className="right-content">{nft.name}</span>
@@ -65,7 +62,7 @@ const MoreCard = ({ nft, isStarted = false, isEnded, time, label }) => {
           </div>
         </div>
       </div>
-    </div>
+    </a>
   );
 };
 
