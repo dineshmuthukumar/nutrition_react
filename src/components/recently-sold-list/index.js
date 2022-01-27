@@ -87,38 +87,6 @@ const RecentlySoldList = () => {
     }
   };
 
-  useEffect(() => {
-    topTradesList(page);
-  }, []);
-
-  const topTradesList = async (page) => {
-    try {
-      page === 1 && setLoading(true);
-      setLoadingMore(true);
-      let response = await topTradesApi({ page });
-      setList(response.data.data.nfts);
-      setHasNext(response.data.data.next_page);
-      page === 1 && setLoading(false);
-      setLoadingMore(false);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const showMoreTopTradesList = async (page) => {
-    try {
-      page === 1 && setLoading(true);
-      setLoadingMore(true);
-      let response = await topTradesApi({ page });
-      setList([...list, ...response.data.data.nfts]);
-      setHasNext(response.data.data.next_page);
-      page === 1 && setLoading(false);
-      setLoadingMore(false);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   const fetchMore = () => {
     if (hasNext) {
       const sort_filters = query.get("sort")
@@ -126,7 +94,6 @@ const RecentlySoldList = () => {
         : "recently_sold";
 
       showAllNFTs(page + 1, sort_filters);
-      // showMoreTopTradesList(page + 1);
       setPage(page + 1);
     }
   };
