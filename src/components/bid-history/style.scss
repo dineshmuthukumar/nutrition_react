@@ -169,7 +169,28 @@
             align-items: flex-start;
           }
         }
+        .bid-expire-cntent {
+          font-family: $neue-helveticalight;
+          color: red;
+          display: flex;
+          align-items: center;
 
+          .nft-counter {
+            margin-left: 0.4rem;
+            .counter-time {
+              font-size: 1rem;
+              font-family: $neue-helveticabold;
+            }
+            .counter-interval {
+              margin-left: 0.2rem;
+              font-size: 0.9rem;
+              font-family: $neue-helveticabold;
+            }
+            .interval-gap {
+              margin-right: 0.3rem;
+            }
+          }
+        }
         .bid-owner {
           font-size: 1.15rem;
           font-family: $neue-helveticamedium;

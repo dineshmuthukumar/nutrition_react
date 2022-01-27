@@ -137,6 +137,7 @@
   .nft-title {
     font-size: 2.4rem;
     font-family: $neue-helveticabold;
+    line-height: 1.3;
   }
 
   .discord {
@@ -408,6 +409,34 @@
           visibility: hidden;
         }
       }
+    }
+  }
+}
+
+.bid-expire-alert {
+  font-family: $neue-helveticalight;
+  font-size: 1rem;
+  color: red;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  background: white;
+  display: inline-flex;
+  border-radius: 50rem;
+  border: 0.2rem solid red;
+  align-items: center;
+  .nft-counter {
+    margin-left: 0.4rem;
+    .counter-time {
+      font-size: 1rem;
+      font-family: $neue-helveticabold;
+    }
+    .counter-interval {
+      margin-left: 0.2rem;
+      font-size: 0.9rem;
+      font-family: $neue-helveticabold;
+    }
+    .interval-gap {
+      margin-right: 0.3rem;
     }
   }
 }

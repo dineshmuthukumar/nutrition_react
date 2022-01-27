@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import dayjs from "dayjs";
 import { useSelector } from "react-redux";
 
@@ -7,9 +7,14 @@ import userImg from "../../images/user_1.jpg";
 import { currencyFormat } from "../../utils/common";
 
 import "./style.scss";
+import NFTCounter from "../nft-counter";
 
 const BidCard = ({
+  setBidExpiry,
+  setIsBidder,
   history,
+  isOrderOnSale = false,
+  isOwner = false,
   isEnd = false,
   acceptBidConfirm,
   setAcceptBidConfirm,
@@ -17,6 +22,18 @@ const BidCard = ({
   latestIndex,
 }) => {
   const { user } = useSelector((state) => state.user.data);
+
+  const bidExpiryDays = 7;
+
+  useEffect(() => {
+    if (isOrderOnSale && (history.slug === user?.slug || isOwner)) {
+      setIsBidder(true);
+
+      if (history?.status === "active" && latestIndex === 0) {
+        setBidExpiry(dayjs(history.created_at).add(bidExpiryDays, "day"));
+      }
+    }
+  }, [user?.slug]);
 
   return (
     <div
@@ -69,6 +86,29 @@ const BidCard = ({
                   slug={history.slug}
                 />
               </div>
+
+              {user?.slug &&
+                isOrderOnSale &&
+                (history.slug === user?.slug || isOwner) &&
+                history?.status === "active" &&
+                latestIndex === 0 && (
+                  <div className="bid-expire-cntent">
+                    {dayjs() <
+                    dayjs(history.created_at).add(bidExpiryDays, "day") ? (
+                      <>
+                        Bid Expires at
+                        <NFTCounter
+                          time={dayjs(history.created_at).add(
+                            bidExpiryDays,
+                            "day"
+                          )}
+                        />
+                      </>
+                    ) : (
+                      <>Bid Expired</>
+                    )}
+                  </div>
+                )}
             </div>
           </div>
           <div className="second-half">

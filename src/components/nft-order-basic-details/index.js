@@ -21,8 +21,11 @@ import postImages from "../../images/post1.png";
 import userImg from "../../images/user_1.jpg";
 
 import "./style.scss";
+import NFTCounter from "../nft-counter";
 
 const NFTOrderBaseDetails = ({
+  bidExpiry,
+  isBidder = false,
   nft,
   placeBidPop,
   setPlaceBidPop,
@@ -241,6 +244,18 @@ const NFTOrderBaseDetails = ({
           </>
         ) : (
           <>
+            {user?.slug && isOrderOnSale && (isOwner || isBidder) && bidExpiry && (
+              <p className="bid-expire-alert">
+                {dayjs() < bidExpiry ? (
+                  <>
+                    Bid Expire at
+                    <NFTCounter time={bidExpiry} />
+                  </>
+                ) : (
+                  <>Bid Expired</>
+                )}
+              </p>
+            )}
             <div className="d-flex">
               {(() => {
                 if (erc721) {
