@@ -128,3 +128,6 @@ export const sellerOwnedNFTsApi = ({ slug, page }) =>
 
 export const sellerDetailApi = ({ slug }) =>
   appAxios.get(`/users/${slug}/seller_me`);
+
+export const nftRecentlySoldApi = (page, sort = "recently_sold") =>
+  appAxios.get(`/dashboard/top_trades?page=${page}&sort=${sort}`);
