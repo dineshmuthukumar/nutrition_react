@@ -85,7 +85,7 @@ const NFTOrderBaseDetails = ({
     <>
       <ul className="bredcrumb-link">
         <li>
-          <span onClick={() => history.push(`/details/${slug}`)}>
+          <span onClick={() => !erc721 && history.push(`/details/${slug}`)}>
             NFT <VscChevronRight className="icon" />
           </span>
         </li>
