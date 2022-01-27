@@ -44,6 +44,8 @@ import AppHelmet from "../components/helmet";
 
 const OrderDetails = () => {
   const history = useHistory();
+  const [bidExpiry, setBidExpiry] = useState();
+  const [isBidder, setIsBidder] = useState(false);
   const { slug, orderSlug } = useParams();
   const [nft, setNft] = useState({});
   const [bidHistory, setBidHistory] = useState([]);
@@ -327,6 +329,8 @@ const OrderDetails = () => {
               </div>
               <div className="col-12 col-lg-5">
                 <NFTOrderBaseDetails
+                  bidExpiry={bidExpiry}
+                  isBidder={isBidder}
                   nft={nft}
                   placeBidPop={placeBidPop}
                   setPlaceBidPop={setPlaceBidPop}
@@ -398,6 +402,8 @@ const OrderDetails = () => {
                 if (erc721) {
                   return (
                     <BidHistory
+                      setBidExpiry={setBidExpiry}
+                      setIsBidder={setIsBidder}
                       nft={nft}
                       orderSlug={orderSlug}
                       isOwner={isOwner}

@@ -21,6 +21,8 @@ import { TableLoader } from "../nft-basic-details/content-loader";
 import "./style.scss";
 
 const BidHistory = ({
+  setBidExpiry = () => {},
+  setIsBidder = () => {},
   nft,
   orderSlug,
   isOwner,
@@ -174,6 +176,10 @@ const BidHistory = ({
                       >
                         {histories.map((history, i) => (
                           <BidCard
+                            setBidExpiry={setBidExpiry}
+                            setIsBidder={setIsBidder}
+                            isOrderOnSale={isOrderOnSale}
+                            isOwner={isOwner}
                             key={`bid-history${i}`}
                             latestIndex={i}
                             history={history}
