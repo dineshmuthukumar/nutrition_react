@@ -255,7 +255,20 @@ const NFTOrderBaseDetails = ({
                 {dayjs() < bidExpiry ? (
                   <>
                     Bid Expire at
-                    <NFTCounter time={bidExpiry} />
+                    <NFTCounter time={bidExpiry} />{" "}
+                    <ToolTip
+                      icon={
+                        <BsFillQuestionCircleFill
+                          color={"#000"}
+                          size={16}
+                          className="mb-1 check-icon"
+                        />
+                      }
+                      content={
+                        "The timer displays the countdown to the validity of the bids placed by the bidder unless accepted by the seller."
+                      }
+                      placement="top"
+                    />
                   </>
                 ) : (
                   <>Bid Expired</>
