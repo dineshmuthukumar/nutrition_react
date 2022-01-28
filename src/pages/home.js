@@ -69,8 +69,8 @@ const Home = () => {
         <Banner list={list} />
         <HotCollections />
         <RecentlySoldNFT />
-        <TopSellers />
         <TopBuyer />
+        <TopSellers />
         <ShowAll categories={list} query={query} />
       </main>
       <Footer />
