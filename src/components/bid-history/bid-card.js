@@ -5,9 +5,11 @@ import { useSelector } from "react-redux";
 import BidName from "./bid-name";
 import userImg from "../../images/user_1.jpg";
 import { currencyFormat } from "../../utils/common";
+import NFTCounter from "../nft-counter";
+import ToolTip from "../tooltip/index";
+import { BsFillQuestionCircleFill } from "react-icons/bs";
 
 import "./style.scss";
-import NFTCounter from "../nft-counter";
 
 const BidCard = ({
   setBidExpiry,
@@ -102,6 +104,19 @@ const BidCard = ({
                             bidExpiryDays,
                             "day"
                           )}
+                        />{" "}
+                        <ToolTip
+                          icon={
+                            <BsFillQuestionCircleFill
+                              color={"#000"}
+                              size={16}
+                              className="mb-1 check-icon"
+                            />
+                          }
+                          content={
+                            "The timer displays the countdown to the validity of the bids placed by the bidder unless accepted by the seller."
+                          }
+                          placement="top"
                         />
                       </>
                     ) : (
