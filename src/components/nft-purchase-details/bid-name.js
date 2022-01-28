@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import userImg from "../../images/user_1.jpg";
 
@@ -10,6 +11,7 @@ const BidName = ({
   slug,
   static_name = false,
 }) => {
+  const history = useHistory();
   const { user } = useSelector((state) => state.user.data);
 
   const username =
@@ -26,7 +28,7 @@ const BidName = ({
             window.open(
               user?.slug === slug
                 ? `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`
-                : `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/view/${slug}`
+                : history.push(`/user/${slug}/details`)
             )
           }
         >
@@ -43,7 +45,7 @@ const BidName = ({
         window.open(
           user?.slug === slug
             ? `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`
-            : `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/view/${slug}`
+            : history.push(`/user/${slug}/details`)
         )
       }
     >

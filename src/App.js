@@ -158,11 +158,7 @@ function App(props) {
                 component={RecentlySold}
               />
 
-              <Route
-                exact
-                path="/seller/:slug/details"
-                component={UserDetails}
-              />
+              <Route exact path="/user/:slug/details" component={UserDetails} />
               <Route path="/not-found" component={NotFound} />
               <Route exact component={NotFound} />
             </Switch>
