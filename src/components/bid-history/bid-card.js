@@ -114,7 +114,12 @@ const BidCard = ({
                             />
                           }
                           content={
-                            "The timer displays the countdown to the validity of the bids placed by the bidder unless accepted by the seller."
+                            <>
+                              If the bid is not accepted before the expiration
+                              time, the bid will expire and the{" "}
+                              <b>Funds on Hold</b> will be returned back to the{" "}
+                              <b>Available Funds</b> of the bidder.
+                            </>
                           }
                           placement="top"
                         />
