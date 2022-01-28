@@ -18,6 +18,7 @@ import {
 import { user_load_by_token_thunk } from "../redux/thunk/user_thunk";
 import { nftCategoriesApi } from "../api/methods";
 import useQuery from "../hook/useQuery";
+import TopBuyer from "../components/top-buyer";
 
 const Home = () => {
   const { url } = useRouteMatch();
@@ -69,6 +70,7 @@ const Home = () => {
         <HotCollections />
         <RecentlySoldNFT />
         <TopSellers />
+        <TopBuyer />
         <ShowAll categories={list} query={query} />
       </main>
       <Footer />
