@@ -101,7 +101,15 @@ const NFTOrderBaseDetails = ({
         <li><a href="javascript:void(0);">Level 4 link<VscChevronRight className="icon" /></a></li> */}
       </ul>
       <div className="creator mt-3">
-        {nft.category_name} |{" "}
+        <span
+          className="link"
+          onClick={() =>
+            history.push(`/explore/category/${nft?.category_slug}`)
+          }
+        >
+          {nft.category_name}
+        </span>{" "}
+        |{" "}
         {(() => {
           if (nft.celebrity_id === 1) {
             return "Amitabh Bachchan";
