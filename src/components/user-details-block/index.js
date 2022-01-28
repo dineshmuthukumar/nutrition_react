@@ -60,12 +60,17 @@ const UserDetailsBlock = ({ userDetail }) => {
     }
   };
 
+  // useEffect(() => {
+  //   if (!userDetail?.users[0]?.private_nfts) {
+  //     getSellerOwnedNFTs(page);
+  //     getSellerFavedNFTs(page);
+  //   }
+  // }, [userDetail]);
+
   useEffect(() => {
-    if (!userDetail?.users[0]?.private_nfts) {
-      getSellerOwnedNFTs(page);
-      getSellerFavedNFTs(page);
-    }
-  }, [userDetail]);
+    getSellerOwnedNFTs(page);
+    getSellerFavedNFTs(page);
+  }, []);
 
   const fetchMoreOwnedNFTs = () => {
     if (hasNext) {
@@ -86,142 +91,137 @@ const UserDetailsBlock = ({ userDetail }) => {
       <section className="user-details-block">
         <div className="container-fluid">
           <div className="row">
-            {userDetail?.users[0]?.private_nfts ? (
+            {/* {userDetail?.users[0]?.private_nfts ? (
               <div className="col-md-12 text-center align-self-center">
                 <div className="position-relative mt-5">
                   <HiOutlineLockClosed className="private_user_icon" />
                   <h2 className="mb-0 mt-4 mb-5">
                     This account NFTs is private
-                  </h2>
-                  {/* <p className="mt-3">
-                    Follow this account to see their bid activities
-                  </p> */}
+                  </h2> 
                 </div>
               </div>
-            ) : (
-              <div className="col-sm-12">
-                <div className="user-flexblock">
-                  <div className="user-collection-box">
-                    <div className="row">
-                      <div className="col-sm-12">
-                        {/* Place tab and filter here */}
-                        <ul className="nav user-block-nav">
-                          <li className="nav-item">
-                            <span
-                              className={`nav-link ${
-                                key === "owned" ? "active" : ""
-                              }`}
-                              aria-current="page"
-                              role="button"
-                              onClick={() => setKey("owned")}
-                            >
-                              Owned ({ownedCount})
-                            </span>
-                          </li>
-                          <li className="nav-item">
-                            <span
-                              className={`nav-link ${
-                                key === "liked" ? "active" : ""
-                              }`}
-                              aria-current="page"
-                              role="button"
-                              onClick={() => setKey("liked")}
-                            >
-                              Favorites ({favedCount})
-                            </span>
-                          </li>
-                        </ul>
-                      </div>
+            ) : ( */}
+            <div className="col-sm-12">
+              <div className="user-flexblock">
+                <div className="user-collection-box">
+                  <div className="row">
+                    <div className="col-sm-12">
+                      {/* Place tab and filter here */}
+                      <ul className="nav user-block-nav">
+                        <li className="nav-item">
+                          <span
+                            className={`nav-link ${
+                              key === "owned" ? "active" : ""
+                            }`}
+                            aria-current="page"
+                            role="button"
+                            onClick={() => setKey("owned")}
+                          >
+                            Owned ({ownedCount})
+                          </span>
+                        </li>
+                        <li className="nav-item">
+                          <span
+                            className={`nav-link ${
+                              key === "liked" ? "active" : ""
+                            }`}
+                            aria-current="page"
+                            role="button"
+                            onClick={() => setKey("liked")}
+                          >
+                            Favorites ({favedCount})
+                          </span>
+                        </li>
+                      </ul>
                     </div>
-                    <div className="row">
-                      {(() => {
-                        if (key === "owned") {
-                          return !ownedLoading ? (
-                            ownedList.length > 0 ? (
-                              <>
-                                {ownedList.map((nft, i) => (
-                                  <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                                    <NFTCard
-                                      key={`owned-${i}`}
-                                      nft={nft}
-                                      ownedCard={true}
-                                    />
-                                  </div>
-                                ))}
+                  </div>
+                  <div className="row">
+                    {(() => {
+                      if (key === "owned") {
+                        return !ownedLoading ? (
+                          ownedList.length > 0 ? (
+                            <>
+                              {ownedList.map((nft, i) => (
+                                <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                                  <NFTCard
+                                    key={`owned-${i}`}
+                                    nft={nft}
+                                    ownedCard={true}
+                                  />
+                                </div>
+                              ))}
 
-                                {!ownedLoading && loadingMore && (
-                                  <NFTCardLoader />
-                                )}
+                              {!ownedLoading && loadingMore && (
+                                <NFTCardLoader />
+                              )}
 
-                                {hasNext && (
-                                  <div className="row mb-5">
-                                    <div className="col-md-12 text-center">
-                                      <button
-                                        className="load_more"
-                                        disabled={loadingMore}
-                                        onClick={fetchMoreOwnedNFTs}
-                                      >
-                                        {loadingMore
-                                          ? "Loading..."
-                                          : "Load More"}
-                                      </button>
-                                    </div>
+                              {hasNext && (
+                                <div className="row mb-5">
+                                  <div className="col-md-12 text-center">
+                                    <button
+                                      className="load_more"
+                                      disabled={loadingMore}
+                                      onClick={fetchMoreOwnedNFTs}
+                                    >
+                                      {loadingMore ? "Loading..." : "Load More"}
+                                    </button>
                                   </div>
-                                )}
-                              </>
-                            ) : (
-                              <div className="col-12 text-center">
-                                <h3 className="my-3">No Owned NFTs Yet!</h3>
-                              </div>
-                            )
+                                </div>
+                              )}
+                            </>
                           ) : (
-                            <NFTCardLoader />
-                          );
-                        } else if (key === "liked") {
-                          return !loading ? (
-                            favedList.length > 0 ? (
-                              <>
-                                {favedList.map((nft, i) => (
-                                  <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                                    <NFTCard key={`liked-${i}`} nft={nft} />
-                                  </div>
-                                ))}
+                            <div className="col-12 text-center">
+                              <h3 className="my-3">No Owned NFTs Yet!</h3>
+                            </div>
+                          )
+                        ) : (
+                          <NFTCardLoader />
+                        );
+                      } else if (key === "liked") {
+                        return !loading ? (
+                          favedList.length > 0 ? (
+                            <>
+                              {favedList.map((nft, i) => (
+                                <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                                  <NFTCard key={`liked-${i}`} nft={nft} />
+                                </div>
+                              ))}
 
-                                {!loading && favedLoadingMore && (
-                                  <NFTCardLoader />
-                                )}
+                              {!loading && favedLoadingMore && (
+                                <NFTCardLoader />
+                              )}
 
-                                {hasNextFaved && (
-                                  <div className="row mb-5">
-                                    <div className="col-md-12 text-center">
-                                      <button
-                                        className="load_more"
-                                        disabled={favedLoadingMore}
-                                        onClick={fetchMoreFavedNFTs}
-                                      >
-                                        {favedLoadingMore
-                                          ? "Loading..."
-                                          : "Load More"}
-                                      </button>
-                                    </div>
+                              {hasNextFaved && (
+                                <div className="row mb-5">
+                                  <div className="col-md-12 text-center">
+                                    <button
+                                      className="load_more"
+                                      disabled={favedLoadingMore}
+                                      onClick={fetchMoreFavedNFTs}
+                                    >
+                                      {favedLoadingMore
+                                        ? "Loading..."
+                                        : "Load More"}
+                                    </button>
                                   </div>
-                                )}
-                              </>
-                            ) : (
-                              <div className="col-12 text-center">
-                                <h3 className="my-3">No Favorites Yet!</h3>
-                              </div>
-                            )
+                                </div>
+                              )}
+                            </>
                           ) : (
-                            <NFTCardLoader />
-                          );
-                        }
-                      })()}
-                    </div>
+                            <div className="col-12 text-center">
+                              <h3 className="my-3">No Favorites Yet!</h3>
+                            </div>
+                          )
+                        ) : (
+                          <NFTCardLoader />
+                        );
+                      }
+                    })()}
                   </div>
                 </div>
               </div>
-            )}
+            </div>
+            {/* )} */}
           </div>
         </div>
       </section>
