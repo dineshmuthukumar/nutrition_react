@@ -150,6 +150,26 @@
           font-size: 1rem;
           font-family: $neue-helveticamedium;
           white-space: nowrap;
+          display: flex;
+          align-items: center;
+          .value-diff-range {
+            font-family: $neue-helveticamedium;
+            font-size: 0.9rem;
+            margin-top: 0rem;
+            display: inline-flex;
+            margin-left: 0.3rem;
+            align-items: center;
+            .arrow-icon {
+              font-size: 0.9rem;
+            }
+            &.green {
+              color: #00a954;
+            }
+
+            &.red {
+              color: #f21e00;
+            }
+          }
         }
 
         .mb-value {

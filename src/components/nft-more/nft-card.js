@@ -4,6 +4,7 @@ import { prominent } from "color.js";
 import { FaHeart } from "react-icons/fa";
 import { currencyFormat } from "../../utils/common";
 import cardImage from "../../images/drops/nft_2.png";
+import { BiUpArrowAlt, BiDownArrowAlt } from "react-icons/bi";
 
 import "./style.scss";
 
@@ -101,7 +102,18 @@ const CollectionCard = ({ nft, recentSold = false }) => {
                   } else {
                     return "Buy Price";
                   }
-                })()}
+                })()}{" "}
+                {/* {nft?.order_details?.is_bid && 100 > 0 ? (
+                  <span className="value-diff-range green">
+                    <BiUpArrowAlt className="arrow-icon" />
+                    {`${100}%`}
+                  </span>
+                ) : (
+                  <span className="value-diff-range red">
+                    <BiDownArrowAlt className="arrow-icon" />
+                    {`${100}%`}
+                  </span>
+                )} */}
               </div>
               <div className="mb-value">
                 {(() => {
@@ -138,7 +150,20 @@ const CollectionCard = ({ nft, recentSold = false }) => {
         {recentSold && (
           <div className="more-bid-details">
             <div className="text-start">
-              <div className="mb-title text-secondary">Buy Price</div>
+              <div className="mb-title text-secondary">
+                Buy Price
+                {/* {100 > 0 ? (
+                  <span className="value-diff-range green">
+                    <BiUpArrowAlt className="arrow-icon" />
+                    {`${100}%`}
+                  </span>
+                ) : (
+                  <span className="value-diff-range red">
+                    <BiDownArrowAlt className="arrow-icon" />
+                    {`${100}%`}
+                  </span>
+                )} */}
+              </div>
               <div className="mb-value">
                 {currencyFormat(nft?.amount, "USD")}
               </div>
