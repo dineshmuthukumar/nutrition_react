@@ -266,10 +266,10 @@ const NFTOrderBaseDetails = ({
                       }
                       content={
                         <>
-                          If the bid is not accepted before the expiration time,
-                          the bid will expire and the <b>Funds on Hold</b> will
-                          be returned back to the <b>Available Funds</b> of the
-                          bidder.
+                          If the bid is not accepted before the shown time in
+                          the countdown, the bid will expire. <br />
+                          The <b>Funds on Hold</b> will be returned to the{" "}
+                          <b>Available Funds</b> of the bidder's wallet.
                         </>
                       }
                       placement="top"
