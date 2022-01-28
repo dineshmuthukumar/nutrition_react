@@ -25,12 +25,11 @@ const BuyName = ({
           className="text-secondary"
           role={static_name ? "none" : "button"}
           onClick={() =>
-            !static_name &&
-            window.open(
-              user?.slug === slug
-                ? `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`
-                : history.push(`/user/${slug}/details`)
-            )
+            !static_name && user?.slug === slug
+              ? window.open(
+                  `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`
+                )
+              : history.push(`/user/${slug}/details`)
           }
         >
           {username}
@@ -42,12 +41,11 @@ const BuyName = ({
       className="text-secondary"
       role={static_name ? "none" : "button"}
       onClick={() =>
-        !static_name &&
-        window.open(
-          user?.slug === slug
-            ? `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`
-            : history.push(`/user/${slug}/details`)
-        )
+        !static_name && user?.slug === slug
+          ? window.open(
+              `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`
+            )
+          : history.push(`/user/${slug}/details`)
       }
     >
       {username}

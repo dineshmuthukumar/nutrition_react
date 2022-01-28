@@ -29,12 +29,11 @@ const OwnerName = ({
             if (seller) {
               history.push(`/user/${slug}/details`);
             } else {
-              !static_name &&
-                window.open(
-                  user?.slug === slug
-                    ? `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`
-                    : history.push(`/user/${slug}/details`)
-                );
+              !static_name && user?.slug === slug
+                ? window.open(
+                    `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`
+                  )
+                : history.push(`/user/${slug}/details`);
             }
           }}
         >
@@ -50,12 +49,11 @@ const OwnerName = ({
         if (seller) {
           history.push(`/user/${slug}/details`);
         } else {
-          !static_name &&
-            window.open(
-              user?.slug === slug
-                ? `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`
-                : history.push(`/user/${slug}/details`)
-            );
+          !static_name && user?.slug === slug
+            ? window.open(
+                `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`
+              )
+            : history.push(`/user/${slug}/details`);
         }
       }}
     >
