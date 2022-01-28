@@ -83,7 +83,7 @@ const NFTOrderBaseDetails = ({
 
   return (
     <>
-      <ul className="bredcrumb-link">
+      {/* <ul className="bredcrumb-link">
         <li>
           <span onClick={() => !erc721 && history.push(`/details/${slug}`)}>
             NFT <VscChevronRight className="icon" />
@@ -97,9 +97,7 @@ const NFTOrderBaseDetails = ({
             <VscChevronRight className="icon" />
           </span>
         </li>
-        {/* <li><a href="javascript:void(0);">Level 3 link<VscChevronRight className="icon" /></a></li>
-        <li><a href="javascript:void(0);">Level 4 link<VscChevronRight className="icon" /></a></li> */}
-      </ul>
+      </ul> */}
       <div className="creator mt-3">
         <span
           className="link"
