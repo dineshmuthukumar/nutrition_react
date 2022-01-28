@@ -32,7 +32,7 @@ const TransactionCard = ({ nft, history, isEnd = false }) => {
                   className="transaction-value text-secondary"
                   role={"button"}
                   onClick={() =>
-                    routeHistory.push(`/seller/${history.buyer_slug}/details`)
+                    routeHistory.push(`/user/${history.buyer_slug}/details`)
                   }
                 >
                   {history.buyer_name}
@@ -44,7 +44,7 @@ const TransactionCard = ({ nft, history, isEnd = false }) => {
                   className="transaction-value text-secondary"
                   role={"button"}
                   onClick={() =>
-                    routeHistory.push(`/seller/${history.seller_slug}/details`)
+                    routeHistory.push(`/user/${history.seller_slug}/details`)
                   }
                 >
                   {history.seller_name}

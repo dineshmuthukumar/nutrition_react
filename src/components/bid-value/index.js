@@ -64,13 +64,13 @@ const BidValue = ({
                         `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`
                       );
                     } else {
-                      history.push(`/seller/${userSlug}/details`);
+                      history.push(`/user/${userSlug}/details`);
                     }
                   } else {
                     window.open(
                       user?.slug === userSlug
                         ? `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`
-                        : `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/view/${userSlug}`
+                        : history.push(`/user/${userSlug}/details`)
                     );
                   }
                 }}
