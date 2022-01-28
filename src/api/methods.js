@@ -33,6 +33,9 @@ export const topSellersApi = ({ page, time_format }) =>
     `/dashboard/top_sellers?page=${page}&time_format=${time_format}`
   );
 
+export const topBuyerApi = ({ page, time_format }) =>
+  appAxios.get(`/dashboard/top_buyers?page=${page}&time_format=${time_format}`);
+
 export const nftDetailApi = ({ nft_slug, order_slug }) => {
   if (order_slug) {
     return appAxios.get(`/nfts/${nft_slug}?order_slug=${order_slug}`, {
