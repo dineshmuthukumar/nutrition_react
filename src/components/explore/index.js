@@ -278,7 +278,9 @@ const Explore = ({ categoryDetail }) => {
     }
 
     if (query_string) {
-      history.push(`/explore/category/${slug}?${query_string}`);
+      history.push(
+        `/explore/category/${slug}?${encodeURIComponent(query_string)}`
+      );
     } else {
       history.push(`/explore/category/${slug}`);
     }
@@ -321,7 +323,9 @@ const Explore = ({ categoryDetail }) => {
     }
 
     if (query_string) {
-      history.push(`/explore/category/${slug}?${query_string}`);
+      history.push(
+        `/explore/category/${slug}?${encodeURIComponent(query_string)}`
+      );
     } else {
       history.push(`/explore/category/${slug}`);
     }
@@ -358,7 +362,9 @@ const Explore = ({ categoryDetail }) => {
     }
 
     if (query_string) {
-      history.push(`/explore/category/${slug}?${query_string}`);
+      history.push(
+        `/explore/category/${slug}?${encodeURIComponent(query_string)}`
+      );
     } else {
       history.push(`/explore/category/${slug}`);
     }
@@ -395,7 +401,9 @@ const Explore = ({ categoryDetail }) => {
     }
 
     if (query_string) {
-      history.push(`/explore/category/${slug}?${query_string}`);
+      history.push(
+        `/explore/category/${slug}?${encodeURIComponent(query_string)}`
+      );
     } else {
       history.push(`/explore/category/${slug}`);
     }
