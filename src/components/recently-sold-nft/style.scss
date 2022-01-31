@@ -10,6 +10,27 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    @media screen and (max-width: 767px) {
+      flex-direction: column;
+      width: 100%;
+    }
+    .title {
+      display: flex;
+      width: 14rem;
+      @media screen and (max-width: 767px) {
+        width: 100%;
+        margin-bottom: 0.5rem;
+      }
+    }
+    .recsold-inner-flex-box {
+      width: calc(100% - 15.5rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      @media screen and (max-width: 767px) {
+        width: 100%;
+      }
+    }
   }
   .viewallBtn {
     font-size: 1.2rem;
@@ -26,6 +47,14 @@
     &:active {
       color: #000;
       background-color: #fff;
+    }
+
+    @media screen and (max-width: 767px) {
+      padding: 0.1rem 1.5rem;
+      width: 10rem;
+      font-size: 1rem;
+      margin-left: 2rem;
+      text-align: center;
     }
   }
 }
