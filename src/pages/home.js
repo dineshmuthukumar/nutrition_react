@@ -5,6 +5,7 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import Banner from "../components/banner";
 import HotCollections from "../components/hot-collections";
+import TopBuyers from "../components/top-buyers";
 import TopSellers from "../components/top-sellers";
 import RecentlySoldNFT from "../components/recently-sold-nft";
 import ShowAll from "../components/show-all";
@@ -18,7 +19,6 @@ import {
 import { user_load_by_token_thunk } from "../redux/thunk/user_thunk";
 import { nftCategoriesApi } from "../api/methods";
 import useQuery from "../hook/useQuery";
-import TopBuyer from "../components/top-buyer";
 
 const Home = () => {
   const { url } = useRouteMatch();
@@ -69,7 +69,7 @@ const Home = () => {
         <Banner list={list} />
         <HotCollections />
         <RecentlySoldNFT />
-        <TopBuyer />
+        <TopBuyers />
         <TopSellers />
         <ShowAll categories={list} query={query} />
       </main>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import dayjs from "dayjs";
 import { useHistory } from "react-router-dom";
 import { prominent } from "color.js";
 import { currencyFormat } from "../../utils/common";
@@ -152,12 +153,17 @@ const NFTCard = ({ nft, ownedCard = false, recentSold = false }) => {
           <>
             <div className="more-bid-details">
               <div className="text-start">
-                <div className="mb-title text-secondary">Buy Price</div>
+                <div className="mb-title text-secondary">Sold For</div>
                 <div className="mb-value">
                   {currencyFormat(nft?.amount, "USD")}
                 </div>
               </div>
-              <div className="text-end"></div>
+              <div className="text-end">
+                <div className="mb-title text-secondary">Sold On</div>
+                <div className="mb-value">
+                  {dayjs(nft?.created_at).format("MMM D, YYYY hh:mm A")}
+                </div>
+              </div>
             </div>
           </>
         )}
