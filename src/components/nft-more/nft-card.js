@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import dayjs from "dayjs";
 import { useHistory } from "react-router-dom";
 import { prominent } from "color.js";
 import { FaHeart } from "react-icons/fa";
@@ -151,7 +152,7 @@ const CollectionCard = ({ nft, recentSold = false }) => {
           <div className="more-bid-details">
             <div className="text-start">
               <div className="mb-title text-secondary">
-                Buy Price
+                Sold For
                 {/* {100 > 0 ? (
                   <span className="value-diff-range green">
                     <BiUpArrowAlt className="arrow-icon" />
@@ -166,6 +167,12 @@ const CollectionCard = ({ nft, recentSold = false }) => {
               </div>
               <div className="mb-value">
                 {currencyFormat(nft?.amount, "USD")}
+              </div>
+            </div>
+            <div className="text-end">
+              <div className="mb-title-date text-secondary">Sold On</div>
+              <div className="mb-value">
+                {dayjs(nft?.created_at).format("MMM D, YYYY hh:mm A")}
               </div>
             </div>
           </div>
