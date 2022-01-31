@@ -6,7 +6,7 @@ import { currencyFormat } from "../../utils/common";
 import userImg from "../../images/user_1.jpg";
 import "./style.scss";
 
-const Seller = ({ index, seller, image }) => {
+const Buyer = ({ index, buyer, image }) => {
   const history = useHistory();
   const { user } = useSelector((state) => state.user.data);
   return (
@@ -17,15 +17,15 @@ const Seller = ({ index, seller, image }) => {
           <figure>
             <img
               src={
-                !seller.private && seller.avatar_url
-                  ? seller.avatar_url
-                  : user?.slug === seller.slug && seller.avatar_url
-                  ? seller.avatar_url
+                !buyer.private && buyer.avatar_url
+                  ? buyer.avatar_url
+                  : user?.slug === buyer.slug && buyer.avatar_url
+                  ? buyer.avatar_url
                   : userImg
               }
               alt="userImge"
               role={"button"}
-              onClick={() => history.push(`/user/${seller.slug}/details`)}
+              onClick={() => history.push(`/user/${buyer.slug}/details`)}
             />
             <IoIosCheckmark className="user-verify" />
           </figure>
@@ -33,12 +33,12 @@ const Seller = ({ index, seller, image }) => {
             <h3
               className="user-name"
               role={"button"}
-              onClick={() => history.push(`/user/${seller.slug}/details`)}
+              onClick={() => history.push(`/user/${buyer.slug}/details`)}
             >
-              {seller.user_name}
+              {buyer.user_name}
             </h3>
             <h4 className="user-price">
-              {currencyFormat(seller.sold_total, "USD")}
+              {currencyFormat(buyer.sold_total, "USD")}
             </h4>
           </div>
         </article>
@@ -47,4 +47,4 @@ const Seller = ({ index, seller, image }) => {
   );
 };
 
-export default Seller;
+export default Buyer;
