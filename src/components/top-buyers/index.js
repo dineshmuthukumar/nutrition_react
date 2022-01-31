@@ -4,11 +4,11 @@ import { Dropdown } from "react-bootstrap";
 import { BiCaretDown } from "react-icons/bi";
 import { FaCheckCircle } from "react-icons/fa";
 import { topBuyerApi } from "../../api/methods";
-import Seller from "./seller";
+import Buyer from "./buyer";
 import userImage from "../../images/artist-image.png";
 import "./style.scss";
 
-const TopBuyer = () => {
+const TopBuyers = () => {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -33,10 +33,10 @@ const TopBuyer = () => {
   });
 
   useEffect(() => {
-    topSellers();
+    topBuyers();
   }, []);
 
-  const topSellers = async (timeFormat = "week") => {
+  const topBuyers = async (timeFormat = "week") => {
     try {
       setLoading(true);
       let response = await topBuyerApi({ page: 1, time_format: timeFormat });
@@ -78,7 +78,7 @@ const TopBuyer = () => {
     const timeFormatType = filter.timeFormat.find(
       (obj) => obj.checked === true
     ).value;
-    topSellers(timeFormatType);
+    topBuyers(timeFormatType);
   };
 
   return (
@@ -121,15 +121,15 @@ const TopBuyer = () => {
 
               <div className="row">
                 {loading ? (
-                  <TopSellerLoader />
+                  <TopBuyerLoader />
                 ) : (
                   <>
                     {list.length > 0 ? (
-                      list.map((seller, i) => (
-                        <Seller
+                      list.map((buyer, i) => (
+                        <Buyer
                           key={`user-${i}`}
                           index={i}
-                          seller={seller}
+                          buyer={buyer}
                           image={userImage}
                         />
                       ))
@@ -152,7 +152,7 @@ const TopBuyer = () => {
   );
 };
 
-const TopSellerLoader = (props) => (
+const TopBuyerLoader = (props) => (
   <ContentLoader
     viewBox="0 50 900 100"
     width={"100%"}
@@ -169,4 +169,4 @@ const TopSellerLoader = (props) => (
   </ContentLoader>
 );
 
-export default TopBuyer;
+export default TopBuyers;
