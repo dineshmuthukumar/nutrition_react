@@ -6,7 +6,6 @@ import { Dropdown } from "react-bootstrap";
 import { FaCheckCircle } from "react-icons/fa";
 import { nftRecentlySoldApi } from "../../api/methods";
 
-import { topTradesApi } from "../../api/methods";
 import NFTCard from "../nft-card";
 import sample from "../../images/sampleNFT.jpg";
 import "./style.scss";
@@ -110,7 +109,7 @@ const RecentlySoldList = () => {
       {filter.sort.find((obj) => obj.checked === true)?.name
         ? `Sort By: ${filter.sort.find((obj) => obj.checked === true).name}`
         : "Sort By"}
-      <BiCaretDown />
+      <BiCaretDown className="mb-1" />
     </div>
   ));
 
@@ -137,7 +136,7 @@ const RecentlySoldList = () => {
               <div className="sec-heading d-flex align-items-center mb-5 explore-heading">
                 <span className="me-4 text-nowrap">Recently Sold</span>
                 <span className="d-flex justify-content-end mt-2 w-100 filter-blocks">
-                  <div className="filt-flex-box">
+                  <div className="d-flex flex-wrap filter-box">
                     <Dropdown>
                       <Dropdown.Toggle
                         align="start"
