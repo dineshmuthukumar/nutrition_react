@@ -38,7 +38,7 @@ const BidCard = ({
         setBidExpiry(dayjs(history.expires_at));
       }
     }
-  }, [user?.slug]);
+  }, [user?.slug, history]);
 
   return (
     <div

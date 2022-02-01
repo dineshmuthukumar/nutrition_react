@@ -600,6 +600,7 @@ const NFTOrderBaseDetails = ({
                         disabled={
                           latestBid?.slug &&
                           latestBid?.status === "active" &&
+                          dayjs() < bidExpiry &&
                           !bidExpired
                             ? false
                             : true
