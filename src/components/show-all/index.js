@@ -384,7 +384,8 @@ const ShowAll = ({ categories, query }) => {
     }
 
     if (query_string) {
-      history.push(`/?${encodeURIComponent(query_string)}`);
+      // history.push(`/?${encodeURIComponent(query_string)}`);
+      history.push(`/?${query_string}`);
     } else {
       history.push("/");
     }
@@ -442,7 +443,8 @@ const ShowAll = ({ categories, query }) => {
     }
 
     if (query_string) {
-      history.push(`/?${encodeURIComponent(query_string)}`);
+      // history.push(`/?${encodeURIComponent(query_string)}`);
+      history.push(`/?${query_string}`);
     } else {
       history.push("/");
     }
@@ -500,7 +502,8 @@ const ShowAll = ({ categories, query }) => {
     }
 
     if (query_string) {
-      history.push(`/?${encodeURIComponent(query_string)}`);
+      // history.push(`/?${encodeURIComponent(query_string)}`);
+      history.push(`/?${query_string}`);
     } else {
       history.push("/");
     }
@@ -552,7 +555,8 @@ const ShowAll = ({ categories, query }) => {
     }
 
     if (query_string) {
-      history.push(`/?${encodeURIComponent(query_string)}`);
+      // history.push(`/?${encodeURIComponent(query_string)}`);
+      history.push(`/?${query_string}`);
     } else {
       history.push("/");
     }
@@ -604,7 +608,8 @@ const ShowAll = ({ categories, query }) => {
     }
 
     if (query_string) {
-      history.push(`/?${encodeURIComponent(query_string)}`);
+      // history.push(`/?${encodeURIComponent(query_string)}`);
+      history.push(`/?${query_string}`);
     } else {
       history.push("/");
     }
@@ -656,7 +661,8 @@ const ShowAll = ({ categories, query }) => {
     }
 
     if (query_string) {
-      history.push(`/?${encodeURIComponent(query_string)}`);
+      // history.push(`/?${encodeURIComponent(query_string)}`);
+      history.push(`/?${query_string}`);
     } else {
       history.push("/");
     }
