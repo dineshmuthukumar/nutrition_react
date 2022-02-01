@@ -14,6 +14,7 @@ import ToolTip from "../tooltip";
 import NFTPlaceBid from "../nft-place-bid";
 import NFTPlaceBuy from "../nft-place-buy";
 import NFTCancelTheSale from "../nft-cancel-the-sale";
+import NFTCounter from "../nft-counter";
 import HelpLine from "../help-line";
 import { ReactComponent as DiscordSvg } from "./../../icons/discord_logo.svg";
 import { currencyFormat } from "../../utils/common";
@@ -21,7 +22,6 @@ import postImages from "../../images/post1.png";
 import userImg from "../../images/user_1.jpg";
 
 import "./style.scss";
-import NFTCounter from "../nft-counter";
 
 const NFTOrderBaseDetails = ({
   bidExpiry,
@@ -50,6 +50,8 @@ const NFTOrderBaseDetails = ({
   slug,
   latestBid,
   bidOutDated,
+  handleBidExpiredEndTimer,
+  bidExpired,
 }) => {
   const history = useHistory();
   const { user } = useSelector((state) => state.user.data);
@@ -186,6 +188,46 @@ const NFTOrderBaseDetails = ({
         !bidOutDated &&
         acceptBidConfirm ? (
           <>
+            {user?.slug &&
+              isOrderOnSale &&
+              (isOwner || isBidder) &&
+              bidExpiry &&
+              !transferringNFT &&
+              !soldOut &&
+              !isOrderCancelled &&
+              !bidOutDated && (
+                <p className="bid-expire-alert">
+                  {dayjs() < bidExpiry && !bidExpired ? (
+                    <>
+                      Bid Expire at
+                      <NFTCounter
+                        time={bidExpiry}
+                        handleEndEvent={handleBidExpiredEndTimer}
+                      />{" "}
+                      <ToolTip
+                        icon={
+                          <BsFillQuestionCircleFill
+                            color={"#000"}
+                            size={16}
+                            className="mb-1 check-icon"
+                          />
+                        }
+                        content={
+                          <>
+                            If the bid is not accepted before the shown time in
+                            the countdown, the bid will expire. <br />
+                            The <b>Funds on Hold</b> will be returned to the{" "}
+                            <b>Available Funds</b> of the bidder's wallet.
+                          </>
+                        }
+                        placement="top"
+                      />
+                    </>
+                  ) : (
+                    <>Bid Expired</>
+                  )}
+                </p>
+              )}
             <div className={`assign-card`}>
               <div className="first-half">
                 <img
@@ -259,10 +301,13 @@ const NFTOrderBaseDetails = ({
               !isOrderCancelled &&
               !bidOutDated && (
                 <p className="bid-expire-alert">
-                  {dayjs() < bidExpiry ? (
+                  {dayjs() < bidExpiry && !bidExpired ? (
                     <>
                       Bid Expire at
-                      <NFTCounter time={bidExpiry} />{" "}
+                      <NFTCounter
+                        time={bidExpiry}
+                        handleEndEvent={handleBidExpiredEndTimer}
+                      />{" "}
                       <ToolTip
                         icon={
                           <BsFillQuestionCircleFill
@@ -553,7 +598,9 @@ const NFTOrderBaseDetails = ({
                       </button>
                       <button
                         disabled={
-                          latestBid?.slug && latestBid?.status === "active"
+                          latestBid?.slug &&
+                          latestBid?.status === "active" &&
+                          !bidExpired
                             ? false
                             : true
                         }
