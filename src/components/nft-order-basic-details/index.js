@@ -118,6 +118,10 @@ const NFTOrderBaseDetails = ({
             parseInt(process.env.REACT_APP_HINDUSTAN_TIMES_ID)
           ) {
             return "Hindustan Times";
+          } else if (
+            nft.celebrity_id === parseInt(process.env.REACT_APP_META_VERSE_ID)
+          ) {
+            return "Metaverse Wedding";
           } else {
             return "Stan Lee";
           }
