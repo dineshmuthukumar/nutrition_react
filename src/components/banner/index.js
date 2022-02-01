@@ -55,9 +55,9 @@ const Banner = ({ list = [] }) => {
       url: "https://cdn.beyondlife.club/Amitabh_posters.mp4",
     },
     {
-      name: "Stan Lee B'day Special",
+      name: "Asia's First Metaverse wedding NFT Collection",
       type: "video",
-      url: "https://cdn.beyondlife.club/media/video/preview.mp4",
+      url: "https://cdn.beyondlife.club/media/video/metaverse_hogwards.mp4",
     },
     {
       name: "Seven Chakra's Powers",
@@ -386,15 +386,21 @@ const Banner = ({ list = [] }) => {
                   style={{
                     height: "calc(((((100vw - (7rem + 6rem))/2)/3)))",
                   }}
-                  onClick={() => handleNavigate("Stan Lee B'day Special")}
+                  onClick={() =>
+                    handleNavigate(
+                      "Asia's First Metaverse wedding NFT Collection"
+                    )
+                  }
                 >
-                  <h5 className="cat-title">Stan Lee B'day Special</h5>
+                  <h5 className="cat-title">
+                    Asia's First Metaverse wedding NFT Collection
+                  </h5>
                   <video
                     loop
                     muted
                     autoPlay
                     playsInline
-                    src="https://cdn.beyondlife.club/media/video/preview.mp4"
+                    src="https://cdn.beyondlife.club/media/video/metaverse_hogwards.mp4"
                     className="first-image"
                     style={{ height: "100%" }}
                   ></video>
