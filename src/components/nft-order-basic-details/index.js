@@ -250,36 +250,43 @@ const NFTOrderBaseDetails = ({
           </>
         ) : (
           <>
-            {user?.slug && isOrderOnSale && (isOwner || isBidder) && bidExpiry && (
-              <p className="bid-expire-alert">
-                {dayjs() < bidExpiry ? (
-                  <>
-                    Bid Expire at
-                    <NFTCounter time={bidExpiry} />{" "}
-                    <ToolTip
-                      icon={
-                        <BsFillQuestionCircleFill
-                          color={"#000"}
-                          size={16}
-                          className="mb-1 check-icon"
-                        />
-                      }
-                      content={
-                        <>
-                          If the bid is not accepted before the shown time in
-                          the countdown, the bid will expire. <br />
-                          The <b>Funds on Hold</b> will be returned to the{" "}
-                          <b>Available Funds</b> of the bidder's wallet.
-                        </>
-                      }
-                      placement="top"
-                    />
-                  </>
-                ) : (
-                  <>Bid Expired</>
-                )}
-              </p>
-            )}
+            {user?.slug &&
+              isOrderOnSale &&
+              (isOwner || isBidder) &&
+              bidExpiry &&
+              !transferringNFT &&
+              !soldOut &&
+              !isOrderCancelled &&
+              !bidOutDated && (
+                <p className="bid-expire-alert">
+                  {dayjs() < bidExpiry ? (
+                    <>
+                      Bid Expire at
+                      <NFTCounter time={bidExpiry} />{" "}
+                      <ToolTip
+                        icon={
+                          <BsFillQuestionCircleFill
+                            color={"#000"}
+                            size={16}
+                            className="mb-1 check-icon"
+                          />
+                        }
+                        content={
+                          <>
+                            If the bid is not accepted before the shown time in
+                            the countdown, the bid will expire. <br />
+                            The <b>Funds on Hold</b> will be returned to the{" "}
+                            <b>Available Funds</b> of the bidder's wallet.
+                          </>
+                        }
+                        placement="top"
+                      />
+                    </>
+                  ) : (
+                    <>Bid Expired</>
+                  )}
+                </p>
+              )}
             <div className="d-flex">
               {(() => {
                 if (erc721) {
