@@ -85,6 +85,7 @@ const OrderDetails = () => {
   const [userOutBid, setUserOutBid] = useState(false);
   const [userLastBid, setUserLastBid] = useState(0);
   const [bidOutDated, setBidOutDated] = useState(false);
+  const [bidExpired, setBidExpired] = useState(false);
 
   const { user } = useSelector((state) => state.user.data);
 
@@ -309,6 +310,11 @@ const OrderDetails = () => {
     }
   };
 
+  const handleBidExpiredEndTimer = () => {
+    setBidExpired(true);
+    setBidOutDated(true);
+  };
+
   return (
     <>
       <Header />
@@ -366,6 +372,8 @@ const OrderDetails = () => {
                   slug={slug}
                   latestBid={bidHistory.length > 0 ? bidHistory[0] : {}}
                   bidOutDated={bidOutDated}
+                  handleBidExpiredEndTimer={handleBidExpiredEndTimer}
+                  bidExpired={bidExpired}
                 />
               </div>
             </div>
@@ -420,6 +428,8 @@ const OrderDetails = () => {
                       transactionHistory={transactionHistory}
                       transactionLoader={transactionLoader}
                       transactionHasNext={transactionHasNext}
+                      handleBidExpiredEndTimer={handleBidExpiredEndTimer}
+                      bidExpired={bidExpired}
                     />
                   );
                 } else {

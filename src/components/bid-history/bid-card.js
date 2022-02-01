@@ -22,6 +22,8 @@ const BidCard = ({
   setAcceptBidConfirm,
   setAcceptBidDetail,
   latestIndex,
+  handleEndTimer,
+  bidExpired,
 }) => {
   const { user } = useSelector((state) => state.user.data);
 
@@ -41,7 +43,10 @@ const BidCard = ({
   return (
     <div
       className={`bid-histroy-card ${
-        history?.status === "active" && latestIndex === 0
+        history?.status === "active" &&
+        latestIndex === 0 &&
+        dayjs() < dayjs(history.expires_at) &&
+        !bidExpired
           ? "active-history-card"
           : ""
       }`}
@@ -70,7 +75,8 @@ const BidCard = ({
                   className={`expire-pill ${
                     (history?.status === "active" &&
                       latestIndex === 0 &&
-                      dayjs() < dayjs(history.expires_at)) ||
+                      dayjs() < dayjs(history.expires_at) &&
+                      !bidExpired) ||
                     (history?.status === "success" && latestIndex === 0)
                       ? "active"
                       : ""
@@ -78,7 +84,8 @@ const BidCard = ({
                 >
                   {history?.status === "active" &&
                   latestIndex === 0 &&
-                  dayjs() < dayjs(history.expires_at)
+                  dayjs() < dayjs(history.expires_at) &&
+                  !bidExpired
                     ? "Active"
                     : history?.status === "success" && latestIndex === 0
                     ? "Success"
@@ -100,10 +107,13 @@ const BidCard = ({
                 history?.status === "active" &&
                 latestIndex === 0 && (
                   <div className="bid-expire-cntent">
-                    {dayjs() < dayjs(history.expires_at) ? (
+                    {dayjs() < dayjs(history.expires_at) && !bidExpired ? (
                       <>
                         Bid Expires at
-                        <NFTCounter time={dayjs(history.expires_at)} />{" "}
+                        <NFTCounter
+                          time={dayjs(history.expires_at)}
+                          handleEndEvent={handleEndTimer}
+                        />{" "}
                         <ToolTip
                           icon={
                             <BsFillQuestionCircleFill
