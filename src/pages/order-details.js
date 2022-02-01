@@ -120,6 +120,7 @@ const OrderDetails = () => {
         setBidHistory((bidHistory) => [data.history, ...bidHistory]);
       }
       setBidOutDated(false);
+      setBidExpired(false);
     });
     pageView(orderSlug, (data) => {
       setTotalViews(data.page_views);
