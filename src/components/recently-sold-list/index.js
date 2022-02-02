@@ -136,7 +136,7 @@ const RecentlySoldList = () => {
               <div className="sec-heading d-flex align-items-center mb-5 explore-heading">
                 <span className="me-4 text-nowrap">Recently Sold</span>
                 <span className="d-flex justify-content-end mt-2 w-100 filter-blocks">
-                  <div className="d-flex flex-wrap filter-box">
+                  <div className="filt-flex-box">
                     <Dropdown>
                       <Dropdown.Toggle
                         align="start"
