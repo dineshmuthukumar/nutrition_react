@@ -622,7 +622,7 @@ const ShowAll = ({ categories, query }) => {
     const sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
     const nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
     const sort_exist = query.get("sort");
-    const search_exist = search;
+    const search_exist = search.replace("#", "%23");
     const sale_status = query.get("status");
 
     let query_string = "";
