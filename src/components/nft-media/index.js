@@ -13,6 +13,7 @@ import { useSelector } from "react-redux";
 import { FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { toast } from "react-toastify";
+import { useLocation } from "react-router-dom";
 
 import toaster from "../../utils/toaster";
 import sample from "../../images/sampleNFT.jpg";
@@ -21,13 +22,24 @@ import { nftMakeFav, nftMakeUnFav } from "../../api/methods";
 import "./style.scss";
 
 const NFTMedia = ({ nft, title, slug, isFav }) => {
+  const location = useLocation();
+
   const [modalShow, setModalShow] = useState(false);
   const [liked, setLiked] = useState(false);
   const [bgColor, setBgColor] = useState();
   const { user } = useSelector((state) => state.user.data);
 
+  const [listedShare, setListedShare] = useState(false);
+
   useEffect(() => {
     setLiked(isFav);
+
+    if (
+      location.pathname.startsWith("/order/details") &&
+      nft?.order_details?.owned
+    ) {
+      setListedShare(true);
+    }
   }, [isFav]);
 
   useEffect(() => {
@@ -293,6 +305,7 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
           }
           placement="top"
           title={title}
+          listedShare={listedShare}
         />
 
         <CustomPopover
@@ -415,7 +428,7 @@ const CustomPopover = ({ icon, placement, text }) => {
   );
 };
 
-const SharePopover = ({ icon, placement, title }) => {
+const SharePopover = ({ icon, placement, title, listedShare = false }) => {
   const url = window.location.href;
   var hashtags = "beyondlife.club,NFT,popularNFT,rareNFT,NFTMarketplace";
   const via = "beyondlife.club";
@@ -473,65 +486,140 @@ const SharePopover = ({ icon, placement, title }) => {
         overlay={
           <Popover className="mb-2">
             <Popover.Body className="p-1 custom-pop">
-              <CopyToClipboard
-                text={url}
-                onCopy={() => {
-                  toast.success("Copied to Clipboard");
-                }}
-              >
-                <AiOutlineLink size={35} />
-              </CopyToClipboard>
-              <AiFillFacebook
-                size={35}
-                style={{ color: "#4267B2" }}
-                onClick={() =>
-                  window.open(
-                    `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${encodeURIComponent(
-                      title
-                    )}`
-                  )
-                }
-              />
-              <AiFillTwitterCircle
-                size={35}
-                style={{ color: "#1DA1F2" }}
-                onClick={() =>
-                  window.open(
-                    `https://twitter.com/intent/tweet?url=${url}&text=${encodeURIComponent(
-                      title
-                    )}&hashtags=${hashtags}&via=${via}`
-                  )
-                }
-              />
-              <FaTelegramPlane
-                size={35}
-                style={{ color: "#0088cc" }}
-                onClick={() =>
-                  window.open(
-                    `https://telegram.me/share/?url=${url}&title=${encodeURIComponent(
-                      title
-                    )}`
-                  )
-                }
-              />
-
-              <FaWhatsapp
-                size={35}
-                style={{ color: "#25D366" }}
-                onClick={() => {
-                  detectWhatsapp(
-                    `whatsapp://send?text=Hey ! I found an awesome NFT here%0a%0a${encodeURIComponent(
-                      title
-                    )}%0a%0aCheck it out in below link%0a%0a${url}`
-                  ).then((hasWhatsapp) => {
-                    if (!hasWhatsapp) {
-                      alert(
-                        "You don't have WhatsApp, kindly install it and try again"
-                      );
+              {listedShare ? (
+                <>
+                  <CopyToClipboard
+                    role="button"
+                    className="me-2"
+                    text={url}
+                    onCopy={() => {
+                      toast.success("Copied to Clipboard");
+                    }}
+                  >
+                    <AiOutlineLink size={35} />
+                  </CopyToClipboard>
+                  <AiFillFacebook
+                    role="button"
+                    className="me-2"
+                    size={35}
+                    style={{ color: "#4267B2" }}
+                    onClick={() =>
+                      window.open(
+                        `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${encodeURIComponent(
+                          `Hey!! Check out this awesome NFT I've listed for sale! You can buy it on BeyondLife.club marketplace featuring NFT collections of Amitabh Bachchan and Stan Lee's Chakra the Invincible!`
+                        )}`
+                      )
                     }
-                  });
-                }}
-              />
+                  />
+                  <AiFillTwitterCircle
+                    role="button"
+                    className="me-2"
+                    size={35}
+                    style={{ color: "#1DA1F2" }}
+                    onClick={() =>
+                      window.open(
+                        `https://twitter.com/intent/tweet?url=${url}&text=${encodeURIComponent(
+                          `Hey y'all! Here is the #NFT I've listed for sale on @beyondlifeclub marketplace powered by @Guardian_NFT! Check it out if you wanna buy this NFT and more NFTs? Sign up and gear up! #NFTCollection`
+                        )}`
+                      )
+                    }
+                  />
+                  <FaTelegramPlane
+                    role="button"
+                    className="me-2"
+                    size={35}
+                    style={{ color: "#0088cc" }}
+                    onClick={() =>
+                      window.open(
+                        `https://telegram.me/share/?url=${url}&title=${encodeURIComponent(
+                          `Hey!! Check out this awesome NFT I've listed for sale! You can buy it on BeyondLife.club marketplace featuring NFT collections of Amitabh Bachchan and Stan Lee's Chakra the Invincible!`
+                        )}`
+                      )
+                    }
+                  />
+
+                  <FaWhatsapp
+                    role="button"
+                    size={35}
+                    style={{ color: "#25D366" }}
+                    onClick={() => {
+                      detectWhatsapp(
+                        `whatsapp://send?text=Hey ! I found an awesome NFT here%0a%0a${encodeURIComponent(
+                          `Hey!! Check out this awesome NFT I've listed for sale! You can buy it on BeyondLife.club marketplace featuring NFT collections of Amitabh Bachchan and Stan Lee's Chakra the Invincible!`
+                        )}%0a%0aCheck it out in below link%0a%0a${url}`
+                      ).then((hasWhatsapp) => {
+                        if (!hasWhatsapp) {
+                          alert(
+                            "You don't have WhatsApp, kindly install it and try again"
+                          );
+                        }
+                      });
+                    }}
+                  />
+                </>
+              ) : (
+                <>
+                  <CopyToClipboard
+                    text={url}
+                    onCopy={() => {
+                      toast.success("Copied to Clipboard");
+                    }}
+                  >
+                    <AiOutlineLink size={35} />
+                  </CopyToClipboard>
+                  <AiFillFacebook
+                    size={35}
+                    style={{ color: "#4267B2" }}
+                    onClick={() =>
+                      window.open(
+                        `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=Hey! I found an awesome NFT here%0a%0a${encodeURIComponent(
+                          title
+                        )}%0a%0aCheck it out in below link%0a%0a`
+                      )
+                    }
+                  />
+                  <AiFillTwitterCircle
+                    size={35}
+                    style={{ color: "#1DA1F2" }}
+                    onClick={() =>
+                      window.open(
+                        `https://twitter.com/intent/tweet?url=${url}&text=Hey! I found an awesome NFT here%0a%0a${encodeURIComponent(
+                          title
+                        )}%0a%0aCheck it out in below link%0a%0a&hashtags=${hashtags}&via=${via}`
+                      )
+                    }
+                  />
+                  <FaTelegramPlane
+                    size={35}
+                    style={{ color: "#0088cc" }}
+                    onClick={() =>
+                      window.open(
+                        `https://telegram.me/share/?url=${url}&title=Hey! I found an awesome NFT here%0a%0a${encodeURIComponent(
+                          title
+                        )}%0a%0aCheck it out in below link%0a%0a`
+                      )
+                    }
+                  />
+
+                  <FaWhatsapp
+                    size={35}
+                    style={{ color: "#25D366" }}
+                    onClick={() => {
+                      detectWhatsapp(
+                        `whatsapp://send?text=Hey! I found an awesome NFT here%0a%0a${encodeURIComponent(
+                          title
+                        )}%0a%0aCheck it out in below link%0a%0a${url}`
+                      ).then((hasWhatsapp) => {
+                        if (!hasWhatsapp) {
+                          alert(
+                            "You don't have WhatsApp, kindly install it and try again"
+                          );
+                        }
+                      });
+                    }}
+                  />
+                </>
+              )}
             </Popover.Body>
           </Popover>
         }

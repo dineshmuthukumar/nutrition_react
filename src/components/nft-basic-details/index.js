@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import ReadMoreReact from "read-more-react";
 import { useSelector } from "react-redux";
 import { FaCheckCircle } from "react-icons/fa";
@@ -22,6 +23,7 @@ const NFTBaseDetails = ({
   ownerOrdersList,
   owners,
 }) => {
+  const history = useHistory();
   const state = useSelector((state) => state.user);
 
   const { user } = state.data;
@@ -45,7 +47,15 @@ const NFTBaseDetails = ({
   return (
     <>
       <div className="creator mt-3">
-        {nft.category_name} |{" "}
+        <span
+          className="link"
+          onClick={() =>
+            history.push(`/explore/category/${nft?.category_slug}`)
+          }
+        >
+          {nft.category_name}
+        </span>{" "}
+        |{" "}
         {(() => {
           if (nft.celebrity_id === 1) {
             return "Amitabh Bachchan";
@@ -54,6 +64,10 @@ const NFTBaseDetails = ({
             parseInt(process.env.REACT_APP_HINDUSTAN_TIMES_ID)
           ) {
             return "Hindustan Times";
+          } else if (
+            nft.celebrity_id === parseInt(process.env.REACT_APP_META_VERSE_ID)
+          ) {
+            return "Metaverse Wedding";
           } else {
             return "Stan Lee";
           }

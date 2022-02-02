@@ -58,20 +58,12 @@ const BidValue = ({
                 className="win-user-name"
                 role={"button"}
                 onClick={() => {
-                  if (seller) {
-                    if (user?.slug === userSlug) {
-                      window.open(
-                        `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`
-                      );
-                    } else {
-                      history.push(`/seller/${userSlug}/details`);
-                    }
-                  } else {
+                  if (user?.slug === userSlug) {
                     window.open(
-                      user?.slug === userSlug
-                        ? `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`
-                        : `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/view/${userSlug}`
+                      `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`
                     );
+                  } else {
+                    history.push(`/user/${userSlug}/details`);
                   }
                 }}
               >

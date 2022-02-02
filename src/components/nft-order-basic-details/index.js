@@ -14,6 +14,7 @@ import ToolTip from "../tooltip";
 import NFTPlaceBid from "../nft-place-bid";
 import NFTPlaceBuy from "../nft-place-buy";
 import NFTCancelTheSale from "../nft-cancel-the-sale";
+import NFTCounter from "../nft-counter";
 import HelpLine from "../help-line";
 import { ReactComponent as DiscordSvg } from "./../../icons/discord_logo.svg";
 import { currencyFormat } from "../../utils/common";
@@ -21,7 +22,6 @@ import postImages from "../../images/post1.png";
 import userImg from "../../images/user_1.jpg";
 
 import "./style.scss";
-import NFTCounter from "../nft-counter";
 
 const NFTOrderBaseDetails = ({
   bidExpiry,
@@ -50,6 +50,8 @@ const NFTOrderBaseDetails = ({
   slug,
   latestBid,
   bidOutDated,
+  handleBidExpiredEndTimer,
+  bidExpired,
 }) => {
   const history = useHistory();
   const { user } = useSelector((state) => state.user.data);
@@ -83,7 +85,7 @@ const NFTOrderBaseDetails = ({
 
   return (
     <>
-      <ul className="bredcrumb-link">
+      {/* <ul className="bredcrumb-link">
         <li>
           <span onClick={() => !erc721 && history.push(`/details/${slug}`)}>
             NFT <VscChevronRight className="icon" />
@@ -97,11 +99,17 @@ const NFTOrderBaseDetails = ({
             <VscChevronRight className="icon" />
           </span>
         </li>
-        {/* <li><a href="javascript:void(0);">Level 3 link<VscChevronRight className="icon" /></a></li>
-        <li><a href="javascript:void(0);">Level 4 link<VscChevronRight className="icon" /></a></li> */}
-      </ul>
+      </ul> */}
       <div className="creator mt-3">
-        {nft.category_name} |{" "}
+        <span
+          className="link"
+          onClick={() =>
+            history.push(`/explore/category/${nft?.category_slug}`)
+          }
+        >
+          {nft.category_name}
+        </span>{" "}
+        |{" "}
         {(() => {
           if (nft.celebrity_id === 1) {
             return "Amitabh Bachchan";
@@ -110,6 +118,10 @@ const NFTOrderBaseDetails = ({
             parseInt(process.env.REACT_APP_HINDUSTAN_TIMES_ID)
           ) {
             return "Hindustan Times";
+          } else if (
+            nft.celebrity_id === parseInt(process.env.REACT_APP_META_VERSE_ID)
+          ) {
+            return "Metaverse Wedding";
           } else {
             return "Stan Lee";
           }
@@ -180,6 +192,46 @@ const NFTOrderBaseDetails = ({
         !bidOutDated &&
         acceptBidConfirm ? (
           <>
+            {user?.slug &&
+              isOrderOnSale &&
+              (isOwner || isBidder) &&
+              bidExpiry &&
+              !transferringNFT &&
+              !soldOut &&
+              !isOrderCancelled &&
+              !bidOutDated && (
+                <p className="bid-expire-alert">
+                  {dayjs() < bidExpiry && !bidExpired ? (
+                    <>
+                      Bid Expire at
+                      <NFTCounter
+                        time={bidExpiry}
+                        handleEndEvent={handleBidExpiredEndTimer}
+                      />{" "}
+                      <ToolTip
+                        icon={
+                          <BsFillQuestionCircleFill
+                            color={"#000"}
+                            size={16}
+                            className="mb-1 check-icon"
+                          />
+                        }
+                        content={
+                          <>
+                            If the bid is not accepted before the shown time in
+                            the countdown, the bid will expire. <br />
+                            The <b>Funds on Hold</b> will be returned to the{" "}
+                            <b>Available Funds</b> of the bidder's wallet.
+                          </>
+                        }
+                        placement="top"
+                      />
+                    </>
+                  ) : (
+                    <>Bid Expired</>
+                  )}
+                </p>
+              )}
             <div className={`assign-card`}>
               <div className="first-half">
                 <img
@@ -244,18 +296,46 @@ const NFTOrderBaseDetails = ({
           </>
         ) : (
           <>
-            {user?.slug && isOrderOnSale && (isOwner || isBidder) && bidExpiry && (
-              <p className="bid-expire-alert">
-                {dayjs() < bidExpiry ? (
-                  <>
-                    Bid Expire at
-                    <NFTCounter time={bidExpiry} />
-                  </>
-                ) : (
-                  <>Bid Expired</>
-                )}
-              </p>
-            )}
+            {user?.slug &&
+              isOrderOnSale &&
+              (isOwner || isBidder) &&
+              bidExpiry &&
+              !transferringNFT &&
+              !soldOut &&
+              !isOrderCancelled &&
+              !bidOutDated && (
+                <p className="bid-expire-alert">
+                  {dayjs() < bidExpiry && !bidExpired ? (
+                    <>
+                      Bid Expire at
+                      <NFTCounter
+                        time={bidExpiry}
+                        handleEndEvent={handleBidExpiredEndTimer}
+                      />{" "}
+                      <ToolTip
+                        icon={
+                          <BsFillQuestionCircleFill
+                            color={"#000"}
+                            size={16}
+                            className="mb-1 check-icon"
+                          />
+                        }
+                        content={
+                          <>
+                            If the bid is not accepted before the shown time in
+                            the countdown, the bid will expire. <br />
+                            The <b>Funds on Hold</b> will be returned to the{" "}
+                            <b>Available Funds</b> of the bidder's wallet.
+                          </>
+                        }
+                        placement="top"
+                      />
+                    </>
+                  ) : (
+                    <>Bid Expired</>
+                  )}
+                </p>
+              )}
             <div className="d-flex">
               {(() => {
                 if (erc721) {
@@ -522,7 +602,10 @@ const NFTOrderBaseDetails = ({
                       </button>
                       <button
                         disabled={
-                          latestBid?.slug && latestBid?.status === "active"
+                          latestBid?.slug &&
+                          latestBid?.status === "active" &&
+                          dayjs() < bidExpiry &&
+                          !bidExpired
                             ? false
                             : true
                         }

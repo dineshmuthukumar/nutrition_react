@@ -25,13 +25,13 @@ export const nftShowAllApi = ({ page, filter, sort }) =>
 export const hotNFTsApi = ({ page }) =>
   appAxios.get(`/dashboard/hot_nfts?page=${page}`);
 
-export const topTradesApi = ({ page }) =>
-  appAxios.get(`/dashboard/top_trades?page=${page}`);
-
 export const topSellersApi = ({ page, time_format }) =>
   appAxios.get(
     `/dashboard/top_sellers?page=${page}&time_format=${time_format}`
   );
+
+export const topBuyerApi = ({ page, time_format }) =>
+  appAxios.get(`/dashboard/top_buyers?page=${page}&time_format=${time_format}`);
 
 export const nftDetailApi = ({ nft_slug, order_slug }) => {
   if (order_slug) {
@@ -126,8 +126,8 @@ export const sellerFavedNFTSApi = ({ slug, page }) =>
 export const sellerOwnedNFTsApi = ({ slug, page }) =>
   appAxios.get(`/users/${slug}/owned?page=${page}`);
 
-export const sellerDetailApi = ({ slug }) =>
-  appAxios.get(`/users/${slug}/seller_me`);
+export const userProfileDetailApi = ({ slug }) =>
+  appAxios.get(`/users/${slug}/marketplace_profile`);
 
 export const nftRecentlySoldApi = (page, sort = "recently_sold") =>
   appAxios.get(`/dashboard/top_trades?page=${page}&sort=${sort}`);

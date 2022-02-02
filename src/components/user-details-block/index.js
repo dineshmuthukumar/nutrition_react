@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ContentLoader from "react-content-loader";
+import { HiOutlineLockClosed } from "react-icons/hi";
 
 import { sellerFavedNFTSApi, sellerOwnedNFTsApi } from "../../api/methods";
 
 import NFTCard from "../nft-card/index";
 import "./style.scss";
 
-const UserDetailsBlock = () => {
+const UserDetailsBlock = ({ userDetail }) => {
   const { slug } = useParams();
   const [key, setKey] = useState("owned");
   const [page, setPage] = useState(1);
@@ -59,6 +60,13 @@ const UserDetailsBlock = () => {
     }
   };
 
+  // useEffect(() => {
+  //   if (!userDetail?.users[0]?.private_nfts) {
+  //     getSellerOwnedNFTs(page);
+  //     getSellerFavedNFTs(page);
+  //   }
+  // }, [userDetail]);
+
   useEffect(() => {
     getSellerOwnedNFTs(page);
     getSellerFavedNFTs(page);
@@ -83,6 +91,16 @@ const UserDetailsBlock = () => {
       <section className="user-details-block">
         <div className="container-fluid">
           <div className="row">
+            {/* {userDetail?.users[0]?.private_nfts ? (
+              <div className="col-md-12 text-center align-self-center">
+                <div className="position-relative mt-5">
+                  <HiOutlineLockClosed className="private_user_icon" />
+                  <h2 className="mb-0 mt-4 mb-5">
+                    This account NFTs is private
+                  </h2> 
+                </div>
+              </div>
+            ) : ( */}
             <div className="col-sm-12">
               <div className="user-flexblock">
                 <div className="user-collection-box">
@@ -203,6 +221,7 @@ const UserDetailsBlock = () => {
                 </div>
               </div>
             </div>
+            {/* )} */}
           </div>
         </div>
       </section>

@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import userImg from "../../images/user_1.jpg";
 
@@ -10,6 +11,7 @@ const BuyName = ({
   slug,
   static_name = false,
 }) => {
+  const history = useHistory();
   const { user } = useSelector((state) => state.user.data);
 
   const username =
@@ -23,12 +25,11 @@ const BuyName = ({
           className="text-secondary"
           role={static_name ? "none" : "button"}
           onClick={() =>
-            !static_name &&
-            window.open(
-              user?.slug === slug
-                ? `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`
-                : `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/view/${slug}`
-            )
+            !static_name && user?.slug === slug
+              ? window.open(
+                  `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`
+                )
+              : history.push(`/user/${slug}/details`)
           }
         >
           {username}
@@ -40,12 +41,11 @@ const BuyName = ({
       className="text-secondary"
       role={static_name ? "none" : "button"}
       onClick={() =>
-        !static_name &&
-        window.open(
-          user?.slug === slug
-            ? `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`
-            : `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/view/${slug}`
-        )
+        !static_name && user?.slug === slug
+          ? window.open(
+              `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`
+            )
+          : history.push(`/user/${slug}/details`)
       }
     >
       {username}

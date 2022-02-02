@@ -5,9 +5,11 @@ import { useSelector } from "react-redux";
 import BidName from "./bid-name";
 import userImg from "../../images/user_1.jpg";
 import { currencyFormat } from "../../utils/common";
+import NFTCounter from "../nft-counter";
+import ToolTip from "../tooltip/index";
+import { BsFillQuestionCircleFill } from "react-icons/bs";
 
 import "./style.scss";
-import NFTCounter from "../nft-counter";
 
 const BidCard = ({
   setBidExpiry,
@@ -20,25 +22,31 @@ const BidCard = ({
   setAcceptBidConfirm,
   setAcceptBidDetail,
   latestIndex,
+  handleEndTimer,
+  bidExpired,
 }) => {
   const { user } = useSelector((state) => state.user.data);
 
-  const bidExpiryDays = 7;
+  // const bidExpiryDays = 1;
 
   useEffect(() => {
     if (isOrderOnSale && (history.slug === user?.slug || isOwner)) {
       setIsBidder(true);
 
       if (history?.status === "active" && latestIndex === 0) {
-        setBidExpiry(dayjs(history.created_at).add(bidExpiryDays, "day"));
+        // setBidExpiry(dayjs(history.created_at).add(bidExpiryDays, "day"));
+        setBidExpiry(dayjs(history.expires_at));
       }
     }
-  }, [user?.slug]);
+  }, [user?.slug, history]);
 
   return (
     <div
       className={`bid-histroy-card ${
-        history?.status === "active" && latestIndex === 0
+        history?.status === "active" &&
+        latestIndex === 0 &&
+        dayjs() < dayjs(history.expires_at) &&
+        !bidExpired
           ? "active-history-card"
           : ""
       }`}
@@ -65,13 +73,19 @@ const BidCard = ({
                 {dayjs(history.created_at).format("MMM D, YYYY hh:mm A")}
                 <span
                   className={`expire-pill ${
-                    (history?.status === "active" && latestIndex === 0) ||
+                    (history?.status === "active" &&
+                      latestIndex === 0 &&
+                      dayjs() < dayjs(history.expires_at) &&
+                      !bidExpired) ||
                     (history?.status === "success" && latestIndex === 0)
                       ? "active"
                       : ""
                   }`}
                 >
-                  {history?.status === "active" && latestIndex === 0
+                  {history?.status === "active" &&
+                  latestIndex === 0 &&
+                  dayjs() < dayjs(history.expires_at) &&
+                  !bidExpired
                     ? "Active"
                     : history?.status === "success" && latestIndex === 0
                     ? "Success"
@@ -93,15 +107,30 @@ const BidCard = ({
                 history?.status === "active" &&
                 latestIndex === 0 && (
                   <div className="bid-expire-cntent">
-                    {dayjs() <
-                    dayjs(history.created_at).add(bidExpiryDays, "day") ? (
+                    {dayjs() < dayjs(history.expires_at) && !bidExpired ? (
                       <>
                         Bid Expires at
                         <NFTCounter
-                          time={dayjs(history.created_at).add(
-                            bidExpiryDays,
-                            "day"
-                          )}
+                          time={dayjs(history.expires_at)}
+                          handleEndEvent={handleEndTimer}
+                        />{" "}
+                        <ToolTip
+                          icon={
+                            <BsFillQuestionCircleFill
+                              color={"#000"}
+                              size={16}
+                              className="mb-1 check-icon"
+                            />
+                          }
+                          content={
+                            <>
+                              If the bid is not accepted before the shown time
+                              in the countdown, the bid will expire. <br />
+                              The <b>Funds on Hold</b> will be returned to the{" "}
+                              <b>Available Funds</b> of the bidder's wallet.
+                            </>
+                          }
+                          placement="top"
                         />
                       </>
                     ) : (

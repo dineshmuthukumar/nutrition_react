@@ -3,12 +3,12 @@ import ContentLoader from "react-content-loader";
 import { Dropdown } from "react-bootstrap";
 import { BiCaretDown } from "react-icons/bi";
 import { FaCheckCircle } from "react-icons/fa";
-import { topSellersApi } from "../../api/methods";
-import Seller from "./seller";
+import { topBuyerApi } from "../../api/methods";
+import Buyer from "./buyer";
 import userImage from "../../images/artist-image.png";
 import "./style.scss";
 
-const TopSellers = () => {
+const TopBuyers = () => {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -33,13 +33,13 @@ const TopSellers = () => {
   });
 
   useEffect(() => {
-    topSellers();
+    topBuyers();
   }, []);
 
-  const topSellers = async (timeFormat = "week") => {
+  const topBuyers = async (timeFormat = "week") => {
     try {
       setLoading(true);
-      let response = await topSellersApi({ page: 1, time_format: timeFormat });
+      let response = await topBuyerApi({ page: 1, time_format: timeFormat });
       setList(response.data.data.users);
       setLoading(false);
     } catch (err) {
@@ -78,7 +78,7 @@ const TopSellers = () => {
     const timeFormatType = filter.timeFormat.find(
       (obj) => obj.checked === true
     ).value;
-    topSellers(timeFormatType);
+    topBuyers(timeFormatType);
   };
 
   return (
@@ -88,7 +88,7 @@ const TopSellers = () => {
           <div className="row">
             <div className="col-sm-12">
               <div className="sec-heading d-flex align-items-center mb-5 explore-heading">
-                <span className="me-4 text-nowrap">Top Sellers</span>
+                <span className="me-4 text-nowrap">Top Buyers</span>
                 <span className="d-flex justify-content-between mt-2 w-100 filter-blocks days">
                   <div className="d-flex flex-wrap filter-box">
                     <Dropdown className="me-2">
@@ -121,22 +121,22 @@ const TopSellers = () => {
 
               <div className="row">
                 {loading ? (
-                  <TopSellerLoader />
+                  <TopBuyerLoader />
                 ) : (
                   <>
                     {list.length > 0 ? (
-                      list.map((seller, i) => (
-                        <Seller
+                      list.map((buyer, i) => (
+                        <Buyer
                           key={`user-${i}`}
                           index={i}
-                          seller={seller}
+                          buyer={buyer}
                           image={userImage}
                         />
                       ))
                     ) : (
                       <div className="col-12 text-center">
                         <h3 className="my-3">
-                          The Sellers You'll Need To Watch Out For Because Of
+                          The Buyers You'll Need To Watch Out For Because Of
                           Their NFT Collections!
                         </h3>
                       </div>
@@ -152,7 +152,7 @@ const TopSellers = () => {
   );
 };
 
-const TopSellerLoader = (props) => (
+const TopBuyerLoader = (props) => (
   <ContentLoader
     viewBox="0 50 900 100"
     width={"100%"}
@@ -169,4 +169,4 @@ const TopSellerLoader = (props) => (
   </ContentLoader>
 );
 
-export default TopSellers;
+export default TopBuyers;

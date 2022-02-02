@@ -1605,3 +1605,12 @@ div[aria-modal="true"].w-100.w-md-50 {
     width: 100% !important;
   }
 }
+
+.link {
+  cursor: pointer;
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: underline;
+  }
+}

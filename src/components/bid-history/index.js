@@ -37,6 +37,8 @@ const BidHistory = ({
   transactionHistory = [],
   transactionLoader,
   transactionHasNext,
+  handleBidExpiredEndTimer,
+  bidExpired,
 }) => {
   const { slug } = useParams();
   const [modalShow, setModalShow] = useState(false);
@@ -114,7 +116,7 @@ const BidHistory = ({
 
   return (
     <>
-      {acceptBidConfirm || soldOut || transferringNFT ? (
+      {(acceptBidConfirm || soldOut || transferringNFT) && !bidExpired ? (
         <HistoryConfirm
           nft={nft}
           orderSlug={orderSlug}
@@ -186,6 +188,8 @@ const BidHistory = ({
                             acceptBidConfirm={acceptBidConfirm}
                             setAcceptBidConfirm={setAcceptBidConfirm}
                             setAcceptBidDetail={setAcceptBidDetail}
+                            handleEndTimer={handleBidExpiredEndTimer}
+                            bidExpired={bidExpired}
                           />
                         ))}
 

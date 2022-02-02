@@ -5,6 +5,7 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import Banner from "../components/banner";
 import HotCollections from "../components/hot-collections";
+import TopBuyers from "../components/top-buyers";
 import TopSellers from "../components/top-sellers";
 import RecentlySoldNFT from "../components/recently-sold-nft";
 import ShowAll from "../components/show-all";
@@ -68,6 +69,7 @@ const Home = () => {
         <Banner list={list} />
         <HotCollections />
         <RecentlySoldNFT />
+        <TopBuyers />
         <TopSellers />
         <ShowAll categories={list} query={query} />
       </main>

@@ -27,14 +27,13 @@ const OwnerName = ({
           role={static_name ? "none" : "button"}
           onClick={() => {
             if (seller) {
-              history.push(`/seller/${slug}/details`);
+              history.push(`/user/${slug}/details`);
             } else {
-              !static_name &&
-                window.open(
-                  user?.slug === slug
-                    ? `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`
-                    : `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/view/${slug}`
-                );
+              !static_name && user?.slug === slug
+                ? window.open(
+                    `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`
+                  )
+                : history.push(`/user/${slug}/details`);
             }
           }}
         >
@@ -48,14 +47,13 @@ const OwnerName = ({
       role={static_name ? "none" : "button"}
       onClick={() => {
         if (seller) {
-          history.push(`/seller/${slug}/details`);
+          history.push(`/user/${slug}/details`);
         } else {
-          !static_name &&
-            window.open(
-              user?.slug === slug
-                ? `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`
-                : `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/view/${slug}`
-            );
+          !static_name && user?.slug === slug
+            ? window.open(
+                `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`
+              )
+            : history.push(`/user/${slug}/details`);
         }
       }}
     >

@@ -80,3 +80,13 @@ button.load_more {
     border: 0.2rem solid #000;
   }
 }
+
+svg.private_user_icon {
+  width: 10rem;
+  height: 10rem;
+  color: black;
+  opacity: 0.3;
+  border: 2px solid;
+  border-radius: 50%;
+  padding: 2rem;
+}
