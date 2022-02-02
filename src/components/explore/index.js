@@ -245,7 +245,7 @@ const Explore = ({ categoryDetail }) => {
     let sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
     const nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
     const sort_exist = query.get("sort");
-    const search_exist = query.get("search");
+    const search_exist = query.get("search").replace("#", "%23");
 
     if (sale_exist.includes(input.value)) {
       sale_exist = sale_exist.filter((obj) => obj !== input.value);
@@ -291,7 +291,7 @@ const Explore = ({ categoryDetail }) => {
     const sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
     let nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
     const sort_exist = query.get("sort");
-    const search_exist = query.get("search");
+    const search_exist = query.get("search").replace("#", "%23");
 
     if (nft_exist.includes(input.value)) {
       nft_exist = nft_exist.filter((obj) => obj !== input.value);
@@ -337,7 +337,7 @@ const Explore = ({ categoryDetail }) => {
     const sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
     const nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
     const sort_exist = input.value;
-    const search_exist = query.get("search");
+    const search_exist = query.get("search").replace("#", "%23");
 
     let query_string = "";
 
