@@ -47,7 +47,6 @@ function NFTCounter({
         seconds: Math.floor((difference / 1000) % 60),
       };
     }
-
     return timeLeft;
   };
 
@@ -57,7 +56,7 @@ function NFTCounter({
     setTimeout(() => {
       setTimeLeft(calculateTimeLeft(time, cTime));
       const { days, hours, minutes, seconds } = calculateTimeLeft(time, cTime);
-      if (!days && !hours && !minutes && !seconds) {
+      if (!days && !hours && !minutes && seconds <= 0.1) {
         handleEndEvent();
       }
     }, 1000);
@@ -95,7 +94,7 @@ function NFTCounter({
         className={`counter-time ${timeClass}`}
         key={`${custom_interval}${x}`}
       >
-        {timeLeft[interval]}
+        {timeLeft[interval] === 0.1 ? 0 : timeLeft[interval]}
         <span
           className={`counter-interval interval-gap ${intervalClass} ${intervalGapClass}`}
         >

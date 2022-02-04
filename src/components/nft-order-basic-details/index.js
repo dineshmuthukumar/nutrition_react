@@ -302,8 +302,7 @@ const NFTOrderBaseDetails = ({
               bidExpiry &&
               !transferringNFT &&
               !soldOut &&
-              !isOrderCancelled &&
-              !bidOutDated && (
+              !isOrderCancelled && (
                 <p className="bid-expire-alert">
                   {dayjs() < bidExpiry && !bidExpired ? (
                     <>
