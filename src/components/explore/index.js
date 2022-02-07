@@ -97,6 +97,7 @@ const Explore = ({ categoryDetail }) => {
     }));
 
     setFilter(info);
+    setPage(1);
   }, [query]);
 
   useEffect(() => {

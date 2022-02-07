@@ -54,7 +54,7 @@ const RecentlySoldList = () => {
       checked: sort_filters ? sort_filters === obj.value : false,
     }));
     showAllFilteredNFTs(1, sort_filters);
-
+    setPage(1);
     setFilter(info);
   }, [slug, query]);
 

@@ -123,6 +123,7 @@ const ShowAll = ({ categories, query }) => {
     }));
 
     setFilter(info);
+    setPage(1);
   }, [categories, query]);
 
   useEffect(() => {
