@@ -129,6 +129,18 @@ const UserDetailsBlock = ({ userDetail }) => {
                         <li className="nav-item">
                           <span
                             className={`nav-link ${
+                              key === "onsale" ? "active" : ""
+                            }`}
+                            aria-current="page"
+                            role="button"
+                            onClick={() => setKey("onsale")}
+                          >
+                            Onsale ({onsaleCount ? onsaleCount : 0})
+                          </span>
+                        </li>
+                        <li className="nav-item">
+                          <span
+                            className={`nav-link ${
                               key === "owned" ? "active" : ""
                             }`}
                             aria-current="page"
@@ -148,18 +160,6 @@ const UserDetailsBlock = ({ userDetail }) => {
                             onClick={() => setKey("liked")}
                           >
                             Favorites ({favedCount ? favedCount : 0})
-                          </span>
-                        </li>
-                        <li className="nav-item">
-                          <span
-                            className={`nav-link ${
-                              key === "onsale" ? "active" : ""
-                            }`}
-                            aria-current="page"
-                            role="button"
-                            onClick={() => setKey("onsale")}
-                          >
-                            Onsale ({onsaleCount ? onsaleCount : 0})
                           </span>
                         </li>
                       </ul>
