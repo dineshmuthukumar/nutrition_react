@@ -15,7 +15,7 @@ import "./style.scss";
 
 const UserDetailsBlock = ({ userDetail }) => {
   const { slug } = useParams();
-  const [key, setKey] = useState("owned");
+  const [key, setKey] = useState("onsale");
   const [ownPage, setOwnPage] = useState(1);
   const [favPage, setFavPage] = useState(1);
   const [onsalePage, setOnsalePage] = useState(1);
@@ -81,6 +81,11 @@ const UserDetailsBlock = ({ userDetail }) => {
       setHasNextOnsale(result.data.data.next_page);
       page === 1 && setOnsaleLoading(false);
       setOnsaleLoadingMore(false);
+      if (page === 1 && result.data.data.total_count > 0) {
+        setKey("onsale");
+      } else {
+        setKey("owned");
+      }
     } catch (error) {
       // console.log(error);
       setOnsaleLoading(false);
@@ -88,9 +93,9 @@ const UserDetailsBlock = ({ userDetail }) => {
   };
 
   useEffect(() => {
+    getUserOnsaleNFTs(onsalePage);
     getSellerOwnedNFTs(ownPage);
     getSellerFavedNFTs(favPage);
-    getUserOnsaleNFTs(onsalePage);
   }, []);
 
   const fetchMoreOwnedNFTs = () => {
