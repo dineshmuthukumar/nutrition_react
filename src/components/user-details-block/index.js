@@ -135,7 +135,7 @@ const UserDetailsBlock = ({ userDetail }) => {
                             role="button"
                             onClick={() => setKey("owned")}
                           >
-                            Owned ({ownedCount})
+                            Owned ({ownedCount ? ownedCount : 0})
                           </span>
                         </li>
                         <li className="nav-item">
@@ -147,7 +147,7 @@ const UserDetailsBlock = ({ userDetail }) => {
                             role="button"
                             onClick={() => setKey("liked")}
                           >
-                            Favorites ({favedCount})
+                            Favorites ({favedCount ? favedCount : 0})
                           </span>
                         </li>
                         <li className="nav-item">
@@ -159,7 +159,7 @@ const UserDetailsBlock = ({ userDetail }) => {
                             role="button"
                             onClick={() => setKey("onsale")}
                           >
-                            Onsale ({onsaleCount})
+                            Onsale ({onsaleCount ? onsaleCount : 0})
                           </span>
                         </li>
                       </ul>
