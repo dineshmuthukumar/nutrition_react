@@ -153,7 +153,7 @@ const UserDetailsBlock = ({ userDetail }) => {
                         <li className="nav-item">
                           <span
                             className={`nav-link ${
-                              key === "liked" ? "active" : ""
+                              key === "onsale" ? "active" : ""
                             }`}
                             aria-current="page"
                             role="button"
