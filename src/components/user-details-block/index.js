@@ -4,7 +4,11 @@ import { useSelector } from "react-redux";
 import ContentLoader from "react-content-loader";
 import { HiOutlineLockClosed } from "react-icons/hi";
 
-import { sellerFavedNFTSApi, sellerOwnedNFTsApi } from "../../api/methods";
+import {
+  sellerFavedNFTSApi,
+  sellerOwnedNFTsApi,
+  userOnsaleNFTsApi,
+} from "../../api/methods";
 
 import NFTCard from "../nft-card/index";
 import "./style.scss";
@@ -12,19 +16,26 @@ import "./style.scss";
 const UserDetailsBlock = ({ userDetail }) => {
   const { slug } = useParams();
   const [key, setKey] = useState("owned");
-  const [page, setPage] = useState(1);
+  const [ownPage, setOwnPage] = useState(1);
+  const [favPage, setFavPage] = useState(1);
+  const [onsalePage, setOnsalePage] = useState(1);
   const [ownedLoading, setOwnedLoading] = useState(false);
+  const [onsaleLoading, setOnsaleLoading] = useState(false);
   const [loading, setLoading] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
   const [favedLoadingMore, setFavedLoadingMore] = useState(false);
+  const [onsaleLoadingMore, setOnsaleLoadingMore] = useState(false);
   const [ownedList, setOwnedList] = useState([]);
   const [favedList, setFavedList] = useState([]);
+  const [onsaleList, setOnsaleList] = useState([]);
 
   const [favedCount, setFavedCount] = useState(0);
 
   const [ownedCount, setOwnedCount] = useState(0);
+  const [onsaleCount, setOnsaleCount] = useState(0);
   const [hasNext, setHasNext] = useState(false);
   const [hasNextFaved, setHasNextFaved] = useState(false);
+  const [hasNextOnsale, setHasNextOnsale] = useState(false);
 
   const { user } = useSelector((state) => state.user.data);
 
@@ -60,29 +71,46 @@ const UserDetailsBlock = ({ userDetail }) => {
     }
   };
 
-  // useEffect(() => {
-  //   if (!userDetail?.users[0]?.private_nfts) {
-  //     getSellerOwnedNFTs(page);
-  //     getSellerFavedNFTs(page);
-  //   }
-  // }, [userDetail]);
+  const getUserOnsaleNFTs = async (page) => {
+    try {
+      page === 1 && setOnsaleLoading(true);
+      setOnsaleLoadingMore(true);
+      const result = await userOnsaleNFTsApi({ slug, page });
+      setOnsaleList([...onsaleList, ...result.data.data.nfts]);
+      setOnsaleCount(result.data.data.total_count);
+      setHasNextOnsale(result.data.data.next_page);
+      page === 1 && setOnsaleLoading(false);
+      setOnsaleLoadingMore(false);
+    } catch (error) {
+      // console.log(error);
+      setOnsaleLoading(false);
+    }
+  };
 
   useEffect(() => {
-    getSellerOwnedNFTs(page);
-    getSellerFavedNFTs(page);
+    getSellerOwnedNFTs(ownPage);
+    getSellerFavedNFTs(favPage);
+    getUserOnsaleNFTs(onsalePage);
   }, []);
 
   const fetchMoreOwnedNFTs = () => {
     if (hasNext) {
-      getSellerOwnedNFTs(page + 1);
-      setPage(page + 1);
+      getSellerOwnedNFTs(ownPage + 1);
+      setOwnPage(ownPage + 1);
     }
   };
 
   const fetchMoreFavedNFTs = () => {
-    if (hasNext) {
-      getSellerFavedNFTs(page + 1);
-      setPage(page + 1);
+    if (hasNextFaved) {
+      getSellerFavedNFTs(favPage + 1);
+      setFavPage(favPage + 1);
+    }
+  };
+
+  const fetchMoreOnsaleNFTs = () => {
+    if (hasNextOnsale) {
+      getUserOnsaleNFTs(onsalePage + 1);
+      setOnsalePage(onsalePage + 1);
     }
   };
 
@@ -91,16 +119,6 @@ const UserDetailsBlock = ({ userDetail }) => {
       <section className="user-details-block">
         <div className="container-fluid">
           <div className="row">
-            {/* {userDetail?.users[0]?.private_nfts ? (
-              <div className="col-md-12 text-center align-self-center">
-                <div className="position-relative mt-5">
-                  <HiOutlineLockClosed className="private_user_icon" />
-                  <h2 className="mb-0 mt-4 mb-5">
-                    This account NFTs is private
-                  </h2> 
-                </div>
-              </div>
-            ) : ( */}
             <div className="col-sm-12">
               <div className="user-flexblock">
                 <div className="user-collection-box">
@@ -130,6 +148,18 @@ const UserDetailsBlock = ({ userDetail }) => {
                             onClick={() => setKey("liked")}
                           >
                             Favorites ({favedCount})
+                          </span>
+                        </li>
+                        <li className="nav-item">
+                          <span
+                            className={`nav-link ${
+                              key === "liked" ? "active" : ""
+                            }`}
+                            aria-current="page"
+                            role="button"
+                            onClick={() => setKey("onsale")}
+                          >
+                            Onsale ({onsaleCount})
                           </span>
                         </li>
                       </ul>
@@ -210,6 +240,48 @@ const UserDetailsBlock = ({ userDetail }) => {
                           ) : (
                             <div className="col-12 text-center">
                               <h3 className="my-3">No Favorites Yet!</h3>
+                            </div>
+                          )
+                        ) : (
+                          <NFTCardLoader />
+                        );
+                      } else if (key === "onsale") {
+                        return !onsaleLoading ? (
+                          onsaleList.length > 0 ? (
+                            <>
+                              {onsaleList.map((nft, i) => (
+                                <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                                  <NFTCard
+                                    key={`onsale-${i}`}
+                                    nft={nft}
+                                    onsale
+                                  />
+                                </div>
+                              ))}
+
+                              {!onsaleLoading && onsaleLoadingMore && (
+                                <NFTCardLoader />
+                              )}
+
+                              {hasNextOnsale && (
+                                <div className="row mb-5">
+                                  <div className="col-md-12 text-center">
+                                    <button
+                                      className="load_more"
+                                      disabled={onsaleLoadingMore}
+                                      onClick={fetchMoreOnsaleNFTs}
+                                    >
+                                      {onsaleLoadingMore
+                                        ? "Loading..."
+                                        : "Load More"}
+                                    </button>
+                                  </div>
+                                </div>
+                              )}
+                            </>
+                          ) : (
+                            <div className="col-12 text-center">
+                              <h3 className="my-3">No Orders Yet!</h3>
                             </div>
                           )
                         ) : (

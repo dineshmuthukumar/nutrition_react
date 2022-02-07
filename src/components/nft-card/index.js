@@ -7,7 +7,12 @@ import sample from "../../images/sampleNFT.jpg";
 
 import "./style.scss";
 
-const NFTCard = ({ nft, ownedCard = false, recentSold = false }) => {
+const NFTCard = ({
+  nft,
+  ownedCard = false,
+  recentSold = false,
+  onsale = false,
+}) => {
   const erc721 = nft?.nft_type === "erc721";
   const history = useHistory();
   const [bgColor, setBgColor] = useState();
@@ -55,13 +60,17 @@ const NFTCard = ({ nft, ownedCard = false, recentSold = false }) => {
     <a
       className="more-card"
       role="link"
-      href={
-        nft?.is_on_sale
-          ? `/order/details/${nft?.slug}/${nft?.order_details?.slug}`
-          : recentSold
-          ? `/order/details/${nft?.slug}/${nft?.order_slug}`
-          : `/details/${nft?.slug}`
-      }
+      href={(() => {
+        if (onsale) {
+          return `/order/details/${nft?.slug}/${nft?.order_slug}`;
+        } else if (nft?.is_on_sale) {
+          return `/order/details/${nft?.slug}/${nft?.order_details?.slug}`;
+        } else if (recentSold) {
+          return `/order/details/${nft?.slug}/${nft?.order_slug}`;
+        } else {
+          return `/details/${nft?.slug}`;
+        }
+      })()}
       // onClick={handleClick}
     >
       <span className="nft-type-badge">{nft.nft_type.toUpperCase()}</span>
@@ -135,6 +144,45 @@ const NFTCard = ({ nft, ownedCard = false, recentSold = false }) => {
                     </div>
                   </div>
                 )}
+            </div>
+          </>
+        )}
+        {onsale && (
+          <>
+            <div className="more-bid-details">
+              <div className="text-start">
+                <div className="mb-title text-secondary">
+                  {(() => {
+                    if (erc721) {
+                      return nft?.is_bid ? "Bid Price" : "Buy Price";
+                    } else {
+                      return "Buy Price";
+                    }
+                  })()}
+                </div>
+                <div className="mb-value">
+                  {(() => {
+                    if (erc721) {
+                      return nft?.is_bid
+                        ? currencyFormat(
+                            nft?.top_bid ? nft?.top_bid : nft?.minimum_bid,
+                            "USD"
+                          )
+                        : currencyFormat(nft?.buy_amount, "USD");
+                    } else {
+                      return currencyFormat(nft?.buy_amount, "USD");
+                    }
+                  })()}
+                </div>
+              </div>
+              {erc721 && nft?.is_bid && nft?.is_buy && (
+                <div className="text-end">
+                  <div className="mb-title text-secondary">Buy Price</div>
+                  <div className="mb-value">
+                    {currencyFormat(nft?.buy_amount, "USD")}
+                  </div>
+                </div>
+              )}
             </div>
           </>
         )}
