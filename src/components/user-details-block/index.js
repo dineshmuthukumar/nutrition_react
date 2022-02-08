@@ -81,11 +81,6 @@ const UserDetailsBlock = ({ userDetail }) => {
       setHasNextOnsale(result.data.data.next_page);
       page === 1 && setOnsaleLoading(false);
       setOnsaleLoadingMore(false);
-      if (page === 1 && result.data.data.total_count > 0) {
-        setKey("onsale");
-      } else {
-        setKey("owned");
-      }
     } catch (error) {
       // console.log(error);
       setOnsaleLoading(false);
