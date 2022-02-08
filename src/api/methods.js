@@ -126,6 +126,9 @@ export const sellerFavedNFTSApi = ({ slug, page }) =>
 export const sellerOwnedNFTsApi = ({ slug, page }) =>
   appAxios.get(`/users/${slug}/owned?page=${page}`);
 
+export const userOnsaleNFTsApi = ({ slug, page }) =>
+  appAxios.get(`/users/${slug}/onsale?page=${page}`);
+
 export const userProfileDetailApi = ({ slug }) =>
   appAxios.get(`/users/${slug}/marketplace_profile`);
 
