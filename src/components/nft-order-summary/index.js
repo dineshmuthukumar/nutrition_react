@@ -13,6 +13,7 @@ const NFTOrderSummary = ({
   price,
   totalViews,
   totalFavourites,
+  isOwner,
 }) => {
   const erc721 = nft.nft_type === "erc721";
   const isBid = _.get(nft, "order_details.is_bid", false);
@@ -108,12 +109,14 @@ const NFTOrderSummary = ({
               />
             )}
           </div>
-          {/* <div className="p-4 point-list">
-            <Badge
-              title="Views"
-              value={totalViews ? totalViews : orderDetails.page_views}
-            />
-          </div> */}
+          {isOwner && (
+            <div className="p-4 point-list">
+              <Badge
+                title="Views"
+                value={totalViews ? totalViews : orderDetails.page_views}
+              />
+            </div>
+          )}
           <div className="p-4 point-list">
             <Badge
               title="Favourites"

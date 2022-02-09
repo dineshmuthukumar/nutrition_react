@@ -390,6 +390,7 @@ const OrderDetails = () => {
                   price={price}
                   totalViews={totalViews}
                   totalFavourites={totalFavourites}
+                  isOwner={isOwner}
                 />
               </div>
             </div>
