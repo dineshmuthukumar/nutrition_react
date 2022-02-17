@@ -136,8 +136,18 @@ const HTimes = () => {
           </div>
         </div>
       </section>
-      <section>
-        <Carousel />
+      <section className="legacySlider">
+        <div className="container">
+          <div class="borderTop"></div>
+          <h2 class="mobileTitle">Legacy of Hindustan Times</h2>
+          <h2 class="webTitle">
+            Legacy of <br />
+            Hindustan
+            <br />
+            Times
+          </h2>
+          <Carousel />
+        </div>
       </section>
       <section>
         <Cards />

@@ -312,7 +312,7 @@ h6 {
 }
 
 .legacySlider h2 {
-  font-family: "Fraunces";
+  font-family: "Fraunces" !important;
   font-size: 110px;
   margin-top: -75px;
   line-height: 110px;
@@ -371,7 +371,12 @@ h6 {
   border: none;
   padding: 0 10px;
 }
-
+.roundImg img {
+  height: 170px;
+  width: 170px;
+  border-radius: 50%;
+  object-fit: contain;
+}
 .slide-m-prev-new:hover::before {
   background-size: 100%;
   height: 25px;
