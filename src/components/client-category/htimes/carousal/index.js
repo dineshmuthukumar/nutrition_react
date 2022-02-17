@@ -11,7 +11,7 @@ import hfive from "../img/five.png";
 import hsix from "../img/six.png";
 import hsevan from "../img/sevan.png";
 import height from "../img/eight.png";
-import arrow from "../img/arrow.png";
+import arrow from "../img/arrow.svg";
 
 const Carousel = () => {
   const settings = {
