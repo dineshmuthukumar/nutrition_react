@@ -373,6 +373,16 @@ h6 {
   .rightCard:nth-child(3) img {
     height: auto;
   }
+  .leftCard img,
+  .rightCard:nth-child(3) img {
+    height: auto;
+  }
+  .rightCard:nth-child(3) {
+    height: auto;
+  }
+  .rightCard:nth-child(1) img {
+    height: auto;
+  }
 }
 
 .legacySlider h2 {
@@ -572,9 +582,10 @@ button.slick-arrow.slick-next {
   border-radius: 100px;
   text-transform: uppercase;
   color: #707070;
-  box-shadow: 0 3px 6px #ccc;
+  box-shadow: 0 3px 6px #ccc !important;
   transition: 0.5s;
   font-weight: 500;
+  border: none;
 }
 .gotoCollection:hover {
   background: #707070;
@@ -1098,9 +1109,6 @@ ul.slick-dots {
   body.header-item-remove .ht-logo img {
     max-width: 40%;
   }
-  body .ht-logo img {
-    max-width: 70%;
-  }
   body .collection-nav {
     font-size: 12px;
   }
@@ -1149,7 +1157,7 @@ ul.slick-dots {
     margin-top: 0;
   }
   body .ht-logo img {
-    max-width: 100%;
+    max-width: 50%;
   }
   body .ht-search-form-submit {
     margin: 0px 40px 0 10px;
@@ -1184,11 +1192,15 @@ ul.slick-dots {
     text-align: center;
     margin-top: 0;
   }
-  body .ht-logo img {
-    max-width: 100%;
+  .belowImg {
+    margin-bottom: 1em;
+    display: block;
   }
   body .ht-search-form-submit {
     margin: 0px 40px 0 10px;
+  }
+  .heroSec {
+    margin-bottom: 9em;
   }
 }
 @media screen and (max-width: 320px) {
