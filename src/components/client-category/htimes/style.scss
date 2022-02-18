@@ -75,7 +75,7 @@ img {
   max-width: 100%;
 }
 .slick-active {
-  width: 340px !important;
+  // width: 340px !important;
 }
 
 body p {
@@ -321,6 +321,15 @@ h6 {
     position: relative;
     margin: 0 auto !important;
     height: auto;
+  }
+  .webTitle .whatTitle {
+    // display: none;
+  }
+  .detailCard br {
+    display: none;
+  }
+  .legacySlider {
+    margin-top: 6em;
   }
   .rightCard .detailCard,
   .leftCard .detailCard,
@@ -649,6 +658,12 @@ ul.slick-dots {
     width: 100% !important;
     margin-left: 0px;
   }
+  .legacySlider {
+    margin-top: 2em !important;
+  }
+  .legacySlider .webTitle {
+    display: none;
+  }
   .controlSliders {
     position: unset;
     margin-bottom: 1em;
@@ -944,7 +959,6 @@ ul.slick-dots {
     padding-left: 10px;
   }
   .slick-current {
-    width: 290px !important;
     transition: 0.3s !important;
   }
 
