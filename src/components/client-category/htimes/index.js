@@ -22,8 +22,8 @@ const HTimes = () => {
               </div>
               <div className="heroSec">
                 <div className="main-title">
-                  <h1 className="">“You can read a person’s </h1>
-                  <h1>soul from their collection”</h1>{" "}
+                  <h1 className="">“You can read a person’s  
+                  soul from their collection”</h1>{" "}
                 </div>
                 <Image className="belowImg" src={sign} />{" "}
               </div>
@@ -36,14 +36,15 @@ const HTimes = () => {
           <div className="largeCards">
             <div className="cardrow">
               <div className="col rightCard">
-                <div className="detailCard">
-                  <h3>Take a stake in India's History</h3>
-                  <div className="dottedBorder"></div>
-                </div>{" "}
+                
                 <Image
                   className=" ls-is-cached"
                   src="https://image-nft.hindustantimes.com/production/wp-content/uploads/2022/02/Artboard-1-copy-5-100-1.jpeg"
                 />
+                <div className="detailCard">
+                  <h3>Take a stake in India's History</h3>
+                  <div className="dottedBorder"></div>
+                </div>{" "}
                 <p>
                   India has a glorious story earmarked by iconic moments. As the
                   nation's leading daily for almost a century, Hindustan Times
@@ -56,17 +57,22 @@ const HTimes = () => {
                 </p>
               </div>
               <div className="col leftCard">
-                <div className="detailCard">
-                  <h3>Republic day Collections</h3>
-                  <div className="dottedBorder"></div>
-                </div>{" "}
+                
                 <Image
                   className=" ls-is-cached"
                   src="https://image-nft.hindustantimes.com/production/wp-content/uploads/2022/01/Jan-26-Collage.jpeg"
                 />
-                <p></p>
+                <div className="detailCard">
+                  <h3>Republic <br />day <br />Collections</h3>
+                  <div className="dottedBorder"></div>
+                </div>{" "}
               </div>
-              <div className="col rightCard">
+              <div className="col rightCard rightCard_tl">
+                
+                <Image
+                  className=" ls-is-cached"
+                  src="https://image-nft.hindustantimes.com/production/wp-content/uploads/2022/01/NFT-1_26_01_1950_301.jpg"
+                />
                 <div className="detailCard">
                   <h3>
                     Iconic <br />
@@ -75,65 +81,10 @@ const HTimes = () => {
                   </h3>
                   <div className="dottedBorder"></div>
                 </div>
-                <Image
-                  className=" ls-is-cached"
-                  src="https://image-nft.hindustantimes.com/production/wp-content/uploads/2022/01/NFT-1_26_01_1950_301.jpg"
-                />
-
-                <p></p>
               </div>
             </div>
           </div>
           {/* mobile div */}
-          <div class="largeCards-m">
-            <div class="row">
-              <div class="col-sm-12">
-                <Image src="https://image-nft.hindustantimes.com/production/wp-content/uploads/2022/02/Artboard-1-copy-5-100-1.jpeg" />
-                <div class="detailCard">
-                  <h3>Take a stake in India's History</h3>
-                  <div class="moreDetails">
-                    <div class="prizeEtc"></div>
-                  </div>
-                  <div class="dottedBorder"></div>
-                  <p>
-                    India has a glorious story earmarked by iconic moments. As
-                    the nation's leading daily for almost a century, Hindustan
-                    Times has captured these moments through the lens of a keen
-                    observer. On the momentous occasion of India’s 73rd Republic
-                    day, HT has pioneered NFTs composed of news stories that
-                    depict these path-breaking events and announcements that are
-                    an integral part of our history. This is your moment to have
-                    a stake in India’s story.
-                  </p>
-                </div>
-              </div>
-              <div class="col-sm-12">
-                <Image
-                  class=" "
-                  src="https://image-nft.hindustantimes.com/production/wp-content/uploads/2022/01/Jan-26-Collage.jpeg"
-                />
-                <div class="detailCard">
-                  <h3>Republic day Collections</h3>
-                  <div class="moreDetails">
-                    <div class="prizeEtc"></div>
-                  </div>
-                  <div class="dottedBorder"></div>
-                  <p></p>
-                </div>
-              </div>
-              <div class="col-sm-12">
-                <Image src="https://image-nft.hindustantimes.com/production/wp-content/uploads/2022/01/NFT-1_26_01_1950_301.jpg" />
-                <div class="detailCard">
-                  <h3>Iconic moments from history</h3>
-                  <div class="moreDetails">
-                    <div class="prizeEtc"></div>
-                  </div>
-                  <div class="dottedBorder"></div>
-                  <p></p>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
       <section className="legacySlider">

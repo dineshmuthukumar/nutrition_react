@@ -9,6 +9,8 @@
     U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
     U+FEFF, U+FFFD;
 }
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@200;400;600;800&display=swap");
+
 @font-face {
   font-family: "sora";
   src: url("fonts/sora.woff2") format("woff2");
@@ -41,12 +43,13 @@ section.gl_1 {
 }
 .heroSec {
   margin-top: 5em;
+  max-width: 80em;
 }
 .heroSec h1 {
   color: #707070;
   font-size: 7em;
   margin-top: 0;
-  line-height: 80px;
+  line-height: 1;
   font-stretch: unset;
   display: inline-block;
   letter-spacing: -4px;
@@ -75,10 +78,6 @@ img {
   width: 340px !important;
 }
 
-.largeCards-m {
-  display: none;
-}
-
 body p {
   font-family: "Sora", sans-serif;
 }
@@ -98,14 +97,17 @@ h6 {
   width: 100%;
   margin-top: -110px;
 }
+.col.rightCard.rightCard_tl {
+  clear: both;
+}
 .rightCard {
   float: right;
-  width: 500px;
+  width: 30%;
   position: relative;
 }
 .leftCard {
   float: left;
-  width: 670px;
+  width: 41%;
   margin-top: 355px;
   margin-left: -3%;
   margin-bottom: 30px;
@@ -119,7 +121,7 @@ h6 {
 
 .rightCard:nth-child(3) {
   float: right;
-  width: 950px;
+  width: 50%;
   margin-top: 100px;
   margin-right: -13%;
   height: 900px;
@@ -135,7 +137,6 @@ h6 {
 }
 .rightCard:nth-child(3) {
   height: 900px;
-  clear: both;
 }
 .rightCard:nth-child(1) {
   margin-right: -3%;
@@ -159,11 +160,12 @@ h6 {
   padding: 25px;
   position: relative;
 }
+
 .cardrow p {
   font-weight: 200;
   text-align: left;
   font-size: 20px;
-  width: 80%;
+  width: 90%;
   margin-bottom: 0;
   line-height: 30px;
   margin-top: 30px;
@@ -217,9 +219,8 @@ h6 {
   hyphens: auto;
   overflow-wrap: break-word;
   font-weight: 800;
-  font-size: 40px;
-  width: 45%;
-  line-height: 50px;
+  font-size: 3em;
+  line-height: 1.3;
   margin-bottom: 25px;
 }
 .rightCard:nth-child(3) .dottedBorder {
@@ -309,6 +310,60 @@ h6 {
   width: 50%;
   border-bottom: 2px #707070 dotted;
   margin-right: auto;
+}
+
+@media screen and (max-width: 992px) {
+  .rightCard,
+  .leftCard,
+  .rightCard:nth-child(3) {
+    float: none;
+    width: 90%;
+    position: relative;
+    margin: 0 auto !important;
+    height: auto;
+  }
+  .rightCard .detailCard,
+  .leftCard .detailCard,
+  .rightCard:nth-child(3) .detailCard {
+    text-align: center;
+    color: #707070;
+    position: relative;
+    top: 0;
+    left: auto;
+    width: 100%;
+    right: 0;
+    margin-top: 3em;
+  }
+  .rightCard .dottedBorder,
+  .leftCard .dottedBorder {
+    margin-right: auto;
+    width: 50%;
+    margin-left: auto;
+    margin-bottom: 25px;
+  }
+  .cardrow p {
+    width: 90%;
+    margin-bottom: 2em;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+  .heroSec {
+    margin-bottom: 4em;
+    text-align: center;
+  }
+  .heroSec h1 {
+    font-size: 40px;
+    margin-top: 1em;
+    line-height: 1.4;
+  }
+  .leftCard img,
+  .rightCard img,
+  .leftCard img,
+  .rightCard:nth-child(3) img {
+    height: auto;
+  }
 }
 
 .legacySlider h2 {
@@ -567,10 +622,6 @@ body .ht-ftr-links ul li a {
   .detail-text-block p {
     width: 300px;
   }
-  .heroSec h1 {
-    font-size: 4em;
-    line-height: 50px;
-  }
   body .main-title {
     margin-bottom: 1em;
   }
@@ -582,10 +633,7 @@ body .ht-ftr-links ul li a {
     width: 100% !important;
     margin-left: 0px;
   }
-  .heroSec h1 {
-    font-size: 1em;
-    line-height: 25px;
-  }
+
   body .main-title {
     margin-bottom: 1em;
   }
@@ -659,9 +707,6 @@ body .ht-ftr-links ul li a {
 
   .slick-track {
     height: 440px;
-  }
-  .heroSec {
-    margin-bottom: 20px;
   }
   .purchase-title:before {
     width: 175px;
@@ -882,11 +927,7 @@ body .ht-ftr-links ul li a {
     width: 290px !important;
     transition: 0.3s !important;
   }
-  .largeCards,
-  .webTitle,
-  .legacy-web-control {
-    display: none !important;
-  }
+
   .legacySlider {
     margin: 20px 0 0 !important;
   }
@@ -926,9 +967,7 @@ body .ht-ftr-links ul li a {
     font-size: 65px;
     margin-top: -20px;
   }
-  body .belowImg {
-    width: 200px;
-  }
+
   body .theCollection .row .collectionCard {
     padding: 0;
     margin-bottom: 40px;
