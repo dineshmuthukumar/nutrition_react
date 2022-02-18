@@ -153,7 +153,7 @@ function App(props) {
               <Route exact path="/explore/category/:slug" component={Explore} />
               <Route exact path="/" component={Home} />
               <Route exact path="/help-line" component={HelpLine} />
-              <Route exact path="/htimes" component={Htimes} />
+              <Route exact path="/hindustan-times-NFT" component={Htimes} />
               <Route
                 exact
                 path="/nfts/recently-sold"

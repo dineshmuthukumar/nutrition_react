@@ -15,23 +15,21 @@
   font-family: "sora";
   src: url("fonts/sora.woff2") format("woff2");
 }
-h1 {
+.sectionDiv h1 {
   font-family: Fraunces !important;
 }
 body {
   margin: 0;
+}
+body {
+  overflow-x: hidden;
+}
+.sectionDiv {
   font-family: "sora" !important;
-  // background-size: cover;
-  // background-attachment: fixed;
-  // background-position: center;
-  // background-color: #fafafa;
   background-image: url(img/bodybg-scaled.jpg);
   background-repeat: repeat;
   background-size: 100%;
   background-position: center;
-}
-body {
-  overflow-x: hidden;
 }
 .ht-logo img {
   max-width: 175px;
@@ -78,10 +76,10 @@ img {
   // width: 340px !important;
 }
 
-body p {
+.sectionDiv p {
   font-family: "Sora", sans-serif;
 }
-body h1,
+.sectionDiv h1,
 h2,
 h3,
 h4,
@@ -1262,7 +1260,7 @@ body::before {
 }
 
 .clientCategory-section .sec-heading {
-  font-family: "Fraunces";
+  font-family: "Fraunces" !important;
   font-size: 3em !important;
 }
 .clientCategory-section .more-card .top-content-title .more-nft-title {
