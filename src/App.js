@@ -30,6 +30,7 @@ const HelpLine = lazy(() => import("./pages/help-line"));
 const UserDetails = lazy(() => import("./pages/user-details"));
 const Htimes = lazy(() => import("./components/client-category/htimes"));
 const RecentlySold = lazy(() => import("./pages/recently-sold"));
+const CreatorApplication = lazy(() => import("./pages/creator-application"));
 
 function App(props) {
   const market_start_date = "Jan 26, 2022 03:30:00";
@@ -154,6 +155,11 @@ function App(props) {
               <Route exact path="/" component={Home} />
               <Route exact path="/help-line" component={HelpLine} />
               <Route exact path="/hindustan-times-NFT" component={Htimes} />
+              <Route
+                exact
+                path="/creator-application"
+                component={CreatorApplication}
+              />
               <Route
                 exact
                 path="/nfts/recently-sold"
