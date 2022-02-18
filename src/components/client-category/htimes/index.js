@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "react-bootstrap/Image";
 import Footer from "../../footer";
 import Header from "../../header";
@@ -9,7 +9,44 @@ import htLogo from "./img/ht.png";
 import sign from "./img/sign.png";
 import "./style.scss";
 
+import { nftCategoryListApi } from "../../../api/methods";
+import ContentLoader from "react-content-loader";
+
 const HTimes = () => {
+  const [page, setPage] = useState(1);
+  const [list, setList] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [hasNext, setHasNext] = useState(false);
+  const [loadingMore, setLoadingMore] = useState(false);
+
+  useEffect(() => {
+    showAllNFTs(page);
+  }, []);
+
+  const showAllNFTs = async (page) => {
+    try {
+      page === 1 && setLoading(true);
+      setLoadingMore(true);
+      let response = await nftCategoryListApi({
+        slug: "vbBL404KUZxOz9JV",
+        page,
+      });
+      setList([...list, ...response.data.data.nfts]);
+      setHasNext(response.data.data.next_page);
+      page === 1 && setLoading(false);
+      setLoadingMore(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const fetchMore = () => {
+    if (hasNext) {
+      showAllNFTs(page + 1);
+      setPage(page + 1);
+    }
+  };
+
   return (
     <div>
       <Header />
@@ -110,14 +147,44 @@ const HTimes = () => {
                 <span className="me-4 mt-2 text-nowrap">Listed NFTs</span>
               </div>
               <div className="mt-4 mb-4 d-flex flex-wrap"></div>
-              <div className="row">
-                <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                  <Cards />
+              {!loading ? (
+                <div className="row">
+                  {list.length > 0 ? (
+                    list.map((nft, i) => (
+                      <div
+                        key={`list-nft-${i}`}
+                        className="col-xl-3 col-lg-4 col-md-6 col-sm-6"
+                      >
+                        <Cards nft={nft} key={i} />
+                      </div>
+                    ))
+                  ) : (
+                    <div className="col-12 text-center mb-5">
+                      <h3 className="my-3">No Records Found!</h3>
+                    </div>
+                  )}
+
+                  {!loading && loadingMore && <NFTCardLoader />}
+
+                  {hasNext && (
+                    <div className="row mb-5">
+                      <div className="col-md-12 text-center">
+                        <button
+                          className="load_more"
+                          disabled={loadingMore}
+                          onClick={fetchMore}
+                        >
+                          {loadingMore ? "Loading..." : "Load More"}
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
-              </div>
+              ) : (
+                <NFTCardLoader />
+              )}
             </div>
           </div>
-          {/* <Cards /> */}
         </div>
       </section>
       <section className="whatSec">
@@ -161,4 +228,20 @@ const HTimes = () => {
     </div>
   );
 };
+const NFTCardLoader = (props) => (
+  <ContentLoader
+    viewBox="0 50 900 300"
+    width={"100%"}
+    height={"100%"}
+    backgroundColor="#f5f5f5"
+    foregroundColor="#dbdbdb"
+    className="mt-1"
+    {...props}
+  >
+    <rect x="0" y="5" rx="2" ry="2" width="218" height="280" />
+    <rect x="228" y="5" rx="2" ry="2" width="218" height="280" />
+    <rect x="456" y="5" rx="2" ry="2" width="218" height="280" />
+    <rect x="684" y="5" rx="2" ry="2" width="218" height="280" />
+  </ContentLoader>
+);
 export default HTimes;

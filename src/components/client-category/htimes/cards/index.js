@@ -1,83 +1,46 @@
 import React from "react";
 import sample from "../../../../images/sampleNFT.jpg";
-import Image from "react-bootstrap/Image";
 import "./style.scss";
+import { currencyFormat } from "../../../../utils/common";
 
-const Cards = () => {
+const Cards = ({ nft }) => {
+  const erc721 = nft?.nft_type === "erc721";
   return (
     <>
-      {/* <a className="more-card" role="link" href="#">
-        {" "}
-        <span className="nft-type-badge">ERC721</span>
-        <Image
-          alt="media logo"
-          src="https://mpcdn.beyondlife.club/wx2obstfpyilez4fcu24u6thy8d1"
-          role="button"
-        />
-        <div className="top-content-title">
-          <div>
-            <div className="more-nft-title">
-              When India reached for the Skies
-            </div>
-            <div className="more-nft-desc">@Hindustan Times</div>
-          </div>
-          <div className="more-bid-details">
-            <div className="text-start">
-              <div className="mb-title text-secondary">Bid Price</div>
-              <div className="mb-value">$600.00</div>
-            </div>
-          </div>
-        </div>
-      </a> */}
       <a
         className="more-card"
         role="link"
-        //   href={(() => {
-        //     if (onsale) {
-        //       return `/order/details/${nft?.slug}/${nft?.order_slug}`;
-        //     } else if (nft?.is_on_sale) {
-        //       return `/order/details/${nft?.slug}/${nft?.order_details?.slug}`;
-        //     } else if (recentSold) {
-        //       return `/order/details/${nft?.slug}/${nft?.order_slug}`;
-        //     } else {
-        //       return `/details/${nft?.slug}`;
-        //     }
-        //   })()}
-        // onClick={handleClick}
+        href={(() => {
+          if (nft?.is_on_sale) {
+            return `/order/details/${nft?.slug}/${nft?.order_details?.slug}`;
+          } else {
+            return `/details/${nft?.slug}`;
+          }
+        })()}
       >
-        <span className="nft-type-badge">
-          ERC721
-          {/* {nft.nft_type.toUpperCase()} */}
-        </span>
+        <span className="nft-type-badge">{nft?.nft_type.toUpperCase()}</span>
         <img
-          // style={{ background: bgColor }}
           alt="media logo"
-          //   src={(() => {
-          //     if (nft?.asset_type?.includes("image")) {
-          //       return nft.asset_url ? nft.asset_url : sample;
-          //     } else if (nft?.cover_url) {
-          //       return nft.cover_url ? nft.cover_url : sample;
-          //     } else {
-          //       return nft.asset_url ? nft.asset_url : sample;
-          //     }
-          //   })()}
-          src={sample}
+          src={(() => {
+            if (nft?.asset_type?.includes("image")) {
+              return nft.asset_url ? nft.asset_url : sample;
+            } else if (nft?.cover_url) {
+              return nft.cover_url ? nft.cover_url : sample;
+            } else {
+              return nft.asset_url ? nft.asset_url : sample;
+            }
+          })()}
           role="button"
         />
 
         <div className="top-content-title">
           <div>
-            <div className="more-nft-title">
-              NFT Name
-              {/* {nft?.name} */}
-            </div>
-            {/* {nft?.owner_name && (
+            <div className="more-nft-title">{nft?.name}</div>
+            {nft?.owner_name && (
               <div className="more-nft-desc">{nft?.owner_name}</div>
-            )} */}
-
-            <div className="more-nft-desc">@hindustantimes</div>
+            )}
           </div>
-          {/* {nft?.is_on_sale && (
+          {nft?.is_on_sale && (
             <>
               <div className="more-bid-details">
                 <div className="text-start">
@@ -127,48 +90,7 @@ const Cards = () => {
                   )}
               </div>
             </>
-          )} */}
-          {/* {onsale && ( */}
-          <>
-            <div className="more-bid-details">
-              <div className="text-start">
-                <div className="mb-title text-secondary">
-                  Bid Price
-                  {/* {(() => {
-                      if (erc721) {
-                        return nft?.is_bid ? "Bid Price" : "Buy Price";
-                      } else {
-                        return "Buy Price";
-                      }
-                    })()} */}
-                </div>
-                <div className="mb-value">
-                  $300
-                  {/* {(() => {
-                      if (erc721) {
-                        return nft?.is_bid
-                          ? currencyFormat(
-                              nft?.top_bid ? nft?.top_bid : nft?.minimum_bid,
-                              "USD"
-                            )
-                          : currencyFormat(nft?.buy_amount, "USD");
-                      } else {
-                        return currencyFormat(nft?.buy_amount, "USD");
-                      }
-                    })()} */}
-                </div>
-              </div>
-              {/* {erc721 && nft?.is_bid && nft?.is_buy && (
-                  <div className="text-end">
-                    <div className="mb-title text-secondary">Buy Price</div>
-                    <div className="mb-value">
-                      {currencyFormat(nft?.buy_amount, "USD")}
-                    </div>
-                  </div>
-                )} */}
-            </div>
-          </>
-          {/* )} */}
+          )}
         </div>
       </a>
     </>
