@@ -100,9 +100,7 @@ const HTimes = () => {
           <Carousel />
         </div>
       </section>
-      <section>
-        <Cards />
-      </section>
+      <section>{/* <Cards /> */}</section>
       <section className="whatSec">
         <div className="container">
           <div class="row">

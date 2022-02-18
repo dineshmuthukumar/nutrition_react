@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import Slider from "react-slick";
 import Image from "react-bootstrap/Image";
 import "slick-carousel/slick/slick.css";
@@ -14,8 +14,10 @@ import height from "../img/eight.png";
 import arrow from "../img/arrow.svg";
 
 const Carousel = () => {
+  const customNavigator = useRef();
+
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 3,
@@ -23,7 +25,15 @@ const Carousel = () => {
   };
   return (
     <div className="sliderLegacy">
-      <Slider {...settings}>
+      <div>
+        <button onClick={() => customNavigator.current.slickPrev()}>
+          prev
+        </button>
+        <button onClick={() => customNavigator.current.slickNext()}>
+          Next
+        </button>
+      </div>
+      <Slider {...settings} ref={customNavigator}>
         <div>
           <div class="sliderTitle">
             <h3>1924</h3>
