@@ -28,6 +28,7 @@ const OrderDetails = lazy(() => import("./pages/order-details"));
 const NotFound = lazy(() => import("./pages/not-found"));
 const HelpLine = lazy(() => import("./pages/help-line"));
 const UserDetails = lazy(() => import("./pages/user-details"));
+const Htimes = lazy(() => import("./components/client-category/htimes"));
 const RecentlySold = lazy(() => import("./pages/recently-sold"));
 
 function App(props) {
@@ -152,6 +153,7 @@ function App(props) {
               <Route exact path="/explore/category/:slug" component={Explore} />
               <Route exact path="/" component={Home} />
               <Route exact path="/help-line" component={HelpLine} />
+              <Route exact path="/hindustan-times-NFT" component={Htimes} />
               <Route
                 exact
                 path="/nfts/recently-sold"

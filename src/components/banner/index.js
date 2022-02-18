@@ -19,8 +19,12 @@ const Banner = ({ list = [] }) => {
   const history = useHistory();
 
   const handleNavigate = (input) => {
-    const data = list.find((obj) => obj.name === input);
-    data?.slug && history.push(`/explore/category/${data?.slug}`);
+    if (input === "Hindustan Times NFT") {
+      history.push(`/hindustan-times-NFT`);
+    } else {
+      const data = list.find((obj) => obj.name === input);
+      data?.slug && history.push(`/explore/category/${data?.slug}`);
+    }
   };
 
   const static_url = [
