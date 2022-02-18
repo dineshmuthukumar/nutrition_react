@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import dayjs from "dayjs";
 import { useSelector } from "react-redux";
 import { useRouteMatch } from "react-router";
 import { Offcanvas } from "react-bootstrap";
@@ -14,17 +15,20 @@ import {
 } from "react-icons/ai";
 import { FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
 
+import ErrorText from "./error-text";
 import sample from "../../images/sampleNFT.jpg";
 import {
+  bidBuyError,
   currencyFormat,
   validateCurrency,
   validateQuantity,
 } from "../../utils/common";
-import { putOnSaleApi } from "../../api/methods";
+import { nftBidApi, nftBuyApi, putOnSaleApi } from "../../api/methods";
+import HelpLine from "../help-line";
+import "./style.scss";
 import ToolTip from "../tooltip/index";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import "./style.scss";
 
 const NFTPutOnSale = ({
   putOnSalePop = false,
@@ -48,10 +52,8 @@ const NFTPutOnSale = ({
 
   const [erc721Sale, setErc721Sale] = useState({
     isBid: false,
-    isAutoAcceptBid: false,
     isBuy: true,
     bidAmount: "",
-    autoAcceptBidAmount: "",
     buyAmount: "",
     buyQuantity: 1,
     totalAmount: 0,
@@ -94,19 +96,6 @@ const NFTPutOnSale = ({
       }
     } else {
       setErc721Sale({ ...erc721Sale, buyAmount: "" });
-    }
-  };
-
-  const handleErc721AutoAcceptBidAmountChange = (e) => {
-    if (
-      e.target.value &&
-      e.target.value.length <= process.env.REACT_APP_AMOUNT_MAX_LENGTH
-    ) {
-      if (validateCurrency(e.target.value)) {
-        setErc721Sale({ ...erc721Sale, autoAcceptBidAmount: e.target.value });
-      }
-    } else {
-      setErc721Sale({ ...erc721Sale, autoAcceptBidAmount: "" });
     }
   };
 
@@ -174,8 +163,6 @@ const NFTPutOnSale = ({
           minimum_bid: erc721Sale.bidAmount,
           buy_amount: erc721Sale.buyAmount,
           total_quantity: erc721Sale.buyQuantity,
-          auto_accept_bid: erc721Sale.isAutoAcceptBid,
-          auto_accept_minimum: erc721Sale.autoAcceptBidAmount,
         };
       } else {
         order = {
@@ -394,45 +381,6 @@ const NFTPutOnSale = ({
                           {erc721 && (
                             <div className=" input-sale-container mt-3">
                               <div className="toggle-btn-buybid">
-                                <div className="btn-bid">
-                                  <label className="toggle-private-title w-100">
-                                    Bid
-                                  </label>
-                                  <div>
-                                    <ToggleButton
-                                      inactiveLabel={<BiX size={20} />}
-                                      activeLabel={<BiCheck size={20} />}
-                                      colors={{
-                                        activeThumb: {
-                                          base: "rgb(0,0,0)",
-                                        },
-                                        inactiveThumb: {
-                                          base: "rgb(0,0,0)",
-                                        },
-                                        active: {
-                                          base: "rgb(76, 175, 80)",
-                                          hover: "rgb(76, 175, 80)",
-                                        },
-                                        inactive: {
-                                          base: "rgb(158, 158, 158)",
-                                          hover: "rgb(158, 158, 158)",
-                                        },
-                                      }}
-                                      value={erc721Sale.isBid}
-                                      onToggle={(value) => {
-                                        setErc721Sale({
-                                          ...erc721Sale,
-                                          isBid: !value,
-                                          bidAmount: "",
-                                          isAutoAcceptBid:
-                                            !erc721Sale.isAutoAcceptBid &&
-                                            false,
-                                          autoAcceptBidAmount: "",
-                                        });
-                                      }}
-                                    />
-                                  </div>
-                                </div>
                                 <div className="btn-buy">
                                   <label className="toggle-private-title w-100">
                                     Buy
@@ -463,6 +411,41 @@ const NFTPutOnSale = ({
                                           ...erc721Sale,
                                           isBuy: !value,
                                           buyAmount: "",
+                                        });
+                                      }}
+                                    />
+                                  </div>
+                                </div>
+                                <div className="btn-bid">
+                                  <label className="toggle-private-title w-100">
+                                    Bid
+                                  </label>
+                                  <div>
+                                    <ToggleButton
+                                      inactiveLabel={<BiX size={20} />}
+                                      activeLabel={<BiCheck size={20} />}
+                                      colors={{
+                                        activeThumb: {
+                                          base: "rgb(0,0,0)",
+                                        },
+                                        inactiveThumb: {
+                                          base: "rgb(0,0,0)",
+                                        },
+                                        active: {
+                                          base: "rgb(76, 175, 80)",
+                                          hover: "rgb(76, 175, 80)",
+                                        },
+                                        inactive: {
+                                          base: "rgb(158, 158, 158)",
+                                          hover: "rgb(158, 158, 158)",
+                                        },
+                                      }}
+                                      value={erc721Sale.isBid}
+                                      onToggle={(value) => {
+                                        setErc721Sale({
+                                          ...erc721Sale,
+                                          isBid: !value,
+                                          bidAmount: "",
                                         });
                                       }}
                                     />
@@ -523,6 +506,32 @@ const NFTPutOnSale = ({
                               <>
                                 <div
                                   className={`input-field-sale ${
+                                    !erc721Sale.isBuy ? "disabled" : ""
+                                  }`}
+                                >
+                                  <label className="input-sale-text">
+                                    Set Price{" "}
+                                    <span
+                                      className={`quantity-to-value text-red`}
+                                    >
+                                      Min.{" "}
+                                      {currencyFormat(nft.floor_price, "USD")}
+                                    </span>
+                                  </label>
+                                  <div className="input-sale-wrap">
+                                    <span className="sale-currency">$</span>
+                                    <input
+                                      type="text"
+                                      className="input-sale"
+                                      value={erc721Sale.buyAmount}
+                                      placeholder="0"
+                                      disabled={!erc721Sale.isBuy}
+                                      onChange={handleErc721BuyAmountChange}
+                                    />
+                                  </div>
+                                </div>
+                                <div
+                                  className={`input-field-sale ${
                                     !erc721Sale.isBid ? "disabled" : ""
                                   }`}
                                 >
@@ -553,79 +562,10 @@ const NFTPutOnSale = ({
                                     acknowledge/accept it.
                                   </span>
                                 </div>
-                                <div
-                                  className={`input-field-sale ${
-                                    !erc721Sale.isBuy ? "disabled" : ""
-                                  }`}
-                                >
-                                  <label className="input-sale-text">
-                                    Set Price{" "}
-                                    <span
-                                      className={`quantity-to-value text-red`}
-                                    >
-                                      Min.{" "}
-                                      {currencyFormat(nft.floor_price, "USD")}
-                                    </span>
-                                  </label>
-                                  <div className="input-sale-wrap">
-                                    <span className="sale-currency">$</span>
-                                    <input
-                                      type="text"
-                                      className="input-sale"
-                                      value={erc721Sale.buyAmount}
-                                      placeholder="0"
-                                      disabled={!erc721Sale.isBuy}
-                                      onChange={handleErc721BuyAmountChange}
-                                    />
-                                  </div>
-                                </div>
                               </>
                             )}
                           </div>
-                          {erc721 && erc721Sale.isBid && (
-                            <div
-                              className={`input-sale-container mt-3 flex-input`}
-                            >
-                              <div
-                                className={`input-field-sale ${
-                                  !erc721Sale.isBid ? "disabled" : ""
-                                }`}
-                              >
-                                Do you want to enable auto accept bid?{" "}
-                                <input
-                                  type="checkbox"
-                                  checked={erc721Sale.isAutoAcceptBid}
-                                  onClick={(e) => {
-                                    setErc721Sale({
-                                      ...erc721Sale,
-                                      isAutoAcceptBid: e.target.checked,
-                                      autoAcceptBidAmount: "",
-                                    });
-                                  }}
-                                />
-                              </div>
-                              {erc721Sale.isAutoAcceptBid && (
-                                <div className={`input-field-sale `}>
-                                  <label className="input-sale-text">
-                                    Set Accept Amount{" "}
-                                  </label>
-                                  <div className="input-sale-wrap">
-                                    <span className="sale-currency">$</span>
-                                    <input
-                                      type="text"
-                                      className="input-sale"
-                                      value={erc721Sale.autoAcceptBidAmount}
-                                      placeholder="0"
-                                      disabled={!erc721Sale.isAutoAcceptBid}
-                                      onChange={
-                                        handleErc721AutoAcceptBidAmountChange
-                                      }
-                                    />
-                                  </div>
-                                </div>
-                              )}
-                            </div>
-                          )}
+
                           {erc721 ? (
                             <div className="you-own-block">
                               <span className="you-own-title">You Own</span>
@@ -661,56 +601,6 @@ const NFTPutOnSale = ({
 
                       <div className="bottom-area">
                         <div className="terms text-secondary">
-                          {(() => {
-                            if (
-                              erc721Sale.isBuy &&
-                              erc721Sale.buyAmount <
-                                parseFloat(nft?.floor_price) &&
-                              erc721Sale.isBid &&
-                              erc721Sale.bidAmount <
-                                parseFloat(nft?.floor_price)
-                            ) {
-                              return `Min.Bid & Buy Amount ${currencyFormat(
-                                nft.floor_price,
-                                "USD"
-                              )} is required`;
-                            } else if (
-                              erc721Sale.isBuy &&
-                              erc721Sale.buyAmount <
-                                parseFloat(nft?.floor_price)
-                            ) {
-                              return `Min.Buy Amount ${currencyFormat(
-                                nft.floor_price,
-                                "USD"
-                              )} is required`;
-                            } else if (
-                              erc721Sale.isBid &&
-                              erc721Sale.bidAmount <
-                                parseFloat(nft?.floor_price)
-                            ) {
-                              return `Min.Bid Amount ${currencyFormat(
-                                nft.floor_price,
-                                "USD"
-                              )} is required`;
-                            } else if (!erc721Sale.isBuy && !erc721Sale.isBid) {
-                              return `Min.Bid or Buy Amount ${currencyFormat(
-                                nft.floor_price,
-                                "USD"
-                              )} is required`;
-                            } else if (
-                              erc721Sale.isBid &&
-                              erc721Sale.isAutoAcceptBid &&
-                              erc721Sale.autoAcceptBidAmount <
-                                parseFloat(erc721Sale.bidAmount)
-                            ) {
-                              return `Auto accept bid amount should be greater than or equal to ${currencyFormat(
-                                erc721Sale.bidAmount,
-                                "USD"
-                              )} is required`;
-                            }
-                          })()}
-                        </div>
-                        <div className="terms text-secondary">
                           A artist fee of {nft.royalties}% will be applicable
                           for every transaction.
                         </div>
@@ -724,43 +614,76 @@ const NFTPutOnSale = ({
                           </div>
                           <div className="place-bid-button">
                             {erc721 ? (
-                              <>
-                                <button
-                                  disabled={(() => {
-                                    if (
-                                      erc721Sale.isBuy &&
-                                      erc721Sale.buyAmount <
-                                        parseFloat(nft?.floor_price)
-                                    ) {
-                                      return true;
-                                    } else if (
-                                      erc721Sale.isBid &&
-                                      erc721Sale.bidAmount <
-                                        parseFloat(nft?.floor_price)
-                                    ) {
-                                      return true;
-                                    } else if (
-                                      !erc721Sale.isBuy &&
-                                      !erc721Sale.isBid
-                                    ) {
-                                      return true;
-                                    } else if (
-                                      erc721Sale.isBid &&
-                                      erc721Sale.isAutoAcceptBid &&
-                                      erc721Sale.autoAcceptBidAmount <
-                                        parseFloat(erc721Sale.bidAmount)
-                                    ) {
-                                      return true;
-                                    } else {
-                                      return false;
-                                    }
-                                  })()}
-                                  className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop ${confirmState.processClass}`} //process -> proccessing
-                                  onClick={() => setConfirm(true)}
-                                >
-                                  List for sale
-                                </button>
-                              </>
+                              <button
+                                disabled={(() => {
+                                  if (
+                                    erc721Sale.isBuy &&
+                                    erc721Sale.buyAmount <
+                                      parseFloat(nft?.floor_price)
+                                  ) {
+                                    return true;
+                                  } else if (
+                                    erc721Sale.isBid &&
+                                    erc721Sale.bidAmount <
+                                      parseFloat(nft?.floor_price)
+                                  ) {
+                                    return true;
+                                  } else if (
+                                    !erc721Sale.isBuy &&
+                                    !erc721Sale.isBid
+                                  ) {
+                                    return true;
+                                  } else {
+                                    return false;
+                                  }
+                                })()}
+                                className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop ${confirmState.processClass}`} //process -> proccessing
+                                onClick={() => setConfirm(true)}
+                              >
+                                {(() => {
+                                  if (
+                                    erc721Sale.isBuy &&
+                                    erc721Sale.buyAmount <
+                                      parseFloat(nft?.floor_price) &&
+                                    erc721Sale.isBid &&
+                                    erc721Sale.bidAmount <
+                                      parseFloat(nft?.floor_price)
+                                  ) {
+                                    return `Min.Bid & Buy Amount ${currencyFormat(
+                                      nft.floor_price,
+                                      "USD"
+                                    )} is required`;
+                                  } else if (
+                                    erc721Sale.isBuy &&
+                                    erc721Sale.buyAmount <
+                                      parseFloat(nft?.floor_price)
+                                  ) {
+                                    return `Min.Buy Amount ${currencyFormat(
+                                      nft.floor_price,
+                                      "USD"
+                                    )} is required`;
+                                  } else if (
+                                    erc721Sale.isBid &&
+                                    erc721Sale.bidAmount <
+                                      parseFloat(nft?.floor_price)
+                                  ) {
+                                    return `Min.Bid Amount ${currencyFormat(
+                                      nft.floor_price,
+                                      "USD"
+                                    )} is required`;
+                                  } else if (
+                                    !erc721Sale.isBuy &&
+                                    !erc721Sale.isBid
+                                  ) {
+                                    return `Min.Bid or Buy Amount ${currencyFormat(
+                                      nft.floor_price,
+                                      "USD"
+                                    )} is required`;
+                                  } else {
+                                    return "List for sale";
+                                  }
+                                })()}
+                              </button>
                             ) : (
                               <button
                                 disabled={(() => {
