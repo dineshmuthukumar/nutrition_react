@@ -22,8 +22,9 @@ const HTimes = () => {
               </div>
               <div className="heroSec">
                 <div className="main-title">
-                  <h1 className="">“You can read a person’s  
-                  soul from their collection”</h1>{" "}
+                  <h1 className="">
+                    “You can read a person’s soul from their collection”
+                  </h1>{" "}
                 </div>
                 <Image className="belowImg" src={sign} />{" "}
               </div>
@@ -36,7 +37,6 @@ const HTimes = () => {
           <div className="largeCards">
             <div className="cardrow">
               <div className="col rightCard">
-                
                 <Image
                   className=" ls-is-cached"
                   src="https://image-nft.hindustantimes.com/production/wp-content/uploads/2022/02/Artboard-1-copy-5-100-1.jpeg"
@@ -57,18 +57,20 @@ const HTimes = () => {
                 </p>
               </div>
               <div className="col leftCard">
-                
                 <Image
                   className=" ls-is-cached"
                   src="https://image-nft.hindustantimes.com/production/wp-content/uploads/2022/01/Jan-26-Collage.jpeg"
                 />
                 <div className="detailCard">
-                  <h3>Republic <br />day <br />Collections</h3>
+                  <h3>
+                    Republic <br />
+                    day <br />
+                    Collections
+                  </h3>
                   <div className="dottedBorder"></div>
                 </div>{" "}
               </div>
               <div className="col rightCard rightCard_tl">
-                
                 <Image
                   className=" ls-is-cached"
                   src="https://image-nft.hindustantimes.com/production/wp-content/uploads/2022/01/NFT-1_26_01_1950_301.jpg"
@@ -89,9 +91,9 @@ const HTimes = () => {
       </section>
       <section className="legacySlider">
         <div className="container">
-          <div class="borderTop"></div>
-          <h2 class="mobileTitle">Legacy of Hindustan Times</h2>
-          <h2 class="webTitle">
+          <div className="borderTop"></div>
+          <h2 className="mobileTitle">Legacy of Hindustan Times</h2>
+          <h2 className="webTitle">
             Legacy of <br />
             Hindustan
             <br />
@@ -100,31 +102,48 @@ const HTimes = () => {
           <Carousel />
         </div>
       </section>
-      <section>{/* <Cards /> */}</section>
+      <section className="clientCategory-section">
+        <div className="container-fluid">
+          <div className="row mt-5">
+            <div className="col-sm-12">
+              <div className="sec-heading d-flex align-items-center mb-2 explore-heading">
+                <span className="me-4 mt-2 text-nowrap">Listed NFTs</span>
+              </div>
+              <div className="mt-4 mb-4 d-flex flex-wrap"></div>
+              <div className="row">
+                <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                  <Cards />
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* <Cards /> */}
+        </div>
+      </section>
       <section className="whatSec">
         <div className="container">
-          <div class="row">
-            <div class="col-md-8">
-              <div class="row">
-                <div class="col mobileTitle">
-                  <div class="whatTitle">
-                    <div class="borderTop"></div>
-                    <h2 class="">What is an NFT</h2>
+          <div className="row">
+            <div className="col-md-8">
+              <div className="row">
+                <div className="col mobileTitle">
+                  <div className="whatTitle">
+                    <div className="borderTop"></div>
+                    <h2 className="">What is an NFT</h2>
                   </div>
                 </div>
-                <div class="col">
+                <div className="col">
                   <Image src="https://image-nft.hindustantimes.com/production/wp-content/uploads/2022/01/Mask-Group-12-1.png" />
                 </div>
-                <div class="col webTitle">
-                  <div class="whatTitle">
-                    <div class="borderTop"></div>
+                <div className="col webTitle">
+                  <div className="whatTitle">
+                    <div className="borderTop"></div>
                     <h2>What is an NFT</h2>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="rightText">
+            <div className="col-md-4">
+              <div className="rightText">
                 <p>
                   With blockchain technology, Non-Fungible Tokens (NFTs) verify
                   ownership of unique digital assets such as art, music,

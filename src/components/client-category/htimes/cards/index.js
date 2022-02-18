@@ -1,9 +1,34 @@
 import React from "react";
 import sample from "../../../../images/sampleNFT.jpg";
+import Image from "react-bootstrap/Image";
+import "./style.scss";
 
 const Cards = () => {
   return (
     <>
+      {/* <a className="more-card" role="link" href="#">
+        {" "}
+        <span className="nft-type-badge">ERC721</span>
+        <Image
+          alt="media logo"
+          src="https://mpcdn.beyondlife.club/wx2obstfpyilez4fcu24u6thy8d1"
+          role="button"
+        />
+        <div className="top-content-title">
+          <div>
+            <div className="more-nft-title">
+              When India reached for the Skies
+            </div>
+            <div className="more-nft-desc">@Hindustan Times</div>
+          </div>
+          <div className="more-bid-details">
+            <div className="text-start">
+              <div className="mb-title text-secondary">Bid Price</div>
+              <div className="mb-value">$600.00</div>
+            </div>
+          </div>
+        </div>
+      </a> */}
       <a
         className="more-card"
         role="link"

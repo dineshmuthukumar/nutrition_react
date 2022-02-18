@@ -67,7 +67,7 @@ section.gl_1 {
   display: none;
 }
 section.whatSec {
-  padding: 2rem 0 5rem !important;
+  padding: 5rem 0 5rem !important;
 }
 
 img {
@@ -411,14 +411,28 @@ h6 {
   padding-top: 20px;
   padding-left: 15px;
 }
+button.slick-arrow.slick-prev {
+  display: none !important;
+}
+button.slick-arrow.slick-next {
+  display: none !important;
+}
 .controlSliders {
   position: absolute;
-  bottom: 0px;
+  top: 25%;
   right: 0;
   background: #fff;
   padding: 20px 15px 15px;
   border-radius: 35px;
   box-shadow: 0 3px 10px #ccc;
+}
+.controlSliders {
+  position: unset;
+}
+.navrow {
+  width: 100% !important;
+  display: block !important ;
+  text-align: right !important;
 }
 .controlSliders button {
   background: none;
@@ -626,14 +640,20 @@ body .ht-ftr-links ul li a {
     margin-bottom: 1em;
   }
 }
-
+ul.slick-dots {
+  display: none !important;
+}
 /* Mobile View Home Page */
 @media screen and (max-width: 767.98px) {
   body .heroSec {
     width: 100% !important;
     margin-left: 0px;
   }
-
+  .controlSliders {
+    position: unset;
+    margin-bottom: 1em;
+    display: inline-block;
+  }
   body .main-title {
     margin-bottom: 1em;
   }
@@ -1202,4 +1222,38 @@ body::before {
   background: #fffaeb;
   opacity: 0.3;
   z-index: -1;
+}
+.controlSliders {
+  position: unset;
+  margin-bottom: 1em;
+  display: inline-block;
+}
+
+.clientCategory-section .sec-heading {
+  font-family: "Fraunces";
+  font-size: 3em !important;
+}
+.clientCategory-section .more-card .top-content-title .more-nft-title {
+  font-family: "sora" !important;
+  font-weight: 700;
+}
+
+.clientCategory-section .more-card .top-content-title .more-nft-desc {
+  font-family: "sora" !important;
+}
+.clientCategory-section .more-card .more-bid-details .mb-title {
+  font-family: "sora" !important;
+  font-weight: 600;
+  color: #707070;
+}
+.clientCategory-section .more-card .more-bid-details .mb-value {
+  font-family: "sora" !important;
+  font-weight: 600;
+}
+.clientCategory-section .more-card {
+  padding: 20px;
+  background: #fff;
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px #ccc;
 }

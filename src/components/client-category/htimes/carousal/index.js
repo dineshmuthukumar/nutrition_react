@@ -11,6 +11,8 @@ import hfive from "../img/five.png";
 import hsix from "../img/six.png";
 import hsevan from "../img/sevan.png";
 import height from "../img/eight.png";
+import larrow from "../img/left-arrow.png";
+import rarrow from "../img/right-arrow.png";
 import arrow from "../img/arrow.svg";
 
 const Carousel = () => {
@@ -18,20 +20,51 @@ const Carousel = () => {
 
   const settings = {
     dots: false,
-    infinite: true,
+    infinite: false,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 4,
     slidesToScroll: 1,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          dots: false,
+        },
+      },
+    ],
   };
   return (
     <div className="sliderLegacy">
-      <div>
-        <button onClick={() => customNavigator.current.slickPrev()}>
-          prev
-        </button>
-        <button onClick={() => customNavigator.current.slickNext()}>
-          Next
-        </button>
+      <div className="navrow">
+        <div className="controlSliders">
+          <button onClick={() => customNavigator.current.slickPrev()}>
+            <Image src={larrow} />
+          </button>
+          <button onClick={() => customNavigator.current.slickNext()}>
+            <Image src={rarrow} />
+          </button>
+        </div>
       </div>
       <Slider {...settings} ref={customNavigator}>
         <div>
