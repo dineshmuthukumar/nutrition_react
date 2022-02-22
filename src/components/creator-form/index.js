@@ -7,8 +7,8 @@ const CreatorForm = () => {
   return (
     <div className="creator-container">
       <div className="creator-block">
-        <h2>Creator Application</h2>
-        <hr />
+        <h2> Application Form</h2>
+        {/* <hr /> */}
         <InputText title="Email address" />
         <InputText title="Please enter your full name" />
 
@@ -55,6 +55,13 @@ const CreatorForm = () => {
       </div> */}
       </div>
       <img className="bg_image" src={creator_bg} />
+      <div className="heading-block">
+        <h2>Join a Creator</h2>
+        <p>
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry.{" "}
+        </p>
+      </div>
     </div>
   );
 };
