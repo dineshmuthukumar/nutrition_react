@@ -8,27 +8,41 @@ const CreatorForm = () => {
       <h2>Creator Application</h2>
       <hr />
       <InputText title="Email address" />
-      <InputText title="Please enter your WazirX NFT account username." />
-      <InputText title="Please updated the Cover picture" />
-      <InputText title="Please updated my Profile picture." />
-      <InputText title="Please updated my Name." />
-      <InputText title="Please linked my Instagram profile." />
+      <InputText title="Please enter your full name" />
+
+      <div>
+        <label className="input-title">Registered with Guardian Link?</label>
+        <div className="d-flex mb-4">
+          <label className="input-title form-control me-2" role="button">
+            <input type="radio" name="registered" /> Yes
+          </label>
+          <label className="input-title form-control" role="button">
+            <input type="radio" name="registered" /> No
+          </label>
+        </div>
+      </div>
+      {/* <InputText title="Please linked my Instagram profile." />
       <InputText title="Please linked my Facebook profile." />
       <InputText title="Please linked my Twitter profile." />
-      <InputText title="Please updated my bio/description." />
+      <InputText title="Please updated my bio/description." /> */}
 
       <InputText
+        placeholder="https://twitter.com/xxxx/xxxx/xxxxxxx"
         title="Please share with us the following tweet link from the connected Twitter
         handle to verify your authenticity. Copy and paste the link below"
+        eg={`Tweet sample: "Hey @beyondlifeclub, I am looking for a Creator account to share my artwork with the community. Looking forward to getting verified.🤞 https://beyondlife.club"`}
       />
 
-      <InputText title="Why do you wish to become an NFT Creator and your experience as a Creator?" />
+      <InputText
+        title="Why do you wish to become an NFT Creator and your experience as a Creator?"
+        rows={4}
+      />
 
       <div className="btn-block text-center">
         <button className="submit-btn">Submit</button>
       </div>
 
-      <div className="success-msg-block">
+      {/* <div className="success-msg-block">
         <h4>Success Acksldfjsd</h4>
         <p>
           Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -36,7 +50,7 @@ const CreatorForm = () => {
           since the 1500s, when an unknown printer took a galley of type and
           scrambled it to make a type specimen book.{" "}
         </p>
-      </div>
+      </div> */}
     </div>
   );
 };

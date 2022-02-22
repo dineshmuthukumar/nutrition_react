@@ -15,6 +15,8 @@ const InputText = ({
   value,
   isPop = false,
   popText,
+  eg = "",
+  rows = 0,
   ...props
 }) => {
   const x = Math.floor(Math.random() * 100 + 1);
@@ -33,6 +35,7 @@ const InputText = ({
         {title} {tooltip && tooltip}
       </label>{" "}
       {required && <small className="text-danger font-10">(Required)</small>}
+      {eg && <div className="eg-text">{eg}</div>}
       {isPop ? (
         <OverlayTrigger trigger="focus" placement="top" overlay={popover}>
           <input
@@ -50,19 +53,37 @@ const InputText = ({
           />
         </OverlayTrigger>
       ) : (
-        <input
-          {...props}
-          id={`floatingInput${x}`}
-          type={type}
-          name={name}
-          className={`form-control mb-4 ${
-            required && "border-danger"
-          }  ${className}`}
-          placeholder={placeholder}
-          onChange={onChange}
-          value={value}
-          autoComplete="off"
-        />
+        <>
+          {rows ? (
+            <textarea
+              {...props}
+              rows={rows}
+              id={`floatingInput${x}`}
+              name={name}
+              className={`form-control h-auto mb-4 ${
+                required && "border-danger"
+              }  ${className}`}
+              placeholder={placeholder}
+              onChange={onChange}
+              value={value}
+              autoComplete="off"
+            ></textarea>
+          ) : (
+            <input
+              {...props}
+              id={`floatingInput${x}`}
+              type={type}
+              name={name}
+              className={`form-control mb-4 ${
+                required && "border-danger"
+              }  ${className}`}
+              placeholder={placeholder}
+              onChange={onChange}
+              value={value}
+              autoComplete="off"
+            />
+          )}
+        </>
       )}
     </>
   );
