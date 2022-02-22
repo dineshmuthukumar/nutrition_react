@@ -143,6 +143,21 @@
       font-size: 1.3rem;
     }
   }
+
+  .file-upload {
+    display: block;
+    border: 1px solid #ccc;
+    padding: 0.8rem;
+    border-radius: 0.3rem;
+
+    .choose-btn {
+      display: inline;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 0.2rem 0.7rem;
+      border-radius: 0.3rem;
+    }
+  }
 }
 
 .heading-block {
