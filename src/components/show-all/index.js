@@ -346,9 +346,7 @@ const ShowAll = ({ categories, query }) => {
     const sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
     const nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
     const sort_exist = query.get("sort");
-    const search_exist = query.get("search")
-      ? query.get("search").replace("#", "%23")
-      : "";
+    const search_exist = search ? search.replace("#", "%23") : "";
     const sale_status = query.get("status");
 
     if (category_exist.includes(input.value)) {
@@ -407,9 +405,7 @@ const ShowAll = ({ categories, query }) => {
     let sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
     const nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
     const sort_exist = query.get("sort");
-    const search_exist = query.get("search")
-      ? query.get("search").replace("#", "%23")
-      : "";
+    const search_exist = search ? search.replace("#", "%23") : "";
     const sale_status = query.get("status");
 
     if (sale_exist.includes(input.value)) {
@@ -468,9 +464,7 @@ const ShowAll = ({ categories, query }) => {
     const sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
     let nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
     const sort_exist = query.get("sort");
-    const search_exist = query.get("search")
-      ? query.get("search").replace("#", "%23")
-      : "";
+    const search_exist = search ? search.replace("#", "%23") : "";
     const sale_status = query.get("status");
 
     if (nft_exist.includes(input.value)) {
@@ -529,9 +523,7 @@ const ShowAll = ({ categories, query }) => {
     const sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
     const nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
     const sort_exist = input.value;
-    const search_exist = query.get("search")
-      ? query.get("search").replace("#", "%23")
-      : "";
+    const search_exist = search ? search.replace("#", "%23") : "";
     const sale_status = query.get("status");
 
     let query_string = "";
@@ -584,9 +576,7 @@ const ShowAll = ({ categories, query }) => {
     const sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
     const nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
     const sort_exist = query.get("sort");
-    const search_exist = query.get("search")
-      ? query.get("search").replace("#", "%23")
-      : "";
+    const search_exist = search ? search.replace("#", "%23") : "";
     const sale_status = remove ? null : input.value;
 
     let query_string = "";
