@@ -31,10 +31,10 @@ const InputText = ({
 
   return (
     <>
-      <label htmlFor={`floatingInput${x}`} className="input-title">
-        {title} {tooltip && tooltip}
-      </label>{" "}
-      {required && <small className="text-danger font-10">(Required)</small>}
+      <label htmlFor={`floatingInput${x}`} className="input-title mt-4">
+        {title} {tooltip && tooltip}{" "}
+        {required && <small className="text-danger font-10">(Required)</small>}
+      </label>
       {eg && <div className="eg-text">{eg}</div>}
       {isPop ? (
         <OverlayTrigger trigger="focus" placement="top" overlay={popover}>
@@ -43,7 +43,7 @@ const InputText = ({
             id={`floatingInput${x}`}
             type={type}
             name={name}
-            className={`form-control mb-4 ${
+            className={`form-control ${
               required && "border-danger"
             }  ${className}`}
             placeholder={placeholder}
@@ -60,7 +60,7 @@ const InputText = ({
               rows={rows}
               id={`floatingInput${x}`}
               name={name}
-              className={`form-control h-auto mb-4 ${
+              className={`form-control h-auto ${
                 required && "border-danger"
               }  ${className}`}
               placeholder={placeholder}
@@ -74,7 +74,7 @@ const InputText = ({
               id={`floatingInput${x}`}
               type={type}
               name={name}
-              className={`form-control mb-4 ${
+              className={`form-control ${
                 required && "border-danger"
               }  ${className}`}
               placeholder={placeholder}

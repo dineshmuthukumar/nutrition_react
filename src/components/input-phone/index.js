@@ -14,8 +14,10 @@ const InputPhone = ({
 }) => {
   return (
     <>
-      <label className="input-title">{title}</label>{" "}
-      {required && <small className="text-danger font-10">(Required)</small>}
+      <label className="input-title mt-4">
+        {title}{" "}
+        {required && <small className="text-danger font-10">(Required)</small>}
+      </label>
       <PhoneInput
         onEnterKeyPress={onEnterKeyPress}
         country={defaultCountry}
@@ -23,7 +25,6 @@ const InputPhone = ({
         onChange={onChange}
         inputClass={`${required && "border-danger"}`}
       />
-      <div className="mb-4"></div>
     </>
   );
 };

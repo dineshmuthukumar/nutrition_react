@@ -134,3 +134,6 @@ export const userProfileDetailApi = ({ slug }) =>
 
 export const nftRecentlySoldApi = (page, sort = "recently_sold") =>
   appAxios.get(`/dashboard/top_trades?page=${page}&sort=${sort}`);
+
+export const creatorApplicationApi = (input) =>
+  appAxios.post(`/creator_register`, input);

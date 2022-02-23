@@ -1,13 +1,45 @@
+import {
+  isPossiblePhoneNumber,
+  isValidPhoneNumber,
+  validatePhoneNumberLength,
+} from "libphonenumber-js";
+
 export const validateEmail = (email) => {
   const re =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; // eslint-disable-line
   return re.test(String(email).toLowerCase());
 };
 
+export const validateName = (name) => {
+  const re =
+    /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
+  return re.test(name);
+};
+
 export const validatePhone = (mobile) => {
   const re = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im; // eslint-disable-line
   return re.test(mobile);
 };
+
+export const validateNameReplace = (input) =>
+  input
+    .replace("  ", " ")
+    .replace("--", "-")
+    .replace(",,", ",")
+    .replace("..", ".")
+    .replace("''", "'")
+    .replace("-,", "-")
+    .replace("-.", "-")
+    .replace("-'", "-")
+    .replace(",-", ",")
+    .replace(",.", ",")
+    .replace(",'", ",")
+    .replace(".-", ".")
+    .replace(".,", ".")
+    .replace(".'", ".")
+    .replace("'-", "'")
+    .replace("',", "'")
+    .replace("'.", "'");
 
 export const passwordLength = 6;
 
@@ -130,4 +162,19 @@ export const bidBuyError = (code) => {
           "The request could not be processed at this time. Please try again.!",
       };
   }
+};
+
+export const validInternationalPhone = (input, country) => {
+  return (
+    isPossiblePhoneNumber(input, country) === true &&
+    isValidPhoneNumber(input, country) === true &&
+    validatePhoneNumberLength(input, country) === undefined
+  );
+};
+
+export const validateURL = (url) => {
+  const re =
+    /^http(s?):\/\/(www\.)?(((\w+(([\.\-]{1}([a-z]{2,})+)+)(\/[a-zA-Z0-9\_\=\?\&\.\#\-\W]*)*$)|(\w+((\.([a-z]{2,})+)+)(\:[0-9]{1,5}(\/[a-zA-Z0-9\_\=\?\&\.\#\-\W]*)*$)))|(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}(([0-9]|([1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]+)+)(\/[a-zA-Z0-9\_\=\?\&\.\#\-\W]*)*)((\:[0-9]{1,5}(\/[a-zA-Z0-9\_\=\?\&\.\#\-\W]*)*$)*))$/; // eslint-disable-line
+  // /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+(:[0-9]+)?|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/;
+  return re.test(url);
 };
