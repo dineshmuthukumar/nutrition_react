@@ -86,7 +86,7 @@ const Footer = () => {
                   <a
                     href="https://discord.com/invite/87s8ReJ5FA"
                     target="_blank"
-                    rel="noreferrer"
+                    rel="nofollow"
                   >
                     <FaDiscord />
                   </a>
@@ -94,7 +94,7 @@ const Footer = () => {
                 <li>
                   <a
                     target="_blank"
-                    rel="noreferrer"
+                    rel="nofollow"
                     href="https://t.me/Beyondlifeclub"
                   >
                     <FaTelegramPlane />
@@ -103,7 +103,7 @@ const Footer = () => {
                 <li>
                   <a
                     target="_blank"
-                    rel="noreferrer"
+                    rel="nofollow"
                     href="https://twitter.com/beyondlifeclub"
                   >
                     <FaTwitter />
@@ -112,7 +112,7 @@ const Footer = () => {
                 <li>
                   <a
                     target="_blank"
-                    rel="noreferrer"
+                    rel="nofollow"
                     href="https://www.facebook.com/BeyondLifeClub-109895114746109"
                   >
                     <FaFacebookF />
@@ -121,7 +121,7 @@ const Footer = () => {
                 <li>
                   <a
                     target="_blank"
-                    rel="noreferrer"
+                    rel="nofollow"
                     href="https://www.instagram.com/beyondlife.clubofficial"
                   >
                     <FaInstagram />
@@ -130,8 +130,8 @@ const Footer = () => {
                 <li>
                   <a
                     target="_blank"
-                    rel="noreferrer"
-                    href="https://medium.com/@BeyondLife.Club"
+                    rel="nofollow"
+                    href="https://beyondlife-club.medium.com/"
                   >
                     <FaMediumM />
                   </a>
@@ -139,7 +139,7 @@ const Footer = () => {
                 <li>
                   <a
                     target="_blank"
-                    rel="noreferrer"
+                    rel="nofollow"
                     href="https://www.youtube.com/channel/UCgfA98XT-yUi8YSIjT8omUA"
                   >
                     <FaYoutube />
