@@ -49,9 +49,16 @@ const NFTBaseDetails = ({
       <div className="creator mt-3">
         <span
           className="link"
-          onClick={() =>
-            history.push(`/explore/category/${nft?.category_slug}`)
-          }
+          onClick={() => {
+            if (
+              nft.celebrity_id ===
+              parseInt(process.env.REACT_APP_HINDUSTAN_TIMES_ID)
+            ) {
+              return history.push(`/hindustan-times-NFT`);
+            } else {
+              return history.push(`/explore/category/${nft?.category_slug}`);
+            }
+          }}
         >
           {nft.category_name}
         </span>{" "}
