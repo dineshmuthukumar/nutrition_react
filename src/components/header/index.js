@@ -309,7 +309,7 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                                 {data.celebrity_name}
                                 's {data.nft_name}
                               </b>{" "}
-                              from <b>{data.buyer_name}</b>
+                              by <b>{data.seller_name}</b>
                             </>
                           </div>
                           <div className="noti-time">
