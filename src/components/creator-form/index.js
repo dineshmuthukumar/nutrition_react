@@ -404,7 +404,7 @@ const CreatorForm = () => {
             )}
 
             <InputText
-              title="Your Twitter Profle URL:*"
+              title="Your Twitter Profile URL:*"
               name="twitter_link"
               value={register.twitter_link}
               required={validation.twitter_link}
