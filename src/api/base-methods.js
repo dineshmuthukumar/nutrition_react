@@ -16,6 +16,9 @@ export const getNotificationApi = (page) =>
 export const readNotificationApi = () =>
   baseAxios.post("/users/notification_read");
 
+export const creatorApplicationApi = (input) =>
+  baseAxios.post(`/creator_register`, input);
+
 export const getServerTimeApi = () =>
   axios.get(
     `${process.env.REACT_APP_BASE_SERVER_URL.replace("api/v1", "")}/time`

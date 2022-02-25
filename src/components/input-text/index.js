@@ -60,7 +60,7 @@ const InputText = ({
               rows={rows}
               id={`floatingInput${x}`}
               name={name}
-              className={`form-control h-auto ${
+              className={`form-control text-area ${
                 required && "border-danger"
               }  ${className}`}
               placeholder={placeholder}

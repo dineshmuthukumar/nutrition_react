@@ -1,10 +1,11 @@
 import React, { useRef, useState } from "react";
 import { toast } from "react-toastify";
+import { useHistory } from "react-router-dom";
 
 import InputText from "../input-text/index";
 import InputPhone from "../input-phone/index";
 import creator_bg from "../../images/creator_image.jpeg";
-import { creatorApplicationApi } from "../../api/methods";
+import { creatorApplicationApi } from "../../api/base-methods";
 import {
   validateName,
   validateNameReplace,
@@ -22,6 +23,10 @@ const CreatorForm = () => {
   const [error, setError] = useState("");
   const [file, setFile] = useState({ file: null });
   const [registerSuccess, setRegisterSuccess] = useState(false);
+
+  const history = useHistory();
+
+  const [overSize, setOverSize] = useState();
 
   const [register, setRegister] = useState({
     first_name: "",
@@ -94,7 +99,7 @@ const CreatorForm = () => {
     }
 
     if (!register.last_name) {
-      c_validation = { ...c_validation, last_name: true };
+      c_validation = { ...c_validation, last_name: false };
     } else {
       if (validateName(register.last_name)) {
         c_validation = { ...c_validation, valid_last_name: false };
@@ -102,6 +107,7 @@ const CreatorForm = () => {
         c_validation = { ...c_validation, valid_last_name: true };
       }
     }
+
     if (!register.email) {
       c_validation = { ...c_validation, email: true };
     } else {
@@ -129,7 +135,7 @@ const CreatorForm = () => {
         c_validation = { ...c_validation, valid_facebook_link: false };
       }
     } else {
-      c_validation = { ...c_validation, facebook_link: true };
+      c_validation = { ...c_validation, facebook_link: false };
     }
 
     if (register.instagram_link) {
@@ -139,7 +145,7 @@ const CreatorForm = () => {
         c_validation = { ...c_validation, valid_instagram_link: false };
       }
     } else {
-      c_validation = { ...c_validation, instagram_link: true };
+      c_validation = { ...c_validation, instagram_link: false };
     }
 
     if (register.linkedin_link) {
@@ -149,7 +155,7 @@ const CreatorForm = () => {
         c_validation = { ...c_validation, valid_linkedin_link: false };
       }
     } else {
-      c_validation = { ...c_validation, linkedin_link: true };
+      c_validation = { ...c_validation, linkedin_link: false };
     }
 
     if (register.twitter_link) {
@@ -178,10 +184,10 @@ const CreatorForm = () => {
       c_validation = { ...c_validation, desc: false };
     }
 
-    if (sampleFileRef.current.files.length == 0) {
-      c_validation = { ...c_validation, asset: true };
-    } else {
+    if (file?.file?.size > 0) {
       c_validation = { ...c_validation, asset: false };
+    } else {
+      c_validation = { ...c_validation, asset: true };
     }
 
     setValidation(c_validation);
@@ -256,56 +262,79 @@ const CreatorForm = () => {
 
         if (result.status === 201) {
           setRegisterSuccess(true);
+          document.body.scrollTop = document.documentElement.scrollTop = 0;
         }
       } catch (err) {
         setLoading(false);
 
         if (err?.status === 422) {
-          setError(
-            "This Email is already associated with a GuardianLink ID. Please Login or use a different email to register."
-          );
+          setError("This Email is already registered.");
         } else {
           toast.error("An unexpected error occured. Please try again ");
           console.log(
-            "🚀 ~ file: index.js ~ line 106 ~ handleSignUp ~ err",
+            "🚀 ~ file: index.js ~ line 264 ~ handleSubmit ~ err",
             err
           );
         }
       }
 
       setLoading(false);
+    } else {
+      setError("Please fill all the required fields");
     }
   };
 
   const handleFileChange = (input) => {
-    for (let file of input.target.files) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        setFile({ ...file, file: file });
-      };
-      reader.readAsDataURL(file);
+    if (input?.target?.files?.length > 0) {
+      if (input?.target?.files[0]?.size <= 52428800) {
+        for (let file of input.target.files) {
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            setFile({ file: file });
+          };
+          reader.readAsDataURL(file);
+        }
+
+        setOverSize("");
+      } else {
+        setFile({ file: null });
+        setOverSize("File size must be below 50 MB");
+      }
     }
   };
 
   return (
     <div className="creator-container">
       <div className="creator-block">
-        <h2 className="mb-0"> Application Form</h2>
+        <h2 className="mb-0">Here's where we stART! </h2>
 
         {registerSuccess ? (
-          <div className="success-msg-block">
-            <h4>Success Acksldfjsd</h4>
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book.{" "}
-            </p>
-          </div>
+          <>
+            <div className="success-msg-block">
+              <h4>Thank you for your interest!</h4>
+              <p>
+                Please accept our heartfelt congratulations and our warm welcome
+                into the world of NFTs. We have a received your details, and our
+                team will look into your details shortly. We will get back to
+                you over your registered email and/or mobile number to discuss
+                what we can do further.
+                <br />
+                <br />
+                Once again, welcome to the world of NFT art.
+              </p>
+            </div>
+            <button
+              className="marketplace-btn"
+              type="button"
+              onClick={() => history.push("/")}
+            >
+              Go to Marketplace
+            </button>
+          </>
         ) : (
           <>
             <InputText
-              title="Please enter your email address"
+              title="Your Email*"
               name="email"
               value={register.email}
               required={validation.email}
@@ -315,7 +344,7 @@ const CreatorForm = () => {
               <p className="error_text">Please enter a valid email address</p>
             )}
             <InputText
-              title="Please enter your first name"
+              title="First Name*"
               name="first_name"
               value={register.first_name}
               required={validation.first_name}
@@ -325,17 +354,16 @@ const CreatorForm = () => {
               <p className="error_text">Please enter a valid first name</p>
             )}
             <InputText
-              title="Please enter your last name"
+              title="First Name*"
               name="last_name"
               value={register.last_name}
-              required={validation.last_name}
               onChange={handleChangeEvent}
             />
             {validation.valid_last_name && (
               <p className="error_text">Please enter a valid last name</p>
             )}
             <InputPhone
-              title="Please enter your mobile number"
+              title="Your Mobile Number"
               value={register.phone_no}
               required={validation.phone_no}
               onChange={(e, c_code) => {
@@ -355,37 +383,26 @@ const CreatorForm = () => {
               <p className="error_text">Please enter a valid mobile number</p>
             )}
             <InputText
-              title="Please provide your facebook link"
+              title="Your Facebook Profile URL:"
               name="facebook_link"
               value={register.facebook_link}
-              required={validation.facebook_link}
               onChange={handleChangeEvent}
             />
             {validation.valid_facebook_link && (
               <p className="error_text">Please enter a valid facebook link</p>
             )}
             <InputText
-              title="Please provide your instagram link"
+              title="Your Instagram Profile URL:"
               name="instagram_link"
               value={register.instagram_link}
-              required={validation.instagram_link}
               onChange={handleChangeEvent}
             />
             {validation.valid_instagram_link && (
               <p className="error_text">Please enter a valid instagram link</p>
             )}
+
             <InputText
-              title="Please provide your linkedin link"
-              name="linkedin_link"
-              value={register.linkedin_link}
-              required={validation.linkedin_link}
-              onChange={handleChangeEvent}
-            />
-            {validation.valid_linkedin_link && (
-              <p className="error_text">Please enter a valid linkedin link</p>
-            )}
-            <InputText
-              title="Please provide your twitter link"
+              title="Your Twitter Profle URL:"
               name="twitter_link"
               value={register.twitter_link}
               required={validation.twitter_link}
@@ -394,6 +411,17 @@ const CreatorForm = () => {
             {validation.valid_twitter_link && (
               <p className="error_text">Please enter a valid twitter link</p>
             )}
+
+            <InputText
+              title="Other Relevant Online Profiles (YouTube/Behance/SoundCloud):"
+              name="linkedin_link"
+              value={register.linkedin_link}
+              onChange={handleChangeEvent}
+            />
+            {validation.valid_linkedin_link && (
+              <p className="error_text">Please enter a valid link</p>
+            )}
+
             {/* <div>
           <label className="input-title">Registered with Guardian Link?</label>
           <div className="radio-grp d-flex mb-4">
@@ -411,9 +439,8 @@ const CreatorForm = () => {
       <InputText title="Please updated my bio/description." /> */}
             <InputText
               placeholder="https://twitter.com/xxxx/xxxx/xxxxxxx"
-              title="Please share with us the following tweet link from the connected Twitter
-        handle to verify your authenticity. Copy and paste the link below"
-              eg={`Tweet sample: "Hey @beyondlifeclub, I am looking for a Creator account to share my artwork with the community. Looking forward to getting verified.🤞 https://beyondlife.club"`}
+              title="Verify Your Profile: You can verify your profile by tweeting the below tweet in your Twitter account and providing the URL of the tweet in the box below: "
+              eg={`Tweet sample: "All Excited To Be A Part of @beyondlifeclub's initiative to open its #NFT platform to all artists! Here's to the new world for creators in the #web3 era... powered by @Guardian_NFT "`}
               name="twitter_share_link"
               value={register.twitter_share_link}
               required={validation.twitter_share_link}
@@ -423,9 +450,10 @@ const CreatorForm = () => {
               <p className="error_text">Please enter a valid twitter link</p>
             )}
             <InputText
-              title="Why do you wish to become an NFT Creator and your experience as a Creator?"
+              title="Why should you be a part of the NFT art world?"
               rows={4}
               name="desc"
+              placeholder="Your journey into art and digital art"
               value={register.desc}
               required={validation.desc}
               onChange={handleChangeEvent}
@@ -433,7 +461,8 @@ const CreatorForm = () => {
 
             <div className="mt-4">
               <label className="input-title">
-                Upload your samples (.zip) here{" "}
+                Upload your samples here (1 File. Max. 50MB. Use .zip or .rar to
+                upload multiple files)
                 {validation.asset && (
                   <small className="text-danger font-10">(Required)</small>
                 )}
@@ -450,11 +479,13 @@ const CreatorForm = () => {
                 onClick={() => sampleFileRef.current.click()}
               >
                 <div className="choose-btn">
-                  {sampleFileRef?.current?.files[0]?.name
-                    ? sampleFileRef?.current?.files[0]?.name
+                  {file?.file?.name
+                    ? file?.file?.name
                     : "Choose your sample file"}
                 </div>
               </div>
+
+              {overSize && <p className="error_text">{overSize}</p>}
             </div>
             <div className="btn-block text-center">
               <button
@@ -466,16 +497,19 @@ const CreatorForm = () => {
                 {loading ? "Loading..." : "Submit"}
               </button>
             </div>
+            {error && (
+              <div className="error-text text-center mt-3">{error}</div>
+            )}
           </>
         )}
         {/* <hr /> */}
       </div>
       <img className="bg_image" src={creator_bg} />
       <div className="heading-block">
-        <h2>Join as a Creator</h2>
+        <h2>A Global Platform For Your Art</h2>
         <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry.{" "}
+          Join The Community of NFT Enthusiasts & Artists In Elevating The
+          Experience Of Your Art To A New League!
         </p>
       </div>
     </div>
