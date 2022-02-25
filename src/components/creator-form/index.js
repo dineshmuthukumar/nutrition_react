@@ -225,6 +225,8 @@ const CreatorForm = () => {
       try {
         setLoading(true);
 
+        setError("");
+
         const {
           email,
           first_name,
@@ -354,7 +356,7 @@ const CreatorForm = () => {
               <p className="error_text">Please enter a valid first name</p>
             )}
             <InputText
-              title="First Name*"
+              title="Last Name"
               name="last_name"
               value={register.last_name}
               onChange={handleChangeEvent}
@@ -363,7 +365,7 @@ const CreatorForm = () => {
               <p className="error_text">Please enter a valid last name</p>
             )}
             <InputPhone
-              title="Your Mobile Number"
+              title="Your Mobile Number*"
               value={register.phone_no}
               required={validation.phone_no}
               onChange={(e, c_code) => {
@@ -402,7 +404,7 @@ const CreatorForm = () => {
             )}
 
             <InputText
-              title="Your Twitter Profle URL:"
+              title="Your Twitter Profle URL:*"
               name="twitter_link"
               value={register.twitter_link}
               required={validation.twitter_link}
@@ -439,7 +441,7 @@ const CreatorForm = () => {
       <InputText title="Please updated my bio/description." /> */}
             <InputText
               placeholder="https://twitter.com/xxxx/xxxx/xxxxxxx"
-              title="Verify Your Profile: You can verify your profile by tweeting the below tweet in your Twitter account and providing the URL of the tweet in the box below: "
+              title="Verify Your Profile: You can verify your profile by tweeting the below tweet in your Twitter account and providing the URL of the tweet in the box below:*"
               eg={`Tweet sample: "All Excited To Be A Part of @beyondlifeclub's initiative to open its #NFT platform to all artists! Here's to the new world for creators in the #web3 era... powered by @Guardian_NFT "`}
               name="twitter_share_link"
               value={register.twitter_share_link}
@@ -450,7 +452,7 @@ const CreatorForm = () => {
               <p className="error_text">Please enter a valid twitter link</p>
             )}
             <InputText
-              title="Why should you be a part of the NFT art world?"
+              title="Why should you be a part of the NFT art world?*"
               rows={4}
               name="desc"
               placeholder="Your journey into art and digital art"
@@ -462,7 +464,7 @@ const CreatorForm = () => {
             <div className="mt-4">
               <label className="input-title">
                 Upload your samples here (1 File. Max. 50MB. Use .zip or .rar to
-                upload multiple files)
+                upload multiple files)*{" "}
                 {validation.asset && (
                   <small className="text-danger font-10">(Required)</small>
                 )}
