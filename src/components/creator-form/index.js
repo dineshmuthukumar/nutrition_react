@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 
 import InputText from "../input-text/index";
 import InputPhone from "../input-phone/index";
+import AppHelmet from "../helmet";
 import creator_bg from "../../images/creator_image.jpeg";
 import { creatorApplicationApi } from "../../api/base-methods";
 import {
@@ -306,125 +307,129 @@ const CreatorForm = () => {
   };
 
   return (
-    <div className="creator-container">
-      <div className="creator-block">
-        <h2 className="mb-0">Here's where we stART! </h2>
+    <>
+      <AppHelmet title="Creator Application | NFT Marketplace | Biggest NFT Marketplace In India | BeyondLife.club" />
+      <div className="creator-container">
+        <div className="creator-block">
+          <h2 className="mb-0">Here's where we stART! </h2>
 
-        {registerSuccess ? (
-          <>
-            <div className="success-msg-block">
-              <h4>Thank you for your interest!</h4>
-              <p>
-                Please accept our heartfelt congratulations and our warm welcome
-                into the world of NFTs. We have a received your details, and our
-                team will look into your details shortly. We will get back to
-                you over your registered email and/or mobile number to discuss
-                what we can do further.
-                <br />
-                <br />
-                Once again, welcome to the world of NFT art.
-              </p>
-            </div>
-            <button
-              className="marketplace-btn"
-              type="button"
-              onClick={() => history.push("/")}
-            >
-              Go to Marketplace
-            </button>
-          </>
-        ) : (
-          <>
-            <InputText
-              title="Your Email*"
-              name="email"
-              value={register.email}
-              required={validation.email}
-              onChange={handleChangeEvent}
-            />
-            {validation.valid_email && (
-              <p className="error_text">Please enter a valid email address</p>
-            )}
-            <InputText
-              title="First Name*"
-              name="first_name"
-              value={register.first_name}
-              required={validation.first_name}
-              onChange={handleChangeEvent}
-            />
-            {validation.valid_first_name && (
-              <p className="error_text">Please enter a valid first name</p>
-            )}
-            <InputText
-              title="Last Name"
-              name="last_name"
-              value={register.last_name}
-              onChange={handleChangeEvent}
-            />
-            {validation.valid_last_name && (
-              <p className="error_text">Please enter a valid last name</p>
-            )}
-            <InputPhone
-              title="Your Mobile Number*"
-              value={register.phone_no}
-              required={validation.phone_no}
-              onChange={(e, c_code) => {
-                setRegister({
-                  ...register,
-                  phone_no: e,
-                  phone_code: c_code.countryCode.toUpperCase(),
-                });
-                if (e) {
-                  setValidation({ ...validation, phone_no: false });
-                } else {
-                  setValidation({ ...validation, phone_no: true });
-                }
-              }}
-            />
-            {validation.valid_phone_no && (
-              <p className="error_text">Please enter a valid mobile number</p>
-            )}
-            <InputText
-              title="Your Facebook Profile URL:"
-              name="facebook_link"
-              value={register.facebook_link}
-              onChange={handleChangeEvent}
-            />
-            {validation.valid_facebook_link && (
-              <p className="error_text">Please enter a valid facebook link</p>
-            )}
-            <InputText
-              title="Your Instagram Profile URL:"
-              name="instagram_link"
-              value={register.instagram_link}
-              onChange={handleChangeEvent}
-            />
-            {validation.valid_instagram_link && (
-              <p className="error_text">Please enter a valid instagram link</p>
-            )}
+          {registerSuccess ? (
+            <>
+              <div className="success-msg-block">
+                <h4>Thank you for your interest!</h4>
+                <p>
+                  Please accept our heartfelt congratulations and our warm
+                  welcome into the world of NFTs. We have a received your
+                  details, and our team will look into your details shortly. We
+                  will get back to you over your registered email and/or mobile
+                  number to discuss what we can do further.
+                  <br />
+                  <br />
+                  Once again, welcome to the world of NFT art.
+                </p>
+              </div>
+              <button
+                className="marketplace-btn"
+                type="button"
+                onClick={() => history.push("/")}
+              >
+                Go to Marketplace
+              </button>
+            </>
+          ) : (
+            <>
+              <InputText
+                title="Your Email*"
+                name="email"
+                value={register.email}
+                required={validation.email}
+                onChange={handleChangeEvent}
+              />
+              {validation.valid_email && (
+                <p className="error_text">Please enter a valid email address</p>
+              )}
+              <InputText
+                title="First Name*"
+                name="first_name"
+                value={register.first_name}
+                required={validation.first_name}
+                onChange={handleChangeEvent}
+              />
+              {validation.valid_first_name && (
+                <p className="error_text">Please enter a valid first name</p>
+              )}
+              <InputText
+                title="Last Name"
+                name="last_name"
+                value={register.last_name}
+                onChange={handleChangeEvent}
+              />
+              {validation.valid_last_name && (
+                <p className="error_text">Please enter a valid last name</p>
+              )}
+              <InputPhone
+                title="Your Mobile Number*"
+                value={register.phone_no}
+                required={validation.phone_no}
+                onChange={(e, c_code) => {
+                  setRegister({
+                    ...register,
+                    phone_no: e,
+                    phone_code: c_code.countryCode.toUpperCase(),
+                  });
+                  if (e) {
+                    setValidation({ ...validation, phone_no: false });
+                  } else {
+                    setValidation({ ...validation, phone_no: true });
+                  }
+                }}
+              />
+              {validation.valid_phone_no && (
+                <p className="error_text">Please enter a valid mobile number</p>
+              )}
+              <InputText
+                title="Your Facebook Profile URL:"
+                name="facebook_link"
+                value={register.facebook_link}
+                onChange={handleChangeEvent}
+              />
+              {validation.valid_facebook_link && (
+                <p className="error_text">Please enter a valid facebook link</p>
+              )}
+              <InputText
+                title="Your Instagram Profile URL:"
+                name="instagram_link"
+                value={register.instagram_link}
+                onChange={handleChangeEvent}
+              />
+              {validation.valid_instagram_link && (
+                <p className="error_text">
+                  Please enter a valid instagram link
+                </p>
+              )}
 
-            <InputText
-              title="Your Twitter Profile URL:*"
-              name="twitter_link"
-              value={register.twitter_link}
-              required={validation.twitter_link}
-              onChange={handleChangeEvent}
-            />
-            {validation.valid_twitter_link && (
-              <p className="error_text">Please enter a valid twitter link</p>
-            )}
+              <InputText
+                title="Your Twitter Profile URL:*"
+                name="twitter_link"
+                value={register.twitter_link}
+                required={validation.twitter_link}
+                onChange={handleChangeEvent}
+              />
+              {validation.valid_twitter_link && (
+                <p className="error_text">Please enter a valid twitter link</p>
+              )}
 
-            <InputText
-              title="Other Relevant Online Profiles (YouTube/Behance/SoundCloud):"
-              name="linkedin_link"
-              value={register.linkedin_link}
-              onChange={handleChangeEvent}
-            />
-            {validation.valid_linkedin_link && (
-              <p className="error_text">Please enter a valid link</p>
-            )}
+              <InputText
+                title="Other Relevant Online Profiles (YouTube/Behance/SoundCloud):"
+                name="linkedin_link"
+                value={register.linkedin_link}
+                onChange={handleChangeEvent}
+              />
+              {validation.valid_linkedin_link && (
+                <p className="error_text">Please enter a valid link</p>
+              )}
 
-            {/* <div>
+              {/* <div>
           <label className="input-title">Registered with Guardian Link?</label>
           <div className="radio-grp d-flex mb-4">
             <label className="radio-btn" role="button">
@@ -435,86 +440,87 @@ const CreatorForm = () => {
             </label>
           </div>
         </div> */}
-            {/* <InputText title="Please linked my Instagram profile." />
+              {/* <InputText title="Please linked my Instagram profile." />
       <InputText title="Please linked my Facebook profile." />
       <InputText title="Please linked my Twitter profile." />
       <InputText title="Please updated my bio/description." /> */}
-            <InputText
-              placeholder="https://twitter.com/xxxx/xxxx/xxxxxxx"
-              title="Verify Your Profile: You can verify your profile by tweeting the below tweet in your Twitter account and providing the URL of the tweet in the box below:*"
-              eg={`Tweet sample: "All Excited To Be A Part of @beyondlifeclub's initiative to open its #NFT platform to all artists! Here's to the new world for creators in the #web3 era... powered by @Guardian_NFT "`}
-              name="twitter_share_link"
-              value={register.twitter_share_link}
-              required={validation.twitter_share_link}
-              onChange={handleChangeEvent}
-            />
-            {validation.valid_twitter_share_link && (
-              <p className="error_text">Please enter a valid twitter link</p>
-            )}
-            <InputText
-              title="Why should you be a part of the NFT art world?*"
-              rows={4}
-              name="desc"
-              placeholder="Your journey into art and digital art"
-              value={register.desc}
-              required={validation.desc}
-              onChange={handleChangeEvent}
-            />
-
-            <div className="mt-4">
-              <label className="input-title">
-                Upload your samples here (1 File. Max. 50MB. Use .zip or .rar to
-                upload multiple files)*{" "}
-                {validation.asset && (
-                  <small className="text-danger font-10">(Required)</small>
-                )}
-              </label>
-              <input
-                type="file"
-                style={{ display: "none" }}
-                ref={sampleFileRef}
-                onChange={handleFileChange}
+              <InputText
+                placeholder="https://twitter.com/xxxx/xxxx/xxxxxxx"
+                title="Verify Your Profile: You can verify your profile by tweeting the below tweet in your Twitter account and providing the URL of the tweet in the box below:*"
+                eg={`Tweet sample: "All Excited To Be A Part of @beyondlifeclub's initiative to open its #NFT platform to all artists! Here's to the new world for creators in the #web3 era... powered by @Guardian_NFT "`}
+                name="twitter_share_link"
+                value={register.twitter_share_link}
+                required={validation.twitter_share_link}
+                onChange={handleChangeEvent}
               />
-              <div
-                className={`file-upload ${validation.asset && "error"}`}
-                role="button"
-                onClick={() => sampleFileRef.current.click()}
-              >
-                <div className="choose-btn">
-                  {file?.file?.name
-                    ? file?.file?.name
-                    : "Choose your sample file"}
-                </div>
-              </div>
+              {validation.valid_twitter_share_link && (
+                <p className="error_text">Please enter a valid twitter link</p>
+              )}
+              <InputText
+                title="Why should you be a part of the NFT art world?*"
+                rows={4}
+                name="desc"
+                placeholder="Your journey into art and digital art"
+                value={register.desc}
+                required={validation.desc}
+                onChange={handleChangeEvent}
+              />
 
-              {overSize && <p className="error_text">{overSize}</p>}
-            </div>
-            <div className="btn-block text-center">
-              <button
-                className="submit-btn"
-                disabled={loading}
-                type="button"
-                onClick={handleSubmit}
-              >
-                {loading ? "Loading..." : "Submit"}
-              </button>
-            </div>
-            {error && (
-              <div className="error-text text-center mt-3">{error}</div>
-            )}
-          </>
-        )}
-        {/* <hr /> */}
+              <div className="mt-4">
+                <label className="input-title">
+                  Upload your samples here (1 File. Max. 50MB. Use .zip or .rar
+                  to upload multiple files)*{" "}
+                  {validation.asset && (
+                    <small className="text-danger font-10">(Required)</small>
+                  )}
+                </label>
+                <input
+                  type="file"
+                  style={{ display: "none" }}
+                  ref={sampleFileRef}
+                  onChange={handleFileChange}
+                />
+                <div
+                  className={`file-upload ${validation.asset && "error"}`}
+                  role="button"
+                  onClick={() => sampleFileRef.current.click()}
+                >
+                  <div className="choose-btn">
+                    {file?.file?.name
+                      ? file?.file?.name
+                      : "Choose your sample file"}
+                  </div>
+                </div>
+
+                {overSize && <p className="error_text">{overSize}</p>}
+              </div>
+              <div className="btn-block text-center">
+                <button
+                  className="submit-btn"
+                  disabled={loading}
+                  type="button"
+                  onClick={handleSubmit}
+                >
+                  {loading ? "Loading..." : "Submit"}
+                </button>
+              </div>
+              {error && (
+                <div className="error-text text-center mt-3">{error}</div>
+              )}
+            </>
+          )}
+          {/* <hr /> */}
+        </div>
+        <img className="bg_image" src={creator_bg} />
+        <div className="heading-block">
+          <h2>A Global Platform For Your Art</h2>
+          <p>
+            Join The Community of NFT Enthusiasts & Artists In Elevating The
+            Experience Of Your Art To A New League!
+          </p>
+        </div>
       </div>
-      <img className="bg_image" src={creator_bg} />
-      <div className="heading-block">
-        <h2>A Global Platform For Your Art</h2>
-        <p>
-          Join The Community of NFT Enthusiasts & Artists In Elevating The
-          Experience Of Your Art To A New League!
-        </p>
-      </div>
-    </div>
+    </>
   );
 };
 
