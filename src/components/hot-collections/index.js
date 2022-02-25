@@ -39,7 +39,7 @@ const HotCollections = () => {
         <div className="container-fluid">
           <div className="row">
             <div className="col-sm-12">
-              <h1 className="sec-heading">Hot Collections</h1>
+              <h1 className="sec-heading">Hot Bids</h1>
 
               {!loading ? (
                 <div className="row">

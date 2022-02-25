@@ -155,11 +155,11 @@ function App(props) {
               <Route exact path="/" component={Home} />
               <Route exact path="/help-line" component={HelpLine} />
               <Route exact path="/hindustan-times-NFT" component={Htimes} />
-              {/* <Route
+              <Route
                 exact
                 path="/creator-application"
                 component={CreatorApplication}
-              /> */}
+              />
               <Route
                 exact
                 path="/nfts/recently-sold"
