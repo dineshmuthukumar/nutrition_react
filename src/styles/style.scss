@@ -1175,6 +1175,9 @@ input::-webkit-inner-spin-button {
   font-size: 1.1rem;
   padding-left: 1rem;
   white-space: nowrap;
+  &.discord_ic {
+    margin-left: 1rem;
+  }
   @media screen and (max-width: 450px) {
     padding: 0.3rem 0.8rem 0.3rem;
     font-size: 0.9rem;
@@ -1322,7 +1325,7 @@ input::-webkit-inner-spin-button {
     }
     &:last-child {
       margin-right: 0;
-      margin-left: 1rem;
+      // margin-left: 1rem;
       // background: #fff;
       // color: #000 !important;
       border: none !important;
@@ -1440,6 +1443,7 @@ input::-webkit-inner-spin-button {
     padding: 0;
     width: 2.5rem;
     height: 2.5rem;
+    margin-left: 1rem;
     svg {
       margin: 0.5rem auto 0;
       height: 1.8rem;
