@@ -319,10 +319,10 @@ const CreatorForm = () => {
                 <h4>Thank you for your interest!</h4>
                 <p>
                   Please accept our heartfelt congratulations and our warm
-                  welcome into the world of NFTs. We have a received your
-                  details, and our team will look into your details shortly. We
-                  will get back to you over your registered email and/or mobile
-                  number to discuss what we can do further.
+                  welcome into the world of NFTs. We have received your details,
+                  and BeyondLife.club's community will look into your details
+                  shortly. We will get back to you over your registered email
+                  and/or mobile number to discuss what we can do further.
                   <br />
                   <br />
                   Once again, welcome to the world of NFT art.
