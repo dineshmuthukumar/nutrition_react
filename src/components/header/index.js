@@ -533,6 +533,13 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                 {/* <Nav.Link id="drop_outer" href="/">
                   Explore
                 </Nav.Link> */}
+                <Nav.Link
+                  id="drop_outer"
+                  className="me-3"
+                  href="/creator-application"
+                >
+                  Creator
+                </Nav.Link>
                 <Dropdown autoClose={["inside", "outside"]} className="me-0">
                   <Dropdown.Toggle
                     align="start"
@@ -839,6 +846,9 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                     as={HeaderMobileMenuCloseIcon}
                   ></Dropdown.Item>
                   {/* <Dropdown.Item href="/">Drops</Dropdown.Item> */}
+                  <Dropdown.Item href="/creator-application">
+                    Creator
+                  </Dropdown.Item>
                   <Dropdown autoClose={["inside", "outside"]} className="me-0">
                     <Dropdown.Toggle
                       align="start"
