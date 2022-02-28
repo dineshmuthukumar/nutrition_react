@@ -338,16 +338,10 @@ const CreatorForm = () => {
             </>
           ) : (
             <>
-              <InputText
-                title="Your Email*"
-                name="email"
-                value={register.email}
-                required={validation.email}
-                onChange={handleChangeEvent}
-              />
-              {validation.valid_email && (
-                <p className="error_text">Please enter a valid email address</p>
-              )}
+              {/* <div className="row">
+                <div className="col-12 col-md-6"></div>
+                <div className="col-12 col-md-6"></div>
+              </div> */}
               <InputText
                 title="First Name*"
                 name="first_name"
@@ -366,6 +360,17 @@ const CreatorForm = () => {
               />
               {validation.valid_last_name && (
                 <p className="error_text">Please enter a valid last name</p>
+              )}
+
+              <InputText
+                title="Your Email*"
+                name="email"
+                value={register.email}
+                required={validation.email}
+                onChange={handleChangeEvent}
+              />
+              {validation.valid_email && (
+                <p className="error_text">Please enter a valid email address</p>
               )}
               <InputPhone
                 title="Your Mobile Number*"
