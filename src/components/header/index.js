@@ -698,7 +698,7 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                                 )
                               }
                             >
-                              Wallet
+                              My GuardianLink Wallet
                             </Dropdown.Item>
                             <Dropdown.Item
                               as="button"
