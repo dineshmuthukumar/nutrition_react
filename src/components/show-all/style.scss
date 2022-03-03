@@ -76,6 +76,33 @@ button.load_more {
     .dropdown-menu {
       max-height: 320px;
       overflow-y: auto;
+      .category-search-block {
+        position: relative;
+        display: block;
+        .category-search-icon {
+          position: absolute;
+          top: 0.5rem;
+          right: 0.5rem;
+        }
+        .category-search.form-control {
+          height: 2.3rem;
+          width: 100%;
+          border-radius: 50rem;
+          box-shadow: none !important;
+          margin-top: 0.5rem;
+          &:hover,
+          &:focus,
+          &:active {
+            border-color: #000;
+          }
+        }
+      }
+
+      .scroll-fixed {
+        max-height: 240px;
+        overflow: auto;
+        margin: 0.5rem 0;
+      }
     }
   }
 }

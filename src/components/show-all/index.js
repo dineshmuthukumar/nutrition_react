@@ -9,6 +9,7 @@ import cardImage from "../../images/drops/nft_2.png";
 import "./style.scss";
 import { BiCaretDown, BiSearch, BiX } from "react-icons/bi";
 import { useHistory } from "react-router-dom";
+import { FormControl } from "react-bootstrap";
 
 const ShowAll = ({ categories, query }) => {
   const history = useHistory();
@@ -338,6 +339,41 @@ const ShowAll = ({ categories, query }) => {
       <BiCaretDown />
     </div>
   ));
+
+  const CustomMenu = React.forwardRef(
+    ({ children, style, className, "aria-labelledby": labeledBy }, ref) => {
+      const [value, setValue] = useState("");
+
+      return (
+        <div
+          ref={ref}
+          style={style}
+          className={className}
+          aria-labelledby={labeledBy}
+        >
+          <span className="category-search-block">
+            <FormControl
+              autoFocus
+              className="category-search"
+              placeholder="Search Category"
+              onChange={(e) => setValue(e.target.value)}
+              value={value}
+            />
+            <BiSearch className="category-search-icon" size={15} />
+          </span>
+          <ul className="list-unstyled scroll-fixed">
+            {React.Children.toArray(children).filter(
+              (child) =>
+                !value ||
+                child.props.children[1]
+                  .toLowerCase()
+                  .includes(value.toLocaleLowerCase())
+            )}
+          </ul>
+        </div>
+      );
+    }
+  );
 
   const handleCategoryCheck = (input) => {
     let category_exist = query.get("category")
@@ -698,7 +734,7 @@ const ShowAll = ({ categories, query }) => {
                         as={CategoryDropdown}
                       ></Dropdown.Toggle>
 
-                      <Dropdown.Menu align="start">
+                      <Dropdown.Menu align="start" as={CustomMenu}>
                         {filter.category.map((obj, i) => (
                           <Dropdown.Item
                             key={`category${i}`}
