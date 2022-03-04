@@ -8,16 +8,12 @@ import HeroVideo from "../hero-video";
 import heroVideoBox from "../../images/amithabNft.mp4";
 import silsila_video from "../../images/marketplace/silsila.mp4";
 import bigb_artpunk from "../../images/marketplace/bigb_art_punk.gif";
-import madhushala_nft from "../../images/marketplace/madhushala_nft.mp4";
+import madhushala_nft from "../../images/marketplace/madhushala_nft.png";
 import chakra_artpunks from "../../images/marketplace/chakra_artpunks.gif";
 import comic_cover_new from "../../images/marketplace/comic_cover_new.jpg";
 import digital_poster from "../../images/marketplace/digital_poster.gif";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./style.scss";
-import majnu from "../../images/fullyfaltoo_drop/Majnu.jpeg";
-import wingesh from "../../images/fullyfaltoo_drop/wingesh.png";
-import rangu from "../../images/fullyfaltoo_drop/rangu.png";
-import latimes from "../../images/latimes/LATIMES.mp4";
 
 const Banner = ({ list = [] }) => {
   const history = useHistory();
@@ -33,25 +29,10 @@ const Banner = ({ list = [] }) => {
 
   const static_url = [
     {
-      name: " L.A. Times Collectible NFTs",
-      type: "video",
-      url: latimes,
-    },
-    {
       name: "Chakra Artpunks",
       type: "video",
       url: "https://cdn.beyondlife.club/media/video/Artpunk_15.mp4",
     },
-    // {
-    //   name: "Let's Go L.A.",
-    //   type: "image",
-    //   url: "https://nft.latimes.com/static/media/Let_s_Go_LA.57905f92.png",
-    // },
-    // {
-    //   name: "By the Horns",
-    //   type: "image",
-    //   url: "https://nft.latimes.com/static/media/By_the_Horns.b531d955.png",
-    // },
     {
       name: "Poster Signed Moments",
       type: "video",
@@ -89,7 +70,7 @@ const Banner = ({ list = [] }) => {
     },
     {
       name: "Madhushala",
-      type: "video",
+      type: "image",
       url: madhushala_nft,
     },
     {
@@ -101,22 +82,6 @@ const Banner = ({ list = [] }) => {
       name: "Hindustan Times NFT",
       type: "image",
       url: "https://cdn.beyondlife.club/media/social/hindustan_3.gif",
-    },
-
-    {
-      name: "Majnu's Da Man",
-      type: "image",
-      url: majnu,
-    },
-    {
-      name: "Winging it like Wingnesh",
-      type: "image",
-      url: wingesh,
-    },
-    {
-      name: "Rangu the Champ",
-      type: "image",
-      url: rangu,
     },
   ];
   return (
@@ -247,27 +212,7 @@ const Banner = ({ list = [] }) => {
         <div className="row">
           <div className="col-5">
             <div style={{ height: "calc((100vw - 13rem)/2)" }}>
-              <div
-                style={{ overflow: "hidden" }}
-                className="cat-block"
-                role={"button"}
-                onClick={() => handleNavigate("L.A. Times Collectible NFTs")}
-              >
-                <h5 className="cat-title big-box">
-                  L.A. Times Collectible NFTs
-                </h5>
-
-                <video
-                  loop
-                  muted
-                  autoPlay
-                  playsInline
-                  src={latimes}
-                  className="first-image"
-                  style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
-                ></video>
-              </div>
-              {/* <Carousel
+              <Carousel
                 showThumbs={false}
                 dynamicHeight={true}
                 useKeyboardArrows
@@ -278,15 +223,19 @@ const Banner = ({ list = [] }) => {
                 stopOnHover
                 infiniteLoop={true}
                 swipeable={true}
-              > */}
-              {/* <div
+              >
+                <div
                   style={{ overflow: "hidden" }}
                   className="cat-block"
                   role={"button"}
                   onClick={() => handleNavigate("Chakra Artpunks")}
                 >
                   <h5 className="cat-title big-box">Chakra Artpunks</h5>
-                
+                  {/* <img
+                    src={chakra_artpunks}
+                    className="first-image"
+                    style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
+                  /> */}
                   <video
                     loop
                     muted
@@ -296,9 +245,8 @@ const Banner = ({ list = [] }) => {
                     className="first-image"
                     style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
                   ></video>
-                </div> */}
-
-              {/* <div
+                </div>
+                <div
                   style={{ overflow: "hidden" }}
                   className="cat-block"
                   role={"button"}
@@ -365,8 +313,8 @@ const Banner = ({ list = [] }) => {
                     className="first-image"
                     style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
                   />
-                </div> */}
-              {/* </Carousel> */}
+                </div>
+              </Carousel>
             </div>
           </div>
           <div className="col">
@@ -540,209 +488,6 @@ const Banner = ({ list = [] }) => {
           </div>
         </div>
       </div>
-
-      {/* demo  */}
-
-      <div className="container-fluid mt-4 hero-carousel-desktop">
-        <div className="row">
-          <div className="col">
-            <div className="row">
-              {/* <div className="col">
-                <div
-                  className="cat-block"
-                  role={"button"}
-                  style={{
-                    height: "calc(((((100vw - (7rem + 6rem))/2)/3)))",
-                  }}
-                  onClick={() => handleNavigate("Let's Go L.A.")}
-                >
-                  <h5 className="cat-title">Let's Go L.A.</h5>
-                  <img
-                    src="https://nft.latimes.com/static/media/Let_s_Go_LA.57905f92.png"
-                    className="first-image"
-                    style={{ height: "100%" }}
-                  ></img>
-                </div>
-              </div>
-              <div className="col">
-                <div
-                  className="cat-block"
-                  role={"button"}
-                  style={{
-                    height: "calc(((((100vw - (7rem + 6rem))/2)/3)))",
-                  }}
-                  onClick={() => handleNavigate("By the Horns")}
-                >
-                  <h5 className="cat-title">By the Horns</h5>
-                  <img
-                    loop
-                    muted
-                    autoPlay
-                    playsInline
-                    src="https://nft.latimes.com/static/media/By_the_Horns.b531d955.png"
-                    className="first-image"
-                    style={{ height: "100%" }}
-                  ></img>
-                </div>
-              </div>
-
-              <div className="col">
-                <div
-                  className="cat-block"
-                  role={"button"}
-                  style={{
-                    height: "calc(((((100vw - (7rem + 6rem))/2)/3)))",
-                  }}
-                  onClick={() => handleNavigate("Majnu's Da Man")}
-                >
-                  <h5 className="cat-title">Majnu's Da Man</h5>
-                  <img
-                    loop
-                    muted
-                    autoPlay
-                    playsInline
-                    src={majnu}
-                    className="first-image"
-                    style={{ height: "100%" }}
-                  ></img>
-                </div>
-              </div>
-              <div className="col">
-                <div
-                  className="cat-block"
-                  role={"button"}
-                  style={{
-                    height: "calc(((((100vw - (7rem + 6rem))/2)/3)))",
-                  }}
-                  onClick={() => handleNavigate("Winging it like Wingnesh ")}
-                >
-                  <h5 className="cat-title">Winging it like Wingnesh </h5>
-                  <img
-                    loop
-                    muted
-                    autoPlay
-                    playsInline
-                    src={wingesh}
-                    className="first-image"
-                    style={{ height: "100%" }}
-                  ></img>
-                </div>
-              </div> */}
-              <div className="col">
-                <div
-                  className="cat-block"
-                  role={"button"}
-                  style={{
-                    height: "calc(((((100vw - (7rem + 6rem))/2)/3)))",
-                  }}
-                  onClick={() => handleNavigate("Chakra Artpunks")}
-                >
-                  <h5 className="cat-title">Chakra Artpunks</h5>
-                  <video
-                    loop
-                    muted
-                    autoPlay
-                    playsInline
-                    src="https://cdn.beyondlife.club/media/video/Artpunk_15.mp4"
-                    className="first-image"
-                    style={{ height: "100%" }}
-                  ></video>
-                </div>
-              </div>{" "}
-              <div className="col">
-                <div
-                  className="cat-block"
-                  role={"button"}
-                  style={{
-                    height: "calc(((((100vw - (7rem + 6rem))/2)/3)))",
-                  }}
-                  onClick={() => handleNavigate("Poster Signed Moments")}
-                >
-                  <h5 className="cat-title">Poster Signed Moments</h5>
-                  <video
-                    loop
-                    muted
-                    autoPlay
-                    playsInline
-                    src="https://cdn.beyondlife.club/media/video/sholay.mp4"
-                    className="first-image"
-                    style={{ height: "100%" }}
-                  ></video>
-                </div>
-              </div>
-              <div className="col">
-                <div
-                  className="cat-block"
-                  role={"button"}
-                  style={{
-                    height: "calc(((((100vw - (7rem + 6rem))/2)/3)))",
-                  }}
-                  onClick={() =>
-                    handleNavigate("Animated Living Comic Book Cover")
-                  }
-                >
-                  <h5 className="cat-title">
-                    Animated Living Comic Book Cover
-                  </h5>
-                  <video
-                    loop
-                    muted
-                    autoPlay
-                    playsInline
-                    src="https://cdn.beyondlife.club/media/video/LivingComicBook_2.mp4"
-                    className="first-image"
-                    style={{ height: "100%" }}
-                  ></video>
-                </div>
-              </div>
-              <div className="col">
-                <div
-                  className="cat-block"
-                  role={"button"}
-                  style={{
-                    height: "calc(((((100vw - (7rem + 6rem))/2)/3)))",
-                  }}
-                  onClick={() => handleNavigate("Chakra Comic Book Cover")}
-                >
-                  <h5 className="cat-title">Chakra Comic Book Cover</h5>
-                  <video
-                    loop
-                    muted
-                    autoPlay
-                    playsInline
-                    src="https://cdn.beyondlife.club/media/video/Juke_25_2.mp4"
-                    className="first-image"
-                    style={{ height: "100%" }}
-                  ></video>
-                </div>
-              </div>
-              <div className="col">
-                <div
-                  className="cat-block"
-                  role={"button"}
-                  style={{
-                    height: "calc(((((100vw - (7rem + 6rem))/2)/3)))",
-                  }}
-                  onClick={() => handleNavigate("Madhushala")}
-                >
-                  <h5 className="cat-title">Madhushala</h5>
-                  <video
-                    src={madhushala_nft}
-                    loop
-                    muted
-                    autoPlay
-                    playsInline
-                    className="first-image"
-                    style={{ height: "100%" }}
-                  ></video>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* demo  */}
     </>
   );
 };
