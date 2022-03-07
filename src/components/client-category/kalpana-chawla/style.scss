@@ -1,0 +1,26 @@
+@import "../../../styles/common";
+
+.timer-center {
+  height: 60vh;
+
+  .timer-c {
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .c-content {
+      text-align: center;
+      font-size: 1.5rem;
+      font-family: $neue-helveticabold;
+    }
+  }
+}
+
+.ctime {
+  font-size: 5rem !important;
+}
+
+.cinterval {
+  font-size: 3rem !important;
+}

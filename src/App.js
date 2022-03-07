@@ -29,6 +29,9 @@ const NotFound = lazy(() => import("./pages/not-found"));
 const HelpLine = lazy(() => import("./pages/help-line"));
 const UserDetails = lazy(() => import("./pages/user-details"));
 const Htimes = lazy(() => import("./components/client-category/htimes"));
+const KalpanaChawla = lazy(() =>
+  import("./components/client-category/kalpana-chawla")
+);
 const RecentlySold = lazy(() => import("./pages/recently-sold"));
 const CreatorApplication = lazy(() => import("./pages/creator-application"));
 
@@ -155,6 +158,11 @@ function App(props) {
               <Route exact path="/" component={Home} />
               <Route exact path="/help-line" component={HelpLine} />
               <Route exact path="/hindustan-times-NFT" component={Htimes} />
+              <Route
+                exact
+                path="/kalpana-chawla-NFT"
+                component={KalpanaChawla}
+              />
               <Route
                 exact
                 path="/creator-application"
