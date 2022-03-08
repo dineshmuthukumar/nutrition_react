@@ -10,7 +10,7 @@ import NFTCounter from "../../nft-counter";
 import "./style.scss";
 
 const KalpanaChawla = () => {
-  const open_start_date = "Mar 08, 2022 12:30:00";
+  const open_start_date = "Mar 08, 2022 12:10:00";
 
   const [open_time, set_open_time] = useState();
   const [launch, set_launch] = useState(false);

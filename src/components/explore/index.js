@@ -143,8 +143,8 @@ const Explore = ({ categoryDetail, slug }) => {
           sort: sort === "relevance" ? null : sort,
         });
       }
-      setList([...list, ...response.data.data.nfts]);
-      setHasNext(response.data.data.next_page);
+      setList([...list, ...response?.data?.data?.nfts]);
+      setHasNext(response?.data?.data?.next_page);
       page === 1 && setLoading(false);
       setLoadingMore(false);
     } catch (err) {
@@ -175,8 +175,8 @@ const Explore = ({ categoryDetail, slug }) => {
           sort: sort === "relevance" ? null : sort,
         });
       }
-      setList(response.data.data.nfts);
-      setHasNext(response.data.data.next_page);
+      setList(response?.data?.data?.nfts);
+      setHasNext(response?.data?.data?.next_page);
       page === 1 && setLoading(false);
       setLoadingMore(false);
     } catch (err) {
@@ -577,7 +577,7 @@ const Explore = ({ categoryDetail, slug }) => {
 
               {!loading ? (
                 <div className="row">
-                  {list.length > 0 ? (
+                  {list && list.length > 0 ? (
                     list.map((nft, i) => (
                       <div
                         key={`list-nft-${i}`}
