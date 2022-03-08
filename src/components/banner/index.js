@@ -18,6 +18,7 @@ import majnu from "../../images/fullyfaltoo_drop/Majnu.jpeg";
 import wingesh from "../../images/fullyfaltoo_drop/wingesh.png";
 import rangu from "../../images/fullyfaltoo_drop/rangu.png";
 import latimes from "../../images/latimes/LATIMES.mp4";
+import kalpana from "../../images/kalpana/kalpana.mp4";
 
 const Banner = ({ list = [] }) => {
   const history = useHistory();
@@ -25,6 +26,8 @@ const Banner = ({ list = [] }) => {
   const handleNavigate = (input) => {
     if (input === "Hindustan Times NFT") {
       history.push(`/hindustan-times-NFT`);
+    } else if (input === "The Unexplored Space of Kalpana Chawla") {
+      history.push(`/kalpana-chawla-NFT`);
     } else {
       const data = list.find((obj) => obj.name === input);
       data?.slug && history.push(`/explore/category/${data?.slug}`);
@@ -33,9 +36,9 @@ const Banner = ({ list = [] }) => {
 
   const static_url = [
     {
-      name: " L.A. Times Collectible NFTs",
+      name: "The Unexplored Space of Kalpana Chawla",
       type: "video",
-      url: latimes,
+      url: kalpana,
     },
     {
       name: "Chakra Artpunks",
@@ -251,10 +254,12 @@ const Banner = ({ list = [] }) => {
                 style={{ overflow: "hidden" }}
                 className="cat-block"
                 role={"button"}
-                onClick={() => handleNavigate("L.A. Times Collectible NFTs")}
+                onClick={() =>
+                  handleNavigate("The Unexplored Space of Kalpana Chawla")
+                }
               >
                 <h5 className="cat-title big-box">
-                  L.A. Times Collectible NFTs
+                  The Unexplored Space of Kalpana Chawla
                 </h5>
 
                 <video
@@ -262,7 +267,7 @@ const Banner = ({ list = [] }) => {
                   muted
                   autoPlay
                   playsInline
-                  src={latimes}
+                  src={kalpana}
                   className="first-image"
                   style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
                 ></video>

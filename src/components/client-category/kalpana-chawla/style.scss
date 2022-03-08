@@ -11,8 +11,16 @@
 
     .c-content {
       text-align: center;
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       font-family: $neue-helveticabold;
+
+      &.fs-12 {
+        font-size: 2rem;
+      }
+    }
+
+    .c-timer {
+      text-align: center;
     }
   }
 }

@@ -55,6 +55,11 @@ const NFTBaseDetails = ({
               parseInt(process.env.REACT_APP_HINDUSTAN_TIMES_ID)
             ) {
               return history.push(`/hindustan-times-NFT`);
+            } else if (
+              nft.celebrity_id ===
+              parseInt(process.env.REACT_APP_KALPANA_CHAWLA_ID)
+            ) {
+              return history.push(`/kalpana-chawla-NFT`);
             } else {
               return history.push(`/explore/category/${nft?.category_slug}`);
             }
@@ -75,6 +80,11 @@ const NFTBaseDetails = ({
             nft.celebrity_id === parseInt(process.env.REACT_APP_META_VERSE_ID)
           ) {
             return "Metaverse Wedding";
+          } else if (
+            nft.celebrity_id ===
+            parseInt(process.env.REACT_APP_KALPANA_CHAWLA_ID)
+          ) {
+            return "Kalpana Chawla";
           } else {
             return "Stan Lee";
           }

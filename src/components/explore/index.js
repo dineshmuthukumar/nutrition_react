@@ -14,10 +14,10 @@ import { BiCaretDown, BiX, BiSearch } from "react-icons/bi";
 import useQuery from "../../hook/useQuery";
 import { useHistory } from "react-router-dom";
 
-const Explore = ({ categoryDetail }) => {
+const Explore = ({ categoryDetail, slug }) => {
   const history = useHistory();
   const query = useQuery();
-  const { slug } = useParams();
+  // const { slug } = useParams();
   const [page, setPage] = useState(1);
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -130,16 +130,19 @@ const Explore = ({ categoryDetail }) => {
     try {
       page === 1 && setLoading(true);
       setLoadingMore(true);
-      let response = await nftCategoryListApi({
-        slug,
-        page,
-        filter: {
-          type: type,
-          sale_type: saleType,
-          keyword: searchText,
-        },
-        sort: sort === "relevance" ? null : sort,
-      });
+      let response = {};
+      if (slug) {
+        response = await nftCategoryListApi({
+          slug,
+          page,
+          filter: {
+            type: type,
+            sale_type: saleType,
+            keyword: searchText,
+          },
+          sort: sort === "relevance" ? null : sort,
+        });
+      }
       setList([...list, ...response.data.data.nfts]);
       setHasNext(response.data.data.next_page);
       page === 1 && setLoading(false);
@@ -159,16 +162,19 @@ const Explore = ({ categoryDetail }) => {
     try {
       page === 1 && setLoading(true);
       setLoadingMore(true);
-      let response = await nftCategoryListApi({
-        slug,
-        page,
-        filter: {
-          type: type,
-          sale_type: saleType,
-          keyword: searchText,
-        },
-        sort: sort === "relevance" ? null : sort,
-      });
+      let response = {};
+      if (slug) {
+        response = await nftCategoryListApi({
+          slug,
+          page,
+          filter: {
+            type: type,
+            sale_type: saleType,
+            keyword: searchText,
+          },
+          sort: sort === "relevance" ? null : sort,
+        });
+      }
       setList(response.data.data.nfts);
       setHasNext(response.data.data.next_page);
       page === 1 && setLoading(false);

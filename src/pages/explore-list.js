@@ -38,7 +38,7 @@ const ExploreList = () => {
   return (
     <>
       <Header />
-      <Explore categoryDetail={categoryDetail} />
+      <Explore categoryDetail={categoryDetail} slug={categoryDetail?.slug} />
       <Footer />
     </>
   );
