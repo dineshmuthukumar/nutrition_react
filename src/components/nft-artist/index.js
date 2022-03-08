@@ -39,7 +39,9 @@ const NFTArtist = ({ id }) => {
           />
         </div>
         <div className="col-12 col-md-7 mt-4 mt-md-0 artist-details-content">
-          <div className="artist-name">The Inspiration</div>
+          <div className="artist-name">
+            {id !== 133 ? "The Inspiration" : "Kalpana Chawla"}
+          </div>
           <div className="at-name">
             {(() => {
               if (id === 1) {
@@ -53,7 +55,7 @@ const NFTArtist = ({ id }) => {
               } else if (
                 id === parseInt(process.env.REACT_APP_KALPANA_CHAWLA_ID)
               ) {
-                return "Kalpana Chawla";
+                return "Exclusive Photographs Presented By Jean-Pierre Harrison";
               } else {
                 return "Stan Lee";
               }

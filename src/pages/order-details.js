@@ -490,7 +490,9 @@ const OrderDetails = () => {
             </div>
           </div>
 
-          <NFTSectionTitle title="Artist" />
+          <NFTSectionTitle
+            title={nft.celebrity_id === 133 ? "The Inspiration" : "Artist"}
+          />
           <div className="mt-5">
             <NFTArtist id={nft.celebrity_id} />
           </div>
