@@ -633,7 +633,7 @@ const Banner = ({ list = [] }) => {
                   className="cat-block"
                   role={"button"}
                   style={{
-                    height: "calc(((((100vw - (7rem + 6rem))/2)/3)))",
+                    height: "calc(((((100vw - (7rem - 17rem))/2)/3)))",
                   }}
                   onClick={() => handleNavigate("Chakra Artpunks")}
                 >
@@ -654,7 +654,7 @@ const Banner = ({ list = [] }) => {
                   className="cat-block"
                   role={"button"}
                   style={{
-                    height: "calc(((((100vw - (7rem + 6rem))/2)/3)))",
+                    height: "calc(((((100vw - (7rem - 17rem))/2)/3)))",
                   }}
                   onClick={() => handleNavigate("Poster Signed Moments")}
                 >
@@ -675,7 +675,7 @@ const Banner = ({ list = [] }) => {
                   className="cat-block"
                   role={"button"}
                   style={{
-                    height: "calc(((((100vw - (7rem + 6rem))/2)/3)))",
+                    height: "calc(((((100vw - (7rem - 17rem))/2)/3)))",
                   }}
                   onClick={() =>
                     handleNavigate("Animated Living Comic Book Cover")
@@ -700,7 +700,7 @@ const Banner = ({ list = [] }) => {
                   className="cat-block"
                   role={"button"}
                   style={{
-                    height: "calc(((((100vw - (7rem + 6rem))/2)/3)))",
+                    height: "calc(((((100vw - (7rem - 17rem))/2)/3)))",
                   }}
                   onClick={() => handleNavigate("Chakra Comic Book Cover")}
                 >
@@ -721,7 +721,7 @@ const Banner = ({ list = [] }) => {
                   className="cat-block"
                   role={"button"}
                   style={{
-                    height: "calc(((((100vw - (7rem + 6rem))/2)/3)))",
+                    height: "calc(((((100vw - (7rem - 17rem))/2)/3)))",
                   }}
                   onClick={() => handleNavigate("Madhushala")}
                 >
