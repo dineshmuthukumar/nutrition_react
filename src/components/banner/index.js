@@ -28,6 +28,8 @@ const Banner = ({ list = [] }) => {
       history.push(`/hindustan-times-NFT`);
     } else if (input === "The Unexplored Space of Kalpana Chawla") {
       history.push(`/kalpana-chawla-NFT`);
+    } else if (input === "L.A. Times Collectible NFTs") {
+      history.push(`/latimes-NFT`);
     } else {
       const data = list.find((obj) => obj.name === input);
       data?.slug && history.push(`/explore/category/${data?.slug}`);
@@ -35,6 +37,11 @@ const Banner = ({ list = [] }) => {
   };
 
   const static_url = [
+    {
+      name: "L.A. Times Collectible NFTs",
+      type: "video",
+      url: latimes,
+    },
     {
       name: "The Unexplored Space of Kalpana Chawla",
       type: "video",
@@ -234,29 +241,7 @@ const Banner = ({ list = [] }) => {
         <div className="row">
           <div className="col-5">
             <div style={{ height: "calc((100vw - 13rem)/2)" }}>
-              <div
-                style={{ overflow: "hidden" }}
-                className="cat-block"
-                role={"button"}
-                onClick={() =>
-                  handleNavigate("The Unexplored Space of Kalpana Chawla")
-                }
-              >
-                <h5 className="cat-title big-box">
-                  The Unexplored Space of Kalpana Chawla
-                </h5>
-
-                <video
-                  loop
-                  muted
-                  autoPlay
-                  playsInline
-                  src={kalpana}
-                  className="first-image"
-                  style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
-                ></video>
-              </div>
-              {/* <Carousel
+              <Carousel
                 showThumbs={false}
                 dynamicHeight={true}
                 useKeyboardArrows
@@ -267,39 +252,23 @@ const Banner = ({ list = [] }) => {
                 stopOnHover
                 infiniteLoop={true}
                 swipeable={true}
-              > */}
-              {/* <div
+              >
+                <div
                   style={{ overflow: "hidden" }}
                   className="cat-block"
                   role={"button"}
-                  onClick={() => handleNavigate("Chakra Artpunks")}
+                  onClick={() => handleNavigate("L.A. Times Collectible NFTs")}
                 >
-                  <h5 className="cat-title big-box">Chakra Artpunks</h5>
-                
-                  <video
-                    loop
-                    muted
-                    autoPlay
-                    playsInline
-                    src="https://cdn.beyondlife.club/media/video/Artpunk_15.mp4"
-                    className="first-image"
-                    style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
-                  ></video>
-                </div> */}
+                  <h5 className="cat-title big-box">
+                    L.A. Times Collectible NFTs
+                  </h5>
 
-              {/* <div
-                  style={{ overflow: "hidden" }}
-                  className="cat-block"
-                  role={"button"}
-                  onClick={() => handleNavigate("Poster Signed Moments")}
-                >
-                  <h5 className="cat-title big-box">Poster Signed Moments</h5>
                   <video
                     loop
                     muted
                     autoPlay
                     playsInline
-                    src="https://cdn.beyondlife.club/media/video/sholay.mp4"
+                    src={latimes}
                     className="first-image"
                     style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
                   ></video>
@@ -309,53 +278,24 @@ const Banner = ({ list = [] }) => {
                   className="cat-block"
                   role={"button"}
                   onClick={() =>
-                    handleNavigate("Animated Living Comic Book Cover")
+                    handleNavigate("The Unexplored Space of Kalpana Chawla")
                   }
                 >
                   <h5 className="cat-title big-box">
-                    Animated Living Comic Book Cover
+                    The Unexplored Space of Kalpana Chawla
                   </h5>
+
                   <video
                     loop
                     muted
                     autoPlay
                     playsInline
-                    src="https://cdn.beyondlife.club/media/video/LivingComicBook_2.mp4"
+                    src={kalpana}
                     className="first-image"
                     style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
                   ></video>
                 </div>
-                <div
-                  style={{ overflow: "hidden" }}
-                  className="cat-block"
-                  role={"button"}
-                  onClick={() => handleNavigate("Chakra Comic Book Cover")}
-                >
-                  <h5 className="cat-title big-box">Chakra Comic Book Cover</h5>
-                  <video
-                    loop
-                    muted
-                    autoPlay
-                    playsInline
-                    src="https://cdn.beyondlife.club/media/video/Juke_25_2.mp4"
-                    className="first-image"
-                    style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
-                  ></video>
-                </div>
-                <div
-                  style={{ overflow: "hidden" }}
-                  className="cat-block"
-                  role={"button"}
-                  onClick={() => handleNavigate("Madhushala")}
-                >
-                  <h5 className="cat-title big-box">Madhushala</h5>
-                  <img
-                    src={madhushala_nft}
-                    className="first-image"
-                    style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
-                  />
-                </div> */}
-              {/* </Carousel> */}
+              </Carousel>
             </div>
           </div>
           <div className="col">

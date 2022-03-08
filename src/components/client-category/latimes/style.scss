@@ -1,0 +1,35 @@
+@import "../../../styles/common";
+
+.timer-center {
+  height: 60vh;
+
+  .timer-c {
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(https://cdn.beyondlife.club/media/bg_7.png);
+
+    .c-content {
+      text-align: center;
+      font-size: 1.2rem;
+      font-family: $neue-helveticabold;
+
+      &.fs-12 {
+        font-size: 2rem;
+      }
+    }
+
+    .c-timer {
+      text-align: center;
+    }
+  }
+}
+
+.ctime {
+  font-size: 5rem !important;
+}
+
+.cinterval {
+  font-size: 3rem !important;
+}

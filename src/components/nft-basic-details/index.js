@@ -60,6 +60,8 @@ const NFTBaseDetails = ({
               parseInt(process.env.REACT_APP_KALPANA_CHAWLA_ID)
             ) {
               return history.push(`/kalpana-chawla-NFT`);
+            } else if (nft.celebrity_id === 103) {
+              return history.push(`/latimes-NFT`);
             } else {
               return history.push(`/explore/category/${nft?.category_slug}`);
             }
@@ -85,6 +87,11 @@ const NFTBaseDetails = ({
             parseInt(process.env.REACT_APP_KALPANA_CHAWLA_ID)
           ) {
             return "Kalpana Chawla";
+          } else if (
+            nft.celebrity_id ===
+            parseInt(process.env.REACT_APP_KALPANA_CHAWLA_ID)
+          ) {
+            return "Latimes";
           } else {
             return "Stan Lee";
           }

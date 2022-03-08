@@ -72,7 +72,6 @@ const NFTPutOnSale = ({
     processClass: "",
     buttonName: "Confirm",
   });
-
   const handleErc721BidAmountChange = (e) => {
     if (
       e.target.value &&
@@ -963,6 +962,23 @@ const NFTPutOnSale = ({
                                   </span>
                                 </li>
                               )}
+
+                              {nft.celebrity_id === 103 && (
+                                <li className="">
+                                  <span className="terms quantity-to-value">
+                                    By proceeding further and clicking the
+                                    “CONFIRM” button as your electronic
+                                    signature, you acknowledge and agree to the
+                                    LA Times{" "}
+                                    <a
+                                      href="https://nft.latimes.com/terms-and-conditions/"
+                                      target={"_blank"}
+                                    >
+                                      Terms and Conditions
+                                    </a>
+                                  </span>
+                                </li>
+                              )}
                             </ul>
                           </div>
                         </div>
@@ -1151,6 +1167,22 @@ const NFTPutOnSale = ({
                                   )}
                                 </span>
                               </li>
+                              {nft.celebrity_id === 103 && (
+                                <li className="">
+                                  <span className="terms quantity-to-value">
+                                    By proceeding further and clicking the
+                                    “CONFIRM” button as your electronic
+                                    signature, you acknowledge and agree to the
+                                    LA Times{" "}
+                                    <a
+                                      href="https://nft.latimes.com/terms-and-conditions/"
+                                      target={"_blank"}
+                                    >
+                                      Terms and Conditions.
+                                    </a>
+                                  </span>
+                                </li>
+                              )}
                             </ul>
                           </div>
                         </div>

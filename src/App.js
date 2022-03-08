@@ -32,6 +32,8 @@ const Htimes = lazy(() => import("./components/client-category/htimes"));
 const KalpanaChawla = lazy(() =>
   import("./components/client-category/kalpana-chawla")
 );
+const Latimes = lazy(() => import("./components/client-category/latimes"));
+
 const RecentlySold = lazy(() => import("./pages/recently-sold"));
 const CreatorApplication = lazy(() => import("./pages/creator-application"));
 
@@ -163,6 +165,7 @@ function App(props) {
                 path="/kalpana-chawla-NFT"
                 component={KalpanaChawla}
               />
+              <Route exact path="/latimes-NFT" component={Latimes} />
               <Route
                 exact
                 path="/creator-application"

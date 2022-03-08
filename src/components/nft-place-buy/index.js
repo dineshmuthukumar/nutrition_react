@@ -532,6 +532,24 @@ const NFTPlaceBid = ({
                         Purchase.
                       </>
                     </div>
+                    {nft.celebrity_id === 103 && (
+                      <div className="terms ">
+                        <>
+                          By proceeding further and clicking the “BUY NFTs”
+                          button as your electronic signature, you agree to the
+                          LA Times{" "}
+                          <a
+                            href="https://nft.latimes.com/terms-and-conditions/"
+                            target={"_blank"}
+                          >
+                            Terms and Conditions
+                          </a>
+                          . The license to display the items associated with the
+                          NFTs shall only be used for your personal,
+                          non-commercial use.
+                        </>
+                      </div>
+                    )}
 
                     <div className="bottom-content-pop">
                       <div
