@@ -105,22 +105,6 @@ const Banner = ({ list = [] }) => {
       type: "image",
       url: "https://cdn.beyondlife.club/media/social/hindustan_3.gif",
     },
-
-    {
-      name: "Majnu's Da Man",
-      type: "image",
-      url: majnu,
-    },
-    {
-      name: "Winging it like Wingnesh",
-      type: "image",
-      url: wingesh,
-    },
-    {
-      name: "Rangu the Champ",
-      type: "image",
-      url: rangu,
-    },
   ];
   return (
     <>
