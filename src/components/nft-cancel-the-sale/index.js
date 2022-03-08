@@ -240,7 +240,12 @@ const NFTCancelTheSale = ({
                       </h5>
 
                       <div className="bottom-content-pop">
-                        <div className="back-button">Cancel</div>
+                        <div
+                          className="back-button"
+                          onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
+                        >
+                          Cancel
+                        </div>
                         <div className="place-cancel-button">
                           <button
                             className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-cancel-btn-pop`} //process -> proccessing
