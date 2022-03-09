@@ -47,6 +47,9 @@
   object-position: top;
   border-radius: 0.8rem;
 }
+.first-image.la_video {
+  object-fit: inherit;
+}
 .cat-block {
   position: relative;
   .cat-title {

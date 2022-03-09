@@ -211,7 +211,7 @@ const Banner = ({ list = [] }) => {
                                 playsInline
                                 src={category.url}
                                 className="first-image"
-                                style={{ height: "60vh" }}
+                                style={{ height: "43vh" }}
                               ></video>
                               <h5 className="cat-title">{category.name}</h5>
                             </>
@@ -223,7 +223,7 @@ const Banner = ({ list = [] }) => {
                               <img
                                 src={category.url}
                                 className="first-image"
-                                style={{ height: "60vh" }}
+                                style={{ height: "43vh" }}
                               />
                             </>
                           );
@@ -269,7 +269,7 @@ const Banner = ({ list = [] }) => {
                     autoPlay
                     playsInline
                     src={latimes}
-                    className="first-image"
+                    className="first-image la_video"
                     style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
                   ></video>
                 </div>
