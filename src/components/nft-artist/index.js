@@ -59,7 +59,7 @@ const NFTArtist = ({ id }) => {
               ) {
                 return "Exclusive Photographs Presented By Jean-Pierre Harrison";
               } else if (id === parseInt(process.env.REACT_APP_LATIMES_ID)) {
-                return "LA Times";
+                return "MISTER SAMPSON";
               } else {
                 return "Stan Lee";
               }
