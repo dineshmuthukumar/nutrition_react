@@ -41,7 +41,7 @@ const Latimes = () => {
     timeFunction(true);
   };
 
-  const slug = "pnQwAEY1UPaEgvrD";
+  const slug = "5O6vDyeYt6OyjeoY";
   const [categoryDetail, setCategoryDetail] = useState({});
   const [loading, setLoading] = useState(false);
   let query = useQuery();
