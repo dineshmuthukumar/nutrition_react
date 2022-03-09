@@ -255,7 +255,12 @@ const Details = () => {
           {nft?.celebrity_id && (
             <>
               <NFTSectionTitle
-                title={nft.celebrity_id === 133 ? "The Inspiration" : "Artist"}
+                title={
+                  nft.celebrity_id ===
+                  parseInt(process.env.REACT_APP_KALPANA_CHAWLA_ID)
+                    ? "The Inspiration"
+                    : "Artist"
+                }
               />
               <div className="mt-5">
                 <NFTArtist id={nft.celebrity_id} />

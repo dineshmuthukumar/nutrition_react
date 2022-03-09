@@ -18,7 +18,9 @@ import {
   user_load_by_token_thunk,
   user_logout_thunk,
   market_live_thunk,
+  market_live_off_thunk,
 } from "./redux/thunk/user_thunk";
+
 import "./App.css";
 
 const Home = lazy(() => import("./pages/home"));
@@ -38,7 +40,7 @@ const RecentlySold = lazy(() => import("./pages/recently-sold"));
 const CreatorApplication = lazy(() => import("./pages/creator-application"));
 
 function App(props) {
-  const market_start_date = "Jan 26, 2022 03:30:00";
+  const market_start_date = "Mar 9, 2022 12:30:00";
 
   const [market_time, set_market_time] = useState();
 
@@ -60,9 +62,11 @@ function App(props) {
     if (check) s_time.setSeconds(s_time.getSeconds() + 2);
 
     if (new Date(market_start_date_utc) < s_time) {
+      console.log("fire");
       dispatch(market_live_thunk());
     } else {
       set_market_time(market_start_date_utc);
+      dispatch(market_live_off_thunk());
     }
   };
 

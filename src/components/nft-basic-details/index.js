@@ -9,8 +9,6 @@ import BidValue from "../bid-value";
 import ToolTip from "../tooltip";
 import NFTPutOnSale from "../nft-put-on-sale";
 import { ReactComponent as DiscordSvg } from "./../../icons/discord_logo.svg";
-import postImages from "../../images/post1.png";
-import userImg from "../../images/user_1.jpg";
 
 import "./style.scss";
 import { OverlayTrigger } from "react-bootstrap";
@@ -36,9 +34,8 @@ const NFTBaseDetails = ({
     <Popover>
       <Popover.Body>
         <p className="password-terms">
-          Your NFT will be available to be listed for sale as soon as the
-          marketplace launches on <b>Jan 26th, 2022.</b> Stay tuned for the
-          grand opening of the BeyondLife.club marketplace.
+          Your NFT will be available to be listed for sale on{" "}
+          <b>March 9th, 2022 @ 4.30am PST / 6.00pm IST.</b>
         </p>
       </Popover.Body>
     </Popover>
@@ -90,8 +87,7 @@ const NFTBaseDetails = ({
           ) {
             return "Kalpana Chawla";
           } else if (
-            nft.celebrity_id ===
-            parseInt(process.env.REACT_APP_KALPANA_CHAWLA_ID)
+            nft.celebrity_id === parseInt(process.env.REACT_APP_LATIMES_ID)
           ) {
             return "LA Times";
           } else {
@@ -212,44 +208,16 @@ const NFTBaseDetails = ({
                 </button>
               );
             } else if (isOwner && ownerOrdersList.length === 0) {
-              return state.marketLive ? (
-                <button
-                  disabled={false}
-                  className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
-                  onClick={() => setPutOnSalePop(!putOnSalePop)}
-                >
-                  List for sale
-                </button>
-              ) : (
-                <OverlayTrigger
-                  trigger={["click"]}
-                  rootClose={true}
-                  placement="top"
-                  overlay={popover()}
-                >
-                  <button
-                    disabled={false}
-                    className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
-                  >
-                    List for sale
-                  </button>
-                </OverlayTrigger>
-              );
-            } else if (isOwner && ownerOrdersList.length > 0) {
-              if (isQuantityAvailable != null && isQuantityAvailable > 0) {
+              if (
+                parseInt(process.env.REACT_APP_LATIMES_ID) === nft.celebrity_id
+              ) {
                 return state.marketLive ? (
                   <button
                     disabled={false}
                     className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
                     onClick={() => setPutOnSalePop(!putOnSalePop)}
                   >
-                    {erc721
-                      ? "List for sale"
-                      : `List for sale (${
-                          isQuantityAvailable
-                            ? isQuantityAvailable
-                            : availableQuantity
-                        })`}
+                    List for sale
                   </button>
                 ) : (
                   <OverlayTrigger
@@ -262,6 +230,33 @@ const NFTBaseDetails = ({
                       disabled={false}
                       className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
                     >
+                      List for sale
+                    </button>
+                  </OverlayTrigger>
+                );
+              } else {
+                return (
+                  <button
+                    disabled={false}
+                    className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                    onClick={() => setPutOnSalePop(!putOnSalePop)}
+                  >
+                    List for sale
+                  </button>
+                );
+              }
+            } else if (isOwner && ownerOrdersList.length > 0) {
+              if (isQuantityAvailable != null && isQuantityAvailable > 0) {
+                if (
+                  parseInt(process.env.REACT_APP_LATIMES_ID) ===
+                  nft.celebrity_id
+                ) {
+                  return state.marketLive ? (
+                    <button
+                      disabled={false}
+                      className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                      onClick={() => setPutOnSalePop(!putOnSalePop)}
+                    >
                       {erc721
                         ? "List for sale"
                         : `List for sale (${
@@ -270,8 +265,44 @@ const NFTBaseDetails = ({
                               : availableQuantity
                           })`}
                     </button>
-                  </OverlayTrigger>
-                );
+                  ) : (
+                    <OverlayTrigger
+                      trigger={["click"]}
+                      rootClose={true}
+                      placement="top"
+                      overlay={popover()}
+                    >
+                      <button
+                        disabled={false}
+                        className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                      >
+                        {erc721
+                          ? "List for sale"
+                          : `List for sale (${
+                              isQuantityAvailable
+                                ? isQuantityAvailable
+                                : availableQuantity
+                            })`}
+                      </button>
+                    </OverlayTrigger>
+                  );
+                } else {
+                  return (
+                    <button
+                      disabled={false}
+                      className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                      onClick={() => setPutOnSalePop(!putOnSalePop)}
+                    >
+                      {erc721
+                        ? "List for sale"
+                        : `List for sale (${
+                            isQuantityAvailable
+                              ? isQuantityAvailable
+                              : availableQuantity
+                          })`}
+                    </button>
+                  );
+                }
               } else {
                 return (
                   <button

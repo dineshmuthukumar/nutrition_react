@@ -489,20 +489,28 @@ const OrderDetails = () => {
               )}
             </div>
           </div>
-
-          <NFTSectionTitle
-            title={nft.celebrity_id === 133 ? "The Inspiration" : "Artist"}
-          />
-          <div className="mt-5">
-            <NFTArtist id={nft.celebrity_id} />
-          </div>
-          {/* {nftMoreList.length > 0 && (
+          {nft?.celebrity_id && (
+            <>
+              <NFTSectionTitle
+                title={
+                  nft.celebrity_id ===
+                  parseInt(process.env.REACT_APP_KALPANA_CHAWLA_ID)
+                    ? "The Inspiration"
+                    : "Artist"
+                }
+              />
+              <div className="mt-5">
+                <NFTArtist id={nft.celebrity_id} />
+              </div>
+              {/* {nftMoreList.length > 0 && (
             <div className="mt-5">
               <NFTMore nftList={nftMoreList} />
             </div>
           )} */}
-          <br />
-          <br />
+              <br />
+              <br />
+            </>
+          )}
         </div>
       )}
       <Footer />

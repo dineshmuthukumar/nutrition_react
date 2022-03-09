@@ -6,6 +6,7 @@ export const USER_WALLET_UPDATE = "USER_WALLET_UPDATE";
 export const USER_LOGOUT = "USER_LOGOUT";
 
 export const MARKET_LIVE = "MARKET_LIVE";
+export const MARKET_LIVE_OFF = "MARKET_LIVE_OFF";
 
 export const user_login_action_request = () => {
   return {
@@ -43,5 +44,11 @@ export const user_wallet_update_action = (input) => {
 export const market_live = () => {
   return {
     type: MARKET_LIVE,
+  };
+};
+
+export const market_live_off = () => {
+  return {
+    type: MARKET_LIVE_OFF,
   };
 };

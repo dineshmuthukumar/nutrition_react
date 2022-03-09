@@ -6,6 +6,7 @@ import {
   user_login_action_success,
   user_logout_action,
   market_live,
+  market_live_off,
 } from "../actions/user_action";
 
 export const user_logout_thunk = () => {
@@ -36,5 +37,11 @@ export const user_load_by_token_thunk = (token) => {
 export const market_live_thunk = () => {
   return async (dispatch) => {
     dispatch(market_live());
+  };
+};
+
+export const market_live_off_thunk = () => {
+  return async (dispatch) => {
+    dispatch(market_live_off());
   };
 };

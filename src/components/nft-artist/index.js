@@ -42,7 +42,9 @@ const NFTArtist = ({ id }) => {
         </div>
         <div className="col-12 col-md-7 mt-4 mt-md-0 artist-details-content">
           <div className="artist-name">
-            {id !== 133 ? "The Inspiration" : "Kalpana Chawla"}
+            {id !== parseInt(process.env.REACT_APP_KALPANA_CHAWLA_ID)
+              ? "The Inspiration"
+              : "Kalpana Chawla"}
           </div>
           <div className="at-name">
             {(() => {

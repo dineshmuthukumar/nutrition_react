@@ -5,6 +5,7 @@ import {
   USER_WALLET_UPDATE,
   USER_LOGOUT,
   MARKET_LIVE,
+  MARKET_LIVE_OFF,
 } from "./../actions/user_action";
 
 const initState = {
@@ -55,6 +56,10 @@ const user_reducer = (state = initState, { payload, type }) => {
 
   if (type === MARKET_LIVE) {
     state = { ...state, marketLive: true };
+  }
+
+  if (type === MARKET_LIVE_OFF) {
+    state = { ...state, marketLive: false };
   }
 
   return state;
