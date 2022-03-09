@@ -11,7 +11,6 @@ import kalpana from "../../images/Kalpana.png";
 import latimes from "../../images/latimes/latimes.jpg";
 
 import "./style.scss";
-
 const NFTArtist = ({ id }) => {
   return (
     <div className="nft-artist">
@@ -32,7 +31,7 @@ const NFTArtist = ({ id }) => {
                 id === parseInt(process.env.REACT_APP_KALPANA_CHAWLA_ID)
               ) {
                 return kalpana;
-              } else if (id === 103) {
+              } else if (id === parseInt(process.env.REACT_APP_LATIMES_ID)) {
                 return latimes;
               } else {
                 return stanlee_img;
@@ -59,8 +58,8 @@ const NFTArtist = ({ id }) => {
                 id === parseInt(process.env.REACT_APP_KALPANA_CHAWLA_ID)
               ) {
                 return "Exclusive Photographs Presented By Jean-Pierre Harrison";
-              } else if (id === 103) {
-                return "Latimes";
+              } else if (id === parseInt(process.env.REACT_APP_LATIMES_ID)) {
+                return "LA Times";
               } else {
                 return "Stan Lee";
               }
@@ -84,8 +83,8 @@ const NFTArtist = ({ id }) => {
                   id === parseInt(process.env.REACT_APP_KALPANA_CHAWLA_ID)
                 )
                   return `Kalpana Chawla… The name would not need any introduction for any Indian woman and for any Indian for that matter! Kalpana Chawla has been a source of inspiration for millions of women who have dared to fly beyond the confines of their constraints. She is an aerospace engineer, an astronaut, and a wonderful human being who left behind, a legacy that will be a blazing trail for Indian women to follow and to look up to!`;
-                else if (id === 103)
-                  return `Latimes The name would not need any introduction for any Indian woman and for any Indian for that matter! Kalpana Chawla has been a source of inspiration for millions of women who have dared to fly beyond the confines of their constraints. She is an aerospace engineer, an astronaut, and a wonderful human being who left behind, a legacy that will be a blazing trail for Indian women to follow and to look up to!`;
+                else if (id === parseInt(process.env.REACT_APP_LATIMES_ID))
+                  return `MISTER SAMPSON is a Los Angeles based Creative Director, Graphic Designer, Illustrator and Muralist originally from Syracuse, New York.  Even though he was a fine arts major, an internship with Def Jam Records during his senior year of college gave TaVon experience in the graphic arts. His one-month internship became a five-year stint as he became one of their top Art Directors where he designed singles and album covers for many award-winning artists. In 2012, TaVon relocated to Los Angeles where he spent another two years as an Art Director before realizing his purpose as an artist was being under explored and there were important areas of his own life he wanted to express.`;
                 else
                   return `The inspiration behind the creation of all our art NFTs - both illustrations and video - is none other than the creation of the legendary Stan Lee. Stan Lee is one of the most prolific and formidable creator of superheroes in the last 100 years, and he has been the creative brain behind the creation of some memorable multiverses. Chakra is the only Indian superhero that Stan Lee has co-created!`;
               })()}

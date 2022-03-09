@@ -532,7 +532,8 @@ const NFTPlaceBid = ({
                         Purchase.
                       </>
                     </div>
-                    {nft.celebrity_id === 103 && (
+                    {nft.celebrity_id ===
+                      parseInt(process.env.REACT_APP_LATIMES_ID) && (
                       <div className="terms ">
                         <>
                           By proceeding further and clicking the “BUY NFTs”

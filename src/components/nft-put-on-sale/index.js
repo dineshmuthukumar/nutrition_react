@@ -963,7 +963,8 @@ const NFTPutOnSale = ({
                                 </li>
                               )}
 
-                              {nft.celebrity_id === 103 && (
+                              {nft.celebrity_id ===
+                                parseInt(process.env.REACT_APP_LATIMES_ID) && (
                                 <li className="">
                                   <span className="terms quantity-to-value">
                                     By proceeding further and clicking the
@@ -1167,7 +1168,8 @@ const NFTPutOnSale = ({
                                   )}
                                 </span>
                               </li>
-                              {nft.celebrity_id === 103 && (
+                              {nft.celebrity_id ===
+                                parseInt(process.env.REACT_APP_LATIMES_ID) && (
                                 <li className="">
                                   <span className="terms quantity-to-value">
                                     By proceeding further and clicking the
