@@ -1,1 +1,250 @@
 @import "../../../styles/common";
+section.client-category {
+  padding: 2rem 0;
+  background-color: #cf4943;
+  color: #fff;
+}
+.explore-title h1 {
+  font-size: 2.7em;
+}
+.explore-title p {
+  font-size: 1.4em;
+}
+.ft-logo img {
+  width: 150px;
+  display: block;
+  margin: auto;
+  margin-bottom: 2em;
+}
+.countdown-wrapper {
+  display: block;
+  text-align: center;
+}
+#countdown {
+  overflow: hidden;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+#countdown li:not(:last-child) {
+  margin-right: 2em;
+}
+#countdown li {
+  display: inline-block;
+  background: #681740;
+  width: 7em;
+  text-align: center;
+  border-radius: 4px;
+}
+#countdown li span {
+  font-size: 2.5em;
+  font-weight: 900;
+  color: #fff;
+}
+#countdown li p {
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 1em;
+  line-height: 30px;
+  margin: 0;
+}
+
+.sec-heading {
+  padding: 1rem 0;
+  border-bottom: 0.3rem solid #fff;
+  margin-bottom: 3rem;
+  font-family: "neue_helveticabold" !important;
+  font-size: 2rem;
+}
+section.category_list {
+  background: #681740;
+  color: #fff;
+  padding: 5em 0;
+}
+.category_card h1 {
+  font-size: 1.5rem;
+  margin: 0.8em auto 0;
+  text-align: center;
+}
+.category_list a {
+  text-decoration: none;
+}
+.category_card img {
+  width: 100%;
+  border-radius: 8px;
+}
+section.category_list .card_title {
+  margin-left: 0;
+  text-align: left;
+  padding: 0px;
+  margin: auto;
+  text-align: center;
+}
+.category_card {
+  background: #fff;
+  padding: 1em;
+  border-radius: 8px;
+  color: #000;
+  transition: 0.5s;
+}
+.category_card.active {
+  background: #50db29;
+  color: #fff;
+}
+.category_card:hover {
+  background: #50db29;
+  color: #fff;
+  transition: 0.5s;
+}
+
+.more-card {
+  margin-right: 1rem;
+  margin-bottom: 2rem;
+  min-width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  text-decoration: none;
+  color: #fff;
+
+  &:hover {
+    color: #fff;
+  }
+
+  .nft-like-btn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background-color: rgba(0, 0, 0, 0.39);
+    padding: 0.6rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.719);
+    }
+  }
+
+  .nft-type-badge {
+    position: absolute;
+    top: 21rem;
+    left: 0;
+    background: #000;
+    color: #fff;
+    padding: 0;
+    font-size: 1rem;
+    border-radius: 0 20px 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+    min-width: 7rem;
+    padding: 0 1.5rem;
+    font-family: $neue-helveticabold;
+    box-shadow: 1px 1px 0px 1px #ffff;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  overflow: hidden;
+
+  img {
+    min-width: 100%;
+    height: 26rem;
+    object-fit: contain;
+    margin-bottom: 1rem;
+  }
+
+  .top-content-title {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+    .more-nft-title {
+      font-size: 1.3rem;
+      font-family: $neue-helveticabold;
+      position: relative;
+      display: block;
+      @include text-ellipsis;
+
+      .right-content {
+        width: calc(100% - 8rem);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .left-count {
+        // position: absolute;
+        color: #f21e00;
+        right: 0;
+        font-family: $neue-helveticabold;
+        font-size: 1rem;
+        top: 0.5em;
+        width: 8rem;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+    }
+    .more-nft-desc {
+      font-size: 1rem;
+      font-family: $neue-helveticamedium;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  .more-bid-details {
+    display: flex;
+    justify-content: space-between;
+
+    .mb-title {
+      font-size: 1rem;
+      font-family: $neue-helveticamedium;
+      white-space: nowrap;
+    }
+
+    .mb-value {
+      font-size: 1.2rem;
+      font-family: $neue-helveticabold;
+    }
+  }
+
+  // &:hover {
+  //   opacity: 0.85;
+  // }
+}
+
+.font-onerem {
+  font-size: 1.3rem !important;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 567px) {
+  .category_card {
+    padding: 0;
+    border-radius: 4px;
+  }
+  .category_card h1 {
+    font-size: 1.2em;
+    padding: 0em 0 0.5em;
+  }
+  .category_card img {
+    width: 100%;
+    border-radius: 0;
+  }
+  .sec-heading {
+    margin-bottom: 1em !important;
+  }
+  #countdown li:not(:last-child) {
+    margin-right: 0.5em;
+  }
+  #countdown li {
+    width: 6em;
+  }
+}
