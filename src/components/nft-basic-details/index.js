@@ -223,9 +223,34 @@ const NFTBaseDetails = ({
                 </button>
               );
             } else if (isOwner && ownerOrdersList.length === 0) {
-              if (
-                parseInt(process.env.REACT_APP_LATIMES_ID) === nft.celebrity_id
-              ) {
+              return days === 0 &&
+                hours === 0 &&
+                minutes === 0 &&
+                seconds < 0.2 ? (
+                <button
+                  disabled={false}
+                  className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                  onClick={() => setPutOnSalePop(!putOnSalePop)}
+                >
+                  List for sale
+                </button>
+              ) : (
+                <OverlayTrigger
+                  trigger={["click"]}
+                  rootClose={true}
+                  placement="top"
+                  overlay={popover()}
+                >
+                  <button
+                    disabled={false}
+                    className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                  >
+                    List for sale
+                  </button>
+                </OverlayTrigger>
+              );
+            } else if (isOwner && ownerOrdersList.length > 0) {
+              if (isQuantityAvailable != null && isQuantityAvailable > 0) {
                 return days === 0 &&
                   hours === 0 &&
                   minutes === 0 &&
@@ -235,7 +260,13 @@ const NFTBaseDetails = ({
                     className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
                     onClick={() => setPutOnSalePop(!putOnSalePop)}
                   >
-                    List for sale
+                    {erc721
+                      ? "List for sale"
+                      : `List for sale (${
+                          isQuantityAvailable
+                            ? isQuantityAvailable
+                            : availableQuantity
+                        })`}
                   </button>
                 ) : (
                   <OverlayTrigger
@@ -248,82 +279,16 @@ const NFTBaseDetails = ({
                       disabled={false}
                       className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
                     >
-                      List for sale
+                      {erc721
+                        ? "List for sale"
+                        : `List for sale (${
+                            isQuantityAvailable
+                              ? isQuantityAvailable
+                              : availableQuantity
+                          })`}
                     </button>
                   </OverlayTrigger>
                 );
-              } else {
-                return (
-                  <button
-                    disabled={false}
-                    className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
-                    onClick={() => setPutOnSalePop(!putOnSalePop)}
-                  >
-                    List for sale
-                  </button>
-                );
-              }
-            } else if (isOwner && ownerOrdersList.length > 0) {
-              if (isQuantityAvailable != null && isQuantityAvailable > 0) {
-                if (
-                  parseInt(process.env.REACT_APP_LATIMES_ID) ===
-                  nft.celebrity_id
-                ) {
-                  return days === 0 &&
-                    hours === 0 &&
-                    minutes === 0 &&
-                    seconds < 0.2 ? (
-                    <button
-                      disabled={false}
-                      className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
-                      onClick={() => setPutOnSalePop(!putOnSalePop)}
-                    >
-                      {erc721
-                        ? "List for sale"
-                        : `List for sale (${
-                            isQuantityAvailable
-                              ? isQuantityAvailable
-                              : availableQuantity
-                          })`}
-                    </button>
-                  ) : (
-                    <OverlayTrigger
-                      trigger={["click"]}
-                      rootClose={true}
-                      placement="top"
-                      overlay={popover()}
-                    >
-                      <button
-                        disabled={false}
-                        className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
-                      >
-                        {erc721
-                          ? "List for sale"
-                          : `List for sale (${
-                              isQuantityAvailable
-                                ? isQuantityAvailable
-                                : availableQuantity
-                            })`}
-                      </button>
-                    </OverlayTrigger>
-                  );
-                } else {
-                  return (
-                    <button
-                      disabled={false}
-                      className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
-                      onClick={() => setPutOnSalePop(!putOnSalePop)}
-                    >
-                      {erc721
-                        ? "List for sale"
-                        : `List for sale (${
-                            isQuantityAvailable
-                              ? isQuantityAvailable
-                              : availableQuantity
-                          })`}
-                    </button>
-                  );
-                }
               } else {
                 return (
                   <button
