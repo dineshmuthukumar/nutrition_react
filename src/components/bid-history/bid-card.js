@@ -24,17 +24,15 @@ const BidCard = ({
   latestIndex,
   handleEndTimer,
   bidExpired,
+  orderDetails,
 }) => {
   const { user } = useSelector((state) => state.user.data);
-
-  // const bidExpiryDays = 1;
 
   useEffect(() => {
     if (isOrderOnSale && (history.slug === user?.slug || isOwner)) {
       setIsBidder(true);
 
       if (history?.status === "active" && latestIndex === 0) {
-        // setBidExpiry(dayjs(history.created_at).add(bidExpiryDays, "day"));
         setBidExpiry(dayjs(history.expires_at));
       }
     }
@@ -105,7 +103,8 @@ const BidCard = ({
                 isOrderOnSale &&
                 (history.slug === user?.slug || isOwner) &&
                 history?.status === "active" &&
-                latestIndex === 0 && (
+                latestIndex === 0 &&
+                !orderDetails?.timed_auction && (
                   <div className="bid-expire-cntent">
                     {dayjs() < dayjs(history.expires_at) && !bidExpired ? (
                       <>

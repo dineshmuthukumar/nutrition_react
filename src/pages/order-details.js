@@ -10,6 +10,7 @@ import {
   nftOwnerApi,
   nftTransactionHistory,
   orderPurchaseDetailsApi,
+  nftBidWinner,
 } from "../api/methods";
 import BidHistory from "../components/bid-history";
 import ChainAttributes from "../components/chain-attributes";
@@ -41,6 +42,7 @@ import NFTOrderBaseDetails from "../components/nft-order-basic-details";
 import NFTPurchaseDetails from "../components/nft-purchase-details/index";
 import AdditionalPerks from "../components/additional-perks/index";
 import AppHelmet from "../components/helmet";
+import BidWinner from "../components/bid-winner/index";
 
 const OrderDetails = () => {
   const history = useHistory();
@@ -71,6 +73,11 @@ const OrderDetails = () => {
   const [isOrderSuccess, setIsOrderSuccess] = useState(false);
   const [isOrderCancelled, setIsOrderCancelled] = useState(false);
   const [purchaseList, setPurchaseList] = useState([]);
+
+  // Timed Auction
+  const [auctionEndTime, setAuctionEndTime] = useState("");
+  const [isAuctionStarted, setIsAuctionStarted] = useState(false);
+  const [isAuctionEnded, setIsAuctionEnded] = useState(false);
 
   // Socket State
   const [totalBid, setTotalBid] = useState(0);
@@ -134,6 +141,7 @@ const OrderDetails = () => {
     nftOwners();
     nftTransaction();
     purchaseDetails();
+    orderBidWinner();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -167,6 +175,9 @@ const OrderDetails = () => {
     acceptBid(slug, orderSlug, (data) => {
       purchaseDetails();
       setAvailableQty(data.available_quantity);
+      if (orderDetails?.timed_auction) {
+        // setBidWinner(data?.purchase_details?.[0]);
+      }
       // if (data.purchase_details) {
       //   setPurchaseList((purchaseList) => [
       //     data.purchase_details,
@@ -223,6 +234,16 @@ const OrderDetails = () => {
       setErc721(NFT.nft_type === "erc721");
 
       if (NFT?.order_details) {
+        setAuctionEndTime(NFT.order_details?.auction_end_time);
+        setIsAuctionStarted(
+          new Date(NFT.time).getTime() >=
+            new Date(NFT.order_details?.auction_start_time).getTime()
+        );
+        setIsAuctionEnded(
+          new Date(NFT.time).getTime() >
+            new Date(NFT.order_details?.auction_end_time).getTime()
+        );
+
         setIsOrderOnSale(NFT.order_details?.status === "onsale");
         setIsOrderSuccess(NFT.order_details?.status === "success");
         setIsOrderCancelled(NFT.order_details?.status === "cancelled");
@@ -311,9 +332,26 @@ const OrderDetails = () => {
     }
   };
 
+  const orderBidWinner = async () => {
+    try {
+      let winner = await nftBidWinner({ order_slug: orderSlug });
+      setBidWinner(winner.data.data.winner);
+      console.log(winner);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleBidExpiredEndTimer = () => {
     setBidExpired(true);
     setBidOutDated(true);
+  };
+
+  const handleAuctionStartTimer = () => {
+    setIsAuctionStarted(true);
+  };
+  const handleAuctionEndTimer = () => {
+    setIsAuctionEnded(true);
   };
 
   return (
@@ -375,6 +413,12 @@ const OrderDetails = () => {
                   bidOutDated={bidOutDated}
                   handleBidExpiredEndTimer={handleBidExpiredEndTimer}
                   bidExpired={bidExpired}
+                  // Timed Auction
+                  isAuctionStarted={isAuctionStarted}
+                  isAuctionEnded={isAuctionEnded}
+                  auctionEndTime={auctionEndTime}
+                  handleAuctionStartTimer={handleAuctionStartTimer}
+                  handleAuctionEndTimer={handleAuctionEndTimer}
                 />
               </div>
             </div>
@@ -410,30 +454,44 @@ const OrderDetails = () => {
             <div className="col-12 col-lg-6 order-lg-2 order-1 mb-4">
               {(() => {
                 if (erc721) {
-                  return (
-                    <BidHistory
-                      setBidExpiry={setBidExpiry}
-                      setIsBidder={setIsBidder}
-                      nft={nft}
-                      orderSlug={orderSlug}
-                      isOwner={isOwner}
-                      nftOwner={nftOwner[0]}
-                      histories={bidHistory}
-                      totalCount={totalCount}
-                      isOrderOnSale={isOrderOnSale}
-                      isOrderSuccess={isOrderSuccess}
-                      isOrderCancelled={isOrderCancelled}
-                      orderDetails={orderDetails}
-                      soldOut={soldOut}
-                      transferringNFT={transferringNFT}
-                      // Transaction History
-                      transactionHistory={transactionHistory}
-                      transactionLoader={transactionLoader}
-                      transactionHasNext={transactionHasNext}
-                      handleBidExpiredEndTimer={handleBidExpiredEndTimer}
-                      bidExpired={bidExpired}
-                    />
-                  );
+                  if (
+                    orderDetails?.timed_auction &&
+                    isAuctionEnded &&
+                    bidWinner
+                  ) {
+                    return (
+                      <BidWinner
+                        winner={bidWinner}
+                        orderSlug={orderSlug}
+                        histories={bidHistory}
+                      />
+                    );
+                  } else {
+                    return (
+                      <BidHistory
+                        setBidExpiry={setBidExpiry}
+                        setIsBidder={setIsBidder}
+                        nft={nft}
+                        orderSlug={orderSlug}
+                        isOwner={isOwner}
+                        nftOwner={nftOwner[0]}
+                        histories={bidHistory}
+                        totalCount={totalCount}
+                        isOrderOnSale={isOrderOnSale}
+                        isOrderSuccess={isOrderSuccess}
+                        isOrderCancelled={isOrderCancelled}
+                        orderDetails={orderDetails}
+                        soldOut={soldOut}
+                        transferringNFT={transferringNFT}
+                        // Transaction History
+                        transactionHistory={transactionHistory}
+                        transactionLoader={transactionLoader}
+                        transactionHasNext={transactionHasNext}
+                        handleBidExpiredEndTimer={handleBidExpiredEndTimer}
+                        bidExpired={bidExpired}
+                      />
+                    );
+                  }
                 } else {
                   return (
                     nftOwner && (

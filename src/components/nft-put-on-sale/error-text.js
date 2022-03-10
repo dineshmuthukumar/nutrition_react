@@ -70,6 +70,25 @@ const ErrorText = ({ type, handleClick = () => {}, title, desc }) => {
     );
   }
 
+  if (type === "bid-buy-amount") {
+    return (
+      <div className="error-container">
+        <div className="error-text">
+          Your Buy Amount seems to be less than Bid Amount
+        </div>
+        <div>
+          <button
+            type="button"
+            onClick={handleClick}
+            className="btn-error-button rounded rounded-pill"
+          >
+            Dismiss
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return null;
 };
 

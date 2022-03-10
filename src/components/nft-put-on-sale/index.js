@@ -29,6 +29,9 @@ import "./style.scss";
 import ToolTip from "../tooltip/index";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { addDays } from "date-fns";
 
 const NFTPutOnSale = ({
   putOnSalePop = false,
@@ -57,6 +60,10 @@ const NFTPutOnSale = ({
     buyAmount: "",
     buyQuantity: 1,
     totalAmount: 0,
+    warning: false,
+    scheduleAuction: false,
+    startDate: new Date(),
+    endDate: null,
   });
 
   const [erc1155Sale, setErc1155Sale] = useState({
@@ -156,13 +163,27 @@ const NFTPutOnSale = ({
         buttonDisable: true,
       });
       if (erc721) {
-        order = {
-          is_buy: erc721Sale.isBuy,
-          is_bid: erc721Sale.isBid,
-          minimum_bid: erc721Sale.bidAmount,
-          buy_amount: erc721Sale.buyAmount,
-          total_quantity: erc721Sale.buyQuantity,
-        };
+        if (erc721Sale.scheduleAuction) {
+          order = {
+            is_buy: erc721Sale.isBuy,
+            is_bid: erc721Sale.isBid,
+            minimum_bid: erc721Sale.bidAmount,
+            buy_amount: erc721Sale.buyAmount,
+            total_quantity: erc721Sale.buyQuantity,
+            timed_auction: erc721Sale.isBid,
+            auction_start_time: erc721Sale.startDate.toISOString(),
+            auction_end_time: erc721Sale.endDate.toISOString(),
+          };
+        } else {
+          order = {
+            is_buy: erc721Sale.isBuy,
+            is_bid: erc721Sale.isBid,
+            minimum_bid: erc721Sale.bidAmount,
+            buy_amount: erc721Sale.buyAmount,
+            total_quantity: erc721Sale.buyQuantity,
+            timed_auction: erc721Sale.isBid,
+          };
+        }
       } else {
         order = {
           is_buy: true,
@@ -231,6 +252,21 @@ const NFTPutOnSale = ({
       buttonDisable: false,
       processClass: "",
       buttonName: "Confirm",
+    });
+  };
+
+  const handleStartDate = (date) => {
+    setErc721Sale({
+      ...erc721Sale,
+      startDate: date,
+      endDate: null,
+    });
+  };
+
+  const handleEndDate = (date) => {
+    setErc721Sale({
+      ...erc721Sale,
+      endDate: date,
     });
   };
 
@@ -317,9 +353,19 @@ const NFTPutOnSale = ({
                         <div className="progress-complete"></div>
                       </div>
                       <div className="pop-sale-bodyContent">
-                        <div className="error-float-container">
-                          {/* <ErrorText type="ending-time" /> */}
-                        </div>
+                        {erc721Sale.warning && (
+                          <div className="error-float-container">
+                            <ErrorText
+                              type="bid-buy-amount"
+                              handleClick={() =>
+                                setErc721Sale({
+                                  ...erc721Sale,
+                                  warning: false,
+                                })
+                              }
+                            />
+                          </div>
+                        )}
                         <div className="pop-sale-nft-info">
                           <div className="pop-sale-nft-media">
                             {(() => {
@@ -554,16 +600,81 @@ const NFTPutOnSale = ({
                                       onChange={handleErc721BidAmountChange}
                                     />
                                   </div>
-                                  <span
+                                  {/* <span
                                     className={`quantity-to-value error-msg`}
                                   >
                                     Bids will expire in 7 days if you do not
                                     acknowledge/accept it.
-                                  </span>
+                                  </span> */}
                                 </div>
                               </>
                             )}
                           </div>
+                          {erc721 && erc721Sale.isBid && (
+                            <>
+                              <div className="mt-2">
+                                <input
+                                  type="checkbox"
+                                  checked={erc721Sale.scheduleAuction}
+                                  onClick={(e) => {
+                                    setErc721Sale({
+                                      ...erc721Sale,
+                                      scheduleAuction: e.target.checked,
+                                    });
+                                  }}
+                                />
+                                Schedule my auction
+                              </div>
+
+                              {erc721Sale.scheduleAuction && (
+                                <div>
+                                  <div className="input-field-sale">
+                                    <label className="input-sale-text">
+                                      Auction Start Date
+                                    </label>
+                                    <div className="input-sale-wrap">
+                                      <DatePicker
+                                        selected={erc721Sale.startDate}
+                                        onChange={(date) =>
+                                          handleStartDate(date)
+                                        }
+                                        showTimeSelect
+                                        withPortal
+                                        minDate={new Date()}
+                                        timeFormat="HH:mm"
+                                        timeIntervals={15}
+                                        timeCaption="Time"
+                                        dateFormat="MMMM d, yyyy h:mm aa"
+                                      />
+                                    </div>
+                                  </div>
+
+                                  <div className="input-field-sale">
+                                    <label className="input-sale-text">
+                                      Auction End Date
+                                    </label>
+                                    <div className="input-sale-wrap">
+                                      <DatePicker
+                                        selected={erc721Sale.endDate}
+                                        onChange={(date) => handleEndDate(date)}
+                                        showTimeSelect
+                                        withPortal
+                                        minDate={erc721Sale.startDate}
+                                        maxDate={addDays(
+                                          erc721Sale.startDate,
+                                          3
+                                        )}
+                                        timeFormat="HH:mm"
+                                        timeIntervals={15}
+                                        timeCaption="Time"
+                                        dateFormat="MMMM d, yyyy h:mm aa"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              )}
+                            </>
+                          )}
 
                           {erc721 ? (
                             <div className="you-own-block">

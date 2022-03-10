@@ -39,6 +39,7 @@ const BidHistory = ({
   transactionHasNext,
   handleBidExpiredEndTimer,
   bidExpired,
+  orderDetails,
 }) => {
   const { slug } = useParams();
   const [modalShow, setModalShow] = useState(false);
@@ -173,7 +174,7 @@ const BidHistory = ({
                     {histories.length > 0 && isOrderOnSale ? (
                       <div
                         className={`bid-history-content ${
-                          isOwner ? "owner" : ""
+                          isOwner && !orderDetails?.timed_auction ? "owner" : ""
                         }`}
                       >
                         {histories.map((history, i) => (
@@ -190,6 +191,7 @@ const BidHistory = ({
                             setAcceptBidDetail={setAcceptBidDetail}
                             handleEndTimer={handleBidExpiredEndTimer}
                             bidExpired={bidExpired}
+                            orderDetails={orderDetails}
                           />
                         ))}
 

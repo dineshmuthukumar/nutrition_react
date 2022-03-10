@@ -20,6 +20,7 @@ import { ReactComponent as DiscordSvg } from "./../../icons/discord_logo.svg";
 import { currencyFormat } from "../../utils/common";
 import postImages from "../../images/post1.png";
 import userImg from "../../images/user_1.jpg";
+import NFTTimeLeft from "../nft-time-left/index";
 
 import "./style.scss";
 
@@ -52,6 +53,11 @@ const NFTOrderBaseDetails = ({
   bidOutDated,
   handleBidExpiredEndTimer,
   bidExpired,
+  isAuctionStarted,
+  isAuctionEnded,
+  auctionEndTime,
+  handleAuctionStartTimer,
+  handleAuctionEndTimer,
 }) => {
   const history = useHistory();
   const { user } = useSelector((state) => state.user.data);
@@ -65,6 +71,9 @@ const NFTOrderBaseDetails = ({
   const isOwner = _.get(nft, "order_details.owned", false);
   const orderDetails = _.get(nft, "order_details", {});
   const ownerOrderDetails = _.get(nft, "owner_details.orders", []);
+
+  console.log(isAuctionStarted, "isAuctionStarted");
+  console.log(isAuctionEnded, "isAuctionEnded");
 
   const handleAcceptBid = async () => {
     setAcceptBidConfirm(!acceptBidConfirm);
@@ -224,7 +233,8 @@ const NFTOrderBaseDetails = ({
               !transferringNFT &&
               !soldOut &&
               !isOrderCancelled &&
-              !bidOutDated && (
+              !bidOutDated &&
+              !orderDetails?.timed_auction && (
                 <p className="bid-expire-alert">
                   {dayjs() < bidExpiry && !bidExpired ? (
                     <>
@@ -327,7 +337,8 @@ const NFTOrderBaseDetails = ({
               bidExpiry &&
               !transferringNFT &&
               !soldOut &&
-              !isOrderCancelled && (
+              !isOrderCancelled &&
+              !orderDetails?.timed_auction && (
                 <p className="bid-expire-alert">
                   {dayjs() < bidExpiry && !bidExpired ? (
                     <>
@@ -366,7 +377,17 @@ const NFTOrderBaseDetails = ({
                   if (isBid) {
                     return (
                       <BidValue
-                        title="Minimum Bid"
+                        title={(() => {
+                          if (isAuctionEnded) {
+                            return "Last Bid";
+                          } else if (orderDetails.total_bids === 0) {
+                            return "Minimum Bid";
+                          } else if (userLastBid || isAuctionStarted) {
+                            return "Current Bid";
+                          } else {
+                            return "Minimum Bid";
+                          }
+                        })()}
                         value={
                           price
                             ? currencyFormat(price, "USD")
@@ -444,7 +465,49 @@ const NFTOrderBaseDetails = ({
             </div>
             <hr className="custom-divider" />
             <div className="d-flex">
-              <BidValue title="Category" value={nft.category_name} />
+              {orderDetails.timed_auction && !transferringNFT && !soldOut ? (
+                <>
+                  {!isAuctionStarted && (
+                    <NFTTimeLeft
+                      title="Auction starting in"
+                      tooltipText={(() => {
+                        if (erc721) {
+                          if (orderDetails.auction_extend_minutes) {
+                            return `When there are less than 10 minutes left in the auction, successful bids will reset the auction to ${orderDetails.auction_extend_minutes} minutes.`;
+                          } else {
+                            return "When there are less than 10 minutes left in the auction, successful bids will not reset the auction ending time";
+                          }
+                        }
+                      })()}
+                      time={orderDetails.auction_start_time}
+                      cTime={nft.time}
+                      handleTimer={handleAuctionStartTimer}
+                    />
+                  )}
+                  {!isAuctionEnded && isAuctionStarted && (
+                    <NFTTimeLeft
+                      title="End of Auction"
+                      tooltipText={(() => {
+                        if (erc721) {
+                          if (orderDetails.auction_extend_minutes) {
+                            return `When there are less than 10 minutes left in the auction, successful bids will reset the auction to ${orderDetails.auction_extend_minutes} minutes.`;
+                          } else {
+                            return "When there are less than 10 minutes left in the auction, successful bids will not reset the auction ending time";
+                          }
+                        }
+                      })()}
+                      time={auctionEndTime}
+                      cTime={nft.time}
+                      handleTimer={handleAuctionEndTimer}
+                    />
+                  )}
+                  {isAuctionEnded && (
+                    <BidValue title="Category" value={nft.category_name} />
+                  )}
+                </>
+              ) : (
+                <BidValue title="Category" value={nft.category_name} />
+              )}
             </div>
             <hr className="custom-divider" />
             <div className="d-flex">
@@ -489,6 +552,8 @@ const NFTOrderBaseDetails = ({
             transferringNFT={transferringNFT}
             isOrderOnSale={isOrderOnSale}
             isOrderCancelled={isOrderCancelled}
+            isAuctionStarted={isAuctionStarted}
+            isAuctionEnded={isAuctionEnded}
           />
           <NFTPlaceBuy
             nft={nft}
@@ -615,10 +680,16 @@ const NFTOrderBaseDetails = ({
                 );
               } else {
                 if (isBid) {
-                  return (
+                  return orderDetails?.timed_auction ? (
+                    <button
+                      className={`btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill place-bid-btn filled-btn`}
+                      onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
+                    >
+                      Cancel the sale
+                    </button>
+                  ) : (
                     <>
                       <button
-                        disabled={false}
                         className={`btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill place-bid-buy-btn filled-btn`}
                         onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
                       >
@@ -643,7 +714,6 @@ const NFTOrderBaseDetails = ({
                 } else {
                   return (
                     <button
-                      disabled={false}
                       className={`btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill place-bid-btn filled-btn`}
                       onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
                     >
@@ -668,25 +738,52 @@ const NFTOrderBaseDetails = ({
               return (
                 <>
                   <button
-                    disabled={false}
                     className="btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill place-bid-buy-btn filled-btn"
                     onClick={() => setPlaceBuyPop(!placeBuyPop)}
                   >
                     Buy {currencyFormat(orderDetails.buy_amount, "USD")}
                   </button>
-                  <button
-                    disabled={false}
-                    className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn"
-                    onClick={() => setPlaceBidPop(!placeBidPop)}
-                  >
-                    Place Bid
-                  </button>
+                  {orderDetails.timed_auction ? (
+                    <button
+                      disabled={(() => {
+                        if (!isAuctionStarted && !isAuctionEnded) {
+                          return !isAuctionStarted;
+                        } else {
+                          return isAuctionEnded;
+                        }
+                      })()}
+                      className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn"
+                      onClick={() => setPlaceBidPop(!placeBidPop)}
+                    >
+                      Place Bid
+                    </button>
+                  ) : (
+                    <button
+                      className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn"
+                      onClick={() => setPlaceBidPop(!placeBidPop)}
+                    >
+                      Place Bid
+                    </button>
+                  )}
                 </>
               );
             } else if (isBid) {
-              return (
+              return orderDetails.timed_auction ? (
                 <button
-                  disabled={false}
+                  disabled={(() => {
+                    if (!isAuctionStarted && !isAuctionEnded) {
+                      return !isAuctionStarted;
+                    } else {
+                      return isAuctionEnded;
+                    }
+                  })()}
+                  className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                  onClick={() => setPlaceBidPop(!placeBidPop)}
+                >
+                  Place Bid
+                </button>
+              ) : (
+                <button
                   className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
                   onClick={() => setPlaceBidPop(!placeBidPop)}
                 >

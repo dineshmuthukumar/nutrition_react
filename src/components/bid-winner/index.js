@@ -7,22 +7,27 @@ import { BiX } from "react-icons/bi";
 
 import BidName from "../bid-history/bid-name";
 import userImg from "../../images/user_1.jpg";
-import { nftBidHistory } from "../../api/methods";
+import { orderBidHistory } from "../../api/methods";
 import { currencyFormat } from "../../utils/common";
 import { TableLoader } from "../nft-basic-details/content-loader";
 import "./style.scss";
+import { useSelector } from "react-redux";
 
-const BidWinner = ({ winner, histories }) => {
+const BidWinner = ({ winner, orderSlug, histories }) => {
   const { slug } = useParams();
   const [modalShow, setModalShow] = useState(false);
   const [bidHistories, setBidHistories] = useState({});
   const [page, setPage] = useState(1);
   const [bidHistoryList, setBidHistoryList] = useState([]);
   const [loading, setLoading] = useState(false);
+  const { user } = useSelector((state) => state.user.data);
 
   const fetchHistory = async (pageNo) => {
     try {
-      let result = await nftBidHistory({ nft_slug: slug, page: pageNo });
+      let result = await orderBidHistory({
+        order_slug: orderSlug,
+        page: pageNo,
+      });
       setBidHistoryList([...bidHistoryList, ...result.data.data.histories]);
       setBidHistories(result.data.data);
     } catch (error) {
@@ -44,7 +49,10 @@ const BidWinner = ({ winner, histories }) => {
     setModalShow(true);
     try {
       setLoading(true);
-      let history = await nftBidHistory({ nft_slug: slug, page: page });
+      let history = await orderBidHistory({
+        order_slug: orderSlug,
+        page: page,
+      });
       setBidHistories(history.data.data);
       setBidHistoryList(history.data.data.histories);
       setLoading(false);
@@ -122,29 +130,6 @@ const BidWinner = ({ winner, histories }) => {
             <div className="modal-bid-history-title-content">
               <div className="modal-bid-history-title">History</div>
               <div className="modal-bid-history-filter">
-                {/* <div className="me-2">
-                  <Nav>
-                    <NavDropdown
-                      title="Sort By"
-                      menuVariant="white"
-                      align="end"
-                      className="history-dropdown"
-                    >
-                      <NavDropdown.Item href="#action/3.1">
-                        First bid to last
-                      </NavDropdown.Item>
-                      <NavDropdown.Item href="#action/3.2">
-                        Last bid to first
-                      </NavDropdown.Item>
-                    </NavDropdown>
-                  </Nav>
-                </div> */}
-                {/* <BsFullscreenExit
-                  role="button"
-                  style={{ color: "#fff" }}
-                  size={25}
-                  onClick={() => setModalShow(false)}
-                /> */}
                 <BiX
                   role="button"
                   style={{ color: "#fff" }}
@@ -177,8 +162,20 @@ const BidWinner = ({ winner, histories }) => {
                     <td>Bid placed by</td>
                     <td>
                       <BidName
-                        imgUrl={!history.private ? history.avatar_url : userImg}
-                        text={history.user_name}
+                        imgUrl={
+                          !history.private && history.avatar_url
+                            ? history.avatar_url
+                            : user?.slug === history.slug && history.avatar_url
+                            ? history.avatar_url
+                            : userImg
+                        }
+                        text={
+                          !history.private && history.user_name
+                            ? history.user_name
+                            : user?.slug === history.slug
+                            ? `@${user.first_name}${user.last_name}`
+                            : history.user_name
+                        }
                         isTable
                         slug={history.slug}
                       />
@@ -200,13 +197,18 @@ const BidWinner = ({ winner, histories }) => {
                     </td>
                   </tr>
                 ))}
-
-                {bidHistories.next_page && (
+                {bidHistories.next_page ? (
                   <tr>
                     <td className="text-center text-secondary p-3" colSpan="6">
                       <span role="button" onClick={fetchMoreHistory}>
                         Load More
                       </span>
+                    </td>
+                  </tr>
+                ) : (
+                  <tr>
+                    <td className="text-center text-secondary p-3" colSpan="6">
+                      {/* You've reached the end of the list */}
                     </td>
                   </tr>
                 )}
