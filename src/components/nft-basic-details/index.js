@@ -13,6 +13,8 @@ import { ReactComponent as DiscordSvg } from "./../../icons/discord_logo.svg";
 import "./style.scss";
 import { OverlayTrigger } from "react-bootstrap";
 import { Popover } from "react-bootstrap";
+import { calculateTimeLeft } from "../../utils/common";
+
 const NFTBaseDetails = ({
   nft,
   putOnSalePop,
@@ -30,12 +32,25 @@ const NFTBaseDetails = ({
   const isOwner = _.has(nft, "owner_details");
   const availableQuantity = _.get(nft, "owner_details.available_quantity", 0);
 
+  const { days, hours, minutes, seconds } = calculateTimeLeft(nft.launch_time);
+
+  var rem_text = "";
+
+  if (days > 0) {
+    rem_text += days + "d ";
+  }
+  if (hours > 0) {
+    rem_text += hours + "h ";
+  }
+  if (minutes > 0) {
+    rem_text += minutes + "m ";
+  }
+
   const popover = () => (
     <Popover>
       <Popover.Body>
         <p className="password-terms">
-          Your NFT will be available to be listed for sale on{" "}
-          <b>March 9th, 2022 @ 4.30am PST / 6.00pm IST.</b>
+          Your NFT will be available to be listed for sale in <b>{rem_text}</b>
         </p>
       </Popover.Body>
     </Popover>
@@ -211,7 +226,10 @@ const NFTBaseDetails = ({
               if (
                 parseInt(process.env.REACT_APP_LATIMES_ID) === nft.celebrity_id
               ) {
-                return state.marketLive ? (
+                return days === 0 &&
+                  hours === 0 &&
+                  minutes === 0 &&
+                  seconds < 0.2 ? (
                   <button
                     disabled={false}
                     className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
@@ -251,7 +269,10 @@ const NFTBaseDetails = ({
                   parseInt(process.env.REACT_APP_LATIMES_ID) ===
                   nft.celebrity_id
                 ) {
-                  return state.marketLive ? (
+                  return days === 0 &&
+                    hours === 0 &&
+                    minutes === 0 &&
+                    seconds < 0.2 ? (
                     <button
                       disabled={false}
                       className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"

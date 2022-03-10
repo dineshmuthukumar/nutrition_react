@@ -178,3 +178,45 @@ export const validateURL = (url) => {
   // /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+(:[0-9]+)?|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/;
   return re.test(url);
 };
+
+export const calculateTimeLeft = (input, cInput) => {
+  var offset = new Date().getTimezoneOffset();
+  var input_utc = new Date(input);
+  input_utc.setMinutes(input_utc.getMinutes() - offset);
+
+  let difference;
+  if (cInput) {
+    var cInput_utc = new Date(cInput);
+    cInput_utc.setMinutes(cInput_utc.getMinutes() - offset);
+
+    difference = +new Date(input_utc) - +new Date(cInput_utc);
+  } else {
+    var cInput_utc_1 = new Date();
+    cInput_utc_1.setMinutes(cInput_utc_1.getMinutes() - offset);
+
+    difference = +new Date(input_utc) - +new Date(cInput_utc_1);
+  }
+
+  var cInput_utc_2 = new Date();
+  cInput_utc_2.setMinutes(cInput_utc_2.getMinutes() - offset);
+
+  difference = +new Date(input_utc) - +new Date(cInput_utc_2);
+
+  let timeLeft = {
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0.1,
+  };
+
+  if (difference > 0) {
+    timeLeft = {
+      days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+      minutes: Math.floor((difference / 1000 / 60) % 60),
+      seconds: Math.floor((difference / 1000) % 60),
+    };
+  }
+
+  return timeLeft;
+};
