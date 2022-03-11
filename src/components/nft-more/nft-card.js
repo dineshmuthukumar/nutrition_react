@@ -6,6 +6,8 @@ import { FaHeart } from "react-icons/fa";
 import { currencyFormat } from "../../utils/common";
 import NFTCounter from "../nft-counter";
 import cardImage from "../../images/drops/nft_2.png";
+import startin from "../../images/start_icon.png";
+import endsin from "../../images/ends_icon.png";
 import { BiUpArrowAlt, BiDownArrowAlt } from "react-icons/bi";
 
 import "./style.scss";
@@ -106,10 +108,10 @@ const CollectionCard = ({ nft, recentSold = false }) => {
         {nft?.is_on_sale && (
           <>
             {nft?.order_details?.is_bid && nft?.order_details?.timed_auction && (
-              <div>
+              <>
                 {!isAuctionStarted && !isAuctionEnded && (
-                  <>
-                    <div className="post-sold-text">Starts In</div>
+                  <div className="time-counter-box">
+                    <img src={startin} alt="startin" />
                     <NFTCounter
                       time={nft?.order_details?.auction_start_time}
                       cTime={nft?.time}
@@ -118,11 +120,11 @@ const CollectionCard = ({ nft, recentSold = false }) => {
                       intervalGapClass="me-1"
                       handleEndEvent={handleAuctionStartTimer}
                     />
-                  </>
+                  </div>
                 )}
                 {!isAuctionEnded && isAuctionStarted && (
-                  <>
-                    <div className="post-sold-text">Ends In</div>
+                  <div className="time-counter-box">
+                    <img src={endsin} alt="endsin" />
                     <NFTCounter
                       time={nft?.order_details?.auction_end_time}
                       cTime={nft?.time}
@@ -131,9 +133,9 @@ const CollectionCard = ({ nft, recentSold = false }) => {
                       intervalGapClass="me-1"
                       handleEndEvent={handleAuctionEndTimer}
                     />
-                  </>
+                  </div>
                 )}
-              </div>
+              </>
             )}
             <div className="more-bid-details">
               <div className="text-start">

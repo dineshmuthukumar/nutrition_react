@@ -116,10 +116,9 @@ const NFTCard = ({
         {nft?.is_on_sale && (
           <>
             {nft?.order_details?.is_bid && nft?.order_details?.timed_auction && (
-              <div className="time-counter-box">
+              <>
                 {!isAuctionStarted && !isAuctionEnded && (
-                  <>
-                    {/* <div className="post-sold-text">Starts In</div> */}
+                  <div className="time-counter-box">
                     <img src={startin} alt="startin" />
                     <NFTCounter
                       time={nft?.order_details?.auction_start_time}
@@ -129,11 +128,10 @@ const NFTCard = ({
                       intervalGapClass="me-1"
                       handleEndEvent={handleAuctionStartTimer}
                     />
-                  </>
+                  </div>
                 )}
                 {!isAuctionEnded && isAuctionStarted && (
-                  <>
-                    {/* <div className="post-sold-text">Ends In</div> */}
+                  <div className="time-counter-box">
                     <img src={endsin} alt="endsin" />
                     <NFTCounter
                       time={nft?.order_details?.auction_end_time}
@@ -143,9 +141,9 @@ const NFTCard = ({
                       intervalGapClass="me-1"
                       handleEndEvent={handleAuctionEndTimer}
                     />
-                  </>
+                  </div>
                 )}
-              </div>
+              </>
             )}
 
             <div className="more-bid-details">

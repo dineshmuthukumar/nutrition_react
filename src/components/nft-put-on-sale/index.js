@@ -1074,6 +1074,10 @@ const NFTPutOnSale = ({
                                       placement="top"
                                     />{" "}
                                     based on your final accepted bid amount.
+                                    <br />
+                                    Auction cannot be cancelled after any valid
+                                    bid was made. Any bid placed in the last 10
+                                    minutes extends the auction by 10 minutes.
                                   </span>
                                 </li>
                               )}

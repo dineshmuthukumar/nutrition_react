@@ -78,6 +78,7 @@ const OrderDetails = () => {
   const [auctionEndTime, setAuctionEndTime] = useState("");
   const [isAuctionStarted, setIsAuctionStarted] = useState(false);
   const [isAuctionEnded, setIsAuctionEnded] = useState(false);
+  const [winnerBanner, setWinnerBanner] = useState(false);
 
   // Socket State
   const [totalBid, setTotalBid] = useState(0);
@@ -125,6 +126,9 @@ const OrderDetails = () => {
       setPrice(data.minimum_bid);
       if (data.history) {
         setBidHistory((bidHistory) => [data.history, ...bidHistory]);
+      }
+      if (data.auction_end_time) {
+        setAuctionEndTime(data.auction_end_time);
       }
       setBidOutDated(false);
       setBidExpired(false);
@@ -176,10 +180,14 @@ const OrderDetails = () => {
       purchaseDetails();
       setAvailableQty(data.available_quantity);
       if (orderDetails?.timed_auction) {
-        orderBidWinner();
+        setBidWinner(data.winner_details);
+        setWinnerBanner(true);
       }
       if (data.available_quantity === 0) {
         setTransferringNFT(true);
+      }
+      if (data.order_completed) {
+        setSoldOut(true);
       }
     });
 
@@ -329,8 +337,8 @@ const OrderDetails = () => {
     try {
       let winner = await nftBidWinner({ order_slug: orderSlug });
       setBidWinner(winner.data.data.winner);
-      if (winner?.data?.data?.winner?.slug) {
-        setSoldOut(true);
+      if (winner.data.data.winner !== null) {
+        setWinnerBanner(true);
       }
     } catch (error) {
       console.log(error);
@@ -449,7 +457,7 @@ const OrderDetails = () => {
             <div className="col-12 col-lg-6 order-lg-2 order-1 mb-4">
               {(() => {
                 if (erc721) {
-                  if (orderDetails?.timed_auction && bidWinner !== null) {
+                  if (winnerBanner) {
                     return (
                       <BidWinner
                         winner={bidWinner}

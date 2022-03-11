@@ -25,6 +25,7 @@ const BidCard = ({
   handleEndTimer,
   bidExpired,
   orderDetails,
+  isAuctionEnded,
 }) => {
   const { user } = useSelector((state) => state.user.data);
 
@@ -80,10 +81,15 @@ const BidCard = ({
                       : ""
                   }`}
                 >
-                  {history?.status === "active" &&
-                  latestIndex === 0 &&
-                  dayjs() < dayjs(history.expires_at) &&
-                  !bidExpired
+                  {orderDetails?.timed_auction &&
+                  history?.status === "active" &&
+                  isAuctionEnded &&
+                  latestIndex === 0
+                    ? "Processing..."
+                    : history?.status === "active" &&
+                      latestIndex === 0 &&
+                      dayjs() < dayjs(history.expires_at) &&
+                      !bidExpired
                     ? "Active"
                     : history?.status === "success" && latestIndex === 0
                     ? "Success"
@@ -135,6 +141,14 @@ const BidCard = ({
                     ) : (
                       <>Bid Expired</>
                     )}
+                  </div>
+                )}
+
+              {orderDetails?.timed_auction &&
+                isAuctionEnded &&
+                latestIndex === 0 && (
+                  <div className="bid-expire-cntent">
+                    Processing Winner Details
                   </div>
                 )}
             </div>

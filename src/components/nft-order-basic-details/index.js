@@ -170,7 +170,7 @@ const NFTOrderBaseDetails = ({
           <span className="nft-status-tag rounded-pill">
             {soldOut ? (
               "Sold Out"
-            ) : transferringNFT || latestBid?.slug ? (
+            ) : transferringNFT ? (
               <>
                 Token Transfer Initiated{" "}
                 <ToolTip
@@ -467,11 +467,38 @@ const NFTOrderBaseDetails = ({
             </div>
             <hr className="custom-divider" />
             <div className="d-flex">
-              {orderDetails.timed_auction && !transferringNFT && !soldOut ? (
+              <BidValue title="Category" value={nft.category_name} />
+            </div>
+            <hr className="custom-divider" />
+            <div className="d-flex">
+              {(() => {
+                if (erc721) {
+                  return (
+                    <BidValue title="Limited Edition" value="1 of 1" isLeft />
+                  );
+                } else {
+                  return (
+                    <BidValue
+                      title="Edition(s)"
+                      value={
+                        availableQty >= 0 && availableQty != null
+                          ? `${availableQty} / ${
+                              totalQty != null
+                                ? totalQty
+                                : orderDetails.total_quantity
+                            }`
+                          : `${orderDetails.available_quantity} / ${orderDetails.total_quantity}`
+                      }
+                    />
+                  );
+                }
+              })()}
+              {orderDetails.timed_auction && !transferringNFT && !soldOut && (
                 <>
-                  {/* {!isAuctionStarted && (
+                  {!isAuctionStarted && (
                     <NFTTimeLeft
                       title="Auction starting in"
+                      placement="top"
                       tooltipText={(() => {
                         if (erc721) {
                           if (orderDetails.auction_extend_minutes) {
@@ -498,77 +525,13 @@ const NFTOrderBaseDetails = ({
                           }
                         }
                       })()}
+                      placement="top"
                       time={auctionEndTime}
                       cTime={nft.time}
                       handleTimer={handleAuctionEndTimer}
                     />
-                  )} */}
-                  {/* {isAuctionEnded && (  )} */}
-                  <BidValue title="Category" value={nft.category_name} />
+                  )}
                 </>
-              ) : (
-                <BidValue title="Category" value={nft.category_name} />
-              )}
-            </div>
-            <hr className="custom-divider" />
-            <div className="d-flex">
-              {(() => {
-                if (erc721) {
-                  return (
-                    <BidValue title="Limited Edition" value="1 of 1" isLeft />
-                  );
-                } else {
-                  return (
-                    <BidValue
-                      title="Edition(s)"
-                      value={
-                        availableQty >= 0 && availableQty != null
-                          ? `${availableQty} / ${
-                              totalQty != null
-                                ? totalQty
-                                : orderDetails.total_quantity
-                            }`
-                          : `${orderDetails.available_quantity} / ${orderDetails.total_quantity}`
-                      }
-                    />
-                  );
-                }
-              })()}
-
-              {!isAuctionStarted && (
-                <NFTTimeLeft
-                  title="Auction starting in"
-                  placement="top"
-                  tooltipText={(() => {
-                    if (erc721) {
-                      if (orderDetails.auction_extend_minutes) {
-                        return `When there are less than 10 minutes left in the auction, successful bids will reset the auction to ${orderDetails.auction_extend_minutes} minutes.`;
-                      } else {
-                        return "When there are less than 10 minutes left in the auction, successful bids will not reset the auction ending time";
-                      }
-                    }
-                  })()}
-                  time={orderDetails.auction_start_time}
-                  cTime={nft.time}
-                  handleTimer={handleAuctionStartTimer}
-                />
-              )}
-              {!isAuctionEnded && isAuctionStarted && (
-                <NFTTimeLeft
-                  title="End of Auction"
-                  tooltipText={(() => {
-                    if (erc721) {
-                      if (orderDetails.auction_extend_minutes) {
-                        return `When there are less than 10 minutes left in the auction, successful bids will reset the auction to ${orderDetails.auction_extend_minutes} minutes.`;
-                      } else {
-                        return "When there are less than 10 minutes left in the auction, successful bids will not reset the auction ending time";
-                      }
-                    }
-                  })()}
-                  time={auctionEndTime}
-                  cTime={nft.time}
-                  handleTimer={handleAuctionEndTimer}
-                />
               )}
             </div>
             <hr className="custom-divider" />
@@ -719,6 +682,7 @@ const NFTOrderBaseDetails = ({
                 if (isBid) {
                   return orderDetails?.timed_auction ? (
                     <button
+                      disabled={latestBid?.slug ? true : false}
                       className={`btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill place-bid-btn filled-btn`}
                       onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
                     >

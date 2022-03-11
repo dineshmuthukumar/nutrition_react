@@ -194,6 +194,7 @@ const BidHistory = ({
                             handleEndTimer={handleBidExpiredEndTimer}
                             bidExpired={bidExpired}
                             orderDetails={orderDetails}
+                            isAuctionEnded={isAuctionEnded}
                           />
                         ))}
 
