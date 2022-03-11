@@ -66,6 +66,16 @@ const ShowAll = ({ categories, query }) => {
         checked: false,
       },
       {
+        name: "Auction Starting Soon",
+        value: "auction_starting_soon",
+        checked: false,
+      },
+      {
+        name: "Auction Ending Soon",
+        value: "auction_ending_soon",
+        checked: false,
+      },
+      {
         name: "Relevance",
         value: "relevance",
         checked: false,
@@ -73,8 +83,13 @@ const ShowAll = ({ categories, query }) => {
     ],
     status: [
       {
+        name: "Timed Auction",
+        value: "timed_auction",
+        checked: false,
+      },
+      {
         name: "Listed for sale",
-        value: "listed_for_sale",
+        value: "onsale",
         checked: false,
       },
       {
@@ -163,23 +178,30 @@ const ShowAll = ({ categories, query }) => {
     saleStatus
   ) => {
     try {
-      let filter = {};
-      if (saleStatus !== null) {
-        filter = {
-          category: category,
-          type: type,
-          sale_type: saleType,
-          keyword: searchText,
-          onsale: saleStatus === "listed_for_sale" ? true : false,
-        };
-      } else {
-        filter = {
-          category: category,
-          type: type,
-          sale_type: saleType,
-          keyword: searchText,
-        };
-      }
+      // let filter = {};
+      // if (saleStatus !== null) {
+      //   filter = {
+      //     category: category,
+      //     type: type,
+      //     sale_type: saleType,
+      //     keyword: searchText,
+      //     sale_kind: saleStatus,
+      //   };
+      // } else {
+      //   filter = {
+      //     category: category,
+      //     type: type,
+      //     sale_type: saleType,
+      //     keyword: searchText,
+      //   };
+      // }
+      let filter = {
+        category: category,
+        type: type,
+        sale_type: saleType,
+        keyword: searchText,
+        sale_kind: saleStatus,
+      };
 
       page === 1 && setLoading(true);
       setLoadingMore(true);
@@ -208,23 +230,31 @@ const ShowAll = ({ categories, query }) => {
     saleStatus
   ) => {
     try {
-      let filter = {};
-      if (saleStatus !== null) {
-        filter = {
-          category: category,
-          type: type,
-          sale_type: saleType,
-          keyword: searchText,
-          onsale: saleStatus === "listed_for_sale" ? true : false,
-        };
-      } else {
-        filter = {
-          category: category,
-          type: type,
-          sale_type: saleType,
-          keyword: searchText,
-        };
-      }
+      // let filter = {};
+      // if (saleStatus !== null) {
+      //   filter = {
+      //     category: category,
+      //     type: type,
+      //     sale_type: saleType,
+      //     keyword: searchText,
+      //     sale_kind: saleStatus,
+      //   };
+      // } else {
+      //   filter = {
+      //     category: category,
+      //     type: type,
+      //     sale_type: saleType,
+      //     keyword: searchText,
+      //   };
+      // }
+
+      let filter = {
+        category: category,
+        type: type,
+        sale_type: saleType,
+        keyword: searchText,
+        sale_kind: saleStatus,
+      };
 
       page === 1 && setLoading(true);
       setLoadingMore(true);

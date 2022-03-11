@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { prominent } from "color.js";
 import { FaHeart } from "react-icons/fa";
 import { currencyFormat } from "../../utils/common";
+import NFTCounter from "../nft-counter";
 import cardImage from "../../images/drops/nft_2.png";
 import { BiUpArrowAlt, BiDownArrowAlt } from "react-icons/bi";
 
@@ -13,6 +14,17 @@ const CollectionCard = ({ nft, recentSold = false }) => {
   const erc721 = nft?.nft_type === "erc721";
   const history = useHistory();
   const [bgColor, setBgColor] = useState();
+  const [auctionEndTime, setAuctionEndTime] = useState("");
+  const [isAuctionStarted, setIsAuctionStarted] = useState(false);
+  const [isAuctionEnded, setIsAuctionEnded] = useState(false);
+
+  const handleAuctionStartTimer = () => {
+    setIsAuctionStarted(true);
+    // setAuctionEndTime(nft?.order_details?.auction_end_time);
+  };
+  const handleAuctionEndTimer = () => {
+    setIsAuctionEnded(true);
+  };
 
   // useEffect(() => {
   //   if (nft?.asset_type?.includes("image")) {
@@ -92,19 +104,50 @@ const CollectionCard = ({ nft, recentSold = false }) => {
         </div>
 
         {nft?.is_on_sale && (
-          <div className="more-bid-details">
-            <div className="text-start">
-              <div className="mb-title text-secondary">
-                {(() => {
-                  if (erc721) {
-                    return nft?.order_details?.is_bid
-                      ? "Bid Price"
-                      : "Buy Price";
-                  } else {
-                    return "Buy Price";
-                  }
-                })()}{" "}
-                {/* {nft?.order_details?.is_bid && 100 > 0 ? (
+          <>
+            {nft?.order_details?.is_bid && nft?.order_details?.timed_auction && (
+              <div>
+                {!isAuctionStarted && !isAuctionEnded && (
+                  <>
+                    <div className="post-sold-text">Starts In</div>
+                    <NFTCounter
+                      time={nft?.order_details?.auction_start_time}
+                      cTime={nft?.time}
+                      timeClass="font-onerem"
+                      intervalClass="font-psevenrem"
+                      intervalGapClass="me-1"
+                      handleEndEvent={handleAuctionStartTimer}
+                    />
+                  </>
+                )}
+                {!isAuctionEnded && isAuctionStarted && (
+                  <>
+                    <div className="post-sold-text">Ends In</div>
+                    <NFTCounter
+                      time={nft?.order_details?.auction_end_time}
+                      cTime={nft?.time}
+                      timeClass="font-onerem"
+                      intervalClass="font-psevenrem"
+                      intervalGapClass="me-1"
+                      handleEndEvent={handleAuctionEndTimer}
+                    />
+                  </>
+                )}
+              </div>
+            )}
+            <div className="more-bid-details">
+              <div className="text-start">
+                <div className="mb-title text-secondary">
+                  {(() => {
+                    if (erc721) {
+                      return nft?.order_details?.is_bid
+                        ? "Bid Price"
+                        : "Buy Price";
+                    } else {
+                      return "Buy Price";
+                    }
+                  })()}{" "}
+                  {/* {nft?.order_details?.is_bid && 100 > 0 ? (
                   <span className="value-diff-range green">
                     <BiUpArrowAlt className="arrow-icon" />
                     {`${100}%`}
@@ -115,38 +158,39 @@ const CollectionCard = ({ nft, recentSold = false }) => {
                     {`${100}%`}
                   </span>
                 )} */}
-              </div>
-              <div className="mb-value">
-                {(() => {
-                  if (erc721) {
-                    return nft?.order_details?.is_bid
-                      ? currencyFormat(
-                          nft?.order_details?.top_bid
-                            ? nft?.order_details?.top_bid
-                            : nft?.order_details?.minimum_bid,
-                          "USD"
-                        )
-                      : currencyFormat(nft?.order_details?.buy_amount, "USD");
-                  } else {
-                    return currencyFormat(
-                      nft?.order_details?.buy_amount,
-                      "USD"
-                    );
-                  }
-                })()}
-              </div>
-            </div>
-            {erc721 &&
-              nft?.order_details?.is_bid &&
-              nft?.order_details?.is_buy && (
-                <div className="text-end">
-                  <div className="mb-title text-secondary">Buy Price</div>
-                  <div className="mb-value">
-                    {currencyFormat(nft?.order_details?.buy_amount, "USD")}
-                  </div>
                 </div>
-              )}
-          </div>
+                <div className="mb-value">
+                  {(() => {
+                    if (erc721) {
+                      return nft?.order_details?.is_bid
+                        ? currencyFormat(
+                            nft?.order_details?.top_bid
+                              ? nft?.order_details?.top_bid
+                              : nft?.order_details?.minimum_bid,
+                            "USD"
+                          )
+                        : currencyFormat(nft?.order_details?.buy_amount, "USD");
+                    } else {
+                      return currencyFormat(
+                        nft?.order_details?.buy_amount,
+                        "USD"
+                      );
+                    }
+                  })()}
+                </div>
+              </div>
+              {erc721 &&
+                nft?.order_details?.is_bid &&
+                nft?.order_details?.is_buy && (
+                  <div className="text-end">
+                    <div className="mb-title text-secondary">Buy Price</div>
+                    <div className="mb-value">
+                      {currencyFormat(nft?.order_details?.buy_amount, "USD")}
+                    </div>
+                  </div>
+                )}
+            </div>
+          </>
         )}
         {recentSold && (
           <div className="more-bid-details">

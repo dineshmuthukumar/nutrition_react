@@ -119,12 +119,7 @@ const NFTCard = ({
                   <>
                     <div className="post-sold-text">Starts In</div>
                     <NFTCounter
-                      // time={nft?.order_details?.auction_start_time}
-                      time={
-                        nft?.order_details?.slug === "G8W5gybehEdnLEQj"
-                          ? "2022-03-10T17:19:00.000Z"
-                          : nft?.order_details?.auction_end_time
-                      }
+                      time={nft?.order_details?.auction_start_time}
                       cTime={nft?.time}
                       timeClass="font-onerem"
                       intervalClass="font-psevenrem"
