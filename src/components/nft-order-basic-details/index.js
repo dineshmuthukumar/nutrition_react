@@ -166,11 +166,11 @@ const NFTOrderBaseDetails = ({
           content="Verified Artist"
           placement="right"
         />
-        {transferringNFT && (
+        {(transferringNFT || soldOut || isAuctionEnded) && (
           <span className="nft-status-tag rounded-pill">
             {soldOut ? (
               "Sold Out"
-            ) : (
+            ) : transferringNFT || latestBid?.slug ? (
               <>
                 Token Transfer Initiated{" "}
                 <ToolTip
@@ -186,6 +186,8 @@ const NFTOrderBaseDetails = ({
                   placement="top"
                 />
               </>
+            ) : (
+              "Auction has ended"
             )}
           </span>
         )}

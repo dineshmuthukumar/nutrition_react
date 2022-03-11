@@ -40,6 +40,8 @@ const BidHistory = ({
   handleBidExpiredEndTimer,
   bidExpired,
   orderDetails,
+  isAuctionStarted,
+  isAuctionEnded,
 }) => {
   const { slug } = useParams();
   const [modalShow, setModalShow] = useState(false);
@@ -213,10 +215,21 @@ const BidHistory = ({
                           <div className="empty-top-container">
                             <div className="empty-top-content">
                               <IoIosRocket color="white" />
-                              <div className="empty-text">
-                                No active bids yet. <br />
-                                {!isOwner && "Be the first to make a bid."}
-                              </div>
+                              {!isAuctionStarted && !isAuctionEnded ? (
+                                <div className="empty-text">
+                                  Auction has not yet begun
+                                </div>
+                              ) : isAuctionEnded ? (
+                                <div className="empty-text">
+                                  Auction has ended. <br />
+                                  No active bids.
+                                </div>
+                              ) : (
+                                <div className="empty-text">
+                                  No active bids yet. <br />
+                                  {!isOwner && "Be the first to make a bid."}
+                                </div>
+                              )}
                             </div>
                           </div>
                         </div>

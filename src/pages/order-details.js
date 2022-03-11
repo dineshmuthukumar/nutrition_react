@@ -176,19 +176,10 @@ const OrderDetails = () => {
       purchaseDetails();
       setAvailableQty(data.available_quantity);
       if (orderDetails?.timed_auction) {
-        // setBidWinner(data?.purchase_details?.[0]);
+        orderBidWinner();
       }
-      // if (data.purchase_details) {
-      //   setPurchaseList((purchaseList) => [
-      //     data.purchase_details,
-      //     ...purchaseList,
-      //   ]);
-      // }
       if (data.available_quantity === 0) {
         setTransferringNFT(true);
-      }
-      if (data.order_completed) {
-        setSoldOut(true);
       }
     });
 
@@ -234,15 +225,17 @@ const OrderDetails = () => {
       setErc721(NFT.nft_type === "erc721");
 
       if (NFT?.order_details) {
-        setAuctionEndTime(NFT.order_details?.auction_end_time);
-        setIsAuctionStarted(
-          new Date(NFT.time).getTime() >=
-            new Date(NFT.order_details?.auction_start_time).getTime()
-        );
-        setIsAuctionEnded(
-          new Date(NFT.time).getTime() >
-            new Date(NFT.order_details?.auction_end_time).getTime()
-        );
+        if (NFT?.order_details?.timed_auction) {
+          setAuctionEndTime(NFT.order_details?.auction_end_time);
+          setIsAuctionStarted(
+            new Date(NFT.time).getTime() >=
+              new Date(NFT.order_details?.auction_start_time).getTime()
+          );
+          setIsAuctionEnded(
+            new Date(NFT.time).getTime() >
+              new Date(NFT.order_details?.auction_end_time).getTime()
+          );
+        }
 
         setIsOrderOnSale(NFT.order_details?.status === "onsale");
         setIsOrderSuccess(NFT.order_details?.status === "success");
@@ -336,7 +329,9 @@ const OrderDetails = () => {
     try {
       let winner = await nftBidWinner({ order_slug: orderSlug });
       setBidWinner(winner.data.data.winner);
-      console.log(winner);
+      if (winner?.data?.data?.winner?.slug) {
+        setSoldOut(true);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -454,11 +449,7 @@ const OrderDetails = () => {
             <div className="col-12 col-lg-6 order-lg-2 order-1 mb-4">
               {(() => {
                 if (erc721) {
-                  if (
-                    orderDetails?.timed_auction &&
-                    isAuctionEnded &&
-                    bidWinner
-                  ) {
+                  if (orderDetails?.timed_auction && bidWinner !== null) {
                     return (
                       <BidWinner
                         winner={bidWinner}
@@ -489,6 +480,8 @@ const OrderDetails = () => {
                         transactionHasNext={transactionHasNext}
                         handleBidExpiredEndTimer={handleBidExpiredEndTimer}
                         bidExpired={bidExpired}
+                        isAuctionStarted={isAuctionStarted}
+                        isAuctionEnded={isAuctionEnded}
                       />
                     );
                   }

@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { prominent } from "color.js";
 import { currencyFormat } from "../../utils/common";
 import sample from "../../images/sampleNFT.jpg";
+import NFTCounter from "../nft-counter";
 
 import "./style.scss";
 
@@ -16,6 +17,17 @@ const NFTCard = ({
   const erc721 = nft?.nft_type === "erc721";
   const history = useHistory();
   const [bgColor, setBgColor] = useState();
+  const [auctionEndTime, setAuctionEndTime] = useState("");
+  const [isAuctionStarted, setIsAuctionStarted] = useState(false);
+  const [isAuctionEnded, setIsAuctionEnded] = useState(false);
+
+  const handleAuctionStartTimer = () => {
+    setIsAuctionStarted(true);
+    // setAuctionEndTime(nft?.order_details?.auction_end_time);
+  };
+  const handleAuctionEndTimer = () => {
+    setIsAuctionEnded(true);
+  };
 
   // useEffect(() => {
   //   if (nft?.asset_type?.includes("image")) {
@@ -101,6 +113,42 @@ const NFTCard = ({
         </div>
         {nft?.is_on_sale && (
           <>
+            {nft?.order_details?.is_bid && nft?.order_details?.timed_auction && (
+              <div>
+                {!isAuctionStarted && !isAuctionEnded && (
+                  <>
+                    <div className="post-sold-text">Starts In</div>
+                    <NFTCounter
+                      // time={nft?.order_details?.auction_start_time}
+                      time={
+                        nft?.order_details?.slug === "G8W5gybehEdnLEQj"
+                          ? "2022-03-10T17:19:00.000Z"
+                          : nft?.order_details?.auction_end_time
+                      }
+                      cTime={nft?.time}
+                      timeClass="font-onerem"
+                      intervalClass="font-psevenrem"
+                      intervalGapClass="me-1"
+                      handleEndEvent={handleAuctionStartTimer}
+                    />
+                  </>
+                )}
+                {!isAuctionEnded && isAuctionStarted && (
+                  <>
+                    <div className="post-sold-text">Ends In</div>
+                    <NFTCounter
+                      time={nft?.order_details?.auction_end_time}
+                      cTime={nft?.time}
+                      timeClass="font-onerem"
+                      intervalClass="font-psevenrem"
+                      intervalGapClass="me-1"
+                      handleEndEvent={handleAuctionEndTimer}
+                    />
+                  </>
+                )}
+              </div>
+            )}
+
             <div className="more-bid-details">
               <div className="text-start">
                 <div className="mb-title text-secondary">

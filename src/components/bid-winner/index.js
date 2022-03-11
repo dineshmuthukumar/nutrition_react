@@ -79,8 +79,23 @@ const BidWinner = ({ winner, orderSlug, histories }) => {
         </div>
 
         <div className="winner-user-details">
-          <img alt="" src={winner.avatar_url ? winner.avatar_url : userImg} />
-          <div className="winner-id">{winner.user_name}</div>
+          <img
+            alt="avatar"
+            src={
+              !winner.private && winner.avatar_url
+                ? winner.avatar_url
+                : user?.slug === winner.slug && winner.avatar_url
+                ? winner.avatar_url
+                : userImg
+            }
+          />
+          <div className="winner-id">
+            {!winner.private && winner.user_name
+              ? winner.user_name
+              : user?.slug === winner.slug
+              ? `@${user.first_name}${user.last_name}`
+              : winner.user_name}
+          </div>
         </div>
 
         <div className="nft-sold-details">
