@@ -54,6 +54,8 @@
       height: calc(100vh - 15rem);
       overflow: hidden;
       overflow-y: auto;
+      position: relative;
+      z-index: 1;
     }
     .error-float-container {
       position: absolute;
@@ -746,5 +748,31 @@
       min-height: 3rem;
       min-width: 3rem;
     }
+  }
+}
+.input-sale-wrap {
+  .react-datepicker__input-container input {
+    font-size: 1.1rem !important;
+    padding: 0.6rem 0.5rem 0.6rem 0.5rem;
+    outline: none;
+    border-radius: 0.6rem;
+    border: none;
+    width: 100%;
+    font-family: $neue-helveticamedium;
+    height: 3.8rem;
+  }
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  input {
+    height: 1.2rem;
+    width: 1.2rem;
+  }
+
+  label {
+    margin: 0 !important;
+    font-size: 1.1rem;
   }
 }

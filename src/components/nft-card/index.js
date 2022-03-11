@@ -4,6 +4,8 @@ import { useHistory } from "react-router-dom";
 import { prominent } from "color.js";
 import { currencyFormat } from "../../utils/common";
 import sample from "../../images/sampleNFT.jpg";
+import startin from "../../images/start_icon.png";
+import endsin from "../../images/ends_icon.png";
 import NFTCounter from "../nft-counter";
 
 import "./style.scss";
@@ -114,10 +116,11 @@ const NFTCard = ({
         {nft?.is_on_sale && (
           <>
             {nft?.order_details?.is_bid && nft?.order_details?.timed_auction && (
-              <div>
+              <div className="time-counter-box">
                 {!isAuctionStarted && !isAuctionEnded && (
                   <>
-                    <div className="post-sold-text">Starts In</div>
+                    {/* <div className="post-sold-text">Starts In</div> */}
+                    <img src={startin} alt="startin" />
                     <NFTCounter
                       time={nft?.order_details?.auction_start_time}
                       cTime={nft?.time}
@@ -130,7 +133,8 @@ const NFTCard = ({
                 )}
                 {!isAuctionEnded && isAuctionStarted && (
                   <>
-                    <div className="post-sold-text">Ends In</div>
+                    {/* <div className="post-sold-text">Ends In</div> */}
+                    <img src={endsin} alt="endsin" />
                     <NFTCounter
                       time={nft?.order_details?.auction_end_time}
                       cTime={nft?.time}

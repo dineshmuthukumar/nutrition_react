@@ -612,9 +612,10 @@ const NFTPutOnSale = ({
                           </div>
                           {erc721 && erc721Sale.isBid && (
                             <>
-                              <div className="mt-2">
+                              <div className="input-sale-container checkbox-container mt-3">
                                 <input
                                   type="checkbox"
+                                  id="checkScheduled"
                                   checked={erc721Sale.scheduleAuction}
                                   onClick={(e) => {
                                     setErc721Sale({
@@ -622,12 +623,15 @@ const NFTPutOnSale = ({
                                       scheduleAuction: e.target.checked,
                                     });
                                   }}
-                                />
-                                Schedule my auction
+                                />{" "}
+                                &nbsp;
+                                <label for="checkScheduled">
+                                  Schedule my auction
+                                </label>
                               </div>
 
                               {erc721Sale.scheduleAuction && (
-                                <div>
+                                <div className="input-sale-container mt-3 flex-input ">
                                   <div className="input-field-sale">
                                     <label className="input-sale-text">
                                       Auction Start Date
