@@ -469,7 +469,7 @@ const NFTOrderBaseDetails = ({
             <div className="d-flex">
               {orderDetails.timed_auction && !transferringNFT && !soldOut ? (
                 <>
-                  {!isAuctionStarted && (
+                  {/* {!isAuctionStarted && (
                     <NFTTimeLeft
                       title="Auction starting in"
                       tooltipText={(() => {
@@ -502,10 +502,9 @@ const NFTOrderBaseDetails = ({
                       cTime={nft.time}
                       handleTimer={handleAuctionEndTimer}
                     />
-                  )}
-                  {isAuctionEnded && (
-                    <BidValue title="Category" value={nft.category_name} />
-                  )}
+                  )} */}
+                  {/* {isAuctionEnded && (  )} */}
+                  <BidValue title="Category" value={nft.category_name} />
                 </>
               ) : (
                 <BidValue title="Category" value={nft.category_name} />
@@ -535,6 +534,42 @@ const NFTOrderBaseDetails = ({
                   );
                 }
               })()}
+
+              {!isAuctionStarted && (
+                <NFTTimeLeft
+                  title="Auction starting in"
+                  placement="top"
+                  tooltipText={(() => {
+                    if (erc721) {
+                      if (orderDetails.auction_extend_minutes) {
+                        return `When there are less than 10 minutes left in the auction, successful bids will reset the auction to ${orderDetails.auction_extend_minutes} minutes.`;
+                      } else {
+                        return "When there are less than 10 minutes left in the auction, successful bids will not reset the auction ending time";
+                      }
+                    }
+                  })()}
+                  time={orderDetails.auction_start_time}
+                  cTime={nft.time}
+                  handleTimer={handleAuctionStartTimer}
+                />
+              )}
+              {!isAuctionEnded && isAuctionStarted && (
+                <NFTTimeLeft
+                  title="End of Auction"
+                  tooltipText={(() => {
+                    if (erc721) {
+                      if (orderDetails.auction_extend_minutes) {
+                        return `When there are less than 10 minutes left in the auction, successful bids will reset the auction to ${orderDetails.auction_extend_minutes} minutes.`;
+                      } else {
+                        return "When there are less than 10 minutes left in the auction, successful bids will not reset the auction ending time";
+                      }
+                    }
+                  })()}
+                  time={auctionEndTime}
+                  cTime={nft.time}
+                  handleTimer={handleAuctionEndTimer}
+                />
+              )}
             </div>
             <hr className="custom-divider" />
           </>

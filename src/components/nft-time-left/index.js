@@ -13,6 +13,7 @@ const NFTTimeLeft = ({
   isEnded = false,
   time,
   cTime,
+  placement,
   handleTimer = () => {},
 }) => {
   return (
@@ -27,7 +28,7 @@ const NFTTimeLeft = ({
               className="ms-2 question-icon"
             />
           }
-          placement="right"
+          placement={placement ? placement : "right"}
         />
       </div>
       {isEnded ? (
