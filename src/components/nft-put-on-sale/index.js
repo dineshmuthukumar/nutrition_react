@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import dayjs from "dayjs";
 import { useSelector } from "react-redux";
 import { useRouteMatch } from "react-router";
-import { Offcanvas } from "react-bootstrap";
+import { Dropdown, Offcanvas } from "react-bootstrap";
 import ToggleButton from "react-toggle-button";
 import { BiCheck, BiX } from "react-icons/bi";
 import { FaCheckCircle } from "react-icons/fa";
 import _ from "lodash";
+import { setMinutes, setHours, addMinutes } from "date-fns";
+
 import { toast } from "react-toastify";
 import {
   AiFillFacebook,
@@ -45,8 +47,11 @@ const NFTPutOnSale = ({
 
   const { user } = useSelector((state) => state.user.data);
   const { params } = useRouteMatch();
+  const startDateRef = useRef();
 
   const [success, setSuccess] = useState(false);
+  const [startChosen, setStartChosen] = useState(false);
+  const [endChosen, setEndChosen] = useState(false);
   const [orderId, setOrderId] = useState("");
 
   const erc721 = nft.nft_type === "erc721";
@@ -312,6 +317,51 @@ const NFTPutOnSale = ({
 
     return window.navigator.msLaunchUri ? onIE() : notOnIE();
   };
+
+  const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
+    <div
+      className="input-sale-wrap"
+      ref={ref}
+      onClick={(e) => {
+        e.preventDefault();
+        onClick(e);
+      }}
+    >
+      <span className="p-3 w-100">
+        <div className="d-flex justify-content-between">
+          <div>{children}</div>
+          <div>&#x25bc;</div>
+        </div>
+      </span>
+    </div>
+  ));
+
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+
+  const ExampleCustomStartInput = React.forwardRef(
+    ({ value, onClick }, ref) => (
+      <button
+        className="example-custom-input"
+        onClick={onClick}
+        ref={ref}
+        id="start_date"
+      >
+        {value}
+      </button>
+    )
+  );
+
+  const ExampleCustomEndInput = React.forwardRef(({ value, onClick }, ref) => (
+    <button
+      className="example-custom-input"
+      onClick={onClick}
+      ref={ref}
+      id="end_date"
+    >
+      {value}
+    </button>
+  ));
 
   return (
     <Offcanvas
@@ -612,7 +662,7 @@ const NFTPutOnSale = ({
                           </div>
                           {erc721 && erc721Sale.isBid && (
                             <>
-                              <div className="input-sale-container checkbox-container mt-3">
+                              {/* <div className="input-sale-container checkbox-container mt-3">
                                 <input
                                   type="checkbox"
                                   id="checkScheduled"
@@ -628,6 +678,202 @@ const NFTPutOnSale = ({
                                 <label for="checkScheduled">
                                   Schedule my auction
                                 </label>
+                              </div> */}
+
+                              <div className="input-sale-container mt-3 flex-input ">
+                                <div className="input-field-sale">
+                                  <label className="input-sale-text">
+                                    Starting Date
+                                  </label>
+
+                                  <Dropdown>
+                                    <Dropdown.Toggle as={CustomToggle}>
+                                      {startChosen
+                                        ? dayjs(startDate).format(
+                                            "DD MMM YYYY HH:mm a"
+                                          )
+                                        : `Right after listing`}
+                                    </Dropdown.Toggle>
+
+                                    <Dropdown.Menu>
+                                      <Dropdown.Item
+                                        as="button"
+                                        onClick={() => setStartChosen(false)}
+                                      >
+                                        Right after listing
+                                      </Dropdown.Item>
+                                      <Dropdown.Item
+                                        as="button"
+                                        onClick={() => {
+                                          document
+                                            .getElementById("start_date")
+                                            .click();
+                                          setStartChosen(false);
+                                        }}
+                                      >
+                                        Pick specific date
+                                      </Dropdown.Item>
+                                    </Dropdown.Menu>
+                                  </Dropdown>
+                                </div>
+
+                                <div className="input-field-sale">
+                                  <label className="input-sale-text">
+                                    Expiration Date
+                                  </label>
+                                  <Dropdown>
+                                    <Dropdown.Toggle as={CustomToggle}>
+                                      {endChosen
+                                        ? dayjs(endDate).format(
+                                            "DD MMM YYYY HH:mm a"
+                                          )
+                                        : `1 Day`}
+                                    </Dropdown.Toggle>
+
+                                    <Dropdown.Menu>
+                                      <Dropdown.Item
+                                        as="button"
+                                        onClick={() => setEndChosen(false)}
+                                      >
+                                        1 Day
+                                      </Dropdown.Item>
+                                      <Dropdown.Item
+                                        as="button"
+                                        onClick={() => {
+                                          document
+                                            .getElementById("end_date")
+                                            .click();
+
+                                          setEndChosen(false);
+                                        }}
+                                      >
+                                        Pick specific date
+                                      </Dropdown.Item>
+                                    </Dropdown.Menu>
+                                  </Dropdown>
+                                </div>
+                              </div>
+
+                              <div style={{ position: "fixed", top: "-50px" }}>
+                                <DatePicker
+                                  selected={startDate}
+                                  onChange={(date) => {
+                                    setStartDate(date);
+                                    setEndDate(addMinutes(date, 15));
+                                    setStartChosen(true);
+                                  }}
+                                  customInput={<ExampleCustomStartInput />}
+                                  minDate={new Date()}
+                                  minTime={(() => {
+                                    if (startDate > new Date()) {
+                                      return setHours(
+                                        setMinutes(startDate, 0),
+                                        0
+                                      );
+                                    } else {
+                                      const d = new Date();
+                                      let minutes = d.getMinutes();
+                                      let hours = d.getHours();
+
+                                      if (minutes > 45) {
+                                        return setHours(
+                                          setMinutes(startDate, 0),
+                                          hours + 1
+                                        );
+                                      } else if (minutes > 30) {
+                                        return setHours(
+                                          setMinutes(startDate, 45),
+                                          hours
+                                        );
+                                      } else if (minutes > 15) {
+                                        return setHours(
+                                          setMinutes(startDate, 30),
+                                          hours
+                                        );
+                                      } else if (minutes > 0) {
+                                        return setHours(
+                                          setMinutes(startDate, 15),
+                                          hours
+                                        );
+                                      } else {
+                                        return setHours(
+                                          setMinutes(startDate, 0),
+                                          hours
+                                        );
+                                      }
+                                    }
+                                  })()}
+                                  maxTime={setHours(
+                                    setMinutes(startDate, 45),
+                                    23
+                                  )}
+                                  timeFormat="HH:mm aa"
+                                  timeIntervals={15}
+                                  timeCaption="Time"
+                                  dateFormat="MMMM d, yyyy h:mm aa"
+                                  showTimeSelect
+                                  withPortal
+                                  onCalendarClose={() => {
+                                    if (!startChosen) {
+                                      toast.error("Choose the date");
+                                    }
+                                  }}
+                                />
+                              </div>
+
+                              <div style={{ position: "fixed", top: "-50px" }}>
+                                <DatePicker
+                                  selected={endDate}
+                                  onChange={(date) => {
+                                    setEndDate(date);
+                                    setEndChosen(true);
+                                  }}
+                                  customInput={<ExampleCustomEndInput />}
+                                  minDate={startDate}
+                                  minTime={(() => {
+                                    const d = startDate;
+                                    let minutes = d.getMinutes();
+
+                                    let hours = d.getHours();
+
+                                    if (minutes > 45) {
+                                      return setHours(
+                                        setMinutes(startDate, 0),
+                                        hours + 1
+                                      );
+                                    } else if (minutes > 30) {
+                                      return setHours(
+                                        setMinutes(startDate, 45),
+                                        hours
+                                      );
+                                    } else if (minutes > 15) {
+                                      return setHours(
+                                        setMinutes(startDate, 30),
+                                        hours
+                                      );
+                                    } else if (minutes >= 0) {
+                                      return setHours(
+                                        setMinutes(startDate, 15),
+                                        hours
+                                      );
+                                    }
+                                  })()}
+                                  maxTime={setHours(
+                                    setMinutes(startDate, 45),
+                                    23
+                                  )}
+                                  timeFormat="HH:mm aa"
+                                  timeIntervals={15}
+                                  timeCaption="Time"
+                                  dateFormat="MMMM d, yyyy h:mm aa"
+                                  showTimeSelect
+                                  withPortal
+                                  onCalendarClose={() => {
+                                    if (!endChosen) {
+                                      toast.error("Choose the date");
+                                    }
+                                  }}
+                                />
                               </div>
 
                               {erc721Sale.scheduleAuction && (
