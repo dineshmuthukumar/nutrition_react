@@ -34,7 +34,7 @@ appAxios.interceptors.response.use(
       removeCookies();
       // toast.warn("Session expired, signin again");
     }
-    return Promise.reject(error?.response);
+    return Promise.reject(error);
   }
 );
 
