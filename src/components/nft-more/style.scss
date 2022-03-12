@@ -238,9 +238,22 @@
   font-size: 1.2rem !important;
 }
 .time-counter-box {
+  // position: absolute;
+  // right: 1rem;
+  // padding: 0.5rem 1rem 0.5rem 0.5rem;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  // box-shadow: 1px 1px 0px 1px #ffff;
+  // background: #000;
+  // border-radius: 50rem;
+  // color: #fff;
+  // top: 1rem;
+  // flex-direction: row;
+
   position: absolute;
-  right: 1rem;
-  padding: 0.5rem 1rem 0.5rem 0.5rem;
+  right: -1rem;
+  padding: 0.2rem 2rem 0.2rem 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -248,8 +261,9 @@
   background: #000;
   border-radius: 50rem;
   color: #fff;
-  top: 1rem;
+  top: 0rem;
   flex-direction: row;
+
   img {
     height: 2rem !important;
     margin: 0 !important;

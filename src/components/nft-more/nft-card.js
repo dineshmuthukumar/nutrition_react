@@ -120,6 +120,7 @@ const CollectionCard = ({ nft, recentSold = false }) => {
                       intervalGapClass="me-1"
                       handleEndEvent={handleAuctionStartTimer}
                     />
+                    &nbsp;&nbsp;<span class="fire-icon">🔥</span>
                   </div>
                 )}
                 {!isAuctionEnded && isAuctionStarted && (
@@ -133,6 +134,7 @@ const CollectionCard = ({ nft, recentSold = false }) => {
                       intervalGapClass="me-1"
                       handleEndEvent={handleAuctionEndTimer}
                     />
+                    &nbsp;&nbsp;<span class="fire-icon">🔥</span>
                   </div>
                 )}
               </>

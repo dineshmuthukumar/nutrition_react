@@ -128,6 +128,7 @@ const NFTCard = ({
                       intervalGapClass="me-1"
                       handleEndEvent={handleAuctionStartTimer}
                     />
+                    &nbsp;&nbsp;<span class="fire-icon">🔥</span>
                   </div>
                 )}
                 {!isAuctionEnded && isAuctionStarted && (
@@ -141,6 +142,7 @@ const NFTCard = ({
                       intervalGapClass="me-1"
                       handleEndEvent={handleAuctionEndTimer}
                     />
+                    &nbsp;&nbsp;<span class="fire-icon">🔥</span>
                   </div>
                 )}
               </>
