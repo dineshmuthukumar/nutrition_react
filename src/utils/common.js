@@ -116,6 +116,7 @@ export const bidBuyError = (code) => {
   const INVALID_NFT = 710;
   const INVALID_CATEGORY = 711;
   const KYC_VERIFY = 715;
+  const AUCTION_CANCEL_BANNED = 718;
 
   switch (code) {
     case ERROR:
@@ -154,6 +155,11 @@ export const bidBuyError = (code) => {
       return {
         title: "Error",
         description: "Please complete your KYC verification",
+      };
+    case AUCTION_CANCEL_BANNED:
+      return {
+        title: "Oops!",
+        description: "Auction could not be cancel, there is an active bid!",
       };
     default:
       return {

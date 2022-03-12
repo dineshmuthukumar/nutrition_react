@@ -29,6 +29,7 @@ const NFTPlaceBid = ({
   transferringNFT,
   isOrderOnSale,
   isOrderCancelled,
+  isAuctionEnded,
 }) => {
   const { user } = useSelector((state) => state.user.data);
   const { orderSlug } = useParams();
@@ -453,6 +454,8 @@ const NFTPlaceBid = ({
                               return transferringNFT;
                             } else if (isOrderCancelled) {
                               return isOrderCancelled;
+                            } else if (isAuctionEnded) {
+                              return isAuctionEnded;
                             } else {
                               return bid.buttonDisable;
                             }

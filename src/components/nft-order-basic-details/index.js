@@ -72,9 +72,6 @@ const NFTOrderBaseDetails = ({
   const orderDetails = _.get(nft, "order_details", {});
   const ownerOrderDetails = _.get(nft, "owner_details.orders", []);
 
-  console.log(isAuctionStarted, "isAuctionStarted");
-  console.log(isAuctionEnded, "isAuctionEnded");
-
   const handleAcceptBid = async () => {
     setAcceptBidConfirm(!acceptBidConfirm);
     try {
@@ -595,6 +592,7 @@ const NFTOrderBaseDetails = ({
             totalQty={totalQty}
             soldOut={soldOut}
             transferringNFT={transferringNFT}
+            isAuctionEnded={isAuctionEnded}
           />
 
           {(() => {
