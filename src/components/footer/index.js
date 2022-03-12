@@ -84,7 +84,7 @@ const Footer = () => {
               <ul className="social-icon-two">
                 <li>
                   <a
-                    href="https://discord.com/invite/87s8ReJ5FA"
+                    href="https://discord.com/invite/beyondlifeclub"
                     target="_blank"
                     rel="nofollow"
                   >
