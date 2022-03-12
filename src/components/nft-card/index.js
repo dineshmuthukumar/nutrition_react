@@ -7,7 +7,7 @@ import sample from "../../images/sampleNFT.jpg";
 import startin from "../../images/start_icon.png";
 import endsin from "../../images/ends_icon.png";
 import NFTCounter from "../nft-counter";
-
+import { AiFillFire } from "react-icons/ai";
 import "./style.scss";
 
 const NFTCard = ({
@@ -119,30 +119,41 @@ const NFTCard = ({
               <>
                 {!isAuctionStarted && !isAuctionEnded && (
                   <div className="time-counter-box">
-                    <img src={startin} alt="startin" />
-                    <NFTCounter
-                      time={nft?.order_details?.auction_start_time}
-                      cTime={nft?.time}
-                      timeClass="font-onerem"
-                      intervalClass="font-psevenrem"
-                      intervalGapClass="me-1"
-                      handleEndEvent={handleAuctionStartTimer}
-                    />
-                    &nbsp;&nbsp;<span class="fire-icon">🔥</span>
+                    <span className="time-counter-card">
+                      <img src={startin} alt="startin" />
+                      <NFTCounter
+                        time={nft?.order_details?.auction_start_time}
+                        cTime={nft?.time}
+                        timeClass="font-onerem"
+                        intervalClass="font-psevenrem"
+                        intervalGapClass="me-1"
+                        handleEndEvent={handleAuctionStartTimer}
+                      />
+                      {/* &nbsp;&nbsp;<span class="fire-icon">🔥</span> */}
+                      &nbsp;&nbsp;
+                      <span class="fire-icon">
+                        <AiFillFire />
+                      </span>
+                    </span>
                   </div>
                 )}
                 {!isAuctionEnded && isAuctionStarted && (
                   <div className="time-counter-box">
-                    <img src={endsin} alt="endsin" />
-                    <NFTCounter
-                      time={nft?.order_details?.auction_end_time}
-                      cTime={nft?.time}
-                      timeClass="font-onerem"
-                      intervalClass="font-psevenrem"
-                      intervalGapClass="me-1"
-                      handleEndEvent={handleAuctionEndTimer}
-                    />
-                    &nbsp;&nbsp;<span class="fire-icon">🔥</span>
+                    <span className="time-counter-card">
+                      <img src={endsin} alt="endsin" />
+                      <NFTCounter
+                        time={nft?.order_details?.auction_end_time}
+                        cTime={nft?.time}
+                        timeClass="font-onerem"
+                        intervalClass="font-psevenrem"
+                        intervalGapClass="me-1"
+                        handleEndEvent={handleAuctionEndTimer}
+                      />
+                      &nbsp;&nbsp;
+                      <span class="fire-icon">
+                        <AiFillFire />
+                      </span>
+                    </span>
                   </div>
                 )}
               </>
