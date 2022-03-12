@@ -495,7 +495,7 @@ const NFTOrderBaseDetails = ({
               })()}
               {orderDetails.timed_auction && !transferringNFT && !soldOut && (
                 <>
-                  {!isAuctionStarted && (
+                  {!isAuctionStarted && !isOrderCancelled && (
                     <NFTTimeLeft
                       title="Auction starting in"
                       placement="top"
@@ -513,7 +513,7 @@ const NFTOrderBaseDetails = ({
                       handleTimer={handleAuctionStartTimer}
                     />
                   )}
-                  {!isAuctionEnded && isAuctionStarted && (
+                  {!isAuctionEnded && isAuctionStarted && !isOrderCancelled && (
                     <NFTTimeLeft
                       title="End of Auction"
                       tooltipText={(() => {
@@ -532,6 +532,16 @@ const NFTOrderBaseDetails = ({
                     />
                   )}
                 </>
+              )}
+              {isAuctionEnded && isOwner && !isOrderCancelled && (
+                <NFTTimeLeft
+                  title="Auction ended on"
+                  tooltipText="Auction ended"
+                  placement="top"
+                  time={auctionEndTime}
+                  cTime={nft.time}
+                  isEnded={true}
+                />
               )}
             </div>
             <hr className="custom-divider" />

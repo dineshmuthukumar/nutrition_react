@@ -507,7 +507,7 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
 
   return (
     <>
-      <Navbar bg="dark" expand="md" variant="dark">
+      <Navbar bg="dark" expand="md" variant="dark" sticky="top">
         <Container fluid>
           <Navbar.Brand
             onClick={() =>

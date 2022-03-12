@@ -179,15 +179,14 @@ const OrderDetails = () => {
     acceptBid(slug, orderSlug, (data) => {
       purchaseDetails();
       setAvailableQty(data.available_quantity);
-      if (orderDetails?.timed_auction) {
-        setBidWinner(data.winner_details);
-        setWinnerBanner(true);
-      }
+
       if (data.available_quantity === 0) {
         setTransferringNFT(true);
       }
       if (data.order_completed) {
         setSoldOut(true);
+        setBidWinner(data.winner_details);
+        setWinnerBanner(true);
       }
     });
 
@@ -204,6 +203,7 @@ const OrderDetails = () => {
       }
       if (data.order_completed) {
         setSoldOut(true);
+        orderBidWinner();
       }
     });
 
@@ -218,6 +218,7 @@ const OrderDetails = () => {
     ownerDetails(slug, (data) => {
       nftOwners();
       nftTransaction();
+      orderBidWinner();
     });
   }, []);
 
