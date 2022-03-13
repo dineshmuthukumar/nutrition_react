@@ -66,9 +66,6 @@ const NFTPutOnSale = ({
     buyQuantity: 1,
     totalAmount: 0,
     warning: false,
-    scheduleAuction: false,
-    startDate: new Date(),
-    endDate: null,
   });
 
   const [erc1155Sale, setErc1155Sale] = useState({
@@ -168,7 +165,7 @@ const NFTPutOnSale = ({
         buttonDisable: true,
       });
       if (erc721) {
-        if (erc721Sale.scheduleAuction) {
+        if (erc721Sale.isBid) {
           order = {
             is_buy: erc721Sale.isBuy,
             is_bid: erc721Sale.isBid,
@@ -176,8 +173,12 @@ const NFTPutOnSale = ({
             buy_amount: erc721Sale.buyAmount,
             total_quantity: erc721Sale.buyQuantity,
             timed_auction: erc721Sale.isBid,
-            auction_start_time: erc721Sale.startDate.toISOString(),
-            auction_end_time: erc721Sale.endDate.toISOString(),
+            auction_start_time: startChosen
+              ? startDate.toISOString()
+              : new Date().toISOString(),
+            auction_end_time: endChosen
+              ? endDate.toISOString()
+              : addDays(new Date(), 1).toISOString(),
           };
         } else {
           order = {
@@ -260,20 +261,20 @@ const NFTPutOnSale = ({
     });
   };
 
-  const handleStartDate = (date) => {
-    setErc721Sale({
-      ...erc721Sale,
-      startDate: date,
-      endDate: null,
-    });
-  };
+  // const handleStartDate = (date) => {
+  //   setErc721Sale({
+  //     ...erc721Sale,
+  //     startDate: date,
+  //     endDate: null,
+  //   });
+  // };
 
-  const handleEndDate = (date) => {
-    setErc721Sale({
-      ...erc721Sale,
-      endDate: date,
-    });
-  };
+  // const handleEndDate = (date) => {
+  //   setErc721Sale({
+  //     ...erc721Sale,
+  //     endDate: date,
+  //   });
+  // };
 
   const detectWhatsapp = (uri) => {
     const onIE = () => {
@@ -326,6 +327,7 @@ const NFTPutOnSale = ({
         e.preventDefault();
         onClick(e);
       }}
+      role={"button"}
     >
       <span className="p-3 w-100">
         <div className="d-flex justify-content-between">
@@ -362,6 +364,27 @@ const NFTPutOnSale = ({
       {value}
     </button>
   ));
+
+  const handleConfirm = () => {
+    if (
+      startChosen &&
+      endChosen &&
+      new Date(startDate).getTime() > new Date(endDate).getTime()
+    ) {
+      toast.error("End date should be grater than Start date");
+      setConfirm(false);
+    } else if (
+      !startChosen &&
+      endChosen &&
+      new Date().getTime() > new Date(endDate).getTime()
+    ) {
+      toast.error("Please Select Future Date");
+      setEndDate(new Date());
+      setConfirm(false);
+    } else {
+      setConfirm(true);
+    }
+  };
 
   return (
     <Offcanvas
@@ -690,7 +713,7 @@ const NFTPutOnSale = ({
                                     <Dropdown.Toggle as={CustomToggle}>
                                       {startChosen
                                         ? dayjs(startDate).format(
-                                            "DD MMM YYYY HH:mm a"
+                                            "DD MMM YYYY hh:mm a"
                                           )
                                         : `Right after listing`}
                                     </Dropdown.Toggle>
@@ -725,7 +748,7 @@ const NFTPutOnSale = ({
                                     <Dropdown.Toggle as={CustomToggle}>
                                       {endChosen
                                         ? dayjs(endDate).format(
-                                            "DD MMM YYYY HH:mm a"
+                                            "DD MMM YYYY hh:mm a"
                                           )
                                         : `1 Day`}
                                     </Dropdown.Toggle>
@@ -759,55 +782,57 @@ const NFTPutOnSale = ({
                                   selected={startDate}
                                   onChange={(date) => {
                                     setStartDate(date);
-                                    setEndDate(addMinutes(date, 15));
+                                    setEndDate(addMinutes(date, 30));
                                     setStartChosen(true);
+                                    setEndChosen(false);
                                   }}
                                   customInput={<ExampleCustomStartInput />}
                                   minDate={new Date()}
-                                  minTime={(() => {
-                                    if (startDate > new Date()) {
-                                      return setHours(
-                                        setMinutes(startDate, 0),
-                                        0
-                                      );
-                                    } else {
-                                      const d = new Date();
-                                      let minutes = d.getMinutes();
-                                      let hours = d.getHours();
+                                  // minTime={(() => {
+                                  //   if (startDate > new Date()) {
+                                  //     return setHours(
+                                  //       setMinutes(startDate, 0),
+                                  //       0
+                                  //     );
+                                  //   } else {
+                                  //     const d = new Date();
+                                  //     let minutes = d.getMinutes();
+                                  //     let hours = d.getHours();
 
-                                      if (minutes > 45) {
-                                        return setHours(
-                                          setMinutes(startDate, 0),
-                                          hours + 1
-                                        );
-                                      } else if (minutes > 30) {
-                                        return setHours(
-                                          setMinutes(startDate, 45),
-                                          hours
-                                        );
-                                      } else if (minutes > 15) {
-                                        return setHours(
-                                          setMinutes(startDate, 30),
-                                          hours
-                                        );
-                                      } else if (minutes > 0) {
-                                        return setHours(
-                                          setMinutes(startDate, 15),
-                                          hours
-                                        );
-                                      } else {
-                                        return setHours(
-                                          setMinutes(startDate, 0),
-                                          hours
-                                        );
-                                      }
-                                    }
-                                  })()}
+                                  //     if (minutes > 45) {
+                                  //       return setHours(
+                                  //         setMinutes(startDate, 0),
+                                  //         hours + 1
+                                  //       );
+                                  //     } else if (minutes > 30) {
+                                  //       return setHours(
+                                  //         setMinutes(startDate, 45),
+                                  //         hours
+                                  //       );
+                                  //     } else if (minutes > 15) {
+                                  //       return setHours(
+                                  //         setMinutes(startDate, 30),
+                                  //         hours
+                                  //       );
+                                  //     } else if (minutes > 0) {
+                                  //       return setHours(
+                                  //         setMinutes(startDate, 15),
+                                  //         hours
+                                  //       );
+                                  //     } else {
+                                  //       return setHours(
+                                  //         setMinutes(startDate, 0),
+                                  //         hours
+                                  //       );
+                                  //     }
+                                  //   }
+                                  // })()}
+                                  minTime={new Date()}
                                   maxTime={setHours(
                                     setMinutes(startDate, 45),
                                     23
                                   )}
-                                  timeFormat="HH:mm aa"
+                                  timeFormat="hh:mm aa"
                                   timeIntervals={15}
                                   timeCaption="Time"
                                   dateFormat="MMMM d, yyyy h:mm aa"
@@ -823,13 +848,18 @@ const NFTPutOnSale = ({
 
                               <div style={{ position: "fixed", top: "-50px" }}>
                                 <DatePicker
-                                  selected={endDate}
+                                  // selected={endDate}
                                   onChange={(date) => {
                                     setEndDate(date);
                                     setEndChosen(true);
                                   }}
                                   customInput={<ExampleCustomEndInput />}
-                                  minDate={startDate}
+                                  minDate={startChosen ? startDate : new Date()}
+                                  maxDate={
+                                    startChosen
+                                      ? addDays(startDate, 3)
+                                      : addDays(new Date(), 3)
+                                  }
                                   minTime={(() => {
                                     const d = startDate;
                                     let minutes = d.getMinutes();
@@ -862,7 +892,7 @@ const NFTPutOnSale = ({
                                     setMinutes(startDate, 45),
                                     23
                                   )}
-                                  timeFormat="HH:mm aa"
+                                  timeFormat="hh:mm aa"
                                   timeIntervals={15}
                                   timeCaption="Time"
                                   dateFormat="MMMM d, yyyy h:mm aa"
@@ -876,7 +906,7 @@ const NFTPutOnSale = ({
                                 />
                               </div>
 
-                              {erc721Sale.scheduleAuction && (
+                              {/* {erc721Sale.scheduleAuction && (
                                 <div className="input-sale-container mt-3 flex-input ">
                                   <div className="input-field-sale">
                                     <label className="input-sale-text">
@@ -922,7 +952,7 @@ const NFTPutOnSale = ({
                                     </div>
                                   </div>
                                 </div>
-                              )}
+                              )} */}
                             </>
                           )}
 
@@ -998,7 +1028,7 @@ const NFTPutOnSale = ({
                                   }
                                 })()}
                                 className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop ${confirmState.processClass}`} //process -> proccessing
-                                onClick={() => setConfirm(true)}
+                                onClick={() => handleConfirm()}
                               >
                                 {(() => {
                                   if (
@@ -1211,15 +1241,17 @@ const NFTPutOnSale = ({
                                 </span>
                               </li>
                               {erc721Sale.isBid && (
-                                <li>
-                                  <span className="key">Bid Amount</span>
-                                  <span className="value">
-                                    {currencyFormat(
-                                      erc721Sale.bidAmount,
-                                      "USD"
-                                    )}
-                                  </span>
-                                </li>
+                                <>
+                                  <li>
+                                    <span className="key">Bid Amount</span>
+                                    <span className="value">
+                                      {currencyFormat(
+                                        erc721Sale.bidAmount,
+                                        "USD"
+                                      )}
+                                    </span>
+                                  </li>
+                                </>
                               )}
                               {erc721Sale.isBuy && (
                                 <li>
@@ -1272,6 +1304,40 @@ const NFTPutOnSale = ({
                                   - {parseFloat(nft.service_fee)}%
                                 </span>
                               </li>
+                              {erc721Sale.isBid && (
+                                <>
+                                  <li>
+                                    <span className="key">
+                                      Auction Starts on
+                                    </span>
+                                    <span className="value">
+                                      {startChosen
+                                        ? dayjs(startDate).format(
+                                            "DD MMM YYYY hh:mm a"
+                                          )
+                                        : dayjs(new Date()).format(
+                                            "DD MMM YYYY hh:mm a"
+                                          )}
+                                    </span>
+                                  </li>
+                                  <li>
+                                    <span className="key">Auction Ends on</span>
+                                    <span className="value">
+                                      {startChosen && !endChosen
+                                        ? dayjs(addDays(startDate, 1)).format(
+                                            "DD MMM YYYY hh:mm a"
+                                          )
+                                        : endChosen
+                                        ? dayjs(endDate).format(
+                                            "DD MMM YYYY hh:mm a"
+                                          )
+                                        : dayjs(addDays(new Date(), 1)).format(
+                                            "DD MMM YYYY hh:mm a"
+                                          )}
+                                    </span>
+                                  </li>
+                                </>
+                              )}
                               {erc721Sale.isBuy && (
                                 <li className="final-set">
                                   <span className="key">Final Amount </span>
