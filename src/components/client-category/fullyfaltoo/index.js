@@ -172,7 +172,13 @@ const FullyFaltoo = () => {
         <div className="container-fluid">
           <div className="row">
             <div className="ft-logo">
-              <Image src={ffLogo} />{" "}
+              <Image
+                src={ffLogo}
+                role={"button"}
+                onClick={() =>
+                  window.open(process.env.REACT_APP_FF_WEBSITE_URL, "_blank")
+                }
+              />{" "}
             </div>
           </div>
           <div className="row mt-3 d-flex justify-content-between align-items-center explore-title">
