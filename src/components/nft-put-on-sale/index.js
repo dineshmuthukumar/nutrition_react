@@ -7,7 +7,7 @@ import ToggleButton from "react-toggle-button";
 import { BiCheck, BiX } from "react-icons/bi";
 import { FaCheckCircle } from "react-icons/fa";
 import _ from "lodash";
-import { setMinutes, setHours, addMinutes } from "date-fns";
+import { setMinutes, setHours, addMinutes, addHours, addDays } from "date-fns";
 
 import { toast } from "react-toastify";
 import {
@@ -33,7 +33,6 @@ import { BsFillQuestionCircleFill } from "react-icons/bs";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { addDays } from "date-fns";
 
 const NFTPutOnSale = ({
   putOnSalePop = false,
@@ -374,11 +373,20 @@ const NFTPutOnSale = ({
       toast.error("End date should be grater than Start date");
       setConfirm(false);
     } else if (
+      startChosen &&
+      endChosen &&
+      new Date(endDate).getTime() > new Date(addDays(startDate, 3)).getTime()
+    ) {
+      toast.error(
+        "End date should be less than or equal to 3 days from start date"
+      );
+      setConfirm(false);
+    } else if (
       !startChosen &&
       endChosen &&
       new Date().getTime() > new Date(endDate).getTime()
     ) {
-      toast.error("Please Select Future Date");
+      toast.error("Please select future date");
       setEndDate(new Date());
       setConfirm(false);
     } else {
@@ -721,7 +729,11 @@ const NFTPutOnSale = ({
                                     <Dropdown.Menu>
                                       <Dropdown.Item
                                         as="button"
-                                        onClick={() => setStartChosen(false)}
+                                        onClick={() => {
+                                          setStartChosen(false);
+                                          setStartDate(new Date());
+                                          setEndDate(addDays(new Date(), 3));
+                                        }}
                                       >
                                         Right after listing
                                       </Dropdown.Item>
@@ -794,52 +806,55 @@ const NFTPutOnSale = ({
                                   selected={startDate}
                                   onChange={(date) => {
                                     setStartDate(date);
-                                    setEndDate(addMinutes(date, 30));
+                                    setEndDate(addHours(date, 1));
                                     setStartChosen(true);
                                     setEndChosen(false);
                                   }}
                                   customInput={<ExampleCustomStartInput />}
                                   minDate={new Date()}
-                                  // minTime={(() => {
-                                  //   if (startDate > new Date()) {
-                                  //     return setHours(
-                                  //       setMinutes(startDate, 0),
-                                  //       0
-                                  //     );
-                                  //   } else {
-                                  //     const d = new Date();
-                                  //     let minutes = d.getMinutes();
-                                  //     let hours = d.getHours();
+                                  minTime={(() => {
+                                    const t_start =
+                                      dayjs(startDate).format("DD MM YYYY");
+                                    const init = dayjs().format("DD MM YYYY");
 
-                                  //     if (minutes > 45) {
-                                  //       return setHours(
-                                  //         setMinutes(startDate, 0),
-                                  //         hours + 1
-                                  //       );
-                                  //     } else if (minutes > 30) {
-                                  //       return setHours(
-                                  //         setMinutes(startDate, 45),
-                                  //         hours
-                                  //       );
-                                  //     } else if (minutes > 15) {
-                                  //       return setHours(
-                                  //         setMinutes(startDate, 30),
-                                  //         hours
-                                  //       );
-                                  //     } else if (minutes > 0) {
-                                  //       return setHours(
-                                  //         setMinutes(startDate, 15),
-                                  //         hours
-                                  //       );
-                                  //     } else {
-                                  //       return setHours(
-                                  //         setMinutes(startDate, 0),
-                                  //         hours
-                                  //       );
-                                  //     }
-                                  //   }
-                                  // })()}
-                                  minTime={new Date()}
+                                    if (t_start === init) {
+                                      const d = new Date();
+                                      let minutes = d.getMinutes();
+                                      let hours = d.getHours();
+
+                                      if (minutes >= 45) {
+                                        return setHours(
+                                          setMinutes(startDate, 0),
+                                          hours + 1
+                                        );
+                                      } else if (minutes >= 30) {
+                                        return setHours(
+                                          setMinutes(startDate, 45),
+                                          hours
+                                        );
+                                      } else if (minutes >= 15) {
+                                        return setHours(
+                                          setMinutes(startDate, 30),
+                                          hours
+                                        );
+                                      } else if (minutes >= 0) {
+                                        return setHours(
+                                          setMinutes(startDate, 15),
+                                          hours
+                                        );
+                                      } else {
+                                        return setHours(
+                                          setMinutes(startDate, 0),
+                                          hours
+                                        );
+                                      }
+                                    } else {
+                                      return setHours(
+                                        setMinutes(startDate, 0),
+                                        0
+                                      );
+                                    }
+                                  })()}
                                   maxTime={setHours(
                                     setMinutes(startDate, 45),
                                     23
@@ -860,7 +875,7 @@ const NFTPutOnSale = ({
 
                               <div style={{ position: "fixed", top: "-50px" }}>
                                 <DatePicker
-                                  // selected={endDate}
+                                  selected={endDate}
                                   onChange={(date) => {
                                     setEndDate(date);
                                     setEndChosen(true);
@@ -873,37 +888,73 @@ const NFTPutOnSale = ({
                                       : addDays(new Date(), 3)
                                   }
                                   minTime={(() => {
-                                    const d = startDate;
-                                    let minutes = d.getMinutes();
+                                    const t_endDate =
+                                      dayjs(endDate).format("DD MM YYYY");
+                                    const t_startDate =
+                                      dayjs(startDate).format("DD MM YYYY");
 
-                                    let hours = d.getHours();
+                                    if (
+                                      t_endDate.valueOf() ===
+                                      t_startDate.valueOf()
+                                    ) {
+                                      const d = startDate;
+                                      let minutes = d.getMinutes();
 
-                                    if (minutes > 45) {
+                                      let hours = d.getHours();
+
+                                      if (minutes >= 45) {
+                                        return setHours(
+                                          setMinutes(startDate, 0),
+                                          hours + 1
+                                        );
+                                      } else if (minutes >= 30) {
+                                        return setHours(
+                                          setMinutes(startDate, 45),
+                                          hours
+                                        );
+                                      } else if (minutes >= 15) {
+                                        return setHours(
+                                          setMinutes(startDate, 30),
+                                          hours
+                                        );
+                                      } else if (minutes >= 0) {
+                                        return setHours(
+                                          setMinutes(startDate, 15),
+                                          hours
+                                        );
+                                      }
+                                    } else {
                                       return setHours(
-                                        setMinutes(startDate, 0),
-                                        hours + 1
-                                      );
-                                    } else if (minutes > 30) {
-                                      return setHours(
-                                        setMinutes(startDate, 45),
-                                        hours
-                                      );
-                                    } else if (minutes > 15) {
-                                      return setHours(
-                                        setMinutes(startDate, 30),
-                                        hours
-                                      );
-                                    } else if (minutes >= 0) {
-                                      return setHours(
-                                        setMinutes(startDate, 15),
-                                        hours
+                                        setMinutes(endDate, 0),
+                                        0
                                       );
                                     }
                                   })()}
-                                  maxTime={setHours(
-                                    setMinutes(startDate, 45),
-                                    23
-                                  )}
+                                  maxTime={(() => {
+                                    const t_endDate =
+                                      dayjs(endDate).format("DD MM YYYY");
+
+                                    const t_maxDate = dayjs(
+                                      addDays(startDate, 3)
+                                    ).format("DD MM YYYY");
+
+                                    if (t_endDate === t_maxDate) {
+                                      const d = startDate;
+                                      let minutes = d.getMinutes();
+
+                                      let hours = d.getHours();
+
+                                      return setHours(
+                                        setMinutes(startDate, minutes),
+                                        hours
+                                      );
+                                    } else {
+                                      return setHours(
+                                        setMinutes(startDate, 45),
+                                        23
+                                      );
+                                    }
+                                  })()}
                                   timeFormat="hh:mm aa"
                                   timeIntervals={15}
                                   timeCaption="Time"
