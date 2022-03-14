@@ -136,4 +136,4 @@ export const userProfileDetailApi = ({ slug }) =>
   appAxios.get(`/users/${slug}/marketplace_profile`);
 
 export const nftRecentlySoldApi = (page, sort = "recently_sold") =>
-  appAxios.get(`/dashboard/top_trades?page=${page}&sort=${sort}`);
+  appAxios.get(`/nfts/stats/market_trades?page=${page}&sort=${sort}`);
