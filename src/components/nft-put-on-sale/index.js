@@ -899,7 +899,14 @@ const NFTPutOnSale = ({
                                       setStartDate(date);
                                     }
 
+                                    console.log(
+                                      dayjs(endDate),
+                                      dayjs(date),
+                                      dayjs(endDate) > dayjs(date)
+                                    );
+
                                     setEndDate(addHours(date, 1));
+
                                     setStartChosen(true);
                                     // setEndChosen(false);
                                   }}
@@ -972,7 +979,9 @@ const NFTPutOnSale = ({
                                   onChange={(date) => {
                                     const t_start =
                                       dayjs(date).format("DD MM YYYY");
-                                    const init = dayjs().format("DD MM YYYY");
+                                    const init = startChosen
+                                      ? dayjs(startDate).format("DD MM YYYY")
+                                      : dayjs().format("DD MM YYYY");
 
                                     const t_maxDate = dayjs(
                                       addDays(startDate, 3)
@@ -982,9 +991,25 @@ const NFTPutOnSale = ({
                                       const d = startChosen
                                         ? startDate
                                         : new Date();
-                                      let minutes = d.getMinutes() + 30;
+                                      let minutes = d.getMinutes();
 
                                       let hours = d.getHours();
+
+                                      if (minutes >= 45) {
+                                        hours = hours + 1;
+                                        minutes = 45;
+                                      } else if (minutes >= 30) {
+                                        minutes = 30;
+                                        hours = hours + 1;
+                                      } else if (minutes >= 15) {
+                                        minutes = 15;
+                                        hours = hours + 1;
+                                      } else if (minutes >= 0) {
+                                        minutes = 0;
+                                        hours = hours + 1;
+                                      } else {
+                                        minutes = 0;
+                                      }
 
                                       let in_minutes = date.getMinutes();
 
@@ -998,12 +1023,21 @@ const NFTPutOnSale = ({
                                       );
 
                                       if (hours <= in_hours) {
-                                        setEndDate(
-                                          setHours(
-                                            setMinutes(date, in_minutes),
-                                            in_hours
-                                          )
-                                        );
+                                        if (minutes <= in_minutes) {
+                                          setEndDate(
+                                            setHours(
+                                              setMinutes(date, in_minutes),
+                                              in_hours
+                                            )
+                                          );
+                                        } else {
+                                          setEndDate(
+                                            setHours(
+                                              setMinutes(date, minutes),
+                                              in_hours
+                                            )
+                                          );
+                                        }
                                       } else {
                                         setEndDate(
                                           setHours(
