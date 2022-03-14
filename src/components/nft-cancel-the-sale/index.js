@@ -426,7 +426,9 @@ const NFTCancelTheSale = ({
                         </div>
                         <div className="place-cancel-button">
                           <button
-                            disabled={latestBid?.slug}
+                            disabled={
+                              latestBid?.slug && orderDetails?.timed_auction
+                            }
                             className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-cancel-btn-pop `} //process -> proccessing
                             onClick={handleSaleCancel}
                           >
