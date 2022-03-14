@@ -53,12 +53,25 @@ const NFTOrderDetails = ({ nft, orderList = [] }) => {
               {/* <th className="text-center">Order Views</th> */}
               <th className="text-center">Status</th>
               <th className="text-center">Order Placed On</th>
-              <th className="text-center"></th>
+              {/* <th className="text-center"></th> */}
             </tr>
           </thead>
           <tbody>
             {orderList.map((order, i) => (
-              <tr key={`order-${order?.slug}`}>
+              <tr
+                className={`click-ele ${
+                  order?.status === "cancelled" || order?.status === "blocked"
+                    ? "disabled-row"
+                    : ""
+                }`}
+                key={`order-${order?.slug}`}
+                onClick={() => {
+                  window.open(
+                    `${process.env.REACT_APP_MARKETPLACE_URL}/order/details/${nft.slug}/${order.slug}`,
+                    "_self"
+                  );
+                }}
+              >
                 <td className="text-center">{i + 1}</td>
                 <td className="text-center">{erc721 ? "ERC721" : "ERC1155"}</td>
                 <td className="text-center">
@@ -144,7 +157,7 @@ const NFTOrderDetails = ({ nft, orderList = [] }) => {
                     {dayjs(order?.created_at).format("MMM D, YYYY hh:mm A")}
                   </div>
                 </td>
-                <td className="text-center">
+                {/* <td className="text-center">
                   <button
                     className="btn btn-dark text-center btn-lg orderBtn mt-2 rounded-pill"
                     disabled={(() => {
@@ -166,7 +179,7 @@ const NFTOrderDetails = ({ nft, orderList = [] }) => {
                   >
                     View
                   </button>
-                </td>
+                </td> */}
               </tr>
             ))}
             {/* <tr>

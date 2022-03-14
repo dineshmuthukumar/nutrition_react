@@ -207,6 +207,7 @@
   position: sticky;
   top: 0;
   min-width: 8rem;
+  white-space: nowrap;
 }
 .orderDetails thead th:first-child {
   border-top-left-radius: 10px;

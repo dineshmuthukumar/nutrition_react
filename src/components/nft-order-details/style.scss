@@ -207,6 +207,7 @@
   position: sticky;
   top: 0;
   min-width: 8rem;
+  white-space: nowrap;
 }
 .orderDetails thead th:first-child {
   border-top-left-radius: 10px;
@@ -226,4 +227,25 @@
 .status {
   text-transform: capitalize;
   font-weight: 500;
+}
+
+.click-ele {
+  cursor: pointer;
+  user-select: none;
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: #ededef;
+  }
+  &.disabled-row {
+    background-color: #fff;
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.4;
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: #fff;
+    }
+  }
 }
