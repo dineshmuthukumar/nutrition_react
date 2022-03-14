@@ -177,6 +177,8 @@ const NFTPutOnSale = ({
               : new Date().toISOString(),
             auction_end_time: endChosen
               ? endDate.toISOString()
+              : startChosen
+              ? addDays(startDate, 1).toISOString()
               : addDays(new Date(), 1).toISOString(),
           };
         } else {
