@@ -15,6 +15,7 @@ const NFTTimeLeft = ({
   cTime,
   placement,
   handleTimer = () => {},
+  handleBeforeEndTimer = () => {},
 }) => {
   return (
     <div className="current-bid nft-time-left">
@@ -39,6 +40,7 @@ const NFTTimeLeft = ({
           cTime={cTime}
           timeClass="counter-time"
           handleEndEvent={handleTimer}
+          handleBeforeEndEvent={handleBeforeEndTimer}
         />
       )}
     </div>

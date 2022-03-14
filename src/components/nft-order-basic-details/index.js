@@ -58,6 +58,7 @@ const NFTOrderBaseDetails = ({
   auctionEndTime,
   handleAuctionStartTimer,
   handleAuctionEndTimer,
+  handleBeforeAuctionEndTimer,
 }) => {
   const history = useHistory();
   const { user } = useSelector((state) => state.user.data);
@@ -526,6 +527,7 @@ const NFTOrderBaseDetails = ({
                       time={auctionEndTime}
                       cTime={nft.time}
                       handleTimer={handleAuctionEndTimer}
+                      handleBeforeEndTimer={handleBeforeAuctionEndTimer}
                     />
                   )}
                 </>

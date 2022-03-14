@@ -714,7 +714,7 @@ const NFTPutOnSale = ({
                               <div className="input-sale-container mt-3 flex-input ">
                                 <div className="input-field-sale">
                                   <label className="input-sale-text">
-                                    Starting Date
+                                    Auction Starting Date
                                   </label>
 
                                   <Dropdown>
@@ -754,7 +754,7 @@ const NFTPutOnSale = ({
 
                                 <div className="input-field-sale">
                                   <label className="input-sale-text">
-                                    Expiration Date
+                                    Auction Expiration Date
                                     <ToolTip
                                       icon={
                                         <BsFillQuestionCircleFill
@@ -763,7 +763,7 @@ const NFTPutOnSale = ({
                                         />
                                       }
                                       content={
-                                        "Maximum Auction duration is 3 days. Any bid placed in the last 10 minutes extends the auction by 10 minutes."
+                                        "Auction duration can be up to 3 days. Any bid placed in the last 10 minutes extends the auction by 10 minutes."
                                       }
                                       placement="top"
                                     />
@@ -1314,6 +1314,46 @@ const NFTPutOnSale = ({
                                       )}
                                     </span>
                                   </li>
+                                  <li>
+                                    <span className="key">
+                                      Auction Starting Date
+                                    </span>
+                                    <span className="value">
+                                      {startChosen
+                                        ? dayjs(startDate).format(
+                                            "DD MMM YYYY hh:mm a"
+                                          )
+                                        : "Right after listing"}
+                                    </span>
+                                  </li>
+                                  <li>
+                                    <span className="key">
+                                      Auction Expiration Date{" "}
+                                      <ToolTip
+                                        icon={
+                                          <BsFillQuestionCircleFill
+                                            size={16}
+                                            className="check-icon"
+                                          />
+                                        }
+                                        content={
+                                          "Any bid placed in the last 10 minutes extends the auction by 10 minutes."
+                                        }
+                                        placement="top"
+                                      />
+                                    </span>
+                                    <span className="value">
+                                      {startChosen && !endChosen
+                                        ? dayjs(addDays(startDate, 1)).format(
+                                            "DD MMM YYYY hh:mm a"
+                                          )
+                                        : endChosen
+                                        ? dayjs(endDate).format(
+                                            "DD MMM YYYY hh:mm a"
+                                          )
+                                        : "1 Day"}
+                                    </span>
+                                  </li>
                                 </>
                               )}
                               {erc721Sale.isBuy && (
@@ -1367,50 +1407,7 @@ const NFTPutOnSale = ({
                                   - {parseFloat(nft.service_fee)}%
                                 </span>
                               </li>
-                              {erc721Sale.isBid && (
-                                <>
-                                  <li>
-                                    <span className="key">
-                                      Auction Starting Date
-                                    </span>
-                                    <span className="value">
-                                      {startChosen
-                                        ? dayjs(startDate).format(
-                                            "DD MMM YYYY hh:mm a"
-                                          )
-                                        : "Right after listing"}
-                                    </span>
-                                  </li>
-                                  <li>
-                                    <span className="key">
-                                      Auction Expiration Date{" "}
-                                      <ToolTip
-                                        icon={
-                                          <BsFillQuestionCircleFill
-                                            size={16}
-                                            className="check-icon"
-                                          />
-                                        }
-                                        content={
-                                          "Any bid placed in the last 10 minutes extends the auction by 10 minutes."
-                                        }
-                                        placement="top"
-                                      />
-                                    </span>
-                                    <span className="value">
-                                      {startChosen && !endChosen
-                                        ? dayjs(addDays(startDate, 1)).format(
-                                            "DD MMM YYYY hh:mm a"
-                                          )
-                                        : endChosen
-                                        ? dayjs(endDate).format(
-                                            "DD MMM YYYY hh:mm a"
-                                          )
-                                        : "1 Day"}
-                                    </span>
-                                  </li>
-                                </>
-                              )}
+
                               {erc721Sale.isBuy && (
                                 <li className="final-set">
                                   <span className="key">Final Amount </span>

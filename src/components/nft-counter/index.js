@@ -8,6 +8,7 @@ function NFTCounter({
   intervalClass = "",
   intervalGapClass = "",
   handleEndEvent = () => {},
+  handleBeforeEndEvent = () => {},
 }) {
   const calculateTimeLeft = (input, cInput) => {
     var offset = new Date().getTimezoneOffset();
@@ -58,6 +59,10 @@ function NFTCounter({
       const { days, hours, minutes, seconds } = calculateTimeLeft(time, cTime);
       if (!days && !hours && !minutes && seconds <= 0.1) {
         handleEndEvent();
+      }
+
+      if (!days && !hours && !minutes && seconds === 10) {
+        handleBeforeEndEvent();
       }
     }, 1000);
   });

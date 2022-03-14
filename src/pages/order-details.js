@@ -356,6 +356,51 @@ const OrderDetails = () => {
   };
   const handleAuctionEndTimer = () => {
     setIsAuctionEnded(true);
+    // getOrderDetails();
+  };
+
+  const handleBeforeAuctionEndTimer = () => {
+    getOrderDetails();
+  };
+
+  const getOrderDetails = async () => {
+    try {
+      let response = await nftDetailApi({
+        nft_slug: slug,
+        order_slug: orderSlug,
+      });
+      const NFT = response.data.data.nft;
+      if (NFT?.order_details) {
+        if (NFT?.order_details?.timed_auction) {
+          setAuctionEndTime(NFT.order_details?.auction_end_time);
+          setIsAuctionStarted(
+            new Date(NFT.time).getTime() >=
+              new Date(NFT.order_details?.auction_start_time).getTime()
+          );
+          setIsAuctionEnded(
+            new Date(NFT.time).getTime() >
+              new Date(NFT.order_details?.auction_end_time).getTime()
+          );
+        }
+
+        setIsOrderOnSale(NFT.order_details?.status === "onsale");
+        setIsOrderSuccess(NFT.order_details?.status === "success");
+        setIsOrderCancelled(NFT.order_details?.status === "cancelled");
+      }
+
+      if (NFT?.order_details?.order_completed) {
+        setSoldOut(true);
+      }
+
+      if (
+        NFT?.order_details?.available_quantity === 0 &&
+        NFT?.order_details?.total_quantity > 0
+      ) {
+        setTransferringNFT(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -423,6 +468,7 @@ const OrderDetails = () => {
                   auctionEndTime={auctionEndTime}
                   handleAuctionStartTimer={handleAuctionStartTimer}
                   handleAuctionEndTimer={handleAuctionEndTimer}
+                  handleBeforeAuctionEndTimer={handleBeforeAuctionEndTimer}
                 />
               </div>
             </div>
