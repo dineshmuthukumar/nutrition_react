@@ -20,6 +20,21 @@ const CollectionCard = ({ nft, recentSold = false }) => {
   const [auctionEndTime, setAuctionEndTime] = useState("");
   const [isAuctionStarted, setIsAuctionStarted] = useState(false);
   const [isAuctionEnded, setIsAuctionEnded] = useState(false);
+  const [showTimer, setShowTimer] = useState(false);
+
+  useEffect(() => {
+    if (nft?.order_details?.timed_auction) {
+      setIsAuctionStarted(
+        new Date(nft?.time).getTime() >=
+          new Date(nft?.order_details?.auction_start_time).getTime()
+      );
+      setIsAuctionEnded(
+        new Date(nft?.time).getTime() >
+          new Date(nft?.order_details?.auction_end_time).getTime()
+      );
+      setShowTimer(true);
+    }
+  }, []);
 
   const handleAuctionStartTimer = () => {
     setIsAuctionStarted(true);
@@ -110,43 +125,47 @@ const CollectionCard = ({ nft, recentSold = false }) => {
           <>
             {nft?.order_details?.is_bid && nft?.order_details?.timed_auction && (
               <>
-                {!isAuctionStarted && !isAuctionEnded && (
-                  <div className="time-counter-box">
-                    <span className="time-counter-card">
-                      <img src={startin} alt="startin" />
-                      <NFTCounter
-                        time={nft?.order_details?.auction_start_time}
-                        cTime={nft?.time}
-                        timeClass="font-onerem"
-                        intervalClass="font-psevenrem"
-                        intervalGapClass="me-1"
-                        handleEndEvent={handleAuctionStartTimer}
-                      />
-                      &nbsp;&nbsp;
-                      <span class="fire-icon">
-                        <AiFillFire />
-                      </span>
-                    </span>
-                  </div>
-                )}
-                {!isAuctionEnded && isAuctionStarted && (
-                  <div className="time-counter-box">
-                    <span className="time-counter-card">
-                      <img src={endsin} alt="endsin" />
-                      <NFTCounter
-                        time={nft?.order_details?.auction_end_time}
-                        cTime={nft?.time}
-                        timeClass="font-onerem"
-                        intervalClass="font-psevenrem"
-                        intervalGapClass="me-1"
-                        handleEndEvent={handleAuctionEndTimer}
-                      />
-                      &nbsp;&nbsp;
-                      <span class="fire-icon">
-                        <AiFillFire />
-                      </span>
-                    </span>
-                  </div>
+                {showTimer && (
+                  <>
+                    {!isAuctionStarted && !isAuctionEnded && (
+                      <div className="time-counter-box">
+                        <span className="time-counter-card">
+                          <img src={startin} alt="startin" />
+                          <NFTCounter
+                            time={nft?.order_details?.auction_start_time}
+                            cTime={nft?.time}
+                            timeClass="font-onerem"
+                            intervalClass="font-psevenrem"
+                            intervalGapClass="me-1"
+                            handleEndEvent={handleAuctionStartTimer}
+                          />
+                          &nbsp;&nbsp;
+                          <span class="fire-icon">
+                            <AiFillFire />
+                          </span>
+                        </span>
+                      </div>
+                    )}
+                    {!isAuctionEnded && isAuctionStarted && (
+                      <div className="time-counter-box">
+                        <span className="time-counter-card">
+                          <img src={endsin} alt="endsin" />
+                          <NFTCounter
+                            time={nft?.order_details?.auction_end_time}
+                            cTime={nft?.time}
+                            timeClass="font-onerem"
+                            intervalClass="font-psevenrem"
+                            intervalGapClass="me-1"
+                            handleEndEvent={handleAuctionEndTimer}
+                          />
+                          &nbsp;&nbsp;
+                          <span class="fire-icon">
+                            <AiFillFire />
+                          </span>
+                        </span>
+                      </div>
+                    )}
+                  </>
                 )}
               </>
             )}
