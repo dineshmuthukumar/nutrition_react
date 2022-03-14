@@ -339,8 +339,47 @@ const NFTPutOnSale = ({
     </div>
   ));
 
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(
+    (() => {
+      const d = new Date();
+      let minutes = d.getMinutes();
+
+      let hours = d.getHours();
+
+      if (minutes >= 45) {
+        return setHours(setMinutes(new Date(), 0), hours + 1);
+      } else if (minutes >= 30) {
+        return setHours(setMinutes(new Date(), 45), hours);
+      } else if (minutes >= 15) {
+        return setHours(setMinutes(new Date(), 30), hours);
+      } else if (minutes >= 0) {
+        return setHours(setMinutes(new Date(), 15), hours);
+      } else {
+        return setHours(setMinutes(new Date(), 0), hours);
+      }
+    })()
+  );
+
+  const [endDate, setEndDate] = useState(
+    (() => {
+      const d = new Date();
+      let minutes = d.getMinutes();
+
+      let hours = d.getHours();
+
+      if (minutes >= 45) {
+        return setHours(setMinutes(new Date(), 30), hours + 1);
+      } else if (minutes >= 30) {
+        return setHours(setMinutes(new Date(), 15), hours + 1);
+      } else if (minutes >= 15) {
+        return setHours(setMinutes(new Date(), 0), hours + 1);
+      } else if (minutes >= 0) {
+        return setHours(setMinutes(new Date(), 45), hours);
+      } else {
+        return setHours(setMinutes(new Date(), 30), hours);
+      }
+    })()
+  );
 
   const ExampleCustomStartInput = React.forwardRef(
     ({ value, onClick }, ref) => (
@@ -734,7 +773,7 @@ const NFTPutOnSale = ({
                                         onClick={() => {
                                           setStartChosen(false);
                                           setStartDate(new Date());
-                                          setEndDate(addDays(new Date(), 3));
+                                          // setEndDate(addDays(new Date(), 3));
                                         }}
                                       >
                                         Right after listing
@@ -807,10 +846,48 @@ const NFTPutOnSale = ({
                                 <DatePicker
                                   selected={startDate}
                                   onChange={(date) => {
+                                    const t_start =
+                                      dayjs(date).format("DD MM YYYY");
+                                    const init = dayjs().format("DD MM YYYY");
+
+                                    // if (t_start === init) {
+                                    //   const d = new Date();
+                                    //   let minutes = d.getMinutes();
+
+                                    //   let hours = d.getHours();
+
+                                    //   if (minutes >= 45) {
+                                    //     setStartDate(
+                                    //       setHours(
+                                    //         setMinutes(date, 0),
+                                    //         hours + 1
+                                    //       )
+                                    //     );
+                                    //   } else if (minutes >= 30) {
+                                    //     setStartDate(
+                                    //       setHours(setMinutes(date, 45), hours)
+                                    //     );
+                                    //   } else if (minutes >= 15) {
+                                    //     setStartDate(
+                                    //       setHours(setMinutes(date, 30), hours)
+                                    //     );
+                                    //   } else if (minutes >= 0) {
+                                    //     setStartDate(
+                                    //       setHours(setMinutes(date, 15), hours)
+                                    //     );
+                                    //   } else {
+                                    //     setStartDate(
+                                    //       setHours(setMinutes(date, 0), hours)
+                                    //     );
+                                    //   }
+                                    // } else {
+                                    //   setStartDate(date);
+                                    // }
+
                                     setStartDate(date);
                                     setEndDate(addHours(date, 1));
                                     setStartChosen(true);
-                                    setEndChosen(false);
+                                    // setEndChosen(false);
                                   }}
                                   customInput={<ExampleCustomStartInput />}
                                   minDate={new Date()}
@@ -879,7 +956,162 @@ const NFTPutOnSale = ({
                                 <DatePicker
                                   selected={endDate}
                                   onChange={(date) => {
-                                    setEndDate(date);
+                                    const t_start =
+                                      dayjs(date).format("DD MM YYYY");
+                                    const init = dayjs().format("DD MM YYYY");
+
+                                    const t_maxDate = dayjs(
+                                      addDays(startDate, 3)
+                                    ).format("DD MM YYYY");
+
+                                    if (t_start === init) {
+                                      const d = startChosen
+                                        ? startDate
+                                        : new Date();
+                                      let minutes = d.getMinutes();
+
+                                      let hours = d.getHours();
+
+                                      let in_minutes = date.getMinutes();
+
+                                      let in_hours = date.getHours();
+
+                                      if (hours > in_hours) {
+                                        if (minutes >= 45) {
+                                          setEndDate(
+                                            setHours(
+                                              setMinutes(date, 30),
+                                              hours + 1
+                                            )
+                                          );
+                                        } else if (minutes >= 30) {
+                                          setEndDate(
+                                            setHours(
+                                              setMinutes(date, 15),
+                                              hours + 1
+                                            )
+                                          );
+                                        } else if (minutes >= 15) {
+                                          setEndDate(
+                                            setHours(
+                                              setMinutes(date, 0),
+                                              hours + 1
+                                            )
+                                          );
+                                        } else if (minutes >= 0) {
+                                          setEndDate(
+                                            setHours(
+                                              setMinutes(date, 45),
+                                              hours
+                                            )
+                                          );
+                                        } else {
+                                          setEndDate(
+                                            setHours(
+                                              setMinutes(date, minutes),
+                                              hours
+                                            )
+                                          );
+                                        }
+                                      } else {
+                                        if (minutes >= 45) {
+                                          setEndDate(
+                                            setHours(
+                                              setMinutes(date, 30),
+                                              in_hours + 1
+                                            )
+                                          );
+                                        } else if (minutes >= 30) {
+                                          setEndDate(
+                                            setHours(
+                                              setMinutes(date, 15),
+                                              in_hours + 1
+                                            )
+                                          );
+                                        } else if (minutes >= 15) {
+                                          setEndDate(
+                                            setHours(
+                                              setMinutes(date, 0),
+                                              in_hours + 1
+                                            )
+                                          );
+                                        } else if (minutes >= 0) {
+                                          setEndDate(
+                                            setHours(
+                                              setMinutes(date, 45),
+                                              in_hours
+                                            )
+                                          );
+                                        } else {
+                                          setEndDate(
+                                            setHours(
+                                              setMinutes(date, 30),
+                                              in_hours
+                                            )
+                                          );
+                                        }
+                                      }
+                                    } else if (t_start === t_maxDate) {
+                                      const d = startChosen
+                                        ? startDate
+                                        : new Date();
+                                      let minutes = d.getMinutes();
+
+                                      let hours = d.getHours();
+
+                                      let in_minutes = date.getMinutes();
+
+                                      let in_hours = date.getHours();
+
+                                      if (in_hours < hours) {
+                                        setEndDate(
+                                          setHours(
+                                            setMinutes(date, in_minutes),
+                                            in_hours
+                                          )
+                                        );
+                                      } else {
+                                        if (minutes > 45) {
+                                          setEndDate(
+                                            setHours(
+                                              setMinutes(date, 0),
+                                              hours + 1
+                                            )
+                                          );
+                                        } else if (minutes > 30) {
+                                          setEndDate(
+                                            setHours(
+                                              setMinutes(date, 45),
+                                              hours
+                                            )
+                                          );
+                                        } else if (minutes > 15) {
+                                          setEndDate(
+                                            setHours(
+                                              setMinutes(date, 30),
+                                              hours
+                                            )
+                                          );
+                                        } else if (minutes > 0) {
+                                          setEndDate(
+                                            setHours(
+                                              setMinutes(date, 15),
+                                              hours
+                                            )
+                                          );
+                                        } else {
+                                          setEndDate(
+                                            setHours(
+                                              setMinutes(date, minutes),
+                                              hours
+                                            )
+                                          );
+                                        }
+                                      }
+                                    } else {
+                                      setEndDate(date);
+                                    }
+
                                     setEndChosen(true);
                                   }}
                                   customInput={<ExampleCustomEndInput />}
@@ -892,13 +1124,17 @@ const NFTPutOnSale = ({
                                   minTime={(() => {
                                     const t_endDate =
                                       dayjs(endDate).format("DD MM YYYY");
-                                    const t_startDate =
-                                      dayjs(startDate).format("DD MM YYYY");
 
-                                    if (
-                                      t_endDate.valueOf() ===
-                                      t_startDate.valueOf()
-                                    ) {
+                                    const tmp_start_date = startChosen
+                                      ? startDate
+                                      : new Date();
+
+                                    const t_startDate =
+                                      dayjs(tmp_start_date).format(
+                                        "DD MM YYYY"
+                                      );
+
+                                    if (t_endDate === t_startDate) {
                                       const d = startDate;
                                       let minutes = d.getMinutes();
 
@@ -906,26 +1142,27 @@ const NFTPutOnSale = ({
 
                                       if (minutes >= 45) {
                                         return setHours(
-                                          setMinutes(startDate, 0),
+                                          setMinutes(tmp_start_date, 15),
                                           hours + 1
                                         );
                                       } else if (minutes >= 30) {
                                         return setHours(
-                                          setMinutes(startDate, 45),
-                                          hours
+                                          setMinutes(tmp_start_date, 0),
+                                          hours + 1
                                         );
                                       } else if (minutes >= 15) {
                                         return setHours(
-                                          setMinutes(startDate, 30),
+                                          setMinutes(tmp_start_date, 45),
                                           hours
                                         );
                                       } else if (minutes >= 0) {
                                         return setHours(
-                                          setMinutes(startDate, 15),
+                                          setMinutes(tmp_start_date, 30),
                                           hours
                                         );
                                       }
                                     } else {
+                                      console.log("fire");
                                       return setHours(
                                         setMinutes(endDate, 0),
                                         0
@@ -1305,6 +1542,75 @@ const NFTPutOnSale = ({
                                   })()}
                                 </span>
                               </li>
+                              {erc721Sale.isBuy && (
+                                <>
+                                  <li>
+                                    <span className="key">Buy Amount</span>
+                                    <span className="value">
+                                      {currencyFormat(
+                                        erc721Sale.buyAmount,
+                                        "USD"
+                                      )}
+                                    </span>
+                                  </li>
+
+                                  <li>
+                                    <span className="key">
+                                      Artist Fee{" "}
+                                      <ToolTip
+                                        icon={
+                                          <BsFillQuestionCircleFill
+                                            size={16}
+                                            className="check-icon"
+                                          />
+                                        }
+                                        content={
+                                          "The royalty paid to the artist or the inspiration."
+                                        }
+                                        placement="top"
+                                      />
+                                    </span>
+                                    <span className="value">
+                                      - {parseFloat(nft.royalties)}%
+                                    </span>
+                                  </li>
+                                  <li>
+                                    <span className="key">
+                                      Service Fee{" "}
+                                      <ToolTip
+                                        icon={
+                                          <BsFillQuestionCircleFill
+                                            size={16}
+                                            className="mb-1 check-icon"
+                                          />
+                                        }
+                                        content={
+                                          "The service fee includes gas fee and the platform fee."
+                                        }
+                                        placement="top"
+                                      />
+                                    </span>
+                                    <span className="value">
+                                      - {parseFloat(nft.service_fee)}%
+                                    </span>
+                                  </li>
+
+                                  <li className="final-set">
+                                    <span className="key">Final Amount </span>
+                                    <span className="value">
+                                      {currencyFormat(
+                                        parseFloat(erc721Sale.buyAmount) -
+                                          (parseFloat(erc721Sale.buyAmount) *
+                                            (parseFloat(nft.royalties) +
+                                              parseFloat(nft.service_fee))) /
+                                            100,
+                                        "USD"
+                                      )}
+                                    </span>
+                                  </li>
+                                </>
+                              )}
+
                               {erc721Sale.isBid && (
                                 <>
                                   <li>
@@ -1358,80 +1664,13 @@ const NFTPutOnSale = ({
                                   </li>
                                 </>
                               )}
-                              {erc721Sale.isBuy && (
-                                <li>
-                                  <span className="key">Buy Amount</span>
-                                  <span className="value">
-                                    {currencyFormat(
-                                      erc721Sale.buyAmount,
-                                      "USD"
-                                    )}
-                                  </span>
-                                </li>
-                              )}
-                              <li>
-                                <span className="key">
-                                  Artist Fee{" "}
-                                  <ToolTip
-                                    icon={
-                                      <BsFillQuestionCircleFill
-                                        size={16}
-                                        className="check-icon"
-                                      />
-                                    }
-                                    content={
-                                      "The royalty paid to the artist or the inspiration."
-                                    }
-                                    placement="top"
-                                  />
-                                </span>
-                                <span className="value">
-                                  - {parseFloat(nft.royalties)}%
-                                </span>
-                              </li>
-                              <li>
-                                <span className="key">
-                                  Service Fee{" "}
-                                  <ToolTip
-                                    icon={
-                                      <BsFillQuestionCircleFill
-                                        size={16}
-                                        className="mb-1 check-icon"
-                                      />
-                                    }
-                                    content={
-                                      "The service fee includes gas fee and the platform fee."
-                                    }
-                                    placement="top"
-                                  />
-                                </span>
-                                <span className="value">
-                                  - {parseFloat(nft.service_fee)}%
-                                </span>
-                              </li>
-
-                              {erc721Sale.isBuy && (
-                                <li className="final-set">
-                                  <span className="key">Final Amount </span>
-                                  <span className="value">
-                                    {currencyFormat(
-                                      parseFloat(erc721Sale.buyAmount) -
-                                        (parseFloat(erc721Sale.buyAmount) *
-                                          (parseFloat(nft.royalties) +
-                                            parseFloat(nft.service_fee))) /
-                                          100,
-                                      "USD"
-                                    )}
-                                  </span>
-                                </li>
-                              )}
                               {erc721Sale.isBid && (
                                 <li className="final-set">
                                   <span className="key ">
-                                    Auction cannot be cancelled after any valid
-                                    bid was made. <br />
-                                    Your final amount will be calculated after
-                                    deducting {parseFloat(nft.royalties)}%
+                                    1. Auction cannot be cancelled after any
+                                    valid bid was made. <br />
+                                    2. Your final amount will be calculated
+                                    after deducting {parseFloat(nft.royalties)}%
                                     artist fee{" "}
                                     <ToolTip
                                       icon={
@@ -1459,7 +1698,7 @@ const NFTPutOnSale = ({
                                       }
                                       placement="top"
                                     />{" "}
-                                    based on your final accepted bid amount.
+                                    on the final bid amount.
                                   </span>
                                 </li>
                               )}
