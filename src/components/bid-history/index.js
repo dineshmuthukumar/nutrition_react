@@ -216,11 +216,14 @@ const BidHistory = ({
                           <div className="empty-top-container">
                             <div className="empty-top-content">
                               <IoIosRocket color="white" />
-                              {!isAuctionStarted && !isAuctionEnded ? (
+                              {orderDetails?.timed_auction &&
+                              !isAuctionStarted &&
+                              !isAuctionEnded ? (
                                 <div className="empty-text">
                                   Auction has not yet begun
                                 </div>
-                              ) : isAuctionEnded ? (
+                              ) : orderDetails?.timed_auction &&
+                                isAuctionEnded ? (
                                 <div className="empty-text">
                                   Auction has ended. <br />
                                   No active bids.

@@ -9,6 +9,8 @@ import BidName from "./bid-name";
 import userImg from "../../images/user_1.jpg";
 import { currencyFormat } from "../../utils/common";
 import { TableLoader } from "../nft-basic-details/content-loader";
+import { BsFillQuestionCircleFill } from "react-icons/bs";
+import ToolTip from "../tooltip";
 
 import "./style.scss";
 
@@ -25,7 +27,27 @@ const NFTOrderDetails = ({ nft, orderList = [] }) => {
               <th className="text-center">#</th>
               <th className="text-center">NFT Type</th>
               <th className="text-center">Sale Type</th>
-              {erc721 && <th className="text-center">Minimum Bid Price</th>}
+              {erc721 && (
+                <>
+                  <th className="text-center">Minimum Bid Price</th>
+                  <th className="text-center">Auction Starting Date</th>
+                  <th className="text-center">
+                    Auction Expiration Date{" "}
+                    <ToolTip
+                      icon={
+                        <BsFillQuestionCircleFill
+                          size={16}
+                          className="check-icon"
+                        />
+                      }
+                      content={
+                        "Any bid placed in the last 10 minutes extends the auction by 10 minutes."
+                      }
+                      placement="top"
+                    />
+                  </th>
+                </>
+              )}
               <th className="text-center">Sale Price</th>
               <th className="text-center">Availability</th>
               {/* <th className="text-center">Order Views</th> */}
@@ -51,13 +73,29 @@ const NFTOrderDetails = ({ nft, orderList = [] }) => {
                   })()}
                 </td>
                 {erc721 && (
-                  <td className="text-center">
-                    <div className="usd-value">
-                      {order?.minimum_bid
-                        ? currencyFormat(order?.minimum_bid, "USD")
+                  <>
+                    <td className="text-center">
+                      <div className="usd-value">
+                        {order?.minimum_bid
+                          ? currencyFormat(order?.minimum_bid, "USD")
+                          : "-"}
+                      </div>
+                    </td>
+                    <td className="text-center">
+                      {order?.timed_auction
+                        ? dayjs(order?.auction_start_time).format(
+                            "MMM D, YYYY hh:mm A"
+                          )
                         : "-"}
-                    </div>
-                  </td>
+                    </td>
+                    <td className="text-center">
+                      {order?.timed_auction
+                        ? dayjs(order?.auction_end_time).format(
+                            "MMM D, YYYY hh:mm A"
+                          )
+                        : "-"}
+                    </td>
+                  </>
                 )}
 
                 <td className="text-center">
