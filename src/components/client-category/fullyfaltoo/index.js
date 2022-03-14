@@ -97,9 +97,9 @@ const FullyFaltoo = () => {
 
   useEffect(() => {
     if (list.length > 0) {
-      fetchNFTList(1, list?.[1].slug);
-      setCategoryName(list?.[1].name);
-      setCategorySlug(list?.[1].slug);
+      fetchNFTList(1, list?.[0].slug);
+      setCategoryName(list?.[0].name);
+      setCategorySlug(list?.[0].slug);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [list]);
@@ -189,17 +189,6 @@ const FullyFaltoo = () => {
             </div>
             <div className="col-md-6">
               <div className="countdown-wrapper">
-                {/* {open_time && (
-                  <>
-                    <Counter
-                      time={open_time}
-                      handleEndEvent={handleCheck}
-                      timeClass="ctime"
-                      intervalClass="cinterval"
-                      intervalGapClass="me-3"
-                    />
-                  </>
-                )} */}
                 <ul id="countdown">
                   {!launch && open_time && (
                     <>
@@ -212,22 +201,6 @@ const FullyFaltoo = () => {
                       />
                     </>
                   )}
-                  {/* <li>
-                    <span className="days">00</span>
-                    <p>days</p>
-                  </li>
-                  <li>
-                    <span className="hours">00</span>
-                    <p>hours </p>
-                  </li>
-                  <li>
-                    <span className="minutes">00</span>
-                    <p>minutes</p>
-                  </li>
-                  <li>
-                    <span className="seconds">00</span>
-                    <p>seconds</p>
-                  </li> */}
                 </ul>
               </div>
             </div>
@@ -458,7 +431,7 @@ const Counter = ({
   });
 
   return (
-    <div className={`nft-counter`}>
+    <>
       {timerComponents.length ? (
         timerComponents
       ) : (
@@ -471,7 +444,7 @@ const Counter = ({
           </span>
         </span>
       )}
-    </div>
+    </>
   );
 };
 

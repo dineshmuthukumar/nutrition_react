@@ -22,16 +22,23 @@ section.client-category {
 }
 #countdown {
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  margin: auto;
+  max-width: 30rem;
 }
-
+#countdown li {
+  width: 23%;
+  padding: 0.5rem;
+}
 ul {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-#countdown li:not(:last-child) {
-  margin-right: 2em;
-}
+
 #countdown li {
   display: inline-block;
   background: #681740;
