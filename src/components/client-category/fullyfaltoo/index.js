@@ -303,7 +303,7 @@ const FullyFaltoo = () => {
                     key={`NFTList-nft-${i}`}
                     className="col-xl-3 col-lg-4 col-md-6 col-sm-6"
                   >
-                    <NFTCard nft={nft} key={i} />
+                    <NFTCard nft={nft} key={i} textColor={"#fff"} />
                   </div>
                 ))
               ) : (

@@ -15,6 +15,7 @@ const NFTCard = ({
   ownedCard = false,
   recentSold = false,
   onsale = false,
+  textColor,
 }) => {
   const erc721 = nft?.nft_type === "erc721";
   const history = useHistory();
@@ -119,7 +120,7 @@ const NFTCard = ({
       />
 
       <div className="top-content-title">
-        <div>
+        <div style={{ color: textColor }}>
           <div className="more-nft-title">{nft?.name}</div>
           {nft?.owner_name && (
             <div className="more-nft-desc">{nft?.owner_name}</div>

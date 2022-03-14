@@ -93,6 +93,10 @@ const NFTBaseDetails = ({
           ) {
             return "Hindustan Times";
           } else if (
+            nft.celebrity_id === parseInt(process.env.REACT_APP_FF_ID)
+          ) {
+            return "Fully Faltoo's";
+          } else if (
             nft.celebrity_id === parseInt(process.env.REACT_APP_META_VERSE_ID)
           ) {
             return "Metaverse Wedding";

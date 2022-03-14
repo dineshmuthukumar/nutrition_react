@@ -256,10 +256,9 @@ const Details = () => {
             <>
               <NFTSectionTitle
                 title={
-                  nft.celebrity_id ===
-                  parseInt(process.env.REACT_APP_KALPANA_CHAWLA_ID)
+                  nft.celebrity_id === 133
                     ? "The Inspiration"
-                    : "Artist"
+                    : "Artist / Brand"
                 }
               />
               <div className="mt-5">

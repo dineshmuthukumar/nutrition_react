@@ -9,6 +9,7 @@ import ht_img from "../../images/ht_logo.png";
 import metaverse_couple from "../../images/metaverse-couple.jpg";
 import kalpana from "../../images/Kalpana.png";
 import latimes from "../../images/latimes/latimes.jpg";
+import viacom18 from "../client-category/fullyfaltoo/img/Viacom18.jpeg";
 
 import "./style.scss";
 const NFTArtist = ({ id }) => {
@@ -25,6 +26,8 @@ const NFTArtist = ({ id }) => {
                 id === parseInt(process.env.REACT_APP_HINDUSTAN_TIMES_ID)
               ) {
                 return ht_img;
+              } else if (id === parseInt(process.env.REACT_APP_FF_ID)) {
+                return viacom18;
               } else if (id === parseInt(process.env.REACT_APP_META_VERSE_ID)) {
                 return metaverse_couple;
               } else if (
@@ -54,6 +57,8 @@ const NFTArtist = ({ id }) => {
                 id === parseInt(process.env.REACT_APP_HINDUSTAN_TIMES_ID)
               ) {
                 return "Hindustan Times";
+              } else if (id === parseInt(process.env.REACT_APP_FF_ID)) {
+                return "Viacom18 Media Pvt. Ltd.";
               } else if (id === parseInt(process.env.REACT_APP_META_VERSE_ID)) {
                 return "Metaverse Wedding";
               } else if (
@@ -79,6 +84,8 @@ const NFTArtist = ({ id }) => {
                   id === parseInt(process.env.REACT_APP_HINDUSTAN_TIMES_ID)
                 )
                   return `Hindustan Times is one of India's most respected and leading English news destination, with a legacy of close to a hundred years. Through the course of the century, HT has witnessed and set forth India's most iconic moments to its citizenry. As India celebrates its 73rd Republic Day on 26th January 2022, we invite you to stake claim to piece of India's glorious history through the lens of the Hindustan Times. HT's foray into Web 3.0 through its NFTs is an attempt in bringing its storied past into the future. This would include timeless tokens of spectacular landmarks and milestones in Indian history which was published in the daily through the course of the last century Many such iconic timeless tokens are being put up for an auction on 26th Jan. For any further details on this please log on www.nft.hindustantimes.com and stake your claim to a piece of history.`;
+                else if (id === parseInt(process.env.REACT_APP_FF_ID))
+                  return `Viacom18 Media Pvt. Ltd. is one of India's fastest-growing entertainment networks and a house of iconic brands that offers multi-platform, multi-generational and multicultural brand experiences. Now Viacom18's Youth, Music, and English Entertainment Cluster steps into the world of NFTs by announcing the launch of “Fully Faltoo” - a platform to buy and bid on exclusive NFTs. The Fully Faltoo NFT collection gives our fans all over the world an opportunity to claim ownership over edgy and unique digital art pieces. The collectibles also feature creations inspired by iconic pop culture properties like Roadies and Bakra. The industry-leading security for the Fully Faltoo is provided by GuardianLink, who will also take care of the process of securely minting, transferring, and storing NFTs.`;
                 else if (id === parseInt(process.env.REACT_APP_META_VERSE_ID))
                   return `The NFT Collection featuring the first meta-verse wedding of Asia is one of the most exclusive collections brought to you by BeyondLife.club. The NFT collection brings you artwork featuring backgrounds and attires from the Harry Potter and cyberpunk era in addition to the classic wedding attire featuring the bride, groom, and the father-in-law!`;
                 else if (
@@ -93,7 +100,16 @@ const NFTArtist = ({ id }) => {
             />
           </div>
           <div className="artist-pill-container mt-4">
-            <AritstPills title="Managed By" value="BeyondLife.club" />
+            <AritstPills
+              title="Managed By"
+              value={(() => {
+                if (id === parseInt(process.env.REACT_APP_FF_ID)) {
+                  return "Viacom18 Media Pvt. Ltd.";
+                } else {
+                  return "BeyondLife.club";
+                }
+              })()}
+            />
           </div>
           {/* <div className="bottom-owner-contact-links">
             <div className="share-link-owner">
