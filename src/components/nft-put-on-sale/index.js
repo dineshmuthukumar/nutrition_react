@@ -743,6 +743,18 @@ const NFTPutOnSale = ({
                                 <div className="input-field-sale">
                                   <label className="input-sale-text">
                                     Expiration Date
+                                    <ToolTip
+                                      icon={
+                                        <BsFillQuestionCircleFill
+                                          size={16}
+                                          className="check-icon"
+                                        />
+                                      }
+                                      content={
+                                        "Maximum Auction duration is 3 days. Any bid placed in the last 10 minutes extends the auction by 10 minutes."
+                                      }
+                                      placement="top"
+                                    />
                                   </label>
                                   <Dropdown>
                                     <Dropdown.Toggle as={CustomToggle}>
@@ -838,11 +850,11 @@ const NFTPutOnSale = ({
                                   dateFormat="MMMM d, yyyy h:mm aa"
                                   showTimeSelect
                                   withPortal
-                                  onCalendarClose={() => {
-                                    if (!startChosen) {
-                                      toast.error("Choose the date");
-                                    }
-                                  }}
+                                  // onCalendarClose={() => {
+                                  //   if (!startChosen) {
+                                  //     toast.error("Choose the date");
+                                  //   }
+                                  // }}
                                 />
                               </div>
 
@@ -898,11 +910,11 @@ const NFTPutOnSale = ({
                                   dateFormat="MMMM d, yyyy h:mm aa"
                                   showTimeSelect
                                   withPortal
-                                  onCalendarClose={() => {
-                                    if (!endChosen) {
-                                      toast.error("Choose the date");
-                                    }
-                                  }}
+                                  // onCalendarClose={() => {
+                                  //   if (!endChosen) {
+                                  //     toast.error("Choose the date");
+                                  //   }
+                                  // }}
                                 />
                               </div>
 
@@ -1308,20 +1320,32 @@ const NFTPutOnSale = ({
                                 <>
                                   <li>
                                     <span className="key">
-                                      Auction Starts on
+                                      Auction Starting Date
                                     </span>
                                     <span className="value">
                                       {startChosen
                                         ? dayjs(startDate).format(
                                             "DD MMM YYYY hh:mm a"
                                           )
-                                        : dayjs(new Date()).format(
-                                            "DD MMM YYYY hh:mm a"
-                                          )}
+                                        : "Right after listing"}
                                     </span>
                                   </li>
                                   <li>
-                                    <span className="key">Auction Ends on</span>
+                                    <span className="key">
+                                      Auction Expiration Date{" "}
+                                      <ToolTip
+                                        icon={
+                                          <BsFillQuestionCircleFill
+                                            size={16}
+                                            className="check-icon"
+                                          />
+                                        }
+                                        content={
+                                          "Any bid placed in the last 10 minutes extends the auction by 10 minutes."
+                                        }
+                                        placement="top"
+                                      />
+                                    </span>
                                     <span className="value">
                                       {startChosen && !endChosen
                                         ? dayjs(addDays(startDate, 1)).format(
@@ -1331,9 +1355,7 @@ const NFTPutOnSale = ({
                                         ? dayjs(endDate).format(
                                             "DD MMM YYYY hh:mm a"
                                           )
-                                        : dayjs(addDays(new Date(), 1)).format(
-                                            "DD MMM YYYY hh:mm a"
-                                          )}
+                                        : "1 Day"}
                                     </span>
                                   </li>
                                 </>
@@ -1356,6 +1378,8 @@ const NFTPutOnSale = ({
                               {erc721Sale.isBid && (
                                 <li className="final-set">
                                   <span className="key ">
+                                    Auction cannot be cancelled after any valid
+                                    bid was made. <br />
                                     Your final amount will be calculated after
                                     deducting {parseFloat(nft.royalties)}%
                                     artist fee{" "}
@@ -1386,10 +1410,6 @@ const NFTPutOnSale = ({
                                       placement="top"
                                     />{" "}
                                     based on your final accepted bid amount.
-                                    <br />
-                                    Auction cannot be cancelled after any valid
-                                    bid was made. Any bid placed in the last 10
-                                    minutes extends the auction by 10 minutes.
                                   </span>
                                 </li>
                               )}
