@@ -68,9 +68,9 @@ const Home = () => {
       <Header />
       <main>
         <Banner list={list} />
-        <LiveAuctions />
         <HotCollections />
-        <RecentlySoldNFT />
+        <LiveAuctions />
+        {/* <RecentlySoldNFT /> */}
         <TopBuyers />
         <TopSellers />
         <ShowAll categories={list} query={query} />

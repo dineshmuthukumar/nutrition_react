@@ -175,11 +175,7 @@ function App(props) {
                 path="/creator-application"
                 component={CreatorApplication}
               />
-              <Route
-                exact
-                path="/nfts/recently-sold"
-                component={RecentlySold}
-              />
+              <Route exact path="/recently-sold-NFT" component={RecentlySold} />
 
               <Route exact path="/user/:slug/details" component={UserDetails} />
               <Route path="/not-found" component={NotFound} />
