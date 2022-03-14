@@ -593,6 +593,7 @@ const NFTOrderBaseDetails = ({
             soldOut={soldOut}
             transferringNFT={transferringNFT}
             isAuctionEnded={isAuctionEnded}
+            latestBid={latestBid}
           />
 
           {(() => {

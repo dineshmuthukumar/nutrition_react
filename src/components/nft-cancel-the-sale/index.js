@@ -27,6 +27,7 @@ const NFTCancelTheSale = ({
   soldOut,
   transferringNFT,
   isAuctionEnded,
+  latestBid,
 }) => {
   const history = useHistory();
   const { user } = useSelector((state) => state.user.data);
@@ -425,7 +426,7 @@ const NFTCancelTheSale = ({
                         </div>
                         <div className="place-cancel-button">
                           <button
-                            disabled={isAuctionEnded}
+                            disabled={latestBid?.slug}
                             className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-cancel-btn-pop `} //process -> proccessing
                             onClick={handleSaleCancel}
                           >
