@@ -850,41 +850,55 @@ const NFTPutOnSale = ({
                                       dayjs(date).format("DD MM YYYY");
                                     const init = dayjs().format("DD MM YYYY");
 
-                                    // if (t_start === init) {
-                                    //   const d = new Date();
-                                    //   let minutes = d.getMinutes();
+                                    if (t_start === init) {
+                                      const d = new Date();
+                                      let minutes = d.getMinutes();
 
-                                    //   let hours = d.getHours();
+                                      let hours = d.getHours();
 
-                                    //   if (minutes >= 45) {
-                                    //     setStartDate(
-                                    //       setHours(
-                                    //         setMinutes(date, 0),
-                                    //         hours + 1
-                                    //       )
-                                    //     );
-                                    //   } else if (minutes >= 30) {
-                                    //     setStartDate(
-                                    //       setHours(setMinutes(date, 45), hours)
-                                    //     );
-                                    //   } else if (minutes >= 15) {
-                                    //     setStartDate(
-                                    //       setHours(setMinutes(date, 30), hours)
-                                    //     );
-                                    //   } else if (minutes >= 0) {
-                                    //     setStartDate(
-                                    //       setHours(setMinutes(date, 15), hours)
-                                    //     );
-                                    //   } else {
-                                    //     setStartDate(
-                                    //       setHours(setMinutes(date, 0), hours)
-                                    //     );
-                                    //   }
-                                    // } else {
-                                    //   setStartDate(date);
-                                    // }
+                                      let in_minutes = date.getMinutes();
 
-                                    setStartDate(date);
+                                      let in_hours = date.getHours();
+
+                                      if (minutes >= 45) {
+                                        hours = hours + 1;
+                                        minutes = 0;
+                                      } else if (minutes >= 30) {
+                                        minutes = 45;
+                                      } else if (minutes >= 15) {
+                                        minutes = 30;
+                                      } else if (minutes >= 0) {
+                                        minutes = 15;
+                                      } else {
+                                        minutes = 0;
+                                      }
+
+                                      console.log(
+                                        hours,
+                                        minutes,
+                                        in_hours,
+                                        in_minutes
+                                      );
+
+                                      if (hours <= in_hours) {
+                                        setStartDate(
+                                          setHours(
+                                            setMinutes(date, in_minutes),
+                                            in_hours
+                                          )
+                                        );
+                                      } else {
+                                        setStartDate(
+                                          setHours(
+                                            setMinutes(date, minutes),
+                                            hours
+                                          )
+                                        );
+                                      }
+                                    } else {
+                                      setStartDate(date);
+                                    }
+
                                     setEndDate(addHours(date, 1));
                                     setStartChosen(true);
                                     // setEndChosen(false);
@@ -968,7 +982,7 @@ const NFTPutOnSale = ({
                                       const d = startChosen
                                         ? startDate
                                         : new Date();
-                                      let minutes = d.getMinutes();
+                                      let minutes = d.getMinutes() + 30;
 
                                       let hours = d.getHours();
 
@@ -976,80 +990,27 @@ const NFTPutOnSale = ({
 
                                       let in_hours = date.getHours();
 
-                                      if (hours > in_hours) {
-                                        if (minutes >= 45) {
-                                          setEndDate(
-                                            setHours(
-                                              setMinutes(date, 30),
-                                              hours + 1
-                                            )
-                                          );
-                                        } else if (minutes >= 30) {
-                                          setEndDate(
-                                            setHours(
-                                              setMinutes(date, 15),
-                                              hours + 1
-                                            )
-                                          );
-                                        } else if (minutes >= 15) {
-                                          setEndDate(
-                                            setHours(
-                                              setMinutes(date, 0),
-                                              hours + 1
-                                            )
-                                          );
-                                        } else if (minutes >= 0) {
-                                          setEndDate(
-                                            setHours(
-                                              setMinutes(date, 45),
-                                              hours
-                                            )
-                                          );
-                                        } else {
-                                          setEndDate(
-                                            setHours(
-                                              setMinutes(date, minutes),
-                                              hours
-                                            )
-                                          );
-                                        }
+                                      console.log(
+                                        hours,
+                                        minutes,
+                                        in_hours,
+                                        in_minutes
+                                      );
+
+                                      if (hours <= in_hours) {
+                                        setEndDate(
+                                          setHours(
+                                            setMinutes(date, in_minutes),
+                                            in_hours
+                                          )
+                                        );
                                       } else {
-                                        if (minutes >= 45) {
-                                          setEndDate(
-                                            setHours(
-                                              setMinutes(date, 30),
-                                              in_hours + 1
-                                            )
-                                          );
-                                        } else if (minutes >= 30) {
-                                          setEndDate(
-                                            setHours(
-                                              setMinutes(date, 15),
-                                              in_hours + 1
-                                            )
-                                          );
-                                        } else if (minutes >= 15) {
-                                          setEndDate(
-                                            setHours(
-                                              setMinutes(date, 0),
-                                              in_hours + 1
-                                            )
-                                          );
-                                        } else if (minutes >= 0) {
-                                          setEndDate(
-                                            setHours(
-                                              setMinutes(date, 45),
-                                              in_hours
-                                            )
-                                          );
-                                        } else {
-                                          setEndDate(
-                                            setHours(
-                                              setMinutes(date, 30),
-                                              in_hours
-                                            )
-                                          );
-                                        }
+                                        setEndDate(
+                                          setHours(
+                                            setMinutes(date, minutes),
+                                            hours
+                                          )
+                                        );
                                       }
                                     } else if (t_start === t_maxDate) {
                                       const d = startChosen
