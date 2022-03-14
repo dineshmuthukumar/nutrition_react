@@ -500,9 +500,9 @@ const NFTOrderBaseDetails = ({
                       tooltipText={(() => {
                         if (erc721) {
                           if (orderDetails.auction_extend_minutes) {
-                            return `When there are less than 10 minutes left in the auction, successful bids will reset the auction to ${orderDetails.auction_extend_minutes} minutes.`;
+                            return `When there are less than ${orderDetails?.auction_extend_minutes} minutes left in the auction, successful bids will extend the auction by ${orderDetails?.auction_extend_minutes} minutes.`;
                           } else {
-                            return "When there are less than 10 minutes left in the auction, successful bids will not reset the auction ending time";
+                            return `When there are less than 10 minutes left in the auction, successful bids will not extend the auction by 10 minutes.`;
                           }
                         }
                       })()}
@@ -517,9 +517,9 @@ const NFTOrderBaseDetails = ({
                       tooltipText={(() => {
                         if (erc721) {
                           if (orderDetails.auction_extend_minutes) {
-                            return `When there are less than 10 minutes left in the auction, successful bids will reset the auction to ${orderDetails.auction_extend_minutes} minutes.`;
+                            return `When there are less than ${orderDetails?.auction_extend_minutes} minutes left in the auction, successful bids will extend the auction by ${orderDetails?.auction_extend_minutes} minutes.`;
                           } else {
-                            return "When there are less than 10 minutes left in the auction, successful bids will not reset the auction ending time";
+                            return `When there are less than 10 minutes left in the auction, successful bids will not extend the auction by 10 minutes.`;
                           }
                         }
                       })()}
