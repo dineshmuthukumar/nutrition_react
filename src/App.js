@@ -12,7 +12,8 @@ import { useSelector, connect, useDispatch } from "react-redux";
 import NFTCounter from "./components/nft-counter";
 import { change_lang_action } from "./redux/actions/lang_action";
 import { setLanguage } from "react-multi-lang";
-import { getCookies } from "./utils/cookies";
+import { getCookies, setCookiesByName, setCookies } from "./utils/cookies";
+import { useHistory, useRouteMatch } from "react-router";
 import { getServerTimeApi } from "./api/base-methods";
 import {
   user_load_by_token_thunk,
@@ -20,6 +21,7 @@ import {
   market_live_thunk,
   market_live_off_thunk,
 } from "./redux/thunk/user_thunk";
+import useQuery from "./hook/useQuery";
 
 import "./App.css";
 
@@ -46,11 +48,16 @@ function App(props) {
   const market_start_date = "Mar 9, 2022 12:30:00";
 
   const [market_time, set_market_time] = useState();
-
+  const { url } = useRouteMatch();
+  const history = useHistory();
   const dispatch = useDispatch();
   const [online, setOnline] = useState(true);
 
   const { lang, user } = useSelector((state) => state);
+
+  let query = useQuery();
+  const fsz = query.get("fsz");
+  const token = query.get("token");
 
   const timeFunction = (check = false) => {
     var offset = new Date().getTimezoneOffset();
@@ -74,6 +81,18 @@ function App(props) {
   };
 
   useEffect(() => {
+    if (fsz) {
+      sessionStorage.setItem("fsz", fsz);
+      setCookiesByName("source", fsz);
+    }
+
+    if (token) {
+      setCookies(token);
+
+      history.replace(url);
+      dispatch(user_load_by_token_thunk(token));
+    }
+
     timeFunction(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
