@@ -73,7 +73,7 @@ section.category_list {
 }
 .category_card h1 {
   font-size: 1rem;
-  margin: 0.8em auto 0;
+  margin: 0em auto 0;
   text-align: center;
   font-family: $neue-helveticamedium;
   max-width: 6.5rem;
@@ -84,6 +84,10 @@ section.category_list {
 .category_card img {
   width: 100%;
   border-radius: 8px;
+}
+.category_card img,
+.category_card video {
+  margin-bottom: 0.8em;
 }
 section.category_list .card_title {
   margin-left: 0;
@@ -240,7 +244,7 @@ section.category_list .card_title {
     border-radius: 4px;
   }
   .category_card h1 {
-    font-size: 1.2em;
+    font-size: 1em;
     padding: 0em 0 0.5em;
   }
   .category_card img {
@@ -282,4 +286,8 @@ button.load_more {
     color: #000;
     border: 0.2rem solid #000;
   }
+}
+
+.mtm-6 {
+  margin-top: -6px !important;
 }

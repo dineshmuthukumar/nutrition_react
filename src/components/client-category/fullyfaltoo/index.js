@@ -260,7 +260,11 @@ const FullyFaltoo = () => {
                         );
                       }
                     })()}
-                    <h1>{category.name}</h1>
+                    <h1
+                      className={`${category.type === "video" ? "mtm-6" : ""}`}
+                    >
+                      {category.name}
+                    </h1>
                   </div>
                 </div>
               ))}
