@@ -59,7 +59,7 @@ const FullyFaltoo = () => {
     ],
   });
 
-  const open_start_date = "Mar 25, 2022 06:30:00";
+  const open_start_date = "Mar 25, 2022 12:30:00";
 
   const [open_time, set_open_time] = useState();
   const [launch, set_launch] = useState(false);
