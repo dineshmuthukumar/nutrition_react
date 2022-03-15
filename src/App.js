@@ -3,11 +3,13 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  useLocation,
   Redirect,
 } from "react-router-dom";
 
 import { FaTimes } from "react-icons/fa";
 import { useSelector, connect, useDispatch } from "react-redux";
+import { useHistory, useRouteMatch } from "react-router";
 
 import NFTCounter from "./components/nft-counter";
 import { change_lang_action } from "./redux/actions/lang_action";
@@ -20,6 +22,8 @@ import {
   market_live_thunk,
   market_live_off_thunk,
 } from "./redux/thunk/user_thunk";
+import { setCookiesByName, setCookies } from "./utils/cookies";
+import useQuery from "./hook/useQuery";
 
 import "./App.css";
 
@@ -157,33 +161,7 @@ function App(props) {
             }
           >
             <Switch>
-              <Route exact path="/details/:slug" component={Details} />
-              <Route
-                exact
-                path="/order/details/:slug/:orderSlug"
-                component={OrderDetails}
-              />
-              <Route exact path="/explore/category/:slug" component={Explore} />
-              <Route exact path="/" component={Home} />
-              <Route exact path="/help-line" component={HelpLine} />
-              <Route exact path="/hindustan-times-NFT" component={Htimes} />
-              <Route
-                exact
-                path="/kalpana-chawla-NFT"
-                component={KalpanaChawla}
-              />
-              <Route exact path="/fully-faltoo-NFT" component={FullyFaltoo} />
-              <Route exact path="/latimes-NFT" component={Latimes} />
-              <Route
-                exact
-                path="/creator-application"
-                component={CreatorApplication}
-              />
-              <Route exact path="/nfts/sale-history" component={RecentlySold} />
-
-              <Route exact path="/user/:slug/details" component={UserDetails} />
-              <Route path="/not-found" component={NotFound} />
-              <Route exact component={NotFound} />
+              <Route exact component={WebContainer} />
             </Switch>
           </Suspense>
         </Router>
@@ -191,6 +169,63 @@ function App(props) {
     </>
   );
 }
+
+const WebContainer = () => {
+  // const { url } = useRouteMatch();
+  const history = useHistory();
+  const { pathname } = useLocation();
+  const dispatch = useDispatch();
+  let query = useQuery();
+  const fsz = query.get("fsz");
+  const token = query.get("token");
+
+  useEffect(() => {
+    if (fsz) {
+      sessionStorage.setItem("fsz", fsz);
+      setCookiesByName("source", fsz);
+    }
+
+    if (token) {
+      setCookies(token);
+
+      history.replace(pathname);
+
+      dispatch(user_load_by_token_thunk(token));
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return (
+    <>
+      <Switch>
+        <Route exact path="/details/:slug" component={Details} />
+        <Route
+          exact
+          path="/order/details/:slug/:orderSlug"
+          component={OrderDetails}
+        />
+        <Route exact path="/explore/category/:slug" component={Explore} />
+        <Route exact path="/" component={Home} />
+        <Route exact path="/help-line" component={HelpLine} />
+        <Route exact path="/hindustan-times-NFT" component={Htimes} />
+        <Route exact path="/kalpana-chawla-NFT" component={KalpanaChawla} />
+        <Route exact path="/fully-faltoo-NFT" component={FullyFaltoo} />
+        <Route exact path="/latimes-NFT" component={Latimes} />
+        <Route
+          exact
+          path="/creator-application"
+          component={CreatorApplication}
+        />
+        <Route exact path="/nfts/sale-history" component={RecentlySold} />
+
+        <Route exact path="/user/:slug/details" component={UserDetails} />
+        <Route path="/not-found" component={NotFound} />
+        <Route exact component={NotFound} />
+      </Switch>
+    </>
+  );
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
