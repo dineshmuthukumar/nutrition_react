@@ -37,6 +37,18 @@ const NFTCard = ({
       );
       setShowTimer(true);
     }
+
+    if (onsale && nft?.timed_auction) {
+      setIsAuctionStarted(
+        new Date(nft?.time).getTime() >=
+          new Date(nft?.auction_start_time).getTime()
+      );
+      setIsAuctionEnded(
+        new Date(nft?.time).getTime() >
+          new Date(nft?.auction_end_time).getTime()
+      );
+      setShowTimer(true);
+    }
   }, []);
 
   const handleAuctionStartTimer = () => {
@@ -227,6 +239,54 @@ const NFTCard = ({
         )}
         {onsale && (
           <>
+            {nft?.is_bid && nft?.timed_auction && (
+              <>
+                {showTimer && (
+                  <>
+                    {!isAuctionStarted && !isAuctionEnded && (
+                      <div className="time-counter-box">
+                        <span className="time-counter-card">
+                          <img src={startin} alt="startin" />
+                          <NFTCounter
+                            time={nft?.auction_start_time}
+                            cTime={nft?.time}
+                            timeClass="font-onerem"
+                            intervalClass="font-psevenrem"
+                            intervalGapClass="me-1"
+                            handleEndEvent={handleAuctionStartTimer}
+                          />
+                          {/* &nbsp;&nbsp;<span class="fire-icon">🔥</span> */}
+                          &nbsp;&nbsp;
+                          <span class="fire-icon">
+                            <AiFillFire />
+                          </span>
+                        </span>
+                      </div>
+                    )}
+                    {!isAuctionEnded && isAuctionStarted && (
+                      <div className="time-counter-box">
+                        <span className="time-counter-card">
+                          <img src={endsin} alt="endsin" />
+                          <NFTCounter
+                            time={nft?.auction_end_time}
+                            cTime={nft?.time}
+                            timeClass="font-onerem"
+                            intervalClass="font-psevenrem"
+                            intervalGapClass="me-1"
+                            handleEndEvent={handleAuctionEndTimer}
+                          />
+                          &nbsp;&nbsp;
+                          <span class="fire-icon">
+                            <AiFillFire />
+                          </span>
+                        </span>
+                      </div>
+                    )}
+                  </>
+                )}
+              </>
+            )}
+
             <div className="more-bid-details">
               <div className="text-start">
                 <div className="mb-title text-secondary">
