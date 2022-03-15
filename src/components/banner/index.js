@@ -211,7 +211,7 @@ const Banner = ({ list = [] }) => {
                                 playsInline
                                 src={category.url}
                                 className="first-image"
-                                style={{ height: "43vh" }}
+                                style={{ height: "60vh" }}
                               ></video>
                               <h5 className="cat-title">{category.name}</h5>
                             </>
@@ -223,7 +223,7 @@ const Banner = ({ list = [] }) => {
                               <img
                                 src={category.url}
                                 className="first-image"
-                                style={{ height: "43vh" }}
+                                style={{ height: "60vh" }}
                               />
                             </>
                           );

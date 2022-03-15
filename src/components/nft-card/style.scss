@@ -59,6 +59,9 @@
     height: 26rem;
     object-fit: contain;
     margin-bottom: 1rem;
+    @media screen and (max-width: 991px) {
+      height: 20rem;
+    }
   }
 
   .top-content-title {
