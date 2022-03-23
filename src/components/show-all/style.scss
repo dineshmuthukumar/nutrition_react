@@ -87,9 +87,9 @@ button.load_more {
         .category-search.form-control {
           height: 2.3rem;
           width: 100%;
-          border-radius: 50rem;
+          border-radius: 0.2rem;
           box-shadow: none !important;
-          margin-top: 0.5rem;
+          // margin-top: 0.5rem;
           &:hover,
           &:focus,
           &:active {
@@ -249,6 +249,23 @@ button.load_more {
     svg {
       height: 1.2rem;
       width: 1.2rem;
+    }
+  }
+}
+
+.bot-border-hr {
+  border-bottom: 1px solid #ccc !important;
+}
+
+.prifilter-btn {
+  display: flex;
+  justify-content: space-between;
+  button {
+    width: 49%;
+    border-radius: 50rem !important;
+    &.apply-btn {
+      background: #000;
+      color: #fff;
     }
   }
 }

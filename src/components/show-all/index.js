@@ -314,6 +314,19 @@ const ShowAll = ({ categories, query }) => {
     </div>
   ));
 
+  const PriceDropdown = React.forwardRef(({ onClick }, ref) => (
+    <div
+      className="filter-drop-btn"
+      ref={ref}
+      onClick={(e) => {
+        e.preventDefault();
+        onClick(e);
+      }}
+    >
+      Price Range <BiCaretDown />
+    </div>
+  ));
+
   const SaleTypeDropdown = React.forwardRef(({ onClick }, ref) => (
     <div
       className="filter-drop-btn"
@@ -400,6 +413,76 @@ const ShowAll = ({ categories, query }) => {
                   .includes(value.toLocaleLowerCase())
             )}
           </ul>
+        </div>
+      );
+    }
+  );
+
+  const [priceRangeFilter, setPriceRangeFilter] = useState({
+    from: "",
+    to: "",
+  });
+
+  const PriceMenu = React.forwardRef(
+    ({ children, style, className, "aria-labelledby": labeledBy }, ref) => {
+      const [priceRange, setPriceRange] = useState({
+        from: "",
+        to: "",
+      });
+
+      return (
+        <div
+          ref={ref}
+          style={style}
+          className={className}
+          aria-labelledby={labeledBy}
+        >
+          <div className="d-flex">
+            <span className="category-search-block me-1">
+              <FormControl
+                autoFocus
+                className="category-search"
+                placeholder="From"
+                onChange={(e) => {
+                  setPriceRange({ ...priceRange, from: e.target.value });
+                }}
+                value={priceRange.from}
+              />
+            </span>
+            <span className="category-search-block">
+              <FormControl
+                autoFocus
+                className="category-search"
+                placeholder="To"
+                onChange={(e) => {
+                  setPriceRange({ ...priceRange, to: e.target.value });
+                }}
+                value={priceRange.to}
+              />
+            </span>
+          </div>
+          {/* <hr className="mt-2 mb-1 bot-border-hr" /> */}
+          <div className="prifilter-btn">
+            <button
+              type="button"
+              class="justify-content-center border dropdown-item"
+              onClick={(e) => {
+                setPriceRange({ from: "", to: "" });
+              }}
+            >
+              Clear
+            </button>
+            <button
+              type="button"
+              class="justify-content-center border dropdown-item apply-btn"
+              onClick={(e) => {
+                setPriceRangeFilter({ ...priceRange });
+              }}
+            >
+              Apply
+            </button>
+            {React.Children.toArray(children).filter((child) => child)}
+          </div>
         </div>
       );
     }
@@ -852,6 +935,31 @@ const ShowAll = ({ categories, query }) => {
                             {obj.name}
                           </Dropdown.Item>
                         ))}
+                      </Dropdown.Menu>
+                    </Dropdown>
+
+                    <Dropdown>
+                      <Dropdown.Toggle
+                        align="start"
+                        drop="start"
+                        as={PriceDropdown}
+                      ></Dropdown.Toggle>
+
+                      <Dropdown.Menu align="start" as={PriceMenu}>
+                        {/* <Dropdown.Item
+                          as="button"
+                          className="justify-content-center border me-2"
+                          // onClick={() => handleCategoryCheck(obj)}
+                        >
+                          Cancel
+                        </Dropdown.Item> */}
+                        {/* <Dropdown.Item
+                          as="button"
+                          className="justify-content-center border bg-light"
+                          // onClick={() => handleCategoryCheck(obj)}
+                        >
+                          Apply
+                        </Dropdown.Item> */}
                       </Dropdown.Menu>
                     </Dropdown>
                   </div>
