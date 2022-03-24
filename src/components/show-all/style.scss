@@ -266,6 +266,11 @@ button.load_more {
     &.apply-btn {
       background: #000;
       color: #fff;
+      &:disabled {
+        background-color: #e7e7e9;
+        color: #9c9c9b;
+        border: none;
+      }
     }
   }
 }

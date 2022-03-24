@@ -110,6 +110,10 @@ const ShowAll = ({ categories, query }) => {
       ? query.get("sort")
       : "recently_listed";
     const sale_status = query.get("status");
+    const price_range = {
+      from: query.get("minPrice"),
+      to: query.get("maxPrice"),
+    };
 
     let categoryList = [];
     categories.forEach((category) => {
@@ -142,6 +146,7 @@ const ShowAll = ({ categories, query }) => {
 
     setFilter(info);
     setPage(1);
+    setPriceRangeFilter(price_range);
   }, [categories, query]);
 
   useEffect(() => {
@@ -156,6 +161,10 @@ const ShowAll = ({ categories, query }) => {
 
     const search_filter = query.get("search");
     const sale_status = query.get("status");
+    const price_range = {
+      from: query.get("minPrice"),
+      to: query.get("maxPrice"),
+    };
 
     showAllFilteredNFTs(
       1,
@@ -164,7 +173,8 @@ const ShowAll = ({ categories, query }) => {
       sale_filters,
       sort_filters,
       search_filter,
-      sale_status
+      sale_status,
+      price_range
     );
   }, [query]);
 
@@ -175,32 +185,17 @@ const ShowAll = ({ categories, query }) => {
     saleType,
     sort = "recently_listed",
     searchText,
-    saleStatus
+    saleStatus,
+    price_range
   ) => {
     try {
-      // let filter = {};
-      // if (saleStatus !== null) {
-      //   filter = {
-      //     category: category,
-      //     type: type,
-      //     sale_type: saleType,
-      //     keyword: searchText,
-      //     sale_kind: saleStatus,
-      //   };
-      // } else {
-      //   filter = {
-      //     category: category,
-      //     type: type,
-      //     sale_type: saleType,
-      //     keyword: searchText,
-      //   };
-      // }
       let filter = {
         category: category,
         type: type,
         sale_type: saleType,
         keyword: searchText,
         sale_kind: saleStatus,
+        price_range,
       };
 
       page === 1 && setLoading(true);
@@ -227,33 +222,17 @@ const ShowAll = ({ categories, query }) => {
     saleType,
     sort = "recently_listed",
     searchText,
-    saleStatus
+    saleStatus,
+    price_range
   ) => {
     try {
-      // let filter = {};
-      // if (saleStatus !== null) {
-      //   filter = {
-      //     category: category,
-      //     type: type,
-      //     sale_type: saleType,
-      //     keyword: searchText,
-      //     sale_kind: saleStatus,
-      //   };
-      // } else {
-      //   filter = {
-      //     category: category,
-      //     type: type,
-      //     sale_type: saleType,
-      //     keyword: searchText,
-      //   };
-      // }
-
       let filter = {
         category: category,
         type: type,
         sale_type: saleType,
         keyword: searchText,
         sale_kind: saleStatus,
+        price_range,
       };
 
       page === 1 && setLoading(true);
@@ -287,6 +266,10 @@ const ShowAll = ({ categories, query }) => {
         : "recently_listed";
       const search_filters = query.get("search");
       const sale_status = query.get("status");
+      const price_range = {
+        from: query.get("minPrice"),
+        to: query.get("maxPrice"),
+      };
 
       showAllNFTs(
         page + 1,
@@ -295,7 +278,8 @@ const ShowAll = ({ categories, query }) => {
         sale_filters,
         sort_filters,
         search_filters,
-        sale_status
+        sale_status,
+        price_range
       );
       setPage(page + 1);
     }
@@ -323,7 +307,11 @@ const ShowAll = ({ categories, query }) => {
         onClick(e);
       }}
     >
-      Price Range <BiCaretDown />
+      Price Range{" "}
+      {priceRangeFilter.from &&
+        priceRangeFilter.to &&
+        `$${priceRangeFilter.from} - $${priceRangeFilter.to}`}
+      <BiCaretDown />
     </div>
   ));
 
@@ -443,6 +431,7 @@ const ShowAll = ({ categories, query }) => {
                 autoFocus
                 className="category-search"
                 placeholder="From"
+                type="number"
                 onChange={(e) => {
                   setPriceRange({ ...priceRange, from: e.target.value });
                 }}
@@ -454,6 +443,7 @@ const ShowAll = ({ categories, query }) => {
                 autoFocus
                 className="category-search"
                 placeholder="To"
+                type="number"
                 onChange={(e) => {
                   setPriceRange({ ...priceRange, to: e.target.value });
                 }}
@@ -475,9 +465,18 @@ const ShowAll = ({ categories, query }) => {
             <button
               type="button"
               class="justify-content-center border dropdown-item apply-btn"
-              onClick={(e) => {
-                setPriceRangeFilter({ ...priceRange });
-              }}
+              disabled={(() => {
+                if (
+                  priceRange.from &&
+                  priceRange.to &&
+                  parseInt(priceRange.from) > parseInt(priceRange.to)
+                ) {
+                  return true;
+                } else {
+                  return false;
+                }
+              })()}
+              onClick={(e) => handlePriceRange(priceRange)}
             >
               Apply
             </button>
@@ -497,6 +496,10 @@ const ShowAll = ({ categories, query }) => {
     const sort_exist = query.get("sort");
     const search_exist = search ? search.replace("#", "%23") : "";
     const sale_status = query.get("status");
+    const price_range = {
+      from: query.get("minPrice"),
+      to: query.get("maxPrice"),
+    };
 
     if (category_exist.includes(input.value)) {
       category_exist = category_exist.filter((obj) => obj !== input.value);
@@ -539,6 +542,12 @@ const ShowAll = ({ categories, query }) => {
         : `status=${sale_status}`;
     }
 
+    if (price_range) {
+      query_string += query_string
+        ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
+        : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
+    }
+
     if (query_string) {
       // history.push(`/?${encodeURIComponent(query_string)}`);
       history.push(`/?${query_string}`);
@@ -556,6 +565,10 @@ const ShowAll = ({ categories, query }) => {
     const sort_exist = query.get("sort");
     const search_exist = search ? search.replace("#", "%23") : "";
     const sale_status = query.get("status");
+    const price_range = {
+      from: query.get("minPrice"),
+      to: query.get("maxPrice"),
+    };
 
     if (sale_exist.includes(input.value)) {
       sale_exist = sale_exist.filter((obj) => obj !== input.value);
@@ -598,6 +611,12 @@ const ShowAll = ({ categories, query }) => {
         : `status=${sale_status}`;
     }
 
+    if (price_range) {
+      query_string += query_string
+        ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
+        : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
+    }
+
     if (query_string) {
       // history.push(`/?${encodeURIComponent(query_string)}`);
       history.push(`/?${query_string}`);
@@ -615,6 +634,10 @@ const ShowAll = ({ categories, query }) => {
     const sort_exist = query.get("sort");
     const search_exist = search ? search.replace("#", "%23") : "";
     const sale_status = query.get("status");
+    const price_range = {
+      from: query.get("minPrice"),
+      to: query.get("maxPrice"),
+    };
 
     if (nft_exist.includes(input.value)) {
       nft_exist = nft_exist.filter((obj) => obj !== input.value);
@@ -657,6 +680,12 @@ const ShowAll = ({ categories, query }) => {
         : `status=${sale_status}`;
     }
 
+    if (price_range) {
+      query_string += query_string
+        ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
+        : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
+    }
+
     if (query_string) {
       // history.push(`/?${encodeURIComponent(query_string)}`);
       history.push(`/?${query_string}`);
@@ -674,6 +703,10 @@ const ShowAll = ({ categories, query }) => {
     const sort_exist = input.value;
     const search_exist = search ? search.replace("#", "%23") : "";
     const sale_status = query.get("status");
+    const price_range = {
+      from: query.get("minPrice"),
+      to: query.get("maxPrice"),
+    };
 
     let query_string = "";
     if (category_exist.length > 0) {
@@ -708,6 +741,12 @@ const ShowAll = ({ categories, query }) => {
       query_string += query_string
         ? `&status=${sale_status}`
         : `status=${sale_status}`;
+    }
+
+    if (price_range) {
+      query_string += query_string
+        ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
+        : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
     }
 
     if (query_string) {
@@ -727,6 +766,10 @@ const ShowAll = ({ categories, query }) => {
     const sort_exist = query.get("sort");
     const search_exist = search ? search.replace("#", "%23") : "";
     const sale_status = remove ? null : input.value;
+    const price_range = {
+      from: query.get("minPrice"),
+      to: query.get("maxPrice"),
+    };
 
     let query_string = "";
     if (category_exist.length > 0) {
@@ -761,6 +804,12 @@ const ShowAll = ({ categories, query }) => {
       query_string += query_string
         ? `&status=${sale_status}`
         : `status=${sale_status}`;
+    }
+
+    if (price_range) {
+      query_string += query_string
+        ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
+        : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
     }
 
     if (query_string) {
@@ -780,6 +829,10 @@ const ShowAll = ({ categories, query }) => {
     const sort_exist = query.get("sort");
     const search_exist = search.replace("#", "%23");
     const sale_status = query.get("status");
+    const price_range = {
+      from: query.get("minPrice"),
+      to: query.get("maxPrice"),
+    };
 
     let query_string = "";
     if (category_exist.length > 0) {
@@ -816,8 +869,74 @@ const ShowAll = ({ categories, query }) => {
         : `status=${sale_status}`;
     }
 
+    if (price_range) {
+      query_string += query_string
+        ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
+        : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
+    }
+
     if (query_string) {
       // history.push(`/?${encodeURIComponent(query_string)}`);
+      history.push(`/?${query_string}`);
+    } else {
+      history.push("/");
+    }
+  };
+
+  const handlePriceRange = (priceRange) => {
+    setPriceRangeFilter({ ...priceRange });
+    const category_exist = query.get("category")
+      ? query.get("category").split(",")
+      : [];
+    const sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
+    const nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
+    const sort_exist = query.get("sort");
+    const search_exist = search ? search.replace("#", "%23") : "";
+    const sale_status = query.get("status");
+    const price_range = priceRange;
+
+    let query_string = "";
+    if (category_exist.length > 0) {
+      query_string += query_string
+        ? `&category=${category_exist}`
+        : `category=${category_exist}`;
+    }
+
+    if (sale_exist.length > 0) {
+      query_string += query_string
+        ? `&sale=${sale_exist}`
+        : `sale=${sale_exist}`;
+    }
+
+    if (nft_exist.length > 0) {
+      query_string += query_string ? `&nft=${nft_exist}` : `nft=${nft_exist}`;
+    }
+
+    if (sort_exist) {
+      query_string += query_string
+        ? `&sort=${sort_exist}`
+        : `sort=${sort_exist}`;
+    }
+
+    if (search_exist) {
+      query_string += query_string
+        ? `&search=${search_exist}`
+        : `search=${search_exist}`;
+    }
+
+    if (sale_status) {
+      query_string += query_string
+        ? `&status=${sale_status}`
+        : `status=${sale_status}`;
+    }
+
+    if (price_range) {
+      query_string += query_string
+        ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
+        : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
+    }
+
+    if (query_string) {
       history.push(`/?${query_string}`);
     } else {
       history.push("/");
