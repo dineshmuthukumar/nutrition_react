@@ -22,12 +22,12 @@ const TopBuyers = () => {
       {
         name: "This Week",
         value: "week",
-        checked: true,
+        checked: false,
       },
       {
         name: "This Month",
         value: "month",
-        checked: false,
+        checked: true,
       },
     ],
   });
@@ -36,7 +36,7 @@ const TopBuyers = () => {
     topBuyers();
   }, []);
 
-  const topBuyers = async (timeFormat = "week") => {
+  const topBuyers = async (timeFormat = "month") => {
     try {
       setLoading(true);
       let response = await topBuyerApi({ page: 1, time_format: timeFormat });
