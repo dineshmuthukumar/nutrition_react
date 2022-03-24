@@ -414,8 +414,8 @@ const ShowAll = ({ categories, query }) => {
   const PriceMenu = React.forwardRef(
     ({ children, style, className, "aria-labelledby": labeledBy }, ref) => {
       const [priceRange, setPriceRange] = useState({
-        from: "",
-        to: "",
+        from: query.get("minPrice") ? query.get("minPrice") : "",
+        to: query.get("maxPrice") ? query.get("maxPrice") : "",
       });
 
       return (
@@ -456,9 +456,7 @@ const ShowAll = ({ categories, query }) => {
             <button
               type="button"
               class="justify-content-center border dropdown-item"
-              onClick={(e) => {
-                setPriceRange({ from: "", to: "" });
-              }}
+              onClick={(e) => handlePriceRange(priceRange, true)}
             >
               Clear
             </button>
@@ -466,9 +464,9 @@ const ShowAll = ({ categories, query }) => {
               type="button"
               class="justify-content-center border dropdown-item apply-btn"
               disabled={(() => {
-                if (
-                  priceRange.from &&
-                  priceRange.to &&
+                if (!priceRange.from || !priceRange.to) {
+                  return true;
+                } else if (
                   parseInt(priceRange.from) > parseInt(priceRange.to)
                 ) {
                   return true;
@@ -883,7 +881,7 @@ const ShowAll = ({ categories, query }) => {
     }
   };
 
-  const handlePriceRange = (priceRange) => {
+  const handlePriceRange = (priceRange, remove = false) => {
     setPriceRangeFilter({ ...priceRange });
     const category_exist = query.get("category")
       ? query.get("category").split(",")
@@ -893,7 +891,7 @@ const ShowAll = ({ categories, query }) => {
     const sort_exist = query.get("sort");
     const search_exist = search ? search.replace("#", "%23") : "";
     const sale_status = query.get("status");
-    const price_range = priceRange;
+    const price_range = remove ? null : priceRange;
 
     let query_string = "";
     if (category_exist.length > 0) {
