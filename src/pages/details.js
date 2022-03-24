@@ -20,6 +20,7 @@ import NFTTags from "../components/nft-tags";
 import toaster from "../utils/toaster";
 import { NFTLoader } from "../components/nft-basic-details/content-loader";
 import { listForSaleDetail, ownerDetails } from "../api/actioncable-methods";
+import { artistApi } from "../api/base-methods";
 import OwnerList from "../components/owner-list";
 import Footer from "../components/footer/index";
 import NFTOrderDetails from "../components/nft-order-details/index";
@@ -40,6 +41,7 @@ const Details = () => {
   const [ownerCount, setOwnerCount] = useState(0);
   const [isQuantityAvailable, setIsQuantityAvailable] = useState(null);
   const [page, setPage] = useState(1);
+  const [artist, setArtist] = useState({});
 
   const { user } = useSelector((state) => state.user.data);
   const isOwner = _.has(nft, "owner_details");
@@ -102,6 +104,9 @@ const Details = () => {
         setIsQuantityAvailable(NFT.owner_details.available_quantity);
         setOwnerOrdersList(NFT.owner_details.orders);
       }
+      if (NFT.celebrity_slug) {
+        artistDetail(NFT.celebrity_slug);
+      }
       setLoader(false);
     } catch (err) {
       // setLoader(false);
@@ -137,6 +142,16 @@ const Details = () => {
       setTransactionLoader(false);
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const artistDetail = async (slug) => {
+    try {
+      let response = await artistApi(slug);
+      console.log(response);
+      setArtist(response.data.data.celebrity);
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -252,17 +267,11 @@ const Details = () => {
               )}
             </div>
           </div>
-          {nft?.celebrity_id && (
+          {artist?.show_artist && (
             <>
-              <NFTSectionTitle
-                title={
-                  nft.celebrity_id === 133
-                    ? "The Inspiration"
-                    : "Artist / Brand"
-                }
-              />
+              <NFTSectionTitle title={artist?.title} />
               <div className="mt-5">
-                <NFTArtist id={nft.celebrity_id} />
+                <NFTArtist id={nft.celebrity_id} artist={artist} />
               </div>
               <br />
               <br />

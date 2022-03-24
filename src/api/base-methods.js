@@ -23,3 +23,5 @@ export const getServerTimeApi = () =>
   axios.get(
     `${process.env.REACT_APP_BASE_SERVER_URL.replace("api/v1", "")}/time`
   );
+
+export const artistApi = (slug) => baseAxios.get(`/celebrities/${slug}`);

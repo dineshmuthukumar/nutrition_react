@@ -35,6 +35,7 @@ import {
   userBidDetail,
   userBuyDetail,
 } from "../api/actioncable-methods";
+import { artistApi } from "../api/base-methods";
 import OwnerList from "../components/owner-list";
 import Footer from "../components/footer/index";
 import NFTOrderSummary from "../components/nft-order-summary";
@@ -94,6 +95,7 @@ const OrderDetails = () => {
   const [userLastBid, setUserLastBid] = useState(0);
   const [bidOutDated, setBidOutDated] = useState(false);
   const [bidExpired, setBidExpired] = useState(false);
+  const [artist, setArtist] = useState({});
 
   const { user } = useSelector((state) => state.user.data);
 
@@ -232,6 +234,10 @@ const OrderDetails = () => {
       const NFT = response.data.data.nft;
       setNft(NFT);
       setErc721(NFT.nft_type === "erc721");
+
+      if (NFT.celebrity_slug) {
+        artistDetail(NFT.celebrity_slug);
+      }
 
       if (NFT?.order_details) {
         if (NFT?.order_details?.timed_auction) {
@@ -400,6 +406,16 @@ const OrderDetails = () => {
       }
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const artistDetail = async (slug) => {
+    try {
+      let response = await artistApi(slug);
+      console.log(response);
+      setArtist(response.data.data.celebrity);
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -595,24 +611,13 @@ const OrderDetails = () => {
               )}
             </div>
           </div>
-          {nft?.celebrity_id && (
+
+          {artist?.show_artist && (
             <>
-              <NFTSectionTitle
-                title={
-                  nft.celebrity_id ===
-                  parseInt(process.env.REACT_APP_KALPANA_CHAWLA_ID)
-                    ? "The Inspiration"
-                    : "Artist"
-                }
-              />
+              <NFTSectionTitle title={artist?.title} />
               <div className="mt-5">
-                <NFTArtist id={nft.celebrity_id} />
+                <NFTArtist id={nft.celebrity_id} artist={artist} />
               </div>
-              {/* {nftMoreList.length > 0 && (
-            <div className="mt-5">
-              <NFTMore nftList={nftMoreList} />
-            </div>
-          )} */}
               <br />
               <br />
             </>

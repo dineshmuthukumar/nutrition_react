@@ -132,37 +132,7 @@ const NFTOrderBaseDetails = ({
         >
           {nft.category_name}
         </span>{" "}
-        |{" "}
-        {(() => {
-          if (nft.celebrity_id === 1) {
-            return "Amitabh Bachchan";
-          } else if (
-            nft.celebrity_id ===
-            parseInt(process.env.REACT_APP_HINDUSTAN_TIMES_ID)
-          ) {
-            return "Hindustan Times";
-          } else if (
-            nft.celebrity_id === parseInt(process.env.REACT_APP_FF_ID)
-          ) {
-            return "Fully Faltoo's";
-          } else if (
-            nft.celebrity_id === parseInt(process.env.REACT_APP_META_VERSE_ID)
-          ) {
-            return "Metaverse Wedding";
-          } else if (
-            nft.celebrity_id ===
-            parseInt(process.env.REACT_APP_KALPANA_CHAWLA_ID)
-          ) {
-            return "Kalpana Chawla";
-          } else if (
-            nft.celebrity_id === parseInt(process.env.REACT_APP_LATIMES_ID)
-          ) {
-            return "LA Times";
-          } else {
-            return "Stan Lee";
-          }
-        })()}{" "}
-        Exclusive NFTs
+        | {nft?.celebrity_name} Exclusive NFTs
         <ToolTip
           icon={<FaCheckCircle size={16} className="ms-2 check-icon" />}
           content="Verified Artist"
