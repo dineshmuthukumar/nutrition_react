@@ -29,8 +29,8 @@ export const nftShowAllApi = ({ page, filter, sort }) =>
 export const hotNFTsApi = ({ page }) =>
   appAxios.get(`/dashboard/hot_nfts?page=${page}`);
 
-export const liveAuctionNFTsApi = ({ page }) =>
-  appAxios.get(`/dashboard/live_auctions?page=${page}`);
+export const liveAuctionNFTsApi = (page, sort = "auction_ending_soon") =>
+  appAxios.get(`/dashboard/live_auctions?page=${page}&sort=${sort}`);
 
 export const topSellersApi = ({ page, time_format }) =>
   appAxios.get(

@@ -1618,3 +1618,30 @@ div[aria-modal="true"].w-100.w-md-50 {
     text-decoration: underline;
   }
 }
+
+.not-found {
+  font-family: $neue-helveticabold;
+  color: #000000 !important;
+  font-size: 1.4rem;
+  user-select: none;
+  @media screen and (max-width: 450px) {
+    font-size: 1rem;
+  }
+  @media screen and (max-width: 320px) {
+    font-size: 0.9rem;
+  }
+  .sub-not-found {
+    // font-family: $neue-helveticalight;
+    font-size: 0.7rem;
+    @media screen and (max-width: 450px) {
+      font-size: 0.6rem;
+    }
+    @media screen and (max-width: 320px) {
+      font-size: 0.5rem;
+    }
+  }
+}
+
+.not-found-powereby {
+  color: #4fcc10 !important;
+}

@@ -14,8 +14,10 @@ const NFTCard = ({
   nft,
   ownedCard = false,
   recentSold = false,
+  liveAuction = false,
   onsale = false,
   textColor,
+  reloadNFTList,
 }) => {
   const erc721 = nft?.nft_type === "erc721";
   const history = useHistory();
@@ -57,6 +59,11 @@ const NFTCard = ({
   };
   const handleAuctionEndTimer = () => {
     setIsAuctionEnded(true);
+  };
+  const handleNFTEndEvent = () => {
+    if (liveAuction) {
+      reloadNFTList();
+    }
   };
 
   // useEffect(() => {
@@ -108,6 +115,8 @@ const NFTCard = ({
         } else if (nft?.is_on_sale) {
           return `/order/details/${nft?.slug}/${nft?.order_details?.slug}`;
         } else if (recentSold) {
+          return `/order/details/${nft?.slug}/${nft?.order_slug}`;
+        } else if (liveAuction) {
           return `/order/details/${nft?.slug}/${nft?.order_slug}`;
         } else {
           return `/details/${nft?.slug}`;
@@ -254,6 +263,7 @@ const NFTCard = ({
                             intervalClass="font-psevenrem"
                             intervalGapClass="me-1"
                             handleEndEvent={handleAuctionStartTimer}
+                            handleNFTEndEvent={handleNFTEndEvent}
                           />
                           {/* &nbsp;&nbsp;<span class="fire-icon">🔥</span> */}
                           &nbsp;&nbsp;
@@ -274,6 +284,7 @@ const NFTCard = ({
                             intervalClass="font-psevenrem"
                             intervalGapClass="me-1"
                             handleEndEvent={handleAuctionEndTimer}
+                            handleNFTEndEvent={handleNFTEndEvent}
                           />
                           &nbsp;&nbsp;
                           <span class="fire-icon">

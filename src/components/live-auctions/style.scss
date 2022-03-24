@@ -45,3 +45,29 @@
     }
   }
 }
+
+.viewallBtnliveaction {
+  font-size: 1.2rem;
+  background: #000;
+  color: #fff;
+  padding: 0.5rem 1.5rem;
+  border-radius: 50rem;
+  text-decoration: none;
+  outline: 0;
+  border: 0.2rem solid #000;
+  cursor: pointer;
+  &:hover,
+  &:focus,
+  &:active {
+    color: #000;
+    background-color: #fff;
+  }
+
+  @media screen and (max-width: 767px) {
+    padding: 0.1rem 1.5rem;
+    width: 10rem;
+    font-size: 1rem;
+    margin-left: 2rem;
+    text-align: center;
+  }
+}

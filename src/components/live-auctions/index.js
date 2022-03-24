@@ -7,9 +7,12 @@ import { VscChevronRight } from "react-icons/vsc";
 import cardImage from "../../images/drops/nft_2.png";
 import { liveAuctionNFTsApi } from "../../api/methods";
 import NFTMore from "../nft-more/index";
+import { useHistory } from "react-router-dom";
+
 import "./style.scss";
 
 const LiveAuctions = () => {
+  const history = useHistory();
   const [page, setPage] = useState(1);
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -22,7 +25,8 @@ const LiveAuctions = () => {
   const liveAuctionNFTList = async (page) => {
     try {
       setLoading(true);
-      let response = await liveAuctionNFTsApi({ page });
+      let response = await liveAuctionNFTsApi(page);
+
       setList([...list, ...response.data.data.nfts]);
       setLoading(false);
     } catch (err) {
@@ -39,7 +43,15 @@ const LiveAuctions = () => {
         <div className="container-fluid">
           <div className="row">
             <div className="col-sm-12">
-              <h1 className="sec-heading">Live Auctions</h1>
+              <div className="sec-heading flex-box">
+                <span className="title">Live Auctions</span>
+                <span
+                  className="viewallBtnliveaction"
+                  onClick={() => history.push("/nfts/live-auction")}
+                >
+                  View all
+                </span>
+              </div>
 
               {!loading ? (
                 <div className="row">
