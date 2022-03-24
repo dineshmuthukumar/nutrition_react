@@ -19,6 +19,7 @@ import wingesh from "../../images/fullyfaltoo_drop/wingesh.png";
 import rangu from "../../images/fullyfaltoo_drop/rangu.png";
 import latimes from "../../images/latimes/LATIMES.mp4";
 import kalpana from "../../images/kalpana/kalpana.mp4";
+import fullyfaltoo from "../../images/fullyfaltoo_drop/fullyfaltoo.mp4";
 
 const Banner = ({ list = [] }) => {
   const history = useHistory();
@@ -37,6 +38,11 @@ const Banner = ({ list = [] }) => {
   };
 
   const static_url = [
+    {
+      name: "Fullyfaltoo NFTs",
+      type: "video",
+      url: fullyfaltoo,
+    },
     {
       name: "L.A. Times Collectible NFTs",
       type: "video",
@@ -291,6 +297,24 @@ const Banner = ({ list = [] }) => {
                     autoPlay
                     playsInline
                     src={kalpana}
+                    className="first-image"
+                    style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
+                  ></video>
+                </div>
+                <div
+                  style={{ overflow: "hidden" }}
+                  className="cat-block"
+                  role={"button"}
+                  onClick={() => handleNavigate("Fullyfaltoo NFTs")}
+                >
+                  <h5 className="cat-title big-box">Fullyfaltoo NFTs</h5>
+
+                  <video
+                    loop
+                    muted
+                    autoPlay
+                    playsInline
+                    src={fullyfaltoo}
                     className="first-image"
                     style={{ height: "calc((100vw - (7rem + 6rem))/2)" }}
                   ></video>
