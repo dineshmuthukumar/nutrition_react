@@ -269,3 +269,11 @@ button.load_more {
     }
   }
 }
+
+.flex-heading {
+  display: flex;
+  align-items: center;
+  .filter-drop-btn {
+    margin-bottom: 0 !important;
+  }
+}

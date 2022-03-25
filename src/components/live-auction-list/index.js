@@ -42,6 +42,10 @@ const LiveAuctionsList = () => {
     const sort_filters = query.get("sort")
       ? query.get("sort")
       : "auction_ending_soon";
+    const price_range = {
+      from: query.get("minPrice"),
+      to: query.get("maxPrice"),
+    };
 
     const info = { ...filter };
 
@@ -49,17 +53,36 @@ const LiveAuctionsList = () => {
       ...obj,
       checked: sort_filters ? sort_filters === obj.value : false,
     }));
-    showAllFilteredNFTs(1, sort_filters);
     setPage(1);
     setFilter(info);
+    setPriceRangeFilter(price_range);
   }, [slug, query]);
 
-  const showAllNFTs = async (page, sort = "auction_ending_soon") => {
+  useEffect(() => {
+    const sort_filters = query.get("sort")
+      ? query.get("sort")
+      : "auction_ending_soon";
+
+    const price_range = {
+      from: query.get("minPrice"),
+      to: query.get("maxPrice"),
+    };
+
+    showAllFilteredNFTs(1, sort_filters, price_range);
+  }, [query]);
+
+  const showAllNFTs = async (
+    page,
+    sort = "auction_ending_soon",
+    price_range
+  ) => {
     try {
+      let filter = {
+        price_range,
+      };
       page === 1 && setLoading(true);
       setLoadingMore(true);
-      console.log(page, "page");
-      let response = await liveAuctionNFTsApi(page, sort);
+      let response = await liveAuctionNFTsApi(page, sort, filter);
       setList([...list, ...response.data.data.nfts]);
       setHasNext(response.data.data.next_page);
       page === 1 && setLoading(false);
@@ -69,14 +92,19 @@ const LiveAuctionsList = () => {
     }
   };
 
-  const showAllFilteredNFTs = async (page, sort = "auction_ending_soon") => {
+  const showAllFilteredNFTs = async (
+    page,
+    sort = "auction_ending_soon",
+    price_range
+  ) => {
     try {
+      let filter = {
+        price_range,
+      };
       page === 1 && setLoading(true);
       setLoadingMore(true);
 
-      console.log(page, "page");
-
-      let response = await liveAuctionNFTsApi(page, sort);
+      let response = await liveAuctionNFTsApi(page, sort, filter);
       setList(response.data.data.nfts);
       setHasNext(response.data.data.next_page);
       page === 1 && setLoading(false);
@@ -91,8 +119,13 @@ const LiveAuctionsList = () => {
       const sort_filters = query.get("sort")
         ? query.get("sort")
         : "auction_ending_soon";
+      const price_range = {
+        from: query.get("minPrice"),
+        to: query.get("maxPrice"),
+      };
 
-      showAllNFTs(page + 1, sort_filters);
+      setPage(page + 1);
+      showAllNFTs(page + 1, sort_filters, price_range);
       setPage(page + 1);
     }
   };
@@ -113,11 +146,6 @@ const LiveAuctionsList = () => {
     </div>
   ));
 
-  const [priceRangeFilter, setPriceRangeFilter] = useState({
-    from: "",
-    to: "",
-  });
-
   const PriceDropdown = React.forwardRef(({ onClick }, ref) => (
     <div
       className="filter-drop-btn"
@@ -127,14 +155,24 @@ const LiveAuctionsList = () => {
         onClick(e);
       }}
     >
-      Price Range <BiCaretDown />
+      Price Range{" "}
+      {priceRangeFilter.from &&
+        priceRangeFilter.to &&
+        `$${priceRangeFilter.from} - $${priceRangeFilter.to}`}
+      <BiCaretDown />
     </div>
   ));
+
+  const [priceRangeFilter, setPriceRangeFilter] = useState({
+    from: "",
+    to: "",
+  });
+
   const PriceMenu = React.forwardRef(
     ({ children, style, className, "aria-labelledby": labeledBy }, ref) => {
       const [priceRange, setPriceRange] = useState({
-        from: "",
-        to: "",
+        from: query.get("minPrice") ? query.get("minPrice") : "",
+        to: query.get("maxPrice") ? query.get("maxPrice") : "",
       });
 
       return (
@@ -150,6 +188,7 @@ const LiveAuctionsList = () => {
                 autoFocus
                 className="category-search"
                 placeholder="From"
+                type="number"
                 onChange={(e) => {
                   setPriceRange({ ...priceRange, from: e.target.value });
                 }}
@@ -161,6 +200,7 @@ const LiveAuctionsList = () => {
                 autoFocus
                 className="category-search"
                 placeholder="To"
+                type="number"
                 onChange={(e) => {
                   setPriceRange({ ...priceRange, to: e.target.value });
                 }}
@@ -173,18 +213,25 @@ const LiveAuctionsList = () => {
             <button
               type="button"
               class="justify-content-center border dropdown-item"
-              onClick={(e) => {
-                setPriceRange({ from: "", to: "" });
-              }}
+              onClick={(e) => handlePriceRange(priceRange, true)}
             >
               Clear
             </button>
             <button
               type="button"
               class="justify-content-center border dropdown-item apply-btn"
-              onClick={(e) => {
-                setPriceRangeFilter({ ...priceRange });
-              }}
+              disabled={(() => {
+                if (!priceRange.from || !priceRange.to) {
+                  return true;
+                } else if (
+                  parseInt(priceRange.from) > parseInt(priceRange.to)
+                ) {
+                  return true;
+                } else {
+                  return false;
+                }
+              })()}
+              onClick={(e) => handlePriceRange(priceRange)}
             >
               Apply
             </button>
@@ -208,6 +255,33 @@ const LiveAuctionsList = () => {
 
     history.push(`/nfts/live-auction?${query_string}`);
   };
+  const handlePriceRange = (priceRange, remove = false) => {
+    setPriceRangeFilter({ ...priceRange });
+
+    const sort_exist = query.get("sort");
+
+    const price_range = remove ? null : priceRange;
+
+    let query_string = "";
+
+    if (sort_exist) {
+      query_string += query_string
+        ? `&sort=${sort_exist}`
+        : `sort=${sort_exist}`;
+    }
+
+    if (price_range) {
+      query_string += query_string
+        ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
+        : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
+    }
+
+    if (query_string) {
+      history.push(`/nfts/live-auction?${query_string}`);
+    } else {
+      history.push("/nfts/live-auction");
+    }
+  };
 
   const reloadNFTList = async () => {
     try {
@@ -225,9 +299,9 @@ const LiveAuctionsList = () => {
           <div className="row">
             <div className="col-sm-12">
               <div className="sec-heading d-flex align-items-center mb-5 explore-heading">
-                <span className="me-4 text-nowrap">Live Auction</span>
-                <span className="d-flex justify-content-end mt-2 w-100 filter-blocks">
-                  <div className="filt-flex-box">
+                <div className="flex-heading">
+                  <span className="text-nowrap me-4">Live Auction</span>
+                  <div className="d-flex flex-wrap filter-box">
                     <Dropdown>
                       <Dropdown.Toggle
                         align="start"
@@ -235,24 +309,15 @@ const LiveAuctionsList = () => {
                         as={PriceDropdown}
                       ></Dropdown.Toggle>
 
-                      <Dropdown.Menu align="start" as={PriceMenu}>
-                        {/* <Dropdown.Item
-                          as="button"
-                          className="justify-content-center border me-2"
-                          // onClick={() => handleCategoryCheck(obj)}
-                        >
-                          Cancel
-                        </Dropdown.Item> */}
-                        {/* <Dropdown.Item
-                          as="button"
-                          className="justify-content-center border bg-light"
-                          // onClick={() => handleCategoryCheck(obj)}
-                        >
-                          Apply
-                        </Dropdown.Item> */}
-                      </Dropdown.Menu>
+                      <Dropdown.Menu
+                        align="start"
+                        as={PriceMenu}
+                      ></Dropdown.Menu>
                     </Dropdown>
-
+                  </div>
+                </div>
+                <span className="d-flex justify-content-end w-100 filter-blocks">
+                  <div className="d-flex flex-wrap filter-box">
                     <Dropdown>
                       <Dropdown.Toggle
                         align="start"
