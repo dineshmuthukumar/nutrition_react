@@ -191,7 +191,7 @@ const NFTCard = ({
               </>
             )}
 
-            <div className="more-bid-details">
+            <div className="more-bid-details" style={{ color: textColor }}>
               <div className="text-start">
                 <div className="mb-title text-secondary">
                   {(() => {
