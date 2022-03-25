@@ -146,7 +146,9 @@ const ShowAll = ({ categories, query }) => {
 
     setFilter(info);
     setPage(1);
-    setPriceRangeFilter(price_range);
+    if (price_range.from && price_range.to) {
+      setPriceRangeFilter(price_range);
+    }
   }, [categories, query]);
 
   useEffect(() => {
@@ -162,8 +164,8 @@ const ShowAll = ({ categories, query }) => {
     const search_filter = query.get("search");
     const sale_status = query.get("status");
     const price_range = {
-      from: query.get("minPrice"),
-      to: query.get("maxPrice"),
+      from: query.get("minPrice") ? query.get("minPrice") : null,
+      to: query.get("maxPrice") ? query.get("maxPrice") : null,
     };
 
     showAllFilteredNFTs(
@@ -267,8 +269,8 @@ const ShowAll = ({ categories, query }) => {
       const search_filters = query.get("search");
       const sale_status = query.get("status");
       const price_range = {
-        from: query.get("minPrice"),
-        to: query.get("maxPrice"),
+        from: query.get("minPrice") ? query.get("minPrice") : null,
+        to: query.get("maxPrice") ? query.get("maxPrice") : null,
       };
 
       showAllNFTs(
@@ -540,7 +542,7 @@ const ShowAll = ({ categories, query }) => {
         : `status=${sale_status}`;
     }
 
-    if (price_range) {
+    if (price_range.from && price_range.to) {
       query_string += query_string
         ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
         : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
@@ -609,7 +611,7 @@ const ShowAll = ({ categories, query }) => {
         : `status=${sale_status}`;
     }
 
-    if (price_range) {
+    if (price_range.from && price_range.to) {
       query_string += query_string
         ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
         : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
@@ -678,7 +680,7 @@ const ShowAll = ({ categories, query }) => {
         : `status=${sale_status}`;
     }
 
-    if (price_range) {
+    if (price_range.from && price_range.to) {
       query_string += query_string
         ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
         : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
@@ -741,7 +743,7 @@ const ShowAll = ({ categories, query }) => {
         : `status=${sale_status}`;
     }
 
-    if (price_range) {
+    if (price_range.from && price_range.to) {
       query_string += query_string
         ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
         : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
@@ -804,7 +806,7 @@ const ShowAll = ({ categories, query }) => {
         : `status=${sale_status}`;
     }
 
-    if (price_range) {
+    if (price_range.from && price_range.to) {
       query_string += query_string
         ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
         : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
@@ -867,7 +869,7 @@ const ShowAll = ({ categories, query }) => {
         : `status=${sale_status}`;
     }
 
-    if (price_range) {
+    if (price_range.from && price_range.to) {
       query_string += query_string
         ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
         : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
@@ -891,7 +893,7 @@ const ShowAll = ({ categories, query }) => {
     const sort_exist = query.get("sort");
     const search_exist = search ? search.replace("#", "%23") : "";
     const sale_status = query.get("status");
-    const price_range = remove ? null : priceRange;
+    const price_range = remove ? { from: null, to: null } : priceRange;
 
     let query_string = "";
     if (category_exist.length > 0) {
@@ -928,10 +930,14 @@ const ShowAll = ({ categories, query }) => {
         : `status=${sale_status}`;
     }
 
-    if (price_range) {
+    if (price_range.from && price_range.to) {
       query_string += query_string
         ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
         : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
+    }
+
+    if (remove) {
+      setPriceRangeFilter(price_range);
     }
 
     if (query_string) {
