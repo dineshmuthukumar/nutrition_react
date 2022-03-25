@@ -1,5 +1,7 @@
 import React, { useState, useRef } from "react";
 import dayjs from "dayjs";
+import Select from "react-select";
+
 import { useSelector } from "react-redux";
 import { useRouteMatch } from "react-router";
 import { Dropdown, Offcanvas } from "react-bootstrap";
@@ -22,6 +24,7 @@ import sample from "../../images/sampleNFT.jpg";
 import {
   bidBuyError,
   currencyFormat,
+  dot,
   validateCurrency,
   validateQuantity,
 } from "../../utils/common";
@@ -260,6 +263,114 @@ const NFTPutOnSale = ({
       processClass: "",
       buttonName: "Confirm",
     });
+  };
+
+  const startOption = [
+    {
+      label: "Right after listing",
+      value: "now",
+    },
+    {
+      label: "Pick specific date",
+      value: "pick",
+    },
+  ];
+
+  const endOption = [
+    {
+      label: "1 Day",
+      value: "one",
+    },
+    {
+      label: "Pick specific date",
+      value: "pick",
+    },
+  ];
+
+  const crispStyle = {
+    control: (prop) => ({
+      ...prop,
+      padding: ".8rem 0.8rem",
+      borderRadius: "0.7rem",
+      minHeight: "33px",
+      fontSize: "1rem",
+      fontWeight: "bolder",
+      borderColor: "#000",
+      boxShadow: "none",
+      "&:hover": {
+        borderColor: "#000",
+      },
+      "&:focus": {
+        boxShadow: "none",
+        borderColor: "#000",
+      },
+      "&:active": {
+        boxShadow: "none",
+        borderColor: "#000",
+      },
+    }),
+    input: (prop) => ({
+      ...prop,
+      margin: 0,
+      padding: 0,
+    }),
+    valueContainer: (prop) => ({
+      ...prop,
+      margin: 0,
+      padding: 0,
+    }),
+    singleValue: (styles, { data }) => ({
+      ...styles,
+      margin: 0,
+      padding: 0,
+      ...(data.color ? dot(data.color) : {}),
+    }),
+
+    dropdownIndicator: (prop) => ({
+      ...prop,
+      margin: 0,
+      padding: "0 3px 0 0",
+      color: "#000",
+    }),
+    indicatorsContainer: (prop) => ({
+      ...prop,
+      margin: 0,
+      padding: 0,
+    }),
+    clearIndicator: (prop) => ({
+      ...prop,
+      margin: 0,
+      padding: 0,
+    }),
+    indicatorSeparator: (prop) => ({
+      ...prop,
+      margin: "3px",
+      padding: 0,
+    }),
+    noOptionsMessage: (prop) => ({
+      ...prop,
+      padding: 0,
+      fontSize: "12px",
+    }),
+    option: (prop, { isSelected }) => ({
+      ...prop,
+      padding: "8px",
+      fontSize: "1rem",
+      backgroundColor: isSelected && "#000",
+      fontFamily: "neue_helveticamedium",
+      "&:hover": {
+        backgroundColor: !isSelected && "#ddd",
+        color: !isSelected && "#000",
+      },
+      "&:active": {
+        backgroundColor: "#ddd",
+      },
+    }),
+    menu: (prop) => ({
+      ...prop,
+      borderRadius: "3px",
+    }),
+    menuPortal: (base) => ({ ...base, zIndex: 9999, top: base.top - 5 }),
   };
 
   // const handleStartDate = (date) => {
@@ -765,7 +876,36 @@ const NFTPutOnSale = ({
                                       Auction Starting Date
                                     </label>
 
-                                    <Dropdown>
+                                    <Select
+                                      styles={crispStyle}
+                                      options={startOption}
+                                      value={(() => {
+                                        if (startChosen)
+                                          return {
+                                            label: dayjs(startDate).format(
+                                              "DD MMM YYYY hh:mm a"
+                                            ),
+                                            value: "xx",
+                                          };
+                                        else
+                                          return {
+                                            label: "Right after listing",
+                                            value: "now",
+                                          };
+                                      })()}
+                                      onChange={(data) => {
+                                        if (data.value === "now") {
+                                          setStartChosen(false);
+                                          setStartDate(new Date());
+                                        } else {
+                                          document
+                                            .getElementById("start_date")
+                                            .click();
+                                          setStartChosen(false);
+                                        }
+                                      }}
+                                    />
+                                    {/* <Dropdown>
                                       <Dropdown.Toggle as={CustomToggle}>
                                         {startChosen
                                           ? dayjs(startDate).format(
@@ -797,7 +937,7 @@ const NFTPutOnSale = ({
                                           Pick specific date
                                         </Dropdown.Item>
                                       </Dropdown.Menu>
-                                    </Dropdown>
+                                    </Dropdown> */}
                                   </div>
 
                                   <div className="input-field-sale">
@@ -816,7 +956,38 @@ const NFTPutOnSale = ({
                                         placement="top"
                                       />
                                     </label>
-                                    <Dropdown>
+
+                                    <Select
+                                      styles={crispStyle}
+                                      options={endOption}
+                                      value={(() => {
+                                        if (endChosen)
+                                          return {
+                                            label: dayjs(endDate).format(
+                                              "DD MMM YYYY hh:mm a"
+                                            ),
+                                            value: "xx",
+                                          };
+                                        else
+                                          return {
+                                            label: "1 Day",
+                                            value: "one",
+                                          };
+                                      })()}
+                                      onChange={(data) => {
+                                        if (data.value === "one") {
+                                          setEndChosen(false);
+                                        } else {
+                                          document
+                                            .getElementById("end_date")
+                                            .click();
+
+                                          setEndChosen(false);
+                                        }
+                                      }}
+                                    />
+
+                                    {/* <Dropdown>
                                       <Dropdown.Toggle as={CustomToggle}>
                                         {endChosen
                                           ? dayjs(endDate).format(
@@ -845,7 +1016,7 @@ const NFTPutOnSale = ({
                                           Pick specific date
                                         </Dropdown.Item>
                                       </Dropdown.Menu>
-                                    </Dropdown>
+                                    </Dropdown> */}
                                   </div>
                                 </div>
 
