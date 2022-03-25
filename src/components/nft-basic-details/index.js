@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import ReadMoreReact from "read-more-react";
 import { useSelector } from "react-redux";
@@ -9,11 +9,13 @@ import BidValue from "../bid-value";
 import ToolTip from "../tooltip";
 import NFTPutOnSale from "../nft-put-on-sale";
 import { ReactComponent as DiscordSvg } from "./../../icons/discord_logo.svg";
+import NFTCounter from "../nft-counter";
 
-import "./style.scss";
 import { OverlayTrigger } from "react-bootstrap";
 import { Popover } from "react-bootstrap";
 import { calculateTimeLeft } from "../../utils/common";
+
+import "./style.scss";
 
 const NFTBaseDetails = ({
   nft,
@@ -32,25 +34,34 @@ const NFTBaseDetails = ({
   const isOwner = _.has(nft, "owner_details");
   const availableQuantity = _.get(nft, "owner_details.available_quantity", 0);
 
-  const { days, hours, minutes, seconds } = calculateTimeLeft(nft.launch_time);
+  const [timer, setTimer] = useState();
 
-  var rem_text = "";
+  useEffect(() => {
+    handleCheckTimer();
+  }, []);
 
-  if (days > 0) {
-    rem_text += days + "d ";
-  }
-  if (hours > 0) {
-    rem_text += hours + "h ";
-  }
-  if (minutes > 0) {
-    rem_text += minutes + "m ";
-  }
+  const handleCheckTimer = () => {
+    const { days, hours, minutes, seconds } = calculateTimeLeft(
+      nft.launch_time
+    );
+    setTimer({ days, hours, minutes, seconds });
+  };
 
   const popover = () => (
     <Popover>
       <Popover.Body>
         <p className="password-terms">
-          Your NFT will be available to be listed for sale in <b>{rem_text}</b>
+          Your NFT will be available to be listed for sale in{" "}
+          <b>
+            {" "}
+            <NFTCounter
+              time={nft.launch_time}
+              handleEndEvent={handleCheckTimer}
+              timeClass="number-c"
+              intervalClass="interval-c"
+              intervalGapClass="me-2"
+            />
+          </b>
         </p>
       </Popover.Body>
     </Popover>
@@ -59,6 +70,12 @@ const NFTBaseDetails = ({
   return (
     <>
       <div className="creator mt-3">
+        <div style={{ display: "none" }}>
+          <NFTCounter
+            time={nft.launch_time}
+            handleEndEvent={handleCheckTimer}
+          />
+        </div>
         <span
           className="link"
           onClick={() => {
@@ -227,10 +244,11 @@ const NFTBaseDetails = ({
                 </button>
               );
             } else if (isOwner && ownerOrdersList.length === 0) {
-              return days === 0 &&
-                hours === 0 &&
-                minutes === 0 &&
-                seconds < 0.2 ? (
+              return timer &&
+                timer.days === 0 &&
+                timer.hours === 0 &&
+                timer.minutes === 0 &&
+                timer.seconds < 0.2 ? (
                 <button
                   disabled={false}
                   className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
@@ -255,10 +273,11 @@ const NFTBaseDetails = ({
               );
             } else if (isOwner && ownerOrdersList.length > 0) {
               if (isQuantityAvailable != null && isQuantityAvailable > 0) {
-                return days === 0 &&
-                  hours === 0 &&
-                  minutes === 0 &&
-                  seconds < 0.2 ? (
+                return timer &&
+                  timer.days === 0 &&
+                  timer.hours === 0 &&
+                  timer.minutes === 0 &&
+                  timer.seconds < 0.2 ? (
                   <button
                     disabled={false}
                     className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
