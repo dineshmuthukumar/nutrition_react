@@ -1996,31 +1996,32 @@ const NFTPutOnSale = ({
             }}
             customInput={<ExampleCustomStartInput />}
             minDate={new Date()}
-            minTime={(() => {
-              const t_start = dayjs(startDate).format("DD MM YYYY");
-              const init = dayjs().format("DD MM YYYY");
+            // minTime={(() => {
+            //   console.log("ssss");
+            //   const t_start = dayjs(startDate).format("DD MM YYYY");
+            //   const init = dayjs().format("DD MM YYYY");
 
-              if (t_start === init) {
-                const d = new Date();
-                let minutes = d.getMinutes();
-                let hours = d.getHours();
+            //   if (t_start === init) {
+            //     const d = new Date();
+            //     let minutes = d.getMinutes();
+            //     let hours = d.getHours();
 
-                if (minutes >= 45) {
-                  return setHours(setMinutes(startDate, 0), hours + 1);
-                } else if (minutes >= 30) {
-                  return setHours(setMinutes(startDate, 45), hours);
-                } else if (minutes >= 15) {
-                  return setHours(setMinutes(startDate, 30), hours);
-                } else if (minutes >= 0) {
-                  return setHours(setMinutes(startDate, 15), hours);
-                } else {
-                  return setHours(setMinutes(startDate, 0), hours);
-                }
-              } else {
-                return setHours(setMinutes(startDate, 0), 0);
-              }
-            })()}
-            maxTime={setHours(setMinutes(startDate, 45), 23)}
+            //     if (minutes >= 45) {
+            //       return setHours(setMinutes(startDate, 0), hours + 1);
+            //     } else if (minutes >= 30) {
+            //       return setHours(setMinutes(startDate, 45), hours);
+            //     } else if (minutes >= 15) {
+            //       return setHours(setMinutes(startDate, 30), hours);
+            //     } else if (minutes >= 0) {
+            //       return setHours(setMinutes(startDate, 15), hours);
+            //     } else {
+            //       return setHours(setMinutes(startDate, 0), hours);
+            //     }
+            //   } else {
+            //     return setHours(setMinutes(startDate, 0), 0);
+            //   }
+            // })()}
+            // maxTime={setHours(setMinutes(startDate, 45), 23)}
             timeFormat="hh:mm aa"
             timeIntervals={15}
             timeCaption="Time"
@@ -2123,51 +2124,51 @@ const NFTPutOnSale = ({
             maxDate={
               startChosen ? addDays(startDate, 3) : addDays(new Date(), 3)
             }
-            minTime={(() => {
-              const t_endDate = dayjs(endDate).format("DD MM YYYY");
+            // minTime={(() => {
+            //   const t_endDate = dayjs(endDate).format("DD MM YYYY");
 
-              const tmp_start_date = startChosen ? startDate : new Date();
+            //   const tmp_start_date = startChosen ? startDate : new Date();
 
-              const t_startDate = dayjs(tmp_start_date).format("DD MM YYYY");
+            //   const t_startDate = dayjs(tmp_start_date).format("DD MM YYYY");
 
-              if (t_endDate === t_startDate) {
-                const d = startDate;
-                let minutes = d.getMinutes();
+            //   if (t_endDate === t_startDate) {
+            //     const d = startDate;
+            //     let minutes = d.getMinutes();
 
-                let hours = d.getHours();
+            //     let hours = d.getHours();
 
-                if (minutes >= 45) {
-                  return setHours(setMinutes(tmp_start_date, 15), hours + 1);
-                } else if (minutes >= 30) {
-                  return setHours(setMinutes(tmp_start_date, 0), hours + 1);
-                } else if (minutes >= 15) {
-                  return setHours(setMinutes(tmp_start_date, 45), hours);
-                } else if (minutes >= 0) {
-                  return setHours(setMinutes(tmp_start_date, 30), hours);
-                }
-              } else {
-                console.log("fire");
-                return setHours(setMinutes(endDate, 0), 0);
-              }
-            })()}
-            maxTime={(() => {
-              const t_endDate = dayjs(endDate).format("DD MM YYYY");
+            //     if (minutes >= 45) {
+            //       return setHours(setMinutes(tmp_start_date, 15), hours + 1);
+            //     } else if (minutes >= 30) {
+            //       return setHours(setMinutes(tmp_start_date, 0), hours + 1);
+            //     } else if (minutes >= 15) {
+            //       return setHours(setMinutes(tmp_start_date, 45), hours);
+            //     } else if (minutes >= 0) {
+            //       return setHours(setMinutes(tmp_start_date, 30), hours);
+            //     }
+            //   } else {
+            //     console.log("fire");
+            //     return setHours(setMinutes(endDate, 0), 0);
+            //   }
+            // })()}
+            // maxTime={(() => {
+            //   const t_endDate = dayjs(endDate).format("DD MM YYYY");
+            //   console.log("min start time");
+            //   const t_maxDate = dayjs(addDays(startDate, 3)).format(
+            //     "DD MM YYYY"
+            //   );
 
-              const t_maxDate = dayjs(addDays(startDate, 3)).format(
-                "DD MM YYYY"
-              );
+            //   if (t_endDate === t_maxDate) {
+            //     const d = startDate;
+            //     let minutes = d.getMinutes();
 
-              if (t_endDate === t_maxDate) {
-                const d = startDate;
-                let minutes = d.getMinutes();
+            //     let hours = d.getHours();
 
-                let hours = d.getHours();
-
-                return setHours(setMinutes(startDate, minutes), hours);
-              } else {
-                return setHours(setMinutes(startDate, 45), 23);
-              }
-            })()}
+            //     return setHours(setMinutes(startDate, minutes), hours);
+            //   } else {
+            //     return setHours(setMinutes(startDate, 45), 23);
+            //   }
+            // })()}
             timeFormat="hh:mm aa"
             timeIntervals={15}
             timeCaption="Time"
