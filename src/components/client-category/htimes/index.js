@@ -1,27 +1,52 @@
 import React, { useEffect, useState } from "react";
 import Image from "react-bootstrap/Image";
+import { useRouteMatch, useHistory } from "react-router-dom";
+import ContentLoader from "react-content-loader";
+
 import Footer from "../../footer";
 import Header from "../../header";
 import Cards from "./cards";
 import Carousel from "./carousal";
+import Details from "../../../pages/details";
+import OrderDetails from "../../../pages/order-details";
+import QuickView from "../../quick-view";
+import { nftCategoryListApi } from "../../../api/methods";
 
 import htLogo from "./img/ht.png";
 import sign from "./img/sign.png";
+
 import "./style.scss";
 
-import { nftCategoryListApi } from "../../../api/methods";
-import ContentLoader from "react-content-loader";
-
 const HTimes = () => {
+  const match = useRouteMatch();
+  const history = useHistory();
+
   const [page, setPage] = useState(1);
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [hasNext, setHasNext] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
 
+  const [popDetails, setPopDetails] = useState({
+    show: false,
+    children: null,
+  });
+
   useEffect(() => {
     showAllNFTs(page);
   }, []);
+
+  useEffect(() => {
+    if (match.path === "/hindustan-times-NFT/details/:slug") {
+      setPopDetails({ ...popDetails, show: true, children: <Details /> });
+    } else if (
+      match.path === "/hindustan-times-NFT/order/details/:slug/:orderSlug"
+    ) {
+      setPopDetails({ ...popDetails, show: true, children: <OrderDetails /> });
+    } else {
+      setPopDetails({ ...popDetails, show: false, children: null });
+    }
+  }, [match.path]);
 
   const showAllNFTs = async (page) => {
     try {
@@ -49,6 +74,11 @@ const HTimes = () => {
 
   return (
     <div>
+      <QuickView
+        show={popDetails.show}
+        onHide={() => history.goBack()}
+        children={popDetails.children}
+      />
       <Header />
       <div className="sectionDiv">
         <section className="gl_1">

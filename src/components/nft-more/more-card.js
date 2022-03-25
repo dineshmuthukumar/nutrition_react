@@ -1,6 +1,6 @@
 import React from "react";
 import dayjs from "dayjs";
-
+import { useRouteMatch, Link } from "react-router-dom";
 import NFTCounter from "../nft-counter";
 
 import sample from "../../images/drops/nft_2.png";
@@ -11,8 +11,14 @@ import "./style.scss";
 
 const MoreCard = ({ nft, isStarted = false, isEnded, time, label }) => {
   const erc721 = nft.nft_type === "erc721";
+  const { search } = useRouteMatch().params;
+
   return (
-    <a className="more-card" href={`/details/${nft.slug}`} target="_blank">
+    <Link
+      className="more-card"
+      to={search ? `${search}/details/${nft.slug}` : `/details/${nft.slug}`}
+      target="_blank"
+    >
       <span className="nft-type-badge">{nft.nft_type.toUpperCase()}</span>
       <img
         alt="media logo"
@@ -62,7 +68,7 @@ const MoreCard = ({ nft, isStarted = false, isEnded, time, label }) => {
           </div>
         </div>
       </div>
-    </a>
+    </Link>
   );
 };
 

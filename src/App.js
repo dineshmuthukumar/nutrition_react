@@ -200,18 +200,68 @@ const WebContainer = () => {
   return (
     <>
       <Switch>
-        <Route exact path="/details/:slug" component={Details} />
         <Route
           exact
-          path="/order/details/:slug/:orderSlug"
-          component={OrderDetails}
+          path="/explore/category/:cSlug/:search?/order/details/:slug/:orderSlug"
+          component={Explore}
         />
-        <Route exact path="/explore/category/:slug" component={Explore} />
-        <Route exact path="/" component={Home} />
+        <Route
+          exact
+          path="/explore/category/:cSlug/:search?/details/:slug"
+          component={Explore}
+        />
+        <Route
+          exact
+          path="/explore/category/:cSlug/:search?"
+          component={Explore}
+        />
         <Route exact path="/help-line" component={HelpLine} />
+        <Route
+          exact
+          path="/hindustan-times-NFT/order/details/:slug/:orderSlug"
+          component={Htimes}
+        />
+        <Route
+          exact
+          path="/hindustan-times-NFT/details/:slug"
+          component={Htimes}
+        />
         <Route exact path="/hindustan-times-NFT" component={Htimes} />
+
+        <Route
+          exact
+          path="/kalpana-chawla-NFT/:search?/order/details/:slug/:orderSlug"
+          component={KalpanaChawla}
+        />
+        <Route
+          exact
+          path="/kalpana-chawla-NFT/:search?/details/:slug"
+          component={KalpanaChawla}
+        />
         <Route exact path="/kalpana-chawla-NFT" component={KalpanaChawla} />
+
+        <Route
+          exact
+          path="/fully-faltoo-NFT/order/details/:slug/:orderSlug"
+          component={FullyFaltoo}
+        />
+        <Route
+          exact
+          path="/fully-faltoo-NFT/details/:slug"
+          component={FullyFaltoo}
+        />
         <Route exact path="/fully-faltoo-NFT" component={FullyFaltoo} />
+
+        <Route
+          exact
+          path="/latimes-NFT/:search?/order/details/:slug/:orderSlug"
+          component={Latimes}
+        />
+        <Route
+          exact
+          path="/latimes-NFT/:search?/details/:slug"
+          component={Latimes}
+        />
         <Route exact path="/latimes-NFT" component={Latimes} />
         <Route
           exact
@@ -220,9 +270,15 @@ const WebContainer = () => {
         />
         <Route exact path="/nfts/sale-history" component={RecentlySold} />
         <Route exact path="/nfts/live-auction" component={LiveAuctionsNFTs} />
-
         <Route exact path="/user/:slug/details" component={UserDetails} />
         <Route path="/not-found" component={NotFound} />
+        <Route
+          exact
+          path="/:search?/order/details/:slug/:orderSlug"
+          component={Home}
+        />
+        <Route exact path="/:search?/details/:slug" component={Home} />
+        <Route exact path="/:search?" component={Home} />
         <Route exact component={NotFound} />
       </Switch>
     </>

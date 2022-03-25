@@ -4,21 +4,36 @@ import ContentLoader from "react-content-loader";
 import { FaCheckCircle } from "react-icons/fa";
 
 import NFTCard from "../nft-card";
+import QuickView from "../quick-view";
+import Details from "../../pages/details";
+import OrderDetails from "../../pages/order-details";
 import { nftShowAllApi } from "../../api/methods";
 import cardImage from "../../images/drops/nft_2.png";
-import "./style.scss";
 import { BiCaretDown, BiSearch, BiX } from "react-icons/bi";
-import { useHistory } from "react-router-dom";
+import { useHistory, useRouteMatch } from "react-router-dom";
 import { FormControl } from "react-bootstrap";
 
-const ShowAll = ({ categories, query }) => {
+import "./style.scss";
+
+const ShowAll = ({ categories }) => {
   const history = useHistory();
+  const match = useRouteMatch();
   const [page, setPage] = useState(1);
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [totalCount, setTotalCount] = useState(0);
   const [hasNext, setHasNext] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
+
+  const [popDetails, setPopDetails] = useState({
+    show: false,
+    children: null,
+  });
+
+  const query = useQueryStringConverter(
+    match.params.search ? match.params.search : ""
+  );
+
   const [search, setSearch] = useState(
     query.get("search") ? query.get("search") : ""
   );
@@ -178,7 +193,17 @@ const ShowAll = ({ categories, query }) => {
       sale_status,
       price_range
     );
-  }, [query]);
+  }, [match.params.search]);
+
+  useEffect(() => {
+    if (match.path === "/:search?/details/:slug") {
+      setPopDetails({ ...popDetails, show: true, children: <Details /> });
+    } else if (match.path === "/:search?/order/details/:slug/:orderSlug") {
+      setPopDetails({ ...popDetails, show: true, children: <OrderDetails /> });
+    } else {
+      setPopDetails({ ...popDetails, show: false, children: null });
+    }
+  }, [match.path]);
 
   const showAllNFTs = async (
     page,
@@ -549,8 +574,8 @@ const ShowAll = ({ categories, query }) => {
     }
 
     if (query_string) {
-      // history.push(`/?${encodeURIComponent(query_string)}`);
-      history.push(`/?${query_string}`);
+      // history.push(`/${encodeURIComponent(query_string)}`);
+      history.push(`/${query_string}`);
     } else {
       history.push("/");
     }
@@ -618,8 +643,8 @@ const ShowAll = ({ categories, query }) => {
     }
 
     if (query_string) {
-      // history.push(`/?${encodeURIComponent(query_string)}`);
-      history.push(`/?${query_string}`);
+      // history.push(`/${encodeURIComponent(query_string)}`);
+      history.push(`/${query_string}`);
     } else {
       history.push("/");
     }
@@ -687,8 +712,8 @@ const ShowAll = ({ categories, query }) => {
     }
 
     if (query_string) {
-      // history.push(`/?${encodeURIComponent(query_string)}`);
-      history.push(`/?${query_string}`);
+      // history.push(`/${encodeURIComponent(query_string)}`);
+      history.push(`/${query_string}`);
     } else {
       history.push("/");
     }
@@ -750,8 +775,8 @@ const ShowAll = ({ categories, query }) => {
     }
 
     if (query_string) {
-      // history.push(`/?${encodeURIComponent(query_string)}`);
-      history.push(`/?${query_string}`);
+      // history.push(`/${encodeURIComponent(query_string)}`);
+      history.push(`/${query_string}`);
     } else {
       history.push("/");
     }
@@ -813,8 +838,8 @@ const ShowAll = ({ categories, query }) => {
     }
 
     if (query_string) {
-      // history.push(`/?${encodeURIComponent(query_string)}`);
-      history.push(`/?${query_string}`);
+      // history.push(`/${encodeURIComponent(query_string)}`);
+      history.push(`/${query_string}`);
     } else {
       history.push("/");
     }
@@ -876,8 +901,8 @@ const ShowAll = ({ categories, query }) => {
     }
 
     if (query_string) {
-      // history.push(`/?${encodeURIComponent(query_string)}`);
-      history.push(`/?${query_string}`);
+      // history.push(`/${encodeURIComponent(query_string)}`);
+      history.push(`/${query_string}`);
     } else {
       history.push("/");
     }
@@ -941,7 +966,7 @@ const ShowAll = ({ categories, query }) => {
     }
 
     if (query_string) {
-      history.push(`/?${query_string}`);
+      history.push(`/${query_string}`);
     } else {
       history.push("/");
     }
@@ -955,6 +980,11 @@ const ShowAll = ({ categories, query }) => {
 
   return (
     <>
+      <QuickView
+        show={popDetails.show}
+        onHide={() => history.goBack()}
+        children={popDetails.children}
+      />
       <section className="showall-nft-section">
         <div className="container-fluid">
           <div className="row">
@@ -1254,5 +1284,7 @@ const NFTCardLoader = (props) => (
     <rect x="684" y="5" rx="2" ry="2" width="218" height="280" />
   </ContentLoader>
 );
-
+const useQueryStringConverter = (search) => {
+  return React.useMemo(() => new URLSearchParams(search), [search]);
+};
 export default ShowAll;

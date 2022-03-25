@@ -72,7 +72,11 @@ const Latimes = () => {
       <Header />
 
       {launch ? (
-        <Explore categoryDetail={categoryDetail} slug={categoryDetail?.slug} />
+        <Explore
+          categoryDetail={categoryDetail}
+          slug={categoryDetail?.slug}
+          clientUrl={"latimes-NFT"}
+        />
       ) : (
         <div className="timer-center">
           <div className="timer-c">

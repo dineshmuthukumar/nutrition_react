@@ -9,7 +9,7 @@ import { nftCategoryDetailApi } from "../api/methods";
 import { setCookiesByName } from "../utils/cookies";
 
 const ExploreList = () => {
-  const { slug } = useParams();
+  const { cSlug } = useParams();
   const [categoryDetail, setCategoryDetail] = useState({});
   const [loading, setLoading] = useState(false);
   let query = useQuery();
@@ -21,13 +21,13 @@ const ExploreList = () => {
       setCookiesByName("source", fsz);
     }
 
-    nftCategoryDetail(slug);
+    nftCategoryDetail(cSlug);
   }, []);
 
-  const nftCategoryDetail = async (slug) => {
+  const nftCategoryDetail = async (input) => {
     try {
       setLoading(true);
-      let response = await nftCategoryDetailApi({ slug });
+      let response = await nftCategoryDetailApi({ slug: input });
       setCategoryDetail(response.data.data.category);
       setLoading(false);
     } catch (err) {

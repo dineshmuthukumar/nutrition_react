@@ -103,7 +103,7 @@ const OrderDetails = () => {
   const orderDetails = _.get(nft, "order_details", {});
 
   useEffect(() => {
-    document.body.scrollTop = document.documentElement.scrollTop = 0;
+    // document.body.scrollTop = document.documentElement.scrollTop = 0;
 
     buyDetail(slug, orderSlug, (data) => {
       purchaseDetails();

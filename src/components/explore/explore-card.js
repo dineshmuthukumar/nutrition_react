@@ -1,6 +1,6 @@
 import React from "react";
 import dayjs from "dayjs";
-import { useHistory } from "react-router";
+import { useRouteMatch, Link } from "react-router";
 
 import sample from "../../images/sampleNFT.jpg";
 import NFTCounter from "../nft-counter";
@@ -22,7 +22,7 @@ const ExploreCard = ({
   nftType,
 }) => {
   const erc721 = nftType === "erc721";
-  const history = useHistory();
+  const { search } = useRouteMatch().params;
 
   // const handleClick = () => {
   //   if (nft?.is_on_sale) {
@@ -33,14 +33,19 @@ const ExploreCard = ({
   // };
   return (
     <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-      <a
+      <Link
         className="more-card"
-        role="button"
-        href={
-          nft?.is_on_sale
-            ? `/order/details/${nft?.slug}/${nft?.order_details?.slug}`
-            : `/details/${nft?.slug}`
-        }
+        to={(() => {
+          if (nft?.is_on_sale) {
+            return search
+              ? `/${search}/order/details/${nft?.slug}/${nft?.order_details?.slug}`
+              : `/order/details/${nft?.slug}/${nft?.order_details?.slug}`;
+          } else {
+            return search
+              ? `/${search}/details/${nft?.slug}`
+              : `/details/${nft?.slug}`;
+          }
+        })()}
       >
         <span className="nft-type-badge">{nft.nft_type.toUpperCase()}</span>
         <img
@@ -144,7 +149,7 @@ const ExploreCard = ({
             </>
           )}
         </div>
-      </a>
+      </Link>
     </div>
   );
 };

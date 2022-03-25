@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import dayjs from "dayjs";
-import { useHistory } from "react-router-dom";
+import { useHistory, useRouteMatch, Link } from "react-router-dom";
 import { prominent } from "color.js";
 import { currencyFormat } from "../../utils/common";
 import sample from "../../images/sampleNFT.jpg";
@@ -18,15 +18,19 @@ const NFTCard = ({
   onsale = false,
   textColor,
   reloadNFTList,
+  isExplore = false,
+  exploreSlug = "",
+  isFaltoo = false,
+  clientUrl = "",
 }) => {
   const erc721 = nft?.nft_type === "erc721";
+  const { search } = useRouteMatch().params;
   const history = useHistory();
   const [bgColor, setBgColor] = useState();
   const [auctionEndTime, setAuctionEndTime] = useState("");
   const [isAuctionStarted, setIsAuctionStarted] = useState(false);
   const [isAuctionEnded, setIsAuctionEnded] = useState(false);
   const [showTimer, setShowTimer] = useState(false);
-
   useEffect(() => {
     if (nft?.order_details?.timed_auction) {
       setIsAuctionStarted(
@@ -106,23 +110,77 @@ const NFTCard = ({
   // };
 
   return (
-    <a
+    <Link
       className="more-card"
-      role="link"
-      href={(() => {
+      to={(() => {
         if (onsale) {
-          return `/order/details/${nft?.slug}/${nft?.order_slug}`;
+          if (isExplore) {
+            if (clientUrl) {
+              return search
+                ? `/${clientUrl}/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
+                : `/${clientUrl}/order/details/${nft?.slug}/${nft?.order_slug}`;
+            } else
+              return search
+                ? `/explore/category/${exploreSlug}/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
+                : `/explore/category/${exploreSlug}/order/details/${nft?.slug}/${nft?.order_slug}`;
+          } else if (isFaltoo) {
+            return `/fully-faltoo-NFT/order/details/${nft?.slug}/${nft?.order_slug}`;
+          } else {
+            return search
+              ? `/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
+              : `/order/details/${nft?.slug}/${nft?.order_slug}`;
+          }
         } else if (nft?.is_on_sale) {
-          return `/order/details/${nft?.slug}/${nft?.order_details?.slug}`;
+          if (isExplore) {
+            if (clientUrl) {
+              return search
+                ? `/${clientUrl}/${search}/order/details/${nft?.slug}/${nft?.order_details?.slug}`
+                : `/${clientUrl}/order/details/${nft?.slug}/${nft?.order_details?.slug}`;
+            } else
+              return search
+                ? `/explore/category/${exploreSlug}/${search}/order/details/${nft?.slug}/${nft?.order_details?.slug}`
+                : `/explore/category/${exploreSlug}/order/details/${nft?.slug}/${nft?.order_details?.slug}`;
+          } else if (isFaltoo) {
+            return `/fully-faltoo-NFT/order/details/${nft?.slug}/${nft?.order_details?.slug}`;
+          } else
+            return search
+              ? `/${search}/order/details/${nft?.slug}/${nft?.order_details?.slug}`
+              : `/order/details/${nft?.slug}/${nft?.order_details?.slug}`;
         } else if (recentSold) {
-          return `/order/details/${nft?.slug}/${nft?.order_slug}`;
-        } else if (liveAuction) {
-          return `/order/details/${nft?.slug}/${nft?.order_slug}`;
+          if (isExplore) {
+            if (clientUrl) {
+              return search
+                ? `/${clientUrl}/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
+                : `/${clientUrl}/order/details/${nft?.slug}/${nft?.order_slug}`;
+            } else
+              return search
+                ? `/explore/category/${exploreSlug}/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
+                : `/explore/category/${exploreSlug}/order/details/${nft?.slug}/${nft?.order_slug}`;
+          } else if (isFaltoo) {
+            return `/fully-faltoo-NFT/order/details/${nft?.slug}/${nft?.order_slug}`;
+          } else
+            return search
+              ? `/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
+              : `/order/details/${nft?.slug}/${nft?.order_slug}`;
         } else {
-          return `/details/${nft?.slug}`;
+          if (isExplore) {
+            if (clientUrl) {
+              return search
+                ? `/${clientUrl}/${search}/details/${nft?.slug}`
+                : `/${clientUrl}/details/${nft?.slug}`;
+            } else
+              return search
+                ? `/explore/category/${exploreSlug}/${search}/details/${nft?.slug}`
+                : `/explore/category/${exploreSlug}/details/${nft?.slug}`;
+          } else if (isFaltoo) {
+            return `/fully-faltoo-NFT/details/${nft?.slug}`;
+          } else {
+            return search
+              ? `/${search}/details/${nft?.slug}`
+              : `/details/${nft?.slug}`;
+          }
         }
       })()}
-      // onClick={handleClick}
     >
       <span className="nft-type-badge">{nft.nft_type.toUpperCase()}</span>
       <img
@@ -365,7 +423,7 @@ const NFTCard = ({
           </>
         )}
       </div>
-    </a>
+    </Link>
   );
 };
 

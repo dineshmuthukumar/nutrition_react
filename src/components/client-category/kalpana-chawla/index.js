@@ -72,7 +72,11 @@ const KalpanaChawla = () => {
       <Header />
 
       {launch ? (
-        <Explore categoryDetail={categoryDetail} slug={categoryDetail?.slug} />
+        <Explore
+          categoryDetail={categoryDetail}
+          slug={categoryDetail?.slug}
+          clientUrl={"kalpana-chawla-NFT"}
+        />
       ) : (
         <div className="timer-center">
           <div className="timer-c">

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import dayjs from "dayjs";
-import { useHistory } from "react-router-dom";
+import { useRouteMatch, Link } from "react-router-dom";
 import { prominent } from "color.js";
 import { FaHeart } from "react-icons/fa";
 import { currencyFormat } from "../../utils/common";
@@ -15,7 +15,7 @@ import { AiFillFire } from "react-icons/ai";
 
 const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
   const erc721 = nft?.nft_type === "erc721";
-  const history = useHistory();
+  const { search } = useRouteMatch().params;
   const [bgColor, setBgColor] = useState();
   const [auctionEndTime, setAuctionEndTime] = useState("");
   const [isAuctionStarted, setIsAuctionStarted] = useState(false);
@@ -94,16 +94,23 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
   //   }
   // };
   return (
-    <a
+    <Link
       className="more-card"
-      role="button"
-      href={
-        nft?.is_on_sale
-          ? `/order/details/${nft?.slug}/${nft?.order_details?.slug}`
-          : recentSold || favouriteNFT
-          ? `/order/details/${nft?.slug}/${nft?.order_slug}`
-          : `/details/${nft?.slug}`
-      }
+      to={(() => {
+        if (nft?.is_on_sale) {
+          return search
+            ? `/${search}/order/details/${nft?.slug}/${nft?.order_details?.slug}`
+            : `/order/details/${nft?.slug}/${nft?.order_details?.slug}`;
+        } else if (recentSold) {
+          return search
+            ? `/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
+            : `/order/details/${nft?.slug}/${nft?.order_slug}`;
+        } else {
+          return search
+            ? `/${search}/details/${nft?.slug}`
+            : `/details/${nft?.slug}`;
+        }
+      })()}
     >
       <span className="nft-type-badge">{nft.nft_type.toUpperCase()}</span>
       <img
@@ -352,7 +359,7 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
           </>
         )}
       </div>
-    </a>
+    </Link>
   );
 };
 

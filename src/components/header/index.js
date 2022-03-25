@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { FaDiscord } from "react-icons/fa";
 import { CgMenuRight } from "react-icons/cg";
 import { VscChromeClose } from "react-icons/vsc";
+import { useHistory } from "react-router-dom";
 
 import depositIcon from "../../images/deposit.svg";
 import bidIcon from "../../images/bid.svg";
@@ -27,6 +28,7 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
   const t = useTranslation();
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
+  const history = useHistory();
 
   const [notiLoading, setNotiLoading] = useState(false);
   const [npage, setNPage] = useState(1);
@@ -568,7 +570,11 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                     </Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
-                <Nav.Link id="drop_outer" href="/">
+                <Nav.Link
+                  id="drop_outer"
+                  role="button"
+                  onClick={() => history.push("/")}
+                >
                   <span className="beta-container">
                     <span className="beta-tag">Beta</span>
                     Marketplace

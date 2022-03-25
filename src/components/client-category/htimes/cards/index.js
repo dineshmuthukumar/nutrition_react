@@ -1,20 +1,21 @@
 import React from "react";
 import sample from "../../../../images/sampleNFT.jpg";
+import { Link } from "react-router-dom";
 import "./style.scss";
 import { currencyFormat } from "../../../../utils/common";
 
 const Cards = ({ nft }) => {
   const erc721 = nft?.nft_type === "erc721";
+
   return (
     <>
-      <a
+      <Link
         className="more-card"
-        role="link"
-        href={(() => {
+        to={(() => {
           if (nft?.is_on_sale) {
-            return `/order/details/${nft?.slug}/${nft?.order_details?.slug}`;
+            return `/hindustan-times-NFT/order/details/${nft?.slug}/${nft?.order_details?.slug}`;
           } else {
-            return `/details/${nft?.slug}`;
+            return `/hindustan-times-NFT/details/${nft?.slug}`;
           }
         })()}
       >
@@ -92,7 +93,7 @@ const Cards = ({ nft }) => {
             </>
           )}
         </div>
-      </a>
+      </Link>
     </>
   );
 };

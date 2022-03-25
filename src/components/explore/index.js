@@ -1,28 +1,42 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useRouteMatch } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 import ContentLoader from "react-content-loader";
 import { FaCheckCircle } from "react-icons/fa";
 
 import NFTCard from "../nft-card";
+import QuickView from "../quick-view";
 import { nftCategoryListApi } from "../../api/methods";
 import ExploreTitle from "./explore-title";
 import sample from "../../images/sampleNFT.jpg";
-import "./style.scss";
 import { BiCaretDown, BiX, BiSearch } from "react-icons/bi";
-import useQuery from "../../hook/useQuery";
-import { useHistory } from "react-router-dom";
 
-const Explore = ({ categoryDetail, slug }) => {
+import Details from "../../pages/details";
+import OrderDetails from "../../pages/order-details";
+
+import "./style.scss";
+
+const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
   const history = useHistory();
-  const query = useQuery();
+
+  const match = useRouteMatch();
   // const { slug } = useParams();
   const [page, setPage] = useState(1);
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [hasNext, setHasNext] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
+
+  const [popDetails, setPopDetails] = useState({
+    show: false,
+    children: null,
+  });
+
+  const query = useQueryStringConverter(
+    match.params.search ? match.params.search : ""
+  );
+
   const [search, setSearch] = useState(
     query.get("search") ? query.get("search") : ""
   );
@@ -101,6 +115,39 @@ const Explore = ({ categoryDetail, slug }) => {
     setFilter(info);
     setPage(1);
   }, [query]);
+
+  useEffect(() => {
+    if (clientUrl) {
+      if (match.path === `/${clientUrl}/:search?/details/:slug`) {
+        setPopDetails({ ...popDetails, show: true, children: <Details /> });
+      } else if (
+        match.path === `/${clientUrl}/:search?/order/details/:slug/:orderSlug`
+      ) {
+        setPopDetails({
+          ...popDetails,
+          show: true,
+          children: <OrderDetails />,
+        });
+      } else {
+        setPopDetails({ ...popDetails, show: false, children: null });
+      }
+    } else {
+      if (match.path === "/explore/category/:cSlug/:search?/details/:slug") {
+        setPopDetails({ ...popDetails, show: true, children: <Details /> });
+      } else if (
+        match.path ===
+        "/explore/category/:cSlug/:search?/order/details/:slug/:orderSlug"
+      ) {
+        setPopDetails({
+          ...popDetails,
+          show: true,
+          children: <OrderDetails />,
+        });
+      } else {
+        setPopDetails({ ...popDetails, show: false, children: null });
+      }
+    }
+  }, [match.path]);
 
   useEffect(() => {
     const sale_filters = query.get("sale") ? query.get("sale").split(",") : [];
@@ -288,9 +335,9 @@ const Explore = ({ categoryDetail, slug }) => {
 
     if (query_string) {
       // history.push(
-      //   `/explore/category/${slug}?${encodeURIComponent(query_string)}`
+      //   `/explore/category/${slug}/${encodeURIComponent(query_string)}`
       // );
-      history.push(`/explore/category/${slug}?${query_string}`);
+      history.push(`/explore/category/${slug}/${query_string}`);
     } else {
       history.push(`/explore/category/${slug}`);
     }
@@ -336,9 +383,9 @@ const Explore = ({ categoryDetail, slug }) => {
 
     if (query_string) {
       // history.push(
-      //   `/explore/category/${slug}?${encodeURIComponent(query_string)}`
+      //   `/explore/category/${slug}/${encodeURIComponent(query_string)}`
       // );
-      history.push(`/explore/category/${slug}?${query_string}`);
+      history.push(`/explore/category/${slug}/${query_string}`);
     } else {
       history.push(`/explore/category/${slug}`);
     }
@@ -378,9 +425,9 @@ const Explore = ({ categoryDetail, slug }) => {
 
     if (query_string) {
       // history.push(
-      //   `/explore/category/${slug}?${encodeURIComponent(query_string)}`
+      //   `/explore/category/${slug}/${encodeURIComponent(query_string)}`
       // );
-      history.push(`/explore/category/${slug}?${query_string}`);
+      history.push(`/explore/category/${slug}/${query_string}`);
     } else {
       history.push(`/explore/category/${slug}`);
     }
@@ -418,9 +465,9 @@ const Explore = ({ categoryDetail, slug }) => {
 
     if (query_string) {
       // history.push(
-      //   `/explore/category/${slug}?${encodeURIComponent(query_string)}`
+      //   `/explore/category/${slug}/${encodeURIComponent(query_string)}`
       // );
-      history.push(`/explore/category/${slug}?${query_string}`);
+      history.push(`/explore/category/${slug}/${query_string}`);
     } else {
       history.push(`/explore/category/${slug}`);
     }
@@ -434,6 +481,11 @@ const Explore = ({ categoryDetail, slug }) => {
 
   return (
     <>
+      <QuickView
+        show={popDetails.show}
+        onHide={() => history.goBack()}
+        children={popDetails.children}
+      />
       <section className="explore-nft-section">
         <div className="container-fluid">
           <div className="row mt-3 explore-title">
@@ -583,7 +635,14 @@ const Explore = ({ categoryDetail, slug }) => {
                         key={`list-nft-${i}`}
                         className="col-xl-3 col-lg-4 col-md-6 col-sm-6"
                       >
-                        <NFTCard nft={nft} key={i} image={sample} />
+                        <NFTCard
+                          nft={nft}
+                          key={i}
+                          image={sample}
+                          isExplore
+                          exploreSlug={slug}
+                          clientUrl={clientUrl}
+                        />
                       </div>
                     ))
                   ) : (
@@ -635,5 +694,9 @@ const NFTCardLoader = (props) => (
     <rect x="684" y="5" rx="2" ry="2" width="218" height="280" />
   </ContentLoader>
 );
+
+const useQueryStringConverter = (search) => {
+  return React.useMemo(() => new URLSearchParams(search), [search]);
+};
 
 export default Explore;

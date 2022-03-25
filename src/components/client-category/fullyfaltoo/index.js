@@ -1,19 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { nftCategoriesApi, nftCategoryListApi } from "../../../api/methods";
+import ContentLoader from "react-content-loader";
+import Image from "react-bootstrap/Image";
+import { useRouteMatch, useHistory } from "react-router-dom";
+
 import Footer from "../../footer";
 import Header from "../../header";
-import Image from "react-bootstrap/Image";
+import NFTCard from "../../nft-card";
+import Details from "../../../pages/details";
+import OrderDetails from "../../../pages/order-details";
+import QuickView from "../../quick-view";
+import { nftCategoriesApi, nftCategoryListApi } from "../../../api/methods";
+
 import ffLogo from "./img/logo2.png";
-import ContentLoader from "react-content-loader";
-import "./style.scss";
 import royalrumblers from "./img/royal-rumblers.mp4";
 import bakra from "./img/bakra.jpg";
 import manyme from "./img/manyme.jpg";
 import wings from "./img/wings.png";
 import rangu from "./img/rangu.jpg";
-import NFTCard from "../../nft-card";
+
+import "./style.scss";
 
 const FullyFaltoo = () => {
+  const match = useRouteMatch();
+  const history = useHistory();
   const parent_slug = process.env.REACT_APP_FF_SLUG;
   const [page, setPage] = useState(1);
   const [list, setList] = useState([]);
@@ -24,6 +33,12 @@ const FullyFaltoo = () => {
   const [loadingMore, setLoadingMore] = useState(false);
   const [categoryName, setCategoryName] = useState("Popular Collection NFT");
   const [categorySlug, setCategorySlug] = useState("");
+
+  const [popDetails, setPopDetails] = useState({
+    show: false,
+    children: null,
+  });
+
   const [categories, setCategories] = useState({
     static_url: [
       {
@@ -104,6 +119,18 @@ const FullyFaltoo = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [list]);
 
+  useEffect(() => {
+    if (match.path === "/fully-faltoo-NFT/details/:slug") {
+      setPopDetails({ ...popDetails, show: true, children: <Details /> });
+    } else if (
+      match.path === "/fully-faltoo-NFT/order/details/:slug/:orderSlug"
+    ) {
+      setPopDetails({ ...popDetails, show: true, children: <OrderDetails /> });
+    } else {
+      setPopDetails({ ...popDetails, show: false, children: null });
+    }
+  }, [match.path]);
+
   const categoriesList = async (page) => {
     try {
       setLoading(true);
@@ -167,6 +194,11 @@ const FullyFaltoo = () => {
 
   return (
     <>
+      <QuickView
+        show={popDetails.show}
+        onHide={() => history.goBack()}
+        children={popDetails.children}
+      />
       <Header />
       <section className="client-category">
         <div className="container-fluid">
@@ -286,7 +318,7 @@ const FullyFaltoo = () => {
                     key={`NFTList-nft-${i}`}
                     className="col-xl-3 col-lg-4 col-md-6 col-sm-6"
                   >
-                    <NFTCard nft={nft} key={i} textColor={"#fff"} />
+                    <NFTCard nft={nft} key={i} textColor={"#fff"} isFaltoo />
                   </div>
                 ))
               ) : (
