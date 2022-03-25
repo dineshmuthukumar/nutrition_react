@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Banner from "../components/banner";
@@ -18,8 +18,9 @@ import {
   setCookies,
 } from "../utils/cookies";
 import { user_load_by_token_thunk } from "../redux/thunk/user_thunk";
-import { nftCategoriesApi } from "../api/methods";
+import { nftCategoriesApi, userFavedNFTOrders } from "../api/methods";
 import useQuery from "../hook/useQuery";
+import FavouriteNFTs from "../components/favourite-NFTs";
 
 const Home = () => {
   const { url } = useRouteMatch();
@@ -28,11 +29,17 @@ const Home = () => {
   let query = useQuery();
   const fsz = query.get("fsz");
   const token = query.get("token");
+  const { user } = useSelector((state) => state.user.data);
 
   const [page, setPage] = useState(1);
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [hasNext, setHasNext] = useState(false);
+
+  const [favPage, setFavPage] = useState(1);
+  const [favList, setFavList] = useState([]);
+  const [favLoading, setFavLoading] = useState(false);
+  const [favHasNext, setFavHasNext] = useState(false);
 
   const categoriesList = async (page) => {
     try {
@@ -63,6 +70,24 @@ const Home = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    if (user) {
+      getUserFavedNFTOrders();
+    }
+  }, [user]);
+
+  const getUserFavedNFTOrders = async () => {
+    try {
+      setFavLoading(true);
+      const result = await userFavedNFTOrders(favPage);
+      setFavList(result.data.data.orders);
+      setFavLoading(false);
+    } catch (error) {
+      console.log(error);
+      setFavLoading(false);
+    }
+  };
+
   return (
     <>
       <Header />
@@ -70,6 +95,10 @@ const Home = () => {
         <Banner list={list} />
         <HotCollections />
         <LiveAuctions />
+        {favList.length > 0 && (
+          <FavouriteNFTs list={favList} loading={favLoading} />
+        )}
+
         {/* <RecentlySoldNFT /> */}
         <TopBuyers />
         <TopSellers />

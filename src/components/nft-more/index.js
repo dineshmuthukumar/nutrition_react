@@ -9,6 +9,7 @@ const NFTMore = ({
   hideNavigation = false,
   hideTitle = false,
   recentSold = false,
+  favouriteNFT = false,
 }) => {
   const ref = useRef(0);
   const scroll = (type) => {
@@ -78,6 +79,7 @@ const NFTMore = ({
               key={`nft-more-${i}`}
               nft={nft}
               recentSold={recentSold}
+              favouriteNFT={favouriteNFT}
             />
           );
         })}
