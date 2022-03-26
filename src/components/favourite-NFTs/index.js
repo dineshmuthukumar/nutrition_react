@@ -1,10 +1,13 @@
 import React from "react";
 import ContentLoader from "react-content-loader";
+import { useHistory } from "react-router-dom";
 import NFTMore from "../nft-more/index";
 
 import "./style.scss";
 
 const FavouriteNFTs = ({ list = [], loading = false }) => {
+  const history = useHistory();
+
   return (
     <>
       <section className="favorite-collection-section">
@@ -14,6 +17,12 @@ const FavouriteNFTs = ({ list = [], loading = false }) => {
               <div className="sec-heading flex-box">
                 <span className="title full-width-title">
                   ❤️ My Favorites On Sale
+                </span>
+                <span
+                  className="viewallBtnliveaction"
+                  onClick={() => history.push("/nfts/favorites")}
+                >
+                  View all
                 </span>
               </div>
 
