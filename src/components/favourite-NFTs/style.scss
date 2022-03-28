@@ -5,9 +5,21 @@
   border-bottom: 0.3rem solid #000;
   margin-bottom: 3rem;
   font-family: $neue-helveticamedium;
+  &.fav-flex-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
   .title {
+    white-space: nowrap;
     &.full-width-title {
       width: initial;
+      span {
+        @media screen and (max-width: 767px) {
+          display: none;
+        }
+      }
     }
   }
 }

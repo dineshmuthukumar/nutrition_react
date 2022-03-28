@@ -333,14 +333,21 @@ const LiveAuctionsList = () => {
         <div className="container-fluid">
           <div className="row">
             <div className="col-sm-12">
-              <div className="sec-heading d-flex align-items-center mb-5 explore-heading">
+              <div className="sec-heading d-flex align-items-center mb-5 liveauction-detail-heading">
                 <div className="flex-heading">
                   <span className="text-nowrap me-4">Live Auction</span>
-                  <div className="d-flex flex-wrap filter-box">
+                  {/* <div className="d-flex flex-wrap filter-box">
+                    <span className="d-flex justify-content-end w-100 filter-blocks">
+                      
+                    </span>
+                  </div> */}
+                </div>
+                <span className="d-flex justify-content-end w-100 liveauction-detail-filter-blocks">
+                  <div className="d-flex flex-wrap liveauction-detail-filter-box">
                     <Dropdown className="price-range">
                       <Dropdown.Toggle
                         align="start"
-                        drop="start"
+                        drop="down"
                         as={PriceDropdown}
                       ></Dropdown.Toggle>
 
@@ -349,10 +356,6 @@ const LiveAuctionsList = () => {
                         as={PriceMenu}
                       ></Dropdown.Menu>
                     </Dropdown>
-                  </div>
-                </div>
-                <span className="d-flex justify-content-end w-100 filter-blocks">
-                  <div className="d-flex flex-wrap filter-box">
                     <Dropdown>
                       <Dropdown.Toggle
                         align="start"

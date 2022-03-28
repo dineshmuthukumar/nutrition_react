@@ -14,9 +14,9 @@ const FavouriteNFTs = ({ list = [], loading = false }) => {
         <div className="container-fluid">
           <div className="row">
             <div className="col-sm-12">
-              <div className="sec-heading flex-box">
+              <div className="sec-heading fav-flex-box">
                 <span className="title full-width-title">
-                  ❤️ My Favorites On Sale
+                  ❤️ My Favorites<span> On Sale</span>
                 </span>
                 <span
                   className="viewallBtnliveaction"

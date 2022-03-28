@@ -6,6 +6,13 @@
   margin-bottom: 3rem;
   font-family: $neue-helveticabold;
   font-size: 2rem;
+  &.liveauction-detail-heading {
+    @media screen and (max-width: 991px) {
+      flex-direction: column;
+      width: 100%;
+      align-items: flex-start !important;
+    }
+  }
 }
 
 .showall-nft-section {
@@ -39,7 +46,7 @@ button.load_more {
   }
 }
 
-.filter-blocks {
+.liveauction-detail-filter-blocks {
   &.days {
     margin-top: 0rem !important;
     .dropdown {
@@ -51,26 +58,31 @@ button.load_more {
     flex-direction: column-reverse;
     align-items: flex-end;
     position: relative;
-    margin-top: -2.5rem !important;
   }
 
   @media screen and (max-width: 425px) {
     margin-top: 0.5rem !important;
   }
-  .filter-box {
-    @media screen and (max-width: 767px) {
+  .liveauction-detail-filter-box {
+    @media screen and (max-width: 991px) {
       margin-top: 0.5rem;
       width: 100%;
       justify-content: space-between;
     }
     .dropdown {
       margin-right: 0.5rem;
-      @media screen and (max-width: 767px) {
-        width: 24%;
+      @media screen and (max-width: 991px) {
+        width: 49%;
         margin-right: 0rem;
       }
-      @media screen and (max-width: 425px) {
-        width: 49%;
+      @media screen and (max-width: 767px) {
+        width: 100%;
+      }
+      .filter-drop-btn,
+      .filter-drop-sort-btn {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
       }
     }
     .dropdown-menu {
@@ -112,7 +124,7 @@ button.load_more {
 }
 
 .filter-drop-btn {
-  padding: 0.2rem 1.8rem 0.2rem 1.5rem;
+  padding: 0.2rem 0.8rem 0.2rem 0.8rem;
   font-size: 1rem;
   font-family: $neue-helveticamedium;
   border: 1px solid #000;
