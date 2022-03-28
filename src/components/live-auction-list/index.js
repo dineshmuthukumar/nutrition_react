@@ -12,6 +12,7 @@ import sample from "../../images/sampleNFT.jpg";
 import "./style.scss";
 import useQuery from "../../hook/useQuery";
 import { BiCaretDown } from "react-icons/bi";
+import { validateCurrency } from "../../utils/common";
 
 const LiveAuctionsList = () => {
   const history = useHistory();
@@ -55,7 +56,7 @@ const LiveAuctionsList = () => {
     }));
     setPage(1);
     setFilter(info);
-    if (price_range.from && price_range.to) {
+    if (price_range.from || price_range.to) {
       setPriceRangeFilter(price_range);
     }
   }, [slug, query]);
@@ -68,8 +69,8 @@ const LiveAuctionsList = () => {
     const price_range = {
       from: query.get("minPrice"),
       to: query.get("maxPrice"),
-      from: query.get("minPrice") ? query.get("minPrice") : null,
-      to: query.get("maxPrice") ? query.get("maxPrice") : null,
+      from: query.get("minPrice") ? query.get("minPrice") : "",
+      to: query.get("maxPrice") ? query.get("maxPrice") : "",
     };
 
     showAllFilteredNFTs(1, sort_filters, price_range);
@@ -126,8 +127,8 @@ const LiveAuctionsList = () => {
       const price_range = {
         from: query.get("minPrice"),
         to: query.get("maxPrice"),
-        from: query.get("minPrice") ? query.get("minPrice") : null,
-        to: query.get("maxPrice") ? query.get("maxPrice") : null,
+        from: query.get("minPrice") ? query.get("minPrice") : "",
+        to: query.get("maxPrice") ? query.get("maxPrice") : "",
       };
 
       setPage(page + 1);
@@ -161,10 +162,13 @@ const LiveAuctionsList = () => {
         onClick(e);
       }}
     >
-      Price Range{" "}
-      {priceRangeFilter.from &&
-        priceRangeFilter.to &&
-        `$${priceRangeFilter.from} - $${priceRangeFilter.to}`}
+      {priceRangeFilter.from && priceRangeFilter.to
+        ? `Price Range $${priceRangeFilter.from} - $${priceRangeFilter.to}`
+        : priceRangeFilter.from
+        ? `Min $${priceRangeFilter.from}`
+        : priceRangeFilter.to
+        ? `Max $${priceRangeFilter.to}`
+        : "Price Range"}
       <BiCaretDown />
     </div>
   ));
@@ -196,7 +200,13 @@ const LiveAuctionsList = () => {
                 placeholder="From"
                 type="number"
                 onChange={(e) => {
-                  setPriceRange({ ...priceRange, from: e.target.value });
+                  if (e.target.value && e.target.value.length <= 9) {
+                    if (validateCurrency(e.target.value)) {
+                      setPriceRange({ ...priceRange, to: e.target.value });
+                    }
+                  } else {
+                    setPriceRange({ ...priceRange, to: "" });
+                  }
                 }}
                 value={priceRange.from}
               />
@@ -208,7 +218,13 @@ const LiveAuctionsList = () => {
                 placeholder="To"
                 type="number"
                 onChange={(e) => {
-                  setPriceRange({ ...priceRange, to: e.target.value });
+                  if (e.target.value && e.target.value.length <= 9) {
+                    if (validateCurrency(e.target.value)) {
+                      setPriceRange({ ...priceRange, to: e.target.value });
+                    }
+                  } else {
+                    setPriceRange({ ...priceRange, to: "" });
+                  }
                 }}
                 value={priceRange.to}
               />
@@ -276,7 +292,7 @@ const LiveAuctionsList = () => {
         : `sort=${sort_exist}`;
     }
 
-    if (price_range.from && price_range.to) {
+    if (price_range.from || price_range.to) {
       query_string += query_string
         ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
         : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
