@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import _ from "lodash";
 
@@ -45,6 +45,7 @@ const Details = () => {
 
   const { user } = useSelector((state) => state.user.data);
   const isOwner = _.has(nft, "owner_details");
+  const location = useLocation();
 
   useEffect(() => {
     // document.body.scrollTop = document.documentElement.scrollTop = 0;
@@ -54,6 +55,14 @@ const Details = () => {
     nftTransaction();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (isOwner) {
+      if (location.hash === "#list-for-sale") {
+        setPutOnSalePop(!putOnSalePop);
+      }
+    }
+  }, [isOwner]);
 
   useEffect(() => {
     if (user && isOwner) {
