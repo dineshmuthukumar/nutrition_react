@@ -97,7 +97,11 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
     <Link
       className="more-card"
       to={(() => {
-        if (nft?.is_on_sale) {
+        if (favouriteNFT) {
+          return search
+            ? `/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
+            : `/order/details/${nft?.slug}/${nft?.order_slug}`;
+        } else if (nft?.is_on_sale) {
           return search
             ? `/${search}/order/details/${nft?.slug}/${nft?.order_details?.slug}`
             : `/order/details/${nft?.slug}/${nft?.order_details?.slug}`;

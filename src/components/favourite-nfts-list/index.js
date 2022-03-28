@@ -42,15 +42,6 @@ const FavouriteNftsList = () => {
     }
   };
 
-  const reloadNFTList = async () => {
-    try {
-      let response = await userFavedNFTOrders({ page });
-      setList(response.data.data.nfts);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   return (
     <>
       <section className="explore-nft-section">
@@ -77,8 +68,7 @@ const FavouriteNftsList = () => {
                           nft={nft}
                           key={i}
                           image={sample}
-                          liveAuction
-                          reloadNFTList={reloadNFTList}
+                          favouriteNFTs
                         />
                       </div>
                     ))

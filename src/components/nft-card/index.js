@@ -15,6 +15,7 @@ const NFTCard = ({
   ownedCard = false,
   recentSold = false,
   liveAuction = false,
+  favouriteNFTs = false,
   onsale = false,
   textColor,
   reloadNFTList,
@@ -45,6 +46,18 @@ const NFTCard = ({
     }
 
     if (onsale && nft?.timed_auction) {
+      setIsAuctionStarted(
+        new Date(nft?.time).getTime() >=
+          new Date(nft?.auction_start_time).getTime()
+      );
+      setIsAuctionEnded(
+        new Date(nft?.time).getTime() >
+          new Date(nft?.auction_end_time).getTime()
+      );
+      setShowTimer(true);
+    }
+
+    if (favouriteNFTs && nft?.timed_auction) {
       setIsAuctionStarted(
         new Date(nft?.time).getTime() >=
           new Date(nft?.auction_start_time).getTime()
@@ -125,6 +138,21 @@ const NFTCard = ({
                 : `/explore/category/${exploreSlug}/order/details/${nft?.slug}/${nft?.order_slug}`;
           } else if (isFaltoo) {
             return `/fully-faltoo-NFT/order/details/${nft?.slug}/${nft?.order_slug}`;
+          } else {
+            return search
+              ? `/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
+              : `/order/details/${nft?.slug}/${nft?.order_slug}`;
+          }
+        } else if (favouriteNFTs) {
+          if (isExplore) {
+            if (clientUrl) {
+              return search
+                ? `/${clientUrl}/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
+                : `/${clientUrl}/order/details/${nft?.slug}/${nft?.order_slug}`;
+            } else
+              return search
+                ? `/explore/category/${exploreSlug}/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
+                : `/explore/category/${exploreSlug}/order/details/${nft?.slug}/${nft?.order_slug}`;
           } else {
             return search
               ? `/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
@@ -419,6 +447,96 @@ const NFTCard = ({
                   {dayjs(nft?.created_at).format("MMM D, YYYY hh:mm A")}
                 </div>
               </div>
+            </div>
+          </>
+        )}
+
+        {favouriteNFTs && (
+          <>
+            {nft?.is_bid && nft?.timed_auction && (
+              <>
+                {showTimer && (
+                  <>
+                    {!isAuctionStarted && !isAuctionEnded && (
+                      <div className="time-counter-box">
+                        <span className="time-counter-card">
+                          <img src={startin} alt="startin" />
+                          <NFTCounter
+                            time={nft?.auction_start_time}
+                            cTime={nft?.time}
+                            timeClass="font-onerem"
+                            intervalClass="font-psevenrem"
+                            intervalGapClass="me-1"
+                            handleEndEvent={handleAuctionStartTimer}
+                            handleNFTEndEvent={handleNFTEndEvent}
+                          />
+                          {/* &nbsp;&nbsp;<span class="fire-icon">🔥</span> */}
+                          &nbsp;&nbsp;
+                          <span class="fire-icon">
+                            <AiFillFire />
+                          </span>
+                        </span>
+                      </div>
+                    )}
+                    {!isAuctionEnded && isAuctionStarted && (
+                      <div className="time-counter-box">
+                        <span className="time-counter-card">
+                          <img src={endsin} alt="endsin" />
+                          <NFTCounter
+                            time={nft?.auction_end_time}
+                            cTime={nft?.time}
+                            timeClass="font-onerem"
+                            intervalClass="font-psevenrem"
+                            intervalGapClass="me-1"
+                            handleEndEvent={handleAuctionEndTimer}
+                            handleNFTEndEvent={handleNFTEndEvent}
+                          />
+                          &nbsp;&nbsp;
+                          <span class="fire-icon">
+                            <AiFillFire />
+                          </span>
+                        </span>
+                      </div>
+                    )}
+                  </>
+                )}
+              </>
+            )}
+
+            <div className="more-bid-details">
+              <div className="text-start">
+                <div className="mb-title text-secondary">
+                  {(() => {
+                    if (erc721) {
+                      return nft?.is_bid ? "Bid Price" : "Buy Price";
+                    } else {
+                      return "Buy Price";
+                    }
+                  })()}
+                </div>
+                <div className="mb-value">
+                  {(() => {
+                    if (erc721) {
+                      return nft?.is_bid
+                        ? currencyFormat(
+                            nft?.top_bid ? nft?.top_bid : nft?.minimum_bid,
+                            "USD"
+                          )
+                        : currencyFormat(nft?.buy_amount, "USD");
+                    } else {
+                      return currencyFormat(nft?.buy_amount, "USD");
+                    }
+                  })()}
+                </div>
+              </div>
+              {erc721 && nft?.is_bid && nft?.is_buy && (
+                <div className="text-end">
+                  <div className="mb-title text-secondary">Buy Price</div>
+                  <div className="mb-value">
+                    {currencyFormat(nft?.buy_amount, "USD")}
+                  </div>
+                </div>
+              )}
             </div>
           </>
         )}
