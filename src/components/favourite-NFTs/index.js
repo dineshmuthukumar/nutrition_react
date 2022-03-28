@@ -18,12 +18,12 @@ const FavouriteNFTs = ({ list = [], loading = false }) => {
                 <span className="title full-width-title">
                   ❤️ My Favorites<span> On Sale</span>
                 </span>
-                <span
+                {/* <span
                   className="viewallBtnliveaction"
                   onClick={() => history.push("/nfts/favorites")}
                 >
                   View all
-                </span>
+                </span> */}
               </div>
 
               {!loading ? (
