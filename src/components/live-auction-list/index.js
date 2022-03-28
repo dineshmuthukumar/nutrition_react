@@ -197,15 +197,15 @@ const LiveAuctionsList = () => {
               <FormControl
                 autoFocus
                 className="category-search"
-                placeholder="From"
+                placeholder="Min"
                 type="number"
                 onChange={(e) => {
                   if (e.target.value && e.target.value.length <= 9) {
                     if (validateCurrency(e.target.value)) {
-                      setPriceRange({ ...priceRange, to: e.target.value });
+                      setPriceRange({ ...priceRange, from: e.target.value });
                     }
                   } else {
-                    setPriceRange({ ...priceRange, to: "" });
+                    setPriceRange({ ...priceRange, from: "" });
                   }
                 }}
                 value={priceRange.from}
@@ -213,9 +213,8 @@ const LiveAuctionsList = () => {
             </span>
             <span className="category-search-block">
               <FormControl
-                autoFocus
                 className="category-search"
-                placeholder="To"
+                placeholder="Max"
                 type="number"
                 onChange={(e) => {
                   if (e.target.value && e.target.value.length <= 9) {
@@ -243,7 +242,10 @@ const LiveAuctionsList = () => {
               type="button"
               class="justify-content-center border dropdown-item apply-btn"
               disabled={(() => {
-                if (!priceRange.from || !priceRange.to) {
+                if (
+                  parseInt(priceRange.from) < 0 ||
+                  parseInt(priceRange.to) < 0
+                ) {
                   return true;
                 } else if (
                   parseInt(priceRange.from) > parseInt(priceRange.to)
@@ -266,13 +268,21 @@ const LiveAuctionsList = () => {
 
   const handleSortNFT = (input) => {
     const sort_exist = input.value;
-
+    const price_range = {
+      from: query.get("minPrice") ? query.get("minPrice") : "",
+      to: query.get("maxPrice") ? query.get("maxPrice") : "",
+    };
     let query_string = "";
 
     if (sort_exist) {
       query_string += query_string
         ? `&sort=${sort_exist}`
         : `sort=${sort_exist}`;
+    }
+    if (price_range.from || price_range.to) {
+      query_string += query_string
+        ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
+        : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
     }
 
     history.push(`/nfts/live-auction?${query_string}`);
@@ -326,20 +336,22 @@ const LiveAuctionsList = () => {
               <div className="sec-heading d-flex align-items-center mb-5 explore-heading">
                 <div className="flex-heading">
                   <span className="text-nowrap me-4">Live Auction</span>
-                  <div className="d-flex flex-wrap filter-box">
-                    <Dropdown>
-                      <Dropdown.Toggle
-                        align="start"
-                        drop="start"
-                        as={PriceDropdown}
-                      ></Dropdown.Toggle>
+                  <span className="d-flex justify-content-end w-100 filter-blocks">
+                    <div className="d-flex flex-wrap filter-box">
+                      <Dropdown>
+                        <Dropdown.Toggle
+                          align="start"
+                          drop="down"
+                          as={PriceDropdown}
+                        ></Dropdown.Toggle>
 
-                      <Dropdown.Menu
-                        align="start"
-                        as={PriceMenu}
-                      ></Dropdown.Menu>
-                    </Dropdown>
-                  </div>
+                        <Dropdown.Menu
+                          align="start"
+                          as={PriceMenu}
+                        ></Dropdown.Menu>
+                      </Dropdown>
+                    </div>
+                  </span>
                 </div>
                 <span className="d-flex justify-content-end w-100 filter-blocks">
                   <div className="d-flex flex-wrap filter-box">

@@ -76,6 +76,10 @@ button.load_more {
     .dropdown-menu {
       max-height: 320px;
       overflow-y: auto;
+
+      position: absolute !important;
+      inset: 0px auto auto 0px !important;
+      transform: translate3d(0px, 29px, 0px) !important;
       .category-search-block {
         position: relative;
         display: block;
@@ -106,8 +110,9 @@ button.load_more {
     }
   }
 }
+
 .filter-drop-btn {
-  padding: 0.2rem 0.8rem 0.2rem 1.5rem;
+  padding: 0.2rem 1.8rem 0.2rem 1.5rem;
   font-size: 1rem;
   font-family: $neue-helveticamedium;
   border: 1px solid #000;
@@ -116,7 +121,7 @@ button.load_more {
   cursor: pointer;
   white-space: nowrap;
 
-  display: flex;
+  // display: flex;
   align-items: center;
   justify-content: space-between;
   @media screen and (max-width: 767px) {
@@ -130,6 +135,54 @@ button.load_more {
     width: 1.2rem;
     min-height: 1.2rem;
     min-width: 1.2rem;
+  }
+}
+
+.filter-drop-sort-btn {
+  padding: 0.2rem 0.8rem 0.2rem 1.5rem;
+  font-size: 1rem;
+  font-family: $neue-helveticamedium;
+  border: 1px solid #000;
+  border-radius: 50rem;
+  margin-bottom: 0.2rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.filter-pill-button {
+  // background-color: rgb(231, 231, 231);
+  // border: 1px solid #ccc;
+  // padding: 0.2rem 0.2rem 0.2rem 0.8rem;
+  // border-radius: 50rem;
+  // display: flex;
+  // margin-right: 0.5rem;
+  // margin-bottom: 0.5rem;
+  background-color: #020202;
+  border: 1px solid #020202;
+  padding: 0 0.5rem 0 1rem;
+  border-radius: 50rem;
+  display: flex;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  color: #fff;
+  align-items: center;
+  justify-content: center;
+  height: 2.5rem;
+
+  .first {
+    font-family: $neue-helveticamedium;
+  }
+
+  &:hover {
+    background-color: #fff;
+    border: 1px solid rgb(129, 129, 129);
+    color: #000;
+  }
+
+  .last {
+    &:hover {
+      color: rgb(153, 26, 26);
+    }
   }
 }
 
@@ -266,6 +319,11 @@ button.load_more {
     &.apply-btn {
       background: #000;
       color: #fff;
+      &:disabled {
+        background-color: #e7e7e9;
+        color: #9c9c9b;
+        border: none;
+      }
     }
   }
 }
