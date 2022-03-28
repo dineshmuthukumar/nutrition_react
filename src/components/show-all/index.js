@@ -1009,158 +1009,7 @@ const ShowAll = ({ categories }) => {
             <div className="col-sm-12">
               <div className="sec-heading d-flex align-items-center mb-2 showall-heading">
                 <span className="me-4 mt-2 text-nowrap">Listed NFTs</span>
-                <span className="d-flex justify-content-between mt-2 w-100 filter-blocks">
-                  <div className="d-flex flex-wrap filter-box">
-                    <Dropdown>
-                      <Dropdown.Toggle
-                        align="start"
-                        drop="start"
-                        as={CategoryDropdown}
-                      ></Dropdown.Toggle>
 
-                      <Dropdown.Menu align="start" as={CustomMenu}>
-                        {filter.category.map((obj, i) => (
-                          <Dropdown.Item
-                            key={`category${i}`}
-                            as="button"
-                            onClick={() => handleCategoryCheck(obj)}
-                          >
-                            <FaCheckCircle
-                              color={obj.checked ? "green" : "#ccc"}
-                              className="mb-1 me-2"
-                              size={17}
-                            />
-                            {obj.name}
-                          </Dropdown.Item>
-                        ))}
-                      </Dropdown.Menu>
-                    </Dropdown>
-                    <Dropdown>
-                      <Dropdown.Toggle
-                        align="start"
-                        drop="start"
-                        as={SaleTypeDropdown}
-                      ></Dropdown.Toggle>
-
-                      <Dropdown.Menu align="start">
-                        {filter.sale.map((obj, i) => (
-                          <Dropdown.Item
-                            key={`sale${i}`}
-                            as="button"
-                            onClick={() => handleSaleCheck(obj)}
-                          >
-                            <FaCheckCircle
-                              color={obj.checked ? "green" : "#ccc"}
-                              className="mb-1 me-2"
-                              size={17}
-                            />
-                            {obj.name}
-                          </Dropdown.Item>
-                        ))}
-                      </Dropdown.Menu>
-                    </Dropdown>
-                    <Dropdown>
-                      <Dropdown.Toggle
-                        align="start"
-                        drop="start"
-                        as={NFTTypeDropdown}
-                      ></Dropdown.Toggle>
-
-                      <Dropdown.Menu align="start">
-                        {filter.nft.map((obj, i) => (
-                          <Dropdown.Item
-                            key={`nft${i}`}
-                            as="button"
-                            onClick={() => handleNFTCheck(obj)}
-                          >
-                            <FaCheckCircle
-                              color={obj.checked ? "green" : "#ccc"}
-                              className="mb-1 me-2"
-                              size={17}
-                            />
-                            {obj.name}
-                          </Dropdown.Item>
-                        ))}
-                      </Dropdown.Menu>
-                    </Dropdown>
-
-                    <Dropdown>
-                      <Dropdown.Toggle
-                        align="start"
-                        drop="start"
-                        as={SaleStatus}
-                      ></Dropdown.Toggle>
-
-                      <Dropdown.Menu align="start">
-                        {filter.status.map((obj, i) => (
-                          <Dropdown.Item
-                            key={`nft${i}`}
-                            as="button"
-                            onClick={() => handleSaleStatusNFT(obj)}
-                          >
-                            <FaCheckCircle
-                              color={obj.checked ? "green" : "#ccc"}
-                              className="mb-1 me-2"
-                              size={17}
-                            />{" "}
-                            {obj.name}
-                          </Dropdown.Item>
-                        ))}
-                      </Dropdown.Menu>
-                    </Dropdown>
-
-                    <Dropdown>
-                      <Dropdown.Toggle
-                        align="start"
-                        drop="down"
-                        as={PriceDropdown}
-                      ></Dropdown.Toggle>
-
-                      <Dropdown.Menu align="start" as={PriceMenu}>
-                        {/* <Dropdown.Item
-                          as="button"
-                          className="justify-content-center border me-2"
-                          // onClick={() => handleCategoryCheck(obj)}
-                        >
-                          Cancel
-                        </Dropdown.Item> */}
-                        {/* <Dropdown.Item
-                          as="button"
-                          className="justify-content-center border bg-light"
-                          // onClick={() => handleCategoryCheck(obj)}
-                        >
-                          Apply
-                        </Dropdown.Item> */}
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </div>
-                  <div className="filt-flex-box">
-                    <Dropdown>
-                      <Dropdown.Toggle
-                        align="start"
-                        drop="start"
-                        as={ShowAllSort}
-                      ></Dropdown.Toggle>
-
-                      <Dropdown.Menu align="start">
-                        {filter.sort.map((obj, i) => (
-                          <Dropdown.Item
-                            key={`nft${i}`}
-                            as="button"
-                            onClick={() => handleSortNFT(obj)}
-                          >
-                            <FaCheckCircle
-                              color={obj.checked ? "green" : "#ccc"}
-                              className="mb-1 me-2"
-                              size={17}
-                            />{" "}
-                            {obj.name}
-                          </Dropdown.Item>
-                        ))}
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </div>
-                </span>
                 <div className="filt-flex-search">
                   <input
                     type="text"
@@ -1179,8 +1028,159 @@ const ShowAll = ({ categories }) => {
                   </span>
                 </div>
               </div>
+              <div className="d-flex justify-content-between mt-2 w-100 showall-filter-blocks">
+                <div className="d-flex flex-wrap filter-box">
+                  <Dropdown>
+                    <Dropdown.Toggle
+                      align="start"
+                      drop="start"
+                      as={CategoryDropdown}
+                    ></Dropdown.Toggle>
 
-              <div className="mt-4 mb-4 d-flex flex-wrap">
+                    <Dropdown.Menu align="start" as={CustomMenu}>
+                      {filter.category.map((obj, i) => (
+                        <Dropdown.Item
+                          key={`category${i}`}
+                          as="button"
+                          onClick={() => handleCategoryCheck(obj)}
+                        >
+                          <FaCheckCircle
+                            color={obj.checked ? "green" : "#ccc"}
+                            className="mb-1 me-2"
+                            size={17}
+                          />
+                          {obj.name}
+                        </Dropdown.Item>
+                      ))}
+                    </Dropdown.Menu>
+                  </Dropdown>
+                  <Dropdown>
+                    <Dropdown.Toggle
+                      align="start"
+                      drop="start"
+                      as={SaleTypeDropdown}
+                    ></Dropdown.Toggle>
+
+                    <Dropdown.Menu align="start">
+                      {filter.sale.map((obj, i) => (
+                        <Dropdown.Item
+                          key={`sale${i}`}
+                          as="button"
+                          onClick={() => handleSaleCheck(obj)}
+                        >
+                          <FaCheckCircle
+                            color={obj.checked ? "green" : "#ccc"}
+                            className="mb-1 me-2"
+                            size={17}
+                          />
+                          {obj.name}
+                        </Dropdown.Item>
+                      ))}
+                    </Dropdown.Menu>
+                  </Dropdown>
+                  <Dropdown>
+                    <Dropdown.Toggle
+                      align="start"
+                      drop="start"
+                      as={NFTTypeDropdown}
+                    ></Dropdown.Toggle>
+
+                    <Dropdown.Menu align="start">
+                      {filter.nft.map((obj, i) => (
+                        <Dropdown.Item
+                          key={`nft${i}`}
+                          as="button"
+                          onClick={() => handleNFTCheck(obj)}
+                        >
+                          <FaCheckCircle
+                            color={obj.checked ? "green" : "#ccc"}
+                            className="mb-1 me-2"
+                            size={17}
+                          />
+                          {obj.name}
+                        </Dropdown.Item>
+                      ))}
+                    </Dropdown.Menu>
+                  </Dropdown>
+
+                  <Dropdown>
+                    <Dropdown.Toggle
+                      align="start"
+                      drop="start"
+                      as={SaleStatus}
+                    ></Dropdown.Toggle>
+
+                    <Dropdown.Menu align="start">
+                      {filter.status.map((obj, i) => (
+                        <Dropdown.Item
+                          key={`nft${i}`}
+                          as="button"
+                          onClick={() => handleSaleStatusNFT(obj)}
+                        >
+                          <FaCheckCircle
+                            color={obj.checked ? "green" : "#ccc"}
+                            className="mb-1 me-2"
+                            size={17}
+                          />{" "}
+                          {obj.name}
+                        </Dropdown.Item>
+                      ))}
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </div>
+                <div className="filt-flex-box">
+                  <Dropdown className="price-range">
+                    <Dropdown.Toggle
+                      align="start"
+                      drop="down"
+                      as={PriceDropdown}
+                    ></Dropdown.Toggle>
+
+                    <Dropdown.Menu align="start" as={PriceMenu}>
+                      {/* <Dropdown.Item
+                          as="button"
+                          className="justify-content-center border me-2"
+                          // onClick={() => handleCategoryCheck(obj)}
+                        >
+                          Cancel
+                        </Dropdown.Item> */}
+                      {/* <Dropdown.Item
+                          as="button"
+                          className="justify-content-center border bg-light"
+                          // onClick={() => handleCategoryCheck(obj)}
+                        >
+                          Apply
+                        </Dropdown.Item> */}
+                    </Dropdown.Menu>
+                  </Dropdown>
+                  <Dropdown>
+                    <Dropdown.Toggle
+                      align="start"
+                      drop="start"
+                      as={ShowAllSort}
+                    ></Dropdown.Toggle>
+
+                    <Dropdown.Menu align="start">
+                      {filter.sort.map((obj, i) => (
+                        <Dropdown.Item
+                          key={`nft${i}`}
+                          as="button"
+                          onClick={() => handleSortNFT(obj)}
+                        >
+                          <FaCheckCircle
+                            color={obj.checked ? "green" : "#ccc"}
+                            className="mb-1 me-2"
+                            size={17}
+                          />{" "}
+                          {obj.name}
+                        </Dropdown.Item>
+                      ))}
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </div>
+              </div>
+
+              <div className="mt-2 mb-4 d-flex flex-wrap">
                 {filter.category
                   .filter((xx) => xx.checked === true)
                   .map((obj, i) => (

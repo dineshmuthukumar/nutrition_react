@@ -336,22 +336,20 @@ const LiveAuctionsList = () => {
               <div className="sec-heading d-flex align-items-center mb-5 explore-heading">
                 <div className="flex-heading">
                   <span className="text-nowrap me-4">Live Auction</span>
-                  <span className="d-flex justify-content-end w-100 filter-blocks">
-                    <div className="d-flex flex-wrap filter-box">
-                      <Dropdown>
-                        <Dropdown.Toggle
-                          align="start"
-                          drop="down"
-                          as={PriceDropdown}
-                        ></Dropdown.Toggle>
+                  <div className="d-flex flex-wrap filter-box">
+                    <Dropdown className="price-range">
+                      <Dropdown.Toggle
+                        align="start"
+                        drop="start"
+                        as={PriceDropdown}
+                      ></Dropdown.Toggle>
 
-                        <Dropdown.Menu
-                          align="start"
-                          as={PriceMenu}
-                        ></Dropdown.Menu>
-                      </Dropdown>
-                    </div>
-                  </span>
+                      <Dropdown.Menu
+                        align="start"
+                        as={PriceMenu}
+                      ></Dropdown.Menu>
+                    </Dropdown>
+                  </div>
                 </div>
                 <span className="d-flex justify-content-end w-100 filter-blocks">
                   <div className="d-flex flex-wrap filter-box">

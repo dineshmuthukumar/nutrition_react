@@ -43,7 +43,7 @@ const LiveAuctions = () => {
         <div className="container-fluid">
           <div className="row">
             <div className="col-sm-12">
-              <div className="sec-heading flex-box">
+              <div className="sec-heading live-flex-box">
                 <span className="title">Live Auctions</span>
                 <span
                   className="viewallBtnliveaction"
