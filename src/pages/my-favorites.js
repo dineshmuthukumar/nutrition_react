@@ -3,7 +3,7 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import FavouriteNftsList from "../components/favourite-nfts-list";
 
-const MyFavoritesOnSaleNFTs = () => {
+const MyFavorites = () => {
   return (
     <>
       <Header />
@@ -13,4 +13,4 @@ const MyFavoritesOnSaleNFTs = () => {
   );
 };
 
-export default MyFavoritesOnSaleNFTs;
+export default MyFavorites;

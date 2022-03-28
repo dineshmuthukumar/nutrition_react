@@ -55,7 +55,9 @@ const LiveAuctionsList = () => {
     }));
     setPage(1);
     setFilter(info);
-    setPriceRangeFilter(price_range);
+    if (price_range.from && price_range.to) {
+      setPriceRangeFilter(price_range);
+    }
   }, [slug, query]);
 
   useEffect(() => {
@@ -66,6 +68,8 @@ const LiveAuctionsList = () => {
     const price_range = {
       from: query.get("minPrice"),
       to: query.get("maxPrice"),
+      from: query.get("minPrice") ? query.get("minPrice") : null,
+      to: query.get("maxPrice") ? query.get("maxPrice") : null,
     };
 
     showAllFilteredNFTs(1, sort_filters, price_range);
@@ -122,6 +126,8 @@ const LiveAuctionsList = () => {
       const price_range = {
         from: query.get("minPrice"),
         to: query.get("maxPrice"),
+        from: query.get("minPrice") ? query.get("minPrice") : null,
+        to: query.get("maxPrice") ? query.get("maxPrice") : null,
       };
 
       setPage(page + 1);
@@ -260,7 +266,7 @@ const LiveAuctionsList = () => {
 
     const sort_exist = query.get("sort");
 
-    const price_range = remove ? null : priceRange;
+    const price_range = remove ? { from: null, to: null } : priceRange;
 
     let query_string = "";
 
@@ -270,12 +276,15 @@ const LiveAuctionsList = () => {
         : `sort=${sort_exist}`;
     }
 
-    if (price_range) {
+    if (price_range.from && price_range.to) {
       query_string += query_string
         ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
         : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
     }
 
+    if (remove) {
+      setPriceRangeFilter(price_range);
+    }
     if (query_string) {
       history.push(`/nfts/live-auction?${query_string}`);
     } else {
