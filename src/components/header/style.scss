@@ -226,3 +226,10 @@
     padding-right: 0.4rem;
   }
 }
+
+.offcanvas-body {
+  .sticky-top {
+    padding-right: 0 !important;
+    margin-right: 0 !important;
+  }
+}

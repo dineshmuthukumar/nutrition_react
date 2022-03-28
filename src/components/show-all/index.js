@@ -12,6 +12,7 @@ import cardImage from "../../images/drops/nft_2.png";
 import { BiCaretDown, BiSearch, BiX } from "react-icons/bi";
 import { useHistory, useRouteMatch } from "react-router-dom";
 import { FormControl } from "react-bootstrap";
+import { validateCurrency } from "../../utils/common";
 
 import "./style.scss";
 
@@ -126,8 +127,8 @@ const ShowAll = ({ categories }) => {
       : "recently_listed";
     const sale_status = query.get("status");
     const price_range = {
-      from: query.get("minPrice"),
-      to: query.get("maxPrice"),
+      from: query.get("minPrice") ? query.get("minPrice") : "",
+      to: query.get("maxPrice") ? query.get("maxPrice") : "",
     };
 
     let categoryList = [];
@@ -161,7 +162,7 @@ const ShowAll = ({ categories }) => {
 
     setFilter(info);
     setPage(1);
-    if (price_range.from && price_range.to) {
+    if (price_range.from || price_range.to) {
       setPriceRangeFilter(price_range);
     }
   }, [categories, query]);
@@ -179,8 +180,8 @@ const ShowAll = ({ categories }) => {
     const search_filter = query.get("search");
     const sale_status = query.get("status");
     const price_range = {
-      from: query.get("minPrice") ? query.get("minPrice") : null,
-      to: query.get("maxPrice") ? query.get("maxPrice") : null,
+      from: query.get("minPrice") ? query.get("minPrice") : "",
+      to: query.get("maxPrice") ? query.get("maxPrice") : "",
     };
 
     showAllFilteredNFTs(
@@ -294,8 +295,8 @@ const ShowAll = ({ categories }) => {
       const search_filters = query.get("search");
       const sale_status = query.get("status");
       const price_range = {
-        from: query.get("minPrice") ? query.get("minPrice") : null,
-        to: query.get("maxPrice") ? query.get("maxPrice") : null,
+        from: query.get("minPrice") ? query.get("minPrice") : "",
+        to: query.get("maxPrice") ? query.get("maxPrice") : "",
       };
 
       showAllNFTs(
@@ -334,10 +335,13 @@ const ShowAll = ({ categories }) => {
         onClick(e);
       }}
     >
-      Price Range{" "}
-      {priceRangeFilter.from &&
-        priceRangeFilter.to &&
-        `$${priceRangeFilter.from} - $${priceRangeFilter.to}`}
+      {priceRangeFilter.from && priceRangeFilter.to
+        ? `Price Range $${priceRangeFilter.from} - $${priceRangeFilter.to}`
+        : priceRangeFilter.from
+        ? `Min $${priceRangeFilter.from}`
+        : priceRangeFilter.to
+        ? `Max $${priceRangeFilter.to}`
+        : "Price Range"}
       <BiCaretDown />
     </div>
   ));
@@ -457,22 +461,33 @@ const ShowAll = ({ categories }) => {
               <FormControl
                 autoFocus
                 className="category-search"
-                placeholder="From"
+                placeholder="Min"
                 type="number"
                 onChange={(e) => {
-                  setPriceRange({ ...priceRange, from: e.target.value });
+                  if (e.target.value && e.target.value.length <= 9) {
+                    if (validateCurrency(e.target.value)) {
+                      setPriceRange({ ...priceRange, from: e.target.value });
+                    }
+                  } else {
+                    setPriceRange({ ...priceRange, from: "" });
+                  }
                 }}
                 value={priceRange.from}
               />
             </span>
             <span className="category-search-block">
               <FormControl
-                autoFocus
                 className="category-search"
-                placeholder="To"
+                placeholder="Max"
                 type="number"
                 onChange={(e) => {
-                  setPriceRange({ ...priceRange, to: e.target.value });
+                  if (e.target.value && e.target.value.length <= 9) {
+                    if (validateCurrency(e.target.value)) {
+                      setPriceRange({ ...priceRange, to: e.target.value });
+                    }
+                  } else {
+                    setPriceRange({ ...priceRange, to: "" });
+                  }
                 }}
                 value={priceRange.to}
               />
@@ -491,7 +506,10 @@ const ShowAll = ({ categories }) => {
               type="button"
               class="justify-content-center border dropdown-item apply-btn"
               disabled={(() => {
-                if (!priceRange.from || !priceRange.to) {
+                if (
+                  parseInt(priceRange.from) < 0 ||
+                  parseInt(priceRange.to) < 0
+                ) {
                   return true;
                 } else if (
                   parseInt(priceRange.from) > parseInt(priceRange.to)
@@ -522,8 +540,8 @@ const ShowAll = ({ categories }) => {
     const search_exist = search ? search.replace("#", "%23") : "";
     const sale_status = query.get("status");
     const price_range = {
-      from: query.get("minPrice"),
-      to: query.get("maxPrice"),
+      from: query.get("minPrice") ? query.get("minPrice") : "",
+      to: query.get("maxPrice") ? query.get("maxPrice") : "",
     };
 
     if (category_exist.includes(input.value)) {
@@ -567,7 +585,7 @@ const ShowAll = ({ categories }) => {
         : `status=${sale_status}`;
     }
 
-    if (price_range.from && price_range.to) {
+    if (price_range.from || price_range.to) {
       query_string += query_string
         ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
         : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
@@ -591,8 +609,8 @@ const ShowAll = ({ categories }) => {
     const search_exist = search ? search.replace("#", "%23") : "";
     const sale_status = query.get("status");
     const price_range = {
-      from: query.get("minPrice"),
-      to: query.get("maxPrice"),
+      from: query.get("minPrice") ? query.get("minPrice") : "",
+      to: query.get("maxPrice") ? query.get("maxPrice") : "",
     };
 
     if (sale_exist.includes(input.value)) {
@@ -636,7 +654,7 @@ const ShowAll = ({ categories }) => {
         : `status=${sale_status}`;
     }
 
-    if (price_range.from && price_range.to) {
+    if (price_range.from || price_range.to) {
       query_string += query_string
         ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
         : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
@@ -660,8 +678,8 @@ const ShowAll = ({ categories }) => {
     const search_exist = search ? search.replace("#", "%23") : "";
     const sale_status = query.get("status");
     const price_range = {
-      from: query.get("minPrice"),
-      to: query.get("maxPrice"),
+      from: query.get("minPrice") ? query.get("minPrice") : "",
+      to: query.get("maxPrice") ? query.get("maxPrice") : "",
     };
 
     if (nft_exist.includes(input.value)) {
@@ -705,7 +723,7 @@ const ShowAll = ({ categories }) => {
         : `status=${sale_status}`;
     }
 
-    if (price_range.from && price_range.to) {
+    if (price_range.from || price_range.to) {
       query_string += query_string
         ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
         : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
@@ -729,8 +747,8 @@ const ShowAll = ({ categories }) => {
     const search_exist = search ? search.replace("#", "%23") : "";
     const sale_status = query.get("status");
     const price_range = {
-      from: query.get("minPrice"),
-      to: query.get("maxPrice"),
+      from: query.get("minPrice") ? query.get("minPrice") : "",
+      to: query.get("maxPrice") ? query.get("maxPrice") : "",
     };
 
     let query_string = "";
@@ -768,7 +786,7 @@ const ShowAll = ({ categories }) => {
         : `status=${sale_status}`;
     }
 
-    if (price_range.from && price_range.to) {
+    if (price_range.from || price_range.to) {
       query_string += query_string
         ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
         : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
@@ -792,8 +810,8 @@ const ShowAll = ({ categories }) => {
     const search_exist = search ? search.replace("#", "%23") : "";
     const sale_status = remove ? null : input.value;
     const price_range = {
-      from: query.get("minPrice"),
-      to: query.get("maxPrice"),
+      from: query.get("minPrice") ? query.get("minPrice") : "",
+      to: query.get("maxPrice") ? query.get("maxPrice") : "",
     };
 
     let query_string = "";
@@ -831,7 +849,7 @@ const ShowAll = ({ categories }) => {
         : `status=${sale_status}`;
     }
 
-    if (price_range.from && price_range.to) {
+    if (price_range.from || price_range.to) {
       query_string += query_string
         ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
         : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
@@ -855,8 +873,8 @@ const ShowAll = ({ categories }) => {
     const search_exist = search.replace("#", "%23");
     const sale_status = query.get("status");
     const price_range = {
-      from: query.get("minPrice"),
-      to: query.get("maxPrice"),
+      from: query.get("minPrice") ? query.get("minPrice") : "",
+      to: query.get("maxPrice") ? query.get("maxPrice") : "",
     };
 
     let query_string = "";
@@ -894,7 +912,7 @@ const ShowAll = ({ categories }) => {
         : `status=${sale_status}`;
     }
 
-    if (price_range.from && price_range.to) {
+    if (price_range.from || price_range.to) {
       query_string += query_string
         ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
         : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
@@ -955,7 +973,7 @@ const ShowAll = ({ categories }) => {
         : `status=${sale_status}`;
     }
 
-    if (price_range.from && price_range.to) {
+    if (price_range.from || price_range.to) {
       query_string += query_string
         ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
         : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
@@ -1094,7 +1112,7 @@ const ShowAll = ({ categories }) => {
                     <Dropdown>
                       <Dropdown.Toggle
                         align="start"
-                        drop="start"
+                        drop="down"
                         as={PriceDropdown}
                       ></Dropdown.Toggle>
 
