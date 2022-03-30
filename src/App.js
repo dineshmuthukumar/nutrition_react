@@ -251,7 +251,11 @@ const WebContainer = () => {
           path="/fully-faltoo-NFT/details/:slug"
           component={FullyFaltoo}
         />
-        <Route exact path="/fully-faltoo-NFT" component={FullyFaltoo} />
+        <Route
+          exact
+          path="/fully-faltoo-NFT/:slug?/:search?"
+          component={FullyFaltoo}
+        />
 
         <Route
           exact
