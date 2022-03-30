@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ContentLoader from "react-content-loader";
 import Image from "react-bootstrap/Image";
 import { useRouteMatch, useHistory } from "react-router-dom";
+import { Dropdown } from "react-bootstrap";
 
 import Footer from "../../footer";
 import Header from "../../header";
@@ -10,6 +11,8 @@ import Details from "../../../pages/details";
 import OrderDetails from "../../../pages/order-details";
 import QuickView from "../../quick-view";
 import { nftCategoriesApi, nftCategoryListApi } from "../../../api/methods";
+import { BiCaretDown, BiX, BiSearch } from "react-icons/bi";
+import { useParams } from "react-router";
 
 import ffLogo from "./img/logo2.png";
 import royalrumblers from "./img/royal-rumblers.mp4";
@@ -19,6 +22,7 @@ import wings from "./img/wings.png";
 import rangu from "./img/rangu.jpg";
 
 import "./style.scss";
+import { FaCheckCircle } from "react-icons/fa";
 
 const FullyFaltoo = () => {
   const match = useRouteMatch();
@@ -33,10 +37,67 @@ const FullyFaltoo = () => {
   const [loadingMore, setLoadingMore] = useState(false);
   const [categoryName, setCategoryName] = useState("Popular Collection NFT");
   const [categorySlug, setCategorySlug] = useState("");
-
+  const { slug } = useParams();
+  console.log(slug, "slug");
   const [popDetails, setPopDetails] = useState({
     show: false,
     children: null,
+  });
+  const query = useQueryStringConverter(
+    match.params.search ? match.params.search : ""
+  );
+  const [filter, setFilter] = useState({
+    sort: [
+      {
+        name: "Recently Listed",
+        value: "recently_listed",
+        checked: true,
+      },
+      {
+        name: "Price - High to Low",
+        value: "price_desc",
+        checked: false,
+      },
+      {
+        name: "Price - Low to High",
+        value: "price",
+        checked: false,
+      },
+      {
+        name: "Relevance",
+        value: "relevance",
+        checked: false,
+      },
+    ],
+    sale: [
+      {
+        name: "Bid",
+        value: "bid",
+        checked: false,
+      },
+      {
+        name: "Buy",
+        value: "buy",
+        checked: false,
+      },
+    ],
+    status: [
+      {
+        name: "Timed Auction",
+        value: "timed_auction",
+        checked: false,
+      },
+      {
+        name: "Listed for sale",
+        value: "onsale",
+        checked: false,
+      },
+      {
+        name: "Not on sale",
+        value: "not_on_sale",
+        checked: false,
+      },
+    ],
   });
 
   const [categories, setCategories] = useState({
@@ -112,6 +173,7 @@ const FullyFaltoo = () => {
 
   useEffect(() => {
     if (list.length > 0) {
+      history.push(`/fully-faltoo-NFT/${list?.[0].slug}`);
       fetchNFTList(1, list?.[0].slug);
       setCategoryName(list?.[0].name);
       setCategorySlug(list?.[0].slug);
@@ -131,10 +193,50 @@ const FullyFaltoo = () => {
     }
   }, [match.path]);
 
+  useEffect(() => {
+    const sale_filters = query.get("sale") ? query.get("sale").split(",") : [];
+
+    const sort_filters = query.get("sort")
+      ? query.get("sort")
+      : "recently_listed";
+
+    const sale_status = query.get("status");
+
+    const info = { ...filter };
+    info.sale = filter.sale.map((obj) => ({
+      ...obj,
+      checked: sale_filters.includes(obj.value),
+    }));
+    info.sort = filter.sort.map((obj) => ({
+      ...obj,
+      checked: sort_filters ? sort_filters === obj.value : false,
+    }));
+    info.status = filter.status.map((obj) => ({
+      ...obj,
+      checked: sale_status ? sale_status === obj.value : false,
+    }));
+
+    setFilter(info);
+    setPage(1);
+  }, [query]);
+
+  useEffect(() => {
+    const sale_filters = query.get("sale") ? query.get("sale").split(",") : [];
+    const sort_filters = query.get("sort")
+      ? query.get("sort")
+      : "recently_listed";
+    const sale_status = query.get("status");
+
+    fetchNFTList(1, slug, sale_filters, sort_filters, sale_status);
+  }, [match.params.search]);
+
   const categoriesList = async (page) => {
     try {
       setLoading(true);
-      let response = await nftCategoriesApi({ page, parent_slug });
+      let response = await nftCategoriesApi({
+        page,
+        parent_slug,
+      });
       setList(response.data.data.categories);
       setLoading(false);
     } catch (err) {
@@ -142,11 +244,49 @@ const FullyFaltoo = () => {
     }
   };
 
-  const fetchNFTList = async (page, slug) => {
+  // const fetchNFTList = async (
+  //   page,
+  //   saleType,
+  //   sort = "recently_listed"
+  // ) => {
+  //   try {
+  //     let filter = {
+  //       sale_type: saleType,
+  //     };
+  //     setLoading(true);
+  //     let response = await nftCategoriesApi({
+  //       page,
+  //       parent_slug,
+  //       filter,
+  //       sort: sort === "recently_listed" ? null : sort,
+  //     });
+  //     setList(response.data.data.categories);
+  //     setLoading(false);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
+
+  const fetchNFTList = async (
+    page,
+    slug,
+    saleType,
+    sort = "recently_listed",
+    sale_status
+  ) => {
     try {
+      let filter = {
+        sale_type: saleType,
+        sale_kind: sale_status,
+      };
       page === 1 && setNFTLoading(true);
       setLoadingMore(true);
-      let response = await nftCategoryListApi({ slug, page });
+      let response = await nftCategoryListApi({
+        slug,
+        page,
+        filter,
+        sort,
+      });
       setNFTList(response.data.data.nfts);
       setHasNext(response.data.data.next_page);
       page === 1 && setNFTLoading(false);
@@ -156,11 +296,41 @@ const FullyFaltoo = () => {
     }
   };
 
-  const fetchMoreNFTList = async (page, slug) => {
+  // const fetchNFTList = async (page, slug, sort = "recently_listed") => {
+  //   try {
+  //     page === 1 && setLoading(true);
+  //     setLoadingMore(true);
+
+  //     let response = await nftCategoryListApi(page, sort);
+  //     setList(response.data.data.nfts);
+  //     setHasNext(response.data.data.next_page);
+  //     page === 1 && setLoading(false);
+  //     setLoadingMore(false);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
+
+  const fetchMoreNFTList = async (
+    page,
+    slug,
+    saleType,
+    sort = "recently_listed",
+    sale_status
+  ) => {
     try {
+      let filter = {
+        sale_type: saleType,
+        sale_kind: sale_status,
+      };
       page === 1 && setNFTLoading(true);
       setLoadingMore(true);
-      let response = await nftCategoryListApi({ slug, page });
+      let response = await nftCategoryListApi({
+        slug,
+        page,
+        filter,
+        sort,
+      });
       setNFTList([...NFTList, ...response.data.data.nfts]);
       setHasNext(response.data.data.next_page);
       page === 1 && setNFTLoading(false);
@@ -170,10 +340,169 @@ const FullyFaltoo = () => {
     }
   };
 
+  // const fetchMore = () => {
+  //   if (hasNext) {
+  //     fetchMoreNFTList(page + 1, categorySlug);
+  //     setPage(page + 1);
+  //   }
+  // };
+
   const fetchMore = () => {
     if (hasNext) {
-      fetchMoreNFTList(page + 1, categorySlug);
+      const sale_filters = query.get("sale")
+        ? query.get("sale").split(",")
+        : [];
+      const sort_filters = query.get("sort")
+        ? query.get("sort")
+        : "recently_listed";
+      const sale_status = query.get("status");
+
+      fetchNFTList(page + 1, slug, sale_filters, sort_filters, sale_status);
+      fetchMoreNFTList(page + 1, slug, sale_filters, sort_filters, sale_status);
       setPage(page + 1);
+    }
+  };
+
+  const SaleTypeDropdown = React.forwardRef(({ onClick }, ref) => (
+    <div
+      className="filter-drop-btn"
+      ref={ref}
+      onClick={(e) => {
+        e.preventDefault();
+        onClick(e);
+      }}
+    >
+      Sale Type <BiCaretDown />
+    </div>
+  ));
+  const ShowAllSort = React.forwardRef(({ onClick }, ref) => (
+    <div
+      className="filter-drop-sort-btn"
+      ref={ref}
+      onClick={(e) => {
+        e.preventDefault();
+        onClick(e);
+      }}
+    >
+      {filter.sort.find((obj) => obj.checked === true)?.name
+        ? `Sort By: ${filter.sort.find((obj) => obj.checked === true).name}`
+        : "Sort By"}
+      <BiCaretDown />
+    </div>
+  ));
+  const SaleStatus = React.forwardRef(({ onClick }, ref) => (
+    <div
+      className="filter-drop-btn"
+      ref={ref}
+      onClick={(e) => {
+        e.preventDefault();
+        onClick(e);
+      }}
+    >
+      Sale Status
+      <BiCaretDown />
+    </div>
+  ));
+
+  const handleSortNFT = (input) => {
+    console.log(input, "input");
+    const sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
+    const sort_exist = input.value;
+    const sale_status = query.get("status");
+
+    let query_string = "";
+    if (sale_exist.length > 0) {
+      query_string += query_string
+        ? `&sale=${sale_exist}`
+        : `sale=${sale_exist}`;
+    }
+
+    if (sort_exist) {
+      query_string += query_string
+        ? `&sort=${sort_exist}`
+        : `sort=${sort_exist}`;
+    }
+
+    if (sale_status) {
+      query_string += query_string
+        ? `&status=${sale_status}`
+        : `status=${sale_status}`;
+    }
+
+    if (query_string) {
+      history.push(`/fully-faltoo-NFT/${slug}/${query_string}`);
+    } else {
+      history.push(`/fully-faltoo-NFT/${slug}`);
+    }
+  };
+
+  const handleSaleCheck = (input) => {
+    let sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
+    let sort_exist = query.get("sort");
+    const sale_status = query.get("status");
+
+    if (sale_exist.includes(input.value)) {
+      sale_exist = sale_exist.filter((obj) => obj !== input.value);
+    } else {
+      sale_exist.push(input.value);
+    }
+
+    let query_string = "";
+
+    if (sale_exist.length > 0) {
+      query_string += query_string
+        ? `&sale=${sale_exist}`
+        : `sale=${sale_exist}`;
+    }
+
+    if (sort_exist) {
+      query_string += query_string
+        ? `&sort=${sort_exist}`
+        : `sort=${sort_exist}`;
+    }
+
+    if (sale_status) {
+      query_string += query_string
+        ? `&status=${sale_status}`
+        : `status=${sale_status}`;
+    }
+
+    if (query_string) {
+      history.push(`/fully-faltoo-NFT/${slug}/${query_string}`);
+    } else {
+      history.push(`/fully-faltoo-NFT/${slug}`);
+    }
+  };
+
+  const handleSaleStatusNFT = (input, remove = false) => {
+    const sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
+    const sort_exist = query.get("sort");
+    const sale_status = remove ? null : input.value;
+
+    let query_string = "";
+
+    if (sale_exist.length > 0) {
+      query_string += query_string
+        ? `&sale=${sale_exist}`
+        : `sale=${sale_exist}`;
+    }
+
+    if (sort_exist) {
+      query_string += query_string
+        ? `&sort=${sort_exist}`
+        : `sort=${sort_exist}`;
+    }
+
+    if (sale_status) {
+      query_string += query_string
+        ? `&status=${sale_status}`
+        : `status=${sale_status}`;
+    }
+
+    if (query_string) {
+      history.push(`/fully-faltoo-NFT/${slug}/${query_string}`);
+    } else {
+      history.push(`/fully-faltoo-NFT/${slug}`);
     }
   };
 
@@ -190,6 +519,7 @@ const FullyFaltoo = () => {
     setCategorySlug(data?.slug);
     setPage(1);
     fetchNFTList(1, data?.slug);
+    history.push(`/fully-faltoo-NFT/${data?.slug}`);
   };
 
   return (
@@ -256,6 +586,62 @@ const FullyFaltoo = () => {
               </div>
             </div>
           </div>
+          {/* <span className="d-flex justify-content-between mt-2 w-100 filter-blocks">
+            <div className="filt-flex-box">
+              <Dropdown>
+                <Dropdown.Toggle
+                  align="start"
+                  drop="start"
+                  as={SaleTypeDropdown}
+                ></Dropdown.Toggle>
+
+                <Dropdown.Menu align="start">
+                  {filter.sale.map((obj, i) => (
+                    <Dropdown.Item
+                      key={`sale${i}`}
+                      as="button"
+                      onClick={() => handleSaleCheck(obj)}
+                    >
+                      <FaCheckCircle
+                        color={obj.checked ? "green" : "#ccc"}
+                        className="mb-1 me-2"
+                        size={17}
+                      />
+                      {obj.name}
+                    </Dropdown.Item>
+                  ))}
+                </Dropdown.Menu>
+              </Dropdown>
+              <Dropdown>
+                <Dropdown.Toggle
+                  align="start"
+                  drop="start"
+                  as={ShowAllSort}
+                ></Dropdown.Toggle>
+
+                <Dropdown.Menu align="start">
+                  {filter.sort.map((obj, i) => (
+                    <Dropdown.Item
+                      key={`nft${i}`}
+                      as="button"
+                      onClick={() => handleSortNFT(obj)}
+                    >
+                      <FaCheckCircle
+                        color={obj.checked ? "green" : "#ccc"}
+                        className="mb-1 me-2"
+                        size={17}
+                      />{" "}
+                      {obj.name}
+                    </Dropdown.Item>
+                  ))}
+                </Dropdown.Menu>
+              </Dropdown>
+            </div>
+          </span>
+          <span className="d-flex justify-content-between mt-2 w-100 filter-blocks">
+            <div className="filt-flex-box"></div>
+          </span> */}
+
           {categories.static_url.length > 0 && (
             <div className="row mt-5 justify-content-center">
               {categories.static_url.map((category, i) => (
@@ -307,6 +693,117 @@ const FullyFaltoo = () => {
             <div className="col-sm-12">
               <div className="sec-heading d-flex align-items-center mb-2 explore-heading">
                 <span className="me-4 mt-2 text-nowrap">{categoryName}</span>
+              </div>
+              <div className="d-flex justify-content-between mt-3 w-100 showall-filter-blocks">
+                <div className="d-flex flex-wrap filter-box">
+                  <Dropdown>
+                    <Dropdown.Toggle
+                      align="start"
+                      drop="start"
+                      as={SaleTypeDropdown}
+                    ></Dropdown.Toggle>
+
+                    <Dropdown.Menu align="start">
+                      {filter.sale.map((obj, i) => (
+                        <Dropdown.Item
+                          key={`sale${i}`}
+                          as="button"
+                          onClick={() => handleSaleCheck(obj)}
+                        >
+                          <FaCheckCircle
+                            color={obj.checked ? "green" : "#ccc"}
+                            className="mb-1 me-2"
+                            size={17}
+                          />
+                          {obj.name}
+                        </Dropdown.Item>
+                      ))}
+                    </Dropdown.Menu>
+                  </Dropdown>
+
+                  <Dropdown>
+                    <Dropdown.Toggle
+                      align="start"
+                      drop="start"
+                      as={SaleStatus}
+                    ></Dropdown.Toggle>
+
+                    <Dropdown.Menu align="start">
+                      {filter.status.map((obj, i) => (
+                        <Dropdown.Item
+                          key={`nft${i}`}
+                          as="button"
+                          onClick={() => handleSaleStatusNFT(obj)}
+                        >
+                          <FaCheckCircle
+                            color={obj.checked ? "green" : "#ccc"}
+                            className="mb-1 me-2"
+                            size={17}
+                          />{" "}
+                          {obj.name}
+                        </Dropdown.Item>
+                      ))}
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </div>
+
+                <div className="filt-flex-box filter-blocks">
+                  <Dropdown>
+                    <Dropdown.Toggle
+                      align="start"
+                      drop="start"
+                      as={ShowAllSort}
+                    ></Dropdown.Toggle>
+
+                    <Dropdown.Menu align="start">
+                      {filter.sort.map((obj, i) => (
+                        <Dropdown.Item
+                          key={`nft${i}`}
+                          as="button"
+                          onClick={() => handleSortNFT(obj)}
+                        >
+                          <FaCheckCircle
+                            color={obj.checked ? "green" : "#ccc"}
+                            className="mb-1 me-2"
+                            size={17}
+                          />{" "}
+                          {obj.name}
+                        </Dropdown.Item>
+                      ))}
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </div>
+              </div>
+
+              <div className="mt-2 mb-4 d-flex flex-wrap">
+                {filter.sale
+                  .filter((xx) => xx.checked === true)
+                  .map((obj, i) => (
+                    <div key={`filter-pill${i}`} className="filter-pill-button">
+                      <div className="first">{obj.name}</div>
+                      <div className="last">
+                        <BiX
+                          role="button"
+                          size={20}
+                          onClick={() => handleSaleCheck(obj)}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                {filter.status
+                  .filter((xx) => xx.checked === true)
+                  .map((obj, i) => (
+                    <div key={`filter-pill${i}`} className="filter-pill-button">
+                      <div className="first">{obj.name}</div>
+                      <div className="last">
+                        <BiX
+                          role="button"
+                          size={20}
+                          onClick={() => handleSaleStatusNFT(obj, true)}
+                        />
+                      </div>
+                    </div>
+                  ))}
               </div>
             </div>
           </div>
@@ -370,6 +867,9 @@ const NFTCardLoader = (props) => (
     <rect x="684" y="5" rx="2" ry="2" width="218" height="280" />
   </ContentLoader>
 );
+const useQueryStringConverter = (search) => {
+  return React.useMemo(() => new URLSearchParams(search), [search]);
+};
 
 const Counter = ({
   time,
