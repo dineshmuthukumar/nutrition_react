@@ -11,8 +11,7 @@ import NFTPutOnSale from "../nft-put-on-sale";
 import { ReactComponent as DiscordSvg } from "./../../icons/discord_logo.svg";
 
 import "./style.scss";
-import { OverlayTrigger } from "react-bootstrap";
-import { Popover } from "react-bootstrap";
+import { Popover, OverlayTrigger } from "react-bootstrap";
 import { calculateTimeLeft } from "../../utils/common";
 
 const NFTBaseDetails = ({
@@ -51,6 +50,17 @@ const NFTBaseDetails = ({
       <Popover.Body>
         <p className="password-terms">
           Your NFT will be available to be listed for sale in <b>{rem_text}</b>
+        </p>
+      </Popover.Body>
+    </Popover>
+  );
+
+  const KycPopOver = () => (
+    <Popover>
+      <Popover.Body>
+        <p className="password-terms">
+          Please complete your KYC process to be eligible for listing NFTs for
+          sale.
         </p>
       </Popover.Body>
     </Popover>
@@ -197,7 +207,21 @@ const NFTBaseDetails = ({
                 </button>
               );
             } else if (isOwner && ownerOrdersList.length === 0) {
-              return days === 0 &&
+              return user?.kyc_status !== "success" ? (
+                <OverlayTrigger
+                  trigger={["click"]}
+                  rootClose={true}
+                  placement="top"
+                  overlay={KycPopOver()}
+                >
+                  <button
+                    disabled={false}
+                    className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                  >
+                    List for sale
+                  </button>
+                </OverlayTrigger>
+              ) : days === 0 &&
                 hours === 0 &&
                 minutes === 0 &&
                 seconds < 0.2 ? (
@@ -225,7 +249,27 @@ const NFTBaseDetails = ({
               );
             } else if (isOwner && ownerOrdersList.length > 0) {
               if (isQuantityAvailable != null && isQuantityAvailable > 0) {
-                return days === 0 &&
+                return user?.kyc_status !== "success" ? (
+                  <OverlayTrigger
+                    trigger={["click"]}
+                    rootClose={true}
+                    placement="top"
+                    overlay={KycPopOver()}
+                  >
+                    <button
+                      disabled={false}
+                      className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                    >
+                      {erc721
+                        ? "List for sale"
+                        : `List for sale (${
+                            isQuantityAvailable
+                              ? isQuantityAvailable
+                              : availableQuantity
+                          })`}
+                    </button>
+                  </OverlayTrigger>
+                ) : days === 0 &&
                   hours === 0 &&
                   minutes === 0 &&
                   seconds < 0.2 ? (

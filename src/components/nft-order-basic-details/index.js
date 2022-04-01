@@ -7,6 +7,7 @@ import { BsFillQuestionCircleFill } from "react-icons/bs";
 import { VscChevronRight } from "react-icons/vsc";
 import _ from "lodash";
 import dayjs from "dayjs";
+import { Popover, OverlayTrigger } from "react-bootstrap";
 
 import { acceptBidApi } from "../../api/methods";
 import BidValue from "../bid-value";
@@ -89,6 +90,17 @@ const NFTOrderBaseDetails = ({
       }
     }
   };
+
+  const KycPopOver = () => (
+    <Popover>
+      <Popover.Body>
+        <p className="password-terms">
+          Please complete your KYC process to be eligible for buying/bidding on
+          NFTs.
+        </p>
+      </Popover.Body>
+    </Popover>
+  );
 
   return (
     <>
@@ -730,13 +742,113 @@ const NFTOrderBaseDetails = ({
             } else if (isBid && isBuy) {
               return (
                 <>
-                  <button
-                    className="btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill place-bid-buy-btn filled-btn"
-                    onClick={() => setPlaceBuyPop(!placeBuyPop)}
-                  >
-                    Buy {currencyFormat(orderDetails.buy_amount, "USD")}
-                  </button>
+                  {user?.kyc_status !== "success" ? (
+                    <OverlayTrigger
+                      trigger={["click"]}
+                      rootClose={true}
+                      placement="top"
+                      overlay={KycPopOver()}
+                    >
+                      <button className="btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill place-bid-buy-btn filled-btn">
+                        Buy {currencyFormat(orderDetails.buy_amount, "USD")}
+                      </button>
+                    </OverlayTrigger>
+                  ) : (
+                    <button
+                      className="btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill place-bid-buy-btn filled-btn"
+                      onClick={() => setPlaceBuyPop(!placeBuyPop)}
+                    >
+                      Buy {currencyFormat(orderDetails.buy_amount, "USD")}
+                    </button>
+                  )}
+
                   {orderDetails.timed_auction ? (
+                    <>
+                      {user?.kyc_status !== "success" ? (
+                        <OverlayTrigger
+                          trigger={["click"]}
+                          rootClose={true}
+                          placement="top"
+                          overlay={KycPopOver()}
+                        >
+                          <button
+                            disabled={(() => {
+                              if (!isAuctionStarted && !isAuctionEnded) {
+                                return !isAuctionStarted;
+                              } else {
+                                return isAuctionEnded;
+                              }
+                            })()}
+                            className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn"
+                          >
+                            Place Bid
+                          </button>
+                        </OverlayTrigger>
+                      ) : (
+                        <button
+                          disabled={(() => {
+                            if (!isAuctionStarted && !isAuctionEnded) {
+                              return !isAuctionStarted;
+                            } else {
+                              return isAuctionEnded;
+                            }
+                          })()}
+                          className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn"
+                          onClick={() => setPlaceBidPop(!placeBidPop)}
+                        >
+                          Place Bid
+                        </button>
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      {user?.kyc_status !== "success" ? (
+                        <OverlayTrigger
+                          trigger={["click"]}
+                          rootClose={true}
+                          placement="top"
+                          overlay={KycPopOver()}
+                        >
+                          <button className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn">
+                            Place Bid
+                          </button>
+                        </OverlayTrigger>
+                      ) : (
+                        <button
+                          className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn"
+                          onClick={() => setPlaceBidPop(!placeBidPop)}
+                        >
+                          Place Bid
+                        </button>
+                      )}
+                    </>
+                  )}
+                </>
+              );
+            } else if (isBid) {
+              return orderDetails.timed_auction ? (
+                <>
+                  {user?.kyc_status !== "success" ? (
+                    <OverlayTrigger
+                      trigger={["click"]}
+                      rootClose={true}
+                      placement="top"
+                      overlay={KycPopOver()}
+                    >
+                      <button
+                        disabled={(() => {
+                          if (!isAuctionStarted && !isAuctionEnded) {
+                            return !isAuctionStarted;
+                          } else {
+                            return isAuctionEnded;
+                          }
+                        })()}
+                        className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                      >
+                        Place Bid
+                      </button>
+                    </OverlayTrigger>
+                  ) : (
                     <button
                       disabled={(() => {
                         if (!isAuctionStarted && !isAuctionEnded) {
@@ -745,14 +857,29 @@ const NFTOrderBaseDetails = ({
                           return isAuctionEnded;
                         }
                       })()}
-                      className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn"
+                      className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
                       onClick={() => setPlaceBidPop(!placeBidPop)}
                     >
                       Place Bid
                     </button>
+                  )}
+                </>
+              ) : (
+                <>
+                  {user?.kyc_status !== "success" ? (
+                    <OverlayTrigger
+                      trigger={["click"]}
+                      rootClose={true}
+                      placement="top"
+                      overlay={KycPopOver()}
+                    >
+                      <button className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn">
+                        Place Bid
+                      </button>
+                    </OverlayTrigger>
                   ) : (
                     <button
-                      className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn"
+                      className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
                       onClick={() => setPlaceBidPop(!placeBidPop)}
                     >
                       Place Bid
@@ -760,31 +887,22 @@ const NFTOrderBaseDetails = ({
                   )}
                 </>
               );
-            } else if (isBid) {
-              return orderDetails.timed_auction ? (
-                <button
-                  disabled={(() => {
-                    if (!isAuctionStarted && !isAuctionEnded) {
-                      return !isAuctionStarted;
-                    } else {
-                      return isAuctionEnded;
-                    }
-                  })()}
-                  className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
-                  onClick={() => setPlaceBidPop(!placeBidPop)}
-                >
-                  Place Bid
-                </button>
-              ) : (
-                <button
-                  className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
-                  onClick={() => setPlaceBidPop(!placeBidPop)}
-                >
-                  Place Bid
-                </button>
-              );
             } else if (isBuy) {
-              return (
+              return user?.kyc_status !== "success" ? (
+                <OverlayTrigger
+                  trigger={["click"]}
+                  rootClose={true}
+                  placement="top"
+                  overlay={KycPopOver()}
+                >
+                  <button
+                    disabled={false}
+                    className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                  >
+                    Buy {currencyFormat(orderDetails.buy_amount, "USD")}
+                  </button>
+                </OverlayTrigger>
+              ) : (
                 <button
                   disabled={false}
                   className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
