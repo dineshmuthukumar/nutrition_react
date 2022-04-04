@@ -57,7 +57,7 @@ const Details = () => {
   }, []);
 
   useEffect(() => {
-    if (isOwner) {
+    if (isOwner && user?.kyc_status === "success") {
       if (location.hash === "#list-for-sale") {
         setPutOnSalePop(!putOnSalePop);
       }
