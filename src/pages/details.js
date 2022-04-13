@@ -45,6 +45,7 @@ const Details = () => {
 
   const { user } = useSelector((state) => state.user.data);
   const isOwner = _.has(nft, "owner_details");
+  const availableQty = _.get(nft, "owner_details.available_quantity", 0);
   const location = useLocation();
 
   useEffect(() => {
@@ -57,12 +58,12 @@ const Details = () => {
   }, []);
 
   useEffect(() => {
-    if (isOwner && user?.kyc_status === "success") {
+    if (isOwner && availableQty && user?.kyc_status === "success") {
       if (location.hash === "#list-for-sale") {
         setPutOnSalePop(!putOnSalePop);
       }
     }
-  }, [isOwner]);
+  }, [isOwner, availableQty]);
 
   useEffect(() => {
     if (user && isOwner) {
