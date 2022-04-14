@@ -584,7 +584,7 @@ const NFTOrderBaseDetails = ({
             latestBid={latestBid}
           />
 
-          {nft?.can_promote && nft.promoted && (
+          {nft.promoted && (
             <div className="text-danger">
               This NFT has yield generation enabled & can be present on other
               NFTs.
