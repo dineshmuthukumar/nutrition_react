@@ -710,8 +710,8 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                               as="button"
                               onClick={() =>
                                 window.open(
-                                  `${process.env.REACT_APP_PRE_BOOK_URL}`,
-                                  "_blank"
+                                  `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/pre-orders`,
+                                  "_self"
                                 )
                               }
                             >
