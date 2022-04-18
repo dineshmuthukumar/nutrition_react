@@ -337,7 +337,12 @@ const Banner = ({ list = [] }) => {
                   onClick={() => handleNavigate("BigB Punks")}
                 >
                   <h5 className="cat-title medium-box">BigB Punks</h5>
-                  {(() => {
+                  <img
+                    src={bigb_artpunk}
+                    className="first-image"
+                    style={{ height: "100%" }}
+                  />
+                  {/* {(() => {
                     if (list[5]?.asset_type?.includes("video")) {
                       return (
                         <video
@@ -363,7 +368,7 @@ const Banner = ({ list = [] }) => {
                         />
                       );
                     }
-                  })()}
+                  })()} */}
                 </div>
               </div>
             </div>
