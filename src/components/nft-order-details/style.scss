@@ -47,13 +47,13 @@
   .bid-history-content {
     min-height: calc(100vh - 24rem) !important;
     max-height: 55vh;
-    border-left: 2px solid #000;
-    border-right: 2px solid #000;
-    border-bottom: 2px solid #000;
+    // border-left: 2px solid #000;
+    // border-right: 2px solid #000;
+    // border-bottom: 2px solid #000;
     overflow: hidden;
     overflow-y: auto;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
     @media screen and (min-height: 1024px) {
       min-height: unset !important;
       max-height: 35rem !important;

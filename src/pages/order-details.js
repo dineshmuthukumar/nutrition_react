@@ -45,6 +45,8 @@ import AdditionalPerks from "../components/additional-perks/index";
 import AppHelmet from "../components/helmet";
 import BidWinner from "../components/bid-winner/index";
 
+import NFTPlayerStats from "../components/nft-player-stats";
+
 const OrderDetails = () => {
   const history = useHistory();
   const [bidExpiry, setBidExpiry] = useState();
@@ -601,6 +603,17 @@ const OrderDetails = () => {
 
                   <div className="mt-5"></div>
                   <ChainAttributes chains={nft.chain_attributes} />
+
+                  {nft?.core_statistics && nft?.statistics.length > 0 && (
+                    <>
+                      <div className="mt-5"></div>
+                      <NFTPlayerStats
+                        stats={nft?.statistics}
+                        core={nft?.core_statistics}
+                      />
+                    </>
+                  )}
+
                   {nft?.tag_names?.length > 0 && (
                     <>
                       <div className="mt-5"></div>

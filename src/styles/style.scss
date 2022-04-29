@@ -1659,7 +1659,7 @@ section.detail-page-content {
   }
 
   .bid_section_wrapper {
-    padding-top: 4rem;
+    padding-top: 1.5rem;
     background: linear-gradient(181deg, black, #002415);
     .player_stats {
       position: absolute;
@@ -2285,12 +2285,35 @@ section.detail-page-content {
   }
 
   .bid-history {
+    position: relative;
+    background: transparent
+      linear-gradient(53deg, #3820ff 0%, #ff7545 47%, #faf971 100%) 0% 0%
+      no-repeat padding-box;
+
+    border-radius: 0.5rem;
+
+    &::before {
+      background-color: #000;
+      content: "";
+      position: absolute;
+      top: 0.1rem;
+      left: 0.15rem;
+      right: 0.15rem;
+      bottom: 0.1rem;
+      z-index: 0;
+      border-radius: 0.5rem;
+    }
+    * {
+      position: relative;
+    }
     .bid-history-title-content {
       .bid-history-title {
         color: #fff;
         font-size: 1.2rem;
         text-transform: uppercase;
         font-family: $neue-helvetica-extended;
+
+        position: relative;
       }
     }
     &.if_bid_empty_cell {
@@ -2334,9 +2357,10 @@ section.detail-page-content {
 
   .bid-history {
     .bid-history-content {
-      background: #000;
+      background: transparent;
       border-top: 0.05rem solid #707070;
       padding-top: 1rem;
+      padding-bottom: 1rem;
       // min-height: unset !important;
       .bid-histroy-card {
         display: flex;
@@ -2655,5 +2679,94 @@ section.detail-page-content {
     border: solid 1px #000;
     background: #fff;
     color: #000;
+  }
+}
+
+section.player-stats {
+  .heading-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.4rem;
+    .perf-hint {
+      width: 35%;
+      text-align: center;
+    }
+    h3 {
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      font-family: $neue-helvetica-extended;
+      margin-bottom: 0;
+    }
+    .player-level {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      h6 {
+        font-size: 1.4rem;
+        text-transform: uppercase;
+        font-family: $neue-helvetica-extended;
+        margin: 0 !important;
+        margin-right: 0.9rem !important;
+      }
+      img {
+        height: 2.2rem;
+        margin: 0;
+      }
+    }
+  }
+
+  .player-stats-list {
+    margin: 1rem 0;
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      li {
+        background-image: url("../images/jump-trade/playerstatsBG.png");
+        background-size: 100% 100%;
+        background-position: center;
+        height: 3.2rem;
+        width: 100%;
+        position: relative;
+        margin: 0.9rem 0;
+        padding: 0;
+        // padding: 0.5rem 1.3rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1;
+        overflow: hidden;
+        .key {
+          display: flex;
+          width: calc(100% - 10rem);
+          padding: 0.8rem 1.8rem;
+          font-family: $neue-helvetica-medium;
+          letter-spacing: 0.1rem;
+          text-transform: uppercase;
+          font-size: 1.2rem;
+        }
+        .value {
+          width: 10rem;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          padding: 0.8rem 1.8rem;
+          background-image: url("../images/jump-trade/playerstatsinnerBG.png");
+          background-size: 100% 100%;
+          background-position: center;
+          font-family: $neue-helvetica-bold;
+          color: #898989;
+          position: absolute;
+          right: 0.18rem;
+          font-size: 1.2rem;
+          span {
+            color: #fdf100;
+            padding: 0 0.3rem;
+          }
+        }
+      }
+    }
   }
 }

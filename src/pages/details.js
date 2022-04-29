@@ -25,6 +25,7 @@ import OwnerList from "../components/owner-list";
 import Footer from "../components/footer/index";
 import NFTOrderDetails from "../components/nft-order-details/index";
 import AdditionalPerks from "../components/additional-perks/index";
+import NFTPlayerStats from "../components/nft-player-stats";
 
 const Details = () => {
   const { slug } = useParams();
@@ -265,6 +266,17 @@ const Details = () => {
 
                   <div className="mt-5"></div>
                   <ChainAttributes chains={nft.chain_attributes} />
+
+                  {nft?.core_statistics && nft?.statistics.length > 0 && (
+                    <>
+                      <div className="mt-5"></div>
+                      <NFTPlayerStats
+                        stats={nft?.statistics}
+                        core={nft?.core_statistics}
+                      />
+                    </>
+                  )}
+
                   {nft?.tag_names?.length > 0 && (
                     <>
                       <div className="mt-5"></div>
