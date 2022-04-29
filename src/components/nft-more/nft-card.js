@@ -9,9 +9,28 @@ import cardImage from "../../images/drops/nft_2.png";
 import startin from "../../images/start_icon.png";
 import endsin from "../../images/ends_icon.png";
 import { BiUpArrowAlt, BiDownArrowAlt } from "react-icons/bi";
+import { AiFillFire } from "react-icons/ai";
+
+import batsmanIcon from "../../images/jump-trade/batsman_ico.png";
+import bowlerIcon from "../../images/jump-trade/bowler_ico.png";
+
+import lvl001 from "../../images/jump-trade/player_levels/1.png";
+import lvl002 from "../../images/jump-trade/player_levels/2.png";
+import lvl003 from "../../images/jump-trade/player_levels/3.png";
+import lvl004 from "../../images/jump-trade/player_levels/4.png";
+import lvl005 from "../../images/jump-trade/player_levels/5.png";
+import lvl006 from "../../images/jump-trade/player_levels/6.png";
+import lvl007 from "../../images/jump-trade/player_levels/7.png";
+import lvl008 from "../../images/jump-trade/player_levels/8.png";
+import lvl009 from "../../images/jump-trade/player_levels/9.png";
+import lvl0010 from "../../images/jump-trade/player_levels/10.png";
+import lvl0011 from "../../images/jump-trade/player_levels/11.png";
+import lvl0012 from "../../images/jump-trade/player_levels/12.png";
+import lvl0013 from "../../images/jump-trade/player_levels/13.png";
+import lvl0014 from "../../images/jump-trade/player_levels/14.png";
+import lvl0015 from "../../images/jump-trade/player_levels/15.png";
 
 import "./style.scss";
-import { AiFillFire } from "react-icons/ai";
 
 const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
   const erc721 = nft?.nft_type === "erc721";
@@ -95,7 +114,7 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
   // };
   return (
     <Link
-      className="more-card"
+      className="more-card jt-card"
       to={(() => {
         if (favouriteNFT) {
           return search
@@ -117,6 +136,20 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
       })()}
     >
       <span className="nft-type-badge">{nft.nft_type.toUpperCase()}</span>
+      <article className={`player_stats `}>
+        <div className="player-type">
+          <img src={batsmanIcon} />
+        </div>
+
+        <div className="player-range">
+          <span className="band">RO</span>
+        </div>
+
+        <div className="player-level">
+          <h6>LVL 2</h6>
+          <img src={lvl002} />
+        </div>
+      </article>
       <img
         // style={{ background: bgColor }}
         alt="media logo"
@@ -133,6 +166,11 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
       />
 
       <div className="top-content-title">
+        <div className="heart_box">
+          <div className="svg_size filled_heart_icon"></div>
+
+          {/* <div className="svg_size heart_icon"></div> */}
+        </div>
         <div>
           <div className="more-nft-title">{nft?.name}</div>
           {nft?.owner_name && (
@@ -152,7 +190,7 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
                     {!isAuctionStarted && !isAuctionEnded && (
                       <div className="time-counter-box">
                         <span className="time-counter-card">
-                          <img src={startin} alt="startin" />
+                          <span className="time-title">Starts</span>
                           <NFTCounter
                             time={nft?.order_details?.auction_start_time}
                             cTime={nft?.time}
@@ -161,17 +199,17 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
                             intervalGapClass="me-1"
                             handleEndEvent={handleAuctionStartTimer}
                           />
-                          &nbsp;&nbsp;
+                          {/* &nbsp;&nbsp;
                           <span class="fire-icon">
                             <AiFillFire />
-                          </span>
+                          </span> */}
                         </span>
                       </div>
                     )}
                     {!isAuctionEnded && isAuctionStarted && (
                       <div className="time-counter-box">
                         <span className="time-counter-card">
-                          <img src={endsin} alt="endsin" />
+                          <span className="time-title">Ends</span>
                           <NFTCounter
                             time={nft?.order_details?.auction_end_time}
                             cTime={nft?.time}
@@ -180,10 +218,10 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
                             intervalGapClass="me-1"
                             handleEndEvent={handleAuctionEndTimer}
                           />
-                          &nbsp;&nbsp;
+                          {/* &nbsp;&nbsp;
                           <span class="fire-icon">
                             <AiFillFire />
-                          </span>
+                          </span> */}
                         </span>
                       </div>
                     )}
