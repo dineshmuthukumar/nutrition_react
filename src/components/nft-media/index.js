@@ -19,6 +19,25 @@ import toaster from "../../utils/toaster";
 import sample from "../../images/sampleNFT.jpg";
 import { nftMakeFav, nftMakeUnFav } from "../../api/methods";
 
+import batsmanIcon from "../../images/jump-trade/batsman_ico.png";
+import bowlerIcon from "../../images/jump-trade/bowler_ico.png";
+
+import lvl001 from "../../images/jump-trade/player_levels/1.png";
+import lvl002 from "../../images/jump-trade/player_levels/2.png";
+import lvl003 from "../../images/jump-trade/player_levels/3.png";
+import lvl004 from "../../images/jump-trade/player_levels/4.png";
+import lvl005 from "../../images/jump-trade/player_levels/5.png";
+import lvl006 from "../../images/jump-trade/player_levels/6.png";
+import lvl007 from "../../images/jump-trade/player_levels/7.png";
+import lvl008 from "../../images/jump-trade/player_levels/8.png";
+import lvl009 from "../../images/jump-trade/player_levels/9.png";
+import lvl0010 from "../../images/jump-trade/player_levels/10.png";
+import lvl0011 from "../../images/jump-trade/player_levels/11.png";
+import lvl0012 from "../../images/jump-trade/player_levels/12.png";
+import lvl0013 from "../../images/jump-trade/player_levels/13.png";
+import lvl0014 from "../../images/jump-trade/player_levels/14.png";
+import lvl0015 from "../../images/jump-trade/player_levels/15.png";
+
 import "./style.scss";
 
 const NFTMedia = ({ nft, title, slug, isFav }) => {
@@ -206,101 +225,188 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
   };
 
   return (
-    <div className="nft-media media_audio" style={{ background: bgColor }}>
-      {/* <div className="show_height"><img className="type_image typeimg_audio" src="https://wallpaperaccess.com/full/112115.jpg" />  </div> */}
-      {/* <div className="show_height"><img className="type_gif" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" />/div> */}
-      {(() => {
-        if (nft?.asset_type?.includes("image")) {
-          return (
-            <img
-              alt="media logo"
-              className="type_image typeimg_audio"
-              src={nft.asset_url ? nft.asset_url : sample}
-            />
-          );
-        } else if (nft?.asset_type?.includes("audio")) {
-          return (
-            <>
-              <div className="no_height align-items-center">
-                <img
-                  alt="media logo"
-                  className="type_image typeimg_audio"
-                  src={nft.cover_url ? nft.cover_url : sample}
-                  onClick={() => {
-                    var el = document.getElementById("audio-fullscreen");
-                    if (!el.paused) {
-                      el.pause();
-                    } else {
-                      el.play();
-                    }
-                  }}
-                />
-              </div>
-              <audio
-                id="audio-fullscreen"
-                controls
-                className="shadow-sm audioOnmedia"
-                disablepictureinpicture
-                controlslist="nodownload noplaybackrate"
-              >
-                <source src={nft.asset_url} type={nft.asset_type} />
-                Your browser does not support the audio element.
-              </audio>
-            </>
-          );
-        } else if (nft?.asset_type?.includes("video")) {
-          return (
-            <div className="video-height">
-              <video
-                id="full-screenVideo"
-                playsinline
-                controls
-                autoplay
-                loop
-                oncontextmenu="return false;"
-                controlsList="nodownload"
-              >
-                <source
-                  src={
-                    static_url.find((obj) => obj.id === slug)?.url
-                      ? static_url.find((obj) => obj.id === slug)?.url
-                      : nft.asset_url
-                  }
-                  type="video/mp4"
-                />
-              </video>
-            </div>
-          );
-        } else {
-          return (
-            <img
-              alt="media logo"
-              className="type_image typeimg_audio"
-              src={nft.asset_url ? nft.asset_url : sample}
-            />
-          );
-        }
-      })()}
+    <section className="nft-img-block">
+      <div className={`nft-media media_audio  gold_color`}>
+        <article className={`player_stats  gold_color`}>
+          <div className="player-type">
+            <h6>Batsman</h6>
+            <img src={batsmanIcon} />
+          </div>
 
-      <div className="media-lsf">
-        <CustomPopover
-          icon={
-            <div onClick={handleLike}>
-              <AiFillHeart
-                className="svg_size"
-                size={25}
-                color={liked ? "red" : "black"}
+          <div className="player-range">
+            <span className="band">RO</span>
+            <h6>Player</h6>
+          </div>
+
+          <div className="player-level">
+            <h6>LVL 2</h6>
+            <img src={lvl002} />
+          </div>
+        </article>
+
+        {/* <div className="show_height"><img className="type_image typeimg_audio" src="https://wallpaperaccess.com/full/112115.jpg" />  </div> */}
+        {/* <div className="show_height"><img className="type_gif" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" />/div> */}
+        {(() => {
+          if (nft?.asset_type?.includes("image")) {
+            return (
+              <img
+                alt="media logo"
+                className="type_image typeimg_audio"
+                src={nft.asset_url ? nft.asset_url : sample}
               />
-            </div>
+            );
+          } else if (nft?.asset_type?.includes("audio")) {
+            return (
+              <>
+                <div className="no_height align-items-center">
+                  <img
+                    alt="media logo"
+                    className="type_image typeimg_audio"
+                    src={nft.cover_url ? nft.cover_url : sample}
+                    onClick={() => {
+                      var el = document.getElementById("audio-fullscreen");
+                      if (!el.paused) {
+                        el.pause();
+                      } else {
+                        el.play();
+                      }
+                    }}
+                  />
+                </div>
+                <audio
+                  id="audio-fullscreen"
+                  controls
+                  className="shadow-sm audioOnmedia"
+                  disablepictureinpicture
+                  controlslist="nodownload noplaybackrate"
+                >
+                  <source src={nft.asset_url} type={nft.asset_type} />
+                  Your browser does not support the audio element.
+                </audio>
+              </>
+            );
+          } else if (nft?.asset_type?.includes("video")) {
+            return (
+              <div className="video-height">
+                <video
+                  id="full-screenVideo"
+                  playsinline
+                  controls
+                  autoplay
+                  loop
+                  oncontextmenu="return false;"
+                  controlsList="nodownload"
+                >
+                  <source
+                    src={
+                      static_url.find((obj) => obj.id === slug)?.url
+                        ? static_url.find((obj) => obj.id === slug)?.url
+                        : nft.asset_url
+                    }
+                    type="video/mp4"
+                  />
+                </video>
+              </div>
+            );
+          } else {
+            return (
+              <img
+                alt="media logo"
+                className="type_image typeimg_audio"
+                src={nft.asset_url ? nft.asset_url : sample}
+              />
+            );
           }
-          placement="top"
-          text="Favourite"
-        />
+        })()}
 
+        <Modal
+          fullscreen
+          size="xl"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+        >
+          <Modal.Header
+            closeButton
+            className="full-screen-header"
+          ></Modal.Header>
+          <Modal.Body className="media_audio">
+            {/* <div className="show_height"><img className="type_image typeimg_audio" src="https://wallpaperaccess.com/full/112115.jpg" />  </div> */}
+            {/* <div className="show_height"><img className="type_gif" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" />/div> */}
+
+            {(() => {
+              if (nft?.asset_type?.includes("image")) {
+                return (
+                  <img
+                    alt="media logo"
+                    className="type_image typeimg_audio"
+                    src={nft.asset_url ? nft.asset_url : sample}
+                  />
+                );
+              } else if (nft?.asset_type?.includes("audio")) {
+                return (
+                  <>
+                    <div className="no_height">
+                      <img
+                        alt="media logo"
+                        className="type_image typeimg_audio"
+                        src={nft.cover_url ? nft.cover_url : sample}
+                        onClick={() => {
+                          var el = document.getElementById(
+                            "audio-fullscreen-full"
+                          );
+                          if (!el.paused) {
+                            el.pause();
+                          } else {
+                            el.play();
+                          }
+                        }}
+                      />
+                    </div>
+                    <audio
+                      id="audio-fullscreen-full"
+                      controls
+                      className="shadow-sm audioOnmedia"
+                      disablepictureinpicture
+                      controlslist="nodownload noplaybackrate"
+                    >
+                      <source src={nft.asset_url} type={nft.asset_type} />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </>
+                );
+              } else if (nft?.asset_type?.includes("video")) {
+                return (
+                  <video
+                    controls
+                    oncontextmenu="return false;"
+                    controlsList="nodownload"
+                    autoplay
+                    playsinline
+                  >
+                    <source
+                      src={
+                        static_url.find((obj) => obj.id === slug)?.url
+                          ? static_url.find((obj) => obj.id === slug)?.url
+                          : nft.asset_url
+                      }
+                      type="video/mp4"
+                    />
+                  </video>
+                );
+              }
+            })()}
+          </Modal.Body>
+        </Modal>
+      </div>
+      <div className={`media-lsf gold_color`}>
         <SharePopover
           icon={
             <div>
-              <AiOutlineShareAlt className="svg_size" size={25} />
+              {/* <AiOutlineShareAlt className="svg_size" size={25} /> */}
+
+              <div className="svg_size share_icon"></div>
             </div>
           }
           placement="top"
@@ -321,92 +427,34 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
                 }
               }}
             >
-              <AiOutlineExpand className="svg_size" size={25} />
+              {/* <AiOutlineExpand className="svg_size" size={25} /> */}
+              <div className="svg_size extend_icon"></div>
             </div>
           }
           placement="top"
           text="Fullscreen"
         />
+        <CustomPopover
+          icon={
+            <div onClick={handleLike}>
+              {/* <AiFillHeart
+                className="svg_size"
+                size={25}
+                color={liked ? "red" : "black"}
+              /> */}
+
+              {liked ? (
+                <div className="svg_size filled_heart_icon"></div>
+              ) : (
+                <div className="svg_size heart_icon"></div>
+              )}
+            </div>
+          }
+          placement="top"
+          text="Favourite"
+        />
       </div>
-
-      <Modal
-        fullscreen
-        size="xl"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-      >
-        <Modal.Header closeButton className="full-screen-header"></Modal.Header>
-        <Modal.Body className="media_audio">
-          {/* <div className="show_height"><img className="type_image typeimg_audio" src="https://wallpaperaccess.com/full/112115.jpg" />  </div> */}
-          {/* <div className="show_height"><img className="type_gif" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" />/div> */}
-
-          {(() => {
-            if (nft?.asset_type?.includes("image")) {
-              return (
-                <img
-                  alt="media logo"
-                  className="type_image typeimg_audio"
-                  src={nft.asset_url ? nft.asset_url : sample}
-                />
-              );
-            } else if (nft?.asset_type?.includes("audio")) {
-              return (
-                <>
-                  <div className="no_height">
-                    <img
-                      alt="media logo"
-                      className="type_image typeimg_audio"
-                      src={nft.cover_url ? nft.cover_url : sample}
-                      onClick={() => {
-                        var el = document.getElementById(
-                          "audio-fullscreen-full"
-                        );
-                        if (!el.paused) {
-                          el.pause();
-                        } else {
-                          el.play();
-                        }
-                      }}
-                    />
-                  </div>
-                  <audio
-                    id="audio-fullscreen-full"
-                    controls
-                    className="shadow-sm audioOnmedia"
-                    disablepictureinpicture
-                    controlslist="nodownload noplaybackrate"
-                  >
-                    <source src={nft.asset_url} type={nft.asset_type} />
-                    Your browser does not support the audio element.
-                  </audio>
-                </>
-              );
-            } else if (nft?.asset_type?.includes("video")) {
-              return (
-                <video
-                  controls
-                  oncontextmenu="return false;"
-                  controlsList="nodownload"
-                  autoplay
-                  playsinline
-                >
-                  <source
-                    src={
-                      static_url.find((obj) => obj.id === slug)?.url
-                        ? static_url.find((obj) => obj.id === slug)?.url
-                        : nft.asset_url
-                    }
-                    type="video/mp4"
-                  />
-                </video>
-              );
-            }
-          })()}
-        </Modal.Body>
-      </Modal>
-    </div>
+    </section>
   );
 };
 

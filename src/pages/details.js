@@ -171,123 +171,128 @@ const Details = () => {
       {loader ? (
         <NFTLoader />
       ) : (
-        <div className="container-fluid">
+        <section className="detail-page-content">
           <div className="bid_section_wrapper">
-            <div className="row fit-to-height">
-              <div className="col-12 col-lg-7">
-                <NFTMedia
-                  nft={nft}
-                  title={nft?.name}
-                  slug={nft?.slug}
-                  isFav={nft?.is_user_fav}
-                />
-              </div>
-              <div className="col-12 col-lg-5">
-                <NFTBaseDetails
-                  nft={nft}
-                  putOnSalePop={putOnSalePop}
-                  setPutOnSalePop={setPutOnSalePop}
-                  isQuantityAvailable={isQuantityAvailable}
-                  ownerOrdersList={ownerOrdersList}
-                  owners={nftOwner}
-                />
+            <div className="container-fluid">
+              <div className="row fit-to-height">
+                <div className="col-12 col-lg-7">
+                  <NFTMedia
+                    nft={nft}
+                    title={nft?.name}
+                    slug={nft?.slug}
+                    isFav={nft?.is_user_fav}
+                  />
+                </div>
+                <div className="col-12 col-lg-5">
+                  <NFTBaseDetails
+                    nft={nft}
+                    putOnSalePop={putOnSalePop}
+                    setPutOnSalePop={setPutOnSalePop}
+                    isQuantityAvailable={isQuantityAvailable}
+                    ownerOrdersList={ownerOrdersList}
+                    owners={nftOwner}
+                  />
+                </div>
               </div>
             </div>
           </div>
+          <div className="property_section_wrapper">
+            <div className="container-fluid">
+              {isOwner && ownerOrdersList.length > 0 && (
+                <>
+                  <NFTSectionTitle title="Order Details" />
+                  <div className="row mt-5">
+                    <NFTOrderDetails nft={nft} orderList={ownerOrdersList} />
+                  </div>
+                </>
+              )}
 
-          {isOwner && ownerOrdersList.length > 0 && (
-            <>
-              <NFTSectionTitle title="Order Details" />
+              <NFTSectionTitle title="NFT Details" />
               <div className="row mt-5">
-                <NFTOrderDetails nft={nft} orderList={ownerOrdersList} />
+                <div className="col-12 col-lg-6 order-lg-2 order-2 mb-4">
+                  {(() => {
+                    if (erc721) {
+                      return (
+                        nftOwner.length > 0 && (
+                          <BidHistory
+                            nft={nft}
+                            isOwner={isOwner}
+                            nftOwner={nftOwner[0]}
+                            // Transaction History
+                            transactionHistory={transactionHistory}
+                            transactionLoader={transactionLoader}
+                            transactionHasNext={transactionHasNext}
+                          />
+                        )
+                      );
+                    } else {
+                      return (
+                        nftOwner.length > 0 && (
+                          <OwnerList
+                            isLoading={ownerLoader}
+                            nft={nft}
+                            nftOwners={nftOwner}
+                            totalCount={ownerCount}
+                            // Transaction History
+                            transactionHistory={transactionHistory}
+                            transactionLoader={transactionLoader}
+                            transactionHasNext={transactionHasNext}
+                          />
+                        )
+                      );
+                    }
+                  })()}
+                </div>
+                <div className="col-12 col-lg-6 order-lg-1 order-1">
+                  {(() => {
+                    if (nft.properties && typeof nft.properties === "string") {
+                      let propertiesData = JSON.parse(nft.properties);
+                      if (
+                        propertiesData &&
+                        Object.keys(propertiesData).length > 0
+                      ) {
+                        return <NFTProperties properties={propertiesData} />;
+                      }
+                    } else {
+                      if (
+                        nft.properties &&
+                        Object.keys(nft.properties).length > 0
+                      ) {
+                        return <NFTProperties properties={nft.properties} />;
+                      }
+                    }
+                  })()}
+
+                  <div className="mt-5"></div>
+                  <ChainAttributes chains={nft.chain_attributes} />
+                  {nft?.tag_names?.length > 0 && (
+                    <>
+                      <div className="mt-5"></div>
+                      <NFTTags tags={nft.tag_names} />
+                    </>
+                  )}
+
+                  {nft?.comic?.length > 0 && (
+                    <>
+                      <div className="mt-5"></div>
+                      <AdditionalPerks comics={nft.comic} />
+                    </>
+                  )}
+                </div>
               </div>
-            </>
-          )}
-
-          <NFTSectionTitle title="NFT Details" />
-          <div className="row mt-5">
-            <div className="col-12 col-lg-6 order-lg-2 order-2 mb-4">
-              {(() => {
-                if (erc721) {
-                  return (
-                    nftOwner.length > 0 && (
-                      <BidHistory
-                        nft={nft}
-                        isOwner={isOwner}
-                        nftOwner={nftOwner[0]}
-                        // Transaction History
-                        transactionHistory={transactionHistory}
-                        transactionLoader={transactionLoader}
-                        transactionHasNext={transactionHasNext}
-                      />
-                    )
-                  );
-                } else {
-                  return (
-                    nftOwner.length > 0 && (
-                      <OwnerList
-                        isLoading={ownerLoader}
-                        nft={nft}
-                        nftOwners={nftOwner}
-                        totalCount={ownerCount}
-                        // Transaction History
-                        transactionHistory={transactionHistory}
-                        transactionLoader={transactionLoader}
-                        transactionHasNext={transactionHasNext}
-                      />
-                    )
-                  );
-                }
-              })()}
-            </div>
-            <div className="col-12 col-lg-6 order-lg-1 order-1">
-              {(() => {
-                if (nft.properties && typeof nft.properties === "string") {
-                  let propertiesData = JSON.parse(nft.properties);
-                  if (
-                    propertiesData &&
-                    Object.keys(propertiesData).length > 0
-                  ) {
-                    return <NFTProperties properties={propertiesData} />;
-                  }
-                } else {
-                  if (
-                    nft.properties &&
-                    Object.keys(nft.properties).length > 0
-                  ) {
-                    return <NFTProperties properties={nft.properties} />;
-                  }
-                }
-              })()}
-
-              <div className="mt-5"></div>
-              <ChainAttributes chains={nft.chain_attributes} />
-              {nft?.tag_names?.length > 0 && (
+              {artist?.show_artist && (
                 <>
-                  <div className="mt-5"></div>
-                  <NFTTags tags={nft.tag_names} />
-                </>
-              )}
-
-              {nft?.comic?.length > 0 && (
-                <>
-                  <div className="mt-5"></div>
-                  <AdditionalPerks comics={nft.comic} />
+                  <NFTSectionTitle title={artist?.title} />
+                  <div className="mt-5">
+                    <NFTArtist id={nft.celebrity_id} artist={artist} />
+                  </div>
+                  <br />
+                  <br />
                 </>
               )}
             </div>
           </div>
-          {artist?.show_artist && (
-            <>
-              <NFTSectionTitle title={artist?.title} />
-              <div className="mt-5">
-                <NFTArtist id={nft.celebrity_id} artist={artist} />
-              </div>
-              <br />
-              <br />
-            </>
-          )}
-        </div>
+        </section>
       )}
       <Footer />
     </>

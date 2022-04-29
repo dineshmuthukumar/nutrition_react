@@ -178,21 +178,6 @@ const NFTOrderBaseDetails = ({
       </div>
       <div className="nft-title-container">
         <div className="nft-title">{nft.name}</div>
-
-        <ToolTip
-          icon={
-            <div
-              className="discord"
-              onClick={() =>
-                window.open("https://discord.com/invite/87s8ReJ5FA", "_blank")
-              }
-            >
-              <DiscordSvg />
-            </div>
-          }
-          content="View this NFT bid's discord server"
-          placement="left"
-        />
       </div>
       <p className="text-secondary mt-1 mb-5 nft-desc">
         {nft.description && (

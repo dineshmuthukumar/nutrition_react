@@ -426,203 +426,209 @@ const OrderDetails = () => {
       {loader ? (
         <NFTLoader />
       ) : (
-        <div className="container-fluid">
+        <section className="detail-page-content">
           <div className="bid_section_wrapper">
-            <div className="row fit-to-height">
-              <div className="col-12 col-lg-7">
-                <NFTMedia
-                  nft={nft}
-                  title={nft?.name}
-                  slug={nft?.slug}
-                  isFav={nft?.is_user_fav}
-                />
-              </div>
-              <div className="col-12 col-lg-5">
-                <NFTOrderBaseDetails
-                  bidExpiry={bidExpiry}
-                  isBidder={isBidder}
-                  nft={nft}
-                  placeBidPop={placeBidPop}
-                  setPlaceBidPop={setPlaceBidPop}
-                  placeBuyPop={placeBuyPop}
-                  setPlaceBuyPop={setPlaceBuyPop}
-                  putOnSalePop={putOnSalePop}
-                  setPutOnSalePop={setPutOnSalePop}
-                  cancelTheSalePop={cancelTheSalePop}
-                  setCancelTheSalePop={setCancelTheSalePop}
-                  //Socket states start
-                  totalBid={totalBid}
-                  bidChange={bidChange}
-                  totalBuy={totalBuy}
-                  price={price}
-                  totalViews={totalViews}
-                  totalFavourites={totalFavourites}
-                  availableQty={availableQty}
-                  totalQty={totalQty}
-                  userTotalBuys={userTotalBuys}
-                  userOutBid={userOutBid}
-                  userLastBid={userLastBid}
-                  //Socket states end
+            <div className="container-fluid">
+              <div className="row fit-to-height">
+                <div className="col-12 col-lg-7">
+                  <NFTMedia
+                    nft={nft}
+                    title={nft?.name}
+                    slug={nft?.slug}
+                    isFav={nft?.is_user_fav}
+                  />
+                </div>
+                <div className="col-12 col-lg-5">
+                  <NFTOrderBaseDetails
+                    bidExpiry={bidExpiry}
+                    isBidder={isBidder}
+                    nft={nft}
+                    placeBidPop={placeBidPop}
+                    setPlaceBidPop={setPlaceBidPop}
+                    placeBuyPop={placeBuyPop}
+                    setPlaceBuyPop={setPlaceBuyPop}
+                    putOnSalePop={putOnSalePop}
+                    setPutOnSalePop={setPutOnSalePop}
+                    cancelTheSalePop={cancelTheSalePop}
+                    setCancelTheSalePop={setCancelTheSalePop}
+                    //Socket states start
+                    totalBid={totalBid}
+                    bidChange={bidChange}
+                    totalBuy={totalBuy}
+                    price={price}
+                    totalViews={totalViews}
+                    totalFavourites={totalFavourites}
+                    availableQty={availableQty}
+                    totalQty={totalQty}
+                    userTotalBuys={userTotalBuys}
+                    userOutBid={userOutBid}
+                    userLastBid={userLastBid}
+                    //Socket states end
 
-                  soldOut={soldOut}
-                  transferringNFT={transferringNFT}
-                  winner={bidWinner}
-                  owners={nftOwner}
-                  //Order
-                  isOrderOnSale={isOrderOnSale}
-                  isOrderSuccess={isOrderSuccess}
-                  isOrderCancelled={isOrderCancelled}
-                  orderSlug={orderSlug}
-                  slug={slug}
-                  latestBid={bidHistory.length > 0 ? bidHistory[0] : {}}
-                  bidOutDated={bidOutDated}
-                  handleBidExpiredEndTimer={handleBidExpiredEndTimer}
-                  bidExpired={bidExpired}
-                  // Timed Auction
-                  isAuctionStarted={isAuctionStarted}
-                  isAuctionEnded={isAuctionEnded}
-                  auctionEndTime={auctionEndTime}
-                  handleAuctionStartTimer={handleAuctionStartTimer}
-                  handleAuctionEndTimer={handleAuctionEndTimer}
-                  handleBeforeAuctionEndTimer={handleBeforeAuctionEndTimer}
-                />
+                    soldOut={soldOut}
+                    transferringNFT={transferringNFT}
+                    winner={bidWinner}
+                    owners={nftOwner}
+                    //Order
+                    isOrderOnSale={isOrderOnSale}
+                    isOrderSuccess={isOrderSuccess}
+                    isOrderCancelled={isOrderCancelled}
+                    orderSlug={orderSlug}
+                    slug={slug}
+                    latestBid={bidHistory.length > 0 ? bidHistory[0] : {}}
+                    bidOutDated={bidOutDated}
+                    handleBidExpiredEndTimer={handleBidExpiredEndTimer}
+                    bidExpired={bidExpired}
+                    // Timed Auction
+                    isAuctionStarted={isAuctionStarted}
+                    isAuctionEnded={isAuctionEnded}
+                    auctionEndTime={auctionEndTime}
+                    handleAuctionStartTimer={handleAuctionStartTimer}
+                    handleAuctionEndTimer={handleAuctionEndTimer}
+                    handleBeforeAuctionEndTimer={handleBeforeAuctionEndTimer}
+                  />
+                </div>
               </div>
             </div>
           </div>
-          {orderSlug && (
-            <div className="row mt-5">
-              <div className="col-12">
-                <NFTOrderSummary
-                  nft={nft}
-                  totalBid={totalBid}
-                  bidChange={bidChange}
-                  totalBuy={totalBuy}
-                  price={price}
-                  totalViews={totalViews}
-                  totalFavourites={totalFavourites}
-                  isOwner={isOwner}
-                />
-              </div>
-            </div>
-          )}
+          <div className="property_section_wrapper">
+            <div className="container-fluid">
+              {orderSlug && (
+                <div className="row mt-5">
+                  <div className="col-12">
+                    <NFTOrderSummary
+                      nft={nft}
+                      totalBid={totalBid}
+                      bidChange={bidChange}
+                      totalBuy={totalBuy}
+                      price={price}
+                      totalViews={totalViews}
+                      totalFavourites={totalFavourites}
+                      isOwner={isOwner}
+                    />
+                  </div>
+                </div>
+              )}
 
-          {purchaseList.length > 0 && (
-            <>
-              <NFTSectionTitle title="Purchase Details" />
+              {purchaseList.length > 0 && (
+                <>
+                  <NFTSectionTitle title="Purchase Details" />
+                  <div className="row mt-5">
+                    <NFTPurchaseDetails nft={nft} list={purchaseList} />
+                  </div>
+                </>
+              )}
+
+              <NFTSectionTitle title="NFT Details" />
               <div className="row mt-5">
-                <NFTPurchaseDetails nft={nft} list={purchaseList} />
+                <div className="col-12 col-lg-6 order-lg-2 order-1 mb-4">
+                  {(() => {
+                    if (erc721) {
+                      if (winnerBanner) {
+                        return (
+                          <BidWinner
+                            winner={bidWinner}
+                            orderSlug={orderSlug}
+                            histories={bidHistory}
+                          />
+                        );
+                      } else {
+                        return (
+                          <BidHistory
+                            setBidExpiry={setBidExpiry}
+                            setIsBidder={setIsBidder}
+                            nft={nft}
+                            orderSlug={orderSlug}
+                            isOwner={isOwner}
+                            nftOwner={nftOwner[0]}
+                            histories={bidHistory}
+                            totalCount={totalCount}
+                            isOrderOnSale={isOrderOnSale}
+                            isOrderSuccess={isOrderSuccess}
+                            isOrderCancelled={isOrderCancelled}
+                            orderDetails={orderDetails}
+                            soldOut={soldOut}
+                            transferringNFT={transferringNFT}
+                            // Transaction History
+                            transactionHistory={transactionHistory}
+                            transactionLoader={transactionLoader}
+                            transactionHasNext={transactionHasNext}
+                            handleBidExpiredEndTimer={handleBidExpiredEndTimer}
+                            bidExpired={bidExpired}
+                            isAuctionStarted={isAuctionStarted}
+                            isAuctionEnded={isAuctionEnded}
+                          />
+                        );
+                      }
+                    } else {
+                      return (
+                        nftOwner && (
+                          <OwnerList
+                            isLoading={ownerLoader}
+                            nft={nft}
+                            nftOwners={nftOwner}
+                            totalCount={ownerCount}
+                            orderSlug={orderSlug}
+                            // Transaction History
+                            transactionHistory={transactionHistory}
+                            transactionLoader={transactionLoader}
+                            transactionHasNext={transactionHasNext}
+                          />
+                        )
+                      );
+                    }
+                  })()}
+                </div>
+                <div className="col-12 col-lg-6 order-lg-1 order-2">
+                  {(() => {
+                    if (nft.properties && typeof nft.properties === "string") {
+                      let propertiesData = JSON.parse(nft.properties);
+                      if (
+                        propertiesData &&
+                        Object.keys(propertiesData).length > 0
+                      ) {
+                        return <NFTProperties properties={propertiesData} />;
+                      }
+                    } else {
+                      if (
+                        nft.properties &&
+                        Object.keys(nft.properties).length > 0
+                      ) {
+                        return <NFTProperties properties={nft.properties} />;
+                      }
+                    }
+                  })()}
+
+                  <div className="mt-5"></div>
+                  <ChainAttributes chains={nft.chain_attributes} />
+                  {nft?.tag_names?.length > 0 && (
+                    <>
+                      <div className="mt-5"></div>
+                      <NFTTags tags={nft.tag_names} />
+                    </>
+                  )}
+                  {nft?.comic?.length > 0 && (
+                    <>
+                      <div className="mt-5"></div>
+                      <AdditionalPerks comics={nft.comic} />
+                    </>
+                  )}
+                </div>
               </div>
-            </>
-          )}
 
-          <NFTSectionTitle title="NFT Details" />
-          <div className="row mt-5">
-            <div className="col-12 col-lg-6 order-lg-2 order-1 mb-4">
-              {(() => {
-                if (erc721) {
-                  if (winnerBanner) {
-                    return (
-                      <BidWinner
-                        winner={bidWinner}
-                        orderSlug={orderSlug}
-                        histories={bidHistory}
-                      />
-                    );
-                  } else {
-                    return (
-                      <BidHistory
-                        setBidExpiry={setBidExpiry}
-                        setIsBidder={setIsBidder}
-                        nft={nft}
-                        orderSlug={orderSlug}
-                        isOwner={isOwner}
-                        nftOwner={nftOwner[0]}
-                        histories={bidHistory}
-                        totalCount={totalCount}
-                        isOrderOnSale={isOrderOnSale}
-                        isOrderSuccess={isOrderSuccess}
-                        isOrderCancelled={isOrderCancelled}
-                        orderDetails={orderDetails}
-                        soldOut={soldOut}
-                        transferringNFT={transferringNFT}
-                        // Transaction History
-                        transactionHistory={transactionHistory}
-                        transactionLoader={transactionLoader}
-                        transactionHasNext={transactionHasNext}
-                        handleBidExpiredEndTimer={handleBidExpiredEndTimer}
-                        bidExpired={bidExpired}
-                        isAuctionStarted={isAuctionStarted}
-                        isAuctionEnded={isAuctionEnded}
-                      />
-                    );
-                  }
-                } else {
-                  return (
-                    nftOwner && (
-                      <OwnerList
-                        isLoading={ownerLoader}
-                        nft={nft}
-                        nftOwners={nftOwner}
-                        totalCount={ownerCount}
-                        orderSlug={orderSlug}
-                        // Transaction History
-                        transactionHistory={transactionHistory}
-                        transactionLoader={transactionLoader}
-                        transactionHasNext={transactionHasNext}
-                      />
-                    )
-                  );
-                }
-              })()}
-            </div>
-            <div className="col-12 col-lg-6 order-lg-1 order-2">
-              {(() => {
-                if (nft.properties && typeof nft.properties === "string") {
-                  let propertiesData = JSON.parse(nft.properties);
-                  if (
-                    propertiesData &&
-                    Object.keys(propertiesData).length > 0
-                  ) {
-                    return <NFTProperties properties={propertiesData} />;
-                  }
-                } else {
-                  if (
-                    nft.properties &&
-                    Object.keys(nft.properties).length > 0
-                  ) {
-                    return <NFTProperties properties={nft.properties} />;
-                  }
-                }
-              })()}
-
-              <div className="mt-5"></div>
-              <ChainAttributes chains={nft.chain_attributes} />
-              {nft?.tag_names?.length > 0 && (
+              {artist?.show_artist && (
                 <>
-                  <div className="mt-5"></div>
-                  <NFTTags tags={nft.tag_names} />
-                </>
-              )}
-              {nft?.comic?.length > 0 && (
-                <>
-                  <div className="mt-5"></div>
-                  <AdditionalPerks comics={nft.comic} />
+                  <NFTSectionTitle title={artist?.title} />
+                  <div className="mt-5">
+                    <NFTArtist id={nft.celebrity_id} artist={artist} />
+                  </div>
+                  <br />
+                  <br />
                 </>
               )}
             </div>
           </div>
-
-          {artist?.show_artist && (
-            <>
-              <NFTSectionTitle title={artist?.title} />
-              <div className="mt-5">
-                <NFTArtist id={nft.celebrity_id} artist={artist} />
-              </div>
-              <br />
-              <br />
-            </>
-          )}
-        </div>
+        </section>
       )}
       <Footer />
     </>
