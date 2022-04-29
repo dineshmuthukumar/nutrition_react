@@ -201,14 +201,14 @@ const Details = () => {
             <div className="container-fluid">
               {isOwner && ownerOrdersList.length > 0 && (
                 <>
-                  <NFTSectionTitle title="Order Details" />
+                  <NFTSectionTitle title="ORDER DETAILS" />
                   <div className="row mt-5">
                     <NFTOrderDetails nft={nft} orderList={ownerOrdersList} />
                   </div>
                 </>
               )}
 
-              <NFTSectionTitle title="NFT Details" />
+              <NFTSectionTitle title="NFT DETAILS" />
               <div className="row mt-5">
                 <div className="col-12 col-lg-6 order-lg-2 order-2 mb-4">
                   {(() => {
@@ -284,12 +284,12 @@ const Details = () => {
                     </>
                   )}
 
-                  {nft?.comic?.length > 0 && (
+                  {/* {nft?.comic?.length > 0 && (
                     <>
                       <div className="mt-5"></div>
                       <AdditionalPerks comics={nft.comic} />
                     </>
-                  )}
+                  )} */}
                 </div>
               </div>
               {artist?.show_artist && (
