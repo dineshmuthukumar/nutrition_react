@@ -44,7 +44,7 @@
     }
     &-name {
       color: #fff;
-      font-family: $neue-helveticalight;
+      font-family: $neue-helvetica-light;
       @include text-ellipsis;
     }
     &-sold-details {
@@ -67,12 +67,12 @@
             color: #fff;
             font-size: 1.1rem;
             margin-bottom: 0.2rem;
-            font-family: $neue-helveticalight;
+            font-family: $neue-helvetica-light;
           }
           .value {
             color: #fff;
             font-size: 2rem;
-            font-family: $neue-helveticamedium;
+            font-family: $neue-helvetica-medium;
           }
         }
       }
@@ -88,12 +88,12 @@
           color: #000;
           font-size: 1.1rem;
           margin-bottom: 0.2rem;
-          font-family: $neue-helveticalight;
+          font-family: $neue-helvetica-light;
         }
         .value {
           color: #000;
           font-size: 2.5rem;
-          font-family: $neue-helveticamedium;
+          font-family: $neue-helvetica-medium;
         }
       }
       .footer-btn-box {
@@ -151,7 +151,7 @@
       margin-bottom: 2rem;
     }
     h3 {
-      font-family: $neue-helveticalight;
+      font-family: $neue-helvetica-light;
     }
   }
   .owned-user {
@@ -174,11 +174,11 @@
       width: calc(100% - 6rem);
       .time {
         color: #757575;
-        font-family: $neue-helveticalight;
+        font-family: $neue-helvetica-light;
         font-size: 1rem;
       }
       .name {
-        font-family: $neue-helveticalight;
+        font-family: $neue-helvetica-light;
         font-size: 1.2rem;
         margin-bottom: 0;
         span {

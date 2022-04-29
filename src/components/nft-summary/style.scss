@@ -5,7 +5,7 @@
   border: 2px solid #000000;
   .title {
     font-size: 1.2rem;
-    font-family: $neue-helveticamedium;
+    font-family: $neue-helvetica-medium;
     @media screen and (max-width: 560px) {
       font-size: 1rem;
     }
@@ -22,7 +22,7 @@
   }
   .value {
     font-size: 3rem;
-    font-family: $neue-helveticamedium;
+    font-family: $neue-helvetica-medium;
     position: relative;
     @media screen and (max-width: 991px) {
       display: flex;
@@ -44,7 +44,7 @@
 
     .value-diff-range {
       position: absolute;
-      font-family: $neue-helveticamedium;
+      font-family: $neue-helvetica-medium;
       font-size: 0.9rem;
       margin-top: 0.5rem;
       display: inline-flex;

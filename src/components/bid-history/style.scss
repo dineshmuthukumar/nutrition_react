@@ -7,7 +7,7 @@
   overflow: hidden;
 
   .history-end-content {
-    font-family: $neue-helveticamedium;
+    font-family: $neue-helvetica-medium;
     color: #9c9c9b;
     font-size: 0.9rem;
     text-align: center;
@@ -22,7 +22,7 @@
     border-left: 2px solid #000;
     border-right: 2px solid #000;
     .bid-history-title {
-      font-family: $neue-helveticamedium;
+      font-family: $neue-helvetica-medium;
       font-size: 1.5rem;
       color: #000;
       @media screen and (max-width: 450px) {
@@ -45,7 +45,7 @@
             }
           }
           span {
-            font-family: $neue-helveticamedium;
+            font-family: $neue-helvetica-medium;
             font-size: 1.2rem;
             color: #000;
             display: flex;
@@ -80,7 +80,7 @@
       .history-dropdown {
         a.dropdown-toggle {
           color: white;
-          font-family: $neue-helveticalight;
+          font-family: $neue-helvetica-light;
           font-size: 0.9rem;
         }
         .dropdown-menu {
@@ -123,11 +123,11 @@
         &.full-width {
           width: 100% !important;
           .bid-owner {
-            font-family: $neue-helveticamedium;
+            font-family: $neue-helvetica-medium;
             display: flex;
             flex-wrap: wrap;
             .transaction-value {
-              font-family: $neue-helveticabold;
+              font-family: $neue-helvetica-bold;
               display: inline-flex;
               flex-wrap: wrap;
             }
@@ -147,7 +147,7 @@
 
         .time {
           font-size: 1rem;
-          font-family: $neue-helveticamedium;
+          font-family: $neue-helvetica-medium;
           .expire-pill {
             padding: 0.3rem 0.5rem;
             background-color: #bdbdbc;
@@ -170,7 +170,7 @@
           }
         }
         .bid-expire-cntent {
-          font-family: $neue-helveticalight;
+          font-family: $neue-helvetica-light;
           color: red;
           display: flex;
           align-items: center;
@@ -179,12 +179,12 @@
             margin-left: 0.4rem;
             .counter-time {
               font-size: 1rem;
-              font-family: $neue-helveticabold;
+              font-family: $neue-helvetica-bold;
             }
             .counter-interval {
               margin-left: 0.2rem;
               font-size: 0.9rem;
-              font-family: $neue-helveticabold;
+              font-family: $neue-helvetica-bold;
             }
             .interval-gap {
               margin-right: 0.3rem;
@@ -193,7 +193,7 @@
         }
         .bid-owner {
           font-size: 1.15rem;
-          font-family: $neue-helveticamedium;
+          font-family: $neue-helvetica-medium;
           .owner-id {
             cursor: pointer;
 
@@ -216,7 +216,7 @@
         }
         .bid-value {
           font-size: 1.2rem;
-          font-family: $neue-helveticabold;
+          font-family: $neue-helvetica-bold;
         }
         .assign-btn {
           background-color: #fff;
@@ -286,7 +286,7 @@
           font-size: 3rem;
         }
         .empty-text {
-          font-family: $neue-helveticamedium;
+          font-family: $neue-helvetica-medium;
           font-size: 1.7rem;
         }
       }
@@ -310,12 +310,12 @@
 
       .publish-time {
         font-size: 0.8rem;
-        font-family: $neue-helveticamedium;
+        font-family: $neue-helvetica-medium;
       }
 
       .nft-owner {
         font-size: 1rem;
-        font-family: $neue-helveticabold;
+        font-family: $neue-helvetica-bold;
 
         span {
           cursor: pointer;

@@ -79,7 +79,7 @@
       padding: 2rem 1rem;
     }
     h2 {
-      font-family: $neue-helveticamedium;
+      font-family: $neue-helvetica-medium;
       font-size: 1.5rem;
       margin-bottom: 2rem;
     }
@@ -89,7 +89,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: $neue-helveticalight;
+      font-family: $neue-helvetica-light;
       margin-right: 3rem;
       margin-top: 0.5rem;
       color: #000;
@@ -138,7 +138,7 @@
       font-size: 1rem;
       text-transform: uppercase;
       letter-spacing: 0.2rem;
-      font-family: $neue-helveticamedium;
+      font-family: $neue-helvetica-medium;
       border-radius: 50rem;
       &:hover,
       &:focus {
@@ -157,7 +157,7 @@
       color: #000000;
       font-size: 1.5rem;
       margin-bottom: 1.1rem;
-      font-family: $neue-helveticamedium;
+      font-family: $neue-helvetica-medium;
     }
     p {
       font-size: 1.1rem;
@@ -224,7 +224,7 @@
 .error_text {
   font-size: 0.9rem;
   color: red;
-  font-family: $neue-helveticalight;
+  font-family: $neue-helvetica-light;
 }
 
 .marketplace-btn {
@@ -235,7 +235,7 @@
   font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 0.2rem;
-  font-family: $neue-helveticamedium;
+  font-family: $neue-helvetica-medium;
   border-radius: 50rem;
   width: 100%;
   max-width: 22rem;
@@ -249,6 +249,6 @@
 
 .error-text {
   color: red;
-  font-family: $neue-helveticabold;
+  font-family: $neue-helvetica-bold;
   font-size: 1rem;
 }

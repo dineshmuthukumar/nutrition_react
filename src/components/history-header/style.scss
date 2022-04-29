@@ -38,12 +38,12 @@
     }
     &-name {
       color: #fff;
-      font-family: $neue-helveticalight;
+      font-family: $neue-helvetica-light;
       @include text-ellipsis;
     }
     &-status {
       color: #bdbdbc;
-      font-family: $neue-helveticabold;
+      font-family: $neue-helvetica-bold;
       text-transform: uppercase;
       margin-bottom: 1.3rem;
       @include text-ellipsis;

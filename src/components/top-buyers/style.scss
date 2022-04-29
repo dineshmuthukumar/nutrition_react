@@ -8,7 +8,7 @@
   padding: 1rem 0;
   border-bottom: 0.3rem solid #000;
   margin-bottom: 3rem;
-  font-family: $neue-helveticamedium;
+  font-family: $neue-helvetica-medium;
 }
 
 .user {
@@ -45,12 +45,12 @@
     .user {
       &-name {
         font-size: 1.3rem;
-        font-family: $neue-helveticabold;
+        font-family: $neue-helvetica-bold;
         margin-bottom: 0.2rem;
       }
       &-price {
         font-size: 1.1rem;
-        font-family: $neue-helveticamedium;
+        font-family: $neue-helvetica-medium;
         color: #757575;
       }
     }

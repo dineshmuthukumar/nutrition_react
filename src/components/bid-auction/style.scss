@@ -15,7 +15,7 @@
     min-height: calc(100vh - 6rem) !important;
   }
   .bid-auction-content {
-    font-family: $neue-helveticamedium;
+    font-family: $neue-helvetica-medium;
     font-size: 4.5rem;
     line-height: normal;
 
@@ -35,7 +35,7 @@
     border-bottom: 2px solid #ffffff;
 
     .bottom-title {
-      font-family: $neue-helveticamedium;
+      font-family: $neue-helvetica-medium;
       font-size: 0.8rem;
     }
     .bottom-time {
@@ -45,7 +45,7 @@
 
       .counter-interval {
         font-size: 0.9rem !important;
-        font-family: $neue-helveticalight;
+        font-family: $neue-helvetica-light;
       }
 
       .interval-gap {
@@ -53,14 +53,14 @@
       }
 
       .ended-count-value {
-        font-family: $neue-helveticamedium;
+        font-family: $neue-helvetica-medium;
         font-size: 2.25rem;
       }
     }
 
     .bottom-recharge-btn {
       padding: 0.5rem 1rem;
-      font-family: $neue-helveticalight;
+      font-family: $neue-helvetica-light;
     }
   }
 }

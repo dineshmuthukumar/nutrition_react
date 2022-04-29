@@ -13,7 +13,7 @@
 
       .pop-cancel-title {
         font-size: 2rem;
-        font-family: $neue-helveticabold;
+        font-family: $neue-helvetica-bold;
       }
       .close-button-pop {
         display: flex;
@@ -76,7 +76,7 @@
 
         .error-text {
           flex: 1;
-          font-family: $neue-helveticamedium;
+          font-family: $neue-helvetica-medium;
           font-size: 0.9rem;
         }
 
@@ -84,17 +84,17 @@
           flex: 1;
 
           .time-title {
-            font-family: $neue-helveticamedium;
+            font-family: $neue-helvetica-medium;
             font-size: 0.9rem;
           }
           .time-counter {
             .alert-counter-time {
-              font-family: $neue-helveticamedium;
+              font-family: $neue-helvetica-medium;
               font-size: 1.5rem;
             }
 
             .alert-counter-interval {
-              font-family: $neue-helveticalight;
+              font-family: $neue-helvetica-light;
               font-size: 0.8rem;
             }
 
@@ -105,7 +105,7 @@
         }
 
         .btn-error-button {
-          font-family: $neue-helveticamedium;
+          font-family: $neue-helvetica-medium;
           background: #f21e00;
           font-size: 0.8rem;
           outline: none;
@@ -121,12 +121,12 @@
 
         .error-details {
           .error-title {
-            font-family: $neue-helveticamedium;
+            font-family: $neue-helvetica-medium;
             font-size: 1rem;
           }
 
           .error-desc {
-            font-family: $neue-helveticamedium;
+            font-family: $neue-helvetica-medium;
             font-size: 0.8rem;
           }
         }
@@ -160,12 +160,12 @@
       }
     }
     .pop-author-name {
-      font-family: $neue-helveticamedium;
+      font-family: $neue-helvetica-medium;
       font-size: 1rem;
     }
 
     .pop-cancel-nft-title {
-      font-family: $neue-helveticamedium;
+      font-family: $neue-helvetica-medium;
       font-size: 1.4rem;
       padding: 0 1rem;
     }
@@ -175,7 +175,7 @@
       .input-cancel-text {
         font-size: 1rem;
         color: #000000;
-        font-family: $neue-helveticamedium;
+        font-family: $neue-helvetica-medium;
         font-weight: normal;
         text-align: start;
       }
@@ -188,14 +188,14 @@
 
         .cancel-currency {
           color: #000000;
-          font-family: $neue-helveticamedium;
+          font-family: $neue-helvetica-medium;
           font-size: 1.8rem !important;
           padding-left: 1.1rem;
         }
 
         .input-cancel {
           width: 100%;
-          font-family: $neue-helveticamedium;
+          font-family: $neue-helvetica-medium;
           font-size: 1.8rem !important;
           padding: 0.6rem 1.1rem 0.6rem 0.1rem;
           outline: none;
@@ -212,11 +212,11 @@
         .cancel-currency {
           font-size: 2rem;
           padding-right: 0.3rem;
-          font-family: $neue-helveticamedium;
+          font-family: $neue-helvetica-medium;
         }
         .input-cancel-quantity {
           width: 100%;
-          font-family: $neue-helveticamedium;
+          font-family: $neue-helvetica-medium;
           font-size: 1.8rem !important;
           padding: 0.6rem 1.1rem;
           outline: none;
@@ -226,7 +226,7 @@
 
         .quantity-to-value {
           color: #d3d3d6;
-          font-family: $neue-helveticamedium;
+          font-family: $neue-helvetica-medium;
           padding-right: 1.5rem;
           font-size: 1.3rem !important;
         }
@@ -235,7 +235,7 @@
       .balance-details {
         margin-top: 0.5rem;
         font-size: 0.8rem;
-        font-family: $neue-helveticabold;
+        font-family: $neue-helvetica-bold;
         color: #000;
       }
 
@@ -307,7 +307,7 @@
       }
 
       .message {
-        font-family: $neue-helveticamedium;
+        font-family: $neue-helvetica-medium;
         font-size: 1.6rem;
         padding: 0 2rem;
       }
@@ -318,13 +318,13 @@
       .success-summary {
         display: flex;
         justify-content: space-between;
-        font-family: $neue-helveticamedium;
+        font-family: $neue-helvetica-medium;
         font-size: 1rem;
         padding: 0.5rem 0 0.5rem 0;
         border-bottom: 1px solid #000000;
 
         .bold {
-          font-family: $neue-helveticabold;
+          font-family: $neue-helvetica-bold;
           font-size: 1.1rem;
         }
       }
@@ -336,7 +336,7 @@
       width: 100%;
 
       .terms {
-        font-family: $neue-helveticamedium;
+        font-family: $neue-helvetica-medium;
         font-size: 0.9rem;
         text-align: center;
         margin-bottom: 0.5rem;
@@ -355,7 +355,7 @@
 
         .back-button {
           cursor: pointer;
-          font-family: $neue-helveticamedium;
+          font-family: $neue-helvetica-medium;
           font-size: 1.3rem;
           margin-left: 2rem;
         }
@@ -367,7 +367,7 @@
           justify-content: center;
 
           .place-cancel-btn-pop {
-            font-family: $neue-helveticamedium;
+            font-family: $neue-helvetica-medium;
             padding-top: 1.2rem;
             padding-bottom: 1.2rem;
             border: 2px solid #000000;
@@ -396,7 +396,7 @@
       margin: 10rem 2rem 10rem 2rem;
       .pop-signin-title {
         font-size: 2rem;
-        font-family: $neue-helveticabold;
+        font-family: $neue-helvetica-bold;
       }
     }
   }
@@ -438,20 +438,20 @@
     .erc-type {
       font-size: 1.8rem;
       margin: 0.5rem 0;
-      font-family: $neue-helveticamedium;
+      font-family: $neue-helvetica-medium;
       span {
         font-size: 1.5rem;
         color: #000;
-        font-family: $neue-helveticalight;
+        font-family: $neue-helvetica-light;
       }
     }
 
     .pop-author-name {
       font-size: 1.2rem;
-      font-family: $neue-helveticalight;
+      font-family: $neue-helvetica-light;
     }
     .pop-nft-title {
-      font-family: $neue-helveticabold;
+      font-family: $neue-helvetica-bold;
       font-size: 2rem;
       padding: 0;
       text-align: left !important;

@@ -16,6 +16,7 @@ import "./style.scss";
 import { validateEmail } from "../../utils/common";
 import { sendEmailNewletter } from "../../api/axios-newsletter";
 import guardianLinkLogo from "../../images/guardianlink.svg";
+import jumpTradeLogo from "../../images/jump-trade-logo.svg";
 
 const Footer = () => {
   const [email, setEmail] = useState();
@@ -62,25 +63,88 @@ const Footer = () => {
     <>
       <div id="footer">
         <div id="fmenu1">
-          <div className="submenu">
-            <div>
-              <a target="_self" href="https://www.beyondlife.club">
-                <h1>BeyondLife.club</h1>
+          <div className="submenu first-box">
+            <a target="_self" href="/">
+              <img src={jumpTradeLogo} className="footer-logo" />
+            </a>
+            {/* <div className="menu-list">
+              <a target="_self" href="https://www.beyondlife.club/about.php">
+                About US
               </a>
-              <p>A world without an end</p>
-              <div className="support_mail">
-                <p className="mb-0">Need a Help?</p>
-                <p>
+              <ul>
+                <li>
                   <a
-                    href="mailto:support@beyondlife.club"
-                    className="text-white"
+                    target="_self"
+                    href="https://www.beyondlife.club/philosophy.php"
                   >
-                    support@beyondlife.club
+                    Philosophy of BeyondLife.club
                   </a>
-                </p>
-              </div>
+                </li>
+                <li>
+                  <a target="_self" href="https://www.beyondlife.club/nft.php">
+                    What is an NFT?
+                  </a>
+                </li>
+                <li>
+                  <a target="_self" href="https://www.beyondlife.club/faq.php">
+                    FAQ
+                  </a>
+                </li>
+              </ul>
+            </div> */}
+
+            <Form
+              id="nft_form"
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleSendNewsLetter();
+                return false;
+              }}
+            >
+              <Form.Label>Get the latest NFT updates</Form.Label>
+              <Form.Group className="formGroup mb-3" controlId="formBasicEmail">
+                <Form.Control
+                  className="nft_form_email"
+                  type="email"
+                  name="Nemail"
+                  placeholder="name@example.com"
+                  disabled={loading}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <p className="nft_email_error">{vEmail}</p>
+                <Button
+                  className="nft_form"
+                  type="button"
+                  disabled={loading}
+                  onClick={handleSendNewsLetter}
+                >
+                  {loading ? (
+                    <BiLoaderAlt className="fa fa-spin" />
+                  ) : (
+                    <HiOutlineArrowRight />
+                  )}
+                </Button>
+              </Form.Group>
+            </Form>
+          </div>
+          <div className="submenu second-box">
+            <div className="top-block">
+              <h3>BECOME A PART OF THE COMMUNITY</h3>
+              <h4>BEGIN A CONVERSATION</h4>
+              <ul className="linkList">
+                <li>
+                  <a href="javascript:void(0);">
+                    <FaDiscord /> @Discord
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0);">support@guardianlink.io</a>
+                </li>
+              </ul>
             </div>
             <div id="socialMedia">
+              <h3>FOLLOW US</h3>
               <ul className="social-icon-two">
                 <li>
                   <a
@@ -148,71 +212,11 @@ const Footer = () => {
               </ul>
             </div>
           </div>
-          <div className="submenu">
-            <ul>
-              <li>
-                <a target="_self" href="https://www.beyondlife.club/about.php">
-                  About: The world beyond end
-                </a>
-              </li>
-              <li>
-                <a
-                  target="_self"
-                  href="https://www.beyondlife.club/philosophy.php"
-                >
-                  Philosophy of BeyondLife.club
-                </a>
-              </li>
-              <li>
-                <a target="_self" href="https://www.beyondlife.club/nft.php">
-                  What is an NFT?
-                </a>
-              </li>
-              <li>
-                <a target="_self" href="https://www.beyondlife.club/faq.php">
-                  FAQ
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div className="submenu">
-            <Form
-              id="nft_form"
-              onSubmit={(e) => {
-                e.preventDefault();
-                handleSendNewsLetter();
-                return false;
-              }}
-            >
-              <Form.Label>Get the latest NFT updates</Form.Label>
-              <Form.Group className="formGroup mb-3" controlId="formBasicEmail">
-                <Form.Control
-                  className="nft_form_email"
-                  type="email"
-                  name="Nemail"
-                  placeholder="name@example.com"
-                  disabled={loading}
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                <p className="nft_email_error">{vEmail}</p>
-                <Button
-                  className="nft_form"
-                  type="button"
-                  disabled={loading}
-                  onClick={handleSendNewsLetter}
-                >
-                  {loading ? (
-                    <BiLoaderAlt className="fa fa-spin" />
-                  ) : (
-                    <HiOutlineArrowRight />
-                  )}
-                </Button>
-              </Form.Group>
-            </Form>
-          </div>
+          {/* <div className="submenu">
+            
+          </div> */}
         </div>
-        <div id="fmenu2">
+        {/* <div id="fmenu2">
           <div className="submenu">
             <div className="copyright">
               ©All rights reserved. Rhiti Entertainment Pte. Ltd. Singapore &
@@ -237,7 +241,7 @@ const Footer = () => {
               <Image src={guardianLinkLogo} alt="alt" />
             </a>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

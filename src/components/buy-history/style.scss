@@ -7,7 +7,7 @@
   overflow: hidden;
 
   .history-end-content {
-    font-family: $neue-helveticamedium;
+    font-family: $neue-helvetica-medium;
     color: #9c9c9b;
     font-size: 0.9rem;
     text-align: center;
@@ -22,7 +22,7 @@
     border-left: 2px solid #000;
     border-right: 2px solid #000;
     .bid-history-title {
-      font-family: $neue-helveticamedium;
+      font-family: $neue-helvetica-medium;
       font-size: 1.5rem;
       color: #000;
     }
@@ -34,7 +34,7 @@
       .history-dropdown {
         a.dropdown-toggle {
           color: white;
-          font-family: $neue-helveticalight;
+          font-family: $neue-helvetica-light;
           font-size: 0.9rem;
         }
         .dropdown-menu {
@@ -86,7 +86,7 @@
 
         .time {
           font-size: 1rem;
-          font-family: $neue-helveticamedium;
+          font-family: $neue-helvetica-medium;
           .expire-pill {
             padding: 0.3rem 0.5rem;
             background-color: #bdbdbc;
@@ -110,7 +110,7 @@
 
         .bid-owner {
           font-size: 1.15rem;
-          font-family: $neue-helveticamedium;
+          font-family: $neue-helvetica-medium;
           width: calc(100%);
           word-wrap: break-word;
           .owner-id {
@@ -135,7 +135,7 @@
         }
         .bid-value {
           font-size: 1.2rem;
-          font-family: $neue-helveticabold;
+          font-family: $neue-helvetica-bold;
         }
         .assign-btn {
           background-color: #fff;
@@ -201,7 +201,7 @@
           font-size: 3rem;
         }
         .empty-text {
-          font-family: $neue-helveticamedium;
+          font-family: $neue-helvetica-medium;
           font-size: 1.7rem;
         }
       }
@@ -237,12 +237,12 @@
 
       .publish-time {
         font-size: 1.2rem;
-        font-family: $neue-helveticamedium;
+        font-family: $neue-helvetica-medium;
       }
 
       .nft-owner {
         font-size: 1.33rem;
-        font-family: $neue-helveticabold;
+        font-family: $neue-helvetica-bold;
 
         span {
           cursor: pointer;

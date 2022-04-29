@@ -21,10 +21,10 @@
     right: 0;
     bottom: 0;
     z-index: -1;
-}
+  }
 }
 
-.user{
+.user {
   &-info {
     &-box {
       // width: 100%;
@@ -64,7 +64,7 @@
     }
     &-name {
       font-size: 1.8rem;
-      font-family: $neue-helveticabold;
+      font-family: $neue-helvetica-bold;
       margin-bottom: 1rem;
       word-break: break-word;
       color: #000;
@@ -72,7 +72,7 @@
     }
     &-subname {
       font-size: 1.2rem;
-      font-family: $neue-helveticamedium;
+      font-family: $neue-helvetica-medium;
       margin-bottom: 0.5rem;
       color: #000;
       word-break: break-word;
@@ -94,10 +94,10 @@
         list-style: none;
         font-size: 1.2rem;
         .value {
-          font-family: $neue-helveticamedium;
+          font-family: $neue-helvetica-medium;
         }
         .value {
-          font-family: $neue-helveticabold;
+          font-family: $neue-helvetica-bold;
         }
       }
     }

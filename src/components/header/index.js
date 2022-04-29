@@ -22,6 +22,9 @@ import { user_wallet_update_action } from "../../redux/actions/user_action";
 import { getNotificationApi } from "../../api/base-methods";
 import { readNotificationApi } from "./../../api/base-methods";
 
+import jumpTradeLogo from "../../images/jump-trade-logo.svg";
+import notifyBell from "../../images/jump-trade/bell_notify.png";
+
 import "./style.scss";
 
 const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
@@ -120,7 +123,9 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
           setNotiRead(true);
         }}
       >
-        <BiBell size={25} color={"white"} />
+        {/* <BiBell size={25} color={"white"} /> */}
+
+        <img src={notifyBell} height={22} />
 
         {!notiRead && (
           <>
@@ -509,7 +514,13 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
 
   return (
     <>
-      <Navbar bg="dark" expand="md" variant="dark" sticky="top">
+      <Navbar
+        bg="dark"
+        expand="md"
+        variant="dark"
+        sticky="top"
+        className="bgImageHeader"
+      >
         <Container fluid>
           <Navbar.Brand
             onClick={() =>
@@ -518,8 +529,13 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
             role="button"
             className="head-title"
           >
-            BeyondLife.club
-            <div
+            {/* BeyondLife.club */}
+            <img
+              src={jumpTradeLogo}
+              alt="jumpTradeLogo"
+              className="logoImage"
+            />
+            {/* <div
               className="sub-head-title header-powereby "
               role="button"
               onClick={() =>
@@ -527,7 +543,7 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
               }
             >
               Powered by GuardianLink
-            </div>
+            </div> */}
           </Navbar.Brand>
           {!hideOptions && (
             <>

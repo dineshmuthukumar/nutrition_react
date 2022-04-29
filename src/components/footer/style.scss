@@ -422,14 +422,36 @@ button.nft_form {
 }
 /* footer */
 #footer {
-  background-image: url(https://cdn.beyondlife.club/media/footer_bar.png);
+  background-image: url("../../images/jump-trade/signin-bg.png");
+  // background-image: url(https://cdn.beyondlife.club/media/footer_bar.png);
   background-repeat: no-repeat;
-  background-size: 100% auto;
-  background-position: top;
+  background-size: cover;
+  background-position: center;
   background-color: #000;
   color: #fff;
   display: flex;
   flex-direction: column;
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #0000003b;
+  }
+  &::after {
+    content: "";
+    background: transparent
+      linear-gradient(90deg, #18e0e0 0%, #e2ff00 47%, #e8318d 100%) 0% 0%
+      no-repeat padding-box;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -0.5rem;
+    height: 0.5rem;
+  }
 }
 #footer ul li.current a {
   text-decoration: underline;
@@ -438,35 +460,170 @@ button.nft_form {
 #fmenu1 {
   display: flex;
   width: 100%;
-  padding-bottom: 3.85em;
-}
-#fmenu1 .submenu {
-  display: flex;
-  padding: 3%;
-  align-items: flex-start;
-  justify-content: flex-start;
-  text-align: left;
+  padding-bottom: 0;
+  justify-content: space-between;
+  position: relative;
+
+  .submenu {
+    display: flex;
+    padding: 3rem;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: right;
+
+    &:first-of-type {
+      width: 50%;
+      flex-direction: column;
+      justify-content: space-between;
+      user-select: none;
+      h1 {
+        font-size: 2em;
+        font-weight: 700;
+        color: #fff;
+      }
+      p {
+        font-size: 0.9em;
+        font-weight: 500;
+        width: 90%;
+        color: #fff;
+      }
+    }
+    &.first-box {
+      width: 50%;
+      .footer-logo {
+        height: 4.5rem;
+        margin-bottom: 2rem;
+      }
+
+      form#nft_form {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        .form-label {
+          font-size: 1.8rem;
+          font-family: $neue-helvetica-extended;
+          color: #fff;
+          margin-bottom: 1rem;
+          margin-top: 2rem;
+        }
+
+        .formGroup {
+          position: relative;
+          width: 100%;
+          .nft_form_email {
+            background-color: #000000a3;
+          }
+          button.nft_form {
+            background-color: #000;
+            background: transparent
+              linear-gradient(180deg, #e2ff00 0%, #18e0e0 47%, #e8318d 100%) 0%
+              0% no-repeat padding-box;
+            &::before {
+              content: "";
+              position: absolute;
+              background-color: #000;
+
+              top: 0.1rem;
+              left: 0.15rem;
+              right: 0.15rem;
+              bottom: 0.1rem;
+              z-index: 0;
+              border-radius: 50rem;
+            }
+            svg {
+              position: relative;
+              z-index: 1;
+            }
+          }
+        }
+      }
+    }
+    &.second-box {
+      width: 50%;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-direction: column;
+      .top-block {
+        h3 {
+          font-size: 1.8rem;
+          font-family: $neue-helvetica-extended-bold;
+          margin-bottom: 2rem;
+        }
+        h4 {
+          font-size: 1.8rem;
+          font-family: $neue-helvetica-extended;
+          margin-bottom: 1rem;
+        }
+        ul.linkList {
+          margin-bottom: 2rem;
+          li {
+            a {
+              padding: 0 !important;
+              line-height: 1.5;
+              font-family: $neue-helvetica-extended-bold;
+            }
+            &:last-child {
+              a {
+                font-family: $neue-helvetica-medium;
+                font-style: italic;
+                background: -webkit-linear-gradient(
+                  40deg,
+                  #e2ff00 0%,
+                  #18e0e0 47%,
+                  #e8318d 90%
+                );
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                // background: transparent linear-gradient(94deg, #E2FF00 0%, #18E0E0 47%, #E8318D 100%) 0% 0% no-repeat padding-box;
+              }
+            }
+          }
+        }
+      }
+
+      #socialMedia {
+        h3 {
+          font-size: 1.8rem;
+          font-family: $neue-helvetica-extended;
+          margin-bottom: 1rem;
+        }
+        ul {
+          justify-self: flex-end;
+          justify-content: flex-end;
+          li {
+            a {
+              background: transparent
+                linear-gradient(180deg, #e2ff00 0%, #18e0e0 47%, #e8318d 100%)
+                0% 0% no-repeat padding-box;
+              &::before {
+                content: "";
+                position: absolute;
+                background-color: #000;
+                top: 0.1rem;
+                left: 0.15rem;
+                right: 0.15rem;
+                bottom: 0.1rem;
+                z-index: 0;
+                border-radius: 50rem;
+              }
+              svg {
+                position: relative;
+                z-index: 1;
+                fill: #fff;
+                padding: 0.2rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
 .copyright a {
   margin-left: 0.3em;
 }
-#fmenu1 .submenu:first-of-type {
-  width: 28%;
-  flex-direction: column;
-  justify-content: space-between;
-  user-select: none;
-}
-#fmenu1 .submenu:first-of-type h1 {
-  font-size: 2em;
-  font-weight: 700;
-  color: #fff;
-}
-#fmenu1 .submenu:first-of-type p {
-  font-size: 0.9em;
-  font-weight: 500;
-  width: 90%;
-  color: #fff;
-}
+
 #fmenu1 .submenu ul {
   padding-left: 0px;
 }
@@ -499,11 +656,10 @@ button.nft_form {
 }
 
 #fmenu1 .submenu:nth-of-type(2) {
-  width: 36%;
+  width: 50%;
 }
 #fmenu1 .submenu:last-of-type {
-  width: 36%;
-  padding: 4% 3% 3% 4%;
+  width: 50%;
 }
 #fmenu1 .submenu:last-of-type form {
   width: 100%;
@@ -1209,5 +1365,5 @@ span.seperator {
 
 .end-date {
   font-size: 2.3rem;
-  font-family: $neue-helveticabold;
+  font-family: $neue-helvetica-bold;
 }

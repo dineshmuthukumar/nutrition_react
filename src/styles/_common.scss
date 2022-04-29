@@ -8,34 +8,6 @@ $lg-max-width: 882px;
 $md-max-width: 774px;
 $sm-max-width: 650px;
 
-
-@font-face {
-  font-family: "neue_helveticabold";
-  src: url("../fonts/helvetica_neue_bold-webfont.woff2") format("woff2"),
-    url("../fonts/helvetica_neue_bold-webfont.woff") format("woff");
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "neue_helveticamedium";
-  src: url("../fonts/helvetica_neue_medium-webfont.woff2") format("woff2"),
-    url("../fonts/helvetica_neue_medium-webfont.woff") format("woff");
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "neue_helveticaroman";
-  src: url("../fonts/helvetica_neue_regular-webfont.woff2") format("woff2"),
-    url("../fonts/helvetica_neue_regular-webfont.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
-$neue-helveticalight: "neue_helveticaroman" !important;
-$neue-helveticamedium: "neue_helveticamedium" !important;
-$neue-helveticabold: "neue_helveticabold" !important;
 // $futura: "Furuta" !important;
 
 $dark-color: #000;
@@ -45,7 +17,6 @@ $theme-color-lite: #c784ed;
 
 //#fc7a4f
 
-
 // Helper
 
 @mixin text-ellipsis {
@@ -54,3 +25,73 @@ $theme-color-lite: #c784ed;
   text-overflow: ellipsis;
   overflow: hidden;
 }
+
+// new fonts
+
+@font-face {
+  font-family: "neue_helvetica_bold";
+  src: url("../fonts/new/Helvetica\ Neue\ LT\ 75\ Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "neue_helvetica_light";
+  src: url("../fonts/new/Helvetica\ Neue\ LT\ 45\ Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "neue_helvetica_thin";
+  src: url("../fonts/new/Helvetica\ Neue\ LT\ 35\ Thin.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "neue_helvetica_ultralight";
+  src: url("../fonts/new/Helvetica\ Neue\ LT\ 25\ Ultra\ Light.ttf")
+    format("truetype");
+}
+
+@font-face {
+  font-family: "neue_helvetica_roman";
+  src: url("../fonts/new/Helvetica\ Neue\ LT\ 55\ Roman.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "neue_helvetica_medium";
+  src: url("../fonts/new/Helvetica\ Neue\ LT\ 65\ Medium.ttf")
+    format("truetype");
+}
+
+@font-face {
+  font-family: "neue_helvetica_heavy";
+  src: url("../fonts/new/Helvetica\ Neue\ LT\ 85\ Heavy.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "neue_helvetica_black";
+  src: url("../fonts/new/Helvetica\ Neue\ LT\ 95\ Black.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "neue_helvetica_extended";
+  src: url("../fonts/new/Helvetica\ Neue\ LT\ 53\ Extended.ttf")
+    format("truetype");
+}
+@font-face {
+  font-family: "neue_helvetica_extended_bold";
+  src: url("../fonts/new/Helvetica\ Neue\ LT\ 73\ Bold\ Extended.ttf")
+    format("truetype");
+}
+@font-face {
+  font-family: Impact;
+  src: url("../fonts/new/impact.ttf") format("opentype");
+}
+$neue-helvetica-thin: "neue_helvetica_thin" !important;
+$neue-helvetica-ultralight: "neue_helvetica_ultralight" !important;
+$neue-helvetica-light: "neue_helvetica_light" !important;
+$neue-helvetica-bold: "neue_helvetica_bold" !important;
+$neue-helvetica-roman: "neue_helvetica_roman" !important;
+$neue-helvetica-medium: "neue_helvetica_medium" !important;
+$neue-helvetica-heavy: "neue_helvetica_heavy" !important;
+$neue-helvetica-black: "neue_helvetica_black" !important;
+$neue-helvetica-extended: "neue_helvetica_extended" !important;
+$neue-helvetica-extended-bold: "neue_helvetica_extended_bold" !important;
+$Impact: "Impact" !important;

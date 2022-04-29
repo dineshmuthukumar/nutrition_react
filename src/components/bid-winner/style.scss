@@ -8,8 +8,8 @@
   min-height: calc(100vh - 10rem) !important;
   position: relative;
   overflow: hidden;
-  @media screen and (max-width:1440px) {
-    min-height: calc(100vh) !important; 
+  @media screen and (max-width: 1440px) {
+    min-height: calc(100vh) !important;
   }
 
   // .winner-text {
@@ -20,7 +20,7 @@
   //   font-size: 9rem;
   //   width: 100%;
   //   text-align: center;
-  //   font-family: $neue-helveticamedium;
+  //   font-family: $neue-helvetica-medium;
   // }
 
   .winner-user-details {
@@ -38,7 +38,7 @@
 
     .winner-id {
       margin-top: 2rem;
-      font-family: $neue-helveticamedium;
+      font-family: $neue-helvetica-medium;
       font-size: 2rem;
     }
   }
@@ -52,11 +52,11 @@
       flex: 1;
 
       .sold-for-title {
-        font-family: $neue-helveticamedium;
+        font-family: $neue-helvetica-medium;
         font-size: 0.9rem;
       }
       .sold-for-value {
-        font-family: $neue-helveticamedium;
+        font-family: $neue-helvetica-medium;
         font-size: 1.5rem;
       }
     }
@@ -64,18 +64,17 @@
       flex: 1;
 
       .sold-on-title {
-        font-family: $neue-helveticamedium;
+        font-family: $neue-helvetica-medium;
         font-size: 0.9rem;
       }
       .sold-on-value {
-        font-family: $neue-helveticamedium;
+        font-family: $neue-helvetica-medium;
         font-size: 1.5rem;
       }
     }
   }
   .bid-winner .winner-text {
-    
-}
+  }
   .nft-lastbid-details {
     margin-top: 2.5rem;
     display: flex;
@@ -84,12 +83,12 @@
     .lastbid-left {
       flex: 1;
       .lastbid-title {
-        font-family: $neue-helveticamedium;
+        font-family: $neue-helvetica-medium;
         font-size: 0.9rem;
       }
 
       .lastbid-value {
-        font-family: $neue-helveticamedium;
+        font-family: $neue-helvetica-medium;
         font-size: 1.5rem;
       }
     }
@@ -98,12 +97,12 @@
       flex: 1;
 
       .lastbid-date-title {
-        font-family: $neue-helveticamedium;
+        font-family: $neue-helvetica-medium;
         font-size: 0.9rem;
       }
 
       .lastbid-date-value {
-        font-family: $neue-helveticamedium;
+        font-family: $neue-helvetica-medium;
         font-size: 1.5rem;
       }
     }

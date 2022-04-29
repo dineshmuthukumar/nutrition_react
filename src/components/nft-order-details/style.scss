@@ -7,7 +7,7 @@
   overflow: hidden;
 
   .history-end-content {
-    font-family: $neue-helveticamedium;
+    font-family: $neue-helvetica-medium;
     color: #9c9c9b;
     font-size: 0.9rem;
     text-align: center;
@@ -22,7 +22,7 @@
     border-left: 2px solid #000;
     border-right: 2px solid #000;
     .bid-history-title {
-      font-family: $neue-helveticamedium;
+      font-family: $neue-helvetica-medium;
       font-size: 1.5rem;
       color: #000;
     }
@@ -34,7 +34,7 @@
       .history-dropdown {
         a.dropdown-toggle {
           color: white;
-          font-family: $neue-helveticalight;
+          font-family: $neue-helvetica-light;
           font-size: 0.9rem;
         }
         .dropdown-menu {
@@ -85,12 +85,12 @@
 
         .time {
           font-size: 1rem;
-          font-family: $neue-helveticamedium;
+          font-family: $neue-helvetica-medium;
         }
 
         .bid-owner {
           font-size: 1.15rem;
-          font-family: $neue-helveticamedium;
+          font-family: $neue-helvetica-medium;
 
           .owner-id {
             cursor: pointer;
@@ -105,7 +105,7 @@
       .second-half {
         .bid-value {
           font-size: 1.2rem;
-          font-family: $neue-helveticabold;
+          font-family: $neue-helvetica-bold;
         }
       }
     }
@@ -132,7 +132,7 @@
           font-size: 3rem;
         }
         .empty-text {
-          font-family: $neue-helveticamedium;
+          font-family: $neue-helvetica-medium;
           font-size: 1.7rem;
         }
       }
@@ -156,12 +156,12 @@
 
       .publish-time {
         font-size: 0.8rem;
-        font-family: $neue-helveticamedium;
+        font-family: $neue-helvetica-medium;
       }
 
       .nft-owner {
         font-size: 1rem;
-        font-family: $neue-helveticabold;
+        font-family: $neue-helvetica-bold;
 
         span {
           cursor: pointer;

@@ -218,7 +218,7 @@
     position: absolute;
     right: 0;
     background-color: rgb(212, 127, 0);
-    font-family: $neue-helveticamedium;
+    font-family: $neue-helvetica-medium;
     font-size: 0.6rem;
     bottom: -0.8rem;
     border-radius: 50rem;
@@ -232,4 +232,14 @@
     padding-right: 0 !important;
     margin-right: 0 !important;
   }
+}
+
+.logoImage {
+  height: 3.5rem;
+}
+
+.bgImageHeader {
+  background-image: url("../../images/jump-trade/header_bg.png");
+  background-position: center;
+  background-size: cover;
 }

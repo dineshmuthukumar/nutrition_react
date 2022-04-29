@@ -75,7 +75,7 @@ section.category_list {
   font-size: 1rem;
   margin: 0em auto 0;
   text-align: center;
-  font-family: $neue-helveticamedium;
+  font-family: $neue-helvetica-medium;
   max-width: 6.5rem;
 }
 .category_list a {
@@ -157,7 +157,7 @@ section.category_list .card_title {
     height: 2.5rem;
     min-width: 7rem;
     padding: 0 1.5rem;
-    font-family: $neue-helveticabold;
+    font-family: $neue-helvetica-bold;
     box-shadow: 1px 1px 0px 1px #ffff;
   }
 
@@ -181,7 +181,7 @@ section.category_list .card_title {
 
     .more-nft-title {
       font-size: 1.3rem;
-      font-family: $neue-helveticabold;
+      font-family: $neue-helvetica-bold;
       position: relative;
       display: block;
       @include text-ellipsis;
@@ -197,7 +197,7 @@ section.category_list .card_title {
         // position: absolute;
         color: #f21e00;
         right: 0;
-        font-family: $neue-helveticabold;
+        font-family: $neue-helvetica-bold;
         font-size: 1rem;
         top: 0.5em;
         width: 8rem;
@@ -208,7 +208,7 @@ section.category_list .card_title {
     }
     .more-nft-desc {
       font-size: 1rem;
-      font-family: $neue-helveticamedium;
+      font-family: $neue-helvetica-medium;
       margin-bottom: 0.5rem;
     }
   }
@@ -219,13 +219,13 @@ section.category_list .card_title {
 
     .mb-title {
       font-size: 1rem;
-      font-family: $neue-helveticamedium;
+      font-family: $neue-helvetica-medium;
       white-space: nowrap;
     }
 
     .mb-value {
       font-size: 1.2rem;
-      font-family: $neue-helveticabold;
+      font-family: $neue-helvetica-bold;
     }
   }
 
@@ -274,7 +274,7 @@ button.load_more {
   justify-content: center;
   font-size: 1.2rem;
   letter-spacing: 0.1rem;
-  font-family: $neue-helveticabold;
+  font-family: $neue-helvetica-bold;
   width: auto;
   padding: 0.8rem 4rem;
   font-weight: normal;
@@ -313,7 +313,7 @@ button.load_more {
   height: 2.5rem;
 
   .first {
-    font-family: $neue-helveticamedium;
+    font-family: $neue-helvetica-medium;
   }
 
   &:hover {
@@ -378,7 +378,7 @@ button.load_more {
 .filter-drop-btn {
   padding: 0.2rem 0.8rem 0.2rem 0.8rem;
   font-size: 1rem;
-  font-family: $neue-helveticamedium;
+  font-family: $neue-helvetica-medium;
   border: 1px solid #ffffff;
   border-radius: 50rem;
   margin-bottom: 0.2rem;
@@ -406,7 +406,7 @@ button.load_more {
 .filter-drop-sort-btn {
   padding: 0.2rem 1.5rem 0.2rem 1.5rem;
   font-size: 1rem;
-  font-family: $neue-helveticamedium;
+  font-family: $neue-helvetica-medium;
   border: 1px solid #ffffff;
   border-radius: 50rem;
   margin-bottom: 0.2rem;

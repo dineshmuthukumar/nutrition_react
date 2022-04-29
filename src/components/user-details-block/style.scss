@@ -42,13 +42,13 @@
     .nav-link {
       font-size: 1.1rem;
       color: #9c9c9b !important;
-      font-family: $neue-helveticalight;
+      font-family: $neue-helvetica-light;
       user-select: none;
       color: #000 !important;
       border-bottom: 0.2rem solid transparent;
       cursor: pointer;
       &.active {
-        font-family: $neue-helveticabold;
+        font-family: $neue-helvetica-bold;
         border-bottom: 0.2rem solid #000;
       }
     }
@@ -67,7 +67,7 @@ button.load_more {
   justify-content: center;
   font-size: 1.2rem;
   letter-spacing: 0.1rem;
-  font-family: $neue-helveticabold;
+  font-family: $neue-helvetica-bold;
   width: auto;
   padding: 0.8rem 4rem;
   font-weight: normal;

@@ -5,13 +5,13 @@
 
   .title {
     font-size: 1.5rem;
-    font-family: $neue-helveticamedium;
+    font-family: $neue-helvetica-medium;
     margin-bottom: 1rem;
     position: relative;
 
     .title-count {
       font-size: 1rem;
-      font-family: $neue-helveticabold;
+      font-family: $neue-helvetica-bold;
       top: 0;
       width: 0;
       position: absolute;
@@ -23,7 +23,7 @@
     flex-wrap: nowrap;
     overflow: hidden;
     scroll-behavior: smooth;
-    font-family: $neue-helveticamedium;
+    font-family: $neue-helvetica-medium;
     min-width: 100%;
 
     .more-card {
@@ -70,7 +70,7 @@
         height: 2.5rem;
         min-width: 7rem;
         padding: 0 1.5rem;
-        font-family: $neue-helveticabold;
+        font-family: $neue-helvetica-bold;
         box-shadow: 1px 1px 0px 1px #ffff;
       }
       @media screen and (max-width: 559px) {
@@ -110,7 +110,7 @@
 
         .more-nft-title {
           font-size: 1.3rem;
-          font-family: $neue-helveticabold;
+          font-family: $neue-helvetica-bold;
           position: relative;
           display: block;
           @include text-ellipsis;
@@ -126,7 +126,7 @@
             // position: absolute;
             color: #f21e00;
             right: 0;
-            font-family: $neue-helveticabold;
+            font-family: $neue-helvetica-bold;
             font-size: 1rem;
             top: 0.5em;
             width: 8rem;
@@ -137,7 +137,7 @@
         }
         .more-nft-desc {
           font-size: 1rem;
-          font-family: $neue-helveticamedium;
+          font-family: $neue-helvetica-medium;
           margin-bottom: 0.5rem;
         }
       }
@@ -148,12 +148,12 @@
 
         .mb-title {
           font-size: 1rem;
-          font-family: $neue-helveticamedium;
+          font-family: $neue-helvetica-medium;
           white-space: nowrap;
           display: flex;
           align-items: center;
           .value-diff-range {
-            font-family: $neue-helveticamedium;
+            font-family: $neue-helvetica-medium;
             font-size: 0.9rem;
             margin-top: 0rem;
             display: inline-flex;
@@ -174,13 +174,13 @@
 
         .mb-title-date {
           font-size: 1rem;
-          font-family: $neue-helveticamedium;
+          font-family: $neue-helvetica-medium;
           white-space: nowrap;
         }
 
         .mb-value {
           font-size: 1.2rem;
-          font-family: $neue-helveticabold;
+          font-family: $neue-helvetica-bold;
         }
       }
 
