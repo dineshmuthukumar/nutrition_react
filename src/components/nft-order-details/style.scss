@@ -193,6 +193,7 @@
   font-family: "neue_helveticamedium";
   padding: 0.5rem 1rem;
   white-space: nowrap;
+  color: #fff;
 }
 .orderDetails table {
   position: relative;
@@ -235,7 +236,7 @@
   &:hover,
   &:focus,
   &:active {
-    background-color: #ededef;
+    background-color: #000000;
   }
   &.disabled-row {
     background-color: #fff;

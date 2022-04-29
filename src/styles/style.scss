@@ -2680,6 +2680,14 @@ section.detail-page-content {
     background: #fff;
     color: #000;
   }
+  &:disabled {
+    color: #9c9c9b;
+    border: none;
+    opacity: 1;
+    &::before {
+      opacity: 0.5;
+    }
+  }
 }
 
 section.player-stats {
