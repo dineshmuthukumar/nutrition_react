@@ -514,14 +514,14 @@ const OrderDetails = () => {
 
               {purchaseList.length > 0 && (
                 <>
-                  <NFTSectionTitle title="Purchase Details" />
+                  <NFTSectionTitle title="PURCHASE DETAILS" />
                   <div className="row mt-5">
                     <NFTPurchaseDetails nft={nft} list={purchaseList} />
                   </div>
                 </>
               )}
 
-              <NFTSectionTitle title="NFT Details" />
+              <NFTSectionTitle title="NFT DETAILS" />
               <div className="row mt-5">
                 <div className="col-12 col-lg-6 order-lg-2 order-1 mb-4">
                   {(() => {

@@ -5,28 +5,14 @@ import "./style.scss";
 
 const NFTProperties = ({ properties }) => {
   return (
-    <div className="nft-props">
-      <div className="nft-props-title">
-        Properties
-        {properties && (
-          <span className="title-count">
-            {(() => {
-              if (properties && typeof properties === "string") {
-                let propertiesData = JSON.parse(properties);
-                return `(${Object.keys(propertiesData).length})`;
-              } else {
-                return `(${Object.keys(properties).length})`;
-              }
-            })()}
-          </span>
-        )}
-      </div>
-
-      <div className="mt-2 nft-props-content">
+    <div className="chain-attributes">
+      <div className="chain-att-title">Properties</div>
+      <div className="chain-att-content mt-2">
         {(() => {
           if (properties) {
             if (properties && typeof properties === "string") {
               let propertiesData = JSON.parse(properties);
+              console.log(propertiesData);
               return Object.keys(propertiesData).map((property) => {
                 return (
                   <NFTPropPills
@@ -36,10 +22,9 @@ const NFTProperties = ({ properties }) => {
                 );
               });
             } else {
-              return Object.keys(properties).map((property, i) => {
+              return Object.keys(properties).map((property) => {
                 return (
                   <NFTPropPills
-                    key={`prop-${i}`}
                     property={properties[property]}
                     propertyType={property}
                   />

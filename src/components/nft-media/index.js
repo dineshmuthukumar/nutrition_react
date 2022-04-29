@@ -224,24 +224,179 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
     setModalShow(true);
   };
 
+  const level = [
+    {
+      type: "1",
+      name: "LVL 1",
+      value: lvl001,
+    },
+    {
+      type: "2",
+      name: "LVL 2",
+      value: lvl002,
+    },
+    {
+      type: "3",
+      name: "LVL 3",
+      value: lvl003,
+    },
+    {
+      type: "4",
+      name: "LVL 4",
+      value: lvl004,
+    },
+    {
+      type: "5",
+      name: "LVL 5",
+      value: lvl005,
+    },
+    {
+      type: "6",
+      name: "LVL 6",
+      value: lvl006,
+    },
+    {
+      type: "7",
+      name: "LVL 7",
+      value: lvl007,
+    },
+    {
+      type: "8",
+      name: "LVL 8",
+      value: lvl008,
+    },
+    {
+      type: "9",
+      name: "LVL 9",
+      value: lvl009,
+    },
+    {
+      type: "10",
+      name: "LVL 10",
+      value: lvl0010,
+    },
+    {
+      type: "11",
+      name: "LVL 11",
+      value: lvl0011,
+    },
+    {
+      type: "12",
+      name: "LVL 12",
+      value: lvl0012,
+    },
+    {
+      type: "13",
+      name: "LVL 13",
+      value: lvl0013,
+    },
+    {
+      type: "14",
+      name: "LVL 14",
+      value: lvl0014,
+    },
+    {
+      type: "15",
+      name: "LVL 15",
+      value: lvl0015,
+    },
+  ];
+
+  const role = [
+    {
+      type: "Batsman",
+      name: "BATSMAN",
+      value: batsmanIcon,
+    },
+    {
+      type: "Bowler",
+      name: "BOWLER",
+      value: bowlerIcon,
+    },
+    {
+      type: "Bat",
+      name: "BAT",
+      value: batsmanIcon,
+    },
+  ];
+
+  const playerCategory = [
+    {
+      type: "ROOKIE",
+      value: "RO",
+      color: "blue_color",
+    },
+    {
+      type: "RARE",
+      value: "RA",
+      color: "orange_color",
+    },
+    {
+      type: "EPIC",
+      value: "EP",
+      color: "purple_color",
+    },
+    {
+      type: "LEGEND",
+      value: "LG",
+      color: "multi_color",
+    },
+    {
+      type: "SUPER RARE",
+      value: "SR",
+      color: "lavender_color",
+    },
+    {
+      type: "ULTRA RARE",
+      value: "UR",
+      color: "lavender_color",
+    },
+    {
+      type: "IMMORTAL",
+      value: "IM",
+      color: "lavender_color",
+    },
+  ];
+
+  const levelData = level.find(
+    (obj) => obj.type === nft?.core_statistics?.level
+  );
+  const roleData = role.find((obj) => obj.type === nft?.core_statistics?.role);
+  const playerCatData = playerCategory.find(
+    (obj) => obj.type === nft?.core_statistics?.category
+  );
+
   return (
     <section className="nft-img-block">
-      <div className={`nft-media media_audio  gold_color`}>
-        <article className={`player_stats  gold_color`}>
-          <div className="player-type">
-            <h6>Batsman</h6>
-            <img src={batsmanIcon} />
-          </div>
+      <div
+        className={`nft-media media_audio  ${
+          playerCatData?.color ? playerCatData?.color : "gold_color"
+        }`}
+      >
+        <article
+          className={`player_stats  ${
+            playerCatData?.color ? playerCatData?.color : "gold_color"
+          }`}
+        >
+          {roleData && (
+            <div className="player-type">
+              <h6>{roleData?.name}</h6>
+              <img src={roleData?.value} />
+            </div>
+          )}
 
-          <div className="player-range">
-            <span className="band">RO</span>
-            <h6>Player</h6>
-          </div>
-
-          <div className="player-level">
-            <h6>LVL 2</h6>
-            <img src={lvl002} />
-          </div>
+          {playerCatData && (
+            <div className="player-range">
+              <span className="band">{playerCatData?.value}</span>
+              <h6>Player</h6>
+            </div>
+          )}
+          {levelData && (
+            <div className="player-level">
+              <h6>{levelData?.name}</h6>
+              <img src={levelData?.value} />
+            </div>
+          )}
         </article>
 
         {/* <div className="show_height"><img className="type_image typeimg_audio" src="https://wallpaperaccess.com/full/112115.jpg" />  </div> */}
@@ -400,7 +555,11 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
           </Modal.Body>
         </Modal>
       </div>
-      <div className={`media-lsf gold_color`}>
+      <div
+        className={`media-lsf ${
+          playerCatData?.color ? playerCatData?.color : "gold_color"
+        }`}
+      >
         <SharePopover
           icon={
             <div>

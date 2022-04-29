@@ -8,8 +8,8 @@ const ChainAttributes = ({ chains = [] }) => {
   return (
     <div className="chain-attributes">
       <div className="chain-att-title">
-        Chain Attributes
-        <span className="title-count">({chains.length})</span>
+        Attributes
+        {/* <span className="title-count">({chains.length})</span> */}
       </div>
       <div className="chain-att-content mt-2">
         {chains.map((chain, i) => {

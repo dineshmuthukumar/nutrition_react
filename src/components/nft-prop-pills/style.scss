@@ -1,26 +1,45 @@
 @import "../../styles/common";
 
-.nft-prop-pills {
-  display: flex;
-  align-items: center;
-  padding: 1rem 0;
-  margin-right: 3rem;
+.chain-pills {
+  background-color: #ffffff;
+  padding: 0 1.5rem 0 0;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
 
-  img {
-    height: 3.3rem;
-    width: 3.3rem;
-    border-radius: 50%;
-    object-fit: scale-down;
-    margin-right: 1rem;
-  }
-  .title {
-    font-size: 1.1rem;
-    font-family: $neue-helvetica-medium;
+  .first {
+    font-family: $neue-helvetica-bold;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+
+    .second {
+      font-size: 1rem;
+      font-family: $neue-helvetica-bold;
+      padding: 0.6rem 1rem;
+      background-color: #ffffff;
+      margin-right: 0.7rem;
+      border-bottom: none !important;
+      border-left: none !important;
+      border-top: none !important;
+    }
   }
 
-  .desc {
-    font-family: $neue-helvetica-medium;
-    font-size: 0.9rem;
-    text-transform: uppercase;
+  &.one-pill {
+    padding: 0.6rem 1.5rem !important;
   }
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &:hover {
+    background-color: #e7e7e9;
+
+    .second {
+      background-color: #e7e7e9;
+    }
+  }
+}
+.chain-pills:first-child .first {
+  text-transform: uppercase;
 }
