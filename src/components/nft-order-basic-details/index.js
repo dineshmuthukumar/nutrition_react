@@ -518,7 +518,7 @@ const NFTOrderBaseDetails = ({
           </>
         )}
 
-        <div className="text-center">
+        <div className="text-center flex-btn">
           <NFTPlaceBid
             nft={nft}
             orderDetails={orderDetails}
@@ -653,7 +653,7 @@ const NFTOrderBaseDetails = ({
                   <>
                     <button
                       disabled={false}
-                      className="btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill place-bid-buy-btn filled-btn"
+                      className="place-bid-buy-btn filled-btn"
                       onClick={() => setAcceptBidConfirm(!acceptBidConfirm)}
                     >
                       Cancel
@@ -672,7 +672,7 @@ const NFTOrderBaseDetails = ({
                   return orderDetails?.timed_auction ? (
                     <button
                       disabled={latestBid?.slug ? true : false}
-                      className={`btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill place-bid-btn filled-btn`}
+                      className={`place-bid-btn filled-btn`}
                       onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
                     >
                       Cancel the sale
@@ -680,7 +680,7 @@ const NFTOrderBaseDetails = ({
                   ) : (
                     <>
                       <button
-                        className={`btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill place-bid-buy-btn filled-btn`}
+                        className={`place-bid-buy-btn filled-btn`}
                         onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
                       >
                         Cancel the sale
@@ -704,7 +704,7 @@ const NFTOrderBaseDetails = ({
                 } else {
                   return (
                     <button
-                      className={`btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill place-bid-btn filled-btn`}
+                      className={`place-bid-btn filled-btn`}
                       onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
                     >
                       Cancel the sale
@@ -717,7 +717,7 @@ const NFTOrderBaseDetails = ({
                 <>
                   <button
                     disabled={false}
-                    className="btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill place-bid-btn filled-btn"
+                    className="place-bid-btn filled-btn"
                     onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
                   >
                     Cancel the sale
@@ -734,13 +734,13 @@ const NFTOrderBaseDetails = ({
                       placement="top"
                       overlay={KycPopOver()}
                     >
-                      <button className="btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill place-bid-buy-btn filled-btn">
+                      <button className="place-bid-buy-btn filled-btn">
                         Buy {currencyFormat(orderDetails.buy_amount, "USD")}
                       </button>
                     </OverlayTrigger>
                   ) : (
                     <button
-                      className="btn btn-dark text-center btn-lg mt-2 me-4 rounded-pill place-bid-buy-btn filled-btn"
+                      className="place-bid-buy-btn filled-btn"
                       onClick={() => setPlaceBuyPop(!placeBuyPop)}
                     >
                       Buy {currencyFormat(orderDetails.buy_amount, "USD")}

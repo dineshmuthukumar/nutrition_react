@@ -446,15 +446,17 @@ const NFTPlaceBuy = ({
                             className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop ${buy.processClass}`} //process -> proccessing
                             onClick={handleBuy}
                           >
-                            {(() => {
-                              if (soldOut) {
-                                return "Sold Out";
-                              } else if (buyQuantity > 0) {
-                                return buy.buttonName;
-                              } else {
-                                return "NFT quantity is required";
-                              }
-                            })()}
+                            <span>
+                              {(() => {
+                                if (soldOut) {
+                                  return "Sold Out";
+                                } else if (buyQuantity > 0) {
+                                  return buy.buttonName;
+                                } else {
+                                  return "NFT quantity is required";
+                                }
+                              })()}
+                            </span>
                           </button>
                         )}
                       </div>
@@ -562,7 +564,7 @@ const NFTPlaceBuy = ({
                           className="btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop "
                           onClick={handleSuccess}
                         >
-                          View your NFT
+                          <span> View your NFT</span>
                         </button>
                       </div>
                     </div>
