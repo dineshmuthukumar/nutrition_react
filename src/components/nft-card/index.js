@@ -262,11 +262,11 @@ const NFTCard = ({
       />
 
       <div className="top-content-title">
-        <div className="heart_box">
-          <div className="svg_size filled_heart_icon"></div>
+        {/* <div className="heart_box">
+          <div className="svg_size filled_heart_icon"></div> */}
 
-          {/* <div className="svg_size heart_icon"></div> */}
-        </div>
+        {/* <div className="svg_size heart_icon"></div> */}
+        {/* </div> */}
         <div style={{ color: textColor }}>
           <div className="more-nft-title">{nft?.name}</div>
           {nft?.owner_name && (
