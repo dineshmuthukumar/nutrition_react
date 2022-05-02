@@ -70,6 +70,10 @@
             border-radius: 50rem;
             font-family: $neue-helvetica-medium;
             cursor: pointer;
+            &.disabled {
+              opacity: 0.3;
+              pointer-events: none;
+            }
           }
         }
         .filter-list-items {
