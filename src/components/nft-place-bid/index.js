@@ -463,35 +463,37 @@ const NFTPlaceBid = ({
                           className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop ${bid.processClass}`} //process -> proccessing
                           onClick={handleBid}
                         >
-                          {(() => {
-                            if (soldOut) {
-                              return "Sold Out";
-                            } else if (transferringNFT) {
-                              return (
-                                <ToolTip
-                                  icon={
-                                    <>
-                                      Token Transfer Initiated{" "}
-                                      <BsFillQuestionCircleFill
-                                        size={16}
-                                        className="ms-2 check-icon"
-                                      />
-                                    </>
-                                  }
-                                  content={
-                                    "The NFT's transfer/transaction is in process on the blockchain. Visit again for latest sale-status."
-                                  }
-                                  placement="top"
-                                />
-                              );
-                            } else if (isOrderCancelled) {
-                              return "Order Cancelled";
-                            } else if (bidAmount > 0) {
-                              return bid.buttonName;
-                            } else {
-                              return "Bid amount is required";
-                            }
-                          })()}
+                          <span>
+                            {(() => {
+                              if (soldOut) {
+                                return "Sold Out";
+                              } else if (transferringNFT) {
+                                return (
+                                  <ToolTip
+                                    icon={
+                                      <>
+                                        Token Transfer Initiated{" "}
+                                        <BsFillQuestionCircleFill
+                                          size={16}
+                                          className="ms-2 check-icon"
+                                        />
+                                      </>
+                                    }
+                                    content={
+                                      "The NFT's transfer/transaction is in process on the blockchain. Visit again for latest sale-status."
+                                    }
+                                    placement="top"
+                                  />
+                                );
+                              } else if (isOrderCancelled) {
+                                return "Order Cancelled";
+                              } else if (bidAmount > 0) {
+                                return bid.buttonName;
+                              } else {
+                                return "Bid amount is required";
+                              }
+                            })()}
+                          </span>
                         </button>
                       </div>
                     </div>
@@ -588,7 +590,7 @@ const NFTPlaceBid = ({
                           className="btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop "
                           onClick={handleSuccess}
                         >
-                          Okay
+                          <span>Okay</span>
                         </button>
                       </div>
                     </div>

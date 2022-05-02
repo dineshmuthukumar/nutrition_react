@@ -376,13 +376,15 @@ const NFTPlaceBidOld = ({
                           className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop ${bid.processClass}`} //process -> proccessing
                           onClick={handleBid}
                         >
-                          {(() => {
-                            if (bidAmount > 0) {
-                              return bid.buttonName;
-                            } else {
-                              return "Bid amount is required";
-                            }
-                          })()}
+                          <span>
+                            {(() => {
+                              if (bidAmount > 0) {
+                                return bid.buttonName;
+                              } else {
+                                return "Bid amount is required";
+                              }
+                            })()}
+                          </span>
                         </button>
                       </div>
                     </div>
@@ -477,7 +479,7 @@ const NFTPlaceBidOld = ({
                           className="btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop "
                           onClick={handleSuccess}
                         >
-                          Okay
+                          <span>Okay</span>
                         </button>
                       </div>
                     </div>

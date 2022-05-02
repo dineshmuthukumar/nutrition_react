@@ -575,63 +575,65 @@ const NFTPlaceBid = ({
                           className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-buy-btn-pop ${buy.processClass}`} //process -> proccessing
                           onClick={handleBuy}
                         >
-                          {(() => {
-                            if (erc721) {
-                              if (soldOut) {
-                                return "Sold Out";
-                              } else if (transferringNFT) {
-                                return (
-                                  <>
-                                    Token Transfer Initiated{" "}
-                                    <ToolTip
-                                      icon={
-                                        <BsFillQuestionCircleFill
-                                          size={16}
-                                          className="ms-2 check-icon"
-                                        />
-                                      }
-                                      content={
-                                        "The NFT's transfer/transaction is in process on the blockchain. Visit again for latest sale-status."
-                                      }
-                                      placement="top"
-                                    />
-                                  </>
-                                );
-                              } else if (isOrderCancelled) {
-                                return "Order Cancelled";
+                          <span>
+                            {(() => {
+                              if (erc721) {
+                                if (soldOut) {
+                                  return "Sold Out";
+                                } else if (transferringNFT) {
+                                  return (
+                                    <>
+                                      Token Transfer Initiated{" "}
+                                      <ToolTip
+                                        icon={
+                                          <BsFillQuestionCircleFill
+                                            size={16}
+                                            className="ms-2 check-icon"
+                                          />
+                                        }
+                                        content={
+                                          "The NFT's transfer/transaction is in process on the blockchain. Visit again for latest sale-status."
+                                        }
+                                        placement="top"
+                                      />
+                                    </>
+                                  );
+                                } else if (isOrderCancelled) {
+                                  return "Order Cancelled";
+                                } else {
+                                  return buy.buttonName;
+                                }
                               } else {
-                                return buy.buttonName;
+                                if (soldOut) {
+                                  return "Sold Out";
+                                } else if (transferringNFT) {
+                                  return (
+                                    <>
+                                      Token Transfer Initiated{" "}
+                                      <ToolTip
+                                        icon={
+                                          <BsFillQuestionCircleFill
+                                            size={16}
+                                            className="ms-2 check-icon "
+                                          />
+                                        }
+                                        content={
+                                          "The NFT's transfer/transaction is in process on the blockchain. Visit again for latest sale-status."
+                                        }
+                                        placement="top"
+                                      />
+                                    </>
+                                  );
+                                } else if (isOrderCancelled) {
+                                  return "Order Cancelled";
+                                } else if (buyQuantity > 0) {
+                                  return buy.buttonName;
+                                } else {
+                                  return "NFT quantity is required";
+                                }
                               }
-                            } else {
-                              if (soldOut) {
-                                return "Sold Out";
-                              } else if (transferringNFT) {
-                                return (
-                                  <>
-                                    Token Transfer Initiated{" "}
-                                    <ToolTip
-                                      icon={
-                                        <BsFillQuestionCircleFill
-                                          size={16}
-                                          className="ms-2 check-icon "
-                                        />
-                                      }
-                                      content={
-                                        "The NFT's transfer/transaction is in process on the blockchain. Visit again for latest sale-status."
-                                      }
-                                      placement="top"
-                                    />
-                                  </>
-                                );
-                              } else if (isOrderCancelled) {
-                                return "Order Cancelled";
-                              } else if (buyQuantity > 0) {
-                                return buy.buttonName;
-                              } else {
-                                return "NFT quantity is required";
-                              }
-                            }
-                          })()}
+                            })()}
+                          </span>
                         </button>
                       </div>
                     </div>
@@ -737,7 +739,7 @@ const NFTPlaceBid = ({
                           className="btn btn-dark text-center btn-lg w-75 rounded-pill place-buy-btn-pop "
                           onClick={handleSuccess}
                         >
-                          Okay
+                          <span>Okay</span>
                         </button>
                       </div>
                     </div>

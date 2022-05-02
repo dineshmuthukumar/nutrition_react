@@ -1144,49 +1144,51 @@ const NFTPutOnSale = ({
                                   className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop ${confirmState.processClass}`} //process -> proccessing
                                   onClick={() => handleConfirm()}
                                 >
-                                  {(() => {
-                                    if (
-                                      erc721Sale.isBuy &&
-                                      erc721Sale.buyAmount <
-                                        parseFloat(nft?.floor_price) &&
-                                      erc721Sale.isBid &&
-                                      erc721Sale.bidAmount <
-                                        parseFloat(nft?.floor_price)
-                                    ) {
-                                      return `Min.Bid & Buy Amount ${currencyFormat(
-                                        nft.floor_price,
-                                        "USD"
-                                      )} is required`;
-                                    } else if (
-                                      erc721Sale.isBuy &&
-                                      erc721Sale.buyAmount <
-                                        parseFloat(nft?.floor_price)
-                                    ) {
-                                      return `Min.Buy Amount ${currencyFormat(
-                                        nft.floor_price,
-                                        "USD"
-                                      )} is required`;
-                                    } else if (
-                                      erc721Sale.isBid &&
-                                      erc721Sale.bidAmount <
-                                        parseFloat(nft?.floor_price)
-                                    ) {
-                                      return `Min.Bid Amount ${currencyFormat(
-                                        nft.floor_price,
-                                        "USD"
-                                      )} is required`;
-                                    } else if (
-                                      !erc721Sale.isBuy &&
-                                      !erc721Sale.isBid
-                                    ) {
-                                      return `Min.Bid or Buy Amount ${currencyFormat(
-                                        nft.floor_price,
-                                        "USD"
-                                      )} is required`;
-                                    } else {
-                                      return "List for sale";
-                                    }
-                                  })()}
+                                  <span>
+                                    {(() => {
+                                      if (
+                                        erc721Sale.isBuy &&
+                                        erc721Sale.buyAmount <
+                                          parseFloat(nft?.floor_price) &&
+                                        erc721Sale.isBid &&
+                                        erc721Sale.bidAmount <
+                                          parseFloat(nft?.floor_price)
+                                      ) {
+                                        return `Min.Bid & Buy Amount ${currencyFormat(
+                                          nft.floor_price,
+                                          "USD"
+                                        )} is required`;
+                                      } else if (
+                                        erc721Sale.isBuy &&
+                                        erc721Sale.buyAmount <
+                                          parseFloat(nft?.floor_price)
+                                      ) {
+                                        return `Min.Buy Amount ${currencyFormat(
+                                          nft.floor_price,
+                                          "USD"
+                                        )} is required`;
+                                      } else if (
+                                        erc721Sale.isBid &&
+                                        erc721Sale.bidAmount <
+                                          parseFloat(nft?.floor_price)
+                                      ) {
+                                        return `Min.Bid Amount ${currencyFormat(
+                                          nft.floor_price,
+                                          "USD"
+                                        )} is required`;
+                                      } else if (
+                                        !erc721Sale.isBuy &&
+                                        !erc721Sale.isBid
+                                      ) {
+                                        return `Min.Bid or Buy Amount ${currencyFormat(
+                                          nft.floor_price,
+                                          "USD"
+                                        )} is required`;
+                                      } else {
+                                        return "List for sale";
+                                      }
+                                    })()}
+                                  </span>
                                 </button>
                               ) : (
                                 <button
@@ -1204,21 +1206,23 @@ const NFTPutOnSale = ({
                                   className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop ${confirmState.processClass}`} //process -> proccessing
                                   onClick={() => setConfirm(true)}
                                 >
-                                  {(() => {
-                                    if (
-                                      erc1155Sale.buyAmount <
-                                      parseFloat(nft?.floor_price)
-                                    ) {
-                                      return `Set a Minimum Price of ${currencyFormat(
-                                        nft.floor_price,
-                                        "USD"
-                                      )} For Your NFT`;
-                                    } else if (!erc1155Sale.buyQuantity > 0) {
-                                      return "Specify Quantity";
-                                    } else {
-                                      return "List for sale";
-                                    }
-                                  })()}
+                                  <span>
+                                    {(() => {
+                                      if (
+                                        erc1155Sale.buyAmount <
+                                        parseFloat(nft?.floor_price)
+                                      ) {
+                                        return `Set a Minimum Price of ${currencyFormat(
+                                          nft.floor_price,
+                                          "USD"
+                                        )} For Your NFT`;
+                                      } else if (!erc1155Sale.buyQuantity > 0) {
+                                        return "Specify Quantity";
+                                      } else {
+                                        return "List for sale";
+                                      }
+                                    })()}
+                                  </span>
                                 </button>
                               )}
                             </div>
@@ -1565,7 +1569,7 @@ const NFTPutOnSale = ({
                                   className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop ${confirmState.processClass}`} //process -> proccessing
                                   onClick={handlePutOnSale}
                                 >
-                                  {confirmState.buttonName}
+                                  <span> {confirmState.buttonName}</span>
                                 </button>
                               </div>
                             </div>
@@ -1780,7 +1784,7 @@ const NFTPutOnSale = ({
                                   className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop ${confirmState.processClass}`} //process -> proccessing
                                   onClick={handlePutOnSale}
                                 >
-                                  {confirmState.buttonName}
+                                  <span>{confirmState.buttonName}</span>
                                 </button>
                               </div>
                             </div>
@@ -1885,7 +1889,7 @@ const NFTPutOnSale = ({
                                 className="btn btn-dark text-center btn-lg w-75 rounded-pill place-bid-btn-pop "
                                 onClick={handleSuccess}
                               >
-                                Okay
+                                <span>Okay</span>
                               </button>
                             </div>
                           </div>

@@ -9,8 +9,222 @@
 }
 
 .explore-nft-section {
-  padding: 2rem 0;
+  padding: 0 0;
   background-color: #fff;
+
+  .explorer-detail {
+    background: transparent linear-gradient(73deg, #305d4b 0%, #305d4b 100%) 0%
+      0% no-repeat padding-box;
+    color: #fff;
+    padding: 3rem 1.5rem;
+  }
+  .explorer-nft-list {
+    background: transparent linear-gradient(180deg, #073824 0%, #24242e 100%) 0%
+      0% no-repeat padding-box;
+    color: #fff;
+
+    .filter-drop-sort-btn,
+    .filter-drop-btn {
+      border: 1px solid #2c5154;
+      font-style: italic;
+    }
+    .sec-heading {
+      border-bottom: none !important;
+      .sec-title {
+        letter-spacing: 0.1rem;
+        font-style: italic;
+      }
+    }
+
+    .explorer-nft-group {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+
+      aside.filter-block {
+        width: 22rem;
+        margin-bottom: 2rem;
+        background: #000;
+        border-radius: 0.5rem;
+
+        .heading-box {
+          padding: 1.5rem 1rem;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          h4 {
+            font-size: 1.5rem;
+            font-family: $neue-helvetica-extended-bold;
+            letter-spacing: 0.08rem;
+            text-transform: uppercase;
+            margin-bottom: 0;
+          }
+          .clear-btn {
+            background: transparent
+              linear-gradient(88deg, #e8318d 0%, #18e0e0 41%, #e2ff00 100%) 0%
+              0% no-repeat padding-box;
+            display: flex;
+            padding: 0.2rem 1rem;
+            text-transform: uppercase;
+            color: #000;
+            border-radius: 50rem;
+            font-family: $neue-helvetica-medium;
+            cursor: pointer;
+          }
+        }
+        .filter-list-items {
+          margin: 1.5rem 1rem;
+          border-bottom: 0.08rem solid #313131;
+
+          .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            margin-bottom: 1.5rem;
+          }
+
+          /* MAIN STYLES */
+
+          ul {
+            list-style: none;
+            margin-bottom: 1.5rem;
+            padding: 0;
+            li {
+              margin-bottom: 0.5rem;
+              .checkbox {
+                display: flex;
+                align-items: center;
+                font-size: 2rem;
+                cursor: pointer;
+                width: 20rem;
+              }
+              .checkbox input {
+                display: none;
+              }
+              .checkbox input ~ .checkbox__mark {
+                position: relative;
+                display: block;
+                background: transparent
+                  linear-gradient(45deg, #e8318d 0%, #18e0e0 41%, #e2ff00 100%)
+                  0% 0% no-repeat padding-box;
+                z-index: 0;
+                &::before {
+                  content: "";
+                  position: absolute;
+                  top: 0.1rem;
+                  left: 0.1rem;
+                  right: 0.1rem;
+                  bottom: 0.1rem;
+                  display: flex;
+                  z-index: 0;
+                  background: #000;
+                }
+              }
+              .checkbox input:checked ~ .checkbox__mark {
+                background: transparent
+                  linear-gradient(45deg, #e8318d 0%, #18e0e0 41%, #e2ff00 100%)
+                  0% 0% no-repeat padding-box;
+                &::before {
+                  content: "";
+                  position: absolute;
+                  top: 0.1rem;
+                  left: 0.1rem;
+                  right: 0.1rem;
+                  bottom: 0.1rem;
+                  display: flex;
+                  z-index: 0;
+                  background: transparent
+                    linear-gradient(
+                      45deg,
+                      #e8318d 0%,
+                      #18e0e0 41%,
+                      #e2ff00 100%
+                    )
+                    0% 0% no-repeat padding-box;
+                }
+              }
+              .checkbox input:checked ~ .checkbox__mark svg {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+              }
+
+              .checkbox input:checked ~ .checkbox__info.text-checked {
+                background: transparent
+                  linear-gradient(88deg, #e8318d 0%, #18e0e0 10%, #e2ff00 20%)
+                  0% 0% no-repeat padding-box;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+              }
+
+              .checkbox__mark {
+                margin-right: 0.5rem;
+                position: relative;
+                width: 1.8rem;
+                height: 1.8rem;
+                border: 0.2rem solid #000;
+              }
+              .checkbox__mark svg {
+                position: absolute;
+                fill: #000;
+                color: #000;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) scale(0.5);
+                width: 100%;
+                height: auto;
+                transition: all ease 0.2s;
+                opacity: 0;
+              }
+              .checkbox--disabled {
+                color: grey;
+                pointer-events: none;
+              }
+              .checkbox--disabled .checkbox__mark {
+                border-color: grey;
+              }
+              .checkbox--disabled .checkbox__mark {
+                border-color: grey;
+              }
+
+              .checkbox__info {
+                width: calc(100% - 2.5rem);
+                overflow: hidden;
+                font-size: 1.1rem;
+                color: #fff;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                letter-spacing: 0.08rem;
+                font-family: $neue-helvetica-roman;
+                user-select: none;
+              }
+            }
+          }
+        }
+      }
+      article.nft-list {
+        width: calc(100% - 24rem);
+        margin-bottom: 2rem;
+      }
+    }
+    .search-box-add {
+      border-radius: 50rem;
+      padding: 0.5rem;
+      height: 2.1rem;
+      border: 1px solid #2c5154;
+      margin-left: 0;
+      outline: none;
+      width: 100%;
+      padding-right: 2rem;
+      background: transparent;
+      color: #fff;
+      font-style: italic;
+      font-size: 1rem !important;
+    }
+  }
 }
 
 button.load_more {
@@ -149,10 +363,14 @@ button.load_more {
 }
 
 .explore-title p {
-  font-size: 1.4em;
+  font-size: 1.2em;
+  letter-spacing: 2px;
 }
 .explore-title h1 {
-  font-size: 2.7em;
+  font-size: 2em;
+  text-transform: uppercase;
+  font-family: $neue-helvetica-extended-bold;
+  margin-bottom: 1.5rem;
 }
 
 .explore-heading {

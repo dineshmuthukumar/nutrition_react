@@ -10,12 +10,13 @@ import QuickView from "../quick-view";
 import { nftCategoryListApi } from "../../api/methods";
 import ExploreTitle from "./explore-title";
 import sample from "../../images/sampleNFT.jpg";
-import { BiCaretDown, BiX, BiSearch } from "react-icons/bi";
+import { BiCaretDown, BiX, BiSearch, BiCheck } from "react-icons/bi";
 
 import Details from "../../pages/details";
 import OrderDetails from "../../pages/order-details";
 
 import "./style.scss";
+import { IoIosArrowDown } from "react-icons/io";
 
 const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
   const history = useHistory();
@@ -487,192 +488,414 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
         children={popDetails.children}
       />
       <section className="explore-nft-section">
-        <div className="container-fluid">
-          <div className="row mt-3 explore-title">
-            <ExploreTitle
-              title={categoryDetail.name}
-              description={categoryDetail.description}
-            />
-          </div>
-          <div className="row mt-5">
-            <div className="col-sm-12">
-              <div className="sec-heading d-flex align-items-center mb-2 explore-heading">
-                <span className="me-4 mt-2 text-nowrap">Listed NFTs</span>
-                <span className="d-flex justify-content-between mt-2 w-100 filter-blocks">
-                  <div className="d-flex flex-wrap filter-box">
-                    <Dropdown>
-                      <Dropdown.Toggle
-                        align="start"
-                        drop="start"
-                        as={SaleTypeDropdown}
-                      ></Dropdown.Toggle>
-
-                      <Dropdown.Menu align="start">
-                        {filter.sale.map((obj, i) => (
-                          <Dropdown.Item
-                            key={`sale${i}`}
-                            as="button"
-                            onClick={() => handleSaleCheck(obj)}
-                          >
-                            <FaCheckCircle
-                              color={obj.checked ? "green" : "#ccc"}
-                              className="mb-1 me-2"
-                              size={17}
-                            />
-                            {obj.name}
-                          </Dropdown.Item>
-                        ))}
-                      </Dropdown.Menu>
-                    </Dropdown>
-                    <Dropdown>
-                      <Dropdown.Toggle
-                        align="start"
-                        drop="start"
-                        as={NFTTypeDropdown}
-                      ></Dropdown.Toggle>
-
-                      <Dropdown.Menu align="start">
-                        {filter.nft.map((obj, i) => (
-                          <Dropdown.Item
-                            key={`nft${i}`}
-                            as="button"
-                            onClick={() => handleNFTCheck(obj)}
-                          >
-                            <FaCheckCircle
-                              color={obj.checked ? "green" : "#ccc"}
-                              className="mb-1 me-2"
-                              size={17}
-                            />
-                            {obj.name}
-                          </Dropdown.Item>
-                        ))}
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </div>
-                  <div className="filt-flex-box">
-                    <Dropdown>
-                      <Dropdown.Toggle
-                        align="start"
-                        drop="start"
-                        as={ShowAllSort}
-                      ></Dropdown.Toggle>
-
-                      <Dropdown.Menu align="start">
-                        {filter.sort.map((obj, i) => (
-                          <Dropdown.Item
-                            key={`nft${i}`}
-                            as="button"
-                            onClick={() => handleSortNFT(obj)}
-                          >
-                            <FaCheckCircle
-                              color={obj.checked ? "green" : "#ccc"}
-                              className="mb-1 me-2"
-                              size={17}
-                            />{" "}
-                            {obj.name}
-                          </Dropdown.Item>
-                        ))}
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </div>
-                </span>
-                <div className="filt-flex-search">
-                  <input
-                    type="text"
-                    className="search-box-add"
-                    value={search}
-                    onKeyPress={handleKeyPressEvent}
-                    onChange={(e) => setSearch(e.target.value)}
-                    placeholder="Search here"
-                  />{" "}
-                  <span
-                    role="button"
-                    className="search-button"
-                    onClick={handleTextSearch}
-                  >
-                    <BiSearch size={15} />
-                  </span>
-                </div>
-              </div>
-
-              <div className="mt-4 mb-4 d-flex flex-wrap">
-                {filter.sale
-                  .filter((xx) => xx.checked === true)
-                  .map((obj, i) => (
-                    <div key={`filter-pill${i}`} className="filter-pill-button">
-                      <div className="first">{obj.name}</div>
-                      <div className="last">
-                        <BiX
-                          role="button"
-                          size={20}
-                          onClick={() => handleSaleCheck(obj)}
-                        />
-                      </div>
-                    </div>
-                  ))}
-
-                {filter.nft
-                  .filter((xx) => xx.checked === true)
-                  .map((obj, i) => (
-                    <div key={`filter-pill${i}`} className="filter-pill-button">
-                      <div className="first">{obj.name}</div>
-                      <div className="last">
-                        <BiX
-                          role="button"
-                          size={20}
-                          onClick={() => handleNFTCheck(obj)}
-                        />
-                      </div>
-                    </div>
-                  ))}
-              </div>
-
-              {!loading ? (
-                <div className="row">
-                  {list && list.length > 0 ? (
-                    list.map((nft, i) => (
-                      <div
-                        key={`list-nft-${i}`}
-                        className="col-xl-3 col-lg-4 col-md-6 col-sm-6"
-                      >
-                        <NFTCard
-                          nft={nft}
-                          key={i}
-                          image={sample}
-                          isExplore
-                          exploreSlug={slug}
-                          clientUrl={clientUrl}
-                        />
-                      </div>
-                    ))
-                  ) : (
-                    <div className="col-12 text-center mb-5">
-                      <h3 className="my-3">No Records Found!</h3>
-                    </div>
-                  )}
-
-                  {!loading && loadingMore && <NFTCardLoader />}
-
-                  {hasNext && (
-                    <div className="row mb-5">
-                      <div className="col-md-12 text-center">
-                        <button
-                          className="load_more"
-                          disabled={loadingMore}
-                          onClick={fetchMore}
-                        >
-                          {loadingMore ? "Loading..." : "Load More"}
-                        </button>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <NFTCardLoader />
-              )}
+        <article className="explorer-detail">
+          <div className="container-fluid">
+            <div className="row explore-title">
+              <ExploreTitle
+                title={categoryDetail.name}
+                description={categoryDetail.description}
+              />
             </div>
           </div>
-        </div>
+        </article>
+        <article className="explorer-nft-list">
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col-sm-12">
+                <div className="sec-heading d-flex align-items-center mb-2 explore-heading">
+                  <span className="me-4 mt-2 text-nowrap sec-title">
+                    LISTED NFTs
+                  </span>
+                  <span className="d-flex justify-content-between mt-2 w-100 filter-blocks">
+                    <div className="d-flex flex-wrap filter-box">
+                      <Dropdown>
+                        <Dropdown.Toggle
+                          align="start"
+                          drop="start"
+                          as={SaleTypeDropdown}
+                        ></Dropdown.Toggle>
+
+                        <Dropdown.Menu align="start">
+                          {filter.sale.map((obj, i) => (
+                            <Dropdown.Item
+                              key={`sale${i}`}
+                              as="button"
+                              onClick={() => handleSaleCheck(obj)}
+                            >
+                              <FaCheckCircle
+                                color={obj.checked ? "green" : "#ccc"}
+                                className="mb-1 me-2"
+                                size={17}
+                              />
+                              {obj.name}
+                            </Dropdown.Item>
+                          ))}
+                        </Dropdown.Menu>
+                      </Dropdown>
+                      <Dropdown>
+                        <Dropdown.Toggle
+                          align="start"
+                          drop="start"
+                          as={NFTTypeDropdown}
+                        ></Dropdown.Toggle>
+
+                        <Dropdown.Menu align="start">
+                          {filter.nft.map((obj, i) => (
+                            <Dropdown.Item
+                              key={`nft${i}`}
+                              as="button"
+                              onClick={() => handleNFTCheck(obj)}
+                            >
+                              <FaCheckCircle
+                                color={obj.checked ? "green" : "#ccc"}
+                                className="mb-1 me-2"
+                                size={17}
+                              />
+                              {obj.name}
+                            </Dropdown.Item>
+                          ))}
+                        </Dropdown.Menu>
+                      </Dropdown>
+                    </div>
+                    <div className="filt-flex-box">
+                      <Dropdown>
+                        <Dropdown.Toggle
+                          align="start"
+                          drop="start"
+                          as={ShowAllSort}
+                        ></Dropdown.Toggle>
+
+                        <Dropdown.Menu align="start">
+                          {filter.sort.map((obj, i) => (
+                            <Dropdown.Item
+                              key={`nft${i}`}
+                              as="button"
+                              onClick={() => handleSortNFT(obj)}
+                            >
+                              <FaCheckCircle
+                                color={obj.checked ? "green" : "#ccc"}
+                                className="mb-1 me-2"
+                                size={17}
+                              />{" "}
+                              {obj.name}
+                            </Dropdown.Item>
+                          ))}
+                        </Dropdown.Menu>
+                      </Dropdown>
+                    </div>
+                  </span>
+                  <div className="filt-flex-search">
+                    <input
+                      type="text"
+                      className="search-box-add"
+                      value={search}
+                      onKeyPress={handleKeyPressEvent}
+                      onChange={(e) => setSearch(e.target.value)}
+                      placeholder="Search here"
+                    />{" "}
+                    <span
+                      role="button"
+                      className="search-button"
+                      onClick={handleTextSearch}
+                    >
+                      <BiSearch size={15} />
+                    </span>
+                  </div>
+                </div>
+
+                <div className="mt-4 mb-4 d-flex flex-wrap">
+                  {filter.sale
+                    .filter((xx) => xx.checked === true)
+                    .map((obj, i) => (
+                      <div
+                        key={`filter-pill${i}`}
+                        className="filter-pill-button"
+                      >
+                        <div className="first">{obj.name}</div>
+                        <div className="last">
+                          <BiX
+                            role="button"
+                            size={20}
+                            onClick={() => handleSaleCheck(obj)}
+                          />
+                        </div>
+                      </div>
+                    ))}
+
+                  {filter.nft
+                    .filter((xx) => xx.checked === true)
+                    .map((obj, i) => (
+                      <div
+                        key={`filter-pill${i}`}
+                        className="filter-pill-button"
+                      >
+                        <div className="first">{obj.name}</div>
+                        <div className="last">
+                          <BiX
+                            role="button"
+                            size={20}
+                            onClick={() => handleNFTCheck(obj)}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col-sm-12">
+                <section className="explorer-nft-group">
+                  <aside className="filter-block">
+                    <div className="heading-box">
+                      <h4>Filters</h4>
+                      <span className="clear-btn">Clear all</span>
+                    </div>
+                    <div className="filter-list-items">
+                      <h4 className="header">
+                        Class <IoIosArrowDown />
+                      </h4>
+                      <ul>
+                        <li>
+                          <label for="class-1" class="checkbox">
+                            <input
+                              id="class-1"
+                              name="checkbox-group"
+                              type="checkbox"
+                            />
+                            <span class="checkbox__mark">
+                              <BiCheck />
+                            </span>
+
+                            <span className="checkbox__info">
+                              <span className="title">Hatchback</span>
+                              <span className="count">898765434</span>
+                            </span>
+                          </label>
+                        </li>
+                        <li>
+                          <label for="class-2" class="checkbox">
+                            <input
+                              id="class-2"
+                              name="checkbox-group"
+                              type="checkbox"
+                            />
+                            <span class="checkbox__mark">
+                              <BiCheck />
+                            </span>
+
+                            <span className="checkbox__info">
+                              <span className="title">Sedan</span>
+                              <span className="count">5434</span>
+                            </span>
+                          </label>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div className="filter-list-items">
+                      <h4 className="header">
+                        TYPE <IoIosArrowDown />
+                      </h4>
+                      <ul>
+                        <li>
+                          <label for="type-1" class="checkbox">
+                            <input
+                              id="type-1"
+                              name="checkbox-group"
+                              type="checkbox"
+                            />
+                            <span class="checkbox__mark">
+                              <BiCheck />
+                            </span>
+
+                            <span className="checkbox__info">
+                              <span className="title">Brushed</span>
+                              <span className="count">20394</span>
+                            </span>
+                          </label>
+                        </li>
+                        <li>
+                          <label for="type-2" class="checkbox">
+                            <input
+                              id="type-2"
+                              name="checkbox-group"
+                              type="checkbox"
+                            />
+                            <span class="checkbox__mark">
+                              <BiCheck />
+                            </span>
+
+                            <span className="checkbox__info">
+                              <span className="title">Reaper</span>
+                              <span className="count">434</span>
+                            </span>
+                          </label>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div className="filter-list-items">
+                      <h4 className="header">
+                        BODY SURFACE <IoIosArrowDown />
+                      </h4>
+                      <ul>
+                        <li>
+                          <label for="bs-1" class="checkbox">
+                            <input
+                              id="bs-1"
+                              name="checkbox-group"
+                              type="checkbox"
+                            />
+                            <span class="checkbox__mark">
+                              <BiCheck />
+                            </span>
+
+                            <span className="checkbox__info">
+                              <span className="title">Matte</span>
+                              <span className="count">34</span>
+                            </span>
+                          </label>
+                        </li>
+                        <li>
+                          <label for="bs-2" class="checkbox">
+                            <input
+                              id="bs-2"
+                              name="checkbox-group"
+                              type="checkbox"
+                            />
+                            <span class="checkbox__mark">
+                              <BiCheck />
+                            </span>
+
+                            <span className="checkbox__info">
+                              <span className="title">Glossy</span>
+                              <span className="count">534</span>
+                            </span>
+                          </label>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div className="filter-list-items">
+                      <h4 className="header">
+                        TOP Speed <IoIosArrowDown />
+                      </h4>
+                      <ul>
+                        <li>
+                          <label for="topspeed-1" class="checkbox">
+                            <input
+                              id="topspeed-1"
+                              name="radio-group"
+                              type="radio"
+                            />
+                            <span className="checkbox__info text-checked">
+                              <span className="title">Under 50</span>
+                            </span>
+                          </label>
+                        </li>
+                        <li>
+                          <label for="topspeed-2" class="checkbox">
+                            <input
+                              id="topspeed-2"
+                              name="radio-group"
+                              type="radio"
+                            />
+                            <span className="checkbox__info text-checked">
+                              <span className="title">51 - 65</span>
+                            </span>
+                          </label>
+                        </li>
+                        <li>
+                          <label for="topspeed-3" class="checkbox">
+                            <input
+                              id="topspeed-3"
+                              name="radio-group"
+                              type="radio"
+                            />
+                            <span className="checkbox__info text-checked">
+                              <span className="title">66 - 80</span>
+                            </span>
+                          </label>
+                        </li>
+                        <li>
+                          <label for="topspeed-4" class="checkbox">
+                            <input
+                              id="topspeed-4"
+                              name="radio-group"
+                              type="radio"
+                            />
+                            <span className="checkbox__info text-checked">
+                              <span className="title">81 - 90</span>
+                            </span>
+                          </label>
+                        </li>
+                        <li>
+                          <label for="topspeed-5" class="checkbox">
+                            <input
+                              id="topspeed-5"
+                              name="radio-group"
+                              type="radio"
+                            />
+                            <span className="checkbox__info text-checked">
+                              <span className="title">Over 90</span>
+                            </span>
+                          </label>
+                        </li>
+                      </ul>
+                    </div>
+                  </aside>
+                  <article className="nft-list">
+                    {!loading ? (
+                      <div className="row">
+                        {list && list.length > 0 ? (
+                          list.map((nft, i) => (
+                            <div
+                              key={`list-nft-${i}`}
+                              className="col-lg-4 col-md-6 col-sm-6"
+                            >
+                              <NFTCard
+                                nft={nft}
+                                key={i}
+                                image={sample}
+                                isExplore
+                                exploreSlug={slug}
+                                clientUrl={clientUrl}
+                              />
+                            </div>
+                          ))
+                        ) : (
+                          <div className="col-12 text-center mb-5">
+                            <h3 className="my-3">No Records Found!</h3>
+                          </div>
+                        )}
+
+                        {!loading && loadingMore && <NFTCardLoader />}
+
+                        {hasNext && (
+                          <div className="row mb-5">
+                            <div className="col-md-12 text-center">
+                              <button
+                                className="load_more"
+                                disabled={loadingMore}
+                                onClick={fetchMore}
+                              >
+                                {loadingMore ? "Loading..." : "Load More"}
+                              </button>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      <NFTCardLoader />
+                    )}
+                  </article>
+                </section>
+              </div>
+            </div>
+          </div>
+        </article>
       </section>
     </>
   );
