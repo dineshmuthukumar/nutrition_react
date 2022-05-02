@@ -1061,7 +1061,7 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
                             onClick={() =>
                               setFilter({
                                 ...filter,
-                                showNFTCollection: !filter.showNFTCollection,
+                                showSale: !filter.showSale,
                               })
                             }
                           />
@@ -1103,7 +1103,7 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
                             onClick={() =>
                               setFilter({
                                 ...filter,
-                                showNFTCollection: !filter.showNFTCollection,
+                                showNFT: !filter.showNFT,
                               })
                             }
                           />
