@@ -335,7 +335,7 @@ const LiveAuctionsList = () => {
             <div className="col-sm-12">
               <div className="sec-heading d-flex align-items-center mb-5 liveauction-detail-heading">
                 <div className="flex-heading">
-                  <span className="text-nowrap me-4">Live Auction</span>
+                  <span className="text-nowrap me-4">LIVE AUCTIONS</span>
                   {/* <div className="d-flex flex-wrap filter-box">
                     <span className="d-flex justify-content-end w-100 filter-blocks">
                       

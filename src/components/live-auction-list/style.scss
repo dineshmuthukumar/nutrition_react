@@ -2,10 +2,11 @@
 
 .sec-heading {
   padding: 1rem 0;
-  border-bottom: 0.3rem solid #000;
+  // border-bottom: 0.3rem solid #000;
   margin-bottom: 3rem;
   font-family: $neue-helvetica-bold;
   font-size: 2rem;
+font-style: italic;
   &.liveauction-detail-heading {
     @media screen and (max-width: 991px) {
       flex-direction: column;
@@ -58,6 +59,9 @@ button.load_more {
     flex-direction: column-reverse;
     align-items: flex-end;
     position: relative;
+    .filter-drop-btn{
+      margin-bottom: 1rem;
+    }
   }
 
   @media screen and (max-width: 425px) {
@@ -127,7 +131,7 @@ button.load_more {
   padding: 0.2rem 0.8rem 0.2rem 0.8rem;
   font-size: 1rem;
   font-family: $neue-helvetica-medium;
-  border: 1px solid #000;
+  border: 1px solid #e1ff04;
   border-radius: 50rem;
   margin-bottom: 0.2rem;
   cursor: pointer;
@@ -202,7 +206,7 @@ button.load_more {
   padding: 0.2rem 0.8rem 0.2rem 1.5rem;
   font-size: 1rem;
   font-family: $neue-helvetica-medium;
-  border: 1px solid #000;
+  border: 1px solid #e1ff04;
   border-radius: 50rem;
   margin-bottom: 0.2rem;
   cursor: pointer;
@@ -251,6 +255,9 @@ button.load_more {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start !important;
+    border-bottom: none !important;
+font-family: "neue_helvetica_medium" !important;
+font-style: italic;
   }
 }
 .filt-flex-box {
@@ -350,5 +357,6 @@ button.load_more {
 
 .explore-nft-section {
   padding: 2rem 0;
-  background-color: #fff;
+  background: transparent linear-gradient(180deg, #073824 0%, #410021 100%) 0% 0% no-repeat padding-box;
+color: #fff;
 }
