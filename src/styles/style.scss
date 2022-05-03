@@ -2184,7 +2184,7 @@ section.detail-page-content {
     background: linear-gradient(0deg, black, #002415);
     .chain-attributes {
       border-bottom: 0.03rem solid #707070;
-      padding-bottom: 1rem;
+      padding-bottom: 3rem;
     }
     .nft-tag-title,
     .chain-att-title {
@@ -2203,18 +2203,18 @@ section.detail-page-content {
       margin-right: 1rem;
       margin-bottom: 1rem;
       border: none !important;
-      padding-left: 2.5rem !important;
+      padding-left: 3.5rem !important;
       position: relative;
       &.one-pill {
-        padding-left: 2.5rem !important;
+        padding-left: 3.5rem !important;
       }
       &::before {
         content: "";
         position: absolute;
         left: 0;
-        top: 0;
-        height: 2rem;
-        width: 2rem;
+        top: .5rem;
+        height: 2.5rem;
+        width: 2.5rem;
         background: linear-gradient(120deg, #e2ff00, #18e0e0, #e8318d);
         border-radius: 50rem;
       }

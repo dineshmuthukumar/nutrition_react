@@ -954,187 +954,191 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
                 <section className="explorer-nft-group">
                   {toggle && (
                     <aside className="filter-block">
-                      <div className="heading-box">
-                        <h4>Filters</h4>
-                        <span
-                          className={`clear-btn ${
-                            match.params.search ? "" : "disabled"
-                          }`}
-                          onClick={() =>
-                            history.push(`/explore/category/${slug}`)
-                          }
-                        >
-                          Clear all
-                        </span>
-                      </div>
-                      <div className="filter-list-items">
-                        <h4 className="header">
-                          Role{" "}
-                          <IoIosArrowDown
-                            role={"button"}
+                      <div className="bg-dark stick-top-custom">
+                        <div className="heading-box">
+                          <h4>Filters</h4>
+                          <span
+                            className={`clear-btn ${
+                              match.params.search ? "" : "disabled"
+                            }`}
                             onClick={() =>
-                              setFilter({
-                                ...filter,
-                                showNFTCategory: !filter.showNFTCategory,
-                              })
+                              history.push(`/explore/category/${slug}`)
                             }
-                          />
-                        </h4>
-                        {filter.showNFTCategory && (
-                          <ul>
-                            {filter.nftCategory.map((obj, i) => (
-                              <li key={`nft-category-${i}`}>
-                                <label
-                                  htmlFor={`${obj.name}`}
-                                  className="checkbox"
-                                >
-                                  <input
-                                    id={`${obj.name}`}
-                                    name="checkbox-group"
-                                    type="checkbox"
-                                    checked={obj.checked}
-                                    onChange={() => handleNFTCategoryCheck(obj)}
-                                  />
-                                  <span className="checkbox__mark">
-                                    <BiCheck />
-                                  </span>
+                          >
+                            Clear all
+                          </span>
+                        </div>
+                        <div className="filter-list-items">
+                          <h4 className="header">
+                            Role{" "}
+                            <IoIosArrowDown
+                              role={"button"}
+                              onClick={() =>
+                                setFilter({
+                                  ...filter,
+                                  showNFTCategory: !filter.showNFTCategory,
+                                })
+                              }
+                            />
+                          </h4>
+                          {filter.showNFTCategory && (
+                            <ul>
+                              {filter.nftCategory.map((obj, i) => (
+                                <li key={`nft-category-${i}`}>
+                                  <label
+                                    htmlFor={`${obj.name}`}
+                                    className="checkbox"
+                                  >
+                                    <input
+                                      id={`${obj.name}`}
+                                      name="checkbox-group"
+                                      type="checkbox"
+                                      checked={obj.checked}
+                                      onChange={() =>
+                                        handleNFTCategoryCheck(obj)
+                                      }
+                                    />
+                                    <span className="checkbox__mark">
+                                      <BiCheck />
+                                    </span>
 
-                                  <span className="checkbox__info">
-                                    <span className="title">{obj.name}</span>
-                                  </span>
-                                </label>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                      </div>
+                                    <span className="checkbox__info">
+                                      <span className="title">{obj.name}</span>
+                                    </span>
+                                  </label>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
 
-                      <div className="filter-list-items">
-                        <h4 className="header">
-                          Category{" "}
-                          <IoIosArrowDown
-                            role={"button"}
-                            onClick={() =>
-                              setFilter({
-                                ...filter,
-                                showNFTCollection: !filter.showNFTCollection,
-                              })
-                            }
-                          />
-                        </h4>
-                        {filter.showNFTCollection && (
-                          <ul>
-                            {filter.nftCollection.map((obj, i) => (
-                              <li key={`collection-${i}`}>
-                                <label
-                                  htmlFor={`${obj.name}`}
-                                  className="checkbox"
-                                >
-                                  <input
-                                    id={`${obj.name}`}
-                                    name="checkbox-group"
-                                    type="checkbox"
-                                    checked={obj.checked}
-                                    onChange={() =>
-                                      handleNFTCollectionCheck(obj)
-                                    }
-                                  />
-                                  <span className="checkbox__mark">
-                                    <BiCheck />
-                                  </span>
+                        <div className="filter-list-items">
+                          <h4 className="header">
+                            Category{" "}
+                            <IoIosArrowDown
+                              role={"button"}
+                              onClick={() =>
+                                setFilter({
+                                  ...filter,
+                                  showNFTCollection: !filter.showNFTCollection,
+                                })
+                              }
+                            />
+                          </h4>
+                          {filter.showNFTCollection && (
+                            <ul>
+                              {filter.nftCollection.map((obj, i) => (
+                                <li key={`collection-${i}`}>
+                                  <label
+                                    htmlFor={`${obj.name}`}
+                                    className="checkbox"
+                                  >
+                                    <input
+                                      id={`${obj.name}`}
+                                      name="checkbox-group"
+                                      type="checkbox"
+                                      checked={obj.checked}
+                                      onChange={() =>
+                                        handleNFTCollectionCheck(obj)
+                                      }
+                                    />
+                                    <span className="checkbox__mark">
+                                      <BiCheck />
+                                    </span>
 
-                                  <span className="checkbox__info">
-                                    <span className="title">{obj.name}</span>
-                                  </span>
-                                </label>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                      </div>
+                                    <span className="checkbox__info">
+                                      <span className="title">{obj.name}</span>
+                                    </span>
+                                  </label>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
 
-                      <div className="filter-list-items">
-                        <h4 className="header">
-                          Sale Type{" "}
-                          <IoIosArrowDown
-                            role={"button"}
-                            onClick={() =>
-                              setFilter({
-                                ...filter,
-                                showSale: !filter.showSale,
-                              })
-                            }
-                          />
-                        </h4>
-                        {filter.showSale && (
-                          <ul>
-                            {filter.sale.map((obj, i) => (
-                              <li key={`sale-type-${i}`}>
-                                <label
-                                  htmlFor={`${obj.name}`}
-                                  className="checkbox"
-                                >
-                                  <input
-                                    id={`${obj.name}`}
-                                    name="checkbox-group"
-                                    type="checkbox"
-                                    checked={obj.checked}
-                                    onChange={() => handleSaleCheck(obj)}
-                                  />
-                                  <span className="checkbox__mark">
-                                    <BiCheck />
-                                  </span>
+                        <div className="filter-list-items">
+                          <h4 className="header">
+                            Sale Type{" "}
+                            <IoIosArrowDown
+                              role={"button"}
+                              onClick={() =>
+                                setFilter({
+                                  ...filter,
+                                  showSale: !filter.showSale,
+                                })
+                              }
+                            />
+                          </h4>
+                          {filter.showSale && (
+                            <ul>
+                              {filter.sale.map((obj, i) => (
+                                <li key={`sale-type-${i}`}>
+                                  <label
+                                    htmlFor={`${obj.name}`}
+                                    className="checkbox"
+                                  >
+                                    <input
+                                      id={`${obj.name}`}
+                                      name="checkbox-group"
+                                      type="checkbox"
+                                      checked={obj.checked}
+                                      onChange={() => handleSaleCheck(obj)}
+                                    />
+                                    <span className="checkbox__mark">
+                                      <BiCheck />
+                                    </span>
 
-                                  <span className="checkbox__info">
-                                    <span className="title">{obj.name}</span>
-                                  </span>
-                                </label>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                      </div>
+                                    <span className="checkbox__info">
+                                      <span className="title">{obj.name}</span>
+                                    </span>
+                                  </label>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
 
-                      <div className="filter-list-items">
-                        <h4 className="header">
-                          NFT Type{" "}
-                          <IoIosArrowDown
-                            role={"button"}
-                            onClick={() =>
-                              setFilter({
-                                ...filter,
-                                showNFT: !filter.showNFT,
-                              })
-                            }
-                          />
-                        </h4>
-                        {filter.showNFT && (
-                          <ul>
-                            {filter.nft.map((obj, i) => (
-                              <li key={`nft-type-${i}`}>
-                                <label
-                                  htmlFor={`${obj.name}`}
-                                  className="checkbox"
-                                >
-                                  <input
-                                    id={`${obj.name}`}
-                                    name="checkbox-group"
-                                    type="checkbox"
-                                    checked={obj.checked}
-                                    onChange={() => handleNFTCheck(obj)}
-                                  />
-                                  <span className="checkbox__mark">
-                                    <BiCheck />
-                                  </span>
+                        <div className="filter-list-items">
+                          <h4 className="header">
+                            NFT Type{" "}
+                            <IoIosArrowDown
+                              role={"button"}
+                              onClick={() =>
+                                setFilter({
+                                  ...filter,
+                                  showNFT: !filter.showNFT,
+                                })
+                              }
+                            />
+                          </h4>
+                          {filter.showNFT && (
+                            <ul>
+                              {filter.nft.map((obj, i) => (
+                                <li key={`nft-type-${i}`}>
+                                  <label
+                                    htmlFor={`${obj.name}`}
+                                    className="checkbox"
+                                  >
+                                    <input
+                                      id={`${obj.name}`}
+                                      name="checkbox-group"
+                                      type="checkbox"
+                                      checked={obj.checked}
+                                      onChange={() => handleNFTCheck(obj)}
+                                    />
+                                    <span className="checkbox__mark">
+                                      <BiCheck />
+                                    </span>
 
-                                  <span className="checkbox__info">
-                                    <span className="title">{obj.name}</span>
-                                  </span>
-                                </label>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
+                                    <span className="checkbox__info">
+                                      <span className="title">{obj.name}</span>
+                                    </span>
+                                  </label>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
                       </div>
                     </aside>
                   )}

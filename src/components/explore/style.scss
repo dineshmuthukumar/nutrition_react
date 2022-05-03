@@ -44,7 +44,7 @@
       aside.filter-block {
         width: 22rem;
         margin-bottom: 2rem;
-        background: #000;
+        
         border-radius: 0.5rem;
 
         .heading-box {
@@ -207,6 +207,8 @@
               }
             }
           }
+
+        
         }
       }
       article.nft-list {
@@ -665,5 +667,16 @@ button.load_more {
         line-height: 1;
       }
     }
+  }
+}
+
+
+.stick-top-custom{
+  position: sticky;
+  top: 7rem;
+  padding-bottom: .5rem;
+
+  :last-child{
+    border-bottom: none !important;
   }
 }
