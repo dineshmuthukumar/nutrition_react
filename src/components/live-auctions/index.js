@@ -48,7 +48,7 @@ const LiveAuctions = () => {
           <div className="row">
             <div className="col-sm-12">
               <div className="sec-heading live-flex-box">
-                <span className="title">Live Auctions</span>
+                <span className="title">LIVE AUCTIONS</span>
                 <span
                   className="viewallBtnliveaction"
                   onClick={() => history.push("/nfts/live-auction")}

@@ -6,7 +6,7 @@ import LiveAuctionsList from "../components/live-auction-list";
 const LiveAuctionsNFTs = () => {
   return (
     <>
-      <Header />
+      <Header bgImage />
       <LiveAuctionsList />
       <Footer />
     </>
