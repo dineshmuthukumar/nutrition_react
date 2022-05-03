@@ -1173,10 +1173,14 @@ input::-webkit-inner-spin-button {
   &.discord_ic {
     margin-left: 1rem;
   }
-  @media screen and (max-width: 450px) {
+  @media screen and (max-width: 480px) {
     padding: 0.3rem 0.8rem 0.3rem;
     font-size: 0.9rem;
+    &.discord_ic {
+      display: none;
+    }
   }
+
 }
 
 .navbar-nav {

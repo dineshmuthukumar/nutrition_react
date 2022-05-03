@@ -18,6 +18,8 @@
     color: #fff;
     padding: 3rem 1.5rem;
   }
+ 
+
   .explorer-nft-list {
     background: transparent linear-gradient(180deg, #073824 0%, #24242e 100%) 0%
       0% no-repeat padding-box;
@@ -430,6 +432,7 @@ button.load_more {
     justify-content: flex-start;
     align-items: flex-start !important;
   }
+
 }
 
 .explore-title p {
@@ -464,7 +467,15 @@ button.load_more {
     }
   }
 }
-
+.sticky-sm-top {
+  position: unset;
+  @media screen and (max-width: 991px) {
+    position: sticky;
+    top: 5rem;
+  z-index: 9;
+  background: #0a3625;
+  }
+}
 .filt-flex-search {
   display: flex;
   align-items: center;
