@@ -1,0 +1,82 @@
+@import "../../styles/common";
+
+.new-drop-section {
+  background: transparent linear-gradient(180deg, #012f2f 0%, #24242e 100%) 0%
+    0% no-repeat padding-box;
+  padding: 4rem 0;
+
+  .new-drop-box {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin-bottom: 3rem;
+    max-width: 90rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3rem;
+    .drop-timer-box {
+      background: #00000099 0% 0% no-repeat padding-box;
+      border: 1px solid #fe01554d;
+      border-radius: 0.8rem;
+      opacity: 1;
+      backdrop-filter: blur(11px);
+      -webkit-backdrop-filter: blur(11px);
+      max-width: 30rem;
+      min-width: 30rem;
+      position: absolute;
+      bottom: -2rem;
+      min-height: 12rem;
+      padding: 2rem 1rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      h4 {
+        color: #fff;
+        font-family: $neue-helvetica-extended-bold;
+      }
+      .btn-block {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        a {
+          color: #e83170;
+          text-decoration: none;
+          text-transform: uppercase;
+          font-family: $neue-helvetica-bold;
+          font-size: 1rem;
+          display: flex;
+          align-items: center;
+          svg {
+            color: #fff;
+            font-size: 1.3rem;
+            margin-left: 0.5rem;
+          }
+        }
+      }
+    }
+  }
+
+  .marque-block {
+    background: #f5ff01;
+    margin: 2rem 0;
+    @media screen and (max-width: 767px) {
+      margin-top: 15rem;
+    }
+    .marquee {
+      font-family: $Impact;
+      font-weight: 600;
+      color: #000;
+      font-size: 1rem;
+      align-items: center;
+      letter-spacing: 0.2rem;
+      padding: 0.2rem 0.2rem;
+      font-size: 1.5rem;
+    }
+    .overlay {
+      display: none;
+    }
+  }
+}

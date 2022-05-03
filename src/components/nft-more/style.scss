@@ -416,6 +416,10 @@
         color: #fff;
         font-family: $neue-helvetica-light;
         letter-spacing: 0.08rem;
+        white-space: nowrap;
+        width: 100%;
+        text-overflow: ellipsis;
+        overflow: hidden;
       }
       .heart_box {
         position: absolute;
