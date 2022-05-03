@@ -183,7 +183,7 @@ const NFTOrderBaseDetails = ({
         {nft.description && (
           <ReadMoreReact
             min={200}
-            ideal={200}
+            ideal={560}
             max={560}
             text={nft.description}
           />
@@ -518,7 +518,7 @@ const NFTOrderBaseDetails = ({
           </>
         )}
 
-        <div className="text-center flex-btn">
+        <div className="text-center flex-btn full-width">
           <NFTPlaceBid
             nft={nft}
             orderDetails={orderDetails}

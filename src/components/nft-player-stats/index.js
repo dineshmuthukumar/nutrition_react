@@ -102,35 +102,38 @@ const NFTPlayerStats = ({ stats = [], core }) => {
   const data = level.find((obj) => obj.type === core?.level);
 
   return (
-    <section className="player-stats">
-      {data && (
-        <div className="heading-block">
-          <h3>Player stats</h3>
-          {core?.role === "Batsman" && (
-            <div className="perf-hint">
-              Batsman performance against different bowler type
-            </div>
-          )}
-          <div className="player-level">
-            <h6>{data.name}</h6>
-            <img src={data.value} />
-          </div>
+    <>
+      {core?.role === "Batsman" && (
+        <div className="perf-hint text-center">
+          Batsman performance against different bowler type
         </div>
       )}
+      <section className="player-stats">
+        {data && (
+          <div className="heading-block">
+            <h3>Player stats</h3>
 
-      <div className="player-stats-list">
-        <ul>
-          {stats.map((stat, i) => (
-            <li key={`stat-${i}`}>
-              <span className="key">{stat.name}</span>
-              <span className="value">
-                <span>{stat.value} </span> / {stat.maximum}
-              </span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
+            <div className="player-level">
+              <h6>{data.name}</h6>
+              <img src={data.value} />
+            </div>
+          </div>
+        )}
+
+        <div className="player-stats-list">
+          <ul>
+            {stats.map((stat, i) => (
+              <li key={`stat-${i}`}>
+                <span className="key">{stat.name}</span>
+                <span className="value">
+                  <span>{stat.value} </span> / {stat.maximum}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    </>
   );
 };
 

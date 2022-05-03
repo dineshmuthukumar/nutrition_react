@@ -161,14 +161,6 @@ label {
   border: 1px solid #ced4da;
   border-radius: 3px;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-
-  &:focus {
-    color: #212529;
-    background-color: #fff;
-    border-color: #86b7fe;
-    outline: 0;
-    box-shadow: 0 0 0 0.2rem #0d6efd40;
-  }
 }
 
 // input {
@@ -1181,10 +1173,14 @@ input::-webkit-inner-spin-button {
   &.discord_ic {
     margin-left: 1rem;
   }
-  @media screen and (max-width: 450px) {
+  @media screen and (max-width: 480px) {
     padding: 0.3rem 0.8rem 0.3rem;
     font-size: 0.9rem;
+    &.discord_ic {
+      display: none;
+    }
   }
+
 }
 
 .navbar-nav {
@@ -1200,6 +1196,16 @@ input::-webkit-inner-spin-button {
   min-width: 15rem;
   padding: 0.5rem;
   margin-top: 0.6rem !important;
+  background: #0d3624;
+  border: 1px solid #e1ff04;
+
+  button {
+    color: #fff;
+
+    &:hover {
+      background: #fff;
+    }
+  }
 
   .dropdown-item {
     font-size: 1rem;
@@ -1665,7 +1671,7 @@ section.detail-page-content {
       position: absolute;
       top: 3rem;
       right: 0;
-      z-index: 9;
+      z-index: 4;
       border: 0.1rem solid #fff;
       border-radius: 0.5rem 0 0 0.5rem;
       box-shadow: inset 0px 0px 3rem 1.5rem #000000 !important;
@@ -2180,7 +2186,7 @@ section.detail-page-content {
     background: linear-gradient(0deg, black, #002415);
     .chain-attributes {
       border-bottom: 0.03rem solid #707070;
-      padding-bottom: 1rem;
+      padding-bottom: 3rem;
     }
     .nft-tag-title,
     .chain-att-title {
@@ -2199,18 +2205,18 @@ section.detail-page-content {
       margin-right: 1rem;
       margin-bottom: 1rem;
       border: none !important;
-      padding-left: 2.5rem !important;
+      padding-left: 3.5rem !important;
       position: relative;
       &.one-pill {
-        padding-left: 2.5rem !important;
+        padding-left: 3.5rem !important;
       }
       &::before {
         content: "";
         position: absolute;
         left: 0;
-        top: 0;
-        height: 2rem;
-        width: 2rem;
+        top: 0.5rem;
+        height: 2.5rem;
+        width: 2.5rem;
         background: linear-gradient(120deg, #e2ff00, #18e0e0, #e8318d);
         border-radius: 50rem;
       }
@@ -2640,7 +2646,7 @@ section.player-stats {
     .pop-buy-progress {
       .progress-complete {
         background: #fdf100;
-        padding: 0.3rem;
+        padding: 0.2rem;
       }
     }
     .pop-body-content {
@@ -2891,7 +2897,7 @@ section.player-stats {
     .pop-sale-progress {
       .progress-complete {
         background: #fdf100;
-        padding: 0.3rem;
+        padding: 0.2rem;
       }
     }
     .pop-sale-body-content {
@@ -3142,7 +3148,7 @@ section.player-stats {
     .pop-buy-progress {
       .progress-complete {
         background: #fdf100;
-        padding: 0.3rem;
+        padding: 0.2rem;
       }
     }
     .pop-body-buy-content {
