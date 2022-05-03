@@ -29,7 +29,7 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
   const [loading, setLoading] = useState(false);
   const [hasNext, setHasNext] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
-  const [toggle, setToggle] = useState(true);
+  const [toggle, setToggle] = useState(false);
 
   const [popDetails, setPopDetails] = useState({
     show: false,
@@ -803,22 +803,23 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
           </div>
         </article>
         <article className="explorer-nft-list">
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-sm-12">
-                <div className="sec-heading d-flex align-items-center mb-2 explore-heading">
-                  <span className="me-4 mt-2 text-nowrap sec-title">
-                    LISTED NFTs
-                    <span
-                      onClick={() => setToggle(!toggle)}
-                      className="filter-open-btn"
-                    >
-                      <FaFilter /> Filter
+          <div className="sticky-sm-top top-25">
+            <div className="container-fluid">
+              <div className="row">
+                <div className="col-sm-12">
+                  <div className="sec-heading d-flex align-items-center mb-2 explore-heading">
+                    <span className="me-4 mt-2 text-nowrap sec-title">
+                      LISTED NFTs
+                      <span
+                        onClick={() => setToggle(!toggle)}
+                        className="filter-open-btn"
+                      >
+                        <FaFilter /> Filter
+                      </span>
                     </span>
-                  </span>
-                  <span className="d-flex justify-content-between mt-2 w-100 filter-blocks">
-                    <div className="d-flex flex-wrap filter-box">
-                      {/* <Dropdown>
+                    <span className="d-flex justify-content-between mt-2 w-100 filter-blocks">
+                      <div className="d-flex flex-wrap filter-box">
+                        {/* <Dropdown>
                         <Dropdown.Toggle
                           align="start"
                           drop="start"
@@ -866,54 +867,54 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
                           ))}
                         </Dropdown.Menu>
                       </Dropdown> */}
-                    </div>
-                    <div className="filt-flex-box">
-                      <Dropdown>
-                        <Dropdown.Toggle
-                          align="start"
-                          drop="start"
-                          as={ShowAllSort}
-                        ></Dropdown.Toggle>
+                      </div>
+                      <div className="filt-flex-box">
+                        <Dropdown>
+                          <Dropdown.Toggle
+                            align="start"
+                            drop="start"
+                            as={ShowAllSort}
+                          ></Dropdown.Toggle>
 
-                        <Dropdown.Menu align="start">
-                          {filter.sort.map((obj, i) => (
-                            <Dropdown.Item
-                              key={`nft${i}`}
-                              as="button"
-                              onClick={() => handleSortNFT(obj)}
-                            >
-                              <FaCheckCircle
-                                color={obj.checked ? "green" : "#ccc"}
-                                className="mb-1 me-2"
-                                size={17}
-                              />{" "}
-                              {obj.name}
-                            </Dropdown.Item>
-                          ))}
-                        </Dropdown.Menu>
-                      </Dropdown>
-                    </div>
-                  </span>
-                  <div className="filt-flex-search">
-                    <input
-                      type="text"
-                      className="search-box-add"
-                      value={search}
-                      onKeyPress={handleKeyPressEvent}
-                      onChange={(e) => setSearch(e.target.value)}
-                      placeholder="Search here"
-                    />{" "}
-                    <span
-                      role="button"
-                      className="search-button"
-                      onClick={handleTextSearch}
-                    >
-                      <BiSearch size={15} />
+                          <Dropdown.Menu align="start">
+                            {filter.sort.map((obj, i) => (
+                              <Dropdown.Item
+                                key={`nft${i}`}
+                                as="button"
+                                onClick={() => handleSortNFT(obj)}
+                              >
+                                <FaCheckCircle
+                                  color={obj.checked ? "green" : "#ccc"}
+                                  className="mb-1 me-2"
+                                  size={17}
+                                />{" "}
+                                {obj.name}
+                              </Dropdown.Item>
+                            ))}
+                          </Dropdown.Menu>
+                        </Dropdown>
+                      </div>
                     </span>
+                    <div className="filt-flex-search">
+                      <input
+                        type="text"
+                        className="search-box-add"
+                        value={search}
+                        onKeyPress={handleKeyPressEvent}
+                        onChange={(e) => setSearch(e.target.value)}
+                        placeholder="Search here"
+                      />{" "}
+                      <span
+                        role="button"
+                        className="search-button"
+                        onClick={handleTextSearch}
+                      >
+                        <BiSearch size={15} />
+                      </span>
+                    </div>
                   </div>
-                </div>
 
-                {/* <div className="mt-4 mb-4 d-flex flex-wrap">
+                  {/* <div className="mt-4 mb-4 d-flex flex-wrap">
                   {filter.sale
                     .filter((xx) => xx.checked === true)
                     .map((obj, i) => (
@@ -950,6 +951,7 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
                       </div>
                     ))}
                 </div> */}
+                </div>
               </div>
             </div>
           </div>
