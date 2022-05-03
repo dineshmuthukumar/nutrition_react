@@ -47,6 +47,7 @@ const RecentlySold = lazy(() => import("./pages/recently-sold"));
 const CreatorApplication = lazy(() => import("./pages/creator-application"));
 const LiveAuctionsNFTs = lazy(() => import("./pages/live-auction-nfts"));
 const MyFavorites = lazy(() => import("./pages/my-favorites"));
+const ExploreAll = lazy(() => import("./pages/explore-all"));
 
 function App(props) {
   const market_start_date = "Mar 9, 2022 12:30:00";
@@ -268,6 +269,20 @@ const WebContainer = () => {
           component={Latimes}
         />
         <Route exact path="/latimes-NFT" component={Latimes} />
+
+        <Route
+          exact
+          path="/explore-all/:search?/order/details/:slug/:orderSlug"
+          component={ExploreAll}
+        />
+        <Route
+          exact
+          path="/explore-all/:search?/details/:slug"
+          component={ExploreAll}
+        />
+        <Route exact path="/explore-all/:search?" component={ExploreAll} />
+        <Route exact path="/explore-all" component={ExploreAll} />
+
         <Route
           exact
           path="/creator-application"
