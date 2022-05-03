@@ -1,0 +1,23 @@
+@import "../../styles/common";
+
+.nft-counter {
+  .counter-time {
+    font-size: 2rem;
+    font-family: $neue-helvetica-bold;
+  }
+  .counter-interval {
+    margin-left: 0.2rem;
+    font-size: 1.5rem;
+    font-family: $neue-helvetica-bold;
+  }
+  .interval-gap {
+    margin-right: 0.6rem;
+  }
+}
+
+.startsin {
+  font-family: $neue-helvetica-bold;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+}
