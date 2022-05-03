@@ -432,7 +432,7 @@ const NFTCancelTheSale = ({
                             className={`btn btn-dark text-center btn-lg w-75 rounded-pill place-cancel-btn-pop `} //process -> proccessing
                             onClick={handleSaleCancel}
                           >
-                            Yes
+                            <span>Yes</span>
                           </button>
                         </div>
                       </div>
@@ -456,7 +456,7 @@ const NFTCancelTheSale = ({
                           className="btn btn-dark text-center btn-lg w-75 rounded-pill place-cancel-btn-pop "
                           onClick={handleSuccess}
                         >
-                          Okay
+                          <span>Okay</span>
                         </button>
                       </div>
                     </div>
