@@ -2,6 +2,7 @@ import React from "react";
 
 import { BsExclamationCircle } from "react-icons/bs";
 import { Navbar, Nav, Dropdown, Container } from "react-bootstrap";
+import jumpTradeLogo from "./../images/jump-trade-logo.svg";
 
 const NotFound = () => {
   return (
@@ -21,7 +22,7 @@ const NotFound = () => {
               role="button"
               className="not-found"
             >
-              BeyondLife.club
+              Jump.trade
               <div
                 className="sub-not-found not-found-powereby "
                 role="button"
@@ -29,7 +30,7 @@ const NotFound = () => {
                   window.open(process.env.REACT_APP_GUARDIAN_URL, "_blank")
                 }
               >
-                Powered by GuardianLink
+                Grow With Attitude
               </div>
             </Navbar.Brand>
             {/* <br /> */}
@@ -58,7 +59,12 @@ const NotFound = () => {
                     />
                     <b>
                       Go to Marketplace{" "}
-                      <a href="https://marketplace.beyondlife.club/">Home</a>{" "}
+                      <a
+                        href={process.env.REACT_APP_MARKETPLACE_URL}
+                        target="_blank"
+                      >
+                        Home
+                      </a>{" "}
                       Page
                     </b>
                   </td>
