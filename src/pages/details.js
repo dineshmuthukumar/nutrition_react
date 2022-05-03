@@ -168,7 +168,7 @@ const Details = () => {
 
   return (
     <>
-      <Header />
+      <Header bgImage />
       {loader ? (
         <NFTLoader />
       ) : (

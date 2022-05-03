@@ -162,13 +162,7 @@ label {
   border-radius: 3px;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
-  &:focus {
-    color: #212529;
-    background-color: #fff;
-    border-color: #86b7fe;
-    outline: 0;
-    box-shadow: 0 0 0 0.2rem #0d6efd40;
-  }
+  
 }
 
 // input {
@@ -1200,6 +1194,16 @@ input::-webkit-inner-spin-button {
   min-width: 15rem;
   padding: 0.5rem;
   margin-top: 0.6rem !important;
+  background: #0d3624;
+    border: 1px solid #e1ff04;
+
+    button{
+      color: #fff;
+
+      &:hover{
+        background: #fff;
+      }
+    }
 
   .dropdown-item {
     font-size: 1rem;
@@ -1665,7 +1669,7 @@ section.detail-page-content {
       position: absolute;
       top: 3rem;
       right: 0;
-      z-index: 9;
+      z-index: 4;
       border: 0.1rem solid #fff;
       border-radius: 0.5rem 0 0 0.5rem;
       box-shadow: inset 0px 0px 3rem 1.5rem #000000 !important;

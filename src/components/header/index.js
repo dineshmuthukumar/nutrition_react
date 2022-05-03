@@ -1,57 +1,62 @@
-import React, { useEffect, useState } from "react";
-import dayjs from "dayjs";
-import { Navbar, Nav, Dropdown, Container } from "react-bootstrap";
-import { BiBell, BiHelpCircle } from "react-icons/bi";
-import { useTranslation } from "react-multi-lang";
-import { useSelector, useDispatch } from "react-redux";
-import { FaDiscord } from "react-icons/fa";
-import { CgMenuRight } from "react-icons/cg";
-import { VscChromeClose } from "react-icons/vsc";
-import { useHistory } from "react-router-dom";
+import React, { useEffect, useState } from 'react'
+import dayjs from 'dayjs'
+import { Navbar, Nav, Dropdown, Container } from 'react-bootstrap'
+import { BiBell, BiHelpCircle } from 'react-icons/bi'
+import { useTranslation } from 'react-multi-lang'
+import { useSelector, useDispatch } from 'react-redux'
+import { FaDiscord } from 'react-icons/fa'
+import { CgMenuRight } from 'react-icons/cg'
+import { VscChromeClose } from 'react-icons/vsc'
+import { useHistory } from 'react-router-dom'
 
-import depositIcon from "../../images/deposit.svg";
-import bidIcon from "../../images/bid.svg";
-import buyIcon from "../../images/buy.svg";
-import moneyWithdraw from "../../images/withdraw-money.svg";
-import outbidIcon from "../../images/outbid.svg";
-import userImg from "../../images/user_1.jpg";
-import { user_logout_thunk } from "../../redux/thunk/user_thunk";
-import { accountDetail } from "../../api/actioncable-methods";
-import { currencyFormat } from "../../utils/common";
-import { user_wallet_update_action } from "../../redux/actions/user_action";
-import { getNotificationApi } from "../../api/base-methods";
-import { readNotificationApi } from "./../../api/base-methods";
+import depositIcon from '../../images/deposit.svg'
+import bidIcon from '../../images/bid.svg'
+import buyIcon from '../../images/buy.svg'
+import moneyWithdraw from '../../images/withdraw-money.svg'
+import outbidIcon from '../../images/outbid.svg'
+import userImg from '../../images/user_1.jpg'
+import { user_logout_thunk } from '../../redux/thunk/user_thunk'
+import { accountDetail } from '../../api/actioncable-methods'
+import { currencyFormat } from '../../utils/common'
+import { user_wallet_update_action } from '../../redux/actions/user_action'
+import { getNotificationApi } from '../../api/base-methods'
+import { readNotificationApi } from './../../api/base-methods'
 
-import jumpTradeLogo from "../../images/jump-trade-logo.svg";
-import notifyBell from "../../images/jump-trade/bell_notify.png";
+import jumpTradeLogo from '../../images/jump-trade-logo.svg'
+import notifyBell from '../../images/jump-trade/bell_notify.png'
 
-import "./style.scss";
+import './style.scss'
 
-const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
-  const t = useTranslation();
-  const dispatch = useDispatch();
-  const state = useSelector((state) => state);
-  const history = useHistory();
+const Header = ({
+  hideOptions = false,
+  hideSign = false,
+  started = false,
+  bgImage = false,
+}) => {
+  const t = useTranslation()
+  const dispatch = useDispatch()
+  const state = useSelector((state) => state)
+  const history = useHistory()
 
-  const [notiLoading, setNotiLoading] = useState(false);
-  const [npage, setNPage] = useState(1);
-  const [notification, setNotification] = useState();
-  const [notiRead, setNotiRead] = useState(true);
+  const [notiLoading, setNotiLoading] = useState(false)
+  const [npage, setNPage] = useState(1)
+  const [notification, setNotification] = useState()
+  const [notiRead, setNotiRead] = useState(true)
 
-  const [ribbon, setRibbon] = useState(true);
+  const [ribbon, setRibbon] = useState(true)
 
-  const { user } = state;
-  const slug = user.data?.user ? user.data?.user?.slug : null;
+  const { user } = state
+  const slug = user.data?.user ? user.data?.user?.slug : null
 
   useEffect(() => {
     if (slug) {
       accountDetail(slug, (data) => {
-        dispatch(user_wallet_update_action(data));
-      });
-      handleGetNotification(npage);
+        dispatch(user_wallet_update_action(data))
+      })
+      handleGetNotification(npage)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
   // const handleChangeLang = () => {
   //   const u_lang = lang === "en" ? "hi" : "en";
@@ -61,13 +66,13 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
 
   const handleGetNotification = async (input) => {
     try {
-      setNotiLoading(true);
-      const result = await getNotificationApi(input);
-      setNotiLoading(false);
+      setNotiLoading(true)
+      const result = await getNotificationApi(input)
+      setNotiLoading(false)
       if (input === 1) {
-        setNotification(result.data.data);
+        setNotification(result.data.data)
         if (result.data.data.total > 0) {
-          setNotiRead(result.data.data.notifications_read);
+          setNotiRead(result.data.data.notifications_read)
         }
       } else {
         setNotification({
@@ -77,50 +82,50 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
             ...result.data.data.notifications,
           ],
           next_page: result.data.data.next_page,
-        });
+        })
       }
     } catch (error) {
-      setNotiLoading(false);
+      setNotiLoading(false)
 
       console.log(
-        "🚀 ~ file: index.js ~ line 49 ~ handleGetNotification ~ error",
-        error
-      );
+        '🚀 ~ file: index.js ~ line 49 ~ handleGetNotification ~ error',
+        error,
+      )
     }
-  };
+  }
 
   const readNotification = async () => {
     try {
-      if (notiRead) await readNotificationApi();
+      if (notiRead) await readNotificationApi()
     } catch (error) {
       console.log(
-        "🚀 ~ file: index.js ~ line 61 ~ readNotification ~ error",
-        error
-      );
+        '🚀 ~ file: index.js ~ line 61 ~ readNotification ~ error',
+        error,
+      )
     }
-  };
+  }
 
   const UserToggleComponent = React.forwardRef(({ onClick }, ref) => (
     <UserComponent
       user={state.user.data.user}
       sref={ref}
       onClick={(e) => {
-        e.preventDefault();
-        onClick(e);
+        e.preventDefault()
+        onClick(e)
       }}
     />
-  ));
+  ))
 
   const NotificationToggleComponent = React.forwardRef(({ onClick }, ref) => {
     return (
       <div
-        className={`${notification ? "theme-color rounded-circle" : ""}`}
+        className={`${notification ? 'theme-color rounded-circle' : ''}`}
         ref={ref}
         role="button"
         onClick={(e) => {
-          e.preventDefault();
-          onClick(e);
-          setNotiRead(true);
+          e.preventDefault()
+          onClick(e)
+          setNotiRead(true)
         }}
       >
         {/* <BiBell size={25} color={"white"} /> */}
@@ -133,227 +138,227 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
           </>
         )}
       </div>
-    );
-  });
+    )
+  })
 
   const DropToggle = React.forwardRef(({ onClick }, ref) => {
     return (
       <Nav.Link
         id="drop_outer"
-        role={"button"}
+        role={'button'}
         ref={ref}
         onClick={(e) => {
-          e.preventDefault();
-          onClick(e);
+          e.preventDefault()
+          onClick(e)
         }}
       >
         Drops
       </Nav.Link>
-    );
-  });
+    )
+  })
 
   const NotiCard = ({ data }) => {
     const handleNotiClick = () => {
-      if (data.reason === "deposit") {
+      if (data.reason === 'deposit') {
         window.open(
           `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
-          "_self"
-        );
+          '_self',
+        )
       }
-    };
+    }
 
     return (
       <div className="noti-message" role="button" onClick={handleNotiClick}>
         {(() => {
-          if (data.activity_type === "deposit") {
-            return <img src={depositIcon} alt="notification icon" />;
-          } else if (data.activity_type === "bid") {
-            if (data.reason === "bid_lock") {
-              return <img src={bidIcon} alt="notification icon" />;
+          if (data.activity_type === 'deposit') {
+            return <img src={depositIcon} alt="notification icon" />
+          } else if (data.activity_type === 'bid') {
+            if (data.reason === 'bid_lock') {
+              return <img src={bidIcon} alt="notification icon" />
             } else if (
-              data.reason === "bid_expired" ||
-              data.reason === "bid_closed"
+              data.reason === 'bid_expired' ||
+              data.reason === 'bid_closed'
             ) {
-              return <img src={outbidIcon} alt="notification icon" />;
-            } else if (data.reason === "bid_outdated") {
-              return <img src={outbidIcon} alt="notification icon" />;
-            } else if (data.reason === "bid_cancelled") {
-              return <img src={outbidIcon} alt="notification icon" />;
-            } else if (data.reason === "bid_success") {
-              return <img src={bidIcon} alt="notification icon" />;
-            } else if (data.reason === "bid_received") {
-              return <img src={outbidIcon} alt="notification icon" />;
+              return <img src={outbidIcon} alt="notification icon" />
+            } else if (data.reason === 'bid_outdated') {
+              return <img src={outbidIcon} alt="notification icon" />
+            } else if (data.reason === 'bid_cancelled') {
+              return <img src={outbidIcon} alt="notification icon" />
+            } else if (data.reason === 'bid_success') {
+              return <img src={bidIcon} alt="notification icon" />
+            } else if (data.reason === 'bid_received') {
+              return <img src={outbidIcon} alt="notification icon" />
             }
-          } else if (data.activity_type === "buy") {
-            if (data.payment_type === "debit") {
-              return <img src={buyIcon} alt="notification icon" />;
+          } else if (data.activity_type === 'buy') {
+            if (data.payment_type === 'debit') {
+              return <img src={buyIcon} alt="notification icon" />
             } else {
-              return <img src={buyIcon} alt="notification icon" />;
+              return <img src={buyIcon} alt="notification icon" />
             }
-          } else if (data.activity_type === "withdraw") {
-            if (data.reason === "withdraw_requested") {
-              return <img src={moneyWithdraw} alt="notification icon" />;
-            } else if (data.reason === "withdraw_cancelled") {
-              return <img src={moneyWithdraw} alt="notification icon" />;
-            } else if (data.reason === "withdraw_success") {
-              return <img src={moneyWithdraw} alt="notification icon" />;
+          } else if (data.activity_type === 'withdraw') {
+            if (data.reason === 'withdraw_requested') {
+              return <img src={moneyWithdraw} alt="notification icon" />
+            } else if (data.reason === 'withdraw_cancelled') {
+              return <img src={moneyWithdraw} alt="notification icon" />
+            } else if (data.reason === 'withdraw_success') {
+              return <img src={moneyWithdraw} alt="notification icon" />
             }
           } else {
-            return "";
+            return ''
           }
         })()}
 
         <div className="noti-message-content">
           {(() => {
-            if (data.activity_type === "deposit") {
+            if (data.activity_type === 'deposit') {
               return (
                 <>
                   <div className="title">Deposit Successful</div>
                   <div className="desc text-secondary">
-                    Your payment of{" "}
-                    {currencyFormat(Math.round(data.amount), "USD")} was
+                    Your payment of{' '}
+                    {currencyFormat(Math.round(data.amount), 'USD')} was
                     successfully processed to your wallet! Happy NFT buying.
                   </div>
                   <div className="noti-time">
-                    {dayjs(data.created_at).format("DD MMM YYYY hh:mma")}
+                    {dayjs(data.created_at).format('DD MMM YYYY hh:mma')}
                   </div>
                 </>
-              );
-            } else if (data.activity_type === "bid") {
+              )
+            } else if (data.activity_type === 'bid') {
               return (
                 <>
                   {(() => {
-                    if (data.reason === "bid_lock") {
+                    if (data.reason === 'bid_lock') {
                       return (
                         <>
                           <div className="title">Bid Locked</div>
                           <div className="desc text-secondary">
                             <>
-                              Your bid of{" "}
+                              Your bid of{' '}
                               <b>
-                                {currencyFormat(Math.round(data.amount), "USD")}
-                              </b>{" "}
-                              is locked for{" "}
+                                {currencyFormat(Math.round(data.amount), 'USD')}
+                              </b>{' '}
+                              is locked for{' '}
                               <b>
                                 {data.celebrity_name}
                                 's {data.nft_name}
-                              </b>{" "}
-                              from <b>{data.buyer_name}</b>{" "}
+                              </b>{' '}
+                              from <b>{data.buyer_name}</b>{' '}
                             </>
                           </div>
                           <div className="noti-time">
                             {dayjs(data.created_at).format(
-                              "DD MMM YYYY hh:mma"
+                              'DD MMM YYYY hh:mma',
                             )}
                           </div>
                         </>
-                      );
+                      )
                     } else if (
-                      data.reason === "bid_expired" ||
-                      data.reason === "bid_closed"
+                      data.reason === 'bid_expired' ||
+                      data.reason === 'bid_closed'
                     ) {
                       return (
                         <>
                           <div className="title">Bid Expired</div>
                           <div className="desc text-secondary">
                             <>
-                              Your bid{" "}
+                              Your bid{' '}
                               <b>
-                                {currencyFormat(Math.round(data.amount), "USD")}
-                              </b>{" "}
-                              was expired for{" "}
+                                {currencyFormat(Math.round(data.amount), 'USD')}
+                              </b>{' '}
+                              was expired for{' '}
                               <b>
                                 {data.celebrity_name}
                                 's {data.nft_name}
-                              </b>{" "}
+                              </b>{' '}
                               from <b>{data.buyer_name}</b>
                             </>
                           </div>
                           <div className="noti-time">
                             {dayjs(data.created_at).format(
-                              "DD MMM YYYY hh:mma"
+                              'DD MMM YYYY hh:mma',
                             )}
                           </div>
                         </>
-                      );
-                    } else if (data.reason === "bid_outdated") {
+                      )
+                    } else if (data.reason === 'bid_outdated') {
                       return (
                         <>
                           <div className="title">Bid Outdated</div>
                           <div className="desc text-secondary">
                             <>
-                              Your bid{" "}
+                              Your bid{' '}
                               <b>
-                                {currencyFormat(Math.round(data.amount), "USD")}
-                              </b>{" "}
-                              was outdated for{" "}
+                                {currencyFormat(Math.round(data.amount), 'USD')}
+                              </b>{' '}
+                              was outdated for{' '}
                               <b>
                                 {data.celebrity_name}
                                 's {data.nft_name}
-                              </b>{" "}
+                              </b>{' '}
                               from <b>{data.buyer_name}</b>
                             </>
                           </div>
                           <div className="noti-time">
                             {dayjs(data.created_at).format(
-                              "DD MMM YYYY hh:mma"
+                              'DD MMM YYYY hh:mma',
                             )}
                           </div>
                         </>
-                      );
-                    } else if (data.reason === "bid_cancelled") {
+                      )
+                    } else if (data.reason === 'bid_cancelled') {
                       return (
                         <>
                           <div className="title">Bid Cancelled</div>
                           <div className="desc text-secondary">
                             <>
-                              Your bid{" "}
+                              Your bid{' '}
                               <b>
-                                {currencyFormat(Math.round(data.amount), "USD")}
-                              </b>{" "}
-                              was cancelled for{" "}
+                                {currencyFormat(Math.round(data.amount), 'USD')}
+                              </b>{' '}
+                              was cancelled for{' '}
                               <b>
                                 {data.celebrity_name}
                                 's {data.nft_name}
-                              </b>{" "}
+                              </b>{' '}
                               by <b>{data.seller_name}</b>
                             </>
                           </div>
                           <div className="noti-time">
                             {dayjs(data.created_at).format(
-                              "DD MMM YYYY hh:mma"
+                              'DD MMM YYYY hh:mma',
                             )}
                           </div>
                         </>
-                      );
-                    } else if (data.reason === "bid_success") {
+                      )
+                    } else if (data.reason === 'bid_success') {
                       return (
                         <>
-                          {data.payment_type === "debit" ? (
+                          {data.payment_type === 'debit' ? (
                             <>
                               <div className="title">Bid Successfull</div>
                               <div className="desc text-secondary">
                                 <>
-                                  Your bid{" "}
+                                  Your bid{' '}
                                   <b>
-                                    {" "}
+                                    {' '}
                                     {currencyFormat(
                                       Math.round(data.amount),
-                                      "USD"
+                                      'USD',
                                     )}
-                                  </b>{" "}
-                                  was successful for{" "}
+                                  </b>{' '}
+                                  was successful for{' '}
                                   <b>
-                                    {" "}
+                                    {' '}
                                     {data.celebrity_name}
                                     's {data.nft_name}
-                                  </b>{" "}
+                                  </b>{' '}
                                   from <b>{data.buyer_name}</b>
                                 </>
                               </div>
                               <div className="noti-time">
                                 {dayjs(data.created_at).format(
-                                  "DD MMM YYYY hh:mma"
+                                  'DD MMM YYYY hh:mma',
                                 )}
                               </div>
                             </>
@@ -362,82 +367,82 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                               <div className="title">Bid Successfull</div>
                               <div className="desc text-secondary">
                                 <>
-                                  Your{" "}
+                                  Your{' '}
                                   <b>
                                     {data.celebrity_name}
                                     's {data.nft_name}
-                                  </b>{" "}
-                                  was sold for{" "}
+                                  </b>{' '}
+                                  was sold for{' '}
                                   <b>
                                     {currencyFormat(
                                       Math.round(data.amount),
-                                      "USD"
+                                      'USD',
                                     )}
-                                  </b>{" "}
+                                  </b>{' '}
                                   to <b>{data.buyer_name}</b>
                                 </>
                               </div>
                               <div className="noti-time">
                                 {dayjs(data.created_at).format(
-                                  "DD MMM YYYY hh:mma"
+                                  'DD MMM YYYY hh:mma',
                                 )}
                               </div>
                             </>
                           )}
                         </>
-                      );
-                    } else if (data.reason === "bid_received") {
+                      )
+                    } else if (data.reason === 'bid_received') {
                       return (
                         <>
                           <div className="title">Bid Received</div>
                           <div className="desc text-secondary">
                             <>
-                              You received{" "}
+                              You received{' '}
                               <b>
-                                {" "}
-                                {currencyFormat(Math.round(data.amount), "USD")}
-                              </b>{" "}
-                              bid for{" "}
+                                {' '}
+                                {currencyFormat(Math.round(data.amount), 'USD')}
+                              </b>{' '}
+                              bid for{' '}
                               <b>
                                 {data.celebrity_name}
                                 's {data.nft_name}
-                              </b>{" "}
+                              </b>{' '}
                               from <b>{data.buyer_name}</b>
                             </>
                           </div>
                           <div className="noti-time">
                             {dayjs(data.created_at).format(
-                              "DD MMM YYYY hh:mma"
+                              'DD MMM YYYY hh:mma',
                             )}
                           </div>
                         </>
-                      );
+                      )
                     }
                   })()}
                 </>
-              );
-            } else if (data.activity_type === "buy") {
+              )
+            } else if (data.activity_type === 'buy') {
               return (
                 <>
-                  {data.payment_type === "debit" ? (
+                  {data.payment_type === 'debit' ? (
                     <>
                       <div className="title">You Bought</div>
                       <div className="desc text-secondary">
                         <>
-                          You bought{" "}
+                          You bought{' '}
                           <b>
                             {data.celebrity_name}
-                            's NFT{" "}
+                            's NFT{' '}
                           </b>
-                          from <b>{data.seller_name}</b> for{" "}
+                          from <b>{data.seller_name}</b> for{' '}
                           <b>
-                            {" "}
-                            {currencyFormat(Math.round(data.amount), "USD")}
+                            {' '}
+                            {currencyFormat(Math.round(data.amount), 'USD')}
                           </b>
                         </>
                       </div>
                       <div className="noti-time">
-                        {dayjs(data.created_at).format("DD MMM YYYY hh:mma")}
+                        {dayjs(data.created_at).format('DD MMM YYYY hh:mma')}
                       </div>
                     </>
                   ) : (
@@ -445,72 +450,72 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                       <div className="title">You Sold</div>
                       <div className="desc text-secondary">
                         <>
-                          You sold <b>{data.celebrity_name}'s NFT</b> to{" "}
-                          <b>{data.buyer_name}</b> for{" "}
+                          You sold <b>{data.celebrity_name}'s NFT</b> to{' '}
+                          <b>{data.buyer_name}</b> for{' '}
                           <b>
-                            {" "}
-                            {currencyFormat(Math.round(data.amount), "USD")}
+                            {' '}
+                            {currencyFormat(Math.round(data.amount), 'USD')}
                           </b>
                         </>
                       </div>
                       <div className="noti-time">
-                        {dayjs(data.created_at).format("DD MMM YYYY hh:mma")}
+                        {dayjs(data.created_at).format('DD MMM YYYY hh:mma')}
                       </div>
                     </>
                   )}
                 </>
-              );
-            } else if (data.activity_type === "withdraw") {
+              )
+            } else if (data.activity_type === 'withdraw') {
               return (
                 <>
                   <div className="title">Withdraw</div>
                   <div className="desc text-secondary">
                     <>
                       {(() => {
-                        if (data.reason === "withdraw_requested") {
+                        if (data.reason === 'withdraw_requested') {
                           return (
                             <>
-                              {" "}
-                              You <b>requested a withdraw</b> of{" "}
+                              {' '}
+                              You <b>requested a withdraw</b> of{' '}
                               <b>
-                                {currencyFormat(Math.round(data.amount), "USD")}
-                              </b>{" "}
+                                {currencyFormat(Math.round(data.amount), 'USD')}
+                              </b>{' '}
                             </>
-                          );
-                        } else if (data.reason === "withdraw_cancelled") {
+                          )
+                        } else if (data.reason === 'withdraw_cancelled') {
                           return (
                             <>
-                              You <b>cancelled a withdraw request</b> of{" "}
+                              You <b>cancelled a withdraw request</b> of{' '}
                               <b>
-                                {currencyFormat(Math.round(data.amount), "USD")}
+                                {currencyFormat(Math.round(data.amount), 'USD')}
                               </b>
                             </>
-                          );
-                        } else if (data.reason === "withdraw_success") {
+                          )
+                        } else if (data.reason === 'withdraw_success') {
                           return (
                             <>
-                              You <b>withdraw request</b> of{" "}
+                              You <b>withdraw request</b> of{' '}
                               <b>
-                                {currencyFormat(Math.round(data.amount), "USD")}
-                              </b>{" "}
+                                {currencyFormat(Math.round(data.amount), 'USD')}
+                              </b>{' '}
                               was <b>successful</b>
                             </>
-                          );
+                          )
                         }
                       })()}
                     </>
                   </div>
                   <div className="noti-time">
-                    {dayjs(data.created_at).format("DD MMM YYYY hh:mma")}
+                    {dayjs(data.created_at).format('DD MMM YYYY hh:mma')}
                   </div>
                 </>
-              );
+              )
             }
           })()}
         </div>
       </div>
-    );
-  };
+    )
+  }
 
   return (
     <>
@@ -519,12 +524,12 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
         expand="md"
         variant="dark"
         sticky="top"
-        className="bgImageHeader"
+        className={bgImage ? 'bgImageHeader' : ''}
       >
         <Container fluid>
           <Navbar.Brand
             onClick={() =>
-              window.open(process.env.REACT_APP_WEBSITE_URL, "_self")
+              window.open(process.env.REACT_APP_WEBSITE_URL, '_self')
             }
             role="button"
             className="head-title"
@@ -554,7 +559,7 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                 {/* <Nav.Link id="drop_outer" href="/creator-application">
                   Creator
                 </Nav.Link> */}
-                <Dropdown autoClose={["inside", "outside"]} className="me-0">
+                <Dropdown autoClose={['inside', 'outside']} className="me-0">
                   <Dropdown.Toggle
                     align="start"
                     drop="start"
@@ -589,7 +594,7 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                 <Nav.Link
                   id="drop_outer"
                   role="button"
-                  onClick={() => history.push("/")}
+                  onClick={() => history.push('/')}
                 >
                   <span className="beta-container">
                     <span className="beta-tag">Beta</span>
@@ -607,17 +612,17 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                             onClick={() =>
                               window.open(
                                 process.env.REACT_APP_HELP_URL,
-                                "_blank"
+                                '_blank',
                               )
                             }
                           />
                         </Nav.Link>
                         <Dropdown
-                          autoClose={["inside", "outside"]}
+                          autoClose={['inside', 'outside']}
                           onToggle={(e) => {
                             if (e) {
-                              readNotification();
-                              setNotiRead(false);
+                              readNotification()
+                              setNotiRead(false)
                             }
                           }}
                         >
@@ -629,7 +634,7 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
 
                           <Dropdown.Menu align="end" className="noti-container">
                             <div className="noti-header">
-                              <BiBell size={25} color={"white"} /> Notifications
+                              <BiBell size={25} color={'white'} /> Notifications
                             </div>
                             <div className="noti-content">
                               {/* <div className="sub-header">Today</div> */}
@@ -653,8 +658,8 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                                       className="noti-load-more text-secondary"
                                       role="button"
                                       onClick={() => {
-                                        setNPage(npage + 1);
-                                        handleGetNotification(npage + 1);
+                                        setNPage(npage + 1)
+                                        handleGetNotification(npage + 1)
                                       }}
                                     >
                                       See More
@@ -694,7 +699,7 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                               onClick={() =>
                                 window.open(
                                   `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`,
-                                  "_self"
+                                  '_self',
                                 )
                               }
                             >
@@ -705,7 +710,7 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                               onClick={() =>
                                 window.open(
                                   `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/mynft`,
-                                  "_self"
+                                  '_self',
                                 )
                               }
                             >
@@ -716,7 +721,7 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                               onClick={() =>
                                 window.open(
                                   `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
-                                  "_self"
+                                  '_self',
                                 )
                               }
                             >
@@ -727,7 +732,7 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                               onClick={() =>
                                 window.open(
                                   `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/pre-orders`,
-                                  "_self"
+                                  '_self',
                                 )
                               }
                             >
@@ -738,7 +743,7 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                               onClick={() =>
                                 window.open(
                                   `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/my-orders`,
-                                  "_self"
+                                  '_self',
                                 )
                               }
                             >
@@ -749,7 +754,7 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                               onClick={() =>
                                 window.open(
                                   `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/bid-activity`,
-                                  "_self"
+                                  '_self',
                                 )
                               }
                             >
@@ -771,18 +776,18 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                               onClick={() =>
                                 window.open(
                                   `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/user-activity`,
-                                  "_self"
+                                  '_self',
                                 )
                               }
                             >
                               My Activity
-                            </Dropdown.Item>{" "}
+                            </Dropdown.Item>{' '}
                             <Dropdown.Item
                               as="button"
                               onClick={() =>
                                 window.open(
                                   `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/settings`,
-                                  "_self"
+                                  '_self',
                                 )
                               }
                             >
@@ -794,7 +799,7 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                               onClick={() =>
                                 window.open(
                                   process.env.REACT_APP_HELP_URL,
-                                  "_blank"
+                                  '_blank',
                                 )
                               }
                             >
@@ -823,7 +828,7 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                               Sign Out
                             </Dropdown.Item>
                           </Dropdown.Menu>
-                        </Dropdown>{" "}
+                        </Dropdown>{' '}
                       </>
                     ) : (
                       <>
@@ -832,13 +837,13 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                             href={`${process.env.REACT_APP_ACCOUNTS_URL}/signin?redirect=${window.location.href}`}
                             target="_self"
                           >
-                            {t("signin")}
+                            {t('signin')}
                           </Nav.Link>
                           <Nav.Link
                             href={`${process.env.REACT_APP_ACCOUNTS_URL}/signup`}
                             target="_self"
                           >
-                            {t("signup")}
+                            {t('signup')}
                           </Nav.Link>
                         </>
                       </>
@@ -847,7 +852,7 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                 )}
                 <Nav.Link
                   className="discord_ic"
-                  href={`https://discord.com/invite/beyondlifeclub`}
+                  href={`https://discord.com/invite/JRWmNb38GW`}
                   target="_blank"
                 >
                   <FaDiscord size={25} />
@@ -855,11 +860,11 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                 </Nav.Link>
               </Nav>
               <Dropdown
-                autoClose={["inside", "outside"]}
+                autoClose={['inside', 'outside']}
                 onToggle={(e) => {
                   if (e) {
-                    readNotification();
-                    setNotiRead(false);
+                    readNotification()
+                    setNotiRead(false)
                   }
                 }}
               >
@@ -878,7 +883,7 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                   {/* <Dropdown.Item href="/creator-application">
                     Creator
                   </Dropdown.Item> */}
-                  <Dropdown autoClose={["inside", "outside"]} className="me-0">
+                  <Dropdown autoClose={['inside', 'outside']} className="me-0">
                     <Dropdown.Toggle
                       align="start"
                       drop="start"
@@ -924,8 +929,8 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
         </Container>
       </Navbar>
     </>
-  );
-};
+  )
+}
 
 const UserComponent = ({ sref, user, onClick = () => {} }) => (
   <div className="header-user-details" onClick={onClick} ref={sref}>
@@ -938,7 +943,7 @@ const UserComponent = ({ sref, user, onClick = () => {} }) => (
       {currencyFormat(user?.balance, user?.currency_name)}
     </div>
   </div>
-);
+)
 
 const HeaderMobileMenuIcon = React.forwardRef(({ onClick }, ref) => {
   return (
@@ -947,14 +952,14 @@ const HeaderMobileMenuIcon = React.forwardRef(({ onClick }, ref) => {
       ref={ref}
       role="button"
       onClick={(e) => {
-        e.preventDefault();
-        onClick(e);
+        e.preventDefault()
+        onClick(e)
       }}
     >
-      <CgMenuRight size={25} color={"white"} />
+      <CgMenuRight size={25} color={'white'} />
     </div>
-  );
-});
+  )
+})
 
 const HeaderMobileMenuCloseIcon = React.forwardRef(({ onClick }, ref) => {
   return (
@@ -963,13 +968,13 @@ const HeaderMobileMenuCloseIcon = React.forwardRef(({ onClick }, ref) => {
       ref={ref}
       role="button"
       onClick={(e) => {
-        e.preventDefault();
-        onClick(e);
+        e.preventDefault()
+        onClick(e)
       }}
     >
-      <VscChromeClose size={25} color={"white"} />
+      <VscChromeClose size={25} color={'white'} />
     </div>
-  );
-});
+  )
+})
 
-export default Header;
+export default Header
