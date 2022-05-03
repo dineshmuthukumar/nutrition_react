@@ -6,6 +6,7 @@ import HeroContentImgMobile from "../../images/jump-trade/hero-content-mobile.pn
 import "./style.scss";
 
 const HeroBanner = () => {
+  const { innerWidth } = window;
   return (
     <>
       <section className="hero-banner-sec">
@@ -20,7 +21,7 @@ const HeroBanner = () => {
             <button className="secondary-btn">Fund your wallet</button>
           </div>
           <img
-            src={HeroContentImgWeb}
+            src={innerWidth > 767 ? HeroContentImgWeb : HeroContentImgMobile}
             alt="HeroContentImgWeb"
             className="hero-content-img"
           />

@@ -1,0 +1,35 @@
+@import "../../styles/common";
+section.privacy-section {
+  background: var(--theme-dark-green);
+  padding-top: 8rem;
+
+  padding-bottom: 3rem;
+
+  color: #fff;
+  font-size: 0.7rem;
+  font-family: var(--ck-font-montserrat);
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--impact) !important;
+    letter-spacing: 0.08rem;
+    margin-bottom: 0.5rem;
+  }
+  a {
+    color: var(--ck-theme);
+    text-decoration: none;
+    &:hover {
+      color: #9aeb01;
+    }
+  }
+  .all-para-style {
+    h4 {
+      font-family: $neue-helvetica-extended-bold;
+      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+    }
+  }
+}
