@@ -1242,8 +1242,10 @@ input::-webkit-inner-spin-button {
     border: 0;
     &:hover,
     &:active {
-      color: #000000 !important;
-      background-color: #f6f6f9;
+      // color: #000000 !important;
+      // background-color: #f6f6f9;
+      color: #fff !important;
+      background-color: #2c5154;
     }
   }
 
@@ -1275,8 +1277,11 @@ input::-webkit-inner-spin-button {
       width: 100%;
       padding: 0.5rem 0.8rem;
       border-bottom: 1px solid #dedede;
+      color: #fff;
+      transition: 0.5s;
       &:hover {
         box-shadow: 0px 1px 5px #dedede;
+        transition: 0.5s;
       }
 
       img {

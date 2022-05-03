@@ -101,10 +101,10 @@ button.load_more {
     background: #0d3624;
     border: 1px solid #e1ff04;
 
-    button{
+    button {
       color: #fff;
 
-      &:hover{
+      &:hover {
         background: #fff;
       }
     }
@@ -142,8 +142,8 @@ button.load_more {
   padding: 0.2rem 0.8rem 0.2rem 0.8rem;
   font-size: 0.8rem;
   font-family: $neue-helvetica-medium;
-  border: 1px solid #000;
-  border: 1px solid #2c5154;
+  // border: 1px solid #2c5154;
+  border: 1px solid #e1ff04;
   border-radius: 50rem;
   margin-bottom: 0.2rem;
   cursor: pointer;
@@ -171,8 +171,8 @@ button.load_more {
   padding: 0.2rem 0.8rem 0.2rem 0.8rem;
   font-size: 0.8rem;
   font-family: $neue-helvetica-medium;
-  border: 1px solid #000;
-  border: 1px solid #2c5154;
+  // border: 1px solid #2c5154;
+  border: 1px solid #e1ff04;
   border-radius: 50rem;
   margin-bottom: 0.2rem;
   cursor: pointer;
@@ -291,13 +291,15 @@ button.load_more {
     font-size: 1rem !important;
     font-style: italic;
     font-family: $neue-helvetica-bold;
-    border: none;
-    color:#fff;
+    // border: none;
+    border: 1px solid #e1ff04;
+    color: #fff;
     margin-left: 0;
     outline: none;
     width: 100%;
     padding-right: 2rem;
-    background: #ffffff24 0% 0% no-repeat padding-box;
+    // background: #ffffff24 0% 0% no-repeat padding-box;
+    background: transparent;
     border-radius: 18px;
     opacity: 1;
     backdrop-filter: blur(30px);
