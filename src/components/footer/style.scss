@@ -898,12 +898,19 @@ span.seperator {
   .copyrights{
     font-size: 1.2rem;
     margin-right: 0.5rem;
+    a{
+      cursor: pointer;
+    font-size: 1.2rem;
+      color: #e1ff04;
+      text-decoration:none;
+    }
   }
   .bottom-links{
     color: #fff;
-    a{
+    span{
+      cursor: pointer;
     font-size: 1.2rem;
-      color: #fff;
+      color: #e1ff04;
       text-decoration:none;
     }
   }

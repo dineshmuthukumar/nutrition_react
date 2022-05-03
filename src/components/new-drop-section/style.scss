@@ -15,6 +15,9 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 3rem;
+    @media screen and (max-width: 767px) {
+      flex-direction: column;
+    }
     .drop-timer-box {
       background: #00000099 0% 0% no-repeat padding-box;
       border: 1px solid #fe01554d;
@@ -33,6 +36,12 @@
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
+      color: #fff;
+      @media screen and (max-width: 767px) {
+        position: static;
+        min-width: unset;
+        margin-top: 2rem;
+      }
       h4 {
         color: #fff;
         font-family: $neue-helvetica-extended-bold;
@@ -56,6 +65,32 @@
           }
         }
       }
+
+      .time-block {
+        display: flex;
+        width: 70%;
+        align-items: center;
+        justify-content: space-around;
+        margin: 2rem 0;
+        .time-box {
+          .time-inner-box {
+            display: flex;
+            flex-direction: column;
+            .key {
+              font-size: 2rem;
+              font-family: $neue-helvetica-extended-bold;
+              background: transparent
+                linear-gradient(180deg, #e2ff00 30%, #18e0e0 60%, #e8318d 75%)
+                0% 0% no-repeat padding-box;
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+            }
+            .value {
+              font-size: 0.8rem;
+            }
+          }
+        }
+      }
     }
   }
 
@@ -63,7 +98,7 @@
     background: #f5ff01;
     margin: 2rem 0;
     @media screen and (max-width: 767px) {
-      margin-top: 15rem;
+      margin-top: 2rem;
     }
     .marquee {
       font-family: $Impact;

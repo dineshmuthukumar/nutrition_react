@@ -11,6 +11,9 @@
     align-items: center;
     width: 100%;
     border-bottom: none;
+    border-bottom: none !important;
+font-family: "neue_helvetica_medium" !important;
+font-style: italic;
   }
 }
 
@@ -21,6 +24,25 @@
     0% no-repeat padding-box;
   box-shadow: 0px 3px 6px #00000029;
   color: #fff;
+
+  .carousel-btn-block {
+    display: table;
+    border: 0.1rem solid #fff;
+    margin-left: auto;
+    box-shadow: 0px 0px 1rem #fff;
+    background: #000;
+    button {
+      background: transparent;
+      padding: 0.8rem 0.8rem;
+      border: none;
+      &.disabled {
+        opacity: 0.3;
+      }
+      img {
+        height: 1.5rem;
+      }
+    }
+  }
 }
 
 .carousel {

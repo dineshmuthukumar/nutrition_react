@@ -1,16 +1,16 @@
 import React from "react";
 import Header from "../components/header";
+import FAQComponent from "../components/faq";
 import Footer from "../components/footer";
-import LiveAuctionsList from "../components/live-auction-list";
 
-const LiveAuctionsNFTs = () => {
+const FAQ = () => {
   return (
     <>
       <Header bgImage />
-      <LiveAuctionsList />
+      <FAQComponent />
       <Footer />
     </>
   );
 };
 
-export default LiveAuctionsNFTs;
+export default FAQ;

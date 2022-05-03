@@ -1008,7 +1008,7 @@ const ShowAll = ({ categories }) => {
           <div className="row">
             <div className="col-sm-12">
               <div className="sec-heading d-flex align-items-center mb-2 showall-heading">
-                <span className="me-4 mt-2 text-nowrap">Listed NFTs</span>
+                <span className="me-4 mt-2 text-nowrap">LISTED NFTs</span>
 
                 <div className="filt-flex-search">
                   <input

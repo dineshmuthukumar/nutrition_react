@@ -1,16 +1,16 @@
 import React from "react";
 import Header from "../components/header";
+import TermsAndConditions from "../components/terms-and-conditions";
 import Footer from "../components/footer";
-import LiveAuctionsList from "../components/live-auction-list";
 
-const LiveAuctionsNFTs = () => {
+const Terms = () => {
   return (
     <>
       <Header bgImage />
-      <LiveAuctionsList />
+      <TermsAndConditions />
       <Footer />
     </>
   );
 };
 
-export default LiveAuctionsNFTs;
+export default Terms;

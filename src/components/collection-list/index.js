@@ -1,5 +1,6 @@
 import React from "react";
-import DropImage from "../../images/jump-trade/coupon.png";
+import CollectionOne from "../../images/jump-trade/collection-1.gif";
+import CollectionTwo from "../../images/jump-trade/collection-2.gif";
 import "./style.scss";
 
 const CollectionList = () => {
@@ -16,20 +17,12 @@ const CollectionList = () => {
 
               <article className="collection-list">
                 <div className="collection-box">
-                  <img src={DropImage} className="collection-img" />
+                  <img src={CollectionOne} className="collection-img" />
                   <h4>HYPER RACERS X</h4>
                 </div>
                 <div className="collection-box">
-                  <img src={DropImage} className="collection-img" />
+                  <img src={CollectionTwo} className="collection-img" />
                   <h4>EPIC BRAWL</h4>
-                </div>
-                <div className="collection-box">
-                  <img src={DropImage} className="collection-img" />
-                  <h4>REALM RACERS</h4>
-                </div>
-                <div className="collection-box">
-                  <img src={DropImage} className="collection-img" />
-                  <h4>GL CRICKET</h4>
                 </div>
               </article>
             </div>

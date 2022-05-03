@@ -1,16 +1,16 @@
 import React from "react";
 import Header from "../components/header";
+import PrivacyComponent from "../components/privacy-policy";
 import Footer from "../components/footer";
-import LiveAuctionsList from "../components/live-auction-list";
 
-const LiveAuctionsNFTs = () => {
+const PrivacyPolicy = () => {
   return (
     <>
       <Header bgImage />
-      <LiveAuctionsList />
+      <PrivacyComponent />
       <Footer />
     </>
   );
 };
 
-export default LiveAuctionsNFTs;
+export default PrivacyPolicy;
