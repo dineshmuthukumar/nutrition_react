@@ -104,9 +104,9 @@ const NFTPlayerStats = ({ stats = [], core }) => {
   return (
     <>
       {core?.role === "Batsman" && (
-        <div className="perf-hint text-center">
+        <h5 className="stats-hint">
           Batsman performance against different bowler type
-        </div>
+        </h5>
       )}
       <section className="player-stats">
         {data && (
