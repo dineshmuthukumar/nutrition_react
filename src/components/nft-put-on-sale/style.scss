@@ -732,15 +732,16 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: #f1f1f1;
+  // background: #f1f1f1;
   max-width: 340px;
   padding: 1rem 2rem;
   margin-top: 2rem;
   border-radius: 1rem;
   width: 90%;
+  border: 1px solid #f5ff00;
   .share-icon-block {
     svg {
-      background: #fff;
+      // background: #fff;
       padding: 0.6rem;
       border-radius: 5rem;
       min-height: 3rem;
