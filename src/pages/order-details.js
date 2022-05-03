@@ -423,7 +423,7 @@ const OrderDetails = () => {
 
   return (
     <>
-      <Header />
+      <Header bgImage />
       <AppHelmet title={nft?.name} image={nft?.asset_url} />
       {loader ? (
         <NFTLoader />

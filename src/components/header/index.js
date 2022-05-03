@@ -27,7 +27,12 @@ import notifyBell from "../../images/jump-trade/bell_notify.png";
 
 import "./style.scss";
 
-const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
+const Header = ({
+  hideOptions = false,
+  hideSign = false,
+  started = false,
+  bgImage = false,
+}) => {
   const t = useTranslation();
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
@@ -519,7 +524,7 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
         expand="md"
         variant="dark"
         sticky="top"
-        className="bgImageHeader"
+        className={bgImage ? "bgImageHeader" : ""}
       >
         <Container fluid>
           <Navbar.Brand
