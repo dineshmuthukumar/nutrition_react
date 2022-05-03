@@ -105,9 +105,9 @@ const Home = () => {
         <NewDropSection />
         <CollectionList />
         <LiveAuctions />
-        {favList.length > 0 && (
+        {/* {favList.length > 0 && (
           <FavouriteNFTs list={favList} loading={favLoading} />
-        )}
+        )} */}
         <ShowAll categories={list} query={query} />
       </main>
       <Footer />
