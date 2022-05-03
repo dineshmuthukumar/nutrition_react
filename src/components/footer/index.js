@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import Image from "react-bootstrap/Image";
 import { BiLoaderAlt } from "react-icons/bi";
 import { Button, Form } from "react-bootstrap";
@@ -22,6 +23,8 @@ const Footer = () => {
   const [email, setEmail] = useState();
   const [vEmail, setVEmail] = useState();
   const [loading, setLoading] = useState(false);
+
+  const history = useHistory();
 
   const handleSendNewsLetter = async () => {
     if (validateEmail(email)) {
@@ -225,16 +228,24 @@ const Footer = () => {
       <div className="bottom-bar py-4">
         <div className="bottom-container d-flex justify-content-center align-items-center">
           <div className="copyrights me-3">
-            ©All rights reserved to that of Jump.Trade
+            © Jump.trade |{" "}
+            <a href="https://guardianlink.io/">A GuardianLink Brand</a>, All
+            Rights Reserved.
           </div>
           <div className="bottom-links">
-            <a className="me-3" href="#">
+            <span
+              className="me-3"
+              onClick={() => history.push("/terms-and-conditions")}
+            >
               Terms & Conditions
-            </a>
+            </span>
             <div class="vr"></div>
-            <a className="ms-3" href="#">
+            <span
+              className="ms-3"
+              onClick={() => history.push("/privacy-policy")}
+            >
               Privacy Policy
-            </a>
+            </span>
           </div>
         </div>
       </div>
