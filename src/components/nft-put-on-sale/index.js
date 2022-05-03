@@ -295,33 +295,38 @@ const NFTPutOnSale = ({
       minHeight: "33px",
       fontSize: "1rem",
       fontWeight: "bolder",
-      borderColor: "#000",
+      borderColor: "#fff",
+      borderWidth: "2px",
+      backgroundColor: "#02130a",
       boxShadow: "none",
       "&:hover": {
-        borderColor: "#000",
+        borderColor: "#fff",
       },
       "&:focus": {
         boxShadow: "none",
-        borderColor: "#000",
+        borderColor: "#fff",
       },
       "&:active": {
         boxShadow: "none",
-        borderColor: "#000",
+        borderColor: "#fff",
       },
     }),
     input: (prop) => ({
       ...prop,
       margin: 0,
+      color: "#fff",
       padding: 0,
     }),
     valueContainer: (prop) => ({
       ...prop,
       margin: 0,
+      color: "#fff",
       padding: 0,
     }),
     singleValue: (styles, { data }) => ({
       ...styles,
       margin: 0,
+      color: "#fff",
       padding: 0,
       ...(data.color ? dot(data.color) : {}),
     }),
@@ -330,7 +335,7 @@ const NFTPutOnSale = ({
       ...prop,
       margin: 0,
       padding: "0 3px 0 0",
-      color: "#000",
+      color: "#fff",
     }),
     indicatorsContainer: (prop) => ({
       ...prop,
@@ -356,11 +361,12 @@ const NFTPutOnSale = ({
       ...prop,
       padding: "8px",
       fontSize: "1rem",
-      backgroundColor: isSelected && "#000",
-      fontFamily: "neue_helveticamedium",
+      color: isSelected ? "#222" : "#fff",
+      backgroundColor: isSelected && "#fdf100",
+      fontFamily: "neue_helvetica_medium",
       "&:hover": {
-        backgroundColor: !isSelected && "#ddd",
-        color: !isSelected && "#000",
+        backgroundColor: !isSelected && "#e1ff0452",
+        color: !isSelected && "#fff",
       },
       "&:active": {
         backgroundColor: "#ddd",
@@ -369,6 +375,7 @@ const NFTPutOnSale = ({
     menu: (prop) => ({
       ...prop,
       borderRadius: "3px",
+      backgroundColor: "#0d3626",
     }),
     menuPortal: (base) => ({ ...base, zIndex: 9999, top: base.top - 5 }),
   };
