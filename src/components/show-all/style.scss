@@ -2,7 +2,7 @@
 
 .sec-heading {
   padding: 1rem 0;
-  border-bottom: 0.3rem solid #000;
+  border-bottom: none !important;
   margin-bottom: 3rem;
   font-family: $neue-helvetica-bold;
   font-size: 2rem;
@@ -10,12 +10,16 @@
     display: flex !important;
     justify-content: space-between;
     padding: 0.5rem 0;
+    border-bottom: none !important;
   }
 }
 
 .showall-nft-section {
-  padding: 2rem 0;
+  padding: 5rem 0;
   background-color: #fff;
+  background: transparent linear-gradient(180deg, #073824 0%, #410021 100%) 0%
+    0% no-repeat padding-box;
+  color: #fff;
 }
 
 button.load_more {
@@ -127,17 +131,19 @@ button.load_more {
 }
 .filter-drop-btn {
   padding: 0.2rem 0.8rem 0.2rem 0.8rem;
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-family: $neue-helvetica-medium;
   border: 1px solid #000;
+  border: 1px solid #2c5154;
   border-radius: 50rem;
   margin-bottom: 0.2rem;
   cursor: pointer;
   white-space: nowrap;
-
+  font-style: italic;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  text-transform: uppercase;
   @media screen and (max-width: 767px) {
     padding: 0.2rem 0.3rem 0.2rem 1rem;
   }
@@ -154,9 +160,10 @@ button.load_more {
 
 .filter-drop-sort-btn {
   padding: 0.2rem 0.8rem 0.2rem 0.8rem;
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-family: $neue-helvetica-medium;
   border: 1px solid #000;
+  border: 1px solid #2c5154;
   border-radius: 50rem;
   margin-bottom: 0.2rem;
   cursor: pointer;
@@ -164,6 +171,8 @@ button.load_more {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-style: italic;
+  text-transform: uppercase;
 }
 
 .filter-pill-button {
@@ -174,17 +183,22 @@ button.load_more {
   // display: flex;
   // margin-right: 0.5rem;
   // margin-bottom: 0.5rem;
-  background-color: #020202;
-  border: 1px solid #020202;
   padding: 0 0.5rem 0 1rem;
-  border-radius: 50rem;
   display: flex;
   margin-right: 0.5rem;
   margin-bottom: 0.5rem;
   color: #fff;
   align-items: center;
   justify-content: center;
-  height: 2.5rem;
+  height: 2rem;
+  background: #073824 0% 0% no-repeat padding-box;
+  border: 1px solid #2c5154;
+  border-radius: 50rem;
+  opacity: 1;
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  text-transform: uppercase;
+  font-size: 0.8rem;
 
   .first {
     font-family: $neue-helvetica-medium;
@@ -261,6 +275,21 @@ button.load_more {
     width: 100%;
     max-width: 16rem;
   }
+  .search-box-add {
+    border-radius: 50rem;
+    padding: 0.5rem 1rem;
+    height: 2.5rem;
+    border: none;
+    margin-left: 0;
+    outline: none;
+    width: 100%;
+    padding-right: 2rem;
+    background: #ffffff24 0% 0% no-repeat padding-box;
+    border-radius: 18px;
+    opacity: 1;
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+  }
 }
 .search {
   &-box-add {
@@ -317,4 +346,14 @@ button.load_more {
       }
     }
   }
+}
+
+.showall-filter-blocks {
+  padding: 3rem 0;
+  background: #0000008f 0% 0% no-repeat padding-box;
+  opacity: 1;
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  position: relative;
+  z-index: 5;
 }

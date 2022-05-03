@@ -658,13 +658,13 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
                       </h4>
                       <ul>
                         <li>
-                          <label for="class-1" class="checkbox">
+                          <label for="class-1" className="checkbox">
                             <input
                               id="class-1"
                               name="checkbox-group"
                               type="checkbox"
                             />
-                            <span class="checkbox__mark">
+                            <span className="checkbox__mark">
                               <BiCheck />
                             </span>
 
@@ -675,13 +675,13 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
                           </label>
                         </li>
                         <li>
-                          <label for="class-2" class="checkbox">
+                          <label for="class-2" className="checkbox">
                             <input
                               id="class-2"
                               name="checkbox-group"
                               type="checkbox"
                             />
-                            <span class="checkbox__mark">
+                            <span className="checkbox__mark">
                               <BiCheck />
                             </span>
 
@@ -700,13 +700,13 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
                       </h4>
                       <ul>
                         <li>
-                          <label for="type-1" class="checkbox">
+                          <label for="type-1" className="checkbox">
                             <input
                               id="type-1"
                               name="checkbox-group"
                               type="checkbox"
                             />
-                            <span class="checkbox__mark">
+                            <span className="checkbox__mark">
                               <BiCheck />
                             </span>
 
@@ -717,13 +717,13 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
                           </label>
                         </li>
                         <li>
-                          <label for="type-2" class="checkbox">
+                          <label for="type-2" className="checkbox">
                             <input
                               id="type-2"
                               name="checkbox-group"
                               type="checkbox"
                             />
-                            <span class="checkbox__mark">
+                            <span className="checkbox__mark">
                               <BiCheck />
                             </span>
 
@@ -742,13 +742,13 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
                       </h4>
                       <ul>
                         <li>
-                          <label for="bs-1" class="checkbox">
+                          <label for="bs-1" className="checkbox">
                             <input
                               id="bs-1"
                               name="checkbox-group"
                               type="checkbox"
                             />
-                            <span class="checkbox__mark">
+                            <span className="checkbox__mark">
                               <BiCheck />
                             </span>
 
@@ -759,13 +759,13 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
                           </label>
                         </li>
                         <li>
-                          <label for="bs-2" class="checkbox">
+                          <label for="bs-2" className="checkbox">
                             <input
                               id="bs-2"
                               name="checkbox-group"
                               type="checkbox"
                             />
-                            <span class="checkbox__mark">
+                            <span className="checkbox__mark">
                               <BiCheck />
                             </span>
 
@@ -784,7 +784,7 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
                       </h4>
                       <ul>
                         <li>
-                          <label for="topspeed-1" class="checkbox">
+                          <label for="topspeed-1" className="checkbox">
                             <input
                               id="topspeed-1"
                               name="radio-group"
@@ -796,7 +796,7 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
                           </label>
                         </li>
                         <li>
-                          <label for="topspeed-2" class="checkbox">
+                          <label for="topspeed-2" className="checkbox">
                             <input
                               id="topspeed-2"
                               name="radio-group"
@@ -808,7 +808,7 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
                           </label>
                         </li>
                         <li>
-                          <label for="topspeed-3" class="checkbox">
+                          <label for="topspeed-3" className="checkbox">
                             <input
                               id="topspeed-3"
                               name="radio-group"
@@ -820,7 +820,7 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
                           </label>
                         </li>
                         <li>
-                          <label for="topspeed-4" class="checkbox">
+                          <label for="topspeed-4" className="checkbox">
                             <input
                               id="topspeed-4"
                               name="radio-group"
@@ -832,7 +832,7 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
                           </label>
                         </li>
                         <li>
-                          <label for="topspeed-5" class="checkbox">
+                          <label for="topspeed-5" className="checkbox">
                             <input
                               id="topspeed-5"
                               name="radio-group"

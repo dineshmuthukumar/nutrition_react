@@ -21,6 +21,9 @@ import { user_load_by_token_thunk } from "../redux/thunk/user_thunk";
 import { nftCategoriesApi, userFavedNFTOrders } from "../api/methods";
 import useQuery from "../hook/useQuery";
 import FavouriteNFTs from "../components/favourite-NFTs";
+import HeroBanner from "../components/hero-banner";
+import NewDropSection from "../components/new-drop-section";
+import CollectionList from "../components/collection-list";
 
 const Home = () => {
   const { url } = useRouteMatch();
@@ -92,16 +95,19 @@ const Home = () => {
     <>
       <Header />
       <main>
-        <Banner list={list} />
-        <HotCollections />
+        {/* <Banner list={list} /> */}
+        {/* <HotCollections /> */}
+
+        {/* <RecentlySoldNFT /> */}
+        {/* <TopBuyers /> */}
+        {/* <TopSellers /> */}
+        <HeroBanner />
+        <NewDropSection />
+        <CollectionList />
         <LiveAuctions />
         {favList.length > 0 && (
           <FavouriteNFTs list={favList} loading={favLoading} />
         )}
-
-        {/* <RecentlySoldNFT /> */}
-        <TopBuyers />
-        <TopSellers />
         <ShowAll categories={list} query={query} />
       </main>
       <Footer />
