@@ -388,7 +388,7 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
           {playerCatData && (
             <div className="player-range">
               <span className="band">{playerCatData?.value}</span>
-              <h6>Player</h6>
+              {roleData && roleData?.name !== "BAT" && <h6> Player</h6>}
             </div>
           )}
           {levelData && (
@@ -445,10 +445,10 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
               <div className="video-height">
                 <video
                   id="full-screenVideo"
-                  playsinline
-                  controls
-                  autoplay
                   loop
+                  muted
+                  autoPlay
+                  playsInline
                   oncontextmenu="return false;"
                   controlsList="nodownload"
                 >
