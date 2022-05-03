@@ -551,9 +551,9 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                 {/* <Nav.Link id="drop_outer" href="/">
                   Explore
                 </Nav.Link> */}
-                <Nav.Link id="drop_outer" href="/creator-application">
+                {/* <Nav.Link id="drop_outer" href="/creator-application">
                   Creator
-                </Nav.Link>
+                </Nav.Link> */}
                 <Dropdown autoClose={["inside", "outside"]} className="me-0">
                   <Dropdown.Toggle
                     align="start"
@@ -561,7 +561,7 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                     as={DropToggle}
                   ></Dropdown.Toggle>
 
-                  <Dropdown.Menu align="end">
+                  {/* <Dropdown.Menu align="end">
                     <Dropdown.Item
                       as="button"
                       onClick={() =>
@@ -584,7 +584,7 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                     >
                       Amitabh NFTs
                     </Dropdown.Item>
-                  </Dropdown.Menu>
+                  </Dropdown.Menu> */}
                 </Dropdown>
                 <Nav.Link
                   id="drop_outer"
@@ -875,9 +875,9 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                     as={HeaderMobileMenuCloseIcon}
                   ></Dropdown.Item>
                   {/* <Dropdown.Item href="/">Drops</Dropdown.Item> */}
-                  <Dropdown.Item href="/creator-application">
+                  {/* <Dropdown.Item href="/creator-application">
                     Creator
-                  </Dropdown.Item>
+                  </Dropdown.Item> */}
                   <Dropdown autoClose={["inside", "outside"]} className="me-0">
                     <Dropdown.Toggle
                       align="start"
@@ -885,7 +885,7 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                       as={DropToggle}
                     ></Dropdown.Toggle>
 
-                    <Dropdown.Menu align="end">
+                    {/* <Dropdown.Menu align="end">
                       <Dropdown.Item
                         as="button"
                         onClick={() =>
@@ -908,7 +908,7 @@ const Header = ({ hideOptions = false, hideSign = false, started = false }) => {
                       >
                         Amitabh NFTs
                       </Dropdown.Item>
-                    </Dropdown.Menu>
+                    </Dropdown.Menu> */}
                   </Dropdown>
 
                   <Dropdown.Item href="/">

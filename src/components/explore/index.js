@@ -28,6 +28,7 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
   const [loading, setLoading] = useState(false);
   const [hasNext, setHasNext] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
+  const [toggle, setToggle] = useState(true);
 
   const [popDetails, setPopDetails] = useState({
     show: false,
@@ -89,6 +90,67 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
         checked: false,
       },
     ],
+
+    nftCategory: [
+      {
+        name: "Batsman",
+        value: "Batsman",
+        checked: false,
+      },
+      {
+        name: "Bowler",
+        value: "Bowler",
+        checked: false,
+      },
+      {
+        name: "Bat",
+        value: "Bat",
+        checked: false,
+      },
+    ],
+    nftCollection: [
+      {
+        name: "Rare",
+        value: "RARE",
+        checked: false,
+      },
+      {
+        name: "Rookie",
+        value: "ROOKIE",
+        checked: false,
+      },
+      {
+        name: "Epic",
+        value: "EPIC",
+        checked: false,
+      },
+      {
+        name: "Legend",
+        value: "LEGEND",
+        checked: false,
+      },
+      {
+        name: "Super Rare",
+        value: "SUPER RARE",
+        checked: false,
+      },
+      {
+        name: "Ultra Rare",
+        value: "ULTRA RARE",
+        checked: false,
+      },
+      {
+        name: "Immortal",
+        value: "IMMORTAL",
+        checked: false,
+      },
+    ],
+
+    showSale: true,
+    showNFT: true,
+    showNFTCategory: true,
+    showNFTCollection: true,
+    showNFTRange: true,
   });
 
   useEffect(() => {
@@ -97,6 +159,12 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
     const sort_filters = query.get("sort")
       ? query.get("sort")
       : "recently_listed";
+    const nft_category = query.get("nft-category")
+      ? query.get("nft-category").split(",")
+      : [];
+    const nft_collection = query.get("nft-collection")
+      ? query.get("nft-collection").split(",")
+      : [];
 
     const info = { ...filter };
 
@@ -111,6 +179,14 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
     info.sort = filter.sort.map((obj) => ({
       ...obj,
       checked: sort_filters ? sort_filters === obj.value : false,
+    }));
+    info.nftCategory = filter.nftCategory.map((obj) => ({
+      ...obj,
+      checked: nft_category.includes(obj.value),
+    }));
+    info.nftCollection = filter.nftCollection.map((obj) => ({
+      ...obj,
+      checked: nft_collection.includes(obj.value),
     }));
 
     setFilter(info);
@@ -156,6 +232,12 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
     const sort_filters = query.get("sort")
       ? query.get("sort")
       : "recently_listed";
+    const nft_category = query.get("nft-category")
+      ? query.get("nft-category").split(",")
+      : [];
+    const nft_collection = query.get("nft-collection")
+      ? query.get("nft-collection").split(",")
+      : [];
 
     const search_filter = query.get("search");
 
@@ -164,7 +246,9 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
       nft_filters,
       sale_filters,
       sort_filters,
-      search_filter
+      search_filter,
+      nft_category,
+      nft_collection
     );
   }, [slug, query]);
 
@@ -173,7 +257,9 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
     type,
     saleType,
     sort = "recently_listed",
-    searchText
+    searchText,
+    nft_category,
+    nft_collection
   ) => {
     try {
       page === 1 && setLoading(true);
@@ -187,6 +273,8 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
             type: type,
             sale_type: saleType,
             keyword: searchText,
+            nft_category,
+            nft_collection,
           },
           sort: sort === "relevance" ? null : sort,
         });
@@ -205,7 +293,9 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
     type,
     saleType,
     sort = "recently_listed",
-    searchText
+    searchText,
+    nft_category,
+    nft_collection
   ) => {
     try {
       page === 1 && setLoading(true);
@@ -219,6 +309,8 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
             type: type,
             sale_type: saleType,
             keyword: searchText,
+            nft_category,
+            nft_collection,
           },
           sort: sort === "relevance" ? null : sort,
         });
@@ -242,13 +334,22 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
         ? query.get("sort")
         : "recently_listed";
       const search_filters = query.get("search");
+      const nft_category = query.get("nft-category")
+        ? query.get("nft-category").split(",")
+        : [];
+
+      const nft_collection = query.get("nft-collection")
+        ? query.get("nft-collection").split(",")
+        : [];
 
       showAllNFTs(
         page + 1,
         nft_filters,
         sale_filters,
         sort_filters,
-        search_filters
+        search_filters,
+        nft_category,
+        nft_collection
       );
       setPage(page + 1);
     }
@@ -303,6 +404,13 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
     const search_exist = query.get("search")
       ? query.get("search").replace("#", "%23")
       : "";
+    let nft_category = query.get("nft-category")
+      ? query.get("nft-category").split(",")
+      : [];
+
+    let nft_collection = query.get("nft-collection")
+      ? query.get("nft-collection").split(",")
+      : [];
 
     if (sale_exist.includes(input.value)) {
       sale_exist = sale_exist.filter((obj) => obj !== input.value);
@@ -320,6 +428,18 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
 
     if (nft_exist.length > 0) {
       query_string += query_string ? `&nft=${nft_exist}` : `nft=${nft_exist}`;
+    }
+
+    if (nft_category.length > 0) {
+      query_string += query_string
+        ? `&nft-category=${nft_category}`
+        : `nft-category=${nft_category}`;
+    }
+
+    if (nft_collection.length > 0) {
+      query_string += query_string
+        ? `&nft-collection=${nft_collection}`
+        : `nft-collection=${nft_collection}`;
     }
 
     if (sort_exist) {
@@ -352,6 +472,14 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
       ? query.get("search").replace("#", "%23")
       : "";
 
+    let nft_category = query.get("nft-category")
+      ? query.get("nft-category").split(",")
+      : [];
+
+    let nft_collection = query.get("nft-collection")
+      ? query.get("nft-collection").split(",")
+      : [];
+
     if (nft_exist.includes(input.value)) {
       nft_exist = nft_exist.filter((obj) => obj !== input.value);
     } else {
@@ -368,6 +496,18 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
 
     if (nft_exist.length > 0) {
       query_string += query_string ? `&nft=${nft_exist}` : `nft=${nft_exist}`;
+    }
+
+    if (nft_category.length > 0) {
+      query_string += query_string
+        ? `&nft-category=${nft_category}`
+        : `nft-category=${nft_category}`;
+    }
+
+    if (nft_collection.length > 0) {
+      query_string += query_string
+        ? `&nft-collection=${nft_collection}`
+        : `nft-collection=${nft_collection}`;
     }
 
     if (sort_exist) {
@@ -399,6 +539,13 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
     const search_exist = query.get("search")
       ? query.get("search").replace("#", "%23")
       : "";
+    let nft_category = query.get("nft-category")
+      ? query.get("nft-category").split(",")
+      : [];
+
+    let nft_collection = query.get("nft-collection")
+      ? query.get("nft-collection").split(",")
+      : [];
 
     let query_string = "";
 
@@ -410,6 +557,18 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
 
     if (nft_exist.length > 0) {
       query_string += query_string ? `&nft=${nft_exist}` : `nft=${nft_exist}`;
+    }
+
+    if (nft_category.length > 0) {
+      query_string += query_string
+        ? `&nft-category=${nft_category}`
+        : `nft-category=${nft_category}`;
+    }
+
+    if (nft_collection.length > 0) {
+      query_string += query_string
+        ? `&nft-collection=${nft_collection}`
+        : `nft-collection=${nft_collection}`;
     }
 
     if (sort_exist) {
@@ -439,6 +598,12 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
     const nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
     const sort_exist = query.get("sort");
     const search_exist = search.replace("#", "%23");
+    let nft_category = query.get("nft-category")
+      ? query.get("nft-category").split(",")
+      : [];
+    let nft_collection = query.get("nft-collection")
+      ? query.get("nft-collection").split(",")
+      : [];
 
     let query_string = "";
 
@@ -450,6 +615,18 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
 
     if (nft_exist.length > 0) {
       query_string += query_string ? `&nft=${nft_exist}` : `nft=${nft_exist}`;
+    }
+
+    if (nft_category.length > 0) {
+      query_string += query_string
+        ? `&nft-category=${nft_category}`
+        : `nft-category=${nft_category}`;
+    }
+
+    if (nft_collection.length > 0) {
+      query_string += query_string
+        ? `&nft-collection=${nft_collection}`
+        : `nft-collection=${nft_collection}`;
     }
 
     if (sort_exist) {
@@ -468,6 +645,132 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
       // history.push(
       //   `/explore/category/${slug}/${encodeURIComponent(query_string)}`
       // );
+      history.push(`/explore/category/${slug}/${query_string}`);
+    } else {
+      history.push(`/explore/category/${slug}`);
+    }
+  };
+
+  const handleNFTCategoryCheck = (input) => {
+    const sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
+    let nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
+    const sort_exist = query.get("sort");
+    const search_exist = query.get("search")
+      ? query.get("search").replace("#", "%23")
+      : "";
+    let nft_category = query.get("nft-category")
+      ? query.get("nft-category").split(",")
+      : [];
+    let nft_collection = query.get("nft-collection")
+      ? query.get("nft-collection").split(",")
+      : [];
+
+    if (nft_category.includes(input.value)) {
+      nft_category = nft_category.filter((obj) => obj !== input.value);
+    } else {
+      nft_category.push(input.value);
+    }
+
+    let query_string = "";
+
+    if (sale_exist.length > 0) {
+      query_string += query_string
+        ? `&sale=${sale_exist}`
+        : `sale=${sale_exist}`;
+    }
+
+    if (nft_exist.length > 0) {
+      query_string += query_string ? `&nft=${nft_exist}` : `nft=${nft_exist}`;
+    }
+
+    if (nft_category.length > 0) {
+      query_string += query_string
+        ? `&nft-category=${nft_category}`
+        : `nft-category=${nft_category}`;
+    }
+
+    if (nft_collection.length > 0) {
+      query_string += query_string
+        ? `&nft-collection=${nft_collection}`
+        : `nft-collection=${nft_collection}`;
+    }
+
+    if (sort_exist) {
+      query_string += query_string
+        ? `&sort=${sort_exist}`
+        : `sort=${sort_exist}`;
+    }
+
+    if (search_exist) {
+      query_string += query_string
+        ? `&search=${search_exist}`
+        : `search=${search_exist}`;
+    }
+
+    if (query_string) {
+      history.push(`/explore/category/${slug}/${query_string}`);
+    } else {
+      history.push(`/explore/category/${slug}`);
+    }
+  };
+
+  const handleNFTCollectionCheck = (input) => {
+    const sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
+    let nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
+    const sort_exist = query.get("sort");
+    const search_exist = query.get("search")
+      ? query.get("search").replace("#", "%23")
+      : "";
+    let nft_category = query.get("nft-category")
+      ? query.get("nft-category").split(",")
+      : [];
+    let nft_collection = query.get("nft-collection")
+      ? query.get("nft-collection").split(",")
+      : [];
+
+    if (nft_collection.includes(input.value)) {
+      nft_collection = nft_collection.filter((obj) => obj !== input.value);
+    } else {
+      nft_collection.push(input.value);
+    }
+
+    let query_string = "";
+
+    if (sale_exist.length > 0) {
+      query_string += query_string
+        ? `&sale=${sale_exist}`
+        : `sale=${sale_exist}`;
+    }
+
+    if (nft_exist.length > 0) {
+      query_string += query_string ? `&nft=${nft_exist}` : `nft=${nft_exist}`;
+    }
+
+    if (nft_category.length > 0) {
+      query_string += query_string
+        ? `&nft-category=${nft_category}`
+        : `nft-category=${nft_category}`;
+    }
+
+    if (nft_collection.length > 0) {
+      query_string += query_string
+        ? `&nft-collection=${nft_collection}`
+        : `nft-collection=${nft_collection}`;
+    }
+
+    if (sort_exist) {
+      query_string += query_string
+        ? `&sort=${sort_exist}`
+        : `sort=${sort_exist}`;
+    }
+
+    if (search_exist) {
+      query_string += query_string
+        ? `&search=${search_exist}`
+        : `search=${search_exist}`;
+    }
+
+    if (query_string) {
       history.push(`/explore/category/${slug}/${query_string}`);
     } else {
       history.push(`/explore/category/${slug}`);
@@ -508,7 +811,7 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
                   </span>
                   <span className="d-flex justify-content-between mt-2 w-100 filter-blocks">
                     <div className="d-flex flex-wrap filter-box">
-                      <Dropdown>
+                      {/* <Dropdown>
                         <Dropdown.Toggle
                           align="start"
                           drop="start"
@@ -555,7 +858,7 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
                             </Dropdown.Item>
                           ))}
                         </Dropdown.Menu>
-                      </Dropdown>
+                      </Dropdown> */}
                     </div>
                     <div className="filt-flex-box">
                       <Dropdown>
@@ -603,7 +906,7 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
                   </div>
                 </div>
 
-                <div className="mt-4 mb-4 d-flex flex-wrap">
+                {/* <div className="mt-4 mb-4 d-flex flex-wrap">
                   {filter.sale
                     .filter((xx) => xx.checked === true)
                     .map((obj, i) => (
@@ -639,213 +942,202 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
                         </div>
                       </div>
                     ))}
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
           <div className="container-fluid">
             <div className="row">
               <div className="col-sm-12">
+                <button onClick={() => setToggle(!toggle)}>Toggle</button>
+
                 <section className="explorer-nft-group">
-                  <aside className="filter-block">
-                    <div className="heading-box">
-                      <h4>Filters</h4>
-                      <span className="clear-btn">Clear all</span>
-                    </div>
-                    <div className="filter-list-items">
-                      <h4 className="header">
-                        Class <IoIosArrowDown />
-                      </h4>
-                      <ul>
-                        <li>
-                          <label for="class-1" className="checkbox">
-                            <input
-                              id="class-1"
-                              name="checkbox-group"
-                              type="checkbox"
-                            />
-                            <span className="checkbox__mark">
-                              <BiCheck />
-                            </span>
+                  {toggle && (
+                    <aside className="filter-block">
+                      <div className="heading-box">
+                        <h4>Filters</h4>
+                        <span
+                          className={`clear-btn ${
+                            match.params.search ? "" : "disabled"
+                          }`}
+                          onClick={() =>
+                            history.push(`/explore/category/${slug}`)
+                          }
+                        >
+                          Clear all
+                        </span>
+                      </div>
+                      <div className="filter-list-items">
+                        <h4 className="header">
+                          Role{" "}
+                          <IoIosArrowDown
+                            role={"button"}
+                            onClick={() =>
+                              setFilter({
+                                ...filter,
+                                showNFTCategory: !filter.showNFTCategory,
+                              })
+                            }
+                          />
+                        </h4>
+                        {filter.showNFTCategory && (
+                          <ul>
+                            {filter.nftCategory.map((obj, i) => (
+                              <li key={`nft-category-${i}`}>
+                                <label
+                                  htmlFor={`${obj.name}`}
+                                  className="checkbox"
+                                >
+                                  <input
+                                    id={`${obj.name}`}
+                                    name="checkbox-group"
+                                    type="checkbox"
+                                    checked={obj.checked}
+                                    onChange={() => handleNFTCategoryCheck(obj)}
+                                  />
+                                  <span className="checkbox__mark">
+                                    <BiCheck />
+                                  </span>
 
-                            <span className="checkbox__info">
-                              <span className="title">Hatchback</span>
-                              <span className="count">898765434</span>
-                            </span>
-                          </label>
-                        </li>
-                        <li>
-                          <label for="class-2" className="checkbox">
-                            <input
-                              id="class-2"
-                              name="checkbox-group"
-                              type="checkbox"
-                            />
-                            <span className="checkbox__mark">
-                              <BiCheck />
-                            </span>
+                                  <span className="checkbox__info">
+                                    <span className="title">{obj.name}</span>
+                                  </span>
+                                </label>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
 
-                            <span className="checkbox__info">
-                              <span className="title">Sedan</span>
-                              <span className="count">5434</span>
-                            </span>
-                          </label>
-                        </li>
-                      </ul>
-                    </div>
+                      <div className="filter-list-items">
+                        <h4 className="header">
+                          Category{" "}
+                          <IoIosArrowDown
+                            role={"button"}
+                            onClick={() =>
+                              setFilter({
+                                ...filter,
+                                showNFTCollection: !filter.showNFTCollection,
+                              })
+                            }
+                          />
+                        </h4>
+                        {filter.showNFTCollection && (
+                          <ul>
+                            {filter.nftCollection.map((obj, i) => (
+                              <li key={`collection-${i}`}>
+                                <label
+                                  htmlFor={`${obj.name}`}
+                                  className="checkbox"
+                                >
+                                  <input
+                                    id={`${obj.name}`}
+                                    name="checkbox-group"
+                                    type="checkbox"
+                                    checked={obj.checked}
+                                    onChange={() =>
+                                      handleNFTCollectionCheck(obj)
+                                    }
+                                  />
+                                  <span className="checkbox__mark">
+                                    <BiCheck />
+                                  </span>
 
-                    <div className="filter-list-items">
-                      <h4 className="header">
-                        TYPE <IoIosArrowDown />
-                      </h4>
-                      <ul>
-                        <li>
-                          <label for="type-1" className="checkbox">
-                            <input
-                              id="type-1"
-                              name="checkbox-group"
-                              type="checkbox"
-                            />
-                            <span className="checkbox__mark">
-                              <BiCheck />
-                            </span>
+                                  <span className="checkbox__info">
+                                    <span className="title">{obj.name}</span>
+                                  </span>
+                                </label>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
 
-                            <span className="checkbox__info">
-                              <span className="title">Brushed</span>
-                              <span className="count">20394</span>
-                            </span>
-                          </label>
-                        </li>
-                        <li>
-                          <label for="type-2" className="checkbox">
-                            <input
-                              id="type-2"
-                              name="checkbox-group"
-                              type="checkbox"
-                            />
-                            <span className="checkbox__mark">
-                              <BiCheck />
-                            </span>
+                      <div className="filter-list-items">
+                        <h4 className="header">
+                          Sale Type{" "}
+                          <IoIosArrowDown
+                            role={"button"}
+                            onClick={() =>
+                              setFilter({
+                                ...filter,
+                                showSale: !filter.showSale,
+                              })
+                            }
+                          />
+                        </h4>
+                        {filter.showSale && (
+                          <ul>
+                            {filter.sale.map((obj, i) => (
+                              <li key={`sale-type-${i}`}>
+                                <label
+                                  htmlFor={`${obj.name}`}
+                                  className="checkbox"
+                                >
+                                  <input
+                                    id={`${obj.name}`}
+                                    name="checkbox-group"
+                                    type="checkbox"
+                                    checked={obj.checked}
+                                    onChange={() => handleSaleCheck(obj)}
+                                  />
+                                  <span className="checkbox__mark">
+                                    <BiCheck />
+                                  </span>
 
-                            <span className="checkbox__info">
-                              <span className="title">Reaper</span>
-                              <span className="count">434</span>
-                            </span>
-                          </label>
-                        </li>
-                      </ul>
-                    </div>
+                                  <span className="checkbox__info">
+                                    <span className="title">{obj.name}</span>
+                                  </span>
+                                </label>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
 
-                    <div className="filter-list-items">
-                      <h4 className="header">
-                        BODY SURFACE <IoIosArrowDown />
-                      </h4>
-                      <ul>
-                        <li>
-                          <label for="bs-1" className="checkbox">
-                            <input
-                              id="bs-1"
-                              name="checkbox-group"
-                              type="checkbox"
-                            />
-                            <span className="checkbox__mark">
-                              <BiCheck />
-                            </span>
+                      <div className="filter-list-items">
+                        <h4 className="header">
+                          NFT Type{" "}
+                          <IoIosArrowDown
+                            role={"button"}
+                            onClick={() =>
+                              setFilter({
+                                ...filter,
+                                showNFT: !filter.showNFT,
+                              })
+                            }
+                          />
+                        </h4>
+                        {filter.showNFT && (
+                          <ul>
+                            {filter.nft.map((obj, i) => (
+                              <li key={`nft-type-${i}`}>
+                                <label
+                                  htmlFor={`${obj.name}`}
+                                  className="checkbox"
+                                >
+                                  <input
+                                    id={`${obj.name}`}
+                                    name="checkbox-group"
+                                    type="checkbox"
+                                    checked={obj.checked}
+                                    onChange={() => handleNFTCheck(obj)}
+                                  />
+                                  <span className="checkbox__mark">
+                                    <BiCheck />
+                                  </span>
 
-                            <span className="checkbox__info">
-                              <span className="title">Matte</span>
-                              <span className="count">34</span>
-                            </span>
-                          </label>
-                        </li>
-                        <li>
-                          <label for="bs-2" className="checkbox">
-                            <input
-                              id="bs-2"
-                              name="checkbox-group"
-                              type="checkbox"
-                            />
-                            <span className="checkbox__mark">
-                              <BiCheck />
-                            </span>
-
-                            <span className="checkbox__info">
-                              <span className="title">Glossy</span>
-                              <span className="count">534</span>
-                            </span>
-                          </label>
-                        </li>
-                      </ul>
-                    </div>
-
-                    <div className="filter-list-items">
-                      <h4 className="header">
-                        TOP Speed <IoIosArrowDown />
-                      </h4>
-                      <ul>
-                        <li>
-                          <label for="topspeed-1" className="checkbox">
-                            <input
-                              id="topspeed-1"
-                              name="radio-group"
-                              type="radio"
-                            />
-                            <span className="checkbox__info text-checked">
-                              <span className="title">Under 50</span>
-                            </span>
-                          </label>
-                        </li>
-                        <li>
-                          <label for="topspeed-2" className="checkbox">
-                            <input
-                              id="topspeed-2"
-                              name="radio-group"
-                              type="radio"
-                            />
-                            <span className="checkbox__info text-checked">
-                              <span className="title">51 - 65</span>
-                            </span>
-                          </label>
-                        </li>
-                        <li>
-                          <label for="topspeed-3" className="checkbox">
-                            <input
-                              id="topspeed-3"
-                              name="radio-group"
-                              type="radio"
-                            />
-                            <span className="checkbox__info text-checked">
-                              <span className="title">66 - 80</span>
-                            </span>
-                          </label>
-                        </li>
-                        <li>
-                          <label for="topspeed-4" className="checkbox">
-                            <input
-                              id="topspeed-4"
-                              name="radio-group"
-                              type="radio"
-                            />
-                            <span className="checkbox__info text-checked">
-                              <span className="title">81 - 90</span>
-                            </span>
-                          </label>
-                        </li>
-                        <li>
-                          <label for="topspeed-5" className="checkbox">
-                            <input
-                              id="topspeed-5"
-                              name="radio-group"
-                              type="radio"
-                            />
-                            <span className="checkbox__info text-checked">
-                              <span className="title">Over 90</span>
-                            </span>
-                          </label>
-                        </li>
-                      </ul>
-                    </div>
-                  </aside>
+                                  <span className="checkbox__info">
+                                    <span className="title">{obj.name}</span>
+                                  </span>
+                                </label>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    </aside>
+                  )}
                   <article className="nft-list">
                     {!loading ? (
                       <div className="row">

@@ -103,44 +103,147 @@ const NFTCard = ({
     }
   };
 
-  // useEffect(() => {
-  //   if (nft?.asset_type?.includes("image")) {
-  //     getBgColor(nft?.asset_url);
-  //   } else if (nft?.cover_url) {
-  //     getBgColor(nft?.cover_url);
-  //   } else {
-  //     getBgColor(nft?.asset_url);
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
+  const level = [
+    {
+      type: "1",
+      name: "LVL 1",
+      value: lvl001,
+    },
+    {
+      type: "2",
+      name: "LVL 2",
+      value: lvl002,
+    },
+    {
+      type: "3",
+      name: "LVL 3",
+      value: lvl003,
+    },
+    {
+      type: "4",
+      name: "LVL 4",
+      value: lvl004,
+    },
+    {
+      type: "5",
+      name: "LVL 5",
+      value: lvl005,
+    },
+    {
+      type: "6",
+      name: "LVL 6",
+      value: lvl006,
+    },
+    {
+      type: "7",
+      name: "LVL 7",
+      value: lvl007,
+    },
+    {
+      type: "8",
+      name: "LVL 8",
+      value: lvl008,
+    },
+    {
+      type: "9",
+      name: "LVL 9",
+      value: lvl009,
+    },
+    {
+      type: "10",
+      name: "LVL 10",
+      value: lvl0010,
+    },
+    {
+      type: "11",
+      name: "LVL 11",
+      value: lvl0011,
+    },
+    {
+      type: "12",
+      name: "LVL 12",
+      value: lvl0012,
+    },
+    {
+      type: "13",
+      name: "LVL 13",
+      value: lvl0013,
+    },
+    {
+      type: "14",
+      name: "LVL 14",
+      value: lvl0014,
+    },
+    {
+      type: "15",
+      name: "LVL 15",
+      value: lvl0015,
+    },
+  ];
 
-  // const getBgColor = async (input) => {
-  //   if (input) {
-  //     const image = nft.asset_type.includes("image")
-  //       ? nft.asset_url
-  //       : nft.cover_url
-  //       ? nft.cover_url
-  //       : nft.asset_url;
-  //     const color = await prominent(image, { amount: 1 });
-  //     if (nft.asset_type.includes("image")) {
-  //       setBgColor(`rgb(${color[0]},${color[1]},${color[2]},0.3)`);
-  //     } else {
-  //       setBgColor(`#020001`);
-  //     }
-  //   } else {
-  //     setBgColor(`rgb(0,0,0,0.1)`);
-  //   }
-  // };
+  const role = [
+    {
+      type: "Batsman",
+      name: "BATSMAN",
+      value: batsmanIcon,
+    },
+    {
+      type: "Bowler",
+      name: "BOWLER",
+      value: bowlerIcon,
+    },
+    {
+      type: "Bat",
+      name: "BAT",
+      value: batsmanIcon,
+    },
+  ];
 
-  // const handleClick = () => {
-  //   if (nft?.is_on_sale) {
-  //     history.push(`/order/details/${nft?.slug}/${nft?.order_details?.slug}`);
-  //   } else if (recentSold) {
-  //     history.push(`/order/details/${nft?.slug}/${nft?.order_slug}`);
-  //   } else {
-  //     history.push(`/details/${nft?.slug}`);
-  //   }
-  // };
+  const playerCategory = [
+    {
+      type: "ROOKIE",
+      value: "RO",
+      color: "#3b56ff",
+    },
+    {
+      type: "RARE",
+      value: "RA",
+      color: "#f58220",
+    },
+    {
+      type: "EPIC",
+      value: "EP",
+      color: "#9e6cef",
+    },
+    {
+      type: "LEGEND",
+      value: "LG",
+      color: "linear-gradient(202deg, #e2ff00, #18e0e0, #e8318d)",
+    },
+    {
+      type: "SUPER RARE",
+      value: "SR",
+      color: "#803cef",
+    },
+    {
+      type: "ULTRA RARE",
+      value: "UR",
+      color: "#803cef",
+    },
+    {
+      type: "IMMORTAL",
+      value: "IM",
+      color: "#803cef",
+    },
+  ];
+
+  const levelData = level.find(
+    (obj) => obj.type === nft?.core_statistics?.level
+  );
+  const roleData = role.find((obj) => obj.type === nft?.core_statistics?.role);
+  const playerCatData = playerCategory.find(
+    (obj) => obj.type === nft?.core_statistics?.category
+  );
 
   return (
     <Link
@@ -232,18 +335,36 @@ const NFTCard = ({
     >
       <span className="nft-type-badge">{nft.nft_type.toUpperCase()}</span>
       <article className={`player_stats `}>
-        <div className="player-type">
-          <img src={batsmanIcon} />
-        </div>
+        {roleData && (
+          <div className="player-type">
+            <img src={roleData?.value} />
+          </div>
+        )}
 
-        <div className="player-range">
-          <span className="band">RO</span>
-        </div>
+        {playerCatData && (
+          <div
+            className="player-range"
+            style={{
+              borderBottom: levelData ? "0.1rem solid #fff" : "none",
+            }}
+          >
+            <span
+              className="band"
+              style={{
+                background: playerCatData?.color ? playerCatData?.color : "",
+              }}
+            >
+              {playerCatData?.value}
+            </span>
+          </div>
+        )}
 
-        <div className="player-level">
-          <h6>LVL 2</h6>
-          <img src={lvl002} />
-        </div>
+        {levelData && (
+          <div className="player-level">
+            <h6>{levelData?.name}</h6>
+            <img src={levelData?.value} />
+          </div>
+        )}
       </article>
 
       <img
