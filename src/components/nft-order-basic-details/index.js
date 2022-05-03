@@ -518,7 +518,7 @@ const NFTOrderBaseDetails = ({
           </>
         )}
 
-        <div className="text-center flex-btn">
+        <div className="text-center flex-btn full-width">
           <NFTPlaceBid
             nft={nft}
             orderDetails={orderDetails}
