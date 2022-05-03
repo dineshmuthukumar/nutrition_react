@@ -53,6 +53,7 @@ const NewDropSection = () => {
                 <div className="drop-timer-box">
                   <h4>Chelsea Drop</h4>
                   <TimeCounter time={drop_time} />
+
                   <div className="btn-block">
                     <a href="javascript:void(0);">
                       JOIN THE WAITLIST <BsArrowRight />
