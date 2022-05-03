@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
-import Image from 'react-bootstrap/Image'
-import { BiLoaderAlt } from 'react-icons/bi'
-import { Button, Form } from 'react-bootstrap'
-import { HiOutlineArrowRight } from 'react-icons/hi'
+import React, { useState } from "react";
+import Image from "react-bootstrap/Image";
+import { BiLoaderAlt } from "react-icons/bi";
+import { Button, Form } from "react-bootstrap";
+import { HiOutlineArrowRight } from "react-icons/hi";
 import {
   FaTelegramPlane,
   FaDiscord,
@@ -11,55 +11,55 @@ import {
   FaFacebookF,
   FaTwitter,
   FaYoutube,
-} from 'react-icons/fa'
-import './style.scss'
-import { validateEmail } from '../../utils/common'
-import { sendEmailNewletter } from '../../api/axios-newsletter'
-import guardianLinkLogo from '../../images/guardianlink.svg'
-import jumpTradeLogo from '../../images/jump-trade-logo.svg'
+} from "react-icons/fa";
+import "./style.scss";
+import { validateEmail } from "../../utils/common";
+import { sendEmailNewletter } from "../../api/axios-newsletter";
+import guardianLinkLogo from "../../images/guardianlink.svg";
+import jumpTradeLogo from "../../images/jump-trade-logo.svg";
 
 const Footer = () => {
-  const [email, setEmail] = useState()
-  const [vEmail, setVEmail] = useState()
-  const [loading, setLoading] = useState(false)
+  const [email, setEmail] = useState();
+  const [vEmail, setVEmail] = useState();
+  const [loading, setLoading] = useState(false);
 
   const handleSendNewsLetter = async () => {
     if (validateEmail(email)) {
-      setVEmail(null)
+      setVEmail(null);
 
       try {
-        setLoading(true)
-        console.log('object', 'sfsfsf')
+        setLoading(true);
+        console.log("object", "sfsfsf");
 
-        const formData = new FormData()
-        formData.append('Nemail', email)
+        const formData = new FormData();
+        formData.append("Nemail", email);
 
-        const result = await sendEmailNewletter(formData)
+        const result = await sendEmailNewletter(formData);
 
         if (result.data.status) {
           setVEmail(
-            'We will buzz you when the NFT Drop is ready to launch. Thank you for being a part of BeyondLife.club #beyondLife.club #nft',
-          )
+            "We will buzz you when the NFT Drop is ready to launch. Thank you for being a part of BeyondLife.club #beyondLife.club #nft"
+          );
         } else {
           setVEmail(
-            'We got it again!, We are excited to have you as part of our NFT club. Details have been noted already. So, worry not! We will return to you once we are all set with the NFT drops. See you soon!',
-          )
+            "We got it again!, We are excited to have you as part of our NFT club. Details have been noted already. So, worry not! We will return to you once we are all set with the NFT drops. See you soon!"
+          );
         }
 
-        setEmail('')
-        setLoading(false)
+        setEmail("");
+        setLoading(false);
       } catch (error) {
-        setLoading(false)
+        setLoading(false);
 
         console.log(
-          '🚀 ~ file: index.js ~ line 46 ~ handleSendNewsLetter ~ error',
-          error,
-        )
+          "🚀 ~ file: index.js ~ line 46 ~ handleSendNewsLetter ~ error",
+          error
+        );
       }
     } else {
-      setVEmail('Please provide a valid email')
+      setVEmail("Please provide a valid email");
     }
-  }
+  };
   return (
     <>
       <div id="footer">
@@ -97,9 +97,9 @@ const Footer = () => {
             <Form
               id="nft_form"
               onSubmit={(e) => {
-                e.preventDefault()
-                handleSendNewsLetter()
-                return false
+                e.preventDefault();
+                handleSendNewsLetter();
+                return false;
               }}
             >
               <Form.Label>Get the latest NFT updates</Form.Label>
@@ -221,35 +221,25 @@ const Footer = () => {
             
           </div> */}
         </div>
-        {/* <div id="fmenu2">
-          <div className="submenu">
-            <div className="copyright">
-              ©All rights reserved. Rhiti Entertainment Pte. Ltd. Singapore &
-              <a target="_self" href="https://www.beyondlife.club">
-                BeyondLife LLC.
-              </a>
-              <span>
-                <a href="https://www.beyondlife.club/terms.php">
-                  Terms & Conditions
-                </a>
-                <span className="seperator">|</span>
-              </span>
-              <span>
-                <a href="https://www.beyondlife.club/privacy-policy.php">
-                  Privacy Policy
-                </a>
-              </span>
-            </div>
+      </div>
+      <div className="bottom-bar py-4">
+        <div className="bottom-container d-flex justify-content-center align-items-center">
+          <div className="copyrights me-3">
+            ©All rights reserved to that of Jump.Trade
           </div>
-          <div className="submenu">
-            <a target="_self" href="https://www.guardianlink.io">
-              <Image src={guardianLinkLogo} alt="alt" />
+          <div className="bottom-links">
+            <a className="me-3" href="#">
+              Terms & Conditions
+            </a>
+            <div class="vr"></div>
+            <a className="ms-3" href="#">
+              Privacy Policy
             </a>
           </div>
-        </div> */}
+        </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
