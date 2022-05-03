@@ -95,10 +95,19 @@ button.load_more {
   .dropdown-menu {
     max-height: 320px;
     overflow-y: auto;
-
     position: absolute !important;
     inset: 0px auto auto 0px !important;
     transform: translate3d(0px, 24px, 0px) !important;
+    background: #0d3624;
+    border: 1px solid #e1ff04;
+
+    button{
+      color: #fff;
+
+      &:hover{
+        background: #fff;
+      }
+    }
 
     .category-search-block {
       position: relative;
@@ -279,7 +288,11 @@ button.load_more {
     border-radius: 50rem;
     padding: 0.5rem 1rem;
     height: 2.5rem;
+    font-size: 1rem !important;
+    font-style: italic;
+    font-family: $neue-helvetica-bold;
     border: none;
+    color:#fff;
     margin-left: 0;
     outline: none;
     width: 100%;
