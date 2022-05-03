@@ -462,4 +462,11 @@
     margin: 0 !important;
     margin: 0 1%;
   }
+  &.full-width {
+    button {
+      width: 98%;
+      margin: 0 !important;
+      margin: 0 1%;
+    }
+  }
 }

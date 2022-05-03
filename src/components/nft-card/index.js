@@ -505,7 +505,8 @@ const NFTCard = ({
                     {!isAuctionStarted && !isAuctionEnded && (
                       <div className="time-counter-box">
                         <span className="time-counter-card">
-                          <img src={startin} alt="startin" />
+                          {/* <img src={startin} alt="startin" /> */}
+                          <span className="time-title">Starts</span>
                           <NFTCounter
                             time={nft?.auction_start_time}
                             cTime={nft?.time}
@@ -516,17 +517,18 @@ const NFTCard = ({
                             handleNFTEndEvent={handleNFTEndEvent}
                           />
                           {/* &nbsp;&nbsp;<span class="fire-icon">🔥</span> */}
-                          &nbsp;&nbsp;
+                          {/* &nbsp;&nbsp;
                           <span class="fire-icon">
                             <AiFillFire />
-                          </span>
+                          </span> */}
                         </span>
                       </div>
                     )}
                     {!isAuctionEnded && isAuctionStarted && (
                       <div className="time-counter-box">
                         <span className="time-counter-card">
-                          <img src={endsin} alt="endsin" />
+                          {/* <img src={endsin} alt="endsin" /> */}
+                          <span className="time-title">Ends</span>
                           <NFTCounter
                             time={nft?.auction_end_time}
                             cTime={nft?.time}
@@ -536,10 +538,10 @@ const NFTCard = ({
                             handleEndEvent={handleAuctionEndTimer}
                             handleNFTEndEvent={handleNFTEndEvent}
                           />
-                          &nbsp;&nbsp;
+                          {/* &nbsp;&nbsp;
                           <span class="fire-icon">
                             <AiFillFire />
-                          </span>
+                          </span> */}
                         </span>
                       </div>
                     )}
@@ -624,7 +626,8 @@ const NFTCard = ({
                     {!isAuctionStarted && !isAuctionEnded && (
                       <div className="time-counter-box">
                         <span className="time-counter-card">
-                          <img src={startin} alt="startin" />
+                          {/* <img src={startin} alt="startin" /> */}
+                          <span className="time-title">Starts</span>
                           <NFTCounter
                             time={nft?.auction_start_time}
                             cTime={nft?.time}
@@ -635,17 +638,18 @@ const NFTCard = ({
                             handleNFTEndEvent={handleNFTEndEvent}
                           />
                           {/* &nbsp;&nbsp;<span class="fire-icon">🔥</span> */}
-                          &nbsp;&nbsp;
+                          {/* &nbsp;&nbsp;
                           <span class="fire-icon">
                             <AiFillFire />
-                          </span>
+                          </span> */}
                         </span>
                       </div>
                     )}
                     {!isAuctionEnded && isAuctionStarted && (
                       <div className="time-counter-box">
                         <span className="time-counter-card">
-                          <img src={endsin} alt="endsin" />
+                          {/* <img src={endsin} alt="endsin" /> */}
+                          <span className="time-title">Ends</span>
                           <NFTCounter
                             time={nft?.auction_end_time}
                             cTime={nft?.time}
@@ -655,10 +659,10 @@ const NFTCard = ({
                             handleEndEvent={handleAuctionEndTimer}
                             handleNFTEndEvent={handleNFTEndEvent}
                           />
-                          &nbsp;&nbsp;
+                          {/* &nbsp;&nbsp;
                           <span class="fire-icon">
                             <AiFillFire />
-                          </span>
+                          </span> */}
                         </span>
                       </div>
                     )}
