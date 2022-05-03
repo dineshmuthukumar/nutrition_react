@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import NFTCard from "../nft-card";
+import OwlCarousel from "react-owl-carousel";
 import { toast } from "react-toastify";
 import ContentLoader from "react-content-loader";
-import { VscChevronLeft } from "react-icons/vsc";
-import { VscChevronRight } from "react-icons/vsc";
-import cardImage from "../../images/drops/nft_2.png";
 import { liveAuctionNFTsApi } from "../../api/methods";
-import NFTMore from "../nft-more/index";
+import CollectionCard from "../nft-more/nft-card";
+
 import { useHistory } from "react-router-dom";
+
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
 
 import "./style.scss";
 
@@ -56,7 +57,51 @@ const LiveAuctions = () => {
               {!loading ? (
                 <div className="row">
                   {list.length > 0 ? (
-                    <NFTMore nftList={list} hideTitle />
+                    <OwlCarousel
+                      className="owl-theme"
+                      margin={20}
+                      nav
+                      smartSpeed={500}
+                      dots={false}
+                      navContainerClass={"carousel-btn-block"}
+                      // navText={[
+                      //   `<span class="icon-right-arrow left"><img src=${arrowRight} /></span>`,
+                      //   `<span class="icon-right-arrow right"><img src=${arrowRight} /></span>`,
+                      // ]}
+                      navText={[
+                        `<span class="icon-right-arrow left">Prev</span>`,
+                        `<span class="icon-right-arrow right">Next</span>`,
+                      ]}
+                      responsive={{
+                        0: {
+                          items: 1,
+                        },
+                        768: {
+                          items: 2,
+                        },
+                        800: {
+                          items: 3,
+                        },
+                        1024: {
+                          items: 4,
+                        },
+                        1200: {
+                          items: 4,
+                        },
+                        1541: {
+                          items: 4,
+                        },
+                      }}
+                    >
+                      {list.map((nft, i) => (
+                        <CollectionCard
+                          key={`live-auction-${i}`}
+                          nft={nft}
+                          recentSold={false}
+                          favouriteNFT={false}
+                        />
+                      ))}
+                    </OwlCarousel>
                   ) : (
                     <div className="col-12 text-center">
                       <h3 className="my-3">
@@ -64,14 +109,6 @@ const LiveAuctions = () => {
                       </h3>
                     </div>
                   )}
-
-                  {/* {list.length > 0
-                    ? list.map((nft, i) => (
-                        <div className="col-xl-3 col-lg-3 col-sm-6">
-                          <NFTCard nft={nft} key={i} image={cardImage} />
-                        </div>
-                      ))
-                    : "No Records Found!"} */}
                 </div>
               ) : (
                 <NFTCardLoader />
