@@ -569,6 +569,16 @@ button.nft_form {
               padding: 0 !important;
               line-height: 1.5;
               font-family: $neue-helvetica-extended-bold;
+              @media screen and (max-width: 767px) {
+                background: none;
+                justify-content: end;
+                align-items: center;
+              }
+              svg{
+                @media screen and (max-width: 767px) {
+                  margin-right: 0.5rem;
+                }
+              }
             }
             &:last-child {
               a {
@@ -598,7 +608,13 @@ button.nft_form {
         ul {
           justify-self: flex-end;
           justify-content: flex-end;
+          @media screen and (max-width: 767px) {
+            width: 100%;
+          }
           li {
+            @media screen and (max-width: 767px) {
+              margin-right: 0.5rem;
+            }
             a {
               background: transparent
                 linear-gradient(180deg, #e2ff00 0%, #18e0e0 47%, #e8318d 100%)
@@ -619,6 +635,11 @@ button.nft_form {
                 z-index: 1;
                 fill: #fff;
                 padding: 0.2rem;
+              }
+              @media screen and (max-width: 767px) {
+                display: flex;
+    padding: 0.3rem;
+    margin-right: 0.5rem;
               }
             }
           }
@@ -871,7 +892,31 @@ span.seperator {
     font-size: 2.5em;
   }
 }
-
+.bottom-bar {
+  background: transparent linear-gradient(180deg, #000000 0%, #073824 100%) 0% 0% no-repeat padding-box;
+  color: #fff;
+  .copyrights{
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+  }
+  .bottom-links{
+    color: #fff;
+    a{
+    font-size: 1.2rem;
+      color: #fff;
+      text-decoration:none;
+    }
+  }
+  @media screen and (max-width: 620px) {
+.bottom-container{
+  display: block !important;
+  text-align: center;
+}
+.bottom-links{
+  margin-top: 1rem;
+}
+  }
+}
 @media screen and (max-width: 991px) {
   h2.drop-title__heading,
   .drop-title p,

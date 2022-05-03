@@ -119,7 +119,7 @@ const NFTOrderBaseDetails = ({
           </span>
         </li>
       </ul> */}
-      <div className="creator mt-3">
+      <div className="creator mt-3 mb-3">
         <span
           className="link"
           onClick={() => {
@@ -177,7 +177,7 @@ const NFTOrderBaseDetails = ({
         )}
       </div>
       <div className="nft-title-container">
-        <div className="nft-title">{nft.name}</div>
+        <div className="nft-title mb-2">{nft.name}</div>
       </div>
       <p className="text-secondary mt-1 mb-5 nft-desc">
         {nft.description && (

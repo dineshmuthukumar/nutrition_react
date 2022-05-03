@@ -1180,7 +1180,6 @@ input::-webkit-inner-spin-button {
       display: none;
     }
   }
-
 }
 
 .navbar-nav {
@@ -1591,6 +1590,10 @@ nav.navbar.navbar-expand-md.navbar-dark.bg-dark {
     flex-direction: column;
     justify-content: space-between;
   }
+  .value-diff-range {
+    font-size: 0.6em;
+    padding: 0 1rem;
+  }
 }
 
 .help-details {
@@ -1829,6 +1832,22 @@ section.detail-page-content {
     section.nft-img-block {
       display: flex;
       justify-content: space-between;
+      @media screen and (max-width: 520px) {
+        display: block;
+        .media_audio {
+          min-height: auto;
+          width: 100%;
+        }
+        .media-lsf.purple_color {
+          display: flex;
+          justify-content: flex-end;
+          justify-content: flex-end;
+          margin: 1rem auto;
+          .svg_size {
+            margin-left: 0.5rem;
+          }
+        }
+      }
     }
 
     .creator {
@@ -2140,6 +2159,9 @@ section.detail-page-content {
         padding-top: 0.6rem;
         padding-bottom: 0.6rem;
         font-size: 1.2rem;
+        @media screen and (max-width: 520px) {
+          margin: 1rem auto 0 !important;
+        }
       }
     }
 
@@ -2178,6 +2200,12 @@ section.detail-page-content {
       .value {
         font-size: 1.6rem;
         font-family: $neue-helvetica-bold;
+      }
+      @media screen and (max-width: 520px) {
+        margin: 1rem 0;
+        .value {
+          font-size: 1.25rem;
+        }
       }
     }
   }
@@ -2614,6 +2642,12 @@ section.player-stats {
       }
     }
   }
+}
+
+.stats-hint {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  font-family: $neue-helvetica-extended;
 }
 
 .pop-body-container.offcanvas-body,
