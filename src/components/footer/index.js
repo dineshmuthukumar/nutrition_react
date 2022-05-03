@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import Image from "react-bootstrap/Image";
-import { BiLoaderAlt } from "react-icons/bi";
-import { Button, Form } from "react-bootstrap";
-import { HiOutlineArrowRight } from "react-icons/hi";
+import React, { useState } from 'react'
+import Image from 'react-bootstrap/Image'
+import { BiLoaderAlt } from 'react-icons/bi'
+import { Button, Form } from 'react-bootstrap'
+import { HiOutlineArrowRight } from 'react-icons/hi'
 import {
   FaTelegramPlane,
   FaDiscord,
@@ -11,54 +11,55 @@ import {
   FaFacebookF,
   FaTwitter,
   FaYoutube,
-} from "react-icons/fa";
-import "./style.scss";
-import { validateEmail } from "../../utils/common";
-import { sendEmailNewletter } from "../../api/axios-newsletter";
-import guardianLinkLogo from "../../images/guardianlink.svg";
-import jumpTradeLogo from "../../images/jump-trade-logo.svg";
+} from 'react-icons/fa'
+import './style.scss'
+import { validateEmail } from '../../utils/common'
+import { sendEmailNewletter } from '../../api/axios-newsletter'
+import guardianLinkLogo from '../../images/guardianlink.svg'
+import jumpTradeLogo from '../../images/jump-trade-logo.svg'
 
 const Footer = () => {
-  const [email, setEmail] = useState();
-  const [vEmail, setVEmail] = useState();
-  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState()
+  const [vEmail, setVEmail] = useState()
+  const [loading, setLoading] = useState(false)
 
   const handleSendNewsLetter = async () => {
     if (validateEmail(email)) {
-      setVEmail(null);
+      setVEmail(null)
 
       try {
-        setLoading(true);
+        setLoading(true)
+        console.log('object', 'sfsfsf')
 
-        const formData = new FormData();
-        formData.append("Nemail", email);
+        const formData = new FormData()
+        formData.append('Nemail', email)
 
-        const result = await sendEmailNewletter(formData);
+        const result = await sendEmailNewletter(formData)
 
         if (result.data.status) {
           setVEmail(
-            "We will buzz you when the NFT Drop is ready to launch. Thank you for being a part of BeyondLife.club #beyondLife.club #nft"
-          );
+            'We will buzz you when the NFT Drop is ready to launch. Thank you for being a part of BeyondLife.club #beyondLife.club #nft',
+          )
         } else {
           setVEmail(
-            "We got it again!, We are excited to have you as part of our NFT club. Details have been noted already. So, worry not! We will return to you once we are all set with the NFT drops. See you soon!"
-          );
+            'We got it again!, We are excited to have you as part of our NFT club. Details have been noted already. So, worry not! We will return to you once we are all set with the NFT drops. See you soon!',
+          )
         }
 
-        setEmail("");
-        setLoading(false);
+        setEmail('')
+        setLoading(false)
       } catch (error) {
-        setLoading(false);
+        setLoading(false)
 
         console.log(
-          "🚀 ~ file: index.js ~ line 46 ~ handleSendNewsLetter ~ error",
-          error
-        );
+          '🚀 ~ file: index.js ~ line 46 ~ handleSendNewsLetter ~ error',
+          error,
+        )
       }
     } else {
-      setVEmail("Please provide a valid email");
+      setVEmail('Please provide a valid email')
     }
-  };
+  }
   return (
     <>
       <div id="footer">
@@ -96,9 +97,9 @@ const Footer = () => {
             <Form
               id="nft_form"
               onSubmit={(e) => {
-                e.preventDefault();
-                handleSendNewsLetter();
-                return false;
+                e.preventDefault()
+                handleSendNewsLetter()
+                return false
               }}
             >
               <Form.Label>Get the latest NFT updates</Form.Label>
@@ -134,7 +135,11 @@ const Footer = () => {
               <h4>BEGIN A CONVERSATION</h4>
               <ul className="linkList">
                 <li>
-                  <a href="javascript:void(0);">
+                  <a
+                    href="https://discord.com/invite/JRWmNb38GW"
+                    target="_blank"
+                    rel="nofollow"
+                  >
                     <FaDiscord /> @Discord
                   </a>
                 </li>
@@ -148,14 +153,14 @@ const Footer = () => {
               <ul className="social-icon-two">
                 <li>
                   <a
-                    href="https://discord.com/invite/beyondlifeclub"
+                    href="https://discord.com/invite/JRWmNb38GW"
                     target="_blank"
                     rel="nofollow"
                   >
                     <FaDiscord />
                   </a>
                 </li>
-                <li>
+                {/* <li>
                   <a
                     target="_blank"
                     rel="nofollow"
@@ -163,17 +168,17 @@ const Footer = () => {
                   >
                     <FaTelegramPlane />
                   </a>
-                </li>
+                </li> */}
                 <li>
                   <a
                     target="_blank"
                     rel="nofollow"
-                    href="https://twitter.com/beyondlifeclub"
+                    href="https://twitter.com/Jumptradenft"
                   >
                     <FaTwitter />
                   </a>
                 </li>
-                <li>
+                {/* <li>
                   <a
                     target="_blank"
                     rel="nofollow"
@@ -181,17 +186,17 @@ const Footer = () => {
                   >
                     <FaFacebookF />
                   </a>
-                </li>
+                </li> */}
                 <li>
                   <a
                     target="_blank"
                     rel="nofollow"
-                    href="https://www.instagram.com/beyondlife.clubofficial"
+                    href="https://www.instagram.com/jumptradenft/"
                   >
                     <FaInstagram />
                   </a>
                 </li>
-                <li>
+                {/* <li>
                   <a
                     target="_blank"
                     rel="nofollow"
@@ -199,8 +204,8 @@ const Footer = () => {
                   >
                     <FaMediumM />
                   </a>
-                </li>
-                <li>
+                </li> */}
+                {/* <li>
                   <a
                     target="_blank"
                     rel="nofollow"
@@ -208,7 +213,7 @@ const Footer = () => {
                   >
                     <FaYoutube />
                   </a>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>
@@ -244,7 +249,7 @@ const Footer = () => {
         </div> */}
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer
