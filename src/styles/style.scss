@@ -161,8 +161,6 @@ label {
   border: 1px solid #ced4da;
   border-radius: 3px;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-
-  
 }
 
 // input {
@@ -1199,15 +1197,15 @@ input::-webkit-inner-spin-button {
   padding: 0.5rem;
   margin-top: 0.6rem !important;
   background: #0d3624;
-    border: 1px solid #e1ff04;
+  border: 1px solid #e1ff04;
 
-    button{
-      color: #fff;
+  button {
+    color: #fff;
 
-      &:hover{
-        background: #fff;
-      }
+    &:hover {
+      background: #fff;
     }
+  }
 
   .dropdown-item {
     font-size: 1rem;
@@ -2216,7 +2214,7 @@ section.detail-page-content {
         content: "";
         position: absolute;
         left: 0;
-        top: .5rem;
+        top: 0.5rem;
         height: 2.5rem;
         width: 2.5rem;
         background: linear-gradient(120deg, #e2ff00, #18e0e0, #e8318d);
@@ -2648,7 +2646,7 @@ section.player-stats {
     .pop-buy-progress {
       .progress-complete {
         background: #fdf100;
-        padding: 0.3rem;
+        padding: 0.2rem;
       }
     }
     .pop-body-content {
@@ -2899,7 +2897,7 @@ section.player-stats {
     .pop-sale-progress {
       .progress-complete {
         background: #fdf100;
-        padding: 0.3rem;
+        padding: 0.2rem;
       }
     }
     .pop-sale-body-content {
@@ -3150,7 +3148,7 @@ section.player-stats {
     .pop-buy-progress {
       .progress-complete {
         background: #fdf100;
-        padding: 0.3rem;
+        padding: 0.2rem;
       }
     }
     .pop-body-buy-content {
