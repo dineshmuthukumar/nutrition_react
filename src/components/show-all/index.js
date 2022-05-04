@@ -1008,24 +1008,32 @@ const ShowAll = ({ categories }) => {
           <div className="row">
             <div className="col-sm-12">
               <div className="sec-heading d-flex align-items-center mb-2 showall-heading">
-                <span className="me-4 mt-2 text-nowrap">LISTED NFTs</span>
+                <span className="me-2 mt-2 text-nowrap">LISTED NFTs</span>
 
                 <div className="filt-flex-search">
-                  <input
-                    type="text"
-                    className="search-box-add"
-                    value={search}
-                    placeholder="Search here"
-                    onKeyPress={handleKeyPressEvent}
-                    onChange={(e) => setSearch(e.target.value)}
-                  />{" "}
-                  <span
-                    role="button"
-                    className="search-button"
-                    onClick={handleTextSearch}
-                  >
-                    <BiSearch size={15} />
-                  </span>
+                  <div className="position-relative me-4">
+                    <input
+                      type="text"
+                      className="search-box-add"
+                      value={search}
+                      placeholder="Search here"
+                      onKeyPress={handleKeyPressEvent}
+                      onChange={(e) => setSearch(e.target.value)}
+                    />{" "}
+                    <span
+                      role="button"
+                      className="search-button"
+                      onClick={handleTextSearch}
+                    >
+                      <BiSearch size={15} />
+                    </span>
+                  </div>
+                  <div className="vr"></div>
+                  <div className="ms-2 explore-all-text">
+                    <span onClick={() => history.push("/explore-all")}>
+                      Explore All
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
