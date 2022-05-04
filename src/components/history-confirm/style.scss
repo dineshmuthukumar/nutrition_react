@@ -2,7 +2,9 @@
 
 .bid-history-confirm {
   position: relative;
-  background: transparent linear-gradient(53deg, #3820ff 0%, #ff7545 47%, #faf971 100%) 0% 0% no-repeat padding-box;
+  background: transparent
+    linear-gradient(53deg, #3820ff 0%, #ff7545 47%, #faf971 100%) 0% 0%
+    no-repeat padding-box;
   padding: 2rem;
   display: flex;
   justify-content: flex-start;
@@ -158,6 +160,7 @@
     align-items: center;
     width: 100%;
     color: #fff;
+    z-index: 1;
     .thumbUp-icon {
       font-size: 3rem;
       margin-bottom: 2rem;
