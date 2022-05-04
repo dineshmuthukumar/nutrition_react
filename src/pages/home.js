@@ -98,13 +98,14 @@ const Home = () => {
         {/* <Banner list={list} /> */}
         {/* <HotCollections /> */}
 
-        {/* <RecentlySoldNFT /> */}
         {/* <TopBuyers /> */}
         {/* <TopSellers /> */}
         <HeroBanner />
         {/* <NewDropSection /> */}
         <CollectionList />
         <LiveAuctions />
+        <RecentlySoldNFT />
+
         {/* {favList.length > 0 && (
           <FavouriteNFTs list={favList} loading={favLoading} />
         )} */}
