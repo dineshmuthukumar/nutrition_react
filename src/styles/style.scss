@@ -1132,7 +1132,8 @@ input::-webkit-inner-spin-button {
 
   &:hover {
     outline: 0;
-    background: #ffffff4f;
+    // background: #ffffff4f;
+    background: #000000;
 
     .user-name {
       color: #ffffff;
@@ -1569,7 +1570,8 @@ input::-webkit-inner-spin-button {
 
 nav.navbar.navbar-expand-md.navbar-dark.bg-dark {
   z-index: 999;
-  background-color: transparent !important;
+  // background-color: transparent !important;
+  background-color: #00000052 !important;
 }
 @keyframes blinker {
   50% {
