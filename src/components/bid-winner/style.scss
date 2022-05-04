@@ -23,6 +23,10 @@
   @media screen and (max-width: 1440px) {
     min-height: calc(100vh) !important;
   }
+  .winner-user-details {
+    position: relative;
+    z-index: 9;
+  }
 
   // .winner-text {
   //   position: absolute;
@@ -59,6 +63,7 @@
     margin-top: 2.5rem;
     display: flex;
     width: 80%;
+    position: relative;
 
     .sold-for {
       flex: 1;
@@ -91,6 +96,7 @@
     margin-top: 2.5rem;
     display: flex;
     width: 80%;
+    position: relative;
 
     .lastbid-left {
       flex: 1;
