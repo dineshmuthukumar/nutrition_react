@@ -556,7 +556,7 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
         </Modal>
       </div>
       <div
-        className={`media-lsf ${
+        className={`media-lsf flex-xs ${
           playerCatData?.color ? playerCatData?.color : "gold_color"
         }`}
       >
