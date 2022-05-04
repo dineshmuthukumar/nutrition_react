@@ -147,7 +147,9 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="javascript:void(0);">support@guardianlink.io</a>
+                  <a href="mailto:support@guardianlink.io" className="">
+                    support@guardianlink.io
+                  </a>
                 </li>
               </ul>
             </div>
