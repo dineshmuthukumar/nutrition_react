@@ -33,7 +33,7 @@ const UserDetails = () => {
   return (
     <>
       <Header bgImage />
-      <main>
+      <main className="user-profile-bg">
         <UserBanner userDetail={userDetail} />
         <UserDetailsBlock userDetail={userDetail} />
       </main>

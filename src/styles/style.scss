@@ -457,6 +457,9 @@ input::-webkit-inner-spin-button {
   opacity: 0.8;
 }
 
+.modal-backdrop {
+  background-color: #0000009c !important;
+}
 // @media (min-width: 1440px) {
 //   html {
 //     font-size: 16px;
@@ -1132,7 +1135,8 @@ input::-webkit-inner-spin-button {
 
   &:hover {
     outline: 0;
-    background: #ffffff4f;
+    // background: #ffffff4f;
+    background: #000000;
 
     .user-name {
       color: #ffffff;
@@ -1567,9 +1571,9 @@ input::-webkit-inner-spin-button {
   overflow: hidden;
 }
 
-nav.navbar.navbar-expand-md.navbar-dark.bg-dark {
+nav.navbar.navbar-expand-md.navbar-dark.bg-dark.transparent {
   z-index: 999;
-  background-color: transparent !important;
+  background: linear-gradient(0deg, #fff0, black 80%) !important;
 }
 @keyframes blinker {
   50% {
@@ -3401,4 +3405,10 @@ section.player-stats {
       }
     }
   }
+}
+
+main.user-profile-bg {
+  background: transparent linear-gradient(180deg, #073824 0%, #24242e 100%) 0%
+    0% no-repeat padding-box;
+  color: #fff;
 }

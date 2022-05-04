@@ -102,7 +102,7 @@ const Home = () => {
         {/* <TopBuyers /> */}
         {/* <TopSellers /> */}
         <HeroBanner />
-        <NewDropSection />
+        {/* <NewDropSection /> */}
         <CollectionList />
         <LiveAuctions />
         {/* {favList.length > 0 && (

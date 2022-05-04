@@ -524,7 +524,7 @@ const Header = ({
         expand="md"
         variant="dark"
         sticky="top"
-        className={bgImage ? "bgImageHeader" : ""}
+        className={bgImage ? "bgImageHeader" : "transparent"}
       >
         <Container fluid>
           <Navbar.Brand
