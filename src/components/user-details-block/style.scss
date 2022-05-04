@@ -44,12 +44,14 @@
       color: #9c9c9b !important;
       font-family: $neue-helvetica-light;
       user-select: none;
-      color: #000 !important;
+      color: #fff !important;
       border-bottom: 0.2rem solid transparent;
+      font-style: italic;
+      text-transform: uppercase;
       cursor: pointer;
       &.active {
         font-family: $neue-helvetica-bold;
-        border-bottom: 0.2rem solid #000;
+        border-bottom: 0.2rem solid #fff;
       }
     }
   }

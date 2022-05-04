@@ -18,11 +18,15 @@ const CollectionList = () => {
               <article className="collection-list">
                 <div className="collection-box">
                   <img src={CollectionOne} className="collection-img" />
-                  <h4>HYPER RACERS X</h4>
+                  <h4 style={{ textShadow: "3px 3px #093824" }}>
+                    Meta Cricket League Players
+                  </h4>
                 </div>
                 <div className="collection-box">
                   <img src={CollectionTwo} className="collection-img" />
-                  <h4>EPIC BRAWL</h4>
+                  <h4 style={{ textShadow: "3px 3px #093824" }}>
+                    Meta Cricket League Signed Bat
+                  </h4>
                 </div>
               </article>
             </div>

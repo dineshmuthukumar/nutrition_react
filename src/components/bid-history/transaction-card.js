@@ -49,10 +49,14 @@ const TransactionCard = ({ nft, history, isEnd = false }) => {
                 >
                   {history.seller_name}
                 </span>
-                &nbsp;for&nbsp;
-                <span className="transaction-value">
-                  {currencyFormat(history.total_amount, "USD")}
-                </span>
+                {parseInt(history?.total_amount) > 0 && (
+                  <>
+                    &nbsp;for&nbsp;
+                    <span className="transaction-value">
+                      {currencyFormat(history.total_amount, "USD")}
+                    </span>
+                  </>
+                )}
               </div>
             </div>
           </div>

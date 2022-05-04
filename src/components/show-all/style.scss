@@ -12,15 +12,14 @@
     padding: 0.5rem 0;
     border-bottom: none !important;
     border-bottom: none !important;
-font-family: "neue_helvetica_medium" !important;
-font-style: italic;
-
+    font-family: "neue_helvetica_medium" !important;
+    font-style: italic;
   }
   @media screen and (max-width: 480px) {
     flex-wrap: wrap;
-    }
-    .filt-flex-search {
-      justify-content: space-between;
+  }
+  .filt-flex-search {
+    justify-content: space-between;
   }
 }
 
@@ -280,10 +279,22 @@ button.load_more {
   font-size: 1.5rem;
   font-style: normal !important;
   cursor: pointer;
-  @media screen and (max-width: 991px) {
-      .explore-all-text {
-    font-size: 1rem;
+  span {
+    font-size: 1.2rem;
+    background: transparent;
+    color: #fff;
+    padding: 0.5rem 0.2rem;
+    border-radius: 50rem;
+    text-decoration: none;
+    outline: 0;
+    border: 0.2rem solid transparent;
+    cursor: pointer;
+    font-style: italic;
   }
+  @media screen and (max-width: 991px) {
+    .explore-all-text {
+      font-size: 1rem;
+    }
   }
 }
 .filt-flex-search {
@@ -293,7 +304,7 @@ button.load_more {
   position: relative;
   margin-left: 0.5rem;
   width: 100%;
-  max-width: 30rem;
+  max-width: 25rem !important;
   @media screen and (max-width: 991px) {
     display: flex;
     align-items: center;
@@ -301,7 +312,7 @@ button.load_more {
     position: relative;
     margin-left: 0.5rem;
     width: 100%;
-    max-width: 30rem;
+    max-width: 25rem;
   }
 
   .search-box-add {
@@ -335,7 +346,7 @@ button.load_more {
     margin-left: 0;
     outline: none;
     width: 100%;
-    padding-right: 2rem;
+    padding-right: 2.5rem;
     &::placeholder {
       color: #8f8f8f;
       font-size: 1rem;
@@ -351,12 +362,12 @@ button.load_more {
     align-items: center;
     justify-content: center;
     position: absolute;
-    right: 0;
-    // top: 0;
+    right: 0.2rem !important;
+    top: initial !important;
     bottom: 0;
     svg {
-      height: 1.5rem;
-      width: 1.5rem;
+      height: 1.5rem !important;
+      width: 1.5rem !important;
     }
   }
 }
