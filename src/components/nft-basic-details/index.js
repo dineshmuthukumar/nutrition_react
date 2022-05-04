@@ -68,7 +68,7 @@ const NFTBaseDetails = ({
 
   return (
     <>
-      <div className="creator mt-3">
+      <div className="creator mt-3 mb-3">
         <span
           className="link"
           onClick={() => {
