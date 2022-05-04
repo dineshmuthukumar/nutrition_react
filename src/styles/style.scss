@@ -1569,7 +1569,7 @@ input::-webkit-inner-spin-button {
 
 nav.navbar.navbar-expand-md.navbar-dark.bg-dark {
   z-index: 999;
-  background-color: transparent !important;
+  background: linear-gradient(0deg, #fff0, black 80%) !important;
 }
 @keyframes blinker {
   50% {
