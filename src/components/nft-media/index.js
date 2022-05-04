@@ -637,8 +637,8 @@ const CustomPopover = ({ icon, placement, text }) => {
 
 const SharePopover = ({ icon, placement, title, listedShare = false }) => {
   const url = window.location.href;
-  var hashtags = "beyondlife.club,NFT,popularNFT,rareNFT,NFTMarketplace";
-  const via = "beyondlife.club";
+  var hashtags = "jump.trade,NFT,popularNFT,rareNFT,NFTMarketplace";
+  const via = "jump.trade";
 
   const detectWhatsapp = (uri) => {
     const onIE = () => {
@@ -713,7 +713,7 @@ const SharePopover = ({ icon, placement, title, listedShare = false }) => {
                     onClick={() =>
                       window.open(
                         `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${encodeURIComponent(
-                          `Hey!! Check out this awesome NFT I've listed for sale! You can buy it on BeyondLife.club marketplace featuring NFT collections of Amitabh Bachchan and Stan Lee's Chakra the Invincible!`
+                          `Hey!! Check out this awesome NFT I've listed for sale! You can buy it on Jump.trad marketplace featuring NFT collections of Amitabh Bachchan and Stan Lee's Chakra the Invincible!`
                         )}`
                       )
                     }
@@ -726,7 +726,7 @@ const SharePopover = ({ icon, placement, title, listedShare = false }) => {
                     onClick={() =>
                       window.open(
                         `https://twitter.com/intent/tweet?url=${url}&text=${encodeURIComponent(
-                          `Hey y'all! Here is the #NFT I've listed for sale on @beyondlifeclub marketplace powered by @Guardian_NFT! Check it out if you wanna buy this NFT and more NFTs? Sign up and gear up! #NFTCollection`
+                          `Hey y'all! Here is the #NFT I've listed for sale on @Jumptradenft marketplace powered by @Guardian_NFT! Check it out if you wanna buy this NFT and more NFTs? Sign up and gear up! #NFTCollection`
                         )}`
                       )
                     }
@@ -739,7 +739,7 @@ const SharePopover = ({ icon, placement, title, listedShare = false }) => {
                     onClick={() =>
                       window.open(
                         `https://telegram.me/share/?url=${url}&title=${encodeURIComponent(
-                          `Hey!! Check out this awesome NFT I've listed for sale! You can buy it on BeyondLife.club marketplace featuring NFT collections of Amitabh Bachchan and Stan Lee's Chakra the Invincible!`
+                          `Hey!! Check out this awesome NFT I've listed for sale! You can buy it on Jump.trade marketplace featuring NFT collections of Amitabh Bachchan and Stan Lee's Chakra the Invincible!`
                         )}`
                       )
                     }
@@ -752,7 +752,7 @@ const SharePopover = ({ icon, placement, title, listedShare = false }) => {
                     onClick={() => {
                       detectWhatsapp(
                         `whatsapp://send?text=Hey ! I found an awesome NFT here%0a%0a${encodeURIComponent(
-                          `Hey!! Check out this awesome NFT I've listed for sale! You can buy it on BeyondLife.club marketplace featuring NFT collections of Amitabh Bachchan and Stan Lee's Chakra the Invincible!`
+                          `Hey!! Check out this awesome NFT I've listed for sale! You can buy it on Jump.trade marketplace featuring NFT collections of Amitabh Bachchan and Stan Lee's Chakra the Invincible!`
                         )}%0a%0aCheck it out in below link%0a%0a${url}`
                       ).then((hasWhatsapp) => {
                         if (!hasWhatsapp) {
