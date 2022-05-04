@@ -1,7 +1,10 @@
 @import "../../styles/common";
 
 .bid-history-confirm {
-  background-color: #000;
+  position: relative;
+  background: transparent
+    linear-gradient(53deg, #3820ff 0%, #ff7545 47%, #faf971 100%) 0% 0%
+    no-repeat padding-box;
   padding: 2rem;
   display: flex;
   justify-content: flex-start;
@@ -10,6 +13,17 @@
   overflow: hidden;
   border-radius: 8px;
   flex-direction: column;
+  &:before {
+    background-color: #000;
+    content: "";
+    position: absolute;
+    top: 0.1rem;
+    left: 0.15rem;
+    right: 0.15rem;
+    bottom: 0.1rem;
+    z-index: 0;
+    border-radius: 0.5rem;
+  }
   .bh-user {
     &-image {
       height: 7rem;
@@ -146,6 +160,7 @@
     align-items: center;
     width: 100%;
     color: #fff;
+    z-index: 1;
     .thumbUp-icon {
       font-size: 3rem;
       margin-bottom: 2rem;

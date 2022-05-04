@@ -12,8 +12,8 @@
     width: 100%;
     border-bottom: none;
     border-bottom: none !important;
-font-family: "neue_helvetica_medium" !important;
-font-style: italic;
+    font-family: "neue_helvetica_medium" !important;
+    font-style: italic;
   }
 }
 
@@ -96,11 +96,11 @@ font-style: italic;
     background-color: #fff;
   }
 
-  @media screen and (max-width: 767px) {
-    padding: 0.1rem 1.5rem;
-    width: 10rem;
-    font-size: 1rem;
-    margin-left: 2rem;
-    text-align: center;
-  }
+  // @media screen and (max-width: 767px) {
+  //   padding: 0.1rem 1.5rem;
+  //   width: 10rem;
+  //   font-size: 1rem;
+  //   margin-left: 2rem;
+  //   text-align: center;
+  // }
 }
