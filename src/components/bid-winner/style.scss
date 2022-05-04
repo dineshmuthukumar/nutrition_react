@@ -1,13 +1,25 @@
 @import "../../styles/common";
 
 .bid-winner {
-  background-color: black;
+  // position: relative;
+  background: transparent linear-gradient(53deg, #3820ff 0%, #ff7545 47%, #faf971 100%) 0% 0% no-repeat padding-box;
   color: white;
   border-radius: 0.5rem;
   padding: 3rem 3rem 2rem 3rem;
   min-height: calc(100vh - 10rem) !important;
   position: relative;
   overflow: hidden;
+  &:before {
+    background-color: #000;
+    content: "";
+    position: absolute;
+    top: 0.1rem;
+    left: 0.15rem;
+    right: 0.15rem;
+    bottom: 0.1rem;
+    z-index: 0;
+    border-radius: 0.5rem;
+  }
   @media screen and (max-width: 1440px) {
     min-height: calc(100vh) !important;
   }
