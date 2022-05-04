@@ -303,12 +303,20 @@ const WebContainer = () => {
         <Route exact path="/user/:slug/details" component={UserDetails} />
         <Route path="/not-found" component={NotFound} />
         <Route
+          path="/mcl"
+          component={() => {
+            window.location.href = process.env.REACT_APP_DROP_URL;
+            return null;
+          }}
+        />
+        <Route
           exact
           path="/:search?/order/details/:slug/:orderSlug"
           component={Home}
         />
         <Route exact path="/:search?/details/:slug" component={Home} />
         <Route exact path="/:search?" component={Home} />
+
         <Route exact component={NotFound} />
       </Switch>
     </>
