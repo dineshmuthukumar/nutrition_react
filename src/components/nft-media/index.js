@@ -61,14 +61,14 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
     }
   }, [isFav]);
 
-  useEffect(() => {
-    if (nft?.asset_type?.includes("image")) {
-      getBgColor(nft.asset_url);
-    } else {
-      getBgColor(nft.cover_url);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   if (nft?.asset_type?.includes("image")) {
+  //     getBgColor(nft.asset_url);
+  //   } else {
+  //     getBgColor(nft.cover_url);
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   const static_url = [
     {
