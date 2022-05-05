@@ -96,6 +96,12 @@ const RecentlySoldNFT = () => {
             <div className="col-sm-12">
               <div className="sec-heading live-flex-box">
                 <span className="title">RECENTLY SOLD</span>
+                <span
+                  className="viewallBtnliveaction"
+                  onClick={() => history.push("/nfts/sale-history")}
+                >
+                  View all
+                </span>
               </div>
 
               {!loading ? (
