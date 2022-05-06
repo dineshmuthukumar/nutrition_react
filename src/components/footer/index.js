@@ -226,6 +226,7 @@ const Footer = () => {
                   href="https://cdn.guardianlink.io/product-hotspot/files/media-kit.zip"
                   target="_self"
                   rel="nofollow"
+                  style={{ textDecoration: "none", color: "#fff" }}
                 >
                   <FaCloudDownloadAlt /> download media kit
                 </a>
