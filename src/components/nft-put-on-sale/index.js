@@ -1830,7 +1830,7 @@ const NFTPutOnSale = ({
                                   onClick={() =>
                                     window.open(
                                       `https://www.facebook.com/sharer/sharer.php?u=${`${process.env.REACT_APP_MARKETPLACE_URL}/order/details/${nft.slug}/${orderId}`}&quote=${encodeURIComponent(
-                                        `Hey!! Check out this awesome NFT I've listed for sale! You can buy it on Jump.trade marketplace featuring NFT collections of Amitabh Bachchan and Stan Lee's Chakra the Invincible!`
+                                        `Hey!! Check out this awesome NFT I've listed for sale! You can buy it on Jump.trade marketplace!`
                                       )}`
                                     )
                                   }
@@ -1856,7 +1856,7 @@ const NFTPutOnSale = ({
                                   onClick={() =>
                                     window.open(
                                       `https://telegram.me/share/?url=${`${process.env.REACT_APP_MARKETPLACE_URL}/order/details/${nft.slug}/${orderId}`}&title=${encodeURIComponent(
-                                        `Hey!! Check out this awesome NFT I've listed for sale! You can buy it on Jump.trade marketplace featuring NFT collections of Amitabh Bachchan and Stan Lee's Chakra the Invincible!`
+                                        `Hey!! Check out this awesome NFT I've listed for sale! You can buy it on Jump.trade marketplace!`
                                       )}`
                                     )
                                   }
@@ -1869,7 +1869,7 @@ const NFTPutOnSale = ({
                                   onClick={() => {
                                     detectWhatsapp(
                                       `whatsapp://send?text=Hey ! I found an awesome NFT here%0a%0a${encodeURIComponent(
-                                        `Hey!! Check out this awesome NFT I've listed for sale! You can buy it on Jump.trade marketplace featuring NFT collections of Amitabh Bachchan and Stan Lee's Chakra the Invincible!`
+                                        `Hey!! Check out this awesome NFT I've listed for sale! You can buy it on Jump.trade marketplace!`
                                       )}%0a%0aCheck it out in below link%0a%0a${`${process.env.REACT_APP_MARKETPLACE_URL}/order/details/${nft.slug}/${orderId}`}`
                                     ).then((hasWhatsapp) => {
                                       if (!hasWhatsapp) {

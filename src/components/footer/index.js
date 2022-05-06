@@ -15,7 +15,7 @@ import {
 } from "react-icons/fa";
 import "./style.scss";
 import { validateEmail } from "../../utils/common";
-import { sendEmailNewletter } from "../../api/axios-newsletter";
+import { subscribeApi } from "../../api/base-methods";
 import guardianLinkLogo from "../../images/guardianlink.svg";
 import jumpTradeLogo from "../../images/jump-trade-logo.svg";
 
@@ -37,7 +37,7 @@ const Footer = () => {
         const formData = new FormData();
         formData.append("Nemail", email);
 
-        const result = await sendEmailNewletter(formData);
+        const result = await subscribeApi(formData);
 
         if (result.data.status) {
           setVEmail(

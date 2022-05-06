@@ -366,6 +366,13 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
     (obj) => obj.type === nft?.core_statistics?.category
   );
 
+  const download = (dataurl, filename) => {
+    const link = document.createElement("a");
+    link.href = dataurl;
+    link.download = filename;
+    link.click();
+  };
+
   return (
     <section className="nft-img-block">
       <div
@@ -612,6 +619,23 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
           placement="top"
           text="Favourite"
         />
+        {nft?.certificate_file_url.length > 0 &&
+          nft?.certificate_file_url.map((url, i) => (
+            <CustomPopover
+              key={`pdf-${i}`}
+              icon={
+                <div onClick={() => download(url, `${nft.name}-${i + 1}`)}>
+                  <div className="svg_size certificate_icon"></div>
+                </div>
+              }
+              placement="top"
+              text={
+                nft?.certificate_file_url.length > 1
+                  ? `Download Certificate-${i + 1}`
+                  : "Download Certificate"
+              }
+            />
+          ))}
       </div>
     </section>
   );
@@ -713,7 +737,7 @@ const SharePopover = ({ icon, placement, title, listedShare = false }) => {
                     onClick={() =>
                       window.open(
                         `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${encodeURIComponent(
-                          `Hey!! Check out this awesome NFT I've listed for sale! You can buy it on Jump.trad marketplace featuring NFT collections of Amitabh Bachchan and Stan Lee's Chakra the Invincible!`
+                          `Hey!! Check out this awesome NFT I've listed for sale! You can buy it on Jump.trad marketplace!`
                         )}`
                       )
                     }
@@ -739,7 +763,7 @@ const SharePopover = ({ icon, placement, title, listedShare = false }) => {
                     onClick={() =>
                       window.open(
                         `https://telegram.me/share/?url=${url}&title=${encodeURIComponent(
-                          `Hey!! Check out this awesome NFT I've listed for sale! You can buy it on Jump.trade marketplace featuring NFT collections of Amitabh Bachchan and Stan Lee's Chakra the Invincible!`
+                          `Hey!! Check out this awesome NFT I've listed for sale! You can buy it on Jump.trade marketplace!`
                         )}`
                       )
                     }
@@ -752,7 +776,7 @@ const SharePopover = ({ icon, placement, title, listedShare = false }) => {
                     onClick={() => {
                       detectWhatsapp(
                         `whatsapp://send?text=Hey ! I found an awesome NFT here%0a%0a${encodeURIComponent(
-                          `Hey!! Check out this awesome NFT I've listed for sale! You can buy it on Jump.trade marketplace featuring NFT collections of Amitabh Bachchan and Stan Lee's Chakra the Invincible!`
+                          `Hey!! Check out this awesome NFT I've listed for sale! You can buy it on Jump.trade marketplace!`
                         )}%0a%0aCheck it out in below link%0a%0a${url}`
                       ).then((hasWhatsapp) => {
                         if (!hasWhatsapp) {

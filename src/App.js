@@ -50,7 +50,7 @@ const MyFavorites = lazy(() => import("./pages/my-favorites"));
 const ExploreAll = lazy(() => import("./pages/explore-all"));
 const Privacy = lazy(() => import("./pages/privacy-policy"));
 const Terms = lazy(() => import("./pages/terms"));
-const FAQ = lazy(() => import("./pages/faq"));
+// const FAQ = lazy(() => import("./pages/faq"));
 
 function App(props) {
   const market_start_date = "Mar 9, 2022 12:30:00";
@@ -293,7 +293,7 @@ const WebContainer = () => {
         />
 
         <Route exact path="/privacy-policy" component={Privacy} />
-        <Route exact path="/faq" component={FAQ} />
+        {/* <Route exact path="/faq" component={FAQ} /> */}
         <Route exact path="/terms-and-conditions" component={Terms} />
 
         <Route exact path="/nfts/sale-history" component={RecentlySold} />
