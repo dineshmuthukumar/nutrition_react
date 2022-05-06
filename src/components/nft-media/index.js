@@ -619,7 +619,7 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
           placement="top"
           text="Favourite"
         />
-        {nft?.certificate_file_url.length > 0 &&
+        {nft?.certificate_file_url?.length > 0 &&
           nft?.certificate_file_url.map((url, i) => (
             <CustomPopover
               key={`pdf-${i}`}
@@ -630,7 +630,7 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
               }
               placement="top"
               text={
-                nft?.certificate_file_url.length > 1
+                nft?.certificate_file_url?.length > 1
                   ? `Download Certificate-${i + 1}`
                   : "Download Certificate"
               }
