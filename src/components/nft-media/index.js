@@ -366,6 +366,13 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
     (obj) => obj.type === nft?.core_statistics?.category
   );
 
+  const download = (dataurl, filename) => {
+    const link = document.createElement("a");
+    link.href = dataurl;
+    link.download = filename;
+    link.click();
+  };
+
   return (
     <section className="nft-img-block">
       <div
@@ -612,6 +619,23 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
           placement="top"
           text="Favourite"
         />
+        {nft?.certificate_file_url.length > 0 &&
+          nft?.certificate_file_url.map((url, i) => (
+            <CustomPopover
+              key={`pdf-${i}`}
+              icon={
+                <div onClick={() => download(url, `${nft.name}-${i + 1}`)}>
+                  <div className="svg_size certificate_icon"></div>
+                </div>
+              }
+              placement="top"
+              text={
+                nft?.certificate_file_url.length > 1
+                  ? `Download Certificate-${i + 1}`
+                  : "Download Certificate"
+              }
+            />
+          ))}
       </div>
     </section>
   );

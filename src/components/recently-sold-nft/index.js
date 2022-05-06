@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
+import OwlCarousel from "react-owl-carousel";
 import { Dropdown } from "react-bootstrap";
 import { FaCheckCircle } from "react-icons/fa";
 import { BiCaretDown } from "react-icons/bi";
 import ContentLoader from "react-content-loader";
 import { nftRecentlySoldApi } from "../../api/methods";
 import NFTMore from "../nft-more/index";
+import frontArrow from "../../images/jump-trade/front-arrow.png";
+import backArrow from "../../images/jump-trade/back-arrow.png";
+
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
+
 import "./style.scss";
+import CollectionCard from "../nft-more/nft-card";
 
 const RecentlySoldNFT = () => {
   const history = useHistory();
@@ -86,51 +94,69 @@ const RecentlySoldNFT = () => {
         <div className="container-fluid">
           <div className="row">
             <div className="col-sm-12">
-              <div className="sec-heading flex-box">
-                <span className="title">Recently Sold</span>
-                <div className="recsold-inner-flex-box">
-                  <div className="filt-flex-box">
-                    <Dropdown>
-                      <Dropdown.Toggle
-                        align="start"
-                        drop="start"
-                        as={ShowAllSort}
-                      ></Dropdown.Toggle>
-
-                      <Dropdown.Menu align="start">
-                        {filter.sort.map((obj, i) => (
-                          <Dropdown.Item
-                            key={`nft${i}`}
-                            as="button"
-                            onClick={() => handleSortNFT(obj)}
-                          >
-                            <FaCheckCircle
-                              color={obj.checked ? "green" : "#ccc"}
-                              className="mb-1 me-2"
-                              size={17}
-                            />{" "}
-                            {obj.name}
-                          </Dropdown.Item>
-                        ))}
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </div>
-                  <span
-                    className="viewallBtn"
-                    onClick={() => history.push("/nfts/recently-sold")}
-                  >
-                    View all
-                  </span>
-                </div>
+              <div className="sec-heading live-flex-box">
+                <span className="title">RECENTLY SOLD</span>
+                <span
+                  className="viewallBtnliveaction"
+                  onClick={() => history.push("/nfts/sale-history")}
+                >
+                  View all
+                </span>
               </div>
 
               {!loading ? (
                 <div className="row">
                   {list.length > 0 ? (
-                    <NFTMore nftList={list} hideTitle recentSold />
+                    <OwlCarousel
+                      className="owl-theme"
+                      margin={20}
+                      nav
+                      smartSpeed={500}
+                      dots={false}
+                      navContainerClass={"carousel-btn-block"}
+                      // navText={[
+                      //   `<span class="icon-right-arrow left"><img src=${arrowRight} /></span>`,
+                      //   `<span class="icon-right-arrow right"><img src=${arrowRight} /></span>`,
+                      // ]}
+                      navText={[
+                        `<span class="icon-right-arrow left"> <img src=${backArrow} /> </span>`,
+                        `<span class="icon-right-arrow right"><img src=${frontArrow} /></span>`,
+                      ]}
+                      responsive={{
+                        0: {
+                          items: 1,
+                        },
+                        768: {
+                          items: 2,
+                        },
+                        800: {
+                          items: 3,
+                        },
+                        1024: {
+                          items: 4,
+                        },
+                        1200: {
+                          items: 4,
+                        },
+                        1541: {
+                          items: 4,
+                        },
+                      }}
+                    >
+                      {list.map((nft, i) => (
+                        <CollectionCard
+                          key={`live-auction-${i}`}
+                          nft={nft}
+                          recentSold={true}
+                          favouriteNFT={false}
+                        />
+                      ))}
+                    </OwlCarousel>
                   ) : (
                     <div className="col-12 text-center">
-                      <h3 className="my-3">No Records Found!</h3>
+                      <h3 className="my-3">
+                        You'll Soon See A Live Auction NFTs!
+                      </h3>
                     </div>
                   )}
                 </div>
