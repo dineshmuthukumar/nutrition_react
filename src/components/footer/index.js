@@ -12,6 +12,7 @@ import {
   FaFacebookF,
   FaTwitter,
   FaYoutube,
+  FaCloudDownloadAlt,
 } from "react-icons/fa";
 import "./style.scss";
 import { validateEmail } from "../../utils/common";
@@ -220,6 +221,15 @@ const Footer = () => {
                   </a>
                 </li> */}
               </ul>
+              <h4>
+                <a
+                  href="https://cdn.guardianlink.io/product-hotspot/files/media-kit.zip"
+                  target="_self"
+                  rel="nofollow"
+                >
+                  <FaCloudDownloadAlt /> download media kit
+                </a>
+              </h4>
             </div>
           </div>
           {/* <div className="submenu">
