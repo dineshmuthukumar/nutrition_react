@@ -41,11 +41,11 @@ const Footer = () => {
 
         if (result.data.status) {
           setVEmail(
-            "We will buzz you when the NFT Drop is ready to launch. Thank you for being a part of BeyondLife.club #beyondLife.club #nft"
+            "We will buzz you with important updates. Thank you for being a part of Jump.trade #jump.trade #nft"
           );
         } else {
           setVEmail(
-            "We got it again!, We are excited to have you as part of our NFT club. Details have been noted already. So, worry not! We will return to you once we are all set with the NFT drops. See you soon!"
+            "We got it again!, We are excited to have you as part of our NFT club. Details have been noted already. We will buzz you with important updates. See you soon!"
           );
         }
 
@@ -147,7 +147,9 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="javascript:void(0);">support@guardianlink.io</a>
+                  <a href="mailto:support@guardianlink.io" className="">
+                    support@guardianlink.io
+                  </a>
                 </li>
               </ul>
             </div>
