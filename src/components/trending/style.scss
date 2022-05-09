@@ -5,25 +5,45 @@
   border-bottom: none;
   margin-bottom: 3rem;
   font-family: $neue-helvetica-medium;
-  &.live-flex-box {
+  &.trending-heading {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     width: 100%;
     border-bottom: none;
     border-bottom: none !important;
-    font-family: "neue_helvetica_medium" !important;
-    font-style: italic;
+    font-family: $neue-helvetica-extended-bold;
+
+    span.title {
+      letter-spacing: 0.1rem;
+      color: #ffffff1a;
+      font-size: 8rem;
+      -webkit-text-stroke-width: 2px;
+      -webkit-text-stroke-color: #c7c7c7;
+      @media screen and (max-width: 991px) {
+        font-size: 4.5rem;
+      }
+      @media screen and (max-width: 767px) {
+        font-size: 3rem;
+      }
+      @media screen and (max-width: 560px) {
+        font-size: 2.5rem;
+      }
+      @media screen and (max-width: 475px) {
+        font-size: 1.5rem;
+      }
+    }
   }
 }
 
-.hot-collection-section {
+.trending-section {
   padding: 2rem 0;
-  background-color: #fff;
-  background: transparent linear-gradient(180deg, #073824 0%, #24242e 100%) 0%
-    0% no-repeat padding-box;
+  background-color: #000000;
+  // background: transparent linear-gradient(180deg, #073824 0%, #24242e 100%) 0%
+  //   0% no-repeat padding-box;
   box-shadow: 0px 3px 6px #00000029;
   color: #fff;
+  position: relative;
 
   .carousel-btn-block {
     display: table;
@@ -79,15 +99,29 @@
   }
 }
 
-.viewallBtnliveaction {
+.viewallBtnliveaction.trend-btn {
   font-size: 1.2rem;
   background: transparent;
   color: #fff;
-  padding: 0.5rem 1.5rem;
-  border-radius: 50rem;
+  padding: 0.7rem 1.5rem;
+  border-radius: 0.2rem;
   text-decoration: none;
   outline: 0;
   border: 0.2rem solid transparent;
+  display: table;
+  border: 0.1rem solid #fff;
+  margin-left: auto;
+  box-shadow: 0px 0px 1rem #fff;
+  background: #000;
+
+  cursor: pointer;
+  position: absolute;
+  bottom: 2rem;
+  z-index: 999;
+  right: 12rem;
+  width: 10rem;
+  text-align: center;
+
   cursor: pointer;
   &:hover,
   &:focus,
