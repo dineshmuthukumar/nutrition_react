@@ -43,68 +43,70 @@ const Trending = () => {
 
   return (
     <>
-      <section className="hot-collection-section">
+      <section className="trending-section">
         <div className="container-fluid">
           <div className="row">
             <div className="col-sm-12">
-              <div className="sec-heading live-flex-box">
-                <span className="title">WHATS TRENDING</span>
-                <span
-                  className="viewallBtnliveaction"
-                  onClick={() => history.push("/nfts/trending")}
-                >
-                  View all
-                </span>
+              <div className="sec-heading trending-heading">
+                <span className="title">WHAT'S TRENDING</span>
               </div>
 
               {!loading ? (
                 <div className="row">
                   {list.length > 0 ? (
-                    <OwlCarousel
-                      className="owl-theme"
-                      margin={20}
-                      nav
-                      smartSpeed={500}
-                      dots={false}
-                      navContainerClass={"carousel-btn-block"}
-                      // navText={[
-                      //   `<span class="icon-right-arrow left"><img src=${arrowRight} /></span>`,
-                      //   `<span class="icon-right-arrow right"><img src=${arrowRight} /></span>`,
-                      // ]}
-                      navText={[
-                        `<span class="icon-right-arrow left"> <img src=${backArrow} /> </span>`,
-                        `<span class="icon-right-arrow right"><img src=${frontArrow} /></span>`,
-                      ]}
-                      responsive={{
-                        0: {
-                          items: 1,
-                        },
-                        768: {
-                          items: 2,
-                        },
-                        800: {
-                          items: 3,
-                        },
-                        1024: {
-                          items: 4,
-                        },
-                        1200: {
-                          items: 4,
-                        },
-                        1541: {
-                          items: 4,
-                        },
-                      }}
-                    >
-                      {list.map((nft, i) => (
-                        <CollectionCard
-                          key={`live-auction-${i}`}
-                          nft={nft}
-                          recentSold={false}
-                          favouriteNFT={false}
-                        />
-                      ))}
-                    </OwlCarousel>
+                    <>
+                      <OwlCarousel
+                        className="owl-theme"
+                        margin={20}
+                        nav
+                        smartSpeed={500}
+                        dots={false}
+                        navContainerClass={"carousel-btn-block"}
+                        // navText={[
+                        //   `<span class="icon-right-arrow left"><img src=${arrowRight} /></span>`,
+                        //   `<span class="icon-right-arrow right"><img src=${arrowRight} /></span>`,
+                        // ]}
+                        navText={[
+                          `<span class="icon-right-arrow left"> <img src=${backArrow} /> </span>`,
+                          `<span class="icon-right-arrow right"><img src=${frontArrow} /></span>`,
+                        ]}
+                        responsive={{
+                          0: {
+                            items: 1,
+                          },
+                          768: {
+                            items: 2,
+                          },
+                          800: {
+                            items: 3,
+                          },
+                          1024: {
+                            items: 4,
+                          },
+                          1200: {
+                            items: 4,
+                          },
+                          1541: {
+                            items: 4,
+                          },
+                        }}
+                      >
+                        {list.map((nft, i) => (
+                          <CollectionCard
+                            key={`live-auction-${i}`}
+                            nft={nft}
+                            recentSold={false}
+                            favouriteNFT={false}
+                          />
+                        ))}
+                      </OwlCarousel>
+                      <span
+                        className="viewallBtnliveaction trend-btn"
+                        onClick={() => history.push("/nfts/trending")}
+                      >
+                        View all
+                      </span>
+                    </>
                   ) : (
                     <div className="col-12 text-center">
                       <h3 className="my-3">You'll Soon See A Trending NFTs!</h3>
