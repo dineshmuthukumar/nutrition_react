@@ -267,7 +267,7 @@ const Footer = () => {
               className="ms-3"
               // onClick={() => history.push("/https://www.guardianlink.io/contact-us")}
               onClick={() =>
-                window.open(process.env.REACT_APP_GUARDIAN_URL, "_blank")
+                window.open(process.env.REACT_APP_GUARDIAN_CONTACT_US, "_blank")
               }
             >
               Contact Us
