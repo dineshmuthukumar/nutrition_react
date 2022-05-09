@@ -4,7 +4,7 @@ import ContentLoader from "react-content-loader";
 import { useHistory, useParams } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 import { FaCheckCircle } from "react-icons/fa";
-import { liveAuctionNFTsApi } from "../../api/methods";
+import { trendingNFTsApi } from "../../api/methods";
 import { FormControl } from "react-bootstrap";
 
 import NFTCard from "../nft-card";
@@ -27,9 +27,14 @@ const TrendingList = () => {
   const [filter, setFilter] = useState({
     sort: [
       {
+        name: "Bid Count",
+        value: "bid_count",
+        checked: true,
+      },
+      {
         name: "Auction Ending Soon",
         value: "auction_ending_soon",
-        checked: true,
+        checked: false,
       },
       {
         name: "Auction Starting Soon",
@@ -40,9 +45,7 @@ const TrendingList = () => {
   });
 
   useEffect(() => {
-    const sort_filters = query.get("sort")
-      ? query.get("sort")
-      : "auction_ending_soon";
+    const sort_filters = query.get("sort") ? query.get("sort") : "bid_count";
     const price_range = {
       from: query.get("minPrice"),
       to: query.get("maxPrice"),
@@ -62,9 +65,7 @@ const TrendingList = () => {
   }, [slug, query]);
 
   useEffect(() => {
-    const sort_filters = query.get("sort")
-      ? query.get("sort")
-      : "auction_ending_soon";
+    const sort_filters = query.get("sort") ? query.get("sort") : "bid_count";
 
     const price_range = {
       from: query.get("minPrice"),
@@ -76,18 +77,14 @@ const TrendingList = () => {
     showAllFilteredNFTs(1, sort_filters, price_range);
   }, [query]);
 
-  const showAllNFTs = async (
-    page,
-    sort = "auction_ending_soon",
-    price_range
-  ) => {
+  const showAllNFTs = async (page, sort = "bid_count", price_range) => {
     try {
       let filter = {
         price_range,
       };
       page === 1 && setLoading(true);
       setLoadingMore(true);
-      let response = await liveAuctionNFTsApi(page, sort, filter);
+      let response = await trendingNFTsApi(page, sort, filter);
       setList([...list, ...response.data.data.nfts]);
       setHasNext(response.data.data.next_page);
       page === 1 && setLoading(false);
@@ -97,11 +94,7 @@ const TrendingList = () => {
     }
   };
 
-  const showAllFilteredNFTs = async (
-    page,
-    sort = "auction_ending_soon",
-    price_range
-  ) => {
+  const showAllFilteredNFTs = async (page, sort = "bid_count", price_range) => {
     try {
       let filter = {
         price_range,
@@ -109,7 +102,7 @@ const TrendingList = () => {
       page === 1 && setLoading(true);
       setLoadingMore(true);
 
-      let response = await liveAuctionNFTsApi(page, sort, filter);
+      let response = await trendingNFTsApi(page, sort, filter);
       setList(response.data.data.nfts);
       setHasNext(response.data.data.next_page);
       page === 1 && setLoading(false);
@@ -121,9 +114,7 @@ const TrendingList = () => {
 
   const fetchMore = () => {
     if (hasNext) {
-      const sort_filters = query.get("sort")
-        ? query.get("sort")
-        : "auction_ending_soon";
+      const sort_filters = query.get("sort") ? query.get("sort") : "bid_count";
       const price_range = {
         from: query.get("minPrice"),
         to: query.get("maxPrice"),
@@ -285,7 +276,7 @@ const TrendingList = () => {
         : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
     }
 
-    history.push(`/nfts/live-auction?${query_string}`);
+    history.push(`/nfts/trending?${query_string}`);
   };
   const handlePriceRange = (priceRange, remove = false) => {
     setPriceRangeFilter({ ...priceRange });
@@ -312,15 +303,15 @@ const TrendingList = () => {
       setPriceRangeFilter(price_range);
     }
     if (query_string) {
-      history.push(`/nfts/live-auction?${query_string}`);
+      history.push(`/nfts/trending?${query_string}`);
     } else {
-      history.push("/nfts/live-auction");
+      history.push("/nfts/trending");
     }
   };
 
   const reloadNFTList = async () => {
     try {
-      let response = await liveAuctionNFTsApi({ page });
+      let response = await trendingNFTsApi({ page });
       setList(response.data.data.nfts);
     } catch (err) {
       console.log(err);
@@ -396,7 +387,6 @@ const TrendingList = () => {
                           nft={nft}
                           key={i}
                           image={sample}
-                          liveAuction
                           reloadNFTList={reloadNFTList}
                         />
                       </div>

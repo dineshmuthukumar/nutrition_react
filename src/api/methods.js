@@ -152,3 +152,10 @@ export const nftRecentlySoldApi = (page, sort = "recently_sold") =>
 
 export const userFavedNFTOrders = (page) =>
   appAxios.get(`/users/faved_orders?page=${page}`);
+
+export const trendingNFTsApi = (page, sort = "bid_count", filter) =>
+  appAxios.get(`/dashboard/trending_nfts?page=${page}&sort=${sort}`, {
+    params: {
+      filter,
+    },
+  });
