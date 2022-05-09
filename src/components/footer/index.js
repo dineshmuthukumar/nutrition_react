@@ -243,20 +243,21 @@ const Footer = () => {
           <div className="copyrights me-3">
             © All rights reserved |{" "}
             {/* <a href="https://guardianlink.io/">A GuardianLink Brand</a>,   */}
-            Appstars Applications Pvt. Ltd., India & Guardian Blockchain Labs Pte. Ltd., Singapore.
+            Appstars Applications Pvt. Ltd., India & Guardian Blockchain Labs
+            Pte. Ltd., Singapore.
           </div>
           <div class="vr"></div>
 
           <div className="bottom-links">
             <span
-              className="me-3"
+              className="ms-3 me-3 "
               onClick={() => history.push("/terms-and-conditions")}
             >
               Terms & Conditions
             </span>
             <div class="vr"></div>
             <span
-              className="ms-3"
+              className="ms-3 me-3"
               onClick={() => history.push("/privacy-policy")}
             >
               Privacy Policy
@@ -264,9 +265,10 @@ const Footer = () => {
             <div class="vr"></div>
             <span
               className="ms-3"
-              // onClick={() => history.push("/privacy-policy")}
-              href="https://www.guardianlink.io/contact-us"
-              target={"_blank"}
+              // onClick={() => history.push("/https://www.guardianlink.io/contact-us")}
+              onClick={() =>
+                window.open(process.env.REACT_APP_GUARDIAN_URL, "_blank")
+              }
             >
               Contact Us
             </span>

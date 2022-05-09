@@ -10,7 +10,7 @@ const PrivacyComponent = () => {
               <div className="privacy-inner">
                 <div className="all-para-style">
                   <h3>PRIVACY POLICY</h3>
-                  <span>Last Updated: March 21, 2022</span>
+                  <span>Last Updated: May 09, 2022</span>
                   <br />
                   <br />
 
@@ -39,9 +39,10 @@ const PrivacyComponent = () => {
                   </p>
                   <p>
                     For all purposes related to user privacy, the legal entity
-                    shall be Guardian Blockchain Labs Pte. Ltd. Any legal
-                    concerns should only be settled in the courts/jurisdiction
-                    of Singapore or the United States.
+                    shall be Guardian Blockchain Labs Pte. Ltd and Appstars
+                    Applications Pvt. Ltd. Any legal concerns should only be
+                    settled in the courts/jurisdiction of Singapore or the
+                    United States.
                   </p>
                 </div>
                 <div className="all-para-style">
@@ -60,7 +61,7 @@ const PrivacyComponent = () => {
                       below.
                       <ol className="lowercase-alphabet" type="a">
                         <li>
-                          Information You Provide Us
+                          Information You Provide Us:
                           <ol type="i" className="small-liner">
                             <li>
                               We may collect Personal Data from you, such as
