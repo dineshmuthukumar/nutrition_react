@@ -241,10 +241,12 @@ const Footer = () => {
       <div className="bottom-bar py-4">
         <div className="bottom-container d-flex justify-content-center align-items-center">
           <div className="copyrights me-3">
-            © Jump.trade |{" "}
-            <a href="https://guardianlink.io/">A GuardianLink Brand</a>, All
-            Rights Reserved.
+            © All rights reserved |{" "}
+            {/* <a href="https://guardianlink.io/">A GuardianLink Brand</a>,   */}
+            Appstars Applications Pvt. Ltd., India & Guardian Blockchain Labs Pte. Ltd., Singapore.
           </div>
+          <div class="vr"></div>
+
           <div className="bottom-links">
             <span
               className="me-3"
@@ -258,6 +260,15 @@ const Footer = () => {
               onClick={() => history.push("/privacy-policy")}
             >
               Privacy Policy
+            </span>
+            <div class="vr"></div>
+            <span
+              className="ms-3"
+              // onClick={() => history.push("/privacy-policy")}
+              href="https://www.guardianlink.io/contact-us"
+              target={"_blank"}
+            >
+              Contact Us
             </span>
           </div>
         </div>
