@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import OwlCarousel from "react-owl-carousel";
 import { toast } from "react-toastify";
 import ContentLoader from "react-content-loader";
-import { liveAuctionNFTsApi } from "../../api/methods";
+import { trendingNFTsApi } from "../../api/methods";
 import CollectionCard from "../nft-more/nft-card";
 
 import { useHistory } from "react-router-dom";
@@ -23,13 +23,13 @@ const Trending = () => {
   const [hasNext, setHasNext] = useState(false);
 
   useEffect(() => {
-    liveAuctionNFTList(page);
+    trendingNFTList(page);
   }, []);
 
-  const liveAuctionNFTList = async (page) => {
+  const trendingNFTList = async (page) => {
     try {
       setLoading(true);
-      let response = await liveAuctionNFTsApi(page);
+      let response = await trendingNFTsApi(page);
 
       setList([...list, ...response.data.data.nfts]);
       setLoading(false);
@@ -93,7 +93,7 @@ const Trending = () => {
                       >
                         {list.map((nft, i) => (
                           <CollectionCard
-                            key={`live-auction-${i}`}
+                            key={`trending-${i}`}
                             nft={nft}
                             recentSold={false}
                             favouriteNFT={false}
