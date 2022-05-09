@@ -6,7 +6,7 @@ import RecentlySoldList from "../components/recently-sold-list/index";
 const RecentlySold = () => {
   return (
     <>
-      <Header />
+      <Header bgImage />
       <RecentlySoldList />
       <Footer />
     </>

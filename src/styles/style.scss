@@ -1207,11 +1207,11 @@ input::-webkit-inner-spin-button {
     &:active {
       border: solid 1px #000;
       background: #fff;
-      color: #000;
+      color: #000 !important;
       &::before {
         border: solid 1px #000;
         background: #fff;
-        color: #000;
+        color: #000 !important;
       }
     }
     &:disabled {
