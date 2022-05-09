@@ -46,6 +46,7 @@ const Latimes = lazy(() => import("./components/client-category/latimes"));
 const RecentlySold = lazy(() => import("./pages/recently-sold"));
 const CreatorApplication = lazy(() => import("./pages/creator-application"));
 const LiveAuctionsNFTs = lazy(() => import("./pages/live-auction-nfts"));
+const TrendingNFTs = lazy(() => import("./pages/trending"));
 const MyFavorites = lazy(() => import("./pages/my-favorites"));
 const ExploreAll = lazy(() => import("./pages/explore-all"));
 const Privacy = lazy(() => import("./pages/privacy-policy"));
@@ -298,6 +299,7 @@ const WebContainer = () => {
 
         <Route exact path="/nfts/sale-history" component={RecentlySold} />
         <Route exact path="/nfts/live-auction" component={LiveAuctionsNFTs} />
+        <Route exact path="/nfts/trending" component={TrendingNFTs} />
         <Route exact path="/nfts/favorites" component={MyFavorites} />
 
         <Route exact path="/user/:slug/details" component={UserDetails} />
