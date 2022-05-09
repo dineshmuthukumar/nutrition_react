@@ -831,7 +831,7 @@ const ExploreAllNFT = () => {
                         </Dropdown.Menu>
                       </Dropdown> */}
                       </div>
-                      <div className="filt-flex-box">
+                      <div className="filt-flex-box explore_block">
                         <Dropdown>
                           <Dropdown.Toggle
                             align="start"
