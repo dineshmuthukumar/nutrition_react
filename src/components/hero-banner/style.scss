@@ -61,7 +61,7 @@
       max-width: 70rem;
       line-height: 1.1;
       color: #19fdff;
-      padding: 0.5rem 2.5rem;
+      padding: 2.5rem 2.5rem;
       border-radius: 50rem;
       font-family: $Impact;
       text-transform: uppercase;
@@ -78,8 +78,8 @@
       align-items: center;
       justify-content: center;
       margin-top: 0rem;
-      // position: absolute;
-      // top: 13rem;
+      position: absolute;
+      top: 13rem;
       button {
         margin-bottom: 0;
         margin: 0 0.5rem !important;
