@@ -1174,6 +1174,60 @@ input::-webkit-inner-spin-button {
   white-space: nowrap;
   text-transform: uppercase;
   letter-spacing: 0.08rem;
+  &.theme-btn {
+    border-radius: 0.4rem;
+    border: solid 1px #000;
+    color: #fff;
+    display: block;
+    margin: 0 0.3rem 0;
+    padding: 0.3rem 1rem;
+    transition: 0.3s;
+    position: relative;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    background: transparent
+      linear-gradient(180deg, #e2ff00 0%, #18e0e0 47%, #e8318d 100%) 0% 0%
+      no-repeat padding-box;
+
+    font-family: $neue-helvetica-extended-bold;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0.1rem;
+      right: 0.1rem;
+      bottom: 0.1rem;
+      left: 0.1rem;
+      background: #000;
+      border-radius: 0.4rem;
+      z-index: 0;
+    }
+    &:hover,
+    &:focus,
+    &:active {
+      border: solid 1px #000;
+      background: #fff;
+      color: #000 !important;
+      &::before {
+        border: solid 1px #000;
+        background: #fff;
+        color: #000 !important;
+      }
+    }
+    &:disabled {
+      background: #e7e7e9;
+      color: #9c9c9b;
+      border: none;
+      opacity: 1;
+      &::before {
+        opacity: 0.5;
+      }
+    }
+    span {
+      position: relative;
+      z-index: 2;
+    }
+  }
   &.discord_ic {
     margin-left: 1rem;
   }
@@ -2199,6 +2253,7 @@ section.detail-page-content {
       padding: 0.5rem !important;
       width: 20%;
       align-items: center;
+
       &:last-child {
         border: none;
       }

@@ -6,20 +6,19 @@
   margin-bottom: 3rem;
   font-family: $neue-helvetica-bold;
   font-size: 2rem;
-  font-style: italic;
+font-style: italic;
+  &.liveauction-detail-heading {
+    @media screen and (max-width: 991px) {
+      flex-direction: column;
+      width: 100%;
+      align-items: flex-start !important;
+    }
+  }
 }
 
-.explore-nft-section {
+.showall-nft-section {
   padding: 2rem 0;
   background-color: #fff;
-
-  padding: 5rem 0;
-  background-color: #fff;
-  background: transparent linear-gradient(180deg, #073824 0%, #410021 100%) 0%
-    0% no-repeat padding-box;
-  color: #fff;
-  margin-top: -5rem;
-  padding-top: 8rem;
 }
 
 button.load_more {
@@ -48,50 +47,97 @@ button.load_more {
   }
 }
 
-.filter-blocks {
+.liveauction-detail-filter-blocks {
+  &.days {
+    margin-top: 0rem !important;
+    .dropdown {
+      width: initial !important;
+    }
+  }
   @media screen and (max-width: 767px) {
     display: flex;
     flex-direction: column-reverse;
     align-items: flex-end;
     position: relative;
-    margin-top: -2.5rem !important;
+    .filter-drop-btn{
+      margin-bottom: 1rem;
+    }
   }
+
   @media screen and (max-width: 425px) {
     margin-top: 0.5rem !important;
   }
-  .filter-box {
-    @media screen and (max-width: 767px) {
+  .liveauction-detail-filter-box {
+    @media screen and (max-width: 991px) {
       margin-top: 0.5rem;
       width: 100%;
       justify-content: space-between;
     }
     .dropdown {
       margin-right: 0.5rem;
-      @media screen and (max-width: 767px) {
+      @media screen and (max-width: 991px) {
         width: 49%;
         margin-right: 0rem;
       }
-      @media screen and (max-width: 425px) {
-        width: 49%;
+      @media screen and (max-width: 767px) {
+        width: 100%;
+      }
+      .filter-drop-btn,
+      .filter-drop-sort-btn {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
       }
     }
     .dropdown-menu {
       max-height: 320px;
       overflow-y: auto;
+
+      position: absolute !important;
+      inset: 0px auto auto 0px !important;
+      transform: translate3d(0px, 29px, 0px) !important;
+      .category-search-block {
+        position: relative;
+        display: block;
+        .category-search-icon {
+          position: absolute;
+          top: 0.5rem;
+          right: 0.5rem;
+        }
+        .category-search.form-control {
+          height: 2.3rem;
+          width: 100%;
+          border-radius: 0.2rem;
+          box-shadow: none !important;
+          // margin-top: 0.5rem;
+          &:hover,
+          &:focus,
+          &:active {
+            border-color: #000;
+          }
+        }
+      }
+
+      .scroll-fixed {
+        max-height: 240px;
+        overflow: auto;
+        margin: 0.5rem 0;
+      }
     }
   }
 }
+
 .filter-drop-btn {
-  padding: 0.2rem 0.8rem 0.2rem 1.5rem;
+  padding: 0.2rem 0.8rem 0.2rem 0.8rem;
   font-size: 1rem;
   font-family: $neue-helvetica-medium;
-  border: 1px solid #000;
+  border: 1px solid #e1ff04;
   border-radius: 50rem;
   margin-bottom: 0.2rem;
   cursor: pointer;
   white-space: nowrap;
 
-  display: flex;
+  // display: flex;
   align-items: center;
   justify-content: space-between;
   @media screen and (max-width: 767px) {
@@ -112,7 +158,7 @@ button.load_more {
   padding: 0.2rem 1.5rem 0.2rem 1.5rem;
   font-size: 1rem;
   font-family: $neue-helvetica-medium;
-  border: 1px solid #e1ff04;
+  border: 1px solid #000;
   border-radius: 50rem;
   margin-bottom: 0.2rem;
   cursor: pointer;
@@ -120,6 +166,13 @@ button.load_more {
 }
 
 .filter-pill-button {
+  // background-color: rgb(231, 231, 231);
+  // border: 1px solid #ccc;
+  // padding: 0.2rem 0.2rem 0.2rem 0.8rem;
+  // border-radius: 50rem;
+  // display: flex;
+  // margin-right: 0.5rem;
+  // margin-bottom: 0.5rem;
   background-color: #020202;
   border: 1px solid #020202;
   padding: 0 0.5rem 0 1rem;
@@ -149,28 +202,64 @@ button.load_more {
   }
 }
 
-.explore-heading {
-  @media screen and (max-width: 767px) {
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
+.filter-drop-sort-btn {
+  padding: 0.2rem 0.8rem 0.2rem 1.5rem;
+  font-size: 1rem;
+  font-family: $neue-helvetica-medium;
+  border: 1px solid #e1ff04;
+  border-radius: 50rem;
+  margin-bottom: 0.2rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.filter-pill-button {
+  // background-color: rgb(231, 231, 231);
+  // border: 1px solid #ccc;
+  // padding: 0.2rem 0.2rem 0.2rem 0.8rem;
+  // border-radius: 50rem;
+  // display: flex;
+  // margin-right: 0.5rem;
+  // margin-bottom: 0.5rem;
+  background-color: #020202;
+  border: 1px solid #020202;
+  padding: 0 0.5rem 0 1rem;
+  border-radius: 50rem;
+  display: flex;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  color: #fff;
+  align-items: center;
+  justify-content: center;
+  height: 2.5rem;
+
+  .first {
+    font-family: $neue-helvetica-medium;
+  }
+
+  &:hover {
+    background-color: #fff;
+    border: 1px solid rgb(129, 129, 129);
+    color: #000;
+  }
+
+  .last {
+    &:hover {
+      color: rgb(153, 26, 26);
+    }
   }
 }
 
-.explore-title p {
-  font-size: 1.4em;
+.showall-heading {
+  @media screen and (max-width: 991px) {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start !important;
+    border-bottom: none !important;
+font-family: "neue_helvetica_medium" !important;
+font-style: italic;
+  }
 }
-.explore-title h1 {
-  font-size: 2.7em;
-}
-
-// .explore-heading {
-//   @media screen and (max-width: 991px) {
-//     flex-direction: column;
-//     justify-content: flex-start;
-//     align-items: flex-start !important;
-//   }
-// }
 .filt-flex-box {
   display: flex;
   @media screen and (max-width: 425px) {
@@ -234,4 +323,40 @@ button.load_more {
       width: 1.2rem;
     }
   }
+}
+
+.bot-border-hr {
+  border-bottom: 1px solid #ccc !important;
+}
+
+.prifilter-btn {
+  display: flex;
+  justify-content: space-between;
+  button {
+    width: 49%;
+    border-radius: 50rem !important;
+    &.apply-btn {
+      background: #000;
+      color: #fff;
+      &:disabled {
+        background-color: #e7e7e9;
+        color: #9c9c9b;
+        border: none;
+      }
+    }
+  }
+}
+
+.flex-heading {
+  display: flex;
+  align-items: center;
+  .filter-drop-btn {
+    margin-bottom: 0 !important;
+  }
+}
+
+.explore-nft-section {
+  padding: 2rem 0;
+  background: transparent linear-gradient(180deg, #073824 0%, #410021 100%) 0% 0% no-repeat padding-box;
+color: #fff;
 }

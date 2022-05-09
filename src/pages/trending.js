@@ -1,16 +1,16 @@
 import React from "react";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import RecentlySoldList from "../components/recently-sold-list/index";
+import TrendingList from "../components/trending-list";
 
-const RecentlySold = () => {
+const TrendingNFTs = () => {
   return (
     <>
       <Header bgImage />
-      <RecentlySoldList />
+      <TrendingList />
       <Footer />
     </>
   );
 };
 
-export default RecentlySold;
+export default TrendingNFTs;
