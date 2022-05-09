@@ -6,11 +6,20 @@
   margin-bottom: 3rem;
   font-family: $neue-helvetica-bold;
   font-size: 2rem;
+  font-style: italic;
 }
 
 .explore-nft-section {
   padding: 2rem 0;
   background-color: #fff;
+
+  padding: 5rem 0;
+  background-color: #fff;
+  background: transparent linear-gradient(180deg, #073824 0%, #410021 100%) 0%
+    0% no-repeat padding-box;
+  color: #fff;
+  margin-top: -5rem;
+  padding-top: 8rem;
 }
 
 button.load_more {

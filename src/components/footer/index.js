@@ -12,10 +12,11 @@ import {
   FaFacebookF,
   FaTwitter,
   FaYoutube,
+  FaCloudDownloadAlt,
 } from "react-icons/fa";
 import "./style.scss";
 import { validateEmail } from "../../utils/common";
-import { sendEmailNewletter } from "../../api/axios-newsletter";
+import { subscribeApi } from "../../api/base-methods";
 import guardianLinkLogo from "../../images/guardianlink.svg";
 import jumpTradeLogo from "../../images/jump-trade-logo.svg";
 
@@ -37,15 +38,15 @@ const Footer = () => {
         const formData = new FormData();
         formData.append("Nemail", email);
 
-        const result = await sendEmailNewletter(formData);
+        const result = await subscribeApi(formData);
 
         if (result.data.status) {
           setVEmail(
-            "We will buzz you when the NFT Drop is ready to launch. Thank you for being a part of BeyondLife.club #beyondLife.club #nft"
+            "We will buzz you with important updates. Thank you for being a part of Jump.trade #jump.trade #nft"
           );
         } else {
           setVEmail(
-            "We got it again!, We are excited to have you as part of our NFT club. Details have been noted already. So, worry not! We will return to you once we are all set with the NFT drops. See you soon!"
+            "We got it again!, We are excited to have you as part of our NFT club. Details have been noted already. We will buzz you with important updates. See you soon!"
           );
         }
 
@@ -147,7 +148,9 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="javascript:void(0);">support@guardianlink.io</a>
+                  <a href="mailto:support@guardianlink.io" className="">
+                    support@guardianlink.io
+                  </a>
                 </li>
               </ul>
             </div>
@@ -218,6 +221,16 @@ const Footer = () => {
                   </a>
                 </li> */}
               </ul>
+              <h4>
+                <a
+                  href="https://cdn.guardianlink.io/product-hotspot/files/media-kit.zip"
+                  target="_self"
+                  rel="nofollow"
+                  style={{ textDecoration: "none", color: "#fff" }}
+                >
+                  <FaCloudDownloadAlt /> download media kit
+                </a>
+              </h4>
             </div>
           </div>
           {/* <div className="submenu">

@@ -78,7 +78,7 @@
       align-items: center;
       justify-content: center;
       margin-top: 0rem;
-      //   position: absolute;
+      // position: absolute;
       // top: 13rem;
       button {
         margin-bottom: 0;
@@ -155,4 +155,40 @@
       }
     }
   }
+}
+
+.live-text-title {
+  font-size: 8rem !important;
+  @media screen and (max-width: 767px) {
+    font-size: 4rem !important;
+  }
+}
+.live-text {
+  font-size: 2rem !important;
+  font-family: $neue-helvetica-medium;
+  color: #fff !important;
+  word-spacing: 1rem;
+  margin: 1.5rem 0;
+  @media screen and (max-width: 767px) {
+    font-size: 1rem !important;
+    margin: 0.5rem 0;
+  }
+}
+
+.live-time {
+  font-size: 7rem !important;
+  color: #19fdff !important;
+  @media screen and (max-width: 767px) {
+    font-size: 2rem !important;
+  }
+}
+.live-interval {
+  font-size: 4rem !important;
+  @media screen and (max-width: 767px) {
+    font-size: 1rem !important;
+  }
+}
+
+.live-gap {
+  margin-right: 2rem !important;
 }
