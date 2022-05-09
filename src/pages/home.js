@@ -5,6 +5,7 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import Banner from "../components/banner";
 import LiveAuctions from "../components/live-auctions";
+import Trending from "../components/trending";
 import HotCollections from "../components/hot-collections";
 import TopBuyers from "../components/top-buyers";
 import TopSellers from "../components/top-sellers";
@@ -104,6 +105,7 @@ const Home = () => {
         {/* <NewDropSection /> */}
         <CollectionList />
         <LiveAuctions />
+        <Trending />
         <RecentlySoldNFT />
 
         {/* {favList.length > 0 && (
