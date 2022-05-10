@@ -1069,7 +1069,7 @@ const ExploreAllNFT = () => {
                         )}
                       </div>
 
-                      <div className="filter-list-items">
+                      {/* <div className="filter-list-items">
                         <h4 className="header">
                           NFT Type{" "}
                           <IoIosArrowDown
@@ -1109,7 +1109,7 @@ const ExploreAllNFT = () => {
                             ))}
                           </ul>
                         )}
-                      </div>
+                      </div> */}
                     </div>
                   </aside>
 

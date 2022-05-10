@@ -27,22 +27,22 @@ const TrendingList = () => {
   const [filter, setFilter] = useState({
     sort: [
       {
-        name: "Bid Count: High to Low",
+        name: "Bid Count - High to Low",
         value: "bid_count_desc",
         checked: true,
       },
       {
-        name: "Bid Count: Low to High",
+        name: "Bid Count - Low to High",
         value: "bid_count",
         checked: false,
       },
       {
-        name: "Bid Price: High to Low",
+        name: "Bid Price - High to Low",
         value: "price_desc",
         checked: false,
       },
       {
-        name: "Bid Price: Low to High",
+        name: "Bid Price - Low to High",
         value: "price",
         checked: false,
       },
@@ -244,14 +244,14 @@ const TrendingList = () => {
           <div className="prifilter-btn">
             <button
               type="button"
-              class="justify-content-center border dropdown-item"
+              className="justify-content-center border dropdown-item"
               onClick={(e) => handlePriceRange(priceRange, true)}
             >
               Clear
             </button>
             <button
               type="button"
-              class="justify-content-center border dropdown-item apply-btn"
+              className="justify-content-center border dropdown-item apply-btn"
               disabled={(() => {
                 if (
                   parseInt(priceRange.from) < 0 ||
@@ -355,7 +355,7 @@ const TrendingList = () => {
                 </div>
                 <span className="d-flex justify-content-end w-100 liveauction-detail-filter-blocks">
                   <div className="d-flex flex-wrap liveauction-detail-filter-box">
-                    <Dropdown className="price-range">
+                    {/* <Dropdown className="price-range">
                       <Dropdown.Toggle
                         align="start"
                         drop="down"
@@ -366,7 +366,7 @@ const TrendingList = () => {
                         align="start"
                         as={PriceMenu}
                       ></Dropdown.Menu>
-                    </Dropdown>
+                    </Dropdown> */}
                     <Dropdown>
                       <Dropdown.Toggle
                         align="start"
