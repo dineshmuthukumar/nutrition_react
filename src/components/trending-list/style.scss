@@ -6,7 +6,7 @@
   margin-bottom: 3rem;
   font-family: $neue-helvetica-bold;
   font-size: 2rem;
-font-style: italic;
+  font-style: italic;
   &.liveauction-detail-heading {
     @media screen and (max-width: 991px) {
       flex-direction: column;
@@ -59,7 +59,7 @@ button.load_more {
     flex-direction: column-reverse;
     align-items: flex-end;
     position: relative;
-    .filter-drop-btn{
+    .filter-drop-btn {
       margin-bottom: 1rem;
     }
   }
@@ -95,7 +95,6 @@ button.load_more {
 
       position: absolute !important;
       inset: 0px auto auto 0px !important;
-      transform: translate3d(0px, 29px, 0px) !important;
       .category-search-block {
         position: relative;
         display: block;
@@ -256,8 +255,8 @@ button.load_more {
     justify-content: flex-start;
     align-items: flex-start !important;
     border-bottom: none !important;
-font-family: "neue_helvetica_medium" !important;
-font-style: italic;
+    font-family: "neue_helvetica_medium" !important;
+    font-style: italic;
   }
 }
 .filt-flex-box {
@@ -357,6 +356,7 @@ font-style: italic;
 
 .explore-nft-section {
   padding: 2rem 0;
-  background: transparent linear-gradient(180deg, #073824 0%, #410021 100%) 0% 0% no-repeat padding-box;
-color: #fff;
+  background: transparent linear-gradient(180deg, #073824 0%, #410021 100%) 0%
+    0% no-repeat padding-box;
+  color: #fff;
 }
