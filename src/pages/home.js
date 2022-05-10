@@ -104,8 +104,8 @@ const Home = () => {
         <HeroBanner />
         {/* <NewDropSection /> */}
         <CollectionList />
-        <LiveAuctions />
         <Trending />
+        <LiveAuctions />
         <RecentlySoldNFT />
 
         {/* {favList.length > 0 && (
