@@ -1108,7 +1108,7 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
                         )}
                       </div>
 
-                      <div className="filter-list-items">
+                      {/* <div className="filter-list-items">
                         <h4 className="header">
                           NFT Type{" "}
                           <IoIosArrowDown
@@ -1148,7 +1148,7 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
                             ))}
                           </ul>
                         )}
-                      </div>
+                      </div> */}
                     </div>
                   </aside>
 
