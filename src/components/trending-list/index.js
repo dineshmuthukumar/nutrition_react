@@ -27,13 +27,23 @@ const TrendingList = () => {
   const [filter, setFilter] = useState({
     sort: [
       {
-        name: "Bid Count",
-        value: "bid_count",
+        name: "Bid Count: High to Low",
+        value: "bid_count_desc",
         checked: true,
       },
       {
-        name: "Highest Bid",
+        name: "Bid Count: Low to High",
+        value: "bid_count",
+        checked: false,
+      },
+      {
+        name: "Bid Price: High to Low",
         value: "price_desc",
+        checked: false,
+      },
+      {
+        name: "Bid Price: Low to High",
+        value: "price",
         checked: false,
       },
       {
@@ -45,7 +55,9 @@ const TrendingList = () => {
   });
 
   useEffect(() => {
-    const sort_filters = query.get("sort") ? query.get("sort") : "bid_count";
+    const sort_filters = query.get("sort")
+      ? query.get("sort")
+      : "bid_count_desc";
     const price_range = {
       from: query.get("minPrice"),
       to: query.get("maxPrice"),
@@ -65,7 +77,9 @@ const TrendingList = () => {
   }, [slug, query]);
 
   useEffect(() => {
-    const sort_filters = query.get("sort") ? query.get("sort") : "bid_count";
+    const sort_filters = query.get("sort")
+      ? query.get("sort")
+      : "bid_count_desc";
 
     const price_range = {
       from: query.get("minPrice"),
@@ -77,7 +91,7 @@ const TrendingList = () => {
     showAllFilteredNFTs(1, sort_filters, price_range);
   }, [query]);
 
-  const showAllNFTs = async (page, sort = "bid_count", price_range) => {
+  const showAllNFTs = async (page, sort = "bid_count_desc", price_range) => {
     try {
       let filter = {
         price_range,
@@ -94,7 +108,11 @@ const TrendingList = () => {
     }
   };
 
-  const showAllFilteredNFTs = async (page, sort = "bid_count", price_range) => {
+  const showAllFilteredNFTs = async (
+    page,
+    sort = "bid_count_desc",
+    price_range
+  ) => {
     try {
       let filter = {
         price_range,
@@ -114,7 +132,9 @@ const TrendingList = () => {
 
   const fetchMore = () => {
     if (hasNext) {
-      const sort_filters = query.get("sort") ? query.get("sort") : "bid_count";
+      const sort_filters = query.get("sort")
+        ? query.get("sort")
+        : "bid_count_desc";
       const price_range = {
         from: query.get("minPrice"),
         to: query.get("maxPrice"),
