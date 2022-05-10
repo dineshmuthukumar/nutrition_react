@@ -32,13 +32,13 @@ const TrendingList = () => {
         checked: true,
       },
       {
-        name: "Auction Ending Soon",
-        value: "auction_ending_soon",
+        name: "Highest Bid",
+        value: "price_desc",
         checked: false,
       },
       {
-        name: "Auction Starting Soon",
-        value: "auction_starting_soon",
+        name: "Auction Ending Soon",
+        value: "auction_ending_soon",
         checked: false,
       },
     ],
