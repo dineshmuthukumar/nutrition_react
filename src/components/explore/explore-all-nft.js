@@ -18,6 +18,8 @@ import OrderDetails from "../../pages/order-details";
 import { nftShowAllApi } from "../../api/methods";
 
 import "./style.scss";
+import { FormControl } from "react-bootstrap";
+import { validateCurrency } from "../../utils/common";
 
 const ExploreAllNFT = () => {
   const history = useHistory();
@@ -42,6 +44,11 @@ const ExploreAllNFT = () => {
   const [search, setSearch] = useState(
     query.get("search") ? query.get("search") : ""
   );
+
+  const [priceRangeFilter, setPriceRangeFilter] = useState({
+    from: "",
+    to: "",
+  });
 
   const [filter, setFilter] = useState({
     sale: [
@@ -193,10 +200,11 @@ const ExploreAllNFT = () => {
     const status_list = query.get("status")
       ? query.get("status").split(",")
       : [];
-    console.log(
-      "🚀 ~ file: explore-all-nft.js ~ line 194 ~ useEffect ~ status_list",
-      status_list
-    );
+    const price_range = {
+      from: query.get("minPrice") ? query.get("minPrice") : "",
+      to: query.get("maxPrice") ? query.get("maxPrice") : "",
+    };
+
     const nft_collection = query.get("nft-collection")
       ? query.get("nft-collection").split(",")
       : [];
@@ -230,6 +238,9 @@ const ExploreAllNFT = () => {
 
     setFilter(info);
     setPage(1);
+    if (price_range.from || price_range.to) {
+      setPriceRangeFilter(price_range);
+    }
   }, [query]);
 
   useEffect(() => {
@@ -252,6 +263,10 @@ const ExploreAllNFT = () => {
     const sale_filters = query.get("sale") ? query.get("sale").split(",") : [];
     const nft_filters = query.get("nft") ? query.get("nft").split(",") : [];
     const status_filters = query.get("status") ? query.get("status") : "";
+    const price_range = {
+      from: query.get("minPrice") ? query.get("minPrice") : "",
+      to: query.get("maxPrice") ? query.get("maxPrice") : "",
+    };
     const sort_filters = query.get("sort")
       ? query.get("sort")
       : "recently_listed";
@@ -272,7 +287,8 @@ const ExploreAllNFT = () => {
       search_filter,
       nft_category,
       nft_collection,
-      status_filters
+      status_filters,
+      price_range
     );
   }, [query]);
 
@@ -318,7 +334,8 @@ const ExploreAllNFT = () => {
     searchText,
     nft_category,
     nft_collection,
-    status_filters
+    status_filters,
+    price_range
   ) => {
     try {
       page === 1 && setLoading(true);
@@ -333,6 +350,7 @@ const ExploreAllNFT = () => {
           nft_category,
           nft_collection,
           sale_kind: status_filters,
+          price_range,
         },
         sort: sort === "relevance" ? null : sort,
       });
@@ -422,7 +440,10 @@ const ExploreAllNFT = () => {
     let sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
     const nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
     const sort_exist = query.get("sort");
-
+    const price_range = {
+      from: query.get("minPrice") ? query.get("minPrice") : "",
+      to: query.get("maxPrice") ? query.get("maxPrice") : "",
+    };
     const search_exist = query.get("search")
       ? query.get("search").replace("#", "%23")
       : "";
@@ -465,6 +486,12 @@ const ExploreAllNFT = () => {
         : `status=${status_list}`;
     }
 
+    if (price_range.from || price_range.to) {
+      query_string += query_string
+        ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
+        : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
+    }
+
     if (nft_collection.length > 0) {
       query_string += query_string
         ? `&nft-collection=${nft_collection}`
@@ -498,7 +525,10 @@ const ExploreAllNFT = () => {
     const nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
     const sort_exist = query.get("sort");
     const search_exist = search ? search.replace("#", "%23") : "";
-
+    const price_range = {
+      from: query.get("minPrice") ? query.get("minPrice") : "",
+      to: query.get("maxPrice") ? query.get("maxPrice") : "",
+    };
     let status_list = query.get("status") ? query.get("status").split(",") : [];
 
     const sale_status = remove
@@ -506,10 +536,6 @@ const ExploreAllNFT = () => {
       : status_list.includes(input.value)
       ? null
       : input.value;
-    const price_range = {
-      from: query.get("minPrice") ? query.get("minPrice") : "",
-      to: query.get("maxPrice") ? query.get("maxPrice") : "",
-    };
 
     let nft_category = query.get("nft-category")
       ? query.get("nft-category").split(",")
@@ -639,6 +665,10 @@ const ExploreAllNFT = () => {
     const sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
     const nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
     const sort_exist_temp = query.get("sort");
+    const price_range = {
+      from: query.get("minPrice") ? query.get("minPrice") : "",
+      to: query.get("maxPrice") ? query.get("maxPrice") : "",
+    };
 
     const sort_exist = input.value
       ? sort_exist_temp === input.value
@@ -674,6 +704,12 @@ const ExploreAllNFT = () => {
       query_string += query_string
         ? `&status=${status_list}`
         : `status=${status_list}`;
+    }
+
+    if (price_range.from || price_range.to) {
+      query_string += query_string
+        ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
+        : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
     }
 
     if (nft_category.length > 0) {
@@ -715,6 +751,10 @@ const ExploreAllNFT = () => {
     let nft_category = query.get("nft-category")
       ? query.get("nft-category").split(",")
       : [];
+    const price_range = {
+      from: query.get("minPrice") ? query.get("minPrice") : "",
+      to: query.get("maxPrice") ? query.get("maxPrice") : "",
+    };
     let nft_collection = query.get("nft-collection")
       ? query.get("nft-collection").split(",")
       : [];
@@ -757,6 +797,12 @@ const ExploreAllNFT = () => {
         : `status=${status_list}`;
     }
 
+    if (price_range.from || price_range.to) {
+      query_string += query_string
+        ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
+        : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
+    }
+
     if (search_exist) {
       query_string += query_string
         ? `&search=${search_exist}`
@@ -783,6 +829,10 @@ const ExploreAllNFT = () => {
     let nft_collection = query.get("nft-collection")
       ? query.get("nft-collection").split(",")
       : [];
+    const price_range = {
+      from: query.get("minPrice") ? query.get("minPrice") : "",
+      to: query.get("maxPrice") ? query.get("maxPrice") : "",
+    };
 
     let status_list = query.get("status") ? query.get("status").split(",") : [];
 
@@ -828,6 +878,12 @@ const ExploreAllNFT = () => {
         : `sort=${sort_exist}`;
     }
 
+    if (price_range.from || price_range.to) {
+      query_string += query_string
+        ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
+        : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
+    }
+
     if (search_exist) {
       query_string += query_string
         ? `&search=${search_exist}`
@@ -854,7 +910,10 @@ const ExploreAllNFT = () => {
     let nft_collection = query.get("nft-collection")
       ? query.get("nft-collection").split(",")
       : [];
-
+    const price_range = {
+      from: query.get("minPrice") ? query.get("minPrice") : "",
+      to: query.get("maxPrice") ? query.get("maxPrice") : "",
+    };
     let status_list = query.get("status") ? query.get("status").split(",") : [];
 
     if (nft_collection.includes(input.value)) {
@@ -899,6 +958,12 @@ const ExploreAllNFT = () => {
         : `sort=${sort_exist}`;
     }
 
+    if (price_range.from || price_range.to) {
+      query_string += query_string
+        ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
+        : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
+    }
+
     if (search_exist) {
       query_string += query_string
         ? `&search=${search_exist}`
@@ -912,11 +977,201 @@ const ExploreAllNFT = () => {
     }
   };
 
+  const handlePriceRange = (priceRange, remove = false) => {
+    setPriceRangeFilter({ ...priceRange });
+    const category_exist = query.get("category")
+      ? query.get("category").split(",")
+      : [];
+    const sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
+    const nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
+    const sort_exist = query.get("sort");
+    const search_exist = search ? search.replace("#", "%23") : "";
+    const sale_status = query.get("status");
+    const price_range = remove ? { from: null, to: null } : priceRange;
+    let nft_collection = query.get("nft-collection")
+      ? query.get("nft-collection").split(",")
+      : [];
+    let nft_category = query.get("nft-category")
+      ? query.get("nft-category").split(",")
+      : [];
+
+    let query_string = "";
+    if (category_exist.length > 0) {
+      query_string += query_string
+        ? `&category=${category_exist}`
+        : `category=${category_exist}`;
+    }
+
+    if (sale_exist.length > 0) {
+      query_string += query_string
+        ? `&sale=${sale_exist}`
+        : `sale=${sale_exist}`;
+    }
+
+    if (nft_exist.length > 0) {
+      query_string += query_string ? `&nft=${nft_exist}` : `nft=${nft_exist}`;
+    }
+
+    if (sort_exist) {
+      query_string += query_string
+        ? `&sort=${sort_exist}`
+        : `sort=${sort_exist}`;
+    }
+
+    if (search_exist) {
+      query_string += query_string
+        ? `&search=${search_exist}`
+        : `search=${search_exist}`;
+    }
+
+    if (nft_collection.length > 0) {
+      query_string += query_string
+        ? `&nft-collection=${nft_collection}`
+        : `nft-collection=${nft_collection}`;
+    }
+
+    if (sale_status) {
+      query_string += query_string
+        ? `&status=${sale_status}`
+        : `status=${sale_status}`;
+    }
+
+    if (nft_category.length > 0) {
+      query_string += query_string
+        ? `&nft-category=${nft_category}`
+        : `nft-category=${nft_category}`;
+    }
+
+    if (price_range.from || price_range.to) {
+      query_string += query_string
+        ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
+        : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
+    }
+
+    if (remove) {
+      setPriceRangeFilter(price_range);
+    }
+
+    if (query_string) {
+      history.push(`/explore-all/${query_string}`);
+    } else {
+      history.push("/explore-all/");
+    }
+  };
+
   const handleKeyPressEvent = (event) => {
     if (event.key === "Enter") {
       handleTextSearch();
     }
   };
+
+  const PriceDropdown = React.forwardRef(({ onClick }, ref) => (
+    <div
+      className="filter-drop-btn me-2"
+      ref={ref}
+      onClick={(e) => {
+        e.preventDefault();
+        onClick(e);
+      }}
+    >
+      {priceRangeFilter.from && priceRangeFilter.to
+        ? `Price Range $${priceRangeFilter.from} - $${priceRangeFilter.to}`
+        : priceRangeFilter.from
+        ? `Min $${priceRangeFilter.from}`
+        : priceRangeFilter.to
+        ? `Max $${priceRangeFilter.to}`
+        : "Price Range"}
+      <BiCaretDown />
+    </div>
+  ));
+
+  const PriceMenu = React.forwardRef(
+    ({ children, style, className, "aria-labelledby": labeledBy }, ref) => {
+      const [priceRange, setPriceRange] = useState({
+        from: query.get("minPrice") ? query.get("minPrice") : "",
+        to: query.get("maxPrice") ? query.get("maxPrice") : "",
+      });
+
+      return (
+        <div
+          ref={ref}
+          style={style}
+          className={className}
+          aria-labelledby={labeledBy}
+        >
+          <div className="d-flex">
+            <span className="category-search-block me-1">
+              <FormControl
+                autoFocus
+                className="category-search"
+                placeholder="Min"
+                type="number"
+                onChange={(e) => {
+                  if (e.target.value && e.target.value.length <= 9) {
+                    if (validateCurrency(e.target.value)) {
+                      setPriceRange({ ...priceRange, from: e.target.value });
+                    }
+                  } else {
+                    setPriceRange({ ...priceRange, from: "" });
+                  }
+                }}
+                value={priceRange.from}
+              />
+            </span>
+            <span className="category-search-block">
+              <FormControl
+                className="category-search"
+                placeholder="Max"
+                type="number"
+                onChange={(e) => {
+                  if (e.target.value && e.target.value.length <= 9) {
+                    if (validateCurrency(e.target.value)) {
+                      setPriceRange({ ...priceRange, to: e.target.value });
+                    }
+                  } else {
+                    setPriceRange({ ...priceRange, to: "" });
+                  }
+                }}
+                value={priceRange.to}
+              />
+            </span>
+          </div>
+          {/* <hr className="mt-2 mb-1 bot-border-hr" /> */}
+          <div className="prifilter-btn">
+            <button
+              type="button"
+              class="justify-content-center border dropdown-item"
+              onClick={(e) => handlePriceRange(priceRange, true)}
+            >
+              Clear
+            </button>
+            <button
+              type="button"
+              class="justify-content-center border dropdown-item apply-btn"
+              disabled={(() => {
+                if (
+                  parseInt(priceRange.from) < 0 ||
+                  parseInt(priceRange.to) < 0
+                ) {
+                  return true;
+                } else if (
+                  parseInt(priceRange.from) > parseInt(priceRange.to)
+                ) {
+                  return true;
+                } else {
+                  return false;
+                }
+              })()}
+              onClick={(e) => handlePriceRange(priceRange)}
+            >
+              Apply
+            </button>
+            {React.Children.toArray(children).filter((child) => child)}
+          </div>
+        </div>
+      );
+    }
+  );
 
   return (
     <>
@@ -1003,6 +1258,31 @@ const ExploreAllNFT = () => {
                       </Dropdown> */}
                       </div>
                       <div className="filt-flex-box explore_block">
+                        <Dropdown className="price-range">
+                          <Dropdown.Toggle
+                            align="start"
+                            drop="down"
+                            as={PriceDropdown}
+                          ></Dropdown.Toggle>
+
+                          <Dropdown.Menu align="start" as={PriceMenu}>
+                            {/* <Dropdown.Item
+                          as="button"
+                          className="justify-content-center border me-2"
+                          // onClick={() => handleCategoryCheck(obj)}
+                        >
+                          Cancel
+                        </Dropdown.Item> */}
+                            {/* <Dropdown.Item
+                          as="button"
+                          className="justify-content-center border bg-light"
+                          // onClick={() => handleCategoryCheck(obj)}
+                        >
+                          Apply
+                        </Dropdown.Item> */}
+                          </Dropdown.Menu>
+                        </Dropdown>
+
                         <Dropdown>
                           <Dropdown.Toggle
                             align="start"
