@@ -711,7 +711,7 @@ const NFTPlaceBid = ({
                         </div>
                       )}
                       <div className="success-summary">
-                        <div>{erc721 ? "Bid placed on" : "Time"}</div>
+                        <div>{erc721 ? "Buy placed on" : "Time"}</div>
                         <div className="bold">
                           {dayjs(successData.created_at).format(
                             "MMM D, YYYY hh:mm A"
