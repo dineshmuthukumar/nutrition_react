@@ -37,12 +37,12 @@ const TrendingList = () => {
         checked: false,
       },
       {
-        name: "Bid Price - High to Low",
+        name: "Price - High to Low",
         value: "price_desc",
         checked: false,
       },
       {
-        name: "Bid Price - Low to High",
+        name: "Price - Low to High",
         value: "price",
         checked: false,
       },
