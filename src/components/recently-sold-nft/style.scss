@@ -37,6 +37,7 @@
       border: none;
       &.disabled {
         opacity: 0.3;
+        pointer-events: none;
       }
       img {
         height: 1.5rem;
