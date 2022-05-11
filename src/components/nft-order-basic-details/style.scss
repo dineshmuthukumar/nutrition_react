@@ -457,16 +457,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top:1rem;
   button {
     width: 48%;
-    margin: 0 !important;
     margin: 0 1%;
+
   }
   &.full-width {
     button {
       width: 98%;
-      margin: 0 !important;
       margin: 0 1%;
+      @media screen and (max-width: 480px) {
+        margin: 0 2% !important;
+        margin-top: 1rem !important;
+      }
     }
   }
 }

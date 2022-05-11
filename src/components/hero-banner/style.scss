@@ -80,6 +80,9 @@
       margin-top: 0rem;
       position: absolute;
     top: 13rem;
+    @media only screen and (min-width: 767px) and (max-width: 991px) {
+      top:20rem
+    }
       button {
         margin-bottom: 0;
         margin: 0 0.5rem !important;
