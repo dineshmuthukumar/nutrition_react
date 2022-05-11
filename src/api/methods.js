@@ -18,8 +18,8 @@ export const nftCategoryListApi = ({ slug, page, filter, sort }) =>
     },
   });
 
-export const nftShowAllApi = ({ page, filter, sort }) =>
-  appAxios.get(`/dashboard/index?page=${page}`, {
+export const nftShowAllApi = ({ page, per_page, filter, sort }) =>
+  appAxios.get(`/dashboard/index?page=${page}&per_page=${per_page}`, {
     params: {
       filter,
       sort,
