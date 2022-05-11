@@ -85,6 +85,16 @@ const ExploreAllNFT = () => {
         checked: false,
       },
       {
+        name: "Auction Ending Soon",
+        value: "auction_ending_soon",
+        checked: false,
+      },
+      {
+        name: "Auction Starting Soon",
+        value: "auction_starting_soon",
+        checked: false,
+      },
+      {
         name: "Relevance",
         value: "relevance",
         checked: false,
