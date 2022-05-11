@@ -1041,7 +1041,7 @@ const ShowAll = ({ categories }) => {
         </div>
         <div className="d-flex justify-content-center mt-2 w-100 showall-filter-blocks">
           <div className="d-flex flex-wrap filter-box">
-            <Dropdown>
+            {/* <Dropdown>
               <Dropdown.Toggle
                 align="start"
                 drop="start"
@@ -1064,7 +1064,7 @@ const ShowAll = ({ categories }) => {
                   </Dropdown.Item>
                 ))}
               </Dropdown.Menu>
-            </Dropdown>
+            </Dropdown> */}
             <Dropdown>
               <Dropdown.Toggle
                 align="start"
@@ -1089,7 +1089,7 @@ const ShowAll = ({ categories }) => {
                 ))}
               </Dropdown.Menu>
             </Dropdown>
-            <Dropdown>
+            {/* <Dropdown>
               <Dropdown.Toggle
                 align="start"
                 drop="start"
@@ -1112,7 +1112,7 @@ const ShowAll = ({ categories }) => {
                   </Dropdown.Item>
                 ))}
               </Dropdown.Menu>
-            </Dropdown>
+            </Dropdown> */}
 
             <Dropdown>
               <Dropdown.Toggle
