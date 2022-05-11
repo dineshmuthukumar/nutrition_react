@@ -1246,6 +1246,10 @@ input::-webkit-inner-spin-button {
   svg {
     height: 1.8rem;
     width: 1.8rem;
+    @media screen and (max-width: 480px) {
+      height: auto;
+    width: auto;
+    }
   }
 }
 
@@ -1413,6 +1417,11 @@ input::-webkit-inner-spin-button {
 }
 .navbar-nav .dropdown {
   margin-right: 1rem;
+}
+.navbar-nav .dropdown div img{
+  @media screen and (max-width: 991px) {
+    max-width: initial !important;
+  }
 }
 .navbar-dark .navbar-nav a.help_ic {
   border: none;
@@ -1653,6 +1662,15 @@ nav.navbar.navbar-expand-md.navbar-dark.bg-dark.transparent {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    @media screen and (max-width: 991px) {
+      flex: 50%;
+      
+    }
+  }
+  .point-list:nth-child(2) {
+    @media screen and (max-width: 991px) {
+      border-right: none !important;
+    }
   }
   .value-diff-range {
     font-size: 0.6em;
