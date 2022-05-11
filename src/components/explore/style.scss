@@ -62,11 +62,14 @@
           transform: translate(-100%, 0);
           transition: 0.5s all ease;
           width: 100%;
+          z-index: 1025;
           &.open-aside {
             transform: translate(0%, 0);
           }
         }
-
+        // .stick-top-custom {
+        //   height: 100%;
+        // }
         .heading-box {
           padding: 1.5rem 1rem;
           display: flex;
@@ -453,6 +456,11 @@ button.load_more {
 // }
 .filt-flex-box {
   display: flex;
+  .explore_block {
+    .dropdown {
+      width: auto;
+    }
+  }
   @media screen and (max-width: 425px) {
     width: 100%;
     .dropdown {
@@ -747,6 +755,21 @@ button.load_more {
   position: sticky;
   top: 7rem;
   padding-bottom: 0.5rem;
+
+  overflow-y: hidden;
+  height: calc(100vh - 8rem);
+  &:hover,
+  &:focus {
+    overflow-y: auto;
+  }
+  @media screen and (max-width: 991px) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100vh;
+  }
 
   :last-child {
     border-bottom: none !important;

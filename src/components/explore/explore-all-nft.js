@@ -85,6 +85,16 @@ const ExploreAllNFT = () => {
         checked: false,
       },
       {
+        name: "Auction Ending Soon",
+        value: "auction_ending_soon",
+        checked: false,
+      },
+      {
+        name: "Auction Starting Soon",
+        value: "auction_starting_soon",
+        checked: false,
+      },
+      {
         name: "Relevance",
         value: "relevance",
         checked: false,
@@ -831,7 +841,7 @@ const ExploreAllNFT = () => {
                         </Dropdown.Menu>
                       </Dropdown> */}
                       </div>
-                      <div className="filt-flex-box">
+                      <div className="filt-flex-box explore_block">
                         <Dropdown>
                           <Dropdown.Toggle
                             align="start"
@@ -1069,7 +1079,7 @@ const ExploreAllNFT = () => {
                         )}
                       </div>
 
-                      <div className="filter-list-items">
+                      {/* <div className="filter-list-items">
                         <h4 className="header">
                           NFT Type{" "}
                           <IoIosArrowDown
@@ -1109,7 +1119,7 @@ const ExploreAllNFT = () => {
                             ))}
                           </ul>
                         )}
-                      </div>
+                      </div> */}
                     </div>
                   </aside>
 
