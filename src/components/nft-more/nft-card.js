@@ -293,6 +293,10 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
 
         {/* <div className="svg_size heart_icon"></div> */}
         {/* </div> */}
+        <div className="cart_box">
+          <div className="svg_size cart_icon"></div>
+        </div>
+
         <div>
           <div className="more-nft-title">{nft?.name}</div>
           {nft?.owner_name && (

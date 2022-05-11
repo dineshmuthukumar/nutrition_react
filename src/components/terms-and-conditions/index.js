@@ -14,10 +14,11 @@ const TermsAndConditions = () => {
                   <p>
                     JUMP.TRADE is owned and operated by Guardian Blockchain Labs
                     Pte. Ltd., a Limited Liability Company registered in
-                    Singapore and the United States of America. The Platform
-                    allows and facilitates acquiring of “Digital Collectible(s)
-                    or Collectible(s)” (Defined Below) through “Purchase”
-                    (Defined Below) or “Auction” (Defined Below).
+                    Singapore and the United States of America, and Appstars
+                    Applications Pvt. Ltd., a company registered in India. The
+                    Platform allows and facilitates acquiring of “Digital
+                    Collectible(s) or Collectible(s)” (Defined Below) through
+                    “Purchase” (Defined Below) or “Auction” (Defined Below).
                   </p>
                   <p>
                     JUMP.TRADE operates web applications, web services and
@@ -968,7 +969,7 @@ const TermsAndConditions = () => {
                   <h4>Warranties</h4>
                   <p>
                     By using this Platform and its services, you acknowledge and
-                    understand that thepublic address of your wallet will be
+                    understand that the public address of your wallet will be
                     made publicly visible whenever you engage in any transaction
                     on the Platform. We reserve the right to change the
                     Blockchain that we use to power our Platform, and all the
@@ -1299,7 +1300,10 @@ const TermsAndConditions = () => {
                 </div>
                 <div className="all-para-style">
                   <h4>Contact</h4>
-                  <p>Guardian Blockchain Labs Pte. Ltd. Singapore.</p>
+                  <p>
+                    Guardian Blockchain Labs Pte. Ltd. Singapore & Appstars
+                    Applications Pvt. Ltd. India.
+                  </p>
                   <a href="mailto:legal@guardianlink.io" className="one-link">
                     legal@guardianlink.io
                   </a>

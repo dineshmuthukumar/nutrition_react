@@ -46,11 +46,12 @@ const Latimes = lazy(() => import("./components/client-category/latimes"));
 const RecentlySold = lazy(() => import("./pages/recently-sold"));
 const CreatorApplication = lazy(() => import("./pages/creator-application"));
 const LiveAuctionsNFTs = lazy(() => import("./pages/live-auction-nfts"));
+const TrendingNFTs = lazy(() => import("./pages/trending"));
 const MyFavorites = lazy(() => import("./pages/my-favorites"));
 const ExploreAll = lazy(() => import("./pages/explore-all"));
 const Privacy = lazy(() => import("./pages/privacy-policy"));
 const Terms = lazy(() => import("./pages/terms"));
-const FAQ = lazy(() => import("./pages/faq"));
+// const FAQ = lazy(() => import("./pages/faq"));
 
 function App(props) {
   const market_start_date = "Mar 9, 2022 12:30:00";
@@ -293,15 +294,23 @@ const WebContainer = () => {
         />
 
         <Route exact path="/privacy-policy" component={Privacy} />
-        <Route exact path="/faq" component={FAQ} />
+        {/* <Route exact path="/faq" component={FAQ} /> */}
         <Route exact path="/terms-and-conditions" component={Terms} />
 
         <Route exact path="/nfts/sale-history" component={RecentlySold} />
         <Route exact path="/nfts/live-auction" component={LiveAuctionsNFTs} />
+        <Route exact path="/nfts/trending" component={TrendingNFTs} />
         <Route exact path="/nfts/favorites" component={MyFavorites} />
 
         <Route exact path="/user/:slug/details" component={UserDetails} />
         <Route path="/not-found" component={NotFound} />
+        <Route
+          path="/mcl"
+          component={() => {
+            window.location.href = process.env.REACT_APP_DROP_URL;
+            return null;
+          }}
+        />
         <Route
           exact
           path="/:search?/order/details/:slug/:orderSlug"
@@ -309,6 +318,7 @@ const WebContainer = () => {
         />
         <Route exact path="/:search?/details/:slug" component={Home} />
         <Route exact path="/:search?" component={Home} />
+
         <Route exact component={NotFound} />
       </Switch>
     </>

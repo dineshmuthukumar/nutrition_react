@@ -134,7 +134,7 @@ const RecentlySoldList = () => {
           <div className="row">
             <div className="col-sm-12">
               <div className="sec-heading d-flex align-items-center mb-5 explore-heading">
-                <span className="me-4 text-nowrap">Recently Sold</span>
+                <span className="me-4 text-nowrap">RECENTLY SOLD</span>
                 <span className="d-flex justify-content-end mt-2 w-100 filter-blocks">
                   <div className="filt-flex-box">
                     <Dropdown>

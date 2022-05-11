@@ -5,6 +5,7 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import Banner from "../components/banner";
 import LiveAuctions from "../components/live-auctions";
+import Trending from "../components/trending";
 import HotCollections from "../components/hot-collections";
 import TopBuyers from "../components/top-buyers";
 import TopSellers from "../components/top-sellers";
@@ -98,13 +99,15 @@ const Home = () => {
         {/* <Banner list={list} /> */}
         {/* <HotCollections /> */}
 
-        {/* <RecentlySoldNFT /> */}
         {/* <TopBuyers /> */}
         {/* <TopSellers /> */}
         <HeroBanner />
         {/* <NewDropSection /> */}
         <CollectionList />
+        <Trending />
         <LiveAuctions />
+        <RecentlySoldNFT />
+
         {/* {favList.length > 0 && (
           <FavouriteNFTs list={favList} loading={favLoading} />
         )} */}
