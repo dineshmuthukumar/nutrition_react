@@ -541,6 +541,10 @@ const ExploreAllNFT = () => {
       ? query.get("nft-category").split(",")
       : [];
 
+    let nft_collection = query.get("nft-collection")
+      ? query.get("nft-collection").split(",")
+      : [];
+
     let query_string = "";
     if (category_exist.length > 0) {
       query_string += query_string
@@ -574,6 +578,12 @@ const ExploreAllNFT = () => {
       query_string += query_string
         ? `&search=${search_exist}`
         : `search=${search_exist}`;
+    }
+
+    if (nft_collection.length > 0) {
+      query_string += query_string
+        ? `&nft-collection=${nft_collection}`
+        : `nft-collection=${nft_collection}`;
     }
 
     if (sale_status) {
