@@ -597,7 +597,9 @@ const Header = ({
                 <Nav.Link
                   id="drop_outer"
                   role="button"
-                  onClick={() => history.push("/")}
+                  onClick={() =>
+                    window.open(process.env.REACT_APP_MARKETPLACE_URL, "_self")
+                  }
                 >
                   <span className="beta-container">
                     <span className="beta-tag">Beta</span>
