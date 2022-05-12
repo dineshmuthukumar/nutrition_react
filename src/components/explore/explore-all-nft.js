@@ -191,6 +191,7 @@ const ExploreAllNFT = () => {
   useEffect(() => {
     const sale_filters = query.get("sale") ? query.get("sale").split(",") : [];
     const nft_filters = query.get("nft") ? query.get("nft").split(",") : [];
+    const search_filters = query.get("search") ? query.get("search") : "";
     const sort_filters = query.get("sort")
       ? query.get("sort")
       : "recently_listed";
@@ -238,9 +239,10 @@ const ExploreAllNFT = () => {
 
     setFilter(info);
     setPage(1);
-    if (price_range.from || price_range.to) {
-      setPriceRangeFilter(price_range);
-    }
+    // if (price_range.from || price_range.to) {
+    setPriceRangeFilter(price_range);
+    // }
+    setSearch(search_filters);
   }, [query]);
 
   useEffect(() => {
