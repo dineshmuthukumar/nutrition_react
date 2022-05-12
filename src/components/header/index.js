@@ -594,6 +594,12 @@ const Header = ({
                     </Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
+                <Nav.Link id="drop_outer" role="button">
+                  <span className="beta-container">
+                    <span className="beta-tag">Coming soon</span>
+                    MCL Game
+                  </span>
+                </Nav.Link>
                 <Nav.Link
                   id="drop_outer"
                   role="button"
@@ -930,6 +936,12 @@ const Header = ({
                     </Dropdown.Menu>
                   </Dropdown>
 
+                  <Dropdown.Item href="#">
+                    <span className="beta-container">
+                      <span className="beta-tag">Coming soon</span>
+                      MCL Game
+                    </span>
+                  </Dropdown.Item>
                   <Dropdown.Item href="/">
                     <span className="beta-container">
                       <span className="beta-tag">Beta</span>
