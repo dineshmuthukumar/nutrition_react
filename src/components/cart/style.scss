@@ -51,6 +51,16 @@
           background: #9c9c9b;
         }
       }
+
+      &.success {
+        .progress-complete {
+          background: #fdf100;
+          padding: 0.2rem;
+          width: 100%;
+          border-top-right-radius: 1rem;
+          border-bottom-right-radius: 1rem;
+        }
+      }
     }
 
     .error-float-container {
@@ -222,6 +232,9 @@
       height: calc(100% - 21rem);
       overflow: hidden;
       overflow-y: auto;
+      &.cart-success {
+        height: calc(100% - 12rem);
+      }
       @media screen and (max-width: 450px) {
         height: calc(100% - 18rem);
       }
@@ -303,55 +316,228 @@
 }
 
 .pop-cart-info {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
   margin: 1rem 0;
   padding: 0 1.5rem;
-  .pop-cart-media {
-    margin-top: 0;
-    img,
-    video {
-      max-height: 12rem;
-      object-fit: cover;
-      border-radius: 0.7rem;
-      overflow: hidden;
-      width: 12rem;
-      object-position: top;
+  .checkbox {
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+    cursor: pointer;
+    // width: 20rem;
+  }
+  .checkbox input {
+    display: none;
+  }
+  .checkbox input ~ .checkbox__mark {
+    position: relative;
+    display: block;
+    background: transparent
+      linear-gradient(45deg, #e8318d 0%, #18e0e0 41%, #e2ff00 100%) 0% 0%
+      no-repeat padding-box;
+    z-index: 0;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0.1rem;
+      left: 0.1rem;
+      right: 0.1rem;
+      bottom: 0.1rem;
+      display: flex;
+      z-index: 0;
+      background: #000;
     }
   }
-  .pop-cart-content {
+  .checkbox input:checked ~ .checkbox__mark {
+    background: transparent
+      linear-gradient(45deg, #e8318d 0%, #18e0e0 41%, #e2ff00 100%) 0% 0%
+      no-repeat padding-box;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0.1rem;
+      left: 0.1rem;
+      right: 0.1rem;
+      bottom: 0.1rem;
+      display: flex;
+      z-index: 0;
+      background: transparent
+        linear-gradient(45deg, #e8318d 0%, #18e0e0 41%, #e2ff00 100%) 0% 0%
+        no-repeat padding-box;
+    }
+  }
+  .checkbox input:checked ~ .checkbox__mark svg {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .checkbox input:checked ~ .checkbox__info.text-checked {
+    background: transparent
+      linear-gradient(88deg, #e8318d 0%, #18e0e0 10%, #e2ff00 20%) 0% 0%
+      no-repeat padding-box;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .checkbox__mark {
+    margin-right: 0.5rem;
+    position: relative;
+    width: 1.8rem;
+    height: 1.8rem;
+    border: 0.2rem solid #000;
+  }
+  .checkbox__mark svg {
+    position: absolute;
+    fill: #000;
+    color: #000;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.5);
+    width: 100%;
+    height: auto;
+    transition: all ease 0.2s;
+    opacity: 0;
+  }
+  .checkbox--disabled {
+    color: grey;
+    pointer-events: none;
+  }
+  .checkbox--disabled .checkbox__mark {
+    border-color: grey;
+  }
+  .checkbox--disabled .checkbox__mark {
+    border-color: grey;
+  }
+
+  .checkbox__info {
+    width: calc(100% - 2.5rem);
+    overflow: hidden;
+    font-size: 1.1rem;
+    color: #fff;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding-left: 1rem;
-    .erc-type {
+    justify-content: space-between;
+    align-items: center;
+    letter-spacing: 0.08rem;
+    font-family: $neue-helvetica-roman;
+    user-select: none;
+  }
+  .cart-img {
+    img {
+      width: 8rem;
+      height: 8rem;
+      object-fit: cover;
+      border-radius: 0.5rem;
+      border: 1px solid #103c29;
+      margin: 0 1rem;
+    }
+  }
+  .cart-nft-detail {
+    .cart-subtitle {
+      font-size: 1.2rem;
+      font-family: "neue_helvetica_extended" !important;
+    }
+    h2 {
       font-size: 1.8rem;
-      margin: 0.5rem 0;
-      font-family: $neue-helvetica-medium;
+      font-family: "neue_helvetica_extended_bold" !important;
+    }
+    .remove-cart {
+      svg {
+        color: #878787;
+      }
       span {
-        font-size: 1.5rem;
-        color: #9c9c9b;
-        font-family: $neue-helvetica-light;
+        font-size: 1rem !important;
+        color: #878787;
       }
     }
-
-    .pop-author-name {
-      font-size: 1.2rem;
-      font-family: $neue-helvetica-light;
-    }
-    .pop-cart-title {
-      font-family: $neue-helvetica-bold;
-      font-size: 2rem;
-      padding: 0;
-      text-align: left !important;
-      line-height: 1.2;
-      margin-top: 0.2rem;
+  }
+  .nft-cart-price {
+    font-size: 1.6rem;
+    font-family: "neue_helvetica_extended_bold" !important;
+  }
+  .cart-item {
+    border-bottom: 1px solid #103c29;
+    &.cart-disabled {
+      position: relative;
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0.1rem;
+        right: 0.1rem;
+        bottom: 0.1rem;
+        left: 0.1rem;
+        background: #02130aab;
+        z-index: 1;
+      }
+      .remove-cart {
+        position: relative;
+        z-index: 2;
+        cursor: pointer;
+      }
     }
   }
 }
-
+.bottom-content-cart {
+  margin: 1rem 0;
+  padding: 0 1.5rem;
+  border-bottom: 1px solid #103c29;
+  border-top: 1px solid #103c29;
+  span {
+    font-family: "neue_helvetica_extended" !important;
+    color: #72807a;
+  }
+  h2 {
+    font-family: "neue_helvetica_extended_bold" !important;
+    margin-bottom: 0%;
+  }
+  .cart-servicefee {
+    padding-left: 2rem;
+  }
+}
+.cart-bottom-btn {
+  padding: 0 1.5rem;
+  .cart-btn {
+    border-radius: 50rem;
+    border: 1px solid #000;
+    color: #fff;
+    display: block;
+    margin: 0 0.3rem;
+    padding: 1rem 1rem;
+    transition: 0.3s;
+    position: relative;
+    text-transform: capitalize;
+    font-size: 0.9rem;
+    background: transparent
+      linear-gradient(180deg, #e2ff00, #18e0e0 47%, #e8318d) 0 0 no-repeat
+      padding-box;
+    font-family: "neue_helvetica_extended_bold" !important;
+    z-index: 99;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0.1rem;
+      right: 0.1rem;
+      bottom: 0.1rem;
+      left: 0.1rem;
+      background: #000;
+      border-radius: 50rem;
+      z-index: -1;
+    }
+  }
+}
+.cart-error {
+  background: #3c0808;
+  border: 1px solid #f11010;
+  border-radius: 4px;
+  padding: 0.8rem 1rem;
+  span {
+    font-size: 1rem;
+  }
+}
+.order-placed {
+  h2 {
+    font-family: "neue_helvetica_extended_bold" !important;
+    font-size: 2rem;
+  }
+}
 .fee-flexbox {
   display: flex;
   justify-content: space-between;
