@@ -474,6 +474,27 @@
       }
     }
   }
+  @media screen and (max-width: 480px) {
+    .cart-item {
+      flex-direction: column;
+      align-items: flex-start !important;
+    }
+    .cart-nft-detail h2 {
+      font-size: 1.4rem;
+    }
+    .nft-cart-price {
+      width: 100%;
+      font-size: 1.2rem;
+      justify-content: flex-end;
+    }
+
+    .cart-img img {
+      width: 5rem;
+      height: 5rem;
+    }
+  }
+  @media screen and (max-width: 767px) {
+  }
 }
 .bottom-content-cart {
   margin: 1rem 0;
