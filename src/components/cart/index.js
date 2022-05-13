@@ -139,7 +139,7 @@ const Cart = ({ cartPop = false, setCartPop }) => {
                 </div>
               </div>
               <div className="cart-bottom-btn">
-                <div className="text-center flex-btn full-width">
+                <div className="text-center flex-btn">
                   <button className="cart-btn text-center btn-lg mt-2 rounded-pill">
                     BUY NFTs
                   </button>
@@ -296,7 +296,7 @@ const Cart = ({ cartPop = false, setCartPop }) => {
               </div>
 
               <div className="cart-bottom-btn">
-                <div className="text-center flex-btn full-width">
+                <div className="text-center flex-btn">
                   <button className="cart-btn text-center btn-lg mt-2 rounded-pill">
                     OKAY
                   </button>

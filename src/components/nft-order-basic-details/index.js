@@ -23,6 +23,8 @@ import postImages from "../../images/post1.png";
 import userImg from "../../images/user_1.jpg";
 import NFTTimeLeft from "../nft-time-left/index";
 
+import CartIcon from "../../images/jump-trade/cart_icon.png";
+
 import "./style.scss";
 
 const NFTOrderBaseDetails = ({
@@ -462,10 +464,10 @@ const NFTOrderBaseDetails = ({
                 })()}
               </div>
               <hr className="custom-divider" />
-              <div className="d-flex">
+              {/* <div className="d-flex">
                 <BidValue title="Category" value={nft.category_name} />
               </div>
-              <hr className="custom-divider" />
+              <hr className="custom-divider" /> */}
               <div className="d-flex">
                 {orderDetails.timed_auction && !transferringNFT && !soldOut && (
                   <>
@@ -525,7 +527,7 @@ const NFTOrderBaseDetails = ({
             </>
           )}
 
-          <div className="text-center flex-btn full-width">
+          <div className="text-center flex-btn">
             <NFTPlaceBid
               nft={nft}
               orderDetails={orderDetails}
@@ -914,7 +916,10 @@ const NFTOrderBaseDetails = ({
                 );
               }
             })()}
-
+            <button class="add-to-cart-btn full-width">
+              {" "}
+              <img src={CartIcon} /> Add to Cart
+            </button>
             <div className="mt-2 royalty-info">
               {/* {erc721 &&
               nft.auction_extend_minutes &&

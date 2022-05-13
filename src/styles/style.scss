@@ -2259,17 +2259,25 @@ section.detail-page-content {
         align-items: center;
         .title {
           margin-right: 0.5rem;
+          font-family: $neue-helvetica-bold;
         }
       }
 
       .bottom-content-box {
-        padding: 1rem;
+        padding: 1.5rem;
         border: 0.1rem solid #193629;
         border-radius: 0.5rem;
         margin: 0.5rem 0;
         .current-bid {
+          padding: 2rem 1rem;
           .title {
             font-family: $neue-helvetica-bold;
+            font-size: 1.1rem;
+          }
+          .value {
+            .crypto {
+              font-size: 1.8rem;
+            }
           }
         }
       }
