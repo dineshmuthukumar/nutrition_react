@@ -519,7 +519,9 @@ const NFTOrderBaseDetails = ({
                   />
                 )}
               </div>
-              <hr className="custom-divider" />
+              {orderDetails.timed_auction && !transferringNFT && !soldOut && (
+                <hr className="custom-divider" />
+              )}
             </>
           )}
 
