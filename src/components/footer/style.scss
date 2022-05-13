@@ -476,7 +476,12 @@ button.nft_form {
     align-items: flex-start;
     justify-content: flex-start;
     text-align: right;
-
+    .footer-brand-info {
+      text-align: left;
+      font-size: 1.3rem !important;
+      max-width: 40rem;
+      margin-bottom: 1rem;
+    }
     &:first-of-type {
       width: 50%;
       flex-direction: column;
@@ -506,6 +511,7 @@ button.nft_form {
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
+        max-width: 30rem;
         .form-label {
           font-size: 1.8rem;
           font-family: $neue-helvetica-extended;

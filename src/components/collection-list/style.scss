@@ -15,21 +15,21 @@
     .main-title {
       letter-spacing: 0.1rem;
       color: #ffffff1a;
-      font-size: 8rem;
+      font-size: 5rem;
       -webkit-text-stroke-width: 2px;
       -webkit-text-stroke-color: #c7c7c7;
       @media screen and (max-width: 991px) {
-        font-size: 5.5rem;
+        font-size: 3.5rem;
       }
       @media screen and (max-width: 767px) {
-        font-size: 4rem;
-      }
-      @media screen and (max-width: 560px) {
         font-size: 3rem;
       }
-      @media screen and (max-width: 475px) {
+      @media screen and (max-width: 560px) {
         font-size: 2rem;
       }
+      // @media screen and (max-width: 475px) {
+      //   font-size: 2rem;
+      // }
     }
     .sub-title {
       letter-spacing: 0.1rem;
@@ -38,10 +38,10 @@
       max-width: 10rem;
       margin-left: 2rem;
       @media screen and (max-width: 991px) {
-        font-size: 2.5rem;
+        font-size: 2rem;
       }
       @media screen and (max-width: 767px) {
-        font-size: 2rem;
+        font-size: 1.5rem;
       }
       @media screen and (max-width: 560px) {
         font-size: 1rem;
@@ -53,6 +53,16 @@
         margin-left: 1rem;
       }
     }
+  }
+  .collection-para-desc {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 3rem;
+    margin-top: 2rem;
+    max-width: 70rem;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
   }
 
   article.collection-list {
