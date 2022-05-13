@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import { Navbar, Nav, Dropdown, Container } from "react-bootstrap";
-import { BiBell, BiHelpCircle } from "react-icons/bi";
+import { BiBell, BiCart, BiHelpCircle } from "react-icons/bi";
 import { useTranslation } from "react-multi-lang";
 import { useSelector, useDispatch } from "react-redux";
 import { FaDiscord } from "react-icons/fa";
@@ -21,9 +21,14 @@ import { currencyFormat } from "../../utils/common";
 import { user_wallet_update_action } from "../../redux/actions/user_action";
 import { getNotificationApi } from "../../api/base-methods";
 import { readNotificationApi } from "./../../api/base-methods";
+import {
+  clear_cart_thunk,
+  get_cart_list_thunk,
+} from "../../redux/thunk/user_cart_thunk";
 
 import jumpTradeLogo from "../../images/jump-trade-logo.svg";
 import notifyBell from "../../images/jump-trade/bell_notify.png";
+import Cart from "../cart";
 
 import "./style.scss";
 
@@ -44,9 +49,11 @@ const Header = ({
   const [notiRead, setNotiRead] = useState(true);
 
   const [ribbon, setRibbon] = useState(true);
+  const [cartPop, setCartPop] = useState(false);
 
-  const { user } = state;
+  const { user, cart } = state;
   const slug = user.data?.user ? user.data?.user?.slug : null;
+  const userCart = cart?.data ? cart?.data : null;
 
   useEffect(() => {
     if (slug) {
@@ -54,6 +61,8 @@ const Header = ({
         dispatch(user_wallet_update_action(data));
       });
       handleGetNotification(npage);
+      dispatch(get_cart_list_thunk());
+      // dispatch(clear_cart_thunk("RNMmeXvbT5X9Gn4y"));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -597,7 +606,9 @@ const Header = ({
                 <Nav.Link
                   id="drop_outer"
                   role="button"
-                  onClick={() => history.push("/")}
+                  onClick={() =>
+                    window.open(process.env.REACT_APP_MARKETPLACE_URL, "_self")
+                  }
                 >
                   <span className="beta-container">
                     <span className="beta-tag">Beta</span>
@@ -681,6 +692,20 @@ const Header = ({
                             </div>
                           </Dropdown.Menu>
                         </Dropdown>
+                        {slug && (
+                          <Nav.Link
+                            href=""
+                            className="cart_ic"
+                            onClick={() => setCartPop(!cartPop)}
+                          >
+                            <BiCart size={25} role="button" color={"white"} />{" "}
+                            {userCart?.count && (
+                              <span className="badge rounded-pill bg-danger">
+                                {userCart?.count}
+                              </span>
+                            )}
+                          </Nav.Link>
+                        )}
                         <Dropdown autoClose="outside" className="mx-0">
                           <Dropdown.Toggle
                             align="start"
@@ -940,6 +965,8 @@ const Header = ({
           )}
         </Container>
       </Navbar>
+
+      <Cart cartPop={cartPop} setCartPop={setCartPop} />
     </>
   );
 };

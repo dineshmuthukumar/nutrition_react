@@ -49,12 +49,14 @@ const LiveAuctions = () => {
             <div className="col-sm-12">
               <div className="sec-heading live-flex-box">
                 <span className="title">LIVE AUCTIONS</span>
-                <span
-                  className="viewallBtnliveaction"
-                  onClick={() => history.push("/nfts/live-auction")}
-                >
-                  View all
-                </span>
+                {list.length > 4 && (
+                  <span
+                    className="viewallBtnliveaction"
+                    onClick={() => history.push("/nfts/live-auction")}
+                  >
+                    View all
+                  </span>
+                )}
               </div>
 
               {!loading ? (
