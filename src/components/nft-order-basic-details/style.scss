@@ -461,7 +461,29 @@
   button {
     width: 48%;
     margin: 1%;
+    margin-bottom: 1rem;
+    &.add-to-cart-btn {
+      background: #093321;
+      color: #fff;
+      text-transform: uppercase;
+      border: 0.1rem solid #113b29;
+      padding: 0.8rem;
+      border-radius: 50rem;
+      font-family: $neue-helvetica-bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        height: 1.2rem;
+        filter: invert(1);
+        margin-right: 0.5rem;
+      }
+    }
     &.full-width {
+      width: 98%;
+    }
+
+    @media screen and (max-width: 480px) {
       width: 98%;
     }
   }
