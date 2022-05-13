@@ -57,14 +57,14 @@
       }
     }
     h3 {
-      font-size: 6rem;
+      font-size: 3rem;
       max-width: 70rem;
       line-height: 1.1;
       color: #19fdff;
-      padding: 0.5rem 2.5rem;
       border-radius: 50rem;
+      text-align: left;
       font-family: $Impact;
-      text-transform: uppercase;
+      margin-bottom: 2rem;
       span {
         font-family: $Impact;
         color: #fff;
@@ -73,10 +73,17 @@
         font-size: 4.5rem;
       }
     }
+    .hero-desc {
+      font-size: 1.5rem;
+      text-align: left;
+      color: #fff;
+      margin-bottom: 3rem;
+      font-family: $neue-helvetica-medium;
+    }
     .hero-btn-block {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       margin-top: 0rem;
       // position: absolute;
       // top: 13rem;

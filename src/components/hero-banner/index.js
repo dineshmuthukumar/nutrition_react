@@ -51,48 +51,66 @@ const HeroBanner = () => {
     <>
       <section className="hero-banner-sec">
         <div className="hero-content-block">
-          <h3>
-            {live ? (
-              <>
-                Marketplace <span>Is Live</span>
-              </>
-            ) : (
-              market_time && (
-                <>
-                  <div className="live-text-title">MARKETPLACE</div>
-                  <div className="live-text">TIME LEFT UNTIL LAUNCH</div>
-                  <NFTCounter
-                    time={market_time}
-                    handleEndEvent={handleCheck}
-                    timeClass="live-time"
-                    intervalClass="live-interval"
-                    intervalGapClass="live-gap"
-                  />
-                </>
-              )
-            )}
-          </h3>
-          <div className="hero-btn-block">
-            {/* <button className="theme-btn">
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col-lg-6">
+                <h3>
+                  {live ? (
+                    <>
+                      Jump.trade -{" "}
+                      <span>
+                        The NFT Marketplace To Buy &amp; Trade Legendary NFTs{" "}
+                      </span>
+                    </>
+                  ) : (
+                    market_time && (
+                      <>
+                        <div className="live-text-title">MARKETPLACE</div>
+                        <div className="live-text">TIME LEFT UNTIL LAUNCH</div>
+                        <NFTCounter
+                          time={market_time}
+                          handleEndEvent={handleCheck}
+                          timeClass="live-time"
+                          intervalClass="live-interval"
+                          intervalGapClass="live-gap"
+                        />
+                      </>
+                    )
+                  )}
+                </h3>
+                <p className="hero-desc">
+                  Jump.trade - The #1 NFT marketplace to buy the world’s first
+                  P2E cricket game NFTs. Buy NFT bats, players, and signed
+                  legendary NFTs commemorating World Cup final matches!
+                </p>
+                <div className="hero-btn-block">
+                  {/* <button className="theme-btn">
               <span>Signup</span>
             </button>
             <button className="secondary-btn">Fund your wallet</button> */}
-            {live && (
-              <button
-                className="theme-btn"
-                onClick={() => history.push("/explore-all")}
-              >
-                <span>Explore</span>
-              </button>
-            )}
+                  {live && (
+                    <button
+                      className="theme-btn"
+                      onClick={() => history.push("/explore-all")}
+                    >
+                      <span>Explore</span>
+                    </button>
+                  )}
 
-            {/* <button className="secondary-btn">Fund your wallet</button> */}
+                  {/* <button className="secondary-btn">Fund your wallet</button> */}
+                </div>
+              </div>
+              <div className="col-lg-6">
+                <img
+                  src={
+                    innerWidth > 767 ? HeroContentImgWeb : HeroContentImgMobile
+                  }
+                  alt="Best NFT Marketplace"
+                  className="hero-content-img"
+                />
+              </div>
+            </div>
           </div>
-          <img
-            src={innerWidth > 767 ? HeroContentImgWeb : HeroContentImgMobile}
-            alt="HeroContentImgWeb"
-            className="hero-content-img"
-          />
         </div>
       </section>
     </>
