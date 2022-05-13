@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import ReadMoreReact from "read-more-react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FaCheckCircle } from "react-icons/fa";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
 import { VscChevronRight } from "react-icons/vsc";
@@ -10,6 +10,7 @@ import dayjs from "dayjs";
 import { Popover, OverlayTrigger } from "react-bootstrap";
 
 import { acceptBidApi } from "../../api/methods";
+import { add_to_cart_thunk } from "../../redux/thunk/user_cart_thunk";
 import BidValue from "../bid-value";
 import ToolTip from "../tooltip";
 import NFTPlaceBid from "../nft-place-bid";
@@ -64,10 +65,14 @@ const NFTOrderBaseDetails = ({
   handleBeforeAuctionEndTimer,
 }) => {
   const history = useHistory();
-  const { user } = useSelector((state) => state.user.data);
+  const dispatch = useDispatch();
+  const { user, cart } = useSelector((state) => state);
+  const User = user.data.user;
+  const Cart = cart.data;
   const [modalShow, setModalShow] = useState(false);
   const [acceptBidConfirm, setAcceptBidConfirm] = useState(false);
   const [acceptBidSucess, setAcceptBidSucess] = useState(false);
+  const [inCart, setInCart] = useState(false);
 
   const erc721 = nft.nft_type === "erc721";
   const isBid = _.get(nft, "order_details.is_bid", false);
@@ -103,6 +108,17 @@ const NFTOrderBaseDetails = ({
       </Popover.Body>
     </Popover>
   );
+
+  useEffect(() => {
+    const orderSlug = Cart?.line_items.find(
+      (obj) => obj.order_slug === orderDetails?.slug
+    );
+    if (orderSlug) {
+      setInCart(true);
+    } else {
+      setInCart(false);
+    }
+  }, [cart]);
 
   return (
     <>
@@ -212,7 +228,7 @@ const NFTOrderBaseDetails = ({
           !bidOutDated &&
           acceptBidConfirm ? (
             <>
-              {user?.slug &&
+              {User?.slug &&
                 isOrderOnSale &&
                 (isOwner || isBidder) &&
                 bidExpiry &&
@@ -260,7 +276,7 @@ const NFTOrderBaseDetails = ({
                     src={
                       !latestBid?.private && latestBid?.avatar_url
                         ? latestBid?.avatar_url
-                        : user?.slug === latestBid?.slug &&
+                        : User?.slug === latestBid?.slug &&
                           latestBid?.avatar_url
                         ? latestBid?.avatar_url
                         : userImg
@@ -320,7 +336,7 @@ const NFTOrderBaseDetails = ({
             </>
           ) : (
             <>
-              {user?.slug &&
+              {User?.slug &&
                 isOrderOnSale &&
                 (isOwner || isBidder) &&
                 bidExpiry &&
@@ -407,7 +423,7 @@ const NFTOrderBaseDetails = ({
                 })()}
 
                 {(() => {
-                  if (user && userLastBid && price) {
+                  if (User && userLastBid && price) {
                     return (
                       <BidValue
                         title="Your Last Bid"
@@ -419,7 +435,7 @@ const NFTOrderBaseDetails = ({
                         }
                       />
                     );
-                  } else if (user && orderDetails.user_highest_bid) {
+                  } else if (User && orderDetails.user_highest_bid) {
                     return (
                       <BidValue
                         title="Your Last Bid"
@@ -586,7 +602,7 @@ const NFTOrderBaseDetails = ({
             )}
 
             {(() => {
-              if (!user) {
+              if (!User) {
                 return (
                   <button
                     disabled={false}
@@ -640,7 +656,7 @@ const NFTOrderBaseDetails = ({
                     Order Cancelled
                   </button>
                 );
-              } else if (parseFloat(user?.balance) <= 0 && !isOwner) {
+              } else if (parseFloat(User?.balance) <= 0 && !isOwner) {
                 return (
                   <button
                     disabled={false}
@@ -736,20 +752,20 @@ const NFTOrderBaseDetails = ({
               } else if (isBid && isBuy) {
                 return (
                   <>
-                    {user?.kyc_status !== "success" ? (
+                    {User?.kyc_status !== "success" ? (
                       <OverlayTrigger
                         trigger={["click"]}
                         rootClose={true}
                         placement="top"
                         overlay={KycPopOver()}
                       >
-                        <button className="place-bid-buy-btn filled-btn full-width">
+                        <button className="place-bid-buy-btn filled-btn">
                           Buy {currencyFormat(orderDetails.buy_amount, "USD")}
                         </button>
                       </OverlayTrigger>
                     ) : (
                       <button
-                        className="place-bid-buy-btn filled-btn full-width"
+                        className="place-bid-buy-btn filled-btn"
                         onClick={() => setPlaceBuyPop(!placeBuyPop)}
                       >
                         Buy {currencyFormat(orderDetails.buy_amount, "USD")}
@@ -758,7 +774,7 @@ const NFTOrderBaseDetails = ({
 
                     {orderDetails.timed_auction ? (
                       <>
-                        {user?.kyc_status !== "success" ? (
+                        {User?.kyc_status !== "success" ? (
                           <OverlayTrigger
                             trigger={["click"]}
                             rootClose={true}
@@ -773,7 +789,7 @@ const NFTOrderBaseDetails = ({
                                   return isAuctionEnded;
                                 }
                               })()}
-                              className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn full-width"
+                              className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn"
                             >
                               Place Bid
                             </button>
@@ -787,7 +803,7 @@ const NFTOrderBaseDetails = ({
                                 return isAuctionEnded;
                               }
                             })()}
-                            className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn full-width"
+                            className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn"
                             onClick={() => setPlaceBidPop(!placeBidPop)}
                           >
                             Place Bid
@@ -796,20 +812,20 @@ const NFTOrderBaseDetails = ({
                       </>
                     ) : (
                       <>
-                        {user?.kyc_status !== "success" ? (
+                        {User?.kyc_status !== "success" ? (
                           <OverlayTrigger
                             trigger={["click"]}
                             rootClose={true}
                             placement="top"
                             overlay={KycPopOver()}
                           >
-                            <button className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn full-width">
+                            <button className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn">
                               Place Bid
                             </button>
                           </OverlayTrigger>
                         ) : (
                           <button
-                            className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn full-width"
+                            className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn"
                             onClick={() => setPlaceBidPop(!placeBidPop)}
                           >
                             Place Bid
@@ -817,12 +833,30 @@ const NFTOrderBaseDetails = ({
                         )}
                       </>
                     )}
+                    {User?.kyc_status === "success" && (
+                      <button
+                        class="add-to-cart-btn full-width"
+                        onClick={() => {
+                          if (!inCart) {
+                            dispatch(
+                              add_to_cart_thunk(
+                                orderDetails.slug,
+                                orderDetails.available_quantity
+                              )
+                            );
+                          }
+                        }}
+                      >
+                        <img src={CartIcon} />{" "}
+                        {!inCart ? "Add to Cart" : "Added in Cart"}
+                      </button>
+                    )}
                   </>
                 );
               } else if (isBid) {
                 return orderDetails.timed_auction ? (
                   <>
-                    {user?.kyc_status !== "success" ? (
+                    {User?.kyc_status !== "success" ? (
                       <OverlayTrigger
                         trigger={["click"]}
                         rootClose={true}
@@ -860,7 +894,7 @@ const NFTOrderBaseDetails = ({
                   </>
                 ) : (
                   <>
-                    {user?.kyc_status !== "success" ? (
+                    {User?.kyc_status !== "success" ? (
                       <OverlayTrigger
                         trigger={["click"]}
                         rootClose={true}
@@ -882,7 +916,7 @@ const NFTOrderBaseDetails = ({
                   </>
                 );
               } else if (isBuy) {
-                return user?.kyc_status !== "success" ? (
+                return User?.kyc_status !== "success" ? (
                   <OverlayTrigger
                     trigger={["click"]}
                     rootClose={true}
@@ -897,13 +931,28 @@ const NFTOrderBaseDetails = ({
                     </button>
                   </OverlayTrigger>
                 ) : (
-                  <button
-                    disabled={false}
-                    className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn full-width"
-                    onClick={() => setPlaceBuyPop(!placeBuyPop)}
-                  >
-                    Buy {currencyFormat(orderDetails.buy_amount, "USD")}
-                  </button>
+                  <>
+                    <button
+                      disabled={false}
+                      className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                      onClick={() => setPlaceBuyPop(!placeBuyPop)}
+                    >
+                      Buy {currencyFormat(orderDetails.buy_amount, "USD")}
+                    </button>
+                    <button
+                      class="add-to-cart-btn"
+                      onClick={() =>
+                        dispatch(
+                          add_to_cart_thunk(
+                            orderDetails.slug,
+                            orderDetails.available_quantity
+                          )
+                        )
+                      }
+                    >
+                      <img src={CartIcon} /> Add to Cart
+                    </button>
+                  </>
                 );
               } else {
                 return (
@@ -916,10 +965,6 @@ const NFTOrderBaseDetails = ({
                 );
               }
             })()}
-            <button class="add-to-cart-btn full-width">
-              {" "}
-              <img src={CartIcon} /> Add to Cart
-            </button>
             <div className="mt-2 royalty-info">
               {/* {erc721 &&
               nft.auction_extend_minutes &&

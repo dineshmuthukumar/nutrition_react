@@ -48,7 +48,7 @@ const NFTCard = ({
 }) => {
   const erc721 = nft?.nft_type === "erc721";
   const dispatch = useDispatch();
-  const state = useSelector((state) => state);
+  const { user, cart } = useSelector((state) => state);
   const { search } = useRouteMatch().params;
   const history = useHistory();
   const [bgColor, setBgColor] = useState();
@@ -56,9 +56,8 @@ const NFTCard = ({
   const [isAuctionStarted, setIsAuctionStarted] = useState(false);
   const [isAuctionEnded, setIsAuctionEnded] = useState(false);
   const [showTimer, setShowTimer] = useState(false);
-  const [added, setAdded] = useState(false);
+  const [inCart, setInCart] = useState(false);
 
-  const { user, cart } = state;
   const userSlug = user.data?.user ? user.data?.user?.slug : null;
   const userCart = cart?.data ? cart?.data : null;
 
@@ -259,16 +258,16 @@ const NFTCard = ({
     dispatch(add_to_cart_thunk(nft?.order_details?.slug, nft?.quantity));
   };
 
-  // useEffect(() => {
-  //   const orderSlug = userCart?.line_items.find(
-  //     (obj) => obj.order_slug === nft?.order_details?.slug
-  //   );
-  //   if (orderSlug) {
-  //     setAdded(true);
-  //   } else {
-  //     setAdded(false);
-  //   }
-  // }, [userCart]);
+  useEffect(() => {
+    const orderSlug = userCart?.line_items.find(
+      (obj) => obj.order_slug === nft?.order_details?.slug
+    );
+    if (orderSlug) {
+      setInCart(true);
+    } else {
+      setInCart(false);
+    }
+  }, [userCart]);
 
   return (
     <div className="more-card jt-card">
@@ -419,7 +418,7 @@ const NFTCard = ({
           nft?.order_details?.is_buy &&
           nft?.owner_slug !== userSlug && (
             <>
-              {!nft?.in_cart ? (
+              {!inCart ? (
                 <div className="cart_box" onClick={handleAddToCart}>
                   <div className="svg_size cart_icon"></div>
                 </div>

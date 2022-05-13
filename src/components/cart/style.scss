@@ -545,19 +545,19 @@
       border-radius: 50rem;
       z-index: -1;
     }
-    &:disabled {
-      background: #747475;
-      color: #9c9c9b;
-      border: none;
-      opacity: 1;
-      &::before {
-        background: none;
-      }
-    }
     &:hover {
       border: solid 1px #000;
       background: #fff;
       color: #000 !important;
+      &::before {
+        background: none;
+      }
+    }
+    &:disabled {
+      background: #747475;
+      color: #9c9c9b !important;
+      border: none;
+      opacity: 1;
       &::before {
         background: none;
       }
@@ -594,8 +594,8 @@
   height: calc(100% - 12rem);
   .empty-cart-item {
     img {
-      width: 10rem;
-      height: 10rem;
+      width: 15rem;
+      height: 15rem;
     }
   }
   .empty-cart {

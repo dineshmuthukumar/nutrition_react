@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
 import { Offcanvas } from "react-bootstrap";
 import ErrorText from "./error-text";
 import sample from "../../images/jump-trade/sample.png";
 import done from "../../images/jump-trade/done.svg";
-import emptycart from "../../images/jump-trade/empty1.gif";
-// import emptycart from "../../images/jump-trade/empty-cart.gif";
+import emptycart from "../../images/jump-trade/empty-cart-img.svg";
 import { BiCheck } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
 import { AiOutlineWarning } from "react-icons/ai";
@@ -21,6 +21,7 @@ import { proceed_checkout_request } from "../../redux/actions/user_cart_action";
 const Cart = ({ cartPop = false, setCartPop }) => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
+  const history = useHistory();
   const { cart } = state;
   const userCart = cart?.data ? cart?.data : null;
   const [noBalance, setNoBalance] = useState(false);
@@ -97,7 +98,9 @@ const Cart = ({ cartPop = false, setCartPop }) => {
               <div className="pop-cart-details">
                 <div className="pop-head-content">
                   <div className="pop-cart-title">
-                    Cart {userCart && `(${userCart?.total_count})`}
+                    Cart{" "}
+                    {userCart &&
+                      `(${userCart?.total_count ? userCart?.total_count : 0})`}
                   </div>
                   <div
                     className="close-button-pop"
@@ -251,9 +254,9 @@ const Cart = ({ cartPop = false, setCartPop }) => {
                   </div>
                 )}
                 <div className="cart-bottom-btn">
-                  <div className="text-center flex-btn full-width">
+                  <div className="text-center flex-btn">
                     <button
-                      className="cart-btn text-center btn-lg mt-2 rounded-pill"
+                      className="cart-btn text-center btn-lg mt-2 rounded-pill full-width"
                       onClick={handleCheckout}
                       disabled={selectedItems.length === 0}
                     >
@@ -266,7 +269,7 @@ const Cart = ({ cartPop = false, setCartPop }) => {
             ) : (
               <div className="pop-cart-details">
                 <div className="pop-head-content">
-                  <div className="pop-cart-title">Cart</div>
+                  <div className="pop-cart-title"></div>
                   <div
                     className="close-button-pop"
                     onClick={() => setCartPop(!cartPop)}
@@ -278,32 +281,29 @@ const Cart = ({ cartPop = false, setCartPop }) => {
                   </div>
                 </div>
                 {/* error-progress -> error progress , loading -> progressing */}
-                <div className={`pop-cart-progress`}>
-                  <div className="progress-complete"></div>
-                </div>
 
                 <div className="pop-body-content d-flex align-items-center justify-content-center empty-cart-content">
-                  <div className="error-float-container">
-                    {noBalance && <ErrorText type="nobalance" />}
-                  </div>
                   <div className="pop-cart-info">
                     <div className="d-block text-center py-4 empty-cart-item">
-                      {/* jjj */}
                       <img src={emptycart} />
                     </div>
                     <div className="text-center empty-cart">
-                      <h2>Empty Cart</h2>
+                      <h3>Your cart is empty!</h3>
+                      <p className="mt-2">Let's explore the Listed NFTs</p>
                     </div>
                   </div>
                 </div>
 
                 <div className="cart-bottom-btn">
-                  <div className="text-center flex-btn full-width">
+                  <div className="text-center flex-btn">
                     <button
                       className="cart-btn text-center btn-lg mt-2 rounded-pill"
-                      onClick={() => setCartPop(!cartPop)}
+                      onClick={() => {
+                        setCartPop(!cartPop);
+                        history.push("/explore-all");
+                      }}
                     >
-                      CLOSE
+                      Explore
                     </button>
                     <div className="mt-2 royalty-info"></div>
                   </div>
@@ -433,9 +433,9 @@ const Cart = ({ cartPop = false, setCartPop }) => {
               </div>
 
               <div className="cart-bottom-btn">
-                <div className="text-center flex-btn full-width">
+                <div className="text-center flex-btn">
                   <button
-                    className="cart-btn text-center btn-lg mt-2 rounded-pill"
+                    className="cart-btn text-center btn-lg mt-2 rounded-pill full-width"
                     onClick={() => setCartPop(!cartPop)}
                   >
                     OKAY
