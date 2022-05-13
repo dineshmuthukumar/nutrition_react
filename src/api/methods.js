@@ -163,13 +163,14 @@ export const trendingNFTsApi = (page, sort = "bid_count_desc", filter) =>
 export const addToCartApi = ({ order_slug, quantity }) =>
   appAxios.post(`/carts/add_to_cart`, { id: order_slug, quantity });
 
-export const removeFromCartApi = ({ cart_id, line_item_slug }) =>
-  appAxios.delete(`/carts/${cart_id}/remove_cart/${line_item_slug}`);
+export const removeFromCartApi = ({ line_item_slug }) =>
+  appAxios.delete(`/carts/remove_cart/${line_item_slug}`);
 
-export const clearCartApi = ({ cart_id }) =>
-  appAxios.delete(`/carts/${cart_id}/empty_cart`);
+export const clearCartApi = () => appAxios.delete(`/carts/empty_cart`);
 
 export const getCartListApi = () => appAxios.get(`/carts/cart_line_items`);
 
-export const checkoutApi = ({ cart_id }) =>
-  appAxios.post(`/carts/${cart_id}/proceed_checkout`);
+export const checkoutApi = ({ selectedItems }) =>
+  appAxios.post(`/carts/proceed_checkout`, {
+    line_item_ids: selectedItems,
+  });

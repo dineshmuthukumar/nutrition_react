@@ -1435,6 +1435,16 @@ input::-webkit-inner-spin-button {
   /* border-radius: 0; */
   padding: 0;
   font-size: 1rem;
+  .cart-count {
+    top: 0;
+    right: -8px;
+    width: 1.1rem;
+    height: 1.1rem;
+    display: flex;
+    align-items: center;
+    font-size: 0.6rem;
+    justify-content: center;
+  }
 }
 .top_bar {
   text-align: center;

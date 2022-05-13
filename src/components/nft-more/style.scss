@@ -501,7 +501,7 @@
           right: 0;
           bottom: 0;
           border-radius: 50rem;
-          filter: invert(1);
+          filter: invert(0);
           background-size: 1.5rem;
           background-position: center;
           background-repeat: no-repeat;
@@ -516,7 +516,7 @@
             background: #e1ff04;
           }
           .svg_size {
-            filter: invert(0);
+            filter: invert(1);
             &.cart_icon {
               background-image: url("../../images/jump-trade/cart_icon.png");
             }

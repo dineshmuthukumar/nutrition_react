@@ -432,21 +432,24 @@
   }
   .cart-nft-detail {
     .cart-subtitle {
-      font-size: 1.2rem;
+      font-size: 1rem;
       font-family: "neue_helvetica_extended" !important;
     }
     h2 {
-      font-size: 1.8rem;
+      font-size: 1.4rem;
       font-family: "neue_helvetica_extended_bold" !important;
     }
     .remove-cart {
-      svg {
-        color: #878787;
-      }
+      color: #878787;
       span {
         font-size: 1rem !important;
-        color: #878787;
       }
+      &:hover {
+        color: #fff;
+      }
+    }
+    .qty {
+      color: #878787;
     }
   }
   .nft-cart-price {
@@ -542,13 +545,30 @@
       border-radius: 50rem;
       z-index: -1;
     }
+    &:disabled {
+      background: #747475;
+      color: #9c9c9b;
+      border: none;
+      opacity: 1;
+      &::before {
+        background: none;
+      }
+    }
+    &:hover {
+      border: solid 1px #000;
+      background: #fff;
+      color: #000 !important;
+      &::before {
+        background: none;
+      }
+    }
   }
 }
 .cart-error {
   background: #3c0808;
   border: 1px solid #f11010;
   border-radius: 4px;
-  padding: 0.8rem 1rem;
+  padding: 0.5rem 1rem;
   span {
     font-size: 1rem;
   }
@@ -569,4 +589,18 @@
 .sticky-bottom-fix {
   position: sticky;
   top: 100vh;
+}
+.pop-body-container .pop-cart-details .pop-body-content.empty-cart-content {
+  height: calc(100% - 12rem);
+  .empty-cart-item {
+    img {
+      width: 10rem;
+      height: 10rem;
+    }
+  }
+  .empty-cart {
+    h2 {
+      font-family: "neue_helvetica_extended" !important;
+    }
+  }
 }

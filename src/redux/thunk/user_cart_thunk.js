@@ -35,12 +35,13 @@ export const add_to_cart_thunk = (order_slug, quantity) => {
   };
 };
 
-export const remove_from_cart_thunk = (cart_id, item_slug) => {
+export const remove_from_cart_thunk = (line_item_slug) => {
   return async (dispatch) => {
     try {
       dispatch(remove_from_cart_action_request());
-      const result = await removeFromCartApi({ cart_id, item_slug });
-      dispatch(remove_from_cart_action_success(result));
+      const result = await removeFromCartApi({ line_item_slug });
+      dispatch(remove_from_cart_action_success(result.data.data));
+      dispatch(get_cart_list_thunk());
     } catch (err) {
       console.log(err);
       dispatch(remove_from_cart_action_failure(err));
@@ -61,12 +62,14 @@ export const get_cart_list_thunk = () => {
   };
 };
 
-export const proceed_checkout_thunk = (cart_id) => {
+export const proceed_checkout_thunk = (selectedItems) => {
   return async (dispatch) => {
     try {
       dispatch(proceed_checkout_request());
-      const result = await checkoutApi({ cart_id });
-      dispatch(proceed_checkout_success(result));
+      const result = await checkoutApi({
+        selectedItems,
+      });
+      dispatch(proceed_checkout_success(result.data.data));
     } catch (err) {
       console.log(err);
       dispatch(proceed_checkout_failure(err));
@@ -74,10 +77,10 @@ export const proceed_checkout_thunk = (cart_id) => {
   };
 };
 
-export const clear_cart_thunk = (cart_id) => {
+export const clear_cart_thunk = () => {
   return async (dispatch) => {
     try {
-      const result = await clearCartApi({ cart_id });
+      const result = await clearCartApi();
       dispatch(clear_cart_action());
     } catch (err) {
       console.log(err);

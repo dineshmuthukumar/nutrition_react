@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import { useHistory, useRouteMatch, Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { prominent } from "color.js";
 import { currencyFormat } from "../../utils/common";
 import sample from "../../images/sampleNFT.jpg";
@@ -48,6 +48,7 @@ const NFTCard = ({
 }) => {
   const erc721 = nft?.nft_type === "erc721";
   const dispatch = useDispatch();
+  const state = useSelector((state) => state);
   const { search } = useRouteMatch().params;
   const history = useHistory();
   const [bgColor, setBgColor] = useState();
@@ -56,6 +57,10 @@ const NFTCard = ({
   const [isAuctionEnded, setIsAuctionEnded] = useState(false);
   const [showTimer, setShowTimer] = useState(false);
   const [added, setAdded] = useState(false);
+
+  const { user, cart } = state;
+  const userSlug = user.data?.user ? user.data?.user?.slug : null;
+  const userCart = cart?.data ? cart?.data : null;
 
   useEffect(() => {
     if (nft?.order_details?.timed_auction) {
@@ -252,8 +257,18 @@ const NFTCard = ({
 
   const handleAddToCart = () => {
     dispatch(add_to_cart_thunk(nft?.order_details?.slug, nft?.quantity));
-    setAdded(true);
   };
+
+  // useEffect(() => {
+  //   const orderSlug = userCart?.line_items.find(
+  //     (obj) => obj.order_slug === nft?.order_details?.slug
+  //   );
+  //   if (orderSlug) {
+  //     setAdded(true);
+  //   } else {
+  //     setAdded(false);
+  //   }
+  // }, [userCart]);
 
   return (
     <div className="more-card jt-card">
@@ -400,19 +415,21 @@ const NFTCard = ({
         {/* <div className="svg_size heart_icon"></div> */}
         {/* </div> */}
 
-        {nft?.is_on_sale && nft?.order_details?.is_buy && (
-          <>
-            {!nft?.in_cart ? (
-              <div className="cart_box" onClick={handleAddToCart}>
-                <div className="svg_size cart_icon"></div>
-              </div>
-            ) : (
-              <div className="cart_box add_cart">
-                <div className="svg_size cart_icon"></div>
-              </div>
-            )}
-          </>
-        )}
+        {nft?.is_on_sale &&
+          nft?.order_details?.is_buy &&
+          nft?.owner_slug !== userSlug && (
+            <>
+              {!nft?.in_cart ? (
+                <div className="cart_box" onClick={handleAddToCart}>
+                  <div className="svg_size cart_icon"></div>
+                </div>
+              ) : (
+                <div className="cart_box add_cart">
+                  <div className="svg_size cart_icon"></div>
+                </div>
+              )}
+            </>
+          )}
 
         <div style={{ color: textColor }}>
           <div className="more-nft-title">{nft?.name}</div>

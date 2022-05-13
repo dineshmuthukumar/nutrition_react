@@ -46,7 +46,14 @@ const user_cart_reducer = (state = initState, { payload, type }) => {
   }
 
   if (type === REMOVE_FROM_CART_SUCCESS) {
-    state = { ...state, loading: false, data: payload };
+    state = {
+      ...state,
+      loading: false,
+      data: {
+        ...state.data,
+        total_count: payload.total_count,
+      },
+    };
   }
 
   if (type === REMOVE_FROM_CART_FAILURE) {

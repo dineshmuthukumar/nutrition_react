@@ -28,6 +28,7 @@ import {
 
 import jumpTradeLogo from "../../images/jump-trade-logo.svg";
 import notifyBell from "../../images/jump-trade/bell_notify.png";
+import cartIcon from "../../images/jump-trade/cart_icon.svg";
 import Cart from "../cart";
 
 import "./style.scss";
@@ -40,7 +41,7 @@ const Header = ({
 }) => {
   const t = useTranslation();
   const dispatch = useDispatch();
-  const state = useSelector((state) => state);
+  const { user, cart } = useSelector((state) => state);
   const history = useHistory();
 
   const [notiLoading, setNotiLoading] = useState(false);
@@ -51,7 +52,6 @@ const Header = ({
   const [ribbon, setRibbon] = useState(true);
   const [cartPop, setCartPop] = useState(false);
 
-  const { user, cart } = state;
   const slug = user.data?.user ? user.data?.user?.slug : null;
   const userCart = cart?.data ? cart?.data : null;
 
@@ -62,7 +62,7 @@ const Header = ({
       });
       handleGetNotification(npage);
       dispatch(get_cart_list_thunk());
-      // dispatch(clear_cart_thunk("RNMmeXvbT5X9Gn4y"));
+      // dispatch(clear_cart_thunk());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -116,7 +116,7 @@ const Header = ({
 
   const UserToggleComponent = React.forwardRef(({ onClick }, ref) => (
     <UserComponent
-      user={state.user.data.user}
+      user={user.data.user}
       sref={ref}
       onClick={(e) => {
         e.preventDefault();
@@ -695,13 +695,18 @@ const Header = ({
                         {slug && (
                           <Nav.Link
                             href=""
-                            className="cart_ic"
-                            onClick={() => setCartPop(!cartPop)}
+                            className="cart_ic position-relative"
+                            onClick={() => {
+                              if (parseInt(userCart?.total_count) > 0) {
+                                setCartPop(!cartPop);
+                              }
+                            }}
                           >
-                            <BiCart size={25} role="button" color={"white"} />{" "}
-                            {userCart?.count && (
-                              <span className="badge rounded-pill bg-danger">
-                                {userCart?.count}
+                            {/* <BiCart size={25} role="button" color={"white"} />{" "} */}
+                            <img src={cartIcon} height={20} />
+                            {parseInt(userCart?.total_count) > 0 && (
+                              <span className="badge cart-count rounded-pill bg-danger position-absolute">
+                                {userCart?.total_count}
                               </span>
                             )}
                           </Nav.Link>
@@ -714,7 +719,7 @@ const Header = ({
                           ></Dropdown.Toggle>
 
                           <Dropdown.Menu align="end">
-                            <UserComponent user={state.user.data.user} />
+                            <UserComponent user={user.data.user} />
                             <Dropdown.Item
                               id="drop_inner"
                               href="/"
