@@ -71,6 +71,11 @@ const Footer = () => {
             <a target="_self" href="/">
               <img src={jumpTradeLogo} className="footer-logo" />
             </a>
+            <p className="footer-brand-info">
+              Jump.trade is one of the world’s largest NFT marketplace where you
+              can buy &amp; trade a lot of top digital collectibles including
+              MCL cricket game NFTs and other sports NFTs.
+            </p>
             {/* <div className="menu-list">
               <a target="_self" href="https://www.beyondlife.club/about.php">
                 About US
@@ -105,7 +110,9 @@ const Footer = () => {
                 return false;
               }}
             >
-              <Form.Label>Get the latest NFT updates</Form.Label>
+              <Form.Label>
+                Get the Latest Updates on Jump.trade NFT Marketplace
+              </Form.Label>
               <Form.Group className="formGroup mb-3" controlId="formBasicEmail">
                 <Form.Control
                   className="nft_form_email"
