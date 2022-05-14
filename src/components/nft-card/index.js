@@ -259,7 +259,7 @@ const NFTCard = ({
   };
 
   useEffect(() => {
-    if (userSlug && userCart?.line_items?.length > 0) {
+    if (userSlug) {
       const orderSlug = userCart?.line_items.find(
         (obj) => obj.order_slug === nft?.order_details?.slug
       );
@@ -416,7 +416,8 @@ const NFTCard = ({
         {/* <div className="svg_size heart_icon"></div> */}
         {/* </div> */}
 
-        {nft?.is_on_sale &&
+        {userSlug &&
+          nft?.is_on_sale &&
           nft?.order_details?.is_buy &&
           nft?.owner_slug !== userSlug && (
             <>

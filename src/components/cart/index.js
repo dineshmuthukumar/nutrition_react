@@ -33,6 +33,17 @@ const Cart = ({ cartPop = false, setCartPop }) => {
   const [finalAmount, setFinalAmount] = useState(0);
   const [selectedItems, setSelectedItems] = useState([]);
 
+  // useEffect(() => {
+  //   if (userCart?.line_items?.length > 0) {
+  //     let items = [...selectedItems];
+  //     userCart?.line_items.map((item) => items.push(item?.line_item_slug));
+  //     items = items.filter(function (item, i, input) {
+  //       return input.indexOf(item) == i;
+  //     });
+  //     setSelectedItems(items);
+  //   }
+  // }, [userCart]);
+
   useEffect(() => {
     let amount = 0;
     userCart?.line_items
@@ -80,6 +91,16 @@ const Cart = ({ cartPop = false, setCartPop }) => {
       items.splice(index, 1);
     } else {
       items.push(itemSlug);
+    }
+    setSelectedItems(items);
+  };
+
+  const handleRemove = (itemSlug) => {
+    dispatch(remove_from_cart_thunk(itemSlug));
+    let items = [...selectedItems];
+    const index = items.indexOf(itemSlug);
+    if (index > -1) {
+      items.splice(index, 1);
     }
     setSelectedItems(items);
   };
@@ -145,6 +166,9 @@ const Cart = ({ cartPop = false, setCartPop }) => {
                                 <input
                                   name="checkbox-group"
                                   type="checkbox"
+                                  checked={selectedItems?.includes(
+                                    nft?.line_item_slug
+                                  )}
                                   onChange={() =>
                                     handleCheckNFT(nft?.line_item_slug)
                                   }
@@ -154,7 +178,15 @@ const Cart = ({ cartPop = false, setCartPop }) => {
                                 </span>
                               </label>
                             </div>
-                            <div className="cart-img">
+                            <div
+                              className="cart-img"
+                              role={"button"}
+                              onClick={() =>
+                                history.push(
+                                  `/order/details/${nft?.nft_slug}/${nft?.order_slug}`
+                                )
+                              }
+                            >
                               {(() => {
                                 if (nft?.asset_type?.includes("image")) {
                                   return (
@@ -202,16 +234,23 @@ const Cart = ({ cartPop = false, setCartPop }) => {
                                 {nft?.category_name}
                               </span>
                               <div className="d-flex my-2">
-                                <h2>{nft?.name}</h2>
+                                <h2
+                                  role={"button"}
+                                  onClick={() =>
+                                    history.push(
+                                      `/order/details/${nft?.nft_slug}/${nft?.order_slug}`
+                                    )
+                                  }
+                                >
+                                  {nft?.name}
+                                </h2>
                               </div>
                               <div
                                 className={`remove-cart d-flex align-items-center ${
                                   nft?.order_status !== "onsale" && "text-white"
                                 }`}
                                 onClick={() =>
-                                  dispatch(
-                                    remove_from_cart_thunk(nft?.line_item_slug)
-                                  )
+                                  handleRemove(nft?.line_item_slug)
                                 }
                                 role={"button"}
                               >
@@ -239,7 +278,9 @@ const Cart = ({ cartPop = false, setCartPop }) => {
                       </div>
                       <div className="cart-total text-end">
                         <span className="mb-3 d-block">TOTAL AMOUNT</span>
-                        <h2>${totalAmount}</h2>
+                        <h2>
+                          {currencyFormat(parseFloat(totalAmount), "USD")}
+                        </h2>
                       </div>
                     </div>
                   </div>

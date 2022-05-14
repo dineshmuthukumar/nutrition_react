@@ -110,7 +110,7 @@ const NFTOrderBaseDetails = ({
   );
 
   useEffect(() => {
-    if (User?.slug && Cart?.line_items?.length > 0) {
+    if (User?.slug) {
       const orderSlug = Cart?.line_items.find(
         (obj) => obj.order_slug === orderDetails?.slug
       );
@@ -943,16 +943,19 @@ const NFTOrderBaseDetails = ({
                     </button>
                     <button
                       class="add-to-cart-btn"
-                      onClick={() =>
-                        dispatch(
-                          add_to_cart_thunk(
-                            orderDetails.slug,
-                            orderDetails.available_quantity
-                          )
-                        )
-                      }
+                      onClick={() => {
+                        if (!inCart) {
+                          dispatch(
+                            add_to_cart_thunk(
+                              orderDetails.slug,
+                              orderDetails.available_quantity
+                            )
+                          );
+                        }
+                      }}
                     >
-                      <img src={CartIcon} /> Add to Cart
+                      <img src={CartIcon} />{" "}
+                      {!inCart ? "Add to Cart" : "Added in Cart"}
                     </button>
                   </>
                 );

@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import {
   addToCartApi,
   removeFromCartApi,
@@ -28,9 +29,11 @@ export const add_to_cart_thunk = (order_slug, quantity) => {
       const result = await addToCartApi({ order_slug, quantity });
       dispatch(add_to_cart_action_success(result.data.data));
       dispatch(get_cart_list_thunk());
+      toast.success("Added to cart successfully");
     } catch (err) {
       console.log(err);
       dispatch(add_to_cart_action_failure(err));
+      // toast.error("");
     }
   };
 };
@@ -42,6 +45,7 @@ export const remove_from_cart_thunk = (line_item_slug) => {
       const result = await removeFromCartApi({ line_item_slug });
       dispatch(remove_from_cart_action_success(result.data.data));
       dispatch(get_cart_list_thunk());
+      toast.success("Removed from cart successfully");
     } catch (err) {
       console.log(err);
       dispatch(remove_from_cart_action_failure(err));

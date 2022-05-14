@@ -414,7 +414,6 @@ const OrderDetails = () => {
   const artistDetail = async (slug) => {
     try {
       let response = await artistApi(slug);
-      console.log(response);
       setArtist(response.data.data.celebrity);
     } catch (err) {
       console.log(err);

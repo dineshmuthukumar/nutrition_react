@@ -16,7 +16,7 @@ import moneyWithdraw from "../../images/withdraw-money.svg";
 import outbidIcon from "../../images/outbid.svg";
 import userImg from "../../images/user_1.jpg";
 import { user_logout_thunk } from "../../redux/thunk/user_thunk";
-import { accountDetail } from "../../api/actioncable-methods";
+import { accountDetail, cartDetail } from "../../api/actioncable-methods";
 import { currencyFormat } from "../../utils/common";
 import { user_wallet_update_action } from "../../redux/actions/user_action";
 import { getNotificationApi } from "../../api/base-methods";
@@ -63,6 +63,9 @@ const Header = ({
       handleGetNotification(npage);
       dispatch(get_cart_list_thunk());
       // dispatch(clear_cart_thunk());
+      // cartDetail(slug, (data) => {
+      //   console.log(data);
+      // });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -696,11 +699,7 @@ const Header = ({
                           <Nav.Link
                             href=""
                             className="cart_ic position-relative"
-                            onClick={() => {
-                              if (parseInt(userCart?.total_count) > 0) {
-                                setCartPop(!cartPop);
-                              }
-                            }}
+                            onClick={() => setCartPop(!cartPop)}
                           >
                             {/* <BiCart size={25} role="button" color={"white"} />{" "} */}
                             <img src={cartIcon} height={20} />
