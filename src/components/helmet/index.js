@@ -2,9 +2,9 @@ import React from "react";
 import { Helmet } from "react-helmet";
 
 const AppHelmet = ({
-  title = "NFT Marketplace | BeyondLife.club NFT| BeyondLife.club Marketplace| Premium NFT collection",
-  description = "BeyondLife.club marketplace is an NFT platform to buy/sell iconic NFT collection that marks history in the NFT spectrum",
-  image = "https://cdn.beyondlife.club/media/social/marketplace_og.jpg",
+  title = "Buy Cricket NFTs | Trade Meta Cricket League NFTs | Jump.trade",
+  description = "Get Your Hands On The Prized Meta Cricket League NFTs & Signed Bats Again On The Jump.trade Marketplace. Fund Your Wallets Now!",
+  image = "https://cdn.guardianlink.io/product-hotspot/images/og-image_jt.jpg",
 }) => {
   return (
     <Helmet>
