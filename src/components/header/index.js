@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { FaDiscord } from "react-icons/fa";
 import { CgMenuRight } from "react-icons/cg";
 import { VscChromeClose } from "react-icons/vsc";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 import depositIcon from "../../images/deposit.svg";
 import bidIcon from "../../images/bid.svg";
@@ -41,6 +41,7 @@ const Header = ({
 }) => {
   const t = useTranslation();
   const dispatch = useDispatch();
+  const location = useLocation();
   const { user, cart } = useSelector((state) => state);
   const history = useHistory();
 
@@ -62,10 +63,13 @@ const Header = ({
       });
       handleGetNotification(npage);
       dispatch(get_cart_list_thunk());
-      // dispatch(clear_cart_thunk());
-      // cartDetail(slug, (data) => {
-      //   console.log(data);
-      // });
+      cartDetail(slug, (data) => {
+        dispatch(get_cart_list_thunk());
+      });
+      if (location.hash === "#cart") {
+        history.push("/");
+        setCartPop(true);
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

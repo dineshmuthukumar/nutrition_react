@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import _ from "lodash";
 
@@ -36,6 +36,7 @@ import {
   userBuyDetail,
 } from "../api/actioncable-methods";
 import { artistApi } from "../api/base-methods";
+import { get_cart_list_thunk } from "../redux/thunk/user_cart_thunk";
 import OwnerList from "../components/owner-list";
 import Footer from "../components/footer/index";
 import NFTOrderSummary from "../components/nft-order-summary";
@@ -49,6 +50,7 @@ import NFTPlayerStats from "../components/nft-player-stats";
 
 const OrderDetails = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const [bidExpiry, setBidExpiry] = useState();
   const [isBidder, setIsBidder] = useState(false);
   const { slug, orderSlug } = useParams();
@@ -122,6 +124,7 @@ const OrderDetails = () => {
       }
       if (data.order_completed) {
         setSoldOut(true);
+        dispatch(get_cart_list_thunk());
       }
     });
     bidDetail(orderSlug, (data) => {
@@ -191,6 +194,7 @@ const OrderDetails = () => {
         setSoldOut(true);
         setBidWinner(data.winner_details);
         setWinnerBanner(true);
+        dispatch(get_cart_list_thunk());
       }
     });
 
@@ -208,6 +212,7 @@ const OrderDetails = () => {
       if (data.order_completed) {
         setSoldOut(true);
         orderBidWinner();
+        dispatch(get_cart_list_thunk());
       }
     });
 

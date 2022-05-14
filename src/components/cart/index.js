@@ -33,16 +33,16 @@ const Cart = ({ cartPop = false, setCartPop }) => {
   const [finalAmount, setFinalAmount] = useState(0);
   const [selectedItems, setSelectedItems] = useState([]);
 
-  // useEffect(() => {
-  //   if (userCart?.line_items?.length > 0) {
-  //     let items = [...selectedItems];
-  //     userCart?.line_items.map((item) => items.push(item?.line_item_slug));
-  //     items = items.filter(function (item, i, input) {
-  //       return input.indexOf(item) == i;
-  //     });
-  //     setSelectedItems(items);
-  //   }
-  // }, [userCart]);
+  useEffect(() => {
+    if (userCart?.line_items?.length > 0) {
+      let items = [...selectedItems];
+      userCart?.line_items.map((item) => items.push(item?.line_item_slug));
+      items = items.filter(function (item, i, input) {
+        return input.indexOf(item) == i;
+      });
+      setSelectedItems(items);
+    }
+  }, []);
 
   useEffect(() => {
     let amount = 0;
@@ -477,7 +477,10 @@ const Cart = ({ cartPop = false, setCartPop }) => {
                 <div className="text-center flex-btn">
                   <button
                     className="cart-btn text-center btn-lg mt-2 rounded-pill full-width"
-                    onClick={() => setCartPop(!cartPop)}
+                    onClick={() => {
+                      setCartPop(!cartPop);
+                      setSuccess(false);
+                    }}
                   >
                     OKAY
                   </button>

@@ -182,7 +182,7 @@ export const outDatedBid = (nftSlug, orderSlug, value) => {
 
 export const cartDetail = (slug, value) => {
   nftCable.subscriptions.create(
-    { channel: "NftChannel", room: `user_cart_${slug}` },
+    { channel: "NftChannel", room: `usercart_${slug}` },
     {
       connected: () => {
         console.log("BL/AC13:Connected");
