@@ -51,9 +51,11 @@
     .hero-content-img {
       max-width: 60rem;
       width: 100%;
-      margin: 2rem auto;
+      margin-bottom: 2rem;
+
       @media screen and (max-width: 767px) {
         width: 80%;
+        margin: 2rem auto;
       }
     }
     h3 {
