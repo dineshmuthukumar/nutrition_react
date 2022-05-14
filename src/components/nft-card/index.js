@@ -259,13 +259,15 @@ const NFTCard = ({
   };
 
   useEffect(() => {
-    const orderSlug = userCart?.line_items.find(
-      (obj) => obj.order_slug === nft?.order_details?.slug
-    );
-    if (orderSlug) {
-      setInCart(true);
-    } else {
-      setInCart(false);
+    if (userSlug && userCart?.line_items?.length > 0) {
+      const orderSlug = userCart?.line_items.find(
+        (obj) => obj.order_slug === nft?.order_details?.slug
+      );
+      if (orderSlug) {
+        setInCart(true);
+      } else {
+        setInCart(false);
+      }
     }
   }, [userCart]);
 

@@ -110,13 +110,15 @@ const NFTOrderBaseDetails = ({
   );
 
   useEffect(() => {
-    const orderSlug = Cart?.line_items.find(
-      (obj) => obj.order_slug === orderDetails?.slug
-    );
-    if (orderSlug) {
-      setInCart(true);
-    } else {
-      setInCart(false);
+    if (User?.slug && Cart?.line_items?.length > 0) {
+      const orderSlug = Cart?.line_items.find(
+        (obj) => obj.order_slug === orderDetails?.slug
+      );
+      if (orderSlug) {
+        setInCart(true);
+      } else {
+        setInCart(false);
+      }
     }
   }, [cart]);
 
