@@ -13,7 +13,7 @@ const CollectionList = () => {
           <div className="row">
             <div className="col-sm-12">
               <h1 className="section-heading">
-                <span className="main-title">Sports NFT Collections</span>{" "}
+                <span className="main-title">NFT Collections</span>{" "}
                 <span className="sub-title">CHECK IT OUT</span>
               </h1>
               <p className="collection-para-desc">
