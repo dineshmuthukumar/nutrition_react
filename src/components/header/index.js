@@ -590,7 +590,7 @@ const Header = ({
                         )
                       }
                     >
-                      Chelsea Memorabilia NFTs
+                      Football Memorabilia NFTs
                     </Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
@@ -931,7 +931,7 @@ const Header = ({
                           )
                         }
                       >
-                        Chelsea Memorabilia NFTs
+                        Football Memorabilia NFTs
                       </Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
