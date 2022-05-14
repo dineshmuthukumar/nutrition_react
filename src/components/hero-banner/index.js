@@ -53,7 +53,7 @@ const HeroBanner = () => {
         <div className="hero-content-block">
           <div className="container-fluid">
             <div className="row">
-              <div className="col-lg-6">
+              <div className="col-lg-6 align-self-center">
                 <h3>
                   {live ? (
                     <>
