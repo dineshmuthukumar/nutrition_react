@@ -417,6 +417,7 @@ const NFTCard = ({
         {/* </div> */}
 
         {userSlug &&
+          user?.data?.user?.kyc_status === "success" &&
           nft?.is_on_sale &&
           nft?.order_details?.is_buy &&
           nft?.owner_slug !== userSlug && (

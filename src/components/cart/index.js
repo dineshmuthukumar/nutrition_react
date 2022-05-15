@@ -22,7 +22,7 @@ const Cart = ({ cartPop = false, setCartPop }) => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
   const history = useHistory();
-  const { cart } = state;
+  const { user, cart } = state;
   const userCart = cart?.data ? cart?.data : null;
   const [noBalance, setNoBalance] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -42,6 +42,7 @@ const Cart = ({ cartPop = false, setCartPop }) => {
       });
       setSelectedItems(items);
     }
+    console.log(user?.data.user.balance, "user?.data.user.balance");
   }, []);
 
   useEffect(() => {
@@ -54,6 +55,12 @@ const Cart = ({ cartPop = false, setCartPop }) => {
     amount =
       parseFloat(amount) +
       (parseFloat(amount) * parseFloat(userCart?.service_fee)) / 100;
+
+    if (parseFloat(user?.data?.user?.balance) < parseFloat(amount)) {
+      setNoBalance(true);
+    } else {
+      setNoBalance(false);
+    }
     setTotalAmount(amount);
   }, [selectedItems, userCart]);
 
@@ -299,7 +306,12 @@ const Cart = ({ cartPop = false, setCartPop }) => {
                     <button
                       className="cart-btn text-center btn-lg mt-2 rounded-pill full-width"
                       onClick={handleCheckout}
-                      disabled={selectedItems.length === 0}
+                      disabled={
+                        selectedItems.length === 0 ||
+                        parseFloat(user?.data?.user?.balance) <
+                          parseFloat(totalAmount) ||
+                        user?.data?.user?.kyc_status !== "success"
+                      }
                     >
                       BUY NFTs
                     </button>

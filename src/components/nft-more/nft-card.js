@@ -320,6 +320,7 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
         {/* <div className="svg_size heart_icon"></div> */}
         {/* </div> */}
         {userSlug &&
+          user?.data?.user?.kyc_status === "success" &&
           nft?.is_on_sale &&
           nft?.order_details?.is_buy &&
           nft?.owner_slug !== userSlug && (

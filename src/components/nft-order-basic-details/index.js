@@ -660,19 +660,41 @@ const NFTOrderBaseDetails = ({
                 );
               } else if (parseFloat(User?.balance) <= 0 && !isOwner) {
                 return (
-                  <button
-                    disabled={false}
-                    className={`btn btn-danger text-white recharge-btn
-                   text-center btn-lg mt-2 rounded-pill full-width`}
-                    onClick={() =>
-                      window.open(
-                        `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
-                        "_self"
-                      )
-                    }
-                  >
-                    Recharge Wallet
-                  </button>
+                  <>
+                    <button
+                      disabled={false}
+                      className={`place-bid-btn filled-btn ${
+                        User?.kyc_status !== "success" && !isBuy && "full-width"
+                      }`}
+                      onClick={() =>
+                        window.open(
+                          `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
+                          "_self"
+                        )
+                      }
+                    >
+                      Recharge Wallet
+                    </button>
+
+                    {User?.kyc_status !== "success" && isBuy && (
+                      <button
+                        class="add-to-cart-btn"
+                        onClick={() => {
+                          if (!inCart) {
+                            dispatch(
+                              add_to_cart_thunk(
+                                orderDetails.slug,
+                                orderDetails.available_quantity
+                              )
+                            );
+                          }
+                        }}
+                      >
+                        <img src={CartIcon} />{" "}
+                        {!inCart ? "Add to Cart" : "Added in Cart"}
+                      </button>
+                    )}
+                  </>
                 );
               } else if (erc721 && isOwner && isOrderOnSale) {
                 if (!bidOutDated && acceptBidConfirm) {
