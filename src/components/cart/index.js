@@ -498,19 +498,27 @@ const Cart = ({ cartPop = false, setCartPop }) => {
               </div>
 
               <div className="bottom-content-cart py-4">
-                <div className="d-flex align-items-center justify-content-between">
-                  <div className="cart-servicefee">
-                    <span className="mb-3 d-block">SERVICE FEE</span>
-                    <h2>{successData?.total_service_fee}%</h2>
+                <div className="cart-fee-info-block">
+                  <div className="cart-fee-info">
+                    <span className="key">PRICE</span>
+                    <h2 className="value">
+                      {currencyFormat(successData?.final_amount, "USD")}
+                    </h2>
                   </div>
-                  <div className="cart-total text-end">
-                    <span className="mb-3 d-block">TOTAL AMOUNT</span>
-                    <h2>{currencyFormat(successData?.final_amount, "USD")}</h2>
+                  <div className="cart-fee-info">
+                    <span className="key">SERVICE FEE (2.5%)</span>
+                    <h2 className="value">{successData?.total_service_fee}%</h2>
+                  </div>
+                  <div className="cart-fee-info total-amount">
+                    <span className="key">TOTAL AMOUNT</span>
+                    <h2 className="value">
+                      {currencyFormat(successData?.final_amount, "USD")}
+                    </h2>
                   </div>
                 </div>
               </div>
 
-              <div className="cart-bottom-btn">
+              {/* <div className="cart-bottom-btn">
                 <div className="text-center flex-btn">
                   <button
                     className="cart-btn text-center btn-lg mt-2 rounded-pill full-width"
@@ -524,7 +532,7 @@ const Cart = ({ cartPop = false, setCartPop }) => {
                   </button>
                   <div className="mt-2 royalty-info"></div>
                 </div>
-              </div>
+              </div> */}
             </div>
           )}
         </>

@@ -321,6 +321,7 @@
 .pop-cart-info {
   margin: 1rem 0;
   padding: 0 1.5rem;
+  user-select: none;
   .checkbox {
     display: flex;
     align-items: center;
@@ -507,9 +508,8 @@
   }
 }
 .bottom-content-cart {
-  margin: 1rem 0;
-  padding: 0 1.5rem;
-  border-bottom: 1px solid #103c29;
+  margin: 1rem 1.5rem;
+  padding: 0 1rem;
   border-top: 1px solid #103c29;
   span {
     font-family: "neue_helvetica_extended_bold" !important;
@@ -592,8 +592,14 @@
 }
 .order-placed {
   h2 {
-    font-family: "neue_helvetica_extended_bold" !important;
+    font-family: $neue-helvetica-bold;
     font-size: 2rem;
+    max-width: 25rem;
+    margin: 1rem auto;
+  }
+  img {
+    width: 5.5rem;
+    height: 5.5rem;
   }
 }
 .fee-flexbox {
@@ -618,6 +624,29 @@
   .empty-cart {
     h2 {
       font-family: "neue_helvetica_extended" !important;
+    }
+  }
+}
+
+.cart-fee-info-block {
+  .cart-fee-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    .key {
+      font-size: 1rem;
+    }
+    .value {
+      font-size: 1.2rem;
+    }
+    &.total-amount {
+      .key {
+        font-size: 1.3rem;
+      }
+      .value {
+        font-size: 1.8rem;
+      }
     }
   }
 }
