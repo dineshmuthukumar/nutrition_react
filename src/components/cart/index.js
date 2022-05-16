@@ -30,12 +30,11 @@ const Cart = ({ cartPop = false, setCartPop }) => {
   const [successData, setSuccessData] = useState({});
   const [error, setError] = useState("");
   const [totalAmount, setTotalAmount] = useState(0);
-  const [finalAmount, setFinalAmount] = useState(0);
   const [selectedItems, setSelectedItems] = useState([]);
 
   useEffect(() => {
     if (userCart?.line_items?.length > 0) {
-      let items = [...selectedItems];
+      let items = [];
       userCart?.line_items
         .filter((obj) => obj.order_status === "onsale")
         .map((item) => items.push(item?.line_item_slug));
@@ -44,7 +43,7 @@ const Cart = ({ cartPop = false, setCartPop }) => {
       });
       setSelectedItems(items);
     }
-  }, []);
+  }, [userCart]);
 
   useEffect(() => {
     let amount = 0;
@@ -65,19 +64,6 @@ const Cart = ({ cartPop = false, setCartPop }) => {
     setTotalAmount(amount);
   }, [selectedItems, userCart]);
 
-  useEffect(() => {
-    let amount = 0;
-    if (checkoutList.length > 0) {
-      checkoutList.map((nft) => {
-        amount = amount + parseFloat(nft?.buy_amount);
-      });
-      amount =
-        parseFloat(amount) +
-        (parseFloat(amount) * parseFloat(userCart?.service_fee)) / 100;
-      setFinalAmount(amount);
-    }
-  }, [checkoutList]);
-
   const handleCheckout = async () => {
     try {
       const result = await checkoutApi({ selectedItems });
@@ -85,6 +71,7 @@ const Cart = ({ cartPop = false, setCartPop }) => {
         setSuccess(true);
         setCheckoutList(result.data.data.line_items);
         setSuccessData(result.data.data);
+        setSelectedItems([]);
       }
       dispatch(get_cart_list_thunk());
     } catch (err) {
@@ -99,16 +86,6 @@ const Cart = ({ cartPop = false, setCartPop }) => {
       items.splice(index, 1);
     } else {
       items.push(itemSlug);
-    }
-    setSelectedItems(items);
-  };
-
-  const handleRemove = (itemSlug) => {
-    dispatch(remove_from_cart_thunk(itemSlug));
-    let items = [...selectedItems];
-    const index = items.indexOf(itemSlug);
-    if (index > -1) {
-      items.splice(index, 1);
     }
     setSelectedItems(items);
   };
@@ -280,7 +257,9 @@ const Cart = ({ cartPop = false, setCartPop }) => {
                                   nft?.order_status !== "onsale" && "text-white"
                                 }`}
                                 onClick={() =>
-                                  handleRemove(nft?.line_item_slug)
+                                  dispatch(
+                                    remove_from_cart_thunk(nft?.line_item_slug)
+                                  )
                                 }
                                 role={"button"}
                               >
@@ -394,7 +373,10 @@ const Cart = ({ cartPop = false, setCartPop }) => {
                 <div className="pop-cart-title">Checkout</div>
                 <div
                   className="close-button-pop"
-                  onClick={() => setCartPop(!cartPop)}
+                  onClick={() => {
+                    setCartPop(!cartPop);
+                    setSuccess(false);
+                  }}
                 >
                   <img
                     alt="cart close"
@@ -500,14 +482,22 @@ const Cart = ({ cartPop = false, setCartPop }) => {
               <div className="bottom-content-cart py-4">
                 <div className="cart-fee-info-block">
                   <div className="cart-fee-info">
+                    <span className="key">TOTAL ITEMS</span>
+                    <h2 className="value">{successData?.total_count}</h2>
+                  </div>
+                  <div className="cart-fee-info">
                     <span className="key">PRICE</span>
                     <h2 className="value">
-                      {currencyFormat(successData?.final_amount, "USD")}
+                      {currencyFormat(successData?.total_amount, "USD")}
                     </h2>
                   </div>
                   <div className="cart-fee-info">
-                    <span className="key">SERVICE FEE (2.5%)</span>
-                    <h2 className="value">{successData?.total_service_fee}%</h2>
+                    <span className="key">
+                      SERVICE FEE ({successData?.service_fee}%)
+                    </span>
+                    <h2 className="value">
+                      {currencyFormat(successData?.total_service_fee, "USD")}
+                    </h2>
                   </div>
                   <div className="cart-fee-info total-amount">
                     <span className="key">TOTAL AMOUNT</span>

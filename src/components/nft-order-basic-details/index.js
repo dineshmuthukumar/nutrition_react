@@ -691,7 +691,7 @@ const NFTOrderBaseDetails = ({
                         }}
                       >
                         <img src={CartIcon} />{" "}
-                        {!inCart ? "Add to Cart" : "Added in Cart"}
+                        {!inCart ? "Add to Cart" : "Added to Cart"}
                       </button>
                     )}
                   </>
@@ -872,7 +872,7 @@ const NFTOrderBaseDetails = ({
                         }}
                       >
                         <img src={CartIcon} />{" "}
-                        {!inCart ? "Add to Cart" : "Added in Cart"}
+                        {!inCart ? "Add to Cart" : "Added to Cart"}
                       </button>
                     )}
                   </>
@@ -977,7 +977,7 @@ const NFTOrderBaseDetails = ({
                       }}
                     >
                       <img src={CartIcon} />{" "}
-                      {!inCart ? "Add to Cart" : "Added in Cart"}
+                      {!inCart ? "Add to Cart" : "Added to Cart"}
                     </button>
                   </>
                 );

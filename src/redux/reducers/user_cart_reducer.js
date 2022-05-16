@@ -32,7 +32,7 @@ const user_cart_reducer = (state = initState, { payload, type }) => {
       loading: false,
       data: {
         ...state.data,
-        count: payload.count,
+        total_count: payload.count,
       },
     };
   }
@@ -51,7 +51,7 @@ const user_cart_reducer = (state = initState, { payload, type }) => {
       loading: false,
       data: {
         ...state.data,
-        total_count: payload.total_count,
+        total_count: payload.count,
       },
     };
   }
