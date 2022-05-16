@@ -75,6 +75,23 @@
         font-size: 4.5rem;
       }
     }
+     h1 {
+      font-size: 3rem;
+      max-width: 70rem;
+      line-height: 1.1;
+      color: #19fdff;
+      border-radius: 50rem;
+      text-align: left;
+      font-family: $Impact;
+      margin-bottom: 2rem;
+      span {
+        font-family: $Impact;
+        color: #fff;
+      }
+      @media screen and (max-width: 767px) {
+        font-size: 4.5rem;
+      }
+    }
     .hero-desc {
       font-size: 1.5rem;
       text-align: left;
