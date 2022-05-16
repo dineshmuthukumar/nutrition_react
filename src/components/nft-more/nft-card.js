@@ -328,10 +328,12 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
               {!inCart ? (
                 <div className="cart_box" onClick={handleAddToCart}>
                   <div className="svg_size cart_icon"></div>
+                  <span className="cart_text">Add To Cart</span>
                 </div>
               ) : (
                 <div className="cart_box add_cart">
                   <div className="svg_size cart_icon"></div>
+                  <span className="cart_text">Added To Cart</span>
                 </div>
               )}
             </>

@@ -73,6 +73,7 @@ const MoreCard = ({ nft, isStarted = false, isEnded, time, label }) => {
 
         <div className="cart_box">
           <div className="svg_size cart_icon"></div>
+          <span className="cart_text">Add To Cart</span>
         </div>
         <div className="more-nft-title">
           <span className="right-content">{nft.name}</span>

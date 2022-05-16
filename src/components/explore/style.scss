@@ -693,9 +693,22 @@ button.load_more {
       transition: 0.3s;
       text-transform: uppercase;
       font-size: 0.9rem;
+      cursor: pointer;
       background: transparent
         linear-gradient(180deg, #e2ff00 0%, #18e0e0 47%, #e8318d 100%) 0% 0%
         no-repeat padding-box;
+      .cart_text {
+        width: 0;
+        overflow: hidden;
+        display: inline-flex;
+        position: relative;
+        text-align: right;
+        display: flex;
+        padding: 0.5rem;
+        padding-left: 2rem;
+        font-family: $neue-helvetica-bold;
+        visibility: hidden;
+      }
       &::before {
         content: "";
         position: absolute;
@@ -706,6 +719,13 @@ button.load_more {
         background: #000;
         border-radius: 50rem;
         z-index: 0;
+      }
+      &:hover {
+        width: auto;
+        .cart_text {
+          width: 9rem;
+          visibility: visible;
+        }
       }
       .svg_size {
         height: 3rem;
@@ -738,6 +758,14 @@ button.load_more {
           filter: invert(1);
           &.cart_icon {
             background-image: url("../../images/jump-trade/cart_icon.png");
+          }
+        }
+        &:hover {
+          width: auto;
+          .cart_text {
+            width: 10rem;
+            visibility: visible;
+            color: #000;
           }
         }
       }

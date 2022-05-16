@@ -259,6 +259,7 @@ const ExploreCard = ({
           {/* </div> */}
           <div className="cart_box">
             <div className="svg_size cart_icon"></div>
+            <span className="cart_text">Add To Cart</span>
           </div>
           <div>
             <div className="more-nft-title">{nft?.name}</div>
