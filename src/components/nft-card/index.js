@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import { useHistory, useRouteMatch, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { Popover, OverlayTrigger } from "react-bootstrap";
 import { prominent } from "color.js";
 import { currencyFormat } from "../../utils/common";
 import sample from "../../images/sampleNFT.jpg";
@@ -271,6 +272,16 @@ const NFTCard = ({
     }
   }, [userCart]);
 
+  const KycPopOver = () => (
+    <Popover>
+      <Popover.Body>
+        <p className="password-terms">
+          Please complete your KYC process to be eligible for purchasing NFTs.
+        </p>
+      </Popover.Body>
+    </Popover>
+  );
+
   return (
     <div className="more-card jt-card">
       <span className="nft-type-badge">{nft.nft_type.toUpperCase()}</span>
@@ -417,20 +428,40 @@ const NFTCard = ({
         {/* </div> */}
 
         {userSlug &&
-          user?.data?.user?.kyc_status === "success" &&
           nft?.is_on_sale &&
           nft?.order_details?.is_buy &&
           nft?.owner_slug !== userSlug && (
             <>
-              {!inCart ? (
-                <div className="cart_box" onClick={handleAddToCart}>
-                  <div className="svg_size cart_icon"></div>
-                  <span className="cart_text">Add To Cart</span>
-                </div>
+              {user?.data?.user?.kyc_status !== "success" ? (
+                <OverlayTrigger
+                  trigger={["click"]}
+                  rootClose={true}
+                  placement="top"
+                  overlay={KycPopOver()}
+                >
+                  <div className="cart_box">
+                    <div className="svg_size cart_icon"></div>
+                    <span className="cart_text">Add To Cart</span>
+                  </div>
+                </OverlayTrigger>
               ) : (
-                <div className="cart_box add_cart">
+                <div
+                  className={`cart_box ${inCart && "add_cart"}`}
+                  onClick={() => {
+                    if (!inCart) {
+                      dispatch(
+                        add_to_cart_thunk(
+                          nft?.order_details?.slug,
+                          nft?.quantity
+                        )
+                      );
+                    }
+                  }}
+                >
                   <div className="svg_size cart_icon"></div>
-                  <span className="cart_text">Added To Cart</span>
+                  <span className="cart_text">
+                    {!inCart ? "Add To Cart" : "Added To Cart"}
+                  </span>
                 </div>
               )}
             </>

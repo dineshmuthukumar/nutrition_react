@@ -478,6 +478,13 @@
         filter: invert(0);
         margin-right: 0.5rem;
       }
+      &.added-to-cart {
+        background: #e1ff04;
+        color: #000;
+        img {
+          filter: invert(1);
+        }
+      }
     }
     &.full-width {
       width: 98%;

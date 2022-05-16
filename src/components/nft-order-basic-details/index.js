@@ -109,6 +109,16 @@ const NFTOrderBaseDetails = ({
     </Popover>
   );
 
+  const KycPopOverCart = () => (
+    <Popover>
+      <Popover.Body>
+        <p className="password-terms">
+          Please complete your KYC process to be eligible for purchasing NFTs.
+        </p>
+      </Popover.Body>
+    </Popover>
+  );
+
   useEffect(() => {
     if (User?.slug) {
       const orderSlug = Cart?.line_items.find(
@@ -676,23 +686,40 @@ const NFTOrderBaseDetails = ({
                       Recharge Wallet
                     </button>
 
-                    {User?.kyc_status !== "success" && isBuy && (
-                      <button
-                        class="add-to-cart-btn"
-                        onClick={() => {
-                          if (!inCart) {
-                            dispatch(
-                              add_to_cart_thunk(
-                                orderDetails.slug,
-                                orderDetails.available_quantity
-                              )
-                            );
-                          }
-                        }}
-                      >
-                        <img src={CartIcon} />{" "}
-                        {!inCart ? "Add to Cart" : "Added to Cart"}
-                      </button>
+                    {isBuy && (
+                      <>
+                        {User?.kyc_status !== "success" ? (
+                          <OverlayTrigger
+                            trigger={["click"]}
+                            rootClose={true}
+                            placement="top"
+                            overlay={KycPopOverCart()}
+                          >
+                            <button class="add-to-cart-btn">
+                              <img src={CartIcon} /> Add to Cart
+                            </button>
+                          </OverlayTrigger>
+                        ) : (
+                          <button
+                            class={`add-to-cart-btn ${
+                              inCart && "added-to-cart"
+                            }`}
+                            onClick={() => {
+                              if (!inCart) {
+                                dispatch(
+                                  add_to_cart_thunk(
+                                    orderDetails.slug,
+                                    orderDetails.available_quantity
+                                  )
+                                );
+                              }
+                            }}
+                          >
+                            <img src={CartIcon} />{" "}
+                            {!inCart ? "Add to Cart" : "Added to Cart"}
+                          </button>
+                        )}
+                      </>
                     )}
                   </>
                 );
@@ -857,9 +884,22 @@ const NFTOrderBaseDetails = ({
                         )}
                       </>
                     )}
-                    {User?.kyc_status === "success" && (
+                    {User?.kyc_status !== "success" ? (
+                      <OverlayTrigger
+                        trigger={["click"]}
+                        rootClose={true}
+                        placement="top"
+                        overlay={KycPopOverCart()}
+                      >
+                        <button class="add-to-cart-btn full-width">
+                          <img src={CartIcon} /> Add to Cart
+                        </button>
+                      </OverlayTrigger>
+                    ) : (
                       <button
-                        class="add-to-cart-btn full-width"
+                        class={`add-to-cart-btn full-width ${
+                          inCart && "added-to-cart"
+                        }`}
                         onClick={() => {
                           if (!inCart) {
                             dispatch(
@@ -945,13 +985,16 @@ const NFTOrderBaseDetails = ({
                     trigger={["click"]}
                     rootClose={true}
                     placement="top"
-                    overlay={KycPopOver()}
+                    overlay={KycPopOverCart()}
                   >
                     <button
                       disabled={false}
                       className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn full-width"
                     >
                       Buy {currencyFormat(orderDetails.buy_amount, "USD")}
+                    </button>
+                    <button class="add-to-cart-btn">
+                      <img src={CartIcon} /> Add to Cart
                     </button>
                   </OverlayTrigger>
                 ) : (
@@ -964,7 +1007,7 @@ const NFTOrderBaseDetails = ({
                       Buy {currencyFormat(orderDetails.buy_amount, "USD")}
                     </button>
                     <button
-                      class="add-to-cart-btn"
+                      class={`add-to-cart-btn ${inCart && "added-to-cart"}`}
                       onClick={() => {
                         if (!inCart) {
                           dispatch(
