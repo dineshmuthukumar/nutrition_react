@@ -54,12 +54,12 @@ const HeroBanner = () => {
           <div className="container-fluid">
             <div className="row">
               <div className="col-lg-6 align-self-center">
-                <h3>
+                <h1>
                   {live ? (
                     <>
                       Jump.trade -{" "}
                       <span>
-                        The NFT Marketplace To Buy &amp; Trade Legendary NFTs{" "}
+                        The NFT Marketplace To Trade Legendary NFTs{" "}
                       </span>
                     </>
                   ) : (
@@ -77,7 +77,7 @@ const HeroBanner = () => {
                       </>
                     )
                   )}
-                </h3>
+                </h1>
                 <p className="hero-desc">
                   Jump.trade - The #1 NFT marketplace to buy the world’s first
                   P2E cricket game NFTs. Buy NFT bats, players, and signed
