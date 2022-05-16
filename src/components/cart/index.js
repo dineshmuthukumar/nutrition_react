@@ -42,7 +42,6 @@ const Cart = ({ cartPop = false, setCartPop }) => {
       });
       setSelectedItems(items);
     }
-    console.log(user?.data.user.balance, "user?.data.user.balance");
   }, []);
 
   useEffect(() => {
@@ -144,7 +143,11 @@ const Cart = ({ cartPop = false, setCartPop }) => {
                 <div className={`pop-cart-progress`}>
                   <div className="progress-complete"></div>
                 </div>
-                <div className="pop-body-content">
+                <div
+                  className={`pop-body-content ${
+                    selectedItems.length === 0 ? "selected-none" : ""
+                  }`}
+                >
                   <div className="error-float-container">
                     {noBalance && <ErrorText type="nobalance" />}
                   </div>
@@ -186,7 +189,11 @@ const Cart = ({ cartPop = false, setCartPop }) => {
                               </label>
                             </div>
                             <div
-                              className="cart-img"
+                              className={`cart-img ${
+                                !selectedItems?.includes(nft?.line_item_slug)
+                                  ? "uncheck"
+                                  : ""
+                              }`}
                               role={"button"}
                               onClick={() =>
                                 history.push(
@@ -236,7 +243,13 @@ const Cart = ({ cartPop = false, setCartPop }) => {
                                 }
                               })()}
                             </div>
-                            <div className="cart-nft-detail">
+                            <div
+                              className={`cart-nft-detail ${
+                                !selectedItems?.includes(nft?.line_item_slug)
+                                  ? "uncheck"
+                                  : ""
+                              }`}
+                            >
                               <span className="cart-subtitle">
                                 {nft?.category_name}
                               </span>
@@ -266,7 +279,13 @@ const Cart = ({ cartPop = false, setCartPop }) => {
                               </div>
                             </div>
                           </div>
-                          <div className="nft-cart-price d-flex align-items-center">
+                          <div
+                            className={`nft-cart-price d-flex align-items-center ${
+                              !selectedItems?.includes(nft?.line_item_slug)
+                                ? "uncheck"
+                                : ""
+                            }`}
+                          >
                             {currencyFormat(nft?.buy_amount, "USD")}
                           </div>
                         </div>
@@ -276,12 +295,17 @@ const Cart = ({ cartPop = false, setCartPop }) => {
                     {/* cart-disabled and className="text-white" for remove */}
                   </div>
                 </div>
-                {selectedItems.length > 0 ? (
+                {selectedItems.length > 0 && (
                   <div className="bottom-content-cart py-4">
                     <div className="d-flex align-items-center justify-content-between">
                       <div className="cart-servicefee">
-                        <span className="mb-3 d-block">SERVICE FEE</span>
-                        <h2>{userCart?.service_fee}%</h2>
+                        <p>
+                          TOTAL ITEMS: <span>{selectedItems.length}</span>
+                        </p>
+
+                        <p>
+                          SERVICE FEE: <span>{userCart?.service_fee}%</span>
+                        </p>
                       </div>
                       <div className="cart-total text-end">
                         <span className="mb-3 d-block">TOTAL AMOUNT</span>
@@ -289,15 +313,6 @@ const Cart = ({ cartPop = false, setCartPop }) => {
                           {currencyFormat(parseFloat(totalAmount), "USD")}
                         </h2>
                       </div>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="bottom-content-cart py-4">
-                    <div className="align-items-center justify-content-between">
-                      <h4 className="text-center">
-                        Please select some NFT from the cart to proceed with
-                        checkout
-                      </h4>
                     </div>
                   </div>
                 )}

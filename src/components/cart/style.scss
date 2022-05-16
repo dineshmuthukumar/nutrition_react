@@ -236,10 +236,13 @@
         height: calc(100% - 12rem);
       }
       @media screen and (max-width: 450px) {
-        height: calc(100% - 18rem);
+        height: calc(100% - 22rem);
       }
       &.success {
         height: calc(100% - 20rem);
+      }
+      &.selected-none {
+        height: calc(100% - 10.7rem);
       }
     }
 
@@ -498,6 +501,10 @@
   }
   @media screen and (max-width: 767px) {
   }
+
+  .uncheck {
+    opacity: 0.5;
+  }
 }
 .bottom-content-cart {
   margin: 1rem 0;
@@ -505,7 +512,7 @@
   border-bottom: 1px solid #103c29;
   border-top: 1px solid #103c29;
   span {
-    font-family: "neue_helvetica_extended" !important;
+    font-family: "neue_helvetica_extended_bold" !important;
     color: #72807a;
   }
   h2 {
@@ -514,6 +521,16 @@
   }
   .cart-servicefee {
     padding-left: 2rem;
+    p {
+      font-family: "neue_helvetica_extended_bold" !important;
+      color: #72807a;
+      font-size: 1rem;
+      span {
+        color: #fff;
+        padding-left: 1rem;
+        font-family: "neue_helvetica_extended_bold" !important;
+      }
+    }
   }
 }
 .cart-bottom-btn {
