@@ -36,7 +36,9 @@ const Cart = ({ cartPop = false, setCartPop }) => {
   useEffect(() => {
     if (userCart?.line_items?.length > 0) {
       let items = [...selectedItems];
-      userCart?.line_items.map((item) => items.push(item?.line_item_slug));
+      userCart?.line_items
+        .filter((obj) => obj.order_status === "onsale")
+        .map((item) => items.push(item?.line_item_slug));
       items = items.filter(function (item, i, input) {
         return input.indexOf(item) == i;
       });
@@ -196,8 +198,9 @@ const Cart = ({ cartPop = false, setCartPop }) => {
                               }`}
                               role={"button"}
                               onClick={() =>
-                                history.push(
-                                  `/order/details/${nft?.nft_slug}/${nft?.order_slug}`
+                                window.open(
+                                  `${process.env.REACT_APP_MARKETPLACE_URL}/order/details/${nft?.nft_slug}/${nft?.order_slug}`,
+                                  "_blank"
                                 )
                               }
                             >
@@ -243,22 +246,29 @@ const Cart = ({ cartPop = false, setCartPop }) => {
                                 }
                               })()}
                             </div>
-                            <div
-                              className={`cart-nft-detail ${
-                                !selectedItems?.includes(nft?.line_item_slug)
-                                  ? "uncheck"
-                                  : ""
-                              }`}
-                            >
-                              <span className="cart-subtitle">
+                            <div className={`cart-nft-detail`}>
+                              <span
+                                className={`cart-subtitle ${
+                                  !selectedItems?.includes(nft?.line_item_slug)
+                                    ? "uncheck"
+                                    : ""
+                                }`}
+                              >
                                 {nft?.category_name}
                               </span>
-                              <div className="d-flex my-2">
+                              <div
+                                className={`d-flex my-2 ${
+                                  !selectedItems?.includes(nft?.line_item_slug)
+                                    ? "uncheck"
+                                    : ""
+                                }`}
+                              >
                                 <h2
                                   role={"button"}
                                   onClick={() =>
-                                    history.push(
-                                      `/order/details/${nft?.nft_slug}/${nft?.order_slug}`
+                                    window.open(
+                                      `${process.env.REACT_APP_MARKETPLACE_URL}/order/details/${nft?.nft_slug}/${nft?.order_slug}`,
+                                      "_blank"
                                     )
                                   }
                                 >
@@ -507,6 +517,7 @@ const Cart = ({ cartPop = false, setCartPop }) => {
                     onClick={() => {
                       setCartPop(!cartPop);
                       setSuccess(false);
+                      setSelectedItems([]);
                     }}
                   >
                     OKAY
