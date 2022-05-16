@@ -7,7 +7,7 @@ import CreatorForm from "../components/creator-form";
 const CreatorApplication = () => {
   return (
     <>
-      <Header />
+      <Header title="Creator Application | NFT Marketplace | Biggest NFT Marketplace In India | BeyondLife.club"/>
       <CreatorForm />
       <Footer />
     </>

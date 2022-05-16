@@ -43,7 +43,6 @@ import NFTOrderSummary from "../components/nft-order-summary";
 import NFTOrderBaseDetails from "../components/nft-order-basic-details";
 import NFTPurchaseDetails from "../components/nft-purchase-details/index";
 import AdditionalPerks from "../components/additional-perks/index";
-import AppHelmet from "../components/helmet";
 import BidWinner from "../components/bid-winner/index";
 
 import NFTPlayerStats from "../components/nft-player-stats";
@@ -427,8 +426,7 @@ const OrderDetails = () => {
 
   return (
     <>
-      <Header bgImage />
-      <AppHelmet title={nft?.name} image={nft?.asset_url} />
+      <Header bgImage title={nft?.name} image={nft?.asset_url} />
       {loader ? (
         <NFTLoader />
       ) : (

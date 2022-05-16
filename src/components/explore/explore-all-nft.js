@@ -20,7 +20,6 @@ import { nftShowAllApi } from "../../api/methods";
 import "./style.scss";
 import { FormControl } from "react-bootstrap";
 import { validateCurrency } from "../../utils/common";
-import AppHelmet from "../helmet";
 
 const ExploreAllNFT = () => {
   const history = useHistory();
@@ -245,7 +244,7 @@ const ExploreAllNFT = () => {
     setPriceRangeFilter(price_range);
     // }
     setSearch(search_filters);
-  }, [query]);
+}, [query]);
 
   useEffect(() => {
     if (match.path === "/explore-all/:search?/details/:slug") {
@@ -1194,7 +1193,6 @@ const ExploreAllNFT = () => {
         onHide={() => history.goBack()}
         children={popDetails.children}
       />
-      <AppHelmet />
 
       <section className="explore-nft-section">
         {/* <article className="explorer-detail">

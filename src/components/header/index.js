@@ -30,6 +30,7 @@ import jumpTradeLogo from "../../images/jump-trade-logo.svg";
 import notifyBell from "../../images/jump-trade/bell_notify.png";
 import cartIcon from "../../images/jump-trade/cart_icon.svg";
 import Cart from "../cart";
+import AppHelmet from "../helmet";
 
 import "./style.scss";
 
@@ -38,6 +39,7 @@ const Header = ({
   hideSign = false,
   started = false,
   bgImage = false,
+  ...props
 }) => {
   const t = useTranslation();
   const dispatch = useDispatch();
@@ -55,7 +57,6 @@ const Header = ({
 
   const slug = user.data?.user ? user.data?.user?.slug : null;
   const userCart = cart?.data ? cart?.data : null;
-
   useEffect(() => {
     if (slug) {
       accountDetail(slug, (data) => {
@@ -535,6 +536,7 @@ const Header = ({
 
   return (
     <>
+      <AppHelmet title={props?.title} image={props?.image} description={props?.description}/>
       <Navbar
         bg="dark"
         expand="md"
