@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { Offcanvas } from "react-bootstrap";
+import { toast } from "react-toastify";
 import ErrorText from "./error-text";
 import sample from "../../images/jump-trade/sample.png";
 import done from "../../images/jump-trade/done.svg";
@@ -31,6 +32,10 @@ const Cart = ({ cartPop = false, setCartPop }) => {
   const [error, setError] = useState("");
   const [totalAmount, setTotalAmount] = useState(0);
   const [selectedItems, setSelectedItems] = useState([]);
+  const [checkoutProcess, setCheckoutProcess] = useState({
+    loading: false,
+    processClass: "",
+  });
 
   useEffect(() => {
     if (userCart?.line_items?.length > 0) {
@@ -66,6 +71,7 @@ const Cart = ({ cartPop = false, setCartPop }) => {
 
   const handleCheckout = async () => {
     try {
+      setCheckoutProcess({ processClass: "loading", loading: true });
       const result = await checkoutApi({ selectedItems });
       if (result.data.success) {
         setSuccess(true);
@@ -73,9 +79,14 @@ const Cart = ({ cartPop = false, setCartPop }) => {
         setSuccessData(result.data.data);
         setSelectedItems([]);
       }
+      setCheckoutProcess({ processClass: "", loading: false });
       dispatch(get_cart_list_thunk());
     } catch (err) {
       console.log(err);
+      setCheckoutProcess({ processClass: "", loading: false });
+      toast.error(
+        "The request could not be processed at this time. Please try again."
+      );
     }
   };
 
@@ -119,7 +130,9 @@ const Cart = ({ cartPop = false, setCartPop }) => {
                   </div>
                 </div>
                 {/* error-progress -> error progress , loading -> progressing */}
-                <div className={`pop-cart-progress`}>
+                <div
+                  className={`pop-cart-progress ${checkoutProcess.processClass}`}
+                >
                   <div className="progress-complete"></div>
                 </div>
                 <div
@@ -314,10 +327,11 @@ const Cart = ({ cartPop = false, setCartPop }) => {
                         selectedItems.length === 0 ||
                         parseFloat(user?.data?.user?.balance) <
                           parseFloat(totalAmount) ||
-                        user?.data?.user?.kyc_status !== "success"
+                        user?.data?.user?.kyc_status !== "success" ||
+                        checkoutProcess.loading
                       }
                     >
-                      BUY NFTs
+                      {checkoutProcess.loading ? "Processing..." : "BUY NFTs"}
                     </button>
                     <div className="mt-2 royalty-info"></div>
                   </div>
