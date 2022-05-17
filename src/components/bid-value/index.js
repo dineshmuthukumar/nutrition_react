@@ -9,6 +9,7 @@ import userImg from "../../images/user_1.jpg";
 import "./style.scss";
 
 const BidValue = ({
+  ClassNames,
   title,
   value,
   currency,
@@ -26,7 +27,7 @@ const BidValue = ({
   const history = useHistory();
   const { user } = useSelector((state) => state.user.data);
   return (
-    <div className="current-bid">
+    <div className={`current-bid ${ClassNames}`}>
       <div className="title">
         {title}{" "}
         {toolTip && (

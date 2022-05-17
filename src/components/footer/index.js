@@ -12,6 +12,7 @@ import {
   FaFacebookF,
   FaTwitter,
   FaYoutube,
+  FaCloudDownloadAlt,
 } from "react-icons/fa";
 import "./style.scss";
 import { validateEmail } from "../../utils/common";
@@ -227,6 +228,16 @@ const Footer = () => {
                   </a>
                 </li> */}
               </ul>
+              <h4>
+                <a
+                  href="https://cdn.guardianlink.io/product-hotspot/files/media-kit.zip"
+                  target="_self"
+                  rel="nofollow"
+                  style={{ textDecoration: "none", color: "#fff" }}
+                >
+                  <FaCloudDownloadAlt /> download media kit
+                </a>
+              </h4>
             </div>
           </div>
           {/* <div className="submenu">
@@ -237,23 +248,36 @@ const Footer = () => {
       <div className="bottom-bar py-4">
         <div className="bottom-container d-flex justify-content-center align-items-center">
           <div className="copyrights me-3">
-            © Jump.trade |{" "}
-            <a href="https://guardianlink.io/">A GuardianLink Brand</a>, All
-            Rights Reserved.
+            © All rights reserved |{" "}
+            {/* <a href="https://guardianlink.io/">A GuardianLink Brand</a>,   */}
+            Appstars Applications Pvt. Ltd., India & Guardian Blockchain Labs
+            Pte. Ltd., Singapore.
           </div>
+          <div class="vr"></div>
+
           <div className="bottom-links">
             <span
-              className="me-3"
+              className="ms-3 me-3 "
               onClick={() => history.push("/terms-and-conditions")}
             >
               Terms & Conditions
             </span>
             <div class="vr"></div>
             <span
-              className="ms-3"
+              className="ms-3 me-3"
               onClick={() => history.push("/privacy-policy")}
             >
               Privacy Policy
+            </span>
+            <div class="vr"></div>
+            <span
+              className="ms-3"
+              // onClick={() => history.push("/https://www.guardianlink.io/contact-us")}
+              onClick={() =>
+                window.open(process.env.REACT_APP_GUARDIAN_CONTACT_US, "_blank")
+              }
+            >
+              Contact Us
             </span>
           </div>
         </div>

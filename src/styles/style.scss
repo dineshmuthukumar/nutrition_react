@@ -1248,7 +1248,7 @@ input::-webkit-inner-spin-button {
     width: 1.8rem;
     @media screen and (max-width: 480px) {
       height: auto;
-    width: auto;
+      width: auto;
     }
   }
 }
@@ -1418,7 +1418,7 @@ input::-webkit-inner-spin-button {
 .navbar-nav .dropdown {
   margin-right: 1rem;
 }
-.navbar-nav .dropdown div img{
+.navbar-nav .dropdown div img {
   @media screen and (max-width: 991px) {
     max-width: initial !important;
   }
@@ -1429,6 +1429,22 @@ input::-webkit-inner-spin-button {
   padding: 0;
   font-size: 1.5rem;
   margin-right: 1rem;
+}
+.navbar-dark .navbar-nav a.cart_ic {
+  border: none;
+  /* border-radius: 0; */
+  padding: 0;
+  font-size: 1rem;
+  .cart-count {
+    top: 0;
+    right: -8px;
+    width: 1.1rem;
+    height: 1.1rem;
+    display: flex;
+    align-items: center;
+    font-size: 0.6rem;
+    justify-content: center;
+  }
 }
 .top_bar {
   text-align: center;
@@ -1664,7 +1680,6 @@ nav.navbar.navbar-expand-md.navbar-dark.bg-dark.transparent {
     justify-content: space-between;
     @media screen and (max-width: 991px) {
       flex: 50%;
-      
     }
   }
   .point-list:nth-child(2) {
@@ -1925,9 +1940,9 @@ section.detail-page-content {
           justify-content: flex-end;
           justify-content: flex-end;
           margin: 1rem auto;
-          .svg_size {
-            margin-left: 0.5rem;
-          }
+          // .svg_size {
+          //   margin-left: 0.5rem;
+          // }
         }
       }
     }
@@ -2189,13 +2204,13 @@ section.detail-page-content {
     .bottom-content {
       .custom-divider {
         height: 1px !important;
-        background-color: #c7c7c7;
+        background-color: #193629;
         opacity: 1;
         margin: 0.5rem 0 1rem 0;
       }
       .current-bid {
         @media screen and (max-width: 425px) {
-          border-bottom: 1px solid #c7c7c7;
+          border-bottom: 1px solid #193629;
         }
 
         .title {
@@ -2203,6 +2218,7 @@ section.detail-page-content {
           margin-bottom: 0;
           font-family: $neue-helvetica-extended;
           text-transform: uppercase;
+          color: #72807a;
           .status-tag {
             margin-left: 0.5rem;
             font-size: 0.9rem;
@@ -2243,6 +2259,36 @@ section.detail-page-content {
         font-size: 1.2rem;
         @media screen and (max-width: 520px) {
           margin: 1rem auto 0 !important;
+        }
+      }
+    }
+
+    .bottom-content {
+      .current-bid.ownerName {
+        display: flex;
+        align-items: center;
+        .title {
+          margin-right: 0.5rem;
+          font-family: $neue-helvetica-bold;
+        }
+      }
+
+      .bottom-content-box {
+        padding: 1.5rem;
+        border: 0.1rem solid #193629;
+        border-radius: 0.5rem;
+        margin: 0.5rem 0;
+        .current-bid {
+          padding: 2rem 1rem;
+          .title {
+            font-family: $neue-helvetica-bold;
+            font-size: 1.1rem;
+          }
+          .value {
+            .crypto {
+              font-size: 1.8rem;
+            }
+          }
         }
       }
     }

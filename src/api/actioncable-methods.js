@@ -180,6 +180,36 @@ export const outDatedBid = (nftSlug, orderSlug, value) => {
   );
 };
 
+export const cartDetail = (slug, value) => {
+  nftCable.subscriptions.create(
+    { channel: "NftChannel", room: `cart_${slug}` },
+    {
+      connected: () => {
+        console.log("BL/AC13:Connected");
+      },
+      received: (data) => {
+        console.log("BL/AC13:Connected");
+        value(data);
+      },
+    }
+  );
+};
+
+export const cartCheckout = (slug, value) => {
+  nftCable.subscriptions.create(
+    { channel: "NftChannel", room: `cart_checkout_${slug}` },
+    {
+      connected: () => {
+        console.log("BL/AC14:Connected");
+      },
+      received: (data) => {
+        console.log("BL/AC14:Connected");
+        value(data);
+      },
+    }
+  );
+};
+
 export const accountDetail = (slug, value) => {
   baseCable.subscriptions.create(
     { channel: "UserChannel", room: `account_${slug}` },

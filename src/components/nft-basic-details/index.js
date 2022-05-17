@@ -119,6 +119,7 @@ const NFTBaseDetails = ({
           <>
             <div className="d-flex">
               <BidValue
+                ClassNames="ownerName"
                 title="Owned By"
                 avatar={owners[0].avatar_url}
                 name={owners[0].user_name}
@@ -128,111 +129,71 @@ const NFTBaseDetails = ({
                 isEnd
               />
             </div>
-            <hr className="custom-divider" />
           </>
         )}
+        <div className="bottom-content-box">
+          {/* <div className="d-flex">
+            <BidValue title="Category" value={nft.category_name} />
+          </div>
+          <hr className="custom-divider" /> */}
+          <div className="d-flex">
+            {(() => {
+              if (erc721 && isOwner) {
+                return (
+                  <BidValue
+                    title="You Own"
+                    value="1 of 1"
+                    isLeft
+                    isOwner={isOwner}
+                  />
+                );
+              } else if (erc721 && !isOwner) {
+                return (
+                  <BidValue title="Limited Edition" value="1 of 1" isLeft />
+                );
+              } else if (!erc721 && isOwner) {
+                return (
+                  <BidValue
+                    title="You Own"
+                    value={`${_.get(nft, "owner_details.total_quantity")} / ${
+                      nft.total_quantity
+                    }`}
+                    isOwner
+                  />
+                );
+              } else {
+                return (
+                  <BidValue title="Edition(s)" value={nft.total_quantity} />
+                );
+              }
+            })()}
+          </div>
+          <hr className="custom-divider" />
+          <div className="text-center">
+            <NFTPutOnSale
+              nft={nft}
+              putOnSalePop={putOnSalePop}
+              setPutOnSalePop={setPutOnSalePop}
+              isQuantityAvailable={isQuantityAvailable}
+            />
 
-        <div className="d-flex">
-          <BidValue title="Category" value={nft.category_name} />
-        </div>
-        <hr className="custom-divider" />
-        <div className="d-flex">
-          {(() => {
-            if (erc721 && isOwner) {
-              return (
-                <BidValue
-                  title="You Own"
-                  value="1 of 1"
-                  isLeft
-                  isOwner={isOwner}
-                />
-              );
-            } else if (erc721 && !isOwner) {
-              return <BidValue title="Limited Edition" value="1 of 1" isLeft />;
-            } else if (!erc721 && isOwner) {
-              return (
-                <BidValue
-                  title="You Own"
-                  value={`${_.get(nft, "owner_details.total_quantity")} / ${
-                    nft.total_quantity
-                  }`}
-                  isOwner
-                />
-              );
-            } else {
-              return <BidValue title="Edition(s)" value={nft.total_quantity} />;
-            }
-          })()}
-        </div>
-        <hr className="custom-divider" />
-
-        <div className="text-center">
-          <NFTPutOnSale
-            nft={nft}
-            putOnSalePop={putOnSalePop}
-            setPutOnSalePop={setPutOnSalePop}
-            isQuantityAvailable={isQuantityAvailable}
-          />
-
-          {(() => {
-            if (!user) {
-              return (
-                <button
-                  disabled={false}
-                  className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
-                  onClick={() =>
-                    window.open(
-                      `${process.env.REACT_APP_ACCOUNTS_URL}/signin?redirect=${window.location.href}`,
-                      "_self"
-                    )
-                  }
-                >
-                  Sign In
-                </button>
-              );
-            } else if (isOwner && ownerOrdersList.length === 0) {
-              return user?.kyc_status !== "success" ? (
-                <OverlayTrigger
-                  trigger={["click"]}
-                  rootClose={true}
-                  placement="top"
-                  overlay={KycPopOver()}
-                >
+            {(() => {
+              if (!user) {
+                return (
                   <button
                     disabled={false}
                     className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                    onClick={() =>
+                      window.open(
+                        `${process.env.REACT_APP_ACCOUNTS_URL}/signin?redirect=${window.location.href}`,
+                        "_self"
+                      )
+                    }
                   >
-                    List for sale
+                    Sign In
                   </button>
-                </OverlayTrigger>
-              ) : days === 0 &&
-                hours === 0 &&
-                minutes === 0 &&
-                seconds < 0.2 ? (
-                <button
-                  disabled={false}
-                  className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
-                  onClick={() => setPutOnSalePop(!putOnSalePop)}
-                >
-                  List for sale
-                </button>
-              ) : (
-                <OverlayTrigger
-                  trigger={["click"]}
-                  rootClose={true}
-                  placement="top"
-                  overlay={popover()}
-                >
-                  <button
-                    disabled={false}
-                    className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
-                  >
-                    List for sale
-                  </button>
-                </OverlayTrigger>
-              );
-            } else if (isOwner && ownerOrdersList.length > 0) {
-              if (isQuantityAvailable != null && isQuantityAvailable > 0) {
+                );
+              } else if (isOwner && ownerOrdersList.length === 0) {
                 return user?.kyc_status !== "success" ? (
                   <OverlayTrigger
                     trigger={["click"]}
@@ -244,13 +205,7 @@ const NFTBaseDetails = ({
                       disabled={false}
                       className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
                     >
-                      {erc721
-                        ? "List for sale"
-                        : `List for sale (${
-                            isQuantityAvailable
-                              ? isQuantityAvailable
-                              : availableQuantity
-                          })`}
+                      List for sale
                     </button>
                   </OverlayTrigger>
                 ) : days === 0 &&
@@ -262,13 +217,7 @@ const NFTBaseDetails = ({
                     className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
                     onClick={() => setPutOnSalePop(!putOnSalePop)}
                   >
-                    {erc721
-                      ? "List for sale"
-                      : `List for sale (${
-                          isQuantityAvailable
-                            ? isQuantityAvailable
-                            : availableQuantity
-                        })`}
+                    List for sale
                   </button>
                 ) : (
                   <OverlayTrigger
@@ -281,6 +230,41 @@ const NFTBaseDetails = ({
                       disabled={false}
                       className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
                     >
+                      List for sale
+                    </button>
+                  </OverlayTrigger>
+                );
+              } else if (isOwner && ownerOrdersList.length > 0) {
+                if (isQuantityAvailable != null && isQuantityAvailable > 0) {
+                  return user?.kyc_status !== "success" ? (
+                    <OverlayTrigger
+                      trigger={["click"]}
+                      rootClose={true}
+                      placement="top"
+                      overlay={KycPopOver()}
+                    >
+                      <button
+                        disabled={false}
+                        className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                      >
+                        {erc721
+                          ? "List for sale"
+                          : `List for sale (${
+                              isQuantityAvailable
+                                ? isQuantityAvailable
+                                : availableQuantity
+                            })`}
+                      </button>
+                    </OverlayTrigger>
+                  ) : days === 0 &&
+                    hours === 0 &&
+                    minutes === 0 &&
+                    seconds < 0.2 ? (
+                    <button
+                      disabled={false}
+                      className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                      onClick={() => setPutOnSalePop(!putOnSalePop)}
+                    >
                       {erc721
                         ? "List for sale"
                         : `List for sale (${
@@ -289,20 +273,40 @@ const NFTBaseDetails = ({
                               : availableQuantity
                           })`}
                     </button>
-                  </OverlayTrigger>
-                );
-              } else {
-                return (
-                  <button
-                    disabled={true}
-                    className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
-                  >
-                    Listed on sale
-                  </button>
-                );
+                  ) : (
+                    <OverlayTrigger
+                      trigger={["click"]}
+                      rootClose={true}
+                      placement="top"
+                      overlay={popover()}
+                    >
+                      <button
+                        disabled={false}
+                        className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                      >
+                        {erc721
+                          ? "List for sale"
+                          : `List for sale (${
+                              isQuantityAvailable
+                                ? isQuantityAvailable
+                                : availableQuantity
+                            })`}
+                      </button>
+                    </OverlayTrigger>
+                  );
+                } else {
+                  return (
+                    <button
+                      disabled={true}
+                      className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                    >
+                      Listed on sale
+                    </button>
+                  );
+                }
               }
-            }
-          })()}
+            })()}
+          </div>
         </div>
       </div>
     </>

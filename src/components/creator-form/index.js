@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 
 import InputText from "../input-text/index";
 import InputPhone from "../input-phone/index";
-import AppHelmet from "../helmet";
 import creator_bg from "../../images/creator_image.jpeg";
 import { creatorApplicationApi } from "../../api/base-methods";
 import {
@@ -308,7 +307,6 @@ const CreatorForm = () => {
 
   return (
     <>
-      <AppHelmet title="Creator Application | NFT Marketplace | Biggest NFT Marketplace In India | BeyondLife.club" />
       <div className="creator-container">
         <div className="creator-block">
           <h2 className="mb-0">Here's where we stART! </h2>

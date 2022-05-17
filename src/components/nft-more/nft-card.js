@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import dayjs from "dayjs";
 import { useRouteMatch, Link } from "react-router-dom";
+import { Popover, OverlayTrigger } from "react-bootstrap";
 import { prominent } from "color.js";
 import { FaHeart } from "react-icons/fa";
 import { currencyFormat } from "../../utils/common";
+import { add_to_cart_thunk } from "../../redux/thunk/user_cart_thunk";
 import NFTCounter from "../nft-counter";
 import cardImage from "../../images/drops/nft_2.png";
 import startin from "../../images/start_icon.png";
@@ -40,6 +43,12 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
   const [isAuctionStarted, setIsAuctionStarted] = useState(false);
   const [isAuctionEnded, setIsAuctionEnded] = useState(false);
   const [showTimer, setShowTimer] = useState(false);
+
+  const dispatch = useDispatch();
+  const { user, cart } = useSelector((state) => state);
+  const [inCart, setInCart] = useState(false);
+  const userSlug = user.data?.user ? user.data?.user?.slug : null;
+  const userCart = cart?.data ? cart?.data : null;
 
   useEffect(() => {
     if (nft?.order_details?.timed_auction) {
@@ -216,29 +225,35 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
     (obj) => obj.type === nft?.core_statistics?.category
   );
 
+  const handleAddToCart = () => {
+    dispatch(add_to_cart_thunk(nft?.order_details?.slug, nft?.quantity));
+  };
+
+  useEffect(() => {
+    if (userSlug) {
+      const orderSlug = userCart?.line_items.find(
+        (obj) => obj.order_slug === nft?.order_details?.slug
+      );
+      if (orderSlug) {
+        setInCart(true);
+      } else {
+        setInCart(false);
+      }
+    }
+  }, [userCart]);
+
+  const KycPopOver = () => (
+    <Popover>
+      <Popover.Body>
+        <p className="password-terms">
+          Please complete your KYC process to be eligible for purchasing NFTs.
+        </p>
+      </Popover.Body>
+    </Popover>
+  );
+
   return (
-    <Link
-      className="more-card jt-card"
-      to={(() => {
-        if (favouriteNFT) {
-          return search
-            ? `/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
-            : `/order/details/${nft?.slug}/${nft?.order_slug}`;
-        } else if (nft?.is_on_sale) {
-          return search
-            ? `/${search}/order/details/${nft?.slug}/${nft?.order_details?.slug}`
-            : `/order/details/${nft?.slug}/${nft?.order_details?.slug}`;
-        } else if (recentSold) {
-          return search
-            ? `/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
-            : `/order/details/${nft?.slug}/${nft?.order_slug}`;
-        } else {
-          return search
-            ? `/${search}/details/${nft?.slug}`
-            : `/details/${nft?.slug}`;
-        }
-      })()}
-    >
+    <div className="more-card jt-card">
       <span className="nft-type-badge">{nft.nft_type.toUpperCase()}</span>
       <article className={`player_stats `}>
         {roleData && (
@@ -272,20 +287,42 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
           </div>
         )}
       </article>
-      <img
-        // style={{ background: bgColor }}
-        alt="media logo"
-        src={(() => {
-          if (nft?.asset_type?.includes("image")) {
-            return nft.asset_url ? nft.asset_url : cardImage;
-          } else if (nft?.cover_url) {
-            return nft.cover_url ? nft.cover_url : cardImage;
+      <Link
+        to={(() => {
+          if (favouriteNFT) {
+            return search
+              ? `/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
+              : `/order/details/${nft?.slug}/${nft?.order_slug}`;
+          } else if (nft?.is_on_sale) {
+            return search
+              ? `/${search}/order/details/${nft?.slug}/${nft?.order_details?.slug}`
+              : `/order/details/${nft?.slug}/${nft?.order_details?.slug}`;
+          } else if (recentSold) {
+            return search
+              ? `/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
+              : `/order/details/${nft?.slug}/${nft?.order_slug}`;
           } else {
-            return nft.asset_url ? nft.asset_url : cardImage;
+            return search
+              ? `/${search}/details/${nft?.slug}`
+              : `/details/${nft?.slug}`;
           }
         })()}
-        role="button"
-      />
+      >
+        <img
+          // style={{ background: bgColor }}
+          alt="media logo"
+          src={(() => {
+            if (nft?.asset_type?.includes("image")) {
+              return nft.asset_url ? nft.asset_url : cardImage;
+            } else if (nft?.cover_url) {
+              return nft.cover_url ? nft.cover_url : cardImage;
+            } else {
+              return nft.asset_url ? nft.asset_url : cardImage;
+            }
+          })()}
+          role="button"
+        />
+      </Link>
 
       <div className="top-content-title">
         {/* <div className="heart_box">
@@ -293,6 +330,46 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
 
         {/* <div className="svg_size heart_icon"></div> */}
         {/* </div> */}
+        {userSlug &&
+          nft?.is_on_sale &&
+          nft?.order_details?.is_buy &&
+          nft?.owner_slug !== userSlug && (
+            <>
+              {user?.data?.user?.kyc_status !== "success" ? (
+                <OverlayTrigger
+                  trigger={["click"]}
+                  rootClose={true}
+                  placement="top"
+                  overlay={KycPopOver()}
+                >
+                  <div className="cart_box">
+                    <div className="svg_size cart_icon"></div>
+                    <span className="cart_text">Add To Cart</span>
+                  </div>
+                </OverlayTrigger>
+              ) : (
+                <div
+                  className={`cart_box ${inCart && "add_cart"}`}
+                  onClick={() => {
+                    if (!inCart) {
+                      dispatch(
+                        add_to_cart_thunk(
+                          nft?.order_details?.slug,
+                          nft?.quantity
+                        )
+                      );
+                    }
+                  }}
+                >
+                  <div className="svg_size cart_icon"></div>
+                  <span className="cart_text">
+                    {!inCart ? "Add To Cart" : "Added To Cart"}
+                  </span>
+                </div>
+              )}
+            </>
+          )}
+
         <div>
           <div className="more-nft-title">{nft?.name}</div>
           {nft?.owner_name && (
@@ -525,7 +602,7 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
           </>
         )}
       </div>
-    </Link>
+    </div>
   );
 };
 
