@@ -46,18 +46,16 @@
   }
 }
 
-
 @media screen and (max-width: 520px) {
   .flex-xs {
     display: flex;
     justify-content: flex-end;
     margin: 1rem auto;
   }
-  .svg_size{
-    margin-left: 0.5rem;
-  }
-  }
-
+  // .svg_size{
+  //   margin-left: 0.5rem;
+  // }
+}
 
 .modal-img {
   max-height: 100vh;

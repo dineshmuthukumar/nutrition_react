@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import _ from "lodash";
 
@@ -36,19 +36,20 @@ import {
   userBuyDetail,
 } from "../api/actioncable-methods";
 import { artistApi } from "../api/base-methods";
+import { get_cart_list_thunk } from "../redux/thunk/user_cart_thunk";
 import OwnerList from "../components/owner-list";
 import Footer from "../components/footer/index";
 import NFTOrderSummary from "../components/nft-order-summary";
 import NFTOrderBaseDetails from "../components/nft-order-basic-details";
 import NFTPurchaseDetails from "../components/nft-purchase-details/index";
 import AdditionalPerks from "../components/additional-perks/index";
-import AppHelmet from "../components/helmet";
 import BidWinner from "../components/bid-winner/index";
 
 import NFTPlayerStats from "../components/nft-player-stats";
 
 const OrderDetails = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const [bidExpiry, setBidExpiry] = useState();
   const [isBidder, setIsBidder] = useState(false);
   const { slug, orderSlug } = useParams();
@@ -122,6 +123,7 @@ const OrderDetails = () => {
       }
       if (data.order_completed) {
         setSoldOut(true);
+        dispatch(get_cart_list_thunk());
       }
     });
     bidDetail(orderSlug, (data) => {
@@ -191,6 +193,7 @@ const OrderDetails = () => {
         setSoldOut(true);
         setBidWinner(data.winner_details);
         setWinnerBanner(true);
+        dispatch(get_cart_list_thunk());
       }
     });
 
@@ -208,6 +211,7 @@ const OrderDetails = () => {
       if (data.order_completed) {
         setSoldOut(true);
         orderBidWinner();
+        dispatch(get_cart_list_thunk());
       }
     });
 
@@ -414,7 +418,6 @@ const OrderDetails = () => {
   const artistDetail = async (slug) => {
     try {
       let response = await artistApi(slug);
-      console.log(response);
       setArtist(response.data.data.celebrity);
     } catch (err) {
       console.log(err);
@@ -423,8 +426,7 @@ const OrderDetails = () => {
 
   return (
     <>
-      <Header bgImage />
-      <AppHelmet title={nft?.name} image={nft?.asset_url} />
+      <Header bgImage title={nft?.name} image={nft?.asset_url} />
       {loader ? (
         <NFTLoader />
       ) : (

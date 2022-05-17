@@ -65,10 +65,15 @@ const MoreCard = ({ nft, isStarted = false, isEnded, time, label }) => {
         role="button"
       />
       <div className="top-content-title">
-        <div className="heart_box">
-          <div className="svg_size filled_heart_icon"></div>
+        {/* <div className="heart_box">
+          <div className="svg_size filled_heart_icon"></div> */}
 
-          {/* <div className="svg_size heart_icon"></div> */}
+        {/* <div className="svg_size heart_icon"></div> */}
+        {/* </div> */}
+
+        <div className="cart_box">
+          <div className="svg_size cart_icon"></div>
+          <span className="cart_text">Add To Cart</span>
         </div>
         <div className="more-nft-title">
           <span className="right-content">{nft.name}</span>

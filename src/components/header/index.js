@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import { Navbar, Nav, Dropdown, Container } from "react-bootstrap";
-import { BiBell, BiHelpCircle } from "react-icons/bi";
+import { BiBell, BiCart, BiHelpCircle } from "react-icons/bi";
 import { useTranslation } from "react-multi-lang";
 import { useSelector, useDispatch } from "react-redux";
 import { FaDiscord } from "react-icons/fa";
 import { CgMenuRight } from "react-icons/cg";
 import { VscChromeClose } from "react-icons/vsc";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import depositIcon from "../../images/deposit.svg";
 import bidIcon from "../../images/bid.svg";
@@ -16,26 +17,38 @@ import moneyWithdraw from "../../images/withdraw-money.svg";
 import outbidIcon from "../../images/outbid.svg";
 import userImg from "../../images/user_1.jpg";
 import { user_logout_thunk } from "../../redux/thunk/user_thunk";
-import { accountDetail } from "../../api/actioncable-methods";
+import {
+  accountDetail,
+  cartCheckout,
+  cartDetail,
+} from "../../api/actioncable-methods";
 import { currencyFormat } from "../../utils/common";
 import { user_wallet_update_action } from "../../redux/actions/user_action";
 import { getNotificationApi } from "../../api/base-methods";
 import { readNotificationApi } from "./../../api/base-methods";
+import {
+  checkout_event_thunk,
+  get_cart_list_thunk,
+} from "../../redux/thunk/user_cart_thunk";
 
 import jumpTradeLogo from "../../images/jump-trade-logo.svg";
 import notifyBell from "../../images/jump-trade/bell_notify.png";
+import cartIcon from "../../images/jump-trade/cart_icon.svg";
+import Cart from "../cart";
+import AppHelmet from "../helmet";
 
 import "./style.scss";
-
 const Header = ({
   hideOptions = false,
   hideSign = false,
   started = false,
   bgImage = false,
+  ...props
 }) => {
   const t = useTranslation();
   const dispatch = useDispatch();
-  const state = useSelector((state) => state);
+  const location = useLocation();
+  const { user, cart } = useSelector((state) => state);
   const history = useHistory();
 
   const [notiLoading, setNotiLoading] = useState(false);
@@ -44,16 +57,28 @@ const Header = ({
   const [notiRead, setNotiRead] = useState(true);
 
   const [ribbon, setRibbon] = useState(true);
+  const [cartPop, setCartPop] = useState(false);
+  const [checkoutDevice, setCheckoutDevice] = useState(false);
 
-  const { user } = state;
   const slug = user.data?.user ? user.data?.user?.slug : null;
-
+  const userCart = cart?.data ? cart?.data : null;
   useEffect(() => {
     if (slug) {
       accountDetail(slug, (data) => {
         dispatch(user_wallet_update_action(data));
       });
       handleGetNotification(npage);
+      dispatch(get_cart_list_thunk());
+      cartDetail(slug, (data) => {
+        dispatch(get_cart_list_thunk());
+      });
+      cartCheckout(slug, (data) => {
+        dispatch(checkout_event_thunk(data?.event === "start" ? true : false));
+      });
+      if (location.hash === "#cart") {
+        history.push("/");
+        setCartPop(true);
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -107,7 +132,7 @@ const Header = ({
 
   const UserToggleComponent = React.forwardRef(({ onClick }, ref) => (
     <UserComponent
-      user={state.user.data.user}
+      user={user.data.user}
       sref={ref}
       onClick={(e) => {
         e.preventDefault();
@@ -519,6 +544,11 @@ const Header = ({
 
   return (
     <>
+      <AppHelmet
+        title={props?.title}
+        image={props?.image}
+        description={props?.description}
+      />
       <Navbar
         bg="dark"
         expand="md"
@@ -689,6 +719,32 @@ const Header = ({
                             </div>
                           </Dropdown.Menu>
                         </Dropdown>
+                        {slug && (
+                          <Nav.Link
+                            href=""
+                            className="cart_ic position-relative"
+                            onClick={() => {
+                              if (userCart?.checkout && !checkoutDevice) {
+                                toast.error(
+                                  "Order is being processed. Can't access cart!",
+                                  {
+                                    autoClose: 2000,
+                                  }
+                                );
+                              } else {
+                                setCartPop(!cartPop);
+                              }
+                            }}
+                          >
+                            {/* <BiCart size={25} role="button" color={"white"} />{" "} */}
+                            <img src={cartIcon} height={20} />
+                            {parseInt(userCart?.total_count) > 0 && (
+                              <span className="badge cart-count rounded-pill bg-danger position-absolute">
+                                {userCart?.total_count}
+                              </span>
+                            )}
+                          </Nav.Link>
+                        )}
                         <Dropdown autoClose="outside" className="mx-0">
                           <Dropdown.Toggle
                             align="start"
@@ -697,7 +753,7 @@ const Header = ({
                           ></Dropdown.Toggle>
 
                           <Dropdown.Menu align="end">
-                            <UserComponent user={state.user.data.user} />
+                            <UserComponent user={user.data.user} />
                             <Dropdown.Item
                               id="drop_inner"
                               href="/"
@@ -954,6 +1010,12 @@ const Header = ({
           )}
         </Container>
       </Navbar>
+
+      <Cart
+        cartPop={cartPop}
+        setCartPop={setCartPop}
+        setCheckoutDevice={setCheckoutDevice}
+      />
     </>
   );
 };

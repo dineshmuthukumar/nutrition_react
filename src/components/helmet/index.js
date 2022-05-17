@@ -17,6 +17,7 @@ const AppHelmet = ({
       <meta name="twitter:image" content={image} />
       <meta name="twitter:description" content={description} />
       <meta itemprop="image" content={image} />
+      <link rel="canonical" href={window.location.href} /> 
     </Helmet>
   );
 };
