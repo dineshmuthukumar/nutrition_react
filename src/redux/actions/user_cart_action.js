@@ -11,6 +11,7 @@ export const PROCEED_CHECKOUT_REQUEST = "PROCEED_CHECKOUT_REQUEST";
 export const PROCEED_CHECKOUT_SUCCESS = "PROCEED_CHECKOUT_SUCCESS";
 export const PROCEED_CHECKOUT_FAILURE = "PROCEED_CHECKOUT_FAILURE";
 export const CLEAR_CART = "CLEAR_CART";
+export const CHECKOUT_EVENT = "CHECKOUT_EVENT";
 
 export const add_to_cart_action_request = () => {
   return {
@@ -95,5 +96,12 @@ export const proceed_checkout_failure = (input) => {
 export const clear_cart_action = () => {
   return {
     type: CLEAR_CART,
+  };
+};
+
+export const checkout_event = (input) => {
+  return {
+    type: CHECKOUT_EVENT,
+    payload: input,
   };
 };

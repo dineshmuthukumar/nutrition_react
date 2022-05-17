@@ -20,6 +20,7 @@ import {
   proceed_checkout_success,
   proceed_checkout_failure,
   clear_cart_action,
+  checkout_event,
 } from "../actions/user_cart_action";
 
 export const add_to_cart_thunk = (order_slug, quantity) => {
@@ -29,13 +30,13 @@ export const add_to_cart_thunk = (order_slug, quantity) => {
       const result = await addToCartApi({ order_slug, quantity });
       dispatch(add_to_cart_action_success(result.data.data));
       dispatch(get_cart_list_thunk());
-      toast.success("Added to cart successfully", {
+      toast.success("The NFT is successfully added to your cart.", {
         autoClose: 2000,
       });
     } catch (err) {
       console.log(err?.response?.status);
       if (err?.response?.status === 404) {
-        toast.error("NFT sold out or cancelled", {
+        toast.error("The NFT has either been sold or no longer listed.", {
           autoClose: 2000,
         });
       }
@@ -97,5 +98,11 @@ export const clear_cart_thunk = () => {
     } catch (err) {
       console.log(err);
     }
+  };
+};
+
+export const checkout_event_thunk = (event) => {
+  return async (dispatch) => {
+    dispatch(checkout_event(event));
   };
 };

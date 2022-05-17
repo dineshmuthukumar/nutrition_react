@@ -12,10 +12,12 @@ import {
   PROCEED_CHECKOUT_SUCCESS,
   PROCEED_CHECKOUT_FAILURE,
   CLEAR_CART,
+  CHECKOUT_EVENT,
 } from "../actions/user_cart_action";
 
 const initState = {
   data: {},
+  checkout: false,
   loading: false,
   error: false,
   errorData: {},
@@ -92,6 +94,10 @@ const user_cart_reducer = (state = initState, { payload, type }) => {
       error: false,
       errorData: {},
     };
+  }
+
+  if (type === CHECKOUT_EVENT) {
+    state = { ...state, checkout: payload };
   }
 
   return state;

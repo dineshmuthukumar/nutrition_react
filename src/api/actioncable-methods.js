@@ -195,6 +195,21 @@ export const cartDetail = (slug, value) => {
   );
 };
 
+export const cartCheckout = (slug, value) => {
+  nftCable.subscriptions.create(
+    { channel: "NftChannel", room: `cart_checkout_${slug}` },
+    {
+      connected: () => {
+        console.log("BL/AC14:Connected");
+      },
+      received: (data) => {
+        console.log("BL/AC14:Connected");
+        value(data);
+      },
+    }
+  );
+};
+
 export const accountDetail = (slug, value) => {
   baseCable.subscriptions.create(
     { channel: "UserChannel", room: `account_${slug}` },

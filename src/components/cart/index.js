@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import ErrorText from "./error-text";
 import sample from "../../images/jump-trade/sample.png";
 import done from "../../images/jump-trade/done.svg";
+import failed from "../../images/jump-trade/cut.svg";
 import emptycart from "../../images/jump-trade/empty-cart-img.svg";
 import { BiCheck } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
@@ -17,9 +18,8 @@ import {
   remove_from_cart_thunk,
 } from "../../redux/thunk/user_cart_thunk";
 import { checkoutApi } from "../../api/methods";
-import { proceed_checkout_request } from "../../redux/actions/user_cart_action";
 
-const Cart = ({ cartPop = false, setCartPop }) => {
+const Cart = ({ cartPop = false, setCartPop, setCheckoutDevice }) => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -72,6 +72,7 @@ const Cart = ({ cartPop = false, setCartPop }) => {
   const handleCheckout = async () => {
     try {
       setCheckoutProcess({ processClass: "loading", loading: true });
+      setCheckoutDevice(true);
       const result = await checkoutApi({ selectedItems });
       if (result.data.success) {
         setSuccess(true);
@@ -80,10 +81,12 @@ const Cart = ({ cartPop = false, setCartPop }) => {
         setSelectedItems([]);
       }
       setCheckoutProcess({ processClass: "", loading: false });
+      setCheckoutDevice(false);
       dispatch(get_cart_list_thunk());
     } catch (err) {
       console.log(err);
       setCheckoutProcess({ processClass: "", loading: false });
+      setCheckoutDevice(false);
       toast.error(
         "The request could not be processed at this time. Please try again."
       );
@@ -107,6 +110,7 @@ const Cart = ({ cartPop = false, setCartPop }) => {
       onHide={() => setCartPop(!cartPop)}
       placement="end"
       className="w-100 w-md-50 w-lg-42"
+      backdrop={checkoutProcess.loading ? "static" : true}
     >
       <Offcanvas.Body className="p-0 pop-body-container">
         <>
@@ -147,11 +151,15 @@ const Cart = ({ cartPop = false, setCartPop }) => {
                     {userCart?.line_items?.map((nft, i) => (
                       <>
                         {nft?.order_status !== "onsale" && (
-                          <div className="cart-error mt-3">
+                          <div
+                            className="cart-error mt-3"
+                            key={`cart-item-error-${i}`}
+                          >
                             <div className="d-flex align-items-center">
                               <AiOutlineWarning size={16} color="#F11010" />
                               <span className="ms-2">
-                                NFT been purchased or order cancelled
+                                The NFT has either been sold or no longer
+                                listed.
                               </span>
                             </div>
                           </div>
@@ -403,10 +411,17 @@ const Cart = ({ cartPop = false, setCartPop }) => {
                 <div className="progress-complete"></div>
               </div>
               <div className="pop-body-content success">
-                <div className="order-placed text-center py-4">
-                  <img src={done} />
-                  <h2 className="py-4">Order Processed Successfully</h2>
-                </div>
+                {parseInt(successData?.final_amount) > 0 ? (
+                  <div className="order-placed text-center py-4">
+                    <img src={done} />
+                    <h2 className="py-4">Order Processed Successfully</h2>
+                  </div>
+                ) : (
+                  <div className="order-placed text-center py-4">
+                    <img src={failed} />
+                    <h2 className="py-4">Order Processing Unsuccessful.</h2>
+                  </div>
+                )}
 
                 <div className="pop-cart-info">
                   {checkoutList.length > 0 &&
@@ -417,7 +432,8 @@ const Cart = ({ cartPop = false, setCartPop }) => {
                             <div className="d-flex align-items-center">
                               <AiOutlineWarning size={16} color="#F11010" />
                               <span className="ms-2">
-                                NFT been purchased or order cancelled
+                                The NFT has either been sold or no longer
+                                listed.
                               </span>
                             </div>
                           </div>

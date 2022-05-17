@@ -8,6 +8,7 @@ import { FaDiscord } from "react-icons/fa";
 import { CgMenuRight } from "react-icons/cg";
 import { VscChromeClose } from "react-icons/vsc";
 import { useHistory, useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import depositIcon from "../../images/deposit.svg";
 import bidIcon from "../../images/bid.svg";
@@ -16,13 +17,17 @@ import moneyWithdraw from "../../images/withdraw-money.svg";
 import outbidIcon from "../../images/outbid.svg";
 import userImg from "../../images/user_1.jpg";
 import { user_logout_thunk } from "../../redux/thunk/user_thunk";
-import { accountDetail, cartDetail } from "../../api/actioncable-methods";
+import {
+  accountDetail,
+  cartCheckout,
+  cartDetail,
+} from "../../api/actioncable-methods";
 import { currencyFormat } from "../../utils/common";
 import { user_wallet_update_action } from "../../redux/actions/user_action";
 import { getNotificationApi } from "../../api/base-methods";
 import { readNotificationApi } from "./../../api/base-methods";
 import {
-  clear_cart_thunk,
+  checkout_event_thunk,
   get_cart_list_thunk,
 } from "../../redux/thunk/user_cart_thunk";
 
@@ -33,7 +38,6 @@ import Cart from "../cart";
 import AppHelmet from "../helmet";
 
 import "./style.scss";
-
 const Header = ({
   hideOptions = false,
   hideSign = false,
@@ -54,6 +58,7 @@ const Header = ({
 
   const [ribbon, setRibbon] = useState(true);
   const [cartPop, setCartPop] = useState(false);
+  const [checkoutDevice, setCheckoutDevice] = useState(false);
 
   const slug = user.data?.user ? user.data?.user?.slug : null;
   const userCart = cart?.data ? cart?.data : null;
@@ -66,6 +71,9 @@ const Header = ({
       dispatch(get_cart_list_thunk());
       cartDetail(slug, (data) => {
         dispatch(get_cart_list_thunk());
+      });
+      cartCheckout(slug, (data) => {
+        dispatch(checkout_event_thunk(data?.event === "start" ? true : false));
       });
       if (location.hash === "#cart") {
         history.push("/");
@@ -536,7 +544,11 @@ const Header = ({
 
   return (
     <>
-      <AppHelmet title={props?.title} image={props?.image} description={props?.description}/>
+      <AppHelmet
+        title={props?.title}
+        image={props?.image}
+        description={props?.description}
+      />
       <Navbar
         bg="dark"
         expand="md"
@@ -705,7 +717,18 @@ const Header = ({
                           <Nav.Link
                             href=""
                             className="cart_ic position-relative"
-                            onClick={() => setCartPop(!cartPop)}
+                            onClick={() => {
+                              if (userCart?.checkout && !checkoutDevice) {
+                                toast.error(
+                                  "Order is being processed. Can't access cart!",
+                                  {
+                                    autoClose: 2000,
+                                  }
+                                );
+                              } else {
+                                setCartPop(!cartPop);
+                              }
+                            }}
                           >
                             {/* <BiCart size={25} role="button" color={"white"} />{" "} */}
                             <img src={cartIcon} height={20} />
@@ -976,7 +999,11 @@ const Header = ({
         </Container>
       </Navbar>
 
-      <Cart cartPop={cartPop} setCartPop={setCartPop} />
+      <Cart
+        cartPop={cartPop}
+        setCartPop={setCartPop}
+        setCheckoutDevice={setCheckoutDevice}
+      />
     </>
   );
 };
