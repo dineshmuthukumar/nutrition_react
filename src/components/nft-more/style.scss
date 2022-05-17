@@ -474,6 +474,7 @@
         transition: 0.3s;
         text-transform: uppercase;
         font-size: 0.9rem;
+        overflow: hidden;
         cursor: pointer;
         background: transparent
           linear-gradient(180deg, #e2ff00 0%, #18e0e0 47%, #e8318d 100%) 0% 0%
@@ -489,6 +490,8 @@
           padding-left: 2rem;
           font-family: $neue-helvetica-bold;
           visibility: hidden;
+          transition: 0.3s all ease;
+          white-space: nowrap;
         }
         &::before {
           content: "";
@@ -502,10 +505,12 @@
           z-index: 0;
         }
         &:hover {
-          width: auto;
+          width: 11rem;
           .cart_text {
             width: 9rem;
             visibility: visible;
+            transition: 0.3s all ease;
+            white-space: nowrap;
           }
         }
         .svg_size {
@@ -542,11 +547,13 @@
             }
           }
           &:hover {
-            width: auto;
+            width: 12rem;
             .cart_text {
               width: 10rem;
               visibility: visible;
               color: #000;
+              transition: 0.3s all ease;
+              white-space: nowrap;
             }
           }
         }
