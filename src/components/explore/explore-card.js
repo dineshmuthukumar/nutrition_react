@@ -262,10 +262,13 @@ const ExploreCard = ({
             <span className="cart_text">Add To Cart</span>
           </div>
           <div>
-            <div className="more-nft-title">{nft?.name}</div>
             {nft?.owner_name && (
-              <div className="more-nft-desc">{nft?.owner_name}</div>
+              <div className="more-nft-desc owner_name">{nft?.owner_name}</div>
             )}
+            <div className="more-nft-title">{nft?.name}</div>
+            <h6 className="nft-signature">
+              <span>Signed by </span> Sachin Tendulkar &amp; Ricky Ponting
+            </h6>
           </div>
           {nft?.is_on_sale && (
             <>

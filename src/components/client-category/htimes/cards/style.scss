@@ -94,7 +94,24 @@
     }
     .more-nft-desc {
       font-size: 1rem;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0rem;
+    }
+    .nft-signature {
+      background: transparent
+        linear-gradient(
+          180deg,
+          #e2ff00 10%,
+          #08ff0b 60%,
+          #18e0e0 47%,
+          #e8318d 100%
+        )
+        0% 0% no-repeat padding-box;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-family: $neue-helvetica-medium;
+      span {
+        font-family: $neue-helvetica-roman;
+      }
     }
   }
 
