@@ -168,7 +168,7 @@ const NFTBaseDetails = ({
               }
             })()}
           </div>
-          <hr className="custom-divider" />
+          {/* <hr className="custom-divider" /> */}
           <div className="text-center">
             <NFTPutOnSale
               nft={nft}
