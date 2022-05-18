@@ -35,7 +35,6 @@
 
   @media screen and (max-width: 751px) {
     width: 90px;
-    
   }
   &::before {
     content: "";
@@ -71,7 +70,6 @@
     &::before {
       opacity: 0;
     }
-    
   }
   span {
     position: relative;
@@ -740,6 +738,7 @@ button.load_more {
       width: 100%;
       text-overflow: ellipsis;
       overflow: hidden;
+      font-size: 0.8rem;
     }
     .nft-signature {
       background: transparent
