@@ -328,8 +328,8 @@ const NFTCard = ({
                   : `/${clientUrl}/order/details/${nft?.slug}/${nft?.order_slug}`;
               } else
                 return search
-                  ? `/explore/category/${exploreSlug}/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
-                  : `/explore/category/${exploreSlug}/order/details/${nft?.slug}/${nft?.order_slug}`;
+                  ? `/explore-all/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
+                  : `/explore-all/order/details/${nft?.slug}/${nft?.order_slug}`;
             } else if (isFaltoo) {
               return `/fully-faltoo-NFT/order/details/${nft?.slug}/${nft?.order_slug}`;
             } else {
@@ -345,8 +345,8 @@ const NFTCard = ({
                   : `/${clientUrl}/order/details/${nft?.slug}/${nft?.order_slug}`;
               } else
                 return search
-                  ? `/explore/category/${exploreSlug}/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
-                  : `/explore/category/${exploreSlug}/order/details/${nft?.slug}/${nft?.order_slug}`;
+                  ? `/explore-all/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
+                  : `/explore-all/order/details/${nft?.slug}/${nft?.order_slug}`;
             } else {
               return search
                 ? `/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
@@ -360,8 +360,8 @@ const NFTCard = ({
                   : `/${clientUrl}/order/details/${nft?.slug}/${nft?.order_details?.slug}`;
               } else
                 return search
-                  ? `/explore/category/${exploreSlug}/${search}/order/details/${nft?.slug}/${nft?.order_details?.slug}`
-                  : `/explore/category/${exploreSlug}/order/details/${nft?.slug}/${nft?.order_details?.slug}`;
+                  ? `/explore-all/${search}/order/details/${nft?.slug}/${nft?.order_details?.slug}`
+                  : `/explore-all/order/details/${nft?.slug}/${nft?.order_details?.slug}`;
             } else if (isFaltoo) {
               return `/fully-faltoo-NFT/order/details/${nft?.slug}/${nft?.order_details?.slug}`;
             } else
@@ -376,8 +376,8 @@ const NFTCard = ({
                   : `/${clientUrl}/order/details/${nft?.slug}/${nft?.order_slug}`;
               } else
                 return search
-                  ? `/explore/category/${exploreSlug}/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
-                  : `/explore/category/${exploreSlug}/order/details/${nft?.slug}/${nft?.order_slug}`;
+                  ? `/explore-all/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
+                  : `/explore-all/order/details/${nft?.slug}/${nft?.order_slug}`;
             } else if (isFaltoo) {
               return `/fully-faltoo-NFT/order/details/${nft?.slug}/${nft?.order_slug}`;
             } else
@@ -392,8 +392,8 @@ const NFTCard = ({
                   : `/${clientUrl}/details/${nft?.slug}`;
               } else
                 return search
-                  ? `/explore/category/${exploreSlug}/${search}/details/${nft?.slug}`
-                  : `/explore/category/${exploreSlug}/details/${nft?.slug}`;
+                  ? `/explore-all/${search}/details/${nft?.slug}`
+                  : `/explore-all/details/${nft?.slug}`;
             } else if (isFaltoo) {
               return `/fully-faltoo-NFT/details/${nft?.slug}`;
             } else {

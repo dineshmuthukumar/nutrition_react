@@ -1675,7 +1675,7 @@ const ExploreAllNFT = () => {
                               key={`list-nft-${i}`}
                               className="col-xl-4 col-lg-6 col-sm-6"
                             >
-                              <NFTCard nft={nft} key={i} image={sample} />
+                              <NFTCard nft={nft} key={i} image={sample} isExplore/>
                             </div>
                           ))
                         ) : (
