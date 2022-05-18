@@ -1194,7 +1194,7 @@ const ExploreAllNFT = () => {
         onHide={() => history.goBack()}
         children={popDetails.children}
       />
-      <AppHelmet />
+      {/* <AppHelmet /> */}
 
       <section className="explore-nft-section">
         {/* <article className="explorer-detail">
