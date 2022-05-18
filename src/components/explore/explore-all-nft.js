@@ -31,7 +31,6 @@ const ExploreAllNFT = () => {
   const [hasNext, setHasNext] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
   const [toggle, setToggle] = useState(false);
-
   const [popDetails, setPopDetails] = useState({
     show: false,
     children: null,
@@ -49,7 +48,8 @@ const ExploreAllNFT = () => {
     from: "",
     to: "",
   });
-
+  // console.log('price_range',priceRangeFilter.from)
+  const [priceFilter, setPriceFilter] = useState(false);
   const [filter, setFilter] = useState({
     sale: [
       {
@@ -88,6 +88,18 @@ const ExploreAllNFT = () => {
       },
       {
         name: "Multiple",
+        value: "erc1155",
+        checked: false,
+      },
+    ],
+    price: [
+      {
+        name: "Min",
+        value: "erc721",
+        checked: false,
+      },
+      {
+        name: "Max",
         value: "erc1155",
         checked: false,
       },
@@ -265,6 +277,7 @@ const ExploreAllNFT = () => {
   useEffect(() => {
     const sale_filters = query.get("sale") ? query.get("sale").split(",") : [];
     const nft_filters = query.get("nft") ? query.get("nft").split(",") : [];
+    const search_filters = query.get("search") ? query.get("search") : "";
     const status_filters = query.get("status") ? query.get("status") : "";
     const price_range = {
       from: query.get("minPrice") ? query.get("minPrice") : "",
@@ -366,6 +379,13 @@ const ExploreAllNFT = () => {
     }
   };
 
+  const clearFilter = () => {
+    history.push(`/explore-all`);
+    setPriceRangeFilter({
+      from: "",
+      to: "",
+    });
+  };
   const fetchMore = () => {
     if (hasNext) {
       const sale_filters = query.get("sale")
@@ -543,16 +563,19 @@ const ExploreAllNFT = () => {
     let nft_category = query.get("nft-category")
       ? query.get("nft-category").split(",")
       : [];
-
     let nft_collection = query.get("nft-collection")
       ? query.get("nft-collection").split(",")
       : [];
-
     let query_string = "";
     if (category_exist.length > 0) {
       query_string += query_string
         ? `&category=${category_exist}`
         : `category=${category_exist}`;
+    }
+    if (nft_collection.length > 0) {
+      query_string += query_string
+        ? `&nft-collection=${nft_collection}`
+        : `nft-collection=${nft_collection}`;
     }
 
     if (sale_exist.length > 0) {
@@ -581,12 +604,6 @@ const ExploreAllNFT = () => {
       query_string += query_string
         ? `&search=${search_exist}`
         : `search=${search_exist}`;
-    }
-
-    if (nft_collection.length > 0) {
-      query_string += query_string
-        ? `&nft-collection=${nft_collection}`
-        : `nft-collection=${nft_collection}`;
     }
 
     if (sale_status) {
@@ -1070,6 +1087,8 @@ const ExploreAllNFT = () => {
     } else {
       history.push("/explore-all/");
     }
+    setPriceFilter(true);
+    setToggle(!toggle);
   };
 
   const handleKeyPressEvent = (event) => {
@@ -1084,7 +1103,7 @@ const ExploreAllNFT = () => {
       ref={ref}
       onClick={(e) => {
         e.preventDefault();
-        onClick(e);
+        // onClick(e);
       }}
     >
       {priceRangeFilter.from && priceRangeFilter.to
@@ -1094,7 +1113,7 @@ const ExploreAllNFT = () => {
         : priceRangeFilter.to
         ? `Max $${priceRangeFilter.to}`
         : "Price Range"}
-      <BiCaretDown />
+      {/* <BiCaretDown /> */}
     </div>
   ));
 
@@ -1112,55 +1131,72 @@ const ExploreAllNFT = () => {
           className={className}
           aria-labelledby={labeledBy}
         >
-          <div className="d-flex">
-            <span className="category-search-block me-1">
-              <FormControl
-                autoFocus
-                className="category-search"
-                placeholder="Min"
-                type="number"
-                onChange={(e) => {
-                  if (e.target.value && e.target.value.length <= 9) {
-                    if (validateCurrency(e.target.value)) {
-                      setPriceRange({ ...priceRange, from: e.target.value });
+          {priceRangeFilter.from ? (
+            <PriceDropdown />
+          ) : (
+            <div className="d-flex1">
+              <span className="category-search-block me-1">
+                <FormControl
+                  autoFocus
+                  className="category-search"
+                  placeholder="Min"
+                  type="number"
+                  onChange={(e) => {
+                    if (e.target.value && e.target.value.length <= 9) {
+                      if (validateCurrency(e.target.value)) {
+                        setPriceRange({ ...priceRange, from: e.target.value });
+                      }
+                    } else {
+                      setPriceRange({ ...priceRange, from: "" });
                     }
-                  } else {
-                    setPriceRange({ ...priceRange, from: "" });
-                  }
-                }}
-                value={priceRange.from}
-              />
-            </span>
-            <span className="category-search-block">
-              <FormControl
-                className="category-search"
-                placeholder="Max"
-                type="number"
-                onChange={(e) => {
-                  if (e.target.value && e.target.value.length <= 9) {
-                    if (validateCurrency(e.target.value)) {
-                      setPriceRange({ ...priceRange, to: e.target.value });
+                  }}
+                  value={priceRange.from}
+                />
+              </span>
+              <span className="category-search-block">
+                <FormControl
+                  className="category-search"
+                  placeholder="Max"
+                  type="number"
+                  onChange={(e) => {
+                    if (e.target.value && e.target.value.length <= 9) {
+                      if (validateCurrency(e.target.value)) {
+                        setPriceRange({ ...priceRange, to: e.target.value });
+                      }
+                    } else {
+                      setPriceRange({ ...priceRange, to: "" });
                     }
-                  } else {
-                    setPriceRange({ ...priceRange, to: "" });
-                  }
-                }}
-                value={priceRange.to}
-              />
-            </span>
-          </div>
+                  }}
+                  value={priceRange.to}
+                />
+              </span>
+            </div>
+          )}
+
           {/* <hr className="mt-2 mb-1 bot-border-hr" /> */}
           <div className="prifilter-btn">
             <button
+              style={
+                priceRange.from
+                  ? { backgroundColor: "white" }
+                  : { backgroundColor: "#989e99", pointerEvents: "none" }
+              }
               type="button"
-              class="justify-content-center border dropdown-item"
+              class="border-dropdown-item-clr"
               onClick={(e) => handlePriceRange(priceRange, true)}
+              // disabled={(() => {
+              //   if (parseInt(priceRange.from) == "") {
+              //     return true;
+              //   } else {
+              //     return false;
+              //   }
+              // })()}
             >
               Clear
             </button>
             <button
               type="button"
-              class="justify-content-center border dropdown-item apply-btn"
+              class="border-dropdown-item"
               disabled={(() => {
                 if (
                   parseInt(priceRange.from) < 0 ||
@@ -1171,13 +1207,17 @@ const ExploreAllNFT = () => {
                   parseInt(priceRange.from) > parseInt(priceRange.to)
                 ) {
                   return true;
+                } else if (priceRange.from == "" || priceRange.from === null) {
+                  return true;
+                } else if (match.params.search) {
+                  return true;
                 } else {
                   return false;
                 }
               })()}
               onClick={(e) => handlePriceRange(priceRange)}
             >
-              Apply
+              <span>Apply</span>
             </button>
             {React.Children.toArray(children).filter((child) => child)}
           </div>
@@ -1193,7 +1233,6 @@ const ExploreAllNFT = () => {
         onHide={() => history.goBack()}
         children={popDetails.children}
       />
-
       <section className="explore-nft-section">
         {/* <article className="explorer-detail">
           <div className="container-fluid">
@@ -1272,30 +1311,18 @@ const ExploreAllNFT = () => {
                       </Dropdown> */}
                       </div>
                       <div className="filt-flex-box explore_block">
-                        <Dropdown className="price-range">
+                        {/* <Dropdown className="price-range">
                           <Dropdown.Toggle
                             align="start"
                             drop="down"
                             as={PriceDropdown}
                           ></Dropdown.Toggle>
 
-                          <Dropdown.Menu align="start" as={PriceMenu}>
-                            {/* <Dropdown.Item
-                          as="button"
-                          className="justify-content-center border me-2"
-                          // onClick={() => handleCategoryCheck(obj)}
-                        >
-                          Cancel
-                        </Dropdown.Item> */}
-                            {/* <Dropdown.Item
-                          as="button"
-                          className="justify-content-center border bg-light"
-                          // onClick={() => handleCategoryCheck(obj)}
-                        >
-                          Apply
-                        </Dropdown.Item> */}
-                          </Dropdown.Menu>
-                        </Dropdown>
+                          <Dropdown.Menu
+                            align="start"
+                            as={PriceMenu}
+                          ></Dropdown.Menu>
+                        </Dropdown> */}
 
                         <Dropdown>
                           <Dropdown.Toggle
@@ -1401,22 +1428,23 @@ const ExploreAllNFT = () => {
                           className={`clear-btn ${
                             match.params.search ? "" : "disabled"
                           }`}
-                          onClick={() => history.push(`/explore-all`)}
+                          onClick={() => clearFilter()}
                         >
                           Clear all
                         </span>
                       </div>
                       <div className="filter-list-items">
-                        <h4
-                          className="header"
-                          onClick={() =>
-                            setFilter({
-                              ...filter,
-                              showNFTCategory: !filter.showNFTCategory,
-                            })
-                          }
-                        >
-                          Role <IoIosArrowDown role={"button"} />
+                        <h4 className="header">
+                          Role{" "}
+                          <IoIosArrowDown
+                            role={"button"}
+                            onClick={() =>
+                              setFilter({
+                                ...filter,
+                                showNFTCategory: !filter.showNFTCategory,
+                              })
+                            }
+                          />
                         </h4>
                         {filter.showNFTCategory && (
                           <ul>
@@ -1448,16 +1476,17 @@ const ExploreAllNFT = () => {
                       </div>
 
                       <div className="filter-list-items">
-                        <h4
-                          className="header"
-                          onClick={() =>
-                            setFilter({
-                              ...filter,
-                              showNFTCollection: !filter.showNFTCollection,
-                            })
-                          }
-                        >
-                          Category <IoIosArrowDown role={"button"} />
+                        <h4 className="header">
+                          Category{" "}
+                          <IoIosArrowDown
+                            role={"button"}
+                            onClick={() =>
+                              setFilter({
+                                ...filter,
+                                showNFTCollection: !filter.showNFTCollection,
+                              })
+                            }
+                          />
                         </h4>
                         {filter.showNFTCollection && (
                           <ul>
@@ -1491,16 +1520,17 @@ const ExploreAllNFT = () => {
                       </div>
 
                       <div className="filter-list-items">
-                        <h4
-                          className="header"
-                          onClick={() =>
-                            setFilter({
-                              ...filter,
-                              showSale: !filter.showSale,
-                            })
-                          }
-                        >
-                          Sale Type <IoIosArrowDown role={"button"} />
+                        <h4 className="header">
+                          Sale Type{" "}
+                          <IoIosArrowDown
+                            role={"button"}
+                            onClick={() =>
+                              setFilter({
+                                ...filter,
+                                showSale: !filter.showSale,
+                              })
+                            }
+                          />
                         </h4>
                         {filter.showSale && (
                           <ul>
@@ -1532,16 +1562,17 @@ const ExploreAllNFT = () => {
                       </div>
 
                       <div className="filter-list-items">
-                        <h4
-                          className="header"
-                          onClick={() =>
-                            setFilter({
-                              ...filter,
-                              showStatus: !filter.showStatus,
-                            })
-                          }
-                        >
-                          Sale Status <IoIosArrowDown role={"button"} />
+                        <h4 className="header">
+                          Sale Status{" "}
+                          <IoIosArrowDown
+                            role={"button"}
+                            onClick={() =>
+                              setFilter({
+                                ...filter,
+                                showStatus: !filter.showStatus,
+                              })
+                            }
+                          />
                         </h4>
                         {filter.showStatus && (
                           <ul>
@@ -1572,19 +1603,20 @@ const ExploreAllNFT = () => {
                         )}
                       </div>
 
-                      {/* <div className="filter-list-items">
-                        <h4
-                          className="header"
-                          onClick={() =>
-                            setFilter({
-                              ...filter,
-                              auction: !filter.auction,
-                            })
-                          }
-                        >
-                          Auction <IoIosArrowDown role={"button"} />
+                      <div className="filter-list-items">
+                        <h4 className="header">
+                          Auction{" "}
+                          <IoIosArrowDown
+                            role={"button"}
+                            onClick={() =>
+                              setFilter({
+                                ...filter,
+                                showStatus: !filter.showStatus,
+                              })
+                            }
+                          />
                         </h4>
-                        {filter.auction && (
+                        {filter.showStatus && (
                           <ul>
                             {filter.sort
                               .filter((o) =>
@@ -1618,7 +1650,57 @@ const ExploreAllNFT = () => {
                               ))}
                           </ul>
                         )}
-                      </div> */}
+                      </div>
+                      <div className="filter-list-items">
+                        <h4 className="header">
+                          Price{" "}
+                          <IoIosArrowDown
+                            role={"button"}
+                            onClick={() =>
+                              setFilter({
+                                ...filter,
+                                price: !filter.price,
+                              })
+                            }
+                          />
+                        </h4>
+
+                        {filter.price && (
+                          <ul>
+                            {/* {filter.sort
+                              .filter((o) =>
+                                [
+                                  "auction_ending_soon",
+                                  "auction_starting_soon",
+                                ].includes(o.value)
+                              )
+                              .map((obj, i) => (
+                                <li key={`sale-type-${i}`}>
+                                  <label
+                                    htmlFor={`${obj.name}`}
+                                    className="checkbox"
+                                  >
+                                    <input
+                                      id={`${obj.name}`}
+                                      name="checkbox-group"
+                                      type="checkbox"
+                                      checked={obj.checked}
+                                      onChange={() => handleSortNFT(obj)}
+                                    />
+                                    <span className="checkbox__mark">
+                                      <BiCheck />
+                                    </span>
+
+                                    <span className="checkbox__info">
+                                      <span className="title">{obj.name}</span>
+                                    </span>
+                                  </label>
+                                </li>
+                              ))} */}
+                            <PriceMenu />
+                          </ul>
+                        )}
+                      </div>
 
                       {/* <div className="filter-list-items">
                         <h4 className="header">
