@@ -7,7 +7,107 @@
   font-family: $neue-helvetica-bold;
   font-size: 2rem;
 }
+.prifilter-btn {
+  flex-direction: row;
+  display: flex;
+  margin-top: 10px;
+  justify-content: space-evenly;
+  align-items: center;
+  @media screen and (max-width: 751px) {
+    width: 100%;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+  }
+}
+.border-dropdown-item {
+  background: transparent
+    linear-gradient(180deg, #e2ff00 0%, #18e0e0 47%, #e8318d 100%) 0% 0%
+    no-repeat padding-box;
+  width: 40%;
+  border-radius: 15px;
+  height: 30px;
+  display: block;
+  align-items: center;
+  border-color: #000;
+  color: #fff;
+  position: relative;
 
+  @media screen and (max-width: 751px) {
+    width: 90px;
+    
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0.1rem;
+    right: 0.1rem;
+    bottom: 0.1rem;
+    left: 0.1rem;
+    background: #000;
+    border-radius: 0.3rem;
+    border-radius: 15px;
+    z-index: 0;
+  }
+  &:hover,
+  &:focus,
+  &:active {
+    border: solid 1px #000;
+    background: #fff;
+    color: #000;
+    border-radius: 15px;
+    &::before {
+      border: solid 1px #000;
+      background: #fff;
+      color: #000;
+      border-radius: 15px;
+    }
+  }
+  &:disabled {
+    background: #989e99;
+    color: #000;
+    pointer-events: none;
+    z-index: 2;
+    &::before {
+      opacity: 0;
+    }
+    
+  }
+  span {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+.border-dropdown-item-clr {
+  background-color: #989e99;
+  width: 40%;
+  border-radius: 15px;
+  height: 30px;
+  align-items: center;
+  border-color: #000;
+  &:disabled {
+    background-color: #989e99;
+    pointer-events: none;
+  }
+  &:hover {
+    background-color: #fff;
+    border: 1px solid rgb(129, 129, 129);
+    color: #000;
+  }
+  @media screen and (max-width: 751px) {
+    width: 90px;
+  }
+}
+.d-flex1 {
+  flex-direction: row;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @media screen and (max-width: 751px) {
+    width: 100%;
+  }
+}
 .explore-nft-section {
   padding: 0 0;
   background-color: #fff;
