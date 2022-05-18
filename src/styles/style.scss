@@ -2220,11 +2220,12 @@ section.detail-page-content {
           text-transform: uppercase;
           color: #72807a;
           .status-tag {
-            margin-left: 0.5rem;
-            font-size: 0.9rem;
+            margin-left: 0.3rem;
+            font-size: 0.7rem;
             padding: 0.1rem 0.4rem;
             border: 1px solid #f21e00;
             color: #f21e00;
+            position: absolute;
           }
         }
         .end-date {
