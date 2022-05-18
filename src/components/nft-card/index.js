@@ -468,13 +468,16 @@ const NFTCard = ({
           )}
 
         <div style={{ color: textColor }}>
-          <div className="more-nft-title">{nft?.name}</div>
           {nft?.owner_name && (
             <div className="more-nft-desc">{nft?.owner_name}</div>
           )}
           {recentSold && nft?.seller?.user_name && (
             <div className="more-nft-desc">{nft?.seller?.user_name}</div>
           )}
+          <div className="more-nft-title">{nft?.name}</div>
+          <h6 className="nft-signature">
+            <span>Signed by </span> Sachin Tendulkar &amp; Ricky Ponting
+          </h6>
         </div>
         {nft?.is_on_sale && (
           <>

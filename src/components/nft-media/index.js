@@ -380,6 +380,12 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
           playerCatData?.color ? playerCatData?.color : "gold_color"
         }`}
       >
+        <div className="nft-signature-detail-box">
+          <h6 className="nft-signature-detail">
+            <span>Signed by </span> Sachin Tendulkar &amp; Ricky Ponting
+          </h6>
+        </div>
+
         <article
           className={`player_stats  ${
             playerCatData?.color ? playerCatData?.color : "gold_color"
