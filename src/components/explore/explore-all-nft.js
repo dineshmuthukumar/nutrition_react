@@ -244,7 +244,7 @@ const ExploreAllNFT = () => {
     setPriceRangeFilter(price_range);
     // }
     setSearch(search_filters);
-}, [query]);
+  }, [query]);
 
   useEffect(() => {
     if (match.path === "/explore-all/:search?/details/:slug") {
@@ -1673,7 +1673,12 @@ const ExploreAllNFT = () => {
                               key={`list-nft-${i}`}
                               className="col-xl-4 col-lg-6 col-sm-6"
                             >
-                              <NFTCard nft={nft} key={i} image={sample} isExplore/>
+                              <NFTCard
+                                nft={nft}
+                                key={i}
+                                image={sample}
+                                isExplore
+                              />
                             </div>
                           ))
                         ) : (
