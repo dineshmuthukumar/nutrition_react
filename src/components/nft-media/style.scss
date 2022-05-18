@@ -152,6 +152,35 @@
       height: auto;
     }
   }
+  .nft-signature-detail-box {
+    position: absolute;
+    top: 1.2rem;
+    left: 1.2rem;
+    right: 1.2rem;
+    z-index: 2;
+    padding: 0.8rem;
+    // background-color: #010604;
+    .nft-signature-detail {
+      background: transparent
+        linear-gradient(
+          180deg,
+          #e2ff00 10%,
+          #08ff0b 60%,
+          #18e0e0 47%,
+          #e8318d 100%
+        )
+        0% 0% no-repeat padding-box;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-family: $neue-helvetica-medium;
+      font-size: 1.3rem;
+
+      span {
+        font-family: $neue-helvetica-roman;
+        font-size: 1rem;
+      }
+    }
+  }
 }
 .show_height {
   display: flex;

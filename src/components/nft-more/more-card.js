@@ -75,6 +75,7 @@ const MoreCard = ({ nft, isStarted = false, isEnded, time, label }) => {
           <div className="svg_size cart_icon"></div>
           <span className="cart_text">Add To Cart</span>
         </div>
+        <div className="more-nft-desc"></div>
         <div className="more-nft-title">
           <span className="right-content">{nft.name}</span>
           {!erc721 && !isEnded && (
@@ -83,7 +84,10 @@ const MoreCard = ({ nft, isStarted = false, isEnded, time, label }) => {
             </span>
           )}
         </div>
-        <div className="more-nft-desc"></div>
+        <h6 className="nft-signature">
+          <span>Signed by </span> Sachin Tendulkar &amp; Ricky Ponting
+        </h6>
+
         <div className="more-bid-details">
           <div>
             <div className="mb-title text-secondary">

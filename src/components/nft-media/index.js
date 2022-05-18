@@ -380,6 +380,15 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
           playerCatData?.color ? playerCatData?.color : "gold_color"
         }`}
       >
+        {nft?.signed_by?.length > 0 && (
+          <div className="nft-signature-detail-box">
+            <h6 className="nft-signature-detail">
+              <span>Signed by </span> {nft?.signed_by[0]}{" "}
+              {nft?.signed_by?.length > 1 && <>&amp; {nft?.signed_by[1]}</>}
+            </h6>
+          </div>
+        )}
+
         <article
           className={`player_stats  ${
             playerCatData?.color ? playerCatData?.color : "gold_color"

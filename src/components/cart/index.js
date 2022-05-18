@@ -112,8 +112,16 @@ const Cart = ({ cartPop = false, setCartPop, setCheckoutDevice }) => {
       className="w-100 w-md-50 w-lg-42"
       backdrop={checkoutProcess.loading ? "static" : true}
     >
-      <Offcanvas.Body className="p-0 pop-body-container">
+      <Offcanvas.Body className="p-0 pop-body-container pop-body-container-cart">
         <>
+          {checkoutProcess.loading && (
+            <article className="loading-box">
+              <div className="load-card">
+                <div class="loader"></div>
+                <h6>Order Processing...</h6>
+              </div>
+            </article>
+          )}
           {!success ? (
             userCart?.line_items?.length > 0 ? (
               <div className="pop-cart-details">
