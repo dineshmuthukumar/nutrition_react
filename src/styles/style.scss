@@ -3532,3 +3532,34 @@ main.user-profile-bg {
     0% no-repeat padding-box;
   color: #fff;
 }
+
+.notfound-section {
+  padding: 5rem 0;
+  background-color: #fff;
+  background: transparent linear-gradient(180deg, #073824 0%, #410021 100%) 0%
+    0% no-repeat padding-box;
+  color: #fff;
+
+  .logo-img {
+    height: 5rem;
+    margin-bottom: 3rem;
+  }
+  .notfound-text-block {
+    h1 {
+      font-size: 10rem;
+      letter-spacing: 0.3rem;
+      font-family: $neue-helvetica-extended-bold;
+    }
+    h4 {
+      font-size: 4rem;
+      font-family: $neue-helvetica-roman;
+    }
+    h5 {
+      margin: 2rem;
+      font-size: 1.2rem;
+      a {
+        color: #f5ff01;
+      }
+    }
+  }
+}
