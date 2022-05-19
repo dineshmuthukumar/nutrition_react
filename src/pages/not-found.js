@@ -8,7 +8,7 @@ import AppHelmet from "../components/helmet/index";
 const NotFound = () => {
   return (
     <>
-      <AppHelmet title="" description="" image="" />
+      <AppHelmet title="" description="" image="" hideCanonical />
       <section className="notfound-section">
         <div className="container">
           <div
