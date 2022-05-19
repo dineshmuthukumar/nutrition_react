@@ -157,9 +157,9 @@
     top: 1.2rem;
     left: 1.2rem;
     right: 1.2rem;
-    z-index: 9;
+    z-index: 2;
     padding: 0.8rem;
-    background-color: #010604;
+    // background-color: #010604;
     .nft-signature-detail {
       background: transparent
         linear-gradient(
@@ -177,6 +177,7 @@
 
       span {
         font-family: $neue-helvetica-roman;
+        font-size: 1rem;
       }
     }
   }

@@ -118,7 +118,7 @@ const Cart = ({ cartPop = false, setCartPop, setCheckoutDevice }) => {
             <article className="loading-box">
               <div className="load-card">
                 <div class="loader"></div>
-                <h6>Order Processing</h6>
+                <h6>Order Processing...</h6>
               </div>
             </article>
           )}

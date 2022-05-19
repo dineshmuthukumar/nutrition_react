@@ -378,8 +378,16 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
             <div className="more-nft-desc">{nft?.seller?.user_name}</div>
           )}
           <div className="more-nft-title">{nft?.name}</div>
+
           <h6 className="nft-signature">
-            <span>Signed by </span> Sachin Tendulkar &amp; Ricky Ponting
+            {nft?.signed_by?.length > 0 ? (
+              <>
+                <span>Signed by </span> {nft?.signed_by[0]}{" "}
+                {nft?.signed_by?.length > 1 && <>&amp; {nft?.signed_by[1]}</>}
+              </>
+            ) : (
+              <br />
+            )}
           </h6>
         </div>
 

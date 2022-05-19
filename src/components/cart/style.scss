@@ -669,16 +669,16 @@
     height: 20rem;
     align-items: center;
     justify-content: center;
-    background-color: #050d09;
+    // background-color: #050d09;
     width: 20rem;
-    border-radius: 1rem;
+    // border-radius: 1rem;
     flex-direction: column;
-    border: 0.01rem solid #fdf100;
-    box-shadow: 0rem 0rem 2rem -0.5rem #fdf100;
+    // border: 0.01rem solid #fdf100;
+    // box-shadow: 0rem 0rem 2rem -0.5rem #fdf100;
     .loader {
       position: relative;
-      width: 6rem;
-      height: 6rem;
+      width: 3rem;
+      height: 3rem;
       border-radius: 50%;
       background: linear-gradient(45deg, transparent 40%, skyblue);
       animation: move 0.8s linear infinite;
