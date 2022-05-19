@@ -4,7 +4,7 @@ import { useHistory, useRouteMatch } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 import ContentLoader from "react-content-loader";
 import { FaCheckCircle, FaFilter } from "react-icons/fa";
-import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { VscClose } from "react-icons/vsc";
 
 import NFTCard from "../nft-card";
@@ -1131,8 +1131,6 @@ const ExploreAllNFT = () => {
 
     let sale_status = query.get("status");
 
-    // let sale_status2 = status_list;
-
     switch (type) {
       case "sale_check":
         if (sale_exist.includes(input.value)) {
@@ -1367,12 +1365,9 @@ const ExploreAllNFT = () => {
                   parseInt(priceRange.from) > parseInt(priceRange.to)
                 ) {
                   return true;
-                }else if (
-                  priceRange.from == "" || priceRange.from === null
-                ) {
+                } else if (priceRange.from == "" || priceRange.from === null) {
                   return true;
-                }  
-                else {
+                } else {
                   return false;
                 }
               })()}
@@ -1598,17 +1593,22 @@ const ExploreAllNFT = () => {
                         </span>
                       </div>
                       <div className="filter-list-items">
-                        <h4 className="header">
+                        <h4
+                          className="header"
+                          role={"button"}
+                          onClick={() =>
+                            setFilter({
+                              ...filter,
+                              showNFTCategory: !filter.showNFTCategory,
+                            })
+                          }
+                        >
                           Role{" "}
-                          <IoIosArrowDown
-                            role={"button"}
-                            onClick={() =>
-                              setFilter({
-                                ...filter,
-                                showNFTCategory: !filter.showNFTCategory,
-                              })
-                            }
-                          />
+                          {filter.showNFTCategory ? (
+                            <IoIosArrowUp />
+                          ) : (
+                            <IoIosArrowDown />
+                          )}
                         </h4>
                         {filter.showNFTCategory && (
                           <ul>
@@ -1645,17 +1645,22 @@ const ExploreAllNFT = () => {
                       </div>
 
                       <div className="filter-list-items">
-                        <h4 className="header">
+                        <h4
+                          className="header"
+                          role={"button"}
+                          onClick={() =>
+                            setFilter({
+                              ...filter,
+                              showNFTCollection: !filter.showNFTCollection,
+                            })
+                          }
+                        >
                           Category{" "}
-                          <IoIosArrowDown
-                            role={"button"}
-                            onClick={() =>
-                              setFilter({
-                                ...filter,
-                                showNFTCollection: !filter.showNFTCollection,
-                              })
-                            }
-                          />
+                          {filter.showNFTCollection ? (
+                            <IoIosArrowUp />
+                          ) : (
+                            <IoIosArrowDown />
+                          )}
                         </h4>
                         {filter.showNFTCollection && (
                           <ul>
@@ -1692,17 +1697,22 @@ const ExploreAllNFT = () => {
                       </div>
 
                       <div className="filter-list-items">
-                        <h4 className="header">
+                        <h4
+                          className="header"
+                          role={"button"}
+                          onClick={() =>
+                            setFilter({
+                              ...filter,
+                              showSale: !filter.showSale,
+                            })
+                          }
+                        >
                           Sale Type{" "}
-                          <IoIosArrowDown
-                            role={"button"}
-                            onClick={() =>
-                              setFilter({
-                                ...filter,
-                                showSale: !filter.showSale,
-                              })
-                            }
-                          />
+                          {filter.showSale ? (
+                            <IoIosArrowUp />
+                          ) : (
+                            <IoIosArrowDown />
+                          )}
                         </h4>
                         {filter.showSale && (
                           <ul>
@@ -1736,17 +1746,22 @@ const ExploreAllNFT = () => {
                       </div>
 
                       <div className="filter-list-items">
-                        <h4 className="header">
+                        <h4
+                          className="header"
+                          role={"button"}
+                          onClick={() =>
+                            setFilter({
+                              ...filter,
+                              showStatus: !filter.showStatus,
+                            })
+                          }
+                        >
                           Sale Status{" "}
-                          <IoIosArrowDown
-                            role={"button"}
-                            onClick={() =>
-                              setFilter({
-                                ...filter,
-                                showStatus: !filter.showStatus,
-                              })
-                            }
-                          />
+                          {filter.showStatus ? (
+                            <IoIosArrowUp />
+                          ) : (
+                            <IoIosArrowDown />
+                          )}
                         </h4>
                         {filter.showStatus && (
                           <ul>
@@ -1780,19 +1795,24 @@ const ExploreAllNFT = () => {
                       </div>
 
                       <div className="filter-list-items">
-                        <h4 className="header">
+                        <h4
+                          className="header"
+                          role={"button"}
+                          onClick={() =>
+                            setFilter({
+                              ...filter,
+                              auction: !filter.auction,
+                            })
+                          }
+                        >
                           Auction{" "}
-                          <IoIosArrowDown
-                            role={"button"}
-                            onClick={() =>
-                              setFilter({
-                                ...filter,
-                                showStatus: !filter.showStatus,
-                              })
-                            }
-                          />
+                          {filter.auction ? (
+                            <IoIosArrowUp />
+                          ) : (
+                            <IoIosArrowDown />
+                          )}
                         </h4>
-                        {filter.showStatus && (
+                        {filter.auction && (
                           <ul>
                             {filter.sort
                               .filter((o) =>
@@ -1830,51 +1850,22 @@ const ExploreAllNFT = () => {
                         )}
                       </div>
                       <div className="filter-list-items">
-                        <h4 className="header">
+                        <h4
+                          className="header"
+                          role={"button"}
+                          onClick={() =>
+                            setFilter({
+                              ...filter,
+                              price: !filter.price,
+                            })
+                          }
+                        >
                           Price{" "}
-                          <IoIosArrowDown
-                            role={"button"}
-                            onClick={() =>
-                              setFilter({
-                                ...filter,
-                                price: !filter.price,
-                              })
-                            }
-                          />
+                          {filter.price ? <IoIosArrowUp /> : <IoIosArrowDown />}
                         </h4>
 
                         {filter.price && (
                           <ul>
-                            {/* {filter.sort
-                              .filter((o) =>
-                                [
-                                  "auction_ending_soon",
-                                  "auction_starting_soon",
-                                ].includes(o.value)
-                              )
-                              .map((obj, i) => (
-                                <li key={`sale-type-${i}`}>
-                                  <label
-                                    htmlFor={`${obj.name}`}
-                                    className="checkbox"
-                                  >
-                                    <input
-                                      id={`${obj.name}`}
-                                      name="checkbox-group"
-                                      type="checkbox"
-                                      checked={obj.checked}
-                                      onChange={() => handleSortNFT(obj)}
-                                    />
-                                    <span className="checkbox__mark">
-                                      <BiCheck />
-                                    </span>
-
-                                    <span className="checkbox__info">
-                                      <span className="title">{obj.name}</span>
-                                    </span>
-                                  </label>
-                                </li>
-                              ))} */}
                             <PriceMenu />
                           </ul>
                         )}

@@ -25,6 +25,7 @@ import {
 import { setCookiesByName, setCookies } from "./utils/cookies";
 import useQuery from "./hook/useQuery";
 
+import loader from "./images/load.gif";
 import "./App.css";
 
 const Home = lazy(() => import("./pages/home"));
@@ -157,13 +158,16 @@ function App(props) {
         <Router basename="/">
           <Suspense
             fallback={
-              <div className="flone-preloader-wrapper">
-                <div className="flone-preloader">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
+              // <div className="flone-preloader-wrapper">
+              //   <div className="flone-preloader">
+              //     <span></span>
+              //     <span></span>
+              //     <span></span>
+              //     <span></span>
+              //   </div>
+              // </div>
+              <div className="d-flex gif-loader">
+                <img src={loader} />
               </div>
             }
           >
