@@ -1367,7 +1367,12 @@ const ExploreAllNFT = () => {
                   parseInt(priceRange.from) > parseInt(priceRange.to)
                 ) {
                   return true;
-                } else {
+                }else if (
+                  priceRange.from == "" || priceRange.from === null
+                ) {
+                  return true;
+                }  
+                else {
                   return false;
                 }
               })()}
