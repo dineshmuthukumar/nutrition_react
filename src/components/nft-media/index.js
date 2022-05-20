@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Modal, OverlayTrigger, Popover } from "react-bootstrap";
-import { prominent } from "color.js";
 import {
-  AiFillHeart,
-  AiOutlineShareAlt,
-  AiOutlineExpand,
   AiOutlineLink,
   AiFillFacebook,
   AiFillTwitterCircle,
@@ -61,110 +57,6 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
     }
   }, [isFav]);
 
-  // useEffect(() => {
-  //   if (nft?.asset_type?.includes("image")) {
-  //     getBgColor(nft.asset_url);
-  //   } else {
-  //     getBgColor(nft.cover_url);
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
-
-  const static_url = [
-    {
-      id: "m61vPEMHWqEPRrjq",
-      url: "https://cdn.beyondlife.club/media/video/2_m61vPEMHWqEPRrjq.mp4",
-    },
-    {
-      id: "4pVrXypHaOlnbOkl",
-      url: "https://cdn.beyondlife.club/media/video/1_4pVrXypHaOlnbOkl.mp4",
-    },
-    {
-      id: "g1GlPdEH8Zyz5jK0",
-      url: "https://cdn.beyondlife.club/media/video/2_g1GlPdEH8Zyz5jK0.mp4",
-    },
-    {
-      id: "3jOEzRKHvY7n2Vxl",
-      url: "https://cdn.beyondlife.club/media/video/1_3jOEzRKHvY7n2Vxl.mp4",
-    },
-    {
-      id: "dqlYXN6HgrDXJ1gA",
-      url: "https://cdn.beyondlife.club/media/video/6_dqlYXN6HgrDXJ1gA.mp4",
-    },
-    {
-      id: "gBEWPQWHRDQnwvbV",
-      url: "https://cdn.beyondlife.club/media/video/4_gBEWPQWHRDQnwvbV.mp4",
-    },
-    {
-      id: "MQ7vPjNHvDbP08wb",
-      url: "https://cdn.beyondlife.club/media/video/3_MQ7vPjNHvDbP08wb.mp4",
-    },
-    {
-      id: "OgWRnJvHb5WnbMeG",
-      url: "https://cdn.beyondlife.club/media/video/1_OgWRnJvHb5WnbMeG.mp4",
-    },
-    {
-      id: "JA5VnblHDk6PYRNO",
-      url: "https://cdn.beyondlife.club/media/video/5_JA5VnblHDk6PYRNO.mp4",
-    },
-    {
-      id: "MNYjPOpHrw0zy79K",
-      url: "https://cdn.beyondlife.club/media/video/2_MNYjPOpHrw0zy79K.mp4",
-    },
-    {
-      id: "paGrzGVHOK0PBO5K",
-      url: "https://cdn.beyondlife.club/media/video/7_paGrzGVHOK0PBO5K.mp4",
-    },
-    {
-      id: "LRrZzl7HbqgP6xaK",
-      url: "https://cdn.beyondlife.club/media/video/preview.mp4",
-    },
-    {
-      id: "Vj6ZeNAwFOYbad2n",
-      url: "https://cdn.beyondlife.club/media/video/Sehenshah.mp4",
-    },
-    {
-      id: "BxRM51oLFgY7AdoP",
-      url: "https://cdn.beyondlife.club/media/video/Silsila.mp4",
-    },
-    {
-      id: "GaDEQYvAFO1lRxdZ",
-      url: "https://cdn.beyondlife.club/media/video/Don.mp4",
-    },
-    {
-      id: "mJGgB1R9FbNoXWPr",
-      url: "https://cdn.beyondlife.club/media/video/sholay.mp4",
-    },
-    {
-      id: "Ma498YyXFk1wBnL6",
-      url: "https://cdn.beyondlife.club/media/video/Dewar.mp4",
-    },
-    {
-      id: "lqgR23zJF83Xa8Kx",
-      url: "https://cdn.beyondlife.club/media/video/Hum.mp4",
-    },
-    {
-      id: "46RDA3OXFLNM8ZmW",
-      url: "https://cdn.beyondlife.club/media/video/Kabikabi.mp4",
-    },
-    {
-      id: "wnJMy1xzFm36A09X",
-      url: "https://cdn.beyondlife.club/media/video/Mrnatwarlal-loot.mp4",
-    },
-    {
-      id: "PxR5B1r4FA3GnjAM",
-      url: "https://cdn.beyondlife.club/media/video/Sehenshah-loot.mp4",
-    },
-    {
-      id: "GB8OzYpaFy3Rb6vm",
-      url: "https://cdn.beyondlife.club/media/video/Trishul-loot.mp4",
-    },
-    {
-      id: "AJWQV1MOFl3w6mOX",
-      url: "https://cdn.beyondlife.club/media/video/Dewar-loot.mp4",
-    },
-  ];
-
   const handleLike = async () => {
     if (!user)
       window.open(
@@ -185,22 +77,6 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
         500,
         "The request could not be processed at this time. Please try again."
       );
-    }
-  };
-
-  const getBgColor = async (input) => {
-    if (input) {
-      const image = nft.asset_type.includes("image")
-        ? nft.asset_url
-        : nft.cover_url;
-      const color = await prominent(image, { amount: 1 });
-      if (nft.asset_type.includes("image")) {
-        setBgColor(`rgb(${color[0]},${color[1]},${color[2]},0.3)`);
-      } else {
-        setBgColor(`#020001`);
-      }
-    } else {
-      setBgColor(`rgb(0,0,0,0.1)`);
     }
   };
 
@@ -415,8 +291,6 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
           )}
         </article>
 
-        {/* <div className="show_height"><img className="type_image typeimg_audio" src="https://wallpaperaccess.com/full/112115.jpg" />  </div> */}
-        {/* <div className="show_height"><img className="type_gif" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" />/div> */}
         {(() => {
           if (nft?.asset_type?.includes("image")) {
             return (
@@ -468,14 +342,7 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
                   oncontextmenu="return false;"
                   controlsList="nodownload"
                 >
-                  <source
-                    src={
-                      static_url.find((obj) => obj.id === slug)?.url
-                        ? static_url.find((obj) => obj.id === slug)?.url
-                        : nft.asset_url
-                    }
-                    type="video/mp4"
-                  />
+                  <source src={nft?.asset_url} type="video/mp4" />
                 </video>
               </div>
             );
@@ -503,9 +370,6 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
             className="full-screen-header"
           ></Modal.Header>
           <Modal.Body className="media_audio">
-            {/* <div className="show_height"><img className="type_image typeimg_audio" src="https://wallpaperaccess.com/full/112115.jpg" />  </div> */}
-            {/* <div className="show_height"><img className="type_gif" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif" />/div> */}
-
             {(() => {
               if (nft?.asset_type?.includes("image")) {
                 return (
@@ -556,14 +420,7 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
                     autoplay
                     playsinline
                   >
-                    <source
-                      src={
-                        static_url.find((obj) => obj.id === slug)?.url
-                          ? static_url.find((obj) => obj.id === slug)?.url
-                          : nft.asset_url
-                      }
-                      type="video/mp4"
-                    />
+                    <source src={nft?.asset_url} type="video/mp4" />
                   </video>
                 );
               }
@@ -579,8 +436,6 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
         <SharePopover
           icon={
             <div>
-              {/* <AiOutlineShareAlt className="svg_size" size={25} /> */}
-
               <div className="svg_size share_icon"></div>
             </div>
           }
@@ -602,7 +457,6 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
                 }
               }}
             >
-              {/* <AiOutlineExpand className="svg_size" size={25} /> */}
               <div className="svg_size extend_icon"></div>
             </div>
           }
@@ -612,12 +466,6 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
         <CustomPopover
           icon={
             <div onClick={handleLike}>
-              {/* <AiFillHeart
-                className="svg_size"
-                size={25}
-                color={liked ? "red" : "black"}
-              /> */}
-
               {liked ? (
                 <div className="svg_size filled_heart_icon"></div>
               ) : (

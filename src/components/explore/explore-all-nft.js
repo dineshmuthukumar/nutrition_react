@@ -191,6 +191,14 @@ const ExploreAllNFT = () => {
       },
     ],
 
+    glCoin: [
+      {
+        name: "With GL Coins",
+        value: "has_coin",
+        checked: false,
+      },
+    ],
+
     showSale: true,
     showStatus: true,
     auction: true,
@@ -198,6 +206,7 @@ const ExploreAllNFT = () => {
     showNFTCategory: true,
     showNFTCollection: true,
     showNFTRange: true,
+    showGlC: true,
   });
 
   useEffect(() => {
@@ -222,6 +231,7 @@ const ExploreAllNFT = () => {
       : [];
 
     const search_filter = query.get("search") ? query.get("search") : "";
+    const has_coin = query.get("coin") ? query.get("coin") : "";
 
     const info = { ...filter };
 
@@ -249,12 +259,14 @@ const ExploreAllNFT = () => {
       ...obj,
       checked: nft_collection.includes(obj.value),
     }));
+    info.glCoin = filter.glCoin.map((obj) => ({
+      ...obj,
+      checked: has_coin ? has_coin === obj.value : false,
+    }));
 
     setFilter(info);
     setPage(1);
-    // if (price_range.from || price_range.to) {
     setPriceRangeFilter(price_range);
-    // }
 
     setSearch(search_filter);
   }, [query]);
@@ -294,6 +306,8 @@ const ExploreAllNFT = () => {
       ? query.get("nft-collection").split(",")
       : [];
 
+    const has_coin = query.get("coin") ? query.get("coin") : "";
+
     showAllFilteredNFTs(
       1,
       nft_filters,
@@ -303,7 +317,8 @@ const ExploreAllNFT = () => {
       nft_category,
       nft_collection,
       status_filters,
-      price_range
+      price_range,
+      has_coin
     );
   }, [query]);
 
@@ -316,7 +331,8 @@ const ExploreAllNFT = () => {
     nft_category,
     nft_collection,
     status_filters,
-    price_range
+    price_range,
+    has_coin
   ) => {
     try {
       page === 1 && setLoading(true);
@@ -332,6 +348,7 @@ const ExploreAllNFT = () => {
           nft_collection,
           sale_kind: status_filters,
           price_range,
+          has_coin: has_coin === "has_coin" ? true : false,
         },
         sort: sort === "relevance" ? null : sort,
       });
@@ -354,7 +371,8 @@ const ExploreAllNFT = () => {
     nft_category,
     nft_collection,
     status_filters,
-    price_range
+    price_range,
+    has_coin
   ) => {
     try {
       page === 1 && setLoading(true);
@@ -370,6 +388,7 @@ const ExploreAllNFT = () => {
           nft_collection,
           sale_kind: status_filters,
           price_range,
+          has_coin: has_coin === "has_coin" ? true : false,
         },
         sort: sort === "relevance" ? null : sort,
       });
@@ -389,6 +408,7 @@ const ExploreAllNFT = () => {
       to: "",
     });
   };
+
   const fetchMore = () => {
     if (hasNext) {
       const sale_filters = query.get("sale")
@@ -411,6 +431,7 @@ const ExploreAllNFT = () => {
         ? query.get("nft-collection").split(",")
         : [];
       const status_filters = query.get("status") ? query.get("status") : "";
+      const has_coin = query.get("coin") ? query.get("coin") : "";
 
       showAllNFTs(
         page + 1,
@@ -421,37 +442,12 @@ const ExploreAllNFT = () => {
         nft_category,
         nft_collection,
         status_filters,
-        price_range
+        price_range,
+        has_coin
       );
       setPage(page + 1);
     }
   };
-
-  const SaleTypeDropdown = React.forwardRef(({ onClick }, ref) => (
-    <div
-      className="filter-drop-btn"
-      ref={ref}
-      onClick={(e) => {
-        e.preventDefault();
-        onClick(e);
-      }}
-    >
-      Sale Type <BiCaretDown />
-    </div>
-  ));
-
-  const NFTTypeDropdown = React.forwardRef(({ onClick }, ref) => (
-    <div
-      className="filter-drop-btn"
-      ref={ref}
-      onClick={(e) => {
-        e.preventDefault();
-        onClick(e);
-      }}
-    >
-      NFT Type <BiCaretDown />
-    </div>
-  ));
 
   const ShowAllSort = React.forwardRef(({ onClick }, ref) => (
     <div
@@ -469,641 +465,8 @@ const ExploreAllNFT = () => {
     </div>
   ));
 
-  // const handleSaleCheck = (input) => {
-  //   let sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
-  //   const nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
-  //   const sort_exist = query.get("sort");
-  //   const price_range = {
-  //     from: query.get("minPrice") ? query.get("minPrice") : "",
-  //     to: query.get("maxPrice") ? query.get("maxPrice") : "",
-  //   };
-  //   const search_exist = query.get("search")
-  //     ? query.get("search").replace("#", "%23")
-  //     : "";
-  //   let nft_category = query.get("nft-category")
-  //     ? query.get("nft-category").split(",")
-  //     : [];
-  //   let status_list = query.get("status") ? query.get("status").split(",") : [];
-
-  //   let nft_collection = query.get("nft-collection")
-  //     ? query.get("nft-collection").split(",")
-  //     : [];
-
-  //   if (sale_exist.includes(input.value)) {
-  //     sale_exist = sale_exist.filter((obj) => obj !== input.value);
-  //   } else {
-  //     sale_exist.push(input.value);
-  //   }
-
-  //   let query_string = "";
-
-  //   if (sale_exist.length > 0) {
-  //     query_string += query_string
-  //       ? `&sale=${sale_exist}`
-  //       : `sale=${sale_exist}`;
-  //   }
-
-  //   if (nft_exist.length > 0) {
-  //     query_string += query_string ? `&nft=${nft_exist}` : `nft=${nft_exist}`;
-  //   }
-
-  //   if (nft_category.length > 0) {
-  //     query_string += query_string
-  //       ? `&nft-category=${nft_category}`
-  //       : `nft-category=${nft_category}`;
-  //   }
-
-  //   if (status_list.length > 0) {
-  //     query_string += query_string
-  //       ? `&status=${status_list}`
-  //       : `status=${status_list}`;
-  //   }
-
-  //   if (price_range.from || price_range.to) {
-  //     query_string += query_string
-  //       ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
-  //       : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
-  //   }
-
-  //   if (nft_collection.length > 0) {
-  //     query_string += query_string
-  //       ? `&nft-collection=${nft_collection}`
-  //       : `nft-collection=${nft_collection}`;
-  //   }
-
-  //   if (sort_exist) {
-  //     query_string += query_string
-  //       ? `&sort=${sort_exist}`
-  //       : `sort=${sort_exist}`;
-  //   }
-
-  //   if (search_exist) {
-  //     query_string += query_string
-  //       ? `&search=${search_exist}`
-  //       : `search=${search_exist}`;
-  //   }
-
-  //   if (query_string) {
-  //     history.push(`/explore-all/${query_string}`);
-  //   } else {
-  //     history.push(`/explore-all`);
-  //   }
-  // };
-
-  // const handleSaleStatusNFT = (input, remove = false) => {
-  //   const category_exist = query.get("category")
-  //     ? query.get("category").split(",")
-  //     : [];
-  //   const sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
-  //   const nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
-  //   const sort_exist = query.get("sort");
-  //   const search_exist = search ? search.replace("#", "%23") : "";
-  //   const price_range = {
-  //     from: query.get("minPrice") ? query.get("minPrice") : "",
-  //     to: query.get("maxPrice") ? query.get("maxPrice") : "",
-  //   };
-  //   let status_list = query.get("status") ? query.get("status").split(",") : [];
-
-  //   const sale_status = remove
-  //     ? null
-  //     : status_list.includes(input.value)
-  //     ? null
-  //     : input.value;
-
-  //   let nft_category = query.get("nft-category")
-  //     ? query.get("nft-category").split(",")
-  //     : [];
-  //   let nft_collection = query.get("nft-collection")
-  //     ? query.get("nft-collection").split(",")
-  //     : [];
-  //   let query_string = "";
-  //   if (category_exist.length > 0) {
-  //     query_string += query_string
-  //       ? `&category=${category_exist}`
-  //       : `category=${category_exist}`;
-  //   }
-  //   if (nft_collection.length > 0) {
-  //     query_string += query_string
-  //       ? `&nft-collection=${nft_collection}`
-  //       : `nft-collection=${nft_collection}`;
-  //   }
-
-  //   if (sale_exist.length > 0) {
-  //     query_string += query_string
-  //       ? `&sale=${sale_exist}`
-  //       : `sale=${sale_exist}`;
-  //   }
-
-  //   if (nft_exist.length > 0) {
-  //     query_string += query_string ? `&nft=${nft_exist}` : `nft=${nft_exist}`;
-  //   }
-
-  //   if (nft_category.length > 0) {
-  //     query_string += query_string
-  //       ? `&nft-category=${nft_category}`
-  //       : `nft-category=${nft_category}`;
-  //   }
-
-  //   if (sort_exist) {
-  //     query_string += query_string
-  //       ? `&sort=${sort_exist}`
-  //       : `sort=${sort_exist}`;
-  //   }
-
-  //   if (search_exist) {
-  //     query_string += query_string
-  //       ? `&search=${search_exist}`
-  //       : `search=${search_exist}`;
-  //   }
-
-  //   if (sale_status) {
-  //     query_string += query_string
-  //       ? `&status=${sale_status}`
-  //       : `status=${sale_status}`;
-  //   }
-
-  //   if (price_range.from || price_range.to) {
-  //     query_string += query_string
-  //       ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
-  //       : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
-  //   }
-
-  //   if (query_string) {
-  //     // history.push(`/${encodeURIComponent(query_string)}`);
-  //     history.push(`/explore-all/${query_string}`);
-  //   } else {
-  //     history.push("/explore-all/");
-  //   }
-  // };
-
-  // const handleNFTCheck = (input) => {
-  //   const sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
-  //   let nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
-  //   const sort_exist = query.get("sort");
-  //   const search_exist = query.get("search")
-  //     ? query.get("search").replace("#", "%23")
-  //     : "";
-
-  //   let nft_category = query.get("nft-category")
-  //     ? query.get("nft-category").split(",")
-  //     : [];
-
-  //   let nft_collection = query.get("nft-collection")
-  //     ? query.get("nft-collection").split(",")
-  //     : [];
-
-  //   if (nft_exist.includes(input.value)) {
-  //     nft_exist = nft_exist.filter((obj) => obj !== input.value);
-  //   } else {
-  //     nft_exist.push(input.value);
-  //   }
-
-  //   let query_string = "";
-
-  //   if (sale_exist.length > 0) {
-  //     query_string += query_string
-  //       ? `&sale=${sale_exist}`
-  //       : `sale=${sale_exist}`;
-  //   }
-
-  //   if (nft_exist.length > 0) {
-  //     query_string += query_string ? `&nft=${nft_exist}` : `nft=${nft_exist}`;
-  //   }
-
-  //   if (nft_category.length > 0) {
-  //     query_string += query_string
-  //       ? `&nft-category=${nft_category}`
-  //       : `nft-category=${nft_category}`;
-  //   }
-
-  //   if (nft_collection.length > 0) {
-  //     query_string += query_string
-  //       ? `&nft-collection=${nft_collection}`
-  //       : `nft-collection=${nft_collection}`;
-  //   }
-
-  //   if (sort_exist) {
-  //     query_string += query_string
-  //       ? `&sort=${sort_exist}`
-  //       : `sort=${sort_exist}`;
-  //   }
-
-  //   if (search_exist) {
-  //     query_string += query_string
-  //       ? `&search=${search_exist}`
-  //       : `search=${search_exist}`;
-  //   }
-
-  //   if (query_string) {
-  //     history.push(`/explore-all/${query_string}`);
-  //   } else {
-  //     history.push(`/explore-all`);
-  //   }
-  // };
-
-  // const handleSortNFT = (input) => {
-  //   const sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
-  //   const nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
-  //   const sort_exist_temp = query.get("sort");
-  //   const price_range = {
-  //     from: query.get("minPrice") ? query.get("minPrice") : "",
-  //     to: query.get("maxPrice") ? query.get("maxPrice") : "",
-  //   };
-
-  //   const sort_exist = input.value
-  //     ? sort_exist_temp === input.value
-  //       ? null
-  //       : input.value
-  //     : null;
-  //   const search_exist = query.get("search")
-  //     ? query.get("search").replace("#", "%23")
-  //     : "";
-  //   let nft_category = query.get("nft-category")
-  //     ? query.get("nft-category").split(",")
-  //     : [];
-
-  //   let status_list = query.get("status") ? query.get("status").split(",") : [];
-
-  //   let nft_collection = query.get("nft-collection")
-  //     ? query.get("nft-collection").split(",")
-  //     : [];
-
-  //   let query_string = "";
-
-  //   if (sale_exist.length > 0) {
-  //     query_string += query_string
-  //       ? `&sale=${sale_exist}`
-  //       : `sale=${sale_exist}`;
-  //   }
-
-  //   if (nft_exist.length > 0) {
-  //     query_string += query_string ? `&nft=${nft_exist}` : `nft=${nft_exist}`;
-  //   }
-
-  //   if (status_list.length > 0) {
-  //     query_string += query_string
-  //       ? `&status=${status_list}`
-  //       : `status=${status_list}`;
-  //   }
-
-  //   if (price_range.from || price_range.to) {
-  //     query_string += query_string
-  //       ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
-  //       : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
-  //   }
-
-  //   if (nft_category.length > 0) {
-  //     query_string += query_string
-  //       ? `&nft-category=${nft_category}`
-  //       : `nft-category=${nft_category}`;
-  //   }
-
-  //   if (nft_collection.length > 0) {
-  //     query_string += query_string
-  //       ? `&nft-collection=${nft_collection}`
-  //       : `nft-collection=${nft_collection}`;
-  //   }
-
-  //   if (sort_exist) {
-  //     query_string += query_string
-  //       ? `&sort=${sort_exist}`
-  //       : `sort=${sort_exist}`;
-  //   }
-
-  //   if (search_exist) {
-  //     query_string += query_string
-  //       ? `&search=${search_exist}`
-  //       : `search=${search_exist}`;
-  //   }
-
-  //   if (query_string) {
-  //     history.push(`/explore-all/${query_string}`);
-  //   } else {
-  //     history.push(`/explore-all`);
-  //   }
-  // };
-
-  // const handleTextSearch = () => {
-  //   const sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
-  //   const nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
-  //   const sort_exist = query.get("sort");
-  //   const search_exist = search.replace("#", "%23");
-  //   let nft_category = query.get("nft-category")
-  //     ? query.get("nft-category").split(",")
-  //     : [];
-  //   const price_range = {
-  //     from: query.get("minPrice") ? query.get("minPrice") : "",
-  //     to: query.get("maxPrice") ? query.get("maxPrice") : "",
-  //   };
-  //   let nft_collection = query.get("nft-collection")
-  //     ? query.get("nft-collection").split(",")
-  //     : [];
-
-  //   let status_list = query.get("status") ? query.get("status").split(",") : [];
-
-  //   let query_string = "";
-
-  //   if (sale_exist.length > 0) {
-  //     query_string += query_string
-  //       ? `&sale=${sale_exist}`
-  //       : `sale=${sale_exist}`;
-  //   }
-
-  //   if (nft_exist.length > 0) {
-  //     query_string += query_string ? `&nft=${nft_exist}` : `nft=${nft_exist}`;
-  //   }
-
-  //   if (nft_category.length > 0) {
-  //     query_string += query_string
-  //       ? `&nft-category=${nft_category}`
-  //       : `nft-category=${nft_category}`;
-  //   }
-
-  //   if (nft_collection.length > 0) {
-  //     query_string += query_string
-  //       ? `&nft-collection=${nft_collection}`
-  //       : `nft-collection=${nft_collection}`;
-  //   }
-
-  //   if (sort_exist) {
-  //     query_string += query_string
-  //       ? `&sort=${sort_exist}`
-  //       : `sort=${sort_exist}`;
-  //   }
-
-  //   if (status_list.length > 0) {
-  //     query_string += query_string
-  //       ? `&status=${status_list}`
-  //       : `status=${status_list}`;
-  //   }
-
-  //   if (price_range.from || price_range.to) {
-  //     query_string += query_string
-  //       ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
-  //       : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
-  //   }
-
-  //   if (search_exist) {
-  //     query_string += query_string
-  //       ? `&search=${search_exist}`
-  //       : `search=${search_exist}`;
-  //   }
-
-  //   if (query_string) {
-  //     history.push(`/explore-all/${query_string}`);
-  //   } else {
-  //     history.push(`/explore-all`);
-  //   }
-  // };
-
-  // const handleNFTCategoryCheck = (input) => {
-  //   const sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
-  //   let nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
-  //   const sort_exist = query.get("sort");
-  //   const search_exist = query.get("search")
-  //     ? query.get("search").replace("#", "%23")
-  //     : "";
-  //   let nft_category = query.get("nft-category")
-  //     ? query.get("nft-category").split(",")
-  //     : [];
-  //   let nft_collection = query.get("nft-collection")
-  //     ? query.get("nft-collection").split(",")
-  //     : [];
-  //   const price_range = {
-  //     from: query.get("minPrice") ? query.get("minPrice") : "",
-  //     to: query.get("maxPrice") ? query.get("maxPrice") : "",
-  //   };
-
-  //   let status_list = query.get("status") ? query.get("status").split(",") : [];
-
-  //   if (nft_category.includes(input.value)) {
-  //     nft_category = nft_category.filter((obj) => obj !== input.value);
-  //   } else {
-  //     nft_category.push(input.value);
-  //   }
-
-  //   let query_string = "";
-
-  //   if (sale_exist.length > 0) {
-  //     query_string += query_string
-  //       ? `&sale=${sale_exist}`
-  //       : `sale=${sale_exist}`;
-  //   }
-
-  //   if (nft_exist.length > 0) {
-  //     query_string += query_string ? `&nft=${nft_exist}` : `nft=${nft_exist}`;
-  //   }
-
-  //   if (nft_category.length > 0) {
-  //     query_string += query_string
-  //       ? `&nft-category=${nft_category}`
-  //       : `nft-category=${nft_category}`;
-  //   }
-
-  //   if (status_list.length > 0) {
-  //     query_string += query_string
-  //       ? `&status=${status_list}`
-  //       : `status=${status_list}`;
-  //   }
-
-  //   if (nft_collection.length > 0) {
-  //     query_string += query_string
-  //       ? `&nft-collection=${nft_collection}`
-  //       : `nft-collection=${nft_collection}`;
-  //   }
-
-  //   if (sort_exist) {
-  //     query_string += query_string
-  //       ? `&sort=${sort_exist}`
-  //       : `sort=${sort_exist}`;
-  //   }
-
-  //   if (price_range.from || price_range.to) {
-  //     query_string += query_string
-  //       ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
-  //       : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
-  //   }
-
-  //   if (search_exist) {
-  //     query_string += query_string
-  //       ? `&search=${search_exist}`
-  //       : `search=${search_exist}`;
-  //   }
-
-  //   if (query_string) {
-  //     history.push(`/explore-all/${query_string}`);
-  //   } else {
-  //     history.push(`/explore-all`);
-  //   }
-  // };
-
-  // const handleNFTCollectionCheck = (input) => {
-  //   const sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
-  //   let nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
-  //   const sort_exist = query.get("sort");
-  //   const search_exist = query.get("search")
-  //     ? query.get("search").replace("#", "%23")
-  //     : "";
-  //   let nft_category = query.get("nft-category")
-  //     ? query.get("nft-category").split(",")
-  //     : [];
-  //   let nft_collection = query.get("nft-collection")
-  //     ? query.get("nft-collection").split(",")
-  //     : [];
-  //   const price_range = {
-  //     from: query.get("minPrice") ? query.get("minPrice") : "",
-  //     to: query.get("maxPrice") ? query.get("maxPrice") : "",
-  //   };
-  //   let status_list = query.get("status") ? query.get("status").split(",") : [];
-
-  //   if (nft_collection.includes(input.value)) {
-  //     nft_collection = nft_collection.filter((obj) => obj !== input.value);
-  //   } else {
-  //     nft_collection.push(input.value);
-  //   }
-
-  //   let query_string = "";
-
-  //   if (sale_exist.length > 0) {
-  //     query_string += query_string
-  //       ? `&sale=${sale_exist}`
-  //       : `sale=${sale_exist}`;
-  //   }
-
-  //   if (nft_exist.length > 0) {
-  //     query_string += query_string ? `&nft=${nft_exist}` : `nft=${nft_exist}`;
-  //   }
-
-  //   if (nft_category.length > 0) {
-  //     query_string += query_string
-  //       ? `&nft-category=${nft_category}`
-  //       : `nft-category=${nft_category}`;
-  //   }
-
-  //   if (status_list.length > 0) {
-  //     query_string += query_string
-  //       ? `&status=${status_list}`
-  //       : `status=${status_list}`;
-  //   }
-
-  //   if (nft_collection.length > 0) {
-  //     query_string += query_string
-  //       ? `&nft-collection=${nft_collection}`
-  //       : `nft-collection=${nft_collection}`;
-  //   }
-
-  //   if (sort_exist) {
-  //     query_string += query_string
-  //       ? `&sort=${sort_exist}`
-  //       : `sort=${sort_exist}`;
-  //   }
-
-  //   if (price_range.from || price_range.to) {
-  //     query_string += query_string
-  //       ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
-  //       : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
-  //   }
-
-  //   if (search_exist) {
-  //     query_string += query_string
-  //       ? `&search=${search_exist}`
-  //       : `search=${search_exist}`;
-  //   }
-
-  //   if (query_string) {
-  //     history.push(`/explore-all/${query_string}`);
-  //   } else {
-  //     history.push(`/explore-all`);
-  //   }
-  // };
-
-  // const handlePriceRange = (priceRange, remove = false) => {
-  //   setPriceRangeFilter({ ...priceRange });
-  //   const category_exist = query.get("category")
-  //     ? query.get("category").split(",")
-  //     : [];
-  //   const sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
-  //   const nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
-  //   const sort_exist = query.get("sort");
-  //   const search_exist = search ? search.replace("#", "%23") : "";
-  //   const sale_status = query.get("status");
-  //   const price_range = remove ? { from: null, to: null } : priceRange;
-  //   let nft_collection = query.get("nft-collection")
-  //     ? query.get("nft-collection").split(",")
-  //     : [];
-  //   let nft_category = query.get("nft-category")
-  //     ? query.get("nft-category").split(",")
-  //     : [];
-
-  //   let query_string = "";
-  //   if (category_exist.length > 0) {
-  //     query_string += query_string
-  //       ? `&category=${category_exist}`
-  //       : `category=${category_exist}`;
-  //   }
-
-  //   if (sale_exist.length > 0) {
-  //     query_string += query_string
-  //       ? `&sale=${sale_exist}`
-  //       : `sale=${sale_exist}`;
-  //   }
-
-  //   if (nft_exist.length > 0) {
-  //     query_string += query_string ? `&nft=${nft_exist}` : `nft=${nft_exist}`;
-  //   }
-
-  //   if (sort_exist) {
-  //     query_string += query_string
-  //       ? `&sort=${sort_exist}`
-  //       : `sort=${sort_exist}`;
-  //   }
-
-  //   if (search_exist) {
-  //     query_string += query_string
-  //       ? `&search=${search_exist}`
-  //       : `search=${search_exist}`;
-  //   }
-
-  //   if (nft_collection.length > 0) {
-  //     query_string += query_string
-  //       ? `&nft-collection=${nft_collection}`
-  //       : `nft-collection=${nft_collection}`;
-  //   }
-
-  //   if (sale_status) {
-  //     query_string += query_string
-  //       ? `&status=${sale_status}`
-  //       : `status=${sale_status}`;
-  //   }
-
-  //   if (nft_category.length > 0) {
-  //     query_string += query_string
-  //       ? `&nft-category=${nft_category}`
-  //       : `nft-category=${nft_category}`;
-  //   }
-
-  //   if (price_range.from || price_range.to) {
-  //     query_string += query_string
-  //       ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
-  //       : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
-  //   }
-
-  //   if (remove) {
-  //     setPriceRangeFilter(price_range);
-  //   }
-
-  //   if (query_string) {
-  //     history.push(`/explore-all/${query_string}`);
-  //   } else {
-  //     history.push("/explore-all/");
-  //   }
-  //   setPriceFilter(true);
-  //   setToggle(!toggle);
-  // };
-
   const handleKeyPressEvent = (event) => {
     if (event.key === "Enter") {
-      // handleTextSearch();
       handleFilterCheck("", "text_search");
     }
   };
@@ -1130,6 +493,8 @@ const ExploreAllNFT = () => {
       : [];
 
     let sale_status = query.get("status");
+    let has_coin = query.get("coin");
+    let has_coin_temp = query.get("coin");
 
     switch (type) {
       case "sale_check":
@@ -1190,6 +555,14 @@ const ExploreAllNFT = () => {
         setToggle(!toggle);
         break;
 
+      case "has_GLC":
+        has_coin = input.value
+          ? has_coin_temp === input.value
+            ? null
+            : input.value
+          : null;
+        break;
+
       default:
     }
 
@@ -1210,12 +583,6 @@ const ExploreAllNFT = () => {
         ? `&nft-category=${nft_category}`
         : `nft-category=${nft_category}`;
     }
-
-    // if (status_list.length > 0) {
-    //   query_string += query_string
-    //     ? `&status=${status_list}`
-    //     : `status=${status_list}`;
-    // }
 
     if (price_range.from || price_range.to) {
       query_string += query_string
@@ -1246,6 +613,10 @@ const ExploreAllNFT = () => {
         : `status=${sale_status}`;
     }
 
+    if (has_coin) {
+      query_string += query_string ? `&coin=${has_coin}` : `coin=${has_coin}`;
+    }
+
     if (query_string) {
       history.push(`/explore-all/${query_string}`);
     } else {
@@ -1259,7 +630,6 @@ const ExploreAllNFT = () => {
       ref={ref}
       onClick={(e) => {
         e.preventDefault();
-        // onClick(e);
       }}
     >
       {priceRangeFilter.from && priceRangeFilter.to
@@ -1269,7 +639,6 @@ const ExploreAllNFT = () => {
         : priceRangeFilter.to
         ? `Max $${priceRangeFilter.to}`
         : "Price Range"}
-      {/* <BiCaretDown /> */}
     </div>
   ));
 
@@ -1329,7 +698,6 @@ const ExploreAllNFT = () => {
             </div>
           )}
 
-          {/* <hr className="mt-2 mb-1 bot-border-hr" /> */}
           <div className="prifilter-btn">
             <button
               style={
@@ -1390,16 +758,6 @@ const ExploreAllNFT = () => {
         children={popDetails.children}
       />
       <section className="explore-nft-section">
-        {/* <article className="explorer-detail">
-          <div className="container-fluid">
-            <div className="row explore-title">
-              <ExploreTitle
-                title={categoryDetail.name}
-                description={categoryDetail.description}
-              />
-            </div>
-          </div>
-        </article> */}
         <article className="explorer-nft-list">
           <div className="sticky-sm-top top-25">
             <div className="container-fluid">
@@ -1416,70 +774,8 @@ const ExploreAllNFT = () => {
                       </span>
                     </span>
                     <span className="d-flex justify-content-between mt-2 w-100 filter-blocks">
-                      <div className="d-flex flex-wrap filter-box">
-                        {/* <Dropdown>
-                        <Dropdown.Toggle
-                          align="start"
-                          drop="start"
-                          as={SaleTypeDropdown}
-                        ></Dropdown.Toggle>
-
-                        <Dropdown.Menu align="start">
-                          {filter.sale.map((obj, i) => (
-                            <Dropdown.Item
-                              key={`sale${i}`}
-                              as="button"
-                              onClick={() => handleSaleCheck(obj)}
-                            >
-                              <FaCheckCircle
-                                color={obj.checked ? "green" : "#ccc"}
-                                className="mb-1 me-2"
-                                size={17}
-                              />
-                              {obj.name}
-                            </Dropdown.Item>
-                          ))}
-                        </Dropdown.Menu>
-                      </Dropdown>
-                      <Dropdown>
-                        <Dropdown.Toggle
-                          align="start"
-                          drop="start"
-                          as={NFTTypeDropdown}
-                        ></Dropdown.Toggle>
-
-                        <Dropdown.Menu align="start">
-                          {filter.nft.map((obj, i) => (
-                            <Dropdown.Item
-                              key={`nft${i}`}
-                              as="button"
-                              onClick={() => handleNFTCheck(obj)}
-                            >
-                              <FaCheckCircle
-                                color={obj.checked ? "green" : "#ccc"}
-                                className="mb-1 me-2"
-                                size={17}
-                              />
-                              {obj.name}
-                            </Dropdown.Item>
-                          ))}
-                        </Dropdown.Menu>
-                      </Dropdown> */}
-                      </div>
+                      <div className="d-flex flex-wrap filter-box"></div>
                       <div className="filt-flex-box explore_block">
-                        {/* <Dropdown className="price-range">
-                          <Dropdown.Toggle
-                            align="start"
-                            drop="down"
-                            as={PriceDropdown}
-                          ></Dropdown.Toggle>
-
-                          <Dropdown.Menu
-                            align="start"
-                            as={PriceMenu}
-                          ></Dropdown.Menu>
-                        </Dropdown> */}
-
                         <Dropdown>
                           <Dropdown.Toggle
                             align="start"
@@ -1520,51 +816,12 @@ const ExploreAllNFT = () => {
                       <span
                         role="button"
                         className="search-button"
-                        //onClick={handleTextSearch}
                         onClick={(e) => handleFilterCheck("", "text_search")}
                       >
                         <BiSearch size={15} />
                       </span>
                     </div>
                   </div>
-
-                  {/* <div className="mt-4 mb-4 d-flex flex-wrap">
-                  {filter.sale
-                    .filter((xx) => xx.checked === true)
-                    .map((obj, i) => (
-                      <div
-                        key={`filter-pill${i}`}
-                        className="filter-pill-button"
-                      >
-                        <div className="first">{obj.name}</div>
-                        <div className="last">
-                          <BiX
-                            role="button"
-                            size={20}
-                            onClick={() => handleSaleCheck(obj)}
-                          />
-                        </div>
-                      </div>
-                    ))}
-
-                  {filter.nft
-                    .filter((xx) => xx.checked === true)
-                    .map((obj, i) => (
-                      <div
-                        key={`filter-pill${i}`}
-                        className="filter-pill-button"
-                      >
-                        <div className="first">{obj.name}</div>
-                        <div className="last">
-                          <BiX
-                            role="button"
-                            size={20}
-                            onClick={() => handleNFTCheck(obj)}
-                          />
-                        </div>
-                      </div>
-                    ))}
-                </div> */}
                 </div>
               </div>
             </div>
@@ -1871,23 +1128,28 @@ const ExploreAllNFT = () => {
                         )}
                       </div>
 
-                      {/* <div className="filter-list-items">
-                        <h4 className="header">
-                          NFT Type{" "}
-                          <IoIosArrowDown
-                            role={"button"}
-                            onClick={() =>
-                              setFilter({
-                                ...filter,
-                                showNFT: !filter.showNFT,
-                              })
-                            }
-                          />
+                      <div className="filter-list-items">
+                        <h4
+                          className="header"
+                          role={"button"}
+                          onClick={() =>
+                            setFilter({
+                              ...filter,
+                              showGlC: !filter.showGlC,
+                            })
+                          }
+                        >
+                          GL Coin Rewards{" "}
+                          {filter.showGlC ? (
+                            <IoIosArrowUp />
+                          ) : (
+                            <IoIosArrowDown />
+                          )}
                         </h4>
-                        {filter.showNFT && (
+                        {filter.showGlC && (
                           <ul>
-                            {filter.nft.map((obj, i) => (
-                              <li key={`nft-type-${i}`}>
+                            {filter.glCoin.map((obj, i) => (
+                              <li key={`has-glc-${i}`}>
                                 <label
                                   htmlFor={`${obj.name}`}
                                   className="checkbox"
@@ -1897,7 +1159,9 @@ const ExploreAllNFT = () => {
                                     name="checkbox-group"
                                     type="checkbox"
                                     checked={obj.checked}
-                                    onChange={() => handleNFTCheck(obj)}
+                                    onChange={() =>
+                                      handleFilterCheck(obj, "has_GLC")
+                                    }
                                   />
                                   <span className="checkbox__mark">
                                     <BiCheck />
@@ -1911,7 +1175,7 @@ const ExploreAllNFT = () => {
                             ))}
                           </ul>
                         )}
-                      </div> */}
+                      </div>
                     </div>
                   </aside>
 
