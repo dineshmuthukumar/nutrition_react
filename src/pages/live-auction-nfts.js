@@ -9,7 +9,7 @@ const LiveAuctionsNFTs = () => {
       <Header
         bgImage
         title="Live Auction |Jump.Trade"
-        description="Find the most-desirable cricketNFTs on jump.trade marketplace that are live on auction here. Go make your bid now to own them!"
+        description="Find the most-desirable cricket NFTs on jump.trade marketplace that are live on auction here. Go make your bid now to own them!"
       />
       <LiveAuctionsList />
       <Footer />

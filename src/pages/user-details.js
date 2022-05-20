@@ -32,7 +32,7 @@ const UserDetails = () => {
 
   return (
     <>
-      <Header bgImage />
+      <Header bgImage description="" title={userDetail?.users[0]?.user_name} />
       <main className="user-profile-bg">
         <UserBanner userDetail={userDetail} />
         <UserDetailsBlock userDetail={userDetail} />

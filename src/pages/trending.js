@@ -9,7 +9,7 @@ const TrendingNFTs = () => {
       <Header
         bgImage
         title="Trending NFTs | Jump.Trade"
-        description="Make your bid on the trending cricketNFTs on the jump.trade NFT marketplace and own these supreme NFTs now!"
+        description="Make your bid on the trending cricket NFTs on the jump.trade NFT marketplace and own these supreme NFTs now!"
       />
       <TrendingList />
       <Footer />
