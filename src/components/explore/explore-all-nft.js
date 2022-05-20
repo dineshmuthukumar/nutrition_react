@@ -272,10 +272,16 @@ const ExploreAllNFT = () => {
   }, [query]);
 
   useEffect(() => {
-    if (match.path === "/explore-all/:search?/details/:slug") {
+    if (
+      match.path === "/nft-marketplace/:search?/details/:slug" ||
+      match.path === "/nft-marketplace/cricket-nfts/:search?/details/:slug"
+    ) {
       setPopDetails({ ...popDetails, show: true, children: <Details /> });
     } else if (
-      match.path === "/explore-all/:search?/order/details/:slug/:orderSlug"
+      match.path ===
+        "/nft-marketplace/:search?/order/details/:slug/:orderSlug" ||
+      match.path ===
+        "/nft-marketplace/cricket-nfts/:search?/order/details/:slug/:orderSlug"
     ) {
       setPopDetails({
         ...popDetails,
@@ -402,7 +408,7 @@ const ExploreAllNFT = () => {
   };
 
   const clearFilter = () => {
-    history.push(`/explore-all`);
+    history.push(`/nft-marketplace`);
     setPriceRangeFilter({
       from: "",
       to: "",
@@ -618,9 +624,9 @@ const ExploreAllNFT = () => {
     }
 
     if (query_string) {
-      history.push(`/explore-all/${query_string}`);
+      history.push(`/nft-marketplace/cricket-nfts/${query_string}`);
     } else {
-      history.push(`/explore-all`);
+      history.push(`/nft-marketplace`);
     }
   };
 

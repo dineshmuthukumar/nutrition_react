@@ -328,8 +328,8 @@ const NFTCard = ({
                   : `/${clientUrl}/order/details/${nft?.slug}/${nft?.order_slug}`;
               } else
                 return search
-                  ? `/explore-all/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
-                  : `/explore-all/order/details/${nft?.slug}/${nft?.order_slug}`;
+                  ? `/nft-marketplace/cricket-nfts/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
+                  : `/nft-marketplace/order/details/${nft?.slug}/${nft?.order_slug}`;
             } else if (isFaltoo) {
               return `/fully-faltoo-NFT/order/details/${nft?.slug}/${nft?.order_slug}`;
             } else {
@@ -345,8 +345,8 @@ const NFTCard = ({
                   : `/${clientUrl}/order/details/${nft?.slug}/${nft?.order_slug}`;
               } else
                 return search
-                  ? `/explore-all/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
-                  : `/explore-all/order/details/${nft?.slug}/${nft?.order_slug}`;
+                  ? `/nft-marketplace/cricket-nfts/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
+                  : `/nft-marketplace/order/details/${nft?.slug}/${nft?.order_slug}`;
             } else {
               return search
                 ? `/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
@@ -360,8 +360,8 @@ const NFTCard = ({
                   : `/${clientUrl}/order/details/${nft?.slug}/${nft?.order_details?.slug}`;
               } else
                 return search
-                  ? `/explore-all/${search}/order/details/${nft?.slug}/${nft?.order_details?.slug}`
-                  : `/explore-all/order/details/${nft?.slug}/${nft?.order_details?.slug}`;
+                  ? `/nft-marketplace/cricket-nfts/${search}/order/details/${nft?.slug}/${nft?.order_details?.slug}`
+                  : `/nft-marketplace/order/details/${nft?.slug}/${nft?.order_details?.slug}`;
             } else if (isFaltoo) {
               return `/fully-faltoo-NFT/order/details/${nft?.slug}/${nft?.order_details?.slug}`;
             } else
@@ -376,8 +376,8 @@ const NFTCard = ({
                   : `/${clientUrl}/order/details/${nft?.slug}/${nft?.order_slug}`;
               } else
                 return search
-                  ? `/explore-all/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
-                  : `/explore-all/order/details/${nft?.slug}/${nft?.order_slug}`;
+                  ? `/nft-marketplace/cricket-nfts/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
+                  : `/nft-marketplace/order/details/${nft?.slug}/${nft?.order_slug}`;
             } else if (isFaltoo) {
               return `/fully-faltoo-NFT/order/details/${nft?.slug}/${nft?.order_slug}`;
             } else
@@ -392,8 +392,8 @@ const NFTCard = ({
                   : `/${clientUrl}/details/${nft?.slug}`;
               } else
                 return search
-                  ? `/explore-all/${search}/details/${nft?.slug}`
-                  : `/explore-all/details/${nft?.slug}`;
+                  ? `/nft-marketplace/cricket-nfts/${search}/details/${nft?.slug}`
+                  : `/nft-marketplace/details/${nft?.slug}`;
             } else if (isFaltoo) {
               return `/fully-faltoo-NFT/details/${nft?.slug}`;
             } else {

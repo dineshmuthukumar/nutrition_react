@@ -1030,7 +1030,7 @@ const ShowAll = ({ categories }) => {
                   </div>
                   <div className="vr"></div>
                   <div className="ms-2 explore-all-text">
-                    <span onClick={() => history.push("/explore-all")}>
+                    <span onClick={() => history.push("/nft-marketplace")}>
                       Explore
                     </span>
                   </div>
