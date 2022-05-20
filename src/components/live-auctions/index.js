@@ -52,7 +52,7 @@ const LiveAuctions = () => {
                 {list.length > 4 && (
                   <span
                     className="viewallBtnliveaction"
-                    onClick={() => history.push("/nfts/live-auction")}
+                    onClick={() => history.push("/nft-marketplace/live-auction")}
                   >
                     View all
                   </span>

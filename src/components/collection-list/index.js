@@ -29,7 +29,7 @@ const CollectionList = () => {
                 <div
                   className="collection-box"
                   onClick={() =>
-                    history.push("/explore/category/3WAoJq4KtGY72QdN")
+                    history.push("/nft-marketplace/cricket-player-nfts/3WAoJq4KtGY72QdN")
                   }
                 >
                   <img
@@ -49,7 +49,7 @@ const CollectionList = () => {
                 <div
                   className="collection-box"
                   onClick={() =>
-                    history.push("/explore/category/5LpmjlAwtGEqK3rO")
+                    history.push("/nft-marketplace/cricket-bat-nfts/5LpmjlAwtGEqK3rO")
                   }
                 >
                   <img

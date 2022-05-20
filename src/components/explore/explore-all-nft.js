@@ -312,9 +312,22 @@ const ExploreAllNFT = () => {
       ? query.get("nft-collection").split(",")
       : [];
 
-    const has_coin = query.get("coin") ? query.get("coin") : "";
-
-    showAllFilteredNFTs(
+  const has_coin = query.get("coin") ? query.get("coin") : "";
+  
+  let noMatchFound =
+      !sale_filters.length &&
+      !nft_filters.length &&
+      !search_filters.length &&
+      !status_filters.length &&
+      !price_range.from.length &&
+      !price_range.to.length &&
+      sort_filters === 'recently_listed' &&
+      !nft_category.length &&
+      !nft_collection.length;
+    
+    if(noMatchFound && match.params.search)
+      history.push("/not-found")
+    else showAllFilteredNFTs(
       1,
       nft_filters,
       sale_filters,
@@ -1199,6 +1212,8 @@ const ExploreAllNFT = () => {
                                 key={i}
                                 image={sample}
                                 isExplore
+                                relativeUrl={`nft-marketplace`}
+                                searchPrefix={`cricket-nfts`}
                               />
                             </div>
                           ))

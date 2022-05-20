@@ -285,7 +285,7 @@ const LiveAuctionsList = () => {
         : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
     }
 
-    history.push(`/nfts/live-auction?${query_string}`);
+    history.push(`/nft-marketplace/live-auction?${query_string}`);
   };
   const handlePriceRange = (priceRange, remove = false) => {
     setPriceRangeFilter({ ...priceRange });
@@ -312,9 +312,9 @@ const LiveAuctionsList = () => {
       setPriceRangeFilter(price_range);
     }
     if (query_string) {
-      history.push(`/nfts/live-auction?${query_string}`);
+      history.push(`/nft-marketplace/live-auction?${query_string}`);
     } else {
-      history.push("/nfts/live-auction");
+      history.push("/nft-marketplace/live-auction");
     }
   };
 

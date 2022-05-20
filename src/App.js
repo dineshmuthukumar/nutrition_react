@@ -212,17 +212,39 @@ const WebContainer = () => {
       <Switch>
         <Route
           exact
-          path="/explore/category/:cSlug/:search?/order/details/:slug/:orderSlug"
+          path="/nft-marketplace/:search?/order/details/:slug/:orderSlug"
+          component={ExploreAll}
+        />
+        <Route
+          exact
+          path="/nft-marketplace/:search?/details/:slug"
+          component={ExploreAll}
+        />
+        <Route
+          exact
+          path="/nft-marketplace/cricket-nfts/:search?/order/details/:slug/:orderSlug"
+          component={ExploreAll}
+        />
+        <Route
+          exact
+          path="/nft-marketplace/cricket-nfts/:search?/details/:slug"
+          component={ExploreAll}
+        />
+        <Route exact path="/nft-marketplace" component={ExploreAll} />
+        <Route exact path="/nft-marketplace/cricket-nfts/:search?" component={ExploreAll} />
+        <Route
+          exact
+          path="/nft-marketplace/:category/:cSlug/:search?/order/details/:slug/:orderSlug"
           component={Explore}
         />
         <Route
           exact
-          path="/explore/category/:cSlug/:search?/details/:slug"
+          path="/nft-marketplace/:category/:cSlug/:search?/details/:slug"
           component={Explore}
         />
         <Route
           exact
-          path="/explore/category/:cSlug/:search?"
+          path="/nft-marketplace/:category/:cSlug/:search?"
           component={Explore}
         />
         <Route exact path="/help-line" component={HelpLine} />
@@ -278,30 +300,51 @@ const WebContainer = () => {
         />
         <Route exact path="/latimes-NFT" component={Latimes} />
 
-        <Route
+        <Route exact path="/nft-marketplace/sale-history" component={RecentlySold} />
+        {/* <Route
           exact
-          path="/nft-marketplace/:search?/order/details/:slug/:orderSlug"
-          component={ExploreAll}
+          path="/nft-marketplace/sale-history/:search?/order/details/:slug/:orderSlug"
+          component={RecentlySold}
         />
         <Route
           exact
-          path="/nft-marketplace/:search?/details/:slug"
-          component={ExploreAll}
+          path="/nft-marketplace/sale-history/:search?/details/:slug"
+          component={RecentlySold}
+        /> */}
+        <Route exact path="/nft-marketplace/live-auction" component={LiveAuctionsNFTs} />
+        {/* <Route
+          exact
+          path="/nft-marketplace/live-auction/:search?/order/details/:slug/:orderSlug"
+          component={LiveAuctionsNFTs}
         />
         <Route
           exact
-          path="/nft-marketplace/cricket-nfts/:search?/order/details/:slug/:orderSlug"
-          component={ExploreAll}
+          path="/nft-marketplace/live-auction/:search?/details/:slug"
+          component={LiveAuctionsNFTs}
+        /> */}
+        <Route exact path="/nft-marketplace/trending-nfts" component={TrendingNFTs} />
+        {/* <Route
+          exact
+          path="/nft-marketplace/trending-nfts/:search?/order/details/:slug/:orderSlug"
+          component={TrendingNFTs}
         />
         <Route
           exact
-          path="/nft-marketplace/cricket-nfts/:search?/details/:slug"
-          component={ExploreAll}
+          path="/nft-marketplace/trending-nfts/:search?/details/:slug"
+          component={TrendingNFTs}
+        /> */}
+        <Route exact path="/nft-marketplace/favorites" component={MyFavorites} />
+        {/* <Route
+          exact
+          path="/nft-marketplace/favorites/:search?/order/details/:slug/:orderSlug"
+          component={MyFavorites}
         />
-        <Route exact path="/nft-marketplace/cricket-nfts/:search?" component={ExploreAll} />
-        <Route exact path="/nft-marketplace" component={ExploreAll} />
-
         <Route
+          exact
+          path="/nft-marketplace/favorites/:search?/details/:slug"
+          component={MyFavorites}
+        /> */}
+         <Route
           exact
           path="/creator-application"
           component={CreatorApplication}
@@ -310,12 +353,6 @@ const WebContainer = () => {
         <Route exact path="/privacy-policy" component={Privacy} />
         {/* <Route exact path="/faq" component={FAQ} /> */}
         <Route exact path="/terms-and-conditions" component={Terms} />
-
-        <Route exact path="/nfts/sale-history" component={RecentlySold} />
-        <Route exact path="/nfts/live-auction" component={LiveAuctionsNFTs} />
-        <Route exact path="/nfts/trending" component={TrendingNFTs} />
-        <Route exact path="/nfts/favorites" component={MyFavorites} />
-
         <Route exact path="/user/:slug/details" component={UserDetails} />
         <Route path="/not-found" component={NotFound} />
         <Route

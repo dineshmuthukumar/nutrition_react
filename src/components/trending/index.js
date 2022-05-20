@@ -104,7 +104,7 @@ const Trending = () => {
                         {list.length > 4 && (
                           <span
                             className="viewallBtnliveaction trend-btn"
-                            onClick={() => history.push("/nfts/trending")}
+                            onClick={() => history.push("/nft-marketplace/trending-nfts")}
                           >
                             View all
                           </span>

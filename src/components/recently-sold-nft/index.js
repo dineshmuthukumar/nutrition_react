@@ -98,7 +98,7 @@ const RecentlySoldNFT = () => {
                 <span className="title">RECENTLY SOLD</span>
                 <span
                   className="viewallBtnliveaction"
-                  onClick={() => history.push("/nfts/sale-history")}
+                  onClick={() => history.push("/nft-marketplace/sale-history")}
                 >
                   View all
                 </span>

@@ -124,7 +124,7 @@ const RecentlySoldList = () => {
         : `sort=${sort_exist}`;
     }
 
-    history.push(`/nfts/sale-history?${query_string}`);
+    history.push(`/nft-marketplace/sale-history?${query_string}`);
   };
 
   return (
