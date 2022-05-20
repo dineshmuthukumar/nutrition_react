@@ -280,16 +280,26 @@ const WebContainer = () => {
 
         <Route
           exact
-          path="/explore-all/:search?/order/details/:slug/:orderSlug"
+          path="/nft-marketplace/:search?/order/details/:slug/:orderSlug"
           component={ExploreAll}
         />
         <Route
           exact
-          path="/explore-all/:search?/details/:slug"
+          path="/nft-marketplace/:search?/details/:slug"
           component={ExploreAll}
         />
-        <Route exact path="/explore-all/:search?" component={ExploreAll} />
-        <Route exact path="/explore-all" component={ExploreAll} />
+        <Route
+          exact
+          path="/nft-marketplace/cricket-nfts/:search?/order/details/:slug/:orderSlug"
+          component={ExploreAll}
+        />
+        <Route
+          exact
+          path="/nft-marketplace/cricket-nfts/:search?/details/:slug"
+          component={ExploreAll}
+        />
+        <Route exact path="/nft-marketplace/cricket-nfts/:search?" component={ExploreAll} />
+        <Route exact path="/nft-marketplace" component={ExploreAll} />
 
         <Route
           exact
