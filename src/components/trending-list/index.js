@@ -296,7 +296,7 @@ const TrendingList = () => {
         : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
     }
 
-    history.push(`/nfts/trending?${query_string}`);
+    history.push(`/nft-marketplace/trending-nfts?${query_string}`);
   };
   const handlePriceRange = (priceRange, remove = false) => {
     setPriceRangeFilter({ ...priceRange });
@@ -323,9 +323,9 @@ const TrendingList = () => {
       setPriceRangeFilter(price_range);
     }
     if (query_string) {
-      history.push(`/nfts/trending?${query_string}`);
+      history.push(`/nft-marketplace/trending-nfts?${query_string}`);
     } else {
-      history.push("/nfts/trending");
+      history.push("/nft-marketplace/trending-nfts");
     }
   };
 

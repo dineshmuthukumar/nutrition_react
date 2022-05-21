@@ -585,7 +585,7 @@ const Header = ({
               <Nav className="d-flex me-0 ms-auto">
                 <Nav.Link
                   id="drop_outer"
-                  onClick={() => history.push("/explore-all")}
+                  onClick={() => history.push("/nft-marketplace")}
                 >
                   Explore
                 </Nav.Link>
@@ -953,7 +953,7 @@ const Header = ({
                     Creator
                   </Dropdown.Item> */}
 
-                  <Dropdown.Item onClick={() => history.push("/explore-all")}>
+                  <Dropdown.Item onClick={() => history.push("/nft-marketplace")}>
                     Explore
                   </Dropdown.Item>
                   {/* <Dropdown.Item href={process.env.REACT_APP_DROP_URL}>

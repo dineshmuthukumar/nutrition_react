@@ -21,7 +21,7 @@ import { VscClose } from "react-icons/vsc";
 
 const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
   const history = useHistory();
-
+  
   const match = useRouteMatch();
   // const { slug } = useParams();
   const [page, setPage] = useState(1);
@@ -44,55 +44,8 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
     query.get("search") ? query.get("search") : ""
   );
 
-  const [filter, setFilter] = useState({
-    sale: [
-      {
-        name: "Bid",
-        value: "bid",
-        checked: false,
-      },
-      {
-        name: "Buy",
-        value: "buy",
-        checked: false,
-      },
-    ],
-    nft: [
-      {
-        name: "Single",
-        value: "erc721",
-        checked: false,
-      },
-      {
-        name: "Multiple",
-        value: "erc1155",
-        checked: false,
-      },
-    ],
-    sort: [
-      {
-        name: "Recently Listed",
-        value: "recently_listed",
-        checked: true,
-      },
-      {
-        name: "Price - High to Low",
-        value: "price_desc",
-        checked: false,
-      },
-      {
-        name: "Price - Low to High",
-        value: "price",
-        checked: false,
-      },
-      {
-        name: "Relevance",
-        value: "relevance",
-        checked: false,
-      },
-    ],
-
-    nftCategory: [
+  const [filter, setFilter] = useState(() => {
+    let nftCategory = [
       {
         name: "Batsman",
         value: "Batsman",
@@ -108,50 +61,123 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
         value: "Bat",
         checked: false,
       },
-    ],
-    nftCollection: [
-      {
-        name: "Rare",
-        value: "RARE",
-        checked: false,
-      },
-      {
-        name: "Rookie",
-        value: "ROOKIE",
-        checked: false,
-      },
-      {
-        name: "Epic",
-        value: "EPIC",
-        checked: false,
-      },
-      {
-        name: "Legend",
-        value: "LEGEND",
-        checked: false,
-      },
-      {
-        name: "Super Rare",
-        value: "SUPER RARE",
-        checked: false,
-      },
-      {
-        name: "Ultra Rare",
-        value: "ULTRA RARE",
-        checked: false,
-      },
-      {
-        name: "Immortal",
-        value: "IMMORTAL",
-        checked: false,
-      },
-    ],
+    ];
 
-    showSale: true,
-    showNFT: true,
-    showNFTCategory: true,
-    showNFTCollection: true,
-    showNFTRange: true,
+    if(match.params.category === "cricket-player-nfts")
+      nftCategory = [
+        {
+          name: "Batsman",
+          value: "Batsman",
+          checked: false,
+        },
+        {
+          name: "Bowler",
+          value: "Bowler",
+          checked: false,
+        }
+      ];
+
+    if(match.params.category === "cricket-bat-nfts")
+      nftCategory = [
+        {
+          name: "Bat",
+          value: "Bat",
+          checked: false,
+        },
+      ];
+
+    return {
+      sale: [
+        {
+          name: "Bid",
+          value: "bid",
+          checked: false,
+        },
+        {
+          name: "Buy",
+          value: "buy",
+          checked: false,
+        },
+      ],
+      nft: [
+        {
+          name: "Single",
+          value: "erc721",
+          checked: false,
+        },
+        {
+          name: "Multiple",
+          value: "erc1155",
+          checked: false,
+        },
+      ],
+      sort: [
+        {
+          name: "Recently Listed",
+          value: "recently_listed",
+          checked: true,
+        },
+        {
+          name: "Price - High to Low",
+          value: "price_desc",
+          checked: false,
+        },
+        {
+          name: "Price - Low to High",
+          value: "price",
+          checked: false,
+        },
+        {
+          name: "Relevance",
+          value: "relevance",
+          checked: false,
+        },
+      ],
+      nftCategory,
+      nftCollection: [
+        {
+          name: "Rare",
+          value: "RARE",
+          checked: false,
+        },
+        {
+          name: "Rookie",
+          value: "ROOKIE",
+          checked: false,
+        },
+        {
+          name: "Epic",
+          value: "EPIC",
+          checked: false,
+        },
+        {
+          name: "Legend",
+          value: "LEGEND",
+          checked: false,
+        },
+        {
+          name: "Super Rare",
+          value: "SUPER RARE",
+          checked: false,
+        },
+        {
+          name: "Ultra Rare",
+          value: "ULTRA RARE",
+          checked: false,
+        },
+        {
+          name: "Immortal",
+          value: "IMMORTAL",
+          checked: false,
+        },
+      ],
+
+      showSale: true,
+      showNFT: true,
+      showNFTCategory: true,
+      showNFTCollection: true,
+      showNFTRange: true,
+    }
   });
 
   useEffect(() => {
@@ -210,11 +236,12 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
         setPopDetails({ ...popDetails, show: false, children: null });
       }
     } else {
-      if (match.path === "/explore/category/:cSlug/:search?/details/:slug") {
+      if (
+        match.path === "/nft-marketplace/:category/:cSlug/:search?/details/:slug"
+      ) {
         setPopDetails({ ...popDetails, show: true, children: <Details /> });
       } else if (
-        match.path ===
-        "/explore/category/:cSlug/:search?/order/details/:slug/:orderSlug"
+        match.path === "/nft-marketplace/:category/:cSlug/:search?/order/details/:slug/:orderSlug"
       ) {
         setPopDetails({
           ...popDetails,
@@ -241,16 +268,26 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
       : [];
 
     const search_filter = query.get("search");
-
+    let noMatchFound =
+      sale_filters.length === 0 &&
+      nft_filters.length === 0 &&
+      !query.get("sort") &&
+      nft_category.length === 0 &&
+      nft_collection.length === 0;
+    if ( match.params.category !== 'cricket-bat-nfts' && match.params.category !== 'cricket-player-nfts') 
+      history.push('/not-found');
+    if (noMatchFound && match.params.search) 
+      history.push('/not-found');
+    
     showAllFilteredNFTs(
-      1,
-      nft_filters,
-      sale_filters,
-      sort_filters,
-      search_filter,
-      nft_category,
-      nft_collection
-    );
+        1,
+        nft_filters,
+        sale_filters,
+        sort_filters,
+        search_filter,
+        nft_category,
+        nft_collection
+      );
   }, [slug, query]);
 
   const showAllNFTs = async (
@@ -457,11 +494,11 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
 
     if (query_string) {
       // history.push(
-      //   `/explore/category/${slug}/${encodeURIComponent(query_string)}`
+      //   `/nft-marketplace/${match.params.category}/${slug}/${encodeURIComponent(query_string)}`
       // );
-      history.push(`/explore/category/${slug}/${query_string}`);
+      history.push(`/nft-marketplace/${match.params.category}/${slug}/${query_string}`);
     } else {
-      history.push(`/explore/category/${slug}`);
+      history.push(`/nft-marketplace/${match.params.category}/${slug}`);
     }
   };
 
@@ -525,11 +562,11 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
 
     if (query_string) {
       // history.push(
-      //   `/explore/category/${slug}/${encodeURIComponent(query_string)}`
+      //   `/nft-marketplace/${match.params.category}/${slug}/${encodeURIComponent(query_string)}`
       // );
-      history.push(`/explore/category/${slug}/${query_string}`);
+      history.push(`/nft-marketplace/${match.params.category}/${slug}/${query_string}`);
     } else {
-      history.push(`/explore/category/${slug}`);
+      history.push(`/nft-marketplace/${match.params.category}/${slug}`);
     }
   };
 
@@ -586,11 +623,11 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
 
     if (query_string) {
       // history.push(
-      //   `/explore/category/${slug}/${encodeURIComponent(query_string)}`
+      //   `/nft-marketplace/${match.params.category}/${slug}/${encodeURIComponent(query_string)}`
       // );
-      history.push(`/explore/category/${slug}/${query_string}`);
+      history.push(`/nft-marketplace/${match.params.category}/${slug}/${query_string}`);
     } else {
-      history.push(`/explore/category/${slug}`);
+      history.push(`/nft-marketplace/${match.params.category}/${slug}`);
     }
   };
 
@@ -644,11 +681,11 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
 
     if (query_string) {
       // history.push(
-      //   `/explore/category/${slug}/${encodeURIComponent(query_string)}`
+      //   `/nft-marketplace/${match.params.category}/${slug}/${encodeURIComponent(query_string)}`
       // );
-      history.push(`/explore/category/${slug}/${query_string}`);
+      history.push(`/nft-marketplace/${match.params.category}/${slug}/${query_string}`);
     } else {
-      history.push(`/explore/category/${slug}`);
+      history.push(`/nft-marketplace/${match.params.category}/${slug}`);
     }
   };
 
@@ -709,9 +746,9 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
     }
 
     if (query_string) {
-      history.push(`/explore/category/${slug}/${query_string}`);
+      history.push(`/nft-marketplace/${match.params.category}/${slug}/${query_string}`);
     } else {
-      history.push(`/explore/category/${slug}`);
+      history.push(`/nft-marketplace/${match.params.category}/${slug}`);
     }
   };
 
@@ -772,9 +809,9 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
     }
 
     if (query_string) {
-      history.push(`/explore/category/${slug}/${query_string}`);
+      history.push(`/nft-marketplace/${match.params.category}/${slug}/${query_string}`);
     } else {
-      history.push(`/explore/category/${slug}`);
+      history.push(`/nft-marketplace/${match.params.category}/${slug}`);
     }
   };
 
@@ -974,7 +1011,7 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
                             match.params.search ? "" : "disabled"
                           }`}
                           onClick={() =>
-                            history.push(`/explore/category/${slug}`)
+                            history.push(`/nft-marketplace/${match.params.category}/${slug}`)
                           }
                         >
                           Clear all
@@ -1166,6 +1203,7 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
                                 key={i}
                                 image={sample}
                                 isExplore
+                                relativeUrl={`nft-marketplace/${match.params.category}/${match.params.cSlug}`}
                                 exploreSlug={slug}
                                 clientUrl={clientUrl}
                               />

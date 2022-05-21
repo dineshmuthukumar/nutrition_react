@@ -91,7 +91,7 @@ const HeroBanner = () => {
                   {live && (
                     <button
                       className="theme-btn"
-                      onClick={() => history.push("/explore-all")}
+                      onClick={() => history.push("/nft-marketplace")}
                     >
                       <span>Explore</span>
                     </button>

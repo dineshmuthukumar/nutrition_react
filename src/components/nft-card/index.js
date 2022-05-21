@@ -43,6 +43,8 @@ const NFTCard = ({
   textColor,
   reloadNFTList,
   isExplore = false,
+  relativeUrl = "",
+  searchPrefix = "",
   exploreSlug = "",
   isFaltoo = false,
   clientUrl = "",
@@ -320,87 +322,39 @@ const NFTCard = ({
 
       <Link
         to={(() => {
-          if (onsale) {
-            if (isExplore) {
-              if (clientUrl) {
-                return search
-                  ? `/${clientUrl}/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
-                  : `/${clientUrl}/order/details/${nft?.slug}/${nft?.order_slug}`;
-              } else
-                return search
-                  ? `/explore-all/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
-                  : `/explore-all/order/details/${nft?.slug}/${nft?.order_slug}`;
-            } else if (isFaltoo) {
-              return `/fully-faltoo-NFT/order/details/${nft?.slug}/${nft?.order_slug}`;
-            } else {
+          if (onsale || favouriteNFTs || recentSold) {
+            if (relativeUrl)
+              return search
+                ? `/${relativeUrl}/${
+                    searchPrefix ? searchPrefix + "/" + search : search
+                  }/order/details/${nft?.slug}/${nft?.order_slug}`
+                : `/${relativeUrl}/order/details/${nft?.slug}/${nft?.order_slug}`;
+            else
               return search
                 ? `/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
                 : `/order/details/${nft?.slug}/${nft?.order_slug}`;
-            }
-          } else if (favouriteNFTs) {
-            if (isExplore) {
-              if (clientUrl) {
-                return search
-                  ? `/${clientUrl}/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
-                  : `/${clientUrl}/order/details/${nft?.slug}/${nft?.order_slug}`;
-              } else
-                return search
-                  ? `/explore-all/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
-                  : `/explore-all/order/details/${nft?.slug}/${nft?.order_slug}`;
-            } else {
-              return search
-                ? `/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
-                : `/order/details/${nft?.slug}/${nft?.order_slug}`;
-            }
           } else if (nft?.is_on_sale) {
-            if (isExplore) {
-              if (clientUrl) {
-                return search
-                  ? `/${clientUrl}/${search}/order/details/${nft?.slug}/${nft?.order_details?.slug}`
-                  : `/${clientUrl}/order/details/${nft?.slug}/${nft?.order_details?.slug}`;
-              } else
-                return search
-                  ? `/explore-all/${search}/order/details/${nft?.slug}/${nft?.order_details?.slug}`
-                  : `/explore-all/order/details/${nft?.slug}/${nft?.order_details?.slug}`;
-            } else if (isFaltoo) {
-              return `/fully-faltoo-NFT/order/details/${nft?.slug}/${nft?.order_details?.slug}`;
-            } else
+            if (relativeUrl)
+              return search
+                ? `/${relativeUrl}/${
+                    searchPrefix ? searchPrefix + "/" + search : search
+                  }/order/details/${nft?.slug}/${nft?.order_details?.slug}`
+                : `/${relativeUrl}/order/details/${nft?.slug}/${nft?.order_details?.slug}`;
+            else
               return search
                 ? `/${search}/order/details/${nft?.slug}/${nft?.order_details?.slug}`
                 : `/order/details/${nft?.slug}/${nft?.order_details?.slug}`;
-          } else if (recentSold) {
-            if (isExplore) {
-              if (clientUrl) {
-                return search
-                  ? `/${clientUrl}/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
-                  : `/${clientUrl}/order/details/${nft?.slug}/${nft?.order_slug}`;
-              } else
-                return search
-                  ? `/explore-all/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
-                  : `/explore-all/order/details/${nft?.slug}/${nft?.order_slug}`;
-            } else if (isFaltoo) {
-              return `/fully-faltoo-NFT/order/details/${nft?.slug}/${nft?.order_slug}`;
-            } else
-              return search
-                ? `/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
-                : `/order/details/${nft?.slug}/${nft?.order_slug}`;
           } else {
-            if (isExplore) {
-              if (clientUrl) {
-                return search
-                  ? `/${clientUrl}/${search}/details/${nft?.slug}`
-                  : `/${clientUrl}/details/${nft?.slug}`;
-              } else
-                return search
-                  ? `/explore-all/${search}/details/${nft?.slug}`
-                  : `/explore-all/details/${nft?.slug}`;
-            } else if (isFaltoo) {
-              return `/fully-faltoo-NFT/details/${nft?.slug}`;
-            } else {
+            if (relativeUrl)
+              return search
+                ? `/${relativeUrl}/${
+                    searchPrefix ? searchPrefix + "/" + search : search
+                  }/details/${nft?.slug}`
+                : `/${relativeUrl}/details/${nft?.slug}`;
+            else
               return search
                 ? `/${search}/details/${nft?.slug}`
                 : `/details/${nft?.slug}`;
-            }
           }
         })()}
       >

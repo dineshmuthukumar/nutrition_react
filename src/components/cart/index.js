@@ -387,7 +387,7 @@ const Cart = ({ cartPop = false, setCartPop, setCheckoutDevice }) => {
                       className="cart-btn text-center btn-lg mt-2 rounded-pill"
                       onClick={() => {
                         setCartPop(!cartPop);
-                        history.push("/explore-all");
+                        history.push("/nft-marketplace");
                       }}
                     >
                       Explore

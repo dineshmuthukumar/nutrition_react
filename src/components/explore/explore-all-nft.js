@@ -4,7 +4,7 @@ import { useHistory, useRouteMatch } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 import ContentLoader from "react-content-loader";
 import { FaCheckCircle, FaFilter } from "react-icons/fa";
-import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { VscClose } from "react-icons/vsc";
 
 import NFTCard from "../nft-card";
@@ -32,7 +32,6 @@ const ExploreAllNFT = () => {
   const [hasNext, setHasNext] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
   const [toggle, setToggle] = useState(false);
-
   const [popDetails, setPopDetails] = useState({
     show: false,
     children: null,
@@ -50,7 +49,7 @@ const ExploreAllNFT = () => {
     from: "",
     to: "",
   });
-
+  const [priceFilter, setPriceFilter] = useState(false);
   const [filter, setFilter] = useState({
     sale: [
       {
@@ -90,6 +89,18 @@ const ExploreAllNFT = () => {
       {
         name: "Multiple",
         value: "erc1155",
+        checked: false,
+      },
+    ],
+    price: [
+      {
+        name: "Min",
+        value: "",
+        checked: false,
+      },
+      {
+        name: "Max",
+        value: "",
         checked: false,
       },
     ],
@@ -181,6 +192,14 @@ const ExploreAllNFT = () => {
       },
     ],
 
+    glCoin: [
+      {
+        name: "With GL Coins",
+        value: "has_coin",
+        checked: false,
+      },
+    ],
+
     showSale: true,
     showStatus: true,
     auction: true,
@@ -188,12 +207,12 @@ const ExploreAllNFT = () => {
     showNFTCategory: true,
     showNFTCollection: true,
     showNFTRange: true,
+    showGlC: true,
   });
 
   useEffect(() => {
     const sale_filters = query.get("sale") ? query.get("sale").split(",") : [];
     const nft_filters = query.get("nft") ? query.get("nft").split(",") : [];
-    const search_filters = query.get("search") ? query.get("search") : "";
     const sort_filters = query.get("sort")
       ? query.get("sort")
       : "recently_listed";
@@ -211,6 +230,9 @@ const ExploreAllNFT = () => {
     const nft_collection = query.get("nft-collection")
       ? query.get("nft-collection").split(",")
       : [];
+
+    const search_filter = query.get("search") ? query.get("search") : "";
+    const has_coin = query.get("coin") ? query.get("coin") : "";
 
     const info = { ...filter };
 
@@ -238,20 +260,29 @@ const ExploreAllNFT = () => {
       ...obj,
       checked: nft_collection.includes(obj.value),
     }));
+    info.glCoin = filter.glCoin.map((obj) => ({
+      ...obj,
+      checked: has_coin ? has_coin === obj.value : false,
+    }));
 
     setFilter(info);
     setPage(1);
-    // if (price_range.from || price_range.to) {
     setPriceRangeFilter(price_range);
-    // }
-    setSearch(search_filters);
+
+    setSearch(search_filter);
   }, [query]);
 
   useEffect(() => {
-    if (match.path === "/explore-all/:search?/details/:slug") {
+    if (
+      match.path === "/nft-marketplace/:search?/details/:slug" ||
+      match.path === "/nft-marketplace/cricket-nfts/:search?/details/:slug"
+    ) {
       setPopDetails({ ...popDetails, show: true, children: <Details /> });
     } else if (
-      match.path === "/explore-all/:search?/order/details/:slug/:orderSlug"
+      match.path ===
+        "/nft-marketplace/:search?/order/details/:slug/:orderSlug" ||
+      match.path ===
+        "/nft-marketplace/cricket-nfts/:search?/order/details/:slug/:orderSlug"
     ) {
       setPopDetails({
         ...popDetails,
@@ -266,6 +297,7 @@ const ExploreAllNFT = () => {
   useEffect(() => {
     const sale_filters = query.get("sale") ? query.get("sale").split(",") : [];
     const nft_filters = query.get("nft") ? query.get("nft").split(",") : [];
+    const search_filters = query.get("search") ? query.get("search") : "";
     const status_filters = query.get("status") ? query.get("status") : "";
     const price_range = {
       from: query.get("minPrice") ? query.get("minPrice") : "",
@@ -281,19 +313,33 @@ const ExploreAllNFT = () => {
       ? query.get("nft-collection").split(",")
       : [];
 
-    const search_filter = query.get("search");
+    const has_coin = query.get("coin") ? query.get("coin") : "";
 
-    showAllFilteredNFTs(
-      1,
-      nft_filters,
-      sale_filters,
-      sort_filters,
-      search_filter,
-      nft_category,
-      nft_collection,
-      status_filters,
-      price_range
-    );
+    let noMatchFound =
+      sale_filters.length === 0 &&
+      nft_filters.length === 0 &&
+      search_filters.length === 0 &&
+      status_filters.length === 0 &&
+      price_range.from.length === 0 &&
+      price_range.to.length === 0 &&
+      !query.get("sort") &&
+      nft_category.length === 0 &&
+      nft_collection.length === 0;
+
+    if (noMatchFound && match.params.search) history.push("/not-found");
+    else
+      showAllFilteredNFTs(
+        1,
+        nft_filters,
+        sale_filters,
+        sort_filters,
+        search_filters,
+        nft_category,
+        nft_collection,
+        status_filters,
+        price_range,
+        has_coin
+      );
   }, [query]);
 
   const showAllNFTs = async (
@@ -303,7 +349,10 @@ const ExploreAllNFT = () => {
     sort = "recently_listed",
     searchText,
     nft_category,
-    nft_collection
+    nft_collection,
+    status_filters,
+    price_range,
+    has_coin
   ) => {
     try {
       page === 1 && setLoading(true);
@@ -317,6 +366,9 @@ const ExploreAllNFT = () => {
           keyword: searchText,
           nft_category,
           nft_collection,
+          sale_kind: status_filters,
+          price_range,
+          has_coin: has_coin === "has_coin" ? true : false,
         },
         sort: sort === "relevance" ? null : sort,
       });
@@ -339,7 +391,8 @@ const ExploreAllNFT = () => {
     nft_category,
     nft_collection,
     status_filters,
-    price_range
+    price_range,
+    has_coin
   ) => {
     try {
       page === 1 && setLoading(true);
@@ -355,6 +408,7 @@ const ExploreAllNFT = () => {
           nft_collection,
           sale_kind: status_filters,
           price_range,
+          has_coin: has_coin === "has_coin" ? true : false,
         },
         sort: sort === "relevance" ? null : sort,
       });
@@ -367,6 +421,14 @@ const ExploreAllNFT = () => {
     }
   };
 
+  const clearFilter = () => {
+    history.push(`/nft-marketplace`);
+    setPriceRangeFilter({
+      from: "",
+      to: "",
+    });
+  };
+
   const fetchMore = () => {
     if (hasNext) {
       const sale_filters = query.get("sale")
@@ -376,6 +438,10 @@ const ExploreAllNFT = () => {
       const sort_filters = query.get("sort")
         ? query.get("sort")
         : "recently_listed";
+      const price_range = {
+        from: query.get("minPrice") ? query.get("minPrice") : "",
+        to: query.get("maxPrice") ? query.get("maxPrice") : "",
+      };
       const search_filters = query.get("search");
       const nft_category = query.get("nft-category")
         ? query.get("nft-category").split(",")
@@ -384,6 +450,8 @@ const ExploreAllNFT = () => {
       const nft_collection = query.get("nft-collection")
         ? query.get("nft-collection").split(",")
         : [];
+      const status_filters = query.get("status") ? query.get("status") : "";
+      const has_coin = query.get("coin") ? query.get("coin") : "";
 
       showAllNFTs(
         page + 1,
@@ -392,37 +460,14 @@ const ExploreAllNFT = () => {
         sort_filters,
         search_filters,
         nft_category,
-        nft_collection
+        nft_collection,
+        status_filters,
+        price_range,
+        has_coin
       );
       setPage(page + 1);
     }
   };
-
-  const SaleTypeDropdown = React.forwardRef(({ onClick }, ref) => (
-    <div
-      className="filter-drop-btn"
-      ref={ref}
-      onClick={(e) => {
-        e.preventDefault();
-        onClick(e);
-      }}
-    >
-      Sale Type <BiCaretDown />
-    </div>
-  ));
-
-  const NFTTypeDropdown = React.forwardRef(({ onClick }, ref) => (
-    <div
-      className="filter-drop-btn"
-      ref={ref}
-      onClick={(e) => {
-        e.preventDefault();
-        onClick(e);
-      }}
-    >
-      NFT Type <BiCaretDown />
-    </div>
-  ));
 
   const ShowAllSort = React.forwardRef(({ onClick }, ref) => (
     <div
@@ -440,642 +485,162 @@ const ExploreAllNFT = () => {
     </div>
   ));
 
-  const handleSaleCheck = (input) => {
-    let sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
-    const nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
-    const sort_exist = query.get("sort");
-    const price_range = {
-      from: query.get("minPrice") ? query.get("minPrice") : "",
-      to: query.get("maxPrice") ? query.get("maxPrice") : "",
-    };
-    const search_exist = query.get("search")
-      ? query.get("search").replace("#", "%23")
-      : "";
-    let nft_category = query.get("nft-category")
-      ? query.get("nft-category").split(",")
-      : [];
-    let status_list = query.get("status") ? query.get("status").split(",") : [];
-
-    let nft_collection = query.get("nft-collection")
-      ? query.get("nft-collection").split(",")
-      : [];
-
-    if (sale_exist.includes(input.value)) {
-      sale_exist = sale_exist.filter((obj) => obj !== input.value);
-    } else {
-      sale_exist.push(input.value);
-    }
-
-    let query_string = "";
-
-    if (sale_exist.length > 0) {
-      query_string += query_string
-        ? `&sale=${sale_exist}`
-        : `sale=${sale_exist}`;
-    }
-
-    if (nft_exist.length > 0) {
-      query_string += query_string ? `&nft=${nft_exist}` : `nft=${nft_exist}`;
-    }
-
-    if (nft_category.length > 0) {
-      query_string += query_string
-        ? `&nft-category=${nft_category}`
-        : `nft-category=${nft_category}`;
-    }
-
-    if (status_list.length > 0) {
-      query_string += query_string
-        ? `&status=${status_list}`
-        : `status=${status_list}`;
-    }
-
-    if (price_range.from || price_range.to) {
-      query_string += query_string
-        ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
-        : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
-    }
-
-    if (nft_collection.length > 0) {
-      query_string += query_string
-        ? `&nft-collection=${nft_collection}`
-        : `nft-collection=${nft_collection}`;
-    }
-
-    if (sort_exist) {
-      query_string += query_string
-        ? `&sort=${sort_exist}`
-        : `sort=${sort_exist}`;
-    }
-
-    if (search_exist) {
-      query_string += query_string
-        ? `&search=${search_exist}`
-        : `search=${search_exist}`;
-    }
-
-    if (query_string) {
-      history.push(`/explore-all/${query_string}`);
-    } else {
-      history.push(`/explore-all`);
-    }
-  };
-
-  const handleSaleStatusNFT = (input, remove = false) => {
-    const category_exist = query.get("category")
-      ? query.get("category").split(",")
-      : [];
-    const sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
-    const nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
-    const sort_exist = query.get("sort");
-    const search_exist = search ? search.replace("#", "%23") : "";
-    const price_range = {
-      from: query.get("minPrice") ? query.get("minPrice") : "",
-      to: query.get("maxPrice") ? query.get("maxPrice") : "",
-    };
-    let status_list = query.get("status") ? query.get("status").split(",") : [];
-
-    const sale_status = remove
-      ? null
-      : status_list.includes(input.value)
-      ? null
-      : input.value;
-
-    let nft_category = query.get("nft-category")
-      ? query.get("nft-category").split(",")
-      : [];
-
-    let nft_collection = query.get("nft-collection")
-      ? query.get("nft-collection").split(",")
-      : [];
-
-    let query_string = "";
-    if (category_exist.length > 0) {
-      query_string += query_string
-        ? `&category=${category_exist}`
-        : `category=${category_exist}`;
-    }
-
-    if (sale_exist.length > 0) {
-      query_string += query_string
-        ? `&sale=${sale_exist}`
-        : `sale=${sale_exist}`;
-    }
-
-    if (nft_exist.length > 0) {
-      query_string += query_string ? `&nft=${nft_exist}` : `nft=${nft_exist}`;
-    }
-
-    if (nft_category.length > 0) {
-      query_string += query_string
-        ? `&nft-category=${nft_category}`
-        : `nft-category=${nft_category}`;
-    }
-
-    if (sort_exist) {
-      query_string += query_string
-        ? `&sort=${sort_exist}`
-        : `sort=${sort_exist}`;
-    }
-
-    if (search_exist) {
-      query_string += query_string
-        ? `&search=${search_exist}`
-        : `search=${search_exist}`;
-    }
-
-    if (nft_collection.length > 0) {
-      query_string += query_string
-        ? `&nft-collection=${nft_collection}`
-        : `nft-collection=${nft_collection}`;
-    }
-
-    if (sale_status) {
-      query_string += query_string
-        ? `&status=${sale_status}`
-        : `status=${sale_status}`;
-    }
-
-    if (price_range.from || price_range.to) {
-      query_string += query_string
-        ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
-        : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
-    }
-
-    if (query_string) {
-      // history.push(`/${encodeURIComponent(query_string)}`);
-      history.push(`/explore-all/${query_string}`);
-    } else {
-      history.push("/explore-all/");
-    }
-  };
-
-  const handleNFTCheck = (input) => {
-    const sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
-    let nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
-    const sort_exist = query.get("sort");
-    const search_exist = query.get("search")
-      ? query.get("search").replace("#", "%23")
-      : "";
-
-    let nft_category = query.get("nft-category")
-      ? query.get("nft-category").split(",")
-      : [];
-
-    let nft_collection = query.get("nft-collection")
-      ? query.get("nft-collection").split(",")
-      : [];
-
-    if (nft_exist.includes(input.value)) {
-      nft_exist = nft_exist.filter((obj) => obj !== input.value);
-    } else {
-      nft_exist.push(input.value);
-    }
-
-    let query_string = "";
-
-    if (sale_exist.length > 0) {
-      query_string += query_string
-        ? `&sale=${sale_exist}`
-        : `sale=${sale_exist}`;
-    }
-
-    if (nft_exist.length > 0) {
-      query_string += query_string ? `&nft=${nft_exist}` : `nft=${nft_exist}`;
-    }
-
-    if (nft_category.length > 0) {
-      query_string += query_string
-        ? `&nft-category=${nft_category}`
-        : `nft-category=${nft_category}`;
-    }
-
-    if (nft_collection.length > 0) {
-      query_string += query_string
-        ? `&nft-collection=${nft_collection}`
-        : `nft-collection=${nft_collection}`;
-    }
-
-    if (sort_exist) {
-      query_string += query_string
-        ? `&sort=${sort_exist}`
-        : `sort=${sort_exist}`;
-    }
-
-    if (search_exist) {
-      query_string += query_string
-        ? `&search=${search_exist}`
-        : `search=${search_exist}`;
-    }
-
-    if (query_string) {
-      history.push(`/explore-all/${query_string}`);
-    } else {
-      history.push(`/explore-all`);
-    }
-  };
-
-  const handleSortNFT = (input) => {
-    const sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
-    const nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
-    const sort_exist_temp = query.get("sort");
-    const price_range = {
-      from: query.get("minPrice") ? query.get("minPrice") : "",
-      to: query.get("maxPrice") ? query.get("maxPrice") : "",
-    };
-
-    const sort_exist = input.value
-      ? sort_exist_temp === input.value
-        ? null
-        : input.value
-      : null;
-    const search_exist = query.get("search")
-      ? query.get("search").replace("#", "%23")
-      : "";
-    let nft_category = query.get("nft-category")
-      ? query.get("nft-category").split(",")
-      : [];
-
-    let status_list = query.get("status") ? query.get("status").split(",") : [];
-
-    let nft_collection = query.get("nft-collection")
-      ? query.get("nft-collection").split(",")
-      : [];
-
-    let query_string = "";
-
-    if (sale_exist.length > 0) {
-      query_string += query_string
-        ? `&sale=${sale_exist}`
-        : `sale=${sale_exist}`;
-    }
-
-    if (nft_exist.length > 0) {
-      query_string += query_string ? `&nft=${nft_exist}` : `nft=${nft_exist}`;
-    }
-
-    if (status_list.length > 0) {
-      query_string += query_string
-        ? `&status=${status_list}`
-        : `status=${status_list}`;
-    }
-
-    if (price_range.from || price_range.to) {
-      query_string += query_string
-        ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
-        : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
-    }
-
-    if (nft_category.length > 0) {
-      query_string += query_string
-        ? `&nft-category=${nft_category}`
-        : `nft-category=${nft_category}`;
-    }
-
-    if (nft_collection.length > 0) {
-      query_string += query_string
-        ? `&nft-collection=${nft_collection}`
-        : `nft-collection=${nft_collection}`;
-    }
-
-    if (sort_exist) {
-      query_string += query_string
-        ? `&sort=${sort_exist}`
-        : `sort=${sort_exist}`;
-    }
-
-    if (search_exist) {
-      query_string += query_string
-        ? `&search=${search_exist}`
-        : `search=${search_exist}`;
-    }
-
-    if (query_string) {
-      history.push(`/explore-all/${query_string}`);
-    } else {
-      history.push(`/explore-all`);
-    }
-  };
-
-  const handleTextSearch = () => {
-    const sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
-    const nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
-    const sort_exist = query.get("sort");
-    const search_exist = search.replace("#", "%23");
-    let nft_category = query.get("nft-category")
-      ? query.get("nft-category").split(",")
-      : [];
-    const price_range = {
-      from: query.get("minPrice") ? query.get("minPrice") : "",
-      to: query.get("maxPrice") ? query.get("maxPrice") : "",
-    };
-    let nft_collection = query.get("nft-collection")
-      ? query.get("nft-collection").split(",")
-      : [];
-
-    let status_list = query.get("status") ? query.get("status").split(",") : [];
-
-    let query_string = "";
-
-    if (sale_exist.length > 0) {
-      query_string += query_string
-        ? `&sale=${sale_exist}`
-        : `sale=${sale_exist}`;
-    }
-
-    if (nft_exist.length > 0) {
-      query_string += query_string ? `&nft=${nft_exist}` : `nft=${nft_exist}`;
-    }
-
-    if (nft_category.length > 0) {
-      query_string += query_string
-        ? `&nft-category=${nft_category}`
-        : `nft-category=${nft_category}`;
-    }
-
-    if (nft_collection.length > 0) {
-      query_string += query_string
-        ? `&nft-collection=${nft_collection}`
-        : `nft-collection=${nft_collection}`;
-    }
-
-    if (sort_exist) {
-      query_string += query_string
-        ? `&sort=${sort_exist}`
-        : `sort=${sort_exist}`;
-    }
-
-    if (status_list.length > 0) {
-      query_string += query_string
-        ? `&status=${status_list}`
-        : `status=${status_list}`;
-    }
-
-    if (price_range.from || price_range.to) {
-      query_string += query_string
-        ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
-        : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
-    }
-
-    if (search_exist) {
-      query_string += query_string
-        ? `&search=${search_exist}`
-        : `search=${search_exist}`;
-    }
-
-    if (query_string) {
-      history.push(`/explore-all/${query_string}`);
-    } else {
-      history.push(`/explore-all`);
-    }
-  };
-
-  const handleNFTCategoryCheck = (input) => {
-    const sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
-    let nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
-    const sort_exist = query.get("sort");
-    const search_exist = query.get("search")
-      ? query.get("search").replace("#", "%23")
-      : "";
-    let nft_category = query.get("nft-category")
-      ? query.get("nft-category").split(",")
-      : [];
-    let nft_collection = query.get("nft-collection")
-      ? query.get("nft-collection").split(",")
-      : [];
-    const price_range = {
-      from: query.get("minPrice") ? query.get("minPrice") : "",
-      to: query.get("maxPrice") ? query.get("maxPrice") : "",
-    };
-
-    let status_list = query.get("status") ? query.get("status").split(",") : [];
-
-    if (nft_category.includes(input.value)) {
-      nft_category = nft_category.filter((obj) => obj !== input.value);
-    } else {
-      nft_category.push(input.value);
-    }
-
-    let query_string = "";
-
-    if (sale_exist.length > 0) {
-      query_string += query_string
-        ? `&sale=${sale_exist}`
-        : `sale=${sale_exist}`;
-    }
-
-    if (nft_exist.length > 0) {
-      query_string += query_string ? `&nft=${nft_exist}` : `nft=${nft_exist}`;
-    }
-
-    if (nft_category.length > 0) {
-      query_string += query_string
-        ? `&nft-category=${nft_category}`
-        : `nft-category=${nft_category}`;
-    }
-
-    if (status_list.length > 0) {
-      query_string += query_string
-        ? `&status=${status_list}`
-        : `status=${status_list}`;
-    }
-
-    if (nft_collection.length > 0) {
-      query_string += query_string
-        ? `&nft-collection=${nft_collection}`
-        : `nft-collection=${nft_collection}`;
-    }
-
-    if (sort_exist) {
-      query_string += query_string
-        ? `&sort=${sort_exist}`
-        : `sort=${sort_exist}`;
-    }
-
-    if (price_range.from || price_range.to) {
-      query_string += query_string
-        ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
-        : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
-    }
-
-    if (search_exist) {
-      query_string += query_string
-        ? `&search=${search_exist}`
-        : `search=${search_exist}`;
-    }
-
-    if (query_string) {
-      history.push(`/explore-all/${query_string}`);
-    } else {
-      history.push(`/explore-all`);
-    }
-  };
-
-  const handleNFTCollectionCheck = (input) => {
-    const sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
-    let nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
-    const sort_exist = query.get("sort");
-    const search_exist = query.get("search")
-      ? query.get("search").replace("#", "%23")
-      : "";
-    let nft_category = query.get("nft-category")
-      ? query.get("nft-category").split(",")
-      : [];
-    let nft_collection = query.get("nft-collection")
-      ? query.get("nft-collection").split(",")
-      : [];
-    const price_range = {
-      from: query.get("minPrice") ? query.get("minPrice") : "",
-      to: query.get("maxPrice") ? query.get("maxPrice") : "",
-    };
-    let status_list = query.get("status") ? query.get("status").split(",") : [];
-
-    if (nft_collection.includes(input.value)) {
-      nft_collection = nft_collection.filter((obj) => obj !== input.value);
-    } else {
-      nft_collection.push(input.value);
-    }
-
-    let query_string = "";
-
-    if (sale_exist.length > 0) {
-      query_string += query_string
-        ? `&sale=${sale_exist}`
-        : `sale=${sale_exist}`;
-    }
-
-    if (nft_exist.length > 0) {
-      query_string += query_string ? `&nft=${nft_exist}` : `nft=${nft_exist}`;
-    }
-
-    if (nft_category.length > 0) {
-      query_string += query_string
-        ? `&nft-category=${nft_category}`
-        : `nft-category=${nft_category}`;
-    }
-
-    if (status_list.length > 0) {
-      query_string += query_string
-        ? `&status=${status_list}`
-        : `status=${status_list}`;
-    }
-
-    if (nft_collection.length > 0) {
-      query_string += query_string
-        ? `&nft-collection=${nft_collection}`
-        : `nft-collection=${nft_collection}`;
-    }
-
-    if (sort_exist) {
-      query_string += query_string
-        ? `&sort=${sort_exist}`
-        : `sort=${sort_exist}`;
-    }
-
-    if (price_range.from || price_range.to) {
-      query_string += query_string
-        ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
-        : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
-    }
-
-    if (search_exist) {
-      query_string += query_string
-        ? `&search=${search_exist}`
-        : `search=${search_exist}`;
-    }
-
-    if (query_string) {
-      history.push(`/explore-all/${query_string}`);
-    } else {
-      history.push(`/explore-all`);
-    }
-  };
-
-  const handlePriceRange = (priceRange, remove = false) => {
-    setPriceRangeFilter({ ...priceRange });
-    const category_exist = query.get("category")
-      ? query.get("category").split(",")
-      : [];
-    const sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
-    const nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
-    const sort_exist = query.get("sort");
-    const search_exist = search ? search.replace("#", "%23") : "";
-    const sale_status = query.get("status");
-    const price_range = remove ? { from: null, to: null } : priceRange;
-    let nft_collection = query.get("nft-collection")
-      ? query.get("nft-collection").split(",")
-      : [];
-    let nft_category = query.get("nft-category")
-      ? query.get("nft-category").split(",")
-      : [];
-
-    let query_string = "";
-    if (category_exist.length > 0) {
-      query_string += query_string
-        ? `&category=${category_exist}`
-        : `category=${category_exist}`;
-    }
-
-    if (sale_exist.length > 0) {
-      query_string += query_string
-        ? `&sale=${sale_exist}`
-        : `sale=${sale_exist}`;
-    }
-
-    if (nft_exist.length > 0) {
-      query_string += query_string ? `&nft=${nft_exist}` : `nft=${nft_exist}`;
-    }
-
-    if (sort_exist) {
-      query_string += query_string
-        ? `&sort=${sort_exist}`
-        : `sort=${sort_exist}`;
-    }
-
-    if (search_exist) {
-      query_string += query_string
-        ? `&search=${search_exist}`
-        : `search=${search_exist}`;
-    }
-
-    if (nft_collection.length > 0) {
-      query_string += query_string
-        ? `&nft-collection=${nft_collection}`
-        : `nft-collection=${nft_collection}`;
-    }
-
-    if (sale_status) {
-      query_string += query_string
-        ? `&status=${sale_status}`
-        : `status=${sale_status}`;
-    }
-
-    if (nft_category.length > 0) {
-      query_string += query_string
-        ? `&nft-category=${nft_category}`
-        : `nft-category=${nft_category}`;
-    }
-
-    if (price_range.from || price_range.to) {
-      query_string += query_string
-        ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
-        : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
-    }
-
-    if (remove) {
-      setPriceRangeFilter(price_range);
-    }
-
-    if (query_string) {
-      history.push(`/explore-all/${query_string}`);
-    } else {
-      history.push("/explore-all/");
-    }
-  };
-
   const handleKeyPressEvent = (event) => {
     if (event.key === "Enter") {
-      handleTextSearch();
+      handleFilterCheck("", "text_search");
+    }
+  };
+
+  const handleFilterCheck = (input, type, remove = false) => {
+    let sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
+    let nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
+    let sort_exist = query.get("sort");
+    let sort_exist_temp = query.get("sort");
+    let price_range = {
+      from: query.get("minPrice") ? query.get("minPrice") : "",
+      to: query.get("maxPrice") ? query.get("maxPrice") : "",
+    };
+    let search_exist = query.get("search")
+      ? query.get("search").replace("#", "%23")
+      : "";
+    let nft_category = query.get("nft-category")
+      ? query.get("nft-category").split(",")
+      : [];
+    let status_list = query.get("status") ? query.get("status").split(",") : [];
+
+    let nft_collection = query.get("nft-collection")
+      ? query.get("nft-collection").split(",")
+      : [];
+
+    let sale_status = query.get("status");
+    let has_coin = query.get("coin");
+    let has_coin_temp = query.get("coin");
+
+    switch (type) {
+      case "sale_check":
+        if (sale_exist.includes(input.value)) {
+          sale_exist = sale_exist.filter((obj) => obj !== input.value);
+        } else {
+          sale_exist.push(input.value);
+        }
+        break;
+      case "sale_status_NFT":
+        sale_status = remove
+          ? null
+          : status_list.includes(input.value)
+          ? null
+          : input.value;
+
+        break;
+
+      case "NFT_check":
+        if (nft_exist.includes(input.value)) {
+          nft_exist = nft_exist.filter((obj) => obj !== input.value);
+        } else {
+          nft_exist.push(input.value);
+        }
+        break;
+      case "sort_NFT":
+        sort_exist = input.value
+          ? sort_exist_temp === input.value
+            ? null
+            : input.value
+          : null;
+        break;
+      case "text_search":
+        search_exist = search.replace("#", "%23");
+        break;
+      case "NFT_category_check":
+        if (nft_category.includes(input.value)) {
+          nft_category = nft_category.filter((obj) => obj !== input.value);
+        } else {
+          nft_category.push(input.value);
+        }
+        break;
+      case "NFT_collection_check":
+        if (nft_collection.includes(input.value)) {
+          nft_collection = nft_collection.filter((obj) => obj !== input.value);
+        } else {
+          nft_collection.push(input.value);
+        }
+
+        break;
+      case "price_range":
+        setPriceRangeFilter({ ...input });
+        price_range = remove ? { from: null, to: null } : input;
+        if (remove) {
+          setPriceRangeFilter(price_range);
+        }
+        setPriceFilter(true);
+        setToggle(!toggle);
+        break;
+
+      case "has_GLC":
+        has_coin = input.value
+          ? has_coin_temp === input.value
+            ? null
+            : input.value
+          : null;
+        break;
+
+      default:
+    }
+
+    let query_string = "";
+
+    if (sale_exist.length > 0) {
+      query_string += query_string
+        ? `&sale=${sale_exist}`
+        : `sale=${sale_exist}`;
+    }
+
+    if (nft_exist.length > 0) {
+      query_string += query_string ? `&nft=${nft_exist}` : `nft=${nft_exist}`;
+    }
+
+    if (nft_category.length > 0) {
+      query_string += query_string
+        ? `&nft-category=${nft_category}`
+        : `nft-category=${nft_category}`;
+    }
+
+    if (price_range.from || price_range.to) {
+      query_string += query_string
+        ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
+        : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
+    }
+
+    if (nft_collection.length > 0) {
+      query_string += query_string
+        ? `&nft-collection=${nft_collection}`
+        : `nft-collection=${nft_collection}`;
+    }
+
+    if (sort_exist) {
+      query_string += query_string
+        ? `&sort=${sort_exist}`
+        : `sort=${sort_exist}`;
+    }
+
+    if (search_exist) {
+      query_string += query_string
+        ? `&search=${search_exist}`
+        : `search=${search_exist}`;
+    }
+    if (sale_status) {
+      query_string += query_string
+        ? `&status=${sale_status}`
+        : `status=${sale_status}`;
+    }
+
+    if (has_coin) {
+      query_string += query_string ? `&coin=${has_coin}` : `coin=${has_coin}`;
+    }
+
+    if (query_string) {
+      history.push(`/nft-marketplace/cricket-nfts/${query_string}`);
+    } else {
+      history.push(`/nft-marketplace`);
     }
   };
 
@@ -1085,7 +650,6 @@ const ExploreAllNFT = () => {
       ref={ref}
       onClick={(e) => {
         e.preventDefault();
-        onClick(e);
       }}
     >
       {priceRangeFilter.from && priceRangeFilter.to
@@ -1095,7 +659,6 @@ const ExploreAllNFT = () => {
         : priceRangeFilter.to
         ? `Max $${priceRangeFilter.to}`
         : "Price Range"}
-      <BiCaretDown />
     </div>
   ));
 
@@ -1113,55 +676,73 @@ const ExploreAllNFT = () => {
           className={className}
           aria-labelledby={labeledBy}
         >
-          <div className="d-flex">
-            <span className="category-search-block me-1">
-              <FormControl
-                autoFocus
-                className="category-search"
-                placeholder="Min"
-                type="number"
-                onChange={(e) => {
-                  if (e.target.value && e.target.value.length <= 9) {
-                    if (validateCurrency(e.target.value)) {
-                      setPriceRange({ ...priceRange, from: e.target.value });
+          {priceRangeFilter.from ? (
+            <PriceDropdown />
+          ) : (
+            <div className="d-flex1">
+              <span className="category-search-block me-1">
+                <FormControl
+                  autoFocus
+                  className="category-search"
+                  placeholder="Min"
+                  type="number"
+                  onChange={(e) => {
+                    if (e.target.value && e.target.value.length <= 9) {
+                      if (validateCurrency(e.target.value)) {
+                        setPriceRange({ ...priceRange, from: e.target.value });
+                      }
+                    } else {
+                      setPriceRange({ ...priceRange, from: "" });
                     }
-                  } else {
-                    setPriceRange({ ...priceRange, from: "" });
-                  }
-                }}
-                value={priceRange.from}
-              />
-            </span>
-            <span className="category-search-block">
-              <FormControl
-                className="category-search"
-                placeholder="Max"
-                type="number"
-                onChange={(e) => {
-                  if (e.target.value && e.target.value.length <= 9) {
-                    if (validateCurrency(e.target.value)) {
-                      setPriceRange({ ...priceRange, to: e.target.value });
+                  }}
+                  value={priceRange.from}
+                />
+              </span>
+              <span className="category-search-block">
+                <FormControl
+                  className="category-search"
+                  placeholder="Max"
+                  type="number"
+                  onChange={(e) => {
+                    if (e.target.value && e.target.value.length <= 9) {
+                      if (validateCurrency(e.target.value)) {
+                        setPriceRange({ ...priceRange, to: e.target.value });
+                      }
+                    } else {
+                      setPriceRange({ ...priceRange, to: "" });
                     }
-                  } else {
-                    setPriceRange({ ...priceRange, to: "" });
-                  }
-                }}
-                value={priceRange.to}
-              />
-            </span>
-          </div>
-          {/* <hr className="mt-2 mb-1 bot-border-hr" /> */}
+                  }}
+                  value={priceRange.to}
+                />
+              </span>
+            </div>
+          )}
+
           <div className="prifilter-btn">
             <button
+              style={
+                priceRange.from
+                  ? { backgroundColor: "white" }
+                  : { backgroundColor: "#989e99", pointerEvents: "none" }
+              }
               type="button"
-              class="justify-content-center border dropdown-item"
-              onClick={(e) => handlePriceRange(priceRange, true)}
+              class="border-dropdown-item-clr"
+              onClick={(e) =>
+                handleFilterCheck(priceRange, "price_range", true)
+              }
+              // disabled={(() => {
+              //   if (parseInt(priceRange.from) == "") {
+              //     return true;
+              //   } else {
+              //     return false;
+              //   }
+              // })()}
             >
               Clear
             </button>
             <button
               type="button"
-              class="justify-content-center border dropdown-item apply-btn"
+              class="border-dropdown-item"
               disabled={(() => {
                 if (
                   parseInt(priceRange.from) < 0 ||
@@ -1172,13 +753,15 @@ const ExploreAllNFT = () => {
                   parseInt(priceRange.from) > parseInt(priceRange.to)
                 ) {
                   return true;
+                } else if (priceRange.from == "" || priceRange.from === null) {
+                  return true;
                 } else {
                   return false;
                 }
               })()}
-              onClick={(e) => handlePriceRange(priceRange)}
+              onClick={(e) => handleFilterCheck(priceRange, "price_range")}
             >
-              Apply
+              <span>Apply</span>
             </button>
             {React.Children.toArray(children).filter((child) => child)}
           </div>
@@ -1197,16 +780,6 @@ const ExploreAllNFT = () => {
       {/* <AppHelmet /> */}
 
       <section className="explore-nft-section">
-        {/* <article className="explorer-detail">
-          <div className="container-fluid">
-            <div className="row explore-title">
-              <ExploreTitle
-                title={categoryDetail.name}
-                description={categoryDetail.description}
-              />
-            </div>
-          </div>
-        </article> */}
         <article className="explorer-nft-list">
           <div className="sticky-sm-top top-25">
             <div className="container-fluid">
@@ -1223,82 +796,8 @@ const ExploreAllNFT = () => {
                       </span>
                     </span>
                     <span className="d-flex justify-content-between mt-2 w-100 filter-blocks">
-                      <div className="d-flex flex-wrap filter-box">
-                        {/* <Dropdown>
-                        <Dropdown.Toggle
-                          align="start"
-                          drop="start"
-                          as={SaleTypeDropdown}
-                        ></Dropdown.Toggle>
-
-                        <Dropdown.Menu align="start">
-                          {filter.sale.map((obj, i) => (
-                            <Dropdown.Item
-                              key={`sale${i}`}
-                              as="button"
-                              onClick={() => handleSaleCheck(obj)}
-                            >
-                              <FaCheckCircle
-                                color={obj.checked ? "green" : "#ccc"}
-                                className="mb-1 me-2"
-                                size={17}
-                              />
-                              {obj.name}
-                            </Dropdown.Item>
-                          ))}
-                        </Dropdown.Menu>
-                      </Dropdown>
-                      <Dropdown>
-                        <Dropdown.Toggle
-                          align="start"
-                          drop="start"
-                          as={NFTTypeDropdown}
-                        ></Dropdown.Toggle>
-
-                        <Dropdown.Menu align="start">
-                          {filter.nft.map((obj, i) => (
-                            <Dropdown.Item
-                              key={`nft${i}`}
-                              as="button"
-                              onClick={() => handleNFTCheck(obj)}
-                            >
-                              <FaCheckCircle
-                                color={obj.checked ? "green" : "#ccc"}
-                                className="mb-1 me-2"
-                                size={17}
-                              />
-                              {obj.name}
-                            </Dropdown.Item>
-                          ))}
-                        </Dropdown.Menu>
-                      </Dropdown> */}
-                      </div>
+                      <div className="d-flex flex-wrap filter-box"></div>
                       <div className="filt-flex-box explore_block">
-                        <Dropdown className="price-range">
-                          <Dropdown.Toggle
-                            align="start"
-                            drop="down"
-                            as={PriceDropdown}
-                          ></Dropdown.Toggle>
-
-                          <Dropdown.Menu align="start" as={PriceMenu}>
-                            {/* <Dropdown.Item
-                          as="button"
-                          className="justify-content-center border me-2"
-                          // onClick={() => handleCategoryCheck(obj)}
-                        >
-                          Cancel
-                        </Dropdown.Item> */}
-                            {/* <Dropdown.Item
-                          as="button"
-                          className="justify-content-center border bg-light"
-                          // onClick={() => handleCategoryCheck(obj)}
-                        >
-                          Apply
-                        </Dropdown.Item> */}
-                          </Dropdown.Menu>
-                        </Dropdown>
-
                         <Dropdown>
                           <Dropdown.Toggle
                             align="start"
@@ -1311,7 +810,9 @@ const ExploreAllNFT = () => {
                               <Dropdown.Item
                                 key={`nft${i}`}
                                 as="button"
-                                onClick={() => handleSortNFT(obj)}
+                                onClick={() =>
+                                  handleFilterCheck(obj, "sort_NFT")
+                                }
                               >
                                 <FaCheckCircle
                                   color={obj.checked ? "green" : "#ccc"}
@@ -1337,50 +838,12 @@ const ExploreAllNFT = () => {
                       <span
                         role="button"
                         className="search-button"
-                        onClick={handleTextSearch}
+                        onClick={(e) => handleFilterCheck("", "text_search")}
                       >
                         <BiSearch size={15} />
                       </span>
                     </div>
                   </div>
-
-                  {/* <div className="mt-4 mb-4 d-flex flex-wrap">
-                  {filter.sale
-                    .filter((xx) => xx.checked === true)
-                    .map((obj, i) => (
-                      <div
-                        key={`filter-pill${i}`}
-                        className="filter-pill-button"
-                      >
-                        <div className="first">{obj.name}</div>
-                        <div className="last">
-                          <BiX
-                            role="button"
-                            size={20}
-                            onClick={() => handleSaleCheck(obj)}
-                          />
-                        </div>
-                      </div>
-                    ))}
-
-                  {filter.nft
-                    .filter((xx) => xx.checked === true)
-                    .map((obj, i) => (
-                      <div
-                        key={`filter-pill${i}`}
-                        className="filter-pill-button"
-                      >
-                        <div className="first">{obj.name}</div>
-                        <div className="last">
-                          <BiX
-                            role="button"
-                            size={20}
-                            onClick={() => handleNFTCheck(obj)}
-                          />
-                        </div>
-                      </div>
-                    ))}
-                </div> */}
                 </div>
               </div>
             </div>
@@ -1403,7 +866,7 @@ const ExploreAllNFT = () => {
                           className={`clear-btn ${
                             match.params.search ? "" : "disabled"
                           }`}
-                          onClick={() => history.push(`/explore-all`)}
+                          onClick={() => clearFilter()}
                         >
                           Clear all
                         </span>
@@ -1411,6 +874,7 @@ const ExploreAllNFT = () => {
                       <div className="filter-list-items">
                         <h4
                           className="header"
+                          role={"button"}
                           onClick={() =>
                             setFilter({
                               ...filter,
@@ -1418,7 +882,12 @@ const ExploreAllNFT = () => {
                             })
                           }
                         >
-                          Role <IoIosArrowDown role={"button"} />
+                          Role{" "}
+                          {filter.showNFTCategory ? (
+                            <IoIosArrowUp />
+                          ) : (
+                            <IoIosArrowDown />
+                          )}
                         </h4>
                         {filter.showNFTCategory && (
                           <ul>
@@ -1433,49 +902,11 @@ const ExploreAllNFT = () => {
                                     name="checkbox-group"
                                     type="checkbox"
                                     checked={obj.checked}
-                                    onChange={() => handleNFTCategoryCheck(obj)}
-                                  />
-                                  <span className="checkbox__mark">
-                                    <BiCheck />
-                                  </span>
-
-                                  <span className="checkbox__info">
-                                    <span className="title">{obj.name}</span>
-                                  </span>
-                                </label>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                      </div>
-
-                      <div className="filter-list-items">
-                        <h4
-                          className="header"
-                          onClick={() =>
-                            setFilter({
-                              ...filter,
-                              showNFTCollection: !filter.showNFTCollection,
-                            })
-                          }
-                        >
-                          Category <IoIosArrowDown role={"button"} />
-                        </h4>
-                        {filter.showNFTCollection && (
-                          <ul>
-                            {filter.nftCollection.map((obj, i) => (
-                              <li key={`collection-${i}`}>
-                                <label
-                                  htmlFor={`${obj.name}`}
-                                  className="checkbox"
-                                >
-                                  <input
-                                    id={`${obj.name}`}
-                                    name="checkbox-group"
-                                    type="checkbox"
-                                    checked={obj.checked}
                                     onChange={() =>
-                                      handleNFTCollectionCheck(obj)
+                                      handleFilterCheck(
+                                        obj,
+                                        "NFT_category_check"
+                                      )
                                     }
                                   />
                                   <span className="checkbox__mark">
@@ -1495,19 +926,25 @@ const ExploreAllNFT = () => {
                       <div className="filter-list-items">
                         <h4
                           className="header"
+                          role={"button"}
                           onClick={() =>
                             setFilter({
                               ...filter,
-                              showSale: !filter.showSale,
+                              showNFTCollection: !filter.showNFTCollection,
                             })
                           }
                         >
-                          Sale Type <IoIosArrowDown role={"button"} />
+                          Category{" "}
+                          {filter.showNFTCollection ? (
+                            <IoIosArrowUp />
+                          ) : (
+                            <IoIosArrowDown />
+                          )}
                         </h4>
-                        {filter.showSale && (
+                        {filter.showNFTCollection && (
                           <ul>
-                            {filter.sale.map((obj, i) => (
-                              <li key={`sale-type-${i}`}>
+                            {filter.nftCollection.map((obj, i) => (
+                              <li key={`collection-${i}`}>
                                 <label
                                   htmlFor={`${obj.name}`}
                                   className="checkbox"
@@ -1517,7 +954,12 @@ const ExploreAllNFT = () => {
                                     name="checkbox-group"
                                     type="checkbox"
                                     checked={obj.checked}
-                                    onChange={() => handleSaleCheck(obj)}
+                                    onChange={() =>
+                                      handleFilterCheck(
+                                        obj,
+                                        "NFT_collection_check"
+                                      )
+                                    }
                                   />
                                   <span className="checkbox__mark">
                                     <BiCheck />
@@ -1536,18 +978,24 @@ const ExploreAllNFT = () => {
                       <div className="filter-list-items">
                         <h4
                           className="header"
+                          role={"button"}
                           onClick={() =>
                             setFilter({
                               ...filter,
-                              showStatus: !filter.showStatus,
+                              showSale: !filter.showSale,
                             })
                           }
                         >
-                          Sale Status <IoIosArrowDown role={"button"} />
+                          Sale Type{" "}
+                          {filter.showSale ? (
+                            <IoIosArrowUp />
+                          ) : (
+                            <IoIosArrowDown />
+                          )}
                         </h4>
-                        {filter.showStatus && (
+                        {filter.showSale && (
                           <ul>
-                            {filter.status.map((obj, i) => (
+                            {filter.sale.map((obj, i) => (
                               <li key={`sale-type-${i}`}>
                                 <label
                                   htmlFor={`${obj.name}`}
@@ -1558,7 +1006,9 @@ const ExploreAllNFT = () => {
                                     name="checkbox-group"
                                     type="checkbox"
                                     checked={obj.checked}
-                                    onChange={() => handleSaleStatusNFT(obj)}
+                                    onChange={() =>
+                                      handleFilterCheck(obj, "sale_check")
+                                    }
                                   />
                                   <span className="checkbox__mark">
                                     <BiCheck />
@@ -1574,9 +1024,59 @@ const ExploreAllNFT = () => {
                         )}
                       </div>
 
-                      {/* <div className="filter-list-items">
+                      <div className="filter-list-items">
                         <h4
                           className="header"
+                          role={"button"}
+                          onClick={() =>
+                            setFilter({
+                              ...filter,
+                              showStatus: !filter.showStatus,
+                            })
+                          }
+                        >
+                          Sale Status{" "}
+                          {filter.showStatus ? (
+                            <IoIosArrowUp />
+                          ) : (
+                            <IoIosArrowDown />
+                          )}
+                        </h4>
+                        {filter.showStatus && (
+                          <ul>
+                            {filter.status.map((obj, i) => (
+                              <li key={`sale-type-${i}`}>
+                                <label
+                                  htmlFor={`${obj.name}`}
+                                  className="checkbox"
+                                >
+                                  <input
+                                    id={`${obj.name}`}
+                                    name="checkbox-group"
+                                    type="checkbox"
+                                    checked={obj.checked}
+                                    onChange={() =>
+                                      handleFilterCheck(obj, "sale_status_NFT")
+                                    }
+                                  />
+                                  <span className="checkbox__mark">
+                                    <BiCheck />
+                                  </span>
+
+                                  <span className="checkbox__info">
+                                    <span className="title">{obj.name}</span>
+                                  </span>
+                                </label>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+
+                      <div className="filter-list-items">
+                        <h4
+                          className="header"
+                          role={"button"}
                           onClick={() =>
                             setFilter({
                               ...filter,
@@ -1584,7 +1084,12 @@ const ExploreAllNFT = () => {
                             })
                           }
                         >
-                          Auction <IoIosArrowDown role={"button"} />
+                          Auction{" "}
+                          {filter.auction ? (
+                            <IoIosArrowUp />
+                          ) : (
+                            <IoIosArrowDown />
+                          )}
                         </h4>
                         {filter.auction && (
                           <ul>
@@ -1606,7 +1111,9 @@ const ExploreAllNFT = () => {
                                       name="checkbox-group"
                                       type="checkbox"
                                       checked={obj.checked}
-                                      onChange={() => handleSortNFT(obj)}
+                                      onChange={() =>
+                                        handleFilterCheck(obj, "sort_NFT")
+                                      }
                                     />
                                     <span className="checkbox__mark">
                                       <BiCheck />
@@ -1620,25 +1127,51 @@ const ExploreAllNFT = () => {
                               ))}
                           </ul>
                         )}
-                      </div> */}
-
-                      {/* <div className="filter-list-items">
-                        <h4 className="header">
-                          NFT Type{" "}
-                          <IoIosArrowDown
-                            role={"button"}
-                            onClick={() =>
-                              setFilter({
-                                ...filter,
-                                showNFT: !filter.showNFT,
-                              })
-                            }
-                          />
+                      </div>
+                      <div className="filter-list-items">
+                        <h4
+                          className="header"
+                          role={"button"}
+                          onClick={() =>
+                            setFilter({
+                              ...filter,
+                              price: !filter.price,
+                            })
+                          }
+                        >
+                          Price{" "}
+                          {filter.price ? <IoIosArrowUp /> : <IoIosArrowDown />}
                         </h4>
-                        {filter.showNFT && (
+
+                        {filter.price && (
                           <ul>
-                            {filter.nft.map((obj, i) => (
-                              <li key={`nft-type-${i}`}>
+                            <PriceMenu />
+                          </ul>
+                        )}
+                      </div>
+
+                      <div className="filter-list-items">
+                        <h4
+                          className="header"
+                          role={"button"}
+                          onClick={() =>
+                            setFilter({
+                              ...filter,
+                              showGlC: !filter.showGlC,
+                            })
+                          }
+                        >
+                          GL Coin Rewards{" "}
+                          {filter.showGlC ? (
+                            <IoIosArrowUp />
+                          ) : (
+                            <IoIosArrowDown />
+                          )}
+                        </h4>
+                        {filter.showGlC && (
+                          <ul>
+                            {filter.glCoin.map((obj, i) => (
+                              <li key={`has-glc-${i}`}>
                                 <label
                                   htmlFor={`${obj.name}`}
                                   className="checkbox"
@@ -1648,7 +1181,9 @@ const ExploreAllNFT = () => {
                                     name="checkbox-group"
                                     type="checkbox"
                                     checked={obj.checked}
-                                    onChange={() => handleNFTCheck(obj)}
+                                    onChange={() =>
+                                      handleFilterCheck(obj, "has_GLC")
+                                    }
                                   />
                                   <span className="checkbox__mark">
                                     <BiCheck />
@@ -1662,7 +1197,7 @@ const ExploreAllNFT = () => {
                             ))}
                           </ul>
                         )}
-                      </div> */}
+                      </div>
                     </div>
                   </aside>
 
@@ -1680,6 +1215,8 @@ const ExploreAllNFT = () => {
                                 key={i}
                                 image={sample}
                                 isExplore
+                                relativeUrl={`nft-marketplace`}
+                                searchPrefix={`cricket-nfts`}
                               />
                             </div>
                           ))
