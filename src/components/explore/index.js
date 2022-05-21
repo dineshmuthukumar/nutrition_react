@@ -269,11 +269,11 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
 
     const search_filter = query.get("search");
     let noMatchFound =
-      !sale_filters.length &&
-      !nft_filters.length &&
-      sort_filters === 'recently_listed' &&
-      !nft_category.length &&
-      !nft_collection.length;
+      sale_filters.length === 0 &&
+      nft_filters.length === 0 &&
+      !query.get("sort") &&
+      nft_category.length === 0 &&
+      nft_collection.length === 0;
     if ( match.params.category !== 'cricket-bat-nfts' && match.params.category !== 'cricket-player-nfts') 
       history.push('/not-found');
     if (noMatchFound && match.params.search) 

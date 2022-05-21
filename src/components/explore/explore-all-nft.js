@@ -315,15 +315,15 @@ const ExploreAllNFT = () => {
   const has_coin = query.get("coin") ? query.get("coin") : "";
   
   let noMatchFound =
-      !sale_filters.length &&
-      !nft_filters.length &&
-      !search_filters.length &&
-      !status_filters.length &&
-      !price_range.from.length &&
-      !price_range.to.length &&
-      sort_filters === 'recently_listed' &&
-      !nft_category.length &&
-      !nft_collection.length;
+      sale_filters.length === 0 &&
+      nft_filters.length === 0 &&
+      search_filters.length === 0 &&
+      status_filters.length === 0 &&
+      price_range.from.length === 0 &&
+      price_range.to.length === 0 &&
+      !query.get("sort") &&
+      nft_category.length === 0 &&
+      nft_collection.length === 0;
     
     if(noMatchFound && match.params.search)
       history.push("/not-found")
