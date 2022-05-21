@@ -620,7 +620,7 @@ const Header = ({
                         )
                       }
                     >
-                      Amitabh NFTs
+                      Football Memorabilia NFTs
                     </Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown> */}
@@ -981,7 +981,7 @@ const Header = ({
                           )
                         }
                       >
-                        Amitabh NFTs
+                        Football Memorabilia NFTs
                       </Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown> */}

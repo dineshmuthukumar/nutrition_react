@@ -6,7 +6,11 @@ import TrendingList from "../components/trending-list";
 const TrendingNFTs = () => {
   return (
     <>
-      <Header bgImage />
+      <Header
+        bgImage
+        title="Trending NFTs | Jump.Trade"
+        description="Make your bid on the trending cricket NFTs on the jump.trade NFT marketplace and own these supreme NFTs now!"
+      />
       <TrendingList />
       <Footer />
     </>

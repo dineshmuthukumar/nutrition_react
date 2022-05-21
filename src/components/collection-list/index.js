@@ -15,9 +15,9 @@ const CollectionList = () => {
               <h2 className="section-heading">
                 <span className="main-title">NFT Collections</span>{" "}
               </h2>
-              <h1 className="section-heading">
+              <h2 className="section-heading">
                 <span className="sub-title">CHECK IT OUT</span>
-              </h1>
+              </h2>
               <p className="collection-para-desc">
                 The Jump.trade NFT marketplace enables you to buy NFTs belonging
                 to 2 categories - the Meta Cricket League NFTs and the Meta

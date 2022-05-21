@@ -20,6 +20,7 @@ import { nftShowAllApi } from "../../api/methods";
 import "./style.scss";
 import { FormControl } from "react-bootstrap";
 import { validateCurrency } from "../../utils/common";
+import AppHelmet from "../helmet";
 
 const ExploreAllNFT = () => {
   const history = useHistory();
@@ -312,9 +313,9 @@ const ExploreAllNFT = () => {
       ? query.get("nft-collection").split(",")
       : [];
 
-  const has_coin = query.get("coin") ? query.get("coin") : "";
-  
-  let noMatchFound =
+    const has_coin = query.get("coin") ? query.get("coin") : "";
+
+    let noMatchFound =
       sale_filters.length === 0 &&
       nft_filters.length === 0 &&
       search_filters.length === 0 &&
@@ -324,21 +325,21 @@ const ExploreAllNFT = () => {
       !query.get("sort") &&
       nft_category.length === 0 &&
       nft_collection.length === 0;
-    
-    if(noMatchFound && match.params.search)
-      history.push("/not-found")
-    else showAllFilteredNFTs(
-      1,
-      nft_filters,
-      sale_filters,
-      sort_filters,
-      search_filters,
-      nft_category,
-      nft_collection,
-      status_filters,
-      price_range,
-      has_coin
-    );
+
+    if (noMatchFound && match.params.search) history.push("/not-found");
+    else
+      showAllFilteredNFTs(
+        1,
+        nft_filters,
+        sale_filters,
+        sort_filters,
+        search_filters,
+        nft_category,
+        nft_collection,
+        status_filters,
+        price_range,
+        has_coin
+      );
   }, [query]);
 
   const showAllNFTs = async (
@@ -776,6 +777,8 @@ const ExploreAllNFT = () => {
         onHide={() => history.goBack()}
         children={popDetails.children}
       />
+      {/* <AppHelmet /> */}
+
       <section className="explore-nft-section">
         <article className="explorer-nft-list">
           <div className="sticky-sm-top top-25">

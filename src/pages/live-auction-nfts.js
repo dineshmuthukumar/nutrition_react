@@ -6,7 +6,11 @@ import LiveAuctionsList from "../components/live-auction-list";
 const LiveAuctionsNFTs = () => {
   return (
     <>
-      <Header bgImage />
+      <Header
+        bgImage
+        title="Live Auction |Jump.Trade"
+        description="Find the most-desirable cricket NFTs on jump.trade marketplace that are live on auction here. Go make your bid now to own them!"
+      />
       <LiveAuctionsList />
       <Footer />
     </>

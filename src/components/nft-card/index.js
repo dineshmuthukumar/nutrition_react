@@ -325,7 +325,9 @@ const NFTCard = ({
           if (onsale || favouriteNFTs || recentSold) {
             if (relativeUrl)
               return search
-                ? `/${relativeUrl}/${searchPrefix ? searchPrefix + '/' + search : search}/order/details/${nft?.slug}/${nft?.order_slug}`
+                ? `/${relativeUrl}/${
+                    searchPrefix ? searchPrefix + "/" + search : search
+                  }/order/details/${nft?.slug}/${nft?.order_slug}`
                 : `/${relativeUrl}/order/details/${nft?.slug}/${nft?.order_slug}`;
             else
               return search
@@ -334,7 +336,9 @@ const NFTCard = ({
           } else if (nft?.is_on_sale) {
             if (relativeUrl)
               return search
-                ? `/${relativeUrl}/${searchPrefix ? searchPrefix + '/' + search : search}/order/details/${nft?.slug}/${nft?.order_details?.slug}`
+                ? `/${relativeUrl}/${
+                    searchPrefix ? searchPrefix + "/" + search : search
+                  }/order/details/${nft?.slug}/${nft?.order_details?.slug}`
                 : `/${relativeUrl}/order/details/${nft?.slug}/${nft?.order_details?.slug}`;
             else
               return search
@@ -343,7 +347,9 @@ const NFTCard = ({
           } else {
             if (relativeUrl)
               return search
-                ? `/${relativeUrl}/${searchPrefix ? searchPrefix + '/' + search : search}/details/${nft?.slug}`
+                ? `/${relativeUrl}/${
+                    searchPrefix ? searchPrefix + "/" + search : search
+                  }/details/${nft?.slug}`
                 : `/${relativeUrl}/details/${nft?.slug}`;
             else
               return search

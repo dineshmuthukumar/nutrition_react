@@ -3,10 +3,12 @@ import React from "react";
 import { BsExclamationCircle } from "react-icons/bs";
 import { Navbar, Nav, Dropdown, Container } from "react-bootstrap";
 import jumpTradeLogo from "./../images/jump-trade-logo.svg";
+import AppHelmet from "../components/helmet/index";
 
 const NotFound = () => {
   return (
     <>
+      <AppHelmet title="" description="" image="" hideCanonical />
       <section className="notfound-section">
         <div className="container">
           <div
