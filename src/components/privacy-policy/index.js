@@ -39,10 +39,9 @@ const PrivacyComponent = () => {
                   </p>
                   <p>
                     For all purposes related to user privacy, the legal entity
-                    shall be Guardian Blockchain Labs Pte. Ltd and Appstars
-                    Applications Pvt. Ltd. Any legal concerns should only be
-                    settled in the courts/jurisdiction of Singapore or the
-                    United States.
+                    shall be Guardian Blockchain Labs Pte. Ltd. Any legal
+                    concerns should only be settled in the courts/jurisdiction
+                    of Singapore or the United States.
                   </p>
                 </div>
                 <div className="all-para-style">
