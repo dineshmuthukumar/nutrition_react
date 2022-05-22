@@ -14,11 +14,10 @@ const TermsAndConditions = () => {
                   <p>
                     JUMP.TRADE is owned and operated by Guardian Blockchain Labs
                     Pte. Ltd., a Limited Liability Company registered in
-                    Singapore and the United States of America, a company
-                    registered in India. The Platform allows and facilitates
-                    acquiring of “Digital Collectible(s) or Collectible(s)”
-                    (Defined Below) through “Purchase” (Defined Below) or
-                    “Auction” (Defined Below).
+                    Singapore and the United States of America. The Platform
+                    allows and facilitates acquiring of “Digital Collectible(s)
+                    or Collectible(s)” (Defined Below) through “Purchase”
+                    (Defined Below) or “Auction” (Defined Below).
                   </p>
                   <p>
                     JUMP.TRADE operates web applications, web services and

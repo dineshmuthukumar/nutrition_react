@@ -10,7 +10,7 @@ const PrivacyComponent = () => {
               <div className="privacy-inner">
                 <div className="all-para-style">
                   <h3>PRIVACY POLICY</h3>
-                  <span>Last Updated: May 09, 2022</span>
+                  <span>Last Updated: May 22, 2022</span>
                   <br />
                   <br />
 
