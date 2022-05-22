@@ -250,8 +250,8 @@ const Footer = () => {
           <div className="copyrights me-3">
             © All rights reserved |{" "}
             {/* <a href="https://guardianlink.io/">A GuardianLink Brand</a>,   */}
-            Appstars Applications Pvt. Ltd., India & Guardian Blockchain Labs
-            Pte. Ltd., Singapore.
+            {/* Appstars Applications Pvt. Ltd., India &  */}
+            Guardian Blockchain Labs Pte. Ltd., Singapore.
           </div>
           <div class="vr"></div>
 
