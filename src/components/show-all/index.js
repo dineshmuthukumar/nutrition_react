@@ -184,7 +184,7 @@ const ShowAll = ({ categories }) => {
       to: query.get("maxPrice") ? query.get("maxPrice") : "",
     };
     const sort = query.get("sort") ? query.get("sort") : "";
-    const noMatchFound = sale_filters.length === 0 && nft_filters.length === 0 && price_range.from.length === 0 && price_range.to.length === 0 && sort.length === 0 && category_filters.length === 0 && search_filter.length === 0;
+    const noMatchFound = sale_filters.length === 0 && nft_filters.length === 0 && price_range.from.length === 0 && price_range.to.length === 0 && sort.length === 0 && category_filters.length === 0 && search_filter.length === 0 && sale_status.length === 0;
     if (noMatchFound && match.params.search) history.push("/not-found")
 
     showAllFilteredNFTs(
