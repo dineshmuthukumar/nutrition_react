@@ -1,29 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+///import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import Banner from "../components/banner";
+//import Banner from "../components/banner";
 import LiveAuctions from "../components/live-auctions";
 import Trending from "../components/trending";
-import HotCollections from "../components/hot-collections";
-import TopBuyers from "../components/top-buyers";
-import TopSellers from "../components/top-sellers";
+//import HotCollections from "../components/hot-collections";
+//import TopBuyers from "../components/top-buyers";
+//import TopSellers from "../components/top-sellers";
 import RecentlySoldNFT from "../components/recently-sold-nft";
 import ShowAll from "../components/show-all";
 import { useHistory, useRouteMatch } from "react-router";
 
-import {
-  setCookiesByName,
-  removeCookiesByName,
-  setCookies,
-} from "../utils/cookies";
+import { setCookiesByName, setCookies } from "../utils/cookies";
 import { user_load_by_token_thunk } from "../redux/thunk/user_thunk";
 import { nftCategoriesApi, userFavedNFTOrders } from "../api/methods";
 import useQuery from "../hook/useQuery";
-import FavouriteNFTs from "../components/favourite-NFTs";
+//import FavouriteNFTs from "../components/favourite-NFTs";
 import HeroBanner from "../components/hero-banner";
-import NewDropSection from "../components/new-drop-section";
+//import NewDropSection from "../components/new-drop-section";
 import CollectionList from "../components/collection-list";
 
 const Home = () => {
@@ -43,7 +39,7 @@ const Home = () => {
   const [favPage, setFavPage] = useState(1);
   const [favList, setFavList] = useState([]);
   const [favLoading, setFavLoading] = useState(false);
-  const [favHasNext, setFavHasNext] = useState(false);
+  // const [favHasNext, setFavHasNext] = useState(false);
 
   const categoriesList = async (page) => {
     try {
@@ -78,6 +74,7 @@ const Home = () => {
     if (user) {
       getUserFavedNFTOrders();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   const getUserFavedNFTOrders = async () => {

@@ -3,9 +3,9 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Offcanvas } from "react-bootstrap";
 import { FaTimesCircle } from "react-icons/fa";
-import BidValue from "../bid-value";
+//import BidValue from "../bid-value";
 
-import ErrorText from "./error-text";
+//import ErrorText from "./error-text";
 import ToolTip from "../tooltip";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
 import { bidBuyError, validateQuantity } from "../../utils/common";
@@ -32,8 +32,8 @@ const NFTCancelTheSale = ({
   const history = useHistory();
   const { user } = useSelector((state) => state.user.data);
   const [success, setSuccess] = useState(false);
-  const [bidCancel, setBidCancel] = useState(false);
-  const [buyCancel, setBuyCancel] = useState(false);
+  //  const [bidCancel, setBidCancel] = useState(false);
+  //  const [buyCancel, setBuyCancel] = useState(false);
   const [cancelQuantity, setCancelQuantity] = useState("");
   const erc721 = nft.nft_type === "erc721";
 

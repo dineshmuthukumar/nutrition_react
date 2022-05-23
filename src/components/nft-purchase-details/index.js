@@ -1,24 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import dayjs from "dayjs";
-import { useParams } from "react-router";
+//import { useParams } from "react-router";
 import { useSelector } from "react-redux";
-import { toast } from "react-toastify";
+//import { toast } from "react-toastify";
 import { Table } from "react-bootstrap";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
 
 import BidName from "./bid-name";
 import ToolTip from "../tooltip";
 import userImg from "../../images/user_1.jpg";
-import loaderGif from "../../images/loader.gif";
+//import loaderGif from "../../images/loader.gif";
 import polygon from "../../images/marketplace/polygon.svg";
 import { currencyFormat } from "../../utils/common";
-import { TableLoader } from "../nft-basic-details/content-loader";
+//import { TableLoader } from "../nft-basic-details/content-loader";
 
 import "./style.scss";
 
 const NFTPurchaseDetails = ({ nft, list = [] }) => {
   const { user } = useSelector((state) => state.user.data);
-  const erc721 = nft?.nft_type === "erc721";
+  //const erc721 = nft?.nft_type === "erc721";
 
   return (
     <>
@@ -102,8 +102,8 @@ const NFTPurchaseDetails = ({ nft, list = [] }) => {
                 <td className="text-center">
                   {detail?.txid ? (
                     <>
-                      <a href={detail?.txid} target={"_blank"}>
-                        <img src={polygon} />
+                      <a href={detail?.txid} target={"_blank"} rel="noreferrer">
+                        <img src={polygon} alt="details" />
                       </a>
                     </>
                   ) : (

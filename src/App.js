@@ -4,12 +4,11 @@ import {
   Switch,
   Route,
   useLocation,
-  Redirect,
 } from "react-router-dom";
 
 import { FaTimes } from "react-icons/fa";
 import { useSelector, connect, useDispatch } from "react-redux";
-import { useHistory, useRouteMatch } from "react-router";
+import { useHistory } from "react-router";
 
 import NFTCounter from "./components/nft-counter";
 import { change_lang_action } from "./redux/actions/lang_action";
@@ -132,6 +131,7 @@ function App(props) {
       setOnline(navigator.onLine);
     });
     getServerTime();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -167,7 +167,7 @@ function App(props) {
               //   </div>
               // </div>
               <div className="d-flex gif-loader">
-                <img src={loader} />
+                <img src={loader} alt="loader" />
               </div>
             }
           >
@@ -300,7 +300,11 @@ const WebContainer = () => {
         />
         <Route exact path="/latimes-NFT" component={Latimes} />
 
-        <Route exact path="/nft-marketplace/sale-history" component={RecentlySold} />
+        <Route
+          exact
+          path="/nft-marketplace/sale-history"
+          component={RecentlySold}
+        />
         {/* <Route
           exact
           path="/nft-marketplace/sale-history/:search?/order/details/:slug/:orderSlug"
@@ -311,7 +315,11 @@ const WebContainer = () => {
           path="/nft-marketplace/sale-history/:search?/details/:slug"
           component={RecentlySold}
         /> */}
-        <Route exact path="/nft-marketplace/live-auction" component={LiveAuctionsNFTs} />
+        <Route
+          exact
+          path="/nft-marketplace/live-auction"
+          component={LiveAuctionsNFTs}
+        />
         {/* <Route
           exact
           path="/nft-marketplace/live-auction/:search?/order/details/:slug/:orderSlug"
@@ -322,7 +330,11 @@ const WebContainer = () => {
           path="/nft-marketplace/live-auction/:search?/details/:slug"
           component={LiveAuctionsNFTs}
         /> */}
-        <Route exact path="/nft-marketplace/trending-nfts" component={TrendingNFTs} />
+        <Route
+          exact
+          path="/nft-marketplace/trending-nfts"
+          component={TrendingNFTs}
+        />
         {/* <Route
           exact
           path="/nft-marketplace/trending-nfts/:search?/order/details/:slug/:orderSlug"
@@ -333,7 +345,11 @@ const WebContainer = () => {
           path="/nft-marketplace/trending-nfts/:search?/details/:slug"
           component={TrendingNFTs}
         /> */}
-        <Route exact path="/nft-marketplace/favorites" component={MyFavorites} />
+        <Route
+          exact
+          path="/nft-marketplace/favorites"
+          component={MyFavorites}
+        />
         {/* <Route
           exact
           path="/nft-marketplace/favorites/:search?/order/details/:slug/:orderSlug"
@@ -344,7 +360,7 @@ const WebContainer = () => {
           path="/nft-marketplace/favorites/:search?/details/:slug"
           component={MyFavorites}
         /> */}
-         <Route
+        <Route
           exact
           path="/creator-application"
           component={CreatorApplication}
@@ -386,19 +402,19 @@ const mapDispatchToProps = (dispatch) => {
 
 export default connect(null, mapDispatchToProps)(App);
 
-const PrivateRoute = ({ component: Component, authed, ...rest }) => {
-  const user = useSelector((state) => state.user);
+// const PrivateRoute = ({ component: Component, authed, ...rest }) => {
+//   const user = useSelector((state) => state.user);
 
-  return (
-    <Route
-      {...rest}
-      render={(props) =>
-        user.login ? (
-          <Component {...props} />
-        ) : (
-          <Redirect to={{ pathname: "/", state: { from: props.location } }} />
-        )
-      }
-    />
-  );
-};
+//   return (
+//     <Route
+//       {...rest}
+//       render={(props) =>
+//         user.login ? (
+//           <Component {...props} />
+//         ) : (
+//           <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+//         )
+//       }
+//     />
+//   );
+// };

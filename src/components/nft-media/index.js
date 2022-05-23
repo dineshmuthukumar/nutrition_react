@@ -41,7 +41,7 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
 
   const [modalShow, setModalShow] = useState(false);
   const [liked, setLiked] = useState(false);
-  const [bgColor, setBgColor] = useState();
+  //const [bgColor, setBgColor] = useState();
   const { user } = useSelector((state) => state.user.data);
 
   const [listedShare, setListedShare] = useState(false);
@@ -55,6 +55,7 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
     ) {
       setListedShare(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFav]);
 
   const handleLike = async () => {
@@ -273,7 +274,7 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
           {roleData && (
             <div className="player-type">
               <h6>{roleData?.name}</h6>
-              <img src={roleData?.value} />
+              <img src={roleData?.value} alt="Player-type" />
             </div>
           )}
 
@@ -286,7 +287,7 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
           {levelData && (
             <div className="player-level">
               <h6>{levelData?.name}</h6>
-              <img src={levelData?.value} />
+              <img src={levelData?.value} alt="Player-level" />
             </div>
           )}
         </article>

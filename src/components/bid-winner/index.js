@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import dayjs from "dayjs";
-import { useParams } from "react-router";
+//import { useParams } from "react-router";
 import { toast } from "react-toastify";
 import { Modal, Table } from "react-bootstrap";
 import { BiX } from "react-icons/bi";
@@ -14,7 +14,7 @@ import "./style.scss";
 import { useSelector } from "react-redux";
 
 const BidWinner = ({ winner, orderSlug, histories }) => {
-  const { slug } = useParams();
+  //const { slug } = useParams();
   const [modalShow, setModalShow] = useState(false);
   const [bidHistories, setBidHistories] = useState({});
   const [page, setPage] = useState(1);

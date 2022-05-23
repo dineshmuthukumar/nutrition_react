@@ -24,7 +24,7 @@ import { artistApi } from "../api/base-methods";
 import OwnerList from "../components/owner-list";
 import Footer from "../components/footer/index";
 import NFTOrderDetails from "../components/nft-order-details/index";
-import AdditionalPerks from "../components/additional-perks/index";
+//import AdditionalPerks from "../components/additional-perks/index";
 import NFTPlayerStats from "../components/nft-player-stats";
 
 const Details = () => {
@@ -64,6 +64,7 @@ const Details = () => {
         setPutOnSalePop(!putOnSalePop);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOwner, availableQty]);
 
   useEffect(() => {
@@ -76,6 +77,7 @@ const Details = () => {
         ]);
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOwner]);
 
   useEffect(() => {
@@ -99,6 +101,7 @@ const Details = () => {
       // }
       nftOwners();
       nftTransaction();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     });
   }, []);
 

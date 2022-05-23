@@ -4,7 +4,7 @@ import ReadMoreReact from "read-more-react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaCheckCircle } from "react-icons/fa";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
-import { VscChevronRight } from "react-icons/vsc";
+//import { VscChevronRight } from "react-icons/vsc";
 import _ from "lodash";
 import dayjs from "dayjs";
 import { Popover, OverlayTrigger } from "react-bootstrap";
@@ -17,10 +17,10 @@ import NFTPlaceBid from "../nft-place-bid";
 import NFTPlaceBuy from "../nft-place-buy";
 import NFTCancelTheSale from "../nft-cancel-the-sale";
 import NFTCounter from "../nft-counter";
-import HelpLine from "../help-line";
-import { ReactComponent as DiscordSvg } from "./../../icons/discord_logo.svg";
+//import HelpLine from "../help-line";
+//import { ReactComponent as DiscordSvg } from "./../../icons/discord_logo.svg";
 import { currencyFormat } from "../../utils/common";
-import postImages from "../../images/post1.png";
+//import postImages from "../../images/post1.png";
 import userImg from "../../images/user_1.jpg";
 import NFTTimeLeft from "../nft-time-left/index";
 
@@ -69,7 +69,7 @@ const NFTOrderBaseDetails = ({
   const { user, cart } = useSelector((state) => state);
   const User = user.data.user;
   const Cart = cart.data;
-  const [modalShow, setModalShow] = useState(false);
+  //const [modalShow, setModalShow] = useState(false);
   const [acceptBidConfirm, setAcceptBidConfirm] = useState(false);
   const [acceptBidSucess, setAcceptBidSucess] = useState(false);
   const [inCart, setInCart] = useState(false);
@@ -79,7 +79,7 @@ const NFTOrderBaseDetails = ({
   const isBuy = _.get(nft, "order_details.is_buy", false);
   const isOwner = _.get(nft, "order_details.owned", false);
   const orderDetails = _.get(nft, "order_details", {});
-  const ownerOrderDetails = _.get(nft, "owner_details.orders", []);
+  //const ownerOrderDetails = _.get(nft, "owner_details.orders", []);
 
   const handleAcceptBid = async () => {
     setAcceptBidConfirm(!acceptBidConfirm);
@@ -130,6 +130,7 @@ const NFTOrderBaseDetails = ({
         setInCart(false);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cart]);
 
   return (
@@ -696,7 +697,7 @@ const NFTOrderBaseDetails = ({
                             overlay={KycPopOverCart()}
                           >
                             <button class="add-to-cart-btn">
-                              <img src={CartIcon} /> Add to Cart
+                              <img src={CartIcon} alt="Carticon" /> Add to Cart
                             </button>
                           </OverlayTrigger>
                         ) : (
@@ -715,7 +716,7 @@ const NFTOrderBaseDetails = ({
                               }
                             }}
                           >
-                            <img src={CartIcon} />{" "}
+                            <img src={CartIcon} alt="CartIcon" />{" "}
                             {!inCart ? "Add to Cart" : "Added to Cart"}
                           </button>
                         )}
@@ -892,7 +893,7 @@ const NFTOrderBaseDetails = ({
                         overlay={KycPopOverCart()}
                       >
                         <button class="add-to-cart-btn full-width">
-                          <img src={CartIcon} /> Add to Cart
+                          <img src={CartIcon} alt="CartIcon1" /> Add to Cart
                         </button>
                       </OverlayTrigger>
                     ) : (
@@ -911,7 +912,7 @@ const NFTOrderBaseDetails = ({
                           }
                         }}
                       >
-                        <img src={CartIcon} />{" "}
+                        <img src={CartIcon} alt="CartIcon2" />{" "}
                         {!inCart ? "Add to Cart" : "Added to Cart"}
                       </button>
                     )}
@@ -994,7 +995,7 @@ const NFTOrderBaseDetails = ({
                       Buy {currencyFormat(orderDetails.buy_amount, "USD")}
                     </button>
                     <button class="add-to-cart-btn">
-                      <img src={CartIcon} /> Add to Cart
+                      <img src={CartIcon} alt="CartIcon3" /> Add to Cart
                     </button>
                   </OverlayTrigger>
                 ) : (
@@ -1019,7 +1020,7 @@ const NFTOrderBaseDetails = ({
                         }
                       }}
                     >
-                      <img src={CartIcon} />{" "}
+                      <img src={CartIcon} alt="CartIcon4" />{" "}
                       {!inCart ? "Add to Cart" : "Added to Cart"}
                     </button>
                   </>

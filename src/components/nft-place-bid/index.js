@@ -429,6 +429,7 @@ const NFTPlaceBid = ({
                           <a
                             href="https://nft.latimes.com/terms-and-conditions/"
                             target={"_blank"}
+                            rel="noreferrer"
                           >
                             Terms and Conditions.
                           </a>{" "}

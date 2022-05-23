@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import ReadMoreReact from "read-more-react";
 import { useSelector } from "react-redux";
@@ -8,7 +8,7 @@ import _ from "lodash";
 import BidValue from "../bid-value";
 import ToolTip from "../tooltip";
 import NFTPutOnSale from "../nft-put-on-sale";
-import { ReactComponent as DiscordSvg } from "./../../icons/discord_logo.svg";
+//import { ReactComponent as DiscordSvg } from "./../../icons/discord_logo.svg";
 
 import "./style.scss";
 import { Popover, OverlayTrigger } from "react-bootstrap";

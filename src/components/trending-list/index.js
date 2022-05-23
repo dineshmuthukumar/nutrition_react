@@ -5,14 +5,14 @@ import { useHistory, useParams } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 import { FaCheckCircle } from "react-icons/fa";
 import { trendingNFTsApi } from "../../api/methods";
-import { FormControl } from "react-bootstrap";
+//import { FormControl } from "react-bootstrap";
 
 import NFTCard from "../nft-card";
 import sample from "../../images/sampleNFT.jpg";
 import "./style.scss";
 import useQuery from "../../hook/useQuery";
 import { BiCaretDown } from "react-icons/bi";
-import { validateCurrency } from "../../utils/common";
+//import { validateCurrency } from "../../utils/common";
 
 const TrendingList = () => {
   const history = useHistory();
@@ -74,6 +74,7 @@ const TrendingList = () => {
     if (price_range.from || price_range.to) {
       setPriceRangeFilter(price_range);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug, query]);
 
   useEffect(() => {
@@ -82,8 +83,6 @@ const TrendingList = () => {
       : "bid_count_desc";
 
     const price_range = {
-      from: query.get("minPrice"),
-      to: query.get("maxPrice"),
       from: query.get("minPrice") ? query.get("minPrice") : "",
       to: query.get("maxPrice") ? query.get("maxPrice") : "",
     };
@@ -136,8 +135,6 @@ const TrendingList = () => {
         ? query.get("sort")
         : "bid_count_desc";
       const price_range = {
-        from: query.get("minPrice"),
-        to: query.get("maxPrice"),
         from: query.get("minPrice") ? query.get("minPrice") : "",
         to: query.get("maxPrice") ? query.get("maxPrice") : "",
       };
@@ -164,118 +161,118 @@ const TrendingList = () => {
     </div>
   ));
 
-  const PriceDropdown = React.forwardRef(({ onClick }, ref) => (
-    <div
-      className="filter-drop-btn"
-      ref={ref}
-      onClick={(e) => {
-        e.preventDefault();
-        onClick(e);
-      }}
-    >
-      {priceRangeFilter.from && priceRangeFilter.to
-        ? `Price Range $${priceRangeFilter.from} - $${priceRangeFilter.to}`
-        : priceRangeFilter.from
-        ? `Min $${priceRangeFilter.from}`
-        : priceRangeFilter.to
-        ? `Max $${priceRangeFilter.to}`
-        : "Price Range"}
-      <BiCaretDown />
-    </div>
-  ));
+  // const PriceDropdown = React.forwardRef(({ onClick }, ref) => (
+  //   <div
+  //     className="filter-drop-btn"
+  //     ref={ref}
+  //     onClick={(e) => {
+  //       e.preventDefault();
+  //       onClick(e);
+  //     }}
+  //   >
+  //     {priceRangeFilter.from && priceRangeFilter.to
+  //       ? `Price Range $${priceRangeFilter.from} - $${priceRangeFilter.to}`
+  //       : priceRangeFilter.from
+  //       ? `Min $${priceRangeFilter.from}`
+  //       : priceRangeFilter.to
+  //       ? `Max $${priceRangeFilter.to}`
+  //       : "Price Range"}
+  //     <BiCaretDown />
+  //   </div>
+  // ));
 
   const [priceRangeFilter, setPriceRangeFilter] = useState({
     from: "",
     to: "",
   });
 
-  const PriceMenu = React.forwardRef(
-    ({ children, style, className, "aria-labelledby": labeledBy }, ref) => {
-      const [priceRange, setPriceRange] = useState({
-        from: query.get("minPrice") ? query.get("minPrice") : "",
-        to: query.get("maxPrice") ? query.get("maxPrice") : "",
-      });
+  // const PriceMenu = React.forwardRef(
+  //   ({ children, style, className, "aria-labelledby": labeledBy }, ref) => {
+  //     const [priceRange, setPriceRange] = useState({
+  //       from: query.get("minPrice") ? query.get("minPrice") : "",
+  //       to: query.get("maxPrice") ? query.get("maxPrice") : "",
+  //     });
 
-      return (
-        <div
-          ref={ref}
-          style={style}
-          className={className}
-          aria-labelledby={labeledBy}
-        >
-          <div className="d-flex">
-            <span className="category-search-block me-1">
-              <FormControl
-                autoFocus
-                className="category-search"
-                placeholder="Min"
-                type="number"
-                onChange={(e) => {
-                  if (e.target.value && e.target.value.length <= 9) {
-                    if (validateCurrency(e.target.value)) {
-                      setPriceRange({ ...priceRange, from: e.target.value });
-                    }
-                  } else {
-                    setPriceRange({ ...priceRange, from: "" });
-                  }
-                }}
-                value={priceRange.from}
-              />
-            </span>
-            <span className="category-search-block">
-              <FormControl
-                className="category-search"
-                placeholder="Max"
-                type="number"
-                onChange={(e) => {
-                  if (e.target.value && e.target.value.length <= 9) {
-                    if (validateCurrency(e.target.value)) {
-                      setPriceRange({ ...priceRange, to: e.target.value });
-                    }
-                  } else {
-                    setPriceRange({ ...priceRange, to: "" });
-                  }
-                }}
-                value={priceRange.to}
-              />
-            </span>
-          </div>
-          {/* <hr className="mt-2 mb-1 bot-border-hr" /> */}
-          <div className="prifilter-btn">
-            <button
-              type="button"
-              className="justify-content-center border dropdown-item"
-              onClick={(e) => handlePriceRange(priceRange, true)}
-            >
-              Clear
-            </button>
-            <button
-              type="button"
-              className="justify-content-center border dropdown-item apply-btn"
-              disabled={(() => {
-                if (
-                  parseInt(priceRange.from) < 0 ||
-                  parseInt(priceRange.to) < 0
-                ) {
-                  return true;
-                } else if (
-                  parseInt(priceRange.from) > parseInt(priceRange.to)
-                ) {
-                  return true;
-                } else {
-                  return false;
-                }
-              })()}
-              onClick={(e) => handlePriceRange(priceRange)}
-            >
-              Apply
-            </button>
-            {React.Children.toArray(children).filter((child) => child)}
-          </div>
-        </div>
-      );
-    }
-  );
+  //     return (
+  //       <div
+  //         ref={ref}
+  //         style={style}
+  //         className={className}
+  //         aria-labelledby={labeledBy}
+  //       >
+  //         <div className="d-flex">
+  //           <span className="category-search-block me-1">
+  //             <FormControl
+  //               autoFocus
+  //               className="category-search"
+  //               placeholder="Min"
+  //               type="number"
+  //               onChange={(e) => {
+  //                 if (e.target.value && e.target.value.length <= 9) {
+  //                   if (validateCurrency(e.target.value)) {
+  //                     setPriceRange({ ...priceRange, from: e.target.value });
+  //                   }
+  //                 } else {
+  //                   setPriceRange({ ...priceRange, from: "" });
+  //                 }
+  //               }}
+  //               value={priceRange.from}
+  //             />
+  //           </span>
+  //           <span className="category-search-block">
+  //             <FormControl
+  //               className="category-search"
+  //               placeholder="Max"
+  //               type="number"
+  //               onChange={(e) => {
+  //                 if (e.target.value && e.target.value.length <= 9) {
+  //                   if (validateCurrency(e.target.value)) {
+  //                     setPriceRange({ ...priceRange, to: e.target.value });
+  //                   }
+  //                 } else {
+  //                   setPriceRange({ ...priceRange, to: "" });
+  //                 }
+  //               }}
+  //               value={priceRange.to}
+  //             />
+  //           </span>
+  //         </div>
+  //         {/* <hr className="mt-2 mb-1 bot-border-hr" /> */}
+  //         <div className="prifilter-btn">
+  //           <button
+  //             type="button"
+  //             className="justify-content-center border dropdown-item"
+  //             onClick={(e) => handlePriceRange(priceRange, true)}
+  //           >
+  //             Clear
+  //           </button>
+  //           <button
+  //             type="button"
+  //             className="justify-content-center border dropdown-item apply-btn"
+  //             disabled={(() => {
+  //               if (
+  //                 parseInt(priceRange.from) < 0 ||
+  //                 parseInt(priceRange.to) < 0
+  //               ) {
+  //                 return true;
+  //               } else if (
+  //                 parseInt(priceRange.from) > parseInt(priceRange.to)
+  //               ) {
+  //                 return true;
+  //               } else {
+  //                 return false;
+  //               }
+  //             })()}
+  //             onClick={(e) => handlePriceRange(priceRange)}
+  //           >
+  //             Apply
+  //           </button>
+  //           {React.Children.toArray(children).filter((child) => child)}
+  //         </div>
+  //       </div>
+  //     );
+  //   }
+  // );
 
   const handleSortNFT = (input) => {
     const sort_exist = input.value;
@@ -298,36 +295,36 @@ const TrendingList = () => {
 
     history.push(`/nft-marketplace/trending-nfts?${query_string}`);
   };
-  const handlePriceRange = (priceRange, remove = false) => {
-    setPriceRangeFilter({ ...priceRange });
+  // const handlePriceRange = (priceRange, remove = false) => {
+  //   setPriceRangeFilter({ ...priceRange });
 
-    const sort_exist = query.get("sort");
+  //   const sort_exist = query.get("sort");
 
-    const price_range = remove ? { from: null, to: null } : priceRange;
+  //   const price_range = remove ? { from: null, to: null } : priceRange;
 
-    let query_string = "";
+  //   let query_string = "";
 
-    if (sort_exist) {
-      query_string += query_string
-        ? `&sort=${sort_exist}`
-        : `sort=${sort_exist}`;
-    }
+  //   if (sort_exist) {
+  //     query_string += query_string
+  //       ? `&sort=${sort_exist}`
+  //       : `sort=${sort_exist}`;
+  //   }
 
-    if (price_range.from || price_range.to) {
-      query_string += query_string
-        ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
-        : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
-    }
+  //   if (price_range.from || price_range.to) {
+  //     query_string += query_string
+  //       ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
+  //       : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
+  //   }
 
-    if (remove) {
-      setPriceRangeFilter(price_range);
-    }
-    if (query_string) {
-      history.push(`/nft-marketplace/trending-nfts?${query_string}`);
-    } else {
-      history.push("/nft-marketplace/trending-nfts");
-    }
-  };
+  //   if (remove) {
+  //     setPriceRangeFilter(price_range);
+  //   }
+  //   if (query_string) {
+  //     history.push(`/nft-marketplace/trending-nfts?${query_string}`);
+  //   } else {
+  //     history.push("/nft-marketplace/trending-nfts");
+  //   }
+  // };
 
   const reloadNFTList = async () => {
     try {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router";
+//import { useHistory } from "react-router";
 import _ from "lodash";
 
 import {
@@ -48,7 +48,7 @@ import BidWinner from "../components/bid-winner/index";
 import NFTPlayerStats from "../components/nft-player-stats";
 
 const OrderDetails = () => {
-  const history = useHistory();
+  //const history = useHistory();
   const dispatch = useDispatch();
   const [bidExpiry, setBidExpiry] = useState();
   const [isBidder, setIsBidder] = useState(false);
@@ -228,6 +228,7 @@ const OrderDetails = () => {
       nftTransaction();
       orderBidWinner();
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const nftDetail = async (slug, orderSlug) => {

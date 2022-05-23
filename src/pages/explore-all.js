@@ -15,6 +15,7 @@ const ExploreAll = () => {
       sessionStorage.setItem("fsz", fsz);
       setCookiesByName("source", fsz);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

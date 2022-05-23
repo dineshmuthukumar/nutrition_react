@@ -24,6 +24,7 @@ const PrivacyComponent = () => {
                       href="https://www.jump.trade"
                       target="_blank"
                       className="one-link"
+                      rel="noreferrer"
                     >
                       https://www.jump.trade
                     </a>{" "}
@@ -532,6 +533,7 @@ const PrivacyComponent = () => {
                         href="https://www.jump.trade/privacy-policy"
                         target="_blank"
                         className="one-link"
+                        rel="noreferrer"
                       >
                         https://www.jump.trade/privacy-policy
                       </a>
