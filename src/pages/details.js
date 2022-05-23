@@ -101,8 +101,8 @@ const Details = () => {
       // }
       nftOwners();
       nftTransaction();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const nftDetail = async (slug) => {

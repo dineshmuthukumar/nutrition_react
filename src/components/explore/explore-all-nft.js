@@ -20,7 +20,7 @@ import { nftShowAllApi } from "../../api/methods";
 import "./style.scss";
 import { FormControl } from "react-bootstrap";
 import { validateCurrency } from "../../utils/common";
-import AppHelmet from "../helmet";
+//import AppHelmet from "../helmet";
 
 const ExploreAllNFT = () => {
   const history = useHistory();
@@ -270,12 +270,15 @@ const ExploreAllNFT = () => {
     setPriceRangeFilter(price_range);
 
     setSearch(search_filter);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
 
   useEffect(() => {
-    if ( match.path === "/nft-marketplace/:search?/details/:slug" ) {
+    if (match.path === "/nft-marketplace/:search?/details/:slug") {
       setPopDetails({ ...popDetails, show: true, children: <Details /> });
-    } else if ( match.path === "/nft-marketplace/:search?/order/details/:slug/:orderSlug" ) {
+    } else if (
+      match.path === "/nft-marketplace/:search?/order/details/:slug/:orderSlug"
+    ) {
       setPopDetails({
         ...popDetails,
         show: true,
@@ -284,6 +287,7 @@ const ExploreAllNFT = () => {
     } else {
       setPopDetails({ ...popDetails, show: false, children: null });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [match.path]);
 
   useEffect(() => {
@@ -317,7 +321,7 @@ const ExploreAllNFT = () => {
       !query.get("sort") &&
       nft_category.length === 0 &&
       nft_collection.length === 0 &&
-      has_coin.length === 0 ;
+      has_coin.length === 0;
 
     if (noMatchFound && match.params.search) history.push("/not-found");
     else
@@ -333,6 +337,7 @@ const ExploreAllNFT = () => {
         price_range,
         has_coin
       );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
 
   const showAllNFTs = async (
