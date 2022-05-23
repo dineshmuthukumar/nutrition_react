@@ -589,10 +589,10 @@ const Header = ({
                 >
                   Explore
                 </Nav.Link>
-                <Nav.Link id="drop_outer" href={process.env.REACT_APP_DROP_URL}>
+                {/* <Nav.Link id="drop_outer" href={process.env.REACT_APP_DROP_URL}>
                   Drop
-                </Nav.Link>
-                {/* <Dropdown autoClose={["inside", "outside"]} className="me-0">
+                </Nav.Link> */}
+                <Dropdown autoClose={["inside", "outside"]} className="me-0">
                   <Dropdown.Toggle
                     align="start"
                     drop="start"
@@ -604,18 +604,18 @@ const Header = ({
                       as="button"
                       onClick={() =>
                         window.open(
-                          `${process.env.REACT_APP_CHAKRA_URL}`,
+                          `${process.env.REACT_APP_JUMB_TRADE_URL}`,
                           "_blank"
                         )
                       }
                     >
-                      Chakra The Invincible NFTs
+                      Meta Cricket League NFTs
                     </Dropdown.Item>
                     <Dropdown.Item
                       as="button"
                       onClick={() =>
                         window.open(
-                          `${process.env.REACT_APP_AMITABH_URL}`,
+                          `${process.env.REACT_APP_CHELSEA_URL}`,
                           "_blank"
                         )
                       }
@@ -623,7 +623,13 @@ const Header = ({
                       Football Memorabilia NFTs
                     </Dropdown.Item>
                   </Dropdown.Menu>
-                </Dropdown> */}
+                </Dropdown>
+                <Nav.Link id="drop_outer" role="button">
+                  <span className="beta-container">
+                    <span className="beta-tag">Coming soon</span>
+                    MCL Game
+                  </span>
+                </Nav.Link>
                 <Nav.Link
                   id="drop_outer"
                   role="button"
@@ -950,10 +956,10 @@ const Header = ({
                   <Dropdown.Item onClick={() => history.push("/nft-marketplace")}>
                     Explore
                   </Dropdown.Item>
-                  <Dropdown.Item href={process.env.REACT_APP_DROP_URL}>
+                  {/* <Dropdown.Item href={process.env.REACT_APP_DROP_URL}>
                     Drop
-                  </Dropdown.Item>
-                  {/* <Dropdown autoClose={["inside", "outside"]} className="me-0">
+                  </Dropdown.Item> */}
+                  <Dropdown autoClose={["inside", "outside"]} className="me-0">
                     <Dropdown.Toggle
                       align="start"
                       drop="start"
@@ -965,18 +971,18 @@ const Header = ({
                         as="button"
                         onClick={() =>
                           window.open(
-                            `${process.env.REACT_APP_CHAKRA_URL}`,
+                            `${process.env.REACT_APP_JUMB_TRADE_URL}`,
                             "_blank"
                           )
                         }
                       >
-                        Chakra The Invincible NFTs
+                        Meta Cricket League NFTs
                       </Dropdown.Item>
                       <Dropdown.Item
                         as="button"
                         onClick={() =>
                           window.open(
-                            `${process.env.REACT_APP_AMITABH_URL}`,
+                            `${process.env.REACT_APP_CHELSEA_URL}`,
                             "_blank"
                           )
                         }
@@ -984,8 +990,14 @@ const Header = ({
                         Football Memorabilia NFTs
                       </Dropdown.Item>
                     </Dropdown.Menu>
-                  </Dropdown> */}
+                  </Dropdown>
 
+                  <Dropdown.Item href="#">
+                    <span className="beta-container">
+                      <span className="beta-tag">Coming soon</span>
+                      MCL Game
+                    </span>
+                  </Dropdown.Item>
                   <Dropdown.Item href="/">
                     <span className="beta-container">
                       <span className="beta-tag">Beta</span>
