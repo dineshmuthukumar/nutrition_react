@@ -177,12 +177,15 @@ const ShowAll = ({ categories }) => {
       ? query.get("sort")
       : "recently_listed";
 
-    const search_filter = query.get("search");
-    const sale_status = query.get("status");
+    const search_filter = query.get("search") ? query.get("search") : "";
+    const sale_status = query.get("status") ? query.get("status") : "";
     const price_range = {
       from: query.get("minPrice") ? query.get("minPrice") : "",
       to: query.get("maxPrice") ? query.get("maxPrice") : "",
     };
+    const sort = query.get("sort") ? query.get("sort") : "";
+    const noMatchFound = sale_filters.length === 0 && nft_filters.length === 0 && price_range.from.length === 0 && price_range.to.length === 0 && sort.length === 0 && category_filters.length === 0 && search_filter.length === 0;
+    if (noMatchFound && match.params.search) history.push("/not-found")
 
     showAllFilteredNFTs(
       1,
@@ -1264,7 +1267,7 @@ const ShowAll = ({ categories }) => {
                         key={`list-nft-${i}`}
                         className="col-xl-3 col-lg-4 col-md-6 col-sm-6"
                       >
-                        <NFTCard nft={nft} key={i} image={cardImage} />
+                        <NFTCard nft={nft} key={i} image={cardImage} relativeUrl={`nft-marketplace`}/>
                       </div>
                     ))
                   ) : (
