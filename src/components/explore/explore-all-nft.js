@@ -316,7 +316,8 @@ const ExploreAllNFT = () => {
       price_range.to.length === 0 &&
       !query.get("sort") &&
       nft_category.length === 0 &&
-      nft_collection.length === 0;
+      nft_collection.length === 0 &&
+      has_coin.length === 0 ;
 
     if (noMatchFound && match.params.search) history.push("/not-found");
     else
