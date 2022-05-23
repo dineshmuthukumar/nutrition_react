@@ -273,17 +273,9 @@ const ExploreAllNFT = () => {
   }, [query]);
 
   useEffect(() => {
-    if (
-      match.path === "/nft-marketplace/:search?/details/:slug" ||
-      match.path === "/nft-marketplace/cricket-nfts/:search?/details/:slug"
-    ) {
+    if ( match.path === "/nft-marketplace/:search?/details/:slug" ) {
       setPopDetails({ ...popDetails, show: true, children: <Details /> });
-    } else if (
-      match.path ===
-        "/nft-marketplace/:search?/order/details/:slug/:orderSlug" ||
-      match.path ===
-        "/nft-marketplace/cricket-nfts/:search?/order/details/:slug/:orderSlug"
-    ) {
+    } else if ( match.path === "/nft-marketplace/:search?/order/details/:slug/:orderSlug" ) {
       setPopDetails({
         ...popDetails,
         show: true,
@@ -638,7 +630,7 @@ const ExploreAllNFT = () => {
     }
 
     if (query_string) {
-      history.push(`/nft-marketplace/cricket-nfts/${query_string}`);
+      history.push(`/nft-marketplace/${query_string}`);
     } else {
       history.push(`/nft-marketplace`);
     }
@@ -682,7 +674,6 @@ const ExploreAllNFT = () => {
             <div className="d-flex1">
               <span className="category-search-block me-1">
                 <FormControl
-                  autoFocus
                   className="category-search"
                   placeholder="Min"
                   type="number"
@@ -1216,7 +1207,6 @@ const ExploreAllNFT = () => {
                                 image={sample}
                                 isExplore
                                 relativeUrl={`nft-marketplace`}
-                                searchPrefix={`cricket-nfts`}
                               />
                             </div>
                           ))
