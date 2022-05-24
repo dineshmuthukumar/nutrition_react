@@ -29,7 +29,7 @@ const Cart = ({ cartPop = false, setCartPop, setCheckoutDevice }) => {
   const [success, setSuccess] = useState(false);
   const [checkoutList, setCheckoutList] = useState([]);
   const [successData, setSuccessData] = useState({});
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
   const [totalAmount, setTotalAmount] = useState(0);
   const [selectedItems, setSelectedItems] = useState([]);
   const [checkoutProcess, setCheckoutProcess] = useState({
@@ -44,7 +44,7 @@ const Cart = ({ cartPop = false, setCartPop, setCheckoutDevice }) => {
         .filter((obj) => obj.order_status === "onsale")
         .map((item) => items.push(item?.line_item_slug));
       items = items.filter(function (item, i, input) {
-        return input.indexOf(item) == i;
+        return input.indexOf(item) === i;
       });
       setSelectedItems(items);
     }
@@ -54,9 +54,7 @@ const Cart = ({ cartPop = false, setCartPop, setCheckoutDevice }) => {
     let amount = 0;
     userCart?.line_items
       ?.filter((obj) => selectedItems.includes(obj.line_item_slug))
-      .map((nft) => {
-        amount = amount + parseFloat(nft?.buy_amount);
-      });
+      .map((nft) => (amount = amount + parseFloat(nft?.buy_amount)));
     amount =
       parseFloat(amount) +
       (parseFloat(amount) * parseFloat(userCart?.service_fee)) / 100;
@@ -67,6 +65,7 @@ const Cart = ({ cartPop = false, setCartPop, setCheckoutDevice }) => {
       setNoBalance(false);
     }
     setTotalAmount(amount);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedItems, userCart]);
 
   const handleCheckout = async () => {
@@ -372,7 +371,7 @@ const Cart = ({ cartPop = false, setCartPop, setCheckoutDevice }) => {
                 <div className="pop-body-content d-flex align-items-center justify-content-center empty-cart-content">
                   <div className="pop-cart-info">
                     <div className="d-block text-center py-4 empty-cart-item">
-                      <img src={emptycart} />
+                      <img src={emptycart} alt="empty-cart-item" />
                     </div>
                     <div className="text-center empty-cart">
                       <h3>Your cart is empty!</h3>
@@ -421,12 +420,12 @@ const Cart = ({ cartPop = false, setCartPop, setCheckoutDevice }) => {
               <div className="pop-body-content success">
                 {parseInt(successData?.final_amount) > 0 ? (
                   <div className="order-placed text-center py-4">
-                    <img src={done} />
+                    <img src={done} alt="order-place" />
                     <h2 className="py-4">Order Processed Successfully</h2>
                   </div>
                 ) : (
                   <div className="order-placed text-center py-4">
-                    <img src={failed} />
+                    <img src={failed} alt="order-fail" />
                     <h2 className="py-4">Order Processing Unsuccessful.</h2>
                   </div>
                 )}

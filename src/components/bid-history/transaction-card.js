@@ -1,17 +1,17 @@
 import React from "react";
 import dayjs from "dayjs";
 import { useHistory } from "react-router-dom";
-import { useSelector } from "react-redux";
+//import { useSelector } from "react-redux";
 
-import BidName from "./bid-name";
-import userImg from "../../images/user_1.jpg";
+//import BidName from "./bid-name";
+//import userImg from "../../images/user_1.jpg";
 import { currencyFormat } from "../../utils/common";
 
 import "./style.scss";
 
 const TransactionCard = ({ nft, history, isEnd = false }) => {
   const routeHistory = useHistory();
-  const { user } = useSelector((state) => state.user.data);
+  //const { user } = useSelector((state) => state.user.data);
 
   return (
     <div className="bid-histroy-card">

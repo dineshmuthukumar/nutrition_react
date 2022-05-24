@@ -16,7 +16,7 @@ const ChainPills = ({ first, second, type, pdf = false }) => {
               {second}
             </div>
           )}
-          <a href={first[1]} target={"_blank"}>
+          <a href={first[1]} target={"_blank"} rel="noreferrer">
             {first[0]}
           </a>
         </div>
@@ -30,7 +30,13 @@ const ChainPills = ({ first, second, type, pdf = false }) => {
           {(() => {
             if (pdf) {
               return (
-                <a href={first} role={"button"} target="_blank" download>
+                <a
+                  href={first}
+                  role={"button"}
+                  rel="noreferrer"
+                  target="_blank"
+                  download
+                >
                   PDF
                 </a>
               );

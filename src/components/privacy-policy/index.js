@@ -10,7 +10,7 @@ const PrivacyComponent = () => {
               <div className="privacy-inner">
                 <div className="all-para-style">
                   <h3>PRIVACY POLICY</h3>
-                  <span>Last Updated: May 09, 2022</span>
+                  <span>Last Updated: May 22, 2022</span>
                   <br />
                   <br />
 
@@ -24,6 +24,7 @@ const PrivacyComponent = () => {
                       href="https://www.jump.trade"
                       target="_blank"
                       className="one-link"
+                      rel="noreferrer"
                     >
                       https://www.jump.trade
                     </a>{" "}
@@ -39,10 +40,9 @@ const PrivacyComponent = () => {
                   </p>
                   <p>
                     For all purposes related to user privacy, the legal entity
-                    shall be Guardian Blockchain Labs Pte. Ltd and Appstars
-                    Applications Pvt. Ltd. Any legal concerns should only be
-                    settled in the courts/jurisdiction of Singapore or the
-                    United States.
+                    shall be Guardian Blockchain Labs Pte. Ltd. Any legal
+                    concerns should only be settled in the courts/jurisdiction
+                    of Singapore or the United States.
                   </p>
                 </div>
                 <div className="all-para-style">
@@ -533,6 +533,7 @@ const PrivacyComponent = () => {
                         href="https://www.jump.trade/privacy-policy"
                         target="_blank"
                         className="one-link"
+                        rel="noreferrer"
                       >
                         https://www.jump.trade/privacy-policy
                       </a>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router";
+//import { useParams } from "react-router";
 import { toast } from "react-toastify";
 import { Modal, Table } from "react-bootstrap";
 import { IoIosRocket } from "react-icons/io";
@@ -43,7 +43,7 @@ const BidHistory = ({
   isAuctionStarted,
   isAuctionEnded,
 }) => {
-  const { slug } = useParams();
+  // const { slug } = useParams();
   const [modalShow, setModalShow] = useState(false);
   const [bidHistories, setBidHistories] = useState({});
   const [page, setPage] = useState(1);
@@ -62,6 +62,8 @@ const BidHistory = ({
     } else {
       setKey("transaction-history");
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orderSlug, isOrderOnSale]);
 
   useEffect(() => {

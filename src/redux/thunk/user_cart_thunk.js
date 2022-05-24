@@ -2,7 +2,6 @@ import { toast } from "react-toastify";
 import {
   addToCartApi,
   removeFromCartApi,
-  clearCartApi,
   getCartListApi,
   checkoutApi,
 } from "../../api/methods";
@@ -19,7 +18,6 @@ import {
   proceed_checkout_request,
   proceed_checkout_success,
   proceed_checkout_failure,
-  clear_cart_action,
   checkout_event,
 } from "../actions/user_cart_action";
 
@@ -90,16 +88,16 @@ export const proceed_checkout_thunk = (selectedItems) => {
   };
 };
 
-export const clear_cart_thunk = () => {
-  return async (dispatch) => {
-    try {
-      const result = await clearCartApi();
-      dispatch(clear_cart_action());
-    } catch (err) {
-      console.log(err);
-    }
-  };
-};
+// export const clear_cart_thunk = () => {
+//   return async (dispatch) => {
+//     try {
+//       const result = await clearCartApi();
+//       dispatch(clear_cart_action());
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   };
+// };
 
 export const checkout_event_thunk = (event) => {
   return async (dispatch) => {

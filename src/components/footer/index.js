@@ -1,23 +1,19 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import Image from "react-bootstrap/Image";
+//import Image from "react-bootstrap/Image";
 import { BiLoaderAlt } from "react-icons/bi";
 import { Button, Form } from "react-bootstrap";
 import { HiOutlineArrowRight } from "react-icons/hi";
 import {
-  FaTelegramPlane,
   FaDiscord,
   FaInstagram,
-  FaMediumM,
-  FaFacebookF,
   FaTwitter,
-  FaYoutube,
   FaCloudDownloadAlt,
 } from "react-icons/fa";
 import "./style.scss";
 import { validateEmail } from "../../utils/common";
 import { subscribeApi } from "../../api/base-methods";
-import guardianLinkLogo from "../../images/guardianlink.svg";
+//import guardianLinkLogo from "../../images/guardianlink.svg";
 import jumpTradeLogo from "../../images/jump-trade-logo.svg";
 
 const Footer = () => {
@@ -70,7 +66,11 @@ const Footer = () => {
         <div id="fmenu1">
           <div className="submenu first-box">
             <a target="_self" href="/">
-              <img src={jumpTradeLogo} className="footer-logo" />
+              <img
+                src={jumpTradeLogo}
+                className="footer-logo"
+                alt="JumptradeLogo"
+              />
             </a>
             <p className="footer-brand-info">
               Jump.trade is one of the world’s largest NFT marketplace where you
@@ -149,7 +149,7 @@ const Footer = () => {
                   <a
                     href="https://discord.com/invite/JRWmNb38GW"
                     target="_blank"
-                    rel="nofollow"
+                    rel="noreferrer"
                   >
                     <FaDiscord /> @Discord
                   </a>
@@ -168,7 +168,7 @@ const Footer = () => {
                   <a
                     href="https://discord.com/invite/JRWmNb38GW"
                     target="_blank"
-                    rel="nofollow"
+                    rel="noreferrer"
                   >
                     <FaDiscord />
                   </a>
@@ -185,7 +185,7 @@ const Footer = () => {
                 <li>
                   <a
                     target="_blank"
-                    rel="nofollow"
+                    rel="noreferrer"
                     href="https://twitter.com/Jumptradenft"
                   >
                     <FaTwitter />
@@ -203,7 +203,7 @@ const Footer = () => {
                 <li>
                   <a
                     target="_blank"
-                    rel="nofollow"
+                    rel="noreferrer"
                     href="https://www.instagram.com/jumptradenft/"
                   >
                     <FaInstagram />
@@ -232,7 +232,7 @@ const Footer = () => {
                 <a
                   href="https://cdn.guardianlink.io/product-hotspot/files/media-kit.zip"
                   target="_self"
-                  rel="nofollow"
+                  rel="noreferrer"
                   style={{ textDecoration: "none", color: "#fff" }}
                 >
                   <FaCloudDownloadAlt /> download media kit
@@ -250,8 +250,8 @@ const Footer = () => {
           <div className="copyrights me-3">
             © All rights reserved |{" "}
             {/* <a href="https://guardianlink.io/">A GuardianLink Brand</a>,   */}
-            Appstars Applications Pvt. Ltd., India & Guardian Blockchain Labs
-            Pte. Ltd., Singapore.
+            {/* Appstars Applications Pvt. Ltd., India &  */}
+            Guardian Blockchain Labs Pte. Ltd., Singapore.
           </div>
           <div class="vr"></div>
 

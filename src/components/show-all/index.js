@@ -22,7 +22,7 @@ const ShowAll = ({ categories }) => {
   const [page, setPage] = useState(1);
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [totalCount, setTotalCount] = useState(0);
+  // const [totalCount, setTotalCount] = useState(0);
   const [hasNext, setHasNext] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
 
@@ -165,6 +165,7 @@ const ShowAll = ({ categories }) => {
     if (price_range.from || price_range.to) {
       setPriceRangeFilter(price_range);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categories, query]);
 
   useEffect(() => {
@@ -177,12 +178,23 @@ const ShowAll = ({ categories }) => {
       ? query.get("sort")
       : "recently_listed";
 
-    const search_filter = query.get("search");
-    const sale_status = query.get("status");
+    const search_filter = query.get("search") ? query.get("search") : "";
+    const sale_status = query.get("status") ? query.get("status") : "";
     const price_range = {
       from: query.get("minPrice") ? query.get("minPrice") : "",
       to: query.get("maxPrice") ? query.get("maxPrice") : "",
     };
+    const sort = query.get("sort") ? query.get("sort") : "";
+    const noMatchFound =
+      sale_filters.length === 0 &&
+      nft_filters.length === 0 &&
+      price_range.from.length === 0 &&
+      price_range.to.length === 0 &&
+      sort.length === 0 &&
+      category_filters.length === 0 &&
+      search_filter.length === 0 &&
+      sale_status.length === 0;
+    if (noMatchFound && match.params.search) history.push("/not-found");
 
     showAllFilteredNFTs(
       1,
@@ -194,6 +206,7 @@ const ShowAll = ({ categories }) => {
       sale_status,
       price_range
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [match.params.search]);
 
   useEffect(() => {
@@ -204,6 +217,7 @@ const ShowAll = ({ categories }) => {
     } else {
       setPopDetails({ ...popDetails, show: false, children: null });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [match.path]);
 
   const showAllNFTs = async (
@@ -235,7 +249,7 @@ const ShowAll = ({ categories }) => {
       });
       setList([...list, ...response.data.data.nfts]);
       setHasNext(response.data.data.next_page);
-      setTotalCount(response.data.data.total_count);
+      // setTotalCount(response.data.data.total_count);
       page === 1 && setLoading(false);
       setLoadingMore(false);
     } catch (err) {
@@ -272,7 +286,7 @@ const ShowAll = ({ categories }) => {
       });
       setList(response.data.data.nfts);
       setHasNext(response.data.data.next_page);
-      setTotalCount(response.data.data.total_count);
+      // setTotalCount(response.data.data.total_count);
       page === 1 && setLoading(false);
       setLoadingMore(false);
     } catch (err) {
@@ -313,18 +327,18 @@ const ShowAll = ({ categories }) => {
     }
   };
 
-  const CategoryDropdown = React.forwardRef(({ onClick }, ref) => (
-    <div
-      className="filter-drop-btn"
-      ref={ref}
-      onClick={(e) => {
-        e.preventDefault();
-        onClick(e);
-      }}
-    >
-      Category <BiCaretDown />
-    </div>
-  ));
+  // const CategoryDropdown = React.forwardRef(({ onClick }, ref) => (
+  //   <div
+  //     className="filter-drop-btn"
+  //     ref={ref}
+  //     onClick={(e) => {
+  //       e.preventDefault();
+  //       onClick(e);
+  //     }}
+  //   >
+  //     Category <BiCaretDown />
+  //   </div>
+  // ));
 
   const PriceDropdown = React.forwardRef(({ onClick }, ref) => (
     <div
@@ -359,18 +373,18 @@ const ShowAll = ({ categories }) => {
     </div>
   ));
 
-  const NFTTypeDropdown = React.forwardRef(({ onClick }, ref) => (
-    <div
-      className="filter-drop-btn"
-      ref={ref}
-      onClick={(e) => {
-        e.preventDefault();
-        onClick(e);
-      }}
-    >
-      NFT Type <BiCaretDown />
-    </div>
-  ));
+  // const NFTTypeDropdown = React.forwardRef(({ onClick }, ref) => (
+  //   <div
+  //     className="filter-drop-btn"
+  //     ref={ref}
+  //     onClick={(e) => {
+  //       e.preventDefault();
+  //       onClick(e);
+  //     }}
+  //   >
+  //     NFT Type <BiCaretDown />
+  //   </div>
+  // ));
 
   const ShowAllSort = React.forwardRef(({ onClick }, ref) => (
     <div
@@ -402,40 +416,40 @@ const ShowAll = ({ categories }) => {
     </div>
   ));
 
-  const CustomMenu = React.forwardRef(
-    ({ children, style, className, "aria-labelledby": labeledBy }, ref) => {
-      const [value, setValue] = useState("");
+  // const CustomMenu = React.forwardRef(
+  //   ({ children, style, className, "aria-labelledby": labeledBy }, ref) => {
+  //     const [value, setValue] = useState("");
 
-      return (
-        <div
-          ref={ref}
-          style={style}
-          className={className}
-          aria-labelledby={labeledBy}
-        >
-          <span className="category-search-block">
-            <FormControl
-              autoFocus
-              className="category-search"
-              placeholder="Search Category"
-              onChange={(e) => setValue(e.target.value)}
-              value={value}
-            />
-            <BiSearch className="category-search-icon" size={15} />
-          </span>
-          <ul className="list-unstyled scroll-fixed">
-            {React.Children.toArray(children).filter(
-              (child) =>
-                !value ||
-                child.props.children[1]
-                  .toLowerCase()
-                  .includes(value.toLocaleLowerCase())
-            )}
-          </ul>
-        </div>
-      );
-    }
-  );
+  //     return (
+  //       <div
+  //         ref={ref}
+  //         style={style}
+  //         className={className}
+  //         aria-labelledby={labeledBy}
+  //       >
+  //         <span className="category-search-block">
+  //           <FormControl
+  //             autoFocus
+  //             className="category-search"
+  //             placeholder="Search Category"
+  //             onChange={(e) => setValue(e.target.value)}
+  //             value={value}
+  //           />
+  //           <BiSearch className="category-search-icon" size={15} />
+  //         </span>
+  //         <ul className="list-unstyled scroll-fixed">
+  //           {React.Children.toArray(children).filter(
+  //             (child) =>
+  //               !value ||
+  //               child.props.children[1]
+  //                 .toLowerCase()
+  //                 .includes(value.toLocaleLowerCase())
+  //           )}
+  //         </ul>
+  //       </div>
+  //     );
+  //   }
+  // );
 
   const [priceRangeFilter, setPriceRangeFilter] = useState({
     from: "",
@@ -1264,7 +1278,12 @@ const ShowAll = ({ categories }) => {
                         key={`list-nft-${i}`}
                         className="col-xl-3 col-lg-4 col-md-6 col-sm-6"
                       >
-                        <NFTCard nft={nft} key={i} image={cardImage} />
+                        <NFTCard
+                          nft={nft}
+                          key={i}
+                          image={cardImage}
+                          relativeUrl={`nft-marketplace`}
+                        />
                       </div>
                     ))
                   ) : (

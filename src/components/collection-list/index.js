@@ -15,9 +15,9 @@ const CollectionList = () => {
               <h2 className="section-heading">
                 <span className="main-title">NFT Collections</span>{" "}
               </h2>
-              <h1 className="section-heading">
+              <h2 className="section-heading">
                 <span className="sub-title">CHECK IT OUT</span>
-              </h1>
+              </h2>
               <p className="collection-para-desc">
                 The Jump.trade NFT marketplace enables you to buy NFTs belonging
                 to 2 categories - the Meta Cricket League NFTs and the Meta
@@ -29,7 +29,7 @@ const CollectionList = () => {
                 <div
                   className="collection-box"
                   onClick={() =>
-                    history.push("/explore/category/3WAoJq4KtGY72QdN")
+                    history.push("/nft-marketplace/cricket-player-nfts/3WAoJq4KtGY72QdN")
                   }
                 >
                   <img
@@ -49,7 +49,7 @@ const CollectionList = () => {
                 <div
                   className="collection-box"
                   onClick={() =>
-                    history.push("/explore/category/5LpmjlAwtGEqK3rO")
+                    history.push("/nft-marketplace/cricket-bat-nfts/5LpmjlAwtGEqK3rO")
                   }
                 >
                   <img

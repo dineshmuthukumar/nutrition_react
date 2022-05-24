@@ -1,6 +1,6 @@
 import React from "react";
 
-import guardianImg from "../../images/guardian-black.png";
+//import guardianImg from "../../images/guardian-black.png";
 
 import "./style.scss";
 

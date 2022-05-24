@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import { Navbar, Nav, Dropdown, Container } from "react-bootstrap";
-import { BiBell, BiCart, BiHelpCircle } from "react-icons/bi";
+import { BiBell, BiHelpCircle } from "react-icons/bi";
 import { useTranslation } from "react-multi-lang";
 import { useSelector, useDispatch } from "react-redux";
 import { FaDiscord } from "react-icons/fa";
@@ -56,7 +56,7 @@ const Header = ({
   const [notification, setNotification] = useState();
   const [notiRead, setNotiRead] = useState(true);
 
-  const [ribbon, setRibbon] = useState(true);
+  //const [ribbon, setRibbon] = useState(true);
   const [cartPop, setCartPop] = useState(false);
   const [checkoutDevice, setCheckoutDevice] = useState(false);
 
@@ -155,7 +155,7 @@ const Header = ({
       >
         {/* <BiBell size={25} color={"white"} /> */}
 
-        <img src={notifyBell} height={22} />
+        <img src={notifyBell} height={22} alt="Nofity-Bell" />
 
         {!notiRead && (
           <>
@@ -166,21 +166,21 @@ const Header = ({
     );
   });
 
-  const DropToggle = React.forwardRef(({ onClick }, ref) => {
-    return (
-      <Nav.Link
-        id="drop_outer"
-        role={"button"}
-        ref={ref}
-        onClick={(e) => {
-          e.preventDefault();
-          onClick(e);
-        }}
-      >
-        Drops
-      </Nav.Link>
-    );
-  });
+  // const DropToggle = React.forwardRef(({ onClick }, ref) => {
+  //   return (
+  //     <Nav.Link
+  //       id="drop_outer"
+  //       role={"button"}
+  //       ref={ref}
+  //       onClick={(e) => {
+  //         e.preventDefault();
+  //         onClick(e);
+  //       }}
+  //     >
+  //       Drops
+  //     </Nav.Link>
+  //   );
+  // });
 
   const NotiCard = ({ data }) => {
     const handleNotiClick = () => {
@@ -592,6 +592,12 @@ const Header = ({
                 <Nav.Link id="drop_outer" href={process.env.REACT_APP_DROP_URL}>
                   Drop
                 </Nav.Link>
+                <Nav.Link id="drop_outer" role="button">
+                  {" "}
+                  <span className="beta-container">
+                    <span className="beta-tag">Coming soon</span>MCL Game{" "}
+                  </span>{" "}
+                </Nav.Link>
                 {/* <Dropdown autoClose={["inside", "outside"]} className="me-0">
                   <Dropdown.Toggle
                     align="start"
@@ -620,7 +626,7 @@ const Header = ({
                         )
                       }
                     >
-                      Amitabh NFTs
+                      Football Memorabilia NFTs
                     </Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown> */}
@@ -731,7 +737,7 @@ const Header = ({
                             }}
                           >
                             {/* <BiCart size={25} role="button" color={"white"} />{" "} */}
-                            <img src={cartIcon} height={20} />
+                            <img src={cartIcon} height={20} alt="CartIcon" />
                             {parseInt(userCart?.total_count) > 0 && (
                               <span className="badge cart-count rounded-pill bg-danger position-absolute">
                                 {userCart?.total_count}
@@ -947,7 +953,9 @@ const Header = ({
                     Creator
                   </Dropdown.Item> */}
 
-                  <Dropdown.Item onClick={() => history.push("/nft-marketplace")}>
+                  <Dropdown.Item
+                    onClick={() => history.push("/nft-marketplace")}
+                  >
                     Explore
                   </Dropdown.Item>
                   <Dropdown.Item href={process.env.REACT_APP_DROP_URL}>
@@ -981,10 +989,17 @@ const Header = ({
                           )
                         }
                       >
-                        Amitabh NFTs
+                        Football Memorabilia NFTs
                       </Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown> */}
+
+                  <Dropdown.Item href="#">
+                    {" "}
+                    <span className="beta-container">
+                      <span className="beta-tag">Coming soon</span> MCL Game{" "}
+                    </span>{" "}
+                  </Dropdown.Item>
 
                   <Dropdown.Item href="/">
                     <span className="beta-container">

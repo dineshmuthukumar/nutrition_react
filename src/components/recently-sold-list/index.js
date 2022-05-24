@@ -56,6 +56,7 @@ const RecentlySoldList = () => {
     showAllFilteredNFTs(1, sort_filters);
     setPage(1);
     setFilter(info);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug, query]);
 
   const showAllNFTs = async (page, sort = "recently_sold") => {
@@ -124,7 +125,7 @@ const RecentlySoldList = () => {
         : `sort=${sort_exist}`;
     }
 
-    history.push(`/nfts/sale-history?${query_string}`);
+    history.push(`/nft-marketplace/sale-history?${query_string}`);
   };
 
   return (

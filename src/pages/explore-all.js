@@ -15,11 +15,16 @@ const ExploreAll = () => {
       sessionStorage.setItem("fsz", fsz);
       setCookiesByName("source", fsz);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <>
-      <Header bgImage />
+      <Header
+        bgImage
+        title="Buy Cricket NFTs | Sports NFT Marketplace | Jump.trade"
+        description="Get your hands on some of the most prized and highly collectible cricket NFTs at Jump.trade. Buy, sell, & collect cricket & other sports NFTs."
+      />
       <ExploreAllNFT />
       <Footer />
     </>

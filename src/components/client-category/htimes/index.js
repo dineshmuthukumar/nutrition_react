@@ -34,6 +34,7 @@ const HTimes = () => {
 
   useEffect(() => {
     showAllNFTs(page);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -46,6 +47,7 @@ const HTimes = () => {
     } else {
       setPopDetails({ ...popDetails, show: false, children: null });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [match.path]);
 
   const showAllNFTs = async (page) => {

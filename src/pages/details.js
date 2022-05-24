@@ -24,7 +24,7 @@ import { artistApi } from "../api/base-methods";
 import OwnerList from "../components/owner-list";
 import Footer from "../components/footer/index";
 import NFTOrderDetails from "../components/nft-order-details/index";
-import AdditionalPerks from "../components/additional-perks/index";
+//import AdditionalPerks from "../components/additional-perks/index";
 import NFTPlayerStats from "../components/nft-player-stats";
 
 const Details = () => {
@@ -41,7 +41,7 @@ const Details = () => {
   const [ownerOrdersList, setOwnerOrdersList] = useState([]);
   const [ownerCount, setOwnerCount] = useState(0);
   const [isQuantityAvailable, setIsQuantityAvailable] = useState(null);
-  const [page, setPage] = useState(1);
+  // const [page, setPage] = useState(1);
   const [artist, setArtist] = useState({});
 
   const { user } = useSelector((state) => state.user.data);
@@ -64,6 +64,7 @@ const Details = () => {
         setPutOnSalePop(!putOnSalePop);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOwner, availableQty]);
 
   useEffect(() => {
@@ -76,6 +77,7 @@ const Details = () => {
         ]);
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOwner]);
 
   useEffect(() => {
@@ -100,6 +102,7 @@ const Details = () => {
       nftOwners();
       nftTransaction();
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const nftDetail = async (slug) => {
@@ -146,7 +149,7 @@ const Details = () => {
       setTransactionLoader(true);
       let transactions = await nftTransactionHistory({
         nft_slug: slug,
-        page: page,
+        page: 1,
       });
       setTransactionHistory(transactions.data.data.nfts);
       setTransactionHasNext(transactions.data.data.next_page);
@@ -168,7 +171,12 @@ const Details = () => {
 
   return (
     <>
-      <Header bgImage />
+      <Header
+        bgImage
+        title={`${nft?.name} | MCL NFT Marketplace | Jump.trade`}
+        description={`${nft?.name} is a Meta Cricket League ${nft?.core_statistics?.role} Playable NFT! Purchase This NFT Now to Play the MCL P2E Cricket Game & Win Cash Rewards!`}
+        image={nft?.asset_url}
+      />
       {loader ? (
         <NFTLoader />
       ) : (

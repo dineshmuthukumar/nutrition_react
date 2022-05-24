@@ -59,6 +59,7 @@ const LiveAuctionsList = () => {
     if (price_range.from || price_range.to) {
       setPriceRangeFilter(price_range);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug, query]);
 
   useEffect(() => {
@@ -67,8 +68,6 @@ const LiveAuctionsList = () => {
       : "auction_ending_soon";
 
     const price_range = {
-      from: query.get("minPrice"),
-      to: query.get("maxPrice"),
       from: query.get("minPrice") ? query.get("minPrice") : "",
       to: query.get("maxPrice") ? query.get("maxPrice") : "",
     };
@@ -125,8 +124,6 @@ const LiveAuctionsList = () => {
         ? query.get("sort")
         : "auction_ending_soon";
       const price_range = {
-        from: query.get("minPrice"),
-        to: query.get("maxPrice"),
         from: query.get("minPrice") ? query.get("minPrice") : "",
         to: query.get("maxPrice") ? query.get("maxPrice") : "",
       };
@@ -285,7 +282,7 @@ const LiveAuctionsList = () => {
         : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
     }
 
-    history.push(`/nfts/live-auction?${query_string}`);
+    history.push(`/nft-marketplace/live-auction?${query_string}`);
   };
   const handlePriceRange = (priceRange, remove = false) => {
     setPriceRangeFilter({ ...priceRange });
@@ -312,9 +309,9 @@ const LiveAuctionsList = () => {
       setPriceRangeFilter(price_range);
     }
     if (query_string) {
-      history.push(`/nfts/live-auction?${query_string}`);
+      history.push(`/nft-marketplace/live-auction?${query_string}`);
     } else {
-      history.push("/nfts/live-auction");
+      history.push("/nft-marketplace/live-auction");
     }
   };
 

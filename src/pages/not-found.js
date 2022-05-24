@@ -1,12 +1,14 @@
 import React from "react";
 
-import { BsExclamationCircle } from "react-icons/bs";
-import { Navbar, Nav, Dropdown, Container } from "react-bootstrap";
+//import { BsExclamationCircle } from "react-icons/bs";
+import { Navbar } from "react-bootstrap";
 import jumpTradeLogo from "./../images/jump-trade-logo.svg";
+import AppHelmet from "../components/helmet/index";
 
 const NotFound = () => {
   return (
     <>
+      <AppHelmet title="" description="" image="" hideCanonical />
       <section className="notfound-section">
         <div className="container">
           <div
@@ -33,7 +35,11 @@ const NotFound = () => {
                 >
                   Grow With Attitude
                 </div> */}
-                <img src={jumpTradeLogo} className="logo-img" />
+                <img
+                  src={jumpTradeLogo}
+                  className="logo-img"
+                  alt="JumpTradelogo"
+                />
               </Navbar.Brand>
               <div className="notfound-text-block">
                 <h1>404</h1>
@@ -42,7 +48,8 @@ const NotFound = () => {
                   Go to Marketplace{" "}
                   <a
                     href={process.env.REACT_APP_MARKETPLACE_URL}
-                    target="_blank"
+                    target="_self"
+                    rel="noreferrer"
                   >
                     Home
                   </a>{" "}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router";
+//import { useHistory } from "react-router";
 import _ from "lodash";
 
 import {
@@ -48,7 +48,7 @@ import BidWinner from "../components/bid-winner/index";
 import NFTPlayerStats from "../components/nft-player-stats";
 
 const OrderDetails = () => {
-  const history = useHistory();
+  //const history = useHistory();
   const dispatch = useDispatch();
   const [bidExpiry, setBidExpiry] = useState();
   const [isBidder, setIsBidder] = useState(false);
@@ -71,7 +71,6 @@ const OrderDetails = () => {
   const [placeBuyPop, setPlaceBuyPop] = useState(false);
   const [putOnSalePop, setPutOnSalePop] = useState(false);
   const [cancelTheSalePop, setCancelTheSalePop] = useState(false);
-  const [page, setPage] = useState(1);
 
   const [isOrderOnSale, setIsOrderOnSale] = useState(false);
   const [isOrderSuccess, setIsOrderSuccess] = useState(false);
@@ -228,6 +227,7 @@ const OrderDetails = () => {
       nftTransaction();
       orderBidWinner();
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const nftDetail = async (slug, orderSlug) => {
@@ -311,7 +311,7 @@ const OrderDetails = () => {
       setTransactionLoader(true);
       let transactions = await nftTransactionHistory({
         nft_slug: slug,
-        page: page,
+        page: 1,
         order_slug: orderSlug,
       });
       setTransactionHistory(transactions.data.data.nfts);
@@ -426,7 +426,12 @@ const OrderDetails = () => {
 
   return (
     <>
-      <Header bgImage title={nft?.name} image={nft?.asset_url} />
+      <Header
+        bgImage
+        title={`${nft?.name} | MCL NFT Marketplace | Jump.trade`}
+        description={`${nft?.name} is a Meta Cricket League ${nft?.core_statistics?.role} Playable NFT! Purchase This NFT Now to Play the MCL P2E Cricket Game & Win Cash Rewards!`}
+        image={nft?.asset_url}
+      />
       {loader ? (
         <NFTLoader />
       ) : (

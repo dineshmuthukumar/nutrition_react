@@ -20,6 +20,7 @@ import { nftShowAllApi } from "../../api/methods";
 import "./style.scss";
 import { FormControl } from "react-bootstrap";
 import { validateCurrency } from "../../utils/common";
+//import AppHelmet from "../helmet";
 
 const ExploreAllNFT = () => {
   const history = useHistory();
@@ -48,7 +49,7 @@ const ExploreAllNFT = () => {
     from: "",
     to: "",
   });
-  const [priceFilter, setPriceFilter] = useState(false);
+  // const [priceFilter, setPriceFilter] = useState(false);
   const [filter, setFilter] = useState({
     sale: [
       {
@@ -269,19 +270,14 @@ const ExploreAllNFT = () => {
     setPriceRangeFilter(price_range);
 
     setSearch(search_filter);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
 
   useEffect(() => {
-    if (
-      match.path === "/nft-marketplace/:search?/details/:slug" ||
-      match.path === "/nft-marketplace/cricket-nfts/:search?/details/:slug"
-    ) {
+    if (match.path === "/nft-marketplace/:search?/details/:slug") {
       setPopDetails({ ...popDetails, show: true, children: <Details /> });
     } else if (
-      match.path ===
-        "/nft-marketplace/:search?/order/details/:slug/:orderSlug" ||
-      match.path ===
-        "/nft-marketplace/cricket-nfts/:search?/order/details/:slug/:orderSlug"
+      match.path === "/nft-marketplace/:search?/order/details/:slug/:orderSlug"
     ) {
       setPopDetails({
         ...popDetails,
@@ -291,6 +287,7 @@ const ExploreAllNFT = () => {
     } else {
       setPopDetails({ ...popDetails, show: false, children: null });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [match.path]);
 
   useEffect(() => {
@@ -314,18 +311,33 @@ const ExploreAllNFT = () => {
 
     const has_coin = query.get("coin") ? query.get("coin") : "";
 
-    showAllFilteredNFTs(
-      1,
-      nft_filters,
-      sale_filters,
-      sort_filters,
-      search_filters,
-      nft_category,
-      nft_collection,
-      status_filters,
-      price_range,
-      has_coin
-    );
+    let noMatchFound =
+      sale_filters.length === 0 &&
+      nft_filters.length === 0 &&
+      search_filters.length === 0 &&
+      status_filters.length === 0 &&
+      price_range.from.length === 0 &&
+      price_range.to.length === 0 &&
+      !query.get("sort") &&
+      nft_category.length === 0 &&
+      nft_collection.length === 0 &&
+      has_coin.length === 0;
+
+    if (noMatchFound && match.params.search) history.push("/not-found");
+    else
+      showAllFilteredNFTs(
+        1,
+        nft_filters,
+        sale_filters,
+        sort_filters,
+        search_filters,
+        nft_category,
+        nft_collection,
+        status_filters,
+        price_range,
+        has_coin
+      );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
 
   const showAllNFTs = async (
@@ -557,7 +569,7 @@ const ExploreAllNFT = () => {
         if (remove) {
           setPriceRangeFilter(price_range);
         }
-        setPriceFilter(true);
+        //setPriceFilter(true);
         setToggle(!toggle);
         break;
 
@@ -624,7 +636,7 @@ const ExploreAllNFT = () => {
     }
 
     if (query_string) {
-      history.push(`/nft-marketplace/cricket-nfts/${query_string}`);
+      history.push(`/nft-marketplace/${query_string}`);
     } else {
       history.push(`/nft-marketplace`);
     }
@@ -668,7 +680,6 @@ const ExploreAllNFT = () => {
             <div className="d-flex1">
               <span className="category-search-block me-1">
                 <FormControl
-                  autoFocus
                   className="category-search"
                   placeholder="Min"
                   type="number"
@@ -739,7 +750,11 @@ const ExploreAllNFT = () => {
                   parseInt(priceRange.from) > parseInt(priceRange.to)
                 ) {
                   return true;
-                } else if (priceRange.from == "" || priceRange.from === null) {
+                } else if (
+                  priceRange.from === "" ||
+                  priceRange.from === null ||
+                  query.get("minPrice")
+                ) {
                   return true;
                 } else {
                   return false;
@@ -763,6 +778,8 @@ const ExploreAllNFT = () => {
         onHide={() => history.goBack()}
         children={popDetails.children}
       />
+      {/* <AppHelmet /> */}
+
       <section className="explore-nft-section">
         <article className="explorer-nft-list">
           <div className="sticky-sm-top top-25">
@@ -1199,6 +1216,7 @@ const ExploreAllNFT = () => {
                                 key={i}
                                 image={sample}
                                 isExplore
+                                relativeUrl={`nft-marketplace`}
                               />
                             </div>
                           ))
