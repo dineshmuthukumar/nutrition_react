@@ -23,25 +23,25 @@ const RecentlySoldNFT = () => {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const [filter, setFilter] = useState({
-    sort: [
-      {
-        name: "Recently Sold",
-        value: "recently_sold",
-        checked: true,
-      },
-      {
-        name: "Price - High to Low",
-        value: "price_desc",
-        checked: false,
-      },
-      {
-        name: "Price - Low to High",
-        value: "price_asc",
-        checked: false,
-      },
-    ],
-  });
+  // const [filter, setFilter] = useState({
+  //   sort: [
+  //     {
+  //       name: "Recently Sold",
+  //       value: "recently_sold",
+  //       checked: true,
+  //     },
+  //     {
+  //       name: "Price - High to Low",
+  //       value: "price_desc",
+  //       checked: false,
+  //     },
+  //     {
+  //       name: "Price - Low to High",
+  //       value: "price_asc",
+  //       checked: false,
+  //     },
+  //   ],
+  // });
 
   useEffect(() => {
     topTradesList(page);

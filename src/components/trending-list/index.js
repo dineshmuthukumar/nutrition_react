@@ -27,16 +27,6 @@ const TrendingList = () => {
   const [filter, setFilter] = useState({
     sort: [
       {
-        name: "Bid Count - High to Low",
-        value: "bid_count_desc",
-        checked: false,
-      },
-      {
-        name: "Bid Count - Low to High",
-        value: "bid_count",
-        checked: false,
-      },
-      {
         name: "Price - High to Low",
         value: "price_desc",
         checked: true,
@@ -44,6 +34,16 @@ const TrendingList = () => {
       {
         name: "Price - Low to High",
         value: "price",
+        checked: false,
+      },
+      {
+        name: "Bid Count - High to Low",
+        value: "bid_count_desc",
+        checked: false,
+      },
+      {
+        name: "Bid Count - Low to High",
+        value: "bid_count",
         checked: false,
       },
       {

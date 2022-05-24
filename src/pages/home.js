@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 ///import { useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Header from "../components/header";
 import Footer from "../components/footer";
 //import Banner from "../components/banner";
@@ -15,7 +15,7 @@ import { useHistory, useRouteMatch } from "react-router";
 
 import { setCookiesByName, setCookies } from "../utils/cookies";
 import { user_load_by_token_thunk } from "../redux/thunk/user_thunk";
-import { nftCategoriesApi, userFavedNFTOrders } from "../api/methods";
+import { nftCategoriesApi } from "../api/methods";
 import useQuery from "../hook/useQuery";
 //import FavouriteNFTs from "../components/favourite-NFTs";
 import HeroBanner from "../components/hero-banner";
@@ -29,25 +29,19 @@ const Home = () => {
   let query = useQuery();
   const fsz = query.get("fsz");
   const token = query.get("token");
-  const { user } = useSelector((state) => state.user.data);
+  // const { user } = useSelector((state) => state.user.data);
 
-  const [page, setPage] = useState(1);
   const [list, setList] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [hasNext, setHasNext] = useState(false);
 
-  const [favPage, setFavPage] = useState(1);
-  const [favList, setFavList] = useState([]);
-  const [favLoading, setFavLoading] = useState(false);
+  // const [favPage, setFavPage] = useState(1);
+  // const [favList, setFavList] = useState([]);
+  // const [favLoading, setFavLoading] = useState(false);
   // const [favHasNext, setFavHasNext] = useState(false);
 
   const categoriesList = async (page) => {
     try {
-      setLoading(true);
       let response = await nftCategoriesApi({ page });
       setList([...list, ...response.data.data.categories]);
-      setHasNext(response.data.data.next_page);
-      setLoading(false);
     } catch (err) {
       console.log(err);
     }
@@ -66,28 +60,28 @@ const Home = () => {
       dispatch(user_load_by_token_thunk(token));
     }
 
-    categoriesList(page);
+    categoriesList(1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    if (user) {
-      getUserFavedNFTOrders();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
+  // useEffect(() => {
+  //   if (user) {
+  //     getUserFavedNFTOrders();
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [user]);
 
-  const getUserFavedNFTOrders = async () => {
-    try {
-      setFavLoading(true);
-      const result = await userFavedNFTOrders(favPage);
-      setFavList(result.data.data.orders);
-      setFavLoading(false);
-    } catch (error) {
-      console.log(error);
-      setFavLoading(false);
-    }
-  };
+  // const getUserFavedNFTOrders = async () => {
+  //   try {
+  //     setFavLoading(true);
+  //     const result = await userFavedNFTOrders(favPage);
+  //     setFavList(result.data.data.orders);
+  //     setFavLoading(false);
+  //   } catch (error) {
+  //     console.log(error);
+  //     setFavLoading(false);
+  //   }
+  // };
 
   return (
     <>

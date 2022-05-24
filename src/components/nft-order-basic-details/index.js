@@ -71,7 +71,7 @@ const NFTOrderBaseDetails = ({
   const Cart = cart.data;
   //const [modalShow, setModalShow] = useState(false);
   const [acceptBidConfirm, setAcceptBidConfirm] = useState(false);
-  const [acceptBidSucess, setAcceptBidSucess] = useState(false);
+  // const [acceptBidSucess, setAcceptBidSucess] = useState(false);
   const [inCart, setInCart] = useState(false);
 
   const erc721 = nft.nft_type === "erc721";
@@ -84,13 +84,13 @@ const NFTOrderBaseDetails = ({
   const handleAcceptBid = async () => {
     setAcceptBidConfirm(!acceptBidConfirm);
     try {
-      const result = await acceptBidApi({
+      await acceptBidApi({
         order_slug: orderSlug,
         order: { bid_slug: latestBid.bid_slug },
       });
-      if (result.data.success) {
-        setAcceptBidSucess(true);
-      }
+      // if (result.data.success) {
+      //   setAcceptBidSucess(true);
+      // }
     } catch (error) {
       if (error.response.data.status === 422) {
         console.log(error);
@@ -169,10 +169,17 @@ const NFTOrderBaseDetails = ({
             ) {
               return history.push(`/latimes-NFT`);
             } else {
-              if(nft?.core_statistics?.role.toLowerCase() === "batsman" || nft?.core_statistics?.role.toLowerCase() === "bowler")
-                return history.push(`/nft-marketplace/cricket-player-nfts/${nft?.category_slug}`);
-              if(nft?.core_statistics?.role.toLowerCase() === "bat")
-                return history.push(`/nft-marketplace/cricket-bat-nfts/${nft?.category_slug}`);
+              if (
+                nft?.core_statistics?.role.toLowerCase() === "batsman" ||
+                nft?.core_statistics?.role.toLowerCase() === "bowler"
+              )
+                return history.push(
+                  `/nft-marketplace/cricket-player-nfts/${nft?.category_slug}`
+                );
+              if (nft?.core_statistics?.role.toLowerCase() === "bat")
+                return history.push(
+                  `/nft-marketplace/cricket-bat-nfts/${nft?.category_slug}`
+                );
             }
           }}
         >

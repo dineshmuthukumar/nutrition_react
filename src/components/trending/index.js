@@ -17,13 +17,13 @@ import "./style.scss";
 
 const Trending = () => {
   const history = useHistory();
-  const [page, setPage] = useState(1);
+  // const [page, setPage] = useState(1);
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
   //const [hasNext, setHasNext] = useState(false);
 
   useEffect(() => {
-    trendingNFTList(page);
+    trendingNFTList(1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

@@ -71,7 +71,6 @@ const OrderDetails = () => {
   const [placeBuyPop, setPlaceBuyPop] = useState(false);
   const [putOnSalePop, setPutOnSalePop] = useState(false);
   const [cancelTheSalePop, setCancelTheSalePop] = useState(false);
-  const [page, setPage] = useState(1);
 
   const [isOrderOnSale, setIsOrderOnSale] = useState(false);
   const [isOrderSuccess, setIsOrderSuccess] = useState(false);
@@ -312,7 +311,7 @@ const OrderDetails = () => {
       setTransactionLoader(true);
       let transactions = await nftTransactionHistory({
         nft_slug: slug,
-        page: page,
+        page: 1,
         order_slug: orderSlug,
       });
       setTransactionHistory(transactions.data.data.nfts);

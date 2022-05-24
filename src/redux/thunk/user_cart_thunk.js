@@ -18,7 +18,6 @@ import {
   proceed_checkout_request,
   proceed_checkout_success,
   proceed_checkout_failure,
-  clear_cart_action,
   checkout_event,
 } from "../actions/user_cart_action";
 

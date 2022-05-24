@@ -9,7 +9,6 @@ import { userProfileDetailApi } from "../api/methods";
 
 const UserDetails = () => {
   const { slug } = useParams();
-  const [loading, setLoading] = useState(false);
   const [userDetail, setUserDetail] = useState({ users: [] });
   //const { user } = useSelector((state) => state.user.data);
 
@@ -21,13 +20,10 @@ const UserDetails = () => {
 
   const getSellerDetail = async () => {
     try {
-      setLoading(true);
       const result = await userProfileDetailApi({ slug });
       setUserDetail(result.data.data);
-      setLoading(false);
     } catch (error) {
       console.log(error);
-      setLoading(false);
     }
   };
 

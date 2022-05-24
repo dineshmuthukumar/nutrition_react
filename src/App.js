@@ -221,14 +221,14 @@ const WebContainer = () => {
           component={MyFavorites}
         />
         <Route
-            exact
-            path="/nft-marketplace/sale-history"
-            component={RecentlySold}
+          exact
+          path="/nft-marketplace/sale-history"
+          component={RecentlySold}
         />
         <Route
-            exact
-            path="/nft-marketplace/live-auction"
-            component={LiveAuctionsNFTs}
+          exact
+          path="/nft-marketplace/live-auction"
+          component={LiveAuctionsNFTs}
         />
         <Route
           exact

@@ -22,7 +22,7 @@ const ShowAll = ({ categories }) => {
   const [page, setPage] = useState(1);
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [totalCount, setTotalCount] = useState(0);
+  // const [totalCount, setTotalCount] = useState(0);
   const [hasNext, setHasNext] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
 
@@ -249,7 +249,7 @@ const ShowAll = ({ categories }) => {
       });
       setList([...list, ...response.data.data.nfts]);
       setHasNext(response.data.data.next_page);
-      setTotalCount(response.data.data.total_count);
+      // setTotalCount(response.data.data.total_count);
       page === 1 && setLoading(false);
       setLoadingMore(false);
     } catch (err) {
@@ -286,7 +286,7 @@ const ShowAll = ({ categories }) => {
       });
       setList(response.data.data.nfts);
       setHasNext(response.data.data.next_page);
-      setTotalCount(response.data.data.total_count);
+      // setTotalCount(response.data.data.total_count);
       page === 1 && setLoading(false);
       setLoadingMore(false);
     } catch (err) {

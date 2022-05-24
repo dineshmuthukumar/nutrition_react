@@ -11,7 +11,7 @@ import { setCookiesByName } from "../utils/cookies";
 const ExploreList = () => {
   const { cSlug, category } = useParams();
   const [categoryDetail, setCategoryDetail] = useState({});
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   let query = useQuery();
   const fsz = query.get("fsz");
 
@@ -27,10 +27,10 @@ const ExploreList = () => {
 
   const nftCategoryDetail = async (input) => {
     try {
-      setLoading(true);
+      // setLoading(true);
       let response = await nftCategoryDetailApi({ slug: input });
       setCategoryDetail(response.data.data.category);
-      setLoading(false);
+      // setLoading(false);
     } catch (err) {
       console.log(err);
     }

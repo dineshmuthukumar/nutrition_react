@@ -41,7 +41,7 @@ const Details = () => {
   const [ownerOrdersList, setOwnerOrdersList] = useState([]);
   const [ownerCount, setOwnerCount] = useState(0);
   const [isQuantityAvailable, setIsQuantityAvailable] = useState(null);
-  const [page, setPage] = useState(1);
+  // const [page, setPage] = useState(1);
   const [artist, setArtist] = useState({});
 
   const { user } = useSelector((state) => state.user.data);
@@ -149,7 +149,7 @@ const Details = () => {
       setTransactionLoader(true);
       let transactions = await nftTransactionHistory({
         nft_slug: slug,
-        page: page,
+        page: 1,
       });
       setTransactionHistory(transactions.data.data.nfts);
       setTransactionHasNext(transactions.data.data.next_page);
