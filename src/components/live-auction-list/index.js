@@ -59,6 +59,7 @@ const LiveAuctionsList = () => {
     if (price_range.from || price_range.to) {
       setPriceRangeFilter(price_range);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug, query]);
 
   useEffect(() => {
@@ -67,8 +68,6 @@ const LiveAuctionsList = () => {
       : "auction_ending_soon";
 
     const price_range = {
-      from: query.get("minPrice"),
-      to: query.get("maxPrice"),
       from: query.get("minPrice") ? query.get("minPrice") : "",
       to: query.get("maxPrice") ? query.get("maxPrice") : "",
     };
@@ -125,8 +124,6 @@ const LiveAuctionsList = () => {
         ? query.get("sort")
         : "auction_ending_soon";
       const price_range = {
-        from: query.get("minPrice"),
-        to: query.get("maxPrice"),
         from: query.get("minPrice") ? query.get("minPrice") : "",
         to: query.get("maxPrice") ? query.get("maxPrice") : "",
       };

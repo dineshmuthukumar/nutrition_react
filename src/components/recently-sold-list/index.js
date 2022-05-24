@@ -56,6 +56,7 @@ const RecentlySoldList = () => {
     showAllFilteredNFTs(1, sort_filters);
     setPage(1);
     setFilter(info);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug, query]);
 
   const showAllNFTs = async (page, sort = "recently_sold") => {

@@ -16,8 +16,8 @@ import lvl0013 from "../../images/jump-trade/player_levels/13.png";
 import lvl0014 from "../../images/jump-trade/player_levels/14.png";
 import lvl0015 from "../../images/jump-trade/player_levels/15.png";
 
-import playerstatsBG from "../../images/jump-trade/playerstatsBG.png";
-import playerstatsinnerBG from "../../images/jump-trade/playerstatsinnerBG.png";
+//import playerstatsBG from "../../images/jump-trade/playerstatsBG.png";
+//import playerstatsinnerBG from "../../images/jump-trade/playerstatsinnerBG.png";
 
 import "./style.scss";
 
@@ -115,7 +115,7 @@ const NFTPlayerStats = ({ stats = [], core }) => {
 
             <div className="player-level">
               <h6>{data.name}</h6>
-              <img src={data.value} />
+              <img src={data.value} alt="Player_level" />
             </div>
           </div>
         )}

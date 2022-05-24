@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Carousel } from "react-responsive-carousel";
 import { useHistory } from "react-router-dom";
 
-import { nftCategoriesApi } from "../../api/methods";
-import sample from "../../images/drops/nft_2.png";
-import HeroVideo from "../hero-video";
-import heroVideoBox from "../../images/amithabNft.mp4";
-import silsila_video from "../../images/marketplace/silsila.mp4";
+// import { nftCategoriesApi } from "../../api/methods";
+// import sample from "../../images/drops/nft_2.png";
+// import HeroVideo from "../hero-video";
+// import heroVideoBox from "../../images/amithabNft.mp4";
+// import silsila_video from "../../images/marketplace/silsila.mp4";
 import bigb_artpunk from "../../images/marketplace/bigb_art_punk.gif";
 import madhushala_nft from "../../images/marketplace/madhushala_nft.mp4";
-import chakra_artpunks from "../../images/marketplace/chakra_artpunks.gif";
-import comic_cover_new from "../../images/marketplace/comic_cover_new.jpg";
-import digital_poster from "../../images/marketplace/digital_poster.gif";
+// import chakra_artpunks from "../../images/marketplace/chakra_artpunks.gif";
+// import comic_cover_new from "../../images/marketplace/comic_cover_new.jpg";
+// import digital_poster from "../../images/marketplace/digital_poster.gif";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./style.scss";
-import majnu from "../../images/fullyfaltoo_drop/Majnu.jpeg";
-import wingesh from "../../images/fullyfaltoo_drop/wingesh.png";
-import rangu from "../../images/fullyfaltoo_drop/rangu.png";
+// import majnu from "../../images/fullyfaltoo_drop/Majnu.jpeg";
+// import wingesh from "../../images/fullyfaltoo_drop/wingesh.png";
+// import rangu from "../../images/fullyfaltoo_drop/rangu.png";
 import latimes from "../../images/latimes/LATIMES.mp4";
 import kalpana from "../../images/kalpana/kalpana.mp4";
 import fullyfaltoo from "../../images/fullyfaltoo_drop/fullyfaltoo.mp4";
@@ -232,6 +232,7 @@ const Banner = ({ list = [] }) => {
                                 src={category.url}
                                 className="first-image"
                                 style={{ height: "60vh" }}
+                                alt="first-category"
                               />
                             </>
                           );
@@ -341,6 +342,7 @@ const Banner = ({ list = [] }) => {
                     src={bigb_artpunk}
                     className="first-image"
                     style={{ height: "100%" }}
+                    alt="bigbunks"
                   />
                   {/* {(() => {
                     if (list[5]?.asset_type?.includes("video")) {
@@ -465,6 +467,7 @@ const Banner = ({ list = [] }) => {
                     }
                     className="first-image"
                     style={{ height: "100%" }}
+                    alt="hindustan time"
                   />
                 </div>
               </div>

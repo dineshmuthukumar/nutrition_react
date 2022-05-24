@@ -1,9 +1,9 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+//import { useHistory } from "react-router-dom";
 import { Offcanvas } from "react-bootstrap";
 
 const QuickView = ({ children, show = true, onHide = () => {} }) => {
-  const history = useHistory();
+  // const history = useHistory();
 
   return (
     <Offcanvas show={show} placement="end" className="w-100 w-md-100 w-lg-100">

@@ -37,6 +37,7 @@ const BidCard = ({
         setBidExpiry(dayjs(history.expires_at));
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user?.slug, history]);
 
   return (

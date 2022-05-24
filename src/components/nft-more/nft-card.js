@@ -3,16 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import dayjs from "dayjs";
 import { useRouteMatch, Link } from "react-router-dom";
 import { Popover, OverlayTrigger } from "react-bootstrap";
-import { prominent } from "color.js";
-import { FaHeart } from "react-icons/fa";
+//import { prominent } from "color.js";
+//import { FaHeart } from "react-icons/fa";
 import { currencyFormat } from "../../utils/common";
 import { add_to_cart_thunk } from "../../redux/thunk/user_cart_thunk";
 import NFTCounter from "../nft-counter";
 import cardImage from "../../images/drops/nft_2.png";
-import startin from "../../images/start_icon.png";
-import endsin from "../../images/ends_icon.png";
-import { BiUpArrowAlt, BiDownArrowAlt } from "react-icons/bi";
-import { AiFillFire } from "react-icons/ai";
+//import startin from "../../images/start_icon.png";
+//import endsin from "../../images/ends_icon.png";
+//import { BiUpArrowAlt, BiDownArrowAlt } from "react-icons/bi";
+//import { AiFillFire } from "react-icons/ai";
 
 import batsmanIcon from "../../images/jump-trade/batsman_ico.png";
 import bowlerIcon from "../../images/jump-trade/bowler_ico.png";
@@ -38,8 +38,8 @@ import "./style.scss";
 const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
   const erc721 = nft?.nft_type === "erc721";
   const { search } = useRouteMatch().params;
-  const [bgColor, setBgColor] = useState();
-  const [auctionEndTime, setAuctionEndTime] = useState("");
+  //const [bgColor, setBgColor] = useState();
+  //const [auctionEndTime, setAuctionEndTime] = useState("");
   const [isAuctionStarted, setIsAuctionStarted] = useState(false);
   const [isAuctionEnded, setIsAuctionEnded] = useState(false);
   const [showTimer, setShowTimer] = useState(false);
@@ -73,6 +73,7 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
       );
       setShowTimer(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleAuctionStartTimer = () => {
@@ -225,9 +226,9 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
     (obj) => obj.type === nft?.core_statistics?.category
   );
 
-  const handleAddToCart = () => {
-    dispatch(add_to_cart_thunk(nft?.order_details?.slug, nft?.quantity));
-  };
+  // const handleAddToCart = () => {
+  //   dispatch(add_to_cart_thunk(nft?.order_details?.slug, nft?.quantity));
+  // };
 
   useEffect(() => {
     if (userSlug) {
@@ -240,6 +241,7 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
         setInCart(false);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userCart]);
 
   const KycPopOver = () => (
@@ -258,7 +260,7 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
       <article className={`player_stats `}>
         {roleData && (
           <div className="player-type">
-            <img src={roleData?.value} />
+            <img src={roleData?.value} alt="Player-status" />
           </div>
         )}
 
@@ -283,7 +285,7 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
         {levelData && (
           <div className="player-level">
             <h6>{levelData?.name}</h6>
-            <img src={levelData?.value} />
+            <img src={levelData?.value} alt="Player-level" />
           </div>
         )}
       </article>

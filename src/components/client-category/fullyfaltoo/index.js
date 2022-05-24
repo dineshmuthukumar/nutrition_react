@@ -11,7 +11,7 @@ import Details from "../../../pages/details";
 import OrderDetails from "../../../pages/order-details";
 import QuickView from "../../quick-view";
 import { nftCategoriesApi, nftCategoryListApi } from "../../../api/methods";
-import { BiCaretDown, BiX, BiSearch } from "react-icons/bi";
+import { BiCaretDown, BiX } from "react-icons/bi";
 import { useParams } from "react-router";
 
 import ffLogo from "./img/logo2.png";
@@ -191,6 +191,7 @@ const FullyFaltoo = () => {
     } else {
       setPopDetails({ ...popDetails, show: false, children: null });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [match.path]);
 
   useEffect(() => {
@@ -218,6 +219,7 @@ const FullyFaltoo = () => {
 
     setFilter(info);
     setPage(1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
 
   useEffect(() => {
@@ -228,6 +230,7 @@ const FullyFaltoo = () => {
     const sale_status = query.get("status");
 
     fetchNFTList(1, slug, sale_filters, sort_filters, sale_status);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [match.params.search]);
 
   const categoriesList = async (page) => {
@@ -673,7 +676,7 @@ const FullyFaltoo = () => {
                       } else {
                         return (
                           <>
-                            <img src={category.url} />
+                            <img src={category.url} alt="categoryUrl" />
                           </>
                         );
                       }

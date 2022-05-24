@@ -6,7 +6,7 @@ import { ToastContainer } from "react-toastify";
 import { Provider } from "react-redux";
 
 import App from "./App";
-import SiteMaintenance from "./pages/site-maintenance";
+//import SiteMaintenance from "./pages/site-maintenance";
 import reportWebVitals from "./reportWebVitals";
 
 import { setTranslations } from "react-multi-lang";

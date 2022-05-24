@@ -29,6 +29,7 @@ const TermsAndConditions = () => {
                       href="https://www.jump.trade/terms-and-conditions"
                       target="_blank"
                       className="one-link"
+                      rel="noreferrer"
                     >
                       https://www.jump.trade/terms-and-conditions.
                     </a>{" "}
@@ -1206,6 +1207,7 @@ const TermsAndConditions = () => {
                       href="https://www.jump.trade/privacy-policy"
                       target="_blank"
                       className="one-link"
+                      rel="noreferrer"
                     >
                       https://www.jump.trade/privacy-policy
                     </a>{" "}

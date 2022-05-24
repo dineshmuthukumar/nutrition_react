@@ -1,15 +1,15 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import dayjs from "dayjs";
 import Select from "react-select";
 
 import { useSelector } from "react-redux";
-import { useRouteMatch } from "react-router";
-import { Dropdown, Offcanvas } from "react-bootstrap";
+//import { useRouteMatch } from "react-router";
+import { Offcanvas } from "react-bootstrap";
 import ToggleButton from "react-toggle-button";
 import { BiCheck, BiX } from "react-icons/bi";
 import { FaCheckCircle } from "react-icons/fa";
 import _ from "lodash";
-import { setMinutes, setHours, addMinutes, addHours, addDays } from "date-fns";
+import { setMinutes, setHours, addHours, addDays } from "date-fns";
 
 import { toast } from "react-toastify";
 import {
@@ -22,14 +22,13 @@ import { FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
 import ErrorText from "./error-text";
 import sample from "../../images/sampleNFT.jpg";
 import {
-  bidBuyError,
   currencyFormat,
   dot,
   validateCurrency,
   validateQuantity,
 } from "../../utils/common";
-import { nftBidApi, nftBuyApi, putOnSaleApi } from "../../api/methods";
-import HelpLine from "../help-line";
+import { putOnSaleApi } from "../../api/methods";
+//import HelpLine from "../help-line";
 import "./style.scss";
 import ToolTip from "../tooltip/index";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
@@ -43,13 +42,13 @@ const NFTPutOnSale = ({
   nft,
   isQuantityAvailable,
 }) => {
-  const url = window.location.href;
-  const hashtags = "NFT,NFTCollector,NFTCollection,GuardianLink";
-  const via = "jump.trade";
+  //const url = window.location.href;
+  //const hashtags = "NFT,NFTCollector,NFTCollection,GuardianLink";
+  // const via = "jump.trade";
 
   const { user } = useSelector((state) => state.user.data);
-  const { params } = useRouteMatch();
-  const startDateRef = useRef();
+  // const { params } = useRouteMatch();
+  // const startDateRef = useRef();
 
   const [success, setSuccess] = useState(false);
   const [startChosen, setStartChosen] = useState(false);
@@ -438,24 +437,24 @@ const NFTPutOnSale = ({
     return window.navigator.msLaunchUri ? onIE() : notOnIE();
   };
 
-  const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
-    <div
-      className="input-sale-wrap"
-      ref={ref}
-      onClick={(e) => {
-        e.preventDefault();
-        onClick(e);
-      }}
-      role={"button"}
-    >
-      <span className="p-3 w-100">
-        <div className="d-flex justify-content-between">
-          <div>{children}</div>
-          <div>&#x25bc;</div>
-        </div>
-      </span>
-    </div>
-  ));
+  // const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
+  //   <div
+  //     className="input-sale-wrap"
+  //     ref={ref}
+  //     onClick={(e) => {
+  //       e.preventDefault();
+  //       onClick(e);
+  //     }}
+  //     role={"button"}
+  //   >
+  //     <span className="p-3 w-100">
+  //       <div className="d-flex justify-content-between">
+  //         <div>{children}</div>
+  //         <div>&#x25bc;</div>
+  //       </div>
+  //     </span>
+  //   </div>
+  // ));
 
   const [startDate, setStartDate] = useState(
     (() => {
@@ -1550,6 +1549,7 @@ const NFTPutOnSale = ({
                                       <a
                                         href="https://nft.latimes.com/terms-and-conditions/"
                                         target={"_blank"}
+                                        rel="noreferrer"
                                       >
                                         Terms and Conditions
                                       </a>
@@ -1765,6 +1765,7 @@ const NFTPutOnSale = ({
                                       <a
                                         href="https://nft.latimes.com/terms-and-conditions/"
                                         target={"_blank"}
+                                        rel="noreferrer"
                                       >
                                         Terms and Conditions.
                                       </a>

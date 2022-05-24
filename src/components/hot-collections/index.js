@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from "react";
-import NFTCard from "../nft-card";
+//import NFTCard from "../nft-card";
 import { toast } from "react-toastify";
 import ContentLoader from "react-content-loader";
-import { VscChevronLeft } from "react-icons/vsc";
-import { VscChevronRight } from "react-icons/vsc";
-import cardImage from "../../images/drops/nft_2.png";
+//import { VscChevronLeft } from "react-icons/vsc";
+//import { VscChevronRight } from "react-icons/vsc";
+//import cardImage from "../../images/drops/nft_2.png";
 import { hotNFTsApi } from "../../api/methods";
 import NFTMore from "../nft-more/index";
 import "./style.scss";
 
 const HotCollections = () => {
-  const [page, setPage] = useState(1);
+  const [page] = useState(1);
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [hasNext, setHasNext] = useState(false);
+  //const [hasNext, setHasNext] = useState(false);
 
   useEffect(() => {
     hotNFTList(page);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const hotNFTList = async (page) => {
