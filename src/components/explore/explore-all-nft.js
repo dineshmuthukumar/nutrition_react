@@ -750,7 +750,11 @@ const ExploreAllNFT = () => {
                   parseInt(priceRange.from) > parseInt(priceRange.to)
                 ) {
                   return true;
-                } else if (priceRange.from == "" || priceRange.from === null) {
+                } else if (
+                  priceRange.from == "" ||
+                  priceRange.from === null ||
+                  query.get("minPrice")
+                ) {
                   return true;
                 } else {
                   return false;
