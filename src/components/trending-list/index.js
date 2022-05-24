@@ -29,7 +29,7 @@ const TrendingList = () => {
       {
         name: "Bid Count - High to Low",
         value: "bid_count_desc",
-        checked: true,
+        checked: false,
       },
       {
         name: "Bid Count - Low to High",
@@ -39,7 +39,7 @@ const TrendingList = () => {
       {
         name: "Price - High to Low",
         value: "price_desc",
-        checked: false,
+        checked: true,
       },
       {
         name: "Price - Low to High",
@@ -55,9 +55,7 @@ const TrendingList = () => {
   });
 
   useEffect(() => {
-    const sort_filters = query.get("sort")
-      ? query.get("sort")
-      : "bid_count_desc";
+    const sort_filters = query.get("sort") ? query.get("sort") : "price_desc";
     const price_range = {
       from: query.get("minPrice"),
       to: query.get("maxPrice"),
@@ -78,9 +76,7 @@ const TrendingList = () => {
   }, [slug, query]);
 
   useEffect(() => {
-    const sort_filters = query.get("sort")
-      ? query.get("sort")
-      : "bid_count_desc";
+    const sort_filters = query.get("sort") ? query.get("sort") : "price_desc";
 
     const price_range = {
       from: query.get("minPrice") ? query.get("minPrice") : "",
@@ -90,7 +86,7 @@ const TrendingList = () => {
     showAllFilteredNFTs(1, sort_filters, price_range);
   }, [query]);
 
-  const showAllNFTs = async (page, sort = "bid_count_desc", price_range) => {
+  const showAllNFTs = async (page, sort = "price_desc", price_range) => {
     try {
       let filter = {
         price_range,
@@ -109,7 +105,7 @@ const TrendingList = () => {
 
   const showAllFilteredNFTs = async (
     page,
-    sort = "bid_count_desc",
+    sort = "price_desc",
     price_range
   ) => {
     try {
@@ -131,9 +127,7 @@ const TrendingList = () => {
 
   const fetchMore = () => {
     if (hasNext) {
-      const sort_filters = query.get("sort")
-        ? query.get("sort")
-        : "bid_count_desc";
+      const sort_filters = query.get("sort") ? query.get("sort") : "price_desc";
       const price_range = {
         from: query.get("minPrice") ? query.get("minPrice") : "",
         to: query.get("maxPrice") ? query.get("maxPrice") : "",
