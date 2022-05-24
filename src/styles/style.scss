@@ -2412,6 +2412,39 @@ section.detail-page-content {
           background-color: transparent;
         }
       }
+      &.property-pill-box {
+        // background-color: #10241b;
+        padding: 1rem 1.5rem !important;
+        background-color: #19362961;
+        border-radius: 0.5rem !important;
+        border: 0.1rem solid #193629 !important;
+
+        &::before {
+          content: unset !important;
+        }
+        .first {
+          .pill-title {
+            font-size: 1.2rem;
+          }
+          .pill-description {
+            padding: 0 !important;
+            font-size: 1rem;
+            color: #a2a2a2;
+            font-family: $neue-helvetica-roman;
+          }
+          .second {
+            text-transform: uppercase;
+            background: -webkit-linear-gradient(
+              -91deg,
+              #e2ff00 50%,
+              #18e0e0 7%,
+              #e8318d 70%
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }
+        }
+      }
     }
 
     .section-title {
