@@ -592,6 +592,12 @@ const Header = ({
                 <Nav.Link id="drop_outer" href={process.env.REACT_APP_DROP_URL}>
                   Drop
                 </Nav.Link>
+                <Nav.Link id="drop_outer" role="button">
+                  {" "}
+                  <span className="beta-container">
+                    <span className="beta-tag">Coming soon</span>MCL Game{" "}
+                  </span>{" "}
+                </Nav.Link>
                 {/* <Dropdown autoClose={["inside", "outside"]} className="me-0">
                   <Dropdown.Toggle
                     align="start"
@@ -987,6 +993,13 @@ const Header = ({
                       </Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown> */}
+
+                  <Dropdown.Item href="#">
+                    {" "}
+                    <span className="beta-container">
+                      <span className="beta-tag">Coming soon</span> MCL Game{" "}
+                    </span>{" "}
+                  </Dropdown.Item>
 
                   <Dropdown.Item href="/">
                     <span className="beta-container">
