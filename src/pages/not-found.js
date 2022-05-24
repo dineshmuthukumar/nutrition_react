@@ -48,7 +48,7 @@ const NotFound = () => {
                   Go to Marketplace{" "}
                   <a
                     href={process.env.REACT_APP_MARKETPLACE_URL}
-                    target="_blank"
+                    target="_self"
                     rel="noreferrer"
                   >
                     Home

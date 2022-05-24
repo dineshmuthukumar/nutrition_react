@@ -29,22 +29,22 @@ import "./App.css";
 
 const Home = lazy(() => import("./pages/home"));
 const Explore = lazy(() => import("./pages/explore-list"));
-const Details = lazy(() => import("./pages/details"));
-const OrderDetails = lazy(() => import("./pages/order-details"));
+// const Details = lazy(() => import("./pages/details"));
+// const OrderDetails = lazy(() => import("./pages/order-details"));
 const NotFound = lazy(() => import("./pages/not-found"));
-const HelpLine = lazy(() => import("./pages/help-line"));
+// const HelpLine = lazy(() => import("./pages/help-line"));
 const UserDetails = lazy(() => import("./pages/user-details"));
-const Htimes = lazy(() => import("./components/client-category/htimes"));
-const KalpanaChawla = lazy(() =>
-  import("./components/client-category/kalpana-chawla")
-);
-const FullyFaltoo = lazy(() =>
-  import("./components/client-category/fullyfaltoo")
-);
-const Latimes = lazy(() => import("./components/client-category/latimes"));
+// const Htimes = lazy(() => import("./components/client-category/htimes"));
+// const KalpanaChawla = lazy(() =>
+//   import("./components/client-category/kalpana-chawla")
+// );
+// const FullyFaltoo = lazy(() =>
+//   import("./components/client-category/fullyfaltoo")
+// );
+// const Latimes = lazy(() => import("./components/client-category/latimes"));
 
 const RecentlySold = lazy(() => import("./pages/recently-sold"));
-const CreatorApplication = lazy(() => import("./pages/creator-application"));
+// const CreatorApplication = lazy(() => import("./pages/creator-application"));
 const LiveAuctionsNFTs = lazy(() => import("./pages/live-auction-nfts"));
 const TrendingNFTs = lazy(() => import("./pages/trending"));
 const MyFavorites = lazy(() => import("./pages/my-favorites"));
@@ -212,6 +212,26 @@ const WebContainer = () => {
       <Switch>
         <Route
           exact
+          path="/nft-marketplace/trending-nfts"
+          component={TrendingNFTs}
+        />
+        <Route
+          exact
+          path="/nft-marketplace/favorites"
+          component={MyFavorites}
+        />
+        <Route
+            exact
+            path="/nft-marketplace/sale-history"
+            component={RecentlySold}
+        />
+        <Route
+            exact
+            path="/nft-marketplace/live-auction"
+            component={LiveAuctionsNFTs}
+        />
+        <Route
+          exact
           path="/nft-marketplace/:search?/order/details/:slug/:orderSlug"
           component={ExploreAll}
         />
@@ -220,18 +240,7 @@ const WebContainer = () => {
           path="/nft-marketplace/:search?/details/:slug"
           component={ExploreAll}
         />
-        {/* <Route
-          exact
-          path="/nft-marketplace/cricket-nfts/:search?/order/details/:slug/:orderSlug"
-          component={ExploreAll}
-        /> */}
-        {/* <Route
-          exact
-          path="/nft-marketplace/cricket-nfts/:search?/details/:slug"
-          component={ExploreAll}
-        /> */}
         <Route exact path="/nft-marketplace/:search?" component={ExploreAll} />
-        {/* <Route exact path="/nft-marketplace/cricket-nfts/:search?" component={ExploreAll} /> */}
         <Route
           exact
           path="/nft-marketplace/:category/:cSlug/:search?/order/details/:slug/:orderSlug"
@@ -246,124 +255,6 @@ const WebContainer = () => {
           exact
           path="/nft-marketplace/:category/:cSlug/:search?"
           component={Explore}
-        />
-        <Route exact path="/help-line" component={HelpLine} />
-        <Route
-          exact
-          path="/hindustan-times-NFT/order/details/:slug/:orderSlug"
-          component={Htimes}
-        />
-        <Route
-          exact
-          path="/hindustan-times-NFT/details/:slug"
-          component={Htimes}
-        />
-        <Route exact path="/hindustan-times-NFT" component={Htimes} />
-
-        <Route
-          exact
-          path="/kalpana-chawla-NFT/:search?/order/details/:slug/:orderSlug"
-          component={KalpanaChawla}
-        />
-        <Route
-          exact
-          path="/kalpana-chawla-NFT/:search?/details/:slug"
-          component={KalpanaChawla}
-        />
-        <Route exact path="/kalpana-chawla-NFT" component={KalpanaChawla} />
-
-        <Route
-          exact
-          path="/fully-faltoo-NFT/order/details/:slug/:orderSlug"
-          component={FullyFaltoo}
-        />
-        <Route
-          exact
-          path="/fully-faltoo-NFT/details/:slug"
-          component={FullyFaltoo}
-        />
-        <Route
-          exact
-          path="/fully-faltoo-NFT/:slug?/:search?"
-          component={FullyFaltoo}
-        />
-
-        <Route
-          exact
-          path="/latimes-NFT/:search?/order/details/:slug/:orderSlug"
-          component={Latimes}
-        />
-        <Route
-          exact
-          path="/latimes-NFT/:search?/details/:slug"
-          component={Latimes}
-        />
-        <Route exact path="/latimes-NFT" component={Latimes} />
-
-        <Route
-          exact
-          path="/nft-marketplace/sale-history"
-          component={RecentlySold}
-        />
-        {/* <Route
-          exact
-          path="/nft-marketplace/sale-history/:search?/order/details/:slug/:orderSlug"
-          component={RecentlySold}
-        />
-        <Route
-          exact
-          path="/nft-marketplace/sale-history/:search?/details/:slug"
-          component={RecentlySold}
-        /> */}
-        <Route
-          exact
-          path="/nft-marketplace/live-auction"
-          component={LiveAuctionsNFTs}
-        />
-        {/* <Route
-          exact
-          path="/nft-marketplace/live-auction/:search?/order/details/:slug/:orderSlug"
-          component={LiveAuctionsNFTs}
-        />
-        <Route
-          exact
-          path="/nft-marketplace/live-auction/:search?/details/:slug"
-          component={LiveAuctionsNFTs}
-        /> */}
-        <Route
-          exact
-          path="/nft-marketplace/trending-nfts"
-          component={TrendingNFTs}
-        />
-        {/* <Route
-          exact
-          path="/nft-marketplace/trending-nfts/:search?/order/details/:slug/:orderSlug"
-          component={TrendingNFTs}
-        />
-        <Route
-          exact
-          path="/nft-marketplace/trending-nfts/:search?/details/:slug"
-          component={TrendingNFTs}
-        /> */}
-        <Route
-          exact
-          path="/nft-marketplace/favorites"
-          component={MyFavorites}
-        />
-        {/* <Route
-          exact
-          path="/nft-marketplace/favorites/:search?/order/details/:slug/:orderSlug"
-          component={MyFavorites}
-        />
-        <Route
-          exact
-          path="/nft-marketplace/favorites/:search?/details/:slug"
-          component={MyFavorites}
-        /> */}
-        <Route
-          exact
-          path="/creator-application"
-          component={CreatorApplication}
         />
 
         <Route exact path="/privacy-policy" component={Privacy} />
