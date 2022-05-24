@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import userImg from "../../images/user_1.jpg";
 import "./style.scss";
 
-import { currencyFormat } from "../../utils/common";
+//import { currencyFormat } from "../../utils/common";
 
 const HistoryHeader = ({ nftOwner, nft }) => {
   const { user } = useSelector((state) => state.user.data);

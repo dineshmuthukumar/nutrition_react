@@ -37,12 +37,12 @@ const NFTCancelTheSale = ({
   const [cancelQuantity, setCancelQuantity] = useState("");
   const erc721 = nft.nft_type === "erc721";
 
-  const [error, setError] = useState({
-    isError: false,
-    progressError: "",
-    errorTitle: "",
-    errorDescription: "",
-  });
+  // const [error, setError] = useState({
+  //   isError: false,
+  //   progressError: "",
+  //   errorTitle: "",
+  //   errorDescription: "",
+  // });
 
   const handleSaleCancel = async () => {
     try {
@@ -55,13 +55,14 @@ const NFTCancelTheSale = ({
     } catch (error) {
       if (error.response.data.status === 422) {
         const err = bidBuyError(error.response.data.fail_status);
-        setError({
-          ...error,
-          isError: true,
-          progressError: "error-progress",
-          errorTitle: err.title,
-          errorDescription: err.description,
-        });
+        console.log(err);
+        // setError({
+        //   ...error,
+        //   isError: true,
+        //   progressError: "error-progress",
+        //   errorTitle: err.title,
+        //   errorDescription: err.description,
+        // });
       }
     }
   };
@@ -78,13 +79,14 @@ const NFTCancelTheSale = ({
     } catch (error) {
       if (error.response.data.status === 422) {
         const err = bidBuyError(error.response.data.fail_status);
-        setError({
-          ...error,
-          isError: true,
-          progressError: "error-progress",
-          errorTitle: err.title,
-          errorDescription: err.description,
-        });
+        console.log(err);
+        // setError({
+        //   ...error,
+        //   isError: true,
+        //   progressError: "error-progress",
+        //   errorTitle: err.title,
+        //   errorDescription: err.description,
+        // });
       }
     }
   };
@@ -110,12 +112,13 @@ const NFTCancelTheSale = ({
       setCancelTheSalePop(!cancelTheSalePop);
       setSuccess(false);
       setCancelQuantity("");
-      setError({
-        isError: false,
-        progressError: "",
-        errorTitle: "",
-        errorDescription: "",
-      });
+
+      // setError({
+      //   isError: false,
+      //   progressError: "",
+      //   errorTitle: "",
+      //   errorDescription: "",
+      // });
     }
   };
 

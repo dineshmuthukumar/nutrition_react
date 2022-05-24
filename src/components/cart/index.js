@@ -44,7 +44,7 @@ const Cart = ({ cartPop = false, setCartPop, setCheckoutDevice }) => {
         .filter((obj) => obj.order_status === "onsale")
         .map((item) => items.push(item?.line_item_slug));
       items = items.filter(function (item, i, input) {
-        return input.indexOf(item) == i;
+        return input.indexOf(item) === i;
       });
       setSelectedItems(items);
     }
@@ -54,9 +54,7 @@ const Cart = ({ cartPop = false, setCartPop, setCheckoutDevice }) => {
     let amount = 0;
     userCart?.line_items
       ?.filter((obj) => selectedItems.includes(obj.line_item_slug))
-      .map((nft) => {
-        amount = amount + parseFloat(nft?.buy_amount);
-      });
+      .map((nft) => (amount = amount + parseFloat(nft?.buy_amount)));
     amount =
       parseFloat(amount) +
       (parseFloat(amount) * parseFloat(userCart?.service_fee)) / 100;

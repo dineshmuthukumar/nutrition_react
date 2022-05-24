@@ -18,7 +18,7 @@ const ChainAttributes = ({ chains = [] }) => {
             return <ChainPills key={`chain-${i}`} first={value} />;
           } else {
             const key = Object.keys(chain);
-            if (chain[key]?.length == 2) {
+            if (chain[key]?.length === 2) {
               return (
                 <ChainPills
                   key={`chain-${i}`}

@@ -49,7 +49,7 @@ const ExploreAllNFT = () => {
     from: "",
     to: "",
   });
-  const [priceFilter, setPriceFilter] = useState(false);
+  // const [priceFilter, setPriceFilter] = useState(false);
   const [filter, setFilter] = useState({
     sale: [
       {
@@ -569,7 +569,7 @@ const ExploreAllNFT = () => {
         if (remove) {
           setPriceRangeFilter(price_range);
         }
-        setPriceFilter(true);
+        //setPriceFilter(true);
         setToggle(!toggle);
         break;
 
@@ -751,7 +751,7 @@ const ExploreAllNFT = () => {
                 ) {
                   return true;
                 } else if (
-                  priceRange.from == "" ||
+                  priceRange.from === "" ||
                   priceRange.from === null ||
                   query.get("minPrice")
                 ) {
