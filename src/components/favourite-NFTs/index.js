@@ -1,12 +1,12 @@
 import React from "react";
 import ContentLoader from "react-content-loader";
-import { useHistory } from "react-router-dom";
+//import { useHistory } from "react-router-dom";
 import NFTMore from "../nft-more/index";
 
 import "./style.scss";
 
 const FavouriteNFTs = ({ list = [], loading = false }) => {
-  const history = useHistory();
+  //const history = useHistory();
 
   return (
     <>

@@ -17,13 +17,14 @@ import "./style.scss";
 
 const LiveAuctions = () => {
   const history = useHistory();
-  const [page, setPage] = useState(1);
+  const [page] = useState(1);
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [hasNext, setHasNext] = useState(false);
+  //const [hasNext, setHasNext] = useState(false);
 
   useEffect(() => {
     liveAuctionNFTList(page);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const liveAuctionNFTList = async (page) => {
@@ -52,7 +53,9 @@ const LiveAuctions = () => {
                 {list.length > 4 && (
                   <span
                     className="viewallBtnliveaction"
-                    onClick={() => history.push("/nft-marketplace/live-auction")}
+                    onClick={() =>
+                      history.push("/nft-marketplace/live-auction")
+                    }
                   >
                     View all
                   </span>

@@ -4,7 +4,7 @@ import Marquee from "react-fast-marquee";
 import { BsArrowRight } from "react-icons/bs";
 import { HiPlus } from "react-icons/hi";
 import DropImage from "../../images/jump-trade/coupon.png";
-import NFTCounter from "../nft-counter";
+//import NFTCounter from "../nft-counter";
 import TimeCounter from "../time-counter";
 import "./style.scss";
 
@@ -49,7 +49,11 @@ const NewDropSection = () => {
           <div className="row">
             <div className="col-sm-12">
               <div className="new-drop-box">
-                <img src={DropImage} className="content-img" />
+                <img
+                  src={DropImage}
+                  className="content-img"
+                  alt="Content-Img1"
+                />
                 <div className="drop-timer-box">
                   <h4>Chelsea Drop</h4>
                   <TimeCounter time={drop_time} />

@@ -98,12 +98,14 @@ const NFTPlaceBid = ({
       setError("");
     }
     setBuyQuantity("");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (erc721) {
       setBuyAmount(orderDetails?.buy_amount);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOrderOnSale, availableQty]);
 
   const handleBuy = async () => {
@@ -542,6 +544,7 @@ const NFTPlaceBid = ({
                           <a
                             href="https://nft.latimes.com/terms-and-conditions/"
                             target={"_blank"}
+                            rel="noreferrer"
                           >
                             Terms and Conditions
                           </a>

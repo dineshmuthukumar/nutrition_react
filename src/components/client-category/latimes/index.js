@@ -54,6 +54,7 @@ const Latimes = () => {
     }
 
     nftCategoryDetail(slug);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const nftCategoryDetail = async (slug) => {

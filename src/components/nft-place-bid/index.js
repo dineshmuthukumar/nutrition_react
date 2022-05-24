@@ -27,7 +27,7 @@ const NFTPlaceBid = ({
   price,
   soldOut,
   transferringNFT,
-  isOrderOnSale,
+  // isOrderOnSale,
   isOrderCancelled,
   isAuctionEnded,
 }) => {
@@ -40,8 +40,8 @@ const NFTPlaceBid = ({
   const erc721 = nft.nft_type === "erc721";
   const [noBalance, setNoBalance] = useState(false);
 
-  const [buyAmount, setBuyAmount] = useState(0);
-  const [buyQuantity, setBuyQuantity] = useState("");
+  // const [buyAmount, setBuyAmount] = useState(0);
+  // const [buyQuantity, setBuyQuantity] = useState("");
   const [bidAmount, setBidAmount] = useState("");
   const [error, setError] = useState("");
 
@@ -149,8 +149,8 @@ const NFTPlaceBid = ({
   const handleSuccess = () => {
     setPlaceBidPop(!placeBidPop);
     setSuccess(false);
-    setBuyQuantity("");
-    setBuyAmount(0);
+    // setBuyQuantity("");
+    // setBuyAmount(0);
     setBuy({
       ...buy,
       amountClass: "",
@@ -429,6 +429,7 @@ const NFTPlaceBid = ({
                           <a
                             href="https://nft.latimes.com/terms-and-conditions/"
                             target={"_blank"}
+                            rel="noreferrer"
                           >
                             Terms and Conditions.
                           </a>{" "}

@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import OwlCarousel from "react-owl-carousel";
-import { Dropdown } from "react-bootstrap";
-import { FaCheckCircle } from "react-icons/fa";
-import { BiCaretDown } from "react-icons/bi";
+//import { Dropdown } from "react-bootstrap";
+//import { FaCheckCircle } from "react-icons/fa";
+//import { BiCaretDown } from "react-icons/bi";
 import ContentLoader from "react-content-loader";
 import { nftRecentlySoldApi } from "../../api/methods";
-import NFTMore from "../nft-more/index";
+//import NFTMore from "../nft-more/index";
 import frontArrow from "../../images/jump-trade/front-arrow.png";
 import backArrow from "../../images/jump-trade/back-arrow.png";
 
@@ -19,32 +19,33 @@ import CollectionCard from "../nft-more/nft-card";
 
 const RecentlySoldNFT = () => {
   const history = useHistory();
-  const [page, setPage] = useState(1);
+  const [page] = useState(1);
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const [filter, setFilter] = useState({
-    sort: [
-      {
-        name: "Recently Sold",
-        value: "recently_sold",
-        checked: true,
-      },
-      {
-        name: "Price - High to Low",
-        value: "price_desc",
-        checked: false,
-      },
-      {
-        name: "Price - Low to High",
-        value: "price_asc",
-        checked: false,
-      },
-    ],
-  });
+  // const [filter, setFilter] = useState({
+  //   sort: [
+  //     {
+  //       name: "Recently Sold",
+  //       value: "recently_sold",
+  //       checked: true,
+  //     },
+  //     {
+  //       name: "Price - High to Low",
+  //       value: "price_desc",
+  //       checked: false,
+  //     },
+  //     {
+  //       name: "Price - Low to High",
+  //       value: "price_asc",
+  //       checked: false,
+  //     },
+  //   ],
+  // });
 
   useEffect(() => {
     topTradesList(page);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const topTradesList = async (page, sort = "recently_sold") => {
@@ -61,32 +62,32 @@ const RecentlySoldNFT = () => {
     }
   };
 
-  const ShowAllSort = React.forwardRef(({ onClick }, ref) => (
-    <div
-      className="filter-drop-sort-btn"
-      ref={ref}
-      onClick={(e) => {
-        e.preventDefault();
-        onClick(e);
-      }}
-    >
-      {filter.sort.find((obj) => obj.checked === true)?.name
-        ? `Sort By: ${filter.sort.find((obj) => obj.checked === true).name}`
-        : "Sort By"}
-      <BiCaretDown />
-    </div>
-  ));
+  // const ShowAllSort = React.forwardRef(({ onClick }, ref) => (
+  //   <div
+  //     className="filter-drop-sort-btn"
+  //     ref={ref}
+  //     onClick={(e) => {
+  //       e.preventDefault();
+  //       onClick(e);
+  //     }}
+  //   >
+  //     {filter.sort.find((obj) => obj.checked === true)?.name
+  //       ? `Sort By: ${filter.sort.find((obj) => obj.checked === true).name}`
+  //       : "Sort By"}
+  //     <BiCaretDown />
+  //   </div>
+  // ));
 
-  const handleSortNFT = (input) => {
-    const sort_filters = input.value;
-    const info = { ...filter };
-    info.sort = filter.sort.map((obj) => ({
-      ...obj,
-      checked: sort_filters ? sort_filters === obj.value : false,
-    }));
-    setFilter(info);
-    topTradesList(page, sort_filters);
-  };
+  // const handleSortNFT = (input) => {
+  //   const sort_filters = input.value;
+  //   const info = { ...filter };
+  //   info.sort = filter.sort.map((obj) => ({
+  //     ...obj,
+  //     checked: sort_filters ? sort_filters === obj.value : false,
+  //   }));
+  //   setFilter(info);
+  //   topTradesList(page, sort_filters);
+  // };
 
   return (
     <>

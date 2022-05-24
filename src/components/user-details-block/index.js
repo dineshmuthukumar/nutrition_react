@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+//import { useSelector } from "react-redux";
 import ContentLoader from "react-content-loader";
-import { HiOutlineLockClosed } from "react-icons/hi";
+//import { HiOutlineLockClosed } from "react-icons/hi";
 
 import {
   sellerFavedNFTSApi,
@@ -37,7 +37,7 @@ const UserDetailsBlock = ({ userDetail }) => {
   const [hasNextFaved, setHasNextFaved] = useState(false);
   const [hasNextOnsale, setHasNextOnsale] = useState(false);
 
-  const { user } = useSelector((state) => state.user.data);
+  //const { user } = useSelector((state) => state.user.data);
 
   const getSellerOwnedNFTs = async (page) => {
     try {
@@ -91,6 +91,7 @@ const UserDetailsBlock = ({ userDetail }) => {
     getUserOnsaleNFTs(onsalePage);
     getSellerOwnedNFTs(ownPage);
     getSellerFavedNFTs(favPage);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchMoreOwnedNFTs = () => {

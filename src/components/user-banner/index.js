@@ -34,6 +34,7 @@ const UserBanner = ({ userDetail }) => {
                 ? userDetail?.users[0]?.avatar_url
                 : userImage
             }
+            alt="user-info"
           />
           <div>
             {userDetail?.users[0]?.slug && (
