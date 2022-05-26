@@ -371,7 +371,11 @@ const Cart = ({ cartPop = false, setCartPop, setCheckoutDevice }) => {
                 <div className="pop-body-content d-flex align-items-center justify-content-center empty-cart-content">
                   <div className="pop-cart-info">
                     <div className="d-block text-center py-4 empty-cart-item">
-                      <img src={emptycart} alt="empty-cart-item" />
+                      <img
+                        src={emptycart}
+                        alt="empty-cart-item"
+                        loading="lazy"
+                      />
                     </div>
                     <div className="text-center empty-cart">
                       <h3>Your cart is empty!</h3>
@@ -420,12 +424,12 @@ const Cart = ({ cartPop = false, setCartPop, setCheckoutDevice }) => {
               <div className="pop-body-content success">
                 {parseInt(successData?.final_amount) > 0 ? (
                   <div className="order-placed text-center py-4">
-                    <img src={done} alt="order-place" />
+                    <img src={done} alt="order-place" loading="lazy" />
                     <h2 className="py-4">Order Processed Successfully</h2>
                   </div>
                 ) : (
                   <div className="order-placed text-center py-4">
-                    <img src={failed} alt="order-fail" />
+                    <img src={failed} alt="order-fail" loading="lazy" />
                     <h2 className="py-4">Order Processing Unsuccessful.</h2>
                   </div>
                 )}

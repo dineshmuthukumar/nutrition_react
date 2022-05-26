@@ -41,7 +41,7 @@ const MoreCard = ({ nft, isStarted = false, isEnded, time, label }) => {
       <span className="nft-type-badge">{nft.nft_type.toUpperCase()}</span>
       <article className={`player_stats `}>
         <div className="player-type">
-          <img src={batsmanIcon} />
+          <img src={batsmanIcon} loading="lazy" />
         </div>
 
         <div className="player-range">
@@ -50,7 +50,7 @@ const MoreCard = ({ nft, isStarted = false, isEnded, time, label }) => {
 
         <div className="player-level">
           <h6>LVL 2</h6>
-          <img src={lvl002} />
+          <img src={lvl002} loading="lazy" />
         </div>
       </article>
       <img

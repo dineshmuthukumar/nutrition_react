@@ -7,7 +7,7 @@ const CancelNft = ({ nft, order, image, modalShow, setModalShow }) => {
   return (
     <article className="cancel-nft">
       <div className="image-block">
-        <img src={image} alt="nfImages" />
+        <img src={image} alt="nfImages" loading="lazy" />
       </div>
       <div className="info-block">
         <h5 className="name">{nft?.name}</h5>

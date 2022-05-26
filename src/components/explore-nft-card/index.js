@@ -4,7 +4,7 @@ import "./style.scss";
 const ExploreNFTCard = ({ images }) => {
   return (
     <div className="explore-nft-card" role="button">
-      <img alt="media logo" src={images} role="button" />
+      <img alt="media logo" src={images} role="button" loading="lazy" />
 
       <div className="explore-nft-details">
         <div className="explore-nft-title">Amitabh Bachchan Exclusive NFTs</div>

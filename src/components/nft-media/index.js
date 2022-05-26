@@ -274,7 +274,7 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
           {roleData && (
             <div className="player-type">
               <h6>{roleData?.name}</h6>
-              <img src={roleData?.value} alt="Player-type" />
+              <img src={roleData?.value} alt="Player-type" loading="lazy" />
             </div>
           )}
 
@@ -287,7 +287,7 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
           {levelData && (
             <div className="player-level">
               <h6>{levelData?.name}</h6>
-              <img src={levelData?.value} alt="Player-level" />
+              <img src={levelData?.value} alt="Player-level" loading="lazy" />
             </div>
           )}
         </article>

@@ -20,7 +20,7 @@ const OwnerName = ({
 
   return isTable ? (
     <div className="expand-history-owner">
-      <img src={imgUrl ? imgUrl : userImg} alt="" />
+      <img src={imgUrl ? imgUrl : userImg} alt="" loading="lazy" />
       <div>
         <div
           className="text-secondary"

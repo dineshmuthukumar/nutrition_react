@@ -260,7 +260,7 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
       <article className={`player_stats `}>
         {roleData && (
           <div className="player-type">
-            <img src={roleData?.value} alt="Player-status" />
+            <img src={roleData?.value} alt="Player-status" loading="lazy" />
           </div>
         )}
 
@@ -285,7 +285,7 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
         {levelData && (
           <div className="player-level">
             <h6>{levelData?.name}</h6>
-            <img src={levelData?.value} alt="Player-level" />
+            <img src={levelData?.value} alt="Player-level" loading="lazy" />
           </div>
         )}
       </article>
@@ -323,6 +323,7 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
             }
           })()}
           role="button"
+          loading="lazy"
         />
       </Link>
 

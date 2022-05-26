@@ -103,7 +103,7 @@ const NFTPurchaseDetails = ({ nft, list = [] }) => {
                   {detail?.txid ? (
                     <>
                       <a href={detail?.txid} target={"_blank"} rel="noreferrer">
-                        <img src={polygon} alt="details" />
+                        <img src={polygon} alt="details" loading="lazy" />
                       </a>
                     </>
                   ) : (

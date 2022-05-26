@@ -161,6 +161,7 @@ const NFTCancelTheSale = ({
                                   alt="media logo"
                                   className="type_image typeimg_audio"
                                   src={nft.asset_url ? nft.asset_url : sample}
+                                  loading="lazy"
                                 />
                               );
                             } else if (nft?.asset_type?.includes("audio")) {
@@ -170,6 +171,7 @@ const NFTCancelTheSale = ({
                                     alt="media logo"
                                     className="type_image typeimg_audio"
                                     src={nft.cover_url ? nft.cover_url : sample}
+                                    loading="lazy"
                                   />
                                 </>
                               );
@@ -179,6 +181,7 @@ const NFTCancelTheSale = ({
                                   alt="media logo"
                                   className="type_image typeimg_audio"
                                   src={nft.cover_url ? nft.cover_url : sample}
+                                  loading="lazy"
                                 />
                               );
                             } else {
@@ -187,6 +190,7 @@ const NFTCancelTheSale = ({
                                   alt="media logo"
                                   className="type_image typeimg_audio"
                                   src={nft.asset_url ? nft.asset_url : sample}
+                                  loading="lazy"
                                 />
                               );
                             }
@@ -333,6 +337,7 @@ const NFTCancelTheSale = ({
                                   alt="media logo"
                                   className="type_image typeimg_audio"
                                   src={nft.asset_url ? nft.asset_url : sample}
+                                  loading="lazy"
                                 />
                               );
                             } else if (nft?.asset_type?.includes("audio")) {
@@ -342,6 +347,7 @@ const NFTCancelTheSale = ({
                                     alt="media logo"
                                     className="type_image typeimg_audio"
                                     src={nft.cover_url ? nft.cover_url : sample}
+                                    loading="lazy"
                                   />
                                 </>
                               );
@@ -351,6 +357,7 @@ const NFTCancelTheSale = ({
                                   alt="media logo"
                                   className="type_image typeimg_audio"
                                   src={nft.cover_url ? nft.cover_url : sample}
+                                  loading="lazy"
                                 />
                               );
                             } else {
@@ -359,6 +366,7 @@ const NFTCancelTheSale = ({
                                   alt="media logo"
                                   className="type_image typeimg_audio"
                                   src={nft.asset_url ? nft.asset_url : sample}
+                                  loading="lazy"
                                 />
                               );
                             }

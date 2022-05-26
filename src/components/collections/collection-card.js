@@ -13,7 +13,7 @@ const CollectionCard = ({ category, image }) => {
       <div className="col-xl-4 col-lg-4 col-sm-6">
         <article className="nft-collection-card">
           <figure>
-            <img src={image} alt="cardImage" />
+            <img src={image} alt="cardImage" loading="lazy" />
             <FaRegHeart className="heart-icon" />
           </figure>
           <div className="nft-collection-content">

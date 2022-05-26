@@ -115,7 +115,7 @@ const NFTPlayerStats = ({ stats = [], core }) => {
 
             <div className="player-level">
               <h6>{data.name}</h6>
-              <img src={data.value} alt="Player_level" />
+              <img src={data.value} alt="Player_level" loading="lazy" />
             </div>
           </div>
         )}
