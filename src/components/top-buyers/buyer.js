@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { IoIosCheckmark } from "react-icons/io";
 import { currencyFormat } from "../../utils/common";
-import userImg from "../../images/user_1.jpg";
+import images from "../../utils/images.json";
 import "./style.scss";
 
 const Buyer = ({ index, buyer, image }) => {
@@ -21,7 +21,7 @@ const Buyer = ({ index, buyer, image }) => {
                   ? buyer.avatar_url
                   : user?.slug === buyer.slug && buyer.avatar_url
                   ? buyer.avatar_url
-                  : userImg
+                  : images.userJPG
               }
               alt="userImge"
               role={"button"}

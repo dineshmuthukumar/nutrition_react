@@ -1,24 +1,20 @@
 import React from "react";
 import dayjs from "dayjs";
-//import { useParams } from "react-router";
 import { useSelector } from "react-redux";
-//import { toast } from "react-toastify";
 import { Table } from "react-bootstrap";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
 
 import BidName from "./bid-name";
 import ToolTip from "../tooltip";
 import userImg from "../../images/user_1.jpg";
-//import loaderGif from "../../images/loader.gif";
-import polygon from "../../images/marketplace/polygon.svg";
+
+import polygon from "../../images/jump-trade/polygon.svg";
 import { currencyFormat } from "../../utils/common";
-//import { TableLoader } from "../nft-basic-details/content-loader";
 
 import "./style.scss";
 
 const NFTPurchaseDetails = ({ nft, list = [] }) => {
   const { user } = useSelector((state) => state.user.data);
-  //const erc721 = nft?.nft_type === "erc721";
 
   return (
     <>

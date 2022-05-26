@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Navbar } from "react-bootstrap";
-import jumpTradeLogo from "./../images/jump-trade-logo.svg";
+import images from "./../utils/images.json";
 import AppHelmet from "../components/helmet/index";
 
 const NotFound = () => {
@@ -25,7 +25,7 @@ const NotFound = () => {
                 className="not-found "
               >
                 <img
-                  src={jumpTradeLogo}
+                  src={images.jumpTradeLogoSVG}
                   className="logo-img"
                   alt="JumpTradelogo"
                 />

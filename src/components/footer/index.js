@@ -13,8 +13,7 @@ import {
 import "./style.scss";
 import { validateEmail } from "../../utils/common";
 import { subscribeApi } from "../../api/base-methods";
-//import guardianLinkLogo from "../../images/guardianlink.svg";
-import jumpTradeLogo from "../../images/jump-trade-logo.svg";
+import images from "../../utils/images.json";
 
 const Footer = () => {
   const [email, setEmail] = useState();
@@ -67,7 +66,7 @@ const Footer = () => {
           <div className="submenu first-box">
             <a target="_self" href="/">
               <img
-                src={jumpTradeLogo}
+                src={images.jumpTradeLogo}
                 className="footer-logo"
                 alt="JumptradeLogo"
               />

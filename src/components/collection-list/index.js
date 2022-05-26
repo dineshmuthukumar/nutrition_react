@@ -1,7 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router";
-import CollectionOne from "../../images/jump-trade/collection-1.gif";
-import CollectionTwo from "../../images/jump-trade/collection-2.gif";
+import images from "../../utils/images.json";
 import "./style.scss";
 
 const CollectionList = () => {
@@ -35,7 +34,7 @@ const CollectionList = () => {
                   }
                 >
                   <img
-                    src={CollectionOne}
+                    src={images.collectionOneGIF}
                     className="collection-img"
                     alt="Sports NFT Marketplace"
                   />
@@ -57,7 +56,7 @@ const CollectionList = () => {
                   }
                 >
                   <img
-                    src={CollectionTwo}
+                    src={images.collectionTwoGIF}
                     className="collection-img"
                     alt="Sports NFT Marketplace"
                   />

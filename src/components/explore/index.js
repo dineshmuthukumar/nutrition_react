@@ -9,12 +9,12 @@ import NFTCard from "../nft-card";
 import QuickView from "../quick-view";
 import { nftCategoryListApi } from "../../api/methods";
 import ExploreTitle from "./explore-title";
-import sample from "../../images/sampleNFT.jpg";
 import { BiCaretDown, BiSearch, BiCheck } from "react-icons/bi";
 
 import Details from "../../pages/details";
 import OrderDetails from "../../pages/order-details";
 
+import images from "../../utils/images.json";
 import "./style.scss";
 import { IoIosArrowDown } from "react-icons/io";
 import { VscClose } from "react-icons/vsc";
@@ -1225,7 +1225,7 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
                               <NFTCard
                                 nft={nft}
                                 key={i}
-                                image={sample}
+                                image={images.sample}
                                 isExplore
                                 relativeUrl={`nft-marketplace/${match.params.category}/${match.params.cSlug}`}
                                 exploreSlug={slug}

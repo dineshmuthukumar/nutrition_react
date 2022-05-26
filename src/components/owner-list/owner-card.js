@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 import { useSelector } from "react-redux";
 
 import OwnerName from "./owner-name";
-import userImg from "../../images/user_1.jpg";
+import images from "../../utils/images.json";
 
 import "./style.scss";
 
@@ -26,7 +26,7 @@ const OwnerCard = ({ owner, isEnd = false, totalQuantity }) => {
                   ? owner.avatar_url
                   : user?.slug === owner.slug && owner.avatar_url
                   ? owner.avatar_url
-                  : userImg
+                  : images.userJPG
               }
             />
             <div className="bid-histoy-details">

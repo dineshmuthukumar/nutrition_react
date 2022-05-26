@@ -9,7 +9,6 @@ import { VscClose } from "react-icons/vsc";
 
 import NFTCard from "../nft-card";
 import QuickView from "../quick-view";
-import sample from "../../images/sampleNFT.jpg";
 import { BiCaretDown, BiSearch, BiCheck } from "react-icons/bi";
 
 import Details from "../../pages/details";
@@ -17,6 +16,7 @@ import OrderDetails from "../../pages/order-details";
 
 import { nftShowAllApi } from "../../api/methods";
 
+import images from "../../utils/images.json";
 import "./style.scss";
 import { FormControl } from "react-bootstrap";
 import { validateCurrency } from "../../utils/common";
@@ -1214,7 +1214,7 @@ const ExploreAllNFT = () => {
                               <NFTCard
                                 nft={nft}
                                 key={i}
-                                image={sample}
+                                image={images.sample}
                                 isExplore
                                 relativeUrl={`nft-marketplace`}
                               />

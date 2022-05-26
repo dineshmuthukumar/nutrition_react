@@ -8,8 +8,7 @@ import { BiX } from "react-icons/bi";
 
 import BuyCard from "./buy-card";
 import BuyName from "./buy-name";
-import amitabh from "../../images/amitabh.png";
-import userImg from "../../images/user_1.jpg";
+import images from "../../utils/images.json";
 import { TableLoader } from "../nft-basic-details/content-loader";
 import { nftBuyHistory } from "../../api/methods";
 import { currencyFormat } from "../../utils/common";
@@ -138,7 +137,7 @@ const BuyHistory = ({ nft, histories = [], isAuctionEnded, totalCount }) => {
             </div>
 
             <div className="empty-bottom-content">
-              <img src={amitabh} alt="" />
+              <img src={images.userJPG} alt="" />
               <div className="nft-owner-history-details">
                 <div className="publish-time text-secondary">
                   {dayjs(nft.auction_start_time).format("MMM D, YYYY hh:mm A")}
@@ -212,7 +211,9 @@ const BuyHistory = ({ nft, histories = [], isAuctionEnded, totalCount }) => {
                     <td>NFT auction</td>
                     <td>
                       <BuyName
-                        imgUrl={!history.private ? history.avatar_url : userImg}
+                        imgUrl={
+                          !history.private ? history.avatar_url : images.userJPG
+                        }
                         text={history.user_name}
                         isTable
                         slug={history.slug}

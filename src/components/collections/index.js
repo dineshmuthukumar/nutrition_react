@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./style.scss";
 import CollectionCard from "./collection-card";
-import cardImage from "../../images/drops/nft_2.png";
 import { nftCategoriesApi } from "../../api/methods";
-import { toast } from "react-toastify";
+import images from "../../utils/images.json";
 
 const Collections = () => {
   const [page, setPage] = useState(1);
@@ -49,7 +48,7 @@ const Collections = () => {
                   <CollectionCard
                     key={category.slug}
                     category={category}
-                    image={cardImage}
+                    image={images.sample}
                   />
                 ))}
               </div>

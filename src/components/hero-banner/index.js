@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
-import HeroContentImgWeb from "../../images/jump-trade/hero-content-web.png";
-import HeroContentImgMobile from "../../images/jump-trade/hero-content-mobile.png";
+import NFTCounter from "../nft-counter/index";
+import images from "../../utils/images.json";
 
 import "./style.scss";
-import NFTCounter from "../nft-counter/index";
 
 const HeroBanner = () => {
   const { innerWidth } = window;
@@ -100,7 +99,9 @@ const HeroBanner = () => {
               <div className="col-lg-6">
                 <img
                   src={
-                    innerWidth > 767 ? HeroContentImgWeb : HeroContentImgMobile
+                    innerWidth > 767
+                      ? images.heroContentWeb
+                      : images.heroContentMobile
                   }
                   alt="Best NFT Marketplace"
                   className="hero-content-img"

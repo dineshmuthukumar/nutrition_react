@@ -6,7 +6,7 @@ import { Offcanvas } from "react-bootstrap";
 import { FaCheckCircle } from "react-icons/fa";
 
 import ErrorText from "./error-text";
-import sample from "../../images/sampleNFT.jpg";
+import images from "../../utils/images.json";
 import {
   bidBuyError,
   currencyFormat,
@@ -322,7 +322,9 @@ const NFTPlaceBid = ({
                               <img
                                 alt="media logo"
                                 className="type_image typeimg_audio"
-                                src={nft.asset_url ? nft.asset_url : sample}
+                                src={
+                                  nft.asset_url ? nft.asset_url : images.sample
+                                }
                                 loading="lazy"
                               />
                             );
@@ -332,7 +334,11 @@ const NFTPlaceBid = ({
                                 <img
                                   alt="media logo"
                                   className="type_image typeimg_audio"
-                                  src={nft.cover_url ? nft.cover_url : sample}
+                                  src={
+                                    nft.cover_url
+                                      ? nft.cover_url
+                                      : images.sample
+                                  }
                                   loading="lazy"
                                 />
                               </>
@@ -342,7 +348,9 @@ const NFTPlaceBid = ({
                               <img
                                 alt="media logo"
                                 className="type_image typeimg_audio"
-                                src={nft.cover_url ? nft.cover_url : sample}
+                                src={
+                                  nft.cover_url ? nft.cover_url : images.sample
+                                }
                                 loading="lazy"
                               />
                             );
@@ -351,7 +359,9 @@ const NFTPlaceBid = ({
                               <img
                                 alt="media logo"
                                 className="type_image typeimg_audio"
-                                src={nft.asset_url ? nft.asset_url : sample}
+                                src={
+                                  nft.asset_url ? nft.asset_url : images.sample
+                                }
                                 loading="lazy"
                               />
                             );
@@ -393,7 +403,7 @@ const NFTPlaceBid = ({
                             <img
                               alt="media logo"
                               className="type_image typeimg_audio"
-                              src={nft.asset_url ? nft.asset_url : sample}
+                              src={nft.asset_url ? nft.asset_url : images.sample}
                             />
                           );
                         } else if (nft?.asset_type?.includes("audio")) {
@@ -402,7 +412,7 @@ const NFTPlaceBid = ({
                               <img
                                 alt="media logo"
                                 className="type_image typeimg_audio"
-                                src={nft.cover_url ? nft.cover_url : sample}
+                                src={nft.cover_url ? nft.cover_url : images.sample}
                               />
                             </>
                           );
@@ -411,7 +421,7 @@ const NFTPlaceBid = ({
                             <img
                               alt="media logo"
                               className="type_image typeimg_audio"
-                              src={nft.cover_url ? nft.cover_url : sample}
+                              src={nft.cover_url ? nft.cover_url : images.sample}
                             />
                           );
                         } else {
@@ -419,7 +429,7 @@ const NFTPlaceBid = ({
                             <img
                               alt="media logo"
                               className="type_image typeimg_audio"
-                              src={nft.asset_url ? nft.asset_url : sample}
+                              src={nft.asset_url ? nft.asset_url : images.sample}
                             />
                           );
                         }
@@ -665,7 +675,9 @@ const NFTPlaceBid = ({
                             <img
                               alt="media logo"
                               className="type_image typeimg_audio"
-                              src={nft.asset_url ? nft.asset_url : sample}
+                              src={
+                                nft.asset_url ? nft.asset_url : images.sample
+                              }
                               loading="lazy"
                             />
                           );
@@ -675,7 +687,9 @@ const NFTPlaceBid = ({
                               <img
                                 alt="media logo"
                                 className="type_image typeimg_audio"
-                                src={nft.cover_url ? nft.cover_url : sample}
+                                src={
+                                  nft.cover_url ? nft.cover_url : images.sample
+                                }
                                 loading="lazy"
                               />
                             </>
@@ -685,7 +699,9 @@ const NFTPlaceBid = ({
                             <img
                               alt="media logo"
                               className="type_image typeimg_audio"
-                              src={nft.cover_url ? nft.cover_url : sample}
+                              src={
+                                nft.cover_url ? nft.cover_url : images.sample
+                              }
                               loading="lazy"
                             />
                           );
@@ -694,7 +710,9 @@ const NFTPlaceBid = ({
                             <img
                               alt="media logo"
                               className="type_image typeimg_audio"
-                              src={nft.asset_url ? nft.asset_url : sample}
+                              src={
+                                nft.asset_url ? nft.asset_url : images.sample
+                              }
                               loading="lazy"
                             />
                           );

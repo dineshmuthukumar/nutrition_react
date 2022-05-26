@@ -3,36 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import dayjs from "dayjs";
 import { useRouteMatch, Link } from "react-router-dom";
 import { Popover, OverlayTrigger } from "react-bootstrap";
-//import { prominent } from "color.js";
-//import { FaHeart } from "react-icons/fa";
 import { currencyFormat } from "../../utils/common";
 import { add_to_cart_thunk } from "../../redux/thunk/user_cart_thunk";
 import NFTCounter from "../nft-counter";
-import cardImage from "../../images/drops/nft_2.png";
-//import startin from "../../images/start_icon.png";
-//import endsin from "../../images/ends_icon.png";
-//import { BiUpArrowAlt, BiDownArrowAlt } from "react-icons/bi";
-//import { AiFillFire } from "react-icons/ai";
-
-import batsmanIcon from "../../images/jump-trade/batsman_ico.png";
-import bowlerIcon from "../../images/jump-trade/bowler_ico.png";
-
-import lvl001 from "../../images/jump-trade/player_levels/1.png";
-import lvl002 from "../../images/jump-trade/player_levels/2.png";
-import lvl003 from "../../images/jump-trade/player_levels/3.png";
-import lvl004 from "../../images/jump-trade/player_levels/4.png";
-import lvl005 from "../../images/jump-trade/player_levels/5.png";
-import lvl006 from "../../images/jump-trade/player_levels/6.png";
-import lvl007 from "../../images/jump-trade/player_levels/7.png";
-import lvl008 from "../../images/jump-trade/player_levels/8.png";
-import lvl009 from "../../images/jump-trade/player_levels/9.png";
-import lvl0010 from "../../images/jump-trade/player_levels/10.png";
-import lvl0011 from "../../images/jump-trade/player_levels/11.png";
-import lvl0012 from "../../images/jump-trade/player_levels/12.png";
-import lvl0013 from "../../images/jump-trade/player_levels/13.png";
-import lvl0014 from "../../images/jump-trade/player_levels/14.png";
-import lvl0015 from "../../images/jump-trade/player_levels/15.png";
-
+import images from "../../utils/images.json";
 import "./style.scss";
 
 const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
@@ -88,77 +62,77 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
     {
       type: "1",
       name: "LVL 1",
-      value: lvl001,
+      value: images.level1,
     },
     {
       type: "2",
       name: "LVL 2",
-      value: lvl002,
+      value: images.level2,
     },
     {
       type: "3",
       name: "LVL 3",
-      value: lvl003,
+      value: images.level3,
     },
     {
       type: "4",
       name: "LVL 4",
-      value: lvl004,
+      value: images.level4,
     },
     {
       type: "5",
       name: "LVL 5",
-      value: lvl005,
+      value: images.level5,
     },
     {
       type: "6",
       name: "LVL 6",
-      value: lvl006,
+      value: images.level6,
     },
     {
       type: "7",
       name: "LVL 7",
-      value: lvl007,
+      value: images.level7,
     },
     {
       type: "8",
       name: "LVL 8",
-      value: lvl008,
+      value: images.level8,
     },
     {
       type: "9",
       name: "LVL 9",
-      value: lvl009,
+      value: images.level9,
     },
     {
       type: "10",
       name: "LVL 10",
-      value: lvl0010,
+      value: images.level10,
     },
     {
       type: "11",
       name: "LVL 11",
-      value: lvl0011,
+      value: images.level11,
     },
     {
       type: "12",
       name: "LVL 12",
-      value: lvl0012,
+      value: images.level12,
     },
     {
       type: "13",
       name: "LVL 13",
-      value: lvl0013,
+      value: images.level13,
     },
     {
       type: "14",
       name: "LVL 14",
-      value: lvl0014,
+      value: images.level14,
     },
     {
       type: "15",
       name: "LVL 15",
-      value: lvl0015,
+      value: images.level15,
     },
   ];
 
@@ -166,17 +140,17 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
     {
       type: "Batsman",
       name: "BATSMAN",
-      value: batsmanIcon,
+      value: images.batsmanICO,
     },
     {
       type: "Bowler",
       name: "BOWLER",
-      value: bowlerIcon,
+      value: images.bowlerIco,
     },
     {
       type: "Bat",
       name: "BAT",
-      value: batsmanIcon,
+      value: images.batsmanICO,
     },
   ];
 
@@ -315,11 +289,11 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
           alt="media logo"
           src={(() => {
             if (nft?.asset_type?.includes("image")) {
-              return nft.asset_url ? nft.asset_url : cardImage;
+              return nft.asset_url ? nft.asset_url : images.sample;
             } else if (nft?.cover_url) {
-              return nft.cover_url ? nft.cover_url : cardImage;
+              return nft.cover_url ? nft.cover_url : images.sample;
             } else {
-              return nft.asset_url ? nft.asset_url : cardImage;
+              return nft.asset_url ? nft.asset_url : images.sample;
             }
           })()}
           role="button"

@@ -10,7 +10,7 @@ import ToolTip from "../tooltip";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
 import { bidBuyError, validateQuantity } from "../../utils/common";
 import { buySaleCancelApi, saleCancelApi } from "../../api/methods";
-import sample from "../../images/sampleNFT.jpg";
+import images from "../../utils/images.json";
 
 import "./style.scss";
 
@@ -160,7 +160,11 @@ const NFTCancelTheSale = ({
                                 <img
                                   alt="media logo"
                                   className="type_image typeimg_audio"
-                                  src={nft.asset_url ? nft.asset_url : sample}
+                                  src={
+                                    nft.asset_url
+                                      ? nft.asset_url
+                                      : images.sample
+                                  }
                                   loading="lazy"
                                 />
                               );
@@ -170,7 +174,11 @@ const NFTCancelTheSale = ({
                                   <img
                                     alt="media logo"
                                     className="type_image typeimg_audio"
-                                    src={nft.cover_url ? nft.cover_url : sample}
+                                    src={
+                                      nft.cover_url
+                                        ? nft.cover_url
+                                        : images.sample
+                                    }
                                     loading="lazy"
                                   />
                                 </>
@@ -180,7 +188,11 @@ const NFTCancelTheSale = ({
                                 <img
                                   alt="media logo"
                                   className="type_image typeimg_audio"
-                                  src={nft.cover_url ? nft.cover_url : sample}
+                                  src={
+                                    nft.cover_url
+                                      ? nft.cover_url
+                                      : images.sample
+                                  }
                                   loading="lazy"
                                 />
                               );
@@ -189,7 +201,11 @@ const NFTCancelTheSale = ({
                                 <img
                                   alt="media logo"
                                   className="type_image typeimg_audio"
-                                  src={nft.asset_url ? nft.asset_url : sample}
+                                  src={
+                                    nft.asset_url
+                                      ? nft.asset_url
+                                      : images.sample
+                                  }
                                   loading="lazy"
                                 />
                               );
@@ -336,7 +352,11 @@ const NFTCancelTheSale = ({
                                 <img
                                   alt="media logo"
                                   className="type_image typeimg_audio"
-                                  src={nft.asset_url ? nft.asset_url : sample}
+                                  src={
+                                    nft.asset_url
+                                      ? nft.asset_url
+                                      : images.sample
+                                  }
                                   loading="lazy"
                                 />
                               );
@@ -346,7 +366,11 @@ const NFTCancelTheSale = ({
                                   <img
                                     alt="media logo"
                                     className="type_image typeimg_audio"
-                                    src={nft.cover_url ? nft.cover_url : sample}
+                                    src={
+                                      nft.cover_url
+                                        ? nft.cover_url
+                                        : images.sample
+                                    }
                                     loading="lazy"
                                   />
                                 </>
@@ -356,7 +380,11 @@ const NFTCancelTheSale = ({
                                 <img
                                   alt="media logo"
                                   className="type_image typeimg_audio"
-                                  src={nft.cover_url ? nft.cover_url : sample}
+                                  src={
+                                    nft.cover_url
+                                      ? nft.cover_url
+                                      : images.sample
+                                  }
                                   loading="lazy"
                                 />
                               );
@@ -365,7 +393,11 @@ const NFTCancelTheSale = ({
                                 <img
                                   alt="media logo"
                                   className="type_image typeimg_audio"
-                                  src={nft.asset_url ? nft.asset_url : sample}
+                                  src={
+                                    nft.asset_url
+                                      ? nft.asset_url
+                                      : images.sample
+                                  }
                                   loading="lazy"
                                 />
                               );
