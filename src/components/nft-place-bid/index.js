@@ -401,7 +401,7 @@ const NFTPlaceBid = ({
                             </h1>
                           </div>
                         </div>
-                        <hr class="custom-divider"></hr>
+                        <hr className="custom-divider"></hr>
                       </div>
                     </div>
                   </div>

@@ -76,7 +76,6 @@ function App(props) {
     if (check) s_time.setSeconds(s_time.getSeconds() + 2);
 
     if (new Date(market_start_date_utc) < s_time) {
-      console.log("fire");
       dispatch(market_live_thunk());
     } else {
       set_market_time(market_start_date_utc);

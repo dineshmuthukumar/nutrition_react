@@ -116,7 +116,7 @@ const Cart = ({ cartPop = false, setCartPop, setCheckoutDevice }) => {
           {checkoutProcess.loading && (
             <article className="loading-box">
               <div className="load-card">
-                <div class="loader"></div>
+                <div className="loader"></div>
                 <h6>Order Processing...</h6>
               </div>
             </article>

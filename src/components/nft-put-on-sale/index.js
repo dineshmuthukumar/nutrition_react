@@ -2158,7 +2158,6 @@ const NFTPutOnSale = ({
                   return setHours(setMinutes(tmp_start_date, 30), hours);
                 }
               } else {
-                console.log("fire");
                 return setHours(setMinutes(endDate, 0), 0);
               }
             })()}

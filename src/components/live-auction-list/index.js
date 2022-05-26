@@ -230,14 +230,14 @@ const LiveAuctionsList = () => {
           <div className="prifilter-btn">
             <button
               type="button"
-              class="justify-content-center border dropdown-item"
+              className="justify-content-center border dropdown-item"
               onClick={(e) => handlePriceRange(priceRange, true)}
             >
               Clear
             </button>
             <button
               type="button"
-              class="justify-content-center border dropdown-item apply-btn"
+              className="justify-content-center border dropdown-item apply-btn"
               disabled={(() => {
                 if (
                   parseInt(priceRange.from) < 0 ||

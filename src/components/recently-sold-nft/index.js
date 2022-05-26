@@ -115,10 +115,6 @@ const RecentlySoldNFT = () => {
                       smartSpeed={500}
                       dots={false}
                       navContainerClass={"carousel-btn-block"}
-                      // navText={[
-                      //   `<span class="icon-right-arrow left"><img src=${arrowRight} /></span>`,
-                      //   `<span class="icon-right-arrow right"><img src=${arrowRight} /></span>`,
-                      // ]}
                       navText={[
                         `<span class="icon-right-arrow left"> <img src=${backArrow} /> </span>`,
                         `<span class="icon-right-arrow right"><img src=${frontArrow} /></span>`,

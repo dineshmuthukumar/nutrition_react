@@ -30,7 +30,6 @@ const HeroBanner = () => {
     if (check) s_time.setSeconds(s_time.getSeconds() + 2);
 
     if (new Date(market_start_date_utc) < s_time) {
-      console.log("fire");
       setLive(true);
     } else {
       set_market_time(market_start_date_utc);
@@ -58,9 +57,7 @@ const HeroBanner = () => {
                   {live ? (
                     <>
                       Jump.trade -{" "}
-                      <span>
-                        The NFT Marketplace To Trade Legendary NFTs{" "}
-                      </span>
+                      <span>The NFT Marketplace To Trade Legendary NFTs </span>
                     </>
                   ) : (
                     market_time && (

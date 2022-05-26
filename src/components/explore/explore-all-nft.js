@@ -723,7 +723,7 @@ const ExploreAllNFT = () => {
                   : { backgroundColor: "#989e99", pointerEvents: "none" }
               }
               type="button"
-              class="border-dropdown-item-clr"
+              className="border-dropdown-item-clr"
               onClick={(e) =>
                 handleFilterCheck(priceRange, "price_range", true)
               }
@@ -739,7 +739,7 @@ const ExploreAllNFT = () => {
             </button>
             <button
               type="button"
-              class="border-dropdown-item"
+              className="border-dropdown-item"
               disabled={(() => {
                 if (
                   parseInt(priceRange.from) < 0 ||

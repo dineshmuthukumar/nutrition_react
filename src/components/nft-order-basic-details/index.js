@@ -706,13 +706,13 @@ const NFTOrderBaseDetails = ({
                             placement="top"
                             overlay={KycPopOverCart()}
                           >
-                            <button class="add-to-cart-btn">
+                            <button className="add-to-cart-btn">
                               <img src={CartIcon} alt="Carticon" /> Add to Cart
                             </button>
                           </OverlayTrigger>
                         ) : (
                           <button
-                            class={`add-to-cart-btn ${
+                            className={`add-to-cart-btn ${
                               inCart && "added-to-cart"
                             }`}
                             onClick={() => {
@@ -902,13 +902,13 @@ const NFTOrderBaseDetails = ({
                         placement="top"
                         overlay={KycPopOverCart()}
                       >
-                        <button class="add-to-cart-btn full-width">
+                        <button className="add-to-cart-btn full-width">
                           <img src={CartIcon} alt="CartIcon1" /> Add to Cart
                         </button>
                       </OverlayTrigger>
                     ) : (
                       <button
-                        class={`add-to-cart-btn full-width ${
+                        className={`add-to-cart-btn full-width ${
                           inCart && "added-to-cart"
                         }`}
                         onClick={() => {
@@ -1004,7 +1004,7 @@ const NFTOrderBaseDetails = ({
                     >
                       Buy {currencyFormat(orderDetails.buy_amount, "USD")}
                     </button>
-                    <button class="add-to-cart-btn">
+                    <button className="add-to-cart-btn">
                       <img src={CartIcon} alt="CartIcon3" /> Add to Cart
                     </button>
                   </OverlayTrigger>

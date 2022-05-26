@@ -411,10 +411,6 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
                             intervalGapClass="me-1"
                             handleEndEvent={handleAuctionStartTimer}
                           />
-                          {/* &nbsp;&nbsp;
-                          <span class="fire-icon">
-                            <AiFillFire />
-                          </span> */}
                         </span>
                       </div>
                     )}
@@ -430,10 +426,6 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
                             intervalGapClass="me-1"
                             handleEndEvent={handleAuctionEndTimer}
                           />
-                          {/* &nbsp;&nbsp;
-                          <span class="fire-icon">
-                            <AiFillFire />
-                          </span> */}
                         </span>
                       </div>
                     )}
@@ -536,7 +528,6 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
                     {!isAuctionStarted && !isAuctionEnded && (
                       <div className="time-counter-box">
                         <span className="time-counter-card">
-                          {/* <img src={startin} alt="startin" /> */}
                           <span className="time-title">Starts</span>
                           <NFTCounter
                             time={nft?.auction_start_time}
@@ -546,17 +537,12 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
                             intervalGapClass="me-1"
                             handleEndEvent={handleAuctionStartTimer}
                           />
-                          {/* &nbsp;&nbsp;
-                          <span class="fire-icon">
-                            <AiFillFire />
-                          </span> */}
                         </span>
                       </div>
                     )}
                     {!isAuctionEnded && isAuctionStarted && (
                       <div className="time-counter-box">
                         <span className="time-counter-card">
-                          {/* <img src={endsin} alt="endsin" /> */}
                           <span className="time-title">Ends</span>
                           <NFTCounter
                             time={nft?.auction_end_time}
@@ -566,10 +552,6 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
                             intervalGapClass="me-1"
                             handleEndEvent={handleAuctionEndTimer}
                           />
-                          {/* &nbsp;&nbsp;
-                          <span class="fire-icon">
-                            <AiFillFire />
-                          </span> */}
                         </span>
                       </div>
                     )}
