@@ -63,6 +63,7 @@ const MoreCard = ({ nft, isStarted = false, isEnded, time, label }) => {
           }
         })()}
         role="button"
+        loading="lazy"
       />
       <div className="top-content-title">
         {/* <div className="heart_box">

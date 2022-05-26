@@ -299,6 +299,7 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
                 alt="media logo"
                 className="type_image typeimg_audio"
                 src={nft.asset_url ? nft.asset_url : sample}
+                loading="lazy"
               />
             );
           } else if (nft?.asset_type?.includes("audio")) {
@@ -317,6 +318,7 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
                         el.play();
                       }
                     }}
+                    loading="lazy"
                   />
                 </div>
                 <audio
@@ -353,6 +355,7 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
                 alt="media logo"
                 className="type_image typeimg_audio"
                 src={nft.asset_url ? nft.asset_url : sample}
+                loading="lazy"
               />
             );
           }
@@ -378,6 +381,7 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
                     alt="media logo"
                     className="type_image typeimg_audio"
                     src={nft.asset_url ? nft.asset_url : sample}
+                    loading="lazy"
                   />
                 );
               } else if (nft?.asset_type?.includes("audio")) {
@@ -398,6 +402,7 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
                             el.play();
                           }
                         }}
+                        loading="lazy"
                       />
                     </div>
                     <audio

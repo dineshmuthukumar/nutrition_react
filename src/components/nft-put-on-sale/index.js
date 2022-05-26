@@ -617,6 +617,7 @@ const NFTPutOnSale = ({
                                       src={
                                         nft.asset_url ? nft.asset_url : sample
                                       }
+                                      loading="lazy"
                                     />
                                   );
                                 } else if (nft?.asset_type?.includes("audio")) {
@@ -628,6 +629,7 @@ const NFTPutOnSale = ({
                                         src={
                                           nft.cover_url ? nft.cover_url : sample
                                         }
+                                        loading="lazy"
                                       />
                                     </>
                                   );
@@ -639,6 +641,7 @@ const NFTPutOnSale = ({
                                       src={
                                         nft.cover_url ? nft.cover_url : sample
                                       }
+                                      loading="lazy"
                                     />
                                   );
                                 } else {
@@ -649,6 +652,7 @@ const NFTPutOnSale = ({
                                       src={
                                         nft.asset_url ? nft.asset_url : sample
                                       }
+                                      loading="lazy"
                                     />
                                   );
                                 }

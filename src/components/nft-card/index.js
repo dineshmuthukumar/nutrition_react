@@ -373,6 +373,7 @@ const NFTCard = ({
             }
           })()}
           role="button"
+          loading="lazy"
         />
       </Link>
 

@@ -104,6 +104,7 @@ const HeroBanner = () => {
                   }
                   alt="Best NFT Marketplace"
                   className="hero-content-img"
+                  loading="lazy"
                 />
               </div>
             </div>
