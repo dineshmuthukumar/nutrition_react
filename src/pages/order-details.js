@@ -426,12 +426,14 @@ const OrderDetails = () => {
 
   return (
     <>
-      <Header
-        bgImage
-        title={`${nft?.name} | MCL NFT Marketplace | Jump.trade`}
-        description={`${nft?.name} is a Meta Cricket League ${nft?.core_statistics?.role} Playable NFT! Purchase This NFT Now to Play the MCL P2E Cricket Game & Win Cash Rewards!`}
-        image={nft?.asset_url}
-      />
+      {nft?.name && (
+        <Header
+          bgImage
+          title={`${nft?.name} | MCL NFT Marketplace | Jump.trade`}
+          description={`${nft?.name} is a Meta Cricket League ${nft?.core_statistics?.role} Playable NFT! Purchase This NFT Now to Play the MCL P2E Cricket Game & Win Cash Rewards!`}
+          image={nft?.asset_url}
+        />
+      )}
       {loader ? (
         <NFTLoader />
       ) : (
