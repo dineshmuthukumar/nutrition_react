@@ -618,227 +618,247 @@ const NFTOrderBaseDetails = ({
                 NFTs.
               </div>
             )}
-
-            {(() => {
-              if (!User) {
-                return (
-                  <button
-                    disabled={false}
-                    className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn full-width"
-                    onClick={() =>
-                      window.open(
-                        `${process.env.REACT_APP_ACCOUNTS_URL}/signin?redirect=${window.location.href}`,
-                        "_self"
-                      )
-                    }
-                  >
-                    Sign In
-                  </button>
-                );
-              } else if (soldOut) {
-                return (
-                  <button
-                    disabled={true}
-                    className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn full-width"
-                  >
-                    Sold Out
-                  </button>
-                );
-              } else if (transferringNFT) {
-                return (
-                  <ToolTip
-                    icon={
-                      <button
-                        disabled={true}
-                        className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
-                      >
-                        Token Transfer Initiated{" "}
-                        <BsFillQuestionCircleFill
-                          size={16}
-                          className="ms-2 check-icon"
-                        />
-                      </button>
-                    }
-                    content={
-                      "The NFT's transfer/transaction is in process on the blockchain. Visit again for latest sale-status."
-                    }
-                    placement="top"
-                  />
-                );
-              } else if (isOrderCancelled) {
-                return (
-                  <button
-                    disabled={true}
-                    className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn full-width"
-                  >
-                    Order Cancelled
-                  </button>
-                );
-              } else if (parseFloat(User?.balance) <= 0 && !isOwner) {
-                return (
-                  <>
+            <>
+              {(() => {
+                if (!User) {
+                  return (
                     <button
                       disabled={false}
-                      className={`place-bid-btn filled-btn ${
-                        User?.kyc_status !== "success" && !isBuy && "full-width"
-                      }`}
+                      className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn full-width"
                       onClick={() =>
                         window.open(
-                          `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
+                          `${process.env.REACT_APP_ACCOUNTS_URL}/signin?redirect=${window.location.href}`,
                           "_self"
                         )
                       }
                     >
-                      Recharge Wallet
+                      Sign In
                     </button>
-
-                    {isBuy && (
-                      <>
-                        {User?.kyc_status !== "success" ? (
-                          <OverlayTrigger
-                            trigger={["click"]}
-                            rootClose={true}
-                            placement="top"
-                            overlay={KycPopOverCart()}
-                          >
-                            <button className="add-to-cart-btn">
-                              <img src={images.cartIconPNG} alt="Carticon" />{" "}
-                              Add to Cart
-                            </button>
-                          </OverlayTrigger>
-                        ) : (
-                          <button
-                            className={`add-to-cart-btn ${
-                              inCart && "added-to-cart"
-                            }`}
-                            onClick={() => {
-                              if (!inCart) {
-                                dispatch(
-                                  add_to_cart_thunk(
-                                    orderDetails.slug,
-                                    orderDetails.available_quantity
-                                  )
-                                );
-                              }
-                            }}
-                          >
-                            <img src={images.cartIconPNG} alt="CartIcon" />{" "}
-                            {!inCart ? "Add to Cart" : "Added to Cart"}
-                          </button>
-                        )}
-                      </>
-                    )}
-                  </>
-                );
-              } else if (erc721 && isOwner && isOrderOnSale) {
-                if (!bidOutDated && acceptBidConfirm) {
+                  );
+                } else if (soldOut) {
+                  return (
+                    <button
+                      disabled={true}
+                      className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn full-width"
+                    >
+                      Sold Out
+                    </button>
+                  );
+                } else if (transferringNFT) {
+                  return (
+                    <ToolTip
+                      icon={
+                        <button
+                          disabled={true}
+                          className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                        >
+                          Token Transfer Initiated{" "}
+                          <BsFillQuestionCircleFill
+                            size={16}
+                            className="ms-2 check-icon"
+                          />
+                        </button>
+                      }
+                      content={
+                        "The NFT's transfer/transaction is in process on the blockchain. Visit again for latest sale-status."
+                      }
+                      placement="top"
+                    />
+                  );
+                } else if (isOrderCancelled) {
+                  return (
+                    <button
+                      disabled={true}
+                      className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn full-width"
+                    >
+                      Order Cancelled
+                    </button>
+                  );
+                } else if (parseFloat(User?.balance) <= 0 && !isOwner) {
                   return (
                     <>
                       <button
                         disabled={false}
-                        className="place-bid-buy-btn filled-btn"
-                        onClick={() => setAcceptBidConfirm(!acceptBidConfirm)}
+                        className={`place-bid-btn filled-btn ${
+                          User?.kyc_status !== "success" &&
+                          !isBuy &&
+                          "full-width"
+                        }`}
+                        onClick={() =>
+                          window.open(
+                            `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
+                            "_self"
+                          )
+                        }
                       >
-                        Cancel
+                        Recharge Wallet
                       </button>
-                      <button
-                        disabled={false}
-                        className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn"
-                        onClick={handleAcceptBid}
-                      >
-                        Confirm
-                      </button>
+
+                      {isBuy && (
+                        <>
+                          {User?.kyc_status !== "success" ? (
+                            <OverlayTrigger
+                              trigger={["click"]}
+                              rootClose={true}
+                              placement="top"
+                              overlay={KycPopOverCart()}
+                            >
+                              <button class="add-to-cart-btn">
+                                <img src={images.cartIconPNG} alt="Carticon" />{" "}
+                                Add to Cart
+                              </button>
+                            </OverlayTrigger>
+                          ) : (
+                            <button
+                              class={`add-to-cart-btn ${
+                                inCart && "added-to-cart"
+                              }`}
+                              onClick={() => {
+                                if (!inCart) {
+                                  dispatch(
+                                    add_to_cart_thunk(
+                                      orderDetails.slug,
+                                      orderDetails.available_quantity
+                                    )
+                                  );
+                                }
+                              }}
+                            >
+                              <img src={images.cartIconPNG} alt="CartIcon" />{" "}
+                              {!inCart ? "Add to Cart" : "Added to Cart"}
+                            </button>
+                          )}
+                        </>
+                      )}
                     </>
                   );
-                } else {
-                  if (isBid) {
-                    return orderDetails?.timed_auction ? (
-                      <button
-                        disabled={latestBid?.slug ? true : false}
-                        className={`place-bid-btn filled-btn full-width`}
-                        onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
-                      >
-                        Cancel the sale
-                      </button>
-                    ) : (
+                } else if (erc721 && isOwner && isOrderOnSale) {
+                  if (!bidOutDated && acceptBidConfirm) {
+                    return (
                       <>
                         <button
-                          className={`place-bid-buy-btn filled-btn`}
-                          onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
-                        >
-                          Cancel the sale
-                        </button>
-                        <button
-                          disabled={
-                            latestBid?.slug &&
-                            latestBid?.status === "active" &&
-                            dayjs() < bidExpiry &&
-                            !bidExpired
-                              ? false
-                              : true
-                          }
-                          className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn"
+                          disabled={false}
+                          className="place-bid-buy-btn filled-btn"
                           onClick={() => setAcceptBidConfirm(!acceptBidConfirm)}
                         >
-                          Accept Bid
+                          Cancel
+                        </button>
+                        <button
+                          disabled={false}
+                          className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn"
+                          onClick={handleAcceptBid}
+                        >
+                          Confirm
                         </button>
                       </>
                     );
                   } else {
-                    return (
+                    if (isBid) {
+                      return orderDetails?.timed_auction ? (
+                        <button
+                          disabled={latestBid?.slug ? true : false}
+                          className={`place-bid-btn filled-btn full-width`}
+                          onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
+                        >
+                          Cancel the sale
+                        </button>
+                      ) : (
+                        <>
+                          <button
+                            className={`place-bid-buy-btn filled-btn`}
+                            onClick={() =>
+                              setCancelTheSalePop(!cancelTheSalePop)
+                            }
+                          >
+                            Cancel the sale
+                          </button>
+                          <button
+                            disabled={
+                              latestBid?.slug &&
+                              latestBid?.status === "active" &&
+                              dayjs() < bidExpiry &&
+                              !bidExpired
+                                ? false
+                                : true
+                            }
+                            className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn"
+                            onClick={() =>
+                              setAcceptBidConfirm(!acceptBidConfirm)
+                            }
+                          >
+                            Accept Bid
+                          </button>
+                        </>
+                      );
+                    } else {
+                      return (
+                        <button
+                          className={`place-bid-btn filled-btn full-width`}
+                          onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
+                        >
+                          Cancel the sale
+                        </button>
+                      );
+                    }
+                  }
+                } else if (!erc721 && isOwner && isOrderOnSale) {
+                  return (
+                    <>
                       <button
-                        className={`place-bid-btn filled-btn full-width`}
+                        disabled={false}
+                        className="place-bid-btn filled-btn full-width"
                         onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
                       >
                         Cancel the sale
                       </button>
-                    );
-                  }
-                }
-              } else if (!erc721 && isOwner && isOrderOnSale) {
-                return (
-                  <>
-                    <button
-                      disabled={false}
-                      className="place-bid-btn filled-btn full-width"
-                      onClick={() => setCancelTheSalePop(!cancelTheSalePop)}
-                    >
-                      Cancel the sale
-                    </button>
-                  </>
-                );
-              } else if (isBid && isBuy) {
-                return (
-                  <>
-                    {User?.kyc_status !== "success" ? (
-                      <OverlayTrigger
-                        trigger={["click"]}
-                        rootClose={true}
-                        placement="top"
-                        overlay={KycPopOver()}
-                      >
-                        <button className="place-bid-buy-btn filled-btn">
+                    </>
+                  );
+                } else if (isBid && isBuy) {
+                  return (
+                    <>
+                      {User?.kyc_status !== "success" ? (
+                        <OverlayTrigger
+                          trigger={["click"]}
+                          rootClose={true}
+                          placement="top"
+                          overlay={KycPopOver()}
+                        >
+                          <button className="place-bid-buy-btn filled-btn">
+                            Buy {currencyFormat(orderDetails.buy_amount, "USD")}
+                          </button>
+                        </OverlayTrigger>
+                      ) : (
+                        <button
+                          className="place-bid-buy-btn filled-btn"
+                          onClick={() => setPlaceBuyPop(!placeBuyPop)}
+                        >
                           Buy {currencyFormat(orderDetails.buy_amount, "USD")}
                         </button>
-                      </OverlayTrigger>
-                    ) : (
-                      <button
-                        className="place-bid-buy-btn filled-btn"
-                        onClick={() => setPlaceBuyPop(!placeBuyPop)}
-                      >
-                        Buy {currencyFormat(orderDetails.buy_amount, "USD")}
-                      </button>
-                    )}
+                      )}
 
-                    {orderDetails.timed_auction ? (
-                      <>
-                        {User?.kyc_status !== "success" ? (
-                          <OverlayTrigger
-                            trigger={["click"]}
-                            rootClose={true}
-                            placement="top"
-                            overlay={KycPopOver()}
-                          >
+                      {orderDetails.timed_auction ? (
+                        <>
+                          {User?.kyc_status !== "success" ? (
+                            <OverlayTrigger
+                              trigger={["click"]}
+                              rootClose={true}
+                              placement="top"
+                              overlay={KycPopOver()}
+                            >
+                              <button
+                                disabled={(() => {
+                                  if (!isAuctionStarted && !isAuctionEnded) {
+                                    return !isAuctionStarted;
+                                  } else {
+                                    return isAuctionEnded;
+                                  }
+                                })()}
+                                className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn"
+                              >
+                                Place Bid
+                              </button>
+                            </OverlayTrigger>
+                          ) : (
                             <button
                               disabled={(() => {
                                 if (!isAuctionStarted && !isAuctionEnded) {
@@ -848,11 +868,79 @@ const NFTOrderBaseDetails = ({
                                 }
                               })()}
                               className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn"
+                              onClick={() => setPlaceBidPop(!placeBidPop)}
                             >
                               Place Bid
                             </button>
-                          </OverlayTrigger>
-                        ) : (
+                          )}
+                        </>
+                      ) : (
+                        <>
+                          {User?.kyc_status !== "success" ? (
+                            <OverlayTrigger
+                              trigger={["click"]}
+                              rootClose={true}
+                              placement="top"
+                              overlay={KycPopOver()}
+                            >
+                              <button className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn">
+                                Place Bid
+                              </button>
+                            </OverlayTrigger>
+                          ) : (
+                            <button
+                              className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn"
+                              onClick={() => setPlaceBidPop(!placeBidPop)}
+                            >
+                              Place Bid
+                            </button>
+                          )}
+                        </>
+                      )}
+                      {User?.kyc_status !== "success" ? (
+                        <OverlayTrigger
+                          trigger={["click"]}
+                          rootClose={true}
+                          placement="top"
+                          overlay={KycPopOverCart()}
+                        >
+                          <button class="add-to-cart-btn full-width">
+                            <img src={images.cartIconPNG} alt="CartIcon1" /> Add
+                            to Cart
+                          </button>
+                        </OverlayTrigger>
+                      ) : (
+                        <button
+                          class={`add-to-cart-btn full-width ${
+                            inCart && "added-to-cart"
+                          }`}
+                          onClick={() => {
+                            if (!inCart) {
+                              dispatch(
+                                add_to_cart_thunk(
+                                  orderDetails.slug,
+                                  orderDetails.available_quantity
+                                )
+                              );
+                            }
+                          }}
+                        >
+                          <img src={images.cartIconPNG} alt="CartIcon2" />{" "}
+                          {!inCart ? "Add to Cart" : "Added to Cart"}
+                        </button>
+                      )}
+                    </>
+                  );
+                } else if (isBid) {
+                  return orderDetails.timed_auction ? (
+                    <>
+                      {User?.kyc_status !== "success" ? (
+                        <OverlayTrigger
+                          trigger={["click"]}
+                          rootClose={true}
+                          placement="top"
+                          overlay={KycPopOver()}
+                        >
                           <button
                             disabled={(() => {
                               if (!isAuctionStarted && !isAuctionEnded) {
@@ -861,53 +949,90 @@ const NFTOrderBaseDetails = ({
                                 return isAuctionEnded;
                               }
                             })()}
-                            className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn"
-                            onClick={() => setPlaceBidPop(!placeBidPop)}
+                            className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn full-width"
                           >
                             Place Bid
                           </button>
-                        )}
-                      </>
-                    ) : (
-                      <>
-                        {User?.kyc_status !== "success" ? (
-                          <OverlayTrigger
-                            trigger={["click"]}
-                            rootClose={true}
-                            placement="top"
-                            overlay={KycPopOver()}
-                          >
-                            <button className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn">
-                              Place Bid
-                            </button>
-                          </OverlayTrigger>
-                        ) : (
-                          <button
-                            className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-buy-btn"
-                            onClick={() => setPlaceBidPop(!placeBidPop)}
-                          >
+                        </OverlayTrigger>
+                      ) : (
+                        <button
+                          disabled={(() => {
+                            if (!isAuctionStarted && !isAuctionEnded) {
+                              return !isAuctionStarted;
+                            } else {
+                              return isAuctionEnded;
+                            }
+                          })()}
+                          className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn full-width"
+                          onClick={() => setPlaceBidPop(!placeBidPop)}
+                        >
+                          Place Bid
+                        </button>
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      {User?.kyc_status !== "success" ? (
+                        <OverlayTrigger
+                          trigger={["click"]}
+                          rootClose={true}
+                          placement="top"
+                          overlay={KycPopOver()}
+                        >
+                          <button className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn full-width">
                             Place Bid
                           </button>
-                        )}
-                      </>
-                    )}
-                    {User?.kyc_status !== "success" ? (
+                        </OverlayTrigger>
+                      ) : (
+                        <button
+                          className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn full-width"
+                          onClick={() => setPlaceBidPop(!placeBidPop)}
+                        >
+                          Place Bid
+                        </button>
+                      )}
+                    </>
+                  );
+                } else if (isBuy) {
+                  return User?.kyc_status !== "success" ? (
+                    <>
+                      <OverlayTrigger
+                        trigger={["click"]}
+                        rootClose={true}
+                        placement="top"
+                        overlay={KycPopOver()}
+                      >
+                        <button
+                          disabled={false}
+                          className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                        >
+                          Buy {currencyFormat(orderDetails.buy_amount, "USD")}
+                        </button>
+                      </OverlayTrigger>
+
                       <OverlayTrigger
                         trigger={["click"]}
                         rootClose={true}
                         placement="top"
                         overlay={KycPopOverCart()}
                       >
-                        <button className="add-to-cart-btn full-width">
-                          <img src={images.cartIconPNG} alt="CartIcon1" /> Add
+                        <button class="add-to-cart-btn">
+                          <img src={images.cartIconPNG} alt="CartIcon3" /> Add
                           to Cart
                         </button>
                       </OverlayTrigger>
-                    ) : (
+                    </>
+                  ) : (
+                    <>
                       <button
-                        className={`add-to-cart-btn full-width ${
-                          inCart && "added-to-cart"
-                        }`}
+                        disabled={false}
+                        className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                        onClick={() => setPlaceBuyPop(!placeBuyPop)}
+                      >
+                        Buy {currencyFormat(orderDetails.buy_amount, "USD")}
+                      </button>
+                      <button
+                        class={`add-to-cart-btn ${inCart && "added-to-cart"}`}
                         onClick={() => {
                           if (!inCart) {
                             dispatch(
@@ -919,131 +1044,23 @@ const NFTOrderBaseDetails = ({
                           }
                         }}
                       >
-                        <img src={images.cartIconPNG} alt="CartIcon2" />{" "}
+                        <img src={images.cartIconPNG} alt="CartIcon4" />{" "}
                         {!inCart ? "Add to Cart" : "Added to Cart"}
                       </button>
-                    )}
-                  </>
-                );
-              } else if (isBid) {
-                return orderDetails.timed_auction ? (
-                  <>
-                    {User?.kyc_status !== "success" ? (
-                      <OverlayTrigger
-                        trigger={["click"]}
-                        rootClose={true}
-                        placement="top"
-                        overlay={KycPopOver()}
-                      >
-                        <button
-                          disabled={(() => {
-                            if (!isAuctionStarted && !isAuctionEnded) {
-                              return !isAuctionStarted;
-                            } else {
-                              return isAuctionEnded;
-                            }
-                          })()}
-                          className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn full-width"
-                        >
-                          Place Bid
-                        </button>
-                      </OverlayTrigger>
-                    ) : (
-                      <button
-                        disabled={(() => {
-                          if (!isAuctionStarted && !isAuctionEnded) {
-                            return !isAuctionStarted;
-                          } else {
-                            return isAuctionEnded;
-                          }
-                        })()}
-                        className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn full-width"
-                        onClick={() => setPlaceBidPop(!placeBidPop)}
-                      >
-                        Place Bid
-                      </button>
-                    )}
-                  </>
-                ) : (
-                  <>
-                    {User?.kyc_status !== "success" ? (
-                      <OverlayTrigger
-                        trigger={["click"]}
-                        rootClose={true}
-                        placement="top"
-                        overlay={KycPopOver()}
-                      >
-                        <button className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn full-width">
-                          Place Bid
-                        </button>
-                      </OverlayTrigger>
-                    ) : (
-                      <button
-                        className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn full-width"
-                        onClick={() => setPlaceBidPop(!placeBidPop)}
-                      >
-                        Place Bid
-                      </button>
-                    )}
-                  </>
-                );
-              } else if (isBuy) {
-                return User?.kyc_status !== "success" ? (
-                  <OverlayTrigger
-                    trigger={["click"]}
-                    rootClose={true}
-                    placement="top"
-                    overlay={KycPopOverCart()}
-                  >
+                    </>
+                  );
+                } else {
+                  return (
                     <button
-                      disabled={false}
+                      disabled={true}
                       className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn full-width"
                     >
-                      Buy {currencyFormat(orderDetails.buy_amount, "USD")}
+                      Yet To Be Listed!
                     </button>
-                    <button className="add-to-cart-btn">
-                      <img src={images.cartIconPNG} alt="CartIcon3" /> Add to
-                      Cart
-                    </button>
-                  </OverlayTrigger>
-                ) : (
-                  <>
-                    <button
-                      disabled={false}
-                      className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
-                      onClick={() => setPlaceBuyPop(!placeBuyPop)}
-                    >
-                      Buy {currencyFormat(orderDetails.buy_amount, "USD")}
-                    </button>
-                    <button
-                      class={`add-to-cart-btn ${inCart && "added-to-cart"}`}
-                      onClick={() => {
-                        if (!inCart) {
-                          dispatch(
-                            add_to_cart_thunk(
-                              orderDetails.slug,
-                              orderDetails.available_quantity
-                            )
-                          );
-                        }
-                      }}
-                    >
-                      <img src={images.cartIconPNG} alt="CartIcon4" />{" "}
-                      {!inCart ? "Add to Cart" : "Added to Cart"}
-                    </button>
-                  </>
-                );
-              } else {
-                return (
-                  <button
-                    disabled={true}
-                    className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn full-width"
-                  >
-                    Yet To Be Listed!
-                  </button>
-                );
-              }
-            })()}
+                  );
+                }
+              })()}
+            </>
             <div className="mt-2 royalty-info">
               {/* {erc721 &&
               nft.auction_extend_minutes &&
