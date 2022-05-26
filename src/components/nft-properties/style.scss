@@ -38,8 +38,14 @@
           font-family: $neue-helvetica-bold;
           text-transform: capitalize;
           margin-right: 0.5rem;
-          background: -webkit-linear-gradient(-91deg, #e2ff00 46%, #18e0e0 82%);
-          -webkit-background-clip: text;
+          // background: -webkit-linear-gradient(-91deg, #e2ff00 46%, #18e0e0 82%);
+          background: linear-gradient(
+            180deg,
+            #e2ff00 0%,
+            #18e0e0 52.6%,
+            #e8318d 100%
+          );
+          background-clip: text;
           -webkit-text-fill-color: transparent;
         }
         .rank-value {

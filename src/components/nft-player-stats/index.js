@@ -81,7 +81,7 @@ const NFTPlayerStats = ({ stats = [], core }) => {
       value: images.level15,
     },
   ];
-  const data = level.find((obj) => obj.type === core?.level);
+  const data = level.find((obj) => obj.type === core?.level?.value);
 
   return (
     <>

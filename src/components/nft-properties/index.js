@@ -1,45 +1,33 @@
 import React from "react";
 import NFTPropPills from "../nft-prop-pills";
-import { AiTwotoneTrophy } from "react-icons/ai";
+import trophy from "../../images/trophy.svg";
 import "./style.scss";
 
-const NFTProperties = ({ properties }) => {
+const NFTProperties = ({ properties = [], statistics }) => {
   return (
     <div className="chain-attributes">
       <div className="chain-att-title rank-title">
         Properties
-        <div className="rank-block">
-          <AiTwotoneTrophy />
-          <span className="title">Rank</span>
-          <span className="rank-value">12/1530</span>
-        </div>
+        {statistics?.rank && (
+          <div className="rank-block">
+            <img className="me-2" src={trophy} />
+            <span className="title">Rank</span>
+            <span className="rank-value">
+              {statistics?.rank?.value}/{statistics?.rank?.maximum}
+            </span>
+          </div>
+        )}
       </div>
       <div className="chain-att-content mt-2">
-        {(() => {
-          if (properties) {
-            if (properties && typeof properties === "string") {
-              let propertiesData = JSON.parse(properties);
-              console.log(propertiesData);
-              return Object.keys(propertiesData).map((property) => {
-                return (
-                  <NFTPropPills
-                    property={propertiesData[property]}
-                    propertyType={property}
-                  />
-                );
-              });
-            } else {
-              return Object.keys(properties).map((property) => {
-                return (
-                  <NFTPropPills
-                    property={properties[property]}
-                    propertyType={property}
-                  />
-                );
-              });
-            }
-          }
-        })()}
+        {properties.map((property, i) => {
+          return (
+            <NFTPropPills
+              key={`property-${i}`}
+              title={Object.keys(property)}
+              property={property[Object.keys(property)]}
+            />
+          );
+        })}
       </div>
     </div>
   );
