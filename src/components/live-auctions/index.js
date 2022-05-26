@@ -73,7 +73,7 @@ const LiveAuctions = () => {
                       dots={false}
                       navContainerClass={"carousel-btn-block"}
                       navText={[
-                        `<span class="icon-right-arrow left"> <img src=${backArrow} /> </span>`,
+                        `<span class="icon-right-arrow left"> <img src=${backArrow}  /> </span>`,
                         `<span class="icon-right-arrow right"><img src=${frontArrow} /></span>`,
                       ]}
                       responsive={{
