@@ -13,7 +13,7 @@ import BidName from "./bid-name";
 import HistoryHeader from "../history-header";
 import HistoryConfirm from "../history-confirm";
 import TransactionCard from "./transaction-card";
-import userImg from "../../images/user_1.jpg";
+import images from "../../utils/images.json";
 import { orderBidHistory } from "../../api/methods";
 import { currencyFormat } from "../../utils/common";
 import { TableLoader } from "../nft-basic-details/content-loader";
@@ -315,7 +315,7 @@ const BidHistory = ({
                             ? history.avatar_url
                             : user?.slug === history.slug && history.avatar_url
                             ? history.avatar_url
-                            : userImg
+                            : images.userJPG
                         }
                         text={
                           !history.private && history.user_name

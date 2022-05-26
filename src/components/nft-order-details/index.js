@@ -1,14 +1,8 @@
 import React from "react";
 import dayjs from "dayjs";
-//import { useParams } from "react-router";
-//import { useSelector } from "react-redux";
-//import { toast } from "react-toastify";
 import { Table } from "react-bootstrap";
 
-//import BidName from "./bid-name";
-//import userImg from "../../images/user_1.jpg";
 import { currencyFormat } from "../../utils/common";
-//import { TableLoader } from "../nft-basic-details/content-loader";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
 import ToolTip from "../tooltip";
 

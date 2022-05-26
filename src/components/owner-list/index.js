@@ -11,7 +11,7 @@ import ContentLoader from "react-content-loader";
 import OwnerCard from "./owner-card";
 import OwnerName from "./owner-name";
 import TransactionCard from "../bid-history/transaction-card";
-import userImg from "../../images/user_1.jpg";
+import images from "../../utils/images.json";
 import { OwnersTableLoader } from "../nft-basic-details/content-loader";
 import { nftOwnerApi } from "../../api/methods";
 
@@ -227,7 +227,7 @@ const OwnerList = ({
                             ? owner?.avatar_url
                             : user?.slug === owner?.slug && owner?.avatar_url
                             ? owner?.avatar_url
-                            : userImg
+                            : images.userJPG
                         }
                         text={
                           !owner?.private && owner?.user_name

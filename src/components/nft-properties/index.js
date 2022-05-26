@@ -1,6 +1,6 @@
 import React from "react";
 import NFTPropPills from "../nft-prop-pills";
-import trophy from "../../images/trophy.svg";
+import images from "../../utils/images.json";
 import "./style.scss";
 
 const NFTProperties = ({ properties = [], statistics }) => {
@@ -10,7 +10,7 @@ const NFTProperties = ({ properties = [], statistics }) => {
         Properties
         {statistics?.rank && (
           <div className="rank-block">
-            <img className="me-2" src={trophy} />
+            <img className="me-2" src={images.trophy} alt="trophy" />
             <span className="title">Rank</span>
             <span className="rank-value">
               {statistics?.rank?.value}/{statistics?.rank?.maximum}

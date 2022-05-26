@@ -6,9 +6,8 @@ import { BsFillQuestionCircleFill } from "react-icons/bs";
 
 import BidName from "./bid-name";
 import ToolTip from "../tooltip";
-import userImg from "../../images/user_1.jpg";
+import images from "../../utils/images.json";
 
-import polygon from "../../images/jump-trade/polygon.svg";
 import { currencyFormat } from "../../utils/common";
 
 import "./style.scss";
@@ -45,7 +44,7 @@ const NFTPurchaseDetails = ({ nft, list = [] }) => {
                         : user?.slug === detail?.buyer?.slug &&
                           detail?.buyer?.avatar_url
                         ? detail?.buyer?.avatar_url
-                        : userImg
+                        : images.userJPG
                     }
                     text={detail?.buyer?.user_name}
                     isTable
@@ -99,7 +98,11 @@ const NFTPurchaseDetails = ({ nft, list = [] }) => {
                   {detail?.txid ? (
                     <>
                       <a href={detail?.txid} target={"_blank"} rel="noreferrer">
-                        <img src={polygon} alt="details" loading="lazy" />
+                        <img
+                          src={images.polygon}
+                          alt="details"
+                          loading="lazy"
+                        />
                       </a>
                     </>
                   ) : (

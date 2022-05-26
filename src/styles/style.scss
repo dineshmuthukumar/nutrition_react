@@ -2130,21 +2130,21 @@ section.detail-page-content {
         &.heart_icon {
           border: 0.1rem solid #e8318d;
           box-shadow: inset 0px 0px 20px #e8318d !important;
-          background-image: url("../images/jump-trade/heart_ico.png");
+          background-image: url("https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/heart_ico.png");
         }
         &.filled_heart_icon {
           border: 0.1rem solid #e8318d;
           box-shadow: inset 0px 0px 20px #e8318d !important;
-          background-image: url("../images/jump-trade/heart-filled.png");
+          background-image: url("https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/heart-filled.png");
         }
         &.share_icon {
-          background-image: url("../images/jump-trade/share_ico.png");
+          background-image: url("https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/share_ico.png");
         }
         &.extend_icon {
-          background-image: url("../images/jump-trade/expand_ico.png");
+          background-image: url("https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/expand_ico.png");
         }
         &.certificate_icon {
-          background-image: url("../images/jump-trade/diploma.png");
+          background-image: url("https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/diploma.png");
         }
       }
 
@@ -2774,7 +2774,7 @@ section.player-stats {
       padding: 0;
       list-style: none;
       li {
-        background-image: url("../images/jump-trade/playerstatsBG.png");
+        background-image: url("https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/playerstatsBG.png");
         background-size: 100% 100%;
         background-position: center;
         height: 3.2rem;
@@ -2804,7 +2804,7 @@ section.player-stats {
           justify-content: center;
           align-items: center;
           padding: 0.8rem 1.8rem;
-          background-image: url("../images/jump-trade/playerstatsinnerBG.png");
+          background-image: url("https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/playerstatsinnerBG.png");
           background-size: 100% 100%;
           background-position: center;
           font-family: $neue-helvetica-bold;
