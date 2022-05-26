@@ -272,13 +272,15 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
       ? query.get("nft-collection").split(",")
       : [];
 
-    const search_filter = query.get("search");
+    const search_filter = query.get("search") ? query.get("search") : "";
     let noMatchFound =
       sale_filters.length === 0 &&
       nft_filters.length === 0 &&
       !query.get("sort") &&
       nft_category.length === 0 &&
-      nft_collection.length === 0;
+      nft_collection.length === 0 &&
+      search_filter.length === 0;
+
     if (
       match.params.category !== "cricket-bat-nfts" &&
       match.params.category !== "cricket-player-nfts"

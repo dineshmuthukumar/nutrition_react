@@ -19,9 +19,9 @@ const CollectionList = () => {
                 <span className="sub-title">CHECK IT OUT</span>
               </h2>
               <p className="collection-para-desc">
-                The Jump.trade NFT marketplace enables you to buy NFTs belonging
-                to 2 categories - the Meta Cricket League NFTs and the Meta
-                Cricket League Signed Bat NFTs. The marketplace will also
+                The Jump.trade NFT marketplace enables you to buy Cricket NFTs
+                belonging to 2 categories - the Meta Cricket League NFTs and the
+                Meta Cricket League Signed Bat NFTs. The marketplace will also
                 feature many more sports NFTs in the future.
               </p>
 
@@ -29,7 +29,9 @@ const CollectionList = () => {
                 <div
                   className="collection-box"
                   onClick={() =>
-                    history.push("/nft-marketplace/cricket-player-nfts/3WAoJq4KtGY72QdN")
+                    history.push(
+                      "/nft-marketplace/cricket-player-nfts/3WAoJq4KtGY72QdN"
+                    )
                   }
                 >
                   <img
@@ -49,7 +51,9 @@ const CollectionList = () => {
                 <div
                   className="collection-box"
                   onClick={() =>
-                    history.push("/nft-marketplace/cricket-bat-nfts/5LpmjlAwtGEqK3rO")
+                    history.push(
+                      "/nft-marketplace/cricket-bat-nfts/5LpmjlAwtGEqK3rO"
+                    )
                   }
                 >
                   <img
