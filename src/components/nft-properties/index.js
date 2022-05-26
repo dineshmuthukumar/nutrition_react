@@ -1,12 +1,19 @@
 import React from "react";
 import NFTPropPills from "../nft-prop-pills";
-
+import { AiTwotoneTrophy } from "react-icons/ai";
 import "./style.scss";
 
 const NFTProperties = ({ properties }) => {
   return (
     <div className="chain-attributes">
-      <div className="chain-att-title">Properties</div>
+      <div className="chain-att-title rank-title">
+        Properties
+        <div className="rank-block">
+          <AiTwotoneTrophy />
+          <span className="title">Rank</span>
+          <span className="rank-value">12/1530</span>
+        </div>
+      </div>
       <div className="chain-att-content mt-2">
         {(() => {
           if (properties) {
