@@ -1,18 +1,35 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+<sitemap>
+<loc>https://www.jump.trade/main-sitemap</loc>
+</sitemap>
 
-<url>
-  <loc>https://www.jump.trade/</loc>
-  <lastmod>2022-03-23T11:02:31+00:00</lastmod>
-  <changefreq>daily</changefreq>
-<priority>1.00</priority>
-</url>
+<sitemap>
+<loc>https://www.jump.trade/rare-sitemap</loc>
+</sitemap>
 
+<sitemap>
+<loc>https://www.jump.trade/rookie-sitemap</loc>
+</sitemap>
 
-</urlset>
+<sitemap>
+<loc>https://www.jump.trade/epic-sitemap</loc>
+</sitemap>
+
+<sitemap>
+<loc>https://www.jump.trade/legend-sitemap</loc>
+</sitemap>
+
+<sitemap>
+<loc>https://www.jump.trade/superrare-sitemap</loc>
+</sitemap>
+
+<sitemap>
+<loc>https://www.jump.trade/ultrarare-sitemap</loc>
+</sitemap>
+
+<sitemap>
+<loc>https://www.jump.trade/immortal-sitemap</loc>
+</sitemap>
+
+</sitemapindex>
