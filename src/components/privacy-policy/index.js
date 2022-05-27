@@ -546,6 +546,9 @@ const PrivacyComponent = () => {
                       visiting our Service and this Privacy Policy to check for
                       any changes.
                     </li>
+                    <li>
+                      Disclaimer: Crypto products and NFTs are unregulated and can be highly risky. There may be no regulatory recourse for any loss from such transactions.
+                    </li>
                   </ul>
                 </div>
               </div>
