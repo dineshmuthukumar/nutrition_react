@@ -157,11 +157,13 @@ const ExploreCard = ({
   ];
 
   const levelData = level.find(
-    (obj) => obj.type === nft?.core_statistics?.level
+    (obj) => obj.type === nft?.core_statistics?.level?.value
   );
-  const roleData = role.find((obj) => obj.type === nft?.core_statistics?.role);
+  const roleData = role.find(
+    (obj) => obj.type === nft?.core_statistics?.role?.value
+  );
   const playerCatData = playerCategory.find(
-    (obj) => obj.type === nft?.core_statistics?.category
+    (obj) => obj.type === nft?.core_statistics?.category?.value
   );
 
   return (
