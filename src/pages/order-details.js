@@ -447,6 +447,7 @@ const OrderDetails = () => {
                     title={nft?.name}
                     slug={nft?.slug}
                     isFav={nft?.is_user_fav}
+                    statistics={nft?.core_statistics}
                   />
                 </div>
                 <div className="col-12 col-lg-5">

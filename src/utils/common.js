@@ -3,6 +3,7 @@ import {
   isValidPhoneNumber,
   validatePhoneNumberLength,
 } from "libphonenumber-js";
+import images from "../utils/images.json";
 
 export const validateEmail = (email) => {
   const re =
@@ -241,3 +242,149 @@ export const dot = (color = "#ccc") => ({
     width: 10,
   },
 });
+
+export const level = (value) => {
+  const level = [
+    {
+      type: "1",
+      name: "LVL 1",
+      value: images.level1,
+    },
+    {
+      type: "2",
+      name: "LVL 2",
+      value: images.level2,
+    },
+    {
+      type: "3",
+      name: "LVL 3",
+      value: images.level3,
+    },
+    {
+      type: "4",
+      name: "LVL 4",
+      value: images.level4,
+    },
+    {
+      type: "5",
+      name: "LVL 5",
+      value: images.level5,
+    },
+    {
+      type: "6",
+      name: "LVL 6",
+      value: images.level6,
+    },
+    {
+      type: "7",
+      name: "LVL 7",
+      value: images.level7,
+    },
+    {
+      type: "8",
+      name: "LVL 8",
+      value: images.level8,
+    },
+    {
+      type: "9",
+      name: "LVL 9",
+      value: images.level9,
+    },
+    {
+      type: "10",
+      name: "LVL 10",
+      value: images.level10,
+    },
+    {
+      type: "11",
+      name: "LVL 11",
+      value: images.level11,
+    },
+    {
+      type: "12",
+      name: "LVL 12",
+      value: images.level12,
+    },
+    {
+      type: "13",
+      name: "LVL 13",
+      value: images.level13,
+    },
+    {
+      type: "14",
+      name: "LVL 14",
+      value: images.level14,
+    },
+    {
+      type: "15",
+      name: "LVL 15",
+      value: images.level15,
+    },
+  ];
+  const levelData = level.find((obj) => obj.type === value);
+  return levelData;
+};
+
+export const role = (value) => {
+  const role = [
+    {
+      type: "Batsman",
+      name: "BATSMAN",
+      value: images.batsmanICO,
+    },
+    {
+      type: "Bowler",
+      name: "BOWLER",
+      value: images.bowlerIco,
+    },
+    {
+      type: "Bat",
+      name: "BAT",
+      value: images.batsmanICO,
+    },
+  ];
+  const roleData = role.find((obj) => obj.type === value);
+  return roleData;
+};
+
+export const playerCategory = (value) => {
+  const playerCategory = [
+    {
+      type: "ROOKIE",
+      value: "RO",
+      color: "blue_color",
+    },
+    {
+      type: "RARE",
+      value: "RA",
+      color: "orange_color",
+    },
+    {
+      type: "EPIC",
+      value: "EP",
+      color: "purple_color",
+    },
+    {
+      type: "LEGEND",
+      value: "LG",
+      color: "multi_color",
+    },
+    {
+      type: "SUPER RARE",
+      value: "SR",
+      color: "lavender_color",
+    },
+    {
+      type: "ULTRA RARE",
+      value: "UR",
+      color: "lavender_color",
+    },
+    {
+      type: "IMMORTAL",
+      value: "IM",
+      color: "lavender_color",
+    },
+  ];
+  const playerCatData = playerCategory.find((obj) => obj.type === value);
+  return playerCatData;
+};

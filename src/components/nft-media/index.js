@@ -14,15 +14,15 @@ import { useLocation } from "react-router-dom";
 import toaster from "../../utils/toaster";
 import images from "../../utils/images.json";
 import { nftMakeFav, nftMakeUnFav } from "../../api/methods";
+import { level, role, playerCategory } from "../../utils/common";
 
 import "./style.scss";
 
-const NFTMedia = ({ nft, title, slug, isFav }) => {
+const NFTMedia = ({ nft, title, slug, isFav, statistics }) => {
   const location = useLocation();
 
   const [modalShow, setModalShow] = useState(false);
   const [liked, setLiked] = useState(false);
-  //const [bgColor, setBgColor] = useState();
   const { user } = useSelector((state) => state.user.data);
 
   const [listedShare, setListedShare] = useState(false);
@@ -82,150 +82,6 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
     setModalShow(true);
   };
 
-  const level = [
-    {
-      type: "1",
-      name: "LVL 1",
-      value: images.level1,
-    },
-    {
-      type: "2",
-      name: "LVL 2",
-      value: images.level2,
-    },
-    {
-      type: "3",
-      name: "LVL 3",
-      value: images.level3,
-    },
-    {
-      type: "4",
-      name: "LVL 4",
-      value: images.level4,
-    },
-    {
-      type: "5",
-      name: "LVL 5",
-      value: images.level5,
-    },
-    {
-      type: "6",
-      name: "LVL 6",
-      value: images.level6,
-    },
-    {
-      type: "7",
-      name: "LVL 7",
-      value: images.level7,
-    },
-    {
-      type: "8",
-      name: "LVL 8",
-      value: images.level8,
-    },
-    {
-      type: "9",
-      name: "LVL 9",
-      value: images.level9,
-    },
-    {
-      type: "10",
-      name: "LVL 10",
-      value: images.level10,
-    },
-    {
-      type: "11",
-      name: "LVL 11",
-      value: images.level11,
-    },
-    {
-      type: "12",
-      name: "LVL 12",
-      value: images.level12,
-    },
-    {
-      type: "13",
-      name: "LVL 13",
-      value: images.level13,
-    },
-    {
-      type: "14",
-      name: "LVL 14",
-      value: images.level14,
-    },
-    {
-      type: "15",
-      name: "LVL 15",
-      value: images.level15,
-    },
-  ];
-
-  const role = [
-    {
-      type: "Batsman",
-      name: "BATSMAN",
-      value: images.batsmanICO,
-    },
-    {
-      type: "Bowler",
-      name: "BOWLER",
-      value: images.bowlerIco,
-    },
-    {
-      type: "Bat",
-      name: "BAT",
-      value: images.batsmanICO,
-    },
-  ];
-
-  const playerCategory = [
-    {
-      type: "ROOKIE",
-      value: "RO",
-      color: "blue_color",
-    },
-    {
-      type: "RARE",
-      value: "RA",
-      color: "orange_color",
-    },
-    {
-      type: "EPIC",
-      value: "EP",
-      color: "purple_color",
-    },
-    {
-      type: "LEGEND",
-      value: "LG",
-      color: "multi_color",
-    },
-    {
-      type: "SUPER RARE",
-      value: "SR",
-      color: "lavender_color",
-    },
-    {
-      type: "ULTRA RARE",
-      value: "UR",
-      color: "lavender_color",
-    },
-    {
-      type: "IMMORTAL",
-      value: "IM",
-      color: "lavender_color",
-    },
-  ];
-
-  const levelData = level.find(
-    (obj) => obj.type === nft?.core_statistics?.level.value
-  );
-  const roleData = role.find(
-    (obj) => obj.type === nft?.core_statistics?.role.value
-  );
-  const playerCatData = playerCategory.find(
-    (obj) => obj.type === nft?.core_statistics?.category.value
-  );
-
   const download = (dataurl, filename) => {
     const link = document.createElement("a");
     link.href = dataurl;
@@ -237,7 +93,9 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
     <section className="nft-img-block">
       <div
         className={`nft-media media_audio  ${
-          playerCatData?.color ? playerCatData?.color : "gold_color"
+          playerCategory(statistics?.category?.value)?.color
+            ? playerCategory(statistics?.category?.value)?.color
+            : "gold_color"
         }`}
       >
         {nft?.signed_by?.length > 0 && (
@@ -251,26 +109,41 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
 
         <article
           className={`player_stats  ${
-            playerCatData?.color ? playerCatData?.color : "gold_color"
+            playerCategory(statistics?.category?.value)?.color
+              ? playerCategory(statistics?.category?.value)?.color
+              : "gold_color"
           }`}
         >
-          {roleData && (
+          {role(statistics?.role?.value) && (
             <div className="player-type">
-              <h6>{roleData?.name}</h6>
-              <img src={roleData?.value} alt="Player-type" loading="lazy" />
+              <h6>{role(statistics?.role?.value)?.name}</h6>
+              <img
+                src={role(statistics?.role?.value)?.value}
+                alt="Player-type"
+                loading="lazy"
+              />
             </div>
           )}
 
-          {playerCatData && (
+          {playerCategory(statistics?.category?.value) && (
             <div className="player-range">
-              <span className="band">{playerCatData?.value}</span>
-              {roleData && roleData?.name !== "BAT" && <h6> Player</h6>}
+              <span className="band">
+                {playerCategory(statistics?.category?.value)?.value}
+              </span>
+              {role(statistics?.role?.value) &&
+                role(statistics?.role?.value)?.name !== "BAT" && (
+                  <h6> Player</h6>
+                )}
             </div>
           )}
-          {levelData && (
+          {level(statistics?.level?.value) && (
             <div className="player-level">
-              <h6>{levelData?.name}</h6>
-              <img src={levelData?.value} alt="Player-level" loading="lazy" />
+              <h6>{level(statistics?.level?.value)?.name}</h6>
+              <img
+                src={level(statistics?.level?.value)?.value}
+                alt="Player-level"
+                loading="lazy"
+              />
             </div>
           )}
         </article>
@@ -325,7 +198,6 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
                   muted
                   autoPlay
                   playsInline
-                  oncontextmenu="return false;"
                   controlsList="nodownload"
                 >
                   <source src={nft?.asset_url} type="video/mp4" />
@@ -419,7 +291,9 @@ const NFTMedia = ({ nft, title, slug, isFav }) => {
       </div>
       <div
         className={`media-lsf flex-xs ${
-          playerCatData?.color ? playerCatData?.color : "gold_color"
+          playerCategory(statistics?.category?.value)?.color
+            ? playerCategory(statistics?.category?.value)?.color
+            : "gold_color"
         }`}
       >
         <SharePopover
