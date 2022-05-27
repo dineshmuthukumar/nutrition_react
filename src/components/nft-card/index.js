@@ -427,8 +427,8 @@ const NFTCard = ({
           {nft?.owner_name && (
             <div className="more-nft-desc">{nft?.owner_name}</div>
           )}
-          {recentSold && nft?.seller?.user_name && (
-            <div className="more-nft-desc">{nft?.seller?.user_name}</div>
+          {recentSold && nft?.buyer?.user_name && (
+            <div className="more-nft-desc">{nft?.buyer?.user_name}</div>
           )}
           <div className="more-nft-title">{nft?.name}</div>
           <h6 className="nft-signature">

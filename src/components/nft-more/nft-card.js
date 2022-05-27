@@ -376,8 +376,8 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
           {nft?.owner_name && (
             <div className="more-nft-desc">{nft?.owner_name}</div>
           )}
-          {recentSold && nft?.seller?.user_name && (
-            <div className="more-nft-desc">{nft?.seller?.user_name}</div>
+          {recentSold && nft?.buyer?.user_name && (
+            <div className="more-nft-desc">{nft?.buyer?.user_name}</div>
           )}
           <div className="more-nft-title">{nft?.name}</div>
 
