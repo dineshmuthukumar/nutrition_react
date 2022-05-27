@@ -42,6 +42,7 @@
   "headingBG": "https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/headingBG.png",
   "heartFilled": "https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/heart-filled.png",
   "heartICO": "https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/heart_ico.png",
+  "shareICO": "https://cdn.guardianlink.io/product-hotspot/images/share_ico.png",
   "heroBg": "https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/hero_bg.png",
   "heroBgMobile": "https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/hero_bg_mobile.png",
   "heroContentMobile": "https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/hero-content-mobile.png",
@@ -54,7 +55,7 @@
   "preorderImg001": "https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/preorder-img001.png",
   "sample": "https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/sample.png",
   "verifyTickIcon": "https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/verify_tick_icon.png",
-  "trophy": "https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/trophy.svg",
+  "trophy": "https://cdn.guardianlink.io/product-hotspot/images/jump/trophy.svg",
   "polygon": "https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/polygon.svg",
 
   "level1": "https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/player_levels/1.png",

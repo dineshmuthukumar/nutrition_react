@@ -215,7 +215,7 @@ const NFTOrderBaseDetails = ({
       <div className="nft-title-container">
         <div className="nft-title mb-2">{nft.name}</div>
       </div>
-      <p className="text-secondary mt-1 mb-5 nft-desc">
+      <div className="text-secondary mt-1 mb-5 nft-desc">
         {nft.description && (
           <ReadMoreReact
             min={200}
@@ -224,7 +224,7 @@ const NFTOrderBaseDetails = ({
             text={nft.description}
           />
         )}
-      </p>
+      </div>
 
       <div className="bottom-content">
         {erc721 && owners.length > 0 && (
