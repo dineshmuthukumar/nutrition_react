@@ -992,3 +992,9 @@ button.load_more {
     border-bottom: none !important;
   }
 }
+
+.scrollable-list {
+  height: 180px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}

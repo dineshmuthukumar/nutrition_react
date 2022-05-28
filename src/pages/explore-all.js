@@ -20,11 +20,6 @@ const ExploreAll = () => {
 
   return (
     <>
-      <Header
-        bgImage
-        title="Buy Cricket NFTs | Sports NFT Marketplace | Jump.trade"
-        description="Get your hands on some of the most prized and highly collectible cricket NFTs at Jump.trade. Buy, sell, & collect cricket & other sports NFTs."
-      />
       <ExploreAllNFT />
       <Footer />
     </>

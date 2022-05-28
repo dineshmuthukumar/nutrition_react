@@ -231,6 +231,26 @@ const WebContainer = () => {
         />
         <Route
           exact
+          path="/nft-marketplace/cricket-nfts/:player"
+          component={ExploreAll}
+        />
+        <Route
+          exact
+          path="/nft-marketplace/cricket-nfts/:player/:search?"
+          component={ExploreAll}
+        />
+        <Route
+          exact
+          path="/nft-marketplace/cricket-nfts/:player/:search?/details/:slug"
+          component={ExploreAll}
+        />
+        <Route
+          exact
+          path="/nft-marketplace/cricket-nfts/:player/:search?/order/details/:slug/:orderSlug"
+          component={ExploreAll}
+        />
+        <Route
+          exact
           path="/nft-marketplace/:search?/order/details/:slug/:orderSlug"
           component={ExploreAll}
         />
