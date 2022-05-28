@@ -87,18 +87,10 @@ const NFTBaseDetails = ({
             ) {
               return history.push(`/latimes-NFT`);
             } else {
-              if (
-                nft?.core_statistics?.role?.value?.toLowerCase() ===
-                  "batsman" ||
-                nft?.core_statistics?.role?.value?.toLowerCase() === "bowler"
-              )
-                return history.push(
-                  `/nft-marketplace/cricket-player-nfts/${nft?.category_slug}`
-                );
-              if (nft?.core_statistics?.role?.value?.toLowerCase() === "bat")
-                return history.push(
-                  `/nft-marketplace/cricket-bat-nfts/${nft?.category_slug}`
-                );
+              if(nft?.core_statistics?.role.toLowerCase() === "batsman" || nft?.core_statistics?.role.toLowerCase() === "bowler")
+                return history.push(`/nft-marketplace/cricket-player-nfts/${nft?.category_slug}`);
+              if(nft?.core_statistics?.role.toLowerCase() === "bat")
+                return history.push(`/nft-marketplace/cricket-bat-nfts/${nft?.category_slug}`);            
             }
           }}
         >

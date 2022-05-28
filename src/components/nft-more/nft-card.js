@@ -219,13 +219,11 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
   ];
 
   const levelData = level.find(
-    (obj) => obj.type === nft?.core_statistics?.level?.value
+    (obj) => obj.type === nft?.core_statistics?.level
   );
-  const roleData = role.find(
-    (obj) => obj.type === nft?.core_statistics?.role?.value
-  );
+  const roleData = role.find((obj) => obj.type === nft?.core_statistics?.role);
   const playerCatData = playerCategory.find(
-    (obj) => obj.type === nft?.core_statistics?.category?.value
+    (obj) => obj.type === nft?.core_statistics?.category
   );
 
   // const handleAddToCart = () => {
