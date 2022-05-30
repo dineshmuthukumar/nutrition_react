@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+<sitemap>
+<loc>https://www.jump.trade/main-sitemap.xml</loc>
+</sitemap>
+
+<sitemap>
+<loc>https://www.jump.trade/rare-sitemap.xml</loc>
+</sitemap>
+
+<sitemap>
+<loc>https://www.jump.trade/rookie-sitemap.xml</loc>
+</sitemap>
+
+<sitemap>
+<loc>https://www.jump.trade/epic-sitemap.xml</loc>
+</sitemap>
+
+<sitemap>
+<loc>https://www.jump.trade/legend-sitemap.xml</loc>
+</sitemap>
+
+<sitemap>
+<loc>https://www.jump.trade/superrare-sitemap.xml</loc>
+</sitemap>
+
+<sitemap>
+<loc>https://www.jump.trade/ultrarare-sitemap.xml</loc>
+</sitemap>
+
+<sitemap>
+<loc>https://www.jump.trade/immortal-sitemap.xml</loc>
+</sitemap>
+
+</sitemapindex>
