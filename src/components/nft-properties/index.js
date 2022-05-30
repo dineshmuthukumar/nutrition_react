@@ -1,38 +1,33 @@
 import React from "react";
 import NFTPropPills from "../nft-prop-pills";
-
+import images from "../../utils/images.json";
 import "./style.scss";
 
-const NFTProperties = ({ properties }) => {
+const NFTProperties = ({ properties = [], statistics }) => {
   return (
     <div className="chain-attributes">
-      <div className="chain-att-title">Properties</div>
+      <div className="chain-att-title rank-title">
+        Properties
+        {statistics?.rank && (
+          <div className="rank-block">
+            <img className="me-2" src={images.trophy} alt="trophy" />
+            <span className="title">Rank</span>
+            <span className="rank-value">
+              {statistics?.rank?.value}/{statistics?.rank?.maximum}
+            </span>
+          </div>
+        )}
+      </div>
       <div className="chain-att-content mt-2">
-        {(() => {
-          if (properties) {
-            if (properties && typeof properties === "string") {
-              let propertiesData = JSON.parse(properties);
-              console.log(propertiesData);
-              return Object.keys(propertiesData).map((property) => {
-                return (
-                  <NFTPropPills
-                    property={propertiesData[property]}
-                    propertyType={property}
-                  />
-                );
-              });
-            } else {
-              return Object.keys(properties).map((property) => {
-                return (
-                  <NFTPropPills
-                    property={properties[property]}
-                    propertyType={property}
-                  />
-                );
-              });
-            }
-          }
-        })()}
+        {properties.map((property, i) => {
+          return (
+            <NFTPropPills
+              key={`property-${i}`}
+              title={Object.keys(property)}
+              property={property[Object.keys(property)]}
+            />
+          );
+        })}
       </div>
     </div>
   );

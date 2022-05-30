@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import userImg from "../../images/user_1.jpg";
-//import UserImage from "../../images/amitabh.png";
+import images from "../../utils/images.json";
 import { FaThumbsUp } from "react-icons/fa";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
 
@@ -68,17 +67,6 @@ const HistoryConfirm = ({
               </h3>
             )}
           </div>
-          {/* <div className="owned-user-details">
-            <div className="owned-user-image">
-              <img src={UserImage} alt="bid-user" />
-            </div>
-            <div className="owned-user-info">
-              <h5 className="time">Sep 20, 2021 11:15pm</h5>
-              <h4 className="name">
-                Owned by <span>@sirdonski</span>
-              </h4>
-            </div>
-          </div> */}
         </div>
       ) : (
         <div className="bid-history-confirm">
@@ -91,7 +79,7 @@ const HistoryConfirm = ({
                     : user?.slug === acceptBidDetail.slug &&
                       acceptBidDetail.avatar_url
                     ? acceptBidDetail.avatar_url
-                    : userImg
+                    : images.userJPG
                 }
                 alt="bid-user"
               />

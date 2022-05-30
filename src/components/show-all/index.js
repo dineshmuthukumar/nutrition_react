@@ -8,7 +8,7 @@ import QuickView from "../quick-view";
 import Details from "../../pages/details";
 import OrderDetails from "../../pages/order-details";
 import { nftShowAllApi } from "../../api/methods";
-import cardImage from "../../images/drops/nft_2.png";
+import images from "../../utils/images.json";
 import { BiCaretDown, BiSearch, BiX } from "react-icons/bi";
 import { useHistory, useRouteMatch } from "react-router-dom";
 import { FormControl } from "react-bootstrap";
@@ -511,14 +511,14 @@ const ShowAll = ({ categories }) => {
           <div className="prifilter-btn">
             <button
               type="button"
-              class="justify-content-center border dropdown-item"
+              className="justify-content-center border dropdown-item"
               onClick={(e) => handlePriceRange(priceRange, true)}
             >
               Clear
             </button>
             <button
               type="button"
-              class="justify-content-center border dropdown-item apply-btn"
+              className="justify-content-center border dropdown-item apply-btn"
               disabled={(() => {
                 if (
                   parseInt(priceRange.from) < 0 ||
@@ -1281,7 +1281,7 @@ const ShowAll = ({ categories }) => {
                         <NFTCard
                           nft={nft}
                           key={i}
-                          image={cardImage}
+                          image={images.sample}
                           relativeUrl={`nft-marketplace`}
                         />
                       </div>

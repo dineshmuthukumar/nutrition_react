@@ -103,12 +103,19 @@
       font-size: 0.8rem;
     }
     .nft-signature {
-      background: transparent
-        linear-gradient(
+      // background: transparent
+      //   linear-gradient(
+      //     180deg,
+      //     #e2ff00 10%,
+      //     #08ff0b 60%,
+      //     #18e0e0 47%,
+      //     #e8318d 100%
+      //   )
+      //   0% 0% no-repeat padding-box;
+      background: linear-gradient(
           180deg,
-          #e2ff00 10%,
-          #08ff0b 60%,
-          #18e0e0 47%,
+          #e2ff00 0%,
+          #18e0e0 52.6%,
           #e8318d 100%
         )
         0% 0% no-repeat padding-box;
@@ -318,12 +325,19 @@
       font-size: 0.8rem;
     }
     .nft-signature {
-      background: transparent
-        linear-gradient(
+      // background: transparent
+      //   linear-gradient(
+      //     180deg,
+      //     #e2ff00 10%,
+      //     #08ff0b 60%,
+      //     #18e0e0 47%,
+      //     #e8318d 100%
+      //   )
+      //   0% 0% no-repeat padding-box;
+      background: linear-gradient(
           180deg,
-          #e2ff00 10%,
-          #08ff0b 60%,
-          #18e0e0 47%,
+          #e2ff00 0%,
+          #18e0e0 52.6%,
           #e8318d 100%
         )
         0% 0% no-repeat padding-box;
@@ -362,12 +376,12 @@
         &.heart_icon {
           border: 0.1rem solid #e8318d;
           box-shadow: inset 0px 0px 20px #e8318d !important;
-          background-image: url("../../images/jump-trade/heart_ico.png");
+          background-image: url("https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/heart_ico.png");
         }
         &.filled_heart_icon {
           border: 0.1rem solid #e8318d;
           box-shadow: inset 0px 0px 20px #e8318d !important;
-          background-image: url("../../images/jump-trade/heart-filled.png");
+          background-image: url("https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/heart-filled.png");
         }
       }
     }
@@ -444,7 +458,7 @@
         background-position: center;
         background-repeat: no-repeat;
         &.cart_icon {
-          background-image: url("../../images/jump-trade/cart_icon.png");
+          background-image: url("https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/cart_icon.png");
         }
       }
 
@@ -456,7 +470,7 @@
         .svg_size {
           filter: invert(1);
           &.cart_icon {
-            background-image: url("../../images/jump-trade/cart_icon.png");
+            background-image: url("https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/cart_icon.png");
           }
         }
         &:hover {

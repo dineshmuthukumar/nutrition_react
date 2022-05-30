@@ -5,6 +5,55 @@
     font-size: 1.5rem;
     font-family: $neue-helvetica-medium;
     position: relative;
+    &.rank-title {
+      display: flex;
+      justify-content: space-between;
+      margin: 1rem 0 3rem;
+      align-items: center;
+      font-size: 1.3rem !important;
+      @media screen and (max-width: 425px) {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+      }
+      .rank-block {
+        padding: 1rem 1.5rem !important;
+        background-color: #19362961;
+        border-radius: 0.5rem !important;
+        border: 0.1rem solid #193629 !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        @media screen and (max-width: 425px) {
+          margin-top: 1rem;
+          width: 100%;
+        }
+        svg {
+          width: 1.5rem;
+          height: 1.5rem;
+          margin-right: 0.5rem;
+        }
+        .title {
+          font-size: 1.5rem;
+          font-family: $neue-helvetica-bold;
+          text-transform: capitalize;
+          margin-right: 0.5rem;
+          // background: -webkit-linear-gradient(-91deg, #e2ff00 46%, #18e0e0 82%);
+          background: linear-gradient(
+            180deg,
+            #e2ff00 0%,
+            #18e0e0 52.6%,
+            #e8318d 100%
+          );
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+        .rank-value {
+          font-size: 1.5rem;
+          font-family: $neue-helvetica-bold;
+        }
+      }
+    }
 
     .title-count {
       font-size: 1rem;

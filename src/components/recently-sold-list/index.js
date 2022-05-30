@@ -7,7 +7,7 @@ import { FaCheckCircle } from "react-icons/fa";
 import { nftRecentlySoldApi } from "../../api/methods";
 
 import NFTCard from "../nft-card";
-import sample from "../../images/sampleNFT.jpg";
+import images from "../../utils/images.json";
 import "./style.scss";
 import useQuery from "../../hook/useQuery";
 import { BiCaretDown } from "react-icons/bi";
@@ -174,7 +174,12 @@ const RecentlySoldList = () => {
                         key={`list-nft-${i}`}
                         className="col-xl-3 col-lg-4 col-md-6 col-sm-6"
                       >
-                        <NFTCard nft={nft} key={i} image={sample} recentSold />
+                        <NFTCard
+                          nft={nft}
+                          key={i}
+                          image={images.sample}
+                          recentSold
+                        />
                       </div>
                     ))
                   ) : (

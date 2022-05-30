@@ -20,7 +20,7 @@ import {
 import { FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
 
 import ErrorText from "./error-text";
-import sample from "../../images/sampleNFT.jpg";
+import images from "../../utils/images.json";
 import {
   currencyFormat,
   dot,
@@ -615,8 +615,11 @@ const NFTPutOnSale = ({
                                       alt="media logo"
                                       className="type_image typeimg_audio"
                                       src={
-                                        nft.asset_url ? nft.asset_url : sample
+                                        nft.asset_url
+                                          ? nft.asset_url
+                                          : images.sample
                                       }
+                                      loading="lazy"
                                     />
                                   );
                                 } else if (nft?.asset_type?.includes("audio")) {
@@ -626,8 +629,11 @@ const NFTPutOnSale = ({
                                         alt="media logo"
                                         className="type_image typeimg_audio"
                                         src={
-                                          nft.cover_url ? nft.cover_url : sample
+                                          nft.cover_url
+                                            ? nft.cover_url
+                                            : images.sample
                                         }
+                                        loading="lazy"
                                       />
                                     </>
                                   );
@@ -637,8 +643,11 @@ const NFTPutOnSale = ({
                                       alt="media logo"
                                       className="type_image typeimg_audio"
                                       src={
-                                        nft.cover_url ? nft.cover_url : sample
+                                        nft.cover_url
+                                          ? nft.cover_url
+                                          : images.sample
                                       }
+                                      loading="lazy"
                                     />
                                   );
                                 } else {
@@ -647,8 +656,11 @@ const NFTPutOnSale = ({
                                       alt="media logo"
                                       className="type_image typeimg_audio"
                                       src={
-                                        nft.asset_url ? nft.asset_url : sample
+                                        nft.asset_url
+                                          ? nft.asset_url
+                                          : images.sample
                                       }
+                                      loading="lazy"
                                     />
                                   );
                                 }
@@ -1286,7 +1298,9 @@ const NFTPutOnSale = ({
                                         alt="media logo"
                                         className="type_image typeimg_audio"
                                         src={
-                                          nft.asset_url ? nft.asset_url : sample
+                                          nft.asset_url
+                                            ? nft.asset_url
+                                            : images.sample
                                         }
                                       />
                                     );
@@ -1301,7 +1315,7 @@ const NFTPutOnSale = ({
                                           src={
                                             nft.cover_url
                                               ? nft.cover_url
-                                              : sample
+                                              : images.sample
                                           }
                                         />
                                       </>
@@ -1314,7 +1328,9 @@ const NFTPutOnSale = ({
                                         alt="media logo"
                                         className="type_image typeimg_audio"
                                         src={
-                                          nft.cover_url ? nft.cover_url : sample
+                                          nft.cover_url
+                                            ? nft.cover_url
+                                            : images.sample
                                         }
                                       />
                                     );
@@ -1324,7 +1340,9 @@ const NFTPutOnSale = ({
                                         alt="media logo"
                                         className="type_image typeimg_audio"
                                         src={
-                                          nft.asset_url ? nft.asset_url : sample
+                                          nft.asset_url
+                                            ? nft.asset_url
+                                            : images.sample
                                         }
                                       />
                                     );
@@ -1620,7 +1638,9 @@ const NFTPutOnSale = ({
                                         alt="media logo"
                                         className="type_image typeimg_audio"
                                         src={
-                                          nft.asset_url ? nft.asset_url : sample
+                                          nft.asset_url
+                                            ? nft.asset_url
+                                            : images.sample
                                         }
                                       />
                                     );
@@ -1635,7 +1655,7 @@ const NFTPutOnSale = ({
                                           src={
                                             nft.cover_url
                                               ? nft.cover_url
-                                              : sample
+                                              : images.sample
                                           }
                                         />
                                       </>
@@ -1648,7 +1668,9 @@ const NFTPutOnSale = ({
                                         alt="media logo"
                                         className="type_image typeimg_audio"
                                         src={
-                                          nft.cover_url ? nft.cover_url : sample
+                                          nft.cover_url
+                                            ? nft.cover_url
+                                            : images.sample
                                         }
                                       />
                                     );
@@ -1658,7 +1680,9 @@ const NFTPutOnSale = ({
                                         alt="media logo"
                                         className="type_image typeimg_audio"
                                         src={
-                                          nft.asset_url ? nft.asset_url : sample
+                                          nft.asset_url
+                                            ? nft.asset_url
+                                            : images.sample
                                         }
                                       />
                                     );
@@ -2158,7 +2182,6 @@ const NFTPutOnSale = ({
                   return setHours(setMinutes(tmp_start_date, 30), hours);
                 }
               } else {
-                console.log("fire");
                 return setHours(setMinutes(endDate, 0), 0);
               }
             })()}

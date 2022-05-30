@@ -4,10 +4,7 @@ import { useHistory } from "react-router";
 import { Offcanvas } from "react-bootstrap";
 import { toast } from "react-toastify";
 import ErrorText from "./error-text";
-import sample from "../../images/jump-trade/sample.png";
-import done from "../../images/jump-trade/done.svg";
-import failed from "../../images/jump-trade/cut.svg";
-import emptycart from "../../images/jump-trade/empty-cart-img.svg";
+import images from "../../utils/images.json";
 import { BiCheck } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
 import { AiOutlineWarning } from "react-icons/ai";
@@ -44,7 +41,7 @@ const Cart = ({ cartPop = false, setCartPop, setCheckoutDevice }) => {
         .filter((obj) => obj.order_status === "onsale")
         .map((item) => items.push(item?.line_item_slug));
       items = items.filter(function (item, i, input) {
-        return input.indexOf(item) == i;
+        return input.indexOf(item) === i;
       });
       setSelectedItems(items);
     }
@@ -54,9 +51,7 @@ const Cart = ({ cartPop = false, setCartPop, setCheckoutDevice }) => {
     let amount = 0;
     userCart?.line_items
       ?.filter((obj) => selectedItems.includes(obj.line_item_slug))
-      .map((nft) => {
-        amount = amount + parseFloat(nft?.buy_amount);
-      });
+      .map((nft) => (amount = amount + parseFloat(nft?.buy_amount)));
     amount =
       parseFloat(amount) +
       (parseFloat(amount) * parseFloat(userCart?.service_fee)) / 100;
@@ -118,7 +113,7 @@ const Cart = ({ cartPop = false, setCartPop, setCheckoutDevice }) => {
           {checkoutProcess.loading && (
             <article className="loading-box">
               <div className="load-card">
-                <div class="loader"></div>
+                <div className="loader"></div>
                 <h6>Order Processing...</h6>
               </div>
             </article>
@@ -217,7 +212,9 @@ const Cart = ({ cartPop = false, setCartPop, setCheckoutDevice }) => {
                                     <img
                                       alt="media nft"
                                       src={
-                                        nft.asset_url ? nft.asset_url : sample
+                                        nft.asset_url
+                                          ? nft.asset_url
+                                          : images.sample
                                       }
                                     />
                                   );
@@ -227,7 +224,9 @@ const Cart = ({ cartPop = false, setCartPop, setCheckoutDevice }) => {
                                       <img
                                         alt="media nft"
                                         src={
-                                          nft.cover_url ? nft.cover_url : sample
+                                          nft.cover_url
+                                            ? nft.cover_url
+                                            : images.sample
                                         }
                                       />
                                     </>
@@ -237,7 +236,9 @@ const Cart = ({ cartPop = false, setCartPop, setCheckoutDevice }) => {
                                     <img
                                       alt="media nft"
                                       src={
-                                        nft.cover_url ? nft.cover_url : sample
+                                        nft.cover_url
+                                          ? nft.cover_url
+                                          : images.sample
                                       }
                                     />
                                   );
@@ -246,7 +247,9 @@ const Cart = ({ cartPop = false, setCartPop, setCheckoutDevice }) => {
                                     <img
                                       alt="media nft"
                                       src={
-                                        nft.asset_url ? nft.asset_url : sample
+                                        nft.asset_url
+                                          ? nft.asset_url
+                                          : images.sample
                                       }
                                     />
                                   );
@@ -373,7 +376,11 @@ const Cart = ({ cartPop = false, setCartPop, setCheckoutDevice }) => {
                 <div className="pop-body-content d-flex align-items-center justify-content-center empty-cart-content">
                   <div className="pop-cart-info">
                     <div className="d-block text-center py-4 empty-cart-item">
-                      <img src={emptycart} alt="empty-cart-item" />
+                      <img
+                        src={images.emptyCartSVG}
+                        alt="empty-cart-item"
+                        loading="lazy"
+                      />
                     </div>
                     <div className="text-center empty-cart">
                       <h3>Your cart is empty!</h3>
@@ -422,12 +429,16 @@ const Cart = ({ cartPop = false, setCartPop, setCheckoutDevice }) => {
               <div className="pop-body-content success">
                 {parseInt(successData?.final_amount) > 0 ? (
                   <div className="order-placed text-center py-4">
-                    <img src={done} alt="order-place" />
+                    <img
+                      src={images.doneSVG}
+                      alt="order-place"
+                      loading="lazy"
+                    />
                     <h2 className="py-4">Order Processed Successfully</h2>
                   </div>
                 ) : (
                   <div className="order-placed text-center py-4">
-                    <img src={failed} alt="order-fail" />
+                    <img src={images.cut} alt="order-fail" loading="lazy" />
                     <h2 className="py-4">Order Processing Unsuccessful.</h2>
                   </div>
                 )}
@@ -461,7 +472,9 @@ const Cart = ({ cartPop = false, setCartPop, setCheckoutDevice }) => {
                                     <img
                                       alt="media nft"
                                       src={
-                                        nft.asset_url ? nft.asset_url : sample
+                                        nft.asset_url
+                                          ? nft.asset_url
+                                          : images.sample
                                       }
                                     />
                                   );
@@ -471,7 +484,9 @@ const Cart = ({ cartPop = false, setCartPop, setCheckoutDevice }) => {
                                       <img
                                         alt="media nft"
                                         src={
-                                          nft.cover_url ? nft.cover_url : sample
+                                          nft.cover_url
+                                            ? nft.cover_url
+                                            : images.sample
                                         }
                                       />
                                     </>
@@ -481,7 +496,9 @@ const Cart = ({ cartPop = false, setCartPop, setCheckoutDevice }) => {
                                     <img
                                       alt="media nft"
                                       src={
-                                        nft.cover_url ? nft.cover_url : sample
+                                        nft.cover_url
+                                          ? nft.cover_url
+                                          : images.sample
                                       }
                                     />
                                   );
@@ -490,7 +507,9 @@ const Cart = ({ cartPop = false, setCartPop, setCheckoutDevice }) => {
                                     <img
                                       alt="media nft"
                                       src={
-                                        nft.asset_url ? nft.asset_url : sample
+                                        nft.asset_url
+                                          ? nft.asset_url
+                                          : images.sample
                                       }
                                     />
                                   );

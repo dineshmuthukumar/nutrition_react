@@ -4,7 +4,7 @@ import ContentLoader from "react-content-loader";
 import { userFavedNFTOrders } from "../../api/methods";
 
 import NFTCard from "../nft-card";
-import sample from "../../images/sampleNFT.jpg";
+import images from "../../utils/images.json";
 
 import "./style.scss";
 
@@ -68,7 +68,7 @@ const FavouriteNftsList = () => {
                         <NFTCard
                           nft={nft}
                           key={i}
-                          image={sample}
+                          image={images.sample}
                           favouriteNFTs
                         />
                       </div>

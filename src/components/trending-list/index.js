@@ -8,7 +8,7 @@ import { trendingNFTsApi } from "../../api/methods";
 //import { FormControl } from "react-bootstrap";
 
 import NFTCard from "../nft-card";
-import sample from "../../images/sampleNFT.jpg";
+import images from "../../utils/images.json";
 import "./style.scss";
 import useQuery from "../../hook/useQuery";
 import { BiCaretDown } from "react-icons/bi";
@@ -56,10 +56,6 @@ const TrendingList = () => {
 
   useEffect(() => {
     const sort_filters = query.get("sort") ? query.get("sort") : "price_desc";
-    const price_range = {
-      from: query.get("minPrice"),
-      to: query.get("maxPrice"),
-    };
 
     const info = { ...filter };
 
@@ -69,9 +65,6 @@ const TrendingList = () => {
     }));
     setPage(1);
     setFilter(info);
-    if (price_range.from || price_range.to) {
-      setPriceRangeFilter(price_range);
-    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug, query]);
 
@@ -175,10 +168,10 @@ const TrendingList = () => {
   //   </div>
   // ));
 
-  const [priceRangeFilter, setPriceRangeFilter] = useState({
-    from: "",
-    to: "",
-  });
+  // const [priceRangeFilter, setPriceRangeFilter] = useState({
+  //   from: "",
+  //   to: "",
+  // });
 
   // const PriceMenu = React.forwardRef(
   //   ({ children, style, className, "aria-labelledby": labeledBy }, ref) => {
@@ -397,7 +390,7 @@ const TrendingList = () => {
                         <NFTCard
                           nft={nft}
                           key={i}
-                          image={sample}
+                          image={images.sample}
                           reloadNFTList={reloadNFTList}
                         />
                       </div>

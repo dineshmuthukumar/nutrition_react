@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
-import HeroContentImgWeb from "../../images/jump-trade/hero-content-web.png";
-import HeroContentImgMobile from "../../images/jump-trade/hero-content-mobile.png";
+import NFTCounter from "../nft-counter/index";
+import images from "../../utils/images.json";
 
 import "./style.scss";
-import NFTCounter from "../nft-counter/index";
 
 const HeroBanner = () => {
   const { innerWidth } = window;
@@ -30,7 +29,6 @@ const HeroBanner = () => {
     if (check) s_time.setSeconds(s_time.getSeconds() + 2);
 
     if (new Date(market_start_date_utc) < s_time) {
-      console.log("fire");
       setLive(true);
     } else {
       set_market_time(market_start_date_utc);
@@ -58,9 +56,7 @@ const HeroBanner = () => {
                   {live ? (
                     <>
                       Jump.trade -{" "}
-                      <span>
-                        The NFT Marketplace To Trade Legendary NFTs{" "}
-                      </span>
+                      <span>The NFT Marketplace To Trade Legendary NFTs </span>
                     </>
                   ) : (
                     market_time && (
@@ -103,10 +99,13 @@ const HeroBanner = () => {
               <div className="col-lg-6">
                 <img
                   src={
-                    innerWidth > 767 ? HeroContentImgWeb : HeroContentImgMobile
+                    innerWidth > 767
+                      ? images.heroContentWeb
+                      : images.heroContentMobile
                   }
                   alt="Best NFT Marketplace"
                   className="hero-content-img"
+                  loading="lazy"
                 />
               </div>
             </div>

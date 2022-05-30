@@ -426,12 +426,14 @@ const OrderDetails = () => {
 
   return (
     <>
-      <Header
-        bgImage
-        title={`${nft?.name} | MCL NFT Marketplace | Jump.trade`}
-        description={`${nft?.name} is a Meta Cricket League ${nft?.core_statistics?.role} Playable NFT! Purchase This NFT Now to Play the MCL P2E Cricket Game & Win Cash Rewards!`}
-        image={nft?.asset_url}
-      />
+      {nft?.name && (
+        <Header
+          bgImage
+          title={`${nft?.name} | MCL NFT Marketplace | Jump.trade`}
+          description={`${nft?.name} is a Meta Cricket League ${nft?.core_statistics?.role?.value} Playable NFT! Purchase This NFT Now to Play the MCL P2E Cricket Game & Win Cash Rewards!`}
+          image={nft?.asset_url}
+        />
+      )}
       {loader ? (
         <NFTLoader />
       ) : (
@@ -445,6 +447,7 @@ const OrderDetails = () => {
                     title={nft?.name}
                     slug={nft?.slug}
                     isFav={nft?.is_user_fav}
+                    statistics={nft?.core_statistics}
                   />
                 </div>
                 <div className="col-12 col-lg-5">
@@ -589,24 +592,12 @@ const OrderDetails = () => {
                   })()}
                 </div>
                 <div className="col-12 col-lg-6 order-lg-1 order-2">
-                  {(() => {
-                    if (nft.properties && typeof nft.properties === "string") {
-                      let propertiesData = JSON.parse(nft.properties);
-                      if (
-                        propertiesData &&
-                        Object.keys(propertiesData).length > 0
-                      ) {
-                        return <NFTProperties properties={propertiesData} />;
-                      }
-                    } else {
-                      if (
-                        nft.properties &&
-                        Object.keys(nft.properties).length > 0
-                      ) {
-                        return <NFTProperties properties={nft.properties} />;
-                      }
-                    }
-                  })()}
+                  {nft?.properties?.length > 0 && (
+                    <NFTProperties
+                      properties={nft?.properties}
+                      statistics={nft?.core_statistics}
+                    />
+                  )}
 
                   <div className="mt-5"></div>
                   <ChainAttributes chains={nft.chain_attributes} />

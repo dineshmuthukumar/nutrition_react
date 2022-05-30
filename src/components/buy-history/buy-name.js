@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-import userImg from "../../images/user_1.jpg";
+import images from "../../utils/images.json";
 
 const BuyName = ({
   imgUrl,
@@ -19,7 +19,7 @@ const BuyName = ({
 
   return isTable ? (
     <div className="expand-history-owner">
-      <img src={imgUrl ? imgUrl : userImg} alt="" />
+      <img src={imgUrl ? imgUrl : images.userJPG} alt="" loading="lazy" />
       <div>
         <div
           className="text-secondary"

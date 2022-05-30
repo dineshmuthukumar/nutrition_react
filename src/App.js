@@ -76,7 +76,6 @@ function App(props) {
     if (check) s_time.setSeconds(s_time.getSeconds() + 2);
 
     if (new Date(market_start_date_utc) < s_time) {
-      console.log("fire");
       dispatch(market_live_thunk());
     } else {
       set_market_time(market_start_date_utc);
@@ -229,6 +228,26 @@ const WebContainer = () => {
           exact
           path="/nft-marketplace/live-auction"
           component={LiveAuctionsNFTs}
+        />
+        <Route
+          exact
+          path="/nft-marketplace/cricket-nfts/:player"
+          component={ExploreAll}
+        />
+        <Route
+          exact
+          path="/nft-marketplace/cricket-nfts/:player/:search?"
+          component={ExploreAll}
+        />
+        <Route
+          exact
+          path="/nft-marketplace/cricket-nfts/:player/:search?/details/:slug"
+          component={ExploreAll}
+        />
+        <Route
+          exact
+          path="/nft-marketplace/cricket-nfts/:player/:search?/order/details/:slug/:orderSlug"
+          component={ExploreAll}
         />
         <Route
           exact

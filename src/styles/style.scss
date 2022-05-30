@@ -2130,21 +2130,21 @@ section.detail-page-content {
         &.heart_icon {
           border: 0.1rem solid #e8318d;
           box-shadow: inset 0px 0px 20px #e8318d !important;
-          background-image: url("../images/jump-trade/heart_ico.png");
+          background-image: url("https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/heart_ico.png");
         }
         &.filled_heart_icon {
           border: 0.1rem solid #e8318d;
           box-shadow: inset 0px 0px 20px #e8318d !important;
-          background-image: url("../images/jump-trade/heart-filled.png");
+          background-image: url("https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/heart-filled.png");
         }
         &.share_icon {
-          background-image: url("../images/jump-trade/share_ico.png");
+          background-image: url("https://cdn.guardianlink.io/product-hotspot/images/share_ico.png");
         }
         &.extend_icon {
-          background-image: url("../images/jump-trade/expand_ico.png");
+          background-image: url("https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/expand_ico.png");
         }
         &.certificate_icon {
-          background-image: url("../images/jump-trade/diploma.png");
+          background-image: url("https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/diploma.png");
         }
       }
 
@@ -2410,6 +2410,45 @@ section.detail-page-content {
           color: #a2a2a2;
           text-transform: uppercase;
           background-color: transparent;
+        }
+      }
+      &.property-pill-box {
+        // background-color: #10241b;
+        padding: 1rem 1.5rem !important;
+        background-color: #19362961;
+        border-radius: 0.5rem !important;
+        border: 0.1rem solid #193629 !important;
+
+        &::before {
+          content: unset !important;
+        }
+        .first {
+          .pill-title {
+            font-size: 1.2rem;
+          }
+          .pill-description {
+            padding: 0 !important;
+            font-size: 1rem;
+            color: #a2a2a2;
+            font-family: $neue-helvetica-roman;
+          }
+          .second {
+            text-transform: uppercase;
+            // background: -webkit-linear-gradient(
+            //   -91deg,
+            //   #e2ff00 50%,
+            //   #18e0e0 7%,
+            //   #e8318d 70%
+            // );
+            background: linear-gradient(
+              180deg,
+              #e2ff00 0%,
+              #18e0e0 52.6%,
+              #e8318d 100%
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }
         }
       }
     }
@@ -2741,7 +2780,7 @@ section.player-stats {
       padding: 0;
       list-style: none;
       li {
-        background-image: url("../images/jump-trade/playerstatsBG.png");
+        background-image: url("https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/playerstatsBG.png");
         background-size: 100% 100%;
         background-position: center;
         height: 3.2rem;
@@ -2771,7 +2810,7 @@ section.player-stats {
           justify-content: center;
           align-items: center;
           padding: 0.8rem 1.8rem;
-          background-image: url("../images/jump-trade/playerstatsinnerBG.png");
+          background-image: url("https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/playerstatsinnerBG.png");
           background-size: 100% 100%;
           background-position: center;
           font-family: $neue-helvetica-bold;

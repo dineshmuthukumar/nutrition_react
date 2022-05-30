@@ -7,8 +7,7 @@ import CollectionCard from "../nft-more/nft-card";
 
 import { useHistory } from "react-router-dom";
 
-import frontArrow from "../../images/jump-trade/front-arrow.png";
-import backArrow from "../../images/jump-trade/back-arrow.png";
+import images from "../../utils/images.json";
 
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
@@ -72,13 +71,9 @@ const LiveAuctions = () => {
                       smartSpeed={500}
                       dots={false}
                       navContainerClass={"carousel-btn-block"}
-                      // navText={[
-                      //   `<span class="icon-right-arrow left"><img src=${arrowRight} /></span>`,
-                      //   `<span class="icon-right-arrow right"><img src=${arrowRight} /></span>`,
-                      // ]}
                       navText={[
-                        `<span class="icon-right-arrow left"> <img src=${backArrow} /> </span>`,
-                        `<span class="icon-right-arrow right"><img src=${frontArrow} /></span>`,
+                        `<span class="icon-right-arrow left"> <img src=${images.backArrow}  /> </span>`,
+                        `<span class="icon-right-arrow right"><img src=${images.frontArrow} /></span>`,
                       ]}
                       responsive={{
                         0: {

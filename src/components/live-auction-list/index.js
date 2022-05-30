@@ -8,7 +8,7 @@ import { liveAuctionNFTsApi } from "../../api/methods";
 import { FormControl } from "react-bootstrap";
 
 import NFTCard from "../nft-card";
-import sample from "../../images/sampleNFT.jpg";
+import images from "../../utils/images.json";
 import "./style.scss";
 import useQuery from "../../hook/useQuery";
 import { BiCaretDown } from "react-icons/bi";
@@ -230,14 +230,14 @@ const LiveAuctionsList = () => {
           <div className="prifilter-btn">
             <button
               type="button"
-              class="justify-content-center border dropdown-item"
+              className="justify-content-center border dropdown-item"
               onClick={(e) => handlePriceRange(priceRange, true)}
             >
               Clear
             </button>
             <button
               type="button"
-              class="justify-content-center border dropdown-item apply-btn"
+              className="justify-content-center border dropdown-item apply-btn"
               disabled={(() => {
                 if (
                   parseInt(priceRange.from) < 0 ||
@@ -392,7 +392,7 @@ const LiveAuctionsList = () => {
                         <NFTCard
                           nft={nft}
                           key={i}
-                          image={sample}
+                          image={images.sample}
                           liveAuction
                           reloadNFTList={reloadNFTList}
                         />

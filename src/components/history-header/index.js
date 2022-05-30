@@ -1,10 +1,10 @@
 import React from "react";
 import dayjs from "dayjs";
 import { useSelector } from "react-redux";
-import userImg from "../../images/user_1.jpg";
+import images from "../../utils/images.json";
 import "./style.scss";
 
-import { currencyFormat } from "../../utils/common";
+//import { currencyFormat } from "../../utils/common";
 
 const HistoryHeader = ({ nftOwner, nft }) => {
   const { user } = useSelector((state) => state.user.data);
@@ -18,7 +18,7 @@ const HistoryHeader = ({ nftOwner, nft }) => {
               ? nftOwner?.avatar_url
               : user?.slug === nftOwner?.slug && nftOwner?.avatar_url
               ? nftOwner?.avatar_url
-              : userImg
+              : images.userJPG
           }
           alt="bid-user"
         />

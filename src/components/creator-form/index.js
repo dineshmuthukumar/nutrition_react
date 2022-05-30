@@ -514,7 +514,12 @@ const CreatorForm = () => {
           )}
           {/* <hr /> */}
         </div>
-        <img className="bg_image" src={creator_bg} alt="Background-Image_new" />
+        <img
+          className="bg_image"
+          src={creator_bg}
+          alt="Background-Image_new"
+          loading="lazy"
+        />
         <div className="heading-block">
           <h2>A Global Platform For Your Art</h2>
           <p>

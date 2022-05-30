@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 import { useSelector } from "react-redux";
 
 import BidName from "./bid-name";
-import userImg from "../../images/user_1.jpg";
+import images from "../../utils/images.json";
 import { currencyFormat } from "../../utils/common";
 
 import "./style.scss";
@@ -27,7 +27,7 @@ const BidCard = ({ history, isEnd = false }) => {
                   ? history.avatar_url
                   : user?.slug === history.slug && history.avatar_url
                   ? history.avatar_url
-                  : userImg
+                  : images.userJPG
               }
             />
             <div className="bid-histoy-details">

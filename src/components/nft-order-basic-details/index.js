@@ -17,14 +17,9 @@ import NFTPlaceBid from "../nft-place-bid";
 import NFTPlaceBuy from "../nft-place-buy";
 import NFTCancelTheSale from "../nft-cancel-the-sale";
 import NFTCounter from "../nft-counter";
-//import HelpLine from "../help-line";
-//import { ReactComponent as DiscordSvg } from "./../../icons/discord_logo.svg";
 import { currencyFormat } from "../../utils/common";
-//import postImages from "../../images/post1.png";
-import userImg from "../../images/user_1.jpg";
+import images from "../../utils/images.json";
 import NFTTimeLeft from "../nft-time-left/index";
-
-import CartIcon from "../../images/jump-trade/cart_icon.png";
 
 import "./style.scss";
 
@@ -170,13 +165,14 @@ const NFTOrderBaseDetails = ({
               return history.push(`/latimes-NFT`);
             } else {
               if (
-                nft?.core_statistics?.role.toLowerCase() === "batsman" ||
-                nft?.core_statistics?.role.toLowerCase() === "bowler"
+                nft?.core_statistics?.role?.value?.toLowerCase() ===
+                  "batsman" ||
+                nft?.core_statistics?.role?.value?.toLowerCase() === "bowler"
               )
                 return history.push(
                   `/nft-marketplace/cricket-player-nfts/${nft?.category_slug}`
                 );
-              if (nft?.core_statistics?.role.toLowerCase() === "bat")
+              if (nft?.core_statistics?.role?.value?.toLowerCase() === "bat")
                 return history.push(
                   `/nft-marketplace/cricket-bat-nfts/${nft?.category_slug}`
                 );
@@ -220,7 +216,7 @@ const NFTOrderBaseDetails = ({
       <div className="nft-title-container">
         <div className="nft-title mb-2">{nft.name}</div>
       </div>
-      <p className="text-secondary mt-1 mb-5 nft-desc">
+      <div className="text-secondary mt-1 mb-5 nft-desc">
         {nft.description && (
           <ReadMoreReact
             min={200}
@@ -229,7 +225,7 @@ const NFTOrderBaseDetails = ({
             text={nft.description}
           />
         )}
-      </p>
+      </div>
 
       <div className="bottom-content">
         {erc721 && owners.length > 0 && (
@@ -302,7 +298,7 @@ const NFTOrderBaseDetails = ({
                         : User?.slug === latestBid?.slug &&
                           latestBid?.avatar_url
                         ? latestBid?.avatar_url
-                        : userImg
+                        : images.userJPG
                     }
                   />
                   <div className="bid-histoy-details">
@@ -709,8 +705,8 @@ const NFTOrderBaseDetails = ({
                               overlay={KycPopOverCart()}
                             >
                               <button class="add-to-cart-btn">
-                                <img src={CartIcon} alt="Carticon" /> Add to
-                                Cart
+                                <img src={images.cartIconPNG} alt="Carticon" />{" "}
+                                Add to Cart
                               </button>
                             </OverlayTrigger>
                           ) : (
@@ -729,7 +725,7 @@ const NFTOrderBaseDetails = ({
                                 }
                               }}
                             >
-                              <img src={CartIcon} alt="CartIcon" />{" "}
+                              <img src={images.cartIconPNG} alt="CartIcon" />{" "}
                               {!inCart ? "Add to Cart" : "Added to Cart"}
                             </button>
                           )}
@@ -910,7 +906,8 @@ const NFTOrderBaseDetails = ({
                           overlay={KycPopOverCart()}
                         >
                           <button class="add-to-cart-btn full-width">
-                            <img src={CartIcon} alt="CartIcon1" /> Add to Cart
+                            <img src={images.cartIconPNG} alt="CartIcon1" /> Add
+                            to Cart
                           </button>
                         </OverlayTrigger>
                       ) : (
@@ -929,7 +926,7 @@ const NFTOrderBaseDetails = ({
                             }
                           }}
                         >
-                          <img src={CartIcon} alt="CartIcon2" />{" "}
+                          <img src={images.cartIconPNG} alt="CartIcon2" />{" "}
                           {!inCart ? "Add to Cart" : "Added to Cart"}
                         </button>
                       )}
@@ -1021,7 +1018,8 @@ const NFTOrderBaseDetails = ({
                         overlay={KycPopOverCart()}
                       >
                         <button class="add-to-cart-btn">
-                          <img src={CartIcon} alt="CartIcon3" /> Add to Cart
+                          <img src={images.cartIconPNG} alt="CartIcon3" /> Add
+                          to Cart
                         </button>
                       </OverlayTrigger>
                     </>
@@ -1047,7 +1045,7 @@ const NFTOrderBaseDetails = ({
                           }
                         }}
                       >
-                        <img src={CartIcon} alt="CartIcon4" />{" "}
+                        <img src={images.cartIconPNG} alt="CartIcon4" />{" "}
                         {!inCart ? "Add to Cart" : "Added to Cart"}
                       </button>
                     </>

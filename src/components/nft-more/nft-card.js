@@ -3,36 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import dayjs from "dayjs";
 import { useRouteMatch, Link } from "react-router-dom";
 import { Popover, OverlayTrigger } from "react-bootstrap";
-//import { prominent } from "color.js";
-//import { FaHeart } from "react-icons/fa";
 import { currencyFormat } from "../../utils/common";
 import { add_to_cart_thunk } from "../../redux/thunk/user_cart_thunk";
+import { level, role, playerCategory } from "../../utils/common";
 import NFTCounter from "../nft-counter";
-import cardImage from "../../images/drops/nft_2.png";
-//import startin from "../../images/start_icon.png";
-//import endsin from "../../images/ends_icon.png";
-//import { BiUpArrowAlt, BiDownArrowAlt } from "react-icons/bi";
-//import { AiFillFire } from "react-icons/ai";
-
-import batsmanIcon from "../../images/jump-trade/batsman_ico.png";
-import bowlerIcon from "../../images/jump-trade/bowler_ico.png";
-
-import lvl001 from "../../images/jump-trade/player_levels/1.png";
-import lvl002 from "../../images/jump-trade/player_levels/2.png";
-import lvl003 from "../../images/jump-trade/player_levels/3.png";
-import lvl004 from "../../images/jump-trade/player_levels/4.png";
-import lvl005 from "../../images/jump-trade/player_levels/5.png";
-import lvl006 from "../../images/jump-trade/player_levels/6.png";
-import lvl007 from "../../images/jump-trade/player_levels/7.png";
-import lvl008 from "../../images/jump-trade/player_levels/8.png";
-import lvl009 from "../../images/jump-trade/player_levels/9.png";
-import lvl0010 from "../../images/jump-trade/player_levels/10.png";
-import lvl0011 from "../../images/jump-trade/player_levels/11.png";
-import lvl0012 from "../../images/jump-trade/player_levels/12.png";
-import lvl0013 from "../../images/jump-trade/player_levels/13.png";
-import lvl0014 from "../../images/jump-trade/player_levels/14.png";
-import lvl0015 from "../../images/jump-trade/player_levels/15.png";
-
+import images from "../../utils/images.json";
 import "./style.scss";
 
 const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
@@ -84,147 +59,9 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
     setIsAuctionEnded(true);
   };
 
-  const level = [
-    {
-      type: "1",
-      name: "LVL 1",
-      value: lvl001,
-    },
-    {
-      type: "2",
-      name: "LVL 2",
-      value: lvl002,
-    },
-    {
-      type: "3",
-      name: "LVL 3",
-      value: lvl003,
-    },
-    {
-      type: "4",
-      name: "LVL 4",
-      value: lvl004,
-    },
-    {
-      type: "5",
-      name: "LVL 5",
-      value: lvl005,
-    },
-    {
-      type: "6",
-      name: "LVL 6",
-      value: lvl006,
-    },
-    {
-      type: "7",
-      name: "LVL 7",
-      value: lvl007,
-    },
-    {
-      type: "8",
-      name: "LVL 8",
-      value: lvl008,
-    },
-    {
-      type: "9",
-      name: "LVL 9",
-      value: lvl009,
-    },
-    {
-      type: "10",
-      name: "LVL 10",
-      value: lvl0010,
-    },
-    {
-      type: "11",
-      name: "LVL 11",
-      value: lvl0011,
-    },
-    {
-      type: "12",
-      name: "LVL 12",
-      value: lvl0012,
-    },
-    {
-      type: "13",
-      name: "LVL 13",
-      value: lvl0013,
-    },
-    {
-      type: "14",
-      name: "LVL 14",
-      value: lvl0014,
-    },
-    {
-      type: "15",
-      name: "LVL 15",
-      value: lvl0015,
-    },
-  ];
-
-  const role = [
-    {
-      type: "Batsman",
-      name: "BATSMAN",
-      value: batsmanIcon,
-    },
-    {
-      type: "Bowler",
-      name: "BOWLER",
-      value: bowlerIcon,
-    },
-    {
-      type: "Bat",
-      name: "BAT",
-      value: batsmanIcon,
-    },
-  ];
-
-  const playerCategory = [
-    {
-      type: "ROOKIE",
-      value: "RO",
-      color: "#3b56ff",
-    },
-    {
-      type: "RARE",
-      value: "RA",
-      color: "#f58220",
-    },
-    {
-      type: "EPIC",
-      value: "EP",
-      color: "#9e6cef",
-    },
-    {
-      type: "LEGEND",
-      value: "LG",
-      color: "linear-gradient(202deg, #e2ff00, #18e0e0, #e8318d)",
-    },
-    {
-      type: "SUPER RARE",
-      value: "SR",
-      color: "#803cef",
-    },
-    {
-      type: "ULTRA RARE",
-      value: "UR",
-      color: "#803cef",
-    },
-    {
-      type: "IMMORTAL",
-      value: "IM",
-      color: "#803cef",
-    },
-  ];
-
-  const levelData = level.find(
-    (obj) => obj.type === nft?.core_statistics?.level
-  );
-  const roleData = role.find((obj) => obj.type === nft?.core_statistics?.role);
-  const playerCatData = playerCategory.find(
-    (obj) => obj.type === nft?.core_statistics?.category
-  );
+  const levelData = level(nft?.core_statistics?.level?.value);
+  const roleData = role(nft?.core_statistics?.role?.value);
+  const playerCatData = playerCategory(nft?.core_statistics?.category?.value);
 
   // const handleAddToCart = () => {
   //   dispatch(add_to_cart_thunk(nft?.order_details?.slug, nft?.quantity));
@@ -260,7 +97,7 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
       <article className={`player_stats `}>
         {roleData && (
           <div className="player-type">
-            <img src={roleData?.value} alt="Player-status" />
+            <img src={roleData?.value} alt="Player-status" loading="lazy" />
           </div>
         )}
 
@@ -274,7 +111,9 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
             <span
               className="band"
               style={{
-                background: playerCatData?.color ? playerCatData?.color : "",
+                background: playerCatData?.textColor
+                  ? playerCatData?.textColor
+                  : "",
               }}
             >
               {playerCatData?.value}
@@ -285,7 +124,7 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
         {levelData && (
           <div className="player-level">
             <h6>{levelData?.name}</h6>
-            <img src={levelData?.value} alt="Player-level" />
+            <img src={levelData?.value} alt="Player-level" loading="lazy" />
           </div>
         )}
       </article>
@@ -315,14 +154,15 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
           alt="media logo"
           src={(() => {
             if (nft?.asset_type?.includes("image")) {
-              return nft.asset_url ? nft.asset_url : cardImage;
+              return nft.asset_url ? nft.asset_url : images.sample;
             } else if (nft?.cover_url) {
-              return nft.cover_url ? nft.cover_url : cardImage;
+              return nft.cover_url ? nft.cover_url : images.sample;
             } else {
-              return nft.asset_url ? nft.asset_url : cardImage;
+              return nft.asset_url ? nft.asset_url : images.sample;
             }
           })()}
           role="button"
+          loading="lazy"
         />
       </Link>
 
@@ -411,10 +251,6 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
                             intervalGapClass="me-1"
                             handleEndEvent={handleAuctionStartTimer}
                           />
-                          {/* &nbsp;&nbsp;
-                          <span class="fire-icon">
-                            <AiFillFire />
-                          </span> */}
                         </span>
                       </div>
                     )}
@@ -430,10 +266,6 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
                             intervalGapClass="me-1"
                             handleEndEvent={handleAuctionEndTimer}
                           />
-                          {/* &nbsp;&nbsp;
-                          <span class="fire-icon">
-                            <AiFillFire />
-                          </span> */}
                         </span>
                       </div>
                     )}
@@ -536,7 +368,6 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
                     {!isAuctionStarted && !isAuctionEnded && (
                       <div className="time-counter-box">
                         <span className="time-counter-card">
-                          {/* <img src={startin} alt="startin" /> */}
                           <span className="time-title">Starts</span>
                           <NFTCounter
                             time={nft?.auction_start_time}
@@ -546,17 +377,12 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
                             intervalGapClass="me-1"
                             handleEndEvent={handleAuctionStartTimer}
                           />
-                          {/* &nbsp;&nbsp;
-                          <span class="fire-icon">
-                            <AiFillFire />
-                          </span> */}
                         </span>
                       </div>
                     )}
                     {!isAuctionEnded && isAuctionStarted && (
                       <div className="time-counter-box">
                         <span className="time-counter-card">
-                          {/* <img src={endsin} alt="endsin" /> */}
                           <span className="time-title">Ends</span>
                           <NFTCounter
                             time={nft?.auction_end_time}
@@ -566,10 +392,6 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
                             intervalGapClass="me-1"
                             handleEndEvent={handleAuctionEndTimer}
                           />
-                          {/* &nbsp;&nbsp;
-                          <span class="fire-icon">
-                            <AiFillFire />
-                          </span> */}
                         </span>
                       </div>
                     )}

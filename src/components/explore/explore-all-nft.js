@@ -6,21 +6,27 @@ import ContentLoader from "react-content-loader";
 import { FaCheckCircle, FaFilter } from "react-icons/fa";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { VscClose } from "react-icons/vsc";
+import { BiCaretDown, BiSearch, BiCheck } from "react-icons/bi";
+import { FormControl } from "react-bootstrap";
 
 import NFTCard from "../nft-card";
 import QuickView from "../quick-view";
-import sample from "../../images/sampleNFT.jpg";
-import { BiCaretDown, BiSearch, BiCheck } from "react-icons/bi";
-
 import Details from "../../pages/details";
 import OrderDetails from "../../pages/order-details";
-
 import { nftShowAllApi } from "../../api/methods";
+import images from "../../utils/images.json";
+import { validateCurrency } from "../../utils/common";
+import ExploreTitle from "./explore-title";
+import Header from "../header";
 
 import "./style.scss";
-import { FormControl } from "react-bootstrap";
-import { validateCurrency } from "../../utils/common";
 //import AppHelmet from "../helmet";
+
+const exploreHeaderMetaData = {
+  metaTitle: "Buy Cricket NFTs | Sports NFT Marketplace | Jump.trade",
+  metaDescription:
+    "Get your hands on some of the most prized and highly collectible cricket NFTs at Jump.trade. Buy, sell, & collect cricket & other sports NFTs.",
+};
 
 const ExploreAllNFT = () => {
   const history = useHistory();
@@ -36,7 +42,9 @@ const ExploreAllNFT = () => {
     show: false,
     children: null,
   });
-
+  const [pageHeaderMetaData, setPageHeaderMetaData] = useState(
+    exploreHeaderMetaData
+  );
   const query = useQueryStringConverter(
     match.params.search ? match.params.search : ""
   );
@@ -49,7 +57,7 @@ const ExploreAllNFT = () => {
     from: "",
     to: "",
   });
-  const [priceFilter, setPriceFilter] = useState(false);
+  // const [priceFilter, setPriceFilter] = useState(false);
   const [filter, setFilter] = useState({
     sale: [
       {
@@ -199,6 +207,243 @@ const ExploreAllNFT = () => {
         checked: false,
       },
     ],
+    players: [
+      // {
+      //   title: "Insignia NFTs",
+      //   description:
+      //     "Insignia NFTs sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      //   metaTitle: "Insignia NFTs",
+      //   metaDescription:
+      //     "Insignia NFTs sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      //   name: "Insignia",
+      //   value: "insignia",
+      //   checked: false,
+      // },
+      {
+        title: "Sachin Tendulkar NFTs",
+        description:
+          "Considered the greatest batsman to play cricket across both big formats all over the world, and by Indians as ‘God of Cricket’, Sachin Tendulkar NFTs are a pride to possess for any cricket fan anywhere in the world!",
+        metaTitle: "Sachin NFTs | Sachin Tendulkar NFT Collection| Jump.Trade",
+        metaDescription:
+          "Get your hands on the exclusive Sachin Tendulkar NFTs from jump.trade. Discover the signed digital bat NFTs of the Master Blaster himself here. Sign up now!",
+        name: "Sachin Tendulkar",
+        value: "sachin-tendulkar-nfts",
+        checked: false,
+      },
+      {
+        title: "Don Bradman NFTs",
+        description:
+          "Widely regarded as the greatest human ever to play Cricket, the Don averaged 99.94 in tests, the highest-ever by a distance. Buy your Sir Don Bradman NFTs and up your collection-game in cricket.",
+        metaTitle: "Don Bradman NFTs | Don Bradman NFT Collection | Jump.Trade",
+        metaDescription:
+          "Be a part of the legacy of cricket by owning Don Bradman NFTs from Jump.trade. Access these super-exclusive cricket NFTs of legendary players here. Sign up now!",
+        name: "Don Bradman",
+        value: "don-bradman-nfts",
+        checked: false,
+      },
+      {
+        title: "Rahul Dravid NFTs",
+        description:
+          "Popularly and fittingly known as ‘The Wall’, Rahul Dravid’s defensive play in the longer format would frustrate even the most efficient bowlers. Buy your Rahul Dravid NFTs on Jump.trade.",
+        metaTitle:
+          "Rahul Dravid NFTs | Rahul Dravid NFT Collection | Jump.Trade",
+        metaDescription:
+          "Own a Rahul Dravid NFT and add a solid collection of cricket NFTs to your wallet. Find more cricket NFTs, cricket player NFTs, and signed digital bats here!",
+        name: "Rahul Dravid",
+        value: "rahul-dravid-nfts",
+        checked: false,
+      },
+      {
+        title: "Ricky Ponting NFTs",
+        description:
+          "The most successful captain in history led the Australian team in an era of unsurpassed glory. Buy your Ricky Ponting NFTs to experience the essence of this awesome captain, wristy batsman, and fielder.",
+        metaTitle:
+          "Ricky Ponting NFTs | Ricky Ponting NFT Collection | Jump.Trade",
+        metaDescription:
+          "Buy the authenticated Ricky Ponting NFTs here. Explore the digital signed bat NFTs of several legendary cricket players here. Sign up with Jump.trade now!",
+        name: "Ricky Ponting",
+        value: "ricky-ponting-nfts",
+        checked: false,
+      },
+      {
+        title: "Shane Warne NFTs",
+        description:
+          "The undoubted king of leg spin has more than 700 test wickets to his credit, and he captained Rajasthan team to their first victory. Spin your way into cricket NFTs by buying your Shane Warne NFTs.",
+        metaTitle: "Shane Warne NFTs | Shane Warne NFT Collection | Jump.Trade",
+        metaDescription:
+          "Own a Shane Warne NFT and cherish it forever.  Collect this signed digital bat and have an upperhand in the cricket metaverse. Explore more such authentic cricket player signed bat NFTs here!",
+        name: "Shane Warne",
+        value: "shane-warne-nfts",
+        checked: false,
+      },
+      {
+        title: "Viv Richards NFTs",
+        description:
+          "This West Indian, considered one of the greatest batsmen of all time, redefined attacking batting with his power-hitting capabilities. Buy your Vivian Richards NFTs and strike big with your collectibles!",
+        metaTitle:
+          "Viv Richards NFTs | Viv Richards NFT Collection | Jump.Trade",
+        metaDescription:
+          "Hold a piece of the history of cricket by owning a Viv Richards NFTs from Jump.trade. Access these legendary signed digital bat NFTs here. Sign up now!",
+        name: "Viv Richards",
+        value: "viv-richards-nfts",
+        checked: false,
+      },
+      {
+        title: "Shane Watson NFTs",
+        description:
+          "An embodiment of versatility and dedication, Shane Watson is one of the few cricketers to open both batting and bowling for Australia & Chennai. Get your hands on these coveted Shane Watson NFTs.",
+        metaTitle:
+          "Shane Watson NFTs | Shane Watson NFT Collection | Jump.Trade",
+        metaDescription:
+          "Your only destination to buy Shane Watson NFTs. Access these authenticated cricket NFTs on Jump.trade to be a powerful hitter in the cricket metaverse. Sign up now!",
+        name: "Shane Watson",
+        value: "shane-watson-nfts",
+        checked: false,
+      },
+      {
+        title: "Harbhajan Singh NFTs",
+        description:
+          "Popularly known as The Turbanator, this Doosra-specialist off-spinner is the first ever Indian to take a hat-trick and has broken partnerships in tests. Buy your Harbhajan Singh NFTs now!",
+        metaTitle:
+          "Harbhajan Singh NFTs | Harbhajan Singh NFT Collection | Jump.Trade",
+        metaDescription:
+          "Own a Harbhajan Singh NFT and make a leg-breaker move in your NFT collecting experience. Access these super rare cricket NFTs only on Jump.trade. Sign up now!",
+        name: "Harbhajan Singh",
+        value: "harbhajan-singh-nfts",
+        checked: false,
+      },
+      {
+        title: "Matthew Hayden NFTs",
+        description:
+          "Matthew Hayden redefined blitzkrieg opening in all forms of the game and his contribution to the Chennai team are also remarkable. Get your hands on these prized Matthew Hayden NFTs.",
+        metaTitle:
+          "Matthew Hayden NFTs | Matthew Hayden NFT Collection | Jump.Trade",
+        metaDescription:
+          "Take pride in owning the incredible Matthew Hayden NFTs from Jump.trade. Explore this space to find authentic signed digital bats of legendary cricket players. Sign up now!",
+        name: "Matthew Hayden",
+        value: "matthew-hayden-nfts",
+        checked: false,
+      },
+      {
+        title: "Andrew Symonds NFTs",
+        description:
+          "Popularly known as Roy, this prolific all-rounder who passed away recently created an unparalleled legacy in cricket with his aggressive performance. Buy your Andrew Symonds NFTs.",
+        metaTitle:
+          "Andrew Symonds NFTs | Andrew Symonds NFT Collection | Jump.Trade",
+        metaDescription:
+          "Get your hands on the supreme Andrew Symonds NFTs from Jump.trade. Explore authentic signed cricket bat NFTs and cricket player NFTs here. Sign up now!",
+        name: "Andrew Symonds",
+        value: "andrew-symonds-nfts",
+        checked: false,
+      },
+      {
+        title: "Adam Gilchrist NFTs",
+        description:
+          "Adam Gilchrist has the distinction of having won all the World Cups he played. One of the best ever wicket keeping batsmen, he sparked many Aussie innings. Buy your Adam Gilchrist NFTs right now!",
+        metaTitle:
+          "Adam Gilchrist NFTs | Adam Gilchrist NFT Collection | Jump.Trade",
+        metaDescription:
+          "Be a keeper of your NFTs by owning the most-privileged Adam Gilchrist NFTs. Find some amazing digital bats signed by legendary players here. Sign up now!",
+        name: "Adam Gilchrist",
+        value: "adam-gilchrist-nfts",
+        checked: false,
+      },
+      {
+        title: "Glenn McGrath NFTs",
+        description:
+          "Glenn McGrath, the spearhead of Aussie bowling was known for his perfection in line and length, and could stun any batsman with his deliveries. Buy your Glenn McGrath NFTs now!",
+        metaTitle:
+          "Glenn Mcgrath NFTs | Glenn Mcgrath NFT Collection | Jump.Trade",
+        metaDescription:
+          "Own a piece of the legacy of cricket by getting your hands on Glenn Mcgrath NFTs from Jump.trade. Access these super-exclusive cricket NFTs here. Sign up now!",
+        name: "Glenn McGrath",
+        value: "glenn-mcgrath-nfts",
+        checked: false,
+      },
+      {
+        title: "Darren Lehmann NFTs",
+        description:
+          "This Australian all-rounder was a dependable lower middle order striker who saved the Aussie team from some of the most critical situations. Don’t miss out on Darren Lehmann NFTs.",
+        metaTitle:
+          "Darren Lehmann NFTs | Darren Lehmann NFT Collection | Jump.Trade",
+        metaDescription:
+          "Own your first Darren Lehmann NFTs from Jump.trade NFT marketplace. Explore cricket player NFTs and authentic signed digital bat NFTs  here! Sign up now!",
+        name: "Darren Lehmann",
+        value: "darren-lehmann-nfts",
+        checked: false,
+      },
+      {
+        title: "Clive Lloyd NFTs",
+        description:
+          "The person to hold the title of being the first-ever successful captain in limited overs led the mighty West Indies team to the first two World Cup. Get your hands on Clive Lloyd NFTs.",
+        metaTitle: "Clive Lloyd NFTs | Clive Lloyd NFT Collection | Jump.Trade",
+        metaDescription:
+          "Your only cricket NFT marketplace to buy Clive Lloyd NFTs. Discover many more authentic cricket NFTs of legendary cricket players here! Sign up now!",
+        name: "Clive Lloyd",
+        value: "clive-lloyd-nfts",
+        checked: false,
+      },
+      {
+        title: "Michael Bevan NFTs",
+        description:
+          "Perhaps the first player to ever earn the ‘finisher’ tag in ODI cricket, Micheal Bevan bailed out Australia from the most impossible situations. Buy your Micheal Bevan NFTs on Jump.trade.",
+        metaTitle:
+          "Michael Bevan NFTs | Michael Bevan NFT Collection | Jump.Trade",
+        metaDescription:
+          "Owning Michael Bevan NFTs is a legacy to hold onto and be proud about. Explore authentic cricket player NFTs and digital signed bat NFTs on jump.trade. Sign up now!",
+        name: "Michael Bevan",
+        value: "michael-bevan-nfts",
+        checked: false,
+      },
+      {
+        title: "Damien Martyn NFTs",
+        description:
+          "An example of perseverance, Damien’s elegant stroke production made him one of the most dependable Aussie batsmen on subcontinent pitches. Buy your Damien Martyn NFTs.",
+        metaTitle:
+          "Damien Martyn NFTs | Damien Martyn NFT Collection | Jump.Trade",
+        metaDescription:
+          "Own your first Damien Martyn NFTs on jump.trade NFT marketplace. Explore authentic signed cricket bat NFTs of legendary cricket players here. Sign up now!",
+        name: "Damien Martyn",
+        value: "damien-martyn-nfts",
+        checked: false,
+      },
+      {
+        title: "2011 CHAMPIONS NFTs",
+        description:
+          "2011 marked India lifting the World Cup after 28 years with Dhoni’s iconic sixer - one of the most momentous events! Don’t miss out on owning a piece of this legacy with the 2011 World Cup NFTs.",
+        metaTitle:
+          "2011 Cricket World Cup NFT | World Cup Champions NFT | Jump.Trade",
+        metaDescription:
+          "Start your NFT collecting experience by owning one of the biggest moments in the history of Indian cricket. Lift this digital signed bat by the winners of 2011 world cup in style by signing up now!",
+        name: "2011 CHAMPIONS",
+        value: "2011-champions-nfts",
+        checked: false,
+      },
+      {
+        title: "2003 CHAMPIONS NFTs",
+        description:
+          "The 2003 World Cup finals is considered to be one of the biggest clashes in the history of the game with India facing Australia. Become a proud owner of the 2003 World Cup cricket NFTs.",
+        metaTitle:
+          "2003 Cricket World Cup NFT | Cricket World Cup Winner NFT| Jump.Trade",
+        metaDescription:
+          "Get your hands on the signed digital bats of the 2003 cricket worldcup finalists. Access this 2003 World cup champion NFT only on Jump.trade. Sign up now!",
+        name: "2003 CHAMPIONS",
+        value: "2003-champions-nfts",
+        checked: false,
+      },
+      {
+        title: "1983 CHAMPION NFTs",
+        description:
+          "The 1983 Indian cricket team emerged from being the least expected to become the toppers of the league. You can now buy NFTs of this awesome cricket team on Jump.trade.",
+        metaTitle:
+          "1983 Cricket World Cup NFT |  World Cup Winner NFT | Jump.Trade",
+        metaDescription:
+          "Own the 1983 World Cup Champion NFTs and take pride in holding a piece of the legacy of this historical moment. Access many more exclusive cricket NFTs here. Sign up now!",
+        name: "1983 CHAMPION",
+        value: "1983-champion-nfts",
+        checked: false,
+      },
+    ],
 
     showSale: true,
     showStatus: true,
@@ -208,6 +453,7 @@ const ExploreAllNFT = () => {
     showNFTCollection: true,
     showNFTRange: true,
     showGlC: true,
+    showPlayers: true,
   });
 
   useEffect(() => {
@@ -233,6 +479,8 @@ const ExploreAllNFT = () => {
 
     const search_filter = query.get("search") ? query.get("search") : "";
     const has_coin = query.get("coin") ? query.get("coin") : "";
+    let player_path = match.params.player;
+    let headerMetaData = null;
 
     const info = { ...filter };
 
@@ -265,19 +513,38 @@ const ExploreAllNFT = () => {
       checked: has_coin ? has_coin === obj.value : false,
     }));
 
+    info.players = filter.players.map((p) => {
+      let checked = p.value === player_path;
+      player_path = !checked ? player_path : "";
+      if (checked) headerMetaData = { ...p };
+      return { ...p, checked };
+    });
+
+    if (player_path) alert("Not found");
+
+    headerMetaData = headerMetaData ? headerMetaData : exploreHeaderMetaData;
+
+    setPageHeaderMetaData(headerMetaData);
     setFilter(info);
     setPage(1);
     setPriceRangeFilter(price_range);
 
     setSearch(search_filter);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [query]);
+  }, [query, match.params.player]);
 
   useEffect(() => {
-    if (match.path === "/nft-marketplace/:search?/details/:slug") {
+    if (
+      match.path === "/nft-marketplace/:search?/details/:slug" ||
+      match.path ===
+        "/nft-marketplace/cricket-nfts/:player/:search?/details/:slug"
+    ) {
       setPopDetails({ ...popDetails, show: true, children: <Details /> });
     } else if (
-      match.path === "/nft-marketplace/:search?/order/details/:slug/:orderSlug"
+      match.path ===
+        "/nft-marketplace/:search?/order/details/:slug/:orderSlug" ||
+      match.path ===
+        "/nft-marketplace/cricket-nfts/:player/:search?/order/details/:slug/:orderSlug"
     ) {
       setPopDetails({
         ...popDetails,
@@ -310,7 +577,8 @@ const ExploreAllNFT = () => {
       : [];
 
     const has_coin = query.get("coin") ? query.get("coin") : "";
-
+    const player = match.params.player;
+    const playerObj = filter.players.find((p) => p.value === player);
     let noMatchFound =
       sale_filters.length === 0 &&
       nft_filters.length === 0 &&
@@ -321,7 +589,9 @@ const ExploreAllNFT = () => {
       !query.get("sort") &&
       nft_category.length === 0 &&
       nft_collection.length === 0 &&
-      has_coin.length === 0;
+      has_coin.length === 0 &&
+      !playerObj &&
+      playerObj?.value !== player;
 
     if (noMatchFound && match.params.search) history.push("/not-found");
     else
@@ -335,10 +605,11 @@ const ExploreAllNFT = () => {
         nft_collection,
         status_filters,
         price_range,
-        has_coin
+        has_coin,
+        playerObj?.name
       );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [query]);
+  }, [query, match.params.player]);
 
   const showAllNFTs = async (
     page,
@@ -350,7 +621,8 @@ const ExploreAllNFT = () => {
     nft_collection,
     status_filters,
     price_range,
-    has_coin
+    has_coin,
+    playerName
   ) => {
     try {
       page === 1 && setLoading(true);
@@ -367,6 +639,7 @@ const ExploreAllNFT = () => {
           sale_kind: status_filters,
           price_range,
           has_coin: has_coin === "has_coin" ? true : false,
+          players: playerName ? [`"${playerName}"`] : [],
         },
         sort: sort === "relevance" ? null : sort,
       });
@@ -390,7 +663,8 @@ const ExploreAllNFT = () => {
     nft_collection,
     status_filters,
     price_range,
-    has_coin
+    has_coin,
+    playerName
   ) => {
     try {
       page === 1 && setLoading(true);
@@ -407,6 +681,7 @@ const ExploreAllNFT = () => {
           sale_kind: status_filters,
           price_range,
           has_coin: has_coin === "has_coin" ? true : false,
+          players: playerName ? [`"${playerName}"`] : [],
         },
         sort: sort === "relevance" ? null : sort,
       });
@@ -450,6 +725,8 @@ const ExploreAllNFT = () => {
         : [];
       const status_filters = query.get("status") ? query.get("status") : "";
       const has_coin = query.get("coin") ? query.get("coin") : "";
+      const player = match.params.player;
+      const playerObj = filter.players.find((p) => p.value === player);
 
       showAllNFTs(
         page + 1,
@@ -461,7 +738,8 @@ const ExploreAllNFT = () => {
         nft_collection,
         status_filters,
         price_range,
-        has_coin
+        has_coin,
+        playerObj?.name
       );
       setPage(page + 1);
     }
@@ -489,7 +767,7 @@ const ExploreAllNFT = () => {
     }
   };
 
-  const handleFilterCheck = (input, type, remove = false) => {
+  function handleFilterCheck(input, type, remove = false) {
     let sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
     let nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
     let sort_exist = query.get("sort");
@@ -513,6 +791,8 @@ const ExploreAllNFT = () => {
     let sale_status = query.get("status");
     let has_coin = query.get("coin");
     let has_coin_temp = query.get("coin");
+    let player_path = match.params.player ? match.params.player : "";
+    let player_list = filter.players;
 
     switch (type) {
       case "sale_check":
@@ -569,7 +849,7 @@ const ExploreAllNFT = () => {
         if (remove) {
           setPriceRangeFilter(price_range);
         }
-        setPriceFilter(true);
+        //setPriceFilter(true);
         setToggle(!toggle);
         break;
 
@@ -579,6 +859,16 @@ const ExploreAllNFT = () => {
             ? null
             : input.value
           : null;
+        break;
+
+      case "players":
+        for (let p in player_list) {
+          if (player_list[p].value === input.value) {
+            player_path =
+              player_path !== input.value ? player_list[p].value : "";
+            break;
+          }
+        }
         break;
 
       default:
@@ -605,7 +895,7 @@ const ExploreAllNFT = () => {
     if (price_range.from || price_range.to) {
       query_string += query_string
         ? `&minPrice=${price_range.from}&maxPrice=${price_range.to}`
-        : `&minPrice=${price_range.from}&maxPrice=${price_range.to}`;
+        : `minPrice=${price_range.from}&maxPrice=${price_range.to}`;
     }
 
     if (nft_collection.length > 0) {
@@ -635,12 +925,14 @@ const ExploreAllNFT = () => {
       query_string += query_string ? `&coin=${has_coin}` : `coin=${has_coin}`;
     }
 
-    if (query_string) {
-      history.push(`/nft-marketplace/${query_string}`);
+    if (player_path) {
+      history.push(
+        `/nft-marketplace/cricket-nfts/${player_path}/${query_string}`
+      );
     } else {
-      history.push(`/nft-marketplace`);
+      history.push(`/nft-marketplace/${query_string}`);
     }
-  };
+  }
 
   const PriceDropdown = React.forwardRef(({ onClick }, ref) => (
     <div
@@ -723,7 +1015,7 @@ const ExploreAllNFT = () => {
                   : { backgroundColor: "#989e99", pointerEvents: "none" }
               }
               type="button"
-              class="border-dropdown-item-clr"
+              className="border-dropdown-item-clr"
               onClick={(e) =>
                 handleFilterCheck(priceRange, "price_range", true)
               }
@@ -739,7 +1031,7 @@ const ExploreAllNFT = () => {
             </button>
             <button
               type="button"
-              class="border-dropdown-item"
+              className="border-dropdown-item"
               disabled={(() => {
                 if (
                   parseInt(priceRange.from) < 0 ||
@@ -750,7 +1042,11 @@ const ExploreAllNFT = () => {
                   parseInt(priceRange.from) > parseInt(priceRange.to)
                 ) {
                   return true;
-                } else if (priceRange.from == "" || priceRange.from === null) {
+                } else if (
+                  priceRange.from === "" ||
+                  priceRange.from === null ||
+                  query.get("minPrice")
+                ) {
                   return true;
                 } else {
                   return false;
@@ -769,6 +1065,13 @@ const ExploreAllNFT = () => {
 
   return (
     <>
+      {pageHeaderMetaData.metaTitle && (
+        <Header
+          bgImage
+          title={pageHeaderMetaData.metaTitle}
+          description={pageHeaderMetaData.metaDescription}
+        />
+      )}
       <QuickView
         show={popDetails.show}
         onHide={() => history.goBack()}
@@ -777,6 +1080,18 @@ const ExploreAllNFT = () => {
       {/* <AppHelmet /> */}
 
       <section className="explore-nft-section">
+        {match.params.player && (
+          <article className="explorer-detail">
+            <div className="container-fluid">
+              <div className="row explore-title">
+                <ExploreTitle
+                  title={pageHeaderMetaData.title}
+                  description={pageHeaderMetaData.description}
+                />
+              </div>
+            </div>
+          </article>
+        )}
         <article className="explorer-nft-list">
           <div className="sticky-sm-top top-25">
             <div className="container-fluid">
@@ -861,12 +1176,70 @@ const ExploreAllNFT = () => {
                         <h4>Filters</h4>
                         <span
                           className={`clear-btn ${
-                            match.params.search ? "" : "disabled"
+                            match.params.search || match.params.player
+                              ? ""
+                              : "disabled"
                           }`}
                           onClick={() => clearFilter()}
                         >
                           Clear all
                         </span>
+                      </div>
+                      <div className="filter-list-items">
+                        <h4
+                          className="header"
+                          role={"button"}
+                          onClick={() =>
+                            setFilter({
+                              ...filter,
+                              showPlayers: !filter.showPlayers,
+                            })
+                          }
+                        >
+                          Players{" "}
+                          {filter.showPlayers ? (
+                            <IoIosArrowUp />
+                          ) : (
+                            <IoIosArrowDown />
+                          )}
+                        </h4>
+                        {filter.showPlayers && (
+                          <ul className="scrollable-list">
+                            {filter.players.map((obj, i) => (
+                              // <Link
+                              //   to={`/nft-marketplace/cricket-nfts/${obj.value}`}
+                              //   as={
+                              <li key={`has-glc-${i}`}>
+                                <label
+                                  htmlFor={`${obj.name}`}
+                                  className="checkbox"
+                                >
+                                  <input
+                                    id={`${obj.name}`}
+                                    name="checkbox-group"
+                                    type="checkbox"
+                                    checked={obj.checked}
+                                    onClick={() => {
+                                      // history.push(
+                                      //   `/nft-marketplace/cricket-nfts/${obj.value}`
+                                      // )
+                                      handleFilterCheck(obj, "players");
+                                    }}
+                                  />
+                                  <span className="checkbox__mark">
+                                    <BiCheck />
+                                  </span>
+
+                                  <span className="checkbox__info">
+                                    <span className="title">{obj.name}</span>
+                                  </span>
+                                </label>
+                              </li>
+                              //   }
+                              // />
+                            ))}
+                          </ul>
+                        )}
                       </div>
                       <div className="filter-list-items">
                         <h4
@@ -1210,9 +1583,13 @@ const ExploreAllNFT = () => {
                               <NFTCard
                                 nft={nft}
                                 key={i}
-                                image={sample}
+                                image={images.sample}
                                 isExplore
-                                relativeUrl={`nft-marketplace`}
+                                relativeUrl={
+                                  match.params.player
+                                    ? `nft-marketplace/cricket-nfts/${match.params.player}`
+                                    : "nft-marketplace"
+                                }
                               />
                             </div>
                           ))

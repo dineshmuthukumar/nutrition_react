@@ -10,12 +10,7 @@ import { VscChromeClose } from "react-icons/vsc";
 import { useHistory, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 
-import depositIcon from "../../images/deposit.svg";
-import bidIcon from "../../images/bid.svg";
-import buyIcon from "../../images/buy.svg";
-import moneyWithdraw from "../../images/withdraw-money.svg";
-import outbidIcon from "../../images/outbid.svg";
-import userImg from "../../images/user_1.jpg";
+import images from "../../utils/images.json";
 import { user_logout_thunk } from "../../redux/thunk/user_thunk";
 import {
   accountDetail,
@@ -31,9 +26,6 @@ import {
   get_cart_list_thunk,
 } from "../../redux/thunk/user_cart_thunk";
 
-import jumpTradeLogo from "../../images/jump-trade-logo.svg";
-import notifyBell from "../../images/jump-trade/bell_notify.png";
-import cartIcon from "../../images/jump-trade/cart_icon.svg";
 import Cart from "../cart";
 import AppHelmet from "../helmet";
 
@@ -153,9 +145,7 @@ const Header = ({
           setNotiRead(true);
         }}
       >
-        {/* <BiBell size={25} color={"white"} /> */}
-
-        <img src={notifyBell} height={22} alt="Nofity-Bell" />
+        <img src={images.bellNotify} height={22} alt="Nofity-Bell" />
 
         {!notiRead && (
           <>
@@ -166,21 +156,21 @@ const Header = ({
     );
   });
 
-  // const DropToggle = React.forwardRef(({ onClick }, ref) => {
-  //   return (
-  //     <Nav.Link
-  //       id="drop_outer"
-  //       role={"button"}
-  //       ref={ref}
-  //       onClick={(e) => {
-  //         e.preventDefault();
-  //         onClick(e);
-  //       }}
-  //     >
-  //       Drops
-  //     </Nav.Link>
-  //   );
-  // });
+  const DropToggle = React.forwardRef(({ onClick }, ref) => {
+    return (
+      <Nav.Link
+        id="drop_outer"
+        role={"button"}
+        ref={ref}
+        onClick={(e) => {
+          e.preventDefault();
+          onClick(e);
+        }}
+      >
+        Drops
+      </Nav.Link>
+    );
+  });
 
   const NotiCard = ({ data }) => {
     const handleNotiClick = () => {
@@ -196,37 +186,37 @@ const Header = ({
       <div className="noti-message" role="button" onClick={handleNotiClick}>
         {(() => {
           if (data.activity_type === "deposit") {
-            return <img src={depositIcon} alt="notification icon" />;
+            return <img src={images.deposit} alt="notification icon" />;
           } else if (data.activity_type === "bid") {
             if (data.reason === "bid_lock") {
-              return <img src={bidIcon} alt="notification icon" />;
+              return <img src={images.bid} alt="notification icon" />;
             } else if (
               data.reason === "bid_expired" ||
               data.reason === "bid_closed"
             ) {
-              return <img src={outbidIcon} alt="notification icon" />;
+              return <img src={images.outbid} alt="notification icon" />;
             } else if (data.reason === "bid_outdated") {
-              return <img src={outbidIcon} alt="notification icon" />;
+              return <img src={images.outbid} alt="notification icon" />;
             } else if (data.reason === "bid_cancelled") {
-              return <img src={outbidIcon} alt="notification icon" />;
+              return <img src={images.outbid} alt="notification icon" />;
             } else if (data.reason === "bid_success") {
-              return <img src={bidIcon} alt="notification icon" />;
+              return <img src={images.bid} alt="notification icon" />;
             } else if (data.reason === "bid_received") {
-              return <img src={outbidIcon} alt="notification icon" />;
+              return <img src={images.outbid} alt="notification icon" />;
             }
           } else if (data.activity_type === "buy") {
             if (data.payment_type === "debit") {
-              return <img src={buyIcon} alt="notification icon" />;
+              return <img src={images.buy} alt="notification icon" />;
             } else {
-              return <img src={buyIcon} alt="notification icon" />;
+              return <img src={images.buy} alt="notification icon" />;
             }
           } else if (data.activity_type === "withdraw") {
             if (data.reason === "withdraw_requested") {
-              return <img src={moneyWithdraw} alt="notification icon" />;
+              return <img src={images.withdrawMoney} alt="notification icon" />;
             } else if (data.reason === "withdraw_cancelled") {
-              return <img src={moneyWithdraw} alt="notification icon" />;
+              return <img src={images.withdrawMoney} alt="notification icon" />;
             } else if (data.reason === "withdraw_success") {
-              return <img src={moneyWithdraw} alt="notification icon" />;
+              return <img src={images.withdrawMoney} alt="notification icon" />;
             }
           } else {
             return "";
@@ -566,7 +556,7 @@ const Header = ({
           >
             {/* BeyondLife.club */}
             <img
-              src={jumpTradeLogo}
+              src={images.jumpTradeLogo}
               alt="jumpTradeLogo"
               className="logoImage"
             />
@@ -589,16 +579,10 @@ const Header = ({
                 >
                   Explore
                 </Nav.Link>
-                <Nav.Link id="drop_outer" href={process.env.REACT_APP_DROP_URL}>
+                {/* <Nav.Link id="drop_outer" href={process.env.REACT_APP_DROP_URL}>
                   Drop
-                </Nav.Link>
-                <Nav.Link id="drop_outer" role="button">
-                  {" "}
-                  <span className="beta-container">
-                    <span className="beta-tag">Coming soon</span>MCL Game{" "}
-                  </span>{" "}
-                </Nav.Link>
-                {/* <Dropdown autoClose={["inside", "outside"]} className="me-0">
+                </Nav.Link> */}
+                <Dropdown autoClose={["inside", "outside"]} className="me-0">
                   <Dropdown.Toggle
                     align="start"
                     drop="start"
@@ -610,18 +594,18 @@ const Header = ({
                       as="button"
                       onClick={() =>
                         window.open(
-                          `${process.env.REACT_APP_CHAKRA_URL}`,
+                          `${process.env.REACT_APP_MCL_URL}`,
                           "_blank"
                         )
                       }
                     >
-                      Chakra The Invincible NFTs
+                      Meta Cricket League NFTs
                     </Dropdown.Item>
                     <Dropdown.Item
                       as="button"
                       onClick={() =>
                         window.open(
-                          `${process.env.REACT_APP_AMITABH_URL}`,
+                          `${process.env.REACT_APP_CHELSEA_URL}`,
                           "_blank"
                         )
                       }
@@ -629,7 +613,13 @@ const Header = ({
                       Football Memorabilia NFTs
                     </Dropdown.Item>
                   </Dropdown.Menu>
-                </Dropdown> */}
+                </Dropdown>
+                <Nav.Link id="drop_outer" role="button">
+                  {" "}
+                  <span className="beta-container">
+                    <span className="beta-tag">Coming soon</span>MCL Game{" "}
+                  </span>{" "}
+                </Nav.Link>
                 <Nav.Link
                   id="drop_outer"
                   role="button"
@@ -736,8 +726,11 @@ const Header = ({
                               }
                             }}
                           >
-                            {/* <BiCart size={25} role="button" color={"white"} />{" "} */}
-                            <img src={cartIcon} height={20} alt="CartIcon" />
+                            <img
+                              src={images.cartIconPNG}
+                              height={20}
+                              alt="CartIcon"
+                            />
                             {parseInt(userCart?.total_count) > 0 && (
                               <span className="badge cart-count rounded-pill bg-danger position-absolute">
                                 {userCart?.total_count}
@@ -958,10 +951,10 @@ const Header = ({
                   >
                     Explore
                   </Dropdown.Item>
-                  <Dropdown.Item href={process.env.REACT_APP_DROP_URL}>
+                  {/* <Dropdown.Item href={process.env.REACT_APP_DROP_URL}>
                     Drop
-                  </Dropdown.Item>
-                  {/* <Dropdown autoClose={["inside", "outside"]} className="me-0">
+                  </Dropdown.Item> */}
+                  <Dropdown autoClose={["inside", "outside"]} className="me-0">
                     <Dropdown.Toggle
                       align="start"
                       drop="start"
@@ -973,18 +966,18 @@ const Header = ({
                         as="button"
                         onClick={() =>
                           window.open(
-                            `${process.env.REACT_APP_CHAKRA_URL}`,
+                            `${process.env.REACT_APP_MCL_URL}`,
                             "_blank"
                           )
                         }
                       >
-                        Chakra The Invincible NFTs
+                        Meta Cricket League NFTs
                       </Dropdown.Item>
                       <Dropdown.Item
                         as="button"
                         onClick={() =>
                           window.open(
-                            `${process.env.REACT_APP_AMITABH_URL}`,
+                            `${process.env.REACT_APP_CHELSEA_URL}`,
                             "_blank"
                           )
                         }
@@ -992,7 +985,14 @@ const Header = ({
                         Football Memorabilia NFTs
                       </Dropdown.Item>
                     </Dropdown.Menu>
-                  </Dropdown> */}
+                  </Dropdown>
+
+                  <Dropdown.Item href="#">
+                    {" "}
+                    <span className="beta-container">
+                      <span className="beta-tag">Coming soon</span> MCL Game{" "}
+                    </span>{" "}
+                  </Dropdown.Item>
 
                   <Dropdown.Item href="#">
                     {" "}
@@ -1027,7 +1027,7 @@ const UserComponent = ({ sref, user, onClick = () => {} }) => (
   <div className="header-user-details" onClick={onClick} ref={sref}>
     <img
       className="user-image"
-      src={user.avatar_url ? user.avatar_url : userImg}
+      src={user.avatar_url ? user.avatar_url : images.userJPG}
       alt="user-icon"
     />
     <div className="user-name">

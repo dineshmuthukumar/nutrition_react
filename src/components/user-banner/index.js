@@ -1,8 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import userImage from "../../images/user_1.jpg";
-import userBanner from "../../images/user-banner.jpg";
+import images from "../../utils/images.json";
 import "./style.scss";
 
 const UserBanner = ({ userDetail }) => {
@@ -18,7 +17,7 @@ const UserBanner = ({ userDetail }) => {
               : user?.slug === userDetail?.users[0]?.slug &&
                 userDetail?.users[0]?.banner_url
               ? userDetail?.users[0]?.banner_url
-              : userBanner
+              : images.userBanner
           }")`,
         }}
       ></article>
@@ -32,7 +31,7 @@ const UserBanner = ({ userDetail }) => {
                 : user?.slug === userDetail?.users[0]?.slug &&
                   userDetail?.users[0]?.avatar_url
                 ? userDetail?.users[0]?.avatar_url
-                : userImage
+                : images.userJPG
             }
             alt="user-info"
           />

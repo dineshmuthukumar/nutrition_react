@@ -10,7 +10,7 @@ import ToolTip from "../tooltip";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
 import { bidBuyError, validateQuantity } from "../../utils/common";
 import { buySaleCancelApi, saleCancelApi } from "../../api/methods";
-import sample from "../../images/sampleNFT.jpg";
+import images from "../../utils/images.json";
 
 import "./style.scss";
 
@@ -37,12 +37,12 @@ const NFTCancelTheSale = ({
   const [cancelQuantity, setCancelQuantity] = useState("");
   const erc721 = nft.nft_type === "erc721";
 
-  const [error, setError] = useState({
-    isError: false,
-    progressError: "",
-    errorTitle: "",
-    errorDescription: "",
-  });
+  // const [error, setError] = useState({
+  //   isError: false,
+  //   progressError: "",
+  //   errorTitle: "",
+  //   errorDescription: "",
+  // });
 
   const handleSaleCancel = async () => {
     try {
@@ -55,13 +55,14 @@ const NFTCancelTheSale = ({
     } catch (error) {
       if (error.response.data.status === 422) {
         const err = bidBuyError(error.response.data.fail_status);
-        setError({
-          ...error,
-          isError: true,
-          progressError: "error-progress",
-          errorTitle: err.title,
-          errorDescription: err.description,
-        });
+        console.log(err);
+        // setError({
+        //   ...error,
+        //   isError: true,
+        //   progressError: "error-progress",
+        //   errorTitle: err.title,
+        //   errorDescription: err.description,
+        // });
       }
     }
   };
@@ -78,13 +79,14 @@ const NFTCancelTheSale = ({
     } catch (error) {
       if (error.response.data.status === 422) {
         const err = bidBuyError(error.response.data.fail_status);
-        setError({
-          ...error,
-          isError: true,
-          progressError: "error-progress",
-          errorTitle: err.title,
-          errorDescription: err.description,
-        });
+        console.log(err);
+        // setError({
+        //   ...error,
+        //   isError: true,
+        //   progressError: "error-progress",
+        //   errorTitle: err.title,
+        //   errorDescription: err.description,
+        // });
       }
     }
   };
@@ -110,12 +112,13 @@ const NFTCancelTheSale = ({
       setCancelTheSalePop(!cancelTheSalePop);
       setSuccess(false);
       setCancelQuantity("");
-      setError({
-        isError: false,
-        progressError: "",
-        errorTitle: "",
-        errorDescription: "",
-      });
+
+      // setError({
+      //   isError: false,
+      //   progressError: "",
+      //   errorTitle: "",
+      //   errorDescription: "",
+      // });
     }
   };
 
@@ -157,7 +160,12 @@ const NFTCancelTheSale = ({
                                 <img
                                   alt="media logo"
                                   className="type_image typeimg_audio"
-                                  src={nft.asset_url ? nft.asset_url : sample}
+                                  src={
+                                    nft.asset_url
+                                      ? nft.asset_url
+                                      : images.sample
+                                  }
+                                  loading="lazy"
                                 />
                               );
                             } else if (nft?.asset_type?.includes("audio")) {
@@ -166,7 +174,12 @@ const NFTCancelTheSale = ({
                                   <img
                                     alt="media logo"
                                     className="type_image typeimg_audio"
-                                    src={nft.cover_url ? nft.cover_url : sample}
+                                    src={
+                                      nft.cover_url
+                                        ? nft.cover_url
+                                        : images.sample
+                                    }
+                                    loading="lazy"
                                   />
                                 </>
                               );
@@ -175,7 +188,12 @@ const NFTCancelTheSale = ({
                                 <img
                                   alt="media logo"
                                   className="type_image typeimg_audio"
-                                  src={nft.cover_url ? nft.cover_url : sample}
+                                  src={
+                                    nft.cover_url
+                                      ? nft.cover_url
+                                      : images.sample
+                                  }
+                                  loading="lazy"
                                 />
                               );
                             } else {
@@ -183,7 +201,12 @@ const NFTCancelTheSale = ({
                                 <img
                                   alt="media logo"
                                   className="type_image typeimg_audio"
-                                  src={nft.asset_url ? nft.asset_url : sample}
+                                  src={
+                                    nft.asset_url
+                                      ? nft.asset_url
+                                      : images.sample
+                                  }
+                                  loading="lazy"
                                 />
                               );
                             }
@@ -329,7 +352,12 @@ const NFTCancelTheSale = ({
                                 <img
                                   alt="media logo"
                                   className="type_image typeimg_audio"
-                                  src={nft.asset_url ? nft.asset_url : sample}
+                                  src={
+                                    nft.asset_url
+                                      ? nft.asset_url
+                                      : images.sample
+                                  }
+                                  loading="lazy"
                                 />
                               );
                             } else if (nft?.asset_type?.includes("audio")) {
@@ -338,7 +366,12 @@ const NFTCancelTheSale = ({
                                   <img
                                     alt="media logo"
                                     className="type_image typeimg_audio"
-                                    src={nft.cover_url ? nft.cover_url : sample}
+                                    src={
+                                      nft.cover_url
+                                        ? nft.cover_url
+                                        : images.sample
+                                    }
+                                    loading="lazy"
                                   />
                                 </>
                               );
@@ -347,7 +380,12 @@ const NFTCancelTheSale = ({
                                 <img
                                   alt="media logo"
                                   className="type_image typeimg_audio"
-                                  src={nft.cover_url ? nft.cover_url : sample}
+                                  src={
+                                    nft.cover_url
+                                      ? nft.cover_url
+                                      : images.sample
+                                  }
+                                  loading="lazy"
                                 />
                               );
                             } else {
@@ -355,7 +393,12 @@ const NFTCancelTheSale = ({
                                 <img
                                   alt="media logo"
                                   className="type_image typeimg_audio"
-                                  src={nft.asset_url ? nft.asset_url : sample}
+                                  src={
+                                    nft.asset_url
+                                      ? nft.asset_url
+                                      : images.sample
+                                  }
+                                  loading="lazy"
                                 />
                               );
                             }

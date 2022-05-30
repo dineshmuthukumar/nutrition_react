@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
 
 import ToolTip from "../tooltip/index";
-import userImg from "../../images/user_1.jpg";
+import images from "../../utils/images.json";
 
 import "./style.scss";
 
@@ -51,7 +51,7 @@ const BidValue = ({
                   ? avatar
                   : user?.slug === owner?.slug && avatar
                   ? avatar
-                  : userImg
+                  : images.userJPG
               }
             />
             {userSlug ? (
