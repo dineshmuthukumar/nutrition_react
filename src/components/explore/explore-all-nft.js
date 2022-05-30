@@ -1176,7 +1176,9 @@ const ExploreAllNFT = () => {
                         <h4>Filters</h4>
                         <span
                           className={`clear-btn ${
-                            match.params.search ? "" : "disabled"
+                            match.params.search || match.params.player
+                              ? ""
+                              : "disabled"
                           }`}
                           onClick={() => clearFilter()}
                         >
