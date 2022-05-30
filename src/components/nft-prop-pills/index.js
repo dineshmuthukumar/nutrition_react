@@ -7,7 +7,7 @@ const NFTPropPills = ({ title, property }) => {
       <div className="first">
         <div className="second">{title}</div>
         <span className="pill-title">{property.value}</span>
-        {property.rarity && (
+        {property.rarity > 0 && (
           <span className="pill-description">
             {property.rarity}% have this trait
           </span>

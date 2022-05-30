@@ -111,7 +111,9 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
             <span
               className="band"
               style={{
-                background: playerCatData?.color ? playerCatData?.color : "",
+                background: playerCatData?.textColor
+                  ? playerCatData?.textColor
+                  : "",
               }}
             >
               {playerCatData?.value}

@@ -353,38 +353,46 @@ export const playerCategory = (value) => {
       type: "ROOKIE",
       value: "RO",
       color: "blue_color",
+      textColor: "#3b56ff",
     },
     {
       type: "RARE",
       value: "RA",
       color: "orange_color",
+      textColor: "#f58220",
     },
     {
       type: "EPIC",
       value: "EP",
       color: "purple_color",
+      textColor: "#9e6cef",
     },
     {
       type: "LEGEND",
       value: "LG",
       color: "multi_color",
+      textColor: "linear-gradient(202deg, #e2ff00, #18e0e0, #e8318d)",
     },
     {
       type: "SUPER RARE",
       value: "SR",
       color: "lavender_color",
+      textColor: "#803cef",
     },
     {
       type: "ULTRA RARE",
       value: "UR",
       color: "lavender_color",
+      textColor: "#803cef",
     },
     {
       type: "IMMORTAL",
       value: "IM",
       color: "lavender_color",
+      textColor: "#803cef",
     },
   ];
+
   const playerCatData = playerCategory.find((obj) => obj.type === value);
   return playerCatData;
 };
