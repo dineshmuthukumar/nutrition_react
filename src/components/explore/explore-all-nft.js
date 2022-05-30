@@ -1195,7 +1195,7 @@ const ExploreAllNFT = () => {
                           }
                         >
                           Players{" "}
-                          {filter.showGlC ? (
+                          {filter.showPlayers ? (
                             <IoIosArrowUp />
                           ) : (
                             <IoIosArrowDown />
