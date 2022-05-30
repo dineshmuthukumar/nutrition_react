@@ -727,7 +727,7 @@ const Header = ({
                             }}
                           >
                             <img
-                              src={images.cartIconPNG}
+                              src={images.cartIconSVG}
                               height={20}
                               alt="CartIcon"
                             />
