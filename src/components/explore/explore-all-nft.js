@@ -301,18 +301,6 @@ const ExploreAllNFT = () => {
         checked: false,
       },
       {
-        title: "Viv Richards NFTs",
-        description:
-          "This West Indian, considered one of the greatest batsmen of all time, redefined attacking batting with his power-hitting capabilities. Buy your Vivian Richards NFTs and strike big with your collectibles!",
-        metaTitle:
-          "Viv Richards NFTs | Viv Richards NFT Collection | Jump.Trade",
-        metaDescription:
-          "Hold a piece of the history of cricket by owning a Viv Richards NFTs from Jump.trade. Access these legendary signed digital bat NFTs here. Sign up now!",
-        name: "Viv Richards",
-        value: "viv-richards-nfts",
-        checked: false,
-      },
-      {
         title: "Harbhajan Singh NFTs",
         description:
           "Popularly known as The Turbanator, this Doosra-specialist off-spinner is the first ever Indian to take a hat-trick and has broken partnerships in tests. Buy your Harbhajan Singh NFTs now!",
@@ -432,14 +420,14 @@ const ExploreAllNFT = () => {
         checked: false,
       },
       {
-        title: "2003 FINALISTS & CHAMPIONS NFTs",
+        title: "2003 CHAMPIONS NFTs",
         description:
           "The 2003 World Cup finals is considered to be one of the biggest clashes in the history of the game with India facing Australia. Become a proud owner of the 2003 World Cup cricket NFTs.",
         metaTitle:
           "2003 Cricket World Cup NFT | Cricket World Cup Winner NFT| Jump.Trade",
         metaDescription:
           "Get your hands on the signed digital bats of the 2003 cricket worldcup finalists. Access this 2003 World cup champion NFT only on Jump.trade. Sign up now!",
-        name: "2003 FINALISTS & CHAMPIONS",
+        name: "2003 CHAMPIONS",
         value: "2003-champions-nfts",
         checked: false,
       },
