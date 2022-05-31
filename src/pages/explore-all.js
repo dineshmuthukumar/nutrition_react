@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 import useQuery from "../hook/useQuery";
-import Header from "../components/header";
+// import Header from "../components/header";
 import ExploreAllNFT from "../components/explore/explore-all-nft";
 import Footer from "../components/footer";
 import { setCookiesByName } from "../utils/cookies";
