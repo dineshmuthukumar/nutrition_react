@@ -995,13 +995,6 @@ const Header = ({
                     </span>{" "}
                   </Dropdown.Item>
 
-                  <Dropdown.Item href="#">
-                    {" "}
-                    <span className="beta-container">
-                      <span className="beta-tag">Coming soon</span> MCL Game{" "}
-                    </span>{" "}
-                  </Dropdown.Item>
-
                   <Dropdown.Item href="/">
                     <span className="beta-container">
                       <span className="beta-tag">Beta</span>
