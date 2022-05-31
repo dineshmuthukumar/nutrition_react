@@ -208,19 +208,8 @@ const ExploreAllNFT = () => {
       },
     ],
     players: [
-      // {
-      //   title: "Insignia NFTs",
-      //   description:
-      //     "Insignia NFTs sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-      //   metaTitle: "Insignia NFTs",
-      //   metaDescription:
-      //     "Insignia NFTs sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-      //   name: "Insignia",
-      //   value: "insignia",
-      //   checked: false,
-      // },
       {
-        title: "Sachin Tendulkar NFTs",
+        title: "SACHIN TENDULKAR NFTs",
         description:
           "Considered the greatest batsman to play cricket across both big formats all over the world, and by Indians as ‘God of Cricket’, Sachin Tendulkar NFTs are a pride to possess for any cricket fan anywhere in the world!",
         metaTitle: "Sachin NFTs | Sachin Tendulkar NFT Collection| Jump.Trade",
@@ -231,7 +220,7 @@ const ExploreAllNFT = () => {
         checked: false,
       },
       {
-        title: "Don Bradman NFTs",
+        title: "DON BRADMAN NFTs",
         description:
           "Widely regarded as the greatest human ever to play Cricket, the Don averaged 99.94 in tests, the highest-ever by a distance. Buy your Sir Don Bradman NFTs and up your collection-game in cricket.",
         metaTitle: "Don Bradman NFTs | Don Bradman NFT Collection | Jump.Trade",
@@ -242,7 +231,7 @@ const ExploreAllNFT = () => {
         checked: false,
       },
       {
-        title: "Rahul Dravid NFTs",
+        title: "RAHUL DRAVID NFTs",
         description:
           "Popularly and fittingly known as ‘The Wall’, Rahul Dravid’s defensive play in the longer format would frustrate even the most efficient bowlers. Buy your Rahul Dravid NFTs on Jump.trade.",
         metaTitle:
@@ -254,7 +243,7 @@ const ExploreAllNFT = () => {
         checked: false,
       },
       {
-        title: "Ricky Ponting NFTs",
+        title: "RICKY PONTING NFTs",
         description:
           "The most successful captain in history led the Australian team in an era of unsurpassed glory. Buy your Ricky Ponting NFTs to experience the essence of this awesome captain, wristy batsman, and fielder.",
         metaTitle:
@@ -266,7 +255,7 @@ const ExploreAllNFT = () => {
         checked: false,
       },
       {
-        title: "Shane Warne NFTs",
+        title: "SHANE WARNE NFTs",
         description:
           "The undoubted king of leg spin has more than 700 test wickets to his credit, and he captained Rajasthan team to their first victory. Spin your way into cricket NFTs by buying your Shane Warne NFTs.",
         metaTitle: "Shane Warne NFTs | Shane Warne NFT Collection | Jump.Trade",
@@ -277,7 +266,7 @@ const ExploreAllNFT = () => {
         checked: false,
       },
       {
-        title: "Viv Richards NFTs",
+        title: "VIV RICHARDS NFTs",
         description:
           "This West Indian, considered one of the greatest batsmen of all time, redefined attacking batting with his power-hitting capabilities. Buy your Vivian Richards NFTs and strike big with your collectibles!",
         metaTitle:
@@ -289,7 +278,7 @@ const ExploreAllNFT = () => {
         checked: false,
       },
       {
-        title: "Shane Watson NFTs",
+        title: "SHANE WATSON NFTs",
         description:
           "An embodiment of versatility and dedication, Shane Watson is one of the few cricketers to open both batting and bowling for Australia & Chennai. Get your hands on these coveted Shane Watson NFTs.",
         metaTitle:
@@ -301,7 +290,7 @@ const ExploreAllNFT = () => {
         checked: false,
       },
       {
-        title: "Harbhajan Singh NFTs",
+        title: "HARBHAJAN SINGH NFTs",
         description:
           "Popularly known as The Turbanator, this Doosra-specialist off-spinner is the first ever Indian to take a hat-trick and has broken partnerships in tests. Buy your Harbhajan Singh NFTs now!",
         metaTitle:
@@ -313,7 +302,7 @@ const ExploreAllNFT = () => {
         checked: false,
       },
       {
-        title: "Matthew Hayden NFTs",
+        title: "MATTHEW HAYDEN NFTs",
         description:
           "Matthew Hayden redefined blitzkrieg opening in all forms of the game and his contribution to the Chennai team are also remarkable. Get your hands on these prized Matthew Hayden NFTs.",
         metaTitle:
@@ -325,7 +314,7 @@ const ExploreAllNFT = () => {
         checked: false,
       },
       {
-        title: "Andrew Symonds NFTs",
+        title: "ANDREW SYMONDS NFTs",
         description:
           "Popularly known as Roy, this prolific all-rounder who passed away recently created an unparalleled legacy in cricket with his aggressive performance. Buy your Andrew Symonds NFTs.",
         metaTitle:
@@ -337,7 +326,7 @@ const ExploreAllNFT = () => {
         checked: false,
       },
       {
-        title: "Adam Gilchrist NFTs",
+        title: "ADAM GILCHRIST NFTs",
         description:
           "Adam Gilchrist has the distinction of having won all the World Cups he played. One of the best ever wicket keeping batsmen, he sparked many Aussie innings. Buy your Adam Gilchrist NFTs right now!",
         metaTitle:
@@ -349,7 +338,7 @@ const ExploreAllNFT = () => {
         checked: false,
       },
       {
-        title: "Glenn McGrath NFTs",
+        title: "GLENN MCGRATH NFTs",
         description:
           "Glenn McGrath, the spearhead of Aussie bowling was known for his perfection in line and length, and could stun any batsman with his deliveries. Buy your Glenn McGrath NFTs now!",
         metaTitle:
@@ -361,7 +350,7 @@ const ExploreAllNFT = () => {
         checked: false,
       },
       {
-        title: "Darren Lehmann NFTs",
+        title: "DARREN LEHMANN NFTs",
         description:
           "This Australian all-rounder was a dependable lower middle order striker who saved the Aussie team from some of the most critical situations. Don’t miss out on Darren Lehmann NFTs.",
         metaTitle:
@@ -373,7 +362,7 @@ const ExploreAllNFT = () => {
         checked: false,
       },
       {
-        title: "Clive Lloyd NFTs",
+        title: "CLIVE LLOYD NFTs",
         description:
           "The person to hold the title of being the first-ever successful captain in limited overs led the mighty West Indies team to the first two World Cup. Get your hands on Clive Lloyd NFTs.",
         metaTitle: "Clive Lloyd NFTs | Clive Lloyd NFT Collection | Jump.Trade",
@@ -384,7 +373,7 @@ const ExploreAllNFT = () => {
         checked: false,
       },
       {
-        title: "Michael Bevan NFTs",
+        title: "MICHAEL BEVAN NFTs",
         description:
           "Perhaps the first player to ever earn the ‘finisher’ tag in ODI cricket, Micheal Bevan bailed out Australia from the most impossible situations. Buy your Micheal Bevan NFTs on Jump.trade.",
         metaTitle:
@@ -396,7 +385,7 @@ const ExploreAllNFT = () => {
         checked: false,
       },
       {
-        title: "Damien Martyn NFTs",
+        title: "DAMIEN MARTYN NFTs",
         description:
           "An example of perseverance, Damien’s elegant stroke production made him one of the most dependable Aussie batsmen on subcontinent pitches. Buy your Damien Martyn NFTs.",
         metaTitle:
@@ -420,27 +409,28 @@ const ExploreAllNFT = () => {
         checked: false,
       },
       {
-        title: "2003 CHAMPIONS NFTs",
+        title: "2003 CHAMPIONS & FINALISTS NFTs",
         description:
           "The 2003 World Cup finals is considered to be one of the biggest clashes in the history of the game with India facing Australia. Become a proud owner of the 2003 World Cup cricket NFTs.",
         metaTitle:
           "2003 Cricket World Cup NFT | Cricket World Cup Winner NFT| Jump.Trade",
         metaDescription:
           "Get your hands on the signed digital bats of the 2003 cricket worldcup finalists. Access this 2003 World cup champion NFT only on Jump.trade. Sign up now!",
-        name: "2003 CHAMPIONS",
+        name: "2003 CHAMPIONS & FINALISTS",
+        key: "2003 CHAMPIONS",
         value: "2003-champions-nfts",
         checked: false,
       },
       {
-        title: "1983 CHAMPION NFTs",
+        title: "1983 CHAMPIONS NFTs",
         description:
           "The 1983 Indian cricket team emerged from being the least expected to become the toppers of the league. You can now buy NFTs of this awesome cricket team on Jump.trade.",
         metaTitle:
           "1983 Cricket World Cup NFT |  World Cup Winner NFT | Jump.Trade",
         metaDescription:
           "Own the 1983 World Cup Champion NFTs and take pride in holding a piece of the legacy of this historical moment. Access many more exclusive cricket NFTs here. Sign up now!",
-        name: "1983 CHAMPION",
-        value: "1983-champion-nfts",
+        name: "1983 CHAMPIONS",
+        value: "1983-champions-nfts",
         checked: false,
       },
     ],
@@ -593,6 +583,10 @@ const ExploreAllNFT = () => {
       !playerObj &&
       playerObj?.value !== player;
 
+    let players = [];
+    if (playerObj?.key) players = playerObj?.key ? [playerObj?.key] : [];
+    else players = playerObj?.name ? [playerObj?.name] : [];
+
     if (noMatchFound && match.params.search) history.push("/not-found");
     else
       showAllFilteredNFTs(
@@ -606,7 +600,7 @@ const ExploreAllNFT = () => {
         status_filters,
         price_range,
         has_coin,
-        playerObj?.name
+        players
       );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query, match.params.player]);
@@ -622,7 +616,7 @@ const ExploreAllNFT = () => {
     status_filters,
     price_range,
     has_coin,
-    playerName
+    players
   ) => {
     try {
       page === 1 && setLoading(true);
@@ -639,7 +633,7 @@ const ExploreAllNFT = () => {
           sale_kind: status_filters,
           price_range,
           has_coin: has_coin === "has_coin" ? true : false,
-          players: playerName ? [`"${playerName}"`] : [],
+          players,
         },
         sort: sort === "relevance" ? null : sort,
       });
@@ -664,7 +658,7 @@ const ExploreAllNFT = () => {
     status_filters,
     price_range,
     has_coin,
-    playerName
+    players
   ) => {
     try {
       page === 1 && setLoading(true);
@@ -681,7 +675,7 @@ const ExploreAllNFT = () => {
           sale_kind: status_filters,
           price_range,
           has_coin: has_coin === "has_coin" ? true : false,
-          players: playerName ? [`"${playerName}"`] : [],
+          players,
         },
         sort: sort === "relevance" ? null : sort,
       });
@@ -728,6 +722,10 @@ const ExploreAllNFT = () => {
       const player = match.params.player;
       const playerObj = filter.players.find((p) => p.value === player);
 
+      let players = [];
+      if (playerObj?.key) players = playerObj?.key ? [playerObj?.key] : [];
+      else players = playerObj?.name ? [playerObj?.name] : [];
+
       showAllNFTs(
         page + 1,
         nft_filters,
@@ -739,7 +737,7 @@ const ExploreAllNFT = () => {
         status_filters,
         price_range,
         has_coin,
-        playerObj?.name
+        players
       );
       setPage(page + 1);
     }
@@ -1083,7 +1081,7 @@ const ExploreAllNFT = () => {
         {match.params.player && (
           <article className="explorer-detail">
             <div className="container-fluid">
-              <div className="row explore-title">
+              <div className="row">
                 <ExploreTitle
                   title={pageHeaderMetaData.title}
                   description={pageHeaderMetaData.description}
@@ -1196,7 +1194,7 @@ const ExploreAllNFT = () => {
                             })
                           }
                         >
-                          Players{" "}
+                          Signed By{" "}
                           {filter.showPlayers ? (
                             <IoIosArrowUp />
                           ) : (

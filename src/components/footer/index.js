@@ -148,13 +148,17 @@ const Footer = () => {
                   <a
                     href="https://discord.com/invite/JRWmNb38GW"
                     target="_blank"
-                    rel="noreferrer"
+                    rel="nofollow noopener"
                   >
                     <FaDiscord /> @Discord
                   </a>
                 </li>
                 <li>
-                  <a href="mailto:support@guardianlink.io" className="">
+                  <a
+                    href="mailto:support@guardianlink.io"
+                    rel="nofollow noopener"
+                    className=""
+                  >
                     support@guardianlink.io
                   </a>
                 </li>
@@ -167,7 +171,7 @@ const Footer = () => {
                   <a
                     href="https://discord.com/invite/JRWmNb38GW"
                     target="_blank"
-                    rel="noreferrer"
+                    rel="nofollow noopener"
                   >
                     <FaDiscord />
                   </a>
@@ -175,7 +179,7 @@ const Footer = () => {
                 {/* <li>
                   <a
                     target="_blank"
-                    rel="nofollow"
+                    rel="nofollow noopener"
                     href="https://t.me/Beyondlifeclub"
                   >
                     <FaTelegramPlane />
@@ -184,7 +188,7 @@ const Footer = () => {
                 <li>
                   <a
                     target="_blank"
-                    rel="noreferrer"
+                    rel="nofollow noopener"
                     href="https://twitter.com/Jumptradenft"
                   >
                     <FaTwitter />
@@ -193,7 +197,7 @@ const Footer = () => {
                 {/* <li>
                   <a
                     target="_blank"
-                    rel="nofollow"
+                    rel="nofollow noopener"
                     href="https://www.facebook.com/BeyondLifeClub-109895114746109"
                   >
                     <FaFacebookF />
@@ -202,7 +206,7 @@ const Footer = () => {
                 <li>
                   <a
                     target="_blank"
-                    rel="noreferrer"
+                    rel="nofollow noopener"
                     href="https://www.instagram.com/jumptradenft/"
                   >
                     <FaInstagram />
@@ -211,7 +215,7 @@ const Footer = () => {
                 {/* <li>
                   <a
                     target="_blank"
-                    rel="nofollow"
+                    rel="nofollow noopener"
                     href="https://beyondlife-club.medium.com/"
                   >
                     <FaMediumM />
@@ -220,7 +224,7 @@ const Footer = () => {
                 {/* <li>
                   <a
                     target="_blank"
-                    rel="nofollow"
+                    rel="nofollow noopener"
                     href="https://www.youtube.com/channel/UCgfA98XT-yUi8YSIjT8omUA"
                   >
                     <FaYoutube />
@@ -231,7 +235,7 @@ const Footer = () => {
                 <a
                   href="https://cdn.guardianlink.io/product-hotspot/files/media-kit.zip"
                   target="_self"
-                  rel="noreferrer"
+                  rel="nofollow noopener"
                   style={{ textDecoration: "none", color: "#fff" }}
                 >
                   <FaCloudDownloadAlt /> download media kit
