@@ -409,14 +409,15 @@ const ExploreAllNFT = () => {
         checked: false,
       },
       {
-        title: "2003 CHAMPIONS NFTs",
+        title: "2003 CHAMPIONS & FINALISTS NFTs",
         description:
           "The 2003 World Cup finals is considered to be one of the biggest clashes in the history of the game with India facing Australia. Become a proud owner of the 2003 World Cup cricket NFTs.",
         metaTitle:
           "2003 Cricket World Cup NFT | Cricket World Cup Winner NFT| Jump.Trade",
         metaDescription:
           "Get your hands on the signed digital bats of the 2003 cricket worldcup finalists. Access this 2003 World cup champion NFT only on Jump.trade. Sign up now!",
-        name: "2003 CHAMPIONS",
+        name: "2003 CHAMPIONS & FINALISTS",
+        key: "2003 CHAMPIONS",
         value: "2003-champions-nfts",
         checked: false,
       },
@@ -582,7 +583,9 @@ const ExploreAllNFT = () => {
       !playerObj &&
       playerObj?.value !== player;
 
-    let players = playerObj?.name ? [playerObj?.name] : [];
+    let players = [];
+    if (playerObj?.key) players = playerObj?.key ? [playerObj?.key] : [];
+    else players = playerObj?.name ? [playerObj?.name] : [];
 
     if (noMatchFound && match.params.search) history.push("/not-found");
     else
@@ -718,7 +721,10 @@ const ExploreAllNFT = () => {
       const has_coin = query.get("coin") ? query.get("coin") : "";
       const player = match.params.player;
       const playerObj = filter.players.find((p) => p.value === player);
-      let players = playerObj?.name ? [playerObj?.name] : [];
+
+      let players = [];
+      if (playerObj?.key) players = playerObj?.key ? [playerObj?.key] : [];
+      else players = playerObj?.name ? [playerObj?.name] : [];
 
       showAllNFTs(
         page + 1,
@@ -1188,7 +1194,7 @@ const ExploreAllNFT = () => {
                             })
                           }
                         >
-                          Players{" "}
+                          Signed By{" "}
                           {filter.showPlayers ? (
                             <IoIosArrowUp />
                           ) : (

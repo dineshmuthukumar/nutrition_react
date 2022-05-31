@@ -431,14 +431,15 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
           checked: false,
         },
         {
-          title: "2003 CHAMPIONS NFTs",
+          title: "2003 CHAMPIONS & FINALISTS NFTs",
           description:
             "The 2003 World Cup finals is considered to be one of the biggest clashes in the history of the game with India facing Australia. Become a proud owner of the 2003 World Cup cricket NFTs.",
           metaTitle:
             "2003 Cricket World Cup NFT | Cricket World Cup Winner NFT| Jump.Trade",
           metaDescription:
             "Get your hands on the signed digital bats of the 2003 cricket worldcup finalists. Access this 2003 World cup champion NFT only on Jump.trade. Sign up now!",
-          name: "2003 CHAMPIONS",
+          name: "2003 CHAMPIONS & FINALISTS",
+          key: "2003 CHAMPIONS",
           value: "2003-champions-nfts",
           checked: false,
         },
@@ -526,10 +527,11 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
       checked: has_coin ? has_coin === obj.value : false,
     }));
     info.players = filter.players.map((p) => {
-      console.log(p.name, p.name === signed_by && !p.checked);
+      let checked =
+        (p?.key === signed_by || p?.name === signed_by) && !p.checked;
       return {
         ...p,
-        checked: p.name === signed_by && !p.checked,
+        checked,
       };
     });
 
@@ -882,7 +884,11 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
       case "players":
         for (let p in player_list) {
           if (player_list[p].name === input.name) {
-            player_name = !player_list[p].checked ? player_list[p].name : "";
+            player_name = !player_list[p].checked
+              ? player_list[p]?.key
+                ? player_list[p]?.key
+                : player_list[p]?.name
+              : "";
             console.log(player_name);
             break;
           }
@@ -1222,7 +1228,7 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
                               })
                             }
                           >
-                            Players{" "}
+                            Signed By{" "}
                             {filter.showPlayers ? (
                               <IoIosArrowUp />
                             ) : (
