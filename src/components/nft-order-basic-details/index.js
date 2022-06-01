@@ -681,9 +681,9 @@ const NFTOrderBaseDetails = ({
                       <button
                         disabled={false}
                         className={`place-bid-btn filled-btn ${
-                          User?.kyc_status !== "success" &&
-                          !isBuy &&
-                          "full-width"
+                          User?.kyc_status !== "success" && !isBuy
+                            ? "full-width"
+                            : ""
                         }`}
                         onClick={() =>
                           window.open(
