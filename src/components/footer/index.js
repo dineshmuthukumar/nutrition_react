@@ -9,6 +9,7 @@ import {
   FaInstagram,
   FaTwitter,
   FaCloudDownloadAlt,
+  FaTelegramPlane,
 } from "react-icons/fa";
 import "./style.scss";
 import { validateEmail } from "../../utils/common";
@@ -176,15 +177,15 @@ const Footer = () => {
                     <FaDiscord />
                   </a>
                 </li>
-                {/* <li>
+                <li>
                   <a
                     target="_blank"
                     rel="nofollow noopener"
-                    href="https://t.me/Beyondlifeclub"
+                    href="https://t.me/jumptradenft"
                   >
                     <FaTelegramPlane />
                   </a>
-                </li> */}
+                </li>
                 <li>
                   <a
                     target="_blank"
