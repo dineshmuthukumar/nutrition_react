@@ -146,6 +146,7 @@ const Footer = () => {
               <h4>BEGIN A CONVERSATION</h4>
               <ul className="linkList">
                 <li>
+                  {/* eslint-disable-next-line */}
                   <a
                     href="https://discord.com/invite/JRWmNb38GW"
                     target="_blank"
@@ -169,6 +170,7 @@ const Footer = () => {
               <h3>FOLLOW US</h3>
               <ul className="social-icon-two">
                 <li>
+                  {/* eslint-disable-next-line */}
                   <a
                     href="https://discord.com/invite/JRWmNb38GW"
                     target="_blank"
@@ -178,6 +180,7 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
+                  {/* eslint-disable-next-line */}
                   <a
                     target="_blank"
                     rel="nofollow noopener"
@@ -187,6 +190,7 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
+                  {/* eslint-disable-next-line */}
                   <a
                     target="_blank"
                     rel="nofollow noopener"
@@ -205,6 +209,7 @@ const Footer = () => {
                   </a>
                 </li> */}
                 <li>
+                  {/* eslint-disable-next-line */}
                   <a
                     target="_blank"
                     rel="nofollow noopener"
