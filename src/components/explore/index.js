@@ -527,8 +527,8 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
       checked: has_coin ? has_coin === obj.value : false,
     }));
     info.players = filter.players.map((p) => {
-      let checked =
-        (p?.key === signed_by || p?.name === signed_by) && !p.checked;
+      let checked = false;
+      checked = p?.key ? p?.key === signed_by : p?.name === signed_by;
       return {
         ...p,
         checked,
@@ -820,7 +820,9 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
     let sale_status = query.get("status");
     let has_coin = query.get("coin");
     let player_list = filter.players;
-    let player_name = "";
+    let player_name = query.get("signed-by")
+      ? decodeURIComponent(query.get("signed-by"))
+      : "";
 
     switch (type) {
       case "sale_check":
@@ -889,7 +891,6 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
                 ? player_list[p]?.key
                 : player_list[p]?.name
               : "";
-            console.log(player_name);
             break;
           }
         }
