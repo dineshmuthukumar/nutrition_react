@@ -819,6 +819,7 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
 
     let sale_status = query.get("status");
     let has_coin = query.get("coin");
+    let has_coin_temp = query.get("coin");
     let player_list = filter.players;
     let player_name = query.get("signed-by")
       ? decodeURIComponent(query.get("signed-by"))
@@ -881,6 +882,14 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
         }
         //setPriceFilter(true);
         setToggle(!toggle);
+        break;
+
+      case "has_GLC":
+        has_coin = input.value
+          ? has_coin_temp === input.value
+            ? null
+            : input.value
+          : null;
         break;
 
       case "players":
