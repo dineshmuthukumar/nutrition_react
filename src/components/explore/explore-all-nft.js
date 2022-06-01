@@ -1102,7 +1102,7 @@ const ExploreAllNFT = () => {
                         onClick={() => setToggle(!toggle)}
                         className="filter-open-btn"
                       >
-                        <FaFilter /> Filter
+                        <FaFilter /> <span className="ms-2">Filters</span>
                       </span>
                     </span>
                     <span className="d-flex justify-content-between mt-2 w-100 filter-blocks">
