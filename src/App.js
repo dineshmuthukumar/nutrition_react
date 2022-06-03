@@ -51,6 +51,8 @@ const MyFavorites = lazy(() => import("./pages/my-favorites"));
 const ExploreAll = lazy(() => import("./pages/explore-all"));
 const Privacy = lazy(() => import("./pages/privacy-policy"));
 const Terms = lazy(() => import("./pages/terms"));
+const Blogs = lazy(() => import("./pages/blogs"));
+const BlogDetails = lazy(() => import("./pages/blog-details"));
 // const FAQ = lazy(() => import("./pages/faq"));
 
 function App(props) {
@@ -209,6 +211,8 @@ const WebContainer = () => {
   return (
     <>
       <Switch>
+        <Route exact path="/blogs" component={Blogs} />
+        <Route exact path="/blog-details" component={BlogDetails} />
         <Route
           exact
           path="/nft-marketplace/trending-nfts"
