@@ -237,7 +237,7 @@ const Footer = () => {
                   </a>
                 </li> */}
               </ul>
-              <h4>
+              {/* <h4>
                 <a
                   href="https://cdn.guardianlink.io/product-hotspot/files/media-kit.zip"
                   target="_self"
@@ -246,7 +246,7 @@ const Footer = () => {
                 >
                   <FaCloudDownloadAlt /> download media kit
                 </a>
-              </h4>
+              </h4> */}
             </div>
           </div>
           {/* <div className="submenu">
