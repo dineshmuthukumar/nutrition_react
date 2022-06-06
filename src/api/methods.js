@@ -175,5 +175,6 @@ export const checkoutApi = ({ selectedItems }) =>
   appAxios.post(`/carts/proceed_checkout`, {
     line_item_ids: selectedItems,
   });
-export const getBlogListApi = () => blogAxios.get(`/wp-json/wp/v2/posts/`);
+export const getBlogListApi = () =>
+  blogAxios.get(`/wp-json/wp/v2/posts?_embed`);
 export const getBlogCattApi = () => blogAxios.get(`/wp-json/wp/v2/categories/`);

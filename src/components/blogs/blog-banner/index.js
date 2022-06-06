@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from "react";
 import OwlCarousel from "react-owl-carousel";
+import dayjs from "dayjs";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import blog1 from "../../../images/blog-banner.png";
 import blog2 from "../../../images/blog-img1.png";
 import blog3 from "../../../images/blog-img2.png";
 import blog4 from "../../../images/blog-img3.png";
-import { getBlogListApi } from "../../../api/methods";
-import { getBlogCattApi } from "../../../api/methods";
+import { getBlogListApi, getBlogCattApi } from "../../../api/methods";
+
+import { Interweave } from "interweave";
+
 import "../style.scss";
 
 const BlogBanner = () => {
   const [data, setData] = useState();
+  const [bannerData, setBannerData] = useState();
+  const [sliderData, setSliderData] = useState();
 
   const options = {
     loop: true,
@@ -39,13 +44,39 @@ const BlogBanner = () => {
   useEffect(() => {
     blogDetail();
   }, []);
+  // const GetSourceImage = async (input) => {
+  //   const Filterdata = data?.data?.filter((data) => data.id == input);
+  //   if (
+  //     Array.isArray(Filterdata[0]?._embedded["wp:featuredmedia"]) &&
+  //     Filterdata[0]?._embedded["wp:featuredmedia"].length > 0
+  //   ) {
+  //     console.log(
+  //       Filterdata[0]?._embedded["wp:featuredmedia"]["0"]?.source_url
+  //     );
+  //     return Filterdata[0]?._embedded["wp:featuredmedia"]["0"]["media_details"][
+  //       "sizes"
+  //     ]["medium"]["source_url"];
+  //   }
+  //   return "";
+  // };
 
   const blogDetail = async () => {
     try {
-      //dispatch(user_login_thunk(login, setError, setOTP));
+      const categoryData = await getBlogCattApi();
       const blogData = await getBlogListApi();
+      const filteredCategoryData = categoryData?.data?.filter(
+        (data) => data.slug == "blog"
+      );
+      const filteredBlogData = blogData?.data?.filter((item) =>
+        item.categories.includes(filteredCategoryData[0].id)
+      );
 
-      console.log(blogData);
+      const BannerData = filteredBlogData?.shift();
+      const LastBannerData = filteredBlogData;
+
+      setBannerData(BannerData);
+      setSliderData(LastBannerData);
+      setData(blogData);
     } catch (error) {
       // setReLoading(false);
       //toast.error("An unexpected error occured. Please try again  later");
@@ -55,11 +86,13 @@ const BlogBanner = () => {
       );
     }
   };
-
   return (
     <div>
       <section class="banner">
-        <img src={blog1} class="img-fluid" />
+        <img
+          src={bannerData?._embedded["wp:featuredmedia"]["0"]["source_url"]}
+          class="img-fluid"
+        />
         <div class="container">
           <div class="banner-content-overlay">
             <div class="post-head">
@@ -67,22 +100,21 @@ const BlogBanner = () => {
                 <span class="blog-title">Blog</span>
               </a>
               <a href="">
-                <span class="blog-date">June 3,2022</span>
+                <span class="blog-date">
+                  {dayjs(bannerData?.date).format("MMM D, YYYY")}
+                </span>
               </a>
             </div>
             <div class="d-flex">
               <div class="post-title">
                 <h3>
-                  <a href="">
-                    Meta Cricket League NFT Collection &#8211; Jump.trade
+                  <a href={"/blog-details/" + bannerData?.slug}>
+                    <Interweave content={bannerData?.title?.rendered} />
                   </a>
                 </h3>
               </div>
               <div class="title-desc">
-                <p>
-                  It is hard for anyone in the blockchain or the gaming world
-                  not to have noticed Jump.trade’s ...
-                </p>
+                <Interweave content={bannerData?.content?.rendered} />
               </div>
             </div>
           </div>
@@ -91,30 +123,21 @@ const BlogBanner = () => {
       <section class="blog-list p-80">
         <div class="container">
           <div class="row">
-            <div class="col-md-4 col-lg-4 col-sm-4">
-              <div class="b-list">
-                <img src={blog2} class="img-fluid" />
-                <h2>
-                  <a href="">Meta Cricket League NFT Collection – Jump.trade</a>
-                </h2>
+            {sliderData?.map((item, i) => (
+              <div class="col-md-4 col-lg-4 col-sm-4">
+                <div class="b-list">
+                  <img
+                    src={item?._embedded["wp:featuredmedia"]["0"]["source_url"]}
+                    class="img-fluid"
+                  />
+                  <h2>
+                    <a href={"/blog-details/" + item?.slug}>
+                      <Interweave content={item?.title?.rendered} />
+                    </a>
+                  </h2>
+                </div>
               </div>
-            </div>
-            <div class="col-md-4 col-lg-4 col-sm-4">
-              <div class="b-list">
-                <img src={blog3} class="img-fluid" />
-                <h2>
-                  <a href="">Jump.trade – What, Why and How</a>
-                </h2>
-              </div>
-            </div>
-            <div class="col-md-4 col-lg-4 col-sm-4">
-              <div class="b-list">
-                <img src={blog4} class="img-fluid" />
-                <h2>
-                  <a href="">Layer2 – Why Did We Work On It</a>
-                </h2>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
