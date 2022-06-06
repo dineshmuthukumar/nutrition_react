@@ -330,7 +330,7 @@ const TrendingList = () => {
             <div className="col-sm-12">
               <div className="sec-heading d-flex align-items-center mb-5 liveauction-detail-heading">
                 <div className="flex-heading">
-                  <span className="text-nowrap me-4">TRENDING NFTs</span>
+                  <h1 className="text-nowrap me-4">TRENDING NFTs</h1>
                   {/* <div className="d-flex flex-wrap filter-box">
                     <span className="d-flex justify-content-end w-100 filter-blocks">
                       
