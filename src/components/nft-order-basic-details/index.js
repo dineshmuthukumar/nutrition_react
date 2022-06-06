@@ -132,8 +132,8 @@ const NFTOrderBaseDetails = ({
     <>
       {/* <ul className="bredcrumb-link">
         <li>
-          <span onClick={() => !erc721 && history.push(`/details/${slug}`)}>
-            NFT <VscChevronRight className="icon" />
+          <span onClick={() => history.push(`/details/${slug}`)}>
+            NFT <VscChevronRight className="icon" color="#fff" />
           </span>
         </li>
         <li>
@@ -141,7 +141,7 @@ const NFTOrderBaseDetails = ({
             onClick={() => history.push(`/order/details/${slug}/${orderSlug}`)}
           >
             Order Detail
-            <VscChevronRight className="icon" />
+            <VscChevronRight className="icon" color="#fff" />
           </span>
         </li>
       </ul> */}
@@ -150,33 +150,16 @@ const NFTOrderBaseDetails = ({
           className="link"
           onClick={() => {
             if (
-              nft.celebrity_id ===
-              parseInt(process.env.REACT_APP_HINDUSTAN_TIMES_ID)
-            ) {
-              return history.push(`/hindustan-times-NFT`);
-            } else if (
-              nft.celebrity_id ===
-              parseInt(process.env.REACT_APP_KALPANA_CHAWLA_ID)
-            ) {
-              return history.push(`/kalpana-chawla-NFT`);
-            } else if (
-              nft.celebrity_id === parseInt(process.env.REACT_APP_LATIMES_ID)
-            ) {
-              return history.push(`/latimes-NFT`);
-            } else {
-              if (
-                nft?.core_statistics?.role?.value?.toLowerCase() ===
-                  "batsman" ||
-                nft?.core_statistics?.role?.value?.toLowerCase() === "bowler"
-              )
-                return history.push(
-                  `/nft-marketplace/cricket-player-nfts/${nft?.category_slug}`
-                );
-              if (nft?.core_statistics?.role?.value?.toLowerCase() === "bat")
-                return history.push(
-                  `/nft-marketplace/cricket-bat-nfts/${nft?.category_slug}`
-                );
-            }
+              nft?.core_statistics?.role?.value?.toLowerCase() === "batsman" ||
+              nft?.core_statistics?.role?.value?.toLowerCase() === "bowler"
+            )
+              return history.push(
+                `/nft-marketplace/cricket-player-nfts/${nft?.category_slug}`
+              );
+            if (nft?.core_statistics?.role?.value?.toLowerCase() === "bat")
+              return history.push(
+                `/nft-marketplace/cricket-bat-nfts/${nft?.category_slug}`
+              );
           }}
         >
           {nft.category_name}
@@ -214,16 +197,17 @@ const NFTOrderBaseDetails = ({
         )}
       </div>
       <div className="nft-title-container">
-        <div className="nft-title mb-2">{nft.name}</div>
+        <h1 className="nft-title mb-2">{nft.name}</h1>
       </div>
       <div className="text-secondary mt-1 mb-5 nft-desc">
         {nft.description && (
-          <ReadMoreReact
-            min={200}
-            ideal={560}
-            max={560}
-            text={nft.description}
-          />
+          // <ReadMoreReact
+          //   min={200}
+          //   ideal={560}
+          //   max={560}
+          //   text={nft.description}
+          // />
+          <p>{nft.description}</p>
         )}
       </div>
 

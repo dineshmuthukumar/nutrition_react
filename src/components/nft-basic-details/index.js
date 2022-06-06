@@ -112,16 +112,17 @@ const NFTBaseDetails = ({
         />
       </div>
       <div className="nft-title-container">
-        <div className="nft-title">{nft.name}</div>
+        <h1 className="nft-title">{nft.name}</h1>
       </div>
       <div className="text-secondary mt-1 mb-5 nft-desc">
         {nft.description && (
-          <ReadMoreReact
-            min={200}
-            ideal={560}
-            max={560}
-            text={nft.description}
-          />
+          // <ReadMoreReact
+          //   min={200}
+          //   ideal={560}
+          //   max={560}
+          //   text={nft.description}
+          // />
+          <p>{nft.description}</p>
         )}
       </div>
 
