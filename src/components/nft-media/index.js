@@ -152,7 +152,7 @@ const NFTMedia = ({ nft, title, slug, isFav, statistics }) => {
           if (nft?.asset_type?.includes("image")) {
             return (
               <img
-                alt="media logo"
+                alt={`${nft?.name}`}
                 className="type_image typeimg_audio"
                 src={nft.asset_url ? nft.asset_url : images.sample}
                 loading="lazy"
@@ -163,7 +163,7 @@ const NFTMedia = ({ nft, title, slug, isFav, statistics }) => {
               <>
                 <div className="no_height align-items-center">
                   <img
-                    alt="media logo"
+                    alt={`${nft?.name}`}
                     className="type_image typeimg_audio"
                     src={nft.cover_url ? nft.cover_url : images.sample}
                     onClick={() => {
@@ -233,7 +233,7 @@ const NFTMedia = ({ nft, title, slug, isFav, statistics }) => {
               if (nft?.asset_type?.includes("image")) {
                 return (
                   <img
-                    alt="media logo"
+                    alt={`${nft?.name}`}
                     className="type_image typeimg_audio"
                     src={nft.asset_url ? nft.asset_url : images.sample}
                     loading="lazy"
@@ -244,7 +244,7 @@ const NFTMedia = ({ nft, title, slug, isFav, statistics }) => {
                   <>
                     <div className="no_height">
                       <img
-                        alt="media logo"
+                        alt={`${nft?.name}`}
                         className="type_image typeimg_audio"
                         src={nft.cover_url ? nft.cover_url : images.sample}
                         onClick={() => {
