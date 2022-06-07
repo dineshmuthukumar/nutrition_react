@@ -76,16 +76,13 @@ const BlogAnnouncment = ({
                   <div className="col-md-6">
                     <div class="">
                       <div class="f_book">
-                        <a href={"/announcment/" + AnnouncementData?.slug}>
-                          {" "}
-                          <img
-                            src={
-                              AnnouncementData?._embedded["wp:featuredmedia"][
-                                "0"
-                              ]["source_url"]
-                            }
-                          />
-                        </a>
+                        {/* <img
+                    src={
+                      AnnouncementData?._embedded["wp:featuredmedia"]["0"][
+                        "source_url"
+                      ]
+                    }
+                  /> */}
                       </div>
                     </div>
                   </div>
@@ -94,9 +91,7 @@ const BlogAnnouncment = ({
                       <div class="s_book">
                         <div class="content_book">
                           <span class="cat_1">ANNOUNCEMENT</span>
-                          <a href={"/announcment/" + AnnouncementData?.slug}>
-                            <h2>{AnnouncementData?.title?.rendered}</h2>
-                          </a>
+                          <h2>{AnnouncementData?.title?.rendered}</h2>
                           <div className="announcemet-content">
                             <Interweave
                               content={AnnouncementData?.content?.rendered}
