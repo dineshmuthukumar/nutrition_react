@@ -118,7 +118,7 @@ const BlogAnnouncment = ({
                 <div class="book_xtra">
                   <span class="cat_1">ANNOUNCEMENT</span>
                   <h2>
-                    <a href={"/announcment/" + AnnouncementData?.slug}>
+                    <a href={"/announcment/" + item?.slug}>
                       {" "}
                       <Interweave content={item?.title?.rendered} />
                     </a>
@@ -134,7 +134,7 @@ const BlogAnnouncment = ({
               <div class="col-lg-4">
                 <div class="book_bottom">
                   <h2>
-                    <a href={"/announcment/" + AnnouncementData?.slug}>
+                    <a href={"/announcment/" + item?.slug}>
                       {" "}
                       <Interweave content={item?.title?.rendered} />
                     </a>
