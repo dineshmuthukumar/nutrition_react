@@ -39,7 +39,7 @@ const BlogDetail = () => {
     }
   };
   return (
-    <div>
+    <div className="single-post">
       <section class="banner">
         <img
           src={data?._embedded["wp:featuredmedia"]["0"]["source_url"]}
