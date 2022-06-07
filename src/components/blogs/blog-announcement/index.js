@@ -76,13 +76,16 @@ const BlogAnnouncment = ({
               <div className="col-md-6">
               <div class="">
                 <div class="f_book">
-                  {/* <img
-                    src={
-                      AnnouncementData?._embedded["wp:featuredmedia"]["0"][
-                        "source_url"
-                      ]
-                    }
-                  /> */}
+                  <a href={"/announcment/" + AnnouncementData?.slug}>
+                    {" "}
+                    {/* <img
+                      src={
+                        AnnouncementData?._embedded["wp:featuredmedia"]["0"][
+                          "source_url"
+                        ]
+                      }
+                    /> */}
+                  </a>
                 </div>
                 
               </div>
@@ -93,8 +96,14 @@ const BlogAnnouncment = ({
                 <div class="s_book">
                   <div class="content_book">
                     <span class="cat_1">ANNOUNCEMENT</span>
-                    <h2>{AnnouncementData?.title?.rendered}</h2>
-                    <div className="announcemet-content"><Interweave content={AnnouncementData?.content?.rendered} /></div>
+                    <a href={"/announcment/" + AnnouncementData?.slug}>
+                      <h2>{AnnouncementData?.title?.rendered}</h2>
+                    </a>
+                    <div className="announcemet-content">
+                      <Interweave
+                        content={AnnouncementData?.content?.rendered}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -109,7 +118,10 @@ const BlogAnnouncment = ({
                 <div class="book_xtra">
                   <span class="cat_1">ANNOUNCEMENT</span>
                   <h2>
-                    <Interweave content={item?.title?.rendered} />
+                    <a href={"/announcment/" + AnnouncementData?.slug}>
+                      {" "}
+                      <Interweave content={item?.title?.rendered} />
+                    </a>
                   </h2>
                 </div>
               ))}
@@ -121,9 +133,12 @@ const BlogAnnouncment = ({
             announcementSplitData?.map((item, i) => (
               <div class="col-lg-4">
                 <div class="book_bottom">
-                <h2>
-                  <Interweave content={item?.title?.rendered} />
-                </h2>
+                  <h2>
+                    <a href={"/announcment/" + AnnouncementData?.slug}>
+                      {" "}
+                      <Interweave content={item?.title?.rendered} />
+                    </a>
+                  </h2>
                 </div>
               </div>
             ))}
