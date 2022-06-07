@@ -52,6 +52,9 @@ const ExploreAll = lazy(() => import("./pages/explore-all"));
 const Privacy = lazy(() => import("./pages/privacy-policy"));
 const Terms = lazy(() => import("./pages/terms"));
 const Abouts = lazy(() => import("./pages/abouts"));
+const Blogs = lazy(() => import("./pages/blogs"));
+const BlogDetails = lazy(() => import("./pages/blog-details"));
+const AnnounDetails = lazy(() => import("./pages/announcement-details"));
 // const FAQ = lazy(() => import("./pages/faq"));
 
 function App(props) {
@@ -210,6 +213,9 @@ const WebContainer = () => {
   return (
     <>
       <Switch>
+        <Route exact path="/blog" component={Blogs} />
+        <Route exact path="/blog/:slug" component={BlogDetails} />
+        <Route exact path="/announcment/:slug" component={AnnounDetails} />
         <Route
           exact
           path="/nft-marketplace/trending-nfts"

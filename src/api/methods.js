@@ -1,4 +1,5 @@
 import appAxios from "./axios-utils";
+import blogAxios from "./axios-blog-base-utils";
 
 export const nftCategoriesApi = ({ page, parent_slug }) =>
   appAxios.get(`/dashboard/categories?page=${page}`, {
@@ -174,3 +175,12 @@ export const checkoutApi = ({ selectedItems }) =>
   appAxios.post(`/carts/proceed_checkout`, {
     line_item_ids: selectedItems,
   });
+export const getBlogListApi = () =>
+  blogAxios.get(`/wp-json/wp/v2/posts?_embed`);
+export const getBlogCattApi = () => blogAxios.get(`/wp-json/wp/v2/categories/`);
+
+export const getBlogCateListApi = () =>
+  blogAxios.get(`/wp-json/wp/v2/posts?_embed&per_page=100`);
+
+export const getBlogMetaApi = ({ slug }) =>
+blogAxios.get(`wp-json/yoast/v1/get_head?url=https://blog.jump.trade/${slug}/`);
