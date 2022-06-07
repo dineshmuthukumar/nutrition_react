@@ -181,3 +181,6 @@ export const getBlogCattApi = () => blogAxios.get(`/wp-json/wp/v2/categories/`);
 
 export const getBlogCateListApi = () =>
   blogAxios.get(`/wp-json/wp/v2/posts?_embed&per_page=100`);
+
+export const getBlogMetaApi = ({ slug }) =>
+blogAxios.get(`wp-json/yoast/v1/get_head?url=https://blog.jump.trade/${slug}/`);
