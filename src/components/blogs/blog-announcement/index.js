@@ -71,29 +71,39 @@ const BlogAnnouncment = ({
         <div class="row">
           {Object.keys(AnnouncementData).length && (
             <div class="col-md-9">
-              <div class="book">
-                <div class="f_book">
-                  <a href={"/announcment/" + AnnouncementData?.slug}>
-                    {" "}
-                    <img
-                      src={
-                        AnnouncementData?._embedded["wp:featuredmedia"]["0"][
-                          "source_url"
-                        ]
-                      }
-                    />
-                  </a>
-                </div>
-                <div class="s_book">
-                  <div class="content_book">
-                    <span class="cat_1">ANNOUNCEMENT</span>
-                    <a href={"/announcment/" + AnnouncementData?.slug}>
-                      <h2>{AnnouncementData?.title?.rendered}</h2>
-                    </a>
-                    <div className="announcemet-content">
-                      <Interweave
-                        content={AnnouncementData?.content?.rendered}
-                      />
+              <div className="spl-announcement">
+                <div className="row align-items-center">
+                  <div className="col-md-6">
+                    <div class="">
+                      <div class="f_book">
+                        <a href={"/announcment/" + AnnouncementData?.slug}>
+                          {" "}
+                          <img
+                            src={
+                              AnnouncementData?._embedded["wp:featuredmedia"][
+                                "0"
+                              ]["source_url"]
+                            }
+                          />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div class="">
+                      <div class="s_book">
+                        <div class="content_book">
+                          <span class="cat_1">ANNOUNCEMENT</span>
+                          <a href={"/announcment/" + AnnouncementData?.slug}>
+                            <h2>{AnnouncementData?.title?.rendered}</h2>
+                          </a>
+                          <div className="announcemet-content">
+                            <Interweave
+                              content={AnnouncementData?.content?.rendered}
+                            />
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
