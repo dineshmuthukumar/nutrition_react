@@ -71,16 +71,25 @@ const BlogAnnouncment = ({
         <div class="row">
           {Object.keys(AnnouncementData).length && (
             <div class="col-md-9">
-              <div class="book">
+              <div className="spl-announcement">
+              <div className="row align-items-center">
+              <div className="col-md-6">
+              <div class="">
                 <div class="f_book">
-                  <img
+                  {/* <img
                     src={
                       AnnouncementData?._embedded["wp:featuredmedia"]["0"][
                         "source_url"
                       ]
                     }
-                  />
+                  /> */}
                 </div>
+                
+              </div>
+              </div>
+              <div className="col-md-6">
+              <div class="">
+                
                 <div class="s_book">
                   <div class="content_book">
                     <span class="cat_1">ANNOUNCEMENT</span>
@@ -88,6 +97,9 @@ const BlogAnnouncment = ({
                     <div className="announcemet-content"><Interweave content={AnnouncementData?.content?.rendered} /></div>
                   </div>
                 </div>
+              </div>
+              </div>
+              </div>
               </div>
             </div>
           )}
