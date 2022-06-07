@@ -178,3 +178,6 @@ export const checkoutApi = ({ selectedItems }) =>
 export const getBlogListApi = () =>
   blogAxios.get(`/wp-json/wp/v2/posts?_embed`);
 export const getBlogCattApi = () => blogAxios.get(`/wp-json/wp/v2/categories/`);
+
+export const getBlogCateListApi = () =>
+  blogAxios.get(`/wp-json/wp/v2/posts?_embed&per_page=100`);
