@@ -1,0 +1,87 @@
+@import "../../../styles/common";
+
+.our-investor-section {
+  position: relative;
+  display: block;
+  background-color: #091d15;
+  padding: 3rem 0 0rem;
+  min-height: auto;
+  overflow: hidden;
+  .sectionHeading {
+    font-size: 2.5rem;
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--ck-theme);
+    margin: 0 0 1rem;
+    line-height: 1.35;
+  }
+}
+
+section.investor-box {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  .investor-member {
+    width: 33.33%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    @media screen and (max-width: 991px) {
+      width: 50%;
+    }
+    @media screen and (max-width: 480px) {
+      width: 100%;
+    }
+    .investor-member-img {
+      height: 10rem;
+      width: 10rem;
+      overflow: hidden;
+      border-radius: 50%;
+      background: #f5ff00;
+      padding: 0.2rem;
+      margin-top: 2rem;
+      img {
+        border-radius: 50%;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+        background-color: #ffffff;
+      }
+    }
+
+    .investor-member-name-desc {
+      padding: 1rem 2rem;
+      min-height: 16rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      @media screen and (max-width: 991px) {
+        min-height: 15rem;
+      }
+      @media screen and (max-width: 480px) {
+        min-height: unset;
+      }
+
+      .investor-member-name {
+        color: #ffffff;
+        font-family: $Impact;
+        text-transform: uppercase;
+      }
+      .investor-member-desc {
+        font-size: 0.6rem;
+        color: #ffffff;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+      }
+    }
+  }
+}
+@media (min-width: 1200px) {
+  .our-investor-section {
+    font-size: 22px;
+  }
+}

@@ -84,6 +84,56 @@ $theme-color-lite: #c784ed;
   font-family: Impact;
   src: url("../fonts/new/impact.ttf") format("opentype");
 }
+.our-team-section {
+  .sectionHeading {
+    font-size: 4rem;
+    color: #f5ff00;
+  }
+  section.team-box {
+    .team-member {
+      .team-member-role {
+        font-size: 1.3rem;
+      }
+      .team-member-name-desc {
+        min-height: 22rem;
+        .team-member-name {
+          font-size: 3rem;
+        }
+        .team-member-desc {
+          font-size: 1.2rem;
+          font-weight: normal;
+        }
+      }
+    }
+  }
+}
+section.our-investor-section {
+  .sectionHeading {
+    font-size: 4rem;
+    color: #f5ff00;
+  }
+  .investor-member {
+    .investor-member-name-desc {
+      .investor-member-name {
+        font-size: 3rem;
+      }
+      .investor-member-desc {
+        font-size: 1.2rem;
+        font-weight: normal;
+      }
+    }
+  }
+}
+
+.our-teambeyond-section {
+  .sectionHeading {
+    font-size: 4rem;
+  }
+  .our-teambeyond-desc {
+    font-size: 1.3rem;
+    max-width: 64rem;
+  }
+}
 $neue-helvetica-thin: "neue_helvetica_thin" !important;
 $neue-helvetica-ultralight: "neue_helvetica_ultralight" !important;
 $neue-helvetica-light: "neue_helvetica_light" !important;

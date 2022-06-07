@@ -51,6 +51,7 @@ const MyFavorites = lazy(() => import("./pages/my-favorites"));
 const ExploreAll = lazy(() => import("./pages/explore-all"));
 const Privacy = lazy(() => import("./pages/privacy-policy"));
 const Terms = lazy(() => import("./pages/terms"));
+const Abouts = lazy(() => import("./pages/abouts"));
 // const FAQ = lazy(() => import("./pages/faq"));
 
 function App(props) {
@@ -280,6 +281,7 @@ const WebContainer = () => {
         <Route exact path="/privacy-policy" component={Privacy} />
         {/* <Route exact path="/faq" component={FAQ} /> */}
         <Route exact path="/terms-and-conditions" component={Terms} />
+        <Route exact path="/about-us" component={Abouts} />
         <Route exact path="/user/:slug/details" component={UserDetails} />
         <Route path="/not-found" component={NotFound} />
         <Route

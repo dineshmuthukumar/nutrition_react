@@ -78,10 +78,10 @@ const Footer = () => {
               MCL cricket game NFTs and other sports NFTs.
             </p>
             {/* <div className="menu-list">
-              <a target="_self" href="https://www.beyondlife.club/about.php">
+              <a target="_self" href="/about-us">
                 About US
-              </a>
-              <ul>
+              </a> */}
+            {/* <ul>
                 <li>
                   <a
                     target="_self"
@@ -100,8 +100,8 @@ const Footer = () => {
                     FAQ
                   </a>
                 </li>
-              </ul>
-            </div> */}
+              </ul> */}
+            {/* </div> */}
 
             <Form
               id="nft_form"
@@ -265,6 +265,13 @@ const Footer = () => {
           <div className="vr"></div>
 
           <div className="bottom-links">
+            <span
+              className="ms-3 me-3 "
+              onClick={() => history.push("/about-us")}
+            >
+              About us
+            </span>
+            <div className="vr"></div>
             <span
               className="ms-3 me-3 "
               onClick={() => history.push("/terms-and-conditions")}
