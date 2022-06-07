@@ -41,17 +41,19 @@ const BlogBanner = ({ bannerData, sliderData }) => {
   return (
     <div>
       <section class="banner">
-        <img
-          src={bannerData?._embedded["wp:featuredmedia"]["0"]["source_url"]}
-          class="img-fluid"
-        />
+        <a href={"/blog/" + bannerData?.slug}>
+          <img
+            src={bannerData?._embedded["wp:featuredmedia"]["0"]["source_url"]}
+            class="img-fluid"
+          />
+        </a>
         <div class="container">
           <div class="banner-content-overlay">
             <div class="post-head">
-              <a href="">
+              <a href={"/blog/" + bannerData?.slug}>
                 <span class="blog-title">Blog</span>
               </a>
-              <a href="">
+              <a href={"/blog/" + bannerData?.slug}>
                 <span class="blog-date">
                   {dayjs(bannerData?.date).format("MMM D, YYYY")}
                 </span>
@@ -60,11 +62,12 @@ const BlogBanner = ({ bannerData, sliderData }) => {
             <div class="d-flex">
               <div class="post-title">
                 <h3>
-                  <a href={"/blog-details/" + bannerData?.slug}>
+                  <a href={"/blog/" + bannerData?.slug}>
                     <Interweave content={bannerData?.title?.rendered} />
                   </a>
                 </h3>
               </div>
+
               <div class="title-desc">
                 <Interweave content={bannerData?.content?.rendered} />
               </div>
@@ -78,7 +81,7 @@ const BlogBanner = ({ bannerData, sliderData }) => {
             {sliderData?.map((item, i) => (
               <div class="col-md-4 col-lg-4 col-sm-4">
                 <div class="b-list">
-                  <a href={"/blog-details/" + item?.slug}>
+                  <a href={"/blog/" + item?.slug}>
                     <img
                       src={
                         item?._embedded["wp:featuredmedia"]["0"]["source_url"]
@@ -87,7 +90,7 @@ const BlogBanner = ({ bannerData, sliderData }) => {
                     />
                   </a>
                   <h2>
-                    <a href={"/blog-details/" + item?.slug}>
+                    <a href={"/blog/" + item?.slug}>
                       <Interweave content={item?.title?.rendered} />
                     </a>
                   </h2>

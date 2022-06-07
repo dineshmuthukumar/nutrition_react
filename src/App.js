@@ -211,8 +211,8 @@ const WebContainer = () => {
   return (
     <>
       <Switch>
-        <Route exact path="/blogs" component={Blogs} />
-        <Route exact path="/blog-details/:slug" component={BlogDetails} />
+        <Route exact path="/blog" component={Blogs} />
+        <Route exact path="/blog/:slug" component={BlogDetails} />
         <Route
           exact
           path="/nft-marketplace/trending-nfts"
