@@ -85,7 +85,7 @@ const BlogAnnouncment = ({
                   <div class="content_book">
                     <span class="cat_1">ANNOUNCEMENT</span>
                     <h2>{AnnouncementData?.title?.rendered}</h2>
-                    <Interweave content={AnnouncementData?.content?.rendered} />
+                    <div className="announcemet-content"><Interweave content={AnnouncementData?.content?.rendered} /></div>
                   </div>
                 </div>
               </div>
@@ -108,9 +108,11 @@ const BlogAnnouncment = ({
           {announcementSplitData.length &&
             announcementSplitData?.map((item, i) => (
               <div class="col-lg-4">
+                <div class="book_bottom">
                 <h2>
                   <Interweave content={item?.title?.rendered} />
                 </h2>
+                </div>
               </div>
             ))}
         </div>

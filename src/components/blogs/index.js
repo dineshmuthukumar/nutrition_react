@@ -158,10 +158,12 @@ const BlogList = () => {
               </div>
               <div class="item">
                 <iframe
+                frameborder="0" 
                   height="400px"
                   width="100%"
-                  allowfullscreen
+                  allowFullScreen
                   src="https://www.youtube.com/embed/fRdemITdDgg"
+                  
                 >
                   {" "}
                 </iframe>

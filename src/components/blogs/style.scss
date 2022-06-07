@@ -38,34 +38,8 @@ a {
       padding: 0.5rem;
       position: relative;
       margin: 20px 0px;
-      &:nth-child(3n-1):before {
-        background-image: url(https://jtd.venturedemos.com/wp-content/uploads/2022/06/vertical-border.14585760.svg);
-        background-position: 50%;
-        background-repeat: no-repeat;
-        content: "";
-        display: block;
-        height: 100%;
-        position: absolute;
-        left: -1px;
-        top: 0;
-        width: 2px;
-      }
-      &:nth-child(3n-1):after {
-        background-image: url(https://jtd.venturedemos.com/wp-content/uploads/2022/06/vertical-border.14585760.svg);
-        background-position: 50%;
-        background-repeat: no-repeat;
-        content: "";
-        display: block;
-        height: 100%;
-        position: absolute;
-        right: -1px;
-        top: 0;
-        width: 2px;
-      }
+
       @media all and (max-width: 991px) {
-        &:nth-child(2n):after {
-          display: none;
-        }
       }
     }
   }
@@ -105,6 +79,15 @@ a {
       padding: 50px;
       background: #095132;
       color: #fff;
+      .announcemet-content {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        line-height: 16px;
+        max-height: 160px;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+      }
       @media (max-width: 991px) {
         padding: 2rem;
       }
@@ -158,12 +141,16 @@ a {
     background: #095132;
     padding: 25px;
     margin-bottom: 2rem;
-    min-height: 130px;
+    min-height: 110px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     h2 {
       color: #fff;
       font-size: 1.3rem;
       line-height: 1.5;
       font-weight: bold;
+      margin-bottom: 0;
       font-family: "neue_helvetica_extended_bold" !important;
     }
   }
@@ -327,5 +314,11 @@ a {
     p {
       font-size: 1.2rem;
     }
+  }
+}
+
+.single-post {
+  .blog-content {
+    padding: 5rem 0;
   }
 }
