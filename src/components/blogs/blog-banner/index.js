@@ -13,11 +13,7 @@ import { Interweave } from "interweave";
 
 import "../style.scss";
 
-const BlogBanner = () => {
-  const [data, setData] = useState();
-  const [bannerData, setBannerData] = useState();
-  const [sliderData, setSliderData] = useState();
-
+const BlogBanner = ({ bannerData, sliderData }) => {
   const options = {
     loop: true,
     margin: 10,
@@ -41,51 +37,7 @@ const BlogBanner = () => {
       },
     },
   };
-  useEffect(() => {
-    blogDetail();
-  }, []);
-  // const GetSourceImage = async (input) => {
-  //   const Filterdata = data?.data?.filter((data) => data.id == input);
-  //   if (
-  //     Array.isArray(Filterdata[0]?._embedded["wp:featuredmedia"]) &&
-  //     Filterdata[0]?._embedded["wp:featuredmedia"].length > 0
-  //   ) {
-  //     console.log(
-  //       Filterdata[0]?._embedded["wp:featuredmedia"]["0"]?.source_url
-  //     );
-  //     return Filterdata[0]?._embedded["wp:featuredmedia"]["0"]["media_details"][
-  //       "sizes"
-  //     ]["medium"]["source_url"];
-  //   }
-  //   return "";
-  // };
 
-  const blogDetail = async () => {
-    try {
-      const categoryData = await getBlogCattApi();
-      const blogData = await getBlogListApi();
-      const filteredCategoryData = categoryData?.data?.filter(
-        (data) => data.slug == "blog"
-      );
-      const filteredBlogData = blogData?.data?.filter((item) =>
-        item.categories.includes(filteredCategoryData[0].id)
-      );
-
-      const BannerData = filteredBlogData?.shift();
-      const LastBannerData = filteredBlogData;
-
-      setBannerData(BannerData);
-      setSliderData(LastBannerData);
-      setData(blogData);
-    } catch (error) {
-      // setReLoading(false);
-      //toast.error("An unexpected error occured. Please try again  later");
-      console.log(
-        ":rocket: ~ file: index.js ~ line 92 ~ responseGoogle ~ error",
-        error
-      );
-    }
-  };
   return (
     <div>
       <section class="banner">
@@ -126,10 +78,14 @@ const BlogBanner = () => {
             {sliderData?.map((item, i) => (
               <div class="col-md-4 col-lg-4 col-sm-4">
                 <div class="b-list">
-                  <img
-                    src={item?._embedded["wp:featuredmedia"]["0"]["source_url"]}
-                    class="img-fluid"
-                  />
+                  <a href={"/blog-details/" + item?.slug}>
+                    <img
+                      src={
+                        item?._embedded["wp:featuredmedia"]["0"]["source_url"]
+                      }
+                      class="img-fluid"
+                    />
+                  </a>
                   <h2>
                     <a href={"/blog-details/" + item?.slug}>
                       <Interweave content={item?.title?.rendered} />
