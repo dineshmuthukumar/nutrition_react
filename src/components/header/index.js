@@ -632,6 +632,18 @@ const Header = ({
                     Marketplace
                   </span>
                 </Nav.Link>
+                <Nav.Link
+                  id="drop_outer"
+                  role="button"
+                  onClick={() =>
+                    window.open(
+                      `${process.env.REACT_APP_MARKETPLACE_URL}/blog`,
+                      "_self"
+                    )
+                  }
+                >
+                  Blog
+                </Nav.Link>
                 {!hideSign && (
                   <>
                     {user.login ? (
@@ -1001,6 +1013,7 @@ const Header = ({
                       Marketplace
                     </span>
                   </Dropdown.Item>
+                  <Dropdown.Item href="/blog">Blog</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </>
