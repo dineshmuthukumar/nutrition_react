@@ -203,6 +203,7 @@ const BlogList = () => {
                 <iframe
                   height="400"
                   width="400"
+                  allowfullscreen
                   src="https://www.youtube.com/embed/9TnO8cHy20M"
                 >
                   {" "}
@@ -212,6 +213,7 @@ const BlogList = () => {
                 <iframe
                   height="400"
                   width="400"
+                  allowfullscreen
                   src="https://www.youtube.com/embed/xyNVk-uRvEA"
                 >
                   {" "}
@@ -221,6 +223,7 @@ const BlogList = () => {
                 <iframe
                   height="400"
                   width="400"
+                  allowfullscreen
                   src="https://www.youtube.com/embed/sD0xZxAwKKA"
                 >
                   {" "}
@@ -230,6 +233,7 @@ const BlogList = () => {
                 <iframe
                   height="400"
                   width="400"
+                  allowfullscreen
                   src="https://www.youtube.com/embed/3r2jBcW3w6g"
                 >
                   {" "}
@@ -239,6 +243,7 @@ const BlogList = () => {
                 <iframe
                   height="400"
                   width="400"
+                  allowfullscreen
                   src="https://www.youtube.com/embed/fRdemITdDgg"
                 >
                   {" "}
@@ -248,6 +253,7 @@ const BlogList = () => {
                 <iframe
                   height="400"
                   width="400"
+                  allowfullscreen
                   src="https://www.youtube.com/embed/LJn4ViD80K4"
                 >
                   {" "}
@@ -257,6 +263,7 @@ const BlogList = () => {
                 <iframe
                   height="400"
                   width="400"
+                  allowfullscreen
                   src="https://www.youtube.com/embed/_GHKuZ0WcMM"
                 >
                   {" "}
@@ -266,6 +273,7 @@ const BlogList = () => {
                 <iframe
                   height="400"
                   width="400"
+                  allowfullscreen
                   src="https://www.youtube.com/embed/FhneIHAGF7E"
                 >
                   {" "}
