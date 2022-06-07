@@ -8,7 +8,15 @@ import blog2 from "../../../images/blog-img1.png";
 import blog3 from "../../../images/blog-img2.png";
 import blog4 from "../../../images/blog-img3.png";
 import { getBlogListApi, getBlogCattApi } from "../../../api/methods";
-
+import ndtv_logo from "../../../images/ndtv_logo.png";
+import mint from "../../../images/mint.png";
+import out from "../../../images/out.png";
+import tines from "../../../images/tines.png";
+import bw from "../../../images/bw.png";
+import et from "../../../images/et.png";
+import cnbc from "../../../images/cnbc.png";
+import n18 from "../../../images/n18.png";
+import tfe from "../../../images/tfe.png";
 import { Interweave } from "interweave";
 
 import "../style.scss";
@@ -100,7 +108,7 @@ const BlogNews = () => {
               href="https://www.ndtv.com/business/worlds-first-play-to-earn-nft-cricket-game-to-launch-soon-by-guardianlink-2838323"
               target="_blank"
             >
-              <img src="https://jtd.venturedemos.com/wp-content/uploads/2022/06/ndtv_logo.png" />
+              <img src={ndtv_logo}/>
             </a>
           </div>
           <div class="news_img">
@@ -108,7 +116,7 @@ const BlogNews = () => {
               href="https://twitter.com/livemint/status/1506561708109996033?s=20&t=pDxQGzoXHqZFWDJr143NZg"
               target="_blank"
             >
-              <img src="https://jtd.venturedemos.com/wp-content/uploads/2022/06/mint.png" />
+              <img src={mint}/>
             </a>
           </div>
           <div class="news_img">
@@ -116,7 +124,7 @@ const BlogNews = () => {
               href="https://www.outlookindia.com/business/amitabh-bachchan-pays-over-rs-1-crore-as-gst-on-nft-sale-after-notice-bitcoin-falls-news-188218"
               target="_blank"
             >
-              <img src="https://jtd.venturedemos.com/wp-content/uploads/2022/06/out.png" />
+              <img src={out}/>
             </a>
           </div>
 
@@ -125,7 +133,7 @@ const BlogNews = () => {
               href="https://timesofindia.indiatimes.com/business/india-business/guardianlink-enters-nft-gaming-with-new-cricket-game/articleshow/90394235.cms"
               target="_blank"
             >
-              <img src="https://jtd.venturedemos.com/wp-content/uploads/2022/06/tines.png" />
+              <img src={tines}/>
             </a>
           </div>
           <div class="news_img">
@@ -133,7 +141,7 @@ const BlogNews = () => {
               href="http://bwdisrupt.businessworld.in/article/GuardianLink-Enters-NFT-Gaming-Space-With-P2E-Cricket-Game-/24-03-2022-423588/"
               target="_blank"
             >
-              <img src="https://jtd.venturedemos.com/wp-content/uploads/2022/06/bw.png" />
+              <img src={bw}/>
             </a>
           </div>
           <div class="news_img">
@@ -141,7 +149,7 @@ const BlogNews = () => {
               href="https://economictimes.indiatimes.com/markets/cryptocurrency/jump-trade-sells-55000-nfts-of-meta-cricket-leagues-in-just-9-mins/articleshow/91071815.cms?utm_source=contentofinterest&utm_medium=text&utm_campaign=cppst"
               target="_blank"
             >
-              <img src="https://jtd.venturedemos.com/wp-content/uploads/2022/06/et.png" />
+              <img src={et}/>
             </a>
           </div>
 
@@ -150,7 +158,7 @@ const BlogNews = () => {
               href="https://www.cnbctv18.com/startup/startup-digest-babychakra-acquires-tinystep-meesho-launches-integrated-e-commerce-app-guardianlink-launches-nft-cricket-game--crypto-investor-katie-haun-raises-15bn-for-new-fund-12923142.htm"
               target="_blank"
             >
-              <img src="https://jtd.venturedemos.com/wp-content/uploads/2022/06/cnbc.png" />
+              <img src={cnbc}/>
             </a>
           </div>
           <div class="news_img">
@@ -158,7 +166,7 @@ const BlogNews = () => {
               href="https://www.news18.com/news/business/cryptocurrency/worlds-first-nft-cricket-game-is-here-all-you-need-to-know-4901660.html"
               target="_blank"
             >
-              <img src="https://jtd.venturedemos.com/wp-content/uploads/2022/06/n18.png" />
+              <img src={n18}/>
             </a>
           </div>
           <div class="news_img">
@@ -166,7 +174,7 @@ const BlogNews = () => {
               href="https://www.financialexpress.com/digital-currency/international-gaming-platform-jump-trade-sells-out-55000-nfts/2502822/"
               target="_blank"
             >
-              <img src="https://jtd.venturedemos.com/wp-content/uploads/2022/06/tfe.png" />
+              <img src={tfe}/>
             </a>
           </div>
         </div>
