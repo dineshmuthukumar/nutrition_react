@@ -269,7 +269,7 @@ const Footer = () => {
               className="ms-3 me-3 "
               onClick={() => history.push("/about-us")}
             >
-              About us
+              About Us
             </span>
             <div className="vr"></div>
             <span

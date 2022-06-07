@@ -100,8 +100,9 @@ $theme-color-lite: #c784ed;
           font-size: 3rem;
         }
         .team-member-desc {
-          font-size: 1.2rem;
-          font-weight: normal;
+          font-size: 0.9rem;
+          font-weight: 600 !important;
+          font-family: "Montserrat", sans-serif !important;
         }
       }
     }
