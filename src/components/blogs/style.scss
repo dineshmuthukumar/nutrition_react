@@ -51,6 +51,49 @@ a {
   &.ptb-100 {
     padding: 100px 0px;
   }
+  .announcemet-content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-height: 16px;
+    max-height: 160px;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+  }
+  .s_book {
+    height: 100%;
+    padding: 50px;
+    background: #095132;
+    color: #fff;
+
+    @media (max-width: 991px) {
+      padding: 2rem;
+    }
+    .content_book {
+      p {
+        font-size: 1.5rem;
+        line-height: 1.6;
+        font-family: "neue_helvetica_light";
+      }
+      h2 {
+        font-size: 2rem;
+        line-height: 1.2;
+        font-weight: bold;
+        margin-top: 8px;
+        font-family: "neue_helvetica_extended_bold" !important;
+        @media screen and (min-width: 1967px) {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+  .spl-announcement {
+    background: #085132;
+    align-items: center;
+    color: #fff;
+    margin-bottom: 20px;
+    font-family: "neue_helvetica_extended";
+  }
   background: #083723;
   .book {
     display: flex;
@@ -65,47 +108,6 @@ a {
     .f_book {
       @media (max-width: 991px) {
         text-align: center;
-      }
-    }
-    .f_book img {
-      //   max-width: 500px;
-      //   height: 500px;
-      object-fit: cover;
-      @media (max-width: 991px) {
-        height: auto;
-        max-width: 100%;
-      }
-    }
-    .s_book {
-      height: 100%;
-      padding: 50px;
-      background: #095132;
-      color: #fff;
-      .announcemet-content {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        line-height: 16px;
-        max-height: 160px;
-        -webkit-line-clamp: 4;
-        -webkit-box-orient: vertical;
-      }
-      @media (max-width: 991px) {
-        padding: 2rem;
-      }
-      .content_book {
-        p {
-          font-size: 1.5rem;
-          line-height: 1.6;
-          font-family: "neue_helvetica_light";
-        }
-        h2 {
-          font-size: 2.5rem;
-          line-height: 1.2;
-          font-weight: bold;
-          margin-top: 8px;
-          font-family: "neue_helvetica_extended_bold" !important;
-        }
       }
     }
   }
@@ -124,6 +126,9 @@ a {
       font-weight: bold;
       margin-top: 12px;
       font-family: "neue_helvetica_extended_bold" !important;
+      @media screen and (min-width: 1967px) {
+        font-size: 1rem;
+      }
     }
   }
   span.cat_1 {
@@ -147,6 +152,9 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
+    @media screen and (max-width: 767px) {
+      justify-content: flex-start;
+    }
     h2 {
       color: #fff;
       font-size: 1.3rem;
@@ -154,6 +162,9 @@ a {
       font-weight: bold;
       margin-bottom: 0;
       font-family: "neue_helvetica_extended_bold" !important;
+      @media screen and (min-width: 1967px) {
+        font-size: 1rem;
+      }
     }
   }
   .sectionTitle {
@@ -168,6 +179,18 @@ a {
       font-size: 2rem;
     }
   }
+}
+// .f_book img {
+//   width: 100%;
+// }
+.f_book {
+  background: url(../../images/bat-jump-trade.png);
+  background-position: center;
+  background-size: 100% 100%;
+  height: 500px;
+  object-fit: fill;
+  width: 100%;
+  background-repeat: no-repeat;
 }
 .videoGallery {
   padding: 6rem 0;
