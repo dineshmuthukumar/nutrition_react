@@ -118,8 +118,9 @@ const BlogList = () => {
             <OwlCarousel className="owl-theme" {...options}>
               <div class="item">
                 <iframe
-                  height="400"
-                  width="400"
+                  height="400px"
+                  width="100%"
+                  allowfullscreen
                   src="https://www.youtube.com/embed/9TnO8cHy20M"
                 >
                   {" "}
@@ -127,8 +128,9 @@ const BlogList = () => {
               </div>
               <div class="item">
                 <iframe
-                  height="400"
-                  width="400"
+                  height="400px"
+                  width="100%"
+                  allowfullscreen
                   src="https://www.youtube.com/embed/xyNVk-uRvEA"
                 >
                   {" "}
@@ -136,8 +138,9 @@ const BlogList = () => {
               </div>
               <div class="item">
                 <iframe
-                  height="400"
-                  width="400"
+                  height="400px"
+                  width="100%"
+                  allowfullscreen
                   src="https://www.youtube.com/embed/sD0xZxAwKKA"
                 >
                   {" "}
@@ -145,8 +148,9 @@ const BlogList = () => {
               </div>
               <div class="item">
                 <iframe
-                  height="400"
-                  width="400"
+                  height="400px"
+                  width="100%"
+                  allowfullscreen
                   src="https://www.youtube.com/embed/3r2jBcW3w6g"
                 >
                   {" "}
@@ -154,8 +158,9 @@ const BlogList = () => {
               </div>
               <div class="item">
                 <iframe
-                  height="400"
-                  width="400"
+                  height="400px"
+                  width="100%"
+                  allowfullscreen
                   src="https://www.youtube.com/embed/fRdemITdDgg"
                 >
                   {" "}
@@ -163,8 +168,9 @@ const BlogList = () => {
               </div>
               <div class="item">
                 <iframe
-                  height="400"
-                  width="400"
+                  height="400px"
+                  width="100%"
+                  allowfullscreen
                   src="https://www.youtube.com/embed/LJn4ViD80K4"
                 >
                   {" "}
@@ -172,8 +178,9 @@ const BlogList = () => {
               </div>
               <div class="item">
                 <iframe
-                  height="400"
-                  width="400"
+                  height="400px"
+                  width="100%"
+                  allowfullscreen
                   src="https://www.youtube.com/embed/_GHKuZ0WcMM"
                 >
                   {" "}
@@ -181,8 +188,9 @@ const BlogList = () => {
               </div>
               <div class="item">
                 <iframe
-                  height="400"
-                  width="400"
+                  height="400px"
+                  width="100%"
+                  allowfullscreen
                   src="https://www.youtube.com/embed/FhneIHAGF7E"
                 >
                   {" "}
