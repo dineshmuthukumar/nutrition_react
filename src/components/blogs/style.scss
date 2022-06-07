@@ -1,10 +1,6 @@
 a {
   font-family: "neue_helvetica_extended_bold" !important;
 }
-.p-80 {
-  padding: 80px 0px;
-}
-
 /* news */
 .news {
   span.main-title {
@@ -16,6 +12,9 @@ a {
     text-transform: uppercase;
     margin-bottom: 1rem;
     font-family: "neue_helvetica_bold" !important;
+    @media screen and (max-width: 767px) {
+      font-size: 3rem;
+    }
   }
   .news_box {
     display: flex;
@@ -189,6 +188,9 @@ a {
     font-family: "neue_helvetica_extended_bold" !important;
     margin-bottom: 4rem;
     text-align: center;
+    @media screen and (max-width: 767px) {
+      font-size: 2rem;
+    }
   }
   .owl-nav {
     text-align: right !important;
@@ -206,6 +208,10 @@ a {
 .blog-list {
   background: #073824;
   text-align: center;
+  padding: 80px 0;
+  @media screen and (max-width: 767px) {
+    padding: 0;
+  }
   .b-list h2 a {
     text-decoration: none;
     color: #fff;
@@ -228,7 +234,7 @@ a {
   .banner-content-overlay {
     margin-top: 0;
     position: absolute;
-    top: 40%;
+    bottom: 10%;
   }
   .post-head {
     position: relative;
