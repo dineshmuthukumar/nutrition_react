@@ -70,7 +70,7 @@ const BlogAnnouncment = ({
         </div>
         <div class="row">
           {Object.keys(AnnouncementData).length && (
-            <div class="col-md-9">
+            <div class="col-xl-9 col-lg-9 col-sm-12 col-12">
               <div className="spl-announcement">
                 <div className="row align-items-center">
                   <div className="col-md-6">
@@ -106,16 +106,18 @@ const BlogAnnouncment = ({
             </div>
           )}
           {announcementSliderData.length && (
-            <div class="col-md-3">
+            <div class="col-xl-3 col-lg-3  col-sm-12 col-12">
               {announcementSliderData?.map((item, i) => (
-                <div class="book_xtra">
-                  <span class="cat_1">ANNOUNCEMENT</span>
-                  <h2>
-                    <a href={"/announcment/" + item?.slug}>
-                      {" "}
-                      <Interweave content={item?.title?.rendered} />
-                    </a>
-                  </h2>
+                <div class="book_xtra d-flex align-items-center">
+                  <div className="">
+                    <span class="cat_1">ANNOUNCEMENT</span>
+                    <h2>
+                      <a href={"/announcment/" + item?.slug}>
+                        {" "}
+                        <Interweave content={item?.title?.rendered} />
+                      </a>
+                    </h2>
+                  </div>
                 </div>
               ))}
             </div>
