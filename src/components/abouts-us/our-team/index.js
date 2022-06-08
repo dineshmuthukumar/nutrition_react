@@ -31,10 +31,10 @@ const OurTeam = () => {
               Patel
             </h3>
             <p className="team-member-desc">
-              He is one the most dynamic visionaries in the digital realm. He
-              incubated hatched and funded some of the most successful companies
-              including Amazon, Netflix, Twitter, PayPal, Sky+, NDTV, Yahoo! and
-              Fabrik
+              He is one of the most dynamic visionaries in the digital realm. He
+              incubated, hatched and funded some of the most successful
+              companies including Amazon, Netflix, Twitter, PayPal, Sky+, NDTV,
+              Yahoo! and Fabrik
             </p>
           </div>
         </article>
@@ -57,10 +57,10 @@ const OurTeam = () => {
               Subramaniam
             </h3>
             <p className="team-member-desc">
-              Having helped create a $3B MarketCap for our partners, Ram, an
-              early crypto-adopter and diehard decentralisation fan, is a
-              Co-Founder of GuardianLink. His vision is to make sure 1 Million
-              Artists make $1 Million each on GuardianLink.
+              Having helped in creating a $3B MarketCap for our partners, Ram,
+              an early crypto-adopter and a diehard decentralisation fan, is a
+              Co-Founder of GuardianLink. His vision is to just make sure 1
+              Million artists make $1 Million each on GuardianLink.
             </p>
           </div>
         </article>
@@ -83,11 +83,11 @@ const OurTeam = () => {
               Reddy
             </h3>
             <p className="team-member-desc">
-              Arjun fancies a role like Prometheus, who brings the Fire from
-              Gods to mortals, he makes technology that only Billion dollar
-              conglomerates take advantage of, to the realm of startups. He has
-              helped more than 100+ startups, ranging from gaming to finance, to
-              create their vision and become market leaders.
+              Arjun fancies a role like Prometheus, Simply put, who brings the
+              Fire from Gods to mortals, he makes technology that only Billion
+              dollar conglomerates take advantage of, to the realm of startups.
+              He has helped more than 100+ startups, ranging from gaming to
+              finance, to create their vision and become market leaders.
             </p>
           </div>
         </article>
@@ -112,8 +112,8 @@ const OurTeam = () => {
               Coming from the traditional IT startup world, Kamesh founded a
               company during his college years and grew it up to be 400+ strong.
               He has executed 50+ of the most complex crypto project launches
-              for our R&amp;D partners so that their communities had reason to
-              trust their roadmaps.
+              for our R&amp;D partners so that their communities trust their
+              roadmaps.
             </p>
           </div>
         </article>
