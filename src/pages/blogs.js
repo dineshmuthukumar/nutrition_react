@@ -8,8 +8,8 @@ const Blog = () => {
     <>
       <Header
         bgImage
-        title="Blogs | Jump.Trade"
-        description="Take a look at the cricket NFTs that got sold recently on the jump.trade NFT marketplace. We know you missed it! Go buy the ones that are live for sale."
+        title="NFT Marketplace | Cricket NFT Marketplace | Buy & Sell Cricket NFTs "
+        description="Jump.trade is the most secured NFT marketplace where you can buy & sell rare cricket NFTs. Discover, collect, and trade authentic cricket player NFTs on our NFT gaming marketplace. Sign up now!"
       />
       <BlogList />
       <Footer />
