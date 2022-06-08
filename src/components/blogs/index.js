@@ -7,7 +7,7 @@ import blog2 from "../../images/blog-img1.png";
 import blog3 from "../../images/blog-img2.png";
 import blog4 from "../../images/blog-img3.png";
 import Banner from "../blogs/blog-banner";
-import { Player, BigPlayButton } from 'video-react';
+import { Player, BigPlayButton } from "video-react";
 import BlogAnnouncment from "../blogs/blog-announcement";
 import BlogNews from "../blogs/blog-news";
 import {
@@ -31,10 +31,11 @@ const BlogList = () => {
   const [announcementData, setannouncementDataa] = useState();
   const [announcementSliderData, setAnnouncementSliderData] = useState();
   const [announcementSplitData, setAnnouncementSplitData] = useState();
+  const [loading, setLoading] = useState(false);
 
   const options = {
     loop: true,
-    autoplayHoverPause:true,
+    autoplayHoverPause: true,
     margin: 10,
     items: 3,
     nav: true,
@@ -61,6 +62,7 @@ const BlogList = () => {
   }, []);
   const blogDetail = async () => {
     try {
+      setLoading(true);
       const categoryData = await getBlogCattApi();
       const blogData = await getBlogListApi();
 
@@ -90,6 +92,7 @@ const BlogList = () => {
           item.categories.includes(filteredAnnouncementCategoryData[0]?.id)
       );
       const annoncedata = [...filteredAnnouncementBlogData];
+      console.log(annoncedata, "annoncedata");
       //const annoncedata_last = filteredAnnouncementBlogData;
       const AnnouncementData = annoncedata[0];
 
@@ -97,6 +100,7 @@ const BlogList = () => {
       setAnnouncementSliderData(annoncedata.slice(1, 4));
       setAnnouncementSplitData(annoncedata.slice(4, 7));
       //console.log(LastAnnouncementData.slice(3));
+      setLoading(false);
     } catch (error) {
       // setReLoading(false);
       //toast.error("An unexpected error occured. Please try again  later");
@@ -104,96 +108,120 @@ const BlogList = () => {
         ":rocket: ~ file: index.js ~ line 92 ~ responseGoogle ~ error",
         error
       );
+      setLoading(false);
     }
   };
   return (
-    <div>
-      <Banner bannerData={bannerData} sliderData={sliderData} />
-      <BlogNews />
-      <BlogAnnouncment
-        AnnouncementData={announcementData}
-        announcementSliderData={announcementSliderData}
-        announcementSplitData={announcementSplitData}
-      />
-      <section className="videoGallery">
-        <div className="container">
-          <div className="row">
-            <div className="col-sm-12">
-              <h2>THE SPOTLIGHT</h2>
-            </div>
-          </div>
-          <div className="row">
-            <OwlCarousel className="owl-theme" {...options}>
-              <div class="item">
-              <Player
-                playsInline
-                src={video1}
-                fluid={false} width={"100%"}  height={400}
-             >
-                <BigPlayButton position="center" />
-    </Player>
-              </div>
-              
-              <div class="item">
-              <Player
-                playsInline
-                src={video2}
-               fluid={false} width={"100%"}  height={400}
-             >
-                <BigPlayButton position="center" />
-    </Player>
-                
-              </div>
-              <div class="item">
-              <Player
-                playsInline
-                src={video3}
-               fluid={false} width={"100%"}  height={400}
-             >
-                <BigPlayButton position="center" />
-    </Player>
-              </div>
-              <div class="item">
-              <Player
-                playsInline
-                src={video4}
-               fluid={false} width={"100%"}  height={400}
-             >
-                <BigPlayButton position="center" />
-    </Player>
-              </div>
-              <div class="item">
-              <Player
-                playsInline
-                src={video5}
-               fluid={false} width={"100%"}  height={400}
-             >
-                <BigPlayButton position="center" />
-    </Player>
-              </div>
-              <div class="item">
-              <Player
-                playsInline
-                src={video6}
-               fluid={false} width={"100%"}  height={400}
-             >
-                <BigPlayButton position="center" />
-    </Player>
-              </div>
-              <div class="item">
-              <Player
-                playsInline
-                src={video7}
-               fluid={false} width={"100%"}  height={400}
-             >
-                <BigPlayButton position="center" />
-    </Player>
-              </div>
-            </OwlCarousel>
+    <>
+      {loading ? (
+        <div className="blog-loader">
+          <div class="span">
+            <div class="help"></div>
           </div>
         </div>
-      </section>
-    </div>
+      ) : (
+        <div>
+          <Banner bannerData={bannerData} sliderData={sliderData} />
+          <BlogNews />
+          <BlogAnnouncment
+            AnnouncementData={announcementData}
+            announcementSliderData={announcementSliderData}
+            announcementSplitData={announcementSplitData}
+          />
+          <section className="videoGallery">
+            <div className="container">
+              <div className="row">
+                <div className="col-sm-12">
+                  <h2>THE SPOTLIGHT</h2>
+                </div>
+              </div>
+              <div className="row">
+                <OwlCarousel className="owl-theme" {...options}>
+                  <div class="item">
+                    <Player
+                      playsInline
+                      src={video1}
+                      fluid={false}
+                      width={"100%"}
+                      height={400}
+                    >
+                      <BigPlayButton position="center" />
+                    </Player>
+                  </div>
+
+                  <div class="item">
+                    <Player
+                      playsInline
+                      src={video2}
+                      fluid={false}
+                      width={"100%"}
+                      height={400}
+                    >
+                      <BigPlayButton position="center" />
+                    </Player>
+                  </div>
+                  <div class="item">
+                    <Player
+                      playsInline
+                      src={video3}
+                      fluid={false}
+                      width={"100%"}
+                      height={400}
+                    >
+                      <BigPlayButton position="center" />
+                    </Player>
+                  </div>
+                  <div class="item">
+                    <Player
+                      playsInline
+                      src={video4}
+                      fluid={false}
+                      width={"100%"}
+                      height={400}
+                    >
+                      <BigPlayButton position="center" />
+                    </Player>
+                  </div>
+                  <div class="item">
+                    <Player
+                      playsInline
+                      src={video5}
+                      fluid={false}
+                      width={"100%"}
+                      height={400}
+                    >
+                      <BigPlayButton position="center" />
+                    </Player>
+                  </div>
+                  <div class="item">
+                    <Player
+                      playsInline
+                      src={video6}
+                      fluid={false}
+                      width={"100%"}
+                      height={400}
+                    >
+                      <BigPlayButton position="center" />
+                    </Player>
+                  </div>
+                  <div class="item">
+                    <Player
+                      playsInline
+                      src={video7}
+                      fluid={false}
+                      width={"100%"}
+                      height={400}
+                    >
+                      <BigPlayButton position="center" />
+                    </Player>
+                  </div>
+                </OwlCarousel>
+              </div>
+            </div>
+          </section>
+        </div>
+      )}
+    </>
   );
 };
 
