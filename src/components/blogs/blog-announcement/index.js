@@ -91,7 +91,9 @@ const BlogAnnouncment = ({
                       <div class="s_book">
                         <div class="content_book">
                           <span class="cat_1">ANNOUNCEMENT</span>
-                          <h2>{AnnouncementData?.title?.rendered}</h2>
+                          <a href={"/announcment/" + AnnouncementData?.slug}>
+                            <h2>{AnnouncementData?.title?.rendered}</h2>
+                          </a>
                           <div className="announcemet-content">
                             <Interweave
                               content={AnnouncementData?.content?.rendered}
