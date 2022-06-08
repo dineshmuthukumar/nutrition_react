@@ -116,7 +116,10 @@ const BlogList = () => {
       {loading ? (
         <div className="blog-loader">
           <div class="span">
-            <div class="help"></div>
+            <div class="lds-ripple">
+              <div></div>
+              <div></div>
+            </div>
           </div>
         </div>
       ) : (
