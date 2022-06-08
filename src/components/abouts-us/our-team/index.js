@@ -83,11 +83,11 @@ const OurTeam = () => {
               Reddy
             </h3>
             <p className="team-member-desc">
-              Arjun fancies a role like Prometheus, Simply put, who brings the
-              Fire from Gods to mortals, he makes technology that only Billion
-              dollar conglomerates take advantage of, to the realm of startups.
-              He has helped more than 100+ startups, ranging from gaming to
-              finance, to create their vision and become market leaders.
+              Arjun fancies a role like Prometheus. Simply put, he makes
+              technology that only Billion dollar conglomerates take advantage
+              of, to the realm of startups. He has helped more than 100+
+              startups, ranging from gaming to finance, to create their vision
+              and become market leaders.
             </p>
           </div>
         </article>
