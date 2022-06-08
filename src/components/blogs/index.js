@@ -34,7 +34,7 @@ const BlogList = () => {
   const [loading, setLoading] = useState(false);
 
   const options = {
-    loop: true,
+    loop: false,
     autoplayHoverPause: true,
     margin: 10,
     items: 3,
