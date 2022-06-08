@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { getBlogListApi, getBlogCattApi } from "../../api/methods";
+import { getBlogCattApi, getBlogCateListApi } from "../../api/methods";
 import { Interweave } from "interweave";
 import dayjs from "dayjs";
 import "./style.scss";
@@ -16,7 +16,7 @@ const BlogDetail = () => {
 
   const blogDetail = async () => {
     try {
-      const blogData = await getBlogListApi();
+      const blogData = await getBlogCateListApi();
       const CateData = await getBlogCattApi();
       const filteredblogData = blogData?.data?.filter(
         (data) => data.slug == slug
