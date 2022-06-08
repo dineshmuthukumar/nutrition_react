@@ -1640,7 +1640,15 @@ input::-webkit-inner-spin-button {
     border: none !important;
   }
 }
-@media screen and (max-width: 767px) {
+// @media screen and (max-width: 767px) {
+//   #drop_outer {
+//     display: none;
+//   }
+//   #drop_inner {
+//     display: none;
+//   }
+// }
+@media screen and (max-width: 991px) {
   #drop_outer {
     display: none;
   }
