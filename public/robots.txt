@@ -1,6 +1,6 @@
 User-agent: *
 Disallow: /404
-Disallow: /order
-Disallow: /nft-marketplace/order/
+Disallow: /details/O39gydkSlLBPYZob
+Disallow: /faq
 
 Sitemap: https://www.jump.trade/sitemap.xml
