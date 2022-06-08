@@ -70,27 +70,27 @@ const BlogAnnouncment = ({
         </div>
         <div class="row">
           {Object.keys(AnnouncementData).length && (
-            <div class="col-md-9">
+            <div class="col-xl-9 col-lg-9 col-sm-12 col-12">
               <div className="spl-announcement">
               <div className="row align-items-center">
-              <div className="col-md-6">
+              <div className="col-xl-6 col-sm-6 col-12">
               <div class="">
                 <div class="f_book">
                   <a href={"/announcment/" + AnnouncementData?.slug}>
                     {" "}
-                    {/* <img
+                     <img
                       src={
                         AnnouncementData?._embedded["wp:featuredmedia"]["0"][
                           "source_url"
                         ]
                       }
-                    /> */}
+                    /> 
                   </a>
                 </div>
                 
               </div>
               </div>
-              <div className="col-md-6">
+              <div className="col-xl-6 col-sm-6 col-12">
               <div class="">
                 
                 <div class="s_book">
@@ -113,9 +113,10 @@ const BlogAnnouncment = ({
             </div>
           )}
           {announcementSliderData.length && (
-            <div class="col-md-3">
+            <div class="col-xl-3 col-lg-3  col-sm-12 col-12">
               {announcementSliderData?.map((item, i) => (
-                <div class="book_xtra">
+                <div class="book_xtra d-flex align-items-center">
+                  <div className="">
                   <span class="cat_1">ANNOUNCEMENT</span>
                   <h2>
                     <a href={"/announcment/" + item?.slug}>
@@ -123,6 +124,7 @@ const BlogAnnouncment = ({
                       <Interweave content={item?.title?.rendered} />
                     </a>
                   </h2>
+                  </div>
                 </div>
               ))}
             </div>

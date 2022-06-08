@@ -59,10 +59,13 @@ a {
 
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
+    p {
+      margin-bottom: 0;
+    }
   }
   .s_book {
     height: 100%;
-    padding: 50px;
+    padding: 0 50px;
     background: #095132;
     color: #fff;
 
@@ -125,6 +128,13 @@ a {
     @media screen and (max-width: 767px) {
       height: auto;
     }
+    @media screen and (max-width: 1399px) {
+      height: calc(100% - 72.5%);
+    }
+    @media screen and (min-width: 2100px) {
+      height: calc(100% - 69.5%);
+    }
+
     a {
       color: #fff;
       text-decoration: none;
@@ -207,13 +217,16 @@ a {
 //   width: 100%;
 // }
 .f_book {
-  background: url(../../images/bat-jump-trade.png);
-  background-position: center;
-  background-size: 100% 100%;
-  height: 500px;
-  object-fit: fill;
-  width: 100%;
-  background-repeat: no-repeat;
+  // background: url(../../images/bat-jump-trade.png);
+  // background-position: center;
+  // background-size: 100% 100%;
+  // height: calc(100vh - 50px);
+  // object-fit: fill;
+  // width: 100%;
+  // background-repeat: no-repeat;
+  img {
+    width: 100%;
+  }
 }
 .videoGallery {
   padding: 6rem 0;
