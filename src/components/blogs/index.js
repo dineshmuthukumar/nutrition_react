@@ -22,6 +22,13 @@ import video4 from "../../images/video/mills.mp4";
 import video5 from "../../images/video/mithali.mp4";
 import video6 from "../../images/video/jp.mp4";
 import video7 from "../../images/video/jordan.mp4";
+import v1 from "../../images/badri.jpeg";
+import v2 from "../../images/hbj.jpeg";
+import v3 from "../../images/w-cap.jpeg";
+import v4 from "../../images/boss.jpeg";
+import v5 from "../../images/mithali.jpeg";
+import v6 from "../../images/cap.jpeg";
+import v7 from "../../images/black-cap.jpeg";
 import "./style.scss";
 
 const BlogList = () => {
@@ -142,6 +149,7 @@ const BlogList = () => {
                 <OwlCarousel className="owl-theme" {...options}>
                   <div class="item">
                     <Player
+                      poster={v1}
                       playsInline
                       src={video1}
                       fluid={false}
@@ -154,6 +162,7 @@ const BlogList = () => {
 
                   <div class="item">
                     <Player
+                      poster={v2}
                       playsInline
                       src={video2}
                       fluid={false}
@@ -165,6 +174,7 @@ const BlogList = () => {
                   </div>
                   <div class="item">
                     <Player
+                      poster={v3}
                       playsInline
                       src={video3}
                       fluid={false}
@@ -176,6 +186,7 @@ const BlogList = () => {
                   </div>
                   <div class="item">
                     <Player
+                      poster={v4}
                       playsInline
                       src={video4}
                       fluid={false}
@@ -187,6 +198,7 @@ const BlogList = () => {
                   </div>
                   <div class="item">
                     <Player
+                      poster={v5}
                       playsInline
                       src={video5}
                       fluid={false}
@@ -198,6 +210,7 @@ const BlogList = () => {
                   </div>
                   <div class="item">
                     <Player
+                      poster={v6}
                       playsInline
                       src={video6}
                       fluid={false}
@@ -209,6 +222,7 @@ const BlogList = () => {
                   </div>
                   <div class="item">
                     <Player
+                      poster={v7}
                       playsInline
                       src={video7}
                       fluid={false}

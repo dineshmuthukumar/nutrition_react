@@ -355,6 +355,7 @@ a {
     top: 0;
     bottom: 0;
   }
+
   @media screen and (max-width: 767px) {
     background: linear-gradient(0deg, #073824, #020202, #020101, #010101);
     .banner-content-overlay {
@@ -369,7 +370,21 @@ a {
     }
   }
 }
-
+@media screen and (max-width: 480px) {
+  .banner {
+    height: auto;
+    .title-desc {
+      span {
+        p {
+          display: none;
+        }
+        ol {
+          display: none;
+        }
+      }
+    }
+  }
+}
 .blog-content {
   .title-head {
     h3 {
