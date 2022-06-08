@@ -105,85 +105,85 @@ const BlogNews = () => {
         <div class="news_box">
           <div class="news_img">
             <a
-            rel="nofollow" 
+              rel="nofollow"
               href="https://www.ndtv.com/business/worlds-first-play-to-earn-nft-cricket-game-to-launch-soon-by-guardianlink-2838323"
               target="_blank"
             >
-              <img src={ndtv_logo}/>
+              <img src={ndtv_logo} />
             </a>
           </div>
           <div class="news_img">
             <a
-            rel="nofollow" 
+              rel="nofollow"
               href="https://twitter.com/livemint/status/1506561708109996033?s=20&t=pDxQGzoXHqZFWDJr143NZg"
               target="_blank"
             >
-              <img src={mint}/>
+              <img src={mint} />
             </a>
           </div>
           <div class="news_img">
             <a
-            rel="nofollow" 
-              href="https://www.outlookindia.com/business/amitabh-bachchan-pays-over-rs-1-crore-as-gst-on-nft-sale-after-notice-bitcoin-falls-news-188218"
+              rel="nofollow"
+              href="https://www.outlookindia.com/business/jump-trade-registers-1-2-million-nft-buyers-through-cricket-nft-drop-news-195121"
               target="_blank"
             >
-              <img src={out}/>
+              <img src={out} />
             </a>
           </div>
 
           <div class="news_img">
             <a
-            rel="nofollow" 
+              rel="nofollow"
               href="https://timesofindia.indiatimes.com/business/india-business/guardianlink-enters-nft-gaming-with-new-cricket-game/articleshow/90394235.cms"
               target="_blank"
             >
-              <img src={tines}/>
+              <img src={tines} />
             </a>
           </div>
           <div class="news_img">
             <a
-            rel="nofollow" 
+              rel="nofollow"
               href="http://bwdisrupt.businessworld.in/article/GuardianLink-Enters-NFT-Gaming-Space-With-P2E-Cricket-Game-/24-03-2022-423588/"
               target="_blank"
             >
-              <img src={bw}/>
+              <img src={bw} />
             </a>
           </div>
           <div class="news_img">
             <a
-            rel="nofollow" 
+              rel="nofollow"
               href="https://economictimes.indiatimes.com/markets/cryptocurrency/jump-trade-sells-55000-nfts-of-meta-cricket-leagues-in-just-9-mins/articleshow/91071815.cms?utm_source=contentofinterest&utm_medium=text&utm_campaign=cppst"
               target="_blank"
             >
-              <img src={et}/>
+              <img src={et} />
             </a>
           </div>
 
           <div class="news_img">
             <a
-            rel="nofollow" 
+              rel="nofollow"
               href="https://www.cnbctv18.com/startup/startup-digest-babychakra-acquires-tinystep-meesho-launches-integrated-e-commerce-app-guardianlink-launches-nft-cricket-game--crypto-investor-katie-haun-raises-15bn-for-new-fund-12923142.htm"
               target="_blank"
             >
-              <img src={cnbc}/>
+              <img src={cnbc} />
             </a>
           </div>
           <div class="news_img">
             <a
-            rel="nofollow" 
+              rel="nofollow"
               href="https://www.news18.com/news/business/cryptocurrency/worlds-first-nft-cricket-game-is-here-all-you-need-to-know-4901660.html"
               target="_blank"
             >
-              <img src={n18}/>
+              <img src={n18} />
             </a>
           </div>
           <div class="news_img">
             <a
-            rel="nofollow" 
+              rel="nofollow"
               href="https://www.financialexpress.com/digital-currency/international-gaming-platform-jump-trade-sells-out-55000-nfts/2502822/"
               target="_blank"
             >
-              <img src={tfe}/>
+              <img src={tfe} />
             </a>
           </div>
         </div>
