@@ -924,9 +924,8 @@ button.load_more {
 
   .nft-type-badge {
     position: absolute;
-    top: 1rem;
-    right: initial;
-    left: 0.8rem;
+    top: 22rem;
+    right: 0.8rem;
     background: #e8318d;
     color: #fff;
     font-size: 1rem;
@@ -940,6 +939,39 @@ button.load_more {
     font-family: $neue-helvetica-extended-bold;
     box-shadow: none;
     z-index: 2;
+  }
+
+
+  .nft-type-badge-rank {
+    position: absolute;
+    top: 1rem;
+    left: 0.8rem;
+    right: initial;
+    background: #0a3524;
+    border: 1px solid #e1fc01;
+    color: #fff;
+    font-size: 1rem;
+    border-radius: 0.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 6rem;
+    padding: 0 1rem;
+    font-family: $neue-helvetica-extended-bold;
+    box-shadow: none;
+    z-index: 2;
+
+    .rank-title{
+      font-size: 1rem;
+      font-family: "neue_helvetica_bold" !important;
+      text-transform: capitalize;
+      margin-right: 0.5rem;
+      background: linear-gradient(180deg, #e2ff00 0%, #18e0e0 52.6%, #e8318d 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
   }
 
   .time-counter-box {
