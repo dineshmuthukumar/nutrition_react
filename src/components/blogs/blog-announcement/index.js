@@ -112,7 +112,7 @@ const BlogAnnouncment = ({
           {announcementSliderData.length && (
             <div class="col-xl-3 col-lg-3  col-sm-12 col-12">
               {announcementSliderData?.map((item, i) => (
-                <a href={"/announcment/" + AnnouncementData?.slug}>
+                <a href={"/announcment/" + item?.slug}>
                   <div class="book_xtra d-flex align-items-center">
                     <div className="">
                       <span class="cat_1">ANNOUNCEMENT</span>
