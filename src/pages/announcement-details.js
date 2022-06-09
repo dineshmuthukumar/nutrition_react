@@ -6,7 +6,10 @@ import AnnounceDetail from "../components/blogs/announcedetails";
 const AnnouncementDetails = () => {
   return (
     <>
-      <Header bgImage title="Blogs | Jump.Trade" />
+      <Header
+        bgImage
+        title="NFT Marketplace | Cricket NFT Marketplace | Buy & Sell Cricket NFTs "
+      />
       <AnnounceDetail />
       <Footer />
     </>
