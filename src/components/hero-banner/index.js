@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useRouteMatch } from "react-router-dom";
 
 import NFTCounter from "../nft-counter/index";
 import images from "../../utils/images.json";
@@ -9,7 +9,7 @@ import "./style.scss";
 const HeroBanner = () => {
   const { innerWidth } = window;
   const history = useHistory();
-
+  const { path } = useRouteMatch();
   const market_start_date = "May 4, 2022 12:30:00";
 
   const [live, setLive] = useState(false);
@@ -52,28 +52,34 @@ const HeroBanner = () => {
           <div className="container-fluid">
             <div className="row">
               <div className="col-lg-6 align-self-center">
-                <h1>
-                  {live ? (
-                    <>
-                      Jump.trade -{" "}
-                      <span>The NFT Marketplace To Trade Legendary NFTs </span>
-                    </>
-                  ) : (
-                    market_time && (
+                {path === "/:search?" && (
+                  <h1>
+                    {live ? (
                       <>
-                        <div className="live-text-title">MARKETPLACE</div>
-                        <div className="live-text">TIME LEFT UNTIL LAUNCH</div>
-                        <NFTCounter
-                          time={market_time}
-                          handleEndEvent={handleCheck}
-                          timeClass="live-time"
-                          intervalClass="live-interval"
-                          intervalGapClass="live-gap"
-                        />
+                        Jump.trade -{" "}
+                        <span>
+                          The NFT Marketplace To Trade Legendary NFTs{" "}
+                        </span>
                       </>
-                    )
-                  )}
-                </h1>
+                    ) : (
+                      market_time && (
+                        <>
+                          <div className="live-text-title">MARKETPLACE</div>
+                          <div className="live-text">
+                            TIME LEFT UNTIL LAUNCH
+                          </div>
+                          <NFTCounter
+                            time={market_time}
+                            handleEndEvent={handleCheck}
+                            timeClass="live-time"
+                            intervalClass="live-interval"
+                            intervalGapClass="live-gap"
+                          />
+                        </>
+                      )
+                    )}
+                  </h1>
+                )}
                 <p className="hero-desc">
                   Jump.trade - The #1 NFT marketplace to buy the world’s first
                   P2E cricket game NFTs. Buy NFT bats, players, and signed
