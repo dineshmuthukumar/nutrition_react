@@ -329,14 +329,21 @@ const TrendingList = () => {
           <div className="row">
             <div className="col-sm-12">
               <div className="sec-heading d-flex align-items-center mb-5 liveauction-detail-heading">
-                <div className="flex-heading">
+                <div className="col-md-9">
                   <h1 className="text-nowrap me-4">TRENDING NFTs</h1>
                   {/* <div className="d-flex flex-wrap filter-box">
                     <span className="d-flex justify-content-end w-100 filter-blocks">
                       
                     </span>
                   </div> */}
+                  <p className="sub-heading-p">
+                    Take a look at the marvelous cricket NFTs that are currently
+                    trending on the jump.trade NFT marketplace. Don’t wait any
+                    more go ahead and start bidding on these supreme NFTs to add
+                    them to your collection today. Clock is ticking already!
+                  </p>
                 </div>
+
                 <span className="d-flex justify-content-end w-100 liveauction-detail-filter-blocks">
                   <div className="d-flex flex-wrap liveauction-detail-filter-box">
                     {/* <Dropdown className="price-range">

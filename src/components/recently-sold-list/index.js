@@ -134,8 +134,17 @@ const RecentlySoldList = () => {
         <div className="container-fluid">
           <div className="row">
             <div className="col-sm-12">
-              <div className="sec-heading d-flex align-items-center mb-5 explore-heading">
-                <h1 className="me-4 text-nowrap">RECENTLY SOLD</h1>
+              <div className="sec-heading d-flex align-items-center mb-5  explore-heading">
+                <div class="col-md-8">
+                  <h1 className="me-4 text-nowrap">RECENTLY SOLD</h1>
+                  <p className="sub-heading-p">
+                    Take a look at some of the super-cool cricket NFTs you
+                    missed out on buying. But no worries you can still head to
+                    the listed NFTs section and buy your favorite cricket NFT.
+                    There is no time for waiting anymore go get it now!
+                  </p>
+                </div>
+
                 <span className="d-flex justify-content-end mt-2 w-100 filter-blocks">
                   <div className="filt-flex-box">
                     <Dropdown>

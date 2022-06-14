@@ -54,7 +54,7 @@ button.load_more {
     flex-direction: column-reverse;
     align-items: flex-end;
     position: relative;
-    margin-top: -2.5rem !important;
+    // margin-top: -2.5rem !important;
   }
   @media screen and (max-width: 425px) {
     margin-top: 0.5rem !important;
@@ -234,4 +234,9 @@ button.load_more {
       width: 1.2rem;
     }
   }
+}
+
+.sub-heading-p {
+  font-size: 1rem;
+  font-family: "neue_helvetica_light" !important;
 }

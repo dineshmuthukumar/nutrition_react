@@ -331,13 +331,19 @@ const LiveAuctionsList = () => {
           <div className="row">
             <div className="col-sm-12">
               <div className="sec-heading d-flex align-items-center mb-5 liveauction-detail-heading">
-                <div className="flex-heading">
+                <div className="col-md-7">
                   <h1 className="text-nowrap me-4">LIVE AUCTIONS</h1>
                   {/* <div className="d-flex flex-wrap filter-box">
                     <span className="d-flex justify-content-end w-100 filter-blocks">
                       
                     </span>
                   </div> */}
+                  <p className="sub-heading-p">
+                    Find the hottest cricket NFTs that are live on auction on
+                    jump.trade marketplace. Get ready for a bidding war against
+                    your fellow cricket NFT lovers to get your hands on these
+                    awesome digital assets. Start bidding on your favorite NFTs!{" "}
+                  </p>
                 </div>
                 <span className="d-flex justify-content-end w-100 liveauction-detail-filter-blocks">
                   <div className="d-flex flex-wrap liveauction-detail-filter-box">
