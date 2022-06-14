@@ -58,6 +58,7 @@ const AnnounDetails = lazy(() => import("./pages/announcement-details"));
 // const FAQ = lazy(() => import("./pages/faq"));
 
 function App(props) {
+  
   const market_start_date = "Mar 9, 2022 12:30:00";
 
   const [market_time, set_market_time] = useState();
@@ -305,7 +306,7 @@ const WebContainer = () => {
         <Route exact path="/:search?/details/:slug" component={Home} />
         <Route exact path="/:search?" component={Home} />
 
-        <Route exact component={NotFound} />
+        <Route exact component={Home} />
       </Switch>
     </>
   );

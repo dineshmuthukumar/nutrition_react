@@ -194,7 +194,7 @@ const ShowAll = ({ categories }) => {
       category_filters.length === 0 &&
       search_filter.length === 0 &&
       sale_status.length === 0;
-    if (noMatchFound && match.params.search) history.push("/not-found");
+    if (noMatchFound && match.params.search) history.replace("/");
 
     showAllFilteredNFTs(
       1,
@@ -352,10 +352,10 @@ const ShowAll = ({ categories }) => {
       {priceRangeFilter.from && priceRangeFilter.to
         ? `Price Range $${priceRangeFilter.from} - $${priceRangeFilter.to}`
         : priceRangeFilter.from
-        ? `Min $${priceRangeFilter.from}`
-        : priceRangeFilter.to
-        ? `Max $${priceRangeFilter.to}`
-        : "Price Range"}
+          ? `Min $${priceRangeFilter.from}`
+          : priceRangeFilter.to
+            ? `Max $${priceRangeFilter.to}`
+            : "Price Range"}
       <BiCaretDown />
     </div>
   ));

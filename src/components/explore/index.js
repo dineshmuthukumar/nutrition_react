@@ -625,8 +625,8 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
       match.params.category !== "cricket-bat-nfts" &&
       match.params.category !== "cricket-player-nfts"
     )
-      history.push("/not-found");
-    if (noMatchFound && match.params.search) history.push("/not-found");
+      history.replace("/");
+    if (noMatchFound && match.params.search) history.replace("/");
     else
       showAllFilteredNFTs(
         1,
@@ -837,8 +837,8 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
         sale_status = remove
           ? null
           : status_list.includes(input.value)
-          ? null
-          : input.value;
+            ? null
+            : input.value;
 
         break;
 
@@ -966,8 +966,7 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
     }
 
     history.push(
-      `/nft-marketplace/${match.params.category}/${slug}${
-        query_string ? "/" + query_string : ""
+      `/nft-marketplace/${match.params.category}/${slug}${query_string ? "/" + query_string : ""
       }`
     );
   }
@@ -999,10 +998,10 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
       {priceRangeFilter.from && priceRangeFilter.to
         ? `Price Range $${priceRangeFilter.from} - $${priceRangeFilter.to}`
         : priceRangeFilter.from
-        ? `Min $${priceRangeFilter.from}`
-        : priceRangeFilter.to
-        ? `Max $${priceRangeFilter.to}`
-        : "Price Range"}
+          ? `Min $${priceRangeFilter.from}`
+          : priceRangeFilter.to
+            ? `Max $${priceRangeFilter.to}`
+            : "Price Range"}
     </div>
   ));
 
@@ -1073,13 +1072,13 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
               onClick={(e) =>
                 handleFilterCheck(priceRange, "price_range", true)
               }
-              // disabled={(() => {
-              //   if (parseInt(priceRange.from) == "") {
-              //     return true;
-              //   } else {
-              //     return false;
-              //   }
-              // })()}
+            // disabled={(() => {
+            //   if (parseInt(priceRange.from) == "") {
+            //     return true;
+            //   } else {
+            //     return false;
+            //   }
+            // })()}
             >
               Clear
             </button>
@@ -1218,9 +1217,8 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
                       <div className="heading-box">
                         <h4>Filters</h4>
                         <span
-                          className={`clear-btn ${
-                            match.params.search ? "" : "disabled"
-                          }`}
+                          className={`clear-btn ${match.params.search ? "" : "disabled"
+                            }`}
                           onClick={() => clearFilter()}
                         >
                           Clear all

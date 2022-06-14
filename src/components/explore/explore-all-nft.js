@@ -527,14 +527,14 @@ const ExploreAllNFT = () => {
     if (
       match.path === "/nft-marketplace/:search?/details/:slug" ||
       match.path ===
-        "/nft-marketplace/cricket-nfts/:player/:search?/details/:slug"
+      "/nft-marketplace/cricket-nfts/:player/:search?/details/:slug"
     ) {
       setPopDetails({ ...popDetails, show: true, children: <Details /> });
     } else if (
       match.path ===
-        "/nft-marketplace/:search?/order/details/:slug/:orderSlug" ||
+      "/nft-marketplace/:search?/order/details/:slug/:orderSlug" ||
       match.path ===
-        "/nft-marketplace/cricket-nfts/:player/:search?/order/details/:slug/:orderSlug"
+      "/nft-marketplace/cricket-nfts/:player/:search?/order/details/:slug/:orderSlug"
     ) {
       setPopDetails({
         ...popDetails,
@@ -587,7 +587,7 @@ const ExploreAllNFT = () => {
     if (playerObj?.key) players = playerObj?.key ? [playerObj?.key] : [];
     else players = playerObj?.name ? [playerObj?.name] : [];
 
-    if (noMatchFound && match.params.search) history.push("/not-found");
+    if (noMatchFound && match.params.search) history.replace("/");
     else
       showAllFilteredNFTs(
         1,
@@ -804,8 +804,8 @@ const ExploreAllNFT = () => {
         sale_status = remove
           ? null
           : status_list.includes(input.value)
-          ? null
-          : input.value;
+            ? null
+            : input.value;
 
         break;
 
@@ -943,10 +943,10 @@ const ExploreAllNFT = () => {
       {priceRangeFilter.from && priceRangeFilter.to
         ? `Price Range $${priceRangeFilter.from} - $${priceRangeFilter.to}`
         : priceRangeFilter.from
-        ? `Min $${priceRangeFilter.from}`
-        : priceRangeFilter.to
-        ? `Max $${priceRangeFilter.to}`
-        : "Price Range"}
+          ? `Min $${priceRangeFilter.from}`
+          : priceRangeFilter.to
+            ? `Max $${priceRangeFilter.to}`
+            : "Price Range"}
     </div>
   ));
 
@@ -1017,13 +1017,13 @@ const ExploreAllNFT = () => {
               onClick={(e) =>
                 handleFilterCheck(priceRange, "price_range", true)
               }
-              // disabled={(() => {
-              //   if (parseInt(priceRange.from) == "") {
-              //     return true;
-              //   } else {
-              //     return false;
-              //   }
-              // })()}
+            // disabled={(() => {
+            //   if (parseInt(priceRange.from) == "") {
+            //     return true;
+            //   } else {
+            //     return false;
+            //   }
+            // })()}
             >
               Clear
             </button>
@@ -1173,11 +1173,10 @@ const ExploreAllNFT = () => {
                       <div className="heading-box">
                         <h4>Filters</h4>
                         <span
-                          className={`clear-btn ${
-                            match.params.search || match.params.player
-                              ? ""
-                              : "disabled"
-                          }`}
+                          className={`clear-btn ${match.params.search || match.params.player
+                            ? ""
+                            : "disabled"
+                            }`}
                           onClick={() => clearFilter()}
                         >
                           Clear all
