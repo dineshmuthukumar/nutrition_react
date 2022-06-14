@@ -81,12 +81,8 @@ const BlogList = () => {
         item.categories.includes(filteredCategoryData[0].id)
       );
 
-      const BannerData = filteredBlogData?.shift();
-      const LastBannerData = filteredBlogData;
-
-      setbannerData(BannerData);
-      setsliderData(LastBannerData);
-
+      setbannerData(filteredBlogData[0]);
+      setsliderData(filteredBlogData.slice(1, 4));
       const filteredAnnouncementCategoryData = categoryData?.data?.filter(
         (data) => data.slug == "announcement"
       );
