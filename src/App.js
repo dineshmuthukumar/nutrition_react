@@ -31,7 +31,7 @@ const Home = lazy(() => import("./pages/home"));
 const Explore = lazy(() => import("./pages/explore-list"));
 // const Details = lazy(() => import("./pages/details"));
 // const OrderDetails = lazy(() => import("./pages/order-details"));
-const NotFound = lazy(() => import("./pages/not-found"));
+//const NotFound = lazy(() => import("./pages/not-found"));
 // const HelpLine = lazy(() => import("./pages/help-line"));
 const UserDetails = lazy(() => import("./pages/user-details"));
 // const Htimes = lazy(() => import("./components/client-category/htimes"));
@@ -290,7 +290,7 @@ const WebContainer = () => {
         <Route exact path="/terms-and-conditions" component={Terms} />
         <Route exact path="/about-us" component={Abouts} />
         <Route exact path="/user/:slug/details" component={UserDetails} />
-        <Route path="/not-found" component={NotFound} />
+        {/* <Route path="/not-found" component={NotFound} /> */}
         <Route
           path="/mcl"
           component={() => {
