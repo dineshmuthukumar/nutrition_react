@@ -106,7 +106,7 @@ const NFTCard = ({
 
   useEffect(() => {
     if (userSlug) {
-      const orderSlug = userCart?.line_items.find(
+      const orderSlug = userCart?.line_items?.find(
         (obj) => obj.order_slug === nft?.order_details?.slug
       );
       if (orderSlug) {

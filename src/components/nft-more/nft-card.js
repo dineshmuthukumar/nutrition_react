@@ -69,7 +69,7 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
 
   useEffect(() => {
     if (userSlug) {
-      const orderSlug = userCart?.line_items.find(
+      const orderSlug = userCart?.line_items?.find(
         (obj) => obj.order_slug === nft?.order_details?.slug
       );
       if (orderSlug) {
@@ -93,7 +93,7 @@ const CollectionCard = ({ nft, recentSold = false, favouriteNFT = false }) => {
 
   return (
     <div className="more-card jt-card">
-        <span className="nft-type-badge-rank">
+      <span className="nft-type-badge-rank">
         <span className="rank-title">{`Rank ${nft.core_statistics.rank.value}/${nft.core_statistics.rank.maximum}`}</span>
       </span>
       <span className="nft-type-badge">{nft.nft_type.toUpperCase()}</span>
