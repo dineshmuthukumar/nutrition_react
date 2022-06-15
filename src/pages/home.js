@@ -29,6 +29,7 @@ const Home = () => {
   let query = useQuery();
   const fsz = query.get("fsz");
   const token = query.get("token");
+  const _ga = query.get("_ga");
   // const { user } = useSelector((state) => state.user.data);
 
   const [list, setList] = useState([]);
@@ -61,6 +62,9 @@ const Home = () => {
     }
 
     categoriesList(1);
+    if (_ga) {
+      history.replace(url);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
