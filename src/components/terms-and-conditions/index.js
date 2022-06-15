@@ -43,15 +43,41 @@ const TermsAndConditions = () => {
                     </a>{" "}
                     for addressing any issues or questions.
                   </p>
+                  <h4>Our Services</h4>
                   <p>
-                    JUMP.TRADE is a platform that is intended to function as a
-                    launchpad and a marketplace for NFTs. JUMP.TRADE is nothing
-                    more than what it expressly and explicitly claims itself to
-                    be. JUMP.TRADE is not a broker or a financial institution or
-                    an exchange or a creditor or a custodian or a traditional
-                    auction platform. JUMP.TRADE functions as a facilitator and
-                    it does not hold responsibility for any remote resemblances
-                    of any other entity.
+                    JUMP.TRADE is a platform that functions as a launchpad and a
+                    marketplace for anyone to launch their NFTs and connects
+                    them to Users.
+                  </p>
+                  <p>
+                    The Platform allows and facilitates acquiring of “Digital
+                    Collectible(s) or Collectible(s)” through “Purchase” or
+                    “Auction” between the Seller and the User.
+                  </p>
+                  <p>
+                    JUMP.TRADE is neither the creator nor the administrator of
+                    any NFT. JUMP.TRADE acts as an intermediary between the User
+                    and the Sellers. JUMP.TRADE is not a broker or a financial
+                    institution or an exchange or a creditor or a custodian or a
+                    traditional auction platform. JUMP.TRADE functions as a
+                    facilitator and do not provide any warranty or guarantee of
+                    the authenticity or value of the Collectables listed by the
+                    Sellers on the Platform.
+                  </p>
+                  <p>
+                    Furthermore, JUMP.TRADE shall not be held responsible for
+                    any discrepancy or intellectual property right violations in
+                    relation to the creations of the Sellers. In any case, all
+                    disputes arising out of or in relation to the intellectual
+                    property rights of the Collectables shall be directly
+                    settled with the respective Sellers. JUMP.TRADE shall not be
+                    held liable for the representations made by the Sellers to
+                    the Users of the Platform. You acknowledge that JUMP.TRADE
+                    grants you a personal, non-exclusive, non-transferrable,
+                    non-sublicensable, revocable, limited right to access and
+                    the Platform, which shall be solely used in compliance with
+                    these Terms provided herein and to the extent permitted
+                    under applicable laws, rules, and regulations.
                   </p>
                   <p>
                     <b>
@@ -1186,6 +1212,38 @@ const TermsAndConditions = () => {
                       Wallet services and/or that store the NFT.
                     </li>
                   </ul>
+                  <p>
+                    To the fullest extent permitted by law, in no event will we
+                    be liable to you or any third party for any lost profit or
+                    any indirect, consequential, exemplary, incidental, special
+                    or punitive damages arising from these terms, the service,
+                    platform, any platform content, or items, or for any damages
+                    related to loss of revenue, loss of profits, loss of
+                    business or anticipated savings, loss of use, loss of
+                    goodwill, or loss of data, and whether caused by tort
+                    (including negligence), breach of contract, or otherwise,
+                    even if foreseeable and even if we has been advised of the
+                    possibility of such damages. access to, and use of, the
+                    service is undertaken by you at your own discretion and
+                    risk, and you will be solely responsible for any damage to
+                    your computer system or mobile device or loss of data
+                    resulting therefrom.
+                  </p>
+                  <p>
+                    Notwithstanding anything to the contrary contained herein,
+                    in no event shall the maximum aggregate liability of
+                    JUMP.TRADE arising out of or in any way related to these
+                    terms, your access to and use of the service, platform
+                    content, or any items sold through the service exceed the
+                    greater of (a) $50 or (b) the amount paid to JUMP.TRADE by
+                    you for the service in the transaction or incident that is
+                    the subject of the claim.
+                  </p>
+                  <p>
+                    If you are dissatisfied with any portion of the platform or
+                    with these terms of platform, your sole and exclusive remedy
+                    is to discontinue use of the platform.
+                  </p>
                 </div>
                 <div className="all-para-style">
                   <h4>Hardware and Equipment</h4>

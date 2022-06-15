@@ -66,7 +66,7 @@ const CollectionList = () => {
                       textTransform: "uppercase",
                     }}
                   >
-                    Meta Cricket League Signed Bat
+                    Meta Cricket League Signed Bats
                   </h4>
                 </div>
               </article>
