@@ -97,6 +97,7 @@ const BlogBanner = ({ bannerData, sliderData }) => {
                 </div>
               </div>
             ))}
+            <a href={"/blog-list"}> View More </a>
           </div>
         </div>
       </section>
