@@ -23,9 +23,9 @@ import "./style.scss";
 //import AppHelmet from "../helmet";
 
 const exploreHeaderMetaData = {
-  metaTitle: "Buy Cricket NFTs | Sports NFT Marketplace | Jump.trade",
+  metaTitle: "Cricket NFT Marketplace | Buy Cricket NFTs",
   metaDescription:
-    "Get your hands on some of the most prized and highly collectible cricket NFTs at Jump.trade. Buy, sell, & collect cricket & other sports NFTs.",
+    "Get your hands on some of the most prized and highly collectible cricket NFTs at Jump.trade, the cricket NFT marketplace. Buy, sell, & collect cricket & other sports NFTs.",
 };
 
 const ExploreAllNFT = () => {
@@ -587,7 +587,7 @@ const ExploreAllNFT = () => {
     if (playerObj?.key) players = playerObj?.key ? [playerObj?.key] : [];
     else players = playerObj?.name ? [playerObj?.name] : [];
 
-    if (noMatchFound && match.params.search) window.open("/","_self");
+    if (noMatchFound && match.params.search) window.open("/", "_self");
     else
       showAllFilteredNFTs(
         1,
