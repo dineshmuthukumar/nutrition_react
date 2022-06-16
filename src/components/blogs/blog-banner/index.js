@@ -3,10 +3,7 @@ import OwlCarousel from "react-owl-carousel";
 import dayjs from "dayjs";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
-import blog1 from "../../../images/blog-banner.png";
-import blog2 from "../../../images/blog-img1.png";
-import blog3 from "../../../images/blog-img2.png";
-import blog4 from "../../../images/blog-img3.png";
+
 import { getBlogListApi, getBlogCattApi } from "../../../api/methods";
 
 import { Interweave } from "interweave";
@@ -40,7 +37,7 @@ const BlogBanner = ({ bannerData, sliderData }) => {
 
   return (
     <div>
-      <section class="banner">
+      {/* <section class="banner">
         <a href={"/blog/" + bannerData?.slug}>
           <img
             src={bannerData?._embedded["wp:featuredmedia"]["0"]["source_url"]}
@@ -74,6 +71,38 @@ const BlogBanner = ({ bannerData, sliderData }) => {
             </div>
           </div>
         </div>
+      </section> */}
+      <section class="ptb-100 bg-dark">
+        <div class="container-fluid">
+          <div class="row align-items-center">
+            <div class="col-lg-6 col-md-12 col-sm-12 order-md-2">
+              <a href={"/blog/" + bannerData?.slug}>
+                <img
+                  src="https://blog.jump.trade/wp-content/uploads/2022/06/How-To-Choose-the-Right-Play-To-Earn-Game-for-You-1200-x-630-copy.jpg"
+                  class="img-fluid br-5 mt-5"
+                />
+              </a>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12 order-md-1">
+              <div class="banner_contents p-3 mt-5">
+                <p class="text-white">
+                  {dayjs(bannerData?.date).format("MMM D, YYYY")}
+                </p>
+                <h2 class="text-white">
+                  <a href={"/blog/" + bannerData?.slug}>
+                    <Interweave content={bannerData?.title?.rendered} />
+                  </a>
+                </h2>
+                <p class="mt-4 mb-4 text-white banner-description-blog">
+                  <Interweave content={bannerData?.content?.rendered} />
+                </p>{" "}
+                <a href={"/blog/" + bannerData?.slug} class="mt-3">
+                  Read more
+                </a>{" "}
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
       <section class="blog-list p-80">
         <div class="container">
@@ -97,7 +126,12 @@ const BlogBanner = ({ bannerData, sliderData }) => {
                 </div>
               </div>
             ))}
-            <a href={"/blog-list"}> View More </a>
+            <div className="d-flex justify-content-center my-5">
+              <a href={"/blog-list"} className="blog-view-more">
+                {" "}
+                View More{" "}
+              </a>
+            </div>
           </div>
         </div>
       </section>

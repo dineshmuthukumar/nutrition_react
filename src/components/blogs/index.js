@@ -2,10 +2,7 @@ import React, { useEffect, useState } from "react";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
-import blog1 from "../../images/blog-banner.png";
-import blog2 from "../../images/blog-img1.png";
-import blog3 from "../../images/blog-img2.png";
-import blog4 from "../../images/blog-img3.png";
+
 import Banner from "../blogs/blog-banner";
 import { Player, BigPlayButton } from "video-react";
 import BlogAnnouncment from "../blogs/blog-announcement";

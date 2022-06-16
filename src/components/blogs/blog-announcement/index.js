@@ -3,10 +3,6 @@ import OwlCarousel from "react-owl-carousel";
 import dayjs from "dayjs";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
-import blog1 from "../../../images/blog-banner.png";
-import blog2 from "../../../images/blog-img1.png";
-import blog3 from "../../../images/blog-img2.png";
-import blog4 from "../../../images/blog-img3.png";
 import { getBlogListApi, getBlogCattApi } from "../../../api/methods";
 
 import { Interweave } from "interweave";
