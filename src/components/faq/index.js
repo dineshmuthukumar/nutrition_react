@@ -726,12 +726,8 @@ const FAQComponent = () => {
                       }
                       body={
                         <>
-                          As you may have known, there are two different
-                          standards of NFTs: ERC-721 and ERC-1155.{""}
                           ERC-721 NFTs can be listed for either direct buying or
-                          for bidding or a combination of both. ERC-1155 NFTs,
-                          however, can only be listed for direct buying and not
-                          for bidding.
+                          for bidding or a combination of both.
                         </>
                       }
                       show={false}
@@ -748,7 +744,7 @@ const FAQComponent = () => {
                           your profile and click on the particular NFT that you
                           would like to list for sale. Before you do so, you
                           will need to ensure if your NFT belongs to the ERC-721
-                          category or the ERC-1155 category.{""}
+                          category.{""}
                           If you have chosen an ERC-721 NFT, you will have an
                           option to either list your NFT for direct selling or
                           for bidding or for both.{""}
@@ -757,8 +753,6 @@ const FAQComponent = () => {
                           NFT for bidding, you will have to list the minimum bid
                           amount. If you have chosen both options, you will need
                           to list a sale price and a minimum bid.{""}
-                          If you have an ERC-1155 NFT, you can only put it up
-                          for direct selling
                         </>
                       }
                       show={false}
@@ -781,25 +775,6 @@ const FAQComponent = () => {
                           so far. Any person who has placed a bid on your NFT
                           will have the bidding amount returned to their
                           available balance on the Jump.trade walle.
-                        </>
-                      }
-                      show={false}
-                    />
-                  </div>
-                  <div className="col-12 col-md-6">
-                    <Accordian
-                      head={"How can I list an ERC-1155 NFT for sale?"}
-                      body={
-                        <>
-                          As you may have known, the ERC-1155 NFT can only be
-                          listed for direct selling. You can click on the
-                          specific NFT you would like to sell on the “my NFTs“
-                          section of your profile. You can specify the price of
-                          the NFT that you would like to sell it for.{""}
-                          It is to be noted that if you own multiple copies of a
-                          single ERC-1155 NFT, you can specify the number of
-                          NFTs you would like to sell. You can also cancel the
-                          sale of a specific number of NFTs.
                         </>
                       }
                       show={false}
@@ -924,28 +899,7 @@ const FAQComponent = () => {
                           will have an option to place your bid on the
                           particular NFT.{""}
                           It is to be noted that the new bid that you placed
-                          should be at least $5 higher than the earlier bid.
-                        </>
-                      }
-                      show={false}
-                    />
-                  </div>
-                  <div className="col-12 col-md-6">
-                    <Accordian
-                      head={
-                        "Why is it that some NFTs are available only for direct selling and not for bidding?"
-                      }
-                      body={
-                        <>
-                          As you may have known, there are two different types
-                          of NFTs, ERC-721 and ERC-1155. ERC-721 NFTs can be
-                          listed either for selling or bidding. ERC-1155 NFTs,
-                          however, can only be directly sold and cannot be put
-                          up for bidding.{""}
-                          In addition, whether or not to sell the ERC-721 NFT
-                          through direct selling or by opening it up for bidding
-                          entirely depends on the discretion of the seller who
-                          is in possession of the NFT
+                          should be higher than the earlier bid.
                         </>
                       }
                       show={false}
