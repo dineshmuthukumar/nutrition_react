@@ -4,13 +4,16 @@
   font-family: $neue-helvetica-extended;
 
   background: var(--theme-dark-green);
-  padding: 6rem 4rem;
+  padding: 7rem 5rem;
   color: #fff !important;
+  @media screen and (max-width: 767px) {
+    padding: 5rem 3rem;
+  }
 
   h3 {
     color: #fff;
-    font-size: 1.5rem;
-    font-family: var(--impact) !important;
+    font-size: 2rem;
+    font-family: $Impact;
   }
 
   .c-tabs {
@@ -20,14 +23,14 @@
 
     .nav-tab {
       margin: 0.3rem 0.5rem 0 0;
-      padding: 0.25rem 1rem;
+      padding: 0.75rem 1.5rem;
       border-radius: 4px;
       background-color: #212135;
       color: #fff;
       transition: 0.5s;
-      font-size: 0.5rem;
+      font-size: 1rem;
       text-align: center;
-      margin-bottom: 0.5rem;
+      margin-bottom: 1rem;
 
       &.active {
         background-color: var(--ck-theme);
@@ -39,14 +42,14 @@
 
   .tab-divider {
     border-bottom: 2px solid #fff;
-    margin: 1.5rem 0;
+    margin: 2rem 0;
   }
 }
 
 .c-accordian {
   background: #212135;
   font-family: $neue-helvetica-extended;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 
   .c-accor-head {
     display: flex;
@@ -55,16 +58,16 @@
 
     .head-area {
       flex: 1;
-      font-size: 0.6rem;
+      font-size: 1.1rem;
     }
 
     div {
-      padding: 0.5rem;
+      padding: 1rem;
     }
   }
   .c-accor-body {
-    padding: 0.8rem;
-    font-size: 0.5rem;
+    padding: 1.5rem;
+    font-size: 0.9rem;
     border-bottom: 2px solid var(--ck-theme);
 
     p {
