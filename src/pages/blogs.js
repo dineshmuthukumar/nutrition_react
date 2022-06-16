@@ -8,8 +8,8 @@ const Blog = () => {
     <>
       <Header
         bgImage
-        title="NFT Marketplace | Cricket NFT Marketplace | Buy & Sell Cricket NFTs "
-        description="Jump.trade is the most secured NFT marketplace where you can buy & sell rare cricket NFTs. Discover, collect, and trade authentic cricket player NFTs on our NFT gaming marketplace. Sign up now!"
+        title="Insights on NFT Games, P2E Guides & More | Jump.trade"
+        description="Keep yourself updated with the latest stories, insightful information, and latest trends in the web3 space brought to you by Jump.trade, the most trusted NFT marketplace in the world."
       />
       <BlogList />
       <Footer />
