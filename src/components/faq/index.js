@@ -768,13 +768,12 @@ const FAQComponent = () => {
                           You cannot edit the price of the NFT that has been put
                           up for sale. You can, however, remove the NFT from the
                           listing and put it up for sale again with the edited
-                          price.{""}
-                          If your NFT has been listed for bidding, it should be
-                          noted that removing your NFT from being listed
-                          immediately cancels all the bids your NFT has received
-                          so far. Any person who has placed a bid on your NFT
-                          will have the bidding amount returned to their
-                          available balance on the Jump.trade walle.
+                          price. If your NFT has been listed for bidding, it
+                          should be noted that removing your NFT from being
+                          listed immediately cancels all the bids your NFT has
+                          received so far. Any person who has placed a bid on
+                          your NFT will have the bidding amount returned to
+                          their available balance on the Jump.trade walle.
                         </>
                       }
                       show={false}
@@ -785,11 +784,9 @@ const FAQComponent = () => {
                       head={"How long can I list the NFT for bidding?"}
                       body={
                         <>
-                          As of now, there is no time limit for keeping your NFT
-                          open for bidding. The bidding for your NFTs will be
-                          active until you choose to close them. However, you
-                          will need to manually close the sale of your NFTs or
-                          the bidding will go on forever.
+                          Auction duration can be up to 3 days. Any bid placed
+                          in the last 10 minutes extends the auction by 10
+                          minutes.
                         </>
                       }
                       show={false}
