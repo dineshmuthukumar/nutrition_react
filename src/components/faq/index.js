@@ -42,6 +42,16 @@ const FAQComponent = () => {
     },
     {
       id: 8,
+      name: "Selling on the Jump.trade  Marketplace",
+      active: false,
+    },
+    {
+      id: 9,
+      name: "Buying on the Jump.trade  Marketplace",
+      active: false,
+    },
+    {
+      id: 10,
       name: "Troubleshooting",
       active: false,
     },
@@ -685,6 +695,279 @@ const FAQComponent = () => {
                 </div>
               );
             } else if (active === 8) {
+              return (
+                <div className="row">
+                  <div className="col-12 col-md-6">
+                    <Accordian
+                      head={
+                        "How do I become eligible to sell my NFT on the Jump.trade  marketplace?                      "
+                      }
+                      body={
+                        <>
+                          If you have purchased/won the auction for any NFT
+                          listed before on Jump.trade , and you have them listed
+                          under the “my NFTs“ section of your profile, you are
+                          eligible to sell your NFT on the Jump.trade
+                          marketplace. {""}
+                          {""}
+                          Jump.trade does not charge any amount for listing your
+                          NFT for selling. Every NFT collector with at least one
+                          NFT in their possession is eligible to sell on
+                          Jump.trade.
+                        </>
+                      }
+                      show={false}
+                    />
+                  </div>
+                  <div className="col-12 col-md-6">
+                    <Accordian
+                      head={
+                        "What are the different options available for selling my NFT?"
+                      }
+                      body={
+                        <>
+                          As you may have known, there are two different
+                          standards of NFTs: ERC-721 and ERC-1155.{""}
+                          ERC-721 NFTs can be listed for either direct buying or
+                          for bidding or a combination of both. ERC-1155 NFTs,
+                          however, can only be listed for direct buying and not
+                          for bidding.
+                        </>
+                      }
+                      show={false}
+                    />
+                  </div>
+                  <div className="col-12 col-md-6">
+                    <Accordian
+                      head={
+                        "What is the process of listing an NFT that I own for sale?"
+                      }
+                      body={
+                        <>
+                          You will need to navigate to the “my NFTs“ section on
+                          your profile and click on the particular NFT that you
+                          would like to list for sale. Before you do so, you
+                          will need to ensure if your NFT belongs to the ERC-721
+                          category or the ERC-1155 category.{""}
+                          If you have chosen an ERC-721 NFT, you will have an
+                          option to either list your NFT for direct selling or
+                          for bidding or for both.{""}
+                          If you have chosen direct selling, you will have to
+                          enter the sale amount. If you have chosen to list the
+                          NFT for bidding, you will have to list the minimum bid
+                          amount. If you have chosen both options, you will need
+                          to list a sale price and a minimum bid.{""}
+                          If you have an ERC-1155 NFT, you can only put it up
+                          for direct selling
+                        </>
+                      }
+                      show={false}
+                    />
+                  </div>
+                  <div className="col-12 col-md-6">
+                    <Accordian
+                      head={
+                        "Can I edit the price of an NFT that has been put up for sale?"
+                      }
+                      body={
+                        <>
+                          You cannot edit the price of the NFT that has been put
+                          up for sale. You can, however, remove the NFT from the
+                          listing and put it up for sale again with the edited
+                          price.{""}
+                          If your NFT has been listed for bidding, it should be
+                          noted that removing your NFT from being listed
+                          immediately cancels all the bids your NFT has received
+                          so far. Any person who has placed a bid on your NFT
+                          will have the bidding amount returned to their
+                          available balance on the Jump.trade walle.
+                        </>
+                      }
+                      show={false}
+                    />
+                  </div>
+                  <div className="col-12 col-md-6">
+                    <Accordian
+                      head={"How can I list an ERC-1155 NFT for sale?"}
+                      body={
+                        <>
+                          As you may have known, the ERC-1155 NFT can only be
+                          listed for direct selling. You can click on the
+                          specific NFT you would like to sell on the “my NFTs“
+                          section of your profile. You can specify the price of
+                          the NFT that you would like to sell it for.{""}
+                          It is to be noted that if you own multiple copies of a
+                          single ERC-1155 NFT, you can specify the number of
+                          NFTs you would like to sell. You can also cancel the
+                          sale of a specific number of NFTs.
+                        </>
+                      }
+                      show={false}
+                    />
+                  </div>
+                  <div className="col-12 col-md-6">
+                    <Accordian
+                      head={"How long can I list the NFT for bidding?"}
+                      body={
+                        <>
+                          As of now, there is no time limit for keeping your NFT
+                          open for bidding. The bidding for your NFTs will be
+                          active until you choose to close them. However, you
+                          will need to manually close the sale of your NFTs or
+                          the bidding will go on forever.
+                        </>
+                      }
+                      show={false}
+                    />
+                  </div>
+                  <div className="col-12 col-md-6">
+                    <Accordian
+                      head={
+                        "What happens after a person places a bid on my NFT?s"
+                      }
+                      body={
+                        <>
+                          As soon as a prospective buyer places a bid on your
+                          NFT, you will be notified via push notifications and
+                          an email. You are required to acknowledge the bid
+                          within seven days of the bid being placed. Otherwise,
+                          the bid will lapse and will revert to the previously
+                          acknowledged bid.
+                        </>
+                      }
+                      show={false}
+                    />
+                  </div>
+                  <div className="col-12 col-md-6">
+                    <Accordian
+                      head={"How do I remove an NFT from being listed on sale?"}
+                      body={
+                        <>
+                          You can navigate to the section where all the NFTs
+                          listed for sale are displayed. You can choose the
+                          particular NFT that you would like to delist from
+                          being on sale, and choose the option to cancel the
+                          sale. It is to be noted that you cannot partly remove
+                          the NFT from being listed only for selling or for
+                          bidding. If you would like to remove your NFT partly,
+                          you have to list the NFT for sale from scratch.
+                        </>
+                      }
+                      show={false}
+                    />
+                  </div>
+                </div>
+              );
+            } else if (active === 9) {
+              return (
+                <div className="row">
+                  <div className="col-12 col-md-6">
+                    <Accordian
+                      head={
+                        "How do I become eligible to buy an NFT on Jump.trade?"
+                      }
+                      body={
+                        <>
+                          All you need to do is create an account using your
+                          email address on the Jump.trade website and you are
+                          eligible to buy your NFTs after funding your wallet.
+                          The details about funding your wallet can be found in
+                          the “Jump.trade wallet“ section of the FAQ document.
+                        </>
+                      }
+                      show={false}
+                    />
+                  </div>
+                  <div className="col-12 col-md-6">
+                    <Accordian
+                      head={"How do I find the NFTs that I can buy?"}
+                      body={
+                        <>
+                          You will be provided with a list of NFTs available for
+                          sale as soon as you open the Jump.trade marketplace
+                          website. You will also be able to see the list of top
+                          sellers and the top selling NFTs.
+                          {""}
+                          You also have an option to use filters to find the
+                          exact NFT you would like to buy. You can filter by the
+                          NFT type, the sale type, and the collection to fit the
+                          NFT belongs.
+                        </>
+                      }
+                      show={false}
+                    />
+                  </div>
+                  <div className="col-12 col-md-6">
+                    <Accordian
+                      head={
+                        "What are the different options available for buying an NFT on Jump.trade?"
+                      }
+                      body={
+                        <>
+                          Based on the listing type, you can choose to directly
+                          buy the NFT that is listed for sale. Alternatively, if
+                          an NFT is listed for bidding, you can place your bid
+                          on the NFT two get a chance to make that NFT yours.
+                        </>
+                      }
+                      show={false}
+                    />
+                  </div>
+                  <div className="col-12 col-md-6">
+                    <Accordian
+                      head={"How does bidding on the NFT work?"}
+                      body={
+                        <>
+                          You have to have sufficient wallet balance to place a
+                          valid bid on the NFT of your choice (provided it is
+                          listed for bidding). Once you click on the NFT, you
+                          will have an option to place your bid on the
+                          particular NFT.{""}
+                          It is to be noted that the new bid that you placed
+                          should be at least $5 higher than the earlier bid.
+                        </>
+                      }
+                      show={false}
+                    />
+                  </div>
+                  <div className="col-12 col-md-6">
+                    <Accordian
+                      head={
+                        "Why is it that some NFTs are available only for direct selling and not for bidding?"
+                      }
+                      body={
+                        <>
+                          As you may have known, there are two different types
+                          of NFTs, ERC-721 and ERC-1155. ERC-721 NFTs can be
+                          listed either for selling or bidding. ERC-1155 NFTs,
+                          however, can only be directly sold and cannot be put
+                          up for bidding.{""}
+                          In addition, whether or not to sell the ERC-721 NFT
+                          through direct selling or by opening it up for bidding
+                          entirely depends on the discretion of the seller who
+                          is in possession of the NFT
+                        </>
+                      }
+                      show={false}
+                    />
+                  </div>
+                  <div className="col-12 col-md-6">
+                    <Accordian
+                      head={"Who determines the price of the NFT?"}
+                      body={
+                        <>
+                          The price of the NFT completely depends on the
+                          discretion of the seller. Jump.trade does not in any
+                          way influence the prices of the NFTs being listed on
+                          the Jump.trade marketplace.
+                        </>
+                      }
+                      show={false}
+                    />
+                  </div>
+                </div>
+              );
+            } else if (active === 10) {
               return (
                 <div className="row">
                   <div className="col-12 col-md-6">
