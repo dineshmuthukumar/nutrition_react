@@ -6,7 +6,7 @@ import MoblieAppComponent from "../components/mobile-app";
 const MobileApp = () => {
   return (
     <>
-      <Header bgImage />
+      <Header />
       <MoblieAppComponent />
       <Footer />
     </>

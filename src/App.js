@@ -294,7 +294,7 @@ const WebContainer = () => {
         <Route exact path="/terms-and-conditions" component={Terms} />
         <Route exact path="/about-us" component={Abouts} />
         <Route exact path="/user/:slug/details" component={UserDetails} />
-        <Route exact path="/downloads" component={MobileApp} />
+        {/* <Route exact path="/mobile-app" component={MobileApp} /> */}
 
         {/* <Route path="/not-found" component={NotFound} /> */}
         <Route

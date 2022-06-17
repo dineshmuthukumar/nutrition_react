@@ -1,78 +1,68 @@
 @import "../../styles/common";
 
-.faq-wrapper {
-  font-family: $neue-helvetica-extended;
+.downloads-sec {
+  background-image: url(https://cdn.guardianlink.io/product-hotspot/images/bg-downloadapp.png);
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -7rem;
+  padding-top: 12rem;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  color: #fff;
+  .content {
+    width: 80%;
+    margin: auto;
+    padding-bottom: 5rem;
 
-  background: var(--theme-dark-green);
-  padding: 7rem 5rem;
-  color: #fff !important;
-  @media screen and (max-width: 767px) {
-    padding: 5rem 3rem;
-  }
+    h1 {
+      font-size: 3.2rem;
+      font-family: "neue_helvetica_extended_bold" !important;
+    }
+    p {
+      font-size: 2.2rem;
+      font-family: "neue_helvetica_extended";
+      color: #bababa;
+    }
 
-  h3 {
-    color: #fff;
-    font-size: 2rem;
-    font-family: $Impact;
-  }
-
-  .c-tabs {
-    display: flex;
-    justify-content: start;
-    flex-wrap: wrap;
-
-    .nav-tab {
-      margin: 0.3rem 0.5rem 0 0;
-      padding: 0.75rem 1.5rem;
-      border-radius: 4px;
-      background-color: #212135;
-      color: #fff;
-      transition: 0.5s;
-      font-size: 1rem;
-      text-align: center;
-      margin-bottom: 1rem;
-
-      &.active {
-        background-color: var(--ck-theme);
-        color: #000;
-        font-weight: 600;
+    @media screen and (max-width: 1200px) {
+    }
+    @media screen and (max-width: 991px) {
+      width: 100%;
+      // padding-bottom: 0 !important;
+      h1 {
+        font-size: 2.6rem;
+      }
+      p {
+        font-size: 1.7rem;
+        margin-bottom: 0 !important;
       }
     }
-  }
-
-  .tab-divider {
-    border-bottom: 2px solid #fff;
-    margin: 2rem 0;
-  }
-}
-
-.c-accordian {
-  background: #212135;
-  font-family: $neue-helvetica-extended;
-  margin-bottom: 1.5rem;
-
-  .c-accor-head {
-    display: flex;
-    align-items: center;
-    border-bottom: 2px solid var(--ck-theme);
-
-    .head-area {
-      flex: 1;
-      font-size: 1.1rem;
+    @media screen and (max-width: 845px) {
+      p {
+        font-size: 1.5rem;
+      }
     }
-
-    div {
-      padding: 1rem;
-    }
-  }
-  .c-accor-body {
-    padding: 1.5rem;
-    font-size: 0.9rem;
-    border-bottom: 2px solid var(--ck-theme);
-
-    p {
-      &:last-child {
-        margin-bottom: 0;
+    @media screen and (max-width: 767px) {
+      text-align: center;
+      width: 100%;
+      h1 {
+        font-size: 2rem;
+      }
+      p {
+        font-size: 1.6rem;
+      }
+      .downloads_btns {
+        flex-direction: column;
+        a {
+          margin-right: 0px !important;
+          &:first-child {
+            margin-bottom: 2rem;
+          }
+        }
       }
     }
   }
