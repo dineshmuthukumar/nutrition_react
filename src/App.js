@@ -58,6 +58,7 @@ const BlogList = lazy(() => import("./pages/blog-list"));
 const AnnounDetails = lazy(() => import("./pages/announcement-details"));
 const AnnounementList = lazy(() => import("./pages/announcement-list"));
 const FAQ = lazy(() => import("./pages/faq"));
+const MobileApp = lazy(() => import("./pages/mobile-app"));
 
 function App(props) {
   const market_start_date = "Mar 9, 2022 12:30:00";
@@ -293,6 +294,8 @@ const WebContainer = () => {
         <Route exact path="/terms-and-conditions" component={Terms} />
         <Route exact path="/about-us" component={Abouts} />
         <Route exact path="/user/:slug/details" component={UserDetails} />
+        <Route exact path="/downloads" component={MobileApp} />
+
         {/* <Route path="/not-found" component={NotFound} /> */}
         <Route
           path="/mcl"
