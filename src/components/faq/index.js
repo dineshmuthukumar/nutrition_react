@@ -121,7 +121,6 @@ const FAQComponent = () => {
                           like original audio, video and digital images.
                         </>
                       }
-                      show={false}
                     />
                     <Accordian
                       head={
@@ -138,7 +137,6 @@ const FAQComponent = () => {
                           keep a record of the previous collectors.
                         </>
                       }
-                      show={false}
                     />
                     <Accordian
                       head={
@@ -156,7 +154,6 @@ const FAQComponent = () => {
                           secondary markets.
                         </>
                       }
-                      show={false}
                     />
                     <Accordian
                       head={
@@ -172,7 +169,6 @@ const FAQComponent = () => {
                           collectible investment.
                         </>
                       }
-                      show={false}
                     />
                     <Accordian
                       head={"Why should I even invest in NFTs?"}
@@ -187,7 +183,6 @@ const FAQComponent = () => {
                           original value over a period of just days.
                         </>
                       }
-                      show={false}
                     />
                     <Accordian
                       head={
@@ -207,7 +202,6 @@ const FAQComponent = () => {
                           the NFT transactions.
                         </>
                       }
-                      show={false}
                     />
                     <Accordian
                       head={
@@ -224,7 +218,6 @@ const FAQComponent = () => {
                           known to increase the value.
                         </>
                       }
-                      show={false}
                     />
                   </div>
                   <div className="col-12 col-md-6">
@@ -249,7 +242,6 @@ const FAQComponent = () => {
                           </p>
                         </>
                       }
-                      show={false}
                     />
                     <Accordian
                       head={"How do I purchase an NFT?"}
@@ -264,7 +256,6 @@ const FAQComponent = () => {
                           an NFT from our collection.
                         </>
                       }
-                      show={false}
                     />
                     <Accordian
                       head={"Are NFTs considered as assets?"}
@@ -279,7 +270,6 @@ const FAQComponent = () => {
                           value forever.
                         </>
                       }
-                      show={false}
                     />
                     <Accordian
                       head={
@@ -296,7 +286,6 @@ const FAQComponent = () => {
                           read the Terms and Conditions for further details.
                         </>
                       }
-                      show={false}
                     />
                     <Accordian
                       head={
@@ -311,7 +300,6 @@ const FAQComponent = () => {
                           understand the details.
                         </>
                       }
-                      show={false}
                     />
                     <Accordian
                       head={
@@ -326,7 +314,6 @@ const FAQComponent = () => {
                           understand the details.
                         </>
                       }
-                      show={false}
                     />
                     <Accordian
                       head={"Can I display the NFT on a public platform?"}
@@ -340,7 +327,6 @@ const FAQComponent = () => {
                           your rights, responsibilities, and restrictions.
                         </>
                       }
-                      show={false}
                     />
                   </div>
                 </div>
@@ -360,7 +346,6 @@ const FAQComponent = () => {
                           first community-centered cricket game.
                         </>
                       }
-                      show={false}
                     />
                     <Accordian
                       head={"What is GuardianLink?"}
@@ -375,7 +360,6 @@ const FAQComponent = () => {
                           its functionalities and attributes.
                         </>
                       }
-                      show={false}
                     />
                   </div>
                   <div className="col-12 col-md-6">
@@ -392,7 +376,6 @@ const FAQComponent = () => {
                           completely not in our control.
                         </>
                       }
-                      show={false}
                     />
                   </div>
                 </div>
@@ -418,7 +401,6 @@ const FAQComponent = () => {
                           </p> */}
                         </>
                       }
-                      show={false}
                     />
                   </div>
                   <div className="col-12 col-md-6"></div>
@@ -443,7 +425,6 @@ const FAQComponent = () => {
                           Jump.trade.
                         </>
                       }
-                      show={false}
                     />
                   </div>
                   <div className="col-12 col-md-6">
@@ -466,7 +447,6 @@ const FAQComponent = () => {
                           </p>
                         </>
                       }
-                      show={false}
                     />
                   </div>
                 </div>
@@ -496,7 +476,6 @@ const FAQComponent = () => {
                           </p>
                         </>
                       }
-                      show={false}
                     />
                   </div>
                   <div className="col-12 col-md-6">
@@ -512,7 +491,6 @@ const FAQComponent = () => {
                           engage in the act of buying.
                         </>
                       }
-                      show={false}
                     />
                   </div>
                 </div>
@@ -540,7 +518,6 @@ const FAQComponent = () => {
                           </p>
                         </>
                       }
-                      show={false}
                     />
                     <Accordian
                       head={"Why is a wallet necessary?"}
@@ -554,7 +531,6 @@ const FAQComponent = () => {
                           wallet is a component of uncompromising importance.
                         </>
                       }
-                      show={false}
                     />
                     <Accordian
                       head={"How can I load money into my wallet?"}
@@ -567,7 +543,6 @@ const FAQComponent = () => {
                           wallet.
                         </>
                       }
-                      show={false}
                     />
                     <Accordian
                       head={"What are the payment options available?"}
@@ -578,7 +553,6 @@ const FAQComponent = () => {
                           or by transferring from another cryptocurrency wallet.
                         </>
                       }
-                      show={false}
                     />
                     <Accordian
                       head={"What are the currencies accepted by your wallet?"}
@@ -594,7 +568,6 @@ const FAQComponent = () => {
                           stated on our terms and conditions.
                         </>
                       }
-                      show={false}
                     />
                   </div>
                   <div className="col-12 col-md-6">
@@ -611,7 +584,6 @@ const FAQComponent = () => {
                           currency to fund your wallet.
                         </>
                       }
-                      show={false}
                     />
                     <Accordian
                       head={"What happens to my unused wallet funds?"}
@@ -625,7 +597,6 @@ const FAQComponent = () => {
                           the document in detail.
                         </>
                       }
-                      show={false}
                     />
                     <Accordian
                       head={
@@ -642,7 +613,6 @@ const FAQComponent = () => {
                           support.
                         </>
                       }
-                      show={false}
                     />
                     <Accordian
                       head={
@@ -668,7 +638,6 @@ const FAQComponent = () => {
                           </p>
                         </>
                       }
-                      show={false}
                     />
                   </div>
                 </div>
@@ -688,7 +657,6 @@ const FAQComponent = () => {
                           engage in the act of buying.
                         </>
                       }
-                      show={false}
                     />
                   </div>
                   <div className="col-12 col-md-6"></div>
@@ -716,7 +684,6 @@ const FAQComponent = () => {
                           Jump.trade.
                         </>
                       }
-                      show={false}
                     />
                   </div>
                   <div className="col-12 col-md-6">
@@ -730,7 +697,6 @@ const FAQComponent = () => {
                           for bidding or a combination of both.
                         </>
                       }
-                      show={false}
                     />
                   </div>
                   <div className="col-12 col-md-6">
@@ -755,7 +721,6 @@ const FAQComponent = () => {
                           to list a sale price and a minimum bid.{""}
                         </>
                       }
-                      show={false}
                     />
                   </div>
                   <div className="col-12 col-md-6">
@@ -776,7 +741,6 @@ const FAQComponent = () => {
                           their available balance on the Jump.trade walle.
                         </>
                       }
-                      show={false}
                     />
                   </div>
                   <div className="col-12 col-md-6">
@@ -789,7 +753,6 @@ const FAQComponent = () => {
                           minutes.
                         </>
                       }
-                      show={false}
                     />
                   </div>
                   <div className="col-12 col-md-6">
@@ -807,7 +770,6 @@ const FAQComponent = () => {
                           acknowledged bid.
                         </>
                       }
-                      show={false}
                     />
                   </div>
                   <div className="col-12 col-md-6">
@@ -825,7 +787,6 @@ const FAQComponent = () => {
                           you have to list the NFT for sale from scratch.
                         </>
                       }
-                      show={false}
                     />
                   </div>
                 </div>
@@ -847,7 +808,6 @@ const FAQComponent = () => {
                           the “Jump.trade wallet“ section of the FAQ document.
                         </>
                       }
-                      show={false}
                     />
                   </div>
                   <div className="col-12 col-md-6">
@@ -866,7 +826,6 @@ const FAQComponent = () => {
                           NFT belongs.
                         </>
                       }
-                      show={false}
                     />
                   </div>
                   <div className="col-12 col-md-6">
@@ -882,7 +841,6 @@ const FAQComponent = () => {
                           on the NFT two get a chance to make that NFT yours.
                         </>
                       }
-                      show={false}
                     />
                   </div>
                   <div className="col-12 col-md-6">
@@ -899,7 +857,6 @@ const FAQComponent = () => {
                           should be higher than the earlier bid.
                         </>
                       }
-                      show={false}
                     />
                   </div>
                   <div className="col-12 col-md-6">
@@ -913,7 +870,6 @@ const FAQComponent = () => {
                           the Jump.trade marketplace.
                         </>
                       }
-                      show={false}
                     />
                   </div>
                 </div>
@@ -935,7 +891,6 @@ const FAQComponent = () => {
                           limits and scope, address the issues for you.
                         </>
                       }
-                      show={false}
                     />
                     <Accordian
                       head={
@@ -950,7 +905,6 @@ const FAQComponent = () => {
                           contact our support team.
                         </>
                       }
-                      show={false}
                     />
                     <Accordian
                       head={
@@ -963,7 +917,6 @@ const FAQComponent = () => {
                           NFT on the marketplace by having it listed.
                         </>
                       }
-                      show={false}
                     />
                     <Accordian
                       head={
@@ -986,7 +939,6 @@ const FAQComponent = () => {
                           </p>
                         </>
                       }
-                      show={false}
                     />
                     <Accordian
                       head={"What is Discord?"}
@@ -1005,7 +957,6 @@ const FAQComponent = () => {
                           </p>
                         </>
                       }
-                      show={false}
                     />
                   </div>
                   <div className="col-12 col-md-6">
@@ -1020,7 +971,6 @@ const FAQComponent = () => {
                           and the average price that you have sold the NFTs for.
                         </>
                       }
-                      show={false}
                     />
                     <Accordian
                       head={
@@ -1044,7 +994,6 @@ const FAQComponent = () => {
                           </p>
                         </>
                       }
-                      show={false}
                     />
                     <Accordian
                       head={"How do I see the ownership history of the NFT?"}
@@ -1057,7 +1006,6 @@ const FAQComponent = () => {
                           the authenticity of the NFT.
                         </>
                       }
-                      show={false}
                     />
                     <Accordian
                       head={
@@ -1072,7 +1020,6 @@ const FAQComponent = () => {
                           accuracy of your wallet address.
                         </>
                       }
-                      show={false}
                     />
                     <Accordian
                       head={"How do I determine the rarity of the NFT?"}
@@ -1090,7 +1037,6 @@ const FAQComponent = () => {
                           Jump.trade outside the Jump.trade marketplace.
                         </>
                       }
-                      show={false}
                     />
                   </div>
                 </div>
@@ -1103,8 +1049,8 @@ const FAQComponent = () => {
   );
 };
 
-const Accordian = ({ head, body, show = false }) => {
-  const [state, setState] = useState(show);
+const Accordian = ({ head, body }) => {
+  const [state, setState] = useState(false);
 
   return (
     <div className="c-accordian">
@@ -1116,7 +1062,7 @@ const Accordian = ({ head, body, show = false }) => {
         <div className="head-area">{head}</div>
 
         <div>
-          {show ? (
+          {state ? (
             <FaMinusCircle color={"#f5ff00"} size={20} />
           ) : (
             <FaPlusCircle color={"#f5ff00"} size={20} />
