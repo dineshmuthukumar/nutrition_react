@@ -304,10 +304,10 @@ const Footer = () => {
             >
               Privacy Policy
             </span>
-            <div className="vr"></div>
+            {/* <div className="vr"></div>
             <span className="ms-3 me-3" onClick={() => history.push("/faq")}>
               FAQs
-            </span>
+            </span> */}
             <div className="vr"></div>
             <span
               className="ms-3"
