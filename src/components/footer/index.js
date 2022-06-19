@@ -142,7 +142,7 @@ const Footer = () => {
           </div>
           <div className="submenu second-box">
             <div className="downloads-section mb-5">
-              <h1 className="app-download">Download App</h1>
+              <h2 className="app-download">Download App</h2>
               <div className="d-flex pt-3 downloads_btns mb-4">
                 <a
                   href="https://play.google.com/store/apps/details?id=com.jump.trade"
