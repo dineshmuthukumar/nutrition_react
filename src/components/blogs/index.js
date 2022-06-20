@@ -85,14 +85,14 @@ const BlogList = () => {
       );
 
       const BlogAnnouncmentData = await getBlogCateListApi();
-      console.log(BlogAnnouncmentData);
+      // console.log(BlogAnnouncmentData);
 
       const filteredAnnouncementBlogData = BlogAnnouncmentData?.data?.filter(
         (item) =>
           item.categories.includes(filteredAnnouncementCategoryData[0]?.id)
       );
       const annoncedata = [...filteredAnnouncementBlogData];
-      console.log(annoncedata, "annoncedata");
+      // console.log(annoncedata, "annoncedata");
       //const annoncedata_last = filteredAnnouncementBlogData;
       const AnnouncementData = annoncedata[0];
 
