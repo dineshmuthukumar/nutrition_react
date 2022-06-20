@@ -58,6 +58,7 @@ const FAQComponent = () => {
   ]);
 
   const [active, setActive] = useState(1);
+  const [isActivePanel, setActivePanel] = useState({});
 
   const handleChange = (input) => {
     const info = [...tabs];
@@ -71,6 +72,10 @@ const FAQComponent = () => {
 
     setTabs(info);
     setActive(input.id);
+
+    if (input.id != active) {
+      setActivePanel({});
+    }
   };
 
   return (
@@ -121,6 +126,10 @@ const FAQComponent = () => {
                           like original audio, video and digital images.
                         </>
                       }
+                      status={false}
+                      index={1}
+                      isActivePanel={isActivePanel[1]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={
@@ -137,6 +146,10 @@ const FAQComponent = () => {
                           keep a record of the previous collectors.
                         </>
                       }
+                      status={false}
+                      index={2}
+                      isActivePanel={isActivePanel[2]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={
@@ -154,6 +167,10 @@ const FAQComponent = () => {
                           secondary markets.
                         </>
                       }
+                      status={false}
+                      index={3}
+                      isActivePanel={isActivePanel[3]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={
@@ -169,6 +186,10 @@ const FAQComponent = () => {
                           collectible investment.
                         </>
                       }
+                      status={false}
+                      index={4}
+                      isActivePanel={isActivePanel[4]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={"Why should I even invest in NFTs?"}
@@ -183,6 +204,10 @@ const FAQComponent = () => {
                           original value over a period of just days.
                         </>
                       }
+                      status={false}
+                      index={5}
+                      isActivePanel={isActivePanel[5]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={
@@ -202,6 +227,10 @@ const FAQComponent = () => {
                           the NFT transactions.
                         </>
                       }
+                      status={false}
+                      index={6}
+                      isActivePanel={isActivePanel[6]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={
@@ -218,6 +247,10 @@ const FAQComponent = () => {
                           known to increase the value.
                         </>
                       }
+                      status={false}
+                      index={7}
+                      isActivePanel={isActivePanel[7]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                   <div className="col-12 col-md-6">
@@ -242,6 +275,10 @@ const FAQComponent = () => {
                           </p>
                         </>
                       }
+                      status={false}
+                      index={8}
+                      isActivePanel={isActivePanel[8]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={"How do I purchase an NFT?"}
@@ -256,6 +293,10 @@ const FAQComponent = () => {
                           an NFT from our collection.
                         </>
                       }
+                      status={false}
+                      index={9}
+                      isActivePanel={isActivePanel[9]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={"Are NFTs considered as assets?"}
@@ -270,6 +311,10 @@ const FAQComponent = () => {
                           value forever.
                         </>
                       }
+                      status={false}
+                      index={10}
+                      isActivePanel={isActivePanel[10]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={
@@ -286,6 +331,10 @@ const FAQComponent = () => {
                           read the Terms and Conditions for further details.
                         </>
                       }
+                      status={false}
+                      index={11}
+                      isActivePanel={isActivePanel[11]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={
@@ -300,6 +349,10 @@ const FAQComponent = () => {
                           understand the details.
                         </>
                       }
+                      status={false}
+                      index={12}
+                      isActivePanel={isActivePanel[12]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={
@@ -314,6 +367,10 @@ const FAQComponent = () => {
                           understand the details.
                         </>
                       }
+                      status={false}
+                      index={13}
+                      isActivePanel={isActivePanel[13]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={"Can I display the NFT on a public platform?"}
@@ -327,6 +384,10 @@ const FAQComponent = () => {
                           your rights, responsibilities, and restrictions.
                         </>
                       }
+                      status={false}
+                      index={14}
+                      isActivePanel={isActivePanel[14]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                 </div>
@@ -346,6 +407,10 @@ const FAQComponent = () => {
                           first community-centered cricket game.
                         </>
                       }
+                      status={false}
+                      index={15}
+                      isActivePanel={isActivePanel[15]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={"What is GuardianLink?"}
@@ -360,6 +425,10 @@ const FAQComponent = () => {
                           its functionalities and attributes.
                         </>
                       }
+                      status={false}
+                      index={16}
+                      isActivePanel={isActivePanel[16]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                   <div className="col-12 col-md-6">
@@ -376,6 +445,10 @@ const FAQComponent = () => {
                           completely not in our control.
                         </>
                       }
+                      status={false}
+                      index={17}
+                      isActivePanel={isActivePanel[17]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                 </div>
@@ -401,6 +474,10 @@ const FAQComponent = () => {
                           </p> */}
                         </>
                       }
+                      status={false}
+                      index={18}
+                      isActivePanel={isActivePanel[18]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                   <div className="col-12 col-md-6"></div>
@@ -425,6 +502,10 @@ const FAQComponent = () => {
                           Jump.trade.
                         </>
                       }
+                      status={false}
+                      index={19}
+                      isActivePanel={isActivePanel[19]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                   <div className="col-12 col-md-6">
@@ -447,6 +528,10 @@ const FAQComponent = () => {
                           </p>
                         </>
                       }
+                      status={false}
+                      index={20}
+                      isActivePanel={isActivePanel[20]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                 </div>
@@ -476,6 +561,10 @@ const FAQComponent = () => {
                           </p>
                         </>
                       }
+                      status={false}
+                      index={21}
+                      isActivePanel={isActivePanel[21]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                   <div className="col-12 col-md-6">
@@ -491,6 +580,10 @@ const FAQComponent = () => {
                           engage in the act of buying.
                         </>
                       }
+                      status={false}
+                      index={22}
+                      isActivePanel={isActivePanel[22]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                 </div>
@@ -518,6 +611,10 @@ const FAQComponent = () => {
                           </p>
                         </>
                       }
+                      status={false}
+                      index={23}
+                      isActivePanel={isActivePanel[23]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={"Why is a wallet necessary?"}
@@ -531,6 +628,10 @@ const FAQComponent = () => {
                           wallet is a component of uncompromising importance.
                         </>
                       }
+                      status={false}
+                      index={24}
+                      isActivePanel={isActivePanel[24]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={"How can I load money into my wallet?"}
@@ -543,6 +644,10 @@ const FAQComponent = () => {
                           wallet.
                         </>
                       }
+                      status={false}
+                      index={25}
+                      isActivePanel={isActivePanel[25]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={"What are the payment options available?"}
@@ -553,6 +658,10 @@ const FAQComponent = () => {
                           or by transferring from another cryptocurrency wallet.
                         </>
                       }
+                      status={false}
+                      index={26}
+                      isActivePanel={isActivePanel[26]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={"What are the currencies accepted by your wallet?"}
@@ -568,6 +677,10 @@ const FAQComponent = () => {
                           stated on our terms and conditions.
                         </>
                       }
+                      status={false}
+                      index={27}
+                      isActivePanel={isActivePanel[27]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                   <div className="col-12 col-md-6">
@@ -584,6 +697,10 @@ const FAQComponent = () => {
                           currency to fund your wallet.
                         </>
                       }
+                      status={false}
+                      index={28}
+                      isActivePanel={isActivePanel[28]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={"What happens to my unused wallet funds?"}
@@ -597,6 +714,10 @@ const FAQComponent = () => {
                           the document in detail.
                         </>
                       }
+                      status={false}
+                      index={29}
+                      isActivePanel={isActivePanel[29]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={
@@ -613,6 +734,10 @@ const FAQComponent = () => {
                           support.
                         </>
                       }
+                      status={false}
+                      index={30}
+                      isActivePanel={isActivePanel[30]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={
@@ -638,6 +763,10 @@ const FAQComponent = () => {
                           </p>
                         </>
                       }
+                      status={false}
+                      index={31}
+                      isActivePanel={isActivePanel[31]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                 </div>
@@ -657,6 +786,10 @@ const FAQComponent = () => {
                           engage in the act of buying.
                         </>
                       }
+                      status={false}
+                      index={32}
+                      isActivePanel={isActivePanel[32]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                   <div className="col-12 col-md-6"></div>
@@ -684,6 +817,10 @@ const FAQComponent = () => {
                           Jump.trade.
                         </>
                       }
+                      status={false}
+                      index={33}
+                      isActivePanel={isActivePanel[33]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                   <div className="col-12 col-md-6">
@@ -697,6 +834,10 @@ const FAQComponent = () => {
                           for bidding or a combination of both.
                         </>
                       }
+                      status={false}
+                      index={34}
+                      isActivePanel={isActivePanel[34]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                   <div className="col-12 col-md-6">
@@ -721,6 +862,10 @@ const FAQComponent = () => {
                           to list a sale price and a minimum bid.{""}
                         </>
                       }
+                      status={false}
+                      index={35}
+                      isActivePanel={isActivePanel[35]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                   <div className="col-12 col-md-6">
@@ -741,6 +886,10 @@ const FAQComponent = () => {
                           their available balance on the Jump.trade walle.
                         </>
                       }
+                      status={false}
+                      index={36}
+                      isActivePanel={isActivePanel[36]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                   <div className="col-12 col-md-6">
@@ -753,6 +902,10 @@ const FAQComponent = () => {
                           minutes.
                         </>
                       }
+                      status={false}
+                      index={37}
+                      isActivePanel={isActivePanel[37]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                   <div className="col-12 col-md-6">
@@ -770,6 +923,10 @@ const FAQComponent = () => {
                           acknowledged bid.
                         </>
                       }
+                      status={false}
+                      index={38}
+                      isActivePanel={isActivePanel[38]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                   <div className="col-12 col-md-6">
@@ -787,6 +944,10 @@ const FAQComponent = () => {
                           you have to list the NFT for sale from scratch.
                         </>
                       }
+                      status={false}
+                      index={39}
+                      isActivePanel={isActivePanel[39]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                 </div>
@@ -808,6 +969,10 @@ const FAQComponent = () => {
                           the “Jump.trade wallet“ section of the FAQ document.
                         </>
                       }
+                      status={false}
+                      index={40}
+                      isActivePanel={isActivePanel[40]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                   <div className="col-12 col-md-6">
@@ -826,6 +991,10 @@ const FAQComponent = () => {
                           NFT belongs.
                         </>
                       }
+                      status={false}
+                      index={41}
+                      isActivePanel={isActivePanel[41]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                   <div className="col-12 col-md-6">
@@ -841,6 +1010,10 @@ const FAQComponent = () => {
                           on the NFT two get a chance to make that NFT yours.
                         </>
                       }
+                      status={false}
+                      index={42}
+                      isActivePanel={isActivePanel[42]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                   <div className="col-12 col-md-6">
@@ -857,6 +1030,10 @@ const FAQComponent = () => {
                           should be higher than the earlier bid.
                         </>
                       }
+                      status={false}
+                      index={43}
+                      isActivePanel={isActivePanel[43]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                   <div className="col-12 col-md-6">
@@ -870,6 +1047,10 @@ const FAQComponent = () => {
                           the Jump.trade marketplace.
                         </>
                       }
+                      status={false}
+                      index={44}
+                      isActivePanel={isActivePanel[44]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                 </div>
@@ -891,6 +1072,10 @@ const FAQComponent = () => {
                           limits and scope, address the issues for you.
                         </>
                       }
+                      status={false}
+                      index={45}
+                      isActivePanel={isActivePanel[45]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={
@@ -905,6 +1090,10 @@ const FAQComponent = () => {
                           contact our support team.
                         </>
                       }
+                      status={false}
+                      index={46}
+                      isActivePanel={isActivePanel[46]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={
@@ -917,6 +1106,10 @@ const FAQComponent = () => {
                           NFT on the marketplace by having it listed.
                         </>
                       }
+                      status={false}
+                      index={47}
+                      isActivePanel={isActivePanel[47]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={
@@ -939,6 +1132,10 @@ const FAQComponent = () => {
                           </p>
                         </>
                       }
+                      status={false}
+                      index={48}
+                      isActivePanel={isActivePanel[48]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={"What is Discord?"}
@@ -957,6 +1154,10 @@ const FAQComponent = () => {
                           </p>
                         </>
                       }
+                      status={false}
+                      index={49}
+                      isActivePanel={isActivePanel[49]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                   <div className="col-12 col-md-6">
@@ -971,6 +1172,10 @@ const FAQComponent = () => {
                           and the average price that you have sold the NFTs for.
                         </>
                       }
+                      status={false}
+                      index={50}
+                      isActivePanel={isActivePanel[50]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={
@@ -994,6 +1199,10 @@ const FAQComponent = () => {
                           </p>
                         </>
                       }
+                      status={false}
+                      index={51}
+                      isActivePanel={isActivePanel[51]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={"How do I see the ownership history of the NFT?"}
@@ -1006,6 +1215,10 @@ const FAQComponent = () => {
                           the authenticity of the NFT.
                         </>
                       }
+                      status={false}
+                      index={52}
+                      isActivePanel={isActivePanel[52]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={
@@ -1020,6 +1233,10 @@ const FAQComponent = () => {
                           accuracy of your wallet address.
                         </>
                       }
+                      status={false}
+                      index={53}
+                      isActivePanel={isActivePanel[53]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={"How do I determine the rarity of the NFT?"}
@@ -1037,6 +1254,10 @@ const FAQComponent = () => {
                           Jump.trade outside the Jump.trade marketplace.
                         </>
                       }
+                      status={false}
+                      index={54}
+                      isActivePanel={isActivePanel[54]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                 </div>
@@ -1049,12 +1270,26 @@ const FAQComponent = () => {
   );
 };
 
-const Accordian = ({ head, body }) => {
+const Accordian = ({
+  head,
+  body,
+  status = false,
+  index,
+  isActivePanel,
+  setActivePanel,
+}) => {
   const [state, setState] = useState(false);
 
+  //console.log(isActivePanel, "isActivePanel");
+  const toggleItem = () => {
+    setActivePanel((prevState) => ({
+      ...prevState,
+      [index]: !Boolean(prevState[index]),
+    }));
+  };
   return (
     <div className="c-accordian">
-      <div className="c-accor-head" onClick={() => setState(!state)}>
+      <div className="c-accor-head" onClick={() => toggleItem(index)}>
         <div>
           <FaFileAlt color={"#f5ff00"} size={20} />
         </div>
@@ -1062,14 +1297,14 @@ const Accordian = ({ head, body }) => {
         <div className="head-area">{head}</div>
 
         <div>
-          {state ? (
+          {isActivePanel ? (
             <FaMinusCircle color={"#f5ff00"} size={20} />
           ) : (
             <FaPlusCircle color={"#f5ff00"} size={20} />
           )}
         </div>
       </div>
-      {state && <div className="c-accor-body">{body}</div>}
+      {isActivePanel && <div className="c-accor-body">{body}</div>}
     </div>
   );
 };

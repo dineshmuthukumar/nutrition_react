@@ -129,7 +129,7 @@ const BlogBanner = ({ bannerData, sliderData }) => {
               </div>
             ))}
             <div className="d-flex justify-content-center my-5">
-              <a href={"/blog-list"} className="blog-view-more">
+              <a href={"/blog/list"} className="blog-view-more">
                 {" "}
                 View More{" "}
               </a>
