@@ -24,7 +24,12 @@ const ExploreCard = ({
   const { search } = useRouteMatch().params;
 
   const levelData = level(nft?.core_statistics?.level?.value);
-  const roleData = role(nft?.core_statistics?.role?.value);
+  const roleData = role(
+    nft?.core_statistics?.role?.value,
+    nft?.core_statistics?.dominant_hand?.value
+      ? nft?.core_statistics?.dominant_hand?.value
+      : "BAT"
+  );
   const playerCatData = playerCategory(nft?.core_statistics?.category?.value);
 
   return (
