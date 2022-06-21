@@ -5,12 +5,22 @@ import NFTCounter from "../nft-counter/index";
 import images from "../../utils/images.json";
 import OwlCarousel from "react-owl-carousel";
 
-import ownMobile from "../../images/jump-trade/hero-banner/01_Own-Banner_low_Mobile.jpeg";
-import playMobile from "../../images/jump-trade/hero-banner/02_Play-Banner_low_Mobile.jpeg";
-import earnMobile from "../../images/jump-trade/hero-banner/03_Earn-Banner_low_Mobile.jpeg";
-import ownWeb from "../../images/jump-trade/hero-banner/01_Own-Banner_low.jpeg";
 import playWeb from "../../images/jump-trade/hero-banner/02_Play-Banner_low.jpeg";
+import playMobile from "../../images/jump-trade/hero-banner/02_Play-Banner_low_Mobile.jpeg";
+import playWebText from "../../images/jump-trade/hero-banner/02_Play_Text-only_WEB.png";
+import playMobileText from "../../images/jump-trade/hero-banner/02_Play_Text-only_Mobile.png";
+
 import earnWeb from "../../images/jump-trade/hero-banner/03_Earn-Banner_low.jpeg";
+import earnMobile from "../../images/jump-trade/hero-banner/03_Earn-Banner_low_Mobile.jpeg";
+import earnWebText from "../../images/jump-trade/hero-banner/03_Earn_Text-only_WEB.png";
+import earnMobileText from "../../images/jump-trade/hero-banner/03_Earn_Text-only_Mobile.png";
+
+import ownWeb from "../../images/jump-trade/hero-banner/01_Own-Banner_low.jpeg";
+import ownMobile from "../../images/jump-trade/hero-banner/01_Own-Banner_low_Mobile.jpeg";
+import ownWebText from "../../images/jump-trade/hero-banner/01_Own_Text-only_WEB.png";
+import ownMobileText from "../../images/jump-trade/hero-banner/01_Own_Text-only.png";
+
+import comingSoon from "../../images/jump-trade/hero-banner/Coming-Soon_Common_Web.png";
 
 import "./style.scss";
 
@@ -86,6 +96,13 @@ const HeroBanner = () => {
             }}
           >
             <div className="hero-content-block">
+              <img
+                src={innerWidth > 767 ? ownWebText : ownMobileText}
+                alt="Best NFT Marketplace"
+                className="hero-content-img"
+                loading="lazy"
+              />
+
               <div className="hero-content-box">
                 <div className="hero-btn-block">
                   {live && (
@@ -118,8 +135,16 @@ const HeroBanner = () => {
             }}
           >
             <div className="hero-content-block">
+              <img
+                src={innerWidth > 767 ? playWebText : playMobileText}
+                alt="Best NFT Marketplace"
+                className="hero-content-img"
+                loading="lazy"
+              />
               <div className="hero-content-box">
-                <div className="hero-btn-block"></div>
+                <div className="hero-btn-block">
+                  <img src={comingSoon} alt="comming soon" />
+                </div>
 
                 <h4>PLAY - Immerse Yourself In An Addictive Cricket Game</h4>
                 <p className="hero-desc">
@@ -141,8 +166,16 @@ const HeroBanner = () => {
             }}
           >
             <div className="hero-content-block">
+              <img
+                src={innerWidth > 767 ? earnWebText : earnMobileText}
+                alt="Best NFT Marketplace"
+                className="hero-content-img"
+                loading="lazy"
+              />
               <div className="hero-content-box">
-                <div className="hero-btn-block"></div>
+                <div className="hero-btn-block">
+                  <img src={comingSoon} alt="comming soon" />
+                </div>
 
                 <h4>
                   EARN - Get Rewarded For Your Game-Time, Skill &amp; Efforts{" "}
