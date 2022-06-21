@@ -45,7 +45,18 @@
     }
   }
 }
-
+.hover-anim .owl-stage-outer {
+  padding: 2rem 0;
+}
+.hover-anim .owl-stage-outer .more-card.jt-card {
+  position: relative;
+  border-radius: 0.3rem;
+  transition: 0.5s;
+  background: transparent
+    linear-gradient(180deg, #e2ff00 0%, #18e0e0 47%, #e8318d 100%) 0% 0%
+    no-repeat padding-box;
+  z-index: 99999;
+}
 .carousel {
   &-btn {
     &-box {
@@ -54,6 +65,7 @@
       display: flex;
       justify-content: space-around;
     }
+
     padding: 0;
     background: #fff;
     border: 1px solid #050505;
