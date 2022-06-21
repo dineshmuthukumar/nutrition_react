@@ -76,5 +76,11 @@
   "level12": "https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/player_levels/12.png",
   "level13": "https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/player_levels/13.png",
   "level14": "https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/player_levels/14.png",
-  "level15": "https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/player_levels/15.png"
+  "level15": "https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/player_levels/15.png",
+
+  "batsmanLH": "https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/LH.png",
+  "batsmanRH": "https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/RH.png",
+  "bowlerLA": "https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/LA.png",
+  "bowlerRA": "https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/RA.png",
+  "bat": "https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/BAT.png"
 }
