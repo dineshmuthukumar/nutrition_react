@@ -105,7 +105,7 @@ const RecentlySoldNFT = () => {
                 <div className="row">
                   {list.length > 0 ? (
                     <OwlCarousel
-                      className="owl-theme"
+                      className="owl-theme hover-anim px-0"
                       margin={20}
                       nav
                       smartSpeed={500}

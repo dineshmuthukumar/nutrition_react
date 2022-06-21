@@ -218,6 +218,7 @@
   padding: 0.2rem;
   position: relative;
   border-radius: 0.3rem;
+  transition: 0.5s;
   background: transparent
     linear-gradient(180deg, #e2ff00 0%, #18e0e0 47%, #e8318d 100%) 0% 0%
     no-repeat padding-box;
@@ -235,7 +236,8 @@
   }
   @media screen and (min-width: 991px) {
   &:hover {
-    transform: scale(1.05);
+    transform: translateY(-10px);
+    transition: 0.5s;
   }
 }
   .player_stats {
