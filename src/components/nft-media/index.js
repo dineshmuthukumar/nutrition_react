@@ -89,13 +89,18 @@ const NFTMedia = ({ nft, title, slug, isFav, statistics }) => {
     link.click();
   };
 
+  const levelData = level(statistics?.level?.value);
+  const roleData = role(
+    statistics?.role?.value,
+    statistics?.dominant_hand?.value ? statistics?.dominant_hand?.value : "BAT"
+  );
+  const playerCatData = playerCategory(statistics?.category?.value);
+
   return (
     <section className="nft-img-block">
       <div
         className={`nft-media media_audio  ${
-          playerCategory(statistics?.category?.value)?.color
-            ? playerCategory(statistics?.category?.value)?.color
-            : "gold_color"
+          playerCatData?.color ? playerCatData?.color : "gold_color"
         }`}
       >
         {nft?.signed_by?.length > 0 && (
@@ -109,41 +114,26 @@ const NFTMedia = ({ nft, title, slug, isFav, statistics }) => {
 
         <article
           className={`player_stats  ${
-            playerCategory(statistics?.category?.value)?.color
-              ? playerCategory(statistics?.category?.value)?.color
-              : "gold_color"
+            playerCatData?.color ? playerCatData?.color : "gold_color"
           }`}
         >
-          {role(statistics?.role?.value) && (
+          {roleData && (
             <div className="player-type">
-              <h6>{role(statistics?.role?.value)?.name}</h6>
-              <img
-                src={role(statistics?.role?.value)?.value}
-                alt="Player-type"
-                loading="lazy"
-              />
+              <h6>{roleData?.name}</h6>
+              <img src={roleData?.value} alt="Player-type" loading="lazy" />
             </div>
           )}
 
-          {playerCategory(statistics?.category?.value) && (
+          {playerCatData && (
             <div className="player-range">
-              <span className="band">
-                {playerCategory(statistics?.category?.value)?.value}
-              </span>
-              {role(statistics?.role?.value) &&
-                role(statistics?.role?.value)?.name !== "BAT" && (
-                  <h6> Player</h6>
-                )}
+              <span className="band">{playerCatData?.value}</span>
+              {roleData && roleData?.name !== "BAT" && <h6> Player</h6>}
             </div>
           )}
-          {level(statistics?.level?.value) && (
+          {levelData && (
             <div className="player-level">
-              <h6>{level(statistics?.level?.value)?.name}</h6>
-              <img
-                src={level(statistics?.level?.value)?.value}
-                alt="Player-level"
-                loading="lazy"
-              />
+              <h6>{levelData?.name}</h6>
+              <img src={levelData?.value} alt="Player-level" loading="lazy" />
             </div>
           )}
         </article>
@@ -291,9 +281,7 @@ const NFTMedia = ({ nft, title, slug, isFav, statistics }) => {
       </div>
       <div
         className={`media-lsf flex-xs ${
-          playerCategory(statistics?.category?.value)?.color
-            ? playerCategory(statistics?.category?.value)?.color
-            : "gold_color"
+          playerCatData?.color ? playerCatData?.color : "gold_color"
         }`}
       >
         <SharePopover

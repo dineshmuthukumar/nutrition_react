@@ -605,6 +605,12 @@ a {
     line-height: 1.4;
     font-size: 1.2rem;
     text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    min-height: 4rem;
   }
   .sec-heading {
     display: flex;

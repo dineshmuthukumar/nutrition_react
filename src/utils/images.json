@@ -58,6 +58,10 @@
   "trophy": "https://cdn.guardianlink.io/product-hotspot/images/jump/trophy.svg",
   "polygon": "https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/polygon.svg",
 
+  "mock": "https://cdn.guardianlink.io/product-hotspot/images/android_ios_mobile.png",
+  "appStore": "https://cdn.guardianlink.io/product-hotspot/images/app_store_badge.png",
+  "playStore": "https://cdn.guardianlink.io/product-hotspot/images/google_play_badge.png",
+
   "level1": "https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/player_levels/1.png",
   "level2": "https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/player_levels/2.png",
   "level3": "https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/player_levels/3.png",
@@ -72,5 +76,11 @@
   "level12": "https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/player_levels/12.png",
   "level13": "https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/player_levels/13.png",
   "level14": "https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/player_levels/14.png",
-  "level15": "https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/player_levels/15.png"
+  "level15": "https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/player_levels/15.png",
+
+  "batsmanLH": "https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/LH.png",
+  "batsmanRH": "https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/RH.png",
+  "bowlerLA": "https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/LA.png",
+  "bowlerRA": "https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/RA.png",
+  "bat": "https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/BAT.png"
 }

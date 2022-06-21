@@ -42,12 +42,23 @@ const FAQComponent = () => {
     },
     {
       id: 8,
+      name: "Selling on the Jump.trade  Marketplace",
+      active: false,
+    },
+    {
+      id: 9,
+      name: "Buying on the Jump.trade  Marketplace",
+      active: false,
+    },
+    {
+      id: 10,
       name: "Troubleshooting",
       active: false,
     },
   ]);
 
   const [active, setActive] = useState(1);
+  const [isActivePanel, setActivePanel] = useState({});
 
   const handleChange = (input) => {
     const info = [...tabs];
@@ -61,6 +72,10 @@ const FAQComponent = () => {
 
     setTabs(info);
     setActive(input.id);
+
+    if (input.id != active) {
+      setActivePanel({});
+    }
   };
 
   return (
@@ -111,7 +126,10 @@ const FAQComponent = () => {
                           like original audio, video and digital images.
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={1}
+                      isActivePanel={isActivePanel[1]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={
@@ -128,7 +146,10 @@ const FAQComponent = () => {
                           keep a record of the previous collectors.
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={2}
+                      isActivePanel={isActivePanel[2]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={
@@ -146,7 +167,10 @@ const FAQComponent = () => {
                           secondary markets.
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={3}
+                      isActivePanel={isActivePanel[3]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={
@@ -162,7 +186,10 @@ const FAQComponent = () => {
                           collectible investment.
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={4}
+                      isActivePanel={isActivePanel[4]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={"Why should I even invest in NFTs?"}
@@ -177,7 +204,10 @@ const FAQComponent = () => {
                           original value over a period of just days.
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={5}
+                      isActivePanel={isActivePanel[5]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={
@@ -197,7 +227,10 @@ const FAQComponent = () => {
                           the NFT transactions.
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={6}
+                      isActivePanel={isActivePanel[6]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={
@@ -214,7 +247,10 @@ const FAQComponent = () => {
                           known to increase the value.
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={7}
+                      isActivePanel={isActivePanel[7]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                   <div className="col-12 col-md-6">
@@ -239,7 +275,10 @@ const FAQComponent = () => {
                           </p>
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={8}
+                      isActivePanel={isActivePanel[8]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={"How do I purchase an NFT?"}
@@ -254,7 +293,10 @@ const FAQComponent = () => {
                           an NFT from our collection.
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={9}
+                      isActivePanel={isActivePanel[9]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={"Are NFTs considered as assets?"}
@@ -269,7 +311,10 @@ const FAQComponent = () => {
                           value forever.
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={10}
+                      isActivePanel={isActivePanel[10]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={
@@ -286,7 +331,10 @@ const FAQComponent = () => {
                           read the Terms and Conditions for further details.
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={11}
+                      isActivePanel={isActivePanel[11]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={
@@ -301,7 +349,10 @@ const FAQComponent = () => {
                           understand the details.
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={12}
+                      isActivePanel={isActivePanel[12]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={
@@ -316,7 +367,10 @@ const FAQComponent = () => {
                           understand the details.
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={13}
+                      isActivePanel={isActivePanel[13]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={"Can I display the NFT on a public platform?"}
@@ -330,7 +384,10 @@ const FAQComponent = () => {
                           your rights, responsibilities, and restrictions.
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={14}
+                      isActivePanel={isActivePanel[14]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                 </div>
@@ -350,7 +407,10 @@ const FAQComponent = () => {
                           first community-centered cricket game.
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={15}
+                      isActivePanel={isActivePanel[15]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={"What is GuardianLink?"}
@@ -365,7 +425,10 @@ const FAQComponent = () => {
                           its functionalities and attributes.
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={16}
+                      isActivePanel={isActivePanel[16]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                   <div className="col-12 col-md-6">
@@ -382,7 +445,10 @@ const FAQComponent = () => {
                           completely not in our control.
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={17}
+                      isActivePanel={isActivePanel[17]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                 </div>
@@ -408,7 +474,10 @@ const FAQComponent = () => {
                           </p> */}
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={18}
+                      isActivePanel={isActivePanel[18]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                   <div className="col-12 col-md-6"></div>
@@ -433,7 +502,10 @@ const FAQComponent = () => {
                           Jump.trade.
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={19}
+                      isActivePanel={isActivePanel[19]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                   <div className="col-12 col-md-6">
@@ -456,7 +528,10 @@ const FAQComponent = () => {
                           </p>
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={20}
+                      isActivePanel={isActivePanel[20]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                 </div>
@@ -486,7 +561,10 @@ const FAQComponent = () => {
                           </p>
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={21}
+                      isActivePanel={isActivePanel[21]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                   <div className="col-12 col-md-6">
@@ -502,7 +580,10 @@ const FAQComponent = () => {
                           engage in the act of buying.
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={22}
+                      isActivePanel={isActivePanel[22]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                 </div>
@@ -530,7 +611,10 @@ const FAQComponent = () => {
                           </p>
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={23}
+                      isActivePanel={isActivePanel[23]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={"Why is a wallet necessary?"}
@@ -544,7 +628,10 @@ const FAQComponent = () => {
                           wallet is a component of uncompromising importance.
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={24}
+                      isActivePanel={isActivePanel[24]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={"How can I load money into my wallet?"}
@@ -557,7 +644,10 @@ const FAQComponent = () => {
                           wallet.
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={25}
+                      isActivePanel={isActivePanel[25]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={"What are the payment options available?"}
@@ -568,7 +658,10 @@ const FAQComponent = () => {
                           or by transferring from another cryptocurrency wallet.
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={26}
+                      isActivePanel={isActivePanel[26]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={"What are the currencies accepted by your wallet?"}
@@ -584,7 +677,10 @@ const FAQComponent = () => {
                           stated on our terms and conditions.
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={27}
+                      isActivePanel={isActivePanel[27]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                   <div className="col-12 col-md-6">
@@ -601,7 +697,10 @@ const FAQComponent = () => {
                           currency to fund your wallet.
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={28}
+                      isActivePanel={isActivePanel[28]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={"What happens to my unused wallet funds?"}
@@ -615,7 +714,10 @@ const FAQComponent = () => {
                           the document in detail.
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={29}
+                      isActivePanel={isActivePanel[29]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={
@@ -632,7 +734,10 @@ const FAQComponent = () => {
                           support.
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={30}
+                      isActivePanel={isActivePanel[30]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={
@@ -658,7 +763,10 @@ const FAQComponent = () => {
                           </p>
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={31}
+                      isActivePanel={isActivePanel[31]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                 </div>
@@ -678,13 +786,276 @@ const FAQComponent = () => {
                           engage in the act of buying.
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={32}
+                      isActivePanel={isActivePanel[32]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                   <div className="col-12 col-md-6"></div>
                 </div>
               );
             } else if (active === 8) {
+              return (
+                <div className="row">
+                  <div className="col-12 col-md-6">
+                    <Accordian
+                      head={
+                        "How do I become eligible to sell my NFT on the Jump.trade  marketplace?                      "
+                      }
+                      body={
+                        <>
+                          If you have purchased/won the auction for any NFT
+                          listed before on Jump.trade , and you have them listed
+                          under the “my NFTs“ section of your profile, you are
+                          eligible to sell your NFT on the Jump.trade
+                          marketplace. {""}
+                          {""}
+                          Jump.trade does not charge any amount for listing your
+                          NFT for selling. Every NFT collector with at least one
+                          NFT in their possession is eligible to sell on
+                          Jump.trade.
+                        </>
+                      }
+                      status={false}
+                      index={33}
+                      isActivePanel={isActivePanel[33]}
+                      setActivePanel={setActivePanel}
+                    />
+                  </div>
+                  <div className="col-12 col-md-6">
+                    <Accordian
+                      head={
+                        "What are the different options available for selling my NFT?"
+                      }
+                      body={
+                        <>
+                          ERC-721 NFTs can be listed for either direct buying or
+                          for bidding or a combination of both.
+                        </>
+                      }
+                      status={false}
+                      index={34}
+                      isActivePanel={isActivePanel[34]}
+                      setActivePanel={setActivePanel}
+                    />
+                  </div>
+                  <div className="col-12 col-md-6">
+                    <Accordian
+                      head={
+                        "What is the process of listing an NFT that I own for sale?"
+                      }
+                      body={
+                        <>
+                          You will need to navigate to the “my NFTs“ section on
+                          your profile and click on the particular NFT that you
+                          would like to list for sale. Before you do so, you
+                          will need to ensure if your NFT belongs to the ERC-721
+                          category.{""}
+                          If you have chosen an ERC-721 NFT, you will have an
+                          option to either list your NFT for direct selling or
+                          for bidding or for both.{""}
+                          If you have chosen direct selling, you will have to
+                          enter the sale amount. If you have chosen to list the
+                          NFT for bidding, you will have to list the minimum bid
+                          amount. If you have chosen both options, you will need
+                          to list a sale price and a minimum bid.{""}
+                        </>
+                      }
+                      status={false}
+                      index={35}
+                      isActivePanel={isActivePanel[35]}
+                      setActivePanel={setActivePanel}
+                    />
+                  </div>
+                  <div className="col-12 col-md-6">
+                    <Accordian
+                      head={
+                        "Can I edit the price of an NFT that has been put up for sale?"
+                      }
+                      body={
+                        <>
+                          You cannot edit the price of the NFT that has been put
+                          up for sale. You can, however, remove the NFT from the
+                          listing and put it up for sale again with the edited
+                          price. If your NFT has been listed for bidding, it
+                          should be noted that removing your NFT from being
+                          listed immediately cancels all the bids your NFT has
+                          received so far. Any person who has placed a bid on
+                          your NFT will have the bidding amount returned to
+                          their available balance on the Jump.trade walle.
+                        </>
+                      }
+                      status={false}
+                      index={36}
+                      isActivePanel={isActivePanel[36]}
+                      setActivePanel={setActivePanel}
+                    />
+                  </div>
+                  <div className="col-12 col-md-6">
+                    <Accordian
+                      head={"How long can I list the NFT for bidding?"}
+                      body={
+                        <>
+                          Auction duration can be up to 3 days. Any bid placed
+                          in the last 10 minutes extends the auction by 10
+                          minutes.
+                        </>
+                      }
+                      status={false}
+                      index={37}
+                      isActivePanel={isActivePanel[37]}
+                      setActivePanel={setActivePanel}
+                    />
+                  </div>
+                  <div className="col-12 col-md-6">
+                    <Accordian
+                      head={
+                        "What happens after a person places a bid on my NFT?s"
+                      }
+                      body={
+                        <>
+                          As soon as a prospective buyer places a bid on your
+                          NFT, you will be notified via push notifications and
+                          an email. You are required to acknowledge the bid
+                          within seven days of the bid being placed. Otherwise,
+                          the bid will lapse and will revert to the previously
+                          acknowledged bid.
+                        </>
+                      }
+                      status={false}
+                      index={38}
+                      isActivePanel={isActivePanel[38]}
+                      setActivePanel={setActivePanel}
+                    />
+                  </div>
+                  <div className="col-12 col-md-6">
+                    <Accordian
+                      head={"How do I remove an NFT from being listed on sale?"}
+                      body={
+                        <>
+                          You can navigate to the section where all the NFTs
+                          listed for sale are displayed. You can choose the
+                          particular NFT that you would like to delist from
+                          being on sale, and choose the option to cancel the
+                          sale. It is to be noted that you cannot partly remove
+                          the NFT from being listed only for selling or for
+                          bidding. If you would like to remove your NFT partly,
+                          you have to list the NFT for sale from scratch.
+                        </>
+                      }
+                      status={false}
+                      index={39}
+                      isActivePanel={isActivePanel[39]}
+                      setActivePanel={setActivePanel}
+                    />
+                  </div>
+                </div>
+              );
+            } else if (active === 9) {
+              return (
+                <div className="row">
+                  <div className="col-12 col-md-6">
+                    <Accordian
+                      head={
+                        "How do I become eligible to buy an NFT on Jump.trade?"
+                      }
+                      body={
+                        <>
+                          All you need to do is create an account using your
+                          email address on the Jump.trade website and you are
+                          eligible to buy your NFTs after funding your wallet.
+                          The details about funding your wallet can be found in
+                          the “Jump.trade wallet“ section of the FAQ document.
+                        </>
+                      }
+                      status={false}
+                      index={40}
+                      isActivePanel={isActivePanel[40]}
+                      setActivePanel={setActivePanel}
+                    />
+                  </div>
+                  <div className="col-12 col-md-6">
+                    <Accordian
+                      head={"How do I find the NFTs that I can buy?"}
+                      body={
+                        <>
+                          You will be provided with a list of NFTs available for
+                          sale as soon as you open the Jump.trade marketplace
+                          website. You will also be able to see the list of top
+                          sellers and the top selling NFTs.
+                          {""}
+                          You also have an option to use filters to find the
+                          exact NFT you would like to buy. You can filter by the
+                          NFT type, the sale type, and the collection to fit the
+                          NFT belongs.
+                        </>
+                      }
+                      status={false}
+                      index={41}
+                      isActivePanel={isActivePanel[41]}
+                      setActivePanel={setActivePanel}
+                    />
+                  </div>
+                  <div className="col-12 col-md-6">
+                    <Accordian
+                      head={
+                        "What are the different options available for buying an NFT on Jump.trade?"
+                      }
+                      body={
+                        <>
+                          Based on the listing type, you can choose to directly
+                          buy the NFT that is listed for sale. Alternatively, if
+                          an NFT is listed for bidding, you can place your bid
+                          on the NFT two get a chance to make that NFT yours.
+                        </>
+                      }
+                      status={false}
+                      index={42}
+                      isActivePanel={isActivePanel[42]}
+                      setActivePanel={setActivePanel}
+                    />
+                  </div>
+                  <div className="col-12 col-md-6">
+                    <Accordian
+                      head={"How does bidding on the NFT work?"}
+                      body={
+                        <>
+                          You have to have sufficient wallet balance to place a
+                          valid bid on the NFT of your choice (provided it is
+                          listed for bidding). Once you click on the NFT, you
+                          will have an option to place your bid on the
+                          particular NFT.{""}
+                          It is to be noted that the new bid that you placed
+                          should be higher than the earlier bid.
+                        </>
+                      }
+                      status={false}
+                      index={43}
+                      isActivePanel={isActivePanel[43]}
+                      setActivePanel={setActivePanel}
+                    />
+                  </div>
+                  <div className="col-12 col-md-6">
+                    <Accordian
+                      head={"Who determines the price of the NFT?"}
+                      body={
+                        <>
+                          The price of the NFT completely depends on the
+                          discretion of the seller. Jump.trade does not in any
+                          way influence the prices of the NFTs being listed on
+                          the Jump.trade marketplace.
+                        </>
+                      }
+                      status={false}
+                      index={44}
+                      isActivePanel={isActivePanel[44]}
+                      setActivePanel={setActivePanel}
+                    />
+                  </div>
+                </div>
+              );
+            } else if (active === 10) {
               return (
                 <div className="row">
                   <div className="col-12 col-md-6">
@@ -701,7 +1072,10 @@ const FAQComponent = () => {
                           limits and scope, address the issues for you.
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={45}
+                      isActivePanel={isActivePanel[45]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={
@@ -716,7 +1090,10 @@ const FAQComponent = () => {
                           contact our support team.
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={46}
+                      isActivePanel={isActivePanel[46]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={
@@ -729,7 +1106,10 @@ const FAQComponent = () => {
                           NFT on the marketplace by having it listed.
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={47}
+                      isActivePanel={isActivePanel[47]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={
@@ -752,7 +1132,10 @@ const FAQComponent = () => {
                           </p>
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={48}
+                      isActivePanel={isActivePanel[48]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={"What is Discord?"}
@@ -771,7 +1154,10 @@ const FAQComponent = () => {
                           </p>
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={49}
+                      isActivePanel={isActivePanel[49]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                   <div className="col-12 col-md-6">
@@ -786,7 +1172,10 @@ const FAQComponent = () => {
                           and the average price that you have sold the NFTs for.
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={50}
+                      isActivePanel={isActivePanel[50]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={
@@ -810,7 +1199,10 @@ const FAQComponent = () => {
                           </p>
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={51}
+                      isActivePanel={isActivePanel[51]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={"How do I see the ownership history of the NFT?"}
@@ -823,7 +1215,10 @@ const FAQComponent = () => {
                           the authenticity of the NFT.
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={52}
+                      isActivePanel={isActivePanel[52]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={
@@ -838,7 +1233,10 @@ const FAQComponent = () => {
                           accuracy of your wallet address.
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={53}
+                      isActivePanel={isActivePanel[53]}
+                      setActivePanel={setActivePanel}
                     />
                     <Accordian
                       head={"How do I determine the rarity of the NFT?"}
@@ -856,7 +1254,10 @@ const FAQComponent = () => {
                           Jump.trade outside the Jump.trade marketplace.
                         </>
                       }
-                      show={false}
+                      status={false}
+                      index={54}
+                      isActivePanel={isActivePanel[54]}
+                      setActivePanel={setActivePanel}
                     />
                   </div>
                 </div>
@@ -869,12 +1270,26 @@ const FAQComponent = () => {
   );
 };
 
-const Accordian = ({ head, body, show = false }) => {
-  const [state, setState] = useState(show);
+const Accordian = ({
+  head,
+  body,
+  status = false,
+  index,
+  isActivePanel,
+  setActivePanel,
+}) => {
+  const [state, setState] = useState(false);
 
+  //console.log(isActivePanel, "isActivePanel");
+  const toggleItem = () => {
+    setActivePanel((prevState) => ({
+      ...prevState,
+      [index]: !Boolean(prevState[index]),
+    }));
+  };
   return (
     <div className="c-accordian">
-      <div className="c-accor-head" onClick={() => setState(!state)}>
+      <div className="c-accor-head" onClick={() => toggleItem(index)}>
         <div>
           <FaFileAlt color={"#f5ff00"} size={20} />
         </div>
@@ -882,14 +1297,14 @@ const Accordian = ({ head, body, show = false }) => {
         <div className="head-area">{head}</div>
 
         <div>
-          {show ? (
+          {isActivePanel ? (
             <FaMinusCircle color={"#f5ff00"} size={20} />
           ) : (
             <FaPlusCircle color={"#f5ff00"} size={20} />
           )}
         </div>
       </div>
-      {state && <div className="c-accor-body">{body}</div>}
+      {isActivePanel && <div className="c-accor-body">{body}</div>}
     </div>
   );
 };

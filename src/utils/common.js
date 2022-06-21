@@ -325,25 +325,42 @@ export const level = (value) => {
   return levelData;
 };
 
-export const role = (value) => {
+export const role = (value, style) => {
   const role = [
     {
       type: "Batsman",
       name: "BATSMAN",
-      value: images.batsmanICO,
+      style: "LH",
+      value: images.batsmanLH,
+    },
+    {
+      type: "Batsman",
+      name: "BATSMAN",
+      style: "RH",
+      value: images.batsmanRH,
     },
     {
       type: "Bowler",
       name: "BOWLER",
-      value: images.bowlerIco,
+      style: "LA",
+      value: images.bowlerLA,
+    },
+    {
+      type: "Bowler",
+      name: "BOWLER",
+      style: "RA",
+      value: images.bowlerRA,
     },
     {
       type: "Bat",
       name: "BAT",
-      value: images.batsmanICO,
+      style: "BAT",
+      value: images.bat,
     },
   ];
-  const roleData = role.find((obj) => obj.type === value);
+  const roleData = role.find(
+    (obj) => obj.type === value && obj.style === style
+  );
   return roleData;
 };
 

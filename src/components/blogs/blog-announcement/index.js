@@ -53,8 +53,6 @@ const BlogAnnouncment = ({
   //   }
   //   return "";
   // };
-  console.log(announcementSliderData);
-  console.log(announcementSplitData);
 
   return (
     <section class="bg_green announcement ptb-100">

@@ -26,6 +26,20 @@
     transform: rotate(-45deg);
   }
 }
+.downloads-section {
+  .app-download {
+    font-family: "neue_helvetica_extended_bold" !important;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+  }
+  .downloads_btns {
+    a {
+      img {
+        width: 175px;
+      }
+    }
+  }
+}
 @keyframes down {
   0% {
     transform: translate(0);

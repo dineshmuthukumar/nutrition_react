@@ -78,7 +78,9 @@ const BlogBanner = ({ bannerData, sliderData }) => {
             <div class="col-lg-6 col-md-12 col-sm-12 order-md-2">
               <a href={"/blog/" + bannerData?.slug}>
                 <img
-                  src="https://blog.jump.trade/wp-content/uploads/2022/06/How-To-Choose-the-Right-Play-To-Earn-Game-for-You-1200-x-630-copy.jpg"
+                  src={
+                    bannerData?._embedded["wp:featuredmedia"]["0"]["source_url"]
+                  }
                   class="img-fluid br-5 mt-5"
                 />
               </a>
@@ -127,7 +129,7 @@ const BlogBanner = ({ bannerData, sliderData }) => {
               </div>
             ))}
             <div className="d-flex justify-content-center my-5">
-              <a href={"/blog-list"} className="blog-view-more">
+              <a href={"/blog/list"} className="blog-view-more">
                 {" "}
                 View More{" "}
               </a>

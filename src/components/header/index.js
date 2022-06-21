@@ -72,14 +72,14 @@ const Header = ({
         setCartPop(true);
       }
     }
-    if (user?.data?.user) {
-      if(!user?.data?.user?.name){
-      window.open(
-        `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile?forceUpdate=true`,
-        "_self"
-      );
-      }
-    }
+    // if (user?.data?.user) {
+    //   if(!user?.data?.user?.name){
+    //   window.open(
+    //     `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile?forceUpdate=true`,
+    //     "_self"
+    //   );
+    //   }
+    // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -1038,7 +1038,7 @@ const Header = ({
   );
 };
 
-const UserComponent = ({ sref, user, onClick = () => { } }) => (
+const UserComponent = ({ sref, user, onClick = () => {} }) => (
   <div className="header-user-details" onClick={onClick} ref={sref}>
     <img
       className="user-image"
