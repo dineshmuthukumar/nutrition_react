@@ -92,6 +92,10 @@ const HeroBanner = () => {
             items: 1,
           },
         }}
+        autoplay
+        loop
+        autoplayTimeout={3000}
+        autoplayHoverPause={true}
       >
         <div class="item">
           <section

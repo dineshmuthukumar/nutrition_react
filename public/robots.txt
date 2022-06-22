@@ -1,6 +1,7 @@
 User-agent: *
 Disallow: /404
 Disallow: /details/O39gydkSlLBPYZob
+Disallow: /details/VAqOGlvSb3Kygw8p
 Disallow: /faq
 
 Sitemap: https://www.jump.trade/sitemap.xml
