@@ -168,7 +168,7 @@ const HeroBanner = () => {
                   )}
                 </div>
 
-                <h4>OWN - Legendary And Authenticated Cricket NFTs</h4>
+                <h4>OWN - Buy Cricket NFTs from NFT Marketplace</h4>
                 <p className="hero-desc">
                   Jump.trade is the only platform for you to purchase exclusive
                   and authenticated cricket NFTs from the marketplace. Some of

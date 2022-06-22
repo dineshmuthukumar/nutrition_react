@@ -86,7 +86,7 @@ const FAQComponent = () => {
         </div> */}
 
         <div className="heading">
-          <h3 className="heading heading-h3">HELP CENTER</h3>{" "}
+          <h3 className="heading heading-h3">FAQs</h3>{" "}
         </div>
 
         <div className="c-tabs">
