@@ -3,6 +3,7 @@
 .hero-carousel {
   position: relative;
   margin-top: -7rem;
+  background-color: #000;
   .hero-banner-sec {
     // background-image: url("https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/hero_bg.png");
     min-height: calc(90vh + 7rem);
@@ -120,7 +121,7 @@
           margin-bottom: 9rem;
           font-family: $neue-helvetica-medium;
           @media screen and (max-width: 767px) {
-            margin-bottom: 2rem;
+            margin-bottom: 8rem;
           }
         }
         .hero-btn-block {

@@ -20,6 +20,11 @@ import ownMobile from "../../images/jump-trade/hero-banner/01_Own-Banner_low_Mob
 import ownWebText from "../../images/jump-trade/hero-banner/01_Own_Text-only_WEB.png";
 import ownMobileText from "../../images/jump-trade/hero-banner/01_Own_Text-only.png";
 
+import firstSlideWeb from "../../images/jump-trade/hero-banner/First_Banner_BG--only_Web.jpeg";
+import firstSlideMobile from "../../images/jump-trade/hero-banner/First_Banner_BG--only_Mobile.jpeg";
+import firstSlideWebText from "../../images/jump-trade/hero-banner/First_Banner_Text--only_Web.png";
+import firstSlideMobileText from "../../images/jump-trade/hero-banner/First_Banner_Text--only_Mobile.png";
+
 import comingSoon from "../../images/jump-trade/hero-banner/Coming-Soon_Common_Web.png";
 
 import "./style.scss";
@@ -88,6 +93,50 @@ const HeroBanner = () => {
           },
         }}
       >
+        <div class="item">
+          <section
+            className="hero-banner-sec"
+            style={{
+              backgroundImage: `url(${
+                innerWidth > 769 ? firstSlideWeb : firstSlideMobile
+              })`,
+            }}
+          >
+            <div className="hero-content-block">
+              <img
+                src={
+                  innerWidth > 767 ? firstSlideWebText : firstSlideMobileText
+                }
+                alt="Best NFT Marketplace"
+                className="hero-content-img"
+                loading="lazy"
+              />
+
+              <div className="hero-content-box">
+                <div className="hero-btn-block">
+                  {live && (
+                    <button
+                      className="theme-btn"
+                      onClick={() => history.push("/nft-marketplace")}
+                    >
+                      <span>Explore</span>
+                    </button>
+                  )}
+                </div>
+
+                <h4>
+                  Jump.trade - The NFT Marketplace To Trade Legendary NFTs
+                </h4>
+                <p className="hero-desc">
+                  Jump.trade - The #1 NFT marketplace to buy the world's first
+                  P2E cricket game NFTs. Buy NFT bats, players, and signed
+                  legendary NFTs commemorating World Cup final matches!
+                </p>
+              </div>
+            </div>
+          </section>
+        </div>
+
         <div class="item">
           <section
             className="hero-banner-sec"
