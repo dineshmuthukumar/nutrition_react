@@ -1,7 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory, useRouteMatch } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
+import { useParams } from "react-router";
 import ContentLoader from "react-content-loader";
 import { FaCheckCircle, FaFilter } from "react-icons/fa";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
@@ -19,6 +20,7 @@ import { validateCurrency } from "../../utils/common";
 import ExploreTitle from "./explore-title";
 import Header from "../header";
 import useDebounce from "../../hook/useDebounce"
+
 
 import "./style.scss";
 //import AppHelmet from "../helmet";
@@ -50,7 +52,9 @@ const ExploreAllNFT = () => {
     match.params.search ? match.params.search : ""
   );
 
-  const [search, setSearch] = useState(query.get("search") ? query.get("search") : "");
+  const [search, setSearch] = useState(
+    query.get("search") ? query.get("search") : ""
+  );
 
   const [priceRangeFilter, setPriceRangeFilter] = useState({
     from: "",
@@ -444,8 +448,8 @@ const ExploreAllNFT = () => {
     showGlC: true,
     showPlayers: true,
   });
-
-  useDebounce(() => handleFilterCheck("", "text_search"), 500, search)
+  const { slug } = useParams();
+  useDebounce(() => handleFilterCheck("", "text_search"), slug, 500, search)
 
   const sendSearchFilter = (e) => {
     console.log(e.target.value);
@@ -453,7 +457,6 @@ const ExploreAllNFT = () => {
   }
 
   useEffect(() => {
-    console.log("sendDatatoEveryOne")
     const sale_filters = query.get("sale") ? query.get("sale").split(",") : [];
     const nft_filters = query.get("nft") ? query.get("nft").split(",") : [];
     const sort_filters = query.get("sort")
@@ -474,8 +477,8 @@ const ExploreAllNFT = () => {
       ? query.get("nft-collection").split(",")
       : [];
 
-      const search_filter = query.get("search") ? query.get("search") : "";
-      const has_coin = query.get("coin") ? query.get("coin") : "";
+    const search_filter = query.get("search") ? query.get("search") : "";
+    const has_coin = query.get("coin") ? query.get("coin") : "";
     let player_path = match.params.player;
     let headerMetaData = null;
 
@@ -525,6 +528,7 @@ const ExploreAllNFT = () => {
     setFilter(info);
     setPage(1);
     setPriceRangeFilter(price_range);
+
     setSearch(search_filter);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query, match.params.player]);
@@ -715,7 +719,7 @@ const ExploreAllNFT = () => {
         from: query.get("minPrice") ? query.get("minPrice") : "",
         to: query.get("maxPrice") ? query.get("maxPrice") : "",
       };
-      const search_filters = search;
+      const search_filters = query.get("search");
       const nft_category = query.get("nft-category")
         ? query.get("nft-category").split(",")
         : [];
@@ -780,8 +784,8 @@ const ExploreAllNFT = () => {
       from: query.get("minPrice") ? query.get("minPrice") : "",
       to: query.get("maxPrice") ? query.get("maxPrice") : "",
     };
-    let search_exist = search
-      ? search.replace("#", "%23")
+    let search_exist = query.get("search")
+      ? query.get("search").replace("#", "%23")
       : "";
     let nft_category = query.get("nft-category")
       ? query.get("nft-category").split(",")

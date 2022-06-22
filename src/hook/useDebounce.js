@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 let t;
-const useDebounce = (callBack, delay = 500, dependencies) => {
+const useDebounce = (callBack, slug = false, delay = 500, dependencies) => {
     useEffect(() => {
         clearTimeout(t);
-        t = setTimeout(callBack, delay)
+        if (!slug)
+            t = setTimeout(callBack, delay)
     }, [dependencies])
 };
 
