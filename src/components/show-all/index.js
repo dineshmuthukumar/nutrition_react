@@ -244,6 +244,7 @@ const ShowAll = ({ categories }) => {
       setLoadingMore(true);
       let response = await nftShowAllApi({
         page,
+        per_page: 20,
         filter,
         sort: sort === "relevance" ? null : sort,
       });
@@ -281,6 +282,7 @@ const ShowAll = ({ categories }) => {
       setLoadingMore(true);
       let response = await nftShowAllApi({
         page,
+        per_page: 20,
         filter,
         sort: sort === "relevance" ? null : sort,
       });

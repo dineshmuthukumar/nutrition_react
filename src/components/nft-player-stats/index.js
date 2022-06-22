@@ -4,9 +4,19 @@ import { level } from "../../utils/common";
 import "./style.scss";
 
 const NFTPlayerStats = ({ stats = [], core }) => {
+  const playerStyle = [
+    { type: "LH", value: "Left Hand" },
+    { type: "RH", value: "Right Hand" },
+    { type: "LA", value: "Left Arm" },
+    { type: "RA", value: "Right Arm" },
+  ];
+
+  const style = playerStyle.find(
+    (obj) => obj.type === core?.dominant_hand?.value
+  );
   return (
     <>
-      {core?.role === "Batsman" && (
+      {core?.role?.value === "Batsman" && (
         <h5 className="stats-hint">
           Batsman performance against different bowler type
         </h5>
@@ -14,7 +24,9 @@ const NFTPlayerStats = ({ stats = [], core }) => {
       <section className="player-stats">
         {level(core?.level?.value) && (
           <div className="heading-block">
-            <h3>Player stats</h3>
+            <h3>
+              Player stats {style?.value && <span>({style?.value})</span>}
+            </h3>
 
             <div className="player-level">
               <h6>{level(core?.level?.value).name}</h6>
