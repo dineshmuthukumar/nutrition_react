@@ -117,8 +117,11 @@
           font-size: 1.2rem;
           text-align: center;
           color: #fff;
-          margin-bottom: 3rem;
+          margin-bottom: 9rem;
           font-family: $neue-helvetica-medium;
+          @media screen and (max-width: 767px) {
+            margin-bottom: 2rem;
+          }
         }
         .hero-btn-block {
           display: flex;
