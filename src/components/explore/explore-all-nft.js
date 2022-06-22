@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useHistory, useRouteMatch } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 import ContentLoader from "react-content-loader";
@@ -18,6 +18,7 @@ import images from "../../utils/images.json";
 import { validateCurrency } from "../../utils/common";
 import ExploreTitle from "./explore-title";
 import Header from "../header";
+import useDebounce from "../../hook/useDebounce"
 
 import "./style.scss";
 //import AppHelmet from "../helmet";
@@ -49,9 +50,7 @@ const ExploreAllNFT = () => {
     match.params.search ? match.params.search : ""
   );
 
-  const [search, setSearch] = useState(
-    query.get("search") ? query.get("search") : ""
-  );
+  const [search, setSearch] = useState(query.get("search") ? query.get("search") : "");
 
   const [priceRangeFilter, setPriceRangeFilter] = useState({
     from: "",
@@ -446,7 +445,15 @@ const ExploreAllNFT = () => {
     showPlayers: true,
   });
 
+  useDebounce(() => handleFilterCheck("", "text_search"), 500, search)
+
+  const sendSearchFilter = (e) => {
+    console.log(e.target.value);
+    setSearch(e.target.value);
+  }
+
   useEffect(() => {
+    console.log("sendDatatoEveryOne")
     const sale_filters = query.get("sale") ? query.get("sale").split(",") : [];
     const nft_filters = query.get("nft") ? query.get("nft").split(",") : [];
     const sort_filters = query.get("sort")
@@ -467,8 +474,8 @@ const ExploreAllNFT = () => {
       ? query.get("nft-collection").split(",")
       : [];
 
-    const search_filter = query.get("search") ? query.get("search") : "";
-    const has_coin = query.get("coin") ? query.get("coin") : "";
+      const search_filter = query.get("search") ? query.get("search") : "";
+      const has_coin = query.get("coin") ? query.get("coin") : "";
     let player_path = match.params.player;
     let headerMetaData = null;
 
@@ -518,7 +525,6 @@ const ExploreAllNFT = () => {
     setFilter(info);
     setPage(1);
     setPriceRangeFilter(price_range);
-
     setSearch(search_filter);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query, match.params.player]);
@@ -527,14 +533,14 @@ const ExploreAllNFT = () => {
     if (
       match.path === "/nft-marketplace/:search?/details/:slug" ||
       match.path ===
-        "/nft-marketplace/cricket-nfts/:player/:search?/details/:slug"
+      "/nft-marketplace/cricket-nfts/:player/:search?/details/:slug"
     ) {
       setPopDetails({ ...popDetails, show: true, children: <Details /> });
     } else if (
       match.path ===
-        "/nft-marketplace/:search?/order/details/:slug/:orderSlug" ||
+      "/nft-marketplace/:search?/order/details/:slug/:orderSlug" ||
       match.path ===
-        "/nft-marketplace/cricket-nfts/:player/:search?/order/details/:slug/:orderSlug"
+      "/nft-marketplace/cricket-nfts/:player/:search?/order/details/:slug/:orderSlug"
     ) {
       setPopDetails({
         ...popDetails,
@@ -709,7 +715,7 @@ const ExploreAllNFT = () => {
         from: query.get("minPrice") ? query.get("minPrice") : "",
         to: query.get("maxPrice") ? query.get("maxPrice") : "",
       };
-      const search_filters = query.get("search");
+      const search_filters = search;
       const nft_category = query.get("nft-category")
         ? query.get("nft-category").split(",")
         : [];
@@ -774,8 +780,8 @@ const ExploreAllNFT = () => {
       from: query.get("minPrice") ? query.get("minPrice") : "",
       to: query.get("maxPrice") ? query.get("maxPrice") : "",
     };
-    let search_exist = query.get("search")
-      ? query.get("search").replace("#", "%23")
+    let search_exist = search
+      ? search.replace("#", "%23")
       : "";
     let nft_category = query.get("nft-category")
       ? query.get("nft-category").split(",")
@@ -804,8 +810,8 @@ const ExploreAllNFT = () => {
         sale_status = remove
           ? null
           : status_list.includes(input.value)
-          ? null
-          : input.value;
+            ? null
+            : input.value;
 
         break;
 
@@ -943,10 +949,10 @@ const ExploreAllNFT = () => {
       {priceRangeFilter.from && priceRangeFilter.to
         ? `Price Range $${priceRangeFilter.from} - $${priceRangeFilter.to}`
         : priceRangeFilter.from
-        ? `Min $${priceRangeFilter.from}`
-        : priceRangeFilter.to
-        ? `Max $${priceRangeFilter.to}`
-        : "Price Range"}
+          ? `Min $${priceRangeFilter.from}`
+          : priceRangeFilter.to
+            ? `Max $${priceRangeFilter.to}`
+            : "Price Range"}
     </div>
   ));
 
@@ -1017,13 +1023,13 @@ const ExploreAllNFT = () => {
               onClick={(e) =>
                 handleFilterCheck(priceRange, "price_range", true)
               }
-              // disabled={(() => {
-              //   if (parseInt(priceRange.from) == "") {
-              //     return true;
-              //   } else {
-              //     return false;
-              //   }
-              // })()}
+            // disabled={(() => {
+            //   if (parseInt(priceRange.from) == "") {
+            //     return true;
+            //   } else {
+            //     return false;
+            //   }
+            // })()}
             >
               Clear
             </button>
@@ -1144,7 +1150,7 @@ const ExploreAllNFT = () => {
                         className="search-box-add"
                         value={search}
                         onKeyPress={handleKeyPressEvent}
-                        onChange={(e) => setSearch(e.target.value)}
+                        onChange={(e) => (sendSearchFilter(e))}
                         placeholder="Search here"
                       />{" "}
                       <span
@@ -1175,11 +1181,10 @@ const ExploreAllNFT = () => {
                       <div className="heading-box">
                         <h4>Filters</h4>
                         <span
-                          className={`clear-btn ${
-                            match.params.search || match.params.player
-                              ? ""
-                              : "disabled"
-                          }`}
+                          className={`clear-btn ${match.params.search || match.params.player
+                            ? ""
+                            : "disabled"
+                            }`}
                           onClick={() => clearFilter()}
                         >
                           Clear all
