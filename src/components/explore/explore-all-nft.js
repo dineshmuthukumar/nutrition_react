@@ -449,7 +449,13 @@ const ExploreAllNFT = () => {
     showPlayers: true,
   });
   const { slug } = useParams();
-  useDebounce(() => handleFilterCheck("", "text_search"), slug, 500, search)
+
+  const handleCallback = () => {
+    if (!slug)
+      handleFilterCheck("", "text_search")
+  }
+
+  useDebounce(handleCallback,500, search)
 
   const sendSearchFilter = (e) => {
     console.log(e.target.value);
