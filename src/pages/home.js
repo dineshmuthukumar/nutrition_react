@@ -21,6 +21,7 @@ import useQuery from "../hook/useQuery";
 import HeroBanner from "../components/hero-banner";
 //import NewDropSection from "../components/new-drop-section";
 import CollectionList from "../components/collection-list";
+import TrailerVideo from "../components/trailer-video";
 
 const Home = () => {
   const { url } = useRouteMatch();
@@ -100,9 +101,12 @@ const Home = () => {
 
         {/* <TopBuyers /> */}
         {/* <TopSellers /> */}
+
         <HeroBanner />
         {/* <NewDropSection /> */}
-        <CollectionList />
+        <TrailerVideo />
+
+        {/* <CollectionList /> */}
         <Trending />
         <LiveAuctions />
         <RecentlySoldNFT />
