@@ -1,55 +1,123 @@
-import React, { useState, useEffect } from "react";
-import { useHistory, useRouteMatch } from "react-router-dom";
-
-import NFTCounter from "../nft-counter/index";
-import images from "../../utils/images.json";
-import OwlCarousel from "react-owl-carousel";
-
-import playWeb from "../../images/jump-trade/hero-banner/02_Play-Banner_low.jpeg";
-import playMobile from "../../images/jump-trade/hero-banner/02_Play-Banner_low_Mobile.jpeg";
-import playWebText from "../../images/jump-trade/hero-banner/02_Play_Text-only_WEB.png";
-import playMobileText from "../../images/jump-trade/hero-banner/02_Play_Text-only_Mobile.png";
-
-import earnWeb from "../../images/jump-trade/hero-banner/03_Earn-Banner_low.jpeg";
-import earnMobile from "../../images/jump-trade/hero-banner/03_Earn-Banner_low_Mobile.jpeg";
-import earnWebText from "../../images/jump-trade/hero-banner/03_Earn_Text-only_WEB.png";
-import earnMobileText from "../../images/jump-trade/hero-banner/03_Earn_Text-only_Mobile.png";
-
-import ownWeb from "../../images/jump-trade/hero-banner/01_Own-Banner_low.jpeg";
-import ownMobile from "../../images/jump-trade/hero-banner/01_Own-Banner_low_Mobile.jpeg";
-import ownWebText from "../../images/jump-trade/hero-banner/01_Own_Text-only_WEB.png";
-import ownMobileText from "../../images/jump-trade/hero-banner/01_Own_Text-only.png";
-
-import firstSlideWeb from "../../images/jump-trade/hero-banner/First_Banner_BG--only_Web.jpeg";
-import firstSlideMobile from "../../images/jump-trade/hero-banner/First_Banner_BG--only_Mobile.jpeg";
-import firstSlideWebText from "../../images/jump-trade/hero-banner/First_Banner_Text--only_Web.png";
-import firstSlideMobileText from "../../images/jump-trade/hero-banner/First_Banner_Text--only_Mobile.png";
-
-import comingSoon from "../../images/jump-trade/hero-banner/Coming-Soon_Common_Web.png";
-
+import React, { useRef, useState } from "react";
+import play from "../../images/play.png";
+import playBtn from "../../images/play-btn.png";
 import "./style.scss";
 
 const TrailerVideo = () => {
-  const { innerWidth } = window;
-  const history = useHistory();
-  const { path } = useRouteMatch();
-
+  const videoRef = useRef();
   const [video, setVideo] = useState(false);
-
-  const handleCheck = () => {
-    setVideo(true);
-  };
 
   return (
     <>
-      <div>
+      <div ref={videoRef}>
         {!video ? (
           <>
-            <div>"text"</div>
+            <div>
+              <section className="trailer_section d-flex align-items-center">
+                <div className="trailer-container">
+                  <div className="top-fixed-trailer"></div>
+                  <div className="">
+                    <div className="col-xl-8 col-lg-8 col-md-9 col-sm-12 col-12">
+                      <div className="trailer-content ps-5">
+                        <h2 className="mb-2">Meta Cricket League</h2>
+                        <h4 className=""> Redefining Cricket... For You!</h4>
+
+                        <p className="text-white trailer-desc">
+                          Experience A Glimpse Of The Meta Cricket League, The
+                          World's First-Ever P2E Cricket Game... The Thrill, The
+                          Joy, & The Awesomeness! Watch The Game Trailer!
+                        </p>
+                        <a className="d-flex py-4">
+                          {" "}
+                          <img
+                            src={play}
+                            alt=""
+                            className="watch-btn"
+                            onClick={() => {
+                              setVideo(!video);
+                              videoRef.current.scrollIntoView();
+                            }}
+                          />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bottom-fixed-trailer">
+                    <div className="px-md-5 px-2">
+                      <div class="d-flex flex-column-mob justify-content-around">
+                        <a
+                          target="_self"
+                          href="/nft-marketplace/"
+                          className="list-style-none p-8"
+                        >
+                          <div class="p-2 d-flex flex-btn">
+                            <div className="btn-click-icon">
+                              <img src={playBtn} />
+                            </div>
+                            <div className="btn-click ms-md-3 ms-0 fs-2">
+                              <span>Explore Marketplace</span>
+                            </div>
+                          </div>
+                        </a>
+                        <div className="vr"></div>
+                        <a
+                          target="_blank"
+                          href="https://guardianlink.gitbook.io/meta-cricket-league/"
+                          className="list-style-none p-8"
+                        >
+                          <div class="p-2 d-flex flex-btn">
+                            <div className="btn-click-icon">
+                              <img src={playBtn} />
+                            </div>
+                            <div className="btn-click ms-md-3 ms-0 fs-2">
+                              <span>View Whitepaper</span>
+                            </div>
+                          </div>
+                        </a>
+                        <div className="vr"></div>
+
+                        <a href="#" className="list-style-none p-8">
+                          <div class="p-2 d-flex flex-btn">
+                            <div className="btn-click-icon">
+                              <img src={playBtn} />
+                            </div>
+                            <div className="btn-click ms-md-3 ms-0 fs-2">
+                              <span>Subscribe For App</span>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
           </>
         ) : (
           <>
-            <div>"vedio"</div>
+            <div>
+              <section className="video-container">
+                <div className="trailer-container">
+                  <div className="trailer-close-btn bottom-0 start-50 translate-middle-x">
+                    <div
+                      className="close-comp d-inline-flex "
+                      onClick={() => setVideo(!video)}
+                    >
+                      close
+                    </div>
+                  </div>
+                  <iframe
+                    width="100%"
+                    height="auto"
+                    src="https://www.youtube.com/embed/LJn4ViD80K4?autoplay=1&showinfo=0&controls=0"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              </section>
+            </div>
           </>
         )}
       </div>
