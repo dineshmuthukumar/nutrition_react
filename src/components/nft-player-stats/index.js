@@ -25,7 +25,8 @@ const NFTPlayerStats = ({ stats = [], core }) => {
         {level(core?.level?.value) && (
           <div className="heading-block">
             <h3>
-              Player stats {style?.value && <span>({style?.value})</span>}
+              Player stats{" "}
+              {style?.value && <span className="player">({style?.value})</span>}
             </h3>
 
             <div className="player-level">

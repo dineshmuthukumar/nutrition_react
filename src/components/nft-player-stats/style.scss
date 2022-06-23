@@ -37,3 +37,14 @@
 .font-15 {
   font-size: 15px;
 }
+
+.player {
+  font-size: 1.5rem;
+  font-family: "neue_helvetica_bold" !important;
+  text-transform: capitalize;
+  margin-right: 0.5rem;
+  background: linear-gradient(180deg, #e2ff00 0%, #18e0e0 52.6%, #e8318d 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
