@@ -19,8 +19,7 @@ import images from "../../utils/images.json";
 import { validateCurrency } from "../../utils/common";
 import ExploreTitle from "./explore-title";
 import Header from "../header";
-import useDebounce from "../../hook/useDebounce"
-
+import useDebounce from "../../hook/useDebounce";
 
 import "./style.scss";
 //import AppHelmet from "../helmet";
@@ -450,12 +449,11 @@ const ExploreAllNFT = () => {
   });
   const { slug } = useParams();
 
-  const handleCallback = () => {
-    if (search || query.get("search"))
-      handleFilterCheck("", "text_search")
-  }
+  // const handleCallback = () => {
+  //   if (search || query.get("search")) handleFilterCheck("", "text_search");
+  // };
 
-  useDebounce(handleCallback, 500, search)
+  // useDebounce(handleCallback, 500, search);
 
   useEffect(() => {
     const sale_filters = query.get("sale") ? query.get("sale").split(",") : [];
@@ -538,14 +536,14 @@ const ExploreAllNFT = () => {
     if (
       match.path === "/nft-marketplace/:search?/details/:slug" ||
       match.path ===
-      "/nft-marketplace/cricket-nfts/:player/:search?/details/:slug"
+        "/nft-marketplace/cricket-nfts/:player/:search?/details/:slug"
     ) {
       setPopDetails({ ...popDetails, show: true, children: <Details /> });
     } else if (
       match.path ===
-      "/nft-marketplace/:search?/order/details/:slug/:orderSlug" ||
+        "/nft-marketplace/:search?/order/details/:slug/:orderSlug" ||
       match.path ===
-      "/nft-marketplace/cricket-nfts/:player/:search?/order/details/:slug/:orderSlug"
+        "/nft-marketplace/cricket-nfts/:player/:search?/order/details/:slug/:orderSlug"
     ) {
       setPopDetails({
         ...popDetails,
@@ -815,8 +813,8 @@ const ExploreAllNFT = () => {
         sale_status = remove
           ? null
           : status_list.includes(input.value)
-            ? null
-            : input.value;
+          ? null
+          : input.value;
 
         break;
 
@@ -954,10 +952,10 @@ const ExploreAllNFT = () => {
       {priceRangeFilter.from && priceRangeFilter.to
         ? `Price Range $${priceRangeFilter.from} - $${priceRangeFilter.to}`
         : priceRangeFilter.from
-          ? `Min $${priceRangeFilter.from}`
-          : priceRangeFilter.to
-            ? `Max $${priceRangeFilter.to}`
-            : "Price Range"}
+        ? `Min $${priceRangeFilter.from}`
+        : priceRangeFilter.to
+        ? `Max $${priceRangeFilter.to}`
+        : "Price Range"}
     </div>
   ));
 
@@ -1028,13 +1026,13 @@ const ExploreAllNFT = () => {
               onClick={(e) =>
                 handleFilterCheck(priceRange, "price_range", true)
               }
-            // disabled={(() => {
-            //   if (parseInt(priceRange.from) == "") {
-            //     return true;
-            //   } else {
-            //     return false;
-            //   }
-            // })()}
+              // disabled={(() => {
+              //   if (parseInt(priceRange.from) == "") {
+              //     return true;
+              //   } else {
+              //     return false;
+              //   }
+              // })()}
             >
               Clear
             </button>
@@ -1186,10 +1184,11 @@ const ExploreAllNFT = () => {
                       <div className="heading-box">
                         <h4>Filters</h4>
                         <span
-                          className={`clear-btn ${match.params.search || match.params.player
-                            ? ""
-                            : "disabled"
-                            }`}
+                          className={`clear-btn ${
+                            match.params.search || match.params.player
+                              ? ""
+                              : "disabled"
+                          }`}
                           onClick={() => clearFilter()}
                         >
                           Clear all
