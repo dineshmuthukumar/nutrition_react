@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import play from "../../images/play.png";
 import playBtn from "../../images/play-btn.png";
 import "./style.scss";
-
+import { CgCloseR } from "react-icons/cg";
 const TrailerVideo = () => {
   const videoRef = useRef();
   // const closeoRef = useRef();
@@ -72,6 +72,7 @@ const TrailerVideo = () => {
                             </div>
                             <div className="btn-click ms-md-3 ms-0 fs-2">
                               <span>Whitepaper</span>
+                              <p className="coming_soon">Coming Soon</p>
                             </div>
                           </div>
                         </a>
@@ -84,6 +85,7 @@ const TrailerVideo = () => {
                             </div>
                             <div className="btn-click ms-md-3 ms-0 fs-2">
                               <span>Subscribe For App</span>
+                              <p className="coming_soon">Coming Soon</p>
                             </div>
                           </div>
                         </a>
@@ -99,7 +101,7 @@ const TrailerVideo = () => {
             <div>
               <section className="video-container">
                 <div className="trailer-container">
-                  <div className="trailer-close-btn top-0 end-0 translate-middle-x">
+                  <div className="trailer-close-btn  end-0 translate-middle-x">
                     <div
                       className="close-comp d-inline-flex "
                       onClick={() => {
@@ -107,7 +109,7 @@ const TrailerVideo = () => {
                         videoRef.current.scrollIntoView();
                       }}
                     >
-                      close
+                      <CgCloseR size={50} color="#e1ff04" />
                     </div>
                   </div>
                   <iframe
