@@ -45,7 +45,7 @@ const TrailerVideo = () => {
                   </div>
                   <div className="bottom-fixed-trailer">
                     <div className="px-md-5 px-2">
-                      <div class="d-flex flex-column-mob justify-content-around">
+                      <div class="d-flex flex-column-mob justify-content-between">
                         <a
                           target="_self"
                           href="/nft-marketplace/"
@@ -75,7 +75,7 @@ const TrailerVideo = () => {
                             </div>
                           </div>
                         </a>
-                        <div className="vr"></div>
+                        {/* <div className="vr"></div>
 
                         <a href="#" className="list-style-none p-8">
                           <div class="p-2 d-flex flex-btn">
@@ -86,7 +86,7 @@ const TrailerVideo = () => {
                               <span>Subscribe For App</span>
                             </div>
                           </div>
-                        </a>
+                        </a> */}
                       </div>
                     </div>
                   </div>
@@ -113,7 +113,9 @@ const TrailerVideo = () => {
                   <iframe
                     width="100%"
                     height="auto"
-                    src="https://www.youtube.com/embed/LJn4ViD80K4?autoplay=1&showinfo=0&controls=0&?rel=0"
+                    //www.youtube.com/embed/DLlkNdIikLU?autoplay=1&autohide=1&fs=1&rel=0&hd=1&wmode=opaque&enablejsapi=1
+                    // src="https://www.youtube.com/embed/LJn4ViD80K4?autoplay=1&showinfo=0&controls=0&?rel=0"
+                    src="https://www.youtube.com/embed/LJn4ViD80K4?autoplay=1&rel=0&hd=1&wmode=opaque&enablejsapi=1&controls=0"
                     title="YouTube video player"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
