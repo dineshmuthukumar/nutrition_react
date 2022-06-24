@@ -133,7 +133,7 @@ const TrailerVideo = () => {
                   <iframe
                     width="100%"
                     height="auto"
-                    src="https://www.youtube.com/embed/e6OkScOXDGw?rel=0&hd=1&wmode=opaque&enablejsapi=1&controls=0"
+                    src="https://www.youtube.com/embed/d4mzqS8Zsis?rel=0&hd=1&wmode=opaque&enablejsapi=1&controls=0"
                     title="YouTube video player"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
