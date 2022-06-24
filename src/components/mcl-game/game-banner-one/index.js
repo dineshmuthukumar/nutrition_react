@@ -1,53 +1,16 @@
 import React, { useState } from "react";
 import { Col, Row, Form, Button } from "react-bootstrap";
+import Toggle from "react-toggle";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
-// import { TbDeviceMobile } from "react-icons/tb";
-import { Icon, Label, Input, Select } from "semantic-ui-react";
-import styled from "styled-components";
-import Switch from "react-toggle-switch";
-import moment from "moment";
+import { FiMail, FiPhone } from "react-icons/fi";
 
 import "../style.scss";
 import images from "../../../utils/images.json";
 
 const MclGameOne = () => {
   const [toggle, setToggle] = useState(false);
-  const [texting, setTexting] = useState(false);
-  const [text, setText] = useState(false);
 
-  const StyledSwitch = styled(Switch)`
-    transition: all 0.2s;
-    &&& {
-      background: ${({ on, colorOn, colorOff }) => (on ? colorOn : colorOff)};
-      border: ${({ on, colorOn, colorOff }) =>
-        on ? `2px solid ${colorOn}` : `2px solid ${colorOff}`};
-      width: ${({ contract }) => (contract ? "40px" : "70px")};
-      height: 32px;
-      border-radius: 30px;
-      color: ${({ on, colorOn, colorOff }) => (on ? colorOn : colorOff)};
-    }
-    & > .switch-toggle {
-      width: 36px;
-      height: 28px;
-      border-radius: 14px;
-      box-shadow: none;
-      border: 0;
-      text-align: center;
-    }
-    &.switch.on .switch-toggle {
-      left: ${({ contract }) => (contract ? 0 : "30px")};
-      background: #fff;
-    }
-  `;
-
-  const toggleSwitch = () => {
-    setToggle((toggle) => !toggle);
-  };
-
-  const textSwitch = () => {
-    setToggle((text) => !text);
-  };
   return (
     <>
       <section className="game-banner">
@@ -79,22 +42,27 @@ const MclGameOne = () => {
                       />
                     </Col>
 
-                    {/* <Col xs="auto">
+                    <Col xs="auto">
                       <div class="switch-button">
-                        <input
-                          class="switch-button-checkbox"
-                          type="checkbox"
-                        ></input>
-                        <label class="switch-button-label" for="">
-                          <span class="switch-button-label-span">Email</span>
+                        <label>
+                          <Toggle
+                            className="switch-icon"
+                            icons={{
+                              checked: <FiPhone />,
+                              unchecked: <FiMail />,
+                            }}
+                            defaultChecked={toggle}
+                            onChange={() => setToggle(!toggle)}
+                          />
+                          {/* <span>Custom icons</span> */}
                         </label>
                       </div>
-                    </Col> */}
-                    <Col xs="auto">
+                    </Col>
+                    {/* <Col xs="auto">
                       <Button type="submit" className="submit-btn my-2">
                         SUBSCRIBE
                       </Button>
-                    </Col>
+                    </Col> */}
                   </Row>
                 </Form>
               </div>
