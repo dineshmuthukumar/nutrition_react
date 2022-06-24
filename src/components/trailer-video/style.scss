@@ -114,7 +114,7 @@
           padding: 0.5rem 0;
         }
       }
-      .flex-btn {
+      .flex-btnn {
         @media screen and (max-width: 991px) {
           flex-direction: column;
           text-align: center;
@@ -136,7 +136,7 @@
     }
     .btn-click-icon {
       img {
-        width: 3rem;
+        width: 2.5rem;
         @media screen and (max-width: 560px) {
           width: 2rem;
         }
@@ -157,8 +157,7 @@
       }
       .coming_soon {
         font-size: 1rem;
-        font-family: "neue_helvetica_extended";
-        font-style: italic;
+        font-family: "neue_helvetica_roman";
         color: #e1ff04;
         font-weight: 600;
       }

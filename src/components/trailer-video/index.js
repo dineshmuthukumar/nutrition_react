@@ -3,6 +3,7 @@ import play from "../../images/play.png";
 import playBtn from "../../images/play-btn.png";
 import "./style.scss";
 import { VscClose } from "react-icons/vsc";
+import { BsPlayFill } from "react-icons/bs";
 const TrailerVideo = () => {
   const videoRef = useRef();
   // const closeoRef = useRef();
@@ -40,6 +41,23 @@ const TrailerVideo = () => {
                             }}
                           />
                         </a>
+                        {/* <button
+                          class="glow-on-hover mt-5"
+                          onClick={() => {
+                            setVideo(!video);
+                            videoRef.current.scrollIntoView();
+                          }}
+                          type="button"
+                        >
+                          <BsPlayFill
+                            className="anim-play"
+                            size={80}
+                            color="#e1ff04"
+                          />
+                          <div className="watch-btn-text">
+                            Watch The <span>Trailer</span>
+                          </div>
+                        </button> */}
                       </div>
                     </div>
                   </div>
@@ -51,7 +69,7 @@ const TrailerVideo = () => {
                           href="/nft-marketplace/"
                           className="list-style-none p-8"
                         >
-                          <div class="p-2 d-flex flex-btn">
+                          <div class="p-2 d-flex flex-btnn align-self-start">
                             <div className="btn-click-icon">
                               <img src={playBtn} />
                             </div>
@@ -66,7 +84,7 @@ const TrailerVideo = () => {
                           href="https://guardianlink.gitbook.io/meta-cricket-league/"
                           className="list-style-none p-8"
                         >
-                          <div class="p-2 d-flex flex-btn">
+                          <div class="p-2 d-flex flex-btnn align-self-start">
                             <div className="btn-click-icon">
                               <img src={playBtn} />
                             </div>
@@ -79,7 +97,7 @@ const TrailerVideo = () => {
                         <div className="vr"></div>
 
                         <a href="#" className="list-style-none p-8">
-                          <div class="p-2 d-flex flex-btn">
+                          <div class="p-2 d-flex flex-btnn align-self-start">
                             <div className="btn-click-icon">
                               <img src={playBtn} />
                             </div>
@@ -115,9 +133,7 @@ const TrailerVideo = () => {
                   <iframe
                     width="100%"
                     height="auto"
-                    //www.youtube.com/embed/DLlkNdIikLU?autoplay=1&autohide=1&fs=1&rel=0&hd=1&wmode=opaque&enablejsapi=1
-                    // src="https://www.youtube.com/embed/LJn4ViD80K4?autoplay=1&showinfo=0&controls=0&?rel=0"
-                    src="https://www.youtube.com/embed/aSJl-BdgwyM?autoplay=1&rel=0&hd=1&wmode=opaque&enablejsapi=1&controls=0"
+                    src="https://www.youtube.com/embed/e6OkScOXDGw?rel=0&hd=1&wmode=opaque&enablejsapi=1&controls=0"
                     title="YouTube video player"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
