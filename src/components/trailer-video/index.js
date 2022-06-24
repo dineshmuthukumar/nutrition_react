@@ -81,7 +81,7 @@ const TrailerVideo = () => {
                         <div className="vr"></div>
                         <a
                           target="_blank"
-                          href="https://guardianlink.gitbook.io/meta-cricket-league/"
+                          // href="https://guardianlink.gitbook.io/meta-cricket-league/"
                           className="list-style-none p-8"
                         >
                           <div class="p-2 d-flex flex-btnn align-self-start">
@@ -96,7 +96,7 @@ const TrailerVideo = () => {
                         </a>
                         <div className="vr"></div>
 
-                        <a href="#" className="list-style-none p-8">
+                        <a className="list-style-none p-8">
                           <div class="p-2 d-flex flex-btnn align-self-start">
                             <div className="btn-click-icon">
                               <img src={playBtn} />
