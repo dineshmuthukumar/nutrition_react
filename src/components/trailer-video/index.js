@@ -5,6 +5,7 @@ import "./style.scss";
 
 const TrailerVideo = () => {
   const videoRef = useRef();
+  // const closeoRef = useRef();
   const [video, setVideo] = useState(false);
 
   return (
@@ -101,7 +102,10 @@ const TrailerVideo = () => {
                   <div className="trailer-close-btn bottom-0 start-50 translate-middle-x">
                     <div
                       className="close-comp d-inline-flex "
-                      onClick={() => setVideo(!video)}
+                      onClick={() => {
+                        setVideo(!video);
+                        videoRef.current.scrollIntoView();
+                      }}
                     >
                       close
                     </div>
@@ -109,7 +113,7 @@ const TrailerVideo = () => {
                   <iframe
                     width="100%"
                     height="auto"
-                    src="https://www.youtube.com/embed/LJn4ViD80K4?autoplay=1&showinfo=0&controls=0"
+                    src="https://www.youtube.com/embed/LJn4ViD80K4?autoplay=1&showinfo=0&controls=0&?rel=1&fs=0"
                     title="YouTube video player"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
