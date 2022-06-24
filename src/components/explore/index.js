@@ -11,6 +11,7 @@ import { nftCategoryListApi } from "../../api/methods";
 import ExploreTitle from "./explore-title";
 import { BiCaretDown, BiSearch, BiCheck } from "react-icons/bi";
 import { FormControl } from "react-bootstrap";
+import useDebounce from "../../hook/useDebounce";
 
 import Details from "../../pages/details";
 import OrderDetails from "../../pages/order-details";
@@ -468,6 +469,13 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
       showPlayers: true,
     };
   });
+
+  const handleCallback = () => {
+    if (search || query.get("search"))
+      handleFilterCheck("", "text_search")
+  }
+
+  useDebounce(handleCallback,500, search)
 
   useEffect(() => {
     const sale_filters = query.get("sale") ? query.get("sale").split(",") : [];
@@ -1189,7 +1197,7 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
                         className="search-box-add"
                         value={search}
                         onKeyPress={handleKeyPressEvent}
-                        onChange={(e) => setSearch(e.target.value)}
+                        onChange={(e) =>  setSearch(e.target.value)}
                         placeholder="Search here"
                       />{" "}
                       <span

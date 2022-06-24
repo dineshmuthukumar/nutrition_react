@@ -451,16 +451,11 @@ const ExploreAllNFT = () => {
   const { slug } = useParams();
 
   const handleCallback = () => {
-    if (!slug)
+    if (search || query.get("search"))
       handleFilterCheck("", "text_search")
   }
 
-  useDebounce(handleCallback,500, search)
-
-  const sendSearchFilter = (e) => {
-    console.log(e.target.value);
-    setSearch(e.target.value);
-  }
+  useDebounce(handleCallback, 500, search)
 
   useEffect(() => {
     const sale_filters = query.get("sale") ? query.get("sale").split(",") : [];
@@ -1160,7 +1155,7 @@ const ExploreAllNFT = () => {
                         className="search-box-add"
                         value={search}
                         onKeyPress={handleKeyPressEvent}
-                        onChange={(e) => (sendSearchFilter(e))}
+                        onChange={(e) => setSearch(e.target.value)}
                         placeholder="Search here"
                       />{" "}
                       <span
