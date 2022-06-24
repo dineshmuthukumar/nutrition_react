@@ -53,11 +53,10 @@
       }
     }
     .watch-btn {
-      width: 12rem;
-      cursor: pointer;
-      @media screen and (min-width: 560px) and (max-width: 1300px) and (orientation: landscape) {
-        width: 6rem;
+      @media screen and (min-width: 1300px) {
+        width: 12rem;
       }
+      cursor: pointer;
       @media screen and (max-width: 1200px) {
         width: 8rem;
       }
