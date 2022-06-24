@@ -99,7 +99,7 @@ const TrailerVideo = () => {
             <div>
               <section className="video-container">
                 <div className="trailer-container">
-                  <div className="trailer-close-btn bottom-0 start-50 translate-middle-x">
+                  <div className="trailer-close-btn top-0 end-0 translate-middle-x">
                     <div
                       className="close-comp d-inline-flex "
                       onClick={() => {

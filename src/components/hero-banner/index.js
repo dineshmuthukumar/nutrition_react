@@ -117,6 +117,14 @@ const HeroBanner = () => {
               />
 
               <div className="hero-content-box">
+                <h1>
+                  Jump.trade - The NFT Marketplace To Trade Legendary NFTs
+                </h1>
+                <p className="hero-desc">
+                  Jump.trade - The #1 NFT marketplace to buy the world's first
+                  P2E cricket game NFTs. Buy NFT bats, players, and signed
+                  legendary NFTs commemorating World Cup final matches!
+                </p>
                 <div className="hero-btn-block">
                   {live && (
                     <button
@@ -127,15 +135,6 @@ const HeroBanner = () => {
                     </button>
                   )}
                 </div>
-
-                <h1>
-                  Jump.trade - The NFT Marketplace To Trade Legendary NFTs
-                </h1>
-                <p className="hero-desc">
-                  Jump.trade - The #1 NFT marketplace to buy the world's first
-                  P2E cricket game NFTs. Buy NFT bats, players, and signed
-                  legendary NFTs commemorating World Cup final matches!
-                </p>
               </div>
             </div>
           </section>
@@ -157,6 +156,13 @@ const HeroBanner = () => {
               />
 
               <div className="hero-content-box">
+                <h4>OWN - Buy Cricket NFTs from NFT Marketplace</h4>
+                <p className="hero-desc">
+                  Jump.trade is the only platform for you to purchase exclusive
+                  and authenticated cricket NFTs from the marketplace. Some of
+                  these NFTs include bats signed by legends of the game.
+                </p>
+
                 <div className="hero-btn-block">
                   {live && (
                     <button
@@ -167,13 +173,6 @@ const HeroBanner = () => {
                     </button>
                   )}
                 </div>
-
-                <h4>OWN - Buy Cricket NFTs from NFT Marketplace</h4>
-                <p className="hero-desc">
-                  Jump.trade is the only platform for you to purchase exclusive
-                  and authenticated cricket NFTs from the marketplace. Some of
-                  these NFTs include bats signed by legends of the game.
-                </p>
               </div>
             </div>
           </section>
@@ -195,16 +194,15 @@ const HeroBanner = () => {
                 loading="lazy"
               />
               <div className="hero-content-box">
-                <div className="hero-btn-block">
-                  <img src={comingSoon} alt="comming soon" />
-                </div>
-
                 <h4>PLAY - Immerse Yourself In An Addictive Cricket Game</h4>
                 <p className="hero-desc">
                   Our NFTs enable you play the world's first-ever P2E cricket
                   game, the Meta Cricket League. Enjoy this super-addictive and
                   engaging game of cricket in the never-before meta-space!
                 </p>
+                <div className="hero-btn-block">
+                  <img src={comingSoon} alt="comming soon" />
+                </div>
               </div>
             </div>
           </section>
@@ -226,10 +224,6 @@ const HeroBanner = () => {
                 loading="lazy"
               />
               <div className="hero-content-box">
-                <div className="hero-btn-block">
-                  <img src={comingSoon} alt="comming soon" />
-                </div>
-
                 <h4>
                   EARN - Get Rewarded For Your Game-Time, Skill &amp; Efforts{" "}
                 </h4>
@@ -238,6 +232,9 @@ const HeroBanner = () => {
                   to monetize the time, efforts, and victories. Enter into a new
                   dimension of earning with our exciting reward-programs!
                 </p>
+                <div className="hero-btn-block">
+                  <img src={comingSoon} alt="comming soon" />
+                </div>
               </div>
             </div>
           </section>
