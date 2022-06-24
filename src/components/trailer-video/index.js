@@ -117,7 +117,7 @@ const TrailerVideo = () => {
                     height="auto"
                     //www.youtube.com/embed/DLlkNdIikLU?autoplay=1&autohide=1&fs=1&rel=0&hd=1&wmode=opaque&enablejsapi=1
                     // src="https://www.youtube.com/embed/LJn4ViD80K4?autoplay=1&showinfo=0&controls=0&?rel=0"
-                    src="https://www.youtube.com/embed/LJn4ViD80K4?autoplay=1&rel=0&hd=1&wmode=opaque&enablejsapi=1&controls=0"
+                    src="https://www.youtube.com/embed/aSJl-BdgwyM?autoplay=1&rel=0&hd=1&wmode=opaque&enablejsapi=1&controls=0"
                     title="YouTube video player"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
