@@ -71,11 +71,11 @@ const TrailerVideo = () => {
                               <img src={playBtn} />
                             </div>
                             <div className="btn-click ms-md-3 ms-0 fs-2">
-                              <span>View Whitepaper</span>
+                              <span>Whitepaper</span>
                             </div>
                           </div>
                         </a>
-                        {/* <div className="vr"></div>
+                        <div className="vr"></div>
 
                         <a href="#" className="list-style-none p-8">
                           <div class="p-2 d-flex flex-btn">
@@ -86,7 +86,7 @@ const TrailerVideo = () => {
                               <span>Subscribe For App</span>
                             </div>
                           </div>
-                        </a> */}
+                        </a>
                       </div>
                     </div>
                   </div>
