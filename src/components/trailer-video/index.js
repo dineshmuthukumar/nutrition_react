@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import play from "../../images/play.png";
 import playBtn from "../../images/play-btn.png";
 import "./style.scss";
-import { CgCloseR } from "react-icons/cg";
+import { VscClose } from "react-icons/vsc";
 const TrailerVideo = () => {
   const videoRef = useRef();
   // const closeoRef = useRef();
@@ -109,7 +109,7 @@ const TrailerVideo = () => {
                         videoRef.current.scrollIntoView();
                       }}
                     >
-                      <CgCloseR size={50} color="#e1ff04" />
+                      <VscClose size={50} color="#e1ff04" />
                     </div>
                   </div>
                   <iframe
