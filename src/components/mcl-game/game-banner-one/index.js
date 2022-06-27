@@ -55,7 +55,7 @@ const MclGameOne = () => {
 
         // if (result.data.status) {
         setVEmail(
-          "You're now on our waitlist! Keep an eye on your inbox for the latest updates on a Minnal NFTs!"
+          "You're now on our waitlist! Keep an eye on your inbox for the latest updates on a Jump.Trade!"
         );
         // } else {
         //   setVEmail2(
@@ -205,7 +205,6 @@ const MclGameOne = () => {
                               Please enter a valid phone number
                             </p>
                           )}
-                      <p className="nft_email_error">{vEmail}</p>
                     </Col>
 
                     <Col xs="auto">
@@ -259,6 +258,7 @@ const MclGameOne = () => {
                     </Col>
                     {error && <p className="error_text text-center">{error}</p>}
                   </Row>
+                  <p className="nft_email_error">{vEmail}</p>
                 </Form>
               </div>
             </div>
