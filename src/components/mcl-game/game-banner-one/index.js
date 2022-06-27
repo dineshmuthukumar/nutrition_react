@@ -207,7 +207,7 @@ const MclGameOne = () => {
                     </Col>
 
                     <Col xs="auto">
-                      <div class="switch-button">
+                      {/* <div class="switch-button">
                         <label>
                           <Toggle
                             className="switch-icon"
@@ -218,8 +218,19 @@ const MclGameOne = () => {
                             defaultChecked={toggle}
                             onChange={(() => setToggle(!toggle), toggleType)}
                           />
-                          {/* <span>Custom icons</span> */}
                         </label>
+                      </div> */}
+                      <div
+                        class="btn-group switch-btn"
+                        role="group"
+                        aria-label="Basic example"
+                      >
+                        <button type="button" class="btn active ">
+                          <FiMail />
+                        </button>
+                        <button type="button" class="btn">
+                          <FiPhone />
+                        </button>
                       </div>
                     </Col>
                     <Col xs="auto">

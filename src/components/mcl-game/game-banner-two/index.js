@@ -61,7 +61,7 @@ const MclGameTwo = () => {
                     legendary Nfts commemorating world cup final matches!
                   </span>
                 </p>
-                <div className="d-flex justify-content-start mt-5">
+                <div className="d-flex text-md-start d-flex d-sm-flex d-md-flex justify-content-center align-items-center justify-content-md-start align-items-md-center justify-content-xl-start mt-5">
                   <a
                     className="me-4"
                     target="_blank"

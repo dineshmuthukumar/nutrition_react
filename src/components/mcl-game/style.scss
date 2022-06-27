@@ -11,6 +11,22 @@
     color: #e1ff04;
     text-transform: uppercase;
   }
+  .switch-btn {
+    // background: red;
+    border-radius: 100px;
+    border: 2px solid #e1ff04;
+
+    .btn {
+      border-radius: 100px;
+      background: #1b4123;
+      border: none;
+      color: #fff;
+      &.active {
+        background: #000;
+        color: #fff;
+      }
+    }
+  }
   .mobile_app {
     letter-spacing: 0.1rem;
     color: #0d3625;
