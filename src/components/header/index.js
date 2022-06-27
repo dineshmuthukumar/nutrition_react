@@ -80,6 +80,14 @@ const Header = ({
     //   );
     //   }
     // }
+    if (user?.data?.user) {
+      if (!user?.data?.user?.first_name && !user?.data?.user?.last_name) {
+        window.open(
+          `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile?forceUpdate=true`,
+          "_self"
+        );
+      }
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
