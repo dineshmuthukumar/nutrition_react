@@ -2,7 +2,8 @@
 
 .game-banner {
   min-height: calc(90vh + 2rem);
-  background: #0d3625;
+  // background: #0d3625;
+  background: url(../../images/sec-11.png) center / cover no-repeat;
   display: flex;
   align-items: center;
   .mcl-title {
@@ -196,4 +197,51 @@
   -webkit-box-shadow: 0px 0px 5px 5px #0099e0;
   -moz-box-shadow: 0px 0px 5px 5px #0099e0;
   box-shadow: 0px 0px 5px 5px #0099e0;
+}
+.mcl-game-two {
+  background: #0d3625;
+  overflow-x: hidden;
+  padding: 8rem 0 !important;
+
+  .os_list {
+    color: #fff;
+  }
+  .div_title {
+    font-size: 5rem;
+    color: #e1ff04;
+  }
+  .div_stroke {
+    letter-spacing: 0.1rem;
+    color: #0d3625;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #e1ff04;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .title-div {
+    h1 {
+      font-family: "neue_helvetica_light" !important;
+      font-size: 3.5rem;
+    }
+  }
+}
+.mcl-game-three {
+  // background: #0d3625;
+  background: url(../../images/cta.png) center / cover no-repeat;
+  color: #fff;
+  overflow-x: hidden;
+  .download_app {
+    color: #e1ff04;
+  }
+  .marketplace_app {
+    letter-spacing: 0.1rem;
+    color: #0d3625;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #e1ff04;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .theme-color {
+    color: #e1ff04;
+  }
 }
