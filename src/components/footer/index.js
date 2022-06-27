@@ -10,6 +10,7 @@ import {
   FaTwitter,
   FaCloudDownloadAlt,
   FaTelegramPlane,
+  FaYoutube,
 } from "react-icons/fa";
 import "./style.scss";
 import { validateEmail } from "../../utils/common";
@@ -246,15 +247,15 @@ const Footer = () => {
                     <FaMediumM />
                   </a>
                 </li> */}
-                {/* <li>
+                <li>
                   <a
                     target="_blank"
                     rel="nofollow noopener"
-                    href="https://www.youtube.com/channel/UCgfA98XT-yUi8YSIjT8omUA"
+                    href="https://www.youtube.com/channel/UCBjyJeYnDeml1aE6URwUfdA"
                   >
                     <FaYoutube />
                   </a>
-                </li> */}
+                </li>
               </ul>
               {/* <h4>
                 <a
