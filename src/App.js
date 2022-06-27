@@ -122,6 +122,23 @@ function App(props) {
     }
   };
 
+  window.setFiredeskdetails = () => {
+    setTimeout(function () {
+      if (user.data?.user) {
+        console.log(user.data?.user);
+        document.getElementById("chat-fc-name").value =
+          user.data?.user.first_name + " " + user.data?.user.last_name;
+        document.getElementById("chat-fc-name").disabled = true;
+
+        document.getElementById("chat-fc-email").value = user.data?.user.email;
+        document.getElementById("chat-fc-email").disabled = true;
+        document.getElementById("chat-fc-phone").value =
+          user.data?.user.phone_no;
+        document.getElementById("chat-fc-phone").disabled = true;
+      }
+    }, 1000);
+  };
+
   useEffect(() => {
     const token = getCookies();
     if (token) dispatch(user_load_by_token_thunk(token));
