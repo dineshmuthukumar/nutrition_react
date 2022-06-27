@@ -27,6 +27,7 @@ const MclGameOne = () => {
     email: "",
     phone: "",
   });
+  const [currentSubcribe, setcurrentSubcribe] = useState("email");
 
   const [validation, setValidation] = useState({
     email: false,
@@ -35,8 +36,9 @@ const MclGameOne = () => {
     valid_phone: false,
   });
 
-  const toggleType = () => {
-    setType(type == "email" ? "mobile" : "email");
+  const toggleType = (input) => {
+    setType(input);
+    setcurrentSubcribe(input);
     //console.log(type);
   };
 
@@ -150,7 +152,7 @@ const MclGameOne = () => {
             </div>
             <div className="col-lg-6 order-lg-1">
               <div className="p-lg-5 p-2">
-                <h2 className="display-4 mcl-title">Meta Criket League</h2>
+                <h2 className="display-4 mcl-title">Meta Cricket League</h2>
                 <h2 className="display-4 mobile_app">Mobile App</h2>
                 <p className="fs-5 text-white game-desc">
                   The Meta Cricket League brings you the vibrance, energy, &
@@ -225,10 +227,22 @@ const MclGameOne = () => {
                         role="group"
                         aria-label="Basic example"
                       >
-                        <button type="button" class="btn active ">
+                        <button
+                          type="button"
+                          className={`btn ${
+                            currentSubcribe === "email" ? "active" : ""
+                          }`}
+                          onClick={() => toggleType("email")}
+                        >
                           <FiMail />
                         </button>
-                        <button type="button" class="btn">
+                        <button
+                          type="button"
+                          className={`btn ${
+                            currentSubcribe === "phone" ? "active" : ""
+                          }`}
+                          onClick={() => toggleType("phone")}
+                        >
                           <FiPhone />
                         </button>
                       </div>
