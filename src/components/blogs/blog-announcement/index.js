@@ -72,13 +72,16 @@ const BlogAnnouncment = ({
                       <div class="">
                         <div class="f_book">
                           {" "}
-                          <img
-                            src={
-                              AnnouncementData?._embedded["wp:featuredmedia"][
-                                "0"
-                              ]["source_url"]
-                            }
-                          />
+                          {AnnouncementData?._embedded["wp:featuredmedia"]
+                            ?.length > 0 && (
+                            <img
+                              src={
+                                AnnouncementData?._embedded["wp:featuredmedia"][
+                                  "0"
+                                ]["source_url"]
+                              }
+                            />
+                          )}
                         </div>
                       </div>
                     </div>

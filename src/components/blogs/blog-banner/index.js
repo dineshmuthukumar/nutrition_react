@@ -77,12 +77,16 @@ const BlogBanner = ({ bannerData, sliderData }) => {
           <div class="row align-items-center">
             <div class="col-lg-6 col-md-12 col-sm-12 order-md-2">
               <a href={"/blog/" + bannerData?.slug}>
-                <img
-                  src={
-                    bannerData?._embedded["wp:featuredmedia"]["0"]["source_url"]
-                  }
-                  class="img-fluid br-5 mt-5"
-                />
+                {bannerData?._embedded["wp:featuredmedia"]?.length > 0 && (
+                  <img
+                    src={
+                      bannerData?._embedded["wp:featuredmedia"]["0"][
+                        "source_url"
+                      ]
+                    }
+                    class="img-fluid br-5 mt-5"
+                  />
+                )}
               </a>
             </div>
             <div class="col-lg-6 col-md-12 col-sm-12 order-md-1">
@@ -113,12 +117,14 @@ const BlogBanner = ({ bannerData, sliderData }) => {
               <div class="col-md-4 col-lg-4 col-sm-4">
                 <div class="b-list">
                   <a href={"/blog/" + item?.slug}>
-                    <img
-                      src={
-                        item?._embedded["wp:featuredmedia"]["0"]["source_url"]
-                      }
-                      class="img-fluid"
-                    />
+                    {item?._embedded["wp:featuredmedia"]?.length > 0 && (
+                      <img
+                        src={
+                          item?._embedded["wp:featuredmedia"]["0"]["source_url"]
+                        }
+                        class="img-fluid"
+                      />
+                    )}
                   </a>
                   <h2>
                     <a href={"/blog/" + item?.slug}>

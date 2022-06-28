@@ -56,11 +56,13 @@ const BlogDetail = () => {
       ) : (
         <div className="single-post">
           <section class="banner">
-            <img
-              src={data?._embedded["wp:featuredmedia"]["0"]["source_url"]}
-              class="img-fluid"
-              alt="blog"
-            />
+            {data?._embedded["wp:featuredmedia"]?.length > 0 && (
+              <img
+                src={data?._embedded["wp:featuredmedia"]["0"]["source_url"]}
+                class="img-fluid"
+                alt="blog"
+              />
+            )}
           </section>
           <section class="blog-content p-80">
             <div class="container">
