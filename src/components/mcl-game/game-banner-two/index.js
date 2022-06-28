@@ -29,7 +29,7 @@ const MclGameTwo = () => {
           <div className="row  justify-content-center pt-5">
             <div className="col">
               <div className="title-div text-center">
-                <h1 className="text-uppercase text-white">Coming Soon</h1>
+                <h1 className="text-uppercase coming_soon">Coming Soon</h1>
               </div>
             </div>
           </div>
@@ -54,7 +54,7 @@ const MclGameTwo = () => {
                     </span>
                   </strong>
                 </p>
-                <p className="my-3 text-capitalize fs-4">
+                <p className="my-3 text-capitalize fs-4 ">
                   <span>
                     Jump.trade - The #1 NFT Marketplace to Buy the world's first
                     P2E cricket game Nfts. Buy NFT bats, players, and signed
@@ -80,10 +80,7 @@ const MclGameTwo = () => {
             </div>
             <div className="col-md-6 mb-0">
               <div className="p-0 mx-lg-0">
-                <img
-                  className=" img-fluid shadow w-100 fit-cover"
-                  src={device}
-                />
+                <img className=" img-fluid  w-100 fit-cover" src={device} />
               </div>
             </div>
           </div>

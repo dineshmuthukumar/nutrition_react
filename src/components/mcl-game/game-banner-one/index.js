@@ -228,7 +228,7 @@ const MclGameOne = () => {
                       >
                         <button
                           type="button"
-                          className={`btn ${
+                          className={`btn btn1 ${
                             currentSubcribe === "email" ? "active" : ""
                           }`}
                           onClick={() => toggleType("email")}
@@ -237,7 +237,7 @@ const MclGameOne = () => {
                         </button>
                         <button
                           type="button"
-                          className={`btn ${
+                          className={`btn btn2 ${
                             currentSubcribe === "phone" ? "active" : ""
                           }`}
                           onClick={() => toggleType("phone")}
@@ -246,21 +246,50 @@ const MclGameOne = () => {
                         </button>
                       </div>
                     </Col>
-                    <Col xs="auto">
-                      <Button
-                        type="submit"
-                        className="submit-btn my-2"
-                        onClick={handleSubcribe}
-                        disabled={loading}
-                      >
-                        SUBSCRIBE
-                      </Button>
-                    </Col>
-                    {error && <p className="error_text text-center">{error}</p>}
                   </Row>
+                  <Col xs="auto">
+                    <Button
+                      type="submit"
+                      className="submit-btn my-2"
+                      onClick={handleSubcribe}
+                      disabled={loading}
+                    >
+                      SUBSCRIBE
+                    </Button>
+                  </Col>
+                  {error && <p className="error_text text-center">{error}</p>}
+
                   <p className="nft_email_error">{vEmail}</p>
                 </Form>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="whitepaper_sec py-5">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="whitepaper_box p-4 text-center position-relative">
+              <h1 className="display-1 text-uppercase fw-bold download_app">
+                Meta Cricket League
+              </h1>
+              <h1 className="display-1 text-uppercase fw-bold marketplace_app">
+                Whitepaper
+              </h1>
+              <p className="my-3 text-capitaliz text-white e h-meduim fs-4">
+                <span>
+                  The meta cricket league brings you the vibrance, energy, &
+                  awesomeness of cricket in the meta-realm, play our NFT cricket
+                  game, win matchees, climb up the leaderboard and earn
+                  unbelievable rewards for your time and efforts!
+                </span>
+              </p>
+              <p className="fs-3 text-capitalize  theme-color">
+                <strong>
+                  <span>Learn about meta cricket league</span>
+                </strong>
+              </p>
+              <button className="read_moree fs-5 fw-bold">Read More</button>
             </div>
           </div>
         </div>
