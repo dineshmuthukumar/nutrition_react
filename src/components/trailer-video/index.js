@@ -133,6 +133,7 @@ const TrailerVideo = () => {
                             </div>
                             <div className="btn-click ms-md-3 ms-0 fs-2">
                               <span>Whitepaper</span>
+
                               {/* <p className="coming_soon">Coming Soon</p> */}
                               {/* <NFTCounter
                                 time={whitepaper_time}
@@ -146,12 +147,14 @@ const TrailerVideo = () => {
                               {end_time ? (
                                 <a
                                   target="_blank"
-                                  href="/"
+                                  href="https://mcl-wp.jump.trade/"
                                   className="list-style-none p-8"
                                 ></a>
                               ) : (
                                 whitepaper_time && (
                                   <div className="whitepaper">
+                                    <p className="coming_soon">Launching In</p>
+
                                     <NFTCounter
                                       time={whitepaper_time}
                                       timeClass="counter-time"
