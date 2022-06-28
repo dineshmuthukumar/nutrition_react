@@ -104,6 +104,8 @@
     }
     .list-style-none {
       text-decoration: none;
+      color: #fff;
+
       &.p-8 {
         // padding: 4rem 0;
 
@@ -157,10 +159,14 @@
         margin-left: 1rem !important;
       }
       .coming_soon {
-        font-size: 1rem;
-        font-family: "neue_helvetica_roman";
+        // font-size: 1rem;
+        // color: #e1ff04;
+        // font-weight: 600;
+        font-size: 1.4rem;
+        margin-bottom: 0;
+        margin-top: 0.8rem;
         color: #e1ff04;
-        font-weight: 600;
+        font-family: "neue_helvetica_roman";
       }
     }
   }

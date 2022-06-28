@@ -630,7 +630,11 @@ const Header = ({
                     </Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
-                <Nav.Link id="drop_outer" role="button">
+                <Nav.Link
+                  id="drop_outer"
+                  role="button"
+                  onClick={() => window.open("/mcl-game", "_self")}
+                >
                   {" "}
                   <span className="beta-container">
                     <span className="beta-tag">Coming soon</span>MCL Game{" "}

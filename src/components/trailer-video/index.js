@@ -16,7 +16,7 @@ const TrailerVideo = () => {
   // const closeoRef = useRef();
   const [video, setVideo] = useState(false);
 
-  const white_paper_start_date = "Jun 29 2022 12:30:00";
+  const white_paper_start_date = "Jun 28 2022 10:54:00";
 
   const [whitepaper_time, set_whitepaper_time] = useState();
 
@@ -37,10 +37,12 @@ const TrailerVideo = () => {
     if (check) s_time.setSeconds(s_time.getSeconds() + 2);
 
     if (new Date(white_paper_start_date_utc) < s_time) {
-      dispatch(market_live_thunk());
+      set_end_time(true);
+      // dispatch(market_live_thunk());
     } else {
+      set_end_time(false);
       set_whitepaper_time(white_paper_start_date_utc);
-      dispatch(market_live_off_thunk());
+      // dispatch(market_live_off_thunk());
     }
   };
   useEffect(() => {
@@ -132,8 +134,6 @@ const TrailerVideo = () => {
                               <img src={playBtn} />
                             </div>
                             <div className="btn-click ms-md-3 ms-0 fs-2">
-                              <span>Whitepaper</span>
-
                               {/* <p className="coming_soon">Coming Soon</p> */}
                               {/* <NFTCounter
                                 time={whitepaper_time}
@@ -149,10 +149,14 @@ const TrailerVideo = () => {
                                   target="_blank"
                                   href="https://mcl-wp.jump.trade/"
                                   className="list-style-none p-8"
-                                ></a>
+                                >
+                                  Whitepaper
+                                </a>
                               ) : (
                                 whitepaper_time && (
                                   <div className="whitepaper">
+                                    <span>Whitepaper</span>
+
                                     <p className="coming_soon">Launching In</p>
 
                                     <NFTCounter
