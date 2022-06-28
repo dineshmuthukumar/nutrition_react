@@ -59,7 +59,7 @@ const BlogList = lazy(() => import("./pages/blog-list"));
 const AnnounDetails = lazy(() => import("./pages/announcement-details"));
 const AnnounementList = lazy(() => import("./pages/announcement-list"));
 const FAQ = lazy(() => import("./pages/faq"));
-const MobileApp = lazy(() => import("./pages/mobile-app"));
+//const MobileApp = lazy(() => import("./pages/mobile-app"));
 
 function App(props) {
   const market_start_date = "Mar 9, 2022 12:30:00";
@@ -125,16 +125,23 @@ function App(props) {
   window.setFiredeskdetails = () => {
     setTimeout(function () {
       if (user.data?.user) {
-        console.log(user.data?.user);
-        document.getElementById("chat-fc-name").value =
-          user.data?.user.first_name + " " + user.data?.user.last_name;
-        document.getElementById("chat-fc-name").disabled = true;
+        // console.log(user.data?.user);
+        if (document.getElementById("chat-fc-name")) {
+          document.getElementById("chat-fc-name").value =
+            user.data?.user.first_name + " " + user.data?.user.last_name;
+          document.getElementById("chat-fc-name").disabled = true;
+        }
 
-        document.getElementById("chat-fc-email").value = user.data?.user.email;
-        document.getElementById("chat-fc-email").disabled = true;
-        document.getElementById("chat-fc-phone").value =
-          user.data?.user.phone_no;
-        document.getElementById("chat-fc-phone").disabled = true;
+        if (document.getElementById("chat-fc-email")) {
+          document.getElementById("chat-fc-email").value =
+            user.data?.user.email;
+          document.getElementById("chat-fc-email").disabled = true;
+        }
+        if (document.getElementById("chat-fc-phone")) {
+          document.getElementById("chat-fc-phone").value =
+            user.data?.user.phone_no;
+          document.getElementById("chat-fc-phone").disabled = true;
+        }
       }
     }, 1000);
   };
