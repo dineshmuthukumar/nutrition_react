@@ -1,13 +1,56 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import play from "../../images/play.png";
 import playBtn from "../../images/play-btn.png";
 import "./style.scss";
 import { VscClose } from "react-icons/vsc";
 import { BsPlayFill } from "react-icons/bs";
+import NFTCounter from "../nft-counter";
+import { useDispatch } from "react-redux";
+import {
+  market_live_off_thunk,
+  market_live_thunk,
+} from "../../redux/thunk/user_thunk";
+
 const TrailerVideo = () => {
   const videoRef = useRef();
   // const closeoRef = useRef();
   const [video, setVideo] = useState(false);
+
+  const white_paper_start_date = "Jun 29 2022 12:30:00";
+
+  const [whitepaper_time, set_whitepaper_time] = useState();
+
+  const [end_time, set_end_time] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const timeFunction = (check = false) => {
+    var offset = new Date().getTimezoneOffset();
+
+    var white_paper_start_date_utc = new Date(white_paper_start_date);
+    white_paper_start_date_utc.setMinutes(
+      white_paper_start_date_utc.getMinutes() - offset
+    );
+
+    var s_time = new Date();
+
+    if (check) s_time.setSeconds(s_time.getSeconds() + 2);
+
+    if (new Date(white_paper_start_date_utc) < s_time) {
+      dispatch(market_live_thunk());
+    } else {
+      set_whitepaper_time(white_paper_start_date_utc);
+      dispatch(market_live_off_thunk());
+    }
+  };
+  useEffect(() => {
+    timeFunction(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleTimer = () => {
+    set_end_time(true);
+  };
 
   return (
     <>
@@ -90,7 +133,34 @@ const TrailerVideo = () => {
                             </div>
                             <div className="btn-click ms-md-3 ms-0 fs-2">
                               <span>Whitepaper</span>
-                              <p className="coming_soon">Coming Soon</p>
+                              {/* <p className="coming_soon">Coming Soon</p> */}
+                              {/* <NFTCounter
+                                time={whitepaper_time}
+                                timeClass="alert-counter-time"
+                                intervalClass="alert-counter-interval"
+                                intervalGapClass="alert-counter-gap"
+                                handleEndEvent={handleTimer}
+                              />
+                              <p className="coming_soon">Coming Soon</p> */}
+
+                              {end_time ? (
+                                <a
+                                  target="_blank"
+                                  href="/"
+                                  className="list-style-none p-8"
+                                ></a>
+                              ) : (
+                                whitepaper_time && (
+                                  <>
+                                    <NFTCounter
+                                      time={whitepaper_time}
+                                      timeClass="counter-time"
+                                      handleEndEvent={handleTimer}
+                                    />
+                                    {/* <p className="coming_soon">Coming Soon</p> */}
+                                  </>
+                                )
+                              )}
                             </div>
                           </div>
                         </a>
