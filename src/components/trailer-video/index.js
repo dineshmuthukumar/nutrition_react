@@ -16,7 +16,7 @@ const TrailerVideo = () => {
   // const closeoRef = useRef();
   const [video, setVideo] = useState(false);
 
-  const white_paper_start_date = "Jun 28 2022 10:54:00";
+  const white_paper_start_date = "Jun 29 2022 12:30:00";
 
   const [whitepaper_time, set_whitepaper_time] = useState();
 
