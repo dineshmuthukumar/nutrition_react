@@ -151,14 +151,15 @@ const TrailerVideo = () => {
                                 ></a>
                               ) : (
                                 whitepaper_time && (
-                                  <>
+                                  <div className="whitepaper">
                                     <NFTCounter
                                       time={whitepaper_time}
                                       timeClass="counter-time"
                                       handleEndEvent={handleTimer}
+                                      // className="whitepaper"
                                     />
                                     {/* <p className="coming_soon">Coming Soon</p> */}
-                                  </>
+                                  </div>
                                 )
                               )}
                             </div>
