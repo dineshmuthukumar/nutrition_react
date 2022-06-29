@@ -5,6 +5,8 @@ import Toggle from "react-toggle";
 // import { useSelector } from "react-redux";
 import { FiMail, FiPhone } from "react-icons/fi";
 import banners from "../../../images/banner-img.png";
+import mail from "../../../images/mail.png";
+import call from "../../../images/call.png";
 import { validateEmail, validatePhone } from "../../../utils/common";
 // import InputText from "../../input-text";
 // import { useQuery } from "../../../hook/url-params";
@@ -145,12 +147,7 @@ const MclGameOne = () => {
       <section className="game-banner">
         <div className="container-fluid">
           <div className="row align-items-center">
-            <div className="col-lg-6 order-lg-2">
-              <div className="p-lg-5 p-2">
-                <img className="img-fluid" src={banners} />
-              </div>
-            </div>
-            <div className="col-lg-6 order-lg-1">
+            <div className="col-lg-6 mt-4">
               <div className="p-lg-5 p-2">
                 <h2 className="display-4 mcl-title">Meta Cricket League</h2>
                 <h2 className="display-4 mobile_app">Mobile App</h2>
@@ -233,7 +230,9 @@ const MclGameOne = () => {
                           }`}
                           onClick={() => toggleType("email")}
                         >
-                          <FiMail />
+                          <img src={mail} />
+
+                          {/* <FiMail /> */}
                         </button>
                         <button
                           type="button"
@@ -242,7 +241,8 @@ const MclGameOne = () => {
                           }`}
                           onClick={() => toggleType("phone")}
                         >
-                          <FiPhone />
+                          <img src={call} width="25px" />
+                          {/* <FiPhone /> */}
                         </button>
                       </div>
                     </Col>
@@ -261,6 +261,11 @@ const MclGameOne = () => {
 
                   <p className="nft_email_error">{vEmail}</p>
                 </Form>
+              </div>
+            </div>
+            <div className="col-lg-6 ">
+              <div className="p-lg-5 p-2">
+                <img className="img-fluid" src={banners} />
               </div>
             </div>
           </div>

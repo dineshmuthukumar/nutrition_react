@@ -11,7 +11,7 @@ import "../style.scss";
 const MclGameTwo = () => {
   return (
     <>
-      <section className="py-5 mcl-game-two">
+      <section className="pt-5 mcl-game-two">
         <div className="container-fluid py-4 py-xl-5">
           <div className="row mb-4 mb-lg-5">
             <div className="col-md- col-xl-8 text-center mx-auto">
@@ -35,6 +35,7 @@ const MclGameTwo = () => {
           </div>
         </div>
       </section>
+      <div className="hr-line"></div>
       <section className="mcl-game-three pt-5 pb-0">
         <div className=" pt-5">
           <div className="row pt-5 pb-0">
