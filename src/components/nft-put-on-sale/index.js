@@ -552,6 +552,15 @@ const NFTPutOnSale = ({
     }
   };
 
+  const calculateTotalAmount = (buyAmount, taxAmount, tdsAmount) => {
+    const ba = parseFloat(buyAmount);
+    const tx = parseFloat(taxAmount);
+    const tds = parseFloat(tdsAmount);
+    const total = ba - (ba * tx) / 100;
+    if (!isNaN(tds)) return currencyFormat(total - (total * tds) / 100, "USD");
+    else return currencyFormat(total, "USD");
+  };
+
   return (
     <>
       <Offcanvas
@@ -1445,17 +1454,36 @@ const NFTPutOnSale = ({
                                         - {parseFloat(nft.service_fee)}%
                                       </span>
                                     </li>
-
+                                    {!isNaN(parseFloat(nft?.tds_rate)) && (
+                                      <li>
+                                        <span className="key">
+                                          TDS{" "}
+                                          <ToolTip
+                                            icon={
+                                              <BsFillQuestionCircleFill
+                                                size={16}
+                                                className="mb-1 check-icon"
+                                              />
+                                            }
+                                            content={
+                                              "TDS u/s 194S Income Tax Act"
+                                            }
+                                            placement="top"
+                                          />
+                                        </span>
+                                        <span className="value">
+                                          - {parseFloat(nft?.tds_rate)}%
+                                        </span>
+                                      </li>
+                                    )}
                                     <li className="final-set">
                                       <span className="key">Final Amount </span>
                                       <span className="value">
-                                        {currencyFormat(
-                                          parseFloat(erc721Sale.buyAmount) -
-                                            (parseFloat(erc721Sale.buyAmount) *
-                                              (parseFloat(nft.royalties) +
-                                                parseFloat(nft.service_fee))) /
-                                              100,
-                                          "USD"
+                                        {calculateTotalAmount(
+                                          erc721Sale?.buyAmount,
+                                          parseFloat(nft?.royalties) +
+                                            parseFloat(nft?.service_fee),
+                                          nft?.tds_rate
                                         )}
                                       </span>
                                     </li>
