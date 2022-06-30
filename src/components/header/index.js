@@ -812,6 +812,17 @@ const Header = ({
                               as="button"
                               onClick={() =>
                                 window.open(
+                                  `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/my-cards`,
+                                  "_self"
+                                )
+                              }
+                            >
+                              My Cards
+                            </Dropdown.Item>
+                            <Dropdown.Item
+                              as="button"
+                              onClick={() =>
+                                window.open(
                                   `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
                                   "_self"
                                 )
