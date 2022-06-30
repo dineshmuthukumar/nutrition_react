@@ -1563,8 +1563,10 @@ const NFTPutOnSale = ({
                                         }
                                         placement="top"
                                       />{" "}
-                                      and {parseFloat(nft.service_fee)}% service
-                                      fee{" "}
+                                      {!isNaN(parseFloat(nft?.tds_rate))
+                                        ? ","
+                                        : "and"}{" "}
+                                      {parseFloat(nft.service_fee)}% service fee{" "}
                                       <ToolTip
                                         icon={
                                           <BsFillQuestionCircleFill
@@ -1577,6 +1579,25 @@ const NFTPutOnSale = ({
                                         }
                                         placement="top"
                                       />{" "}
+                                      {!isNaN(parseFloat(nft?.tds_rate)) && (
+                                        <>
+                                          {`and ${parseFloat(
+                                            nft?.tds_rate
+                                          )}% of TDS`}{" "}
+                                          <ToolTip
+                                            icon={
+                                              <BsFillQuestionCircleFill
+                                                size={16}
+                                                className="mb-1 check-icon"
+                                              />
+                                            }
+                                            content={
+                                              "TDS u/s 194S Income Tax Act"
+                                            }
+                                            placement="top"
+                                          />{" "}
+                                        </>
+                                      )}
                                       on the final bid amount.
                                     </span>
                                   </li>
