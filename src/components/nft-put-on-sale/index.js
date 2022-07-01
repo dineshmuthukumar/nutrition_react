@@ -557,7 +557,8 @@ const NFTPutOnSale = ({
     const tx = parseFloat(taxAmount);
     const tds = parseFloat(tdsAmount);
     const total = ba - (ba * tx) / 100;
-    if (!isNaN(tds)) return currencyFormat(total - (total * tds) / 100, "USD");
+    if (user?.apply_sale_tds && !isNaN(tds))
+      return currencyFormat(total - (total * tds) / 100, "USD");
     else return currencyFormat(total, "USD");
   };
 
@@ -1454,28 +1455,29 @@ const NFTPutOnSale = ({
                                         - {parseFloat(nft.service_fee)}%
                                       </span>
                                     </li>
-                                    {!isNaN(parseFloat(nft?.tds_rate)) && (
-                                      <li>
-                                        <span className="key">
-                                          TDS{" "}
-                                          <ToolTip
-                                            icon={
-                                              <BsFillQuestionCircleFill
-                                                size={16}
-                                                className="mb-1 check-icon"
-                                              />
-                                            }
-                                            content={
-                                              "TDS u/s 194S Income Tax Act"
-                                            }
-                                            placement="top"
-                                          />
-                                        </span>
-                                        <span className="value">
-                                          - {parseFloat(nft?.tds_rate)}%
-                                        </span>
-                                      </li>
-                                    )}
+                                    {user?.apply_sale_tds &&
+                                      !isNaN(parseFloat(nft?.tds_rate)) && (
+                                        <li>
+                                          <span className="key">
+                                            TDS{" "}
+                                            <ToolTip
+                                              icon={
+                                                <BsFillQuestionCircleFill
+                                                  size={16}
+                                                  className="mb-1 check-icon"
+                                                />
+                                              }
+                                              content={
+                                                "TDS u/s 194S Income Tax Act"
+                                              }
+                                              placement="top"
+                                            />
+                                          </span>
+                                          <span className="value">
+                                            - {parseFloat(nft?.tds_rate)}%
+                                          </span>
+                                        </li>
+                                      )}
                                     <li className="final-set">
                                       <span className="key">Final Amount </span>
                                       <span className="value">
@@ -1563,7 +1565,8 @@ const NFTPutOnSale = ({
                                         }
                                         placement="top"
                                       />{" "}
-                                      {!isNaN(parseFloat(nft?.tds_rate))
+                                      {user?.apply_sale_tds &&
+                                      !isNaN(parseFloat(nft?.tds_rate))
                                         ? ","
                                         : "and"}{" "}
                                       {parseFloat(nft.service_fee)}% service fee{" "}
@@ -1579,25 +1582,26 @@ const NFTPutOnSale = ({
                                         }
                                         placement="top"
                                       />{" "}
-                                      {!isNaN(parseFloat(nft?.tds_rate)) && (
-                                        <>
-                                          {`and ${parseFloat(
-                                            nft?.tds_rate
-                                          )}% of TDS`}{" "}
-                                          <ToolTip
-                                            icon={
-                                              <BsFillQuestionCircleFill
-                                                size={16}
-                                                className="mb-1 check-icon"
-                                              />
-                                            }
-                                            content={
-                                              "TDS u/s 194S Income Tax Act"
-                                            }
-                                            placement="top"
-                                          />{" "}
-                                        </>
-                                      )}
+                                      {user?.apply_sale_tds &&
+                                        !isNaN(parseFloat(nft?.tds_rate)) && (
+                                          <>
+                                            {`and ${parseFloat(
+                                              nft?.tds_rate
+                                            )}% of TDS`}{" "}
+                                            <ToolTip
+                                              icon={
+                                                <BsFillQuestionCircleFill
+                                                  size={16}
+                                                  className="mb-1 check-icon"
+                                                />
+                                              }
+                                              content={
+                                                "TDS u/s 194S Income Tax Act"
+                                              }
+                                              placement="top"
+                                            />{" "}
+                                          </>
+                                        )}
                                       on the final bid amount.
                                     </span>
                                   </li>
