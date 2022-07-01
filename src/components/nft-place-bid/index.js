@@ -393,9 +393,12 @@ const NFTPlaceBid = ({
                                     className="ms-2 check-icon"
                                   />
                                 }
-                                content={
-                                  "The service fee includes gas fee and the platform fee. TDS u/s 194S Income Tax Act"
-                                }
+                                content={`The service fee includes gas fee and the platform fee. ${
+                                  user?.apply_buy_tds &&
+                                  !isNaN(parseFloat(nft?.tds_rate))
+                                    ? "TDS u/s 194S Income Tax Act"
+                                    : ""
+                                }`.trim()}
                                 placement="right"
                               />
                             </label>
