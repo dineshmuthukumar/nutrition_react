@@ -504,7 +504,12 @@ const NFTPlaceBid = ({
                         <div className={`input-buy-container`}>
                           <div className="services-fee-box">
                             <label className="input-buy-text">
-                              Service Fee{" "}
+                              {`Service Fee ${
+                                user?.apply_buy_tds &&
+                                !isNaN(parseFloat(nft?.tds_rate))
+                                  ? "& TDS"
+                                  : ""
+                              }`.trim()}{" "}
                               <ToolTip
                                 icon={
                                   <BsFillQuestionCircleFill
@@ -513,12 +518,19 @@ const NFTPlaceBid = ({
                                   />
                                 }
                                 content={
-                                  "The service fee includes gas fee and the platform fee."
+                                  "The service fee includes gas fee and the platform fee. TDS u/s 194S Income Tax Act"
                                 }
                                 placement="top"
                               />
                             </label>
-                            <h4>{parseFloat(nft.service_fee)}%</h4>
+                            <h4>
+                              {`${parseFloat(nft.service_fee)}% ${
+                                user?.apply_buy_tds &&
+                                !isNaN(parseFloat(nft?.tds_rate))
+                                  ? `+ ${parseFloat(nft?.tds_rate)}%`
+                                  : ""
+                              }`.trim()}
+                            </h4>
                           </div>
                         </div>
                         <div className={`input-buy-container`}>
@@ -527,13 +539,23 @@ const NFTPlaceBid = ({
                               Total Amount
                             </label>
                             <h1>
-                              {currencyFormat(
-                                parseFloat(buyAmount) +
-                                  (parseFloat(buyAmount) *
-                                    parseFloat(nft.service_fee)) /
-                                    100,
-                                "USD"
-                              )}
+                              {user?.apply_buy_tds &&
+                              !isNaN(parseFloat(nft?.tds_rate))
+                                ? currencyFormat(
+                                    parseFloat(buyAmount) +
+                                      (parseFloat(buyAmount) *
+                                        (parseFloat(nft?.service_fee) +
+                                          parseFloat(nft?.tds_rate))) /
+                                        100,
+                                    "USD"
+                                  )
+                                : currencyFormat(
+                                    parseFloat(buyAmount) +
+                                      (parseFloat(buyAmount) *
+                                        parseFloat(nft?.service_fee)) /
+                                        100,
+                                    "USD"
+                                  )}
                             </h1>
                           </div>
                         </div>
