@@ -3,6 +3,7 @@ import { Col, Row, Form, Button } from "react-bootstrap";
 import Toggle from "react-toggle";
 // import { useLocation } from "react-router-dom";
 // import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { FiMail, FiPhone } from "react-icons/fi";
 import banners from "../../../images/banner-img.png";
 import mail from "../../../images/mail.png";
@@ -27,7 +28,7 @@ const MclGameOne = () => {
   const [vEmail, setVEmail] = useState();
   const [subcribe, setSubcribe] = useState({
     email: "",
-    phone: "",
+    phone: "+91",
   });
   const [currentSubcribe, setcurrentSubcribe] = useState("email");
 
@@ -43,6 +44,15 @@ const MclGameOne = () => {
     setcurrentSubcribe(input);
     //console.log(type);
   };
+
+  useEffect(() => {
+    // console.log(subcribe.phone);
+    if (!subcribe.phone) {
+      setSubcribe({ ...subcribe, phone: "+91" });
+    }
+    //Runs on the first render
+    //And any time any dependency value changes
+  }, [subcribe.phone]);
 
   const handleSubcribe = () => {
     setError(null);
@@ -303,9 +313,11 @@ const MclGameOne = () => {
                   <span>Learn about meta cricket league</span>
                 </strong>
               </p>
-              <button className="read_moree fs-5 fw-bold">
-                <span>Read More</span>
-              </button>
+              <a href="http://mcl-wp.jump.trade/">
+                <button className="read_moree fs-5 fw-bold">
+                  <span>Read More</span>
+                </button>
+              </a>
             </div>
           </div>
         </div>

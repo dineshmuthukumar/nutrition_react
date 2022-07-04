@@ -633,7 +633,7 @@ const Header = ({
                 <Nav.Link
                   id="drop_outer"
                   role="button"
-                  // onClick={() => window.open("/mcl-game", "_self")}
+                  onClick={() => window.open("/mcl-game", "_self")}
                 >
                   {" "}
                   <span className="beta-container">
