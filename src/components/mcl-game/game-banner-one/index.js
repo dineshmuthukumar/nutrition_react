@@ -164,31 +164,35 @@ const MclGameOne = () => {
                   <Row className="align-items-center">
                     <Col xs="auto">
                       {type == "email" ? (
-                        <Form.Control
-                          className="mb-2"
-                          id="inlineFormInput"
-                          type="type"
-                          name="email"
-                          required={validation.email}
-                          placeholder="Enter Email ID "
-                          onChange={handleChangeEvent}
-                          onKeyPress={handleKeyPressEvent}
-                          value={subcribe.email}
-                          disabled={loading}
-                        />
+                        <div className="text_fields">
+                          <Form.Control
+                            className="mb-2 theme-input"
+                            id="inlineFormInput"
+                            type="type"
+                            name="email"
+                            required={validation.email}
+                            placeholder="Enter Email ID "
+                            onChange={handleChangeEvent}
+                            onKeyPress={handleKeyPressEvent}
+                            value={subcribe.email}
+                            disabled={loading}
+                          />
+                        </div>
                       ) : (
-                        <Form.Control
-                          className="mb-2"
-                          id="inlineFormInput"
-                          type="tel"
-                          name="phone"
-                          placeholder="Phone"
-                          required={validation.phone}
-                          onChange={handleChangeEvent}
-                          onKeyPress={handleKeyPressEvent}
-                          value={subcribe.phone}
-                          disabled={loading}
-                        />
+                        <div className="text_fields">
+                          <Form.Control
+                            className="mb-2 theme-input"
+                            id="inlineFormInput"
+                            type="tel"
+                            name="phone"
+                            placeholder="Phone"
+                            required={validation.phone}
+                            onChange={handleChangeEvent}
+                            onKeyPress={handleKeyPressEvent}
+                            value={subcribe.phone}
+                            disabled={loading}
+                          />
+                        </div>
                       )}
 
                       {type == "email"
@@ -203,6 +207,11 @@ const MclGameOne = () => {
                             </p>
                           )}
                     </Col>
+                    {/* <Col className="terst">
+                      <button className="theme-input">
+                        <span>Explore</span>
+                      </button>
+                    </Col> */}
 
                     <Col xs="auto">
                       {/* <div class="switch-button">
@@ -250,11 +259,11 @@ const MclGameOne = () => {
                   <Col xs="auto">
                     <Button
                       type="submit"
-                      className="submit-btn my-2"
+                      className="submit-btn my-4"
                       onClick={handleSubcribe}
                       disabled={loading}
                     >
-                      SUBSCRIBE
+                      <span>SUBSCRIBE</span>
                     </Button>
                   </Col>
                   {error && <p className="error_text text-center">{error}</p>}
@@ -294,7 +303,9 @@ const MclGameOne = () => {
                   <span>Learn about meta cricket league</span>
                 </strong>
               </p>
-              <button className="read_moree fs-5 fw-bold">Read More</button>
+              <button className="read_moree fs-5 fw-bold">
+                <span>Read More</span>
+              </button>
             </div>
           </div>
         </div>
