@@ -302,10 +302,9 @@ const MclGameOne = () => {
               </h1>
               <p className="my-3 text-capitaliz text-white e h-meduim fs-4">
                 <span>
-                  The meta cricket league brings you the vibrance, energy, &
-                  awesomeness of cricket in the meta-realm, play our NFT cricket
-                  game, win matchees, climb up the leaderboard and earn
-                  unbelievable rewards for your time and efforts!
+                  Meta Cricket League is a Hit-to-Earn game that brings the
+                  excitement of cricket to the metaverse. Read the whitepaper to
+                  learn more about the game, its structure, and key details.
                 </span>
               </p>
               <p className="fs-3 text-capitalize  theme-color">
@@ -315,7 +314,7 @@ const MclGameOne = () => {
               </p>
               <a href="http://mcl-wp.jump.trade/">
                 <button className="read_moree fs-5 fw-bold">
-                  <span>Read More</span>
+                  <span>Read Now</span>
                 </button>
               </a>
             </div>
