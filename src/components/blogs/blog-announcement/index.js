@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import OwlCarousel from "react-owl-carousel";
-import dayjs from "dayjs";
+// import React, { useEffect, useState } from "react";
+// import OwlCarousel from "react-owl-carousel";
+// import dayjs from "dayjs";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
-import { getBlogListApi, getBlogCattApi } from "../../../api/methods";
+// import { getBlogListApi, getBlogCattApi } from "../../../api/methods";
 
 import { Interweave } from "interweave";
 
@@ -14,29 +14,29 @@ const BlogAnnouncment = ({
   announcementSliderData = [],
   announcementSplitData = [],
 }) => {
-  const options = {
-    loop: true,
-    margin: 10,
-    items: 3,
-    nav: true,
-    dots: false,
-    autoplay: true,
-    navText: [
-      "<div class='nav-button owl-prev'><img src='https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png' /></div>",
-      "<div class='nav-button owl-next'><img src='https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/front-arrow.png' /></div>",
-    ],
-    responsive: {
-      0: {
-        items: 1,
-      },
-      600: {
-        items: 2,
-      },
-      1000: {
-        items: 3,
-      },
-    },
-  };
+  // const options = {
+  //   loop: true,
+  //   margin: 10,
+  //   items: 3,
+  //   nav: true,
+  //   dots: false,
+  //   autoplay: true,
+  //   navText: [
+  //     "<div class='nav-button owl-prev'><img src='https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png' /></div>",
+  //     "<div class='nav-button owl-next'><img src='https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/front-arrow.png' /></div>",
+  //   ],
+  //   responsive: {
+  //     0: {
+  //       items: 1,
+  //     },
+  //     600: {
+  //       items: 2,
+  //     },
+  //     1000: {
+  //       items: 3,
+  //     },
+  //   },
+  // };
 
   // const GetSourceImage = async (input) => {
   //   const Filterdata = data?.data?.filter((data) => data.id == input);
@@ -80,6 +80,7 @@ const BlogAnnouncment = ({
                                   "0"
                                 ]["source_url"]
                               }
+                              alt="AnnouncementData"
                             />
                           )}
                         </div>

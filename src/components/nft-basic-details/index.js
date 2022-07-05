@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import ReadMoreReact from "read-more-react";
+// import ReadMoreReact from "read-more-react";
 import { useSelector } from "react-redux";
 import { FaCheckCircle } from "react-icons/fa";
 import _ from "lodash";

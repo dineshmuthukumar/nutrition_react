@@ -71,7 +71,7 @@ const BlogList = () => {
       const blogData = await getBlogListApi();
 
       const filteredCategoryData = categoryData?.data?.filter(
-        (data) => data.slug == "blog"
+        (data) => data.slug === "blog"
       );
 
       const filteredBlogData = blogData?.data?.filter((item) =>
@@ -81,7 +81,7 @@ const BlogList = () => {
       setbannerData(filteredBlogData[0]);
       setsliderData(filteredBlogData.slice(1, 4));
       const filteredAnnouncementCategoryData = categoryData?.data?.filter(
-        (data) => data.slug == "announcement"
+        (data) => data.slug === "announcement"
       );
 
       const BlogAnnouncmentData = await getBlogCateListApi();

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaFile, FaFileAlt, FaMinusCircle, FaPlusCircle } from "react-icons/fa";
+import { FaFileAlt, FaMinusCircle, FaPlusCircle } from "react-icons/fa";
 import "./style.scss";
 
 const FAQComponent = () => {
@@ -73,7 +73,7 @@ const FAQComponent = () => {
     setTabs(info);
     setActive(input.id);
 
-    if (input.id != active) {
+    if (input.id !== active) {
       setActivePanel({});
     }
   };
@@ -153,15 +153,15 @@ const FAQComponent = () => {
                     />
                     <Accordian
                       head={
-                        "Why can’t I just download or screenshot the image?"
+                        "Why can't I just download or screenshot the image?"
                       }
                       body={
                         <>
                           You can surely download or screenshot but it will be
-                          just the ‘image’ without the attributes and the
+                          just the 'image' without the attributes and the
                           properties that make the object unique, all of which
                           is stored on the blockchain. While you may possess the
-                          ‘image’, it might not carry the properties and
+                          'image', it might not carry the properties and
                           attributes that make it valuable, which means it is
                           yet another image that does not carry value in
                           secondary markets.
@@ -211,11 +211,11 @@ const FAQComponent = () => {
                     />
                     <Accordian
                       head={
-                        "Considering crypto’s legal stance, will my NFT’s value dilute at any time?"
+                        "Considering crypto's legal stance, will my NFT's value dilute at any time?"
                       }
                       body={
                         <>
-                          While ‘cryptocurrency’ might have its share of legal
+                          While 'cryptocurrency' might have its share of legal
                           uncertainty, the technology behind NFTs does not have
                           such hassles. A lot of jurisdictions are catching up
                           to accommodate this new dependable technology,
@@ -403,7 +403,7 @@ const FAQComponent = () => {
                           {" "}
                           Jump.trade is a premium international NFT platform
                           that enables creators to launch their NFTs in their
-                          own launchpad. Jump.trade is all set to launch India’s
+                          own launchpad. Jump.trade is all set to launch India's
                           first community-centered cricket game.
                         </>
                       }
@@ -515,9 +515,9 @@ const FAQComponent = () => {
                         <>
                           {" "}
                           <p>
-                            ​​You will find an option to edit your profile on
-                            the top-right corner of the interface. You can click
-                            on the edit icon and make the necessary changes. You
+                            You will find an option to edit your profile on the
+                            top-right corner of the interface. You can click on
+                            the edit icon and make the necessary changes. You
                             can change your first name, your last name, and
                             details about your social profiles.
                           </p>
@@ -638,7 +638,7 @@ const FAQComponent = () => {
                       body={
                         <>
                           You can fund your wallet with three different options.
-                          You will need to click on the “deposit” button
+                          You will need to click on the "deposit" button
                           available on the top left of the profile, and you will
                           be taken to a page where you can proceed to fund your
                           wallet.
@@ -721,7 +721,7 @@ const FAQComponent = () => {
                     />
                     <Accordian
                       head={
-                        "What if I get a transaction confirmation SMS and my wallet doesn’t reflect the payment?"
+                        "What if I get a transaction confirmation SMS and my wallet doesn't reflect the payment?"
                       }
                       body={
                         <>
@@ -807,7 +807,7 @@ const FAQComponent = () => {
                         <>
                           If you have purchased/won the auction for any NFT
                           listed before on Jump.trade , and you have them listed
-                          under the “my NFTs“ section of your profile, you are
+                          under the "my NFTs" section of your profile, you are
                           eligible to sell your NFT on the Jump.trade
                           marketplace. {""}
                           {""}
@@ -847,7 +847,7 @@ const FAQComponent = () => {
                       }
                       body={
                         <>
-                          You will need to navigate to the “my NFTs“ section on
+                          You will need to navigate to the "my NFTs" section on
                           your profile and click on the particular NFT that you
                           would like to list for sale. Before you do so, you
                           will need to ensure if your NFT belongs to the ERC-721
@@ -966,7 +966,7 @@ const FAQComponent = () => {
                           email address on the Jump.trade website and you are
                           eligible to buy your NFTs after funding your wallet.
                           The details about funding your wallet can be found in
-                          the “Jump.trade wallet“ section of the FAQ document.
+                          the "Jump.trade wallet" section of the FAQ document.
                         </>
                       }
                       status={false}
@@ -1278,7 +1278,7 @@ const Accordian = ({
   isActivePanel,
   setActivePanel,
 }) => {
-  const [state, setState] = useState(false);
+  // const [state, setState] = useState(false);
 
   //console.log(isActivePanel, "isActivePanel");
   const toggleItem = () => {

@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import OwlCarousel from "react-owl-carousel";
-import dayjs from "dayjs";
+import React, { useEffect } from "react";
+// import OwlCarousel from "react-owl-carousel";
+// import dayjs from "dayjs";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
-import { getBlogListApi, getBlogCattApi } from "../../../api/methods";
+// import { getBlogListApi, getBlogCattApi } from "../../../api/methods";
 import ndtv_logo from "../../../images/ndtv_logo.png";
 import mint from "../../../images/mint.png";
 import out from "../../../images/out.png";
@@ -13,38 +13,38 @@ import et from "../../../images/et.png";
 import cnbc from "../../../images/cnbc.png";
 import n18 from "../../../images/n18.png";
 import tfe from "../../../images/tfe.png";
-import { Interweave } from "interweave";
+// import { Interweave } from "interweave";
 
 import "../style.scss";
 
 const BlogNews = () => {
-  const [data, setData] = useState();
-  const [bannerData, setBannerData] = useState();
-  const [sliderData, setSliderData] = useState();
+  // const [data, setData] = useState();
+  // const [bannerData, setBannerData] = useState();
+  // const [sliderData, setSliderData] = useState();
 
-  const options = {
-    loop: true,
-    margin: 10,
-    items: 3,
-    nav: true,
-    dots: false,
-    autoplay: true,
-    navText: [
-      "<div class='nav-button owl-prev'><img src='https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png' /></div>",
-      "<div class='nav-button owl-next'><img src='https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/front-arrow.png' /></div>",
-    ],
-    responsive: {
-      0: {
-        items: 1,
-      },
-      600: {
-        items: 2,
-      },
-      1000: {
-        items: 3,
-      },
-    },
-  };
+  // const options = {
+  //   loop: true,
+  //   margin: 10,
+  //   items: 3,
+  //   nav: true,
+  //   dots: false,
+  //   autoplay: true,
+  //   navText: [
+  //     "<div class='nav-button owl-prev'><img src='https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png' /></div>",
+  //     "<div class='nav-button owl-next'><img src='https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/front-arrow.png' /></div>",
+  //   ],
+  //   responsive: {
+  //     0: {
+  //       items: 1,
+  //     },
+  //     600: {
+  //       items: 2,
+  //     },
+  //     1000: {
+  //       items: 3,
+  //     },
+  //   },
+  // };
   useEffect(() => {
     blogDetail();
   }, []);
@@ -101,85 +101,85 @@ const BlogNews = () => {
         <div class="news_box">
           <div class="news_img">
             <a
-              rel="nofollow noopener"
+              rel="nofollow noopener noreferrer"
               href="https://www.ndtv.com/business/worlds-first-play-to-earn-nft-cricket-game-to-launch-soon-by-guardianlink-2838323"
               target="_blank"
             >
-              <img src={ndtv_logo} />
+              <img src={ndtv_logo} alt="NDTV Logo" />
             </a>
           </div>
           <div class="news_img">
             <a
-              rel="nofollow noopener"
+              rel="nofollow noopener noreferrer"
               href="https://twitter.com/livemint/status/1506561708109996033?s=20&t=pDxQGzoXHqZFWDJr143NZg"
               target="_blank"
             >
-              <img src={mint} />
+              <img src={mint} alt="Mint" />
             </a>
           </div>
           <div class="news_img">
             <a
-              rel="nofollow noopener"
+              rel="nofollow noopener noreferrer"
               href="https://www.outlookindia.com/business/jump-trade-registers-1-2-million-nft-buyers-through-cricket-nft-drop-news-195121"
               target="_blank"
             >
-              <img src={out} />
+              <img src={out} alt="Out " />
             </a>
           </div>
 
           <div class="news_img">
             <a
-              rel="nofollow noopener"
+              rel="nofollow noopener noreferrer"
               href="https://timesofindia.indiatimes.com/business/india-business/guardianlink-enters-nft-gaming-with-new-cricket-game/articleshow/90394235.cms"
               target="_blank"
             >
-              <img src={tines} />
+              <img src={tines} alt="TimesOfIndia" />
             </a>
           </div>
           <div class="news_img">
             <a
-              rel="nofollow noopener"
+              rel="nofollow noopener noreferrer"
               href="http://bwdisrupt.businessworld.in/article/GuardianLink-Enters-NFT-Gaming-Space-With-P2E-Cricket-Game-/24-03-2022-423588/"
               target="_blank"
             >
-              <img src={bw} />
+              <img src={bw} alt="bw" />
             </a>
           </div>
           <div class="news_img">
             <a
-              rel="nofollow noopener"
+              rel="nofollow noopener noreferrer"
               href="https://economictimes.indiatimes.com/markets/cryptocurrency/jump-trade-sells-55000-nfts-of-meta-cricket-leagues-in-just-9-mins/articleshow/91071815.cms?utm_source=contentofinterest&utm_medium=text&utm_campaign=cppst"
               target="_blank"
             >
-              <img src={et} />
+              <img src={et} alt="et" />
             </a>
           </div>
 
           <div class="news_img">
             <a
-              rel="nofollow noopener"
+              rel="nofollow noopener noreferrer"
               href="https://www.cnbctv18.com/startup/startup-digest-babychakra-acquires-tinystep-meesho-launches-integrated-e-commerce-app-guardianlink-launches-nft-cricket-game--crypto-investor-katie-haun-raises-15bn-for-new-fund-12923142.htm"
               target="_blank"
             >
-              <img src={cnbc} />
+              <img src={cnbc} alt="cnbc" />
             </a>
           </div>
           <div class="news_img">
             <a
-              rel="nofollow noopener"
+              rel="nofollow noopener noreferrer"
               href="https://www.news18.com/news/business/cryptocurrency/worlds-first-nft-cricket-game-is-here-all-you-need-to-know-4901660.html"
               target="_blank"
             >
-              <img src={n18} />
+              <img src={n18} alt="n18" />
             </a>
           </div>
           <div class="news_img">
             <a
-              rel="nofollow noopener"
+              rel="nofollow noopener noreferrer"
               href="https://www.financialexpress.com/digital-currency/international-gaming-platform-jump-trade-sells-out-55000-nfts/2502822/"
               target="_blank"
             >
-              <img src={tfe} />
+              <img src={tfe} alt="tfe" />
             </a>
           </div>
         </div>

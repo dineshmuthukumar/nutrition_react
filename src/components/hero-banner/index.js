@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useHistory, useRouteMatch } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
-import NFTCounter from "../nft-counter/index";
+// import NFTCounter from "../nft-counter/index";
 import images from "../../utils/images.json";
 import OwlCarousel from "react-owl-carousel";
 
@@ -32,12 +32,12 @@ import "./style.scss";
 const HeroBanner = () => {
   const { innerWidth } = window;
   const history = useHistory();
-  const { path } = useRouteMatch();
+  // const { path } = useRouteMatch();
   const market_start_date = "May 4, 2022 12:30:00";
 
   const [live, setLive] = useState(false);
 
-  const [market_time, set_market_time] = useState();
+  // const [market_time, set_market_time] = useState();
 
   const timeFunction = (check = false) => {
     var offset = new Date().getTimezoneOffset();
@@ -54,7 +54,7 @@ const HeroBanner = () => {
     if (new Date(market_start_date_utc) < s_time) {
       setLive(true);
     } else {
-      set_market_time(market_start_date_utc);
+      // set_market_time(market_start_date_utc);
       setLive(false);
     }
   };
@@ -64,9 +64,9 @@ const HeroBanner = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleCheck = () => {
-    timeFunction(true);
-  };
+  // const handleCheck = () => {
+  //   timeFunction(true);
+  // };
 
   return (
     <>

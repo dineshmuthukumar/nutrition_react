@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useRouteMatch } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
-import { useParams } from "react-router";
+// import { useParams } from "react-router";
 import ContentLoader from "react-content-loader";
 import { FaCheckCircle, FaFilter } from "react-icons/fa";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
@@ -19,7 +19,7 @@ import images from "../../utils/images.json";
 import { validateCurrency } from "../../utils/common";
 import ExploreTitle from "./explore-title";
 import Header from "../header";
-import useDebounce from "../../hook/useDebounce";
+// import useDebounce from "../../hook/useDebounce";
 
 import "./style.scss";
 //import AppHelmet from "../helmet";
@@ -213,7 +213,7 @@ const ExploreAllNFT = () => {
       {
         title: "SACHIN TENDULKAR NFTs",
         description:
-          "Considered the greatest batsman to play cricket across both big formats all over the world, and by Indians as ‘God of Cricket’, Sachin Tendulkar NFTs are a pride to possess for any cricket fan anywhere in the world!",
+          "Considered the greatest batsman to play cricket across both big formats all over the world, and by Indians as 'God of Cricket', Sachin Tendulkar NFTs are a pride to possess for any cricket fan anywhere in the world!",
         metaTitle: "Sachin NFTs | Sachin Tendulkar NFT Collection| Jump.Trade",
         metaDescription:
           "Get your hands on the exclusive Sachin Tendulkar NFTs from jump.trade. Discover the signed digital bat NFTs of the Master Blaster himself here. Sign up now!",
@@ -235,7 +235,7 @@ const ExploreAllNFT = () => {
       {
         title: "RAHUL DRAVID NFTs",
         description:
-          "Popularly and fittingly known as ‘The Wall’, Rahul Dravid’s defensive play in the longer format would frustrate even the most efficient bowlers. Buy your Rahul Dravid NFTs on Jump.trade.",
+          "Popularly and fittingly known as 'The Wall', Rahul Dravid's defensive play in the longer format would frustrate even the most efficient bowlers. Buy your Rahul Dravid NFTs on Jump.trade.",
         metaTitle:
           "Rahul Dravid NFTs | Rahul Dravid NFT Collection | Jump.Trade",
         metaDescription:
@@ -354,7 +354,7 @@ const ExploreAllNFT = () => {
       {
         title: "DARREN LEHMANN NFTs",
         description:
-          "This Australian all-rounder was a dependable lower middle order striker who saved the Aussie team from some of the most critical situations. Don’t miss out on Darren Lehmann NFTs.",
+          "This Australian all-rounder was a dependable lower middle order striker who saved the Aussie team from some of the most critical situations. Don't miss out on Darren Lehmann NFTs.",
         metaTitle:
           "Darren Lehmann NFTs | Darren Lehmann NFT Collection | Jump.Trade",
         metaDescription:
@@ -377,7 +377,7 @@ const ExploreAllNFT = () => {
       {
         title: "MICHAEL BEVAN NFTs",
         description:
-          "Perhaps the first player to ever earn the ‘finisher’ tag in ODI cricket, Micheal Bevan bailed out Australia from the most impossible situations. Buy your Micheal Bevan NFTs on Jump.trade.",
+          "Perhaps the first player to ever earn the 'finisher' tag in ODI cricket, Micheal Bevan bailed out Australia from the most impossible situations. Buy your Micheal Bevan NFTs on Jump.trade.",
         metaTitle:
           "Michael Bevan NFTs | Michael Bevan NFT Collection | Jump.Trade",
         metaDescription:
@@ -389,7 +389,7 @@ const ExploreAllNFT = () => {
       {
         title: "DAMIEN MARTYN NFTs",
         description:
-          "An example of perseverance, Damien’s elegant stroke production made him one of the most dependable Aussie batsmen on subcontinent pitches. Buy your Damien Martyn NFTs.",
+          "An example of perseverance, Damien's elegant stroke production made him one of the most dependable Aussie batsmen on subcontinent pitches. Buy your Damien Martyn NFTs.",
         metaTitle:
           "Damien Martyn NFTs | Damien Martyn NFT Collection | Jump.Trade",
         metaDescription:
@@ -401,7 +401,7 @@ const ExploreAllNFT = () => {
       {
         title: "2011 CHAMPIONS NFTs",
         description:
-          "2011 marked India lifting the World Cup after 28 years with Dhoni’s iconic sixer - one of the most momentous events! Don’t miss out on owning a piece of this legacy with the 2011 World Cup NFTs.",
+          "2011 marked India lifting the World Cup after 28 years with Dhoni's iconic sixer - one of the most momentous events! Don't miss out on owning a piece of this legacy with the 2011 World Cup NFTs.",
         metaTitle:
           "2011 Cricket World Cup NFT | World Cup Champions NFT | Jump.Trade",
         metaDescription:
@@ -447,7 +447,7 @@ const ExploreAllNFT = () => {
     showGlC: true,
     showPlayers: true,
   });
-  const { slug } = useParams();
+  // const { slug } = useParams();
 
   // const handleCallback = () => {
   //   if (search || query.get("search")) handleFilterCheck("", "text_search");

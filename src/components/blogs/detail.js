@@ -13,6 +13,7 @@ const BlogDetail = () => {
 
   useEffect(() => {
     blogDetail();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const blogDetail = async () => {
@@ -22,11 +23,11 @@ const BlogDetail = () => {
       const blogData = await getBlogCateListApi();
       const CateData = await getBlogCattApi();
       const filteredblogData = blogData?.data?.filter(
-        (data) => data.slug == slug
+        (data) => data.slug === slug
       );
       setData(filteredblogData[0]);
       const filteredcateData = CateData?.data?.filter(
-        (item) => item.id == filteredblogData[0].categories
+        (item) => item.id === filteredblogData[0].categories
       );
       //console.log(filteredcateData[0]);
       setCate(filteredcateData[0].name);
@@ -69,7 +70,7 @@ const BlogDetail = () => {
               <div class="row">
                 <div class="title-head text-center">
                   <h3>
-                    <a href="">{cate}</a>
+                    <span>{cate}</span>
                   </h3>
                   <h2>
                     <Interweave content={data?.title?.rendered} />

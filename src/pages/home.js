@@ -20,7 +20,7 @@ import useQuery from "../hook/useQuery";
 //import FavouriteNFTs from "../components/favourite-NFTs";
 import HeroBanner from "../components/hero-banner";
 //import NewDropSection from "../components/new-drop-section";
-import CollectionList from "../components/collection-list";
+// import CollectionList from "../components/collection-list";
 import TrailerVideo from "../components/trailer-video";
 
 const Home = () => {

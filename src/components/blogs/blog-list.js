@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+// import { useParams } from "react-router";
 import {
-  getBlogListApi,
+  // getBlogListApi,
   getBlogCattApi,
   getBlogCateListApi,
 } from "../../api/methods";
 import { Interweave } from "interweave";
-import dayjs from "dayjs";
+// import dayjs from "dayjs";
 import "./style.scss";
-import { map } from "lodash";
+// import { map } from "lodash";
 
 const BlogList = () => {
   const [data, setData] = useState();
-  const [cate, setCate] = useState();
-  const { slug } = useParams();
+  // const [cate, setCate] = useState();
+  // const { slug } = useParams();
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const BlogList = () => {
       const CateData = await getBlogCattApi();
 
       const filteredCategoryData = CateData?.data?.filter(
-        (data) => data.slug == "blog"
+        (data) => data.slug === "blog"
       );
 
       const filteredBlogData = blogData?.data?.filter((item) =>
@@ -38,7 +38,7 @@ const BlogList = () => {
       setData(filteredBlogData);
       //    console.log(filteredBlogData);
       //console.log(filteredcateData[0]);
-      setCate(CateData);
+      // setCate(CateData);
       //console.log(filteredblogData);
       setLoading(false);
     } catch (error) {
@@ -54,9 +54,9 @@ const BlogList = () => {
   const getCategoryDetails = (input) => {
     const categoryname = [];
 
-    const filteredblogData = cate?.data
-      .filter((data) => input.includes(data?.id))
-      .map((filteredName) => categoryname.push(filteredName?.name));
+    // const filteredblogData = cate?.data
+    //   .filter((data) => input.includes(data?.id))
+    //   .map((filteredName) => categoryname.push(filteredName?.name));
 
     // console.log(categoryname);
 
@@ -103,6 +103,7 @@ const BlogList = () => {
                                   "source_url"
                                 ]
                               }
+                              alt="Embedded Item"
                               className="img-fluid"
                             />
                           )}
