@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Col, Row, Form, Button } from "react-bootstrap";
-import Toggle from "react-toggle";
+// import Toggle from "react-toggle";
 // import { useLocation } from "react-router-dom";
 // import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { FiMail, FiPhone } from "react-icons/fi";
+// import { Link } from "react-router-dom";
+// import { FiMail, FiPhone } from "react-icons/fi";
 import banners from "../../../images/banner-img.png";
 import mail from "../../../images/mail.png";
 import call from "../../../images/call.png";
@@ -13,7 +13,7 @@ import { validateEmail, validatePhone } from "../../../utils/common";
 // import { useQuery } from "../../../hook/url-params";
 
 import "../style.scss";
-import images from "../../../utils/images.json";
+// import images from "../../../utils/images.json";
 
 const MclGameOne = () => {
   // const location = useLocation();
@@ -21,7 +21,7 @@ const MclGameOne = () => {
   // const redirect = query.get("redirect");
   // const email = query.get("email");
   // const phone = query.get("phone");
-  const [toggle, setToggle] = useState(false);
+  // const [toggle, setToggle] = useState(false);
   const [type, setType] = useState("email");
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
@@ -52,6 +52,7 @@ const MclGameOne = () => {
     }
     //Runs on the first render
     //And any time any dependency value changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [subcribe.phone]);
 
   const handleSubcribe = () => {
@@ -91,7 +92,7 @@ const MclGameOne = () => {
   const checkValidation = () => {
     let c_validation = { ...validation };
 
-    if (type == "email") {
+    if (type === "email") {
       if (!subcribe.email) {
         c_validation = { ...c_validation, email: true };
       } else {
@@ -173,7 +174,7 @@ const MclGameOne = () => {
                 >
                   <Row className="align-items-center">
                     <Col xs="auto">
-                      {type == "email" ? (
+                      {type === "email" ? (
                         <div className="text_fields">
                           <Form.Control
                             className="mb-2 theme-input"
@@ -205,7 +206,7 @@ const MclGameOne = () => {
                         </div>
                       )}
 
-                      {type == "email"
+                      {type === "email"
                         ? validation.valid_email && (
                             <p className="error_text">
                               Please enter a valid email address
@@ -249,7 +250,7 @@ const MclGameOne = () => {
                           }`}
                           onClick={() => toggleType("email")}
                         >
-                          <img src={mail} />
+                          <img src={mail} alt="Mail" />
 
                           {/* <FiMail /> */}
                         </button>
@@ -260,7 +261,7 @@ const MclGameOne = () => {
                           }`}
                           onClick={() => toggleType("phone")}
                         >
-                          <img src={call} width="25px" />
+                          <img src={call} alt="Call" width="25px" />
                           {/* <FiPhone /> */}
                         </button>
                       </div>
@@ -284,7 +285,7 @@ const MclGameOne = () => {
             </div>
             <div className="col-lg-6 ">
               <div className="p-lg-5 p-2">
-                <img className="img-fluid" src={banners} />
+                <img className="img-fluid" src={banners} alt="Banners" />
               </div>
             </div>
           </div>

@@ -3,13 +3,13 @@ import play from "../../images/play.png";
 import playBtn from "../../images/play-btn.png";
 import "./style.scss";
 import { VscClose } from "react-icons/vsc";
-import { BsPlayFill } from "react-icons/bs";
+// import { BsPlayFill } from "react-icons/bs";
 import NFTCounter from "../nft-counter";
-import { useDispatch } from "react-redux";
-import {
-  market_live_off_thunk,
-  market_live_thunk,
-} from "../../redux/thunk/user_thunk";
+// import { useDispatch } from "react-redux";
+// import {
+//   market_live_off_thunk,
+//   market_live_thunk,
+// } from "../../redux/thunk/user_thunk";
 
 const TrailerVideo = () => {
   const videoRef = useRef();
@@ -22,7 +22,7 @@ const TrailerVideo = () => {
 
   const [end_time, set_end_time] = useState(false);
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const timeFunction = (check = false) => {
     var offset = new Date().getTimezoneOffset();
@@ -74,7 +74,7 @@ const TrailerVideo = () => {
                           World's First-Ever P2E Cricket Game... The Thrill, The
                           Joy, & The Awesomeness! Watch The Game Trailer!
                         </p>
-                        <a className="d-flex py-4">
+                        <div className="d-flex py-4">
                           {" "}
                           <img
                             src={play}
@@ -85,7 +85,7 @@ const TrailerVideo = () => {
                               videoRef.current.scrollIntoView();
                             }}
                           />
-                        </a>
+                        </div>
                         {/* <button
                           class="glow-on-hover mt-5"
                           onClick={() => {
@@ -116,7 +116,7 @@ const TrailerVideo = () => {
                         >
                           <div class="p-2 d-flex flex-btnn align-self-start">
                             <div className="btn-click-icon">
-                              <img src={playBtn} />
+                              <img src={playBtn} alt="PlayButton" />
                             </div>
                             <div className="btn-click ms-md-3 ms-0 fs-2">
                               <span>Explore Marketplace</span>
@@ -124,14 +124,14 @@ const TrailerVideo = () => {
                           </div>
                         </a>
                         <div className="vr"></div>
-                        <a
-                          target="_blank"
+                        <div
+                          // target="_blank"
                           // href="https://guardianlink.gitbook.io/meta-cricket-league/"
                           className="list-style-none p-8"
                         >
                           <div class="p-2 d-flex flex-btnn align-self-start">
                             <div className="btn-click-icon">
-                              <img src={playBtn} />
+                              <img src={playBtn} alt="PlayButton" />
                             </div>
                             <div className="btn-click ms-md-3 ms-0 fs-2">
                               {/* <p className="coming_soon">Coming Soon</p> */}
@@ -147,6 +147,7 @@ const TrailerVideo = () => {
                               {end_time ? (
                                 <a
                                   target="_blank"
+                                  rel="nofollow noopener noreferrer"
                                   href="https://mcl-wp.jump.trade/"
                                   className="list-style-none p-8"
                                 >
@@ -171,20 +172,20 @@ const TrailerVideo = () => {
                               )}
                             </div>
                           </div>
-                        </a>
+                        </div>
                         <div className="vr"></div>
 
-                        <a className="list-style-none p-8">
+                        <div className="list-style-none p-8">
                           <div class="p-2 d-flex flex-btnn align-self-start">
                             <div className="btn-click-icon">
-                              <img src={playBtn} />
+                              <img src={playBtn} alt="PlayButton" />
                             </div>
                             <div className="btn-click ms-md-3 ms-0 fs-2">
                               <span>Subscribe For App</span>
                               <p className="coming_soon">Coming Soon</p>
                             </div>
                           </div>
-                        </a>
+                        </div>
                       </div>
                     </div>
                   </div>
