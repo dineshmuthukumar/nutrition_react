@@ -5,36 +5,44 @@ import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FiMail, FiPhone } from "react-icons/fi";
 import images from "../../../utils/images.json";
-import icon from "../../../images/icon.png";
+
 import device from "../../../images/device.png";
 import "../style.scss";
 const MclGameTwo = () => {
   return (
     <>
-      <section className="pt-5 mcl-game-two">
-        <div className="container-fluid py-4 py-xl-5">
-          <div className="row mb-4 mb-lg-5">
-            <div className="col-md- col-xl-8 text-center mx-auto">
-              <h2 className="fw-bold div_title">META CRICKET LEAGUE</h2>
-              <h2 className="fw-bold div_title div_stroke">GAME ON</h2>
-            </div>
-          </div>
-          <div className="row row-cols-2 row-cols-md-3 mx-auto justify-content-center">
-            <div className="os_list text-center">
-              <img src={icon} />
-            </div>
-            {/* <div className="os_list text-center">dfdfg</div>
-            <div className="os_list text-center">ghgh</div> */}
-          </div>
-          <div className="row  justify-content-center pt-5">
-            <div className="col">
-              <div className="title-div text-center">
-                <h1 className="text-uppercase coming_soon">Coming Soon</h1>
-              </div>
+      <section className="whitepaper_sec py-5">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="whitepaper_box p-4 text-center position-relative">
+              <h1 className="display-1 text-uppercase fw-bold download_app">
+                Meta Cricket League
+              </h1>
+              <h1 className="display-1 text-uppercase fw-bold marketplace_app">
+                Whitepaper
+              </h1>
+              <p className="my-3 text-capitaliz text-white e h-meduim fs-4">
+                <span>
+                  Meta Cricket League is a Hit-to-Earn game that brings the
+                  excitement of cricket to the metaverse. Read the whitepaper to
+                  learn more about the game, its structure, and key details.
+                </span>
+              </p>
+              <p className="fs-3 text-capitalize  theme-color">
+                <strong>
+                  <span>Learn about meta cricket league</span>
+                </strong>
+              </p>
+              <a href="http://mcl-wp.jump.trade/">
+                <button className="read_moree fs-5 fw-bold">
+                  <span>Read Now</span>
+                </button>
+              </a>
             </div>
           </div>
         </div>
       </section>
+
       <div className="hr-line"></div>
       <section className="mcl-game-three pt-5 pb-0">
         <div className=" pt-5">

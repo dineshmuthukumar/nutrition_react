@@ -9,6 +9,7 @@ import banners from "../../../images/banner-img.png";
 import mail from "../../../images/mail.png";
 import call from "../../../images/call.png";
 import { validateEmail, validatePhone } from "../../../utils/common";
+import icon from "../../../images/icon.png";
 // import InputText from "../../input-text";
 // import { useQuery } from "../../../hook/url-params";
 
@@ -290,7 +291,31 @@ const MclGameOne = () => {
           </div>
         </div>
       </section>
-      <section className="whitepaper_sec py-5">
+      <section className="pt-5 mcl-game-two">
+        <div className="container-fluid py-4 py-xl-5">
+          <div className="row mb-4 mb-lg-5">
+            <div className="col-md- col-xl-8 text-center mx-auto">
+              <h2 className="fw-bold div_title">META CRICKET LEAGUE</h2>
+              <h2 className="fw-bold div_title div_stroke">GAME ON</h2>
+            </div>
+          </div>
+          <div className="row row-cols-2 row-cols-md-3 mx-auto justify-content-center">
+            <div className="os_list text-center">
+              <img src={icon} />
+            </div>
+            {/* <div className="os_list text-center">dfdfg</div>
+            <div className="os_list text-center">ghgh</div> */}
+          </div>
+          <div className="row  justify-content-center pt-5">
+            <div className="col">
+              <div className="title-div text-center">
+                <h1 className="text-uppercase coming_soon">Coming Soon</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* <section className="whitepaper_sec py-5">
         <div className="container">
           <div className="row justify-content-center">
             <div className="whitepaper_box p-4 text-center position-relative">
@@ -320,7 +345,7 @@ const MclGameOne = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </>
   );
 };
