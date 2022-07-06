@@ -1,0 +1,51 @@
+@import "../../styles/common";
+
+.hero-banner-sec {
+    min-height: calc(90vh + 7rem);
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 10rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+
+    @media screen and (max-width: 767px) {
+      background-position: top;
+      background-size: cover;
+    }
+}
+    .hero-content-block {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      position: relative;
+      width: 100%;
+      min-height: calc(100vh - 20rem);
+      @media screen and (max-width: 767px) {
+        min-height: calc(100vh - 30rem);
+      }
+      .hero-content-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        max-width: 75rem;
+        width: 100%;
+        padding: 0 1rem;
+        }
+        .hero-btn-block {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          margin-top: 0rem;
+          margin-bottom: 9rem;
+        }
+      }
+     
+    

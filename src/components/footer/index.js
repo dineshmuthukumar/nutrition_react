@@ -258,6 +258,7 @@ const Footer = () => {
                   </a>
                 </li>
               </ul>
+
               {/* <h4>
                 <a
                   href="https://cdn.guardianlink.io/product-hotspot/files/media-kit.zip"
@@ -268,6 +269,23 @@ const Footer = () => {
                   <FaCloudDownloadAlt /> download media kit
                 </a>
               </h4> */}
+            </div>
+            <div className="">
+              <div className="">
+                {/* <button
+                  className="theme-btn"
+                  onClick={() => history.push("/offers")}
+                >
+                  <span>Offers</span>
+                </button> */}
+                <span
+                  onClick={() => history.push("/offers")}
+                  rel="nofollow noopener noreferrer"
+                  className="linkList offer "
+                >
+                  Offers
+                </span>
+              </div>
             </div>
           </div>
           {/* <div className="submenu">

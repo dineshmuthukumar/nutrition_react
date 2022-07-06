@@ -59,6 +59,8 @@ const BlogList = lazy(() => import("./pages/blog-list"));
 const AnnounDetails = lazy(() => import("./pages/announcement-details"));
 const AnnounementList = lazy(() => import("./pages/announcement-list"));
 const FAQ = lazy(() => import("./pages/faq"));
+const OfferBanner = lazy(() => import("./components/offer-banner"));
+
 //const MobileApp = lazy(() => import("./pages/mobile-app"));
 
 function App(props) {
@@ -323,6 +325,7 @@ const WebContainer = () => {
         {/* <Route exact path="/mobile-app" component={MobileApp} /> */}
 
         {/* <Route path="/not-found" component={NotFound} /> */}
+        <Route exact path="/offers" component={OfferBanner} />
         <Route
           path="/mcl"
           component={() => {

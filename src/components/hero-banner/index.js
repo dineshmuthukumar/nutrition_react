@@ -25,6 +25,12 @@ import firstSlideMobile from "../../images/jump-trade/hero-banner/First_Banner_B
 import firstSlideWebText from "../../images/jump-trade/hero-banner/First_Banner_Text--only_Web.png";
 import firstSlideMobileText from "../../images/jump-trade/hero-banner/First_Banner_Text--only_Mobile.png";
 
+import buyWeb from "../../images/jump-trade/hero-banner/04_BuyUCoin250_BG-only_WEB.jpg";
+import buyMobile from "../../images/jump-trade/hero-banner/04_BuyUCoin250_BG-only_Mobile.jpg";
+import buyWebText from "../../images/jump-trade/hero-banner/04_BuyUCoin250_Text-only_WEB.png";
+import buyMobileText from "../../images/jump-trade/hero-banner/04_BuyUCoin250_Text-only_Mobile.png";
+import buyUCoinLogo from "../../images/jump-trade/hero-banner/04_BuyUCoin Logo_Web.png";
+
 import comingSoon from "../../images/jump-trade/hero-banner/Coming-Soon_Common_Web.png";
 
 import "./style.scss";
@@ -224,14 +230,6 @@ const HeroBanner = () => {
                 loading="lazy"
               />
               <div className="hero-content-box">
-                <h4>
-                  EARN - Get Rewarded For Your Game-Time, Skill &amp; Efforts{" "}
-                </h4>
-                <p className="hero-desc">
-                  The Meta Cricket League game gives the players an opportunity
-                  to monetize the time, efforts, and victories. Enter into a new
-                  dimension of earning with our exciting reward-programs!
-                </p>
                 <div className="hero-btn-block">
                   <img src={comingSoon} alt="comming soon" />
                 </div>
