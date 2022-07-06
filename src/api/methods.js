@@ -198,3 +198,6 @@ export const nftUpgradeHistory = ({ nft_slug, page, order_slug }) => {
     return appAxios.get(`/nfts/${nft_slug}/upgrade_history?page=${page}`);
   }
 };
+
+export const nftActiveOrders = ({ nft_slug }) =>
+  appAxios.get(`/nfts/${nft_slug}/active_orders`);

@@ -46,15 +46,15 @@ const MclGameOne = () => {
     //console.log(type);
   };
 
-  useEffect(() => {
-    // console.log(subcribe.phone);
-    if (!subcribe.phone) {
-      setSubcribe({ ...subcribe, phone: "+91" });
-    }
-    //Runs on the first render
-    //And any time any dependency value changes
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [subcribe.phone]);
+  // useEffect(() => {
+  //   // console.log(subcribe.phone);
+  //   if (!subcribe.phone) {
+  //     setSubcribe({ ...subcribe, phone: "+91" });
+  //   }
+  //   //Runs on the first render
+  //   //And any time any dependency value changes
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [subcribe.phone]);
 
   const handleSubcribe = () => {
     setError(null);
@@ -178,12 +178,12 @@ const MclGameOne = () => {
                       {type === "email" ? (
                         <div className="text_fields">
                           <Form.Control
-                            className="mb-2 theme-input"
+                            className="mb-2 theme-input email-field"
                             id="inlineFormInput"
                             type="type"
                             name="email"
                             required={validation.email}
-                            placeholder="Enter Email ID "
+                            placeholder=" Enter Email ID "
                             onChange={handleChangeEvent}
                             onKeyPress={handleKeyPressEvent}
                             value={subcribe.email}
@@ -193,17 +193,24 @@ const MclGameOne = () => {
                       ) : (
                         <div className="text_fields">
                           <Form.Control
+                              className="mb-code-input"
+                              placeholder="+91"
+                              readOnly={true}               
+                            />
+                          <Form.Control
                             className="mb-2 theme-input"
                             id="inlineFormInput"
-                            type="tel"
+                            type="number"
                             name="phone"
-                            placeholder="Phone"
+                            placeholder="Enter Mobile Number"
                             required={validation.phone}
                             onChange={handleChangeEvent}
-                            onKeyPress={handleKeyPressEvent}
-                            value={subcribe.phone}
+                            onKeyPress={handleKeyPressEvent}                        
                             disabled={loading}
-                          />
+                            pattern="[0-9]*"
+                            
+                            />
+                            
                         </div>
                       )}
 

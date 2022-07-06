@@ -59,9 +59,9 @@ const BlogList = lazy(() => import("./pages/blog-list"));
 const AnnounDetails = lazy(() => import("./pages/announcement-details"));
 const AnnounementList = lazy(() => import("./pages/announcement-list"));
 const FAQ = lazy(() => import("./pages/faq"));
-const OfferBanner = lazy(() => import("./components/offer-banner"));
-
+const NftDetails = lazy(() => import("./pages/nft-details"));
 //const MobileApp = lazy(() => import("./pages/mobile-app"));
+const OfferBanner = lazy(() => import("./components/offer-banner"));
 
 function App(props) {
   const market_start_date = "Mar 9, 2022 12:30:00";
@@ -306,6 +306,15 @@ const WebContainer = () => {
           path="/nft-marketplace/:category/:cSlug/:search?/order/details/:slug/:orderSlug"
           component={Explore}
         />
+
+        <Route exact path=":search?/details/:slug" component={NftDetails} />
+        {/* 
+        <Route
+          exact
+          path="/nft-marketplace/:search?/details/:slug"
+          component={NftDetails}
+        /> */}
+
         <Route
           exact
           path="/nft-marketplace/:category/:cSlug/:search?/details/:slug"

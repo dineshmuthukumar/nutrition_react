@@ -177,42 +177,43 @@ const NFTCard = ({
       </article>
 
       <Link
-        to={(() => {
-          if (onsale || favouriteNFTs || recentSold) {
-            if (relativeUrl)
-              return search
-                ? `/${relativeUrl}/${
-                    searchPrefix ? searchPrefix + "/" + search : search
-                  }/order/details/${nft?.slug}/${nft?.order_slug}`
-                : `/${relativeUrl}/order/details/${nft?.slug}/${nft?.order_slug}`;
-            else
-              return search
-                ? `/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
-                : `/order/details/${nft?.slug}/${nft?.order_slug}`;
-          } else if (nft?.is_on_sale) {
-            if (relativeUrl)
-              return search
-                ? `/${relativeUrl}/${
-                    searchPrefix ? searchPrefix + "/" + search : search
-                  }/order/details/${nft?.slug}/${nft?.order_details?.slug}`
-                : `/${relativeUrl}/order/details/${nft?.slug}/${nft?.order_details?.slug}`;
-            else
-              return search
-                ? `/${search}/order/details/${nft?.slug}/${nft?.order_details?.slug}`
-                : `/order/details/${nft?.slug}/${nft?.order_details?.slug}`;
-          } else {
-            if (relativeUrl)
-              return search
-                ? `/${relativeUrl}/${
-                    searchPrefix ? searchPrefix + "/" + search : search
-                  }/details/${nft?.slug}`
-                : `/${relativeUrl}/details/${nft?.slug}`;
-            else
-              return search
-                ? `/${search}/details/${nft?.slug}`
-                : `/details/${nft?.slug}`;
-          }
-        })()}
+        // to={(() => {
+        //   if (onsale || favouriteNFTs || recentSold) {
+        //     if (relativeUrl)
+        //       return search
+        //         ? `/${relativeUrl}/${
+        //             searchPrefix ? searchPrefix + "/" + search : search
+        //           }/order/details/${nft?.slug}/${nft?.order_slug}`
+        //         : `/${relativeUrl}/order/details/${nft?.slug}/${nft?.order_slug}`;
+        //     else
+        //       return search
+        //         ? `/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
+        //         : `/order/details/${nft?.slug}/${nft?.order_slug}`;
+        //   } else if (nft?.is_on_sale) {
+        //     if (relativeUrl)
+        //       return search
+        //         ? `/${relativeUrl}/${
+        //             searchPrefix ? searchPrefix + "/" + search : search
+        //           }/order/details/${nft?.slug}/${nft?.order_details?.slug}`
+        //         : `/${relativeUrl}/order/details/${nft?.slug}/${nft?.order_details?.slug}`;
+        //     else
+        //       return search
+        //         ? `/${search}/order/details/${nft?.slug}/${nft?.order_details?.slug}`
+        //         : `/order/details/${nft?.slug}/${nft?.order_details?.slug}`;
+        //   } else {
+        //     if (relativeUrl)
+        //       return search
+        //         ? `/${relativeUrl}/${
+        //             searchPrefix ? searchPrefix + "/" + search : search
+        //           }/details/${nft?.slug}`
+        //         : `/${relativeUrl}/details/${nft?.slug}`;
+        //     else
+        //       return search
+        //         ? `/${search}/details/${nft?.slug}`
+        //         : `/details/${nft?.slug}`;
+        //   }
+        // })()}
+        to={`/details/${nft?.slug}`}
       >
         <img
           // style={{ background: bgColor }}
