@@ -37,7 +37,7 @@ const NftDetails = () => {
       });
 
       //console.log(transactions.data.data.orders[0]);
-      if (transactions?.data?.data?.orders) {
+      if (transactions?.data?.data?.orders.length) {
         setorderSlug(transactions?.data?.data?.orders[0]);
         setcurrentPage("orderdetails");
       } else {
@@ -59,7 +59,7 @@ const NftDetails = () => {
         (() => {
           if (currentPage == "orderdetails") {
             return <OrderDetails orderSlug={orderSlug} />;
-          } else if (currentPage == "orderdetails") {
+          } else if (currentPage == "details") {
             return <Details />;
           } else {
             return <Redirect to="/"></Redirect>;
