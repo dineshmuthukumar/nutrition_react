@@ -471,11 +471,10 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
   });
 
   const handleCallback = () => {
-    if (search || query.get("search"))
-      handleFilterCheck("", "text_search")
-  }
+    if (search || query.get("search")) handleFilterCheck("", "text_search");
+  };
 
-  useDebounce(handleCallback,500, search)
+  useDebounce(handleCallback, 500, search);
 
   useEffect(() => {
     const sale_filters = query.get("sale") ? query.get("sale").split(",") : [];
@@ -554,15 +553,17 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
   useEffect(() => {
     if (clientUrl) {
       if (match.path === `/${clientUrl}/:search?/details/:slug`) {
-        setPopDetails({ ...popDetails, show: true, children: <Details /> });
+        // setPopDetails({ ...popDetails, show: true, children: <Details /> });
+        history.replace(`/details/:slug`);
       } else if (
         match.path === `/${clientUrl}/:search?/order/details/:slug/:orderSlug`
       ) {
-        setPopDetails({
-          ...popDetails,
-          show: true,
-          children: <OrderDetails />,
-        });
+        // setPopDetails({
+        //   ...popDetails,
+        //   show: true,
+        //   children: <OrderDetails />,
+        // });
+        history.replace(`/details/:slug`);
       } else {
         setPopDetails({ ...popDetails, show: false, children: null });
       }
@@ -571,16 +572,17 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
         match.path ===
         "/nft-marketplace/:category/:cSlug/:search?/details/:slug"
       ) {
-        setPopDetails({ ...popDetails, show: true, children: <Details /> });
+        //setPopDetails({ ...popDetails, show: true, children: <Details /> });
       } else if (
         match.path ===
         "/nft-marketplace/:category/:cSlug/:search?/order/details/:slug/:orderSlug"
       ) {
-        setPopDetails({
-          ...popDetails,
-          show: true,
-          children: <OrderDetails />,
-        });
+        // setPopDetails({
+        //   ...popDetails,
+        //   show: true,
+        //   children: <OrderDetails />,
+        // });
+        history.replace(`/details/:slug`);
       } else {
         setPopDetails({ ...popDetails, show: false, children: null });
       }
@@ -1197,7 +1199,7 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
                         className="search-box-add"
                         value={search}
                         onKeyPress={handleKeyPressEvent}
-                        onChange={(e) =>  setSearch(e.target.value)}
+                        onChange={(e) => setSearch(e.target.value)}
                         placeholder="Search here"
                       />{" "}
                       <span

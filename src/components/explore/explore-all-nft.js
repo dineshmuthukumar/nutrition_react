@@ -23,6 +23,7 @@ import Header from "../header";
 
 import "./style.scss";
 //import AppHelmet from "../helmet";
+import { useParams } from "react-router-dom";
 
 const exploreHeaderMetaData = {
   metaTitle: "Cricket NFT Marketplace | Buy Cricket NFTs",
@@ -34,6 +35,7 @@ const ExploreAllNFT = () => {
   const history = useHistory();
 
   const match = useRouteMatch();
+  const { slug } = useParams();
   const [page, setPage] = useState(1);
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -538,18 +540,20 @@ const ExploreAllNFT = () => {
       match.path ===
         "/nft-marketplace/cricket-nfts/:player/:search?/details/:slug"
     ) {
-      setPopDetails({ ...popDetails, show: true, children: <Details /> });
+      //setPopDetails({ ...popDetails, show: true, children: <Details /> });
+      history.replace(`/details/${slug}`);
     } else if (
       match.path ===
         "/nft-marketplace/:search?/order/details/:slug/:orderSlug" ||
       match.path ===
         "/nft-marketplace/cricket-nfts/:player/:search?/order/details/:slug/:orderSlug"
     ) {
-      setPopDetails({
-        ...popDetails,
-        show: true,
-        children: <OrderDetails />,
-      });
+      // setPopDetails({
+      //   ...popDetails,
+      //   show: true,
+      //   children: <OrderDetails />,
+      // });
+      history.replace(`/details/${slug}`);
     } else {
       setPopDetails({ ...popDetails, show: false, children: null });
     }

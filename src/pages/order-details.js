@@ -48,12 +48,12 @@ import BidWinner from "../components/bid-winner/index";
 
 import NFTPlayerStats from "../components/nft-player-stats";
 
-const OrderDetails = () => {
+const OrderDetails = ({ orderSlug }) => {
   //const history = useHistory();
   const dispatch = useDispatch();
   const [bidExpiry, setBidExpiry] = useState();
   const [isBidder, setIsBidder] = useState(false);
-  const { slug, orderSlug } = useParams();
+  const { slug } = useParams();
   const [nft, setNft] = useState({});
   const [bidHistory, setBidHistory] = useState([]);
   const [transactionHistory, setTransactionHistory] = useState([]);

@@ -59,6 +59,7 @@ const BlogList = lazy(() => import("./pages/blog-list"));
 const AnnounDetails = lazy(() => import("./pages/announcement-details"));
 const AnnounementList = lazy(() => import("./pages/announcement-list"));
 const FAQ = lazy(() => import("./pages/faq"));
+const NftDetails = lazy(() => import("./pages/nft-details"));
 //const MobileApp = lazy(() => import("./pages/mobile-app"));
 
 function App(props) {
@@ -304,6 +305,15 @@ const WebContainer = () => {
           path="/nft-marketplace/:category/:cSlug/:search?/order/details/:slug/:orderSlug"
           component={Explore}
         />
+
+        <Route exact path=":search?/details/:slug" component={NftDetails} />
+        {/* 
+        <Route
+          exact
+          path="/nft-marketplace/:search?/details/:slug"
+          component={NftDetails}
+        /> */}
+
         <Route
           exact
           path="/nft-marketplace/:category/:cSlug/:search?/details/:slug"
