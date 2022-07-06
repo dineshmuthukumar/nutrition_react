@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { Col, Row, Form, Button } from "react-bootstrap";
-import Toggle from "react-toggle";
-import { useHistory } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { FiMail, FiPhone } from "react-icons/fi";
+import React from "react";
+// import { Col, Row, Form, Button } from "react-bootstrap";
+// import Toggle from "react-toggle";
+// import { useHistory } from "react-router-dom";
+// import { useSelector } from "react-redux";
+// import { FiMail, FiPhone } from "react-icons/fi";
 import images from "../../../utils/images.json";
 
 import device from "../../../images/device.png";
@@ -74,22 +74,28 @@ const MclGameTwo = () => {
                   <a
                     className="me-4"
                     target="_blank"
+                    rel="nofollow noopener noreferrer"
                     href="https://play.google.com/store/apps/details?id=com.jump.trade"
                   >
-                    <img src={images.playStore} />
+                    <img src={images.playStore} alt="PlayStore Images" />
                   </a>
                   <a
                     target="_blank"
+                    rel="nofollow noopener noreferrer"
                     href="https://apps.apple.com/in/app/jump-trade/id1618739753"
                   >
-                    <img src={images.appStore} />
+                    <img src={images.appStore} alt="AppStore Images" />
                   </a>
                 </div>
               </div>
             </div>
             <div className="col-md-6 mb-0">
               <div className="p-0 mx-lg-0">
-                <img className=" img-fluid  w-100 fit-cover" src={device} />
+                <img
+                  className=" img-fluid  w-100 fit-cover"
+                  src={device}
+                  alt="Device"
+                />
               </div>
             </div>
           </div>

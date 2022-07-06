@@ -13,7 +13,6 @@ const PrivacyComponent = () => {
                   <span>Last Updated: May 22, 2022</span>
                   <br />
                   <br />
-
                   <p>
                     JUMP.TRADE (“Jump.trade,” “Jump Trade,” “we” or “us”) is
                     committed to protecting your privacy. We have prepared this
@@ -38,12 +37,17 @@ const PrivacyComponent = () => {
                       legal@guardianlink.io
                     </a>
                   </p>
-                  <p>
+                  {/* <p>
                     For all purposes related to user privacy, the legal entity
                     shall be Guardian Blockchain Labs Pte. Ltd. Any legal
                     concerns should only be settled in the courts/jurisdiction
                     of Singapore or the United States.
-                  </p>
+                  </p> */}
+                  For all purposes related to user privacy, the legal entity
+                  shall be Guardian Blockchain Labs Pte. Ltd and Appstars
+                  Applications Pvt. Ltd. Any legal concerns should only be
+                  settled in the courts/jurisdiction of Singapore or the United
+                  States.
                 </div>
                 <div className="all-para-style">
                   <ul className="numberic">
@@ -547,7 +551,9 @@ const PrivacyComponent = () => {
                       any changes.
                     </li>
                     <li>
-                      Disclaimer: Crypto products and NFTs are unregulated and can be highly risky. There may be no regulatory recourse for any loss from such transactions.
+                      Disclaimer: Crypto products and NFTs are unregulated and
+                      can be highly risky. There may be no regulatory recourse
+                      for any loss from such transactions.
                     </li>
                   </ul>
                 </div>
