@@ -11,6 +11,7 @@ import {
   nftTransactionHistory,
   orderPurchaseDetailsApi,
   nftBidWinner,
+  nftUpgradeHistory,
 } from "../api/methods";
 import BidHistory from "../components/bid-history";
 import ChainAttributes from "../components/chain-attributes";
@@ -76,6 +77,12 @@ const OrderDetails = () => {
   const [isOrderSuccess, setIsOrderSuccess] = useState(false);
   const [isOrderCancelled, setIsOrderCancelled] = useState(false);
   const [purchaseList, setPurchaseList] = useState([]);
+
+  //NFT Upgrade Details
+
+  const [upgradeHistory, setUpgradeHistory] = useState([]);
+  const [upgradeLoader, setUpgradeLoader] = useState(false);
+  const [upgradeHasNext, setUpgradeHasNext] = useState(false);
 
   // Timed Auction
   const [auctionEndTime, setAuctionEndTime] = useState("");
@@ -151,6 +158,7 @@ const OrderDetails = () => {
     nftTransaction();
     purchaseDetails();
     orderBidWinner();
+    nftUpgradeDetails();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -226,6 +234,7 @@ const OrderDetails = () => {
       nftOwners();
       nftTransaction();
       orderBidWinner();
+      nftUpgradeDetails();
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -317,6 +326,22 @@ const OrderDetails = () => {
       setTransactionHistory(transactions.data.data.nfts);
       setTransactionHasNext(transactions.data.data.next_page);
       setTransactionLoader(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const nftUpgradeDetails = async () => {
+    try {
+      setUpgradeLoader(true);
+      let transactions = await nftUpgradeHistory({
+        nft_slug: slug,
+        page: 1,
+        order_slug: orderSlug,
+      });
+      setUpgradeHistory(transactions.data.data.histories);
+      setUpgradeHasNext(transactions.data.data.next_page);
+      setUpgradeLoader(false);
     } catch (error) {
       console.log(error);
     }
@@ -565,6 +590,12 @@ const OrderDetails = () => {
                             transactionHistory={transactionHistory}
                             transactionLoader={transactionLoader}
                             transactionHasNext={transactionHasNext}
+                            // Upgrade History
+                            upgradeHistory={upgradeHistory}
+                            setUpgradeHistory={setUpgradeHistory}
+                            setUpgradeHasNext={setUpgradeHasNext}
+                            upgradeLoader={upgradeLoader}
+                            upgradeHasNext={upgradeHasNext}
                             handleBidExpiredEndTimer={handleBidExpiredEndTimer}
                             bidExpired={bidExpired}
                             isAuctionStarted={isAuctionStarted}

@@ -13,8 +13,9 @@ import BidName from "./bid-name";
 import HistoryHeader from "../history-header";
 import HistoryConfirm from "../history-confirm";
 import TransactionCard from "./transaction-card";
+import UpgradeCard from "./upgrade-card";
 import images from "../../utils/images.json";
-import { orderBidHistory } from "../../api/methods";
+import { orderBidHistory, nftUpgradeHistory } from "../../api/methods";
 import { currencyFormat } from "../../utils/common";
 import { TableLoader } from "../nft-basic-details/content-loader";
 
@@ -37,6 +38,11 @@ const BidHistory = ({
   transactionHistory = [],
   transactionLoader,
   transactionHasNext,
+  upgradeHistory = [],
+  setUpgradeHistory,
+  setUpgradeHasNext,
+  upgradeLoader,
+  upgradeHasNext,
   handleBidExpiredEndTimer,
   bidExpired,
   orderDetails,
@@ -112,6 +118,27 @@ const BidHistory = ({
     }
   };
 
+  const handleUpgradeClick = async () => {
+    try {
+      setLoading(true);
+      let history = await nftUpgradeHistory({
+        order_slug: orderSlug,
+        page: page,
+      });
+      setUpgradeHistory([...upgradeHistory, ...history.data.data.histories]);
+      if (history.data.data.next_page) {
+        setUpgradeHasNext(true);
+      } else {
+        setUpgradeHasNext(false);
+      }
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      toast.error(
+        "The request could not be processed at this time. Please try again."
+      );
+    }
+  };
   const handleClose = () => {
     setModalShow(false);
     setPage(1);
@@ -161,6 +188,19 @@ const BidHistory = ({
                         onClick={() => setKey("transaction-history")}
                       >
                         Transaction History
+                      </span>
+                    </li>
+                  )}
+
+                  {upgradeHistory.length > 0 && (
+                    <li>
+                      <span
+                        className={`${
+                          key === "upgrade-history" ? "active" : ""
+                        }`}
+                        onClick={() => setKey("upgrade-history")}
+                      >
+                        Upgrade History
                       </span>
                     </li>
                   )}
@@ -259,6 +299,29 @@ const BidHistory = ({
                       <div className="bid-histroy-card">
                         <div className="history-end-content">
                           <span role="button" onClick={handleClick}>
+                            View More
+                          </span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )
+              );
+            } else if (key === "upgrade-history") {
+              return (
+                upgradeHistory.length > 0 && (
+                  <div className="bid-history-content">
+                    {upgradeHistory.map((history, i) => (
+                      <UpgradeCard
+                        key={`upgrade-history${i}`}
+                        nft={nft}
+                        history={history}
+                      />
+                    ))}
+                    {upgradeHasNext && (
+                      <div className="bid-histroy-card">
+                        <div className="history-end-content">
+                          <span role="button" onClick={handleUpgradeClick}>
                             View More
                           </span>
                         </div>

@@ -7,6 +7,7 @@ import {
   nftDetailApi,
   nftOwnerApi,
   nftTransactionHistory,
+  nftUpgradeHistory,
 } from "../api/methods";
 import BidHistory from "../components/bid-history";
 import ChainAttributes from "../components/chain-attributes";
@@ -44,6 +45,12 @@ const Details = () => {
   // const [page, setPage] = useState(1);
   const [artist, setArtist] = useState({});
 
+  //NFT Upgrade Details
+
+  const [upgradeHistory, setUpgradeHistory] = useState([]);
+  const [upgradeLoader, setUpgradeLoader] = useState(false);
+  const [upgradeHasNext, setUpgradeHasNext] = useState(false);
+
   const { user } = useSelector((state) => state.user.data);
   const isOwner = _.has(nft, "owner_details");
   const availableQty = _.get(nft, "owner_details.available_quantity", 0);
@@ -55,6 +62,7 @@ const Details = () => {
     nftDetail(slug);
     nftOwners();
     nftTransaction();
+    nftUpgradeDetails();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -101,6 +109,7 @@ const Details = () => {
       // }
       nftOwners();
       nftTransaction();
+      nftUpgradeDetails();
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -139,6 +148,21 @@ const Details = () => {
       setNFTOwner(owners.data.data.owners);
       setOwnerCount(owners.data.data.total_count);
       setOwnerLoader(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const nftUpgradeDetails = async () => {
+    try {
+      setUpgradeLoader(true);
+      let transactions = await nftUpgradeHistory({
+        nft_slug: slug,
+        page: 1,
+      });
+      setUpgradeHistory(transactions.data.data.histories);
+      setUpgradeHasNext(transactions.data.data.next_page);
+      setUpgradeLoader(false);
     } catch (error) {
       console.log(error);
     }
@@ -234,6 +258,12 @@ const Details = () => {
                             transactionHistory={transactionHistory}
                             transactionLoader={transactionLoader}
                             transactionHasNext={transactionHasNext}
+                            // Upgrade History
+                            setUpgradeHistory={setUpgradeHistory}
+                            setUpgradeHasNext={setUpgradeHasNext}
+                            upgradeHistory={upgradeHistory}
+                            upgradeLoader={upgradeLoader}
+                            upgradeHasNext={upgradeHasNext}
                           />
                         )
                       );
@@ -249,6 +279,10 @@ const Details = () => {
                             transactionHistory={transactionHistory}
                             transactionLoader={transactionLoader}
                             transactionHasNext={transactionHasNext}
+                            // Upgrade History
+                            upgradeHistory={upgradeHistory}
+                            upgradeLoader={upgradeLoader}
+                            upgradeHasNext={upgradeHasNext}
                           />
                         )
                       );
