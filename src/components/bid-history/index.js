@@ -191,8 +191,7 @@ const BidHistory = ({
                       </span>
                     </li>
                   )}
-
-                  {upgradeHistory.length > 0 && (
+                  {nft?.core_statistics?.role?.value != "Bat" && (
                     <li>
                       <span
                         className={`${
@@ -308,14 +307,16 @@ const BidHistory = ({
                 )
               );
             } else if (key === "upgrade-history") {
-              return (
-                upgradeHistory.length > 0 && (
+              console.log("nft", nft);
+              return nft?.core_statistics?.role?.value != "Bat" ? (
+                upgradeHistory.length > 0 ? (
                   <div className="bid-history-content">
                     {upgradeHistory.map((history, i) => (
                       <UpgradeCard
                         key={`upgrade-history${i}`}
                         nft={nft}
                         history={history}
+                        isEnd={upgradeHistory.length < 0 ? true : false}
                       />
                     ))}
                     {upgradeHasNext && (
@@ -328,7 +329,16 @@ const BidHistory = ({
                       </div>
                     )}
                   </div>
+                ) : (
+                  <div className="bid-history-content">
+                    {" "}
+                    <div className="history-end-content">
+                      You've Upgrade History the end of the list
+                    </div>
+                  </div>
                 )
+              ) : (
+                ""
               );
             }
           })()}

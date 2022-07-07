@@ -8,14 +8,13 @@ import "./style.scss";
 
 const UpgradeCard = ({ nft, history, isEnd = false }) => {
   const routeHistory = useHistory();
+  console.log(isEnd, "isEnd");
   //const { user } = useSelector((state) => state.user.data);
 
   return (
     <div className="bid-histroy-card">
       {isEnd ? (
-        <div className="history-end-content">
-          You've reached the end of the list
-        </div>
+        <div className="history-end-content">No upgrades yet.</div>
       ) : (
         <>
           <div className="first-half full-width">
@@ -42,7 +41,8 @@ const UpgradeCard = ({ nft, history, isEnd = false }) => {
                       <>
                         &nbsp;for&nbsp;
                         <span className="transaction-value">
-                          {parseFloat(history?.buy_value).toFixed(2)} {"JT"}
+                          {parseFloat(history?.buy_value).toFixed(2)}{" "}
+                          {"JT Points  "}
                         </span>
                       </>
                     );
@@ -57,7 +57,7 @@ const UpgradeCard = ({ nft, history, isEnd = false }) => {
                     );
                   }
                 })()}
-                {`(Used cards : ${history?.used_cards})`}
+                {` using ${history?.used_cards} upgrade cards`}
               </div>
             </div>
           </div>
