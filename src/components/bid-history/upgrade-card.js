@@ -14,7 +14,7 @@ const UpgradeCard = ({ nft, history, isEnd = false }) => {
   return (
     <div className="bid-histroy-card">
       {isEnd ? (
-        <div className="history-end-content">No upgrades yet.</div>
+        <div className="history-end-content">No upgrades yet .</div>
       ) : (
         <>
           <div className="first-half full-width">

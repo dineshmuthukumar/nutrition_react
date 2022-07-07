@@ -28,6 +28,7 @@ const NFTCancelTheSale = ({
   transferringNFT,
   isAuctionEnded,
   latestBid,
+  orderSlug,
 }) => {
   const history = useHistory();
   const { user } = useSelector((state) => state.user.data);

@@ -30,9 +30,10 @@ const NFTPlaceBid = ({
   // isOrderOnSale,
   isOrderCancelled,
   isAuctionEnded,
+  orderSlug,
 }) => {
   const { user } = useSelector((state) => state.user.data);
-  const { orderSlug } = useParams();
+  //const { orderSlug } = useParams();
 
   const [success, setSuccess] = useState(false);
   const [successData, setSuccessData] = useState({});

@@ -562,6 +562,7 @@ const NFTOrderBaseDetails = ({
               isOrderCancelled={isOrderCancelled}
               isAuctionStarted={isAuctionStarted}
               isAuctionEnded={isAuctionEnded}
+              orderSlug={orderSlug}
             />
             <NFTPlaceBuy
               nft={nft}
@@ -578,6 +579,7 @@ const NFTOrderBaseDetails = ({
               transferringNFT={transferringNFT}
               isOrderOnSale={isOrderOnSale}
               isOrderCancelled={isOrderCancelled}
+              orderSlug={orderSlug}
             />
 
             <NFTCancelTheSale
@@ -595,6 +597,7 @@ const NFTOrderBaseDetails = ({
               transferringNFT={transferringNFT}
               isAuctionEnded={isAuctionEnded}
               latestBid={latestBid}
+              orderSlug={orderSlug}
             />
 
             {nft.promoted && (
