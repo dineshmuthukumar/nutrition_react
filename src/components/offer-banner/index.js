@@ -17,12 +17,12 @@ const OfferBanner = () => {
       <Header bgImage />
       <div class="item">
         <section
-          className="hero-banner-sec"
+          className="buy-banner-sec"
           style={{
             backgroundImage: `url(${innerWidth > 769 ? buyWeb : buyMobile})`,
           }}
         >
-          <div className="hero-content-block">
+          <div className="buy-content-block">
             <img
               src={innerWidth > 767 ? buyWebText : buyMobileText}
               alt="Best NFT Marketplace"
@@ -30,16 +30,16 @@ const OfferBanner = () => {
               loading="lazy"
             />
 
-            <div className="hero-content-box">
+            <div className="buy-content-box">
               <div>
                 <img
                   src={buyUCoinLogo}
                   alt="UCoin Logo"
-                  width="350px"
-                  height="120px"
+                  width="200px"
+                  height="70px"
                 />
               </div>
-              <div className="hero-btn-block">
+              <div className="buy-btn-block">
                 <button
                   className="theme-btn"
                   onClick={() =>

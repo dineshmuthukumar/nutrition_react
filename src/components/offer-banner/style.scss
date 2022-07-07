@@ -1,6 +1,6 @@
 @import "../../styles/common";
 
-.hero-banner-sec {
+.buy-banner-sec {
     min-height: calc(90vh + 7rem);
     height: auto;
     display: flex;
@@ -18,7 +18,7 @@
       background-size: cover;
     }
 }
-    .hero-content-block {
+    .buy-content-block {
       text-align: center;
       display: flex;
       flex-direction: column;
@@ -30,7 +30,7 @@
       @media screen and (max-width: 767px) {
         min-height: calc(100vh - 30rem);
       }
-      .hero-content-box {
+      .buy-content-box {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -39,7 +39,7 @@
         width: 100%;
         padding: 0 1rem;
         }
-        .hero-btn-block {
+        .buy-btn-block {
           display: flex;
           align-items: center;
           justify-content: flex-start;
