@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Col, Row, Form, Button } from "react-bootstrap";
 // import Toggle from "react-toggle";
 // import { useLocation } from "react-router-dom";
@@ -193,10 +193,10 @@ const MclGameOne = () => {
                       ) : (
                         <div className="text_fields">
                           <Form.Control
-                              className="mb-code-input"
-                              placeholder="+91"
-                              readOnly={true}               
-                            />
+                            className="mb-code-input"
+                            placeholder="+91"
+                            readOnly={true}
+                          />
                           <Form.Control
                             className="mb-2 theme-input"
                             id="inlineFormInput"
@@ -205,12 +205,10 @@ const MclGameOne = () => {
                             placeholder="Enter Mobile Number"
                             required={validation.phone}
                             onChange={handleChangeEvent}
-                            onKeyPress={handleKeyPressEvent}                        
+                            onKeyPress={handleKeyPressEvent}
                             disabled={loading}
                             pattern="[0-9]*"
-                            
-                            />
-                            
+                          />
                         </div>
                       )}
 
@@ -309,7 +307,7 @@ const MclGameOne = () => {
           </div>
           <div className="row row-cols-2 row-cols-md-3 mx-auto justify-content-center">
             <div className="os_list text-center">
-              <img src={icon} />
+              <img src={icon} alt="Icon" />
             </div>
             {/* <div className="os_list text-center">dfdfg</div>
             <div className="os_list text-center">ghgh</div> */}

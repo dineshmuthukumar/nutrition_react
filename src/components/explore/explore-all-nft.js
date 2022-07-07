@@ -12,8 +12,8 @@ import { FormControl } from "react-bootstrap";
 
 import NFTCard from "../nft-card";
 import QuickView from "../quick-view";
-import Details from "../../pages/details";
-import OrderDetails from "../../pages/order-details";
+// import Details from "../../pages/details";
+// import OrderDetails from "../../pages/order-details";
 import { nftShowAllApi } from "../../api/methods";
 import images from "../../utils/images.json";
 import { validateCurrency } from "../../utils/common";

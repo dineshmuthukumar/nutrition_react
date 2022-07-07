@@ -36,7 +36,7 @@ const UpgradeCard = ({ nft, history, isEnd = false }) => {
                 &nbsp;has upgraded this NFT from&nbsp; Level{" "}
                 {history?.from_level} to Level {history?.to_level}
                 {(() => {
-                  if (history?.payment_type == "assert") {
+                  if (history?.payment_type === "assert") {
                     return (
                       <>
                         &nbsp;for&nbsp;

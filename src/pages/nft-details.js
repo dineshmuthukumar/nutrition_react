@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
-import _ from "lodash";
+import { useParams } from "react-router-dom";
+// import { useSelector } from "react-redux";
+// import _ from "lodash";
 
 import { nftActiveOrders } from "../api/methods";
 import { NFTLoader } from "../components/nft-basic-details/content-loader";
-import { listForSaleDetail, ownerDetails } from "../api/actioncable-methods";
-import { artistApi } from "../api/base-methods";
-import OwnerList from "../components/owner-list";
-import Footer from "../components/footer/index";
-import NFTOrderDetails from "../components/nft-order-details/index";
+// import { listForSaleDetail, ownerDetails } from "../api/actioncable-methods";
+// import { artistApi } from "../api/base-methods";
+// import OwnerList from "../components/owner-list";
+// import Footer from "../components/footer/index";
+// import NFTOrderDetails from "../components/nft-order-details/index";
 
 import Details from "./details";
 import OrderDetails from "./order-details";
 //import AdditionalPerks from "../components/additional-perks/index";
-import NFTPlayerStats from "../components/nft-player-stats";
+// import NFTPlayerStats from "../components/nft-player-stats";
 import { Redirect } from "react-router";
 
 const NftDetails = () => {
@@ -57,9 +57,9 @@ const NftDetails = () => {
         <NFTLoader />
       ) : (
         (() => {
-          if (currentPage == "orderdetails") {
+          if (currentPage === "orderdetails") {
             return <OrderDetails orderSlug={orderSlug} />;
-          } else if (currentPage == "details") {
+          } else if (currentPage === "details") {
             return <Details />;
           } else {
             return <Redirect to="/"></Redirect>;
