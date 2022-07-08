@@ -213,7 +213,30 @@ const NFTCard = ({
         //         : `/details/${nft?.slug}`;
         //   }
         // })()}
-        to={`/details/${nft?.slug}`}
+
+        // to={(() => {
+        //   if (recentSold) {
+        //     return search
+        //       ? `/${search}/details/${nft?.slug}?recentsold=true`
+        //       : `/details/${nft?.slug}?recentsold=true`;
+        //   } else {
+        //     return search
+        //       ? `/${search}/details/${nft?.slug}}?recentsold=true`
+        //       : `/details/${nft?.slug}?recentsold=true`;
+        //   }
+        // })()}
+
+        to={(() => {
+          if (recentSold) {
+            return search
+              ? `/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
+              : `/order/details/${nft?.slug}/${nft?.order_slug}`;
+          } else {
+            return search
+              ? `/${search}/details/${nft?.slug}`
+              : `/details/${nft?.slug}`;
+          }
+        })()}
       >
         <img
           // style={{ background: bgColor }}

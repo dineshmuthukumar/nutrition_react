@@ -41,9 +41,9 @@ const UpgradeCard = ({ nft, history, isEnd = false }) => {
                       <>
                         &nbsp;for&nbsp;
                         <span className="transaction-value">
-                          {parseFloat(history?.buy_value).toFixed(2)}{" "}
-                          {"JT Points  "}
-                        </span>
+                          {parseFloat(history?.buy_value).toFixed(2)}
+                          {" JT Points  "}
+                        </span>{" "}
                       </>
                     );
                   } else {
@@ -57,7 +57,8 @@ const UpgradeCard = ({ nft, history, isEnd = false }) => {
                     );
                   }
                 })()}
-                {` using ${history?.used_cards} upgrade cards`}
+                &nbsp;
+                {`using ${history?.used_cards} upgrade cards`}
               </div>
             </div>
           </div>

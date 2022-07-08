@@ -58,7 +58,7 @@ const NftDetails = () => {
       ) : (
         (() => {
           if (currentPage === "orderdetails") {
-            return <OrderDetails orderSlug={orderSlug} />;
+            return <OrderDetails CurrentOrderSlug={orderSlug} details={true} />;
           } else if (currentPage === "details") {
             return <Details />;
           } else {
