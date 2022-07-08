@@ -18,7 +18,7 @@ const TrailerVideo = () => {
 
   const white_paper_start_date = "Jun 29 2022 11:30:00";
 
-  const subscribe_start_date = "July 10 2022 11:25:00";
+  const subscribe_start_date = "July 13 2022 11:30:00";
 
   const [whitepaper_time, set_whitepaper_time] = useState();
 
