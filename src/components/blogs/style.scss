@@ -629,3 +629,123 @@ a {
     }
   }
 }
+
+.blog_page {
+  body {
+    background: #fff;
+    color: #000;
+  }
+  .dark {
+    background: #051100;
+    color: #fff;
+  }
+  .light {
+    background: #fff;
+    color: #000;
+  }
+  .dark h6 a.text-dark {
+    color: #fff !important;
+  }
+  .nav-link {
+    color: #fff;
+  }
+  .ptb-100 {
+    padding: 100px 20px;
+  }
+
+  .br-5 {
+    border-radius: 1.5rem;
+  }
+  .nav-pills .nav-link.active,
+  .nav-pills .show > .nav-link {
+    color: #fffc01;
+    background: linear-gradient(
+      to right,
+      #041710 0%,
+      #1d2e28 51%,
+      #0e6c4a 100%
+    );
+    border: 1px solid #041710 !important;
+  }
+  button#pills-profile-tab {
+    background: #fff;
+    border: 1px solid #041710;
+    color: #041710;
+  }
+  .nav-pills button {
+    padding: 0.5rem 2rem;
+    border: 1px solid #041710 !important;
+    border-radius: 2rem !important;
+    margin-bottom: 1rem;
+  }
+  .nav-pills li.nav-item {
+    margin-right: 1rem;
+  }
+  .nav-tabs {
+    border-bottom: none;
+  }
+  .post .meta {
+    font-size: 14px;
+    color: #9faabb;
+  }
+  /*.post.post-list-sm.circle {
+display: flex;
+align-items: center;
+justify-content: flex-start;
+margin: 1rem 0rem;
+}*/
+  .nav-link {
+    color: #10221b;
+  }
+  .nav-link:focus,
+  .nav-link:hover {
+    color: #0e2019;
+  }
+  .bordered {
+    border: solid 1px #ebebeb;
+  }
+  .rounded {
+    border-radius: 10px !important;
+  }
+  .post-list-sm:after {
+    content: "";
+    display: block;
+    height: 1px;
+    position: absolute;
+    /* margin-bottom: 20px; */
+    /* margin-top: 20px; */
+    width: 100%;
+    background: #ebebeb;
+    background: -webkit-linear-gradient(right, #ebebeb 0%, transparent 100%);
+    background: linear-gradient(to left, #ebebeb 0%, transparent 100%);
+    bottom: 0;
+  }
+  .inner img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+  }
+  .social_links ul li {
+    margin-left: 10px;
+    margin-right: 10px;
+    /* background: red; */
+    padding: 0.2rem;
+    border-radius: 50%;
+    border: 1px solid #0000001c;
+    text-align: center;
+    cursor: pointer;
+  }
+  .social_links ul li svg {
+    fill: #0f6747 !important;
+  }
+  .blog_banner {
+    height: auto;
+    width: 100%;
+    background: black;
+    overflow: hidden;
+  }
+  .blog_banner img {
+    object-fit: cover;
+    opacity: 0.6;
+  }
+}
