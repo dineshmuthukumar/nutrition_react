@@ -16,11 +16,17 @@ const TrailerVideo = () => {
   // const closeoRef = useRef();
   const [video, setVideo] = useState(false);
 
-  const white_paper_start_date = "Jun 29 2022 12:30:00";
+  const white_paper_start_date = "Jun 29 2022 11:30:00";
+
+  const subscribe_start_date = "July 10 2022 11:25:00";
 
   const [whitepaper_time, set_whitepaper_time] = useState();
 
+  const [subscribe_time, set_subscribe_time] = useState();
+
   const [end_time, set_end_time] = useState(false);
+
+  const [subscribe_end_time, set_subscribe_end_time] = useState(false);
 
   // const dispatch = useDispatch();
 
@@ -45,13 +51,40 @@ const TrailerVideo = () => {
       // dispatch(market_live_off_thunk());
     }
   };
+
+  const timeFunctionSubscribe = (check = false) => {
+    var offset = new Date().getTimezoneOffset();
+
+    var subscriber_start_date_utc = new Date(subscribe_start_date);
+    subscriber_start_date_utc.setMinutes(
+      subscriber_start_date_utc.getMinutes() - offset
+    );
+
+    var s_time = new Date();
+
+    if (check) s_time.setSeconds(s_time.getSeconds() + 2);
+
+    if (new Date(subscriber_start_date_utc) < s_time) {
+      set_subscribe_end_time(true);
+      // dispatch(market_live_thunk());
+    } else {
+      set_subscribe_end_time(false);
+      set_subscribe_time(subscriber_start_date_utc);
+      // dispatch(market_live_off_thunk());
+    }
+  };
   useEffect(() => {
     timeFunction(false);
+    timeFunctionSubscribe(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleTimer = () => {
     set_end_time(true);
+  };
+
+  const handleTimerSubscribe = () => {
+    set_subscribe_end_time(true);
   };
 
   return (
@@ -181,8 +214,40 @@ const TrailerVideo = () => {
                               <img src={playBtn} alt="PlayButton" />
                             </div>
                             <div className="btn-click ms-md-3 ms-0 fs-2">
-                              <span>Subscribe For App</span>
-                              <p className="coming_soon">Coming Soon</p>
+                              {/* <span>Subscribe For App</span> */}
+                              {/* <p className="coming_soon">Coming Soon</p> */}
+                              {subscribe_end_time ? (
+                                <a
+                                  target="_blank"
+                                  rel="nofollow noopener noreferrer"
+                                  href="/mcl-game"
+                                  className="list-style-none p-8"
+                                >
+                                  Meta Cricket League
+                                </a>
+                              ) : (
+                                subscribe_time && (
+                                  <div className="whitepaper">
+                                    <span>Meta Cricket League</span>
+
+                                    <p className="coming_soon">
+                                      Closed Community Test Run
+                                    </p>
+                                    <span className="coming_soon">
+                                      <span className="pos-top me-2 fs-6">
+                                        Launching In
+                                      </span>
+                                      <NFTCounter
+                                        time={subscribe_time}
+                                        timeClass="counter-time"
+                                        handleEndEvent={handleTimerSubscribe}
+                                        // className="whitepaper"
+                                      />
+                                    </span>
+                                    {/* <p className="coming_soon">Coming Soon</p> */}
+                                  </div>
+                                )
+                              )}
                             </div>
                           </div>
                         </div>

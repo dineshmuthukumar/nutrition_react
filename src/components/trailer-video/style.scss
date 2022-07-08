@@ -167,6 +167,16 @@
         margin-top: 0.8rem;
         color: #e1ff04;
         font-family: "neue_helvetica_roman";
+        display: flex;
+        align-items: center;
+
+        .pos-top {
+          position: relative;
+          top: 5px;
+        }
+        .nft-counter {
+          color: rgb(0, 255, 255);
+        }
       }
     }
   }
