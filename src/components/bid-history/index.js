@@ -332,9 +332,7 @@ const BidHistory = ({
                 ) : (
                   <div className="bid-history-content">
                     {" "}
-                    <div className="history-end-content">
-                      You've Upgrade History the end of the list
-                    </div>
+                    <div className="history-end-content">No upgrades yet.</div>
                   </div>
                 )
               ) : (
