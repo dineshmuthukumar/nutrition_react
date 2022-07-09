@@ -43,11 +43,7 @@ const OfferBanner = () => {
                 <button
                   className="theme-btn"
                   onClick={() =>
-                    window.open(
-                      process.env.REACT_APP_BUYUCOIN_URL,
-                      "_blank",
-                      "nofollow noopener noreferrer"
-                    )
+                    window.open(process.env.REACT_APP_BUYUCOIN_URL, "_blank")
                   }
                 >
                   <span>Visit</span>
