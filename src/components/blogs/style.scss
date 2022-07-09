@@ -236,7 +236,7 @@ a {
     }
     h2 {
       color: #fff;
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       line-height: 1.5;
       font-weight: bold;
       margin-bottom: 0;
@@ -721,7 +721,7 @@ margin: 1rem 0rem;
     bottom: 0;
   }
   .inner img {
-    width: 70px;
+    max-width: 70px;
     height: 70px;
     object-fit: cover;
   }
@@ -748,4 +748,8 @@ margin: 1rem 0rem;
     object-fit: cover;
     opacity: 0.6;
   }
+}
+
+.text-size {
+  font-size: 1.3rem;
 }

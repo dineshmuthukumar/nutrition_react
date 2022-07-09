@@ -32,7 +32,7 @@ const BlogDetail = () => {
       const filteredblogData = blogData?.data?.filter(
         (data) => data.slug === slug
       );
-      console.log("value", data);
+      // console.log("value", data);
       setData(filteredblogData[0]);
       const filteredcateData = CateData?.data?.filter(
         (item) => item.id === filteredblogData[0].categories
@@ -105,7 +105,7 @@ const BlogDetail = () => {
                         />
                       )}
                     </div>
-                    <div className="blog_content mt-5">
+                    <div className="blog_content text-size mt-5">
                       {" "}
                       <Interweave content={data?.content?.rendered} />
                     </div>
@@ -167,7 +167,7 @@ const BlogDetail = () => {
                         {recent?.map((item, i) => (
                           <div className="post post-list-sm position-relative circle d-flex justify-content-start align-items-center py-3">
                             <div className="thumb rounded-circle">
-                              <a href="blog-single.html">
+                              <a href={"/blog/" + item?.slug}>
                                 <div className="inner">
                                   {item?._embedded["wp:featuredmedia"]?.length >
                                     0 && (
@@ -187,7 +187,7 @@ const BlogDetail = () => {
                             <div className="details clearfix">
                               <h6 className="post-title my-0">
                                 <a
-                                  href="#"
+                                  href={"/blog/" + item?.slug}
                                   className="text-decoration-none text-dark lh-base lh-base"
                                 >
                                   <Interweave content={item?.title?.rendered} />
@@ -215,7 +215,7 @@ const BlogDetail = () => {
                         {popular?.map((item, i) => (
                           <div className="post post-list-sm position-relative circle d-flex justify-content-start align-items-center py-3">
                             <div className="thumb rounded-circle">
-                              <a href="blog-single.html">
+                              <a href={"/blog/" + item?.slug}>
                                 <div className="inner">
                                   {item?._embedded["wp:featuredmedia"]?.length >
                                     0 && (
@@ -235,7 +235,7 @@ const BlogDetail = () => {
                             <div className="details clearfix">
                               <h6 className="post-title my-0">
                                 <a
-                                  href="#"
+                                  href={"/blog/" + item?.slug}
                                   className="text-decoration-none text-dark lh-base lh-base"
                                 >
                                   <Interweave content={item?.title?.rendered} />
