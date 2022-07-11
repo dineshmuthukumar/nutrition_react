@@ -726,14 +726,16 @@ margin: 1rem 0rem;
     object-fit: cover;
   }
   .social_links ul li {
-    margin-left: 10px;
-    margin-right: 10px;
-    /* background: red; */
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
     padding: 0.2rem;
     border-radius: 50%;
-    border: 1px solid #0000001c;
     text-align: center;
     cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+    line-height: 1.2rem;
+    border: 1px solid #000;
   }
   .social_links ul li svg {
     fill: #0f6747 !important;
