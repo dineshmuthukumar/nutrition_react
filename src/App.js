@@ -53,7 +53,7 @@ const Privacy = lazy(() => import("./pages/privacy-policy"));
 const Terms = lazy(() => import("./pages/terms"));
 const Abouts = lazy(() => import("./pages/abouts"));
 const Blogs = lazy(() => import("./pages/blogs"));
-// const MclGame = lazy(() => import("./pages/mcl-game"));
+const MclGame = lazy(() => import("./pages/mcl-game"));
 const BlogDetails = lazy(() => import("./pages/blog-details"));
 const BlogList = lazy(() => import("./pages/blog-list"));
 const AnnounDetails = lazy(() => import("./pages/announcement-details"));
@@ -244,7 +244,7 @@ const WebContainer = () => {
     <>
       <Switch>
         <Route exact path="/blog" component={Blogs} />
-        {/* <Route exact path="/mcl-game" component={MclGame} /> */}
+        <Route exact path="/mcl-game" component={MclGame} />
         <Route exact path="/blog/list" component={BlogList} />
         <Route exact path="/blog/:slug" component={BlogDetails} />
         <Route exact path="/announcment/:slug" component={AnnounDetails} />
