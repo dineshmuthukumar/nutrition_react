@@ -4,7 +4,8 @@ import { getBlogCateListApi, getBlogCattApi } from "../../api/methods";
 import { Interweave } from "interweave";
 import dayjs from "dayjs";
 import "./style.scss";
-import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaTwitter, FaWhatsapp } from "react-icons/fa";
+import { detectWhatsapp } from "../../utils/common";
 
 const BlogDetail = () => {
   const [data, setData] = useState();
@@ -267,7 +268,7 @@ const BlogDetail = () => {
                               <FaFacebook />
                             </a>
                           </li>
-                          <li>
+                          {/* <li>
                             <a
                               target="_blank"
                               onClick={() =>
@@ -280,7 +281,7 @@ const BlogDetail = () => {
                             >
                               <FaInstagram />
                             </a>
-                          </li>
+                          </li> */}
                           <li>
                             <a
                               target="_blank"
@@ -295,7 +296,27 @@ const BlogDetail = () => {
                               <FaTwitter />
                             </a>
                           </li>
-
+                          <li>
+                            <a
+                              className="whatsapp"
+                              target="_blank"
+                              onClick={() => {
+                                detectWhatsapp(
+                                  `whatsapp://send?text=${encodeURIComponent(
+                                    data?.title?.rendered
+                                  )}%0A${shareUrl}%0A`
+                                ).then((hasWhatsapp) => {
+                                  if (!hasWhatsapp) {
+                                    alert(
+                                      "You don't have WhatsApp, kindly install it and try again"
+                                    );
+                                  }
+                                });
+                              }}
+                            >
+                              <FaWhatsapp />
+                            </a>
+                          </li>
                           {/* <li> */}
                           {/* <a
                               href="https://discord.com/invite/JRWmNb38GW"

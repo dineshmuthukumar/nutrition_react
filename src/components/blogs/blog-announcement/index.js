@@ -3,6 +3,7 @@
 // import dayjs from "dayjs";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
+import Bat from "../../../images/bat-jump-trade.png";
 // import { getBlogListApi, getBlogCattApi } from "../../../api/methods";
 
 import { Interweave } from "interweave";
@@ -72,7 +73,7 @@ const BlogAnnouncment = ({
                       <div class="">
                         <div class="f_book">
                           {" "}
-                          {AnnouncementData?._embedded["wp:featuredmedia"]
+                          {/* {AnnouncementData?._embedded["wp:featuredmedia"]
                             ?.length > 0 && (
                             <img
                               src={
@@ -82,7 +83,8 @@ const BlogAnnouncment = ({
                               }
                               alt="AnnouncementData"
                             />
-                          )}
+                          )} */}
+                          <img src={Bat} alt="AnnouncementData"></img>
                         </div>
                       </div>
                     </div>
@@ -130,7 +132,7 @@ const BlogAnnouncment = ({
             announcementSplitData?.map((item, i) => (
               <div class="col-lg-4">
                 <a href={"/announcment/" + item?.slug}>
-                  <div class="book_bottom">
+                  <div class="book_bottom banner-description-blog">
                     <h2>
                       {" "}
                       <Interweave content={item?.title?.rendered} />
