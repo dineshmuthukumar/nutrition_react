@@ -554,7 +554,7 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
     if (clientUrl) {
       if (match.path === `/${clientUrl}/:search?/details/:slug`) {
         // setPopDetails({ ...popDetails, show: true, children: <Details /> });
-        history.replace(`/details/:slug`);
+        history.replace(`/nft-marketplace/details/:slug`);
       } else if (
         match.path === `/${clientUrl}/:search?/order/details/:slug/:orderSlug`
       ) {
@@ -563,7 +563,7 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
         //   show: true,
         //   children: <OrderDetails />,
         // });
-        history.replace(`/details/:slug`);
+        history.replace(`/nft-marketplace/details/:slug`);
       } else {
         setPopDetails({ ...popDetails, show: false, children: null });
       }
@@ -582,7 +582,7 @@ const Explore = ({ categoryDetail, slug, clientUrl = "" }) => {
         //   show: true,
         //   children: <OrderDetails />,
         // });
-        history.replace(`/details/:slug`);
+        //history.replace(`/nft-marketplace/details/:slug`);
       } else {
         setPopDetails({ ...popDetails, show: false, children: null });
       }

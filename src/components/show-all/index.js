@@ -15,8 +15,10 @@ import { FormControl } from "react-bootstrap";
 import { validateCurrency } from "../../utils/common";
 
 import "./style.scss";
+import useQuery from "../../hook/useQuery";
 
 const ShowAll = ({ categories }) => {
+  const { slug } = useQuery();
   const history = useHistory();
   const match = useRouteMatch();
   const [page, setPage] = useState(1);
@@ -211,9 +213,11 @@ const ShowAll = ({ categories }) => {
 
   useEffect(() => {
     if (match.path === "/:search?/details/:slug") {
-      setPopDetails({ ...popDetails, show: true, children: <Details /> });
+      history.replace(`/nft-marketplace/details/${slug}`);
+      //setPopDetails({ ...popDetails, show: true, children: <Details /> });
     } else if (match.path === "/:search?/order/details/:slug/:orderSlug") {
       setPopDetails({ ...popDetails, show: true, children: <OrderDetails /> });
+      //history.replace(`/nft-marketplace/details/${slug}`);
     } else {
       setPopDetails({ ...popDetails, show: false, children: null });
     }

@@ -38,13 +38,9 @@ const ExploreCard = ({
         className="more-card jt-card"
         to={(() => {
           if (nft?.is_on_sale) {
-            return search
-              ? `/${search}/order/details/${nft?.slug}/${nft?.order_details?.slug}`
-              : `/order/details/${nft?.slug}/${nft?.order_details?.slug}`;
+            return `/order/details/${nft?.slug}/${nft?.order_details?.slug}`;
           } else {
-            return search
-              ? `/${search}/details/${nft?.slug}`
-              : `/details/${nft?.slug}`;
+            return `/nft-marketplace/details/${nft?.slug}`;
           }
         })()}
       >

@@ -22,7 +22,7 @@ const NFTDrops = ({
   const history = useHistory();
 
   const handleClick = () => {
-    history.push(`/details/${nftId}`);
+    history.push(`/nft-marketplace/details/${nftId}`);
   };
 
   return (

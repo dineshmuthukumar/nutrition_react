@@ -541,7 +541,7 @@ const ExploreAllNFT = () => {
         "/nft-marketplace/cricket-nfts/:player/:search?/details/:slug"
     ) {
       //setPopDetails({ ...popDetails, show: true, children: <Details /> });
-      history.replace(`/details/${slug}`);
+      history.replace(`/nft-marketplace/details/${slug}`);
     } else if (
       match.path ===
         "/nft-marketplace/:search?/order/details/:slug/:orderSlug" ||
@@ -553,7 +553,7 @@ const ExploreAllNFT = () => {
       //   show: true,
       //   children: <OrderDetails />,
       // });
-      history.replace(`/details/${slug}`);
+      history.replace(`/nft-marketplace/details/${slug}`);
     } else {
       setPopDetails({ ...popDetails, show: false, children: null });
     }

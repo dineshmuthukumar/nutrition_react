@@ -228,13 +228,9 @@ const NFTCard = ({
 
         to={(() => {
           if (recentSold) {
-            return search
-              ? `/${search}/order/details/${nft?.slug}/${nft?.order_slug}`
-              : `/order/details/${nft?.slug}/${nft?.order_slug}`;
+            return `/order/details/${nft?.slug}/${nft?.order_slug}`;
           } else {
-            return search
-              ? `/${search}/details/${nft?.slug}`
-              : `/details/${nft?.slug}`;
+            return `/nft-marketplace/details/${nft?.slug}`;
           }
         })()}
       >
