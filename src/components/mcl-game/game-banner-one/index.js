@@ -293,7 +293,7 @@ const MclGameOne = ({ hideSign = false, ...props }) => {
             </div>
             <div className="col-lg-6 ">
               <div className="p-lg-5 p-2">
-                <img className="img-fluid" src={banners} alt="Banners" />
+                <img className="img-fluid w-100" src={banners} alt="Banners" />
               </div>
             </div>
           </div>
