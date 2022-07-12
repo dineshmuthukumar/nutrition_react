@@ -801,6 +801,17 @@ const Header = ({
                               as="button"
                               onClick={() =>
                                 window.open(
+                                  `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
+                                  "_self"
+                                )
+                              }
+                            >
+                              My GuardianLink Wallet
+                            </Dropdown.Item>
+                            <Dropdown.Item
+                              as="button"
+                              onClick={() =>
+                                window.open(
                                   `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/mynft`,
                                   "_self"
                                 )
@@ -829,17 +840,6 @@ const Header = ({
                               }
                             >
                               My Invoice
-                            </Dropdown.Item>
-                            <Dropdown.Item
-                              as="button"
-                              onClick={() =>
-                                window.open(
-                                  `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
-                                  "_self"
-                                )
-                              }
-                            >
-                              My GuardianLink Wallet
                             </Dropdown.Item>
                             <Dropdown.Item
                               as="button"
