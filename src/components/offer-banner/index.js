@@ -40,14 +40,14 @@ const OfferBanner = () => {
                 />
               </div>
               <div className="buy-btn-block">
-                <button
+                <a
                   className="theme-btn"
                   onClick={() =>
                     window.open(process.env.REACT_APP_BUYUCOIN_URL, "_blank")
                   }
                 >
                   <span>Visit</span>
-                </button>
+                </a>
               </div>
             </div>
           </div>
