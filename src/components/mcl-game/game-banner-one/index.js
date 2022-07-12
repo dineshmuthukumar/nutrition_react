@@ -340,7 +340,7 @@ const MclGameOne = ({ hideSign = false, ...props }) => {
                   <p className="fs-3 mt-3 mb-5">
                     You're Whitelisted For The Closed Community Test Run.
                   </p>
-                  <a href="https://www.dropbox.com/s/d0fc4njmir0hge7/mcl-staging.apk?dl=1">
+                  <a href="https://www.dropbox.com/s/lrpaxqz1ilvs7r5/mcl-staging.apk?dl=1">
                     <img src={downloadapk} className="download-apk" />
                   </a>
                 </div>
