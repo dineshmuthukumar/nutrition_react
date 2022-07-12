@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Col, Row, Form, Button } from "react-bootstrap";
 // import Toggle from "react-toggle";
-// import { useLocation } from "react-router-dom";
-// import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 // import { Link } from "react-router-dom";
 // import { FiMail, FiPhone } from "react-icons/fi";
 import banners from "../../../images/banner-img.png";
@@ -10,19 +10,37 @@ import mail from "../../../images/mail.png";
 import call from "../../../images/call.png";
 import { validateEmail, validatePhone } from "../../../utils/common";
 import icon from "../../../images/icon.png";
+
+import downloadapk from "../../../images/download-apk.png";
+import downloadBg from "../../../images/download-bg.jpg";
+import downloadInfo from "../../../images/download-info.jpg";
 // import InputText from "../../input-text";
+import firstSlideWeb from "../../../images/jump-trade/hero-banner/First_Banner_BG--only_Web.jpeg";
+import firstSlideMobile from "../../../images/download_mobile.jpg";
 // import { useQuery } from "../../../hook/url-params";
 
 import "../style.scss";
 // import images from "../../../utils/images.json";
+import useQuery from "../../../hook/useQuery";
 
-const MclGameOne = () => {
+const MclGameOne = ({ hideSign = false, ...props }) => {
+  let query = useQuery();
+  const r_one = query.get("download");
+  const { innerWidth } = window;
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    const ref = document.getElementById(r_one);
+    ref && ref.scrollIntoView();
+  }, [hash]);
+
   // const location = useLocation();
   //const query = useQuery(location.search);
   // const redirect = query.get("redirect");
   // const email = query.get("email");
   // const phone = query.get("phone");
   // const [toggle, setToggle] = useState(false);
+  const { user, cart } = useSelector((state) => state);
   const [type, setType] = useState("email");
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
@@ -153,6 +171,7 @@ const MclGameOne = () => {
       handleSubcribe();
     }
   };
+  console.log("test");
 
   return (
     <>
@@ -169,7 +188,7 @@ const MclGameOne = () => {
                   cricket game, win matches, climb up the leaderboard and earn
                   unbelievable rewards for your time and efforts!
                 </p>
-                <Form
+                {/* <Form
                   className="gameplay-form"
                   onSubmit={(e) => e.preventDefault()}
                 >
@@ -224,26 +243,10 @@ const MclGameOne = () => {
                             </p>
                           )}
                     </Col>
-                    {/* <Col className="terst">
-                      <button className="theme-input">
-                        <span>Explore</span>
-                      </button>
-                    </Col> */}
+                    
 
                     <Col xs="auto">
-                      {/* <div class="switch-button">
-                        <label>
-                          <Toggle
-                            className="switch-icon"
-                            icons={{
-                              checked: <FiPhone />,
-                              unchecked: <FiMail />,
-                            }}
-                            defaultChecked={toggle}
-                            onChange={(() => setToggle(!toggle), toggleType)}
-                          />
-                        </label>
-                      </div> */}
+                     
                       <div
                         class="btn-group switch-btn"
                         role="group"
@@ -258,7 +261,6 @@ const MclGameOne = () => {
                         >
                           <img src={mail} alt="Mail" />
 
-                          {/* <FiMail /> */}
                         </button>
                         <button
                           type="button"
@@ -268,7 +270,7 @@ const MclGameOne = () => {
                           onClick={() => toggleType("phone")}
                         >
                           <img src={call} alt="Call" width="25px" />
-                          {/* <FiPhone /> */}
+                        
                         </button>
                       </div>
                     </Col>
@@ -286,7 +288,7 @@ const MclGameOne = () => {
                   {error && <p className="error_text text-center">{error}</p>}
 
                   <p className="nft_email_error">{vEmail}</p>
-                </Form>
+                </Form> */}
               </div>
             </div>
             <div className="col-lg-6 ">
@@ -305,6 +307,8 @@ const MclGameOne = () => {
               <h2 className="fw-bold div_title div_stroke">GAME ON</h2>
             </div>
           </div>
+        </div>
+        <div className="container-fluid">
           <div className="row row-cols-2 row-cols-md-3 mx-auto justify-content-center">
             <div className="os_list text-center">
               <img src={icon} alt="Icon" />
@@ -312,15 +316,86 @@ const MclGameOne = () => {
             {/* <div className="os_list text-center">dfdfg</div>
             <div className="os_list text-center">ghgh</div> */}
           </div>
-          <div className="row  justify-content-center pt-5">
-            <div className="col">
-              <div className="title-div text-center">
-                <h1 className="text-uppercase coming_soon">Coming Soon</h1>
+        </div>
+        <div className="pb-5" id="mclgame">
+          <div className="container-fluid">
+            <div className="row  justify-content-center pt-5">
+              <div className="col">
+                <div className="title-div text-center">
+                  <h1 className="text-uppercase coming_soon ">Coming Soon</h1>
+                </div>
+                {/* <div class="hr-line"></div> */}
               </div>
             </div>
           </div>
+          <div class="hr-line"></div>
         </div>
+
+        {user?.login ? (
+          <>
+            {user?.data?.user?.can_play_game ? (
+              <div className="text-center text-white">
+                <div className="game-alert-message text-center">
+                  <h2 className="display-4">Congrats!</h2>
+                  <p className="fs-3 mt-3 mb-5">
+                    You're Whitelisted For The Closed Community Test Run.
+                  </p>
+                  <a href="https://www.dropbox.com/s/tdw5vqi68kitxrg/com.jump.trade.debug_V1_VN-1.0_2022-04-26.apk?dl=1">
+                    <img src={downloadapk} className="download-apk" />
+                  </a>
+                </div>
+                <div className="game-installguide">
+                  <img
+                    src={innerWidth > 767 ? downloadInfo : firstSlideMobile}
+                    alt="Best NFT Marketplace"
+                    className="hero-content-img"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            ) : (
+              <>
+                <div className="text-center">
+                  <div className="game-alert-message  alert-signin text-center">
+                    <p className="display-6 mt-3 mb-5 text-uppercase ">
+                      <span>Sorry.</span> You're Not Whitelisted Yet For The
+                      Closed Community <span>Test Run.</span> Watch This Space
+                      For Updates!
+                    </p>
+                  </div>
+                </div>
+              </>
+            )}
+          </>
+        ) : (
+          <>
+            <div className="text-center">
+              <div className="game-alert-message  alert-signin text-center">
+                <p className="display-6 mt-3 mb-5 text-uppercase ">
+                  Please <span>Sign In </span> To Check Your Whitelist Status
+                  For The Closed Community <span>Test Run.</span>
+                </p>
+                <a
+                  onClick={() =>
+                    window.open(
+                      `${process.env.REACT_APP_ACCOUNTS_URL}/signin?redirect=${
+                        window.location.href.split("?")[0]
+                      }?download=mclgame`,
+                      "_self"
+                    )
+                  }
+                >
+                  <button className="read_moree fs-5 fw-bold">
+                    <span className="text-uppercase">Sign In</span>
+                  </button>
+                </a>
+              </div>
+            </div>
+          </>
+        )}
       </section>
+      <div class="hr-line"></div>
+
       {/* <section className="whitepaper_sec py-5">
         <div className="container">
           <div className="row justify-content-center">

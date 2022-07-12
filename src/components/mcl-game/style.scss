@@ -90,15 +90,15 @@
       background-clip: content-box, border-box;
       .theme-input {
         font-size: 1rem !important;
-    font-family: "neue_helvetica_medium";
-    padding: 0.8rem 0.5rem;
-    color: #fff;
-    background-color: #22471e;
-    background: #22471e;
-    border: none;
-    margin-bottom: 0px !important;
-    border-top-right-radius: 100px;
-    border-bottom-right-radius: 100px;
+        font-family: "neue_helvetica_medium";
+        padding: 0.8rem 0.5rem;
+        color: #fff;
+        background-color: #22471e;
+        background: #22471e;
+        border: none;
+        margin-bottom: 0px !important;
+        border-top-right-radius: 100px;
+        border-bottom-right-radius: 100px;
         &:focus {
           box-shadow: none;
         }
@@ -410,7 +410,7 @@
 .mcl-game-two {
   background: #0d3625;
   overflow-x: hidden;
-  padding: 8rem 0 2rem !important;
+  padding: 8rem 0 0rem !important;
   .coming_soon {
     letter-spacing: 2px;
     background: linear-gradient(
@@ -428,6 +428,9 @@
   .div_title {
     font-size: 5rem;
     color: #f5ff00;
+    @media screen and (max-width: 767px) {
+      font-size: 3rem;
+    }
   }
   .div_stroke {
     letter-spacing: 0.1rem;
@@ -464,35 +467,105 @@
 .error_text {
   color: red;
 }
-.mb-code-input{
-
+.mb-code-input {
   width: 15%;
-    height: 100%;
-    font-size: 1rem !important;
-    font-family: "neue_helvetica_medium";
-    border-radius: 50px;
-    color: #fff;
-    background-color: #22471e;
-    background: #22471e;
-    border: none;
-    padding-right: 0;
-  
+  height: 100%;
+  font-size: 1rem !important;
+  font-family: "neue_helvetica_medium";
+  border-radius: 50px;
+  color: #fff;
+  background-color: #22471e;
+  background: #22471e;
+  border: none;
+  padding-right: 0;
 }
 .mb-code-input::-webkit-input-placeholder {
   color: #e9ecef;
-  
 }
 .mb-code-input[readonly] {
   background-color: #22471e;
-    border-top-left-radius: 100px;
-    border-bottom-left-radius: 100px;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
+  border-top-left-radius: 100px;
+  border-bottom-left-radius: 100px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .email-field {
   border-top-left-radius: 100px;
   border-bottom-left-radius: 100px;
   padding-left: 2rem;
-  
+}
+.game-alert-message {
+  background: url(../../images/download-bg.jpg) center / cover no-repeat;
+  padding: 10rem 0;
+  &.alert-signin {
+    p {
+      color: #f5ff00;
+      // max-width: 50%;
+      margin: auto;
+
+      span {
+        color: #fff;
+      }
+      @media screen and (min-width: 1200px) {
+        max-width: 50% !important;
+      }
+      @media screen and (max-width: 767px) {
+        max-width: 90% !important;
+      }
+    }
+    .read_moree {
+      padding: 0.8rem 2rem;
+      // border: 2px solid #f5ff00;
+      font-family: "neue_helvetica_extended";
+      color: #fff;
+      border-radius: 100px;
+      position: relative;
+      background: transparent
+        linear-gradient(180deg, #fcfd9e 0%, #fdfd5e 50%, #c89600 100%) 0 0
+        no-repeat padding-box;
+      border: none;
+      &:before {
+        content: "";
+        position: absolute;
+        top: 0.1rem;
+        right: 0.1rem;
+        bottom: 0.1rem;
+        left: 0.1rem;
+        background: #000;
+        border-radius: 100px;
+        z-index: 0;
+      }
+      span {
+        color: #fff;
+        position: relative;
+        z-index: 9;
+      }
+      &:hover {
+        &::before {
+          background: #fff;
+          transition: 0.5s;
+        }
+        span {
+          color: #000;
+        }
+      }
+    }
+  }
+  .download-apk {
+    @media screen and (min-width: 320px) and (max-width: 560px) {
+      max-width: 80% !important;
+    }
+  }
+  h2 {
+    color: #f5ff00;
+    font-family: "neue_helvetica_extended_bold" !important;
+  }
+  p {
+    color: #fff;
+    font-family: "neue_helvetica_extended";
+  }
+}
+.game-installguide {
+  border-bottom: 1px solid #f5ff00;
 }
