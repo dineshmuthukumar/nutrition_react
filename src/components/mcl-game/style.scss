@@ -318,6 +318,12 @@
 
   .download_app {
     color: #f5ff00;
+    @media screen and (max-width: 767px) {
+      font-size: 3rem !important;
+    }
+    @media screen and (max-width: 560px) {
+      font-size: 2rem !important;
+    }
   }
   .whitepaper_box {
     // background: rgb(226, 255, 0);
@@ -346,12 +352,24 @@
       border-radius: 1rem;
       z-index: -1;
     }
+    @media screen and (max-width: 767px) {
+      min-width: 80%;
+    }
+    @media screen and (max-width: 560px) {
+      min-width: 90%;
+    }
   }
   .marketplace_app {
     letter-spacing: 0.1rem;
     color: #fffee2;
     text-transform: uppercase;
     margin-bottom: 1rem;
+    @media screen and (max-width: 767px) {
+      font-size: 3rem !important;
+    }
+    @media screen and (max-width: 560px) {
+      font-size: 2rem !important;
+    }
   }
   .read_moree {
     padding: 0.8rem 2rem;
@@ -431,6 +449,9 @@
     @media screen and (max-width: 767px) {
       font-size: 3rem;
     }
+    @media screen and (max-width: 560px) {
+      font-size: 2rem;
+    }
   }
   .div_stroke {
     letter-spacing: 0.1rem;
@@ -453,12 +474,24 @@
   overflow-x: hidden;
   .download_app {
     color: #f5ff00;
+    @media screen and (max-width: 767px) {
+      font-size: 3rem !important;
+    }
+    @media screen and (max-width: 560px) {
+      font-size: 2rem !important;
+    }
   }
   .marketplace_app {
     letter-spacing: 0.1rem;
     color: #fffee2;
     text-transform: uppercase;
     margin-bottom: 1rem;
+    @media screen and (max-width: 767px) {
+      font-size: 3rem !important;
+    }
+    @media screen and (max-width: 560px) {
+      font-size: 2rem !important;
+    }
   }
   .theme-color {
     color: #f5ff00;
