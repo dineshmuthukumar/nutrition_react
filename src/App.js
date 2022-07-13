@@ -64,7 +64,7 @@ const NftDetails = lazy(() => import("./pages/nft-details"));
 const OfferBanner = lazy(() => import("./components/offer-banner"));
 
 function App(props) {
-  const market_start_date = "Mar 9, 2022 12:30:00";
+  const market_start_date = "Jul 13, 2022 11:30:00";
 
   const [market_time, set_market_time] = useState();
 
