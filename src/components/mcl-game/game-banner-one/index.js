@@ -340,7 +340,7 @@ const MclGameOne = ({ hideSign = false, ...props }) => {
                   <p className="fs-3 mt-3 mb-5">
                     You're Whitelisted For The Closed Community Test Run.
                   </p>
-                  <a href="https://cdn.guardianlink.io/product-hotspot/builds/mcl_beta_v0.apk">
+                  <a href="https://dl.jump.trade/mcl.apk">
                     <img src={downloadapk} className="download-apk" />
                   </a>
                 </div>
