@@ -180,7 +180,6 @@ const TrailerVideo = () => {
                               {end_time ? (
                                 <a
                                   target="_blank"
-                                  rel="nofollow noopener noreferrer"
                                   href="https://mcl-wp.jump.trade/"
                                   className="list-style-none p-8"
                                 >

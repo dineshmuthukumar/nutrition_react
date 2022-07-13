@@ -15,18 +15,18 @@ const TermsAndConditions = () => {
                     JUMP.TRADE is owned and operated by Guardian Blockchain Labs
                     Pte. Ltd., a Limited Liability Company registered in
                     Singapore and the United States of America. The Platform
-                    allows and facilitates acquiring of “Digital Collectible(s)
-                    or Collectible(s)” (Defined Below) through “Purchase”
-                    (Defined Below) or “Auction” (Defined Below).
+                    allows and facilitates acquiring of "Digital Collectible(s)
+                    or Collectible(s)" (Defined Below) through "Purchase"
+                    (Defined Below) or "Auction" (Defined Below).
                   </p> */}
                   <p>
                     JUMP.TRADE is owned and operated by Guardian Blockchain Labs
                     Pte. Ltd., a Limited Liability Company registered in
                     Singapore and the United States of America, and Appstars
                     Applications Pvt. Ltd., a company registered in India. The
-                    Platform allows and facilitates acquiring of “Digital
-                    Collectible(s) or Collectible(s)” (Defined Below) through
-                    “Purchase” (Defined Below) or “Auction” (Defined Below).
+                    Platform allows and facilitates acquiring of "Digital
+                    Collectible(s) or Collectible(s)" (Defined Below) through
+                    "Purchase" (Defined Below) or "Auction" (Defined Below).
                   </p>
                   <p>
                     JUMP.TRADE operates web applications, web services and
@@ -59,9 +59,9 @@ const TermsAndConditions = () => {
                     them to Users.
                   </p>
                   <p>
-                    The Platform allows and facilitates acquiring of “Digital
-                    Collectible(s) or Collectible(s)” through “Purchase” or
-                    “Auction” between the Seller and the User.
+                    The Platform allows and facilitates acquiring of "Digital
+                    Collectible(s) or Collectible(s)" through "Purchase" or
+                    "Auction" between the Seller and the User.
                   </p>
                   <p>
                     JUMP.TRADE is neither the creator nor the administrator of
@@ -98,28 +98,28 @@ const TermsAndConditions = () => {
                 <div className="all-para-style">
                   <h4>Binding Agreement</h4>
                   <p>
-                    These terms and conditions (“Terms”) of use govern the usage
-                    of the JUMP TRADE (Referred to as “Us” or “We” or “Our” or
-                    the “Platform”) Platform by users (Referred to as "User" or
-                    "Users" or “You” or “Your”) who engage in trading of
+                    These terms and conditions ("Terms") of use govern the usage
+                    of the JUMP TRADE (Referred to as "Us" or "We" or "Our" or
+                    the "Platform") Platform by users (Referred to as "User" or
+                    "Users" or "You" or "Your") who engage in trading of
                     non-fungible tokens representing digital artwork, audio,
                     images, games, and any other content and type of content
                     that might be added to the Platform in the future
-                    (Collectively or in-part referred to as “Service” or
-                    “Services”).
+                    (Collectively or in-part referred to as "Service" or
+                    "Services").
                   </p>
 
                   <p>
-                    Digital Collectibles and/or Collectibles: A “Digital
-                    Collectible(s)” Or “Collectible(s)” presently is a
+                    Digital Collectibles and/or Collectibles: A "Digital
+                    Collectible(s)" Or "Collectible(s)" presently is a
                     non-fungible token implemented on the Polygon blockchain
-                    Platform using smart contracts (Referred to as “Smart
-                    Contracts” or “Byte Codes”){" "}
+                    Platform using smart contracts (Referred to as "Smart
+                    Contracts" or "Byte Codes"){" "}
                   </p>
 
                   <p>
                     If you use the platform on behalf of a company or any other
-                    organization (“entity”), you, by agreeing to these terms,
+                    organization ("entity"), you, by agreeing to these terms,
                     confirm that you are fully authorized to bind such an entity
                     to the warranties and obligations made under this agreement.
                     You also represent and warrant that you have the right, the
@@ -140,7 +140,7 @@ const TermsAndConditions = () => {
                   <p>
                     Using the Platform (including applying for or opening a
                     JUMP.TRADE account) does not automatically mean that You
-                    will be entitled to enjoy full use of the Platform’s
+                    will be entitled to enjoy full use of the Platform's
                     functionality (including bidding for NFTs at auction or
                     purchasing NFTs) and/or that we will enter into any form of
                     commercial or other arrangement with You, other than this
@@ -251,7 +251,7 @@ const TermsAndConditions = () => {
                   <p>
                     By accessing the Platform, you agree that we receive the
                     right to restrict your access in the interest of your and
-                    the Platform’s security. You are responsible for treating
+                    the Platform's security. You are responsible for treating
                     your security-related access-information such as usernames,
                     passwords, and any other identifier with utmost care and
                     confidentiality. Any activity that happens under your login
@@ -273,7 +273,7 @@ const TermsAndConditions = () => {
                   <p>
                     By accessing the Platform, you agree that we reserve the
                     right to disable your account and/or access to your account
-                    if at any point in time, you’re found to be in violation of
+                    if at any point in time, you're found to be in violation of
                     the Terms. We do not hold any responsibility for the actions
                     outside or within our Platform that resulted in your account
                     being disabled.
@@ -363,8 +363,8 @@ const TermsAndConditions = () => {
                   <p>
                     You can purchase your Digital Collectible on the platform
                     using either the third-party payment service provider or UPI
-                    or direct crypto payments (refer to the ‘The Custodial
-                    JUMP.TRADE Wallet’ section). You may be, subject to the
+                    or direct crypto payments (refer to the 'The Custodial
+                    JUMP.TRADE Wallet' section). You may be, subject to the
                     options provided by the third-party payment processor, able
                     to fund your wallet through credit cards, debit cards, and
                     other methods. It is to be noted that the payment
@@ -384,7 +384,7 @@ const TermsAndConditions = () => {
 
                   <p>
                     Any activity on the blockchain including but not limited to
-                    transactions may require payments of small fees called ‘gas’
+                    transactions may require payments of small fees called 'gas'
                     fee.
                   </p>
 
@@ -677,7 +677,7 @@ const TermsAndConditions = () => {
                     have placed and they are liable to pay the bid unless a
                     higher bid has been placed or the seller has removed the NFT
                     from the listing. Any violation of this rule will result in
-                    consequences that will completely be the buyer/bidder’s
+                    consequences that will completely be the buyer/bidder's
                     responsibility.
                   </p>
 
@@ -795,14 +795,14 @@ const TermsAndConditions = () => {
 
                   <p>
                     JUMP.TRADE (or, as applicable and as determined by
-                    JUMP.TRADE, JUMP.TRADE’s licensors) own all legal right,
+                    JUMP.TRADE, JUMP.TRADE's licensors) own all legal right,
                     title and interest in and to all elements of the Platform
                     including text, images, graphics, design, systems, methods,
-                    information, computer code, software, services, ‘look and
-                    feel’, organization, compilations, code, data, photographs,
+                    information, computer code, software, services, 'look and
+                    feel', organization, compilations, code, data, photographs,
                     articles, images, illustrations, audio, audiovisual, video,
                     and all other elements of the Platform (collectively and
-                    severally “JUMP.TRADE Materials”.
+                    severally "JUMP.TRADE Materials".
                   </p>
 
                   <p>
@@ -831,7 +831,7 @@ const TermsAndConditions = () => {
                     broadcast, transmit, distribute, perform, upload, display,
                     license, sell or otherwise exploit for any purposes
                     whatsoever any JUMP.TRADE Materials or other proprietary
-                    rights not owned by You, (i) without JUMP.TRADE’s express
+                    rights not owned by You, (i) without JUMP.TRADE's express
                     prior written consent and that of any applicable respective
                     rights owners, and/or (ii) in any way that violates any
                     third party rights;
@@ -882,7 +882,7 @@ const TermsAndConditions = () => {
                     the Collectible for sales purposes (unless explicitly deemed
                     as authorized usage by law), gambling, in pornographic
                     context, spamming purposes, or any way that intends
-                    infringement of others’ rights and is deemed unlawful. This
+                    infringement of others' rights and is deemed unlawful. This
                     includes but is not limited to manners that could be
                     considered defamatory, threatening, abusive, obscene,
                     vulgar, offensive, and indecent. You also understand that
@@ -925,7 +925,7 @@ const TermsAndConditions = () => {
                   <ul className="disc">
                     <li>
                       for the purpose of sharing, promoting, discussing, or
-                      commenting on the NFT and the Collector’s purchase or
+                      commenting on the NFT and the Collector's purchase or
                       ownership of the NFT including social media platforms,
                       blogs, digital galleries, or other digital media;
                     </li>
@@ -951,8 +951,8 @@ const TermsAndConditions = () => {
                     discharge JUMP.TRADE and its subsidiaries, affiliates,
                     officers, and successors of any liability for direct or
                     indirect copyright or trademark infringement in respect of
-                    JUMP.TRADE’s use of a Works in accordance with this
-                    Agreement, including without limitation, JUMP.TRADE’s
+                    JUMP.TRADE's use of a Works in accordance with this
+                    Agreement, including without limitation, JUMP.TRADE's
                     solicitation, encouragement, or request for You or third
                     parties to host the Works for the purpose of operating a
                     distributed database and/or promoting the Platform.
@@ -962,7 +962,7 @@ const TermsAndConditions = () => {
                     subsidiaries, affiliates, officers and employees, harmless
                     from any claim or demand (including, without limitation,
                     from all damages, liabilities, settlements, costs and
-                    attorneys’ fees) made by any third party due to or arising
+                    attorneys' fees) made by any third party due to or arising
                     out of Your access to the Platform, use of the Platform, the
                     violation of this Agreement by You, or the infringement by
                     You, or any third party using Your account, of any
@@ -976,7 +976,7 @@ const TermsAndConditions = () => {
                     others. It is our policy to use reasonable efforts to
                     investigate notices of alleged infringement and will take
                     appropriate action under the Digital Millennium Copyright
-                    Act (“DMCA”) and this Agreement, including removing or
+                    Act ("DMCA") and this Agreement, including removing or
                     disabling access to JUMP.TRADE Materials claimed to be
                     infringing and/or terminating accounts and access to the
                     Platform.
@@ -1171,9 +1171,9 @@ const TermsAndConditions = () => {
                     its officers, directors, members, employees, sellers and
                     affiliates) from any claim, demand, action, damage, loss,
                     value or expense, such as with out quandary affordable
-                    attorneys’ fees, arising out of or pertaining to (a) User’s
+                    attorneys' fees, arising out of or pertaining to (a) User's
                     use of, or behavior in connection with, the Offerings; (b)
-                    User’s violation of those Terms or some other relevant
+                    User's violation of those Terms or some other relevant
                     coverage or agreement of JUMP.TRADE Company; or (c) users
                     violation of any rights in regards to other third persons.
                   </p>
@@ -1194,7 +1194,7 @@ const TermsAndConditions = () => {
                     </li>
 
                     <li>
-                      loss or damaged caused by another user’s violation of this
+                      loss or damaged caused by another user's violation of this
                       Agreement, including any unauthorized access to or use of
                       our servers and/or other Platform features;
                     </li>
@@ -1315,7 +1315,7 @@ const TermsAndConditions = () => {
                     evidence thereof. Users shall use their respective
                     reasonable endeavor to settle any dispute, difference claim,
                     question or controversy arising out of, in connection with,
-                    or in relation to these terms (“Dispute”) amicably through
+                    or in relation to these terms ("Dispute") amicably through
                     negotiations in good faith.
                   </p>
                 </div>
@@ -1329,7 +1329,7 @@ const TermsAndConditions = () => {
                     avoidance of doubt, along with any declare searching for to
                     invalidate, or alleging that, any or all a part of those
                     Terms is unenforceable, void or voidable) (such claims,
-                    disputes and controversies, collectively, “Disputes”) and
+                    disputes and controversies, collectively, "Disputes") and
                     not resolved after 60 days of negotiations since the rise of
                     such dispute, will be eventually settled with the aid of
                     using binding arbitration. The arbitrator shall have
@@ -1350,8 +1350,8 @@ const TermsAndConditions = () => {
                     arbitrator. In the event the parties are not able to agree
                     on the choice of an arbitrator within 15 days from the
                     submitting of a call for arbitration, the Singapore
-                    Arbitration Association (the “SAA”) shall appoint the
-                    arbitrator. The arbitrator’s award will be written and
+                    Arbitration Association (the "SAA") shall appoint the
+                    arbitrator. The arbitrator's award will be written and
                     reasoned, and binding on the parties in any and all
                     jurisdictions.
                   </p>

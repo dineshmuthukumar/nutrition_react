@@ -14,7 +14,7 @@ const PrivacyComponent = () => {
                   <br />
                   <br />
                   <p>
-                    JUMP.TRADE (“Jump.trade,” “Jump Trade,” “we” or “us”) is
+                    JUMP.TRADE ("Jump.trade," "Jump Trade," "we" or "us") is
                     committed to protecting your privacy. We have prepared this
                     Privacy Policy to describe to you our practices regarding
                     the Personal Data (as defined below) we collect from users
@@ -27,8 +27,8 @@ const PrivacyComponent = () => {
                     >
                       https://www.jump.trade
                     </a>{" "}
-                    (the “Site”) and online services (collectively, the
-                    “Service” or “Services”).
+                    (the "Site") and online services (collectively, the
+                    "Service" or "Services").
                   </p>
                   <p>
                     If you have any questions about how we interact with your
@@ -52,12 +52,12 @@ const PrivacyComponent = () => {
                 <div className="all-para-style">
                   <ul className="numberic">
                     <li>
-                      Types of Data We Collect. “Personal Data” means data that
+                      Types of Data We Collect. "Personal Data" means data that
                       allows someone to identify or contact you, including, for
                       example, your name, telephone number, e-mail address, as
                       well as any other non-public information about you that is
                       associated with or linked to any of the foregoing data.
-                      “Anonymous Data” means data, including aggregated and
+                      "Anonymous Data" means data, including aggregated and
                       de-identified data, that is not associated with or linked
                       to your Personal Data; Anonymous Data does not, by itself,
                       permit the identification of individual persons. We
@@ -72,7 +72,7 @@ const PrivacyComponent = () => {
                               your first and last name, e-mail and mailing
                               addresses, Blockchain address, and JUMP.TRADE
                               password when you create an account to log in to
-                              our network (“Account”).
+                              our network ("Account").
                             </li>
                             <li>
                               If you use our Services on your mobile device, we
@@ -134,7 +134,7 @@ const PrivacyComponent = () => {
                               be hosted by a third-party service provider)
                               collect information from you, including your
                               browser type, operating system, Internet Protocol
-                              (“IP”) address (a number that is automatically
+                              ("IP") address (a number that is automatically
                               assigned to your computer when you use the
                               Internet, which may vary from session to session),
                               domain name, Blockchain address, wallet type,
@@ -144,14 +144,14 @@ const PrivacyComponent = () => {
                               Log Files. As is true of most websites, we gather
                               certain information automatically and store it in
                               log files. This information includes IP addresses,
-                              browser type, Internet service provider (“ISP”),
+                              browser type, Internet service provider ("ISP"),
                               referring/exit pages, operating system, date/time
                               stamp, and clickstream data. We use this
                               information to analyze trends, administer the
-                              Service, track users’ movements around the
+                              Service, track users' movements around the
                               Service, gather demographic information about our
                               user base as a whole, and better tailor our
-                              Services to our users’ needs. For example, some of
+                              Services to our users' needs. For example, some of
                               the information may be collected so that when you
                               visit the Service, it will recognize you and the
                               information could then be used to serve
@@ -160,9 +160,9 @@ const PrivacyComponent = () => {
                             </li>
                             <li>
                               Cookies. Like many online services, we use cookies
-                              to collect information. “Cookies” are small pieces
+                              to collect information. "Cookies" are small pieces
                               of information that a website sends to your
-                              computer’s hard drive while you are viewing the
+                              computer's hard drive while you are viewing the
                               website. We may use both session Cookies (which
                               expire once you close your web browser) and
                               persistent Cookies (which stay on your computer
@@ -175,13 +175,13 @@ const PrivacyComponent = () => {
                               interests and needs.
                             </li>
                             <li>
-                              Pixel Tag. In addition, we may use “Pixel Tags”
+                              Pixel Tag. In addition, we may use "Pixel Tags"
                               (also referred to as clear Gifs, Web beacons, or
                               Web bugs). Pixel Tags are tiny graphic images with
                               a unique identifier, similar in function to
                               Cookies, that are used to track online movements
                               of Web users. In contrast to Cookies, which are
-                              stored on a user’s computer hard drive, Pixel Tags
+                              stored on a user's computer hard drive, Pixel Tags
                               are embedded invisibly in Web pages. Pixel Tags
                               also allow us to send e-mail messages in a format
                               users can read, and they tell us whether e-mails
@@ -189,12 +189,12 @@ const PrivacyComponent = () => {
                               only messages that are of interest to our users.
                               We may use this information to reduce or eliminate
                               messages sent to a user. We do not tie the
-                              information gathered by Pixel Tags to our users’
+                              information gathered by Pixel Tags to our users'
                               Personal Data.
                             </li>
                             <li>
                               How We Respond to Do Not Track Signals. We do not
-                              currently respond to “do not track” signals or
+                              currently respond to "do not track" signals or
                               other mechanisms that might enable Users to
                               opt-out of tracking on our site
                             </li>
@@ -204,24 +204,24 @@ const PrivacyComponent = () => {
                               their own cookies or similar tools when you visit
                               our Service. This includes third-party analytics
                               services, including but not limited to Google
-                              Analytics (“Analytics Services”), that we engage
+                              Analytics ("Analytics Services"), that we engage
                               to help analyze how users use the Service. We may
-                              receive reports based on these parties’ use of
+                              receive reports based on these parties' use of
                               these tools on an individual or aggregate basis.
                               We use the information we get from Analytics
                               Services only to improve our Service. The
                               information generated by the Cookies or other
                               technologies about your use of our Service (the
-                              “Analytics Information”) is transmitted to the
+                              "Analytics Information") is transmitted to the
                               Analytics Services. The Analytics Services use
                               Analytics Information to compile reports on user
                               activity. The Analytics Services may also transfer
                               information to third parties where required to do
                               so by law, or where such third parties process
                               Analytics Information on their behalf. Each
-                              Analytics Services’ ability to use and share
+                              Analytics Services' ability to use and share
                               Analytics Information is restricted by such
-                              Analytics Services’ Terms of Use and Privacy
+                              Analytics Services' Terms of Use and Privacy
                               Policy. By using our Service, you consent to the
                               processing of data about you by Analytics Services
                               in the manner and for the purposes set out above.
@@ -332,7 +332,7 @@ const PrivacyComponent = () => {
                         </li>
                         <li>
                           We may use your Personal Data to contact you about our
-                          own and third parties’ goods and services that may be
+                          own and third parties' goods and services that may be
                           of interest to you.
                         </li>
                         <li>
@@ -367,7 +367,7 @@ const PrivacyComponent = () => {
                           Affiliates. We may share some or all of your Personal
                           Data with our parent company, subsidiaries, joint
                           ventures, or other companies under a common control
-                          (“Affiliates”), in which case we will require our
+                          ("Affiliates"), in which case we will require our
                           Affiliates to honor this Privacy Policy.
                         </li>
 
@@ -447,7 +447,7 @@ const PrivacyComponent = () => {
                           newsletters or promotional communications from us, you
                           may indicate a preference to stop receiving further
                           communications from us and you will have the
-                          opportunity to “opt-out” by following the unsubscribe
+                          opportunity to "opt-out" by following the unsubscribe
                           instructions provided in the e-mail you receive or by
                           contacting us directly (please see contact information
                           in paragraph (1). Despite your indicated e-mail
@@ -461,7 +461,7 @@ const PrivacyComponent = () => {
                           purposes described above, then you can instruct your
                           browser, by changing its settings, to stop accepting
                           Cookies or to prompt you before accepting a Cookie
-                          from the websites you visit. Consult your browser’s
+                          from the websites you visit. Consult your browser's
                           technical information. If you do not accept Cookies,
                           however, you may not be able to use all portions of
                           the Service or all functionality of the Service. If

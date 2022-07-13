@@ -1078,9 +1078,7 @@ const FAQComponent = () => {
                       setActivePanel={setActivePanel}
                     />
                     <Accordian
-                      head={
-                        "When will I be able to see the NFTs I have acquired under the “my NFTs“ section of my profile?"
-                      }
+                      head={`When will I be able to see the NFTs I have acquired under the "my NFTs" section of my profile?`}
                       body={
                         <>
                           There is a certain time window involved in processing
