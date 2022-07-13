@@ -218,7 +218,6 @@ const TrailerVideo = () => {
                               {subscribe_end_time ? (
                                 <a
                                   target="_blank"
-                                  rel="nofollow noopener noreferrer"
                                   href="/mcl-game"
                                   className="list-style-none p-8"
                                 >

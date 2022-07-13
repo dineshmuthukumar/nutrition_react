@@ -280,7 +280,6 @@ const Footer = () => {
                 </button> */}
                 <span
                   onClick={() => history.push("/offers")}
-                  rel="nofollow noopener noreferrer"
                   className="linkList offer "
                 >
                   Offers

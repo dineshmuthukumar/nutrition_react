@@ -982,7 +982,7 @@ const Header = ({
                   className="discord_ic"
                   href={`https://discord.com/invite/JRWmNb38GW`}
                   target="_blank"
-                  rel="nofollow noopener"
+                  rel="nofollow noopener noreferrer"
                 >
                   <FaDiscord size={25} />
                   {/* <span>Join Our Discord</span> */}
