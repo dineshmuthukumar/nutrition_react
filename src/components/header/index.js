@@ -54,6 +54,7 @@ const Header = ({
 
   const slug = user.data?.user ? user.data?.user?.slug : null;
   const userCart = cart?.data ? cart?.data : null;
+
   useEffect(() => {
     if (slug) {
       accountDetail(slug, (data) => {
@@ -630,16 +631,27 @@ const Header = ({
                     </Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
-                <Nav.Link
-                  id="drop_outer"
-                  role="button"
-                  onClick={() => window.open("/mcl-game", "_self")}
-                >
-                  {" "}
-                  <span className="beta-container">
-                    <span className="beta-tag">Coming soon</span>MCL Game{" "}
-                  </span>{" "}
-                </Nav.Link>
+                {!user?.marketLive ? (
+                  <Nav.Link
+                    id="drop_outer"
+                    role="button"
+                    // onClick={() => window.open("/mcl-game", "_self")}
+                  >
+                    <span className="beta-container">
+                      <span className="beta-tag">Coming soon</span>MCL Game
+                    </span>
+                  </Nav.Link>
+                ) : (
+                  <Nav.Link
+                    id="drop_outer"
+                    role="button"
+                    onClick={() => window.open("/mcl-game", "_self")}
+                  >
+                    <span className="beta-container">
+                      <span className="beta-tag">Beta</span>MCL Game
+                    </span>
+                  </Nav.Link>
+                )}
                 <Nav.Link
                   id="drop_outer"
                   role="button"

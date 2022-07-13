@@ -1627,6 +1627,10 @@ const ExploreAllNFT = () => {
                             </div>
                           </div>
                         )}
+                        <div className="text-center explore-note">
+                          MCL Player Rarity Score and Ranking updates at 12 AM
+                          IST every day.
+                        </div>
                       </div>
                     ) : (
                       <NFTCardLoader />

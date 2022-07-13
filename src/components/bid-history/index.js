@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { Modal, Table } from "react-bootstrap";
 import { IoIosRocket } from "react-icons/io";
+import { RiChatUploadFill } from "react-icons/ri";
 import { BiX } from "react-icons/bi";
 import _ from "lodash";
 
@@ -332,7 +333,15 @@ const BidHistory = ({
                 ) : (
                   <div className="bid-history-content">
                     {" "}
-                    <div className="history-end-content">No upgrades yet.</div>
+                    <div className="bid-empty-content">
+                      <div className="empty-top-container">
+                        <div className="empty-top-content">
+                          <RiChatUploadFill />
+
+                          <div className="empty-text">No upgrades yet.</div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 )
               ) : (

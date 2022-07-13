@@ -1,7 +1,7 @@
 import React from "react";
 import dayjs from "dayjs";
 import { useHistory } from "react-router-dom";
-
+import { RiChatUploadFill } from "react-icons/ri";
 import { currencyFormat } from "../../utils/common";
 
 import "./style.scss";
@@ -14,7 +14,14 @@ const UpgradeCard = ({ nft, history, isEnd = false }) => {
   return (
     <div className="bid-histroy-card">
       {isEnd ? (
-        <div className="history-end-content">No upgrades yet .</div>
+        <div className="bid-empty-content">
+          <div className="empty-top-container">
+            <div className="empty-top-content">
+              <RiChatUploadFill />
+              <div className="empty-text">No upgrades yet.</div>
+            </div>
+          </div>
+        </div>
       ) : (
         <>
           <div className="first-half full-width">

@@ -293,7 +293,7 @@ const MclGameOne = ({ hideSign = false, ...props }) => {
             </div>
             <div className="col-lg-6 ">
               <div className="p-lg-5 p-2">
-                <img className="img-fluid" src={banners} alt="Banners" />
+                <img className="img-fluid w-100" src={banners} alt="Banners" />
               </div>
             </div>
           </div>
@@ -340,7 +340,7 @@ const MclGameOne = ({ hideSign = false, ...props }) => {
                   <p className="fs-3 mt-3 mb-5">
                     You're Whitelisted For The Closed Community Test Run.
                   </p>
-                  <a href="https://www.dropbox.com/s/tdw5vqi68kitxrg/com.jump.trade.debug_V1_VN-1.0_2022-04-26.apk?dl=1">
+                  <a href="https://dl.jump.trade/mcl.apk">
                     <img src={downloadapk} className="download-apk" />
                   </a>
                 </div>

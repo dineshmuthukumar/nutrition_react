@@ -278,6 +278,9 @@ const TermsAndConditions = () => {
                     outside or within our Platform that resulted in your account
                     being disabled.
                   </p>
+                  <p>
+                  By accessing and using the Services and / or the Platform and / or any part thereof, you represent and warrant that you are using our Services as a hobby and private use only and not for any business purposes. Any activity being undertaken by a person of any business entity is also being undertaken for recreational purposes only and not for the further of any business purposes. Services are provided to natural persons for self-use and no business entities shall avail the Services.
+                  </p>
                 </div>
                 <div className="all-para-style">
                   <h4>The Custodial GuardianLink Wallet</h4>
