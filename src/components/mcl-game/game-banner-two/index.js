@@ -33,7 +33,7 @@ const MclGameTwo = () => {
                   <span>Learn about meta cricket league</span>
                 </strong>
               </p>
-              <a href="http://mcl-wp.jump.trade/">
+              <a href="http://mcl-wp.jump.trade/" target="_blank">
                 <button className="read_moree fs-5 fw-bold">
                   <span>Read Now</span>
                 </button>
