@@ -28,7 +28,7 @@ const UpgradeCard = ({ nft, history, isEnd = false }) => {
             <div className="bid-histoy-details">
               <div className="time text-secondary">
                 Upgraded on :{" "}
-                {dayjs(history?.transfered_at).format("MMM D, YYYY hh:mm A")}
+                {dayjs(history?.upgraded_at).format("MMM D, YYYY hh:mm A")}
               </div>
               <div className="bid-owner">
                 <span
