@@ -89,8 +89,7 @@ const BlogDetail = () => {
                         <Interweave content={data?.title?.rendered} />
                       </h2>
                       <p className="text-muted">
-                        by marketting /{" "}
-                        {dayjs(data?.date).format("MMM D, YYYY")}
+                        By Marketing / {dayjs(data?.date).format("MMM D, YYYY")}
                       </p>
                     </div>
                     <div className="blog_banner rounded">
