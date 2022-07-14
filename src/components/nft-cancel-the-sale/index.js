@@ -108,7 +108,10 @@ const NFTCancelTheSale = ({
 
   const handleSuccess = () => {
     if (isOrderCancelled) {
-      history.push(`/nft-marketplace/details/${nft?.slug}`);
+      // setCancelTheSalePop(!cancelTheSalePop);
+      // setSuccess(false);
+      //history.push(`/nft-marketplace/details/${nft?.slug}`);
+      window.location.href = `/nft-marketplace/details/${nft?.slug}`;
     } else {
       setCancelTheSalePop(!cancelTheSalePop);
       setSuccess(false);
