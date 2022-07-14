@@ -4,7 +4,13 @@ import { getBlogCateListApi, getBlogCattApi } from "../../api/methods";
 import { Interweave } from "interweave";
 import dayjs from "dayjs";
 import "./style.scss";
-import { FaFacebook, FaInstagram, FaTwitter, FaWhatsapp } from "react-icons/fa";
+import {
+  FaFacebook,
+  FaInstagram,
+  FaTwitter,
+  FaWhatsapp,
+  FaLinkedinIn,
+} from "react-icons/fa";
 import { detectWhatsapp } from "../../utils/common";
 
 const BlogDetail = () => {
@@ -89,7 +95,7 @@ const BlogDetail = () => {
                         <Interweave content={data?.title?.rendered} />
                       </h2>
                       <p className="text-muted">
-                        By Marketing / {dayjs(data?.date).format("MMM D, YYYY")}
+                        By Admin / {dayjs(data?.date).format("MMM D, YYYY")}
                       </p>
                     </div>
                     <div className="blog_banner rounded">
@@ -297,6 +303,18 @@ const BlogDetail = () => {
                           </li>
                           <li>
                             <a
+                              target="_blank"
+                              onClick={() =>
+                                window.open(
+                                  `https://www.linkedin.com/share?url=${shareUrl}&title=${data?.title?.rendered}`
+                                )
+                              }
+                            >
+                              <FaLinkedinIn />
+                            </a>
+                          </li>
+                          {/* <li>
+                            <a
                               className="whatsapp"
                               target="_blank"
                               onClick={() => {
@@ -315,7 +333,7 @@ const BlogDetail = () => {
                             >
                               <FaWhatsapp />
                             </a>
-                          </li>
+                          </li> */}
                           {/* <li> */}
                           {/* <a
                               href="https://discord.com/invite/JRWmNb38GW"

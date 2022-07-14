@@ -9,6 +9,7 @@ const BlogDetails = () => {
   const { slug } = useParams();
   const [title, setTitle] = useState();
   const [description, setDescription] = useState();
+  const [image, setImage] = useState();
   useEffect(() => {
     metaDetail();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -18,8 +19,8 @@ const BlogDetails = () => {
       const GetmetaDetails = await getBlogMetaApi({ slug: slug });
       setTitle(GetmetaDetails?.data?.json?.og_title);
       setDescription(GetmetaDetails?.data?.json?.description);
+      setImage(GetmetaDetails?.data?.json?.og_image[0]?.url);
 
-      //console.log(LastAnnouncementData.slice(3));
     } catch (error) {
       // setReLoading(false);
       //toast.error("An unexpected error occured. Please try again  later");
@@ -31,7 +32,7 @@ const BlogDetails = () => {
   };
   return (
     <>
-      <Header bgImage title={title} description={description} />
+      <Header bgImage title={title} description={description} image={image} />
       <BlogDetail />
       <Footer />
     </>

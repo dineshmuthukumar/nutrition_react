@@ -750,6 +750,11 @@ margin: 1rem 0rem;
     object-fit: cover;
     opacity: 0.6;
   }
+  .ol li,
+  ul li {
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
 }
 
 .text-size {
