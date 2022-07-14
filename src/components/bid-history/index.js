@@ -193,7 +193,7 @@ const BidHistory = ({
                     </li>
                   )}
                   {nft?.core_statistics?.role?.value != "Bat" && (
-                    <li>
+                    <li className="upgradehistory-li">
                       <span
                         className={`${
                           key === "upgrade-history" ? "active" : ""
