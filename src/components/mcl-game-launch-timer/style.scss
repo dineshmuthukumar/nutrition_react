@@ -294,20 +294,34 @@
       backdrop-filter: blur(30px);
       -webkit-backdrop-filter: blur(30px);
       padding: 1rem 3rem;
-      @media screen and (max-width: 767px) {
+      @media screen and (min-width: 768px) and (max-width: 991px) {
+        align-items: center !important;
+        flex-direction: column;
+      }
+      @media screen and (min-width: 576px) and (max-width: 767px) {
+        align-items: center !important;
+        flex-direction: column;
+      }
+      @media screen and (max-width: 560px) {
         display: inline-flex !important;
         width: 80%;
         margin: auto;
         align-items: center !important;
+        flex-direction: column;
       }
-      @media screen and (max-width: 560px) {
-      }
+
       .launch-icon {
-        margin-right: 1rem;
+        display: block;
+        width: 2rem;
+        // height: 2rem;
         img {
-          // width: 1.5rem;
-          height: 2rem;
           display: block;
+          max-width: 1.5rem;
+          // height: 2rem;
+          // display: block;
+          @media screen and (min-width: 320px) and (max-width: 560px) {
+            margin-bottom: 1rem;
+          }
         }
       }
       .launch-title {
@@ -316,6 +330,8 @@
         font-family: "neue_helvetica_extended_bold" !important;
         font-style: italic;
         text-transform: uppercase;
+        margin-left: 1rem;
+
         @media screen and (min-width: 1024px) and (max-width: 1200px) {
           font-size: 0.9rem;
         }
