@@ -113,7 +113,7 @@ const MclGameLaunchTimer = () => {
                           <img src={Copy} />
                         </div>
                         <div className="launch-title">
-                          Check-Out <span>Whitepaper</span>
+                          Check-Out <span> Whitepaper</span>
                         </div>
                       </div>
                     </a>
