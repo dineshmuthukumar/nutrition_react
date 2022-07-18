@@ -129,7 +129,7 @@ const MclGameLaunchTimer = () => {
                           <img src={Phone} />
                         </div>
                         <div className="launch-title">
-                          Subscribe <span>For App</span>
+                          Download <span>MCL App</span>
                         </div>
                       </div>
                     </a>
