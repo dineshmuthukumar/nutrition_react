@@ -22,6 +22,7 @@ import HeroBanner from "../components/hero-banner";
 //import NewDropSection from "../components/new-drop-section";
 // import CollectionList from "../components/collection-list";
 import TrailerVideo from "../components/trailer-video";
+import MclGameLaunchTimer from "../components/mcl-game-launch-timer";
 
 const Home = () => {
   const { url } = useRouteMatch();
@@ -98,19 +99,16 @@ const Home = () => {
       <main>
         {/* <Banner list={list} /> */}
         {/* <HotCollections /> */}
-
         {/* <TopBuyers /> */}
         {/* <TopSellers /> */}
-
         <HeroBanner />
         {/* <NewDropSection /> */}
-        <TrailerVideo />
-
+        {/* <TrailerVideo /> */}
+        <MclGameLaunchTimer />
         {/* <CollectionList /> */}
         <Trending />
         <LiveAuctions />
         <RecentlySoldNFT />
-
         {/* {favList.length > 0 && (
           <FavouriteNFTs list={favList} loading={favLoading} />
         )} */}
