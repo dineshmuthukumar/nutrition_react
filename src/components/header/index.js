@@ -851,7 +851,7 @@ const Header = ({
                                 )
                               }
                             >
-                              My Invoice
+                              My Invoices
                             </Dropdown.Item>
                             <Dropdown.Item
                               as="button"
