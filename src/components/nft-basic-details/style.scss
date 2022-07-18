@@ -375,3 +375,59 @@
   align-items: center;
   min-height: 30vh;
 }
+
+// .upgrade-btn {
+//   font-family: "neue_helvetica_medium" !important;
+//   padding-top: 1.2rem;
+//   padding-bottom: 1.2rem;
+//   width: 46%;
+//   border: 2px solid #000000;
+//   padding-top: 0.6rem;
+//   padding-bottom: 0.6rem;
+//   font-size: 1.2rem;
+// }
+.upgrade-btn {
+  width: 30% !important;
+  ::before {
+    background: unset !important;
+  }
+  .card-svg-icon {
+    position: relative;
+    font-size: 1rem;
+    align-items: center;
+    gap: 0.3rem;
+    .imgBlock {
+      position: relative;
+
+      img {
+        position: relative;
+        width: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      p {
+        position: absolute;
+        top: 0.6rem;
+        left: 0.3rem;
+        right: 0;
+        margin-bottom: 0;
+        font-size: initial;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-family: "neue_helvetica_extended";
+        font-size: 0.6rem;
+        color: black;
+      }
+    }
+  }
+}
+
+.upgrade-btn:disabled {
+  background-color: #2e2e2e !important;
+}
+.disabled_button::before {
+  background: unset !important;
+}

@@ -14,6 +14,8 @@ import "./style.scss";
 import { Popover, OverlayTrigger } from "react-bootstrap";
 import { calculateTimeLeft } from "../../utils/common";
 
+import cardsvg from "../../images/card-svg.svg";
+
 const NFTBaseDetails = ({
   nft,
   putOnSalePop,
@@ -181,7 +183,7 @@ const NFTBaseDetails = ({
             })()}
           </div>
           {/* <hr className="custom-divider" /> */}
-          <div className="text-center">
+          <div className="text-center d-flex gap-4">
             <NFTPutOnSale
               nft={nft}
               putOnSalePop={putOnSalePop}
@@ -217,20 +219,47 @@ const NFTBaseDetails = ({
                       disabled={false}
                       className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
                     >
-                      List for sale
+                      List for sale1
                     </button>
                   </OverlayTrigger>
                 ) : days === 0 &&
                   hours === 0 &&
                   minutes === 0 &&
                   seconds < 0.2 ? (
-                  <button
-                    disabled={false}
-                    className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
-                    onClick={() => setPutOnSalePop(!putOnSalePop)}
-                  >
-                    List for sale
-                  </button>
+                  <>
+                    {nft?.upgradable_cards?.total_needed > 0 ? (
+                      <>
+                        <button
+                          className={`btn text-center mt-2 rounded-pill place-bid-btn upgrade-btn d-flex g-2 ${
+                            !nft?.can_upgrade ? "disabled_button" : ""
+                          }`}
+                          onClick={() =>
+                            history.push(
+                              `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/mycards`
+                            )
+                          }
+                          disabled={nft?.can_upgrade ? false : true}
+                        >
+                          <div className="card-svg-icon d-flex">
+                            <div className="imgBlock">
+                              <img src={cardsvg} />
+                              <p>{nft?.upgradable_cards?.total_needed}</p>
+                            </div>
+                            {`Upgrade`}
+                          </div>
+                        </button>
+                      </>
+                    ) : (
+                      ""
+                    )}
+                    <button
+                      disabled={false}
+                      className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                      onClick={() => setPutOnSalePop(!putOnSalePop)}
+                    >
+                      List for sale
+                    </button>
+                  </>
                 ) : (
                   <OverlayTrigger
                     trigger={["click"]}
@@ -272,19 +301,46 @@ const NFTBaseDetails = ({
                     hours === 0 &&
                     minutes === 0 &&
                     seconds < 0.2 ? (
-                    <button
-                      disabled={false}
-                      className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
-                      onClick={() => setPutOnSalePop(!putOnSalePop)}
-                    >
-                      {erc721
-                        ? "List for sale"
-                        : `List for sale (${
-                            isQuantityAvailable
-                              ? isQuantityAvailable
-                              : availableQuantity
-                          })`}
-                    </button>
+                    <>
+                      {nft?.upgradable_cards?.total_needed > 0 ? (
+                        <>
+                          <button
+                            className={`btn text-center mt-2 rounded-pill place-bid-btn upgrade-btn d-flex g-2 ${
+                              !nft?.can_upgrade ? "disabled_button" : ""
+                            }`}
+                            onClick={() =>
+                              history.push(
+                                `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/mycards`
+                              )
+                            }
+                            disabled={nft?.can_upgrade ? false : true}
+                          >
+                            <div className="card-svg-icon d-flex">
+                              <div className="imgBlock">
+                                <img src={cardsvg} />
+                                <p>{nft?.upgradable_cards?.total_needed}</p>
+                              </div>
+                              {`Upgrade`}
+                            </div>
+                          </button>
+                        </>
+                      ) : (
+                        ""
+                      )}
+                      <button
+                        disabled={false}
+                        className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
+                        onClick={() => setPutOnSalePop(!putOnSalePop)}
+                      >
+                        {erc721
+                          ? "List for sale"
+                          : `List for sale (${
+                              isQuantityAvailable
+                                ? isQuantityAvailable
+                                : availableQuantity
+                            })`}
+                      </button>
+                    </>
                   ) : (
                     <OverlayTrigger
                       trigger={["click"]}
