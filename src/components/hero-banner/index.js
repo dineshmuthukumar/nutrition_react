@@ -200,9 +200,9 @@ const HeroBanner = () => {
                   game, the Meta Cricket League. Enjoy this super-addictive and
                   engaging game of cricket in the never-before meta-space!
                 </p>
-                <div className="hero-btn-block">
+                {/* <div className="hero-btn-block">
                   <img src={comingSoon} alt="comming soon" />
-                </div>
+                </div> */}
               </div>
             </div>
           </section>
@@ -223,11 +223,11 @@ const HeroBanner = () => {
                 className="hero-content-img"
                 loading="lazy"
               />
-              <div className="hero-content-box">
+              {/* <div className="hero-content-box">
                 <div className="hero-btn-block">
                   <img src={comingSoon} alt="comming soon" />
                 </div>
-              </div>
+              </div> */}
             </div>
           </section>
         </div>

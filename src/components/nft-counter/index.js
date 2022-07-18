@@ -99,12 +99,15 @@ function NFTCounter({
         className={`counter-time ${timeClass}`}
         key={`${custom_interval}${x}`}
       >
-        {timeLeft[interval] === 0.1 ? 0 : timeLeft[interval]}
-        <span
-          className={`counter-interval interval-gap ${intervalClass} ${intervalGapClass}`}
-        >
-          {custom_interval}
-        </span>
+        {timeLeft[interval] === 0.1 ? "" : timeLeft[interval]}
+
+        {timeLeft[interval] !== 0.1 && (
+          <span
+            className={`counter-interval interval-gap ${intervalClass} ${intervalGapClass}`}
+          >
+            {custom_interval}
+          </span>
+        )}
       </span>
     );
   });

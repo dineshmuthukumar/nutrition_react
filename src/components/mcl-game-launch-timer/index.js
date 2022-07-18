@@ -8,7 +8,7 @@ import Phone from "../../images/mcl-game-launcher/smartphone.svg";
 import Marquee from "react-fast-marquee";
 
 const MclGameLaunchTimer = () => {
-  const white_paper_start_date = "July 22 2022 11:30:00";
+  const white_paper_start_date = "July 22 2022 14:00:00";
 
   const [whitepaper_time, set_whitepaper_time] = useState();
   const [end_time, set_end_time] = useState(false);
