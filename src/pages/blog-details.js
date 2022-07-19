@@ -20,7 +20,6 @@ const BlogDetails = () => {
       setTitle(GetmetaDetails?.data?.json?.og_title);
       setDescription(GetmetaDetails?.data?.json?.description);
       setImage(GetmetaDetails?.data?.json?.og_image[0]?.url);
-
     } catch (error) {
       // setReLoading(false);
       //toast.error("An unexpected error occured. Please try again  later");
@@ -32,7 +31,14 @@ const BlogDetails = () => {
   };
   return (
     <>
-      <Header bgImage title={title} description={description} image={image} />
+      <Header
+        bgImage
+        title={title}
+        description={description}
+        image={image}
+        height="100"
+        width="100%"
+      />
       <BlogDetail />
       <Footer />
     </>

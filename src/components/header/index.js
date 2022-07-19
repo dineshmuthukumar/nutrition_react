@@ -555,6 +555,8 @@ const Header = ({
         title={props?.title}
         image={props?.image}
         description={props?.description}
+        width={props?.width}
+        height={props?.height}
       />
       <Navbar
         bg="dark"

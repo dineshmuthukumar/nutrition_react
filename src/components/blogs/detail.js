@@ -91,11 +91,11 @@ const BlogDetail = () => {
                 <div className="col-lg-8">
                   <div className="blog_section">
                     <div className="blog_heading">
-                      <h2>
+                      <h1>
                         <Interweave content={data?.title?.rendered} />
-                      </h2>
+                      </h1>
                       <p className="text-muted">
-                        By Admin / {dayjs(data?.date).format("MMM D, YYYY")}
+                        By ADMIN / {dayjs(data?.date).format("MMM D, YYYY")}
                       </p>
                     </div>
                     <div className="blog_banner rounded">

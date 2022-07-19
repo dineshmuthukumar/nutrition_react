@@ -1,7 +1,14 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 
-const AppHelmet = ({ title, description, image, hideCanonical = false }) => {
+const AppHelmet = ({
+  title,
+  description,
+  image,
+  hideCanonical = false,
+  height,
+  width,
+}) => {
   return (
     <Helmet>
       {title && <title>{title} </title>}
@@ -13,6 +20,8 @@ const AppHelmet = ({ title, description, image, hideCanonical = false }) => {
       {image && <meta property="og:image" content={image} />}
       <meta property="og:site_name" content="Jump.Trade" />
       {description && <meta property="og:description" content={description} />}
+      {width && <meta property="og:image:width" content={width} />}
+      {height && <meta property="og:image:height" content={height} />}
 
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content={window.location.href} />
