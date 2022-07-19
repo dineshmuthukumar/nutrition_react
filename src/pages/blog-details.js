@@ -36,8 +36,8 @@ const BlogDetails = () => {
         title={title}
         description={description}
         image={image}
-        height="100"
-        width="100%"
+        height="630"
+        width="1200"
       />
       <BlogDetail />
       <Footer />

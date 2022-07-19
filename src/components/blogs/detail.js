@@ -301,7 +301,7 @@ const BlogDetail = () => {
                               <FaTwitter />
                             </a>
                           </li>
-                          <li>
+                          {/* <li>
                             <a
                               target="_blank"
                               onClick={() =>
@@ -312,7 +312,7 @@ const BlogDetail = () => {
                             >
                               <FaLinkedinIn />
                             </a>
-                          </li>
+                          </li> */}
                           {/* <li>
                             <a
                               className="whatsapp"
