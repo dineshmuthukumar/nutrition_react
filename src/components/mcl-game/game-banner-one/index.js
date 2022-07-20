@@ -180,7 +180,7 @@ const MclGameOne = ({ hideSign = false, ...props }) => {
           <div className="row align-items-center">
             <div className="col-lg-6 mt-4">
               <div className="p-lg-5 p-2">
-                <h2 className="display-4 mcl-title">Meta Cricket League</h2>
+                <h1 className="display-4 mcl-title">Meta Cricket League</h1>
                 <h2 className="display-4 mobile_app">Mobile App</h2>
                 <p className="fs-5 text-white game-desc">
                   The Meta Cricket League brings you the vibrance, energy, &
@@ -322,7 +322,7 @@ const MclGameOne = ({ hideSign = false, ...props }) => {
             <div className="row  justify-content-center pt-5">
               <div className="col">
                 <div className="title-div text-center">
-                  <h1 className="text-uppercase coming_soon ">Coming Soon</h1>
+                  <h2 className="text-uppercase coming_soon ">Coming Soon</h2>
                 </div>
                 {/* <div class="hr-line"></div> */}
               </div>
@@ -400,12 +400,12 @@ const MclGameOne = ({ hideSign = false, ...props }) => {
         <div className="container">
           <div className="row justify-content-center">
             <div className="whitepaper_box p-4 text-center position-relative">
-              <h1 className="display-1 text-uppercase fw-bold download_app">
+              <h2 className="display-1 text-uppercase fw-bold download_app">
                 Meta Cricket League
-              </h1>
-              <h1 className="display-1 text-uppercase fw-bold marketplace_app">
+              </h2>
+              <h2 className="display-1 text-uppercase fw-bold marketplace_app">
                 Whitepaper
-              </h1>
+              </h2>
               <p className="my-3 text-capitaliz text-white e h-meduim fs-4">
                 <span>
                   Meta Cricket League is a Hit-to-Earn game that brings the

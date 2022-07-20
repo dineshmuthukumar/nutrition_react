@@ -15,12 +15,12 @@ const MclGameTwo = () => {
         <div className="container">
           <div className="row justify-content-center">
             <div className="whitepaper_box p-4 text-center position-relative">
-              <h1 className="display-1 text-uppercase fw-bold download_app">
+              <h2 className="display-1 text-uppercase fw-bold download_app">
                 Meta Cricket League
-              </h1>
-              <h1 className="display-1 text-uppercase fw-bold marketplace_app">
+              </h2>
+              <h2 className="display-1 text-uppercase fw-bold marketplace_app">
                 Whitepaper
-              </h1>
+              </h2>
               <p className="my-3 text-capitaliz text-white e h-meduim fs-4">
                 <span>
                   Meta Cricket League is a Hit-to-Earn game that brings the
@@ -49,13 +49,13 @@ const MclGameTwo = () => {
           <div className="row pt-5 pb-0">
             <div className="col-md-6 text-center text-md-start d-flex d-sm-flex d-md-flex justify-content-center align-items-center justify-content-md-start align-items-md-center justify-content-xl-end mb-4">
               <div className="p-lg-5 p-2">
-                <h1 className="display-1 text-uppercase fw-bold download_app">
+                <h2 className="display-1 text-uppercase fw-bold download_app">
                   Download the
-                </h1>
-                <h1 className="display-1 text-uppercase fw-bold marketplace_app">
+                </h2>
+                <h2 className="display-1 text-uppercase fw-bold marketplace_app">
                   Marketplace app
-                </h1>
-                <p className="fs-3 theme-color">
+                </h2>
+                {/* <p className="fs-3 theme-color">
                   <strong>
                     <span>
                       Jump.trade - The NFT Marketplace To Trade Legendary
@@ -69,7 +69,7 @@ const MclGameTwo = () => {
                     P2E cricket game Nfts. Buy NFT bats, players, and signed
                     legendary Nfts commemorating world cup final matches!
                   </span>
-                </p>
+                </p> */}
                 <div className="d-flex text-md-start d-flex d-sm-flex d-md-flex justify-content-center align-items-center justify-content-md-start align-items-md-center justify-content-xl-start mt-5">
                   <a
                     className="me-4"
