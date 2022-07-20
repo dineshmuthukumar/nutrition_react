@@ -227,7 +227,8 @@ const NFTBaseDetails = ({
                   minutes === 0 &&
                   seconds < 0.2 ? (
                   <>
-                    {nft?.upgradable_cards?.total_needed > 0 ? (
+                    {/* Upgrade button hide */}
+                    {/* {nft?.upgradable_cards?.total_needed > 0 ? (
                       <>
                         <button
                           className={`btn text-center mt-2 rounded-pill place-bid-btn upgrade-btn d-flex g-2 ${
@@ -251,7 +252,7 @@ const NFTBaseDetails = ({
                       </>
                     ) : (
                       ""
-                    )}
+                    )} */}
                     <button
                       disabled={false}
                       className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
@@ -302,7 +303,8 @@ const NFTBaseDetails = ({
                     minutes === 0 &&
                     seconds < 0.2 ? (
                     <>
-                      {nft?.upgradable_cards?.total_needed > 0 ? (
+                      {/* Upgrade button hide */}
+                      {/* {nft?.upgradable_cards?.total_needed > 0 ? (
                         <>
                           <button
                             className={`btn text-center mt-2 rounded-pill place-bid-btn upgrade-btn d-flex g-2 ${
@@ -326,7 +328,7 @@ const NFTBaseDetails = ({
                         </>
                       ) : (
                         ""
-                      )}
+                      )} */}
                       <button
                         disabled={false}
                         className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
