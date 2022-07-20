@@ -592,9 +592,9 @@ const ExploreAllNFT = () => {
       !query.get("sort") &&
       nft_category.length === 0 &&
       nft_collection.length === 0 &&
-      has_coin.length === 0 &&
-      !playerObj &&
-      playerObj?.value !== player;
+      has_coin.length === 0 
+      // && !playerObj
+      //  && playerObj?.value !== player;
 
     let players = [];
     if (playerObj?.key) players = playerObj?.key ? [playerObj?.key] : [];

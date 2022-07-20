@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams ,useHistory} from "react-router-dom";
 // import { useSelector } from "react-redux";
 // import _ from "lodash";
 
@@ -18,6 +18,7 @@ import OrderDetails from "./order-details";
 import { Redirect } from "react-router";
 
 const NftDetails = () => {
+  const history = useHistory();
   const { slug } = useParams();
   const [loader, setLoader] = useState(true);
   const [orderSlug, setorderSlug] = useState("");
@@ -47,7 +48,9 @@ const NftDetails = () => {
       //console.log(currentPage);
       setLoader(false);
     } catch (error) {
-      console.log(error);
+      console.log(error)
+      if(error?.response?.status===404)   history.replace("/")
+
     }
   };
 
