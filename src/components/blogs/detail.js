@@ -118,7 +118,7 @@ const BlogDetail = () => {
                   </div>
                 </div>
                 <div className="col-lg-4">
-                  <div className="post-tabs rounded bordered p-4 position-sticky top-0 mt-2">
+                  <div className="post-tabs rounded bordered p-4 mt-2">
                     <h4>Recently Post</h4>
                     <ul
                       className="nav nav-tabs nav-pills nav-fill mt-4"

@@ -92,7 +92,7 @@ const BlogList = () => {
             <div className="row">
               {data?.map((item, i) => (
                 <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                  <a href={"/blog/" + item?.slug}>
+                  <a className="single-card-blog" href={"/blog/" + item?.slug}>
                     <div className="blog_box">
                       <div className="bg-color">
                         <div className="box_img">
