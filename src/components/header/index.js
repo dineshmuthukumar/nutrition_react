@@ -557,6 +557,7 @@ const Header = ({
         description={props?.description}
         width={props?.width}
         height={props?.height}
+        canonical={props?.canonical}
       />
       <Navbar
         bg="dark"

@@ -5,6 +5,7 @@ const AppHelmet = ({
   title,
   description,
   image,
+  canonical,
   hideCanonical = false,
   height,
   width,
@@ -31,7 +32,10 @@ const AppHelmet = ({
 
       {image && <meta itemprop="image" content={image} />}
       {!hideCanonical && (
-        <link rel="canonical" href={window.location.href.split(/[?#]/)[0]} />
+        <link
+          rel="canonical"
+          href={canonical ? canonical : window.location.href.split(/[?#]/)[0]}
+        />
       )}
     </Helmet>
   );

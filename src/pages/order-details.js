@@ -461,6 +461,7 @@ const OrderDetails = ({ CurrentOrderSlug, details = false }) => {
           title={`${nft?.name} | MCL NFT Marketplace | Jump.trade`}
           description={`${nft?.name} is a Meta Cricket League ${nft?.core_statistics?.role?.value} Playable NFT! Purchase This NFT Now to Play the MCL P2E Cricket Game & Win Cash Rewards!`}
           image={nft?.asset_url}
+          canonical={`${process.env.REACT_APP_MARKETPLACE_URL}/nft-marketplace/details/${nft?.slug}`}
         />
       )}
       {loader ? (
