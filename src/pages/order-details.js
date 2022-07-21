@@ -299,6 +299,7 @@ const OrderDetails = ({ CurrentOrderSlug, details = false }) => {
 
       setLoader(false);
     } catch (err) {
+      if (err?.response?.status === 404) window.open("/", "_self");
       console.log(err);
       toaster(
         500,
