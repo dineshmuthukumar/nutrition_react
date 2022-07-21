@@ -8,6 +8,10 @@ import "./style.scss";
 
 const HistoryHeader = ({ nftOwner, nft }) => {
   const { user } = useSelector((state) => state.user.data);
+  // console.log("sdfdsfscx", user);
+  const userName = user?.private
+    ? `@${user?.private_name}`
+    : `@${user?.first_name}${user?.last_name}`;
 
   return (
     <div className="bid-history--header">
@@ -25,9 +29,7 @@ const HistoryHeader = ({ nftOwner, nft }) => {
       </div>
       <div className="bh-user-details">
         <h2 className="bh-user-name">
-          {user?.slug === nftOwner?.slug
-            ? `@${user?.first_name}${user?.last_name}`
-            : nftOwner?.user_name}
+          {user?.slug === nftOwner?.slug ? userName : nftOwner?.user_name}
         </h2>
         <h4 className="bh-user-status">Owner</h4>
         <div className="bh-user-sold-info">
