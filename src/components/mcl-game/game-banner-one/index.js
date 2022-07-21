@@ -22,6 +22,11 @@ import firstSlideMobile from "../../../images/download_mobile.jpg";
 import "../style.scss";
 // import images from "../../../utils/images.json";
 import useQuery from "../../../hook/useQuery";
+import NFTCounter from "../../nft-counter";
+
+import android from "../../../images/mcl-game-launcher/android.png";
+import ios from "../../../images/mcl-game-launcher/ios-win.png";
+import player from "../../../images/mcl-game-launcher/player.png";
 
 const MclGameOne = ({ hideSign = false, ...props }) => {
   let query = useQuery();
@@ -62,6 +67,42 @@ const MclGameOne = ({ hideSign = false, ...props }) => {
     setType(input);
     setcurrentSubcribe(input);
     //console.log(type);
+  };
+
+  const game_launch_start_date = "July 22 2022 14:00:00";
+
+  const [game_launch_time, set_gamelauch_timer] = useState();
+  const [end_time, set_end_time] = useState(false);
+
+  const timeFunction = (check = false) => {
+    var offset = new Date().getTimezoneOffset();
+
+    var game_launch_start_date_utc = new Date(game_launch_start_date);
+    game_launch_start_date_utc.setMinutes(
+      game_launch_start_date_utc.getMinutes() - offset
+    );
+
+    var s_time = new Date();
+
+    if (check) s_time.setSeconds(s_time.getSeconds() + 2);
+
+    if (new Date(game_launch_start_date_utc) < s_time) {
+      set_end_time(true);
+      // dispatch(market_live_thunk());
+    } else {
+      set_end_time(false);
+      set_gamelauch_timer(game_launch_start_date_utc);
+      // dispatch(market_live_off_thunk());
+    }
+  };
+
+  useEffect(() => {
+    timeFunction(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleTimer = () => {
+    set_end_time(true);
   };
 
   // useEffect(() => {
@@ -178,9 +219,9 @@ const MclGameOne = ({ hideSign = false, ...props }) => {
       <section className="game-banner">
         <div className="container-fluid">
           <div className="row align-items-center">
-            <div className="col-lg-6 mt-4">
+            <div className="col-lg-6">
               <div className="p-lg-5 p-2">
-                <h1 className="display-4 mcl-title">Meta Cricket League</h1>
+                <h2 className="display-4 mcl-title">Meta Cricket League</h2>
                 <h2 className="display-4 mobile_app">Mobile App</h2>
                 <p className="fs-5 text-white game-desc">
                   The Meta Cricket League brings you the vibrance, energy, &
@@ -188,7 +229,31 @@ const MclGameOne = ({ hideSign = false, ...props }) => {
                   cricket game, win matches, climb up the leaderboard and earn
                   unbelievable rewards for your time and efforts!
                 </p>
-                {/* <Form
+
+                {/* {end_time ? (
+                  <a href="https://dl.jump.trade/mcl.apk">
+                    <img src={downloadapk} className="downloadbutton" />
+                  </a>
+                ) : (
+                  game_launch_time && (
+                    <div>
+                      <img src={downloadapk} className="downloadbutton" />
+                      <div className="launch down-btn">
+                        <div className="pos-top d-flex align-items-center fs-6">
+                          <p className="me-3 mb-0">Game Launch :</p>
+                          <NFTCounter
+                            time={game_launch_time}
+                            timeClass="counter-time"
+                            handleEndEvent={handleTimer}
+                            // className=" ms-2"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  )
+                )} */}
+
+                <Form
                   className="gameplay-form"
                   onSubmit={(e) => e.preventDefault()}
                 >
@@ -243,10 +308,8 @@ const MclGameOne = ({ hideSign = false, ...props }) => {
                             </p>
                           )}
                     </Col>
-                    
 
                     <Col xs="auto">
-                     
                       <div
                         class="btn-group switch-btn"
                         role="group"
@@ -260,7 +323,6 @@ const MclGameOne = ({ hideSign = false, ...props }) => {
                           onClick={() => toggleType("email")}
                         >
                           <img src={mail} alt="Mail" />
-
                         </button>
                         <button
                           type="button"
@@ -270,7 +332,6 @@ const MclGameOne = ({ hideSign = false, ...props }) => {
                           onClick={() => toggleType("phone")}
                         >
                           <img src={call} alt="Call" width="25px" />
-                        
                         </button>
                       </div>
                     </Col>
@@ -278,28 +339,28 @@ const MclGameOne = ({ hideSign = false, ...props }) => {
                   <Col xs="auto">
                     <Button
                       type="submit"
-                      className="submit-btn my-4"
+                      className="submit-btn mt-4"
                       onClick={handleSubcribe}
                       disabled={loading}
                     >
-                      <span>SUBSCRIBE</span>
+                      <span>Get APP Link</span>
                     </Button>
                   </Col>
                   {error && <p className="error_text text-center">{error}</p>}
 
                   <p className="nft_email_error">{vEmail}</p>
-                </Form> */}
+                </Form>
               </div>
             </div>
             <div className="col-lg-6 ">
-              <div className="p-lg-5 p-2">
-                <img className="img-fluid w-100" src={banners} alt="Banners" />
+              <div className="player-image">
+                <img className="img-fluid w-100" src={player} alt="Banners" />
               </div>
             </div>
           </div>
         </div>
       </section>
-      <section className="pt-5 mcl-game-two">
+      <section className="pt-5 mcl-game-two ">
         <div className="container-fluid py-4 py-xl-5">
           <div className="row mb-4 mb-lg-5">
             <div className="col-md- col-xl-8 text-center mx-auto">
@@ -310,28 +371,47 @@ const MclGameOne = ({ hideSign = false, ...props }) => {
         </div>
         <div className="container-fluid">
           <div className="row row-cols-2 row-cols-md-3 mx-auto justify-content-center">
-            <div className="os_list text-center">
-              <img src={icon} alt="Icon" />
-            </div>
-            {/* <div className="os_list text-center">dfdfg</div>
-            <div className="os_list text-center">ghgh</div> */}
-          </div>
-        </div>
-        <div className="pb-5" id="mclgame">
-          <div className="container-fluid">
-            <div className="row  justify-content-center pt-5">
-              <div className="col">
-                <div className="title-div text-center">
-                  <h2 className="text-uppercase coming_soon ">Coming Soon</h2>
+            {/* <div className="col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-12 mx-auto">
+              <div className="os_list text-center">
+                <img src={icon} alt="Icon" />
+              </div>
+            </div> */}
+            <div className="col-lg-6 offset-lg-3 col-lg-8 offset-lg-3 col-sm-10 offset-sm-1 col-12 mx-auto mcl-app-download">
+              <div className="d-flex flex-lg-row  flex-sm-column flex-column align-items-center justify-content-between download-games">
+                <div className="d-flex flex-column align-items-center justify-content-between">
+                  <div className="android-icon">
+                    <img src={android} />
+                  </div>
+                  <a href="#" target="_blank">
+                    <button className="read_moree fs-5 fw-bold">
+                      <span>Download MCL Game</span>
+                    </button>
+                  </a>
+                  <div className="app-launch-timer mt-3">
+                    <NFTCounter
+                      time={game_launch_time}
+                      timeClass="counter-time"
+                      handleEndEvent={handleTimer}
+                      // className=" ms-2"
+                    />
+                  </div>
                 </div>
-                {/* <div class="hr-line"></div> */}
+                <div className="vr"></div>
+                <div className="d-flex flex-column align-items-center justify-content-between">
+                  <div className="android-icon">
+                    <img src={ios} />
+                  </div>
+
+                  <div className="app-launch-timer mt-5">
+                    <h1 className="text-uppercase coming_soon ">Coming Soon</h1>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="hr-line"></div>
         </div>
 
-        {user?.login ? (
+        {/* {user?.login ? (
           <>
             {user?.data?.user?.can_play_game ? (
               <div className="text-center text-white">
@@ -392,20 +472,20 @@ const MclGameOne = ({ hideSign = false, ...props }) => {
               </div>
             </div>
           </>
-        )}
+        )} */}
       </section>
-      <div class="hr-line"></div>
+      {/* <div class="hr-line"></div> */}
 
       {/* <section className="whitepaper_sec py-5">
         <div className="container">
           <div className="row justify-content-center">
             <div className="whitepaper_box p-4 text-center position-relative">
-              <h2 className="display-1 text-uppercase fw-bold download_app">
+              <h1 className="display-1 text-uppercase fw-bold download_app">
                 Meta Cricket League
-              </h2>
-              <h2 className="display-1 text-uppercase fw-bold marketplace_app">
+              </h1>
+              <h1 className="display-1 text-uppercase fw-bold marketplace_app">
                 Whitepaper
-              </h2>
+              </h1>
               <p className="my-3 text-capitaliz text-white e h-meduim fs-4">
                 <span>
                   Meta Cricket League is a Hit-to-Earn game that brings the
