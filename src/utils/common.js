@@ -22,8 +22,6 @@ export const validatePhone = (mobile) => {
   return re.test(mobile);
 };
 
-
-
 export const validateNameReplace = (input) =>
   input
     .replace("  ", " ")
@@ -120,6 +118,7 @@ export const bidBuyError = (code) => {
   const INVALID_CATEGORY = 711;
   const KYC_VERIFY = 715;
   const AUCTION_CANCEL_BANNED = 718;
+  const NOT_ELIGIBLE = 720;
 
   switch (code) {
     case ERROR:
@@ -164,6 +163,13 @@ export const bidBuyError = (code) => {
         title: "Oops!",
         description: "Auction could not be cancel, there is an active bid!",
       };
+    case NOT_ELIGIBLE:
+      return {
+        title: "Error",
+        description:
+          "You are not eligible to buy as your PAN Card details matches that of the seller's!",
+      };
+
     default:
       return {
         title: "Oops!",
@@ -457,5 +463,3 @@ export const detectWhatsapp = (uri) => {
 
   return window.navigator.msLaunchUri ? onIE() : notOnIE();
 };
-
-
