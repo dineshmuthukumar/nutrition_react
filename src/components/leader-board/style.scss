@@ -1,0 +1,420 @@
+@import "../../styles/common";
+.leader-board-block {
+  background-color: #073824;
+  padding-bottom: 3rem;
+  .leader-board-section {
+    background-image: url("../../images/leaderboard-banner.png");
+    min-height: 50rem;
+    background-color: #073824;
+    background-position: center top;
+    background-size: cover;
+    @media screen and (max-width: 860px) {
+      background-position: left top;
+    }
+
+    .leader-board-header {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 2rem;
+      max-width: 40rem;
+      margin: 0rem auto 3rem;
+      text-align: center;
+      h2 {
+        color: #f5ff00;
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        font-family: $neue-helvetica-bold;
+      }
+      p {
+        color: #ffffff;
+        font-size: 1.3rem;
+        font-family: $neue-helvetica-roman;
+      }
+      img {
+        height: 3rem;
+      }
+    }
+  }
+
+  .leader-board-table-section {
+    background: radial-gradient(#f5ff00, #7b800000);
+    min-height: 50rem;
+    width: 96%;
+    margin-top: -25rem;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 2rem;
+    position: relative;
+    &:before {
+      content: "";
+      background: linear-gradient(150deg, #34392a, #00130b);
+      position: absolute;
+      left: 0.2rem;
+      right: 0.2rem;
+      top: 0.2rem;
+      bottom: 0.2rem;
+      z-index: 0;
+      border-radius: 2rem;
+    }
+
+    .header-block,
+    .point-block,
+    .jt-table-block {
+      position: relative;
+    }
+    .header-block {
+      padding: 2rem 1.5rem;
+      display: flex;
+      color: #fff;
+      flex-direction: row;
+      justify-content: space-between;
+      .dropdown-block {
+        width: calc(100% - 60%);
+        @media screen and (max-width: 991px) {
+          width: 50%;
+        }
+      }
+      .timer-block {
+        display: flex;
+        width: calc(100% - 40%);
+        justify-content: flex-end;
+        @media screen and (max-width: 991px) {
+          flex-direction: column;
+
+          width: 50%;
+          align-items: flex-end;
+        }
+        h5 {
+          margin: 0;
+          padding: 0 1rem;
+          font-style: italic;
+          font-family: $neue-helvetica-roman;
+          @media screen and (max-width: 991px) {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+          }
+          span {
+            font-family: $neue-helvetica-roman;
+            color: #f5ff00;
+          }
+        }
+      }
+    }
+    .point-block {
+      //   background: radial-gradient(#f5ff00, #7b800000);
+      background: linear-gradient(19deg, #f5ff00, #7b800000);
+      position: relative;
+      width: 96%;
+      margin: 0.5rem auto;
+      border-radius: 0.5rem;
+      display: flex;
+      padding: 0;
+      justify-content: space-between;
+      align-items: center;
+      &:before {
+        content: "";
+        background: linear-gradient(
+            90deg,
+            #34392a 0%,
+            #20231c 47%,
+            #34392a 100%
+          )
+          0% 0% no-repeat padding-box;
+        position: absolute;
+        left: 0rem;
+        right: 0rem;
+        top: 0.1rem;
+        bottom: 0.1rem;
+        z-index: 0;
+        border-radius: 0.5rem;
+      }
+      .topper-box {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem 1rem;
+        img {
+          height: 4rem;
+          margin-right: 1rem;
+          @media screen and (max-width: 860px) {
+            height: 2rem;
+            margin-right: 0.5rem;
+          }
+        }
+        h3 {
+          font-family: $neue-helvetica-bold;
+          color: #fff;
+          text-transform: uppercase;
+          @media screen and (max-width: 860px) {
+            font-size: 1.4rem;
+          }
+          @media screen and (max-width: 520px) {
+            font-size: 1rem;
+          }
+          span {
+            color: #f2ed27;
+            font-family: $neue-helvetica-bold;
+            display: block;
+          }
+        }
+      }
+    }
+    .jt-table-block {
+      position: relative;
+      width: 100%;
+      margin: 0.5rem auto;
+      margin-bottom: 2rem;
+
+      display: inline-block;
+
+      .jt-table-header,
+      .jt-table-body,
+      .jt-table-footer {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 0.2rem 0;
+        .jt-table-row {
+          display: flex;
+          width: 100%;
+          padding: 1rem 1rem;
+          @media screen and (max-width: 860px) {
+            flex-direction: column;
+          }
+          .positionName-box {
+            display: flex;
+            width: 40%;
+            @media screen and (max-width: 860px) {
+              width: 100%;
+              margin-bottom: 1rem;
+            }
+            .position-boxes {
+              width: 10rem;
+            }
+            .name-boxes {
+              width: calc(100% - 10rem);
+              @media screen and (max-width: 860px) {
+                display: flex;
+                justify-content: flex-end;
+              }
+            }
+            .position-boxes,
+            .name-boxes {
+              color: #f2ed27;
+
+              font-size: 1.3rem;
+              letter-spacing: 0.05rem;
+              text-transform: uppercase;
+              font-family: $neue-helvetica-medium;
+              padding: 0 1rem;
+              h5 {
+                margin: 0;
+                font-size: 1.3rem;
+                width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-family: $neue-helvetica-roman;
+              }
+              img {
+                min-height: 2rem;
+                min-width: 2rem;
+                height: 2rem;
+                width: 2rem;
+                margin-right: 0.5rem;
+              }
+            }
+          }
+          .pointsPrice-box {
+            display: flex;
+            width: 60%;
+            @media screen and (max-width: 860px) {
+              width: 100%;
+              padding-top: 1rem;
+              border-top: 0.1rem solid #ffffff;
+            }
+            .point-boxes,
+            .jtpoint-boxes,
+            .price-boxes {
+              width: 33.33%;
+              text-align: center;
+
+              padding: 0 1rem;
+
+              img {
+                height: 2rem;
+                width: 2rem;
+              }
+            }
+          }
+        }
+      }
+      .jt-table-header {
+        border-bottom: 0.1rem solid #fff;
+        .mobile-header-title {
+          display: none;
+          visibility: hidden;
+          @media screen and (max-width: 860px) {
+            display: block;
+            visibility: visible;
+            text-align: center;
+            color: #f2ed27;
+            font-family: $neue-helvetica-roman;
+            font-size: 1.5rem;
+          }
+        }
+        .hidemobileHeader {
+          @media screen and (max-width: 860px) {
+            display: none;
+            visibility: hidden;
+          }
+        }
+      }
+      .jt-table-body {
+        padding: 0.5rem;
+        .jt-table-row {
+          padding: 0.8rem 1rem;
+          margin-bottom: 0.5rem;
+          &:nth-child(odd) {
+            background-color: #0009;
+          }
+          &:nth-child(even) {
+            background-color: #ffffff1c;
+          }
+          &.first-rank {
+            background-color: #3b9f08;
+          }
+          &.second-rank {
+            background-color: #3b9f0899;
+          }
+          &.third-rank {
+            background-color: #3b9f084d;
+          }
+          .positionName-box {
+            .position-boxes {
+              h5 {
+                @media screen and (max-width: 520px) {
+                  font-size: 1.4rem;
+                }
+              }
+            }
+            .position-boxes,
+            .name-boxes {
+              color: #ffffff;
+              font-family: $neue-helvetica-medium;
+              & > div {
+                display: flex;
+                align-items: center;
+                h5 {
+                  @media screen and (max-width: 520px) {
+                    font-size: 1.2rem;
+                  }
+                }
+              }
+            }
+          }
+          .pointsPrice-box {
+            .point-boxes,
+            .jtpoint-boxes,
+            .price-boxes {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              h5 {
+                margin: 0;
+                font-size: 1.3rem;
+                width: calc(100% - 2rem);
+                overflow: hidden;
+                text-overflow: ellipsis;
+                color: #fff;
+                font-family: $neue-helvetica-roman;
+
+                @media screen and (max-width: 860px) {
+                  display: block;
+                  text-align: left;
+                  width: calc(100% - 1.3rem);
+                }
+                @media screen and (max-width: 520px) {
+                  font-size: 1rem;
+                }
+              }
+              img {
+                min-height: 2rem;
+                min-width: 2rem;
+                height: 2rem;
+                width: 2rem;
+                margin-right: 0.5rem;
+                display: none;
+                @media screen and (max-width: 860px) {
+                  display: block;
+                  min-height: 1.3rem;
+                  min-width: 1.3rem;
+                  height: 1.3rem;
+                  width: 1.3rem;
+                }
+              }
+            }
+          }
+        }
+      }
+      .jt-table-footer {
+        border-top: 0.1rem dashed #fff;
+        padding-top: 2rem;
+        margin-top: 2rem;
+        .jt-table-row {
+          &.my-ranking {
+            background: #bac100 0% 0% no-repeat padding-box;
+          }
+          .positionName-box {
+            .position-boxes,
+            .name-boxes {
+              color: #000000;
+              font-family: $neue-helvetica-medium;
+              & > div {
+                display: flex;
+                align-items: center;
+              }
+            }
+          }
+          .pointsPrice-box {
+            @media screen and (max-width: 860px) {
+              width: 100%;
+              padding-top: 1rem;
+              border-top: 0.1rem solid #000000;
+            }
+            .point-boxes,
+            .jtpoint-boxes,
+            .price-boxes {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              h5 {
+                margin: 0;
+                font-size: 1.3rem;
+                width: calc(100% - 2rem);
+                overflow: hidden;
+                text-overflow: ellipsis;
+                color: #000;
+                font-family: $neue-helvetica-medium;
+              }
+              img {
+                min-height: 2rem;
+                min-width: 2rem;
+                height: 2rem;
+                width: 2rem;
+                margin-right: 0.5rem;
+                display: none;
+                @media screen and (max-width: 860px) {
+                  display: block;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
