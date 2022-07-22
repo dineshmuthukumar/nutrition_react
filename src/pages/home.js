@@ -23,6 +23,8 @@ import HeroBanner from "../components/hero-banner";
 // import CollectionList from "../components/collection-list";
 import TrailerVideo from "../components/trailer-video";
 import MclGameLaunchTimer from "../components/mcl-game-launch-timer";
+import MclGameLaunchOne from "../components/mcl-game-launch-one";
+import MclGameLaunchTwo from "../components/mcl-game-launch-two";
 
 const Home = () => {
   const { url } = useRouteMatch();
@@ -104,7 +106,9 @@ const Home = () => {
         <HeroBanner />
         {/* <NewDropSection /> */}
         {/* <TrailerVideo /> */}
-        <MclGameLaunchTimer />
+        {/* <MclGameLaunchTimer /> */}
+        <MclGameLaunchOne />
+        {/* <MclGameLaunchTwo /> */}
         {/* <CollectionList /> */}
         <Trending />
         <LiveAuctions />
