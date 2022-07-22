@@ -28,3 +28,5 @@ export const artistApi = (slug) => baseAxios.get(`/celebrities/${slug}`);
 
 export const subscribeApi = (email, source) =>
   baseAxios.post("/subscribe_emails", { subscribe_emails: { email, source } });
+
+export const tournamentsApi = () => baseAxios.get("/tournaments");
