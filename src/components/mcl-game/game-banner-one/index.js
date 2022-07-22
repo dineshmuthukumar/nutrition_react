@@ -212,7 +212,7 @@ const MclGameOne = ({ hideSign = false, ...props }) => {
       handleSubcribe();
     }
   };
-  console.log("test");
+  // console.log("test");
 
   return (
     <>
@@ -253,7 +253,7 @@ const MclGameOne = ({ hideSign = false, ...props }) => {
                   )
                 )} */}
 
-                <Form
+                {/* <Form
                   className="gameplay-form"
                   onSubmit={(e) => e.preventDefault()}
                 >
@@ -349,7 +349,7 @@ const MclGameOne = ({ hideSign = false, ...props }) => {
                   {error && <p className="error_text text-center">{error}</p>}
 
                   <p className="nft_email_error">{vEmail}</p>
-                </Form>
+                </Form> */}
               </div>
             </div>
             <div className="col-lg-6 ">
