@@ -7,15 +7,18 @@ import Copy from "../../images/mcl-game-launcher/copy.svg";
 import Phone from "../../images/mcl-game-launcher/smartphone.svg";
 import MCL from "../../images/mcl-game-launcher/mcl.png";
 import Liveicon from "../../images/mcl-game-launcher/liveicon.png";
+import Liveicons from "../../images/mcl-game-launcher/live-icon.png";
+import ball from "../../images/mcl-game-launcher/ball.png";
 import Downloadicon from "../../images/mcl-game-launcher/downloadicon.png";
 
 import Marquee from "react-fast-marquee";
 import { tournamentsApi } from "../../api/base-methods";
 
 const MclGameLaunchTimer = () => {
-  const white_paper_start_date = "July 22 2022 05:20:00";
-  const liveST = "2022-07-22T05:15:25.000Z";
-  const liveET = "2022-07-22T05:17:00.000Z";
+  const white_paper_start_date = "July 22 2022 08:45:00";
+  // const liveST = "2022-07-22T08:46:00.000Z";
+  // const liveET = "2022-07-22T08:47:00.000Z";
+  // const upComing = "2022-07-22T08:48:00.000Z";
 
   const [whitepaper_time, set_whitepaper_time] = useState();
   const [end_time, set_end_time] = useState(false);
@@ -71,10 +74,10 @@ const MclGameLaunchTimer = () => {
       setLiveTournament(live);
       setUpcomingTournament(upcoming);
       startTime(start_time);
-      // setIsStarted(new Date().getTime() >= new Date(start_time).getTime());
-      // setIsEnded(new Date().getTime() > new Date(live?.end_time).getTime());
-      setIsStarted(new Date().getTime() >= new Date(liveST).getTime());
-      setIsEnded(new Date().getTime() > new Date(liveET).getTime());
+      setIsStarted(new Date().getTime() >= new Date(start_time).getTime());
+      setIsEnded(new Date().getTime() > new Date(live?.end_time).getTime());
+      // setIsStarted(new Date().getTime() >= new Date(liveST).getTime());
+      // setIsEnded(new Date().getTime() > new Date(liveET).getTime());
     } catch (error) {
       console.log(error);
     }
@@ -86,9 +89,9 @@ const MclGameLaunchTimer = () => {
   const handleEndTimer = () => {
     setIsEnded(true);
   };
-  const handleUpcomingTimer = () => {
-    setIsStarted(true);
-  };
+  // const handleUpcomingTimer = () => {
+  //   setIsStarted(true);
+  // };
 
   return (
     <>
@@ -108,7 +111,7 @@ const MclGameLaunchTimer = () => {
                   <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div className="trailer-content">
                       <div>
-                        <div className="mock-device">
+                        <div className="mock-device mcl-logo-launch">
                           <img src={MCL} />
                         </div>
                         <h2 className="mb-2 text-center">
@@ -119,53 +122,95 @@ const MclGameLaunchTimer = () => {
                           )}
                           {isEnded && end_time && <>BETA SPECIAL LEAGUE</>}
                         </h2>
+                        <h4 className="mb-2 text-center text-white fs-2">
+                          {!isStarted && end_time && <>STARTS IN</>}
+                        </h4>
                         {/* <h2 className="mb-2 text-center">
                           {liveTournament?.name}
                         </h2> */}
                         <h4 className="mb-2 text-center">
-                          {!isEnded && isStarted && end_time && <>Live Game</>}
-                        </h4>
-                        <h2 className="mb-2 text-center">
                           {!isEnded && isStarted && end_time && (
-                            <>TOURNAMENT ENDS IN</>
+                            <>
+                              {/* <div className="live-game my-4">
+                                <img src={Liveicon} />
+                              </div> */}
+
+                              <div className="live-games my-4">
+                                <img src={Liveicons} />
+                                <img className="ball" src={ball} />
+                              </div>
+                            </>
                           )}
-                        </h2>
-                        <h2 className="mb-2 text-center">
-                          {isEnded && end_time && <>UPCOMING TOURNAMENT</>}
-                        </h2>
+                        </h4>
 
                         <h4 className="text-center game-counter">
                           {!end_time && (
-                            <NFTCounter
-                              time={whitepaper_time}
-                              timeClass="counter-time"
-                              handleEndEvent={handleTimer}
-                              cTime={cTime}
-                            />
+                            <>
+                              <NFTCounter
+                                time={whitepaper_time}
+                                timeClass="counter-time"
+                                handleEndEvent={handleTimer}
+                                cTime={cTime}
+                              />
+                              <a
+                                className="download-icon-btn my-5 d-block"
+                                href="https://dl.jump.trade/mcl.apk"
+                              >
+                                <img src={Downloadicon} />
+                              </a>
+                            </>
                           )}
                           {!isStarted && end_time && (
-                            <NFTCounter
-                              time={liveST}
-                              timeClass="counter-time"
-                              handleEndEvent={handleStartTimer}
-                              cTime={cTime}
-                            />
+                            <>
+                              <NFTCounter
+                                time={liveTournament?.start_time}
+                                timeClass="counter-time"
+                                handleEndEvent={handleStartTimer}
+                                cTime={cTime}
+                              />
+                              <a
+                                className="download-icon-btn my-5 d-block"
+                                href="https://dl.jump.trade/mcl.apk"
+                              >
+                                <img src={Downloadicon} />
+                              </a>
+                            </>
                           )}
                           {!isEnded && isStarted && end_time && (
-                            <NFTCounter
-                              time={liveET}
-                              timeClass="counter-time"
-                              handleEndEvent={handleEndTimer}
-                              cTime={cTime}
-                            />
+                            <>
+                              <NFTCounter
+                                time={liveTournament?.end_time}
+                                timeClass="counter-time"
+                                handleEndEvent={handleEndTimer}
+                                cTime={cTime}
+                              />
+                              <h2 className="mb-2 text-center ends-tournament">
+                                {!isEnded && isStarted && end_time && (
+                                  <>TOURNAMENT ENDS IN</>
+                                )}
+                              </h2>
+                            </>
                           )}
                           {isEnded && end_time && (
-                            <NFTCounter
-                              time={upcomingTournament?.start_time}
-                              timeClass="counter-time"
-                              cTime={cTime}
-                              handleEndEvent={handleUpcomingTimer}
-                            />
+                            <>
+                              <NFTCounter
+                                time={upcomingTournament?.start_time}
+                                timeClass="counter-time"
+                                cTime={cTime}
+                                // handleEndEvent={handleUpcomingTimer}
+                              />
+                              <h2 className="mb-2 text-center ends-tournament">
+                                {isEnded && end_time && (
+                                  <>UPCOMING TOURNAMENT</>
+                                )}
+                              </h2>
+                              <a
+                                className="download-icon-btn my-5 d-block"
+                                href="https://dl.jump.trade/mcl.apk"
+                              >
+                                <img src={Downloadicon} />
+                              </a>
+                            </>
                           )}
                         </h4>
                       </div>
@@ -190,19 +235,21 @@ const MclGameLaunchTimer = () => {
 
                       {!isEnded && isStarted && end_time && (
                         <>
-                          <div className="mock-device">
-                            <img src={Liveicon} />
-                          </div>
                           <Marquee
                             pauseOnHover
                             speed={100}
-                            className="marque-block"
+                            className="marque-block mt-5"
                           >
-                            <span>Want To Play?</span>{" "}
-                            <span>DOWNLOAD THE GAME NOW!</span>
+                            <span>WANT TO PLAY? DOWNLOAD THE GAME NOW!</span>{" "}
+                            <span>WANT TO PLAY? DOWNLOAD THE GAME NOW!</span>{" "}
+                            <span>WANT TO PLAY? DOWNLOAD THE GAME NOW!</span>{" "}
+                            <span>WANT TO PLAY? DOWNLOAD THE GAME NOW!</span>{" "}
                           </Marquee>
 
-                          <a href="https://dl.jump.trade/mcl.apk">
+                          <a
+                            className="download-icon-btn my-5 d-block"
+                            href="https://dl.jump.trade/mcl.apk"
+                          >
                             <img src={Downloadicon} />
                           </a>
                         </>

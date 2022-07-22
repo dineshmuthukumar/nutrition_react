@@ -12,27 +12,22 @@
   @media screen and (max-width: 560px) {
     min-height: 100%;
   }
-  &.live {
-    background-image: url(../../images/mcl-game-launcher/ground.jpg);
-    background-position: center;
-    background-size: cover;
-    position: relative;
-    padding: 10rem 0 0;
-    @media screen and (max-width: 560px) {
-      min-height: 100%;
-    }
-  }
+
   .trailer-content {
     text-transform: uppercase;
     position: relative;
     @media screen and (max-width: 560px) {
       padding-left: 0rem !important;
     }
+    .mcl-logo-launch {
+      img {
+        width: 300px;
+      }
+    }
     h2 {
       font-size: 3rem;
-      color: #e1ff04;
+      color: #f2ed27;
       font-family: "neue_helvetica_extended_bold" !important;
-      font-style: italic;
 
       @media screen and (max-width: 1296px) {
         font-size: 4.5rem;
@@ -51,6 +46,17 @@
       }
 
       font-family: "neue_helvetica_extended_bold" !important;
+
+      &.ends-tournament {
+        font-family: "neue_helvetica_roman" !important;
+        font-size: 2.5rem !important;
+        margin: 1rem 0 3rem;
+      }
+    }
+    .download-icon-btn {
+      img {
+        width: 400px;
+      }
     }
     h4 {
       // font-size: 3rem;
@@ -79,6 +85,41 @@
         }
       }
     }
+    .live-game {
+      img {
+        width: 300px;
+      }
+    }
+    .live-games {
+      max-width: 300px;
+      margin: auto;
+      position: relative;
+      @media screen and (min-width: 1150px) {
+        // max-width: 20%;
+      }
+      img {
+      }
+      .ball {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 25px;
+        top: 50%;
+        animation: blink 1.5s linear infinite;
+      }
+    }
+    @keyframes blink {
+      0% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 0.5;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
     .mock-device {
       img {
         margin: auto;
@@ -103,8 +144,9 @@
         bottom: 2rem;
       }
       .marquee {
-        font-family: $Impact;
-        font-weight: 600;
+        font-family: "neue_helvetica_extended_bold" !important;
+        font-weight: 800 !important;
+
         color: #000;
         font-size: 1rem;
         align-items: center;
@@ -252,6 +294,35 @@
         }
         .nft-counter {
           color: #fff;
+        }
+      }
+    }
+  }
+  &.live {
+    background-image: url(../../images/mcl-game-launcher/ground.jpg);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    padding: 10rem 0 2rem !important;
+    @media screen and (min-width: 1300px) {
+      min-height: 100%;
+    }
+    @media screen and (max-width: 560px) {
+      min-height: 100%;
+    }
+
+    .trailer-content {
+      text-align: center;
+      .marque-block {
+        position: unset !important;
+        .marquee {
+          font-family: "neue_helvetica_extended_bold" !important;
+          font-weight: 800 !important;
+        }
+      }
+      .download-icon-btn {
+        img {
+          width: 400px;
         }
       }
     }
