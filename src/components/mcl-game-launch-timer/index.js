@@ -15,10 +15,10 @@ import Marquee from "react-fast-marquee";
 import { tournamentsApi } from "../../api/base-methods";
 
 const MclGameLaunchTimer = () => {
-  const white_paper_start_date = "July 22 2022 08:45:00";
-  // const liveST = "2022-07-22T08:46:00.000Z";
-  // const liveET = "2022-07-22T08:47:00.000Z";
-  // const upComing = "2022-07-22T08:48:00.000Z";
+  const white_paper_start_date = "July 22 2022 11:18:00";
+  // const liveST = "2022-07-22T11:19:00.000Z";
+  // const liveET = "2022-07-22T11:20:00.000Z";
+  // const upComing = "2022-07-22T11:21:00.000Z";
 
   const [whitepaper_time, set_whitepaper_time] = useState();
   const [end_time, set_end_time] = useState(false);
@@ -66,6 +66,7 @@ const MclGameLaunchTimer = () => {
   const tournamentsTimer = async () => {
     try {
       let result = await tournamentsApi();
+
       const [live] = result.data.data?.live;
       const [upcoming] = result.data.data?.upcoming;
       const start_time = live ? live?.start_time : upcoming?.start_time;
@@ -89,9 +90,9 @@ const MclGameLaunchTimer = () => {
   const handleEndTimer = () => {
     setIsEnded(true);
   };
-  // const handleUpcomingTimer = () => {
-  //   setIsStarted(true);
-  // };
+  const handleUpcomingTimer = () => {
+    // window.location.reload();
+  };
 
   return (
     <>
@@ -116,11 +117,15 @@ const MclGameLaunchTimer = () => {
                         </div>
                         <h2 className="mb-2 text-center">
                           {!end_time && <>MCL GAME LAUNCH IN</>}
-                          {!isStarted && end_time && <>BETA SPECIAL LEAGUE</>}
-                          {!isEnded && isStarted && end_time && (
-                            <>BETA SPECIAL LEAGUE</>
+                          {!isStarted && end_time && (
+                            <>{liveTournament?.name}</>
                           )}
-                          {isEnded && end_time && <>BETA SPECIAL LEAGUE</>}
+                          {!isEnded && isStarted && end_time && (
+                            <>{liveTournament?.name}</>
+                          )}
+                          {isEnded && end_time && (
+                            <>{upcomingTournament?.name}</>
+                          )}
                         </h2>
                         <h4 className="mb-2 text-center text-white fs-2">
                           {!isStarted && end_time && <>STARTS IN</>}
@@ -152,12 +157,12 @@ const MclGameLaunchTimer = () => {
                                 handleEndEvent={handleTimer}
                                 cTime={cTime}
                               />
-                              <a
+                              {/* <a
                                 className="download-icon-btn my-5 d-block"
                                 href="https://dl.jump.trade/mcl.apk"
                               >
                                 <img src={Downloadicon} />
-                              </a>
+                              </a> */}
                             </>
                           )}
                           {!isStarted && end_time && (
@@ -176,6 +181,7 @@ const MclGameLaunchTimer = () => {
                               </a>
                             </>
                           )}
+
                           {!isEnded && isStarted && end_time && (
                             <>
                               <NFTCounter
@@ -191,25 +197,38 @@ const MclGameLaunchTimer = () => {
                               </h2>
                             </>
                           )}
+
                           {isEnded && end_time && (
                             <>
-                              <NFTCounter
-                                time={upcomingTournament?.start_time}
-                                timeClass="counter-time"
-                                cTime={cTime}
-                                // handleEndEvent={handleUpcomingTimer}
-                              />
-                              <h2 className="mb-2 text-center ends-tournament">
-                                {isEnded && end_time && (
-                                  <>UPCOMING TOURNAMENT</>
-                                )}
-                              </h2>
-                              <a
-                                className="download-icon-btn my-5 d-block"
-                                href="https://dl.jump.trade/mcl.apk"
-                              >
-                                <img src={Downloadicon} />
-                              </a>
+                              {!upcomingTournament.length > 0 ? (
+                                <>
+                                  <NFTCounter
+                                    time={upcomingTournament?.start_time}
+                                    // time={upComing}
+                                    timeClass="counter-time"
+                                    cTime={cTime}
+                                    handleEndEvent={handleUpcomingTimer}
+                                  />
+                                  <h2 className="mb-2 text-center ends-tournament">
+                                    {isEnded && end_time && (
+                                      <>UPCOMING TOURNAMENT</>
+                                    )}
+                                  </h2>
+                                  <a
+                                    className="download-icon-btn my-5 d-block"
+                                    href="https://dl.jump.trade/mcl.apk"
+                                  >
+                                    <img src={Downloadicon} />
+                                  </a>
+                                </>
+                              ) : (
+                                <h2 className="mb-2 text-center ends-tournament">
+                                  <>
+                                    Play the World's First Hit-To-Earn Cricket
+                                    NFT Game
+                                  </>
+                                </h2>
+                              )}
                             </>
                           )}
                         </h4>

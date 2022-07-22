@@ -1057,7 +1057,7 @@ const Header = ({
                     </Dropdown.Menu>
                   </Dropdown>
 
-                  <Dropdown.Item href="#">
+                  <Dropdown.Item href="/mcl-game">
                     {" "}
                     <span className="beta-container">
                       <span className="beta-tag">Beta</span> MCL Game{" "}
