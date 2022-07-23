@@ -332,11 +332,22 @@
         border-radius: 50rem;
         padding: 0.5rem;
         cursor: pointer;
+        animation: mymove 5s infinite;
       }
     }
   }
 }
-
+@keyframes mymove {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 .video-container {
   height: 100vh;
   .trailer-container {
