@@ -354,127 +354,64 @@ const MclGameOne = ({ hideSign = false, ...props }) => {
             </div>
             <div className="col-lg-6 ">
               <div className="player-image">
-                <img className="img-fluid w-100" src={player} alt="Banners" />
+                <img className="img-fluid w-100" src={banners} alt="Banners" />
               </div>
             </div>
           </div>
         </div>
       </section>
       <section className="pt-5 mcl-game-two ">
-        <div className="container-fluid py-4 py-xl-5">
-          <div className="row mb-4 mb-lg-5">
-            <div className="col-md- col-xl-8 text-center mx-auto">
-              <h2 className="fw-bold div_title">META CRICKET LEAGUE</h2>
-              <h2 className="fw-bold div_title div_stroke">GAME ON</h2>
-            </div>
+<div className="container-fluid py-4 py-xl-5">
+  <div className="row mb-4 mb-lg-5">
+    <div className="col-md- col-xl-8 text-center mx-auto">
+      <h2 className="fw-bold div_title">META CRICKET LEAGUE</h2>
+      <h2 className="fw-bold div_title div_stroke">GAME ON</h2>
+    </div>
+  </div>
+</div>
+<div className="container-fluid">
+  <div className="row row-cols-2 row-cols-md-3 mx-auto justify-content-center">
+    {/* <div className="col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-12 mx-auto">
+      <div className="os_list text-center">
+        <img src={icon} alt="Icon" />
+      </div>
+    </div> */}
+    <div className="col-lg-6 offset-lg-3 col-lg-8 offset-lg-3 col-sm-10 offset-sm-1 col-12 mx-auto mcl-app-download">
+      <div className="d-flex flex-lg-row  flex-sm-column flex-column align-items-center justify-content-between download-games">
+        <div className="d-flex flex-column align-items-center justify-content-between">
+          <div className="android-icon">
+            <img src={android} />
+          </div>
+          <a href={process.env.REACT_APP_MCL_GAME_LINK} target="_blank">
+            <button className="read_moree fs-5 fw-bold">
+              <span>Download MCL Game</span>
+            </button>
+          </a>
+          <div className="app-launch-timer mt-3">
+            {/* <NFTCounter
+              time={game_launch_time}
+              timeClass="counter-time"
+              handleEndEvent={handleTimer}
+              // className=" ms-2"
+            /> */}
           </div>
         </div>
-        <div className="container-fluid">
-          <div className="row row-cols-2 row-cols-md-3 mx-auto justify-content-center">
-            {/* <div className="col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-12 mx-auto">
-              <div className="os_list text-center">
-                <img src={icon} alt="Icon" />
-              </div>
-            </div> */}
-            <div className="col-lg-6 offset-lg-3 col-lg-8 offset-lg-3 col-sm-10 offset-sm-1 col-12 mx-auto mcl-app-download">
-              <div className="d-flex flex-lg-row  flex-sm-column flex-column align-items-center justify-content-between download-games">
-                <div className="d-flex flex-column align-items-center justify-content-between">
-                  <div className="android-icon">
-                    <img src={android} />
-                  </div>
-                  <a href="#" target="_blank">
-                    <button className="read_moree fs-5 fw-bold">
-                      <span>Download MCL Game</span>
-                    </button>
-                  </a>
-                  <div className="app-launch-timer mt-3">
-                    <NFTCounter
-                      time={game_launch_time}
-                      timeClass="counter-time"
-                      handleEndEvent={handleTimer}
-                      // className=" ms-2"
-                    />
-                  </div>
-                </div>
-                <div className="vr"></div>
-                <div className="d-flex flex-column align-items-center justify-content-between">
-                  <div className="android-icon">
-                    <img src={ios} />
-                  </div>
+        <div className="vr"></div>
+        <div className="d-flex flex-column align-items-center justify-content-between">
+          <div className="android-icon">
+            <img src={ios} />
+          </div>
 
-                  <div className="app-launch-timer mt-5">
-                    <h1 className="text-uppercase coming_soon ">Coming Soon</h1>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div className="app-launch-timer">
+            <h1 className="text-uppercase coming_soon ">Invitation only</h1>
           </div>
         </div>
-
-        {/* {user?.login ? (
-          <>
-            {user?.data?.user?.can_play_game ? (
-              <div className="text-center text-white">
-                <div className="game-alert-message text-center">
-                  <h2 className="display-4">Congrats!</h2>
-                  <p className="fs-3 mt-3 mb-5">
-                    You're Whitelisted For The Closed Community Test Run.
-                  </p>
-                  <a href="https://dl.jump.trade/mcl.apk">
-                    <img src={downloadapk} className="download-apk" />
-                  </a>
-                </div>
-                <div className="game-installguide">
-                  <img
-                    src={innerWidth > 767 ? downloadInfo : firstSlideMobile}
-                    alt="Best NFT Marketplace"
-                    className="hero-content-img"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-            ) : (
-              <>
-                <div className="text-center">
-                  <div className="game-alert-message  alert-signin text-center">
-                    <p className="display-6 mt-3 mb-5 text-uppercase ">
-                      <span>Sorry.</span> You're Not Whitelisted Yet For The
-                      Closed Community <span>Test Run.</span> Watch This Space
-                      For Updates!
-                    </p>
-                  </div>
-                </div>
-              </>
-            )}
-          </>
-        ) : (
-          <>
-            <div className="text-center">
-              <div className="game-alert-message  alert-signin text-center">
-                <p className="display-6 mt-3 mb-5 text-uppercase ">
-                  Please <span>Sign In </span> To Check Your Whitelist Status
-                  For The Closed Community <span>Test Run.</span>
-                </p>
-                <a
-                  onClick={() =>
-                    window.open(
-                      `${process.env.REACT_APP_ACCOUNTS_URL}/signin?redirect=${
-                        window.location.href.split("?")[0]
-                      }?download=mclgame`,
-                      "_self"
-                    )
-                  }
-                >
-                  <button className="read_moree fs-5 fw-bold">
-                    <span className="text-uppercase">Sign In</span>
-                  </button>
-                </a>
-              </div>
-            </div>
-          </>
-        )} */}
-      </section>
-      {/* <div class="hr-line"></div> */}
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+      <div class="hr-line"></div>
 
       {/* <section className="whitepaper_sec py-5">
         <div className="container">
