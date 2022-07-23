@@ -105,11 +105,11 @@ const Home = () => {
         {/* <TopBuyers /> */}
         {/* <TopSellers /> */}
         <HeroBanner />
-        <LeaderBoard />
+        {/* <LeaderBoard /> */}
         {/* <NewDropSection /> */}
         {/* <TrailerVideo /> */}
-        {/* <MclGameLaunchTimer /> */}
-        <MclGameLaunchOne />
+        <MclGameLaunchTimer />
+        {/* <MclGameLaunchOne /> */}
         {/* <MclGameLaunchTwo /> */}
         {/* <CollectionList /> */}
         <Trending />

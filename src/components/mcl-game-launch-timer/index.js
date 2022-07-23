@@ -15,7 +15,7 @@ import Marquee from "react-fast-marquee";
 import { tournamentsApi } from "../../api/base-methods";
 
 const MclGameLaunchTimer = () => {
-  const white_paper_start_date = "July 22 2022 11:18:00";
+  const white_paper_start_date = "July 23 2022 07:45:00";
   // const liveST = "2022-07-22T11:19:00.000Z";
   // const liveET = "2022-07-22T11:20:00.000Z";
   // const upComing = "2022-07-22T11:21:00.000Z";
@@ -30,6 +30,39 @@ const MclGameLaunchTimer = () => {
   const [isStarted, setIsStarted] = useState(false);
   const [isEnded, setIsEnded] = useState(false);
   const cTime = new Date();
+
+  const [isLive, setIsLive] = useState(false);
+  const [isUpcoming, setIsUpcoming] = useState(false);
+  const [isLiveStarted, setIsLiveStarted] = useState(false);
+  const [isLiveEnded, setIsLiveEnded] = useState(false);
+  const [isUpcomingStarted, setIsUpcomingStarted] = useState(false);
+
+  const data = {
+    live: [
+      {
+        name: "Grand Slam 1",
+        start_time: "2022-07-23T08:55:00.000Z",
+        end_time: "2022-07-23T07:54:00.000Z",
+      },
+      {
+        name: "Warm-up League",
+        start_time: "2022-07-21T21:05:00.000Z",
+        end_time: "2022-07-22T21:02:00.000Z",
+      },
+    ],
+    upcoming: [
+      {
+        name: "Manimohan Upcoming",
+        start_time: "2022-07-23T07:55:00.000Z",
+        end_time: "2022-07-23T15:12:00.000Z",
+      },
+      {
+        name: "tournamenttttee",
+        start_time: "2022-08-17T14:47:00.000Z",
+        end_time: "2022-08-18T14:47:00.000Z",
+      },
+    ],
+  };
 
   const timeFunction = (check = false) => {
     var offset = new Date().getTimezoneOffset();
@@ -66,32 +99,65 @@ const MclGameLaunchTimer = () => {
   const tournamentsTimer = async () => {
     try {
       let result = await tournamentsApi();
-
-      const [live] = result.data.data?.live;
-      const [upcoming] = result.data.data?.upcoming;
-      const start_time = live ? live?.start_time : upcoming?.start_time;
-      console.log(live, "live");
-      console.log(upcoming, "upcoming");
-      setLiveTournament(live);
-      setUpcomingTournament(upcoming);
-      startTime(start_time);
-      setIsStarted(new Date().getTime() >= new Date(start_time).getTime());
-      setIsEnded(new Date().getTime() > new Date(live?.end_time).getTime());
-      // setIsStarted(new Date().getTime() >= new Date(liveST).getTime());
-      // setIsEnded(new Date().getTime() > new Date(liveET).getTime());
+      showTimer(data);
     } catch (error) {
       console.log(error);
     }
   };
+  // const tournamentsTimer = async () => {
+  //   try {
+  //     let result = await tournamentsApi();
 
-  const handleStartTimer = () => {
-    setIsStarted(true);
+  //     const [live] = result.data.data?.live;
+  //     const [upcoming] = result.data.data?.upcoming;
+  //     const start_time = live ? live?.start_time : upcoming?.start_time;
+  //     console.log(live, "live");
+  //     console.log(upcoming, "upcoming");
+  //     setLiveTournament(live);
+  //     setUpcomingTournament(upcoming);
+  //     startTime(start_time);
+  //     setIsStarted(new Date().getTime() >= new Date(start_time).getTime());
+  //     setIsEnded(new Date().getTime() > new Date(live?.end_time).getTime());
+  //     // setIsStarted(new Date().getTime() >= new Date(liveST).getTime());
+  //     // setIsEnded(new Date().getTime() > new Date(liveET).getTime());
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  const showTimer = (data) => {
+    const live = data?.live;
+    const upcoming = data?.upcoming;
+    setIsLive(live?.length > 0);
+    setIsUpcoming(upcoming?.length > 0);
+
+    if (live?.length > 0) {
+      const [tournament] = live;
+      setIsLiveStarted(
+        new Date().getTime() >= new Date(tournament?.start_time).getTime()
+      );
+      setIsLiveEnded(
+        new Date().getTime() > new Date(tournament?.end_time).getTime()
+      );
+      setLiveTournament(tournament);
+    }
+    if (upcoming?.length > 0) {
+      const [tournament] = upcoming;
+      setIsUpcomingStarted(
+        new Date().getTime() >= new Date(tournament?.start_time).getTime()
+      );
+      setUpcomingTournament(tournament);
+    }
   };
-  const handleEndTimer = () => {
-    setIsEnded(true);
+
+  const handleLiveStartTimer = () => {
+    setIsLiveStarted(true);
   };
-  const handleUpcomingTimer = () => {
-    // window.location.reload();
+  const handleLiveEndTimer = () => {
+    setIsLiveEnded(true);
+  };
+  const handleUpcomingStartTimer = () => {
+    setIsUpcomingStarted(true);
   };
 
   return (
@@ -102,7 +168,7 @@ const MclGameLaunchTimer = () => {
             <section
               // className="trailer_section "
               className={
-                !end_time || !isStarted
+                !end_time || !isLive
                   ? "trailer_section"
                   : "trailer_section live"
               }
@@ -117,24 +183,49 @@ const MclGameLaunchTimer = () => {
                         </div>
                         <h2 className="mb-2 text-center">
                           {!end_time && <>MCL GAME LAUNCH IN</>}
-                          {!isStarted && end_time && (
+                          {isLive &&
+                            end_time &&
+                            isUpcomingStarted &&
+                            !isUpcoming && <>{liveTournament?.name}</>}
+                          {/* {!isEnded && isLive && end_time && (
                             <>{liveTournament?.name}</>
-                          )}
-                          {!isEnded && isStarted && end_time && (
-                            <>{liveTournament?.name}</>
-                          )}
-                          {isEnded && end_time && (
-                            <>{upcomingTournament?.name}</>
-                          )}
+                          )} */}
+                          {!isLive &&
+                            isUpcoming &&
+                            end_time &&
+                            !isUpcomingStarted &&
+                            upcomingTournament?.start_time && (
+                              <>{upcomingTournament?.name}</>
+                            )}
+                          {isLive &&
+                            isUpcoming &&
+                            end_time &&
+                            isLiveStarted &&
+                            isLiveEnded &&
+                            !isUpcomingStarted &&
+                            upcomingTournament?.start_time && (
+                              <>{upcomingTournament?.name}</>
+                            )}
                         </h2>
                         <h4 className="mb-2 text-center text-white fs-2">
-                          {!isStarted && end_time && <>STARTS IN</>}
+                          {isLive && end_time && !isLiveStarted && (
+                            <>TOURNAMENT STARTS IN</>
+                          )}
                         </h4>
+                        <h2 className="mb-2 text-center">
+                          {isUpcomingStarted && isLiveStarted && (
+                            <>
+                              Play the World's First Hit-To-Earn Cricket NFT
+                              Game
+                            </>
+                          )}
+                        </h2>
                         {/* <h2 className="mb-2 text-center">
                           {liveTournament?.name}
                         </h2> */}
                         <h4 className="mb-2 text-center">
-                          {!isEnded && isStarted && end_time && (
+                          {/* {!isEnded && isStarted && end_time && ( */}
+                          {isLive && end_time && isLiveStarted && !isLiveEnded && (
                             <>
                               {/* <div className="live-game my-4">
                                 <img src={Liveicon} />
@@ -157,22 +248,6 @@ const MclGameLaunchTimer = () => {
                                 handleEndEvent={handleTimer}
                                 cTime={cTime}
                               />
-                              {/* <a
-                                className="download-icon-btn my-5 d-block"
-                                href="https://dl.jump.trade/mcl.apk"
-                              >
-                                <img src={Downloadicon} />
-                              </a> */}
-                            </>
-                          )}
-                          {!isStarted && end_time && (
-                            <>
-                              <NFTCounter
-                                time={liveTournament?.start_time}
-                                timeClass="counter-time"
-                                handleEndEvent={handleStartTimer}
-                                cTime={cTime}
-                              />
                               <a
                                 className="download-icon-btn my-5 d-block"
                                 href="https://dl.jump.trade/mcl.apk"
@@ -181,59 +256,121 @@ const MclGameLaunchTimer = () => {
                               </a>
                             </>
                           )}
+                          {isLive &&
+                            end_time &&
+                            !isLiveStarted &&
+                            liveTournament?.start_time && (
+                              <>
+                                <NFTCounter
+                                  time={liveTournament?.start_time}
+                                  timeClass="counter-time"
+                                  handleEndEvent={handleLiveStartTimer}
+                                  cTime={cTime}
+                                />
+                                <a
+                                  className="download-icon-btn my-5 d-block"
+                                  href="https://dl.jump.trade/mcl.apk"
+                                >
+                                  <img src={Downloadicon} />
+                                </a>
+                              </>
+                            )}
 
-                          {!isEnded && isStarted && end_time && (
-                            <>
-                              <NFTCounter
-                                time={liveTournament?.end_time}
-                                timeClass="counter-time"
-                                handleEndEvent={handleEndTimer}
-                                cTime={cTime}
-                              />
-                              <h2 className="mb-2 text-center ends-tournament">
-                                {!isEnded && isStarted && end_time && (
-                                  <>TOURNAMENT ENDS IN</>
-                                )}
-                              </h2>
-                            </>
-                          )}
+                          {isLive &&
+                            end_time &&
+                            isLiveStarted &&
+                            !isLiveEnded &&
+                            liveTournament?.end_time && (
+                              <>
+                                <NFTCounter
+                                  time={liveTournament?.end_time}
+                                  timeClass="counter-time"
+                                  handleEndEvent={handleLiveEndTimer}
+                                  cTime={cTime}
+                                />
+                                <h2 className="mb-2 text-center ends-tournament">
+                                  {isLive &&
+                                    end_time &&
+                                    isLiveStarted &&
+                                    !isLiveEnded && <>TOURNAMENT ENDS IN</>}
+                                </h2>
+                                <a
+                                  className="download-icon-btn my-5 d-block"
+                                  href="https://dl.jump.trade/mcl.apk"
+                                >
+                                  <img src={Downloadicon} />
+                                </a>
+                              </>
+                            )}
 
-                          {isEnded && end_time && (
-                            <>
-                              {!upcomingTournament.length > 0 ? (
-                                <>
-                                  <NFTCounter
-                                    time={upcomingTournament?.start_time}
-                                    // time={upComing}
-                                    timeClass="counter-time"
-                                    cTime={cTime}
-                                    handleEndEvent={handleUpcomingTimer}
-                                  />
-                                  <h2 className="mb-2 text-center ends-tournament">
-                                    {isEnded && end_time && (
+                          {isLive &&
+                            isUpcoming &&
+                            end_time &&
+                            isLiveStarted &&
+                            isLiveEnded &&
+                            !isUpcomingStarted &&
+                            upcomingTournament?.start_time && (
+                              <>
+                                <NFTCounter
+                                  time={upcomingTournament?.start_time}
+                                  // time={upComing}
+                                  timeClass="counter-time"
+                                  cTime={cTime}
+                                  handleEndEvent={handleUpcomingStartTimer}
+                                />
+                                <h2 className="mb-2 text-center ends-tournament">
+                                  {isLive &&
+                                    isUpcoming &&
+                                    end_time &&
+                                    isLiveStarted &&
+                                    isLiveEnded &&
+                                    !isUpcomingStarted && (
                                       <>UPCOMING TOURNAMENT</>
                                     )}
-                                  </h2>
-                                  <a
-                                    className="download-icon-btn my-5 d-block"
-                                    href="https://dl.jump.trade/mcl.apk"
-                                  >
-                                    <img src={Downloadicon} />
-                                  </a>
-                                </>
-                              ) : (
-                                <h2 className="mb-2 text-center ends-tournament">
-                                  <>
-                                    Play the World's First Hit-To-Earn Cricket
-                                    NFT Game
-                                  </>
                                 </h2>
-                              )}
-                            </>
-                          )}
+
+                                <a
+                                  className="download-icon-btn my-5 d-block"
+                                  href="https://dl.jump.trade/mcl.apk"
+                                >
+                                  <img src={Downloadicon} />
+                                </a>
+                              </>
+                            )}
+
+                          {!isLive &&
+                            isUpcoming &&
+                            end_time &&
+                            !isUpcomingStarted &&
+                            upcomingTournament?.start_time && (
+                              <>
+                                <NFTCounter
+                                  time={upcomingTournament?.start_time}
+                                  // time={upComing}
+                                  timeClass="counter-time"
+                                  cTime={cTime}
+                                  handleEndEvent={handleUpcomingStartTimer}
+                                />
+
+                                <h2 className="mb-2 text-center ends-tournament">
+                                  {!isLive &&
+                                    isUpcoming &&
+                                    end_time &&
+                                    !isUpcomingStarted && (
+                                      <>UPCOMING TOURNAMENT</>
+                                    )}
+                                </h2>
+                                <a
+                                  className="download-icon-btn my-5 d-block"
+                                  href="https://dl.jump.trade/mcl.apk"
+                                >
+                                  <img src={Downloadicon} />
+                                </a>
+                              </>
+                            )}
                         </h4>
                       </div>
-                      {(!end_time || !isStarted) && (
+                      {isLive && end_time && !isLiveStarted && (
                         <>
                           <div className="mock-device">
                             <img src={MockHand} />
@@ -252,7 +389,7 @@ const MclGameLaunchTimer = () => {
                         </>
                       )}
 
-                      {!isEnded && isStarted && end_time && (
+                      {!isLive && end_time && !isLiveStarted && (
                         <>
                           <Marquee
                             pauseOnHover
@@ -271,6 +408,19 @@ const MclGameLaunchTimer = () => {
                           >
                             <img src={Downloadicon} />
                           </a>
+                        </>
+                      )}
+                      {isUpcomingStarted && (
+                        <>
+                          <a
+                            className="download-icon-btn my-5 d-block"
+                            href="https://dl.jump.trade/mcl.apk"
+                          >
+                            <img src={Downloadicon} />
+                          </a>
+                          <button onClick={() => window.location.reload()}>
+                            reload
+                          </button>
                         </>
                       )}
                     </div>
