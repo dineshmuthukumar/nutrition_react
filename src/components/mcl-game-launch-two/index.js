@@ -171,7 +171,7 @@ const MclGameLaunchTimer = () => {
 
                       <a
                         className="download-icon-btn my-5 d-block"
-                        href="https://dl.jump.trade/mcl.apk"
+                        href={process.env.REACT_APP_MCL_GAME_LINK}
                       >
                         <img src={Downloadicon} />
                       </a>
