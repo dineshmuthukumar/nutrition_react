@@ -1,5 +1,6 @@
-import React, { useRef, useState, useEffect } from "react";
-import "./style.scss";
+import React, { useState, useEffect } from "react";
+import dayjs from "dayjs";
+
 import NFTCounter from "../nft-counter";
 import MockHand from "../../images/mcl-game-launcher/mock1.png";
 import Search from "../../images/mcl-game-launcher/search-interface-symbol.svg";
@@ -15,6 +16,8 @@ import Marquee from "react-fast-marquee";
 import { tournamentsApi } from "../../api/base-methods";
 import { MdRefresh } from "react-icons/md";
 
+import "./style.scss";
+
 const MclGameLaunchTimer = () => {
   // const white_paper_start_date = "July 23 2022 07:45:00";
 
@@ -22,11 +25,14 @@ const MclGameLaunchTimer = () => {
   // const [end_time, set_end_time] = useState(false);
   const [liveTournament, setLiveTournament] = useState({});
   const [upcomingTournament, setUpcomingTournament] = useState({});
+  const [finishedTournament, setFinishedTournament] = useState({});
+
   const [cTime, setCTime] = useState(new Date());
 
   // Timed Auction
   const [isLive, setIsLive] = useState(false);
   const [isUpcoming, setIsUpcoming] = useState(false);
+  const [isFinished, setIsFinished] = useState(false);
   const [isLiveStarted, setIsLiveStarted] = useState(false);
   const [isLiveEnded, setIsLiveEnded] = useState(false);
   const [isUpcomingStarted, setIsUpcomingStarted] = useState(false);
@@ -76,8 +82,11 @@ const MclGameLaunchTimer = () => {
   const showTimer = (data) => {
     const live = data?.live;
     const upcoming = data?.upcoming;
+    const finished = data?.finished;
+
     setIsLive(live?.length > 0);
     setIsUpcoming(upcoming?.length > 0);
+    setIsFinished(finished?.length > 0);
 
     if (live?.length > 0) {
       const [tournament] = live;
@@ -95,6 +104,10 @@ const MclGameLaunchTimer = () => {
         new Date().getTime() >= new Date(tournament?.start_time).getTime()
       );
       setUpcomingTournament(tournament);
+    }
+    if (finished?.length > 0) {
+      const [tournament] = finished;
+      setFinishedTournament(tournament);
     }
   };
 
@@ -199,13 +212,65 @@ const MclGameLaunchTimer = () => {
                         {/* UPCOMING STARTS IN BLOCK */}
 
                         {/* NO LIVE & UPCOMING DATA BLOCK */}
-                        {((isUpcoming && isUpcomingStarted) ||
-                          (!isUpcoming && isLive && isLiveEnded)) && (
+                        {isUpcoming && isUpcomingStarted && (
+                          <>
+                            <h2 className="mt-2 mb-2 text-center">
+                              {upcomingTournament?.name}
+                            </h2>
+                            <h4 className="mb-2 text-center text-white fs-2">
+                              STARTED
+                            </h4>
+                            <h4 className="text-center game-counter">
+                              <a
+                                className="download-icon-btn my-5 d-block"
+                                href={process.env.REACT_APP_MCL_GAME_LINK}
+                              >
+                                <img src={Downloadicon} />
+                              </a>
+                            </h4>
+                          </>
+                        )}
+
+                        {!isLive && !isUpcoming && (
+                          <>
+                            {isFinished ? (
+                              <>
+                                <h2 className="mb-2 text-center">
+                                  {finishedTournament?.name}
+                                </h2>
+                                <h4 className="mb-2 text-center text-white fs-2">
+                                  TOURNAMENT ENDED ON
+                                </h4>
+                                <h4 className="mb-2 text-center text-white fs-2">
+                                  {dayjs(finishedTournament?.end_time).format(
+                                    "MMM D, YYYY hh:mm A"
+                                  )}
+                                </h4>
+                              </>
+                            ) : (
+                              <h2 className="mt-2 mb-2 text-center">
+                                Play the World's First Hit-To-Earn Cricket NFT
+                                Game
+                              </h2>
+                            )}
+                            <h4 className="text-center game-counter">
+                              <a
+                                className="download-icon-btn my-5 d-block"
+                                href={process.env.REACT_APP_MCL_GAME_LINK}
+                              >
+                                <img src={Downloadicon} />
+                              </a>
+                            </h4>
+                          </>
+                        )}
+
+                        {isLive && isLiveStarted && isLiveEnded && !isUpcoming && (
                           <>
                             <h2 className="mt-2 mb-2 text-center">
                               Play the World's First Hit-To-Earn Cricket NFT
                               Game
                             </h2>
+
                             <h4 className="text-center game-counter">
                               <a
                                 className="download-icon-btn my-5 d-block"
