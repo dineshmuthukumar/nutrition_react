@@ -13,6 +13,7 @@ import Downloadicon from "../../images/mcl-game-launcher/downloadicon.png";
 
 import Marquee from "react-fast-marquee";
 import { tournamentsApi } from "../../api/base-methods";
+import { MdRefresh } from "react-icons/md";
 
 const MclGameLaunchTimer = () => {
   const white_paper_start_date = "July 23 2022 07:45:00";
@@ -418,9 +419,10 @@ const MclGameLaunchTimer = () => {
                           >
                             <img src={Downloadicon} />
                           </a>
-                          <button onClick={() => window.location.reload()}>
-                            reload
-                          </button>
+                          <MdRefresh
+                            className="reload-btn"
+                            onClick={() => window.location.reload()}
+                          />
                         </>
                       )}
                     </div>
