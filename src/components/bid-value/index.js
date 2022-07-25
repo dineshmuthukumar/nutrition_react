@@ -26,10 +26,7 @@ const BidValue = ({
 }) => {
   const history = useHistory();
   const { user } = useSelector((state) => state.user.data);
-  // console.log("shdujdfkfkefkreffrffr", user);
-  const userName = user?.private
-    ? `@${user.private_name}`
-    : `@${user?.first_name}${user?.last_name}`;
+
 
   return (
     <div className={`current-bid ${ClassNames}`}>
@@ -73,7 +70,9 @@ const BidValue = ({
                   }
                 }}
               >
-                {user?.slug === userSlug ? userName : name}
+                {user?.slug === userSlug
+                  ? `@${user?.first_name}${user?.last_name}`
+                  : name}
               </div>
             ) : (
               <div className="win-user-name">{name}</div>
