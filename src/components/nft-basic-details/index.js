@@ -219,7 +219,7 @@ const NFTBaseDetails = ({
                       disabled={false}
                       className="btn btn-dark text-center btn-lg mt-2 rounded-pill place-bid-btn"
                     >
-                      List for sale1
+                      List for sale
                     </button>
                   </OverlayTrigger>
                 ) : days === 0 &&
