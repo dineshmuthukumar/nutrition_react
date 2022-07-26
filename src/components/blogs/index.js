@@ -19,6 +19,9 @@ import video4 from "../../images/video/mills.mp4";
 import video5 from "../../images/video/mithali.mp4";
 import video6 from "../../images/video/jp.mp4";
 import video7 from "../../images/video/jordan.mp4";
+import video8 from "../../images/video/nft-investment.mp4";
+import video9 from "../../images/video/nft-investor.mp4";
+import video10 from "../../images/video/women.mp4";
 import v1 from "../../images/badri.jpeg";
 import v2 from "../../images/hbj.jpeg";
 import v3 from "../../images/w-cap.jpeg";
@@ -26,6 +29,9 @@ import v4 from "../../images/boss.jpeg";
 import v5 from "../../images/mithali.jpeg";
 import v6 from "../../images/cap.jpeg";
 import v7 from "../../images/black-cap.jpeg";
+import v8 from "../../images/nft-investment.jpg";
+import v9 from "../../images/nft-investor.jpg";
+import v10 from "../../images/women.jpg";
 import "./style.scss";
 
 const BlogList = () => {
@@ -142,6 +148,42 @@ const BlogList = () => {
                 <OwlCarousel className="owl-theme" {...options}>
                   <div class="item">
                     <Player
+                      poster={v8}
+                      playsInline
+                      src={video8}
+                      fluid={false}
+                      width={"100%"}
+                      height={400}
+                    >
+                      <BigPlayButton position="center" />
+                    </Player>
+                  </div>
+                  <div class="item">
+                    <Player
+                      poster={v9}
+                      playsInline
+                      src={video9}
+                      fluid={false}
+                      width={"100%"}
+                      height={400}
+                    >
+                      <BigPlayButton position="center" />
+                    </Player>
+                  </div>
+                  <div class="item">
+                    <Player
+                      poster={v10}
+                      playsInline
+                      src={video10}
+                      fluid={false}
+                      width={"100%"}
+                      height={400}
+                    >
+                      <BigPlayButton position="center" />
+                    </Player>
+                  </div>
+                  <div class="item">
+                    <Player
                       poster={v1}
                       playsInline
                       src={video1}
@@ -152,7 +194,6 @@ const BlogList = () => {
                       <BigPlayButton position="center" />
                     </Player>
                   </div>
-
                   <div class="item">
                     <Player
                       poster={v2}
