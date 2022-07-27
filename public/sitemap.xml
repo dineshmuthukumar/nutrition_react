@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
+>
 
 <url>
   <loc>https://www.jump.trade/</loc>
@@ -34,14 +35,16 @@
 </url>
 
 <url>
-<loc>https://www.jump.trade/nft-marketplace/cricket-player-nfts/3WAoJq4KtGY72QdN</loc>
+<loc
+    >https://www.jump.trade/nft-marketplace/cricket-player-nfts/3WAoJq4KtGY72QdN</loc>
 <lastmod>2022-06-15T10:55:20+00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.90</priority>
 </url>
 
 <url>
-<loc>https://www.jump.trade/nft-marketplace/cricket-bat-nfts/5LpmjlAwtGEqK3rO</loc>
+<loc
+    >https://www.jump.trade/nft-marketplace/cricket-bat-nfts/5LpmjlAwtGEqK3rO</loc>
 <lastmod>2022-06-15T10:55:20+00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.90</priority>
@@ -69,7 +72,8 @@
 </url>
 
 <url>
-<loc>https://www.jump.trade/nft-marketplace/cricket-nfts/sachin-tendulkar-nfts/</loc>
+<loc
+    >https://www.jump.trade/nft-marketplace/cricket-nfts/sachin-tendulkar-nfts/</loc>
 <lastmod>2022-06-15T10:55:20+00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.90</priority>
@@ -83,14 +87,16 @@
 </url>
 
 <url>
-<loc>https://www.jump.trade/nft-marketplace/cricket-nfts/rahul-dravid-nfts/</loc>
+<loc
+    >https://www.jump.trade/nft-marketplace/cricket-nfts/rahul-dravid-nfts/</loc>
 <lastmod>2022-06-15T10:55:20+00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.90</priority>
 </url>
 
 <url>
-<loc>https://www.jump.trade/nft-marketplace/cricket-nfts/ricky-ponting-nfts/</loc>
+<loc
+    >https://www.jump.trade/nft-marketplace/cricket-nfts/ricky-ponting-nfts/</loc>
 <lastmod>2022-06-15T10:55:20+00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.90</priority>
@@ -104,56 +110,64 @@
 </url>
 
 <url>
-<loc>https://www.jump.trade/nft-marketplace/cricket-nfts/viv-richards-nfts/</loc>
+<loc
+    >https://www.jump.trade/nft-marketplace/cricket-nfts/viv-richards-nfts/</loc>
 <lastmod>2022-06-15T10:55:20+00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.90</priority>
 </url>
 
 <url>
-<loc>https://www.jump.trade/nft-marketplace/cricket-nfts/shane-watson-nfts/</loc>
+<loc
+    >https://www.jump.trade/nft-marketplace/cricket-nfts/shane-watson-nfts/</loc>
 <lastmod>2022-06-15T10:55:20+00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.90</priority>
 </url>
 
 <url>
-<loc>https://www.jump.trade/nft-marketplace/cricket-nfts/harbhajan-singh-nfts/</loc>
+<loc
+    >https://www.jump.trade/nft-marketplace/cricket-nfts/harbhajan-singh-nfts/</loc>
 <lastmod>2022-06-15T10:55:20+00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.90</priority>
 </url>
 
 <url>
-<loc>https://www.jump.trade/nft-marketplace/cricket-nfts/matthew-hayden-nfts/</loc>
+<loc
+    >https://www.jump.trade/nft-marketplace/cricket-nfts/matthew-hayden-nfts/</loc>
 <lastmod>2022-06-15T10:55:20+00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.90</priority>
 </url>
 
 <url>
-<loc>https://www.jump.trade/nft-marketplace/cricket-nfts/andrew-symonds-nfts/</loc>
+<loc
+    >https://www.jump.trade/nft-marketplace/cricket-nfts/andrew-symonds-nfts/</loc>
 <lastmod>2022-06-15T10:55:20+00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.90</priority>
 </url>
 
 <url>
-<loc>https://www.jump.trade/nft-marketplace/cricket-nfts/adam-gilchrist-nfts/</loc>
+<loc
+    >https://www.jump.trade/nft-marketplace/cricket-nfts/adam-gilchrist-nfts/</loc>
 <lastmod>2022-06-15T10:55:20+00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.90</priority>
 </url>
 
 <url>
-<loc>https://www.jump.trade/nft-marketplace/cricket-nfts/glenn-mcgrath-nfts/</loc>
+<loc
+    >https://www.jump.trade/nft-marketplace/cricket-nfts/glenn-mcgrath-nfts/</loc>
 <lastmod>2022-06-15T10:55:20+00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.90</priority>
 </url>
 
 <url>
-<loc>https://www.jump.trade/nft-marketplace/cricket-nfts/darren-lehmann-nfts/</loc>
+<loc
+    >https://www.jump.trade/nft-marketplace/cricket-nfts/darren-lehmann-nfts/</loc>
 <lastmod>2022-06-15T10:55:20+00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.90</priority>
@@ -167,35 +181,40 @@
 </url>
 
 <url>
-<loc>https://www.jump.trade/nft-marketplace/cricket-nfts/michael-bevan-nfts/</loc>
+<loc
+    >https://www.jump.trade/nft-marketplace/cricket-nfts/michael-bevan-nfts/</loc>
 <lastmod>2022-06-15T10:55:20+00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.90</priority>
 </url>
 
 <url>
-<loc>https://www.jump.trade/nft-marketplace/cricket-nfts/damien-martyn-nfts/</loc>
+<loc
+    >https://www.jump.trade/nft-marketplace/cricket-nfts/damien-martyn-nfts/</loc>
 <lastmod>2022-06-15T10:55:20+00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.90</priority>
 </url>
 
 <url>
-<loc>https://www.jump.trade/nft-marketplace/cricket-nfts/2011-champions-nfts/</loc>
+<loc
+    >https://www.jump.trade/nft-marketplace/cricket-nfts/2011-champions-nfts/</loc>
 <lastmod>2022-06-15T10:55:20+00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.90</priority>
 </url>
 
 <url>
-<loc>https://www.jump.trade/nft-marketplace/cricket-nfts/2003-champions-nfts/</loc>
+<loc
+    >https://www.jump.trade/nft-marketplace/cricket-nfts/2003-champions-nfts/</loc>
 <lastmod>2022-06-15T10:55:20+00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.90</priority>
 </url>
 
 <url>
-<loc>https://www.jump.trade/nft-marketplace/cricket-nfts/1983-champion-nfts/</loc>
+<loc
+    >https://www.jump.trade/nft-marketplace/cricket-nfts/1983-champion-nfts/</loc>
 <lastmod>2022-06-15T10:55:20+00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.90</priority>
@@ -251,7 +270,8 @@
 </url>
 
 <url>
-  <loc>https://www.jump.trade/blog/the-story-of-thoughts-what-went-behind-the-creation-of-mcl</loc>
+  <loc
+    >https://www.jump.trade/blog/the-story-of-thoughts-what-went-behind-the-creation-of-mcl</loc>
   <lastmod>2022-06-15T10:55:20+00:00</lastmod>
   <changefreq>daily</changefreq>
   <priority>0.90</priority>
@@ -265,14 +285,16 @@
 </url>
 
 <url>
-  <loc>https://www.jump.trade/blog/meta-cricket-league-nft-collection-jump-trade</loc>
+  <loc
+    >https://www.jump.trade/blog/meta-cricket-league-nft-collection-jump-trade</loc>
   <lastmod>2022-06-15T10:55:20+00:00</lastmod>
   <changefreq>daily</changefreq>
   <priority>0.90</priority>
 </url>
 
 <url>
-  <loc>https://www.jump.trade/blog/things-you-need-to-know-about-the-mcl-game</loc>
+  <loc
+    >https://www.jump.trade/blog/things-you-need-to-know-about-the-mcl-game</loc>
   <lastmod>2022-06-15T10:55:20+00:00</lastmod>
   <changefreq>daily</changefreq>
   <priority>0.90</priority>
@@ -286,28 +308,32 @@
 </url>
 
 <url>
-  <loc>https://www.jump.trade/blog/how-to-choose-the-right-play-to-earn-game-for-you</loc>
+  <loc
+    >https://www.jump.trade/blog/how-to-choose-the-right-play-to-earn-game-for-you</loc>
   <lastmod>2022-06-15T10:55:20+00:00</lastmod>
   <changefreq>daily</changefreq>
   <priority>0.90</priority>
 </url>
 
 <url>
-  <loc>https://www.jump.trade/blog/integrating-collectibles-with-playables-the-jump-trade-nft-revolution</loc>
+  <loc
+    >https://www.jump.trade/blog/integrating-collectibles-with-playables-the-jump-trade-nft-revolution</loc>
   <lastmod>2022-06-15T10:55:20+00:00</lastmod>
   <changefreq>daily</changefreq>
   <priority>0.90</priority>
 </url>
 
 <url>
-  <loc>https://www.jump.trade/blog/jump-trade-nft-marketplace-champion-buyer-contest-2-0</loc>
+  <loc
+    >https://www.jump.trade/blog/jump-trade-nft-marketplace-champion-buyer-contest-2-0</loc>
   <lastmod>2022-06-15T10:55:20+00:00</lastmod>
   <changefreq>daily</changefreq>
   <priority>0.90</priority>
 </url>
 
 <url>
-  <loc>https://www.jump.trade/blog/the-evolution-of-belongingness-in-the-world-of-cricket-how-does-jump-trade-fit</loc>
+  <loc
+    >https://www.jump.trade/blog/the-evolution-of-belongingness-in-the-world-of-cricket-how-does-jump-trade-fit</loc>
   <lastmod>2022-06-15T10:55:20+00:00</lastmod>
   <changefreq>daily</changefreq>
   <priority>0.90</priority>
@@ -325,6 +351,46 @@
   <lastmod>2022-06-15T10:55:20+00:00</lastmod>
   <changefreq>daily</changefreq>
   <priority>0.90</priority>
+</url>
+
+<url>
+<loc
+    >https://www.jump.trade/blog/is-nft-a-passing-fad-or-a-burgeoning-market-with-long-term-potential</loc>
+<lastmod>2022-07-27T10:55:20+00:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.90</priority>
+</url>
+
+<url>
+<loc
+    >https://www.jump.trade/blog/is-web3-the-power-source-for-the-future-of-gaming</loc>
+<lastmod>2022-07-27T10:55:20+00:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.90</priority>
+</url>
+
+<url>
+<loc
+    >https://www.jump.trade/blog/what-does-nfts-means-for-gamers-and-how-is-it-changing-the-way-they-play</loc>
+<lastmod>2022-07-27T10:55:20+00:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.90</priority>
+</url>
+
+<url>
+<loc
+    >https://www.jump.trade/blog/announcing-the-release-of-meta-cricket-league-the-worlds-first-p2e-nft-cricket-game</loc>
+<lastmod>2022-07-27T10:55:20+00:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.90</priority>
+</url>
+
+<url>
+<loc
+    >https://www.jump.trade/blog/re-live-the-glorious-past-the-1983-2003-2011-nft-collectibles</loc>
+<lastmod>2022-07-27T10:55:20+00:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.90</priority>
 </url>
 
 <url>
