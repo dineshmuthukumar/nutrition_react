@@ -26,6 +26,9 @@ import MclGameLaunchTimer from "../components/mcl-game-launch-timer";
 import MclGameLaunchOne from "../components/mcl-game-launch-one";
 import MclGameLaunchTwo from "../components/mcl-game-launch-two";
 import LeaderBoard from "../components/leader-board";
+import MclCompletedTournaments from "../components/mcl-completed-tournaments";
+import MclTournaments from "../components/mcl-tournaments";
+import MclGameButton from "../components/mcl-game-button";
 
 const Home = () => {
   const { url } = useRouteMatch();
@@ -112,6 +115,12 @@ const Home = () => {
         {/* <MclGameLaunchOne /> */}
         {/* <MclGameLaunchTwo /> */}
         {/* <CollectionList /> */}
+
+        {/* design */}
+        {/* <MclTournaments />
+        <MclCompletedTournaments />
+        <MclGameButton /> */}
+
         <Trending />
         <LiveAuctions />
         <RecentlySoldNFT />
