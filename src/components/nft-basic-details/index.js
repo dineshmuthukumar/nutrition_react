@@ -63,7 +63,7 @@ const NFTBaseDetails = ({
         <p className="password-terms">
           {user?.kyc_status !== "success"
             ? "Please complete your KYC process to be eligible for listing NFTs for sale."
-            : "You cannot carry out this action. Please check with your guild admin."}
+            : "You Do Not Have Permission To Initiate This Action. Please Contact Your Guild Administrator."}
         </p>
       </Popover.Body>
     </Popover>
