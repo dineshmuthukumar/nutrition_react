@@ -63,7 +63,7 @@ const NFTBaseDetails = ({
         <p className="password-terms">
           {user?.kyc_status !== "success"
             ? "Please complete your KYC process to be eligible for listing NFTs for sale."
-            : "You Do Not Have Permission To Initiate This Action. Please Contact Your Guild Administrator."}
+            : "You do not have permission to initiate this action."}
         </p>
       </Popover.Body>
     </Popover>
@@ -279,7 +279,7 @@ const NFTBaseDetails = ({
                 );
               } else if (isOwner && ownerOrdersList.length > 0) {
                 if (isQuantityAvailable != null && isQuantityAvailable > 0) {
-                  return (user?.kyc_status !== "success" || !nft?.put_on_sale ) ? (
+                  return user?.kyc_status !== "success" || !nft?.put_on_sale ? (
                     <OverlayTrigger
                       trigger={["click"]}
                       rootClose={true}
