@@ -9,40 +9,58 @@ import "./style.scss";
 const MclCompletedTournaments = () => {
   return (
     <>
-      <OwlCarousel
-        className="owl-theme completed-tournament-list-carousel"
-        loop
-        margin={0}
-        smartSpeed={500}
-        center={true}
-        dots={true}
-        responsive={{
-          0: {
-            items: 1,
-          },
-          768: {
-            items: 3,
-          },
-          800: {
-            items: 3,
-          },
-          1024: {
-            items: 5,
-          },
-          1200: {
-            items: 5,
-          },
-          1541: {
-            items: 5,
-          },
-        }}
-      >
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-      </OwlCarousel>
+      <section className="complete-tournament-section">
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-sm-12">
+              <h3 className="sec-title">
+                Completed
+                <span>tournaments</span>
+              </h3>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-sm-12">
+              <OwlCarousel
+                className="owl-theme completed-tournament-list-carousel"
+                loop
+                margin={0}
+                smartSpeed={500}
+                center={true}
+                dots={true}
+                responsive={{
+                  0: {
+                    items: 1,
+                  },
+                  768: {
+                    items: 2,
+                  },
+                  800: {
+                    items: 2,
+                  },
+                  1024: {
+                    items: 2,
+                  },
+                  1200: {
+                    items: 3,
+                  },
+                  1541: {
+                    items: 3,
+                  },
+                }}
+              >
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+              </OwlCarousel>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 };
