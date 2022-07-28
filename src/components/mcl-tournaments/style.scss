@@ -1,1 +1,298 @@
 @import "../../styles/common";
+
+.download-icon-btn.black-btn {
+  padding: 0.8rem 3rem;
+  padding: 1.2rem 4rem;
+  font-family: $neue-helvetica-extended;
+  color: #fff;
+  border-radius: 100px;
+  position: relative;
+  background: transparent
+    linear-gradient(180deg, #fcfd9e 0%, #fdfd5e 50%, #c89600 100%) 0 0 no-repeat
+    padding-box;
+  border: none;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  transition: 0.5s;
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0.1rem;
+    right: 0.1rem;
+    bottom: 0.1rem;
+    left: 0.1rem;
+    background: #000;
+    border-radius: 100px;
+    z-index: 0;
+    transition: 0.5s;
+  }
+  span {
+    color: #fff;
+    position: relative;
+    z-index: 9;
+    transition: 0.5s;
+  }
+  &:hover {
+    &::before {
+      background: #fff;
+      transition: 0.5s;
+    }
+    span {
+      color: #000;
+      transition: 0.5s;
+    }
+  }
+
+  img {
+    width: 400px;
+  }
+}
+.trailer_section.live {
+  background-image: url(../../images/mcl-game-launcher/ground.jpg);
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  padding: 3rem 0 2rem !important;
+  .trailer-content {
+    .mock-device.mcl-logo-launch {
+      img {
+        max-width: unset;
+        width: unset;
+        height: 8rem;
+      }
+    }
+  }
+}
+
+.tournament-list-carousel {
+  margin: 2rem 0 1rem;
+  .owl-item {
+    margin-top: 8rem;
+    margin-bottom: 3rem;
+    transform: scale(0.8);
+    transition: 0.5s all ease;
+    &.center {
+      transform: scale(1.2);
+      transition: 0.5s all ease;
+      @media screen and (max-width: 767px) {
+        transform: scale(1);
+      }
+    }
+  }
+
+  .owl-dots {
+    .owl-dot {
+      span {
+        width: 1.5rem;
+        height: 0.4rem;
+        margin: 0.4rem;
+        background: #dadada;
+        display: block;
+        -webkit-backface-visibility: visible;
+        transition: opacity 200ms ease;
+        border-radius: 30px;
+        transition: 0.5s all ease;
+      }
+      &.active,
+      &:hover {
+        span {
+          transition: 0.5s all ease;
+          background: #f3ef32;
+          width: 3rem;
+        }
+      }
+    }
+  }
+}
+article.tournament-card {
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+
+  border-radius: 2rem;
+  margin: 0 1rem;
+
+  * {
+    position: relative;
+  }
+  .slam-image {
+    height: 8rem !important;
+    width: 8rem !important;
+    margin: -4rem auto 1rem;
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 2;
+  }
+  .content-block {
+    padding: 0.5rem 1rem;
+    padding-top: 4rem;
+
+    overflow: hidden;
+    &::after,
+    &::before {
+      background-size: contain;
+      background-position: top;
+      background-repeat: no-repeat;
+      border-radius: 2rem;
+    }
+
+    .live-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem 1rem;
+      background: #f3ef32;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      margin-bottom: 1rem;
+      span {
+        font-size: 1.3rem;
+        color: #000;
+        font-family: $neue-helvetica-extended;
+      }
+      img {
+        height: 1.5rem;
+        width: 1.5rem;
+        margin: 0 0.5rem;
+        animation: pulseEffect 1s infinite ease-in-out alternate;
+      }
+    }
+    h5 {
+      color: #fff;
+      font-family: $neue-helvetica-extended;
+      width: 85%;
+      margin: 0.5rem auto;
+    }
+    .timer-box {
+      border-top: 0.08rem solid #fff;
+      .timer-time {
+        font-size: 2rem;
+        color: #f3ef32;
+        sub {
+          bottom: 0;
+          font-size: 65%;
+          left: 0.09em;
+        }
+      }
+    }
+  }
+
+  &.expire-card {
+    background-image: linear-gradient(180deg, #34392a, #00130b);
+
+    .content-block {
+      &:after {
+        content: "";
+        background-image: url("../../images/jump-trade/tournament/tournament-card-bg.png");
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+      &:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-image: linear-gradient(180deg, #34392a, #00130b);
+        z-index: 1;
+        opacity: 0.8;
+      }
+      .tournament-end-band {
+        font-family: $neue-helvetica-extended-bold;
+        background-color: #f3ef32;
+        position: absolute;
+        left: -6.2rem;
+        top: 2.4rem;
+        transform: rotate(-50deg);
+        padding: 0.2rem 6rem;
+        font-size: 0.8rem;
+        line-height: 1.3;
+        z-index: 2;
+      }
+    }
+  }
+  &.livenow-card {
+    background-image: linear-gradient(180deg, #8e9400, #00130b);
+    // &:before {
+    //   content: "";
+    //   background-image: url("../../images/jump-trade/tournament/tournament-card-live-bg.png");
+    //   position: absolute;
+    //   top: 0;
+    //   left: 0;
+    //   right: 0;
+    //   bottom: 0;
+    // }
+    .content-block {
+      &:after {
+        content: "";
+        background-image: url("../../images/jump-trade/tournament/tournament-card-live-bg.png");
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+      // &:before {
+      //   content: "";
+      //   position: absolute;
+      //   left: 0;
+      //   right: 0;
+      //   top: 0;
+      //   bottom: 0;
+      //   background-image: linear-gradient(180deg, #34392a, #00130b);
+      //   z-index: 1;
+      //   opacity: 0.8;
+      // }
+    }
+  }
+  &.upcoming-card {
+    background-image: linear-gradient(180deg, #34392a, #00130b);
+    // &:before {
+    //   content: "";
+    //   background-image: url("../../images/jump-trade/tournament/tournament-card-bg.png");
+    //   position: absolute;
+    //   top: 0;
+    //   left: 0;
+    //   right: 0;
+    //   bottom: 0;
+    // }
+    .content-block {
+      &:after {
+        content: "";
+        background-image: url("../../images/jump-trade/tournament/tournament-card-bg.png");
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+      &:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-image: linear-gradient(180deg, #34392a, #00130b);
+        z-index: 1;
+        opacity: 0.8;
+      }
+    }
+  }
+}
+
+@keyframes pulseEffect {
+  from {
+    transform: scale(0.8);
+  }
+  to {
+    transform: scale(1.2);
+  }
+}

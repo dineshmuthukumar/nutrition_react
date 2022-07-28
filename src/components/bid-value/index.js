@@ -27,7 +27,6 @@ const BidValue = ({
   const history = useHistory();
   const { user } = useSelector((state) => state.user.data);
 
-
   return (
     <div className={`current-bid ${ClassNames}`}>
       <div className="title">
