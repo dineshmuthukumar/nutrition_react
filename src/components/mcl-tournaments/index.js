@@ -8,6 +8,7 @@ import MCL from "../../images/mcl-game-launcher/mcl.png";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import "./style.scss";
+import { AiFillAndroid } from "react-icons/ai";
 
 const MclTournaments = () => {
   return (
@@ -76,7 +77,10 @@ const MclTournaments = () => {
                   target="_blank"
                   className="download-icon-btn black-btn fs-5 fw-bold"
                 >
-                  <span>Download MCL Game</span>
+                  <span>
+                    {" "}
+                    <AiFillAndroid /> Download MCL Game
+                  </span>
                 </a>
               </div>
             </div>
