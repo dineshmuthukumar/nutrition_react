@@ -3,13 +3,17 @@ import "./style.scss";
 
 import SlamImage from "../../images/jump-trade/tournament/Grand-Slam.png";
 import LivenowBall from "../../images/jump-trade/tournament/Balll_1.png";
+import finishedMatch from "../../images/mcl-game-launcher/finished-match.png";
+import upcomingMatch from "../../images/mcl-game-launcher/upcoming-match.png";
 import NFTCounter from "../nft-counter";
 import dayjs from "dayjs";
 
-const Tournament = ({ statusChange=()=>{}, tournamentData = {}, ClassNames }) => {
+const Tournament = ({
+  index,
+  statusChange = () => {},
+  tournamentData = {},
+}) => {
   const [cTime, setCTime] = useState(new Date());
-  console.log(Object.keys(tournamentData).length)
-
   // Timed Auction
   const [isUpcoming, setIsUpcoming] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
@@ -19,6 +23,7 @@ const Tournament = ({ statusChange=()=>{}, tournamentData = {}, ClassNames }) =>
   useEffect(() => {
     showTimer();
   }, []);
+  console.log(!tournamentData?.schedule);
 
   const showTimer = () => {
     if (
@@ -37,23 +42,21 @@ const Tournament = ({ statusChange=()=>{}, tournamentData = {}, ClassNames }) =>
     }
   };
   const setChangeStart = () => {
-    // setIsUpcoming(false);
-    // setIsLiveStarted(true);
-     statusChange();
+    statusChange();
   };
   const setChangeEnd = () => {
-    // setIsLiveStarted(false);
-    // setIsFinished(true);
-     statusChange();
+    statusChange();
   };
   if (isUpcoming) className = "upcoming-card";
   else if (isFinished) className = "expire-card";
-  else if(isLiveStarted) className = "livenow-card";
+  else if (isLiveStarted) className = "livenow-card";
 
   return (
     <>
       <article className={`tournament-card ${className}`}>
-        <img src={SlamImage} className="slam-image" />
+        {!tournamentData?.schedule && (
+          <img src={tournamentData?.img_url} className="slam-image" />
+        )}
         <div className="content-block">
           {isFinished && (
             <span className="tournament-end-band">
@@ -67,12 +70,29 @@ const Tournament = ({ statusChange=()=>{}, tournamentData = {}, ClassNames }) =>
               <span>Now</span>
             </a>
           )}
-          {isUpcoming && <h5>Upcoming tournament starts in</h5>}
+          {isFinished && (
+            <img className="img-upcoming_expire" src={finishedMatch} />
+          )}
+          {isUpcoming && (
+            <img className="img-upcoming_expire" src={upcomingMatch} />
+          )}
+          {tournamentData?.schedule && (
+            <img className="img-upcoming_expire" src={upcomingMatch} />
+          )}
+          {isUpcoming && (
+            <>
+              {" "}
+              {index === 2 ? (
+                <h5> Tournament starts in</h5>
+              ) : (
+                <h5>Upcoming tournament starts in</h5>
+              )}
+            </>
+          )}
           {isLiveStarted && <h5>tournament ends in</h5>}
           {isFinished && <h5>tournament ended on</h5>}
           <div className="timer-box">
             <h5 className="timer-time">
-              {/* 11<sub>d</sub> 14<sub>h</sub> 40<sub>m</sub> 56<sub>h</sub> */}
               {isFinished &&
                 dayjs(tournamentData.end_time).format("MMM D, YYYY hh:mm A")}
               {isLiveStarted && tournamentData?.end_time && (
@@ -95,7 +115,8 @@ const Tournament = ({ statusChange=()=>{}, tournamentData = {}, ClassNames }) =>
                   />
                 </>
               )}
-              {Object.keys(tournamentData).length===1 && "Upcoming Tournament Coming Soon"}
+              {Object.keys(tournamentData).length === 1 &&
+                "Upcoming Tournament Coming Soon"}
             </h5>
           </div>
         </div>

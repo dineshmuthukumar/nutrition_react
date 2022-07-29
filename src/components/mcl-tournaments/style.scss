@@ -160,7 +160,11 @@ article.tournament-card {
       background-repeat: no-repeat;
       border-radius: 2rem;
     }
-
+    img.img-upcoming_expire {
+      height: 4rem;
+      width: 4rem !important;
+      margin-bottom: 1rem;
+    }
     .live-btn {
       display: inline-flex;
       align-items: center;

@@ -111,14 +111,14 @@ const Home = () => {
         {/* <LeaderBoard /> */}
         {/* <NewDropSection /> */}
         {/* <TrailerVideo /> */}
-        <MclGameLaunchTimer />
+        {/* <MclGameLaunchTimer /> */}
         {/* <MclGameLaunchOne /> */}
         {/* <MclGameLaunchTwo /> */}
         {/* <CollectionList /> */}
 
         {/* design */}
         <MclTournaments />
-        <MclCompletedTournaments />
+        {/* <MclCompletedTournaments /> */}
         <MclGameButton />
 
         <Trending />
