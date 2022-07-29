@@ -70,7 +70,7 @@
 }
 
 .tournament-list-carousel {
-  margin: 2rem 0 1rem;
+  margin: 2rem 0 1rem;  
   .owl-item {
     margin-top: 8rem;
     margin-bottom: 3rem;
@@ -189,7 +189,7 @@ article.tournament-card {
     .content-block {
       &:after {
         content: "";
-        background-image: url("../../images/jump-trade/tournament/tournament-card-bg.png");
+        background-image: url("../../images/jump-trade/tournament/tournament-card-live-bg.png");
         position: absolute;
         top: 0;
         left: 0;
@@ -235,7 +235,8 @@ article.tournament-card {
     .content-block {
       &:after {
         content: "";
-        background-image: url("../../images/jump-trade/tournament/tournament-card-live-bg.png");
+       
+        background-image: url("../../images/jump-trade/tournament/tournament-card-bg.png");
         position: absolute;
         top: 0;
         left: 0;
@@ -269,7 +270,7 @@ article.tournament-card {
     .content-block {
       &:after {
         content: "";
-        background-image: url("../../images/jump-trade/tournament/tournament-card-bg.png");
+         background-image: url("../../images/jump-trade/tournament/tournament-card-live-bg.png");
         position: absolute;
         top: 0;
         left: 0;

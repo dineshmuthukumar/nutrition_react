@@ -117,9 +117,9 @@ const Home = () => {
         {/* <CollectionList /> */}
 
         {/* design */}
-        {/* <MclTournaments />
+        <MclTournaments />
         <MclCompletedTournaments />
-        <MclGameButton /> */}
+        <MclGameButton />
 
         <Trending />
         <LiveAuctions />
