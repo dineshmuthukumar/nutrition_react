@@ -8,9 +8,9 @@ const Blog = () => {
   return (
     <>
       <AppHelmet
-        title={"Meta Cricket League | NFT Cricket Game | Jump.trade"}
+        title={"Meta Cricket League | NFT Cricket Game | MCL Game "}
         description={
-          "The Meta Cricket League is the world's first NFT cricket game that enables you earn real rewards for your skills and for every shot you play! Play MCL Now!"
+          "The Meta Cricket League is the world's first NFT cricket game that enables you earn real rewards for your skills and for every shot you play! Play MCL Game Now!"
         }
       />
       <Header bgImage />
