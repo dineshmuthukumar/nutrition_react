@@ -115,8 +115,8 @@ const Tournament = ({
                   />
                 </>
               )}
-              {Object.keys(tournamentData).length === 1 &&
-                "Upcoming Tournament Coming Soon"}
+              {tournamentData?.schedule && "Up Next"
+          }
             </h5>
           </div>
         </div>
