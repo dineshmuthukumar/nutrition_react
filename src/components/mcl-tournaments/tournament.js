@@ -60,7 +60,7 @@ const Tournament = ({
     <>
       <article className={`tournament-card ${className}`}>
         {!tournamentData?.schedule && (
-          <img src={tournamentData?.img_url} className="slam-image" />
+          <img src={tournamentData?.img_url ?tournamentData?.img_url:SlamImage} className="slam-image" />
         )}
         <div className="content-block">
           {isFinished && (
