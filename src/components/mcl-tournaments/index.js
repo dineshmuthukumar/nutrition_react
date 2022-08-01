@@ -26,8 +26,8 @@ const MclTournaments = () => {
     // },
     // {
     //     "name": "Warm-up League",
-    //     "start_time": "2022-07-30T06:32:00.000Z",
-    //     "end_time": "2022-07-31T06:32:00.000Z"
+    //     "start_time": "2022-08-01T18:15:00.000Z",
+    //     "end_time": "2022-08-01T18:15:00.000Z"
     // },
     // {
     //     "name": "Monday League 20/20",
@@ -48,9 +48,9 @@ const MclTournaments = () => {
 
   const tournamentsTimer = async () => {
     try {
-      let result = await tournamentsApi();
-      // setTournamentData([]);
-      dataCheck(result?.data?.data);
+       let result = await tournamentsApi();
+        setTournamentData([]);
+       dataCheck(result?.data?.data);
     } catch (error) {
       console.log(error);
     }
