@@ -5,6 +5,11 @@ import SlamImage from "../../images/jump-trade/tournament/Grand-Slam.png";
 import LivenowBall from "../../images/jump-trade/tournament/Balll_1.png";
 import finishedMatch from "../../images/mcl-game-launcher/finished-match.png";
 import upcomingMatch from "../../images/mcl-game-launcher/upcoming-match.png";
+
+import upcomingMatchCard from "../../images/jump-trade/tournament/upcoming-card-img.png";
+import upcomingMatchGear from "../../images/jump-trade/tournament/upcoming-card-img-gear.png";
+import upcomingMatchGearWhite from "../../images/jump-trade/tournament/upcoming-card-img-gear-white.png";
+
 import NFTCounter from "../nft-counter";
 import dayjs from "dayjs";
 
@@ -77,7 +82,19 @@ const Tournament = ({
             <img className="img-upcoming_expire" src={upcomingMatch} />
           )}
           {tournamentData?.schedule && (
-            <img className="img-upcoming_expire" src={upcomingMatch} />
+            <>
+              <img className="img-upcoming_expire-bg" src={upcomingMatchCard} />
+              <div className="upcoming_expire-gear-box">
+                <img
+                  className="img-upcoming_expire-gear"
+                  src={upcomingMatchGear}
+                />
+                <img
+                  src={upcomingMatchGearWhite}
+                  className="img-upcoming_expire-gear-white"
+                />
+              </div>
+            </>
           )}
           {isUpcoming && (
             <>
@@ -115,8 +132,7 @@ const Tournament = ({
                   />
                 </>
               )}
-              {tournamentData?.schedule && "Up Next"
-          }
+              {tournamentData?.schedule && "Up Next"}
             </h5>
           </div>
         </div>

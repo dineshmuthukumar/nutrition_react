@@ -247,19 +247,9 @@ article.tournament-card {
   }
   &.livenow-card {
     background-image: linear-gradient(180deg, #8e9400, #00130b);
-    // &:before {
-    //   content: "";
-    //   background-image: url("../../images/jump-trade/tournament/tournament-card-live-bg.png");
-    //   position: absolute;
-    //   top: 0;
-    //   left: 0;
-    //   right: 0;
-    //   bottom: 0;
-    // }
     .content-block {
       &:after {
         content: "";
-
         background-image: url("../../images/jump-trade/tournament/tournament-card-bg.png");
         position: absolute;
         top: 0;
@@ -282,25 +272,32 @@ article.tournament-card {
   }
   &.upcoming-card {
     background-image: linear-gradient(180deg, #34392a, #00130b);
-    // &:before {
-    //   content: "";
-    //   background-image: url("../../images/jump-trade/tournament/tournament-card-bg.png");
-    //   position: absolute;
-    //   top: 0;
-    //   left: 0;
-    //   right: 0;
-    //   bottom: 0;
-    // }
     .content-block {
-      &:after {
-        content: "";
-        background-image: url("../../images/jump-trade/tournament/tournament-card-live-bg.png");
+      .upcoming_expire-gear-box {
         position: absolute;
-        top: 0;
+        top: 2rem;
         left: 0;
         right: 0;
-        bottom: 0;
+        margin: auto;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        .img-upcoming_expire-gear {
+          height: 4rem;
+          width: 4rem !important;
+          -webkit-animation: rotation 5s infinite linear;
+          animation: rotation 5s infinite linear;
+        }
+        .img-upcoming_expire-gear-white {
+          height: 3.3rem;
+          width: 3.3rem !important;
+          animation: rotationRev 5s infinite linear;
+          position: relative;
+          top: 1.2rem;
+          left: -1.2rem;
+        }
       }
+
       &:before {
         content: "";
         position: absolute;
@@ -313,6 +310,23 @@ article.tournament-card {
         opacity: 0.8;
       }
     }
+  }
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+@keyframes rotationRev {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-359deg);
   }
 }
 
