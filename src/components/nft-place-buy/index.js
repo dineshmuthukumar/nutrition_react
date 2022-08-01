@@ -17,6 +17,7 @@ import { nftBuyApi } from "../../api/methods";
 import "./style.scss";
 import ToolTip from "../tooltip/index";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
+import { VscInfo } from "react-icons/vsc";
 
 const NFTPlaceBid = ({
   placeBuyPop = false,
@@ -273,7 +274,7 @@ const NFTPlaceBid = ({
       placement="end"
       className="w-100 w-md-50 w-lg-42"
     >
-      <Offcanvas.Body className="p-0 pop-body-buy-container">
+      <Offcanvas.Body className="p-0 pop-body-buy-container buynft-popup">
         {user ? (
           <>
             <div className="pop-nft-buy-details">
@@ -371,30 +372,39 @@ const NFTPlaceBid = ({
                       </div>
 
                       <div className="pop-nft-content">
-                        <div className="pop-author-name text-center">
-                          {nft?.category_name}
+                        <div className="pop-author-name">
+                          <span className=" pop-author-name-category">
+                            {nft?.category_name}
+                          </span>
+                          {erc721 ? (
+                            <div className="erc-type">
+                              1 of 1 <span>left</span>
+                            </div>
+                          ) : (
+                            <div className="erc-type">
+                              {availableQty >= 0 && availableQty != null
+                                ? `${availableQty} / ${
+                                    totalQty != null
+                                      ? totalQty
+                                      : orderDetails.total_quantity
+                                  }`
+                                : `${orderDetails.available_quantity} / ${orderDetails.total_quantity}`}
+                            </div>
+                          )}
                         </div>
                         <div className="pop-nft-title text-center mb-1">
                           {nft?.name}
                         </div>
+                        <div className="price-box">
+                          <span className="price-title">Price of NFT</span>
+                          <h5>
+                            <span className="dollar">$700.00</span>{" "}
+                            <span className="jtPoints"> (7000000JT)</span>
+                          </h5>
+                        </div>
                         {/* <div className="erc-type text-center mb-1">
                           1 of 1 <span>left</span>
                         </div> */}
-                        {erc721 ? (
-                          <div className="erc-type text-center mb-1">
-                            1 of 1 <span>left</span>
-                          </div>
-                        ) : (
-                          <div className="erc-type text-center mb-1">
-                            {availableQty >= 0 && availableQty != null
-                              ? `${availableQty} / ${
-                                  totalQty != null
-                                    ? totalQty
-                                    : orderDetails.total_quantity
-                                }`
-                              : `${orderDetails.available_quantity} / ${orderDetails.total_quantity}`}
-                          </div>
-                        )}
                       </div>
                     </div>
                     {/* <div className="pop-nft-buy-media">
@@ -452,7 +462,96 @@ const NFTPlaceBid = ({
                       </div>
                     )} */}
                     {/* error-bid -> less value than min bid,  error-balance -> low value, error-balance-float -> low value in quantity  */}
-                    <div className="sticky-bottom-fix buyfee-block">
+                    {/* sticky-bottom-fix */}
+                    <div className="buyfee-block">
+                      <h3 className="checkoption-title">
+                        How Would you like to make the purchase?{" "}
+                      </h3>
+                      <ul className="buy-option-checkbox">
+                        <li>
+                          <label>
+                            <input type="checkbox" value="checkbox" />
+                            <article className="jt-buy-checkbox-style">
+                              <div className="jt-points-card-header">
+                                <h5>
+                                  with <span>JT Points</span>
+                                </h5>
+                              </div>
+                              <div className="jt-points-card-body">
+                                <div className="available-fund">
+                                  <span className="key">Available JTP</span>
+                                  <span className="value">70,00,000</span>
+                                </div>
+                                <ul className="servicesfee-list">
+                                  <li>
+                                    <span className="key">Service Fee</span>
+                                    <span className="value">0%</span>
+                                  </li>
+                                  <li>
+                                    <span className="key">TDS Fee</span>
+                                    <span className="value">0%</span>
+                                  </li>
+                                </ul>
+                                <ToolTip
+                                  icon={
+                                    <VscInfo
+                                      size={16}
+                                      className="tooltip-check-icon"
+                                    />
+                                  }
+                                  content={`The service fee includes gas fee and the platform fee. ${
+                                    user?.apply_buy_tds &&
+                                    !isNaN(parseFloat(nft?.tds_rate))
+                                      ? "TDS u/s 194S Income Tax Act"
+                                      : ""
+                                  }`.trim()}
+                                  placement="top"
+                                />
+                              </div>
+                              <div className="jt-points-card-footer">
+                                <h6>Your Total</h6>
+                                <h4>
+                                  <span>7,00,000 JT ~ </span> ($700)
+                                </h4>
+                              </div>
+                            </article>
+                          </label>
+                        </li>
+                        <li>
+                          <label>
+                            <input type="checkbox" value="checkbox" />
+                            <article className="jt-buy-checkbox-style">
+                              <div className="jt-points-card-header">
+                                <h5>
+                                  with <span className="white">US dollars</span>
+                                </h5>
+                              </div>
+                              <div className="jt-points-card-body">
+                                <div className="available-fund">
+                                  <span className="key">Available JTP</span>
+                                  <span className="value">$1000</span>
+                                </div>
+                                <ul className="servicesfee-list">
+                                  <li>
+                                    <span className="key">Service Fee</span>
+                                    <span className="value">2.5%</span>
+                                  </li>
+                                  <li>
+                                    <span className="key">TDS Fee</span>
+                                    <span className="value">1.5%</span>
+                                  </li>
+                                </ul>
+                              </div>
+                              <div className="jt-points-card-footer">
+                                <h6>Your Total</h6>
+                                <h4>$724</h4>
+                              </div>
+                            </article>
+                          </label>
+                        </li>
+                      </ul>
+                    </div>
+                    {/* <div className="sticky-bottom-fix buyfee-block">
                       <div className={`input-buy-container mt-4 ${error}`}>
                         <label className="input-buy-text">
                           {erc721
@@ -477,7 +576,6 @@ const NFTPlaceBid = ({
                               }
                               onChange={handleBuyInputChange}
                             />
-                            {/* text-dark -> dark text after entering quantity */}
                             <span
                               className={`quantity-to-value ${buy.amountClass}`}
                             >
@@ -486,19 +584,10 @@ const NFTPlaceBid = ({
                           </div>
                         ) : (
                           <>
-                            {/* <div className="input-buy-wrap"> */}
                             <h1>{currencyFormat(buyAmount, "USD")}</h1>
-                            {/* </div> */}
                             <hr className="custom-divider"></hr>
                           </>
                         )}
-                        {/* <div className="balance-details">
-                        {user &&
-                          `Your wallet balance is ${currencyFormat(
-                            user?.balance,
-                            "USD"
-                          )}`}
-                      </div> */}
                       </div>
 
                       <div className="input-buyfee-wrap mt-4">
@@ -565,7 +654,7 @@ const NFTPlaceBid = ({
                         </div>
                       </div>
                       <hr className="custom-divider"></hr>
-                    </div>
+                    </div> */}
                   </div>
                   <div className="bottom-area">
                     <div className="terms text-secondary">
