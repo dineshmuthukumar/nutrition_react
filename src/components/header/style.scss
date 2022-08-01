@@ -200,6 +200,15 @@
   transition: 0.5s all ease;
   background: #222127;
 }
+
+.theme-btn.mobile-signin {
+  @media screen and (max-width: 397px) {
+    font-size: 0.7rem !important;
+  }
+  @media screen and (max-width: 360px) {
+    font-size: 0.5rem !important;
+  }
+}
 .menu-icon {
   margin-left: 1rem;
   display: block;

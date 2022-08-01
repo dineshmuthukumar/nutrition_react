@@ -963,14 +963,14 @@ const Header = ({
                       <>
                         <>
                           <Nav.Link
-                            className="theme-btn"
+                            className="theme-btn mobile-signin"
                             href={`${process.env.REACT_APP_ACCOUNTS_URL}/signin?redirect=${window.location.href}`}
                             target="_self"
                           >
                             <span> {t("signin")}</span>
                           </Nav.Link>
                           <Nav.Link
-                            className="theme-btn"
+                            className="theme-btn mobile-signin"
                             href={`${process.env.REACT_APP_ACCOUNTS_URL}/signup`}
                             target="_self"
                           >
