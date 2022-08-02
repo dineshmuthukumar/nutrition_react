@@ -18,6 +18,7 @@ import "./style.scss";
 import ToolTip from "../tooltip/index";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
 import { VscInfo } from "react-icons/vsc";
+import { toast } from "react-toastify";
 
 const NFTPlaceBid = ({
   placeBuyPop = false,
@@ -85,6 +86,37 @@ const NFTPlaceBid = ({
         setError("");
       }
       setBuyAmount(orderDetails?.buy_amount);
+      if (
+        parseFloat(user?.jump_points_balance / 10000) >=
+        parseFloat(orderDetails?.buy_amount)
+      ) {
+        jtCheck();
+      } else if (
+        parseFloat(user?.balance) >=
+        parseFloat(orderDetails?.buy_amount) +
+          (parseFloat(orderDetails?.buy_amount) *
+            (parseFloat(nft?.service_fee) + parseFloat(nft?.tds_rate))) /
+            100
+      ) {
+        dollarCheck();
+      } else {
+        let totalAvailBal = user?.jump_points_balance / 10000;
+        let takeBalanceDollar =
+          parseFloat(orderDetails?.buy_amount) - parseFloat(totalAvailBal);
+        if (parseFloat(takeBalanceDollar) < parseFloat(user?.balance)) {
+          setBuy({
+            ...buy,
+            buttonDisable: false,
+            buttonName: "Buy NFTs",
+            buyJT: user?.jump_points_balance,
+            buyTypeJt: true,
+            buyDollar: takeBalanceDollar,
+            buyTypeDollar: true,
+          });
+        } else {
+          console.log("Insufficient balance for buy")
+        }
+      }
     } else {
       setBuyAmount(0);
       setBuy({
@@ -96,12 +128,55 @@ const NFTPlaceBid = ({
         isError: false,
         errorTitle: "",
         errorDescription: "",
+        buyTypeDollar: false,
+        buyTypeJt: false,
+        buyDollar: 0,
+        buyJT: 0,
       });
       setError("");
     }
     setBuyQuantity("");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const jtCheck = () => {
+    setBuy({
+      ...buy,
+      buttonDisable: false,
+      buttonName: "Buy NFTs",
+      buyJT: orderDetails?.buy_amount * 10000,
+      buyTypeJt: true,
+      buyTypeDollar: false,
+    });
+  };
+  const dollarCheck = () => {
+    setBuy({
+      ...buy,
+      buttonDisable: false,
+      buttonName: "Buy NFTs",
+      buyDollar: orderDetails?.buy_amount,
+      buyTypeDollar: true,
+      buyTypeJt: false,
+    });
+  };
+  const handleCheckDollar=()=>{
+    if (
+      parseFloat(user?.balance) >=
+      parseFloat(orderDetails?.buy_amount) +
+        (parseFloat(orderDetails?.buy_amount) *
+          (parseFloat(nft?.service_fee) + parseFloat(nft?.tds_rate))) /
+          100
+    ) {
+      dollarCheck();
+    }
+  }
+  const handleCheckJt=()=>{
+    if (
+      parseFloat(user?.jump_points_balance / 10000) >=
+      parseFloat(orderDetails?.buy_amount)
+    ) 
+      jtCheck();
+  }
 
   useEffect(() => {
     if (erc721) {
@@ -127,7 +202,11 @@ const NFTPlaceBid = ({
       });
       const result = await nftBuyApi({
         order_slug: orderSlug,
-        order: { quantity: erc721 ? 1 : parseInt(buyQuantity) },
+        order: {
+          quantity: erc721 ? 1 : parseInt(buyQuantity),
+          pay_usd: buy.buyTypeDollar,
+          pay_jt_point: buy.buyTypeJt,
+        },
       });
       if (result.data.success) {
         setSuccess(true);
@@ -398,8 +477,13 @@ const NFTPlaceBid = ({
                         <div className="price-box">
                           <span className="price-title">Price of NFT</span>
                           <h5>
-                            <span className="dollar">$700.00</span>{" "}
-                            <span className="jtPoints"> (7000000JT)</span>
+                            <span className="dollar">
+                              {currencyFormat(buyAmount, "USD")}
+                            </span>{" "}
+                            <span className="jtPoints">
+                              {" "}
+                              {buyAmount * 10000}JT
+                            </span>
                           </h5>
                         </div>
                         {/* <div className="erc-type text-center mb-1">
@@ -470,8 +554,11 @@ const NFTPlaceBid = ({
                       <ul className="buy-option-checkbox">
                         <li>
                           <label>
-                            <input type="checkbox" value="checkbox" />
-                            <article className="jt-buy-checkbox-style">
+                            <input type="checkbox" 
+                            disabled={!buy?.buyTypeDollar && !buy?.buyTypeJt}
+                            checked={buy?.buyTypeJt}
+                             value="checkbox" />
+                            <article onClick={handleCheckJt}  className="jt-buy-checkbox-style">
                               <div className="jt-points-card-header">
                                 <h5>
                                   with <span>JT Points</span>
@@ -480,7 +567,9 @@ const NFTPlaceBid = ({
                               <div className="jt-points-card-body">
                                 <div className="available-fund">
                                   <span className="key">Available JTP</span>
-                                  <span className="value">70,00,000</span>
+                                  <span className="value">
+                                    {user?.jump_points_balance}
+                                  </span>
                                 </div>
                                 <ul className="servicesfee-list">
                                   <li>
@@ -511,7 +600,7 @@ const NFTPlaceBid = ({
                               <div className="jt-points-card-footer">
                                 <h6>Your Total</h6>
                                 <h4>
-                                  <span>7,00,000 JT ~ </span> ($700)
+                                  <span>{buy?.buyJT} ~ </span> {currencyFormat(buy?.buyJT/10000,"USD")}
                                 </h4>
                               </div>
                             </article>
@@ -519,8 +608,13 @@ const NFTPlaceBid = ({
                         </li>
                         <li>
                           <label>
-                            <input type="checkbox" value="checkbox" />
-                            <article className="jt-buy-checkbox-style">
+                            <input
+                              type="checkbox"
+                              disabled={!buy?.buyTypeDollar && !buy?.buyTypeJt}
+                              checked={buy?.buyTypeDollar}
+                              value="checkbox"
+                            />
+                            <article onClick={handleCheckDollar} className="jt-buy-checkbox-style">
                               <div className="jt-points-card-header">
                                 <h5>
                                   with <span className="white">US dollars</span>
@@ -529,7 +623,9 @@ const NFTPlaceBid = ({
                               <div className="jt-points-card-body">
                                 <div className="available-fund">
                                   <span className="key">Available JTP</span>
-                                  <span className="value">$1000</span>
+                                  <span className="value">
+                                    {currencyFormat(user?.balance, "USD")}
+                                  </span>
                                 </div>
                                 <ul className="servicesfee-list">
                                   <li>
@@ -544,7 +640,17 @@ const NFTPlaceBid = ({
                               </div>
                               <div className="jt-points-card-footer">
                                 <h6>Your Total</h6>
-                                <h4>$724</h4>
+                                <h4>
+                                  {" "}
+                                  {currencyFormat(
+                                    parseFloat(buy?.buyDollar) +
+                                      (parseFloat(buy?.buyDollar) *
+                                        (parseFloat(nft?.service_fee) +
+                                          parseFloat(nft?.tds_rate))) /
+                                        100,
+                                    "USD"
+                                  )}
+                                </h4>
                               </div>
                             </article>
                           </label>
