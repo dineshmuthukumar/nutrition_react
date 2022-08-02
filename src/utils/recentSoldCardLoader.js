@@ -2,10 +2,12 @@ import { useWindowSize } from "./useWindowSize";
 import ContentLoader from "react-content-loader";
 
 const RecentSoldLoader = (props) => {
-    const { width } = useWindowSize();
-    const isMobile = width <= 576;
-    const isTab = width <= 780;
-    const isLaptop = width <= 1024;
+  const { width } = useWindowSize();
+  const isMobile = width <= 576;
+  const isTab = width <= 780;
+  const isLaptop = width <= 1024;
+  const is2K = width <= 1440;
+  const is4K = width <= 3560;
   return (
     <>
       {isMobile ? (
@@ -17,7 +19,7 @@ const RecentSoldLoader = (props) => {
             foregroundColor="#dbdbdb"
             className="mb-load"
           >
-            <rect x="2" y="5" rx="2" r='2'  ry="2" width="900" height="500" />
+            <rect x="2" y="5" rx="2" r="2" ry="2" width="900" height="500" />
           </ContentLoader>
           <ContentLoader
             viewBox="0 0 200 250"
@@ -58,7 +60,7 @@ const RecentSoldLoader = (props) => {
           <rect x="315" y="5" rx="2" ry="2" width="300" height="1000" />
           <rect x="630" y="5" rx="2" ry="2" width="300" height="1000" />
         </ContentLoader>
-      ) : (
+      ) : is2K ? (
         <>
           <ContentLoader
             viewBox="0 50 900 300 "
@@ -75,7 +77,34 @@ const RecentSoldLoader = (props) => {
             <rect x="675" y="5" rx="2" ry="2" width="210" height="800" />
           </ContentLoader>
         </>
-      )}
+      ) : is4K ? (
+        <>
+          <ContentLoader
+            viewBox="0 20 900 310 "
+            speed={1}
+            backgroundColor="#f5f5f5"
+            foregroundColor="#dbdbdb"
+            {...props}
+          >
+            <rect x="0" y="5" rx="2" ry="2" width="215" height="1000" />
+            <rect x="230" y="5" rx="2" ry="2" width="215" height="1000" />
+            <rect x="460" y="5" rx="2" ry="2" width="215" height="1000" />
+            <rect x="690" y="5" rx="2" ry="2" width="215" height="1000" />
+          </ContentLoader>
+          <ContentLoader
+            viewBox="0 20 900 310 "
+            speed={1}
+            backgroundColor="#f5f5f5"
+            foregroundColor="#dbdbdb"
+            {...props}
+          >
+            <rect x="0" y="5" rx="2" ry="2" width="215" height="1000" />
+            <rect x="230" y="5" rx="2" ry="2" width="215" height="1000" />
+            <rect x="460" y="5" rx="2" ry="2" width="215" height="1000" />
+            <rect x="690" y="5" rx="2" ry="2" width="215" height="1000" />
+          </ContentLoader>
+        </>
+      ) : null}
     </>
   );
 };

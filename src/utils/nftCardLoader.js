@@ -5,6 +5,8 @@ const NFTCardLoader = (props) => {
   const { width } = useWindowSize();
   const isMobile = width <= 576;
   const isTab = width <= 1024;
+  const is2K = width <= 1440;
+  const is4K = width <= 3560;
   return (
     <>
       {isMobile ? (
@@ -46,7 +48,7 @@ const NFTCardLoader = (props) => {
           <rect x="0" y="5" rx="2" ry="2" width="350" height="700" />
           <rect x="365" y="5" rx="2" ry="2" width="350" height="700" />
         </ContentLoader>
-      ) : (
+      ) : is2K ? (
         <>
           <ContentLoader
             viewBox="0  900 300"
@@ -63,7 +65,32 @@ const NFTCardLoader = (props) => {
             <rect x="750" y="5" rx="2" ry="2" width="350" height="500" />
           </ContentLoader>
         </>
-      )}
+      ) : is4K ? (
+        <>
+          <ContentLoader
+            viewBox="0 20 900 450 "
+            speed={1}
+            backgroundColor="#f5f5f5"
+            foregroundColor="#dbdbdb"
+            {...props}
+          >
+            <rect x="0" y="5" rx="2" ry="2" width="300" height="1000" />
+            <rect x="315" y="5" rx="2" ry="2" width="300" height="1000" />
+            <rect x="630" y="5" rx="2" ry="2" width="300" height="1000" />
+          </ContentLoader>
+          <ContentLoader
+            viewBox="0 50 900 450 "
+            speed={1}
+            backgroundColor="#f5f5f5"
+            foregroundColor="#dbdbdb"
+            {...props}
+          >
+            <rect x="0" y="5" rx="2" ry="2" width="300" height="1000" />
+            <rect x="315" y="5" rx="2" ry="2" width="300" height="1000" />
+            <rect x="630" y="5" rx="2" ry="2" width="300" height="1000" />
+          </ContentLoader>
+        </>
+      ) : null}
     </>
   );
 };
