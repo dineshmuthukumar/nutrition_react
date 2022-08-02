@@ -13,9 +13,9 @@ import { BiCaretDown, BiSearch, BiX } from "react-icons/bi";
 import { useHistory, useRouteMatch } from "react-router-dom";
 import { FormControl } from "react-bootstrap";
 import { validateCurrency } from "../../utils/common";
-
 import "./style.scss";
 import useQuery from "../../hook/useQuery";
+import RecentSoldLoader from "../../utils/recentSoldCardLoader";
 
 const ShowAll = ({ categories }) => {
   const { slug } = useQuery();
@@ -1298,7 +1298,7 @@ const ShowAll = ({ categories }) => {
                     </div>
                   )}
 
-                  {!loading && loadingMore && <NFTCardLoader />}
+                  {!loading && loadingMore && <RecentSoldLoader />}
 
                   {hasNext && (
                     <div className="row mb-5">
@@ -1315,7 +1315,7 @@ const ShowAll = ({ categories }) => {
                   )}
                 </div>
               ) : (
-                <NFTCardLoader />
+                <RecentSoldLoader />
               )}
             </div>
           </div>
@@ -1325,22 +1325,6 @@ const ShowAll = ({ categories }) => {
   );
 };
 
-const NFTCardLoader = (props) => (
-  <ContentLoader
-    viewBox="0 50 900 300"
-    width={"100%"}
-    height={"100%"}
-    backgroundColor="#f5f5f5"
-    foregroundColor="#dbdbdb"
-    className="mt-1"
-    {...props}
-  >
-    <rect x="0" y="5" rx="2" ry="2" width="218" height="280" />
-    <rect x="228" y="5" rx="2" ry="2" width="218" height="280" />
-    <rect x="456" y="5" rx="2" ry="2" width="218" height="280" />
-    <rect x="684" y="5" rx="2" ry="2" width="218" height="280" />
-  </ContentLoader>
-);
 const useQueryStringConverter = (search) => {
   return React.useMemo(() => new URLSearchParams(search), [search]);
 };

@@ -5,12 +5,13 @@ import { useHistory, useParams } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 import { FaCheckCircle } from "react-icons/fa";
 import { nftRecentlySoldApi } from "../../api/methods";
-
 import NFTCard from "../nft-card";
 import images from "../../utils/images.json";
 import "./style.scss";
 import useQuery from "../../hook/useQuery";
 import { BiCaretDown } from "react-icons/bi";
+import { useWindowSize } from "../../utils/useWindowSize";
+import RecentSoldLoader from "../../utils/recentSoldCardLoader";
 
 const RecentlySoldList = () => {
   const history = useHistory();
@@ -197,7 +198,7 @@ const RecentlySoldList = () => {
                     </div>
                   )}
 
-                  {!loading && loadingMore && <NFTCardLoader />}
+                  {!loading && loadingMore && <RecentSoldLoader />}
 
                   {hasNext && (
                     <div className="row mb-5">
@@ -214,7 +215,7 @@ const RecentlySoldList = () => {
                   )}
                 </div>
               ) : (
-                <NFTCardLoader />
+                <RecentSoldLoader />
               )}
             </div>
           </div>
@@ -224,21 +225,6 @@ const RecentlySoldList = () => {
   );
 };
 
-const NFTCardLoader = (props) => (
-  <ContentLoader
-    viewBox="0 50 900 300"
-    width={"100%"}
-    height={"100%"}
-    backgroundColor="#f5f5f5"
-    foregroundColor="#dbdbdb"
-    className="mt-1"
-    {...props}
-  >
-    <rect x="0" y="5" rx="2" ry="2" width="218" height="280" />
-    <rect x="228" y="5" rx="2" ry="2" width="218" height="280" />
-    <rect x="456" y="5" rx="2" ry="2" width="218" height="280" />
-    <rect x="684" y="5" rx="2" ry="2" width="218" height="280" />
-  </ContentLoader>
-);
+
 
 export default RecentlySoldList;
