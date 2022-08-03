@@ -13,33 +13,7 @@ import { tournamentsApi } from "../../api/base-methods";
 import ContentLoader from "react-content-loader";
 
 const MclTournaments = () => {
-  const [tournamentData, setTournamentData] = useState([
-    // {
-    //     "name": "Grand Slam 5",
-    //     "start_time": "2022-07-28T14:29:00.000Z",
-    //     "end_time": "2022-07-29T18:22:00.000Z"
-    // },
-    // {
-    //     "name": "tournamenttttee",
-    //     "start_time": "2022-07-28T15:27:00.000Z",
-    //     "end_time": "2022-07-29T15:27:00.000Z"
-    // },
-    // {
-    //     "name": "Warm-up League",
-    //     "start_time": "2022-08-01T18:15:00.000Z",
-    //     "end_time": "2022-08-01T18:15:00.000Z"
-    // },
-    // {
-    //     "name": "Monday League 20/20",
-    //     "start_time": "2022-07-30T07:48:00.000Z",
-    //     "end_time": "2022-07-30T15:48:00.000Z"
-    // },
-    // {
-    //     "name": "MCL LEAGUE",
-    //     "start_time": "2022-07-30T05:42:00.000Z",
-    //     "end_time": "2022-07-30T11:43:00.000Z"
-    // }
-  ]);
+  const [tournamentData, setTournamentData] = useState([]);
 
   useEffect(() => {
     tournamentsTimer();
@@ -48,9 +22,9 @@ const MclTournaments = () => {
 
   const tournamentsTimer = async () => {
     try {
-       let result = await tournamentsApi();
-        setTournamentData([]);
-       dataCheck(result?.data?.data);
+      let result = await tournamentsApi();
+      setTournamentData([]);
+      dataCheck(result?.data?.data);
     } catch (error) {
       console.log(error);
     }
@@ -62,7 +36,7 @@ const MclTournaments = () => {
     } else {
       let appendData = [];
       for (let load = 0; load < 3 - tournamentDetails?.active.length; load++) {
-        appendData.push({ name: "Up Next",schedule:true });
+        appendData.push({ name: "Up Next", schedule: true });
       }
       setTournamentData([
         ...finishedData,
@@ -114,22 +88,16 @@ const MclTournaments = () => {
                   >
                     {tournamentData.length > 0 &&
                       tournamentData.map((data, index) => (
-                        <>{index<5 && 
-                         <Tournament
-                          index={index}
-                          statusChange={() => tournamentsTimer()}
-                          tournamentData={data}
-                        />
-                        }
+                        <>
+                          {index < 5 && (
+                            <Tournament
+                              index={index}
+                              statusChange={() => tournamentsTimer()}
+                              tournamentData={data}
+                            />
+                          )}
                         </>
-                      )
-                      )}
-                    {/* <Tournament ClassNames="expire-card" />
-                  <Tournament ClassNames="livenow-card" />
-                  <Tournament ClassNames="upcoming-card" />
-                  <Tournament ClassNames="upcoming-card" />
-                  <Tournament ClassNames="upcoming-card" />
-                  <Tournament ClassNames="upcoming-card" /> */}
+                      ))}
                   </OwlCarousel>
                 )}
 
@@ -140,12 +108,6 @@ const MclTournaments = () => {
                   <span>WANT TO PLAY? DOWNLOAD THE GAME NOW!</span>{" "}
                 </Marquee>
 
-                {/* <a
-                  className="download-icon-btn my-5 d-block"
-                  href={process.env.REACT_APP_MCL_GAME_LINK}
-                >
-                  <img src={Downloadicon} />
-                </a> */}
                 <a
                   href={process.env.REACT_APP_MCL_GAME_LINK}
                   target="_blank"
