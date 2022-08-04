@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import dayjs from "dayjs";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { Offcanvas } from "react-bootstrap";
+import { Accordion, Offcanvas } from "react-bootstrap";
 import { FaCheckCircle } from "react-icons/fa";
 
 import ErrorText from "./error-text";
@@ -19,6 +19,9 @@ import ToolTip from "../tooltip/index";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
 import { VscInfo } from "react-icons/vsc";
 import { toast } from "react-toastify";
+import { BiCheck } from "react-icons/bi";
+
+import pointStar from "../../images/jump-trade/icons/points-star.png";
 
 const NFTPlaceBid = ({
   placeBuyPop = false,
@@ -114,7 +117,7 @@ const NFTPlaceBid = ({
             buyTypeDollar: true,
           });
         } else {
-          console.log("Insufficient balance for buy")
+          console.log("Insufficient balance for buy");
         }
       }
     } else {
@@ -159,7 +162,7 @@ const NFTPlaceBid = ({
       buyTypeJt: false,
     });
   };
-  const handleCheckDollar=()=>{
+  const handleCheckDollar = () => {
     if (
       parseFloat(user?.balance) >=
       parseFloat(orderDetails?.buy_amount) +
@@ -169,14 +172,14 @@ const NFTPlaceBid = ({
     ) {
       dollarCheck();
     }
-  }
-  const handleCheckJt=()=>{
+  };
+  const handleCheckJt = () => {
     if (
       parseFloat(user?.jump_points_balance / 10000) >=
       parseFloat(orderDetails?.buy_amount)
-    ) 
+    )
       jtCheck();
-  }
+  };
 
   useEffect(() => {
     if (erc721) {
@@ -547,18 +550,24 @@ const NFTPlaceBid = ({
                     )} */}
                     {/* error-bid -> less value than min bid,  error-balance -> low value, error-balance-float -> low value in quantity  */}
                     {/* sticky-bottom-fix */}
-                    <div className="buyfee-block">
+                    {/* Start new view */}
+                    {/* <div className="buyfee-block">
                       <h3 className="checkoption-title">
                         How Would you like to make the purchase?{" "}
                       </h3>
                       <ul className="buy-option-checkbox">
                         <li>
                           <label>
-                            <input type="checkbox" 
-                            disabled={!buy?.buyTypeDollar && !buy?.buyTypeJt}
-                            checked={buy?.buyTypeJt}
-                             value="checkbox" />
-                            <article onClick={handleCheckJt}  className="jt-buy-checkbox-style">
+                            <input
+                              type="checkbox"
+                              disabled={!buy?.buyTypeDollar && !buy?.buyTypeJt}
+                              checked={buy?.buyTypeJt}
+                              value="checkbox"
+                            />
+                            <article
+                              onClick={handleCheckJt}
+                              className="jt-buy-checkbox-style"
+                            >
                               <div className="jt-points-card-header">
                                 <h5>
                                   with <span>JT Points</span>
@@ -600,7 +609,8 @@ const NFTPlaceBid = ({
                               <div className="jt-points-card-footer">
                                 <h6>Your Total</h6>
                                 <h4>
-                                  <span>{buy?.buyJT} ~ </span> {currencyFormat(buy?.buyJT/10000,"USD")}
+                                  <span>{buy?.buyJT} ~ </span>{" "}
+                                  {currencyFormat(buy?.buyJT / 10000, "USD")}
                                 </h4>
                               </div>
                             </article>
@@ -614,7 +624,10 @@ const NFTPlaceBid = ({
                               checked={buy?.buyTypeDollar}
                               value="checkbox"
                             />
-                            <article onClick={handleCheckDollar} className="jt-buy-checkbox-style">
+                            <article
+                              onClick={handleCheckDollar}
+                              className="jt-buy-checkbox-style"
+                            >
                               <div className="jt-points-card-header">
                                 <h5>
                                   with <span className="white">US dollars</span>
@@ -656,9 +669,11 @@ const NFTPlaceBid = ({
                           </label>
                         </li>
                       </ul>
-                    </div>
-                    {/* <div className="sticky-bottom-fix buyfee-block">
-                      <div className={`input-buy-container mt-4 ${error}`}>
+                    </div> */}
+                    {/* End new view */}
+                    {/* Start old view */}
+                    <div className="sticky-bottom-fix buyfee-block">
+                      {/* <div className={`input-buy-container mt-4 ${error}`}>
                         <label className="input-buy-text">
                           {erc721
                             ? `Price of NFT`
@@ -694,8 +709,73 @@ const NFTPlaceBid = ({
                             <hr className="custom-divider"></hr>
                           </>
                         )}
+                      </div> */}
+                      <div className="input-buyfee-wrap mt-4">
+                        <div className="checkbox buy-checkbox">
+                          <label>
+                            <input name="checkbox-group" type="checkbox" />
+                            <span className="checkbox__mark">
+                              <BiCheck />
+                            </span>
+                          </label>
+                          <div className="checkbox__info">
+                            <div className="checkbox__info_box">
+                              <div className="point_info">
+                                <h4 className="title">
+                                  Use JT Points worth $50
+                                </h4>
+                                <h6 className="points_value">
+                                  1,00,500 points available
+                                </h6>
+                              </div>
+                              <div className="price_info">
+                                <h4 className="title">-$100</h4>
+                                <h5 className="points_value">
+                                  - 1,00,500 <img src={pointStar} />
+                                </h5>
+                              </div>
+                            </div>
+                            <Accordion>
+                              <Accordion.Item eventKey="0">
+                                <Accordion.Body>
+                                  <ul className="available-points">
+                                    <li>
+                                      <span className="jt-key">Available</span>
+                                      <span className="jt-value">
+                                        1,00,500 <img src={pointStar} />
+                                      </span>
+                                    </li>
+                                    <li>
+                                      <span className="jt-key">Used</span>
+                                      <span className="jt-value">
+                                        - 1,00,500 <img src={pointStar} />
+                                      </span>
+                                    </li>
+                                    <li>
+                                      <span className="jt-key">
+                                        Service fee (0.5%)
+                                      </span>
+                                      <span className="jt-value">
+                                        - 500 <img src={pointStar} />
+                                      </span>
+                                    </li>
+                                    <li>
+                                      <span className="jt-key">Balance</span>
+                                      <span className="jt-value">
+                                        0 <img src={pointStar} />
+                                      </span>
+                                    </li>
+                                  </ul>
+                                </Accordion.Body>
+                                <Accordion.Header>
+                                  More details
+                                </Accordion.Header>
+                              </Accordion.Item>
+                            </Accordion>
+                          </div>
+                        </div>
                       </div>
-
+                      <hr className="custom-divider"></hr>
                       <div className="input-buyfee-wrap mt-4">
                         <div className={`input-buy-container`}>
                           <div className="services-fee-box">
@@ -759,16 +839,16 @@ const NFTPlaceBid = ({
                           </div>
                         </div>
                       </div>
-                      <hr className="custom-divider"></hr>
-                    </div> */}
+                    </div>
+                    {/* End Old View */}
                   </div>
                   <div className="bottom-area">
-                    <div className="terms text-secondary">
+                    {/* <div className="terms text-secondary">
                       <>
                         An NFT Sale Cannot Be Reversed Or Refunded After
                         Purchase.
                       </>
-                    </div>
+                    </div> */}
                     {nft.celebrity_id ===
                       parseInt(process.env.REACT_APP_LATIMES_ID) && (
                       <div className="terms ">

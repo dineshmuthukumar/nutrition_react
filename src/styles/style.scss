@@ -2231,13 +2231,13 @@ section.detail-page-content {
     .bottom-content {
       .custom-divider {
         height: 1px !important;
-        background-color: #193629;
+        background-color: #183629;
         opacity: 1;
         margin: 0.5rem 0 1rem 0;
       }
       .current-bid {
         @media screen and (max-width: 425px) {
-          border-bottom: 1px solid #193629;
+          border-bottom: 1px solid #183629;
         }
 
         .title {
@@ -2882,7 +2882,7 @@ section.player-stats {
     .pop-body-content {
       // height: calc(100% - 10rem);
       .custom-divider {
-        background-color: #3e3e3e;
+        background-color: #183629;
       }
       .pop-nft-info .pop-nft-content .erc-type {
         span {
@@ -3384,7 +3384,7 @@ section.player-stats {
     .pop-body-buy-content {
       height: calc(100% - 21rem);
       .custom-divider {
-        background-color: #3e3e3e;
+        background-color: #183629;
       }
       .input-bid-container,
       .input-buy-container {

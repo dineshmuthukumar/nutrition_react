@@ -312,6 +312,7 @@
         h1 {
           margin: 0;
           font-family: $neue-helvetica-medium;
+          font-size: 1.8rem;
         }
       }
     }
@@ -380,9 +381,9 @@
         align-items: center;
         padding: 1rem;
 
-        -webkit-box-shadow: 0px -4px 3px rgba(216, 216, 216, 0.75);
-        -moz-box-shadow: 0px -4px 3px rgba(216, 216, 216, 0.75);
-        box-shadow: 0px -4px 3px rgba(216, 216, 216, 0.75);
+        // -webkit-box-shadow: 0px -4px 3px rgba(216, 216, 216, 0.75);
+        // -moz-box-shadow: 0px -4px 3px rgba(216, 216, 216, 0.75);
+        // box-shadow: 0px -4px 3px rgba(216, 216, 216, 0.75);
 
         .back-button {
           cursor: pointer;
@@ -434,7 +435,7 @@
 
   &.buynft-popup {
     .pop-body-buy-content {
-      height: calc(100% - 16rem) !important;
+      height: calc(100% - 14rem) !important;
     }
     .pop-nft-info {
       .pop-nft-content {
@@ -461,8 +462,9 @@
           }
         }
         .pop-nft-title {
+          font-size: 1.8rem;
           @media screen and (max-width: 520px) {
-            font-size: 1.8rem;
+            font-size: 1.2rem;
           }
         }
         .price-box {
@@ -470,14 +472,14 @@
           top: 100%;
           .price-title {
             font-family: $neue-helvetica-medium;
-            font-size: 1.2rem;
+            font-size: 1rem;
           }
           h5 {
             margin: 0;
             .dollar {
-              font-size: 2rem;
+              font-size: 1.8rem;
               @media screen and (max-width: 520px) {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
               }
             }
             .jtPoints {
@@ -640,5 +642,228 @@
   top: 100vh;
   &.buyfee-block {
     padding: 0 2rem;
+    @media screen and (max-width: 520px) {
+      padding: 0 1rem;
+    }
+    .checkbox {
+      display: flex;
+      align-items: center;
+      font-size: 2rem;
+      cursor: pointer;
+      width: 20rem;
+    }
+    .checkbox input {
+      display: none;
+    }
+    .checkbox input ~ .checkbox__mark {
+      position: relative;
+      display: block;
+      background: transparent
+        linear-gradient(45deg, #e8318d 0%, #18e0e0 41%, #e2ff00 100%) 0% 0%
+        no-repeat padding-box;
+      z-index: 0;
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0.1rem;
+        left: 0.1rem;
+        right: 0.1rem;
+        bottom: 0.1rem;
+        display: flex;
+        z-index: 0;
+        background: #10251b;
+      }
+    }
+    .checkbox input:checked ~ .checkbox__mark {
+      background: transparent
+        linear-gradient(45deg, #e8318d 0%, #18e0e0 41%, #e2ff00 100%) 0% 0%
+        no-repeat padding-box;
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0.1rem;
+        left: 0.1rem;
+        right: 0.1rem;
+        bottom: 0.1rem;
+        display: flex;
+        z-index: 0;
+        background: transparent
+          linear-gradient(45deg, #e8318d 0%, #18e0e0 41%, #e2ff00 100%) 0% 0%
+          no-repeat padding-box;
+      }
+    }
+    .checkbox input:checked ~ .checkbox__mark svg {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .checkbox input:checked ~ .checkbox__info.text-checked {
+      background: transparent
+        linear-gradient(88deg, #e8318d 0%, #18e0e0 10%, #e2ff00 20%) 0% 0%
+        no-repeat padding-box;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .checkbox__mark {
+      margin-right: 0.5rem;
+      position: relative;
+      width: 1.8rem;
+      height: 1.8rem;
+      border: 0.2rem solid #10251b;
+      border-radius: 0.5rem;
+    }
+    .checkbox__mark svg {
+      position: absolute;
+      fill: #000;
+      color: #000;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.5);
+      width: 100%;
+      height: auto;
+      transition: all ease 0.2s;
+      opacity: 0;
+    }
+    .checkbox--disabled {
+      color: grey;
+      pointer-events: none;
+    }
+    .checkbox--disabled .checkbox__mark {
+      border-color: grey;
+    }
+    .checkbox--disabled .checkbox__mark {
+      border-color: grey;
+    }
+
+    .checkbox__info {
+      width: calc(100% - 2.5rem);
+      overflow: hidden;
+      font-size: 1.1rem;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      letter-spacing: 0.08rem;
+      font-family: $neue-helvetica-roman;
+      user-select: none;
+    }
+
+    .buy-checkbox {
+      align-items: flex-start;
+      width: 100%;
+      padding: 1rem;
+      background: #10241b;
+      border: 0.1rem solid #183629;
+      border-radius: 1rem;
+      margin-bottom: 1rem;
+      label {
+        width: 2.3rem;
+      }
+      .checkbox__info {
+        width: calc(100% - 2.3rem);
+        align-items: flex-start;
+        flex-direction: column;
+        cursor: default;
+        .checkbox__info_box {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          .point_info {
+            width: calc(100% - 10rem);
+            h4.title {
+              font-family: $neue-helvetica-medium;
+              font-size: 1.3rem;
+            }
+            h6.points_value {
+              color: #878787;
+              font-family: $neue-helvetica-roman;
+            }
+          }
+          .price_info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-end;
+            width: 10rem;
+            h4.title {
+              font-family: $neue-helvetica-bold;
+              font-size: 1.3rem;
+            }
+            .points_value {
+              color: #faa932;
+              font-family: $neue-helvetica-medium;
+
+              display: flex;
+              align-items: center;
+              img {
+                height: 1.2rem;
+                width: 1.2rem;
+                border-radius: 50rem;
+                margin-left: 0.3rem;
+              }
+            }
+          }
+        }
+        .accordion {
+          width: 100%;
+
+          .accordion-item {
+            background-color: transparent;
+            border: none;
+            .accordion-header {
+              cursor: default;
+              .accordion-button {
+                background-color: transparent;
+                color: #878787;
+                width: auto;
+                padding: 0;
+                margin-top: 0.5rem;
+                margin-bottom: 0.5rem;
+                font-family: $neue-helvetica-roman;
+                text-decoration: underline;
+                font-size: 1.1rem;
+                cursor: pointer;
+                &::after {
+                  filter: invert(0.5);
+                  margin-left: 0.4rem;
+                }
+              }
+            }
+            .accordion-body {
+              padding: 0.5rem 0;
+              ul.available-points {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                li {
+                  color: #878787;
+                  display: flex;
+                  justify-content: space-between;
+                  margin-bottom: 1rem;
+                  align-items: center;
+                  font-size: 1.1rem;
+                  .jt-key {
+                    font-family: $neue-helvetica-roman;
+                  }
+                  .jt-value {
+                    font-family: $neue-helvetica-roman;
+                    display: flex;
+                    align-items: center;
+
+                    img {
+                      height: 1.2rem;
+                      width: 1.2rem;
+                      border-radius: 50rem;
+                      margin-left: 0.3rem;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
