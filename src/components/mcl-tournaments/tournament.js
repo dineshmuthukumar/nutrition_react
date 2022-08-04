@@ -55,6 +55,7 @@ const Tournament = ({
   if (isUpcoming) className = "upcoming-card";
   else if (isFinished) className = "expire-card";
   else if (isLiveStarted) className = "livenow-card";
+  else className = "upnext-card";
 
   return (
     <>
