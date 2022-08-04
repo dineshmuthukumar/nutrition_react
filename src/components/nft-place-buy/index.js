@@ -49,6 +49,7 @@ const NFTPlaceBid = ({
   const [buyAmount, setBuyAmount] = useState(0);
   const [buyQuantity, setBuyQuantity] = useState("");
   const [error, setError] = useState("");
+  const [showMore,setShowMore]=useState(false)
 
   const [buy, setBuy] = useState({
     amountClass: "",
@@ -59,6 +60,10 @@ const NFTPlaceBid = ({
     isError: false,
     errorTitle: "",
     errorDescription: "",
+    buyTypeDollar:false,
+    buyTypeJt:false,
+    buyJT:0,
+    buyDollar:0,
   });
 
   //pop up reset
@@ -117,7 +122,16 @@ const NFTPlaceBid = ({
             buyTypeDollar: true,
           });
         } else {
-          console.log("Insufficient balance for buy");
+          setBuy({
+            ...buy,
+            amountClass: "text-dark",
+            buttonDisable: true,
+            buttonName: "Buy NFTs",
+            buyJT: user?.jump_points_balance,
+            buyTypeJt: false,
+            buyDollar: user?.balance,
+            buyTypeDollar: false,
+          });
         }
       }
     } else {
@@ -148,8 +162,8 @@ const NFTPlaceBid = ({
       buttonDisable: false,
       buttonName: "Buy NFTs",
       buyJT: orderDetails?.buy_amount * 10000,
-      buyTypeJt: true,
-      buyTypeDollar: false,
+      buyTypeJt: !buy?.buyTypeJt,
+      buyTypeDollar: buy?.buyTypeJt ? false:true,
     });
   };
   const dollarCheck = () => {
@@ -347,6 +361,14 @@ const NFTPlaceBid = ({
       setError("");
       setNoBalance(false);
     }
+  };
+  const calculateJtDeduction = (type,deductAmount, taxAmount) => {
+    const da = parseFloat(deductAmount);
+    const tx = parseFloat(taxAmount);
+    const total = da +(da * tx) / 100;
+     if(type==="jt")
+      return total*10000
+    else return currencyFormat(total, "USD");
   };
 
   return (
@@ -713,7 +735,11 @@ const NFTPlaceBid = ({
                       <div className="input-buyfee-wrap mt-4">
                         <div className="checkbox buy-checkbox">
                           <label>
-                            <input name="checkbox-group" type="checkbox" />
+                            <input name="checkbox-group" 
+                            disabled={!buy?.buyTypeDollar && !buy?.buyTypeJt}
+                            onClick={buy?.buyTypeJt ? ()=>handleCheckDollar():()=>handleCheckJt()}
+                            checked={buy?.buyTypeJt}
+                             type="checkbox" />
                             <span className="checkbox__mark">
                               <BiCheck />
                             </span>
@@ -722,17 +748,18 @@ const NFTPlaceBid = ({
                             <div className="checkbox__info_box">
                               <div className="point_info">
                                 <h4 className="title">
-                                  Use JT Points worth $50
+                                  Use JT Points worth {currencyFormat(user?.jump_points_balance/10000,"USD")}
                                 </h4>
-                                <h6 className="points_value">
-                                  1,00,500 points available
-                                </h6>
+                                {!showMore && <h6 className="points_value">
+                                {user?.jump_points_balance} points available
+                                </h6>}
                               </div>
+                            
                               <div className="price_info">
-                                <h4 className="title">-$100</h4>
-                                <h5 className="points_value">
-                                  - 1,00,500 <img src={pointStar} />
-                                </h5>
+                                <h4 className="title">-{calculateJtDeduction("usd",buy?.buyJT/10000,0.5)}</h4>
+                                {!showMore && <h5 className="points_value">
+                                  - {calculateJtDeduction("jt",buy?.buyJT/10000,0.5)} <img src={pointStar} />
+                                </h5>}
                               </div>
                             </div>
                             <Accordion>
@@ -742,13 +769,13 @@ const NFTPlaceBid = ({
                                     <li>
                                       <span className="jt-key">Available</span>
                                       <span className="jt-value">
-                                        1,00,500 <img src={pointStar} />
+                                        {user.jump_points_balance} <img src={pointStar} />
                                       </span>
                                     </li>
                                     <li>
                                       <span className="jt-key">Used</span>
                                       <span className="jt-value">
-                                        - 1,00,500 <img src={pointStar} />
+                                        - {buy?.buyJT} <img src={pointStar} />
                                       </span>
                                     </li>
                                     <li>
@@ -756,19 +783,19 @@ const NFTPlaceBid = ({
                                         Service fee (0.5%)
                                       </span>
                                       <span className="jt-value">
-                                        - 500 <img src={pointStar} />
+                                        - {buy?.buyJT*0.005} <img src={pointStar} />
                                       </span>
                                     </li>
                                     <li>
                                       <span className="jt-key">Balance</span>
                                       <span className="jt-value">
-                                        0 <img src={pointStar} />
+                                        {user.jump_points_balance-calculateJtDeduction("jt",buy?.buyJT/10000,0.5)} <img src={pointStar} />
                                       </span>
                                     </li>
                                   </ul>
                                 </Accordion.Body>
-                                <Accordion.Header>
-                                  More details
+                                <Accordion.Header onClick={()=>setShowMore(!showMore)}>
+                                  <>{showMore ? `Hide details`:`More details`}</>
                                 </Accordion.Header>
                               </Accordion.Item>
                             </Accordion>
