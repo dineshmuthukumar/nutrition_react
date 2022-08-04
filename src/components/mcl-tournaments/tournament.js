@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./style.scss";
 
-import SlamImage from "../../images/jump-trade/tournament/Grand-Slam.png";
+import SlamUpnextImage from "../../images/jump-trade/tournament/upnext.png";
 import LivenowBall from "../../images/jump-trade/tournament/Balll_1.png";
 import finishedMatch from "../../images/mcl-game-launcher/finished-match.png";
 import upcomingMatch from "../../images/mcl-game-launcher/upcoming-match.png";
@@ -60,7 +60,17 @@ const Tournament = ({
     <>
       <article className={`tournament-card ${className}`}>
         {!tournamentData?.schedule && (
-          <img src={tournamentData?.img_url ?tournamentData?.img_url:SlamImage} className="slam-image" />
+          <img
+            src={
+              tournamentData?.img_url
+                ? tournamentData?.img_url
+                : SlamUpnextImage
+            }
+            className="slam-image"
+          />
+        )}
+        {tournamentData?.schedule && (
+          <img src={SlamUpnextImage} className="slam-image" />
         )}
         <div className="content-block">
           {isFinished && (

@@ -28,7 +28,7 @@ const RecentSoldLoader = (props) => {
             foregroundColor="#dbdbdb"
             className="mb-load"
           >
-            <rect x="2" y="5" rx="2" ry="2" width="900" height="500" />
+            <rect x="2" y="10" rx="2" ry="2" width="900" height="500" />
           </ContentLoader>
         </>
       ) : isTab ? (
@@ -63,9 +63,7 @@ const RecentSoldLoader = (props) => {
       ) : is2K ? (
         <>
           <ContentLoader
-            viewBox="0 50 900 300 "
-            width={"100%"}
-            height={"100%"}
+            viewBox="0 50 900 340 "
             backgroundColor="#f5f5f5"
             foregroundColor="#dbdbdb"
             // className="mb-load-1"
@@ -73,9 +71,10 @@ const RecentSoldLoader = (props) => {
           >
             <rect x="0" y="5" rx="2" ry="2" width="210" height="1000" />
             <rect x="225" y="5" rx="2" ry="2" width="210" height="1000" />
-            <rect x="450" y="5" rx="2" ry="2" width="210" height="800" />
-            <rect x="675" y="5" rx="2" ry="2" width="210" height="800" />
+            <rect x="450" y="5" rx="2" ry="2" width="210" height="1000" />
+            <rect x="675" y="5" rx="2" ry="2" width="210" height="1000" />
           </ContentLoader>
+          
         </>
       ) : is4K ? (
         <>
