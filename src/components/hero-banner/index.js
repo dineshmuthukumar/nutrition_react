@@ -223,11 +223,17 @@ const HeroBanner = () => {
                 className="hero-content-img"
                 loading="lazy"
               />
-              {/* <div className="hero-content-box">
-                <div className="hero-btn-block">
+              <div className="hero-content-box">
+                <h4>EARN - Reap The Rewards Of Your Skill & Strategy </h4>
+                <p className="hero-desc">
+                  The Meta Cricket League Brings You An Opportunity to Earn Real
+                  Cash Rewards By Playing And Winning Matches. Explore This
+                  Exciting & Lucrative Journey Into The Cricket Metaverse!
+                </p>
+                {/* <div className="hero-btn-block">
                   <img src={comingSoon} alt="comming soon" />
-                </div>
-              </div> */}
+                </div> */}
+              </div>
             </div>
           </section>
         </div>

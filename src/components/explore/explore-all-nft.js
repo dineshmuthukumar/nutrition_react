@@ -778,6 +778,12 @@ const ExploreAllNFT = () => {
     }
   };
 
+  const handleBlurEvent = (event) => {
+    if (event.target.value.trim() === "") {
+      handleFilterCheck("", "text_search");
+    }
+  };
+
   function handleFilterCheck(input, type, remove = false) {
     let sale_exist = query.get("sale") ? query.get("sale").split(",") : [];
     let nft_exist = query.get("nft") ? query.get("nft").split(",") : [];
@@ -1157,6 +1163,7 @@ const ExploreAllNFT = () => {
                         className="search-box-add"
                         value={search}
                         onKeyPress={handleKeyPressEvent}
+                        onBlur={handleBlurEvent}
                         onChange={(e) => setSearch(e.target.value)}
                         placeholder="Search here"
                       />{" "}
@@ -1688,7 +1695,7 @@ const ExploreAllNFT = () => {
 //       >
 //         <rect x="0" y="5" rx="2" ry="2" width="350" height="700" />
 //         <rect x="365" y="5" rx="2" ry="2" width="350" height="700" />
-       
+
 //       </ContentLoader>)   : (
 //         <>
 //         <ContentLoader
@@ -1704,7 +1711,7 @@ const ExploreAllNFT = () => {
 //           <rect x="375" y="5" rx="2" ry="2" width="350" height="500" />
 //           <rect x="750" y="5" rx="2" ry="2" width="350" height="500" />
 //         </ContentLoader>
-        
+
 //         </>
 //       )}
 //     </>
