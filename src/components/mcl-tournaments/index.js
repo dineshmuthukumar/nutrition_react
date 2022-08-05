@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { cloneElement, useEffect, useRef, useState } from "react";
 import OwlCarousel from "react-owl-carousel";
 import Tournament from "./tournament";
 
@@ -14,7 +14,7 @@ import ContentLoader from "react-content-loader";
 
 const MclTournaments = () => {
   const [tournamentData, setTournamentData] = useState([]);
-
+  const owlRef = useRef();
   useEffect(() => {
     tournamentsTimer();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -57,39 +57,45 @@ const MclTournaments = () => {
                 </div>
                 {tournamentData.length > 0 && (
                   <OwlCarousel
+                    ref={owlRef}
                     className="owl-theme tournament-list-carousel"
                     margin={0}
                     smartSpeed={500}
                     lazyLoad
                     center
-                    dots
+                    dots={true}
+                    dotsEach={1}
                     nav={false}
-                    startPosition={2}
+                    startPosition={1}
+                    onClick={(e) => {
+                      let toIndex = parseInt(e.target.ariaRowIndex);
+                      if (!isNaN(toIndex)) owlRef.current.to(toIndex, 500);
+                    }}
                     responsive={{
                       0: {
                         items: 1,
                       },
                       600: {
-                        items: 2,
+                        items: 1,
                       },
                       992: {
-                        items: 4,
+                        items: 3,
                       },
                       1024: {
-                        items: 4,
+                        items: 3,
                       },
                       1200: {
-                        items: 4,
+                        items: 3,
                       },
                       1541: {
-                        items: 4,
+                        items: 3,
                       },
                     }}
                   >
                     {tournamentData.length > 0 &&
                       tournamentData.map((data, index) => (
                         <>
-                          {index < 5 && (
+                          {index < 3 && (
                             <Tournament
                               index={index}
                               statusChange={() => tournamentsTimer()}
