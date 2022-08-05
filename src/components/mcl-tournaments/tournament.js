@@ -58,7 +58,7 @@ const Tournament = ({
   else className = "upnext-card";
 
   return (
-    <>
+    <div aria-rowindex={index}>
       <article className={`tournament-card ${className}`}>
         {!tournamentData?.schedule && (
           <img
@@ -68,12 +68,17 @@ const Tournament = ({
                 : SlamUpnextImage
             }
             className="slam-image"
+            aria-rowindex={index}
           />
         )}
         {tournamentData?.schedule && (
-          <img src={SlamUpnextImage} className="slam-image" />
+          <img
+            src={SlamUpnextImage}
+            className="slam-image"
+            aria-rowindex={index}
+          />
         )}
-        <div className="content-block">
+        <div className="content-block" aria-rowindex={index}>
           {isFinished && (
             <span className="tournament-end-band">
               tournament <br /> ended
@@ -148,7 +153,7 @@ const Tournament = ({
           </div>
         </div>
       </article>
-    </>
+    </div>
   );
 };
 
