@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import dayjs from "dayjs";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { Accordion, Offcanvas } from "react-bootstrap";
+import { Offcanvas } from "react-bootstrap";
 import { FaCheckCircle } from "react-icons/fa";
 
 import ErrorText from "./error-text";
@@ -17,11 +17,6 @@ import { nftBuyApi } from "../../api/methods";
 import "./style.scss";
 import ToolTip from "../tooltip/index";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
-import { VscInfo } from "react-icons/vsc";
-import { toast } from "react-toastify";
-import { BiCheck } from "react-icons/bi";
-
-import pointStar from "../../images/jump-trade/icons/points-star.png";
 
 const NFTPlaceBid = ({
   placeBuyPop = false,
@@ -49,7 +44,6 @@ const NFTPlaceBid = ({
   const [buyAmount, setBuyAmount] = useState(0);
   const [buyQuantity, setBuyQuantity] = useState("");
   const [error, setError] = useState("");
-  const [showMore,setShowMore]=useState(false)
 
   const [buy, setBuy] = useState({
     amountClass: "",
@@ -60,10 +54,6 @@ const NFTPlaceBid = ({
     isError: false,
     errorTitle: "",
     errorDescription: "",
-    buyTypeDollar:false,
-    buyTypeJt:false,
-    buyJT:0,
-    buyDollar:0,
   });
 
   //pop up reset
@@ -94,46 +84,6 @@ const NFTPlaceBid = ({
         setError("");
       }
       setBuyAmount(orderDetails?.buy_amount);
-      if (
-        parseFloat(user?.jump_points_balance / 10000) >=
-        parseFloat(orderDetails?.buy_amount)
-      ) {
-        jtCheck();
-      } else if (
-        parseFloat(user?.balance) >=
-        parseFloat(orderDetails?.buy_amount) +
-          (parseFloat(orderDetails?.buy_amount) *
-            (parseFloat(nft?.service_fee) + parseFloat(nft?.tds_rate))) /
-            100
-      ) {
-        dollarCheck();
-      } else {
-        let totalAvailBal = user?.jump_points_balance / 10000;
-        let takeBalanceDollar =
-          parseFloat(orderDetails?.buy_amount) - parseFloat(totalAvailBal);
-        if (parseFloat(takeBalanceDollar) < parseFloat(user?.balance)) {
-          setBuy({
-            ...buy,
-            buttonDisable: false,
-            buttonName: "Buy NFTs",
-            buyJT: user?.jump_points_balance,
-            buyTypeJt: true,
-            buyDollar: takeBalanceDollar,
-            buyTypeDollar: true,
-          });
-        } else {
-          setBuy({
-            ...buy,
-            amountClass: "text-dark",
-            buttonDisable: true,
-            buttonName: "Buy NFTs",
-            buyJT: user?.jump_points_balance,
-            buyTypeJt: false,
-            buyDollar: user?.balance,
-            buyTypeDollar: false,
-          });
-        }
-      }
     } else {
       setBuyAmount(0);
       setBuy({
@@ -145,55 +95,12 @@ const NFTPlaceBid = ({
         isError: false,
         errorTitle: "",
         errorDescription: "",
-        buyTypeDollar: false,
-        buyTypeJt: false,
-        buyDollar: 0,
-        buyJT: 0,
       });
       setError("");
     }
     setBuyQuantity("");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const jtCheck = () => {
-    setBuy({
-      ...buy,
-      buttonDisable: false,
-      buttonName: "Buy NFTs",
-      buyJT: orderDetails?.buy_amount * 10000,
-      buyTypeJt: !buy?.buyTypeJt,
-      buyTypeDollar: buy?.buyTypeJt ? false:true,
-    });
-  };
-  const dollarCheck = () => {
-    setBuy({
-      ...buy,
-      buttonDisable: false,
-      buttonName: "Buy NFTs",
-      buyDollar: orderDetails?.buy_amount,
-      buyTypeDollar: true,
-      buyTypeJt: false,
-    });
-  };
-  const handleCheckDollar = () => {
-    if (
-      parseFloat(user?.balance) >=
-      parseFloat(orderDetails?.buy_amount) +
-        (parseFloat(orderDetails?.buy_amount) *
-          (parseFloat(nft?.service_fee) + parseFloat(nft?.tds_rate))) /
-          100
-    ) {
-      dollarCheck();
-    }
-  };
-  const handleCheckJt = () => {
-    if (
-      parseFloat(user?.jump_points_balance / 10000) >=
-      parseFloat(orderDetails?.buy_amount)
-    )
-      jtCheck();
-  };
 
   useEffect(() => {
     if (erc721) {
@@ -219,11 +126,7 @@ const NFTPlaceBid = ({
       });
       const result = await nftBuyApi({
         order_slug: orderSlug,
-        order: {
-          quantity: erc721 ? 1 : parseInt(buyQuantity),
-          pay_usd: buy.buyTypeDollar,
-          pay_jt_point: buy.buyTypeJt,
-        },
+        order: { quantity: erc721 ? 1 : parseInt(buyQuantity) },
       });
       if (result.data.success) {
         setSuccess(true);
@@ -362,14 +265,6 @@ const NFTPlaceBid = ({
       setNoBalance(false);
     }
   };
-  const calculateJtDeduction = (type,deductAmount, taxAmount) => {
-    const da = parseFloat(deductAmount);
-    const tx = parseFloat(taxAmount);
-    const total = da +(da * tx) / 100;
-     if(type==="jt")
-      return total*10000
-    else return currencyFormat(total, "USD");
-  };
 
   return (
     <Offcanvas
@@ -378,7 +273,7 @@ const NFTPlaceBid = ({
       placement="end"
       className="w-100 w-md-50 w-lg-42"
     >
-      <Offcanvas.Body className="p-0 pop-body-buy-container buynft-popup">
+      <Offcanvas.Body className="p-0 pop-body-buy-container">
         {user ? (
           <>
             <div className="pop-nft-buy-details">
@@ -476,44 +371,30 @@ const NFTPlaceBid = ({
                       </div>
 
                       <div className="pop-nft-content">
-                        <div className="pop-author-name">
-                          <span className=" pop-author-name-category">
-                            {nft?.category_name}
-                          </span>
-                          {erc721 ? (
-                            <div className="erc-type">
-                              1 of 1 <span>left</span>
-                            </div>
-                          ) : (
-                            <div className="erc-type">
-                              {availableQty >= 0 && availableQty != null
-                                ? `${availableQty} / ${
-                                    totalQty != null
-                                      ? totalQty
-                                      : orderDetails.total_quantity
-                                  }`
-                                : `${orderDetails.available_quantity} / ${orderDetails.total_quantity}`}
-                            </div>
-                          )}
+                        <div className="pop-author-name text-center">
+                          {nft?.category_name}
                         </div>
                         <div className="pop-nft-title text-center mb-1">
                           {nft?.name}
                         </div>
-                        <div className="price-box">
-                          <span className="price-title">Price of NFT</span>
-                          <h5>
-                            <span className="dollar">
-                              {currencyFormat(buyAmount, "USD")}
-                            </span>{" "}
-                            <span className="jtPoints">
-                              {" "}
-                              {buyAmount * 10000}JT
-                            </span>
-                          </h5>
-                        </div>
                         {/* <div className="erc-type text-center mb-1">
                           1 of 1 <span>left</span>
                         </div> */}
+                        {erc721 ? (
+                          <div className="erc-type text-center mb-1">
+                            1 of 1 <span>left</span>
+                          </div>
+                        ) : (
+                          <div className="erc-type text-center mb-1">
+                            {availableQty >= 0 && availableQty != null
+                              ? `${availableQty} / ${
+                                  totalQty != null
+                                    ? totalQty
+                                    : orderDetails.total_quantity
+                                }`
+                              : `${orderDetails.available_quantity} / ${orderDetails.total_quantity}`}
+                          </div>
+                        )}
                       </div>
                     </div>
                     {/* <div className="pop-nft-buy-media">
@@ -571,131 +452,8 @@ const NFTPlaceBid = ({
                       </div>
                     )} */}
                     {/* error-bid -> less value than min bid,  error-balance -> low value, error-balance-float -> low value in quantity  */}
-                    {/* sticky-bottom-fix */}
-                    {/* Start new view */}
-                    {/* <div className="buyfee-block">
-                      <h3 className="checkoption-title">
-                        How Would you like to make the purchase?{" "}
-                      </h3>
-                      <ul className="buy-option-checkbox">
-                        <li>
-                          <label>
-                            <input
-                              type="checkbox"
-                              disabled={!buy?.buyTypeDollar && !buy?.buyTypeJt}
-                              checked={buy?.buyTypeJt}
-                              value="checkbox"
-                            />
-                            <article
-                              onClick={handleCheckJt}
-                              className="jt-buy-checkbox-style"
-                            >
-                              <div className="jt-points-card-header">
-                                <h5>
-                                  with <span>JT Points</span>
-                                </h5>
-                              </div>
-                              <div className="jt-points-card-body">
-                                <div className="available-fund">
-                                  <span className="key">Available JTP</span>
-                                  <span className="value">
-                                    {user?.jump_points_balance}
-                                  </span>
-                                </div>
-                                <ul className="servicesfee-list">
-                                  <li>
-                                    <span className="key">Service Fee</span>
-                                    <span className="value">0%</span>
-                                  </li>
-                                  <li>
-                                    <span className="key">TDS Fee</span>
-                                    <span className="value">0%</span>
-                                  </li>
-                                </ul>
-                                <ToolTip
-                                  icon={
-                                    <VscInfo
-                                      size={16}
-                                      className="tooltip-check-icon"
-                                    />
-                                  }
-                                  content={`The service fee includes gas fee and the platform fee. ${
-                                    user?.apply_buy_tds &&
-                                    !isNaN(parseFloat(nft?.tds_rate))
-                                      ? "TDS u/s 194S Income Tax Act"
-                                      : ""
-                                  }`.trim()}
-                                  placement="top"
-                                />
-                              </div>
-                              <div className="jt-points-card-footer">
-                                <h6>Your Total</h6>
-                                <h4>
-                                  <span>{buy?.buyJT} ~ </span>{" "}
-                                  {currencyFormat(buy?.buyJT / 10000, "USD")}
-                                </h4>
-                              </div>
-                            </article>
-                          </label>
-                        </li>
-                        <li>
-                          <label>
-                            <input
-                              type="checkbox"
-                              disabled={!buy?.buyTypeDollar && !buy?.buyTypeJt}
-                              checked={buy?.buyTypeDollar}
-                              value="checkbox"
-                            />
-                            <article
-                              onClick={handleCheckDollar}
-                              className="jt-buy-checkbox-style"
-                            >
-                              <div className="jt-points-card-header">
-                                <h5>
-                                  with <span className="white">US dollars</span>
-                                </h5>
-                              </div>
-                              <div className="jt-points-card-body">
-                                <div className="available-fund">
-                                  <span className="key">Available JTP</span>
-                                  <span className="value">
-                                    {currencyFormat(user?.balance, "USD")}
-                                  </span>
-                                </div>
-                                <ul className="servicesfee-list">
-                                  <li>
-                                    <span className="key">Service Fee</span>
-                                    <span className="value">2.5%</span>
-                                  </li>
-                                  <li>
-                                    <span className="key">TDS Fee</span>
-                                    <span className="value">1.5%</span>
-                                  </li>
-                                </ul>
-                              </div>
-                              <div className="jt-points-card-footer">
-                                <h6>Your Total</h6>
-                                <h4>
-                                  {" "}
-                                  {currencyFormat(
-                                    parseFloat(buy?.buyDollar) +
-                                      (parseFloat(buy?.buyDollar) *
-                                        (parseFloat(nft?.service_fee) +
-                                          parseFloat(nft?.tds_rate))) /
-                                        100,
-                                    "USD"
-                                  )}
-                                </h4>
-                              </div>
-                            </article>
-                          </label>
-                        </li>
-                      </ul>
-                    </div> */}
-                    {/* End new view */}
-                    {/* Start old view */}
                     <div className="sticky-bottom-fix buyfee-block">
-                      {/* <div className={`input-buy-container mt-4 ${error}`}>
+                      <div className={`input-buy-container mt-4 ${error}`}>
                         <label className="input-buy-text">
                           {erc721
                             ? `Price of NFT`
@@ -719,6 +477,7 @@ const NFTPlaceBid = ({
                               }
                               onChange={handleBuyInputChange}
                             />
+                            {/* text-dark -> dark text after entering quantity */}
                             <span
                               className={`quantity-to-value ${buy.amountClass}`}
                             >
@@ -727,82 +486,21 @@ const NFTPlaceBid = ({
                           </div>
                         ) : (
                           <>
+                            {/* <div className="input-buy-wrap"> */}
                             <h1>{currencyFormat(buyAmount, "USD")}</h1>
+                            {/* </div> */}
                             <hr className="custom-divider"></hr>
                           </>
                         )}
+                        {/* <div className="balance-details">
+                        {user &&
+                          `Your wallet balance is ${currencyFormat(
+                            user?.balance,
+                            "USD"
+                          )}`}
                       </div> */}
-                      <div className="input-buyfee-wrap mt-4">
-                        <div className="checkbox buy-checkbox">
-                          <label>
-                            <input name="checkbox-group" 
-                            disabled={!buy?.buyTypeDollar && !buy?.buyTypeJt}
-                            onClick={buy?.buyTypeJt ? ()=>handleCheckDollar():()=>handleCheckJt()}
-                            checked={buy?.buyTypeJt}
-                             type="checkbox" />
-                            <span className="checkbox__mark">
-                              <BiCheck />
-                            </span>
-                          </label>
-                          <div className="checkbox__info">
-                            <div className="checkbox__info_box">
-                              <div className="point_info">
-                                <h4 className="title">
-                                  Use JT Points worth {currencyFormat(user?.jump_points_balance/10000,"USD")}
-                                </h4>
-                                {!showMore && <h6 className="points_value">
-                                {user?.jump_points_balance} points available
-                                </h6>}
-                              </div>
-                            
-                              <div className="price_info">
-                                <h4 className="title">-{calculateJtDeduction("usd",buy?.buyJT/10000,0.5)}</h4>
-                                {!showMore && <h5 className="points_value">
-                                  - {calculateJtDeduction("jt",buy?.buyJT/10000,0.5)} <img src={pointStar} />
-                                </h5>}
-                              </div>
-                            </div>
-                            <Accordion>
-                              <Accordion.Item eventKey="0">
-                                <Accordion.Body>
-                                  <ul className="available-points">
-                                    <li>
-                                      <span className="jt-key">Available</span>
-                                      <span className="jt-value">
-                                        {user.jump_points_balance} <img src={pointStar} />
-                                      </span>
-                                    </li>
-                                    <li>
-                                      <span className="jt-key">Used</span>
-                                      <span className="jt-value">
-                                        - {buy?.buyJT} <img src={pointStar} />
-                                      </span>
-                                    </li>
-                                    <li>
-                                      <span className="jt-key">
-                                        Service fee (0.5%)
-                                      </span>
-                                      <span className="jt-value">
-                                        - {buy?.buyJT*0.005} <img src={pointStar} />
-                                      </span>
-                                    </li>
-                                    <li>
-                                      <span className="jt-key">Balance</span>
-                                      <span className="jt-value">
-                                        {user.jump_points_balance-calculateJtDeduction("jt",buy?.buyJT/10000,0.5)} <img src={pointStar} />
-                                      </span>
-                                    </li>
-                                  </ul>
-                                </Accordion.Body>
-                                <Accordion.Header onClick={()=>setShowMore(!showMore)}>
-                                  <>{showMore ? `Hide details`:`More details`}</>
-                                </Accordion.Header>
-                              </Accordion.Item>
-                            </Accordion>
-                          </div>
-                        </div>
                       </div>
-                      <hr className="custom-divider"></hr>
+
                       <div className="input-buyfee-wrap mt-4">
                         <div className={`input-buy-container`}>
                           <div className="services-fee-box">
@@ -866,16 +564,16 @@ const NFTPlaceBid = ({
                           </div>
                         </div>
                       </div>
+                      <hr className="custom-divider"></hr>
                     </div>
-                    {/* End Old View */}
                   </div>
                   <div className="bottom-area">
-                    {/* <div className="terms text-secondary">
+                    <div className="terms text-secondary">
                       <>
                         An NFT Sale Cannot Be Reversed Or Refunded After
                         Purchase.
                       </>
-                    </div> */}
+                    </div>
                     {nft.celebrity_id ===
                       parseInt(process.env.REACT_APP_LATIMES_ID) && (
                       <div className="terms ">
