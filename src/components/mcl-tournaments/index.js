@@ -30,17 +30,25 @@ const MclTournaments = () => {
     }
   };
   const dataCheck = (tournamentDetails) => {
-    let finishedData = tournamentDetails?.finished.reverse();
-    if (tournamentDetails?.active.length >= 3) {
-      setTournamentData([...finishedData, ...tournamentDetails?.active]);
-    } else {
+    let finishedData = tournamentDetails?.finished;
+    if (tournamentDetails?.active.length >= 1) {
       let appendData = [];
-      for (let load = 0; load < 3 - tournamentDetails?.active.length; load++) {
+      if(tournamentDetails?.active.length ===1){
+        appendData.push({ name: "Up Next", schedule: true });
+      setTournamentData([finishedData[0], ...tournamentDetails?.active,...appendData]);
+      }
+      else{
+        setTournamentData([finishedData[0], ...tournamentDetails?.active]);
+      }
+    } else {
+      let reverseFinishedData=tournamentDetails?.finished.reverse();
+      let appendData = [];
+      for (let load = 0; load < 1; load++) {
         appendData.push({ name: "Up Next", schedule: true });
       }
       setTournamentData([
-        ...finishedData,
-        ...tournamentDetails?.active,
+        ...reverseFinishedData,
+        // ...tournamentDetails?.active,
         ...appendData,
       ]);
     }
