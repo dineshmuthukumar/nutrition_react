@@ -115,7 +115,7 @@ const Tournament = ({
           {isUpcoming && (
             <>
               {" "}
-              {index === 2 ? (
+              {index === 1 ? (
                 <h5> Tournament starts in</h5>
               ) : (
                 <h5>Upcoming tournament starts in</h5>
