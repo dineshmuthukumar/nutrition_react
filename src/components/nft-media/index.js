@@ -19,7 +19,6 @@ import { level, role, playerCategory } from "../../utils/common";
 import "./style.scss";
 
 const NFTMedia = ({ nft, title, slug, isFav, statistics }) => {
-  console.log("ss", nft);
   const location = useLocation();
 
   const [modalShow, setModalShow] = useState(false);
