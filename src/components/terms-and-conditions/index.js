@@ -690,7 +690,7 @@ const TermsAndConditions = () => {
                     serious intent to buy or sell bidding (bidding activities
                     intended with the sole purpose of increasing the price or
                     desirability or in any way altering the sale ability of an
-                    NFT through unfair means.
+                    NFT through unfair means).
                   </p>
 
                   <p>
@@ -805,7 +805,7 @@ const TermsAndConditions = () => {
                     feel', organization, compilations, code, data, photographs,
                     articles, images, illustrations, audio, audiovisual, video,
                     and all other elements of the Platform (collectively and
-                    severally "JUMP.TRADE Materials".
+                    severally) "JUMP.TRADE Materials".
                   </p>
 
                   <p>
@@ -1367,6 +1367,42 @@ const TermsAndConditions = () => {
                     liable to further damages if there is any breach of such
                     Confidentiality and unauthorized disclosure of confidential
                     information.
+                  </p>
+                </div>
+                <div className="all-para-style">
+                  <h4>TDS</h4>
+                  <p>
+                    AS PER SECTION 194B OF INCOME TAX ACT, 1962. WINNINGS FROM
+                    LOTTERY OR CROSSWORD PUZZLE
+                  </p>
+                  <p>
+                    The person responsible for paying to any person any income
+                    by way of winnings from any lottery or crossword puzzle or
+                    card game and other game of any sort in an amount exceeding
+                    ten thousand rupees (Rs.10,000) shall, at the time of
+                    payment thereof, deduct income-tax thereon at the rates in
+                    force.
+                  </p>
+                  <p>
+                    Provided that in a case where the winnings are wholly in
+                    kind or party in cash and partly in kind but the part in
+                    cash is not sufficient to meet the liability of deduction of
+                    tax in respect of whole of the winnings, the person
+                    responsible for paying shall, before releasing the winnings,
+                    ensure that tax has been paid in respect of the winnings.
+                  </p>
+                  <p>
+                    As per Section 194B, tax needs to be deducted at flat 30%
+                    plus cess of 4%, i.e, at 31.2%.
+                  </p>
+                  <p>
+                    Read more at{" "}
+                    <a
+                      href=" https://taxguru.in/income-tax/tds-under-section-194b-on-winning-from-lottery.html"
+                      className="one-link"
+                    >
+                      https://taxguru.in/income-tax/tds-under-section-194b-on-winning-from-lottery.html
+                    </a>
                   </p>
                 </div>
                 <div className="all-para-style">
