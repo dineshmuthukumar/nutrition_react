@@ -22,7 +22,7 @@ import NFTProperties from "../components/nft-properties";
 import NFTSectionTitle from "../components/nft-section-title";
 import NFTTags from "../components/nft-tags";
 import toaster from "../utils/toaster";
-import { NFTLoader } from "../components/nft-basic-details/content-loader";
+// import { NFTLoader } from "../components/nft-basic-details/content-loader";
 import {
   acceptBid,
   bidDetail,
@@ -47,6 +47,7 @@ import AdditionalPerks from "../components/additional-perks/index";
 import BidWinner from "../components/bid-winner/index";
 
 import NFTPlayerStats from "../components/nft-player-stats";
+import DetailsLoader from "../utils/detailsLoader";
 
 const OrderDetails = ({ CurrentOrderSlug, details = false }) => {
   //const history = useHistory();
@@ -466,7 +467,7 @@ const OrderDetails = ({ CurrentOrderSlug, details = false }) => {
         />
       )}
       {loader ? (
-        <NFTLoader />
+        <DetailsLoader />
       ) : (
         <section className="detail-page-content">
           <div className="bid_section_wrapper">

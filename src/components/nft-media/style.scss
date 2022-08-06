@@ -144,7 +144,19 @@
     @media screen and (max-width: 991px) {
       width: 100%;
       display: flex;
-      height: calc(100vh - 10rem);
+      height: calc(100vh - 25rem);
+    }
+    @media screen and (max-width: 576px) {
+      height: calc(100vh - 40rem);
+    }
+    @media screen and (max-width: 414px) {
+      height: calc(100vh - 40rem);
+    }
+    @media screen and (max-width: 375px) {
+      height: calc(100vh - 30rem);
+    }
+    @media screen and (max-width: (375px)) {
+      height: calc(100vh - 30rem);
     }
   }
   .no_height {
