@@ -1481,7 +1481,7 @@ const ExploreAllNFT = () => {
                         )}
                       </div>
 
-                      <div className="filter-list-items">
+                      {/* <div className="filter-list-items">
                         <h4
                           className="header"
                           role={"button"}
@@ -1536,7 +1536,7 @@ const ExploreAllNFT = () => {
                             ))}
                           </ul>
                         )}
-                      </div>
+                      </div> */}
 
                       <div className="filter-list-items">
                         <h4
