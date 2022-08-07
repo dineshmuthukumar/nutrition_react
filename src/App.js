@@ -222,6 +222,7 @@ const WebContainer = () => {
   let query = useQuery();
   const fsz = query.get("fsz");
   const token = query.get("token");
+  const aid = query.get("aid");
 
   useEffect(() => {
     if (fsz) {
@@ -235,6 +236,13 @@ const WebContainer = () => {
       history.replace(pathname);
 
       dispatch(user_load_by_token_thunk(token));
+    }
+
+    // XENA Integration
+    if (aid) {
+      for (const [key, value] of query.entries()) {
+        setCookiesByName(key, value);
+      }
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

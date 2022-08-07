@@ -26,7 +26,16 @@ const NFTPlayerStats = ({ stats = [], core }) => {
           <div className="heading-block">
             <h3>
               Player stats{" "}
-              {style?.value && <span className="player">({style?.value})</span>}
+              {/* {style?.value && <span className="player">({style?.value})</span>} */}
+              {style?.value && (
+                <span className="player">
+                  ( {style?.value}{" "}
+                  {core?.role?.value === "Bowler"
+                    ? core?.bowling_style?.value
+                    : ""}{" "}
+                  )
+                </span>
+              )}
             </h3>
 
             <div className="player-level">

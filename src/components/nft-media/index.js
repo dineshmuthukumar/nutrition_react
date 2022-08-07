@@ -287,7 +287,7 @@ const NFTMedia = ({ nft, title, slug, isFav, statistics }) => {
         <SharePopover
           icon={
             <div>
-              <div className="svg_size share_icon"></div>
+              <div className="svg_size share_icon me-2"></div>
             </div>
           }
           placement="top"
@@ -308,7 +308,7 @@ const NFTMedia = ({ nft, title, slug, isFav, statistics }) => {
                 }
               }}
             >
-              <div className="svg_size extend_icon"></div>
+              <div className="svg_size extend_icon me-2"></div>
             </div>
           }
           placement="top"

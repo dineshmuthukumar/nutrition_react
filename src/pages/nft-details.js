@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useParams ,useHistory} from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 // import { useSelector } from "react-redux";
 // import _ from "lodash";
 
 import { nftActiveOrders } from "../api/methods";
-import { NFTLoader } from "../components/nft-basic-details/content-loader";
 // import { listForSaleDetail, ownerDetails } from "../api/actioncable-methods";
 // import { artistApi } from "../api/base-methods";
 // import OwnerList from "../components/owner-list";
@@ -16,6 +15,7 @@ import OrderDetails from "./order-details";
 //import AdditionalPerks from "../components/additional-perks/index";
 // import NFTPlayerStats from "../components/nft-player-stats";
 import { Redirect } from "react-router";
+import DetailsLoader from "../utils/detailsLoader";
 
 const NftDetails = () => {
   const history = useHistory();
@@ -48,16 +48,15 @@ const NftDetails = () => {
       //console.log(currentPage);
       setLoader(false);
     } catch (error) {
-      console.log(error)
-      if(error?.response?.status===404)   history.replace("/")
-
+      console.log(error);
+      if (error?.response?.status === 404) history.replace("/");
     }
   };
 
   return (
     <>
       {loader ? (
-        <NFTLoader />
+        <DetailsLoader />
       ) : (
         (() => {
           if (currentPage === "orderdetails") {

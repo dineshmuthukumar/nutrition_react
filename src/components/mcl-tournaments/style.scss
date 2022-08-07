@@ -86,7 +86,8 @@
       article.tournament-card {
         &.expire-card,
         &.livenow-card,
-        &.upcoming-card {
+        &.upcoming-card,
+        &.upnext-card {
           .content-block {
             &:before {
               transition: 0.5s all ease;
@@ -214,7 +215,7 @@ article.tournament-card {
     .content-block {
       &:after {
         content: "";
-        background-image: url("../../images/jump-trade/tournament/tournament-card-live-bg.png");
+        background-image: url("../../images/jump-trade/tournament/tournament-card-bg.png");
         position: absolute;
         top: 0;
         left: 0;
@@ -251,7 +252,7 @@ article.tournament-card {
     .content-block {
       &:after {
         content: "";
-        background-image: url("../../images/jump-trade/tournament/tournament-card-bg.png");
+        background-image: url("../../images/jump-trade/tournament/tournament-card-live-bg.png");
         position: absolute;
         top: 0;
         left: 0;
@@ -272,6 +273,32 @@ article.tournament-card {
     }
   }
   &.upcoming-card {
+    // background-image: linear-gradient(180deg, #8e9400, #00130b);
+    background-image: linear-gradient(180deg, #34392a, #00130b);
+    .content-block {
+      &:after {
+        content: "";
+        background-image: url("../../images/jump-trade/tournament/tournament-card-bg.png");
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+      &:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-image: linear-gradient(180deg, #34392a, #00130b);
+        z-index: 1;
+        opacity: 0.8;
+      }
+    }
+  }
+  &.upnext-card {
     background-image: linear-gradient(180deg, #34392a, #00130b);
     .content-block {
       .upcoming_expire-gear-box {

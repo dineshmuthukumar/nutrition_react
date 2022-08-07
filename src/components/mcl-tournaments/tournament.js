@@ -55,9 +55,10 @@ const Tournament = ({
   if (isUpcoming) className = "upcoming-card";
   else if (isFinished) className = "expire-card";
   else if (isLiveStarted) className = "livenow-card";
+  else className = "upnext-card";
 
   return (
-    <>
+    <div aria-rowindex={index}>
       <article className={`tournament-card ${className}`}>
         {!tournamentData?.schedule && (
           <img
@@ -67,12 +68,17 @@ const Tournament = ({
                 : SlamUpnextImage
             }
             className="slam-image"
+            aria-rowindex={index}
           />
         )}
         {tournamentData?.schedule && (
-          <img src={SlamUpnextImage} className="slam-image" />
+          <img
+            src={SlamUpnextImage}
+            className="slam-image"
+            aria-rowindex={index}
+          />
         )}
-        <div className="content-block">
+        <div className="content-block" aria-rowindex={index}>
           {isFinished && (
             <span className="tournament-end-band">
               tournament <br /> ended
@@ -109,7 +115,7 @@ const Tournament = ({
           {isUpcoming && (
             <>
               {" "}
-              {index === 2 ? (
+              {index === 1 ? (
                 <h5> Tournament starts in</h5>
               ) : (
                 <h5>Upcoming tournament starts in</h5>
@@ -147,7 +153,7 @@ const Tournament = ({
           </div>
         </div>
       </article>
-    </>
+    </div>
   );
 };
 

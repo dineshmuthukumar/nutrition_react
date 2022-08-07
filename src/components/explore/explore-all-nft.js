@@ -166,6 +166,7 @@ const ExploreAllNFT = () => {
         checked: false,
       },
     ],
+
     nftCollection: [
       {
         name: "Rare",
@@ -438,6 +439,83 @@ const ExploreAllNFT = () => {
         checked: false,
       },
     ],
+    level: [
+      {
+        name: "Level 1",
+        value: "1",
+        checked: false,
+      },
+      {
+        name: "Level 2",
+        value: "2",
+        checked: false,
+      },
+      {
+        name: "Level 3",
+        value: "3",
+        checked: false,
+      },
+      {
+        name: "Level 4",
+        value: "4",
+        checked: false,
+      },
+      {
+        name: "Level 5",
+        value: "5",
+        checked: false,
+      },
+      {
+        name: "Level 6",
+        value: "6",
+        checked: false,
+      },
+      {
+        name: "Level 7",
+        value: "7",
+        checked: false,
+      },
+      {
+        name: "Level 8",
+        value: "8",
+        checked: false,
+      },
+      {
+        name: "Level 9",
+        value: "9",
+        checked: false,
+      },
+      {
+        name: "Level 10",
+        value: "10",
+        checked: false,
+      },
+      {
+        name: "Level 11",
+        value: "11",
+        checked: false,
+      },
+      {
+        name: "Level 12",
+        value: "12",
+        checked: false,
+      },
+      {
+        name: "Level 13",
+        value: "13",
+        checked: false,
+      },
+      {
+        name: "Level 14",
+        value: "14",
+        checked: false,
+      },
+      {
+        name: "Level 15",
+        value: "15",
+        checked: false,
+      },
+    ],
 
     showSale: true,
     showStatus: true,
@@ -448,6 +526,7 @@ const ExploreAllNFT = () => {
     showNFTRange: true,
     showGlC: true,
     showPlayers: true,
+    showLevel: true,
   });
   // const { slug } = useParams();
 
@@ -480,6 +559,8 @@ const ExploreAllNFT = () => {
 
     const search_filter = query.get("search") ? query.get("search") : "";
     const has_coin = query.get("coin") ? query.get("coin") : "";
+    const nft_level = query.get("level") ? query.get("level").split(",") : [];
+
     let player_path = match.params.player;
     let headerMetaData = null;
 
@@ -501,6 +582,7 @@ const ExploreAllNFT = () => {
       ...obj,
       checked: nft_category.includes(obj.value),
     }));
+
     info.status = filter.status.map((obj) => ({
       ...obj,
       checked: status_list.includes(obj.value),
@@ -512,6 +594,11 @@ const ExploreAllNFT = () => {
     info.glCoin = filter.glCoin.map((obj) => ({
       ...obj,
       checked: has_coin ? has_coin === obj.value : false,
+    }));
+
+    info.level = filter.level.map((obj) => ({
+      ...obj,
+      checked: nft_level.includes(obj.value),
     }));
 
     info.players = filter.players.map((p) => {
@@ -575,13 +662,17 @@ const ExploreAllNFT = () => {
     const nft_category = query.get("nft-category")
       ? query.get("nft-category").split(",")
       : [];
+
     const nft_collection = query.get("nft-collection")
       ? query.get("nft-collection").split(",")
       : [];
 
     const has_coin = query.get("coin") ? query.get("coin") : "";
+    const nft_level = query.get("level") ? query.get("level").split(",") : [];
+
     const player = match.params.player;
     const playerObj = filter.players.find((p) => p.value === player);
+
     let noMatchFound =
       sale_filters.length === 0 &&
       nft_filters.length === 0 &&
@@ -592,7 +683,8 @@ const ExploreAllNFT = () => {
       !query.get("sort") &&
       nft_category.length === 0 &&
       nft_collection.length === 0 &&
-      has_coin.length === 0;
+      has_coin.length === 0 &&
+      nft_level.length === 0;
     // && !playerObj
     //  && playerObj?.value !== player;
 
@@ -613,7 +705,8 @@ const ExploreAllNFT = () => {
         status_filters,
         price_range,
         has_coin,
-        players
+        players,
+        nft_level
       );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query, match.params.player]);
@@ -629,7 +722,8 @@ const ExploreAllNFT = () => {
     status_filters,
     price_range,
     has_coin,
-    players
+    players,
+    nft_level
   ) => {
     try {
       page === 1 && setLoading(true);
@@ -647,6 +741,7 @@ const ExploreAllNFT = () => {
           price_range,
           has_coin: has_coin === "has_coin" ? true : false,
           players,
+          nft_level,
         },
         sort: sort === "relevance" ? null : sort,
       });
@@ -671,7 +766,8 @@ const ExploreAllNFT = () => {
     status_filters,
     price_range,
     has_coin,
-    players
+    players,
+    nft_level
   ) => {
     try {
       page === 1 && setLoading(true);
@@ -689,6 +785,7 @@ const ExploreAllNFT = () => {
           price_range,
           has_coin: has_coin === "has_coin" ? true : false,
           players,
+          nft_level,
         },
         sort: sort === "relevance" ? null : sort,
       });
@@ -732,12 +829,14 @@ const ExploreAllNFT = () => {
         : [];
       const status_filters = query.get("status") ? query.get("status") : "";
       const has_coin = query.get("coin") ? query.get("coin") : "";
+
       const player = match.params.player;
       const playerObj = filter.players.find((p) => p.value === player);
 
       let players = [];
       if (playerObj?.key) players = playerObj?.key ? [playerObj?.key] : [];
       else players = playerObj?.name ? [playerObj?.name] : [];
+      const nft_level = query.get("level") ? query.get("level").split(",") : [];
 
       showAllNFTs(
         page + 1,
@@ -750,7 +849,8 @@ const ExploreAllNFT = () => {
         status_filters,
         price_range,
         has_coin,
-        players
+        players,
+        nft_level
       );
       setPage(page + 1);
     }
@@ -799,6 +899,7 @@ const ExploreAllNFT = () => {
     let nft_category = query.get("nft-category")
       ? query.get("nft-category").split(",")
       : [];
+
     let status_list = query.get("status") ? query.get("status").split(",") : [];
 
     let nft_collection = query.get("nft-collection")
@@ -810,6 +911,7 @@ const ExploreAllNFT = () => {
     let has_coin_temp = query.get("coin");
     let player_path = match.params.player ? match.params.player : "";
     let player_list = filter.players;
+    let nft_level = query.get("level") ? query.get("level").split(",") : [];
 
     switch (type) {
       case "sale_check":
@@ -852,6 +954,7 @@ const ExploreAllNFT = () => {
           nft_category.push(input.value);
         }
         break;
+
       case "NFT_collection_check":
         if (nft_collection.includes(input.value)) {
           nft_collection = nft_collection.filter((obj) => obj !== input.value);
@@ -887,6 +990,13 @@ const ExploreAllNFT = () => {
           }
         }
         break;
+      case "NFT_level":
+        if (nft_level.includes(input.value)) {
+          nft_level = nft_level.filter((obj) => obj !== input.value);
+        } else {
+          nft_level.push(input.value);
+        }
+        break;
 
       default:
     }
@@ -907,6 +1017,11 @@ const ExploreAllNFT = () => {
       query_string += query_string
         ? `&nft-category=${nft_category}`
         : `nft-category=${nft_category}`;
+    }
+    if (nft_level.length > 0) {
+      query_string += query_string
+        ? `&level=${nft_level}`
+        : `level=${nft_level}`;
     }
 
     if (price_range.from || price_range.to) {
@@ -1261,6 +1376,7 @@ const ExploreAllNFT = () => {
                           </ul>
                         )}
                       </div>
+
                       <div className="filter-list-items">
                         <h4
                           className="header"
@@ -1360,6 +1476,63 @@ const ExploreAllNFT = () => {
                                   </span>
                                 </label>
                               </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+
+                      <div className="filter-list-items">
+                        <h4
+                          className="header"
+                          role={"button"}
+                          onClick={() =>
+                            setFilter({
+                              ...filter,
+                              showLevel: !filter.showLevel,
+                            })
+                          }
+                        >
+                          Level{" "}
+                          {filter.showLevel ? (
+                            <IoIosArrowUp />
+                          ) : (
+                            <IoIosArrowDown />
+                          )}
+                        </h4>
+                        {filter.showLevel && (
+                          <ul className="scrollable-list">
+                            {filter.level.map((obj, i) => (
+                              // <Link
+                              //   to={`/nft-marketplace/cricket-nfts/${obj.value}`}
+                              //   as={
+                              <li key={`level-${i}`}>
+                                <label
+                                  htmlFor={`${obj.name}`}
+                                  className="checkbox"
+                                >
+                                  <input
+                                    id={`${obj.name}`}
+                                    name="checkbox-group"
+                                    type="checkbox"
+                                    checked={obj.checked}
+                                    onClick={() => {
+                                      // history.push(
+                                      //   `/nft-marketplace/cricket-nfts/${obj.value}`
+                                      // )
+                                      handleFilterCheck(obj, "NFT_level");
+                                    }}
+                                  />
+                                  <span className="checkbox__mark">
+                                    <BiCheck />
+                                  </span>
+
+                                  <span className="checkbox__info">
+                                    <span className="title">{obj.name}</span>
+                                  </span>
+                                </label>
+                              </li>
+                              //   }
+                              // />
                             ))}
                           </ul>
                         )}
