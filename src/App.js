@@ -187,7 +187,7 @@ function App(props) {
       )}
 
       <div className="top-loader"></div>
-      <div className="whole-content">
+      <div className="whole-content background-set">
         <Router basename="/">
           <Suspense
             fallback={

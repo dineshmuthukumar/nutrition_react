@@ -59,7 +59,7 @@ const DetailsLoader = (props) => {
       ) : isLaptop ? (
         <ContentLoader
           viewBox="0 50 700 440"
-          backgroundColor="#f5f5f5"
+          backgroundColor="#fff"
           foregroundColor="#dbdbdb"
           {...props}
         >
@@ -82,15 +82,15 @@ const DetailsLoader = (props) => {
       ) : is2K ? (
         <>
           <ContentLoader
-            viewBox="0 50 900 550 "
+            viewBox="0 50 900 500 "
             backgroundColor="#f5f5f5"
             foregroundColor="#dbdbdb"
             {...props}
           >
-            <rect x="10" y="80" rx="30" ry="30" width="420" height="450" />
-            <circle cx="470" cy="95" r="16" />
-            <circle cx="470" cy="130" r="16" />
-            <circle cx="470" cy="165" r="16" />
+            <rect x="10" y="80" rx="15" ry="15" width="450" height="370" />
+            <circle cx="485" cy="95" r="16" />
+            <circle cx="485" cy="130" r="16" />
+            <circle cx="485" cy="165" r="16" />
             <rect x="510" y="80" rx="7" ry="7" width="350" height="13" />
             <rect x="520" y="100" rx="7" ry="7" width="50" height="13" />
             <rect x="510" y="125" rx="10" ry="10" width="250" height="20" />
@@ -98,7 +98,7 @@ const DetailsLoader = (props) => {
             <rect x="510" y="170" rx="7" ry="7" width="375" height="13" />
             <rect x="510" y="190" rx="7" ry="7" width="365" height="13" />
             <rect x="510" y="210" rx="7" ry="7" width="150" height="13" />
-            <rect x="510" y="350" rx="40" ry="40" width="365" height="170" />
+            <rect x="510" y="280" rx="40" ry="40" width="365" height="170" />
           </ContentLoader>
         </>
       ) : null}
