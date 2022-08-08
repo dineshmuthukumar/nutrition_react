@@ -176,7 +176,7 @@ const RecentlySoldList = () => {
                 </span>
               </div>
 
-              {!loading ? (
+              {loading ? (
                 <div className="row">
                   {list.length > 0 ? (
                     list.map((nft, i) => (
