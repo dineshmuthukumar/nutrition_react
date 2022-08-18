@@ -1,4 +1,5 @@
 import { toast } from "react-toastify";
+import ReactPixel from "react-facebook-pixel";
 import {
   addToCartApi,
   removeFromCartApi,
@@ -31,6 +32,11 @@ export const add_to_cart_thunk = (order_slug, quantity) => {
       toast.success("The NFT is successfully added to your cart.", {
         autoClose: 2000,
       });
+
+      // Meta Pixel
+      ReactPixel.init(process.env.REACT_APP_META_PIXEL_ID);
+      ReactPixel.pageView();
+      ReactPixel.track("AddToCart");
     } catch (err) {
       console.log(err?.response?.status);
       if (err?.response?.status === 404) {

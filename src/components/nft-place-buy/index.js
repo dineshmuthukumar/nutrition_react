@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import ReactPixel from "react-facebook-pixel";
 import dayjs from "dayjs";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -138,6 +139,11 @@ const NFTPlaceBid = ({
           buttonName: "Buy NFTs",
           buttonDisable: false,
         });
+
+        // Meta Pixel
+        ReactPixel.init(process.env.REACT_APP_META_PIXEL_ID);
+        ReactPixel.pageView();
+        ReactPixel.track("Purchase", { value: buyAmount, currency: "USD" });
       }
     } catch (error) {
       if (error.response.data.status === 422) {

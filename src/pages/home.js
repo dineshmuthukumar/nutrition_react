@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import ReactPixel from "react-facebook-pixel";
 ///import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import Header from "../components/header";
@@ -94,6 +95,12 @@ const Home = () => {
   //     setFavLoading(false);
   //   }
   // };
+
+  // Meta Pixel Code
+  useEffect(() => {
+    ReactPixel.init(process.env.REACT_APP_META_PIXEL_ID);
+    ReactPixel.pageView();
+  }, []);
 
   return (
     <>
