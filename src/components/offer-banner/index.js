@@ -26,7 +26,7 @@ const OfferBanner = () => {
             <img
               src={innerWidth > 767 ? buyWebText : buyMobileText}
               alt="Best NFT Marketplace"
-              className="hero-content-img"
+              className="buy-content-img"
               loading="lazy"
             />
 
