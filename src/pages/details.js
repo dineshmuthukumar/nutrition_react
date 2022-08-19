@@ -206,7 +206,7 @@ const Details = () => {
       {loader ? (
         <NFTLoader />
       ) : (
-        <section className="detail-page-content">
+        <section className="detail-page-content background-set">
           <div className="bid_section_wrapper">
             <div className="container-fluid">
               <div className="row fit-to-height">
