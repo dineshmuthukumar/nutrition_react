@@ -15,6 +15,7 @@ import "./style.scss";
 import { validateEmail } from "../../utils/common";
 import { subscribeApi } from "../../api/base-methods";
 import images from "../../utils/images.json";
+import discount from "../../images/jump-trade/icons/discount.png";
 
 const Footer = () => {
   const [email, setEmail] = useState();
@@ -103,45 +104,7 @@ const Footer = () => {
               </ul> */}
             {/* </div> */}
 
-            <Form
-              id="nft_form"
-              onSubmit={(e) => {
-                e.preventDefault();
-                handleSendNewsLetter();
-                return false;
-              }}
-            >
-              <Form.Label>
-                Get the Latest Updates on Jump.trade NFT Marketplace
-              </Form.Label>
-              <Form.Group className="formGroup mb-3" controlId="formBasicEmail">
-                <Form.Control
-                  className="nft_form_email"
-                  type="email"
-                  name="Nemail"
-                  placeholder="name@example.com"
-                  disabled={loading}
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                <p className="nft_email_error">{vEmail}</p>
-                <Button
-                  className="nft_form"
-                  type="button"
-                  disabled={loading}
-                  onClick={handleSendNewsLetter}
-                >
-                  {loading ? (
-                    <BiLoaderAlt className="fa fa-spin" />
-                  ) : (
-                    <HiOutlineArrowRight />
-                  )}
-                </Button>
-              </Form.Group>
-            </Form>
-          </div>
-          <div className="submenu second-box">
-            <div className="downloads-section mb-5">
+            <div className="downloads-section">
               <h2 className="app-download">Download App</h2>
               <div className="d-flex pt-3 downloads_btns mb-4">
                 <a
@@ -162,31 +125,7 @@ const Footer = () => {
                 </a>
               </div>
             </div>
-            <div className="top-block">
-              <h3>BECOME A PART OF THE COMMUNITY</h3>
-              <h4>BEGIN A CONVERSATION</h4>
-              <ul className="linkList">
-                <li>
-                  {/* eslint-disable-next-line */}
-                  <a
-                    href="https://discord.com/invite/JRWmNb38GW"
-                    target="_blank"
-                    rel="nofollow noopener noreferrer"
-                  >
-                    <FaDiscord /> @Discord
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="mailto:support@guardianlink.io"
-                    rel="nofollow noopener noreferrer"
-                    className=""
-                  >
-                    support@guardianlink.io
-                  </a>
-                </li>
-              </ul>
-            </div>
+
             <div id="socialMedia">
               <h3>FOLLOW US</h3>
               <ul className="social-icon-two">
@@ -270,26 +209,107 @@ const Footer = () => {
                 </a>
               </h4> */}
             </div>
-            <div className="">
-              <div className="">
-                {/* <button
-                  className="theme-btn"
-                  onClick={() => history.push("/offers")}
-                >
-                  <span>Offers</span>
-                </button> */}
-                <span
-                  onClick={() => history.push("/offers")}
-                  className="linkList offer "
-                >
-                  Offers
-                </span>
-              </div>
+          </div>
+          <div className="submenu second-box">
+            <div className="top-block">
+              <h3>BECOME A PART OF THE COMMUNITY</h3>
+              <h4>BEGIN A CONVERSATION</h4>
+              <ul className="linkList">
+                <li>
+                  {/* eslint-disable-next-line */}
+                  <a
+                    href="https://discord.com/invite/JRWmNb38GW"
+                    target="_blank"
+                    rel="nofollow noopener noreferrer"
+                  >
+                    <FaDiscord /> @Discord
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="mailto:support@guardianlink.io"
+                    rel="nofollow noopener noreferrer"
+                    className=""
+                  >
+                    support@guardianlink.io
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <Form
+                id="nft_form"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handleSendNewsLetter();
+                  return false;
+                }}
+              >
+                <Form.Label>
+                  Get the Latest Updates on Jump.trade NFT Marketplace
+                </Form.Label>
+                <Form.Group className="formGroup" controlId="formBasicEmail">
+                  <Form.Control
+                    className="nft_form_email"
+                    type="email"
+                    name="Nemail"
+                    placeholder="name@example.com"
+                    disabled={loading}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                  <p className="nft_email_error">{vEmail}</p>
+                  <Button
+                    className="nft_form"
+                    type="button"
+                    disabled={loading}
+                    onClick={handleSendNewsLetter}
+                  >
+                    {loading ? (
+                      <BiLoaderAlt className="fa fa-spin" />
+                    ) : (
+                      <HiOutlineArrowRight />
+                    )}
+                  </Button>
+                </Form.Group>
+              </Form>
+              <span
+                onClick={() => history.push("/offers")}
+                className="linkList offer "
+              >
+                <img src={discount} alt="discount" />
+                Offers
+              </span>
             </div>
           </div>
-          {/* <div className="submenu">
-            
-          </div> */}
+          <div className="submenu third-box">
+            <div className="footer-menu-list">
+              <ul className="footer-menu-links">
+                <li onClick={() => history.push("/about-us")}>About Us</li>
+
+                <li onClick={() => history.push("/terms-and-conditions")}>
+                  Terms &amp; Conditions
+                </li>
+
+                <li onClick={() => history.push("/privacy-policy")}>
+                  Privacy Policy
+                </li>
+
+                <li onClick={() => history.push("/faq")}>FAQs</li>
+
+                <li
+                  onClick={() =>
+                    window.open(
+                      process.env.REACT_APP_GUARDIAN_CONTACT_US,
+                      "_blank"
+                    )
+                  }
+                >
+                  Contact Us
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
       <div className="bottom-bar py-4">
@@ -300,9 +320,8 @@ const Footer = () => {
             Appstars Applications Pvt. Ltd., India & Guardian Blockchain Labs
             Pte. Ltd., Singapore.
           </div>
-          <div className="vr"></div>
 
-          <div className="bottom-links">
+          {/* <div className="bottom-links">
             <span
               className="ms-3 me-3 "
               onClick={() => history.push("/about-us")}
@@ -337,7 +356,7 @@ const Footer = () => {
             >
               Contact Us
             </span>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

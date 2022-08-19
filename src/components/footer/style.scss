@@ -35,7 +35,9 @@
   .downloads_btns {
     a {
       img {
-        width: 175px;
+        height: 2.5rem;
+        width: auto;
+        max-width: unset;
       }
     }
   }
@@ -470,21 +472,37 @@ button.nft_form {
   padding-bottom: 0;
   justify-content: space-between;
   position: relative;
+  @media screen and (max-width: 950px) {
+    flex-direction: column;
+    align-items: center;
+  }
 
   .submenu {
     display: flex;
-    padding: 3rem;
+    padding: 2rem;
     align-items: flex-start;
     justify-content: flex-start;
     text-align: right;
+    @media screen and (max-width: 950px) {
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+    }
+
+    @media screen and (max-width: 991px) {
+      padding: 2rem 1.2rem;
+    }
     .footer-brand-info {
       text-align: left;
       font-size: 1.3rem !important;
       max-width: 40rem;
       margin-bottom: 1rem;
+      @media screen and (max-width: 950px) {
+        text-align: center;
+      }
     }
     &:first-of-type {
-      width: 50%;
+      // width: 50%;
       flex-direction: column;
       justify-content: space-between;
       user-select: none;
@@ -501,69 +519,89 @@ button.nft_form {
       }
     }
     &.first-box {
-      width: 50%;
+      order: 1;
+
       .footer-logo {
         height: 4.5rem;
         margin-bottom: 2rem;
       }
 
-      form#nft_form {
+      #socialMedia {
         display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-        max-width: 30rem;
-        .form-label {
-          font-size: 1.8rem;
-          font-family: $neue-helvetica-extended;
-          color: #fff;
-          margin-bottom: 1rem;
-          margin-top: 2rem;
-          text-align: left;
+        align-items: center;
+        width: auto;
+        @media screen and (max-width: 425px) {
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
         }
-
-        .formGroup {
-          position: relative;
-          width: 100%;
-          .nft_form_email {
-            background-color: #000000a3;
-            color: #fff;
+        h3 {
+          font-family: $neue-helvetica-extended;
+          font-size: 1.7rem;
+          margin-bottom: 1rem;
+          white-space: nowrap;
+          padding-right: 2rem;
+        }
+        ul {
+          @media screen and (max-width: 767px) {
+            width: 100%;
           }
-          button.nft_form {
-            background-color: #000;
-            background: transparent
-              linear-gradient(180deg, #e2ff00 0%, #18e0e0 47%, #e8318d 100%) 0%
-              0% no-repeat padding-box;
-            &::before {
-              content: "";
-              position: absolute;
-              background-color: #000;
-
-              top: 0.1rem;
-              left: 0.15rem;
-              right: 0.15rem;
-              bottom: 0.1rem;
-              z-index: 0;
-              border-radius: 50rem;
+          li {
+            @media screen and (max-width: 767px) {
+              margin-right: 0.5rem;
             }
-            svg {
-              position: relative;
-              z-index: 1;
+            a {
+              background: transparent
+                linear-gradient(180deg, #e2ff00 0%, #18e0e0 47%, #e8318d 100%)
+                0% 0% no-repeat padding-box;
+              &::before {
+                content: "";
+                position: absolute;
+                background-color: #000;
+                top: 0.1rem;
+                left: 0.15rem;
+                right: 0.15rem;
+                bottom: 0.1rem;
+                z-index: 0;
+                border-radius: 50rem;
+              }
+              svg {
+                position: relative;
+                z-index: 1;
+                fill: #fff;
+                padding: 0.2rem;
+              }
+              @media screen and (max-width: 767px) {
+                display: flex;
+                padding: 0.3rem;
+                margin-right: 0.5rem;
+              }
             }
           }
         }
       }
     }
     &.second-box {
-      width: 50%;
       justify-content: space-between;
       align-items: flex-end;
       flex-direction: column;
+      order: 3;
+      @media screen and (max-width: 950px) {
+        align-items: center;
+        text-align: center;
+        order: 2;
+      }
+
       .top-block {
         h3 {
-          font-size: 1.8rem;
           font-family: $neue-helvetica-extended-bold;
+          font-size: 1.8rem;
           margin-bottom: 2rem;
+          max-width: 25rem;
+          padding-bottom: 1rem;
+          border-bottom: 0.02rem solid #f2ed28;
+          color: #f2ed28;
+          line-height: 1.4;
         }
         h4 {
           font-size: 1.8rem;
@@ -572,6 +610,19 @@ button.nft_form {
         }
         ul.linkList {
           margin-bottom: 2rem;
+          @media screen and (max-width: 950px) {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            li {
+              &:first-child {
+                a {
+                  font-size: 2rem;
+                }
+              }
+            }
+          }
           li {
             a {
               padding: 0 !important;
@@ -607,49 +658,127 @@ button.nft_form {
           }
         }
       }
-
-      #socialMedia {
-        h3 {
-          font-size: 1.8rem;
-          font-family: $neue-helvetica-extended;
-          margin-bottom: 1rem;
+      form#nft_form {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        max-width: 30rem;
+        @media screen and (max-width: 950px) {
+          align-items: center;
+          text-align: center;
+          justify-content: center;
         }
-        ul {
-          justify-self: flex-end;
-          justify-content: flex-end;
-          @media screen and (max-width: 767px) {
-            width: 100%;
+        .form-label {
+          font-size: 1.6rem;
+          font-family: $neue-helvetica-extended;
+          color: #fff;
+          margin-bottom: 1rem;
+          margin-top: 2rem;
+          text-align: right;
+          @media screen and (max-width: 950px) {
+            text-align: center;
+            margin-top: 0.5rem;
           }
-          li {
-            @media screen and (max-width: 767px) {
-              margin-right: 0.5rem;
+        }
+
+        .formGroup {
+          position: relative;
+          width: 100%;
+          .nft_form_email {
+            background-color: #000000a3;
+            color: #fff;
+          }
+          button.nft_form {
+            background-color: #000;
+            background: transparent
+              linear-gradient(180deg, #e2ff00 0%, #18e0e0 47%, #e8318d 100%) 0%
+              0% no-repeat padding-box;
+            &::before {
+              content: "";
+              position: absolute;
+              background-color: #000;
+
+              top: 0.1rem;
+              left: 0.15rem;
+              right: 0.15rem;
+              bottom: 0.1rem;
+              z-index: 0;
+              border-radius: 50rem;
             }
-            a {
-              background: transparent
-                linear-gradient(180deg, #e2ff00 0%, #18e0e0 47%, #e8318d 100%)
-                0% 0% no-repeat padding-box;
-              &::before {
-                content: "";
-                position: absolute;
-                background-color: #000;
-                top: 0.1rem;
-                left: 0.15rem;
-                right: 0.15rem;
-                bottom: 0.1rem;
-                z-index: 0;
-                border-radius: 50rem;
-              }
-              svg {
-                position: relative;
-                z-index: 1;
-                fill: #fff;
-                padding: 0.2rem;
-              }
-              @media screen and (max-width: 767px) {
-                display: flex;
-                padding: 0.3rem;
-                margin-right: 0.5rem;
-              }
+            svg {
+              position: relative;
+              z-index: 1;
+            }
+          }
+        }
+      }
+    }
+    &.third-box {
+      order: 2;
+      @media screen and (max-width: 950px) {
+        order: 3;
+      }
+      .footer-menu-list {
+        text-align: center;
+        order: 2;
+        background-color: #00000070;
+        padding: 3rem 1rem;
+        position: relative;
+        border-radius: 0.2rem;
+        min-width: 18rem;
+        @media screen and (max-width: 900px) {
+          order: 3;
+        }
+        &::after,
+        &::before {
+          content: "";
+          height: 80%;
+          width: 0.14rem;
+          border-radius: 0.2rem;
+          display: inline-block;
+          background: #ffff0054;
+          position: absolute;
+          margin: auto;
+        }
+        &::after {
+          inset: 0 auto 0 0;
+        }
+        &::before {
+          inset: 0 0 0 auto;
+        }
+        ul.footer-menu-links {
+          margin: 0;
+          padding: 0;
+          li {
+            color: #fff;
+            font-size: 1.2rem;
+            position: relative;
+            margin-bottom: 1.8rem;
+            cursor: pointer;
+            line-height: 1.2;
+            font-family: $neue-helvetica-roman;
+            display: table;
+            margin-left: auto;
+            margin-right: auto;
+            padding-bottom: 0.8rem;
+            &:last-child {
+              margin-bottom: 0;
+            }
+            &::after {
+              content: "";
+              height: 0.15rem;
+              width: 2rem;
+              background: yellow;
+              position: absolute;
+              inset: auto 0 0 0;
+              border-radius: 0.2rem;
+              cursor: pointer;
+              transition: all 0.6s ease-in-out;
+              margin: auto;
+            }
+            &:hover::after {
+              width: 100%;
             }
           }
         }
@@ -692,12 +821,12 @@ button.nft_form {
   margin-right: 0.2em;
 }
 
-#fmenu1 .submenu:nth-of-type(2) {
-  width: 50%;
-}
-#fmenu1 .submenu:last-of-type {
-  width: 50%;
-}
+// #fmenu1 .submenu:nth-of-type(2) {
+//   width: 50%;
+// }
+// #fmenu1 .submenu:last-of-type {
+//   width: 50%;
+// }
 #fmenu1 .submenu:last-of-type form {
   width: 100%;
 }
@@ -909,7 +1038,8 @@ span.seperator {
     font-size: 1.2rem;
     margin-right: 0.5rem;
     color: #e1ff04;
-
+    text-align: center;
+    padding: 0 2rem;
     a {
       cursor: pointer;
       font-size: 1.2rem;
@@ -1440,8 +1570,9 @@ span.seperator {
 }
 .theme-btn {
   border-radius: 0.3rem;
+  text-decoration: none;
   border: solid 1px #000;
-
+  cursor: pointer;
   color: #fff;
   display: block;
   margin: 0 0 1rem;
@@ -1452,8 +1583,8 @@ span.seperator {
   text-transform: uppercase;
   font-size: 1.4rem;
   background: transparent
-    linear-gradient(180deg, #e2ff00 0%, #18e0e0 47%, #e8318d 100%) 0%
-    0% no-repeat padding-box;
+    linear-gradient(180deg, #e2ff00 0%, #18e0e0 47%, #e8318d 100%) 0% 0%
+    no-repeat padding-box;
 
   &::before {
     content: "";
@@ -1493,11 +1624,13 @@ span.seperator {
   }
 }
 
-.offer{
+.offer {
   cursor: pointer;
-    font-size: 1.2rem;
-    color: #e1ff04;
-    text-decoration: none;
-    // text-decoration: underline;
-    font-size: x-large;
+  font-size: 1.5rem;
+  color: #e1ff04;
+  text-decoration: none;
+  img {
+    height: 1.6rem;
+    margin-right: 0.5rem;
+  }
 }
