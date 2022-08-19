@@ -30,6 +30,18 @@
       @media screen and (max-width: 767px) {
         min-height: calc(100vh - 30rem);
       }
+
+      .buy-content-img {
+        // max-width: 60rem;
+        width: 100%;
+        margin-bottom: 2rem;
+
+        @media screen and (max-width: 767px) {
+          width: 100%;
+          margin: 2rem auto;
+        }
+      }
+    
       .buy-content-box {
         display: flex;
         flex-direction: column;
