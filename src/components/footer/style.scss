@@ -716,20 +716,22 @@ button.nft_form {
     }
     &.third-box {
       order: 2;
+      align-items: center;
       @media screen and (max-width: 950px) {
         order: 3;
       }
       .footer-menu-list {
-        text-align: center;
-        order: 2;
         background-color: #00000070;
+        background-color: #0e0f106b;
+        text-align: center;
+        // background-color: #00000036;
         padding: 3rem 1rem;
         position: relative;
         border-radius: 0.2rem;
         min-width: 18rem;
-        @media screen and (max-width: 900px) {
-          order: 3;
-        }
+        backdrop-filter: blur(0.25rem);
+        height: 100%;
+
         &::after,
         &::before {
           content: "";
@@ -750,6 +752,10 @@ button.nft_form {
         ul.footer-menu-links {
           margin: 0;
           padding: 0;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
           li {
             color: #fff;
             font-size: 1.2rem;
@@ -769,7 +775,7 @@ button.nft_form {
               content: "";
               height: 0.15rem;
               width: 2rem;
-              background: yellow;
+              background: #f2ed28;
               position: absolute;
               inset: auto 0 0 0;
               border-radius: 0.2rem;
