@@ -21,8 +21,6 @@ const BlogDetail = () => {
   const [key, setKey] = useState("recent");
   const [recent, setRecent] = useState();
   const [popular, setPopular] = useState();
-  console.log("val", slug);
-
   const shareUrl = `${process.env.REACT_APP_WEBSITE_URL}/blog/${slug}`;
 
   useEffect(() => {
@@ -113,7 +111,11 @@ const BlogDetail = () => {
                     </div>
                     <div className="blog_content text-size mt-5">
                       {" "}
-                      <Interweave content={data?.content?.rendered} />
+                    
+                      
+                      <div dangerouslySetInnerHTML={{__html: data?.content?.rendered.replace(/(<? *script)/gi, 'illegalscript')}} >
+                      </div>
+                      
                     </div>
                   </div>
                 </div>
