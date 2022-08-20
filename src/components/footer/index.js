@@ -11,6 +11,7 @@ import {
   FaTelegramPlane,
   FaYoutube,
 } from "react-icons/fa";
+import { IoLogoWhatsapp } from "react-icons/io";
 import "./style.scss";
 import { validateEmail } from "../../utils/common";
 import { subscribeApi } from "../../api/base-methods";
@@ -194,6 +195,15 @@ const Footer = () => {
                     href="https://www.youtube.com/channel/UCBjyJeYnDeml1aE6URwUfdA"
                   >
                     <FaYoutube />
+                  </a>
+                </li>
+                <li>
+                  <a
+                    target="_blank"
+                    rel="nofollow noopener noreferrer"
+                    href="https://api.whatsapp.com/send?l=en&text=Hi!%20Welcome%20to%20Jump.trade%20chat%20support&phone=918925512070"
+                  >
+                    <IoLogoWhatsapp />
                   </a>
                 </li>
               </ul>
