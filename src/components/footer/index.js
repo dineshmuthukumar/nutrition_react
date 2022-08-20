@@ -201,7 +201,7 @@ const Footer = () => {
                   <a
                     target="_blank"
                     rel="nofollow noopener noreferrer"
-                    href="https://api.whatsapp.com/send?l=en&text=Hi!%20Welcome%20to%20Jump.trade%20chat%20support&phone=918925512070"
+                    href="https://api.whatsapp.com/send?l=en&text=Hi!%20I%20have%20a%20query%20regarding%20MCL%20Game&phone=918925512070"
                   >
                     <IoLogoWhatsapp />
                   </a>
