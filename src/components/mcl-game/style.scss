@@ -583,6 +583,8 @@
   }
   .download_app {
     color: #f5ff00;
+    font-size: 4.5rem;
+    max-width: 45rem;
     @media screen and (max-width: 767px) {
       font-size: 3rem !important;
     }
