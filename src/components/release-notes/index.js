@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaFileAlt, FaMinusCircle, FaPlusCircle } from "react-icons/fa";
+import ReleaseNotesCard from "./release-note-card";
 import "./style.scss";
 
 const ReleaseNotesComponent = () => {
@@ -39,15 +40,11 @@ const ReleaseNotesComponent = () => {
 
   return (
     <>
-      <div className="faq-wrapper">
+      <div className="releasenotes-wrapper">
         {/* <div className="faq_header">
           <h2>FAQs</h2>{" "}
         </div> */}
-
-        <div className="heading">
-          <h3 className="heading heading-h3">Release Notes</h3>{" "}
-        </div>
-
+        <h3 className="heading heading-h3">Release Notes</h3>{" "}
         <div className="c-tabs">
           {tabs.map((obj, i) => (
             <div
@@ -60,21 +57,28 @@ const ReleaseNotesComponent = () => {
             </div>
           ))}
         </div>
-
-        <div className="tab-divider"></div>
-
-        <div className="tab-body">
+        <div className="c-tab-body">
           {(() => {
             if (active === 1) {
               return (
                 <div className="row">
-                  <div className="col-12 col-md-6">MarketPlace</div>
+                  <div className="col-12">
+                    <ReleaseNotesCard mkplace={"Marketplace"} />
+                    <ReleaseNotesCard mkplace={"Marketplace"} />
+                    <ReleaseNotesCard mkplace={"Marketplace"} />
+                    <ReleaseNotesCard mkplace={"Marketplace"} />
+                  </div>
                 </div>
               );
             } else if (active === 2) {
               return (
                 <div className="row">
-                  <div className="col-12 col-md-6">MCl Game</div>
+                  <div className="col-12">
+                    <ReleaseNotesCard mkplace={"MCL GAME"} />
+                    <ReleaseNotesCard mkplace={"MCL GAME"} />
+                    <ReleaseNotesCard mkplace={"MCL GAME"} />
+                    <ReleaseNotesCard mkplace={"MCL GAME"} />
+                  </div>
                 </div>
               );
             }

@@ -1,6 +1,6 @@
 @import "../../styles/common";
 
-.faq-wrapper {
+.releasenotes-wrapper {
   font-family: $neue-helvetica-extended;
 
   background: var(--theme-dark-green);
@@ -10,7 +10,7 @@
     padding: 5rem 3rem;
   }
 
-  h3 {
+  .heading-h3 {
     color: #fff;
     font-size: 2rem;
     font-family: $Impact;
@@ -20,59 +20,58 @@
     display: flex;
     justify-content: start;
     flex-wrap: wrap;
+    border-bottom: 0.2rem solid #214334;
+    margin: 2rem 0;
 
     .nav-tab {
-      margin: 0.3rem 0.5rem 0 0;
-      padding: 0.75rem 1.5rem;
-      border-radius: 4px;
-      background-color: #212135;
-      color: #fff;
+      margin: 0 0.5rem;
+      padding: 1.2rem 1.5rem;
+      border-radius: 0.2rem 0.2rem 0 0;
       transition: 0.5s;
-      font-size: 1rem;
+      font-size: 1.2rem;
       text-align: center;
-      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1rem;
+      color: #718c7f;
+      color: #4b6659;
+      background-color: #193629;
+      background-color: #1936298a;
+      border-top: 0.2rem solid #214334;
+      user-select: none;
 
       &.active {
-        background-color: var(--ck-theme);
-        color: #000;
-        font-weight: 600;
+        // background-color: var(--ck-theme);
+        background-color: #1936298a;
+        color: var(--ck-theme);
+        // border-top: 0.2rem solid var(--ck-theme);
+        border-top: 0.2rem solid #f5ff006e;
       }
     }
   }
-
-  .tab-divider {
-    border-bottom: 2px solid #fff;
-    margin: 2rem 0;
-  }
-}
-
-.c-accordian {
-  background: #212135;
-  font-family: $neue-helvetica-extended;
-  margin-bottom: 1.5rem;
-
-  .c-accor-head {
-    display: flex;
-    align-items: center;
-    border-bottom: 2px solid var(--ck-theme);
-
-    .head-area {
-      flex: 1;
-      font-size: 1.1rem;
+  .release-notes-card-box {
+    background-color: #00190a;
+    padding: 3rem;
+    border-radius: 0.2rem;
+    border-left: 0.3rem solid #748826;
+    margin-bottom: 1.5rem;
+    .created-info {
+      font-size: 1rem;
+      text-transform: uppercase;
+      color: #ffffffb3;
+      color: #718c7f;
+      font-family: $neue-helvetica-roman;
     }
-
-    div {
-      padding: 1rem;
+    .card-name {
+      margin-bottom: 1rem;
+      font-size: 2.5rem;
+      font-family: $Impact;
     }
-  }
-  .c-accor-body {
-    padding: 1.5rem;
-    font-size: 0.9rem;
-    border-bottom: 2px solid var(--ck-theme);
-
-    p {
-      &:last-child {
-        margin-bottom: 0;
+    .card-key-points {
+      li {
+        margin-bottom: 0.5rem;
+        font-size: 1.1rem;
+        color: #718c7f;
+        font-family: $neue-helvetica-roman;
       }
     }
   }
