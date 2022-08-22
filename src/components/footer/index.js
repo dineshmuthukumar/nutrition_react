@@ -306,6 +306,9 @@ const Footer = () => {
                 </li>
 
                 <li onClick={() => history.push("/faq")}>FAQs</li>
+                <li onClick={() => history.push("/release-notes")}>
+                  Release Notes
+                </li>
 
                 <li
                   onClick={() =>
