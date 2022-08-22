@@ -58,7 +58,17 @@ const NFTPurchaseDetails = ({ nft, list = [] }) => {
                 </td>
                 <td className="text-center">
                   {/* {currencyFormat(detail?.buy_amount, "USD")} */}
-                  {currencyFormat(detail?.fees, "USD")}
+
+                  {detail.order_payments[0]?.payment_type === "usd" ? (
+                    <>
+                      {currencyFormat(
+                        detail?.order_payments[0]?.service_fee,
+                        "USD"
+                      )}
+                    </>
+                  ) : (
+                    <>{currencyFormat(detail?.fees, "USD")}</>
+                  )}
                 </td>
                 <td
                   className={`text-center ${
