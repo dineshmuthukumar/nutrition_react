@@ -4,10 +4,10 @@
   font-family: $neue-helvetica-extended;
 
   background: var(--theme-dark-green);
-  padding: 7rem 5rem;
+  padding: 5rem 5rem;
   color: #fff !important;
   @media screen and (max-width: 767px) {
-    padding: 5rem 3rem;
+    padding: 3rem 3rem;
   }
   @media screen and (max-width: 520px) {
     padding: 3rem 1.5rem;
@@ -24,7 +24,7 @@
     justify-content: start;
     flex-wrap: wrap;
     border-bottom: 0.2rem solid #214334;
-    margin: 2rem 0;
+    margin: 0rem 0 2rem;
 
     .nav-tab {
       margin: 0 0.5rem;
@@ -85,6 +85,16 @@
         font-size: 1.1rem;
         color: #718c7f;
         font-family: $neue-helvetica-roman;
+      }
+      &.small-liner-inner {
+        li {
+          color: white;
+          .small-liner {
+            li {
+              color: #718c7f;
+            }
+          }
+        }
       }
     }
   }

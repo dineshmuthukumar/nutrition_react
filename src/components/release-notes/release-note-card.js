@@ -5,7 +5,7 @@ const ReleaseNotesCard = ({ mkplace }) => {
     <>
       <article className="release-notes-card-box">
         <h6 className="created-info">4 AUGUST 2022</h6>
-        <h1 className="card-name">{mkplace} Update - 8/3/2022</h1>
+        <h1 className="card-name">{mkplace} - 8/3/2022</h1>
         <ul className="card-key-points">
           <li>
             Queen of Pain's boots are now an independent item slot in-game and
