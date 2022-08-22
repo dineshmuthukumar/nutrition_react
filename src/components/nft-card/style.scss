@@ -59,6 +59,7 @@
     height: 26rem;
     object-fit: contain;
     margin-bottom: 1rem;
+    user-select: none;
     // @media screen and (max-width: 991px) {
     //   height: 20rem;
     // }
@@ -235,11 +236,11 @@
     border-radius: 0.3rem;
   }
   @media screen and (min-width: 991px) {
-  &:hover {
-    transform: translateY(-10px);
-    transition: 0.5s;
+    &:hover {
+      transform: translateY(-10px);
+      transition: 0.5s;
+    }
   }
-}
   .player_stats {
     position: absolute;
     top: 1rem;
@@ -547,19 +548,22 @@
     box-shadow: none;
     z-index: 2;
 
-    .rank-title{
+    .rank-title {
       font-size: 1rem;
       font-family: "neue_helvetica_bold" !important;
       text-transform: capitalize;
       margin-right: 0.5rem;
-      background: linear-gradient(180deg, #e2ff00 0%, #18e0e0 52.6%, #e8318d 100%);
+      background: linear-gradient(
+        180deg,
+        #e2ff00 0%,
+        #18e0e0 52.6%,
+        #e8318d 100%
+      );
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    
   }
-
 
   .time-counter-box {
     position: absolute;

@@ -7,3 +7,10 @@ $danger: #f21e00;
 .container-fluid {
   padding: 0 2rem !important;
 }
+
+::selection,
+::-webkit-selection {
+  color: #00190a;
+  background: #f5ff01;
+  border-radius: 5rem;
+}

@@ -4,13 +4,13 @@
   font-family: $neue-helvetica-extended;
 
   background: var(--theme-dark-green);
-  padding: 5rem 5rem;
+  padding: 1rem 5rem 5rem;
   color: #fff !important;
   @media screen and (max-width: 767px) {
-    padding: 3rem 3rem;
+    padding: 1rem 3rem 3rem;
   }
   @media screen and (max-width: 520px) {
-    padding: 3rem 1.5rem;
+    padding: 1rem 1.5rem 3rem;
   }
 
   .heading-h3 {
