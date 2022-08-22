@@ -105,7 +105,7 @@ const ReleaseNotesComponent = () => {
 
                             <li>
                               Ability to purchase multiple NFTs simultaneously
-                              using the "Add to Cart" feature.;
+                              using the "Add to Cart" feature.
                             </li>
                           </ul>
                         </li>
@@ -174,7 +174,7 @@ const ReleaseNotesComponent = () => {
                           Enable the option to toggle vibration on and off to
                           the user.
                         </li>
-                        <li>Enable left-hand player controls to the user.s</li>
+                        <li>Enable left-hand player controls to the user.</li>
                         <li>Improvements to the camera angles.</li>
                         <li>Changes to the game APIs.</li>
                         <li>Introduce night-time stadium mode.</li>
@@ -218,7 +218,7 @@ const ReleaseNotesComponent = () => {
                           using the Stroke button.
                         </li>
                         <li>
-                          JIncrease the sizes of the Loft and Stroke buttons and
+                          Increase the sizes of the Loft and Stroke buttons and
                           slider for easy access.
                         </li>
                         <li>
@@ -247,6 +247,9 @@ const ReleaseNotesComponent = () => {
                           the game.
                         </li>
                         <li>Updates to the NFT level upgrade feature.</li>
+                        <li>
+                          Introduce 3 new pitch types - Dry, Green, and Normal.
+                        </li>
                       </ul>
                     </article>
                   </div>
