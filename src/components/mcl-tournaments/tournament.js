@@ -28,7 +28,6 @@ const Tournament = ({
   useEffect(() => {
     showTimer();
   }, []);
-  console.log(!tournamentData?.schedule);
 
   const showTimer = () => {
     if (

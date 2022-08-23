@@ -48,7 +48,6 @@ const MclTournaments = () => {
       }
       setTournamentData([
         ...reverseFinishedData,
-        // ...tournamentDetails?.active,
         ...appendData,
       ]);
     }
@@ -103,13 +102,11 @@ const MclTournaments = () => {
                     {tournamentData.length > 0 &&
                       tournamentData.map((data, index) => (
                         <>
-                          {index < 3 && (
                             <Tournament
                               index={index}
                               statusChange={() => tournamentsTimer()}
                               tournamentData={data}
                             />
-                          )}
                         </>
                       ))}
                   </OwlCarousel>
