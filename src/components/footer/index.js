@@ -197,7 +197,7 @@ const Footer = () => {
                     <FaYoutube />
                   </a>
                 </li>
-                <li>
+                {/* <li>
                   <a
                     target="_blank"
                     rel="nofollow noopener noreferrer"
@@ -205,7 +205,7 @@ const Footer = () => {
                   >
                     <IoLogoWhatsapp />
                   </a>
-                </li>
+                </li> */}
               </ul>
 
               {/* <h4>
