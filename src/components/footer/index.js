@@ -306,6 +306,13 @@ const Footer = () => {
                 </li>
 
                 <li onClick={() => history.push("/faq")}>FAQs</li>
+                <li
+                  onClick={() =>
+                    window.open(process.env.REACT_APP_INSTRUCTION_URL, "_blank")
+                  }
+                >
+                  Instruction
+                </li>
                 <li onClick={() => history.push("/release-notes")}>
                   Release Notes
                 </li>
