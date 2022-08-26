@@ -521,6 +521,9 @@ button.nft_form {
     &.first-box {
       order: 1;
 
+      @media screen and (min-width: 1200px) {
+        width: 40%;
+      }
       .footer-logo {
         height: 4.5rem;
         margin-bottom: 2rem;
@@ -586,6 +589,9 @@ button.nft_form {
       align-items: flex-end;
       flex-direction: column;
       order: 3;
+      @media screen and (min-width: 1200px) {
+        width: 40%;
+      }
       @media screen and (max-width: 950px) {
         align-items: center;
         text-align: center;
@@ -717,6 +723,9 @@ button.nft_form {
     &.third-box {
       order: 2;
       align-items: center;
+      @media screen and (min-width: 1200px) {
+        width: 20%;
+      }
       @media screen and (max-width: 950px) {
         order: 3;
       }
