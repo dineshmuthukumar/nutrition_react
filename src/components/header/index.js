@@ -871,6 +871,17 @@ const Header = ({
                               as="button"
                               onClick={() =>
                                 window.open(
+                                  `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/limit-orders`,
+                                  "_self"
+                                )
+                              }
+                            > 
+                              Limit Orders
+                            </Dropdown.Item>
+                            <Dropdown.Item
+                              as="button"
+                              onClick={() =>
+                                window.open(
                                   `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/pre-orders`,
                                   "_self"
                                 )
