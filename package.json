@@ -17,6 +17,7 @@
     "interweave": "^13.0.0",
     "libphonenumber-js": "^1.9.49",
     "lodash": "^4.17.21",
+    "mixpanel-browser": "^2.45.0",
     "moment": "^2.29.3",
     "node-sass": "^4.14.1",
     "react": "^17.0.1",

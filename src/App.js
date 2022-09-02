@@ -23,7 +23,7 @@ import {
 } from "./redux/thunk/user_thunk";
 import { setCookiesByName, setCookies } from "./utils/cookies";
 import useQuery from "./hook/useQuery";
-
+import mixpanel from "mixpanel-browser";
 import loader from "./images/load.gif";
 import "./App.css";
 
@@ -106,6 +106,7 @@ function App(props) {
   useEffect(() => {
     props.change_lang(lang);
     setLanguage(lang);
+    mixpanel.init("fb37da042db19dafef9b171500d64106", { debug: true });
   }, [props, lang]);
 
   const checkSystemTimer = (input) => {

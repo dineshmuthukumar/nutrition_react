@@ -130,6 +130,7 @@ const NFTPlaceBid = ({
         order: { quantity: erc721 ? 1 : parseInt(buyQuantity) },
       });
       if (result.data.success) {
+        window.mixpanel.track("Purchased");
         setSuccess(true);
         setSuccessData(result.data.data.buy);
         setBuy({

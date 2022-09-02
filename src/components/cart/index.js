@@ -71,6 +71,7 @@ const Cart = ({ cartPop = false, setCartPop, setCheckoutDevice }) => {
       setCheckoutDevice(true);
       const result = await checkoutApi({ selectedItems });
       if (result.data.success) {
+        window.mixpanel.track("Purchased");
         setSuccess(true);
         setCheckoutList(result.data.data.line_items);
         setSuccessData(result.data.data);
