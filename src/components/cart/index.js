@@ -15,7 +15,7 @@ import {
   remove_from_cart_thunk,
 } from "../../redux/thunk/user_cart_thunk";
 import { checkoutApi } from "../../api/methods";
-
+import mixpanel from "mixpanel-browser";
 const Cart = ({ cartPop = false, setCartPop, setCheckoutDevice }) => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -71,7 +71,10 @@ const Cart = ({ cartPop = false, setCartPop, setCheckoutDevice }) => {
       setCheckoutDevice(true);
       const result = await checkoutApi({ selectedItems });
       if (result.data.success) {
-        window.mixpanel.track("Purchased");
+        mixpanel.track("Purchased", {
+          quantity: result.data.data.total_count,
+          amount: result.data.data.total_amount,
+        });
         setSuccess(true);
         setCheckoutList(result.data.data.line_items);
         setSuccessData(result.data.data);

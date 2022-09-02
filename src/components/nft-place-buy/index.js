@@ -18,7 +18,7 @@ import { nftBuyApi } from "../../api/methods";
 import "./style.scss";
 import ToolTip from "../tooltip/index";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
-
+import mixpanel from "mixpanel-browser";
 const NFTPlaceBid = ({
   placeBuyPop = false,
   setPlaceBuyPop,
@@ -130,7 +130,10 @@ const NFTPlaceBid = ({
         order: { quantity: erc721 ? 1 : parseInt(buyQuantity) },
       });
       if (result.data.success) {
-        window.mixpanel.track("Purchased");
+        mixpanel.track("Purchased", {
+          quantity: result.data.data.buy.quantity,
+          amount: result.data.data.buy.amount,
+        });
         setSuccess(true);
         setSuccessData(result.data.data.buy);
         setBuy({
