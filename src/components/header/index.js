@@ -621,7 +621,7 @@ const Header = ({
                     >
                       Meta Cricket League NFTs
                     </Dropdown.Item>
-                    <Dropdown.Item
+                    {/* <Dropdown.Item
                       as="button"
                       onClick={() =>
                         window.open(
@@ -631,7 +631,7 @@ const Header = ({
                       }
                     >
                       Football Memorabilia NFTs
-                    </Dropdown.Item>
+                    </Dropdown.Item> */}
                   </Dropdown.Menu>
                 </Dropdown>
                 {!user?.marketLive ? (
@@ -1043,7 +1043,7 @@ const Header = ({
                       >
                         Meta Cricket League NFTs
                       </Dropdown.Item>
-                      <Dropdown.Item
+                      {/* <Dropdown.Item
                         as="button"
                         onClick={() =>
                           window.open(
@@ -1053,7 +1053,7 @@ const Header = ({
                         }
                       >
                         Football Memorabilia NFTs
-                      </Dropdown.Item>
+                      </Dropdown.Item> */}
                     </Dropdown.Menu>
                   </Dropdown>
 
