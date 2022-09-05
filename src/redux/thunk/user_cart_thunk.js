@@ -34,7 +34,7 @@ export const add_to_cart_thunk = (order_slug, quantity) => {
       });
 
       // Meta Pixel
-      if (process.env.REACT_APP_FACEBOOK_PIXEL === "production") {
+      if (process.env.REACT_APP_MARKETING_SCRIPT === "enabled") {
         ReactPixel.init(process.env.REACT_APP_META_PIXEL_ID);
         ReactPixel.pageView();
         ReactPixel.track("AddToCart");
