@@ -34,9 +34,11 @@ export const add_to_cart_thunk = (order_slug, quantity) => {
       });
 
       // Meta Pixel
-      ReactPixel.init(process.env.REACT_APP_META_PIXEL_ID);
-      ReactPixel.pageView();
-      ReactPixel.track("AddToCart");
+      if (process.env.REACT_APP_FACEBOOK_PIXEL === "production") {
+        ReactPixel.init(process.env.REACT_APP_META_PIXEL_ID);
+        ReactPixel.pageView();
+        ReactPixel.track("AddToCart");
+      }
     } catch (err) {
       console.log(err?.response?.status);
       if (err?.response?.status === 404) {

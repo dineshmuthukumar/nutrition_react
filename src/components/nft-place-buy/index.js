@@ -145,9 +145,11 @@ const NFTPlaceBid = ({
         });
 
         // Meta Pixel
-        ReactPixel.init(process.env.REACT_APP_META_PIXEL_ID);
-        ReactPixel.pageView();
-        ReactPixel.track("Purchase", { value: buyAmount, currency: "USD" });
+        if (process.env.REACT_APP_FACEBOOK_PIXEL === "production") {
+          ReactPixel.init(process.env.REACT_APP_META_PIXEL_ID);
+          ReactPixel.pageView();
+          ReactPixel.track("Purchase", { value: buyAmount, currency: "USD" });
+        }
       }
     } catch (error) {
       if (error.response.data.status === 422) {

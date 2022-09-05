@@ -98,8 +98,10 @@ const Home = () => {
 
   // Meta Pixel Code
   useEffect(() => {
-    ReactPixel.init(process.env.REACT_APP_META_PIXEL_ID);
-    ReactPixel.pageView();
+    if (process.env.REACT_APP_FACEBOOK_PIXEL === "production") {
+      ReactPixel.init(process.env.REACT_APP_META_PIXEL_ID);
+      ReactPixel.pageView();
+    }
   }, []);
 
   return (
