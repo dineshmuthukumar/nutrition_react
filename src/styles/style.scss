@@ -1293,6 +1293,10 @@ input::-webkit-inner-spin-button {
     &:active {
       color: #000000 !important;
       background-color: #e7e7e9;
+      i.newbadge {
+        color: #fff;
+        background: #036063;
+      }
     }
   }
 }
