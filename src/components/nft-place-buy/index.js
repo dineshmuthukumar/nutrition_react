@@ -130,10 +130,12 @@ const NFTPlaceBid = ({
         order: { quantity: erc721 ? 1 : parseInt(buyQuantity) },
       });
       if (result.data.success) {
-        mixpanel.track("Purchased", {
-          quantity: result.data.data.buy.quantity,
-          amount: result.data.data.buy.amount,
-        });
+        if (process.env.REACT_APP_MARKETING_SCRIPT === "enabled") {
+          mixpanel.track("Purchased", {
+            quantity: result.data.data.buy.quantity,
+            amount: result.data.data.buy.amount,
+          });
+        }
         setSuccess(true);
         setSuccessData(result.data.data.buy);
         setBuy({

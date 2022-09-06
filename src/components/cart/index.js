@@ -71,10 +71,12 @@ const Cart = ({ cartPop = false, setCartPop, setCheckoutDevice }) => {
       setCheckoutDevice(true);
       const result = await checkoutApi({ selectedItems });
       if (result.data.success) {
-        mixpanel.track("Purchased", {
-          quantity: result.data.data.total_count,
-          amount: result.data.data.total_amount,
-        });
+        if (process.env.REACT_APP_MARKETING_SCRIPT === "enabled") {
+          mixpanel.track("Purchased", {
+            quantity: result.data.data.total_count,
+            amount: result.data.data.total_amount,
+          });
+        }
         setSuccess(true);
         setCheckoutList(result.data.data.line_items);
         setSuccessData(result.data.data);
