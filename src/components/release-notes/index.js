@@ -70,7 +70,7 @@ const ReleaseNotesComponent = () => {
                     <ReleaseNotesCard mkplace={"Marketplace"} /> */}
 
                     <article className="release-notes-card-box">
-                    <h1 className="card-name">Septemper 2022</h1>
+                    <h1 className="card-name">September 2022</h1>
                     <h6>Jump.trade Marketplace Website Updates</h6>
                     <ul className="card-key-points">
                         <li>
