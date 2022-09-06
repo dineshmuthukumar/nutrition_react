@@ -70,6 +70,18 @@ const ReleaseNotesComponent = () => {
                     <ReleaseNotesCard mkplace={"Marketplace"} /> */}
 
                     <article className="release-notes-card-box">
+                    <h1 className="card-name">Septemper 2022</h1>
+                    <h6>Jump.trade Marketplace Website Updates</h6>
+                    <ul className="card-key-points">
+                        <li>
+                        Cards History: Details of Upgrade Cards earned in each tournament added under "My Cards".
+                        </li>
+                        <li>
+                        Limit Order: Users can configure their NFT choices and get notified if an NFT matches their requirements and is available for purchase.
+                        </li>
+                      </ul>
+                      </article>
+                      <article className="release-notes-card-box">
                       {/* <h6 className="created-info">July 2022</h6> */}
                       <h1 className="card-name">August 2022</h1>
                       <h6>Jump.trade Marketplace Website Updates</h6>
