@@ -638,7 +638,7 @@ const Header = ({
                   <Nav.Link
                     id="drop_outer"
                     role="button"
-                    // onClick={() => window.open("/mcl-game", "_self")}
+                  // onClick={() => window.open("/mcl-game", "_self")}
                   >
                     <span className="beta-container">
                       <span className="beta-tag">Coming soon</span>MCL Game
@@ -875,8 +875,8 @@ const Header = ({
                                   "_self"
                                 )
                               }
-                            > 
-                              Limit Orders
+                            >
+                              Limit Orders<i className="newbadge blink_me">new</i>
                             </Dropdown.Item>
                             <Dropdown.Item
                               as="button"
@@ -1098,7 +1098,7 @@ const Header = ({
   );
 };
 
-const UserComponent = ({ sref, user, onClick = () => {} }) => (
+const UserComponent = ({ sref, user, onClick = () => { } }) => (
   <div className="header-user-details" onClick={onClick} ref={sref}>
     <img
       className="user-image"

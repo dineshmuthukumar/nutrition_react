@@ -1,4 +1,5 @@
 @import "../../styles/common";
+
 .css-5cmxo2 {
   flex: none;
   height: 100%;
@@ -24,6 +25,7 @@
     }
   }
 }
+
 .css-1oowbt2 {
   box-sizing: border-box;
   margin: 0;
@@ -46,14 +48,17 @@
     display: none;
   }
 }
+
 .blinker {
   animation: blinker 1s linear infinite;
 }
+
 @keyframes blinker {
   50% {
     opacity: 0;
   }
 }
+
 .css-1oowbt2:before {
   content: "";
   position: absolute;
@@ -114,6 +119,7 @@
   from {
     -moz-transform: translateX(100%);
   }
+
   to {
     -moz-transform: translateX(-100%);
   }
@@ -124,6 +130,7 @@
   from {
     -webkit-transform: translateX(100%);
   }
+
   to {
     -webkit-transform: translateX(-100%);
   }
@@ -135,6 +142,7 @@
     -webkit-transform: translateX(100%);
     transform: translateX(100%);
   }
+
   to {
     -moz-transform: translateX(-100%);
     -webkit-transform: translateX(-100%);
@@ -157,9 +165,11 @@
   border-radius: 0 !important;
   transform: translate(100%);
   transition: 0.5s all ease-in-out;
+
   &.show {
     transform: translate(0%);
   }
+
   .dropdown-item {
     font-size: 1.2rem;
     font-family: "neue_helveticamedium" !important;
@@ -195,7 +205,7 @@
   }
 }
 
-.side-menu #drop_outer + .dropdown-menu-end {
+.side-menu #drop_outer+.dropdown-menu-end {
   position: relative;
   transition: 0.5s all ease;
   background: #222127;
@@ -205,13 +215,16 @@
   @media screen and (max-width: 397px) {
     font-size: 0.7rem !important;
   }
+
   @media screen and (max-width: 360px) {
     font-size: 0.5rem !important;
   }
 }
+
 .menu-icon {
   margin-left: 1rem;
   display: block;
+
   // @media screen and (min-width: 768px) {
   //   display: none;
   // }
@@ -219,6 +232,7 @@
     display: none;
   }
 }
+
 .close-icon {
   text-align: right;
   padding: 1.2rem 1rem;
@@ -226,10 +240,12 @@
 
 .beta-container {
   position: relative;
+
   .beta-tag {
     position: absolute;
     right: 0;
-    background-color: rgb(212, 127, 0);
+    color: #000;
+    background-color:#f5ff01;
     font-family: $neue-helvetica-medium;
     font-size: 0.6rem;
     bottom: -0.8rem;
@@ -254,4 +270,34 @@
   background-image: url("https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/header_bg.png");
   background-position: center;
   background-size: cover;
+}
+
+i.newbadge {
+  text-transform: uppercase;
+  font-style: normal;
+  font-family: $neue-helvetica-medium;
+  color: #000;
+  background: #f5ff01;
+  padding: 0.1rem 0.5rem;
+  border-radius: 50rem;
+  font-size: 0.6rem !important;
+  margin-left: 0.5rem;
+  letter-spacing: 0.05rem;
+  line-height: 1;
+  top: 50%;
+  padding-top: 0.2rem;
+  &:hover{
+    color: #fff;
+  background: #f5ff01;
+  }
+}
+
+.blink_me {
+  animation: blinker 2s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
 }
