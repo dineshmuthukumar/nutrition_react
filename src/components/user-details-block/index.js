@@ -255,7 +255,7 @@ const UserDetailsBlock = ({ userDetail }) => {
                                   <NFTCard
                                     key={`onsale-${i}`}
                                     nft={nft}
-                                    onsale
+                                    // onsale
                                   />
                                 </div>
                               ))}
