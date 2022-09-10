@@ -64,6 +64,7 @@ const NftDetails = lazy(() => import("./pages/nft-details"));
 const OfferBanner = lazy(() => import("./components/offer-banner"));
 const ReleaseNotes = lazy(() => import("./pages/release-notes"));
 const Contest = lazy(() => import("./pages/contest"));
+const ContestTerms = lazy(() => import("./pages/contest-terms"));
 
 function App(props) {
   const market_start_date = "Jul 13, 2022 11:30:00";
@@ -346,7 +347,12 @@ const WebContainer = () => {
         {/* <Route path="/not-found" component={NotFound} /> */}
         <Route exact path="/offers" component={OfferBanner} />
         <Route exact path="/release-notes" component={ReleaseNotes} />
-        <Route exact path="/nft-marketplace/contest" component={Contest} />
+        <Route exact path="/contest" component={Contest} />
+        <Route
+          exact
+          path="/bmw-contest-terms-and-conditions"
+          component={ContestTerms}
+        />
 
         <Route
           path="/mcl"

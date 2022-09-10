@@ -1,0 +1,79 @@
+@import "../../styles/common";
+section.privacy-section {
+  background: transparent linear-gradient(180deg, #073824 0%, #24242e 100%) 0%
+    0% no-repeat padding-box;
+  padding-top: 4rem;
+  line-height: 1.3;
+  padding-bottom: 3rem;
+
+  color: #fff;
+  font-size: 1.5rem;
+  a {
+    color: #e1ff04;
+    text-decoration: none;
+  }
+  .all-para-style {
+    h4 {
+      margin-bottom: 1rem;
+      font-size: 1.4em;
+    }
+  }
+}
+
+.privacy-section {
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+}
+
+.all-para-style ul {
+  padding-left: 1.875rem;
+}
+.all-para-style ol {
+  padding-left: 3.125rem;
+  margin-top: 1.2rem;
+}
+.all-para-style ul.numberic {
+  list-style-type: decimal;
+}
+
+.all-para-style h3 {
+  // letter-spacing: 0.2rem;
+  // margin-bottom: 0.5rem;
+
+  letter-spacing: 0.1rem;
+  margin-bottom: 0.5rem;
+  font-size: 3rem;
+  // font-family: $Impact;
+}
+
+.all-para-style p,
+.all-para-style span,
+.all-para-style li {
+  // letter-spacing: 0.1rem;
+  // line-height: 1.8rem;
+
+  letter-spacing: 0.1rem;
+  line-height: 1.6;
+  color: #cee3da;
+  font-size: 1.3rem;
+  margin: 2rem 0;
+}
+
+.all-para-style li {
+  margin-bottom: 1rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .all-para-style ol {
+    padding-left: 2.125rem;
+  }
+}
+
+.all-para-style h4 {
+  margin-bottom: 0.5rem;
+  font-family: $neue-helvetica-medium;
+}
+
+.all-para-style ul.disc {
+  list-style: disc;
+}

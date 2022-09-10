@@ -673,7 +673,7 @@ const Header = ({
                   className="blink_contest"
                   onClick={() =>
                     window.open(
-                      `${process.env.REACT_APP_MARKETPLACE_URL}/contest`,
+                      `${process.env.REACT_APP_MARKETPLACE_URL}/nft-marketplace/contest`,
                       "_self"
                     )
                   }
@@ -1081,7 +1081,10 @@ const Header = ({
                     </span>
                   </Dropdown.Item>
 
-                  <Dropdown.Item href="/contest" className="mob_blink_contest">
+                  <Dropdown.Item
+                    href="/nft-marketplace/contest"
+                    className="mob_blink_contest"
+                  >
                     Contest
                   </Dropdown.Item>
                 </Dropdown.Menu>

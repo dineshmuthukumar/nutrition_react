@@ -8,7 +8,7 @@ const Contest = () => {
   return (
     <>
       <AppHelmet
-        title={"Jump.trade and MCL Game Release Notes"}
+        title={"Jump.trade Contest"}
         description={
           "Bird's eye view of all the latest updates to the Jump.trade Marketplace and the MCL Game"
         }
