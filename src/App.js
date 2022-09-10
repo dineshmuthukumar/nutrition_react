@@ -346,7 +346,7 @@ const WebContainer = () => {
         {/* <Route path="/not-found" component={NotFound} /> */}
         <Route exact path="/offers" component={OfferBanner} />
         <Route exact path="/release-notes" component={ReleaseNotes} />
-        <Route exact path="/contest" component={Contest} />
+        <Route exact path="/nft-marketplace/contest" component={Contest} />
 
         <Route
           path="/mcl"
