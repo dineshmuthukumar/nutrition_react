@@ -1,17 +1,20 @@
 @import "../../styles/common";
 
-.releasenotes-wrapper {
+.contest-wrapper {
   font-family: $neue-helvetica-extended;
 
   background: var(--theme-dark-green);
   padding: 1rem 5rem 5rem;
   color: #fff !important;
+
   @media screen and (max-width: 767px) {
     padding: 1rem 3rem 3rem;
   }
+
   @media screen and (max-width: 520px) {
     padding: 1rem 1.5rem 3rem;
   }
+
 
   .heading-h3 {
     color: #fff;
@@ -41,6 +44,7 @@
       background-color: #1936298a;
       border-top: 0.2rem solid #214334;
       user-select: none;
+
       @media screen and (max-width: 520px) {
         padding: 1rem 0.8rem;
         font-size: 1rem;
@@ -55,6 +59,7 @@
       }
     }
   }
+
   .hero-content-block {
     text-align: center;
     display: flex;
@@ -64,9 +69,11 @@
     position: relative;
     width: 100%;
     min-height: calc(100vh - 20rem);
+
     @media screen and (max-width: 767px) {
       min-height: calc(100vh - 30rem);
     }
+
     .hero-content-img {
       // max-width: 60rem;
       width: 100%;
@@ -77,6 +84,7 @@
         margin: 2rem auto;
       }
     }
+
     h3 {
       font-size: 3rem;
       max-width: 70rem;
@@ -86,14 +94,17 @@
       text-align: left;
       font-family: $Impact;
       margin-bottom: 2rem;
+
       span {
         font-family: $Impact;
         color: #fff;
       }
+
       @media screen and (max-width: 767px) {
         font-size: 4.5rem;
       }
     }
+
     h1 {
       font-size: 3rem;
       max-width: 70rem;
@@ -103,14 +114,17 @@
       text-align: left;
       font-family: $Impact;
       margin-bottom: 2rem;
+
       span {
         font-family: $Impact;
         color: #fff;
       }
+
       @media screen and (max-width: 767px) {
         font-size: 4.5rem;
       }
     }
+
     .hero-content-box {
       display: flex;
       flex-direction: column;
@@ -119,6 +133,7 @@
       max-width: 75rem;
       width: 100%;
       padding: 0 1rem;
+
       h1,
       h4 {
         color: #e1ff04;
@@ -126,32 +141,38 @@
         font-family: $neue-helvetica-bold;
         margin-bottom: 1rem;
       }
+
       .hero-desc {
         font-size: 1.2rem;
         text-align: center;
         color: #fff;
         margin-bottom: 1rem;
         font-family: $neue-helvetica-medium;
+
         @media screen and (max-width: 767px) {
           margin-bottom: 8rem;
         }
       }
+
       .hero-btn-block {
         display: flex;
         align-items: center;
         justify-content: flex-start;
         margin-top: 0rem;
         margin-bottom: 9rem;
+
         // position: absolute;
         // top: 13rem;
         img {
           max-width: 20rem;
           width: 100%;
         }
+
         button {
           margin-bottom: 0;
           margin: 0 0.5rem !important;
         }
+
         .theme-btn {
           border-radius: 0.3rem;
           border: solid 1px #000;
@@ -165,9 +186,7 @@
           font-family: $neue-helvetica-extended-bold;
           text-transform: uppercase;
           font-size: 1.4rem;
-          background: transparent
-            linear-gradient(180deg, #e2ff00 0%, #18e0e0 47%, #e8318d 100%) 0% 0%
-            no-repeat padding-box;
+          background: transparent linear-gradient(180deg, #e2ff00 0%, #18e0e0 47%, #e8318d 100%) 0% 0% no-repeat padding-box;
 
           &::before {
             content: "";
@@ -180,27 +199,32 @@
             border-radius: 0.3rem;
             z-index: 0;
           }
+
           &:hover,
           &:focus,
           &:active {
             border: solid 1px #000;
             background: #fff;
             color: #000;
+
             &::before {
               border: solid 1px #000;
               background: #fff;
               color: #000;
             }
           }
+
           &:disabled {
             background: #e7e7e9;
             color: #9c9c9b;
             border: none;
             opacity: 1;
+
             &::before {
               opacity: 0.5;
             }
           }
+
           span {
             position: relative;
             z-index: 2;
@@ -223,6 +247,7 @@
         }
       }
     }
+
     // .hero-desc {
     //   font-size: 0.9rem;
     //   text-align: left;
@@ -231,15 +256,41 @@
     //   font-family: $neue-helvetica-medium;
     // }
   }
+
   .release-notes-card-box {
     background-color: #00190a;
     padding: 3rem;
     border-radius: 0.2rem;
     border-left: 0.3rem solid #748826;
     margin-bottom: 1.5rem;
+
     @media screen and (max-width: 520px) {
       padding: 3rem 1.5rem;
     }
+
+    strong {
+      color: #f5ff01;
+    }
+   
+
+    .contest-card {
+      border: 2px solid #f5ff01;
+      border-radius: 4px;
+      margin-bottom: 2rem;
+
+      .winner-content {
+        background: #000;
+        padding: 1rem 1rem;
+        font-size: smaller;
+
+        .winner-count {
+          p {
+            color: #f5ff01;
+          }
+        }
+      }
+    }
+
     .created-info {
       font-size: 1rem;
       text-transform: uppercase;
@@ -247,24 +298,31 @@
       color: #718c7f;
       font-family: $neue-helvetica-roman;
     }
+
     .card-name {
       margin-bottom: 1rem;
       font-size: 2.5rem;
       font-family: $Impact;
+
       @media screen and (max-width: 520px) {
         font-size: 2rem;
       }
     }
+
     .card-key-points {
+     
       li {
         margin-bottom: 0.5rem;
         font-size: 1rem;
-        color: #a5c6bc;
-        font-family: $neue-helvetica-roman;
+        line-height: 1.8;
+        color: #fff;
+        // font-family: "neue_helvetica_roman" !important;
       }
+
       &.small-liner-inner {
         li {
           color: white;
+
           .small-liner {
             li {
               color: #a5c6bc;

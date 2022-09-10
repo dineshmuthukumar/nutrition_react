@@ -261,6 +261,7 @@ const WebContainer = () => {
         <Route exact path="/blog/:slug" component={BlogDetails} />
         <Route exact path="/announcment/:slug" component={AnnounDetails} />
         <Route exact path="/announcment-list" component={AnnounementList} />
+        <Route exact path="/nft-marketplace/contest" component={Contest} />
         <Route
           exact
           path="/nft-marketplace/trending-nfts"
@@ -347,7 +348,7 @@ const WebContainer = () => {
         {/* <Route path="/not-found" component={NotFound} /> */}
         <Route exact path="/offers" component={OfferBanner} />
         <Route exact path="/release-notes" component={ReleaseNotes} />
-        <Route exact path="/contest" component={Contest} />
+        
         <Route
           exact
           path="/bmw-contest-terms-and-conditions"

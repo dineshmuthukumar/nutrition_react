@@ -1082,7 +1082,7 @@ const Header = ({
                   </Dropdown.Item>
 
                   <Dropdown.Item
-                    href="/nft-marketplace/contest"
+                    href="/nft-marketplacee/contest"
                     className="mob_blink_contest"
                   >
                     Contest

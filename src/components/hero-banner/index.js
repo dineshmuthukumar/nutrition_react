@@ -25,6 +25,12 @@ import firstSlideMobile from "../../images/jump-trade/hero-banner/First_Banner_B
 import firstSlideWebText from "../../images/jump-trade/hero-banner/First_Banner_Text--only_Web.png";
 import firstSlideMobileText from "../../images/jump-trade/hero-banner/First_Banner_Text--only_Mobile.png";
 
+import bmw_home_web from "../../images/jump-trade/bmw_banner_home.png";
+import bmw_home_mobile from "../../images/jump-trade/mobile_home_bmw.png";
+
+
+
+
 import comingSoon from "../../images/jump-trade/hero-banner/Coming-Soon_Common_Web.png";
 
 import "./style.scss";
@@ -229,6 +235,37 @@ const HeroBanner = () => {
                   The Meta Cricket League Brings You An Opportunity to Earn Real
                   Cash Rewards By Playing And Winning Matches. Explore This
                   Exciting & Lucrative Journey Into The Cricket Metaverse!
+                </p>
+                {/* <div className="hero-btn-block">
+                  <img src={comingSoon} alt="comming soon" />
+                </div> */}
+              </div>
+            </div>
+          </section>
+        </div>
+        <div class="item">
+          <section
+            className="hero-banner-sec"
+            style={{
+              backgroundImage: `url(${
+                innerWidth > 769 ? bmw_home_web : bmw_home_mobile
+              })`,
+            }}
+          >
+            <div className="hero-content-block">
+              {/* <img
+                src={innerWidth > 767 ? earnWebText : earnMobileText}
+                alt="Best NFT Marketplace"
+                className="hero-content-img"
+                loading="lazy"
+              /> */}
+              <div className="hero-content-box">
+                <h4>{""}</h4>
+                <p className="hero-desc">
+                  {" "}
+                  {/* The Meta Cricket League Brings You An Opportunity to Earn Real
+                  Cash Rewards By Playing And Winning Matches. Explore This
+                  Exciting & Lucrative Journey Into The Cricket Metaverse! */}
                 </p>
                 {/* <div className="hero-btn-block">
                   <img src={comingSoon} alt="comming soon" />
