@@ -3,6 +3,7 @@ import playWebText from "../../images/jump-trade/hero-banner/02_Play_Text-only_W
 import bmw from "../../images/jump-trade/bmw.jpg";
 import bmw_banner_contest from "../../images/jump-trade/bmw_banner_contest.png";
 import bmw_banner_contest_mob from "../../images/jump-trade/bmw_banner_contest_mob.png";
+import images from "../../utils/images.json";
 
 import "./style.scss";
 import { Link } from "react-router-dom";
@@ -34,7 +35,7 @@ const ContestComponent = () => {
                 <div className="row justify-content-start">
                   <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                     <div className="contest-card">
-                      <img src={bmw} />
+                      <img src={images?.context1}  />
                       <div className="winner-content">
                         <p>Power-Packed.& Style-Personified With Its German DNA</p>
                         <div className="winner-count d-flex justify-content-between align-items-center">
@@ -46,7 +47,7 @@ const ContestComponent = () => {
                   </div>
                   <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                     <div className="contest-card">
-                      <img src={bmw} />
+                      <img src={images?.context2} />
                       <div className="winner-content">
                         <p>With the latest, don't Be Just Stylish! Be iStylish</p>
                         <div className="winner-count d-flex justify-content-between align-items-center">
@@ -58,7 +59,7 @@ const ContestComponent = () => {
                   </div>
                   <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                     <div className="contest-card">
-                      <img src={bmw} />
+                      <img src={images?.context3} />
                       <div className="winner-content">
                         <p>When your Gaming Rage Isn't Okay With Ordinary Specs!</p>
                         <div className="winner-count d-flex justify-content-between align-items-center">
@@ -70,7 +71,7 @@ const ContestComponent = () => {
                   </div>
                   <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                     <div className="contest-card">
-                      <img src={bmw} />
+                      <img src={images?.context4}/>
                       <div className="winner-content">
                         <p>The PS That Every Gamer says 'I Love You' To!</p>
                         <div className="winner-count d-flex justify-content-between align-items-center">
@@ -82,7 +83,7 @@ const ContestComponent = () => {
                   </div>
                   <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                     <div className="contest-card">
-                      <img src={bmw} />
+                      <img src={images?.context5} />
                       <div className="winner-content">
                         <p>Not Math! Not Relationships! But The X Everybody Wants!</p>
                         <div className="winner-count d-flex justify-content-between align-items-center">
@@ -94,7 +95,7 @@ const ContestComponent = () => {
                   </div>
                   <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                     <div className="contest-card">
-                      <img src={bmw} />
+                      <img src={images?.context6} />
                       <div className="winner-content">
                         <p>Time To Add Some Handy Numbers To Your Fitness Goals!</p>
                         <div className="winner-count d-flex justify-content-between align-items-center">
@@ -106,7 +107,7 @@ const ContestComponent = () => {
                   </div>
                   <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                     <div className="contest-card">
-                      <img src={bmw} />
+                      <img src={images?.context7} />
                       <div className="winner-content">
                         <p>A Universe Of Possibilities With This 'Galaxy' of a Device!</p>
                         <div className="winner-count d-flex justify-content-between align-items-center">
@@ -118,7 +119,7 @@ const ContestComponent = () => {
                   </div>
                   <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                     <div className="contest-card">
-                      <img src={bmw} />
+                      <img src={images?.context8} />
                       <div className="winner-content">
                         <p>A New-Gen Smartwatch To Add To To Your Style & Suave</p>
                         <div className="winner-count d-flex justify-content-between align-items-center">
@@ -130,7 +131,7 @@ const ContestComponent = () => {
                   </div>
                   <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                     <div className="contest-card">
-                      <img src={bmw} />
+                      <img src={images?.context9}/>
                       <div className="winner-content">
                         <p>A New-Gen Smartwatch To Add To To Your Style & Suave</p>
                         <div className="winner-count d-flex justify-content-between align-items-center">
@@ -142,7 +143,7 @@ const ContestComponent = () => {
                   </div>
                   <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                     <div className="contest-card">
-                      <img src={bmw} />
+                      <img src={images?.context10} />
                       <div className="winner-content">
                         <p>This TV Is OnePlus... But Its Features Make It A Perfect 10</p>
                         <div className="winner-count d-flex justify-content-between align-items-center">
@@ -154,7 +155,7 @@ const ContestComponent = () => {
                   </div>
                   <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                     <div className="contest-card">
-                      <img src={bmw} />
+                      <img src={images?.context11} />
                       <div className="winner-content">
                         <p>You've Heard Enough Of How This Nothing Is Something, eh?</p>
                         <div className="winner-count d-flex justify-content-between align-items-center">
@@ -166,7 +167,7 @@ const ContestComponent = () => {
                   </div>
                   <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                     <div className="contest-card">
-                      <img src={bmw} />
+                      <img src={images?.context12} />
                       <div className="winner-content">
                         <p>Truly Wireless... And Truly Dope For The Audophile In You!</p>
                         <div className="winner-count d-flex justify-content-between align-items-center">
@@ -178,7 +179,7 @@ const ContestComponent = () => {
                   </div>
                   <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                     <div className="contest-card">
-                      <img src={bmw} />
+                      <img src={images?.context13} />
                       <div className="winner-content">
                         <p>Portable Hi-Q Music To Teleport Your Senses Into Bliss!</p>
                         <div className="winner-count d-flex justify-content-between align-items-center">
@@ -190,7 +191,7 @@ const ContestComponent = () => {
                   </div>
                   <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                     <div className="contest-card">
-                      <img src={bmw} />
+                      <img src={images?.context14}/>
                       <div className="winner-content">
                         <p>The GuardianLink Classic! Ssshhh! Crypto Rewards Inside!</p>
                         <div className="winner-count d-flex justify-content-between align-items-center">
