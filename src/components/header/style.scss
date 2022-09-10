@@ -205,7 +205,7 @@
   }
 }
 
-.side-menu #drop_outer+.dropdown-menu-end {
+.side-menu #drop_outer + .dropdown-menu-end {
   position: relative;
   transition: 0.5s all ease;
   background: #222127;
@@ -245,7 +245,7 @@
     position: absolute;
     right: 0;
     color: #000;
-    background-color:#f5ff01;
+    background-color: #f5ff01;
     font-family: $neue-helvetica-medium;
     font-size: 0.6rem;
     bottom: -0.8rem;
@@ -286,9 +286,9 @@ i.newbadge {
   line-height: 1;
   top: 50%;
   padding-top: 0.2rem;
-  &:hover{
+  &:hover {
     color: #fff;
-  background: #f5ff01;
+    background: #f5ff01;
   }
 }
 
@@ -297,6 +297,28 @@ i.newbadge {
 }
 
 @keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+body .whole-content .navbar .navbar-nav a.blink_contest {
+  animation: blinker_contest 1s linear infinite;
+  color: #f5ff01 !important;
+}
+
+@keyframes blinker_contest {
+  50% {
+    opacity: 0;
+  }
+}
+
+.mob_blink_contest {
+  animation: blinker_contest_mob 1s linear infinite;
+  color: #f5ff01 !important;
+}
+
+@keyframes blinker_contest_mob {
   50% {
     opacity: 0;
   }

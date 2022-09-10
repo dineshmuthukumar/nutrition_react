@@ -305,6 +305,8 @@ const Footer = () => {
                   Privacy Policy
                 </li>
 
+                <li onClick={() => history.push("/blog")}>Blog</li>
+
                 <li onClick={() => history.push("/faq")}>FAQs</li>
                 <li
                   onClick={() =>

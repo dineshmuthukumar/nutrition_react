@@ -638,7 +638,7 @@ const Header = ({
                   <Nav.Link
                     id="drop_outer"
                     role="button"
-                  // onClick={() => window.open("/mcl-game", "_self")}
+                    // onClick={() => window.open("/mcl-game", "_self")}
                   >
                     <span className="beta-container">
                       <span className="beta-tag">Coming soon</span>MCL Game
@@ -670,14 +670,15 @@ const Header = ({
                 <Nav.Link
                   id="drop_outer"
                   role="button"
+                  className="blink_contest"
                   onClick={() =>
                     window.open(
-                      `${process.env.REACT_APP_MARKETPLACE_URL}/blog`,
+                      `${process.env.REACT_APP_MARKETPLACE_URL}/contest`,
                       "_self"
                     )
                   }
                 >
-                  Blog
+                  Contest
                 </Nav.Link>
                 {!hideSign && (
                   <>
@@ -876,7 +877,8 @@ const Header = ({
                                 )
                               }
                             >
-                              Limit Orders<i className="newbadge blink_me">new</i>
+                              Limit Orders
+                              <i className="newbadge blink_me">new</i>
                             </Dropdown.Item>
                             <Dropdown.Item
                               as="button"
@@ -1026,7 +1028,6 @@ const Header = ({
                   {/* <Dropdown.Item href="/creator-application">
                     Creator
                   </Dropdown.Item> */}
-
                   <Dropdown.Item
                     onClick={() => history.push("/nft-marketplace")}
                   >
@@ -1067,21 +1068,22 @@ const Header = ({
                       </Dropdown.Item> */}
                     </Dropdown.Menu>
                   </Dropdown>
-
                   <Dropdown.Item href="/mcl-game">
                     {" "}
                     <span className="beta-container">
                       <span className="beta-tag">Beta</span> MCL Game{" "}
                     </span>{" "}
                   </Dropdown.Item>
-
                   <Dropdown.Item href="/">
                     <span className="beta-container">
                       <span className="beta-tag">Beta</span>
                       Marketplace
                     </span>
                   </Dropdown.Item>
-                  <Dropdown.Item href="/blog">Blog</Dropdown.Item>
+
+                  <Dropdown.Item href="/contest" className="mob_blink_contest">
+                    Contest
+                  </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </>
@@ -1098,7 +1100,7 @@ const Header = ({
   );
 };
 
-const UserComponent = ({ sref, user, onClick = () => { } }) => (
+const UserComponent = ({ sref, user, onClick = () => {} }) => (
   <div className="header-user-details" onClick={onClick} ref={sref}>
     <img
       className="user-image"
