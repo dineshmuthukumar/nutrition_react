@@ -1,0 +1,277 @@
+@import "../../styles/common";
+
+.releasenotes-wrapper {
+  font-family: $neue-helvetica-extended;
+
+  background: var(--theme-dark-green);
+  padding: 1rem 5rem 5rem;
+  color: #fff !important;
+  @media screen and (max-width: 767px) {
+    padding: 1rem 3rem 3rem;
+  }
+  @media screen and (max-width: 520px) {
+    padding: 1rem 1.5rem 3rem;
+  }
+
+  .heading-h3 {
+    color: #fff;
+    font-size: 2rem;
+    font-family: $Impact;
+  }
+
+  .c-tabs {
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+    border-bottom: 0.2rem solid #214334;
+    margin: 0rem 0 2rem;
+
+    .nav-tab {
+      margin: 0 0.5rem;
+      padding: 1.2rem 1.5rem;
+      border-radius: 0.2rem 0.2rem 0 0;
+      transition: 0.5s;
+      font-size: 1.2rem;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.1rem;
+      color: #718c7f;
+      color: #4b6659;
+      background-color: #193629;
+      background-color: #1936298a;
+      border-top: 0.2rem solid #214334;
+      user-select: none;
+      @media screen and (max-width: 520px) {
+        padding: 1rem 0.8rem;
+        font-size: 1rem;
+      }
+
+      &.active {
+        // background-color: var(--ck-theme);
+        background-color: #1936298a;
+        color: var(--ck-theme);
+        // border-top: 0.2rem solid var(--ck-theme);
+        border-top: 0.2rem solid #f5ff006e;
+      }
+    }
+  }
+  .hero-content-block {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+    width: 100%;
+    min-height: calc(100vh - 20rem);
+    @media screen and (max-width: 767px) {
+      min-height: calc(100vh - 30rem);
+    }
+    .hero-content-img {
+      // max-width: 60rem;
+      width: 100%;
+      margin-bottom: 2rem;
+
+      @media screen and (max-width: 767px) {
+        width: 100%;
+        margin: 2rem auto;
+      }
+    }
+    h3 {
+      font-size: 3rem;
+      max-width: 70rem;
+      line-height: 1.1;
+      color: #19fdff;
+      border-radius: 50rem;
+      text-align: left;
+      font-family: $Impact;
+      margin-bottom: 2rem;
+      span {
+        font-family: $Impact;
+        color: #fff;
+      }
+      @media screen and (max-width: 767px) {
+        font-size: 4.5rem;
+      }
+    }
+    h1 {
+      font-size: 3rem;
+      max-width: 70rem;
+      line-height: 1.1;
+      color: #19fdff;
+      border-radius: 50rem;
+      text-align: left;
+      font-family: $Impact;
+      margin-bottom: 2rem;
+      span {
+        font-family: $Impact;
+        color: #fff;
+      }
+      @media screen and (max-width: 767px) {
+        font-size: 4.5rem;
+      }
+    }
+    .hero-content-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      max-width: 75rem;
+      width: 100%;
+      padding: 0 1rem;
+      h1,
+      h4 {
+        color: #e1ff04;
+        font-size: 2rem;
+        font-family: $neue-helvetica-bold;
+        margin-bottom: 1rem;
+      }
+      .hero-desc {
+        font-size: 1.2rem;
+        text-align: center;
+        color: #fff;
+        margin-bottom: 1rem;
+        font-family: $neue-helvetica-medium;
+        @media screen and (max-width: 767px) {
+          margin-bottom: 8rem;
+        }
+      }
+      .hero-btn-block {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-top: 0rem;
+        margin-bottom: 9rem;
+        // position: absolute;
+        // top: 13rem;
+        img {
+          max-width: 20rem;
+          width: 100%;
+        }
+        button {
+          margin-bottom: 0;
+          margin: 0 0.5rem !important;
+        }
+        .theme-btn {
+          border-radius: 0.3rem;
+          border: solid 1px #000;
+
+          color: #fff;
+          display: block;
+          margin: 0 0 1rem;
+          padding: 0.6rem 2rem;
+          transition: 0.3s;
+          position: relative;
+          font-family: $neue-helvetica-extended-bold;
+          text-transform: uppercase;
+          font-size: 1.4rem;
+          background: transparent
+            linear-gradient(180deg, #e2ff00 0%, #18e0e0 47%, #e8318d 100%) 0% 0%
+            no-repeat padding-box;
+
+          &::before {
+            content: "";
+            position: absolute;
+            top: 0.1rem;
+            right: 0.1rem;
+            bottom: 0.1rem;
+            left: 0.1rem;
+            background: #000;
+            border-radius: 0.3rem;
+            z-index: 0;
+          }
+          &:hover,
+          &:focus,
+          &:active {
+            border: solid 1px #000;
+            background: #fff;
+            color: #000;
+            &::before {
+              border: solid 1px #000;
+              background: #fff;
+              color: #000;
+            }
+          }
+          &:disabled {
+            background: #e7e7e9;
+            color: #9c9c9b;
+            border: none;
+            opacity: 1;
+            &::before {
+              opacity: 0.5;
+            }
+          }
+          span {
+            position: relative;
+            z-index: 2;
+          }
+        }
+
+        .secondary-btn {
+          border-radius: 0.3rem;
+          border: solid 1px #000;
+          background-color: #fff;
+          color: #000;
+          display: block;
+          margin: 0 0 1rem;
+          padding: 0.6rem 2rem;
+          transition: 0.3s;
+          position: relative;
+          font-family: $neue-helvetica-extended-bold;
+          text-transform: uppercase;
+          font-size: 0.9rem;
+        }
+      }
+    }
+    // .hero-desc {
+    //   font-size: 0.9rem;
+    //   text-align: left;
+    //   color: #fff;
+    //   margin-bottom: 3rem;
+    //   font-family: $neue-helvetica-medium;
+    // }
+  }
+  .release-notes-card-box {
+    background-color: #00190a;
+    padding: 3rem;
+    border-radius: 0.2rem;
+    border-left: 0.3rem solid #748826;
+    margin-bottom: 1.5rem;
+    @media screen and (max-width: 520px) {
+      padding: 3rem 1.5rem;
+    }
+    .created-info {
+      font-size: 1rem;
+      text-transform: uppercase;
+      color: #ffffffb3;
+      color: #718c7f;
+      font-family: $neue-helvetica-roman;
+    }
+    .card-name {
+      margin-bottom: 1rem;
+      font-size: 2.5rem;
+      font-family: $Impact;
+      @media screen and (max-width: 520px) {
+        font-size: 2rem;
+      }
+    }
+    .card-key-points {
+      li {
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+        color: #a5c6bc;
+        font-family: $neue-helvetica-roman;
+      }
+      &.small-liner-inner {
+        li {
+          color: white;
+          .small-liner {
+            li {
+              color: #a5c6bc;
+            }
+          }
+        }
+      }
+    }
+  }
+}

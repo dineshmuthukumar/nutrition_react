@@ -63,6 +63,7 @@ const NftDetails = lazy(() => import("./pages/nft-details"));
 //const MobileApp = lazy(() => import("./pages/mobile-app"));
 const OfferBanner = lazy(() => import("./components/offer-banner"));
 const ReleaseNotes = lazy(() => import("./pages/release-notes"));
+const Contest = lazy(() => import("./pages/contest"));
 
 function App(props) {
   const market_start_date = "Jul 13, 2022 11:30:00";
@@ -345,6 +346,7 @@ const WebContainer = () => {
         {/* <Route path="/not-found" component={NotFound} /> */}
         <Route exact path="/offers" component={OfferBanner} />
         <Route exact path="/release-notes" component={ReleaseNotes} />
+        <Route exact path="/contest" component={Contest} />
 
         <Route
           path="/mcl"
