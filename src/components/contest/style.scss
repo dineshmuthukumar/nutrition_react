@@ -15,6 +15,13 @@
     padding: 1rem 1.5rem 3rem;
   }
 
+  @media screen and (min-width: 2280px) {
+    img{
+      object-fit: cover;
+      width: 100%;
+    }
+  }
+
 
   .heading-h3 {
     color: #fff;
@@ -278,6 +285,14 @@
       border-radius: 4px;
       margin-bottom: 2rem;
 
+      @media screen and (min-width: 2280px) {
+        img{
+          object-fit: cover;
+          width: 100%;
+        }
+      }
+ 
+
       .winner-content {
         background: #000;
         padding: 1rem 1rem;
@@ -332,4 +347,9 @@
       }
     }
   }
+}
+.contest-link{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
 }
