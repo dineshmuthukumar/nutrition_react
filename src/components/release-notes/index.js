@@ -70,18 +70,22 @@ const ReleaseNotesComponent = () => {
                     <ReleaseNotesCard mkplace={"Marketplace"} /> */}
 
                     <article className="release-notes-card-box">
-                    <h1 className="card-name">September 2022</h1>
-                    <h6>Jump.trade Marketplace Website Updates</h6>
-                    <ul className="card-key-points">
+                      <h1 className="card-name">September 2022</h1>
+                      <h6>Jump.trade Marketplace Website Updates</h6>
+                      <ul className="card-key-points">
                         <li>
-                        Cards History: Details of Upgrade Cards earned in each tournament added under "My Cards".
+                          Implement a new "Card History" filter in the My Cards
+                          section, allowing users to track the MCL Player
+                          upgrades they receive, tournament-wise.
                         </li>
                         <li>
-                        Limit Order: Users can configure their NFT choices and get notified if an NFT matches their requirements and is available for purchase.
+                          Introduce a new "Limit Orders" feature that users can
+                          utilize to create a rule and receive notifications for
+                          NFTs based on specific criteria and pricing.
                         </li>
                       </ul>
-                      </article>
-                      <article className="release-notes-card-box">
+                    </article>
+                    <article className="release-notes-card-box">
                       {/* <h6 className="created-info">July 2022</h6> */}
                       <h1 className="card-name">August 2022</h1>
                       <h6>Jump.trade Marketplace Website Updates</h6>
@@ -175,6 +179,32 @@ const ReleaseNotesComponent = () => {
                     <ReleaseNotesCard mkplace={"MCL GAME"} />
                     <ReleaseNotesCard mkplace={"MCL GAME"} />
                     <ReleaseNotesCard mkplace={"MCL GAME"} /> */}
+                    <article className="release-notes-card-box">
+                      <h1 className="card-name">September 2022</h1>
+                      <ul className="card-key-points">
+                        <li>
+                          Implement animation of the batsman walking into the
+                          field at the match start.
+                        </li>
+                        <li>Introduce new fielding animations.</li>
+                        <li>
+                          Introduce new catch-out and celebration animations.
+                        </li>
+                        <li>
+                          New fixed matches tournament format, where all users
+                          play an equal number of matches.
+                        </li>
+                        <li>
+                          Add animated emojis, which users can utilize during
+                          matches.
+                        </li>
+                        <li>
+                          Improvements to the Help section, enabling better
+                          accessibility.
+                        </li>
+                        <li>Updates and optimization to the game API.</li>
+                      </ul>
+                    </article>
                     <article className="release-notes-card-box">
                       <h1 className="card-name">August 2022</h1>
                       <ul className="card-key-points">
