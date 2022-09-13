@@ -155,7 +155,7 @@ const ContestComponent = () => {
                       <img src={images?.context8} />
                       <div className="winner-content">
                         <p>
-                          A New-Gen Smartwatch To Add To To Your Style & Suave
+                          You've Got A Bullet In Your Head.. & It Sounds Awesome!
                         </p>
                         <div className="winner-count d-flex justify-content-between align-items-center">
                           <p>Winners:</p>
