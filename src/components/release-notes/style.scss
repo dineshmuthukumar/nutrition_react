@@ -6,6 +6,12 @@
   background: var(--theme-dark-green);
   padding: 1rem 5rem 5rem;
   color: #fff !important;
+  img {
+    @media screen and (min-width: 2080px) {
+      object-fit: cover;
+      width: 100%;
+    }
+  }
   @media screen and (max-width: 767px) {
     padding: 1rem 3rem 3rem;
   }

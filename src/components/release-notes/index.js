@@ -40,8 +40,8 @@ const ReleaseNotesComponent = () => {
 
   return (
     <>
-      <img src={releaseNotesHero} />
       <div className="releasenotes-wrapper">
+        <img src={releaseNotesHero} />
         {/* <div className="faq_header">
           <h2>FAQs</h2>{" "}
         </div> */}
