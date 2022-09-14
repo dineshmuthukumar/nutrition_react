@@ -130,7 +130,7 @@ const ContestComponent = () => {
                         </p>
                         <div className="winner-count d-flex justify-content-between align-items-center">
                           <p>Winners:</p>
-                          <p>3</p>
+                          <p>6</p>
                         </div>
                       </div>
                     </div>
@@ -159,7 +159,7 @@ const ContestComponent = () => {
                         </p>
                         <div className="winner-count d-flex justify-content-between align-items-center">
                           <p>Winners:</p>
-                          <p>10</p>
+                          <p>33</p>
                         </div>
                       </div>
                     </div>
@@ -238,7 +238,7 @@ const ContestComponent = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                  {/* <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                     <div className="contest-card">
                       <img src={images?.context14} />
                       <div className="winner-content">
@@ -252,7 +252,7 @@ const ContestComponent = () => {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <p>
