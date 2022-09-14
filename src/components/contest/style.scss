@@ -16,7 +16,7 @@
   }
 
   @media screen and (min-width: 2280px) {
-    img{
+    img {
       object-fit: cover;
       width: 100%;
     }
@@ -278,7 +278,12 @@
     strong {
       color: #f5ff01;
     }
-   
+
+    p{
+      font-family: "neue_helvetica_roman" !important;
+    }
+
+
 
     .contest-card {
       border: 2px solid #f5ff01;
@@ -286,12 +291,12 @@
       margin-bottom: 2rem;
 
       @media screen and (min-width: 2280px) {
-        img{
+        img {
           object-fit: cover;
           width: 100%;
         }
       }
- 
+
 
       .winner-content {
         background: #000;
@@ -301,6 +306,7 @@
         .winner-count {
           p {
             color: #f5ff01;
+            font-family: "neue_helvetica_roman" !important;
           }
         }
       }
@@ -325,7 +331,7 @@
     }
 
     .card-key-points {
-     
+
       li {
         margin-bottom: 0.5rem;
         font-size: 1rem;
@@ -348,7 +354,8 @@
     }
   }
 }
-.contest-link{
+
+.contest-link {
   display: flex;
   justify-content: center;
   margin-bottom: 12px;

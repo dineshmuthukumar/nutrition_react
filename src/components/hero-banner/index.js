@@ -84,7 +84,7 @@ const HeroBanner = () => {
         dots={false}
         navContainerClass={"carousel-btn-block"}
         navText={[
-          `<span class="icon-right-arrow left"> <img src=${images.backArrow}  /> </span>`,
+          `<span class="icon-right-arrow left"> <img src=${images?.backArrow}  /> </span>`,
           `<span class="icon-right-arrow right"><img src=${images.frontArrow} /></span>`,
         ]}
         responsive={{
@@ -103,13 +103,42 @@ const HeroBanner = () => {
         autoplayTimeout={3000}
         autoplayHoverPause={true}
       >
+        <div class="item" onClick={() => history.push("/nft-marketplace/contest")}>
+          <section
+            className="hero-banner-sec"
+            style={{
+              backgroundImage: `url(${innerWidth > 769 ? images?.home_banner_contest : images?.home_banner_contest_mobile
+                })`,
+            }}
+          >
+            <div className="hero-content-block">
+              {/* <img
+                src={innerWidth > 767 ? earnWebText : earnMobileText}
+                alt="Best NFT Marketplace"
+                className="hero-content-img"
+                loading="lazy"
+              /> */}
+              <div className="hero-content-box">
+                <h4>{""}</h4>
+                <p className="hero-desc">
+                  {" "}
+                  {/* The Meta Cricket League Brings You An Opportunity to Earn Real
+                  Cash Rewards By Playing And Winning Matches. Explore This
+                  Exciting & Lucrative Journey Into The Cricket Metaverse! */}
+                </p>
+                {/* <div className="hero-btn-block">
+                  <img src={comingSoon} alt="comming soon" />
+                </div> */}
+              </div>
+            </div>
+          </section>
+        </div>
         <div class="item">
           <section
             className="hero-banner-sec"
             style={{
-              backgroundImage: `url(${
-                innerWidth > 769 ? firstSlideWeb : firstSlideMobile
-              })`,
+              backgroundImage: `url(${innerWidth > 769 ? firstSlideWeb : firstSlideMobile
+                })`,
             }}
           >
             <div className="hero-content-block">
@@ -187,9 +216,8 @@ const HeroBanner = () => {
           <section
             className="hero-banner-sec"
             style={{
-              backgroundImage: `url(${
-                innerWidth > 769 ? playWeb : playMobile
-              })`,
+              backgroundImage: `url(${innerWidth > 769 ? playWeb : playMobile
+                })`,
             }}
           >
             <div className="hero-content-block">
@@ -217,9 +245,8 @@ const HeroBanner = () => {
           <section
             className="hero-banner-sec"
             style={{
-              backgroundImage: `url(${
-                innerWidth > 769 ? earnWeb : earnMobile
-              })`,
+              backgroundImage: `url(${innerWidth > 769 ? earnWeb : earnMobile
+                })`,
             }}
           >
             <div className="hero-content-block">
@@ -235,37 +262,6 @@ const HeroBanner = () => {
                   The Meta Cricket League Brings You An Opportunity to Earn Real
                   Cash Rewards By Playing And Winning Matches. Explore This
                   Exciting & Lucrative Journey Into The Cricket Metaverse!
-                </p>
-                {/* <div className="hero-btn-block">
-                  <img src={comingSoon} alt="comming soon" />
-                </div> */}
-              </div>
-            </div>
-          </section>
-        </div>
-        <div class="item">
-          <section
-            className="hero-banner-sec"
-            style={{
-              backgroundImage: `url(${
-                innerWidth > 769 ? bmw_home_web : bmw_home_mobile
-              })`,
-            }}
-          >
-            <div className="hero-content-block">
-              {/* <img
-                src={innerWidth > 767 ? earnWebText : earnMobileText}
-                alt="Best NFT Marketplace"
-                className="hero-content-img"
-                loading="lazy"
-              /> */}
-              <div className="hero-content-box">
-                <h4>{""}</h4>
-                <p className="hero-desc">
-                  {" "}
-                  {/* The Meta Cricket League Brings You An Opportunity to Earn Real
-                  Cash Rewards By Playing And Winning Matches. Explore This
-                  Exciting & Lucrative Journey Into The Cricket Metaverse! */}
                 </p>
                 {/* <div className="hero-btn-block">
                   <img src={comingSoon} alt="comming soon" />

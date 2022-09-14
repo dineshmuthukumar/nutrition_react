@@ -14,7 +14,7 @@ const ContestComponent = () => {
     <>
       <div className="contest-wrapper">
         <img
-          src={innerWidth > 767 ? bmw_banner_contest : bmw_banner_contest_mob}
+          src={innerWidth > 767 ? images?.banner_contest_web_terms : images.banner_contest_mobile_terms}
         />
 
         <div className="row">
@@ -38,8 +38,7 @@ const ContestComponent = () => {
               </p>
               <p>
                 All you need to do is buy at least 2 NFTs (1 Batsman and 1
-                Bowler NFT) to enter the contest. All the purchases between 12th
-                September 2022 at 9 AM IST and 12th October 2022 at 9 PM IST
+                Bowler NFT) to enter the contest. All the purchases between <strong>14th September 2022 at 6:00 PM IST and 14th October 2022 at 5:59:59 PM IST</strong>
                 make you eligible to participate in Big Mad Winnings.
               </p>
               <p>

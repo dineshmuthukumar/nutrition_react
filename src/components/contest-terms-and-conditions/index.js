@@ -30,7 +30,7 @@ const ContestTermsAndConditions = () => {
                   <p>For the purposes of these T&Cs, wherever the context so requires "You" or "Your" or “Participant” shall mean any natural person who is a participant in the Contest
                   </p>
                   <h4>DURATION</h4>
-                  <p>14th September 2022 4:00:00 PM IST to 14th October 2022 3:59:59 PM IST (“<b>Contest Period</b>”)</p>
+                  <p>14th September 2022 6:00:00 PM IST to 14th October 2022 5:59:59 PM IST (“<b>Contest Period</b>”)</p>
                   <h4>ELIGIBILITY</h4>
                   <ol>
                     <li>
@@ -51,7 +51,7 @@ const ContestTermsAndConditions = () => {
                   <h4>WINNER SELECTION</h4>
                   <ol>
                     <li>
-                      At the end of the Contest Period, 100 participants will be selected from the participants who have purchased a Batsman NFT and a Bowler NFT during the Contest Period (14th September 2022 4:00:00 PM IST to 14th October 2022 3:59:59 PM IST) as winners of the Contest (“<b>Winners</b>”).
+                      At the end of the Contest Period, 100 participants will be selected from the participants who have purchased a Batsman NFT and a Bowler NFT during the Contest Period (14th September 2022 6:00:00 PM IST to 14th October 2022 5:59:59 PM IST) as winners of the Contest (“<b>Winners</b>”).
                     </li>
                     <li>
                       Selection of the Winners will be on the sole discretion of the Jump.trade and no disputes will be entertained on the selection process.
