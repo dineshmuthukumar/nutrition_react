@@ -272,7 +272,7 @@ const ContestComponent = () => {
                   any party.
                 </li>
                 <li>
-                  he winners of prices might be required to confirm their
+                  The winners of prices might be required to confirm their
                   identity over a phone call or a video call. The participant
                   understands this responsibility, and they consent to verify
                   their identity. The participant also agrees that
