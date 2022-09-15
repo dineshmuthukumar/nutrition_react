@@ -47,9 +47,6 @@ const ContestComponent = () => {
                 combination will be eligible to win. 100 winners will be
                 arbitrarily selected and given the rewards.
               </p>
-              <p>
-                <strong>What are the rewards I will get?</strong>
-              </p>
               <div className="explore-btn">
               <button
                 className="theme-btn text-center"
@@ -58,7 +55,9 @@ const ContestComponent = () => {
                 <span>Explore Marketplace</span>
               </button>
               </div>
-              
+              <p>
+                <strong>What are the rewards I will get?</strong>
+              </p>
               <div className="col-md-12">
                 <div className="row justify-content-start">
                   <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
