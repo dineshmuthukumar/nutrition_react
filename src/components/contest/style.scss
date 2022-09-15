@@ -15,7 +15,14 @@
     padding: 1rem 1.5rem 3rem;
   }
 
-  @media screen and (min-width: 2280px) {
+  @media screen and (max-width: 2280px) {
+    img {
+      object-fit: cover;
+      width: 100%;
+    }
+  }
+
+  @media screen and (min-width: 2400px) {
     img {
       object-fit: cover;
       width: 100%;
