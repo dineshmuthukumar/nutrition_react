@@ -6,9 +6,10 @@ import bmw_banner_contest_mob from "../../images/jump-trade/bmw_banner_contest_m
 import images from "../../utils/images.json";
 
 import "./style.scss";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const ContestComponent = () => {
+  const history=useHistory()
   const { innerWidth } = window;
   return (
     <>
@@ -49,6 +50,15 @@ const ContestComponent = () => {
               <p>
                 <strong>What are the rewards I will get?</strong>
               </p>
+              <div className="explore-btn">
+              <button
+                className="theme-btn text-center"
+                onClick={() => history.push("/nft-marketplace")}
+              >
+                <span>Explore Marketplace</span>
+              </button>
+              </div>
+              
               <div className="col-md-12">
                 <div className="row justify-content-start">
                   <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
@@ -254,9 +264,18 @@ const ContestComponent = () => {
                   </div> */}
                 </div>
               </div>
+              <div className="explore-btn">
+              <button
+                className="theme-btn text-center"
+                onClick={() => history.push("/nft-marketplace")}
+              >
+                <span>Explore Marketplace</span>
+              </button>
+              </div>
               <p>
                 <strong>Rules and regulations:</strong>
               </p>
+
               <ul className="card-key-points">
                 <li>
                   You will have to buy at least one batsman NFT and one bowler

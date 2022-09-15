@@ -289,6 +289,65 @@
     p{
       font-family: "neue_helvetica_roman" !important;
     }
+    .explore-btn{
+      text-align: center;
+       justify-content: center;
+       display: flex;
+    }
+    .theme-btn {
+      border-radius: 0.3rem;
+      border: solid 1px #000;
+
+      color: #fff;
+      display: block;
+      margin: 0 0 1rem;
+      padding: 0.6rem 2rem;
+      transition: 0.3s;
+      position: relative;
+      font-family: $neue-helvetica-extended-bold;
+      text-transform: uppercase;
+      font-size: 1.4rem;
+      background: transparent
+        linear-gradient(180deg, #e2ff00 0%, #18e0e0 47%, #e8318d 100%) 0%
+        0% no-repeat padding-box;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0.1rem;
+        right: 0.1rem;
+        bottom: 0.1rem;
+        left: 0.1rem;
+        background: #000;
+        border-radius: 0.3rem;
+        z-index: 0;
+      }
+      &:hover,
+      &:focus,
+      &:active {
+        border: solid 1px #000;
+        background: #fff;
+        color: #000;
+        &::before {
+          border: solid 1px #000;
+          background: #fff;
+          color: #000;
+        }
+      }
+      &:disabled {
+        background: #e7e7e9;
+        color: #9c9c9b;
+        border: none;
+        opacity: 1;
+        &::before {
+          opacity: 0.5;
+        }
+      }
+      span {
+        position: relative;
+        z-index: 2;
+      }
+    }
 
 
 
