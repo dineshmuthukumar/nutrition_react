@@ -38,7 +38,7 @@ const ContestComponent = () => {
               </p>
               <p>
                 All you need to do is buy at least 2 NFTs (1 Batsman and 1
-                Bowler NFT) to enter the contest. All the purchases between <strong>14th September 2022 at 6:00 PM IST and 14th October 2022 at 5:59:59 PM IST</strong>
+                Bowler NFT) to enter the contest. All the purchases between <strong>14th September 2022 at 6:00 PM IST and 14th October 2022 at 5:59:59 PM IST </strong>
                 make you eligible to participate in Big Mad Winnings.
               </p>
               <p>
