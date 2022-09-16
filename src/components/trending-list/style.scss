@@ -261,7 +261,7 @@ button.load_more {
 }
 .filt-flex-box {
   display: flex;
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 720px) {
     width: 100%;
     .dropdown {
       width: 100%;

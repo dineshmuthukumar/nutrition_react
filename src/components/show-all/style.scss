@@ -245,29 +245,29 @@ button.load_more {
 .filt-flex-box {
   display: flex;
 
-  @media screen and (max-width: 991px) {
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-  }
-  @media screen and (max-width: 640px) {
-    flex-direction: column;
-  }
-  .dropdown {
-    margin-right: 0.5rem;
-    
-    @media screen and (max-width: 991px) {
-      width: 49%;
-      margin-right: 0rem;
-    }
-    @media only screen and (min-width: 767px) and (max-width: 991px) {
-      width: 100%;
-    }
-    @media screen and (max-width: 640px) {
-      width: 100%;
-    }
-  }
-  @media screen and (max-width: 425px) {
+  // @media screen and (max-width: 991px) {
+  //   justify-content: space-between;
+  //   align-items: center;
+  //   width: 100%;
+  // }
+  // @media screen and (max-width: 640px) {
+  //   flex-direction: column;
+  // }
+  // .dropdown {
+  //   margin-right: 0.5rem;
+
+  //   @media screen and (max-width: 991px) {
+  //     width: 49%;
+  //     margin-right: 0rem;
+  //   }
+  //   @media only screen and (min-width: 767px) and (max-width: 991px) {
+  //     width: 100%;
+  //   }
+  //   @media screen and (max-width: 640px) {
+  //     width: 100%;
+  //   }
+  // }
+  @media screen and (max-width: 720px) {
     width: 100%;
     .dropdown {
       width: 100%;

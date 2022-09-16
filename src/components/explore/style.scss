@@ -144,6 +144,8 @@
         font-style: italic;
         display: flex;
         align-items: center;
+        position: relative;
+        z-index: 1;
       }
     }
 
@@ -440,7 +442,7 @@ button.load_more {
     position: relative;
     margin-top: -2.5rem !important;
   }
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 720px) {
     margin-top: 0.5rem !important;
   }
   .filter-box {
@@ -571,7 +573,7 @@ button.load_more {
       width: auto;
     }
   }
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 720px) {
     width: 100%;
     .dropdown {
       width: 100%;
