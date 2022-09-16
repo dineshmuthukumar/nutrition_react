@@ -9,13 +9,17 @@ import "./style.scss";
 import { Link, useHistory } from "react-router-dom";
 
 const ContestComponent = () => {
-  const history=useHistory()
+  const history = useHistory();
   const { innerWidth } = window;
   return (
     <>
       <div className="contest-wrapper">
         <img
-          src={innerWidth > 767 ? images?.banner_contest_web_terms : images.banner_contest_mobile_terms}
+          src={
+            innerWidth > 425
+              ? images?.banner_contest_web_terms
+              : images.banner_contest_mobile_terms
+          }
         />
 
         <div className="row">
@@ -39,7 +43,11 @@ const ContestComponent = () => {
               </p>
               <p>
                 All you need to do is buy at least 2 NFTs (1 Batsman and 1
-                Bowler NFT) to enter the contest. All the purchases between <strong>14th September 2022 at 6:00 PM IST and 14th October 2022 at 5:59:59 PM IST </strong>
+                Bowler NFT) to enter the contest. All the purchases between{" "}
+                <strong>
+                  14th September 2022 at 6:00 PM IST and 14th October 2022 at
+                  5:59:59 PM IST{" "}
+                </strong>
                 make you eligible to participate in Big Mad Winnings.
               </p>
               <p>
@@ -48,12 +56,12 @@ const ContestComponent = () => {
                 arbitrarily selected and given the rewards.
               </p>
               <div className="explore-btn">
-              <button
-                className="theme-btn text-center"
-                onClick={() => history.push("/nft-marketplace")}
-              >
-                <span>Explore Marketplace</span>
-              </button>
+                <button
+                  className="theme-btn text-center"
+                  onClick={() => history.push("/nft-marketplace")}
+                >
+                  <span>Explore Marketplace</span>
+                </button>
               </div>
               <p>
                 <strong>What are the rewards I will get?</strong>
@@ -163,7 +171,8 @@ const ContestComponent = () => {
                       <img src={images?.context8} />
                       <div className="winner-content">
                         <p>
-                          You've Got A Bullet In Your Head.. & It Sounds Awesome!
+                          You've Got A Bullet In Your Head.. & It Sounds
+                          Awesome!
                         </p>
                         <div className="winner-count d-flex justify-content-between align-items-center">
                           <p>Winners:</p>
@@ -264,12 +273,12 @@ const ContestComponent = () => {
                 </div>
               </div>
               <div className="explore-btn">
-              <button
-                className="theme-btn text-center"
-                onClick={() => history.push("/nft-marketplace")}
-              >
-                <span>Explore Marketplace</span>
-              </button>
+                <button
+                  className="theme-btn text-center"
+                  onClick={() => history.push("/nft-marketplace")}
+                >
+                  <span>Explore Marketplace</span>
+                </button>
               </div>
               <p>
                 <strong>Rules and regulations:</strong>
