@@ -89,123 +89,38 @@
       crossorigin="anonymous"
     ></script>
 
-    <script src="https://snippets.freshchat.com/js/fc-pre-chat-form-v2.min.js"></script>
     <script>
-      /*--freskchat code--*/
-      var preChatTemplate = {
-        //Form header color and Submit button color.
-        mainbgColor: "#103426",
-        //Form Header Text and Submit button text color.
-        maintxColor: "#fff",
-        // Chat Form Title
-        heading: "Jump.trade",
-        //Chat form Welcome Message
-        textBanner:
-          "We can't wait to talk to you. But first, please take a couple of moments to tell us a bit about yourself.",
-        //Submit Button Label.
-        SubmitLabel: "Start Chat",
-        //Fields List - Maximum is 5
-        //All the values are mandatory and the script will not work if not available.
-        fields: {
-          field1: {
-            //Type for Name - Do not Change
-            type: "name",
-            //Label for Field Name, can be in any language
-            label: "Name",
-            //Default - Field ID for Name - Do Not Change
-            fieldId: "name",
-            //Required "yes" or "no"
-            required: "yes",
-            //Error text to be displayed
-            error: "Please Enter a valid name",
+      WebFontConfig = {
+          google: {
+              families: ["Poppins:300,400,500,600,700,800", "Kalam:400,700"],
           },
-          field2: {
-            //Type for Email - Do Not Change
-            type: "email",
-            //Label for Field Email, can be in any language
-            label: "Email",
-            //Default - Field ID for Email - Do Not Change
-            fieldId: "email",
-            //Required "yes" or "no"
-            required: "yes",
-            //Error text to be displayed
-            error: "Please Enter a valid Email",
-          },
-          field3: {
-            //Type for Phone - Do Not Change
-            type: "phone",
-            //Label for Field Phone, can be in any language
-            label: "Phone",
-            //Default - Field ID for Phone - Do Not Change
-            fieldId: "phone",
-            //Required "yes" or "no"
-            required: "yes",
-            //Error text to be displayed
-            error: "Please Enter a valid Phone Number",
-          },
-        },
       };
-      window.fcSettings = {
-        token: "adba5f62-7b67-42e0-99d7-182cb83a0e74",
-        host: "https://wchat.in.freshchat.com",
-        // open: true,
-        config: {
-          cssNames: {
-            //The below element is mandatory. Please add any custom class or leave the default.
-            widget: "custom_fc_frame",
-            //The below element is mandatory. Please add any custom class or leave the default.
-            expanded: "custom_fc_expanded",
-          },
-        },
-        onInit: function () {
-          console.log("widget init");
-          fcPreChatform.fcWidgetInit(preChatTemplate);
-          window.fcWidget.on("widget:opened", function () {
-            window.setFiredeskdetails();
-            //window.fcWidget.user.get(function (resp) {});
-          });
-          ///window.FreshworksWidget("open");
-        },
-      };
+      (function (d) {
+          var wf = d.createElement("script"),
+              s = d.scripts[0];
+          wf.src = "js/webfont.js";
+          wf.async = true;
+          s.parentNode.insertBefore(wf, s);
+      })(document);
+  </script>
 
-      // document
-      //   .getElementsById("chat-icon")
-      //   .addEventListener("click", getFormValues);
+  <link rel="stylesheet" type="text/css" href="vendor/fontawesome-free/css/all.min.css" />
+  <link rel="stylesheet" type="text/css" href="vendor/animate/animate.min.css" />
+  <!-- <link rel="preload" href="fonts/riode.ttf?5gap68" as="font" type="font/ttf" crossorigin /> -->
+  <link rel="preload" href="vendor/fontawesome-free/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="vendor/fontawesome-free/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin />
+  <!-- Plugins CSS File -->
+  <link rel="stylesheet" type="text/css" href="vendor/magnific-popup/magnific-popup.min.css" />
+  <link rel="stylesheet" type="text/css" href="vendor/owl-carousel/owl.carousel.min.css" />
+  <link rel="stylesheet" type="text/css" href="vendor/sticky-icon/stickyicon.css" />
+  <!-- Main CSS File -->
+  <link rel="stylesheet" type="text/css" href="css/demo-food2.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/extra-style.css" />
 
-      // function getFormValues() {
-      //   console.log("opened");
-      //   window.setFiredeskdetails();
-      // }
-
-      //---------/
-    </script>
-    <script src="https://wchat.freshchat.com/js/widget.js" async></script>
-
-    <script>
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s),
-          dl = l != "dataLayer" ? "&l=" + l : "";
-        j.async = true;
-        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, "script", "dataLayer", "GTM-NN37BTB");
-    </script>
   </head>
 
   <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript
-      ><iframe
-        src="https://www.googletagmanager.com/ns.html?id=GTM-NN37BTB"
-        height="0"
-        width="0"
-        style="display: none; visibility: hidden"
-      ></iframe
-    ></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+   
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--
@@ -219,4 +134,13 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
+    <!-- Plugins JS File -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/parallax/parallax.min.js"></script>
+    <script src="vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="vendor/owl-carousel/owl.carousel.min.js"></script>
+    <script src="vendor/jquery.floating/jquery.floating.min.js"></script>
+    <!-- Main JS File -->
+    <script src="js/main.min.js"></script>
 </html>

@@ -16,8 +16,10 @@ import { store } from "./redux/store";
 
 import "./styles/custom_bootstrap.scss";
 import "react-toastify/dist/ReactToastify.css";
-import "./index.css";
-import "./styles/style.scss";
+// import "./index.css";
+// import "./styles/style.scss";
+
+
 
 setTranslations({ en, hi });
 

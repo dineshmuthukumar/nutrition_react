@@ -26,10 +26,15 @@ import {
   get_cart_list_thunk,
 } from "../../redux/thunk/user_cart_thunk";
 
-import Cart from "../cart";
+// import Cart from "../cart";
 import AppHelmet from "../helmet";
 
+
+import Logo from "../../images/new-images/demos/demo-food2/liven-logo.png"
+
 import "./style.scss";
+
+// import "./style.scss";
 const Header = ({
   hideOptions = false,
   hideSign = false,
@@ -551,554 +556,331 @@ const Header = ({
 
   return (
     <>
-      <AppHelmet
+      {/* <AppHelmet
         title={props?.title}
         image={props?.image}
         description={props?.description}
         width={props?.width}
         height={props?.height}
         canonical={props?.canonical}
-      />
-      <Navbar
-        bg="dark"
-        expand="md"
-        variant="dark"
-        sticky="top"
-        className={bgImage ? "bgImageHeader" : "transparent"}
-      >
-        <Container fluid>
-          <Navbar.Brand
-            onClick={() =>
-              window.open(process.env.REACT_APP_WEBSITE_URL, "_self")
-            }
-            role="button"
-            className="head-title"
-          >
-            {/* BeyondLife.club */}
-            <img
-              src={images.jumpTradeLogo}
-              alt="jumpTradeLogo"
-              className="logoImage"
-            />
-            {/* <div
-              className="sub-head-title header-powereby "
-              role="button"
-              onClick={() =>
-                window.open(process.env.REACT_APP_GUARDIAN_URL, "_self")
-              }
-            >
-              Powered by GuardianLink
-            </div> */}
-          </Navbar.Brand>
-          {!hideOptions && (
-            <>
-              <Nav className="d-flex me-0 ms-auto">
-                <Nav.Link
-                  id="drop_outer"
-                  onClick={() => history.push("/nft-marketplace")}
-                >
-                  Explore
-                </Nav.Link>
-                {/* <Nav.Link id="drop_outer" href={process.env.REACT_APP_DROP_URL}>
-                  Drop
-                </Nav.Link> */}
-                <Dropdown autoClose={["inside", "outside"]} className="me-0">
-                  <Dropdown.Toggle
-                    align="start"
-                    drop="start"
-                    as={DropToggle}
-                  ></Dropdown.Toggle>
+      /> */}
 
-                  <Dropdown.Menu align="end">
-                    <Dropdown.Item
-                      as="button"
-                      onClick={() =>
-                        window.open(
-                          `${process.env.REACT_APP_MCL_URL}`,
-                          "_blank"
-                        )
-                      }
-                    >
-                      Meta Cricket League NFTs
-                    </Dropdown.Item>
-                    {/* <Dropdown.Item
-                      as="button"
-                      onClick={() =>
-                        window.open(
-                          `${process.env.REACT_APP_CHELSEA_URL}`,
-                          "_blank"
-                        )
-                      }
-                    >
-                      Football Memorabilia NFTs
-                    </Dropdown.Item> */}
-                  </Dropdown.Menu>
-                </Dropdown>
-                {!user?.marketLive ? (
-                  <Nav.Link
-                    id="drop_outer"
-                    role="button"
-                    // onClick={() => window.open("/mcl-game", "_self")}
-                  >
-                    <span className="beta-container">
-                      <span className="beta-tag">Coming soon</span>MCL Game
-                    </span>
-                  </Nav.Link>
-                ) : (
-                  <Nav.Link
-                    id="drop_outer"
-                    role="button"
-                    onClick={() => window.open("/mcl-game", "_self")}
-                  >
-                    <span className="beta-container">
-                      <span className="beta-tag">Beta</span>MCL Game
-                    </span>
-                  </Nav.Link>
-                )}
-                <Nav.Link
-                  id="drop_outer"
-                  role="button"
-                  onClick={() =>
-                    window.open(process.env.REACT_APP_MARKETPLACE_URL, "_self")
-                  }
-                >
-                  <span className="beta-container">
-                    <span className="beta-tag">Beta</span>
-                    Marketplace
-                  </span>
-                </Nav.Link>
-                <Nav.Link
-                  id="drop_outer"
-                  role="button"
-                  className="blink_contest"
-                  onClick={() =>
-                    window.open(
-                      `${process.env.REACT_APP_MARKETPLACE_URL}/nft-marketplace/contest`,
-                      "_self"
-                    )
-                  }
-                >
-                  Contest
-                </Nav.Link>
-                {!hideSign && (
-                  <>
-                    {user.login ? (
-                      <>
-                        <Nav.Link href="#home" className="help_ic">
-                          <BiHelpCircle
-                            size={25}
-                            role="button"
-                            onClick={() =>
-                              window.open(
-                                process.env.REACT_APP_HELP_URL,
-                                "_blank"
-                              )
-                            }
-                          />
-                        </Nav.Link>
-                        <Dropdown
-                          autoClose={["inside", "outside"]}
-                          onToggle={(e) => {
-                            if (e) {
-                              readNotification();
-                              setNotiRead(false);
-                            }
-                          }}
-                        >
-                          <Dropdown.Toggle
-                            align="start"
-                            drop="start"
-                            as={NotificationToggleComponent}
-                          ></Dropdown.Toggle>
+      <div className="header">
+                <div className="header-top">
+                    <div className="container header_top_center">
+                        <div className="row">
+                            <div className="col-sm-12">
+                                <div className="header-center">
+                                    <div className="welcome-msg">
 
-                          <Dropdown.Menu align="end" className="noti-container">
-                            <div className="noti-header">
-                              <BiBell size={25} color={"white"} /> Notifications
-                            </div>
-                            <div className="noti-content">
-                              {/* <div className="sub-header">Today</div> */}
-
-                              {notification?.notifications.length > 0 ? (
-                                <>
-                                  {notification?.notifications.map((o, i) => (
-                                    <Dropdown.Item key={`noti-item${i}`}>
-                                      <NotiCard key={`noti${i}`} data={o} />
-                                    </Dropdown.Item>
-                                  ))}
-
-                                  {notiLoading && (
-                                    <div className="noti-load-more text-secondary">
-                                      Loading...
-                                    </div>
-                                  )}
-
-                                  {notification?.next_page ? (
-                                    <div
-                                      className="noti-load-more text-secondary"
-                                      role="button"
-                                      onClick={() => {
-                                        setNPage(npage + 1);
-                                        handleGetNotification(npage + 1);
-                                      }}
+                                    <Nav.Link
+                                    className="help"
+                                      onClick={() => history.push("/")}
                                     >
-                                      See More
+                                      <i className="d-icon-info"></i>LIMITED PERIOD OFFER | Additional 10% OFF SITEWIDE. Use code INSIDEOUT at checkout to avail!
+                                    </Nav.Link>
+                                      
                                     </div>
-                                  ) : (
-                                    <div className="noti-load-more text-secondary">
-                                      You have reached the end
-                                    </div>
-                                  )}
-                                </>
-                              ) : (
-                                <div className="noti-load-more text-secondary no-notify">
-                                  No notifications found
                                 </div>
-                              )}
                             </div>
-                          </Dropdown.Menu>
-                        </Dropdown>
-                        {slug && (
-                          <Nav.Link
-                            href=""
-                            className="cart_ic position-relative"
-                            onClick={() => {
-                              if (userCart?.checkout && !checkoutDevice) {
-                                toast.error(
-                                  "Order is being processed. Can't access cart!",
-                                  {
-                                    autoClose: 2000,
-                                  }
-                                );
-                              } else {
-                                setCartPop(!cartPop);
-                              }
-                            }}
-                          >
-                            <img
-                              src={images.cartIconSVG}
-                              height={20}
-                              alt="CartIcon"
-                            />
-                            {parseInt(userCart?.total_count) > 0 && (
-                              <span className="badge cart-count rounded-pill bg-danger position-absolute">
-                                {userCart?.total_count}
-                              </span>
-                            )}
-                          </Nav.Link>
-                        )}
-                        <Dropdown autoClose="outside" className="mx-0">
-                          <Dropdown.Toggle
-                            align="start"
-                            drop="start"
-                            as={UserToggleComponent}
-                          ></Dropdown.Toggle>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div className="header-middle sticky-header fix-top sticky-content sticky-top">
+                    <div className="container">
+                        <div className="header-left">
+                            <Nav.Link
+                            className="mobile-menu-toggle"
+                              onClick={() => history.push("/")}
+                            >
+                               <i className="d-icon-bars2"></i>
+                            </Nav.Link>
 
-                          <Dropdown.Menu align="end">
-                            <UserComponent user={user.data.user} />
-                            <Dropdown.Item
-                              id="drop_inner"
-                              href="/"
-                              target="_self"
+                            <Nav.Link
+                            className="logo"
+                              onClick={() => history.push("/")}
                             >
-                              Drops
-                            </Dropdown.Item>
-                            <Dropdown.Item
-                              as="button"
-                              onClick={() =>
-                                window.open(
-                                  `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`,
-                                  "_self"
-                                )
-                              }
-                            >
-                              My Profile
-                            </Dropdown.Item>
-                            <Dropdown.Item
-                              as="button"
-                              onClick={() =>
-                                window.open(
-                                  `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/mynft`,
-                                  "_self"
-                                )
-                              }
-                            >
-                              My NFTs
-                            </Dropdown.Item>
-                            <Dropdown.Item
-                              as="button"
-                              onClick={() =>
-                                window.open(
-                                  `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/my-cards`,
-                                  "_self"
-                                )
-                              }
-                            >
-                              My Cards
-                            </Dropdown.Item>
-                            <Dropdown.Item
-                              as="button"
-                              onClick={() =>
-                                window.open(
-                                  `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
-                                  "_self"
-                                )
-                              }
-                            >
-                              My GuardianLink Wallet
-                            </Dropdown.Item>
-                            <Dropdown.Item
-                              as="button"
-                              onClick={() =>
-                                window.open(
-                                  `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/myinvoice`,
-                                  "_self"
-                                )
-                              }
-                            >
-                              My Invoices
-                            </Dropdown.Item>
-                            <Dropdown.Item
-                              as="button"
-                              onClick={() =>
-                                window.open(
-                                  `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/my-orders`,
-                                  "_self"
-                                )
-                              }
-                            >
-                              My Orders
-                            </Dropdown.Item>
-                            <Dropdown.Item
-                              as="button"
-                              onClick={() =>
-                                window.open(
-                                  `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/limit-orders`,
-                                  "_self"
-                                )
-                              }
-                            >
-                              Limit Orders
-                              <i className="newbadge blink_me">new</i>
-                            </Dropdown.Item>
-                            <Dropdown.Item
-                              as="button"
-                              onClick={() =>
-                                window.open(
-                                  `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/pre-orders`,
-                                  "_self"
-                                )
-                              }
-                            >
-                              Pre Book
-                            </Dropdown.Item>
-                            <Dropdown.Item
-                              as="button"
-                              onClick={() =>
-                                window.open(
-                                  `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/bid-activity`,
-                                  "_self"
-                                )
-                              }
-                            >
-                              My Bids
-                            </Dropdown.Item>
-                            {/* <Dropdown.Item
-                              as="button"
-                              onClick={() =>
-                                window.open(
-                                  `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/claim`,
-                                  "_self"
-                                )
-                              }
-                            >
-                              Claim NFTs
-                            </Dropdown.Item> */}
-                            <Dropdown.Item
-                              as="button"
-                              onClick={() =>
-                                window.open(
-                                  `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/user-activity`,
-                                  "_self"
-                                )
-                              }
-                            >
-                              My Activity
-                            </Dropdown.Item>{" "}
-                            <Dropdown.Item
-                              as="button"
-                              onClick={() =>
-                                window.open(
-                                  `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/settings`,
-                                  "_self"
-                                )
-                              }
-                            >
-                              Settings
-                            </Dropdown.Item>
-                            <Dropdown.Divider />
-                            <Dropdown.Item
-                              as="button"
-                              onClick={() =>
-                                window.open(
-                                  process.env.REACT_APP_HELP_URL,
-                                  "_blank"
-                                )
-                              }
-                            >
-                              Help Center
-                            </Dropdown.Item>
-                            {/* <Dropdown.Divider />
-                          <Dropdown.Item as="button">
-                            <div className="d-flex justify-content-between">
-                              <div>Moon Mode</div>
+                              <img src={Logo} alt="logo" width="75" height="43" />
+                            </Nav.Link>
+                          </div>
+                        <div className="header-center">
+                            <nav className="main-nav ml-0 mr-0 ls-normal">
+                                <ul className="menu">
+                                    <li className="active submenu">
+                                        
+                                        <Nav.Link
+                                        className="submenu"
+                                          onClick={() => history.push("/")}
+                                        >
+                                         Shop
+                                        </Nav.Link>
+                                        <div className="megamenu">
+                                            <div className="row">
+                                                <div className="col-6 col-sm-6 col-md-6 col-lg-6">
+                                                    <h4 className="menu-title">Categories</h4>
+                                                    <ul>
+                                                        <li>
+                                                        <Nav.Link
+                                                            onClick={() => history.push("/")}
+                                                          >
+                                                          Superfood Plant Protein
+                                                        </Nav.Link>
+                                                        </li>
+                                                        <li>
+                                                          <Nav.Link
+                                                            onClick={() => history.push("/")}
+                                                          >
+                                                          Collagen
+                                                        </Nav.Link></li>
+                                                        <li><Nav.Link
+                                                            onClick={() => history.push("/")}
+                                                          >
+                                                          Slow
+                                                        </Nav.Link></li>
+                                                        <li>
+                                                          <Nav.Link
+                                                            onClick={() => history.push("/")}
+                                                          >
+                                                          Disney Frozen Melts
+                                                        </Nav.Link>
+                                                        </li>
+                                                        <li> <Nav.Link
+                                                            onClick={() => history.push("/")}
+                                                          >
+                                                          Marvel Melts
+                                                        </Nav.Link></li>
+                                                        <li>  <Nav.Link
+                                                            onClick={() => history.push("/")}
+                                                          >
+                                                          Melts
+                                                        </Nav.Link></li>
+                                                        <li>
+                                                        <Nav.Link
+                                                            onClick={() => history.push("/")}
+                                                          >
+                                                          Effervescent
+                                                        </Nav.Link>
+                                                        </li>
+                                                        <li> <Nav.Link
+                                                            onClick={() => history.push("/")}
+                                                          >
+                                                          Apple Cider Vinegar
+                                                        </Nav.Link> </li>
+                                                        <li> <Nav.Link
+                                                            onClick={() => history.push("/")}
+                                                          >
+                                                          Gifting
+                                                        </Nav.Link></li>
+                                                        <li> <Nav.Link
+                                                            onClick={() => history.push("/")}
+                                                          >
+                                                          Shop All
+                                                        </Nav.Link> Shop All</li>
+                                                    </ul>
+                                                </div>
+                                                <div className="col-6 col-sm-6 col-md-6 col-lg-6">
+                                                    <h4 className="menu-title">Top Sellers</h4>
+                                                    <ul>
+                                                        <li><a href="#">Essential Vitamins</a></li>
+                                                        <li><a href="#">Daily Immunity Combo</a></li>
+                                                        <li><a href="#">Deep Sleep Pack</a></li>
+                                                        <li><a href="#">Happy Gut Combo</a></li>
+                                                        <li><a href="#">Women’s Performance Pack</a></li>
 
-                              <div>
-                                <ToggleButton
-                                  value={value || false}
-                                  onToggle={(value) => {
-                                    setValue(!value);
-                                  }}
-                                />
-                              </div>
+                                                        <li><a href="#">Beauty Sleep &amp; Healthy Hair Pack</a></li>
+                                                        <li><a href="#">Stress Relief Combo</a></li>
+                                                        <li><a href="#">Beauty Pack</a></li>
+                                                        <li><a href="#">Performance Pack</a></li>
+                                                        <li><a href="#">Hair Care Kit</a></li>
+                                                    </ul>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </li>
+                                   
+                                    <li className="submenu">
+                                      
+                                        <Nav.Link
+                                        className="submenu"
+                                          onClick={() => history.push("/")}
+                                        >
+                                         Health Goals
+                                        </Nav.Link>
+                                        <div className="megamenu">
+                                            <div className="row">
+                                                <div className="col-6 col-sm-6 col-md-6">
+                                                    <h4 className="menu-title">Sports Nutrition</h4>
+                                                    <ul>
+                                                        <li><a href="#">Immunity</a></li>
+                                                        <li><a href="#">Sleep</a></li>
+                                                        <li><a href="#">Gut</a></li>
+                                                        <li><a href="#">Weight</a></li>
+                                                        <li><a href="#">Detox</a></li>
+                                                        <li><a href="#">Beauty</a></li>
+                                                        <li><a href="#">Essentials</a></li>
+                                                        <li><a href="#">Energy</a></li>
+                                                        <li><a href="#">Eye</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div className="col-6 col-sm-6 col-md-6">
+                                                    <h4 className="menu-title">Kids Nutrition</h4>
+                                                    <ul>
+                                                        <li><a href="#">Throat</a></li>
+                                                        <li><a href="#">Skin</a></li>
+                                                        <li><a href="#">Skin</a></li>
+                                                        <li><a href="#">Bone and Joints</a></li>
+                                                        <li><a href="#">Heart</a></li>
+                                                        <li><a href="#">Cognition</a></li>
+                                                        <li><a href="#">Liver</a></li>
+                                                        <li><a href="#">Fertility and Pregnancy</a></li>
+                                                    </ul>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </li>
+                                   
+                                    <li className="submenu">
+                                        
+                                        <Nav.Link
+                                       
+                                          onClick={() => history.push("/")}
+                                        >
+                                         Discover
+                                        </Nav.Link>
+                                        <ul>
+                                            <li><a href="">Our Story</a></li>
+                                            <li><a href="">Traceable Ingredients</a></li>
+                                            <li><a href="">Science of Wellbeing</a></li>
+                                            <li><a href="">Wishlist</a></li>
+                                            <li><a href="">Wellbeing Promise</a></li>
+                                            <li><a href="">Honesty Inside Out</a></li>
+                                            <li><a href="blog.html" target="_blank">Blogs</a></li>
+                                            <li><a href="contact.html" target="_blank">Contact Us</a></li>
+                                        </ul>
+                                    </li>
+                                    
+                                    <li >
+                                       <Nav.Link
+                                      
+                                          onClick={() => history.push("/")}
+                                        >
+                                         Consult
+                                        </Nav.Link>
+
+                                      </li>
+                                    <li >
+                                        <Nav.Link
+                                           
+                                              onClick={() => history.push("/")}
+                                            >
+                                         About Us
+                                        </Nav.Link>
+                                    
+                                    </li>
+                                    <li >
+
+                                    <Nav.Link
+                                        
+                                        onClick={() => history.push("/")}
+                                      >
+                                    Blogs
+                                    </Nav.Link>
+
+                                    </li>
+                                    
+                                </ul>
+                            </nav>
+                            
+                        </div>
+                        <div className="header-right">
+                        
+                          
+                            <div className="header-search hs-simple">
+                                <form action="#" className="input-wrapper">
+                                    <input type="text" className="form-control" name="search"  placeholder="Search..." required />
+                                    <button className="btn btn-search" type="submit">
+                                        <i className="d-icon-search"></i>
+                                    </button>
+                                </form>
                             </div>
-                          </Dropdown.Item> */}
-                            <Dropdown.Divider />
-                            <Dropdown.Item
-                              as="button"
-                              onClick={() => dispatch(user_logout_thunk())}
-                            >
-                              Sign Out
-                            </Dropdown.Item>
-                          </Dropdown.Menu>
-                        </Dropdown>{" "}
-                      </>
-                    ) : (
-                      <>
-                        <>
-                          <Nav.Link
-                            className="theme-btn mobile-signin"
-                            href={`${process.env.REACT_APP_ACCOUNTS_URL}/signin?redirect=${window.location.href}`}
-                            target="_self"
-                          >
-                            <span> {t("signin")}</span>
-                          </Nav.Link>
-                          <Nav.Link
-                            className="theme-btn mobile-signin"
-                            href={`${process.env.REACT_APP_ACCOUNTS_URL}/signup`}
-                            target="_self"
-                          >
-                            <span>{t("signup")}</span>
-                          </Nav.Link>
-                        </>
-                      </>
-                    )}
-                  </>
-                )}
-                <Nav.Link
-                  className="discord_ic"
-                  href={`https://discord.com/invite/JRWmNb38GW`}
-                  target="_blank"
-                  rel="nofollow noopener noreferrer"
-                >
-                  <FaDiscord size={25} />
-                  {/* <span>Join Our Discord</span> */}
-                </Nav.Link>
-              </Nav>
-              <Dropdown
-                autoClose={["inside", "outside"]}
-                onToggle={(e) => {
-                  if (e) {
-                    readNotification();
-                    setNotiRead(false);
-                  }
-                }}
-              >
-                <Dropdown.Toggle
-                  align="start"
-                  drop="start"
-                  as={HeaderMobileMenuIcon}
-                ></Dropdown.Toggle>
+                            <a className="nav-link nav-link-with-img border-rounded login-link d-xs-show" href="ajax/login.html" data-toggle="login-modal"
+                            title="login">
+                                <h3 className="img-cat-title mb-0">
+                                    Login/Signup
+                                </h3>
+                            </a>
 
-                <Dropdown.Menu align="end" className="side-menu">
-                  <Dropdown.Item
-                    drop="start"
-                    as={HeaderMobileMenuCloseIcon}
-                  ></Dropdown.Item>
-                  {/* <Dropdown.Item href="/">Drops</Dropdown.Item> */}
-                  {/* <Dropdown.Item href="/creator-application">
-                    Creator
-                  </Dropdown.Item> */}
-                  <Dropdown.Item
-                    onClick={() => history.push("/nft-marketplace")}
-                  >
-                    Explore
-                  </Dropdown.Item>
-                  {/* <Dropdown.Item href={process.env.REACT_APP_DROP_URL}>
-                    Drop
-                  </Dropdown.Item> */}
-                  <Dropdown autoClose={["inside", "outside"]} className="me-0">
-                    <Dropdown.Toggle
-                      align="start"
-                      drop="start"
-                      as={DropToggle}
-                    ></Dropdown.Toggle>
+                           
 
-                    <Dropdown.Menu align="end">
-                      <Dropdown.Item
-                        as="button"
-                        onClick={() =>
-                          window.open(
-                            `${process.env.REACT_APP_MCL_URL}`,
-                            "_blank"
-                          )
-                        }
-                      >
-                        Meta Cricket League NFTs
-                      </Dropdown.Item>
-                      {/* <Dropdown.Item
-                        as="button"
-                        onClick={() =>
-                          window.open(
-                            `${process.env.REACT_APP_CHELSEA_URL}`,
-                            "_blank"
-                          )
-                        }
-                      >
-                        Football Memorabilia NFTs
-                      </Dropdown.Item> */}
-                    </Dropdown.Menu>
-                  </Dropdown>
-                  <Dropdown.Item href="/mcl-game">
-                    {" "}
-                    <span className="beta-container">
-                      <span className="beta-tag">Beta</span> MCL Game{" "}
-                    </span>{" "}
-                  </Dropdown.Item>
-                  <Dropdown.Item href="/">
-                    <span className="beta-container">
-                      <span className="beta-tag">Beta</span>
-                      Marketplace
-                    </span>
-                  </Dropdown.Item>
+                            <div className="dropdown cart-dropdown type2 mr-2">
+                                <a href="#" className="cart-toggle link">
+                                    <i className="d-icon-bag mb-1"><span className="cart-count bg-dark">1</span></i>
+                                </a>
+                                
+                                <div className="dropdown-box">
+                                    <div className="products scrollable">
+                                        <div className="product product-cart">
+                                            <figure className="product-media">
+                                                <a href="#">
+                                                    <img src="images/demos/demo-food2/products/1.jpg" alt="product" width="80" height="90" />
+                                                </a>
+                                                <button className="btn btn-link btn-close"><i className="fas fa-times"></i><span className="sr-only">Close</span></button>
+                                            </figure>
+                                            <div className="product-detail">
+                                                <a href="#" className="product-name">Paprika</a>
+                                                <div className="price-box">
+                                                    <span className="product-quantity">1</span>
+                                                    <span className="product-price">$21.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+                                        <div className="product product-cart">
+                                            <figure className="product-media">
+                                                <a href="#">
+                                                    <img src="images/demos/demo-food2/products/2.jpg" alt="product" width="80" height="90" />
+                                                </a>
+                                                <button className="btn btn-link btn-close"><i className="fas fa-times"></i><span className="sr-only">Close</span></button>
+                                            </figure>
+                                            <div className="product-detail">
+                                                <a href="#" className="product-name">Vegetable</a>
+                                                <div className="price-box">
+                                                    <span className="product-quantity">1</span>
+                                                    <span className="product-price">$118.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+                                    </div>
+                                   
+                                    <div className="cart-total">
+                                        <label>Subtotal:</label>
+                                        <span className="price">$139.00</span>
+                                    </div>
+                                    
+                                    <div className="cart-action">
+                                        <a href="#" className="btn btn-underline btn-link">View Cart</a>
+                                        <a href="#" className="btn btn-dark"><span>Go To Checkout</span></a>
+                                    </div>
+                                  
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+      </div>
+  
 
-                  <Dropdown.Item
-                    href="/nft-marketplace/contest"
-                    className="mob_blink_contest"
-                  >
-                    Contest
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-            </>
-          )}
-        </Container>
-      </Navbar>
-
-      <Cart
-        cartPop={cartPop}
-        setCartPop={setCartPop}
-        setCheckoutDevice={setCheckoutDevice}
-      />
+        {/* <Cart
+          cartPop={cartPop}
+          setCartPop={setCartPop}
+          setCheckoutDevice={setCheckoutDevice}
+        /> */}
     </>
   );
 };

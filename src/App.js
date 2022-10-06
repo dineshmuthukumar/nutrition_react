@@ -9,8 +9,7 @@ import {
 import { FaTimes } from "react-icons/fa";
 import { useSelector, connect, useDispatch } from "react-redux";
 import { useHistory, Redirect } from "react-router";
-
-import NFTCounter from "./components/nft-counter";
+//import NFTCounter from "./components/nft-counter";
 import { change_lang_action } from "./redux/actions/lang_action";
 import { setLanguage } from "react-multi-lang";
 import { getCookies } from "./utils/cookies";
@@ -27,13 +26,34 @@ import mixpanel from "mixpanel-browser";
 import loader from "./images/load.gif";
 import "./App.css";
 
-const Home = lazy(() => import("./pages/home"));
-const Explore = lazy(() => import("./pages/explore-list"));
+import "./styles/demo-food2.min.css";
+import "./styles/extra-style.css";
+import "./styles/style.min.css";
+
+
+
+const NewHome = lazy(() => import("./pages/new-home"));
+const Category = lazy(() => import("./pages/category"));
+const Product = lazy(() => import("./pages/product"));
+const About = lazy(() => import("./pages/about"));
+const blogPost = lazy(() => import("./pages/blog-post"));
+const freetrial = lazy(() => import("./pages/free-trial"));
+const contact = lazy(() => import("./pages/contact"));
+const privacy = lazy(() => import("./pages/privacy"));
+const Terms = lazy(() => import("./pages/terms"));
+
+
+
+
+
+// const Home = lazy(() => import("./pages/home"));
+
+// const Explore = lazy(() => import("./pages/explore-list"));
 // const Details = lazy(() => import("./pages/details"));
 // const OrderDetails = lazy(() => import("./pages/order-details"));
 //const NotFound = lazy(() => import("./pages/not-found"));
 // const HelpLine = lazy(() => import("./pages/help-line"));
-const UserDetails = lazy(() => import("./pages/user-details"));
+// const UserDetails = lazy(() => import("./pages/user-details"));
 // const Htimes = lazy(() => import("./components/client-category/htimes"));
 // const KalpanaChawla = lazy(() =>
 //   import("./components/client-category/kalpana-chawla")
@@ -43,28 +63,28 @@ const UserDetails = lazy(() => import("./pages/user-details"));
 // );
 // const Latimes = lazy(() => import("./components/client-category/latimes"));
 
-const RecentlySold = lazy(() => import("./pages/recently-sold"));
-// const CreatorApplication = lazy(() => import("./pages/creator-application"));
-const LiveAuctionsNFTs = lazy(() => import("./pages/live-auction-nfts"));
-const TrendingNFTs = lazy(() => import("./pages/trending"));
-const MyFavorites = lazy(() => import("./pages/my-favorites"));
-const ExploreAll = lazy(() => import("./pages/explore-all"));
-const Privacy = lazy(() => import("./pages/privacy-policy"));
-const Terms = lazy(() => import("./pages/terms"));
-const Abouts = lazy(() => import("./pages/abouts"));
-const Blogs = lazy(() => import("./pages/blogs"));
-const MclGame = lazy(() => import("./pages/mcl-game"));
-const BlogDetails = lazy(() => import("./pages/blog-details"));
-const BlogList = lazy(() => import("./pages/blog-list"));
-const AnnounDetails = lazy(() => import("./pages/announcement-details"));
-const AnnounementList = lazy(() => import("./pages/announcement-list"));
-const FAQ = lazy(() => import("./pages/faq"));
-const NftDetails = lazy(() => import("./pages/nft-details"));
-//const MobileApp = lazy(() => import("./pages/mobile-app"));
-const OfferBanner = lazy(() => import("./components/offer-banner"));
-const ReleaseNotes = lazy(() => import("./pages/release-notes"));
-const Contest = lazy(() => import("./pages/contest"));
-const ContestTerms = lazy(() => import("./pages/contest-terms"));
+// const RecentlySold = lazy(() => import("./pages/recently-sold"));
+// // const CreatorApplication = lazy(() => import("./pages/creator-application"));
+// const LiveAuctionsNFTs = lazy(() => import("./pages/live-auction-nfts"));
+// const TrendingNFTs = lazy(() => import("./pages/trending"));
+// const MyFavorites = lazy(() => import("./pages/my-favorites"));
+// const ExploreAll = lazy(() => import("./pages/explore-all"));
+// const Privacy = lazy(() => import("./pages/privacy-policy"));
+// const Terms = lazy(() => import("./pages/terms"));
+// const Abouts = lazy(() => import("./pages/abouts"));
+// //const Blogs = lazy(() => import("./pages/blogs"));
+// const MclGame = lazy(() => import("./pages/mcl-game"));
+// const BlogDetails = lazy(() => import("./pages/blog-details"));
+// const BlogList = lazy(() => import("./pages/blog-list"));
+// const AnnounDetails = lazy(() => import("./pages/announcement-details"));
+// const AnnounementList = lazy(() => import("./pages/announcement-list"));
+// const FAQ = lazy(() => import("./pages/faq"));
+// const NftDetails = lazy(() => import("./pages/nft-details"));
+// //const MobileApp = lazy(() => import("./pages/mobile-app"));
+// const OfferBanner = lazy(() => import("./components/offer-banner"));
+// const ReleaseNotes = lazy(() => import("./pages/release-notes"));
+// const Contest = lazy(() => import("./pages/contest"));
+// const ContestTerms = lazy(() => import("./pages/contest-terms"));
 
 function App(props) {
   const market_start_date = "Jul 13, 2022 11:30:00";
@@ -173,11 +193,11 @@ function App(props) {
 
   return (
     <>
-      <div style={{ display: "none" }}>
+      {/* <div style={{ display: "none" }}>
         {market_time && (
           <NFTCounter time={market_time} handleEndEvent={handleCheck} />
         )}
-      </div>
+      </div> */}
 
       {!online && (
         <div className="offline-ribbon">
@@ -191,7 +211,7 @@ function App(props) {
       )}
 
       <div className="top-loader"></div>
-      <div className="whole-content">
+      <div className="riode-rounded-skin">
         <Router basename="/">
           <Suspense
             fallback={
@@ -255,122 +275,17 @@ const WebContainer = () => {
   return (
     <>
       <Switch>
-        <Route exact path="/blog" component={Blogs} />
-        <Route exact path="/mcl-game" component={MclGame} />
-        <Route exact path="/blog/list" component={BlogList} />
-        <Route exact path="/blog/:slug" component={BlogDetails} />
-        <Route exact path="/announcment/:slug" component={AnnounDetails} />
-        <Route exact path="/announcment-list" component={AnnounementList} />
-        <Route exact path="/nft-marketplace/contest" component={Contest} />
-        <Route
-          exact
-          path="/nft-marketplace/trending-nfts"
-          component={TrendingNFTs}
-        />
-        <Route
-          exact
-          path="/nft-marketplace/favorites"
-          component={MyFavorites}
-        />
-        <Route
-          exact
-          path="/nft-marketplace/sale-history"
-          component={RecentlySold}
-        />
-        <Route
-          exact
-          path="/nft-marketplace/live-auction"
-          component={LiveAuctionsNFTs}
-        />
-        <Route
-          exact
-          path="/nft-marketplace/cricket-nfts/:player"
-          component={ExploreAll}
-        />
-        <Route
-          exact
-          path="/nft-marketplace/cricket-nfts/:player/:search?"
-          component={ExploreAll}
-        />
-        <Route
-          exact
-          path="/nft-marketplace/cricket-nfts/:player/:search?/details/:slug"
-          component={ExploreAll}
-        />
-        <Route
-          exact
-          path="/nft-marketplace/cricket-nfts/:player/:search?/order/details/:slug/:orderSlug"
-          component={ExploreAll}
-        />
-        <Route
-          exact
-          path="/nft-marketplace/:search?/order/details/:slug/:orderSlug"
-          component={ExploreAll}
-        />
-        {/* <Route
-          exact
-          path="/nft-marketplace/:search?/details/:slug"
-          component={ExploreAll}
-        /> */}
-        <Route exact path="/nft-marketplace/:search?" component={ExploreAll} />
-        {/* <Route exact path="/nft-marketplace/cricket-nfts/:search?" component={ExploreAll} /> */}
-        <Route
-          exact
-          path="/nft-marketplace/:category/:cSlug/:search?/order/details/:slug/:orderSlug"
-          component={Explore}
-        />
+        <Route exact path="/newhome" component={NewHome} />
+        <Route exact path="/category" component={Category} />
+        <Route exact path="/product" component={Product} />
+        <Route exact path="/about" component={About} />
+        <Route exact path="/blogpost" component={blogPost} />
+        <Route exact path="/freetrial" component={freetrial} />
+        <Route exact path="/contact" component={contact} />
+        <Route exact path="/privacy" component={privacy} />
+        <Route exact path="/terms" component={Terms} />
 
-        <Route
-          exact
-          path="/nft-marketplace/details/:slug"
-          component={NftDetails}
-        />
-        <Route exact path="/details/:slug" component={NftDetails} />
-
-        <Route
-          exact
-          path="/nft-marketplace/:category/:cSlug/:search?/details/:slug"
-          component={Explore}
-        />
-        <Route
-          exact
-          path="/nft-marketplace/:category/:cSlug/:search?"
-          component={Explore}
-        />
-
-        <Route exact path="/privacy-policy" component={Privacy} />
-        <Route exact path="/faq" component={FAQ} />
-        <Route exact path="/terms-and-conditions" component={Terms} />
-        <Route exact path="/about-us" component={Abouts} />
-        <Route exact path="/user/:slug/details" component={UserDetails} />
-        {/* <Route exact path="/mobile-app" component={MobileApp} /> */}
-
-        {/* <Route path="/not-found" component={NotFound} /> */}
-        <Route exact path="/offers" component={OfferBanner} />
-        <Route exact path="/release-notes" component={ReleaseNotes} />
-        
-        <Route
-          exact
-          path="/bmw-contest-terms-and-conditions"
-          component={ContestTerms}
-        />
-
-        <Route
-          path="/mcl"
-          component={() => {
-            window.location.href = process.env.REACT_APP_DROP_URL;
-            return null;
-          }}
-        />
-        <Route
-          exact
-          path="/:search?/order/details/:slug/:orderSlug"
-          component={Home}
-        />
-        <Route exact path="/:search?/details/:slug" component={Home} />
-        <Route exact path="/:search?" component={Home} />
-
-        <Route exact component={() => <Redirect to="/"></Redirect>} />
+        <Route exact component={() => <Redirect to="/newhome"></Redirect>} />
       </Switch>
     </>
   );
