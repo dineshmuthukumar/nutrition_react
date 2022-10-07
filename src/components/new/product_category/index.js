@@ -179,7 +179,7 @@ return (<>
                                             }"
                                                 > */}
                                          <OwlCarousel
-                                                className="owl-carousel "
+                                                className="owl-carousel owl-theme owl-loaded owl-drag"
                                                 margin={20}
                                                 nav
                                                 smartSpeed={500}
@@ -192,13 +192,13 @@ return (<>
                                                 ]}
                                                 responsive={{
                                                 0: {
-                                                    items: 1,
+                                                    items: 2,
                                                 },
                                                 768: {
-                                                    items: 1,
+                                                    items: 3,
                                                 },
                                                 800: {
-                                                    items: 1,
+                                                    items: 4,
                                                 },
                                                 }}
                                                 autoplay
@@ -212,7 +212,7 @@ return (<>
                                             
                                             >
                                         <div className="product text-center product-with-qty">
-                                            <figure className="product-media">
+                                            <figure className="product-media    ">
                                                 <a href="#">
                                                     <img src={pro_product_1} alt="product" width="280" height="315" />
                                                 </a>
