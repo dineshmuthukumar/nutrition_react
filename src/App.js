@@ -44,48 +44,6 @@ const Terms = lazy(() => import("./pages/terms"));
 
 
 
-
-
-// const Home = lazy(() => import("./pages/home"));
-
-// const Explore = lazy(() => import("./pages/explore-list"));
-// const Details = lazy(() => import("./pages/details"));
-// const OrderDetails = lazy(() => import("./pages/order-details"));
-//const NotFound = lazy(() => import("./pages/not-found"));
-// const HelpLine = lazy(() => import("./pages/help-line"));
-// const UserDetails = lazy(() => import("./pages/user-details"));
-// const Htimes = lazy(() => import("./components/client-category/htimes"));
-// const KalpanaChawla = lazy(() =>
-//   import("./components/client-category/kalpana-chawla")
-// );
-// const FullyFaltoo = lazy(() =>
-//   import("./components/client-category/fullyfaltoo")
-// );
-// const Latimes = lazy(() => import("./components/client-category/latimes"));
-
-// const RecentlySold = lazy(() => import("./pages/recently-sold"));
-// // const CreatorApplication = lazy(() => import("./pages/creator-application"));
-// const LiveAuctionsNFTs = lazy(() => import("./pages/live-auction-nfts"));
-// const TrendingNFTs = lazy(() => import("./pages/trending"));
-// const MyFavorites = lazy(() => import("./pages/my-favorites"));
-// const ExploreAll = lazy(() => import("./pages/explore-all"));
-// const Privacy = lazy(() => import("./pages/privacy-policy"));
-// const Terms = lazy(() => import("./pages/terms"));
-// const Abouts = lazy(() => import("./pages/abouts"));
-// //const Blogs = lazy(() => import("./pages/blogs"));
-// const MclGame = lazy(() => import("./pages/mcl-game"));
-// const BlogDetails = lazy(() => import("./pages/blog-details"));
-// const BlogList = lazy(() => import("./pages/blog-list"));
-// const AnnounDetails = lazy(() => import("./pages/announcement-details"));
-// const AnnounementList = lazy(() => import("./pages/announcement-list"));
-// const FAQ = lazy(() => import("./pages/faq"));
-// const NftDetails = lazy(() => import("./pages/nft-details"));
-// //const MobileApp = lazy(() => import("./pages/mobile-app"));
-// const OfferBanner = lazy(() => import("./components/offer-banner"));
-// const ReleaseNotes = lazy(() => import("./pages/release-notes"));
-// const Contest = lazy(() => import("./pages/contest"));
-// const ContestTerms = lazy(() => import("./pages/contest-terms"));
-
 function App(props) {
   const market_start_date = "Jul 13, 2022 11:30:00";
 
