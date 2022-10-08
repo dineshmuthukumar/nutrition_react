@@ -1,5 +1,5 @@
 import React from "react";
-
+import {  Link } from "react-router-dom";
 import OwlCarousel from "react-owl-carousel";
 
 import product_1 from "../../../images/new-images/demos/demo-food2/products/pro_product_1.jpg"
@@ -14,7 +14,7 @@ import "./style.scss";
 const ArrivalSection = () => {
   return (
     <>
-     <section className="arrivals-section appear-animate need_sec">
+     <section className="arrivals-section need_sec">
                         <div className="container">
                             <h2 className="title-echo mb-1"><span>What you need? Meet the most Here!</span></h2>
                             <p>From skin to muscles, sleep to energy and fitness to cognition – Liven nurtures <br /> the health with essentials naturally sourced.</p>
@@ -113,9 +113,9 @@ const ArrivalSection = () => {
                                         >
                                             <div className="product text-center product-with-qty">
                                                 <figure className="product-media">
-                                                    <a href="product.html">
+                                                    <Link to="/product">
                                                         <img src={product_1} alt="product" width="280" height="315" />
-                                                    </a>
+                                                    </Link>
                                                     <div className="product-label-group">
                                                         <img src={priceTag} />
                                                     </div>
@@ -148,9 +148,9 @@ const ArrivalSection = () => {
                                             </div>
                                             <div className="product text-center product-with-qty">
                                                 <figure className="product-media">
-                                                    <a href="product.html">
+                                                    <Link to="/product">
                                                         <img src={product_2} alt="product" width="280" height="315" />
-                                                    </a>
+                                                        </Link>
                                                     <div className="product-label-group">
                                                         <img src={priceTag}  />
                                                     </div>
@@ -180,9 +180,9 @@ const ArrivalSection = () => {
                                             </div>
                                             <div className="product text-center product-with-qty">
                                                 <figure className="product-media">
-                                                    <a href="product.html">
+                                                    <Link to="/product">
                                                         <img src={product_3} alt="product" width="280" height="315" />
-                                                    </a>
+                                                        </Link>
                                                     <div className="product-label-group">
                                                         <img src={priceTag}  />
                                                     </div>
@@ -212,9 +212,9 @@ const ArrivalSection = () => {
                                             </div>
                                             <div className="product text-center product-with-qty">
                                                 <figure className="product-media">
-                                                    <a href="product.html">
+                                                    <Link to="/product">
                                                         <img src={product_4} alt="product" width="280" height="315" />
-                                                    </a>
+                                                        </Link>
                                                     <div className="product-label-group">
                                                         <img src={priceTag}  />
                                                     </div>

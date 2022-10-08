@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import {  Link } from "react-router-dom";
 import OwlCarousel from "react-owl-carousel";
 import product_1 from "../../../images/new-images/demos/demo-food2/products/final/product_1.jpg";
 import product_2 from "../../../images/new-images/demos/demo-food2/products/final/product_2.jpg";
@@ -1082,7 +1083,7 @@ const ProductDetails = () => {
                                                     <nav className="toolbox toolbox-pagination justify-content-end">
                                                         <ul className="pagination">
                                                             <li className="page-item disabled">
-                                                                <a className="page-link page-link-prev" href="#" aria-label="Previous" tabindex="-1" aria-disabled="true"> <i className="d-icon-arrow-left"></i>Prev </a>
+                                                                <a className="page-link page-link-prev" href="#" aria-label="Previous" tabIndex="-1" aria-disabled="true"> <i className="d-icon-arrow-left"></i>Prev </a>
                                                             </li>
                                                             <li className="page-item active" aria-current="page"><a className="page-link" href="#">1</a></li>
                                                             <li className="page-item"><a className="page-link" href="#">2</a></li>

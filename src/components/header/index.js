@@ -9,7 +9,7 @@ import { CgMenuRight } from "react-icons/cg";
 import { VscChromeClose } from "react-icons/vsc";
 import { useHistory, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
-
+import {  Link } from "react-router-dom";
 import images from "../../utils/images.json";
 import { user_logout_thunk } from "../../redux/thunk/user_thunk";
 import {
@@ -626,78 +626,108 @@ const Header = ({
                                                     <h4 className="menu-title">Categories</h4>
                                                     <ul>
                                                         <li>
-                                                        <Nav.Link
-                                                            onClick={() => history.push("/")}
+                                                        <Link href="/category"
+                                                            to="/category"
                                                           >
                                                           Superfood Plant Protein
-                                                        </Nav.Link>
+                                                        </Link>
                                                         </li>
                                                         <li>
-                                                          <Nav.Link
-                                                            onClick={() => history.push("/")}
+                                                          <Link
+                                                            to="/category"
                                                           >
                                                           Collagen
-                                                        </Nav.Link></li>
-                                                        <li><Nav.Link
-                                                            onClick={() => history.push("/")}
+                                                        </Link></li>
+                                                        <li><Link
+                                                            to="/category"
                                                           >
                                                           Slow
-                                                        </Nav.Link></li>
+                                                        </Link></li>
                                                         <li>
-                                                          <Nav.Link
-                                                            onClick={() => history.push("/")}
+                                                          <Link
+                                                            to="/category"
                                                           >
                                                           Disney Frozen Melts
-                                                        </Nav.Link>
+                                                        </Link>
                                                         </li>
-                                                        <li> <Nav.Link
-                                                            onClick={() => history.push("/")}
+                                                        <li> <Link
+                                                            to="/category"
                                                           >
                                                           Marvel Melts
-                                                        </Nav.Link></li>
-                                                        <li>  <Nav.Link
-                                                            onClick={() => history.push("/")}
+                                                        </Link></li>
+                                                        <li>  <Link
+                                                            to="/category"
                                                           >
                                                           Melts
-                                                        </Nav.Link></li>
+                                                        </Link></li>
                                                         <li>
                                                         <Nav.Link
-                                                            onClick={() => history.push("/")}
+                                                            onClick={() => history.push("/category")}
                                                           >
                                                           Effervescent
                                                         </Nav.Link>
                                                         </li>
                                                         <li> <Nav.Link
-                                                            onClick={() => history.push("/")}
+                                                            onClick={() => history.push("/category")}
                                                           >
                                                           Apple Cider Vinegar
                                                         </Nav.Link> </li>
                                                         <li> <Nav.Link
-                                                            onClick={() => history.push("/")}
+                                                            onClick={() => history.push("/category")}
                                                           >
                                                           Gifting
                                                         </Nav.Link></li>
-                                                        <li> <Nav.Link
-                                                            onClick={() => history.push("/")}
+                                                        <li> <Link
+                                                            onClick={() => history.push("/category")}
                                                           >
                                                           Shop All
-                                                        </Nav.Link> Shop All</li>
+                                                        </Link></li>
                                                     </ul>
                                                 </div>
                                                 <div className="col-6 col-sm-6 col-md-6 col-lg-6">
                                                     <h4 className="menu-title">Top Sellers</h4>
                                                     <ul>
-                                                        <li><a href="#">Essential Vitamins</a></li>
-                                                        <li><a href="#">Daily Immunity Combo</a></li>
-                                                        <li><a href="#">Deep Sleep Pack</a></li>
-                                                        <li><a href="#">Happy Gut Combo</a></li>
-                                                        <li><a href="#">Women’s Performance Pack</a></li>
+                                                        <li> <Link
+                                                            to="/category"
+                                                          >
+                                                          Essential Vitamins</Link></li>
+                                                        <li> <Link
+                                                            to="/category"
+                                                          >
+                                                          Daily Immunity Combo</Link></li>
+                                                        <li> <Link
+                                                            to="/category"
+                                                          >
+                                                          Deep Sleep Pack</Link></li>
+                                                        <li> <Link
+                                                            to="/category"
+                                                          >
+                                                          Happy Gut Combo</Link></li>
+                                                        <li> <Link
+                                                            to="/category"
+                                                          >
+                                                          Women’s Performance Pack</Link></li>
 
-                                                        <li><a href="#">Beauty Sleep &amp; Healthy Hair Pack</a></li>
-                                                        <li><a href="#">Stress Relief Combo</a></li>
-                                                        <li><a href="#">Beauty Pack</a></li>
-                                                        <li><a href="#">Performance Pack</a></li>
-                                                        <li><a href="#">Hair Care Kit</a></li>
+                                                        <li> <Link
+                                                            to="/category"
+                                                          >
+                                                          Beauty Sleep &amp; Healthy Hair Pack</Link></li>
+                                                        <li> <Link
+                                                            to="/category"
+                                                          >
+                                                          Stress Relief Combo</Link></li>
+                                                        <li> <Link
+                                                            to="/category"
+                                                          >
+                                                          Beauty Pack</Link></li>
+                                                        <li> <Link
+                                                            to="/category"
+                                                          >
+                                                          Performance Pack</Link></li>
+                                                        <li> <Link
+                                                            to="/category"
+                                                          >
+                                                          Hair Care Kit</Link></li>
                                                     </ul>
                                                 </div>
                                                 
@@ -718,28 +748,79 @@ const Header = ({
                                                 <div className="col-6 col-sm-6 col-md-6">
                                                     <h4 className="menu-title">Sports Nutrition</h4>
                                                     <ul>
-                                                        <li><a href="#">Immunity</a></li>
-                                                        <li><a href="#">Sleep</a></li>
-                                                        <li><a href="#">Gut</a></li>
-                                                        <li><a href="#">Weight</a></li>
-                                                        <li><a href="#">Detox</a></li>
-                                                        <li><a href="#">Beauty</a></li>
-                                                        <li><a href="#">Essentials</a></li>
-                                                        <li><a href="#">Energy</a></li>
-                                                        <li><a href="#">Eye</a></li>
+                                                        <li> <Link
+                                                            to="/category"
+                                                          >
+                                                          Immunity</Link></li>
+                                                        <li> <Link
+                                                            to="/category"
+                                                          >
+                                                          Sleep</Link></li>
+                                                        <li> <Link
+                                                            to="/category"
+                                                          >
+                                                          Gut</Link></li>
+                                                        <li> <Link
+                                                            to="/category"
+                                                          >
+                                                          Weight</Link></li>
+                                                        <li> <Link
+                                                            to="/category"
+                                                          >
+                                                          Detox</Link></li>
+                                                        <li> <Link
+                                                            to="/category"
+                                                          >
+                                                          Beauty</Link></li>
+                                                        <li> <Link
+                                                            to="/category"
+                                                          >
+                                                          Essentials</Link></li>
+                                                        <li> <Link
+                                                            to="/category"
+                                                          >
+                                                          Energy</Link></li>
+                                                        <li> <Link
+                                                            to="/category"
+                                                          >
+                                                          Eye</Link></li>
                                                     </ul>
                                                 </div>
                                                 <div className="col-6 col-sm-6 col-md-6">
                                                     <h4 className="menu-title">Kids Nutrition</h4>
                                                     <ul>
-                                                        <li><a href="#">Throat</a></li>
-                                                        <li><a href="#">Skin</a></li>
-                                                        <li><a href="#">Skin</a></li>
-                                                        <li><a href="#">Bone and Joints</a></li>
-                                                        <li><a href="#">Heart</a></li>
-                                                        <li><a href="#">Cognition</a></li>
-                                                        <li><a href="#">Liver</a></li>
-                                                        <li><a href="#">Fertility and Pregnancy</a></li>
+                                                        <li> <Link
+                                                            to="/category"
+                                                          >
+                                                          Throat</Link></li>
+                                                        <li> <Link
+                                                            to="/category"
+                                                          >
+                                                          Skin</Link></li>
+                                                        <li> <Link
+                                                            to="/category"
+                                                          >
+                                                          Skin</Link></li>
+                                                        <li> <Link
+                                                            to="/category"
+                                                          >
+                                                          Bone and Joints</Link></li>
+                                                        <li> <Link
+                                                            to="/category"
+                                                          >
+                                                          Heart</Link></li>
+                                                        <li> <Link
+                                                            to="/category"
+                                                          >
+                                                          Cognition</Link></li>
+                                                        <li> <Link
+                                                            to="/category"
+                                                          >
+                                                          Liver</Link></li>
+                                                        <li> <Link
+                                                            to="/category"
+                                                          >
+                                                          Fertility and Pregnancy</Link></li>
                                                     </ul>
                                                 </div>
                                                 
@@ -762,8 +843,12 @@ const Header = ({
                                             <li><a href="">Wishlist</a></li>
                                             <li><a href="">Wellbeing Promise</a></li>
                                             <li><a href="">Honesty Inside Out</a></li>
-                                            <li><a href="blog.html" target="_blank">Blogs</a></li>
-                                            <li><a href="contact.html" target="_blank">Contact Us</a></li>
+                                            <li> <Link
+                                                            to="/blog"
+                                                          >Blogs</Link></li>
+                                            <li> <Link
+                                                           to ="/contact"
+                                                          >Contact Us</Link></li>
                                         </ul>
                                     </li>
                                     
