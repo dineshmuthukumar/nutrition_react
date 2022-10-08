@@ -36,6 +36,7 @@ const NewHome = lazy(() => import("./pages/new-home"));
 const Category = lazy(() => import("./pages/category"));
 const Product = lazy(() => import("./pages/product"));
 const About = lazy(() => import("./pages/about"));
+const blog = lazy(() => import("./pages/blogs"));
 const blogPost = lazy(() => import("./pages/blog-post"));
 const freetrial = lazy(() => import("./pages/free-trial"));
 const contact = lazy(() => import("./pages/contact"));
@@ -182,7 +183,7 @@ function App(props) {
               //   </div>
               // </div>
               <div className="d-flex gif-loader">
-                <img src={loader} alt="loader" />
+                <img src={"https://miro.medium.com/max/1400/1*CsJ05WEGfunYMLGfsT2sXA.gif"} alt="loader" />
               </div>
             }
           >
@@ -237,13 +238,14 @@ const WebContainer = () => {
         <Route exact path="/category" component={Category} />
         <Route exact path="/product" component={Product} />
         <Route exact path="/about" component={About} />
+        <Route exact path="/blog" component={blog} />
         <Route exact path="/blogpost" component={blogPost} />
         <Route exact path="/freetrial" component={freetrial} />
         <Route exact path="/contact" component={contact} />
         <Route exact path="/privacy" component={privacy} />
         <Route exact path="/terms" component={Terms} />
 
-        <Route exact component={() => <Redirect to="/newhome"></Redirect>} />
+        <Route exact component={() => <Redirect to="/"></Redirect>} />
       </Switch>
     </>
   );

@@ -775,7 +775,7 @@ const Header = ({
                                     <li >
                                         <Nav.Link
                                            
-                                              onClick={() => history.push("/")}
+                                              onClick={() => history.push("/about")}
                                             >
                                          About Us
                                         </Nav.Link>
@@ -785,7 +785,7 @@ const Header = ({
 
                                     <Nav.Link
                                         
-                                        onClick={() => history.push("/")}
+                                        onClick={() => history.push("/blog")}
                                       >
                                     Blogs
                                     </Nav.Link>
