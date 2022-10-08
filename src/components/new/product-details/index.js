@@ -551,7 +551,7 @@ const ProductDetails = () => {
                             </div>
         </section>
 
-        <section className="element-section mt-9 mb-9" id="why_choose_image">
+        <section className="element-section" id="why_choose_image">
                             <div className="container">
                                 <div className="row mt-5">
                                     <div className="col-md-7">
@@ -622,7 +622,7 @@ const ProductDetails = () => {
                                 </div>
                                 <div className="row pro_feature">
                                     <div className="col-sm-12">
-                                        <img src={apple_feature} />
+                                        <img src={apple_feature} className="acv_img" />
                                     </div>
                                 </div>
                                 
@@ -690,7 +690,7 @@ const ProductDetails = () => {
                             </div>
         </section>
 
-        <section className="element-section mt-9 mb-9" id="why_choose_image">
+        <section className="element-section" id="why_choose_image">
                             <div className="container">
                                 <div className="row mt-5">
                                     <div className="col-md-12">
@@ -746,7 +746,7 @@ const ProductDetails = () => {
         </section>
 
         <section className="arrivals-section appear-animate" id="Potential_product">
-                            <h2 className="title title-center ls-s mb-8 mt-9 dis_block">Includes Healing Potential of:</h2>
+                            <h2 className="title title-center ls-s mb-8 dis_block">Includes Healing Potential of:</h2>
                             <div className="tab tab-nav-center">
                                 <div className="tab-content">
                                     <div className="tab-pane pt-4 active" id="fruits">
@@ -790,7 +790,7 @@ const ProductDetails = () => {
                                                     items: 1,
                                                 },
                                                 800: {
-                                                    items: 1,
+                                                    items: 4,
                                                 },
                                                 }}
                                                 // autoplay
@@ -869,8 +869,7 @@ const ProductDetails = () => {
                             <div className="container p-0">
                                 <h2 className="title-echo mb-1"><span>Customer Review</span></h2>
                                 <p className="new_our_idea_des">
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. <br />
-                                    Lorem Ipsum has been the industry's standard dummy text ever since.
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.
                                 </p>
                                 <div className="row">
                                     <div className="col-sm-6">
@@ -902,7 +901,7 @@ const ProductDetails = () => {
                                                 </div>
                                                 <form action="demo-food2-product.html#">
                                                     <textarea id="reply-message" cols="30" rows="6" className="form-control mb-4" placeholder="Comment *" required></textarea>
-                                                    <button type="submit" className="btn btn-primary btn-rounded">Submit<i className="d-icon-arrow-right"></i></button>
+                                                    <button type="submit" className="btn-product btn-cart wid_200">Submit<i className="d-icon-arrow-right"></i></button>
                                                 </form>
                                             </div>
                                         </div>
@@ -1258,7 +1257,7 @@ const ProductDetails = () => {
                                                     items: 1,
                                                 },
                                                 800: {
-                                                    items: 1,
+                                                    items: 4,
                                                 },
                                                 }}
                                                 autoplay

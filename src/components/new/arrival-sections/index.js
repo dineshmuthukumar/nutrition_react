@@ -27,7 +27,7 @@ const ArrivalSection = () => {
                                     </li>
                                     <li className="nav-item ml-1 mr-1 pt-2 pb-2">
                                         <a className="nav-link nav-link-with-img border-rounded" href="#vegetables">
-                                            <h3 className="img-cat-title mb-0">I <i className="fa fa-home" aria-hidden="true" ></i> Immunity</h3>
+                                            <h3 className="img-cat-title mb-0"><i className="fa fa-home" aria-hidden="true" ></i> Immunity</h3>
                                         </a>
                                     </li>
                                     <li className="nav-item ml-1 mr-1 pt-2 pb-2">

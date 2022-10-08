@@ -78,7 +78,7 @@ const Footer = () => {
                         <div className="row">
                             <div className="col-sm-6">
                                 <h4 className="widget-title">INDIA</h4>
-                                <p>Vantage Nutrition LLP, Plot No. 145, Kandivali Industrial Estate, Charkop, Kandivali (West), Mumbai, Maharashtra, India - 400067.</p>
+                                <p>Vantage Nutrition LLP, Plot No. 145, Kandivali Industrial Estate, Charkop,<br></br> Kandivali (West), Mumbai, Maharashtra, India - 400067.</p>
                                 <div className="d-flex-footer">
                                     <p><i className="fa fa-phone" aria-hidden="true"></i> +91 7506865522</p>
                                     <span className="mail_footer">
@@ -91,8 +91,7 @@ const Footer = () => {
                                 <div className="widget widget-newsletter form-wrapper">
                                     <div className="newsletter-info">
                                         <h4 className="widget-title">
-                                            For exclusive previews, offers <br />
-                                            & all things beauty! We hate spam.
+                                            For exclusive previews, offers <br />& all things beauty! We hate spam.
                                         </h4>
                                        
                                     </div>
@@ -101,7 +100,7 @@ const Footer = () => {
                                         <button className="btn btn-primary btn-rounded btn-md ls-m ml-2" type="submit">subscribe <i className="d-icon-arrow-right"></i></button>
                                     </form>
                                 </div>
-                                <div className="row border-top col-md-10 offset-md-2">
+                                <div className="row border-top col-md-10">
                                     <div className="col-sm-5 text-center">
                                         <div className="social-links links">
                                             <a href="#" className="social-link social-facebook fab fa-facebook-f" title="Social Link"></a>
@@ -120,7 +119,7 @@ const Footer = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="row col-md-10 offset-md-2 pt-3">
+                                <div className="row col-md-10 pt-3">
                                     <div className="col-sm-12 text-center">
                                         <p className="m-0">sales@vantage-nutrition.com</p>
                                     </div>

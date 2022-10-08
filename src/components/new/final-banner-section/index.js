@@ -21,7 +21,7 @@ const FirstBannerSection = () => {
                         </figure>
                         
                         <div className="category-content y-50 x-50 w-100 pl-2 pr-2 pb-1 p-absolute appear-animate">
-                            <h4 className="banner-subtitle font-secondary mb-0 font-weight-bold text-white text-uppercase">BRAND EXPERIENCE</h4>
+                            <h4 className="banner-subtitle mb-0 font-weight-bold text-white text-uppercase">BRAND EXPERIENCE</h4>
                             <a href="#" className="btn btn-md-ellipse btn-ellipse btn-solid btn-primary icon-arrow-right">
                                 <i className="fa fa-play" aria-hidden="true"></i>
                             </a>
@@ -38,7 +38,7 @@ const FirstBannerSection = () => {
                             </figure>
                         </a>
                         <div className="category-content y-50 x-50 w-100 pl-2 pr-2 pb-1 p-absolute appear-animate">
-                            <h4 className="banner-subtitle font-secondary mb-0 font-weight-bold text-white text-uppercase">BRAND EXPERIENCE</h4>
+                            <h4 className="banner-subtitle mb-0 font-weight-bold text-white text-uppercase">BRAND EXPERIENCE</h4>
                             <a href="#" className="btn btn-md-ellipse btn-ellipse btn-solid btn-primary icon-arrow-right">
                                 <i className="fa fa-play" aria-hidden="true"></i>
                             </a>
@@ -53,7 +53,7 @@ const FirstBannerSection = () => {
                             </video>
                         </figure>
                         <div className="category-content y-50 x-50 w-100 pl-2 pr-2 pb-1 p-absolute appear-animate">
-                            <h4 className="banner-subtitle font-secondary mb-0 font-weight-bold text-white text-uppercase">BRAND EXPERIENCE</h4>
+                            <h4 className="banner-subtitle mb-0 font-weight-bold text-white text-uppercase">BRAND EXPERIENCE</h4>
                             <a href="#" className="btn btn-md-ellipse btn-ellipse btn-solid btn-primary icon-arrow-right">
                                 <i className="fa fa-play" aria-hidden="true"></i>
                             </a>
@@ -70,7 +70,7 @@ const FirstBannerSection = () => {
                             </figure>
                         </a>
                         <div className="category-content y-50 x-50 w-100 pl-2 pr-2 pb-1 p-absolute appear-animate">
-                            <h4 className="banner-subtitle font-secondary mb-0 font-weight-bold text-white text-uppercase">BRAND EXPERIENCE</h4>
+                            <h4 className="banner-subtitle mb-0 font-weight-bold text-white text-uppercase">BRAND EXPERIENCE</h4>
                             <a href="#" className="btn btn-md-ellipse btn-ellipse btn-solid btn-primary icon-arrow-right">
                                 <i className="fa fa-play" aria-hidden="true"></i>
                             </a>
@@ -85,7 +85,7 @@ const FirstBannerSection = () => {
                             </video>
                         </figure>
                         <div className="category-content y-50 x-50 w-100 pl-2 pr-2 pb-1 p-absolute appear-animate">
-                            <h4 className="banner-subtitle font-secondary mb-0 font-weight-bold text-white text-uppercase">BRAND EXPERIENCE</h4>
+                            <h4 className="banner-subtitle mb-0 font-weight-bold text-white text-uppercase">BRAND EXPERIENCE</h4>
                             <a href="#" className="btn btn-md-ellipse btn-ellipse btn-solid btn-primary icon-arrow-right">
                                 <i className="fa fa-play" aria-hidden="true"></i>
                             </a>
@@ -102,7 +102,7 @@ const FirstBannerSection = () => {
                             </figure>
                         </a>
                         <div className="category-content y-50 x-50 w-100 pl-2 pr-2 pb-1 p-absolute appear-animate">
-                            <h4 className="banner-subtitle font-secondary mb-0 font-weight-bold text-white text-uppercase">BRAND EXPERIENCE</h4>
+                            <h4 className="banner-subtitle mb-0 font-weight-bold text-white text-uppercase">BRAND EXPERIENCE</h4>
                             <a href="#" className="btn btn-md-ellipse btn-ellipse btn-solid btn-primary icon-arrow-right">
                                 <i className="fa fa-play" aria-hidden="true"></i>
                             </a>

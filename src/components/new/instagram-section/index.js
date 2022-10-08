@@ -60,7 +60,7 @@ const InstagramSection = () => {
                                             'items': 3
                                         },
                                         992: {
-                                            'items': 3
+                                            'items': 5
                                         }
                                     }}
                                     autoplay

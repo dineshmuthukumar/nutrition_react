@@ -1,43 +1,40 @@
 @charset "UTF-8";
-/*
-1. config
-2. mixins
-3. plugins
-4. base
-5. components
-6. header
-7. footer
-8. demo
-*/
-/* 1. config */
-/* -------------------------------------------
-  Variables 
-------------------------------------------- */
-/* 2. mixins */
-/* 
-Demo Food2
-*/
-/* 3. plugins */
-/* -------------------------------------------
-    Owl Carousel
----------------------------------------------- */
 
-:root {
+:root 
+{
     --font-family-m: "circularstd-medium";
     --font-family-b: "circularstd-bold";
     --font-family-black: "circularstd-black";
+    --font-monda: 'Monda', sans-serif;
     --color-text: #1a1818;
 }
-
-@font-face {
+body
+{
+    font-family: var(--font-monda);
+}
+a
+{
+    font-family: var(--font-monda);
+    /* color: #000 !important; */
+    text-decoration: none !important;        
+}
+@font-face 
+{
+     font-family: monda;
+     src: url("../fonts/monda-regular.ttf");
+}
+@font-face 
+{
     font-family: "circularstd-medium";
     src: url("../fonts/newfonts/circularstd-medium.ttf");
 }
-@font-face {
+@font-face 
+{
     font-family: "circularstd-bold";
     src: url("../fonts/newfonts/circularstd-bold.ttf");
 }
-@font-face {
+@font-face 
+{
     font-family: "circularstd-black";
     src: url("../fonts/newfonts/circularstd-black.ttf");
 }
@@ -97,11 +94,14 @@ Demo Food2
     color: #ccc !important;
     background: var(--base-color) !important;
 }
-.owl-theme .owl-nav .owl-prev {
+.owl-theme .owl-nav .owl-prev 
+{
     left: -60px !important;
+    top: -200px !important;
 }
 .owl-theme .owl-nav .owl-next {
     right: -60px !important;
+    top: -200px !important;
 }
 .owl-theme .owl-dots .owl-dot.active span {
     background-color: #4dae67;
@@ -508,11 +508,20 @@ html.dark-theme {
 .riode-rounded-skin  {
     margin: 0;
     overflow-x: hidden;
-    font-family: circularstd-medium;
+    font-family: var(--font-monda);
     font-size: 1.4rem;
     line-height: 1.6;
     color: #666;
 }
+.description-title
+{
+    font-size: 32px;
+    line-height: 1.09375;
+    color: var(--color-text);
+    font-weight: 100 !important;
+    font-family: var(--font-monda);
+    margin-bottom: 40px !important;
+  }
 
 main {
     display: block;
@@ -615,7 +624,7 @@ input {
     -webkit-appearance: none;
     border: 0;
     padding: 0;
-    font-family: circularstd-medium;
+    font-family: var(--font-monda);
 }
 input:focus {
     outline: 0;
@@ -1194,7 +1203,7 @@ button:focus {
     }
 }
 .font-primary {
-    font-family: circularstd-medium !important;
+    font-family: var(--font-monda) !important;
 }
 
 .font-secondary {
@@ -1373,7 +1382,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: circularstd-medium;
+    font-family: var(--font-monda);
     font-weight: 600;
     line-height: 1.4;
     color: #333;
@@ -1404,7 +1413,7 @@ h6 {
 }
 
 p {
-    font-family: circularstd-medium;
+    font-family: var(--font-monda);
     font-size: 1.4rem;
     line-height: 1.86;
 }
@@ -6454,7 +6463,7 @@ input[type="radio"]:checked ~ label::after {
     font-size: 16px;
     font-weight: 400;
     min-width: 12.1rem;
-    font-family: circularstd-medium;
+    font-family: var(--font-monda);
 }
 /* .nav-link-with-img::after {
   content: "";
@@ -7732,24 +7741,24 @@ button.mfp-arrow {
     color: var(--color-text);
     font-size: 22px;
     font-weight: 100;
-    font-family: circularstd-medium;
+    font-family: var(--font-monda);
 }
 .need_sec p {
-    font-family: circularstd-medium;
-    font-size: 20px;
-    line-height: 1.86;
+    font-family: var(--font-monda);
+    font-size: 14px;
+    line-height: 30px;
     color: var(--color-text);
     text-align: center;
 }
 .team_sec p {
-    font-family: circularstd-medium;
-    font-size: 20px;
+    font-family: var(--font-monda);
+    font-size: 14px;
     line-height: 1.86;
     color: var(--color-text);
     text-align: center;
 }
 .post-details p {
-    font-family: circularstd-medium;
+    font-family: var(--font-monda);
     font-size: 16px;
     line-height: 25px;
     color: #7f848b;
@@ -7759,7 +7768,7 @@ button.mfp-arrow {
 }
 .need_sec ul.nav.nav-tabs {
     padding: 25px 0px;
-    flex-wrap: initial  !important;
+    /* flex-wrap: initial  !important; */
 }
 .title-echo span 
 {
@@ -7770,7 +7779,7 @@ button.mfp-arrow {
     transform: translate(-50%, -50%);
     color: var(--color-text);
     font-size: 34px;
-    font-family: circularstd-medium;
+    font-family: var(--font-monda);
     font-weight: 100;
 }
 
@@ -7837,7 +7846,7 @@ button.mfp-arrow {
   Tooltips 
 ------------------------------------------- */
 .tooltiptext {
-    font-family: circularstd-medium;
+    font-family: var(--font-monda);
     position: absolute;
     padding: 1rem 0.7rem;
     bottom: 150%;
@@ -7896,7 +7905,7 @@ button.mfp-arrow {
     padding: 1.22em 2.78em;
     font-weight: 100;
     font-size: 1.4rem;
-    font-family: circularstd-medium;
+    font-family: var(--font-monda);
     letter-spacing: 0;
     line-height: 1.2;
     text-transform: uppercase;
@@ -8289,7 +8298,7 @@ button.mfp-arrow {
     background-color: transparent;
     color: var(--base-color);
     /*color: var(--white);*/
-    font-family: circularstd-medium !important;
+    font-family: var(--font-monda) !important;
     text-transform: capitalize;
     font-weight: 100 !important;
     font-size: 16px !important;
@@ -8608,7 +8617,7 @@ button.mfp-arrow {
         - Filters
 ---------------------------------------------- */
 .post {
-    font-family: circularstd-medium;
+    font-family: var(--font-monda);
 }
 .post .btn i {
     margin-left: 6px;
@@ -8720,7 +8729,7 @@ button.mfp-arrow {
 .post-title {
     margin-bottom: 1.2rem;
     font-size: 20px;
-    font-family: circularstd-medium;
+    font-family: var(--font-monda);
     font-weight: 100 !important;
     line-height: 1.5;
 }
@@ -9166,13 +9175,13 @@ ul.blog-filters .nav-filter {
 .page-item-dots {
     white-space: nowrap;
 }
-.page-item-dots::before {
+/* .page-item-dots::before {
     content: "...";
     margin-top: -0.9em;
     margin-right: 0.5rem;
     display: inline-block;
     vertical-align: middle;
-}
+} */
 
 .show-info {
     margin: 0;
@@ -9234,7 +9243,7 @@ ul.blog-filters .nav-filter {
     flex-wrap: wrap;
     align-items: center;
     color: #666;
-    font-family: circularstd-medium;
+    font-family: var(--font-monda);
     font-size: 1.4rem;
 }
 .breadcrumb a {
@@ -9357,7 +9366,7 @@ ul.blog-filters .nav-filter {
 .product {
     position: relative;
     overflow: hidden;
-    font-family: circularstd-medium;
+    font-family: var(--font-monda);
     font-size: 1.4rem;
     color: #999;
     transition: 0.3s;
@@ -9476,7 +9485,7 @@ ul.blog-filters .nav-filter {
     padding: 1.14em 0;
     background-color: #4dae67;
     color: var(--black);
-    font-family: circularstd-medium;
+    font-family: var(--font-monda);
     font-size: 1.4rem;
     font-weight: 100;
     line-height: 1.2;
@@ -9596,7 +9605,7 @@ ul.blog-filters .nav-filter {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-family: circularstd-medium;
+    font-family: var(--font-monda);
 }
 .product-name a:hover {
     color: #4dae67;
@@ -10095,7 +10104,7 @@ ul.blog-filters .nav-filter {
     font-size: 16px;
     padding: 0;
     border-color: var(--base-color);
-    font-family: circularstd-medium;
+    font-family: var(--font-monda);
     color: var(--black);
     border-radius: 5px;
     line-height: 38px;
@@ -12951,7 +12960,7 @@ figure.instagram img:hover {
         -Other Options
 ---------------------------------------------- */
 .header {
-    font-family: circularstd-medium;
+    font-family: var(--font-monda);
     letter-spacing: -0.025em;
     background: #fff;
     border-bottom: 1px solid #22222236;
@@ -13049,7 +13058,7 @@ figure.instagram img:hover {
 .header-top .help {
     line-height: 1;
     font-size: 12px;
-    letter-spacing: 1px;
+    font-family: var(--font-monda);
 }
 .header-top .help i {
     margin-right: 0.7rem;
@@ -14148,7 +14157,7 @@ figure.instagram img:hover {
     font-weight: 600;
     line-height: 1.34;
     letter-spacing: -0.35px;
-    font-family: circularstd-medium;
+    font-family: var(--font-monda);
     color: #666;
 }
 .product.product-cart .product-name:hover,
@@ -14448,7 +14457,8 @@ figure.instagram img:hover {
     letter-spacing: inherit;
     line-height: 1;
     text-transform: capitalize;
-    font-size: 16px;
+    font-size: 14px;
+    font-family: var(--font-monda);
 }
 .menu > li > a::after {
     margin-left: 0.8rem;
@@ -14469,7 +14479,7 @@ figure.instagram img:hover {
 }
 .menu > .submenu > a {
     z-index: 10;
-    font-size: 16px;
+    font-size: 14px;
 }
 .menu > .submenu > a::after {
     position: static;
@@ -14710,7 +14720,7 @@ figure.instagram img:hover {
     right: 0;
     bottom: 0;
     z-index: 10000;
-    font-family: circularstd-medium;
+    font-family: var(--font-monda);
     transition: visibility 0.4s;
 }
 
@@ -14971,7 +14981,7 @@ figure.instagram img:hover {
     text-transform: capitalize;
     font-size: 1.8rem;
     font-weight: 700;
-    font-family: circularstd-medium;
+    font-family: var(--font-monda);
     line-height: 1;
     letter-spacing: -0.05em;
     color: #222;
@@ -15090,7 +15100,7 @@ figure.instagram img:hover {
 .category-menu ul {
     padding: 2rem 0;
     background: #fff;
-    font-family: circularstd-medium;
+    font-family: var(--font-monda);
     font-size: 1.4rem;
     line-height: 1.5;
     letter-spacing: 0;
@@ -15114,7 +15124,7 @@ figure.instagram img:hover {
         - Sticky Footer
 ---------------------------------------------- */
 .footer {
-    font-family: circularstd-medium;
+    font-family: var(--font-monda);
     font-size: 1.3rem;
     background: #222;
     text-align: center;
@@ -15123,7 +15133,7 @@ figure.instagram img:hover {
     display: flex;
 }
 .footer p {
-    font-family: circularstd-medium;
+    font-family: var(--font-monda);
     font-size: 16px;
     line-height: 30px;
     color: var(--white);
@@ -15191,7 +15201,7 @@ figure.instagram img:hover {
     padding: 8px 0 0;
     color: #a6a6a6;
     font-size: 1.3rem;
-    font-family: circularstd-medium;
+    font-family: var(--font-monda);
 }
 .footer-middle .widget-body li {
     line-height: 1.2;
@@ -15297,7 +15307,7 @@ figure.instagram img:hover {
     color: var(--white);
     letter-spacing: normal;
     line-height: 1.5;
-    font-family: circularstd-medium;
+    font-family: var(--font-monda);
 }
 
 .widget-newsletter .newsletter-info {
@@ -15317,21 +15327,25 @@ figure.instagram img:hover {
     border-radius: 5px;
     color: #000;
     background: #f4f4f4;
-    font-family: circularstd-medium;
+    font-family: var(--font-monda);
     font-size: 14px !important;
 }
 .widget-newsletter .btn {
     padding: 1.2em 1.38em 1.07em;
-    font-family: circularstd-medium;
+    font-family: var(--font-monda);
     font-size: 14px;
     position: relative;
     right: 0px;
     background: var(--base-color);
     border: none;
-    /*width: 45px;
-    height: 45px;*/
+    color: #000;
     border-radius: 5px;
     top: 2px;
+}
+.btn:hover
+{
+    background: var(--base-color);
+    color: #000;
 }
 .widget-newsletter .btn i {
     font-size: 2.5rem;
@@ -15343,7 +15357,7 @@ figure.instagram img:hover {
     margin-bottom: 2rem;
     font-family: inherit;
     font-size: 20px;
-    font-family: circularstd-medium;
+    font-family: var(--font-monda);
     font-weight: 600;
     letter-spacing: 0;
     line-height: 30px;
@@ -15354,7 +15368,7 @@ figure.instagram img:hover {
     margin-bottom: 2rem;
     font-family: inherit;
     font-size: 16px;
-    font-family: circularstd-medium;
+    font-family: var(--font-monda);
     letter-spacing: normal;
     line-height: 2;
     color: var(--white);
@@ -17470,11 +17484,13 @@ h2 {
     margin-right: auto;
 }
 
-.footer-middle .widget a {
+.footer-middle .widget a 
+{
     width: -webkit-fit-content;
     width: fit-content;
-    font-family: circularstd-medium;
-    font-size: 15px;
+    font-family: var(--font-monda);
+    font-size: 14px;
+    color: #fff !important;
     font-weight: 100 !important;
 }
 .footer-middle .col-account .widget-body li {
@@ -17552,4 +17568,13 @@ span.categories_title_name h5 {
     font-size: 20px;
     font-weight: 100 !important;
     color: #333;
+    font-family: var(--font-monda);
+}
+.container-fluid.p-0 
+{
+    padding: 0px !important;
+}
+.megamenu ul li a, .menu li a
+{
+    color: #000 !important;
 }

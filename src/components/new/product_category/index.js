@@ -53,7 +53,7 @@ return (<>
                             <img src={store_1} alt="image-overlay" width="280" height="280" />
                             <h4 className="overlay-visible">Fizzy</h4>
                             <div className="overlay overlay-transparent">
-                                <p className="mt-8">
+                                <p className="">
                                     The active molecules in the formula gets bubbled and dissolves the nutrients in the water making it fun and delicious to consume, maintaining the properties intact in each sip.
                                 </p>
                             </div>
@@ -64,7 +64,7 @@ return (<>
                             <img src={store_2} alt="image-overlay" width="280" height="280" />
                             <h4 className="overlay-visible">Travel friendly</h4>
                             <div className="overlay overlay-transparent">
-                                <p className="mt-8">The packing is portable and easy to carry, so you never giveup the try for a healthy lifestyle.</p>
+                                <p className="">The packing is portable and easy to carry, so you never giveup the try for a healthy lifestyle.</p>
                             </div>
                         </figure>
                     </div>
@@ -73,7 +73,7 @@ return (<>
                             <img src={store_3} alt="image-overlay" width="280" height="280" />
                             <h4 className="overlay-visible">Better Absorption</h4>
                             <div className="overlay overlay-transparent">
-                                <p className="mt-8">Consuming this bubbling drink is so delicious with allnatural flavors ensuring better bioavailability through faster absorption.</p>
+                                <p className="">Consuming this bubbling drink is so delicious with allnatural flavors ensuring better bioavailability through faster absorption.</p>
                             </div>
                         </figure>
                     </div>
@@ -82,7 +82,7 @@ return (<>
                             <img src={store_4} alt="image-overlay" width="280" height="280" />
                             <h4 className="overlay-visible">No worries</h4>
                             <div className="overlay overlay-transparent">
-                                <p className="mt-8">
+                                <p className="">
                                     This fizzy formulation is effective enough to deliver proper nutrients to the consumer in a safe manner. There are no health-harming compounds and this formula has undergone
                                     certain certifications for daily consumption.
                                 </p>
@@ -154,10 +154,7 @@ return (<>
     <section className="pt-3 mt-2 mb-2 pb-10 need_sec">
                                 <div className="container">
                                     <h2 className="title-echo mb-1"><span>Available Products</span></h2>
-                                    <p>
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. <br />
-                                        Lorem Ipsum has been the industry's standard dummy text ever since.
-                                    </p>
+                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.</p>
                                     {/* <div
                                         className="owl-carousel owl-theme row cols-lg-4 cols-md-3 cols-2"
                                         data-owl-options="{
@@ -198,7 +195,7 @@ return (<>
                                                     items: 1,
                                                 },
                                                 800: {
-                                                    items: 1,
+                                                    items: 4,
                                                 },
                                                 }}
                                                 autoplay
@@ -466,12 +463,12 @@ return (<>
                                     </div>
                                 </div>
     </section>
-    <section className="new_our_idea pt-2 pt-md-7 pt-10 pb-8">
+                <section className="new_our_idea pt-2 pt-md-7 pt-10 pb-8">
                                 <div className="container p-0">
                                 <h2 className="title-echo mb-1"><span>Frequently Asked Question?</span></h2>
                                 <p className="new_our_idea_des">Lorem Ipsum is simply dummy text of the printing and typesetting industry. <br />Lorem Ipsum has been the industry's standard dummy text ever since.</p>
                                 <div className="row justify-content-center">
-                                    <div className="col-sm-8 offset-sm-2">
+                                    <div className="col-sm-9 offset-sm-1">
                                         <div className="code-template">
                                             <div className="accordion accordion-background accordion-icon accordion-boxed accordion-card-border accordion-plus accordion-gutter-sm code-content">
                                                 <div className="card">

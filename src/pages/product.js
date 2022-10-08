@@ -117,7 +117,7 @@ const NewHome = () => {
         image="https://cdn.guardianlink.io/product-hotspot/images/og-image_jt.jpg"
       />
       <main className="main pt-6 single-product border-top">
-        <div className="page-content mb-10 pb-6">
+        <div className="page-content">
             <div className="container">
                 <ProductDetails/>
                

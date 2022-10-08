@@ -1,7 +1,8 @@
-    :root {
-    --base-color: #93E9BE;
-    --white: #fff;
-    --black: #000;
+:root 
+{
+   --base-color: #93E9BE;
+   --white: #fff;
+   --black: #000;
 }
 
 .header_top_center {
@@ -45,6 +46,7 @@ h2.title.title-center.ls-s.mb-8 {
     line-height: 1.09375;
     color: var(--color-text);
     font-weight: 100 !important;
+    font-family: var(--font-monda);
 }
 .font_italic {
     font-style: italic;
@@ -100,40 +102,46 @@ h2.title.title-center.ls-s.mb-8 {
 }
 .product_banner h1 {
     color: var(--color-text);
-    font-family: circularstd-medium;
+    font-family: var(--font-monda);
     font-size: 40px;
 }
-.product_banner_2 h1 {
+.product_banner_2 h1 
+{
     color: var(--color-text);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
-    font-family: circularstd-medium;
-    font-size: 40px;
+    font-family: var(--font-monda);
+    font-size: 25px;
     font-weight: 400;
 }
 .product_banner p {
-    font-family: circularstd-medium;
+    font-family: var(--font-monda);
     font-size: 20px;
     line-height: 30px;
     color: #7f848b;
 }
 .product_banner_2 p {   
-    font-family: circularstd-medium;
-    font-size: 16px;
+    font-family: var(--font-monda);
+    font-size: 14px;
     line-height: 30px;
     color: #000;
+}
+.product-name.text-center a, .product-name a
+{
+    color: #000;
+    font-size: 16px;
 }
 .product_banner a {
     font-size: 20px;
     color: var(--color-text);
     line-height: 50px;
     text-decoration: underline;
-    font-family: circularstd-medium;
+    font-family: var(--font-monda);
 }
 .product_banner_2 a {
     font-size: 20px;
     color: var(--color-text);
     line-height: 50px;
     text-decoration: underline;
-    font-family: circularstd-medium;
+    font-family: var(--font-monda);
 }
 .product_banner_2 
 {
@@ -155,17 +163,21 @@ h2.title.title-center.ls-s.mb-8 {
 .product_banner_3 h1
 {
     color: var(--color-text);
-    font-size: 25px;
-    font-family: circularstd-medium;
+    font-size: 20px;
+    font-family: var(--font-monda);
     font-weight: 100;
     text-align: center;
 }
 .product_banner_3 p
 {
-    font-family: circularstd-medium;
-    font-size: 16px;
+    font-family: var(--font-monda);
+    font-size: 14px;
     line-height: 30px;
     color: var(--color-text);
+}
+.category-media img 
+{
+   border-radius: 100%;
 }
 img.weak_strongest_img_absolute
 {
@@ -222,7 +234,7 @@ img.weak_strongest_img_absolute
 }
 .cli_logo p 
 {
-    font-family: circularstd-medium;
+    font-family: var(--font-monda);
     font-size: 20px;
     line-height: 1.86;
     color: var(--color-text);
@@ -367,18 +379,13 @@ img.weak_strongest_img_absolute
     margin: 0px;
     padding: 0px;
 }
-span.mail_footer a {
-    font-size: 16px;
+span.mail_footer a 
+{
+    font-size: 14px;
     color: var(--white);
     padding-left: 10px;
+    font-family: var(--font-monda);
 }
-/*.abt_banner_section 
-{
-    background: url("https://vantage-nutrition.com/wp-content/uploads/2021/09/Group-10542.png") no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-}*/
-
 .icon-box-icon {
     display: flex !important;
     align-items: center;
@@ -425,7 +432,7 @@ span.mail_footer a {
 .border-top {
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
-    padding: 10px 0px 0px 0px;
+    padding: 5px 0px;
 }
 .margin_left_16 {
     margin-left: 16%;
@@ -455,13 +462,14 @@ a.nav-link.nav-link-with-img.border-rounded
 {
     background: #0000009e;
     border-radius: 10px;
-    font-size: 20px;
+    font-size: 14px;
     padding: 10px;
     margin-bottom: 20px !important;
+    font-family: var(--font-monda);
 }
 .category-section p
 {
-    font-family: circularstd-medium;
+    font-family: var(--font-monda);
     font-size: 20px;
     line-height: 1.86;
     color: var(--color-text);
@@ -490,9 +498,9 @@ a.nav-link.nav-link-with-img.border-rounded
 }
 .new_our_idea_des
 {
-    font-family: circularstd-medium;
-    font-size: 20px;
-    line-height: 1.86;
+    font-family: var(--font-monda);
+    font-size: 14px;
+    line-height: 30px;
     color: var(--color-text);
     text-align: center;
 }
@@ -501,7 +509,7 @@ a.nav-link.nav-link-with-img.border-rounded
     position: absolute;
     left: 0;
     background: var(--base-color);
-    top: 1rem;
+    top: 4rem;
     width: 200px;
     height: 200px;
     border-radius: 100%;
@@ -870,19 +878,23 @@ button.btn-product.btn-cart
 }
 #why_choose_image p
 {
-    font-family: circularstd-medium;
-    font-size: 16px;
+    font-family: var(--font-monda);
+    font-size: 14px;
     line-height: 30px;
     color: var(--color-text);
 }
 #why_choose_image li
 {
-    font-family: circularstd-medium;
-    font-size: 16px;
+    font-family: var(--font-monda);
+    font-size: 14px;
     line-height: 30px;
     color: var(--color-text);
 }
-
+.burn_works 
+{
+    font-family: var(--font-monda);
+    color: #000;
+}
 
 /*Product page ingredients_section Start */
 
@@ -939,6 +951,7 @@ div#cart_product_page  label
 .span12 h2, .span12 p, .span12 .form-control
 {
     color: #fff;
+    min-height: 40px;
 }
 .add_to_whitelist
 {
@@ -1059,6 +1072,7 @@ h4.icon-box-title.text-capitalize.ls-normal
 .need_sec .product-details .product-name 
 {
     text-align: center;
+    font-family: var(--font-monda);
 }
 .product_banner_section_3
 {
@@ -1085,8 +1099,8 @@ h4.icon-box-title.text-capitalize.ls-normal
 }
 section.instagram-section p 
 {
-    font-family: circularstd-medium;
-    font-size: 20px;
+    font-family: var(--font-monda);
+    font-size: 14px;
     line-height: 1.86;
     color: var(--color-text);
     text-align: center;
@@ -1327,4 +1341,16 @@ table.shop-table.cart-table thead
     background: #000;
     color: #fff;
     text-align: center;
+}
+.overlay-transparent
+{
+    margin-top: 10rem;
+}
+.page-item:not(:first-child) .page-link
+{
+    line-height: 30px;
+}
+.acv_img
+{
+    width:80%;
 }

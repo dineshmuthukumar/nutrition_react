@@ -7,7 +7,7 @@ const ProductBanner = () => {
 
   return (
     <>
-       <section className="product_banner_section_2 mb-10 pb-6">
+       <section className="product_banner_section_2 mb-10">
                             <div className="container">
                                 <div className="row">
                                     <div className="col-sm-12">
