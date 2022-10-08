@@ -35,6 +35,7 @@ import "./styles/style.min.css";
 const NewHome = lazy(() => import("./pages/new-home"));
 const Category = lazy(() => import("./pages/category"));
 const Product = lazy(() => import("./pages/product"));
+const Cart = lazy(() => import("./pages/cart"));
 const About = lazy(() => import("./pages/about"));
 const blog = lazy(() => import("./pages/blogs"));
 const blogPost = lazy(() => import("./pages/blog-post"));
@@ -238,6 +239,7 @@ const WebContainer = () => {
         <Route exact path="/category" component={Category} />
         <Route exact path="/product" component={Product} />
         <Route exact path="/about" component={About} />
+        <Route exact path="/cart" component={Cart} />
         <Route exact path="/blog" component={blog} />
         <Route exact path="/blogpost" component={blogPost} />
         <Route exact path="/freetrial" component={freetrial} />

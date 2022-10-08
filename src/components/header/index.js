@@ -32,6 +32,10 @@ import AppHelmet from "../helmet";
 
 import Logo from "../../images/new-images/demos/demo-food2/liven-logo.png"
 
+import One from "../../images/new-images/demos/demo-food2/products/1.jpg"
+import Two from "../../images/new-images/demos/demo-food2/products/2.jpg"
+
+
 import "./style.scss";
 
 // import "./style.scss";
@@ -826,7 +830,7 @@ const Header = ({
                                         <div className="product product-cart">
                                             <figure className="product-media">
                                                 <a href="#">
-                                                    <img src="images/demos/demo-food2/products/1.jpg" alt="product" width="80" height="90" />
+                                                    <img src={One} alt="product" width="80" height="90" />
                                                 </a>
                                                 <button className="btn btn-link btn-close"><i className="fas fa-times"></i><span className="sr-only">Close</span></button>
                                             </figure>
@@ -842,7 +846,7 @@ const Header = ({
                                         <div className="product product-cart">
                                             <figure className="product-media">
                                                 <a href="#">
-                                                    <img src="images/demos/demo-food2/products/2.jpg" alt="product" width="80" height="90" />
+                                                    <img src={Two} alt="product" width="80" height="90" />
                                                 </a>
                                                 <button className="btn btn-link btn-close"><i className="fas fa-times"></i><span className="sr-only">Close</span></button>
                                             </figure>
