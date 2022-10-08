@@ -828,9 +828,9 @@ return (  <>
                                 <div class="accordion accordion-background accordion-icon accordion-boxed accordion-card-border accordion-plus accordion-gutter-sm code-content">
                                     <div class="card">
                                         <div class="card-header">
-                                            <a href="#collapse7-1" class="collapse">Q. How many tablets a day helps taste the benefits of Liven Burn as Fitness Fuel?</a>
+                                            <a href="#collapse7-1" class="expand">Q. How many tablets a day helps taste the benefits of Liven Burn as Fitness Fuel?</a>
                                         </div>
-                                        <div id="collapse7-1" class="expanded">
+                                        <div id="collapse7-1" class="collapsed">
                                             <div class="card-body">
                                                 <p class="mb-0">Taking one tablet of Liven Burn with ACV with high inulin fiber helps in attaining nutritional weight loss support making users healthier and happier.</p>
                                             </div>
