@@ -127,15 +127,14 @@ const Privacy = () => {
                       <div className="row align-items-center">
                           <div className="col-md-12 mb-4">
                               <h3 className="section-title lh-1 font-weight-bold">Privacy Policy</h3>
-                              <p className="section-desc text-grey">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                              </p>
-                              <p className="section-desc text-grey">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                              </p>
-                              <p className="section-desc text-grey">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                              </p>
-                              <p className="section-desc text-grey">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                              </p>
-                              <p className="section-desc text-grey">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                              <p class="section-desc text-grey">Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                              Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+                              Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+                              Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
                               </p>
                           </div>
                       </div>

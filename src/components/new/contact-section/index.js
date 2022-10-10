@@ -56,18 +56,16 @@ const ContactSection = () => {
                                     marked *</p>
                                 <div className="row mb-2">
                                     <div className="col-12 mb-4">
-                                        <textarea className="form-control" required
-                                            placeholder="Comment*"></textarea>
+                                        <textarea className="form-control" rows="4" cols="50" required placeholder="Comment*"></textarea>
                                     </div>
                                     <div className="col-md-6 mb-4">
-                                        <input className="form-control" type="text" placeholder="Name *" required />
+                                        <input className="form_contact form-control" type="text" placeholder="Name *" required />
                                     </div>
                                     <div className="col-md-6 mb-4">
-                                        <input className="form-control" type="email" placeholder="Email *" required />
+                                        <input className="form_contact form-control" type="email" placeholder="Email *" required />
                                     </div>
                                 </div>
-                                <button className="btn btn-dark btn-rounded">Post Comment<i
-                                        className="d-icon-arrow-right"></i></button>
+                                <button className="btn-product btn-cart wid_200">Post Comment<i className="d-icon-arrow-right"></i></button>
                             </form>
                         </div>
                     </div>

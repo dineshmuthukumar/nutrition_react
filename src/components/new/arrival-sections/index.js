@@ -119,9 +119,6 @@ const ArrivalSection = () => {
                                                     <div className="product-label-group">
                                                         <img src={priceTag} />
                                                     </div>
-                                                    <div className="product-action-vertical">
-                                                        <a href="#" className="btn-product-icon btn-wishlist" title="Add to wishlist"><i className="d-icon-heart"></i></a>
-                                                    </div>
                                                 </figure>
                                                 <div className="product-details">
                                                     <h3 className="product-name">
@@ -154,9 +151,6 @@ const ArrivalSection = () => {
                                                     <div className="product-label-group">
                                                         <img src={priceTag}  />
                                                     </div>
-                                                    <div className="product-action-vertical">
-                                                        <a href="#" className="btn-product-icon btn-wishlist" title="Add to wishlist"><i className="d-icon-heart"></i></a>
-                                                    </div>
                                                 </figure>
                                                 <div className="product-details">
                                                     <h3 className="product-name">
@@ -186,9 +180,6 @@ const ArrivalSection = () => {
                                                     <div className="product-label-group">
                                                         <img src={priceTag}  />
                                                     </div>
-                                                    <div className="product-action-vertical">
-                                                        <a href="#" className="btn-product-icon btn-wishlist" title="Add to wishlist"><i className="d-icon-heart"></i></a>
-                                                    </div>
                                                 </figure>
                                                 <div className="product-details">
                                                     <h3 className="product-name">
@@ -217,9 +208,6 @@ const ArrivalSection = () => {
                                                         </Link>
                                                     <div className="product-label-group">
                                                         <img src={priceTag}  />
-                                                    </div>
-                                                    <div className="product-action-vertical">
-                                                        <a href="#" className="btn-product-icon btn-wishlist" title="Add to wishlist"><i className="d-icon-heart"></i></a>
                                                     </div>
                                                 </figure>
                                                 <div className="product-details">
@@ -296,9 +284,6 @@ const ArrivalSection = () => {
                                                     <div className="product-label-group">
                                                         <img src={priceTag}  />
                                                     </div>
-                                                    <div className="product-action-vertical">
-                                                        <a href="#" className="btn-product-icon btn-wishlist" title="Add to wishlist"><i className="d-icon-heart"></i></a>
-                                                    </div>
                                                 </figure>
                                                 <div className="product-details">
                                                     <h3 className="product-name">
@@ -315,9 +300,6 @@ const ArrivalSection = () => {
                                                             <span className="tooltiptext tooltip-top"></span>
                                                         </div>
                                                     </div>
-
-                                                   
-
                                                     <div className="product-action">
                                                         <a href="#" className="btn-product btn-cart ls-l" data-toggle="modal" data-target="#addCartModal" title="Add to cart"><i className="d-icon-bag"></i><span>Add to cart</span></a>
                                                     </div>
@@ -330,9 +312,6 @@ const ArrivalSection = () => {
                                                     </a>
                                                     <div className="product-label-group">
                                                         <img src={priceTag}  />
-                                                    </div>
-                                                    <div className="product-action-vertical">
-                                                        <a href="#" className="btn-product-icon btn-wishlist" title="Add to wishlist"><i className="d-icon-heart"></i></a>
                                                     </div>
                                                 </figure>
                                                 <div className="product-details">
@@ -363,9 +342,6 @@ const ArrivalSection = () => {
                                                     <div className="product-label-group">
                                                         <img src={priceTag}  />
                                                     </div>
-                                                    <div className="product-action-vertical">
-                                                        <a href="#" className="btn-product-icon btn-wishlist" title="Add to wishlist"><i className="d-icon-heart"></i></a>
-                                                    </div>
                                                 </figure>
                                                 <div className="product-details">
                                                     <h3 className="product-name">
@@ -394,9 +370,6 @@ const ArrivalSection = () => {
                                                     </a>
                                                     <div className="product-label-group">
                                                         <img src={priceTag}  />
-                                                    </div>
-                                                    <div className="product-action-vertical">
-                                                        <a href="#" className="btn-product-icon btn-wishlist" title="Add to wishlist"><i className="d-icon-heart"></i></a>
                                                     </div>
                                                 </figure>
                                                 <div className="product-details">
@@ -473,9 +446,6 @@ const ArrivalSection = () => {
                                                     <div className="product-label-group">
                                                         <img src={priceTag} />
                                                     </div>
-                                                    <div className="product-action-vertical">
-                                                        <a href="#" className="btn-product-icon btn-wishlist" title="Add to wishlist"><i className="d-icon-heart"></i></a>
-                                                    </div>
                                                 </figure>
                                                 <div className="product-details">
                                                     <h3 className="product-name">
@@ -508,9 +478,6 @@ const ArrivalSection = () => {
                                                     <div className="product-label-group">
                                                         <img src={priceTag} />
                                                     </div>
-                                                    <div className="product-action-vertical">
-                                                        <a href="#" className="btn-product-icon btn-wishlist" title="Add to wishlist"><i className="d-icon-heart"></i></a>
-                                                    </div>
                                                 </figure>
                                                 <div className="product-details">
                                                     <h3 className="product-name">
@@ -540,9 +507,6 @@ const ArrivalSection = () => {
                                                     <div className="product-label-group">
                                                         <img src={priceTag} />
                                                     </div>
-                                                    <div className="product-action-vertical">
-                                                        <a href="#" className="btn-product-icon btn-wishlist" title="Add to wishlist"><i className="d-icon-heart"></i></a>
-                                                    </div>
                                                 </figure>
                                                 <div className="product-details">
                                                     <h3 className="product-name">
@@ -571,9 +535,6 @@ const ArrivalSection = () => {
                                                     </a>
                                                     <div className="product-label-group">
                                                         <img src={priceTag}  />
-                                                    </div>
-                                                    <div className="product-action-vertical">
-                                                        <a href="#" className="btn-product-icon btn-wishlist" title="Add to wishlist"><i className="d-icon-heart"></i></a>
                                                     </div>
                                                 </figure>
                                                 <div className="product-details">
@@ -650,9 +611,6 @@ const ArrivalSection = () => {
                                                     <div className="product-label-group">
                                                         <img src={priceTag} />
                                                     </div>
-                                                    <div className="product-action-vertical">
-                                                        <a href="#" className="btn-product-icon btn-wishlist" title="Add to wishlist"><i className="d-icon-heart"></i></a>
-                                                    </div>
                                                 </figure>
                                                 <div className="product-details">
                                                     <h3 className="product-name">
@@ -685,9 +643,6 @@ const ArrivalSection = () => {
                                                     <div className="product-label-group">
                                                         <img src={priceTag} />
                                                     </div>
-                                                    <div className="product-action-vertical">
-                                                        <a href="#" className="btn-product-icon btn-wishlist" title="Add to wishlist"><i className="d-icon-heart"></i></a>
-                                                    </div>
                                                 </figure>
                                                 <div className="product-details">
                                                     <h3 className="product-name">
@@ -717,9 +672,6 @@ const ArrivalSection = () => {
                                                     <div className="product-label-group">
                                                         <img src={priceTag} />
                                                     </div>
-                                                    <div className="product-action-vertical">
-                                                        <a href="#" className="btn-product-icon btn-wishlist" title="Add to wishlist"><i className="d-icon-heart"></i></a>
-                                                    </div>
                                                 </figure>
                                                 <div className="product-details">
                                                     <h3 className="product-name">
@@ -748,9 +700,6 @@ const ArrivalSection = () => {
                                                     </a>
                                                     <div className="product-label-group">
                                                         <img src={priceTag}  />
-                                                    </div>
-                                                    <div className="product-action-vertical">
-                                                        <a href="#" className="btn-product-icon btn-wishlist" title="Add to wishlist"><i className="d-icon-heart"></i></a>
                                                     </div>
                                                 </figure>
                                                 <div className="product-details">
@@ -827,9 +776,6 @@ const ArrivalSection = () => {
                                                     <div className="product-label-group">
                                                         <img src={priceTag} />
                                                     </div>
-                                                    <div className="product-action-vertical">
-                                                        <a href="#" className="btn-product-icon btn-wishlist" title="Add to wishlist"><i className="d-icon-heart"></i></a>
-                                                    </div>
                                                 </figure>
                                                 <div className="product-details">
                                                     <h3 className="product-name">
@@ -846,9 +792,6 @@ const ArrivalSection = () => {
                                                             <span className="tooltiptext tooltip-top"></span>
                                                         </div>
                                                     </div>
-
-                                                   
-
                                                     <div className="product-action">
                                                         <a href="#" className="btn-product btn-cart ls-l" data-toggle="modal" data-target="#addCartModal" title="Add to cart"><i className="d-icon-bag"></i><span>Add to cart</span></a>
                                                     </div>
@@ -862,9 +805,6 @@ const ArrivalSection = () => {
                                                     <div className="product-label-group">
                                                         <img src={priceTag} />
                                                     </div>
-                                                    <div className="product-action-vertical">
-                                                        <a href="#" className="btn-product-icon btn-wishlist" title="Add to wishlist"><i className="d-icon-heart"></i></a>
-                                                    </div>
                                                 </figure>
                                                 <div className="product-details">
                                                     <h3 className="product-name">
@@ -873,7 +813,6 @@ const ArrivalSection = () => {
                                                     <div className="product-price ls-md offer_price_details">
                                                         <span className="price">$140.00</span>
                                                         <span className="price line-through">Rs. 2,499</span>
-                                                        
                                                     </div>
                                                     <div className="ratings-container">
                                                         <div className="ratings-full">
@@ -893,9 +832,6 @@ const ArrivalSection = () => {
                                                     </a>
                                                     <div className="product-label-group">
                                                         <img src={priceTag} />
-                                                    </div>
-                                                    <div className="product-action-vertical">
-                                                        <a href="#" className="btn-product-icon btn-wishlist" title="Add to wishlist"><i className="d-icon-heart"></i></a>
                                                     </div>
                                                 </figure>
                                                 <div className="product-details">
@@ -925,9 +861,6 @@ const ArrivalSection = () => {
                                                     </a>
                                                     <div className="product-label-group">
                                                         <img src={priceTag}  />
-                                                    </div>
-                                                    <div className="product-action-vertical">
-                                                        <a href="#" className="btn-product-icon btn-wishlist" title="Add to wishlist"><i className="d-icon-heart"></i></a>
                                                     </div>
                                                 </figure>
                                                 <div className="product-details">

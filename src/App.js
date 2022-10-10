@@ -184,7 +184,7 @@ function App(props) {
               //   </div>
               // </div>
               <div className="d-flex gif-loader">
-                <img src={"https://miro.medium.com/max/1400/1*CsJ05WEGfunYMLGfsT2sXA.gif"} alt="loader" />
+                <img src={"https://flevix.com/wp-content/uploads/2019/07/Spin-Preloader-1.gif"} alt="loader" />
               </div>
             }
           >

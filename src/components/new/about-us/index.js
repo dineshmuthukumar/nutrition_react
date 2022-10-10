@@ -28,13 +28,10 @@ const Aboutus = () => {
         <section className="customer-section pb-10 appear-animate">
                     <div className="container">
                         <div className="row align-items-center">
-                            <div className="col-md-7 mb-4">
-                                <figure>
-                                    <img src={customer} alt="Happy Customer" width="580"
-                                        height="507" className="banner-radius" style={{backgroundColor: "#BDD0DE"}} />
-                                </figure>
+                            <div className="col-md-6 mb-4 abt-img">
+                                <figure><img src={customer} alt="Happy Customer" className="banner-radius abt-img" /></figure>
                             </div>
-                            <div className="col-md-5 mb-4">
+                            <div className="col-md-6 mb-4">
                                 <h3 className="section-title lh-1 font-weight-bold">About Us</h3>
                                 <p className="section-desc text-grey">
                                     Already millions of people are very satisfied by thi.<br/>
@@ -63,11 +60,8 @@ const Aboutus = () => {
                         </p>
                         
                     </div>
-                    <div className="col-md-6 mb-4">
-                        <figure>
-                            <img src={store} alt="Our Store" width="580" height="507"
-                                className="banner-radius" style={{backgroundColor: "#DEE6E8"}} />
-                        </figure>
+                    <div className="col-md-6 mb-4 text-center">
+                        <figure><img src={store} alt="Our Store" className="banner-radius abt-img" /></figure>
                     </div>
                 </div>
             </div>

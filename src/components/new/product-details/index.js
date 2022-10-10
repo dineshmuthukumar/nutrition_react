@@ -1104,117 +1104,118 @@ const ProductDetails = () => {
         </section>
 
         <section className="new_our_idea pt-2 pt-md-7 pt-10 pb-8">
-                            <div className="container p-0">
-                                <h2 className="title-echo mb-1"><span>Clear Your Mind Now! Answers for Your Queries!</span></h2>
-                                <br />
-                                <div className="row">
-                                    <div className="col-sm-8">
-                                        <div className="code-template">
-                                            <div className="accordion accordion-background accordion-icon accordion-boxed accordion-card-border accordion-plus accordion-gutter-sm code-content">
-                                                <div className="card">
-                                                    <div className="card-header">
-                                                        <a href="#collapse7-1" className="collapse">Q. How many tablets a day helps taste the benefits of Liven Burn as Fitness Fuel?</a>
-                                                    </div>
-                                                    <div id="collapse7-1" className="expanded">
-                                                        <div className="card-body">
-                                                            <p className="mb-0">Taking one tablet of Liven Burn with ACV with high inulin fiber helps in attaining nutritional weight loss support making users healthier and happier.</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="card">
-                                                    <div className="card-header">
-                                                        <a href="#collapse7-2" className="expand">Q. How and when to consume ACV tablet?</a>
-                                                    </div>
-                                                    <div id="collapse7-2" className="collapsed">
-                                                        <div className="card-body">
-                                                            <p className="mb-0">
-                                                                It is better to take 1 Liven Burn ACV effervescent tablet one time a day preferably each morning on an empty stomach or 20 minutes before a meal. The usage direction is to drop
-                                                                one tablet in a glass (250 ml) of water and wait until it dissolves. Now gulp down the fizzy drink for gaining excellent energy and weight loss support.
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="card">
-                                                    <div className="card-header">
-                                                        <a href="#collapse7-3" className="expand">Q. Are these effervescent tablets effective in producing long-term results?</a>
-                                                    </div>
-                                                    <div id="collapse7-3" className="collapsed">
-                                                        <div className="card-body">
-                                                            <p className="mb-0">
-                                                                Yes. The ACV in each tablet is made precise and it delivers extraordinary support. Moreover, there is an additional nutritive support of garcinia, pomegranate and inulin for
-                                                                enriching the health by controlling appetite and cravings and is made tastier with natural sweeteners for better results.
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="card">
-                                                    <div className="card-header">
-                                                        <a href="#collapse7-4" className="expand">Q. Does it cause bloating?</a>
-                                                    </div>
-                                                    <div id="collapse7-4" className="collapsed">
-                                                        <div className="card-body">
-                                                            <p className="mb-0">
-                                                                No. The goodness of natural ACV with inulin fibers improves the healthy digestion in consumers and raises the stomach acid levels reducing the chances of bloating.
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="card">
-                                                    <div className="card-header">
-                                                        <a href="#collapse7-5" className="expand">Q. How quick the results will be?</a>
-                                                    </div>
-                                                    <div id="collapse7-5" className="collapsed">
-                                                        <div className="card-body">
-                                                            <p className="mb-0">
-                                                                With Liven Burn ACV Effervescent tablets, the users can enjoy incredible results. But consistent dosing method is essential for gaining effective results which is why the
-                                                                tablets are made simple, delicious and potent for better results leaving people without any hesitation to use.
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="card">
-                                                    <div className="card-header">
-                                                        <a href="#collapse7-6" className="expand">Q. Do our ACV tablets contain Mother?</a>
-                                                    </div>
-                                                    <div id="collapse7-6" className="collapsed">
-                                                        <div className="card-body">
-                                                            <p className="mb-0">Yes. Our tablets include the ACV with mother produced during fermentation and is effective in protecting the gut health as a probiotic.</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="card">
-                                                    <div className="card-header">
-                                                        <a href="#collapse7-7" className="expand">Q. Whether Liven Burn Effervescent drink tastes sour and bitter?</a>
-                                                    </div>
-                                                    <div id="collapse7-7" className="collapsed">
-                                                        <div className="card-body">
-                                                            <p className="mb-0">
-                                                                Liven Burn fizzy drink is made to taste sweet and it has no added sugar or preservatives. It is made of proper dilution and never leads to any adverse side effects.
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+            <div className="container p-0">
+                <h2 className="title-echo mb-1"><span>Clear Your Mind Now! Answers for Your Queries!</span></h2>
+                <br />
+                <div className="row">
+                    <div className="col-sm-8">
+                        <div className="code-template">
+                            <div className="accordion accordion-background accordion-icon accordion-boxed accordion-card-border accordion-plus accordion-gutter-sm code-content">
+                                <div className="card">
+                                    <div className="card-header">
+                                        <a href="#collapse7-1" className="collapse">Q. How many tablets a day helps taste the benefits of Liven Burn as Fitness Fuel?</a>
+                                    </div>
+                                    <div id="collapse7-1" className="expanded">
+                                        <div className="card-body">
+                                            <p className="mb-0">Taking one tablet of Liven Burn with ACV with high inulin fiber helps in attaining nutritional weight loss support making users healthier and happier.</p>
                                         </div>
                                     </div>
-                                    <div className="col-sm-4">
-                                        <div className="span12">
-                                            <div className="thumbnail center well well-small text-center">
-                                                <h2>Newsletter</h2>
-                                                <p>Subscribe to our weekly Newsletter and stay tuned.</p>
-                                                <form action="" method="post">
-                                                    <div className="input-prepend">
-                                                        <input type="text" id="" className="form-control" name="" placeholder="your@email.com" />
-                                                    </div>
-                                                    <br />
-                                                    <input type="submit" value="Subscribe Now!" className="btn btn-large" />
-                                                </form>
-                                            </div>
+                                </div>
+                                <div className="card">
+                                    <div className="card-header">
+                                        <a href="#collapse7-2" className="expand">Q. How and when to consume ACV tablet?</a>
+                                    </div>
+                                    <div id="collapse7-2" className="collapsed">
+                                        <div className="card-body">
+                                            <p className="mb-0">
+                                                It is better to take 1 Liven Burn ACV effervescent tablet one time a day preferably each morning on an empty stomach or 20 minutes before a meal. The usage direction is to drop one tablet in a glass
+                                                (250 ml) of water and wait until it dissolves. Now gulp down the fizzy drink for gaining excellent energy and weight loss support.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="card">
+                                    <div className="card-header">
+                                        <a href="#collapse7-3" className="expand">Q. Are these effervescent tablets effective in producing long-term results?</a>
+                                    </div>
+                                    <div id="collapse7-3" className="collapsed">
+                                        <div className="card-body">
+                                            <p className="mb-0">
+                                                Yes. The ACV in each tablet is made precise and it delivers extraordinary support. Moreover, there is an additional nutritive support of garcinia, pomegranate and inulin for enriching the health by
+                                                controlling appetite and cravings and is made tastier with natural sweeteners for better results.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="card">
+                                    <div className="card-header">
+                                        <a href="#collapse7-4" className="expand">Q. Does it cause bloating?</a>
+                                    </div>
+                                    <div id="collapse7-4" className="collapsed">
+                                        <div className="card-body">
+                                            <p className="mb-0">
+                                                No. The goodness of natural ACV with inulin fibers improves the healthy digestion in consumers and raises the stomach acid levels reducing the chances of bloating.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="card">
+                                    <div className="card-header">
+                                        <a href="#collapse7-5" className="expand">Q. How quick the results will be?</a>
+                                    </div>
+                                    <div id="collapse7-5" className="collapsed">
+                                        <div className="card-body">
+                                            <p className="mb-0">
+                                                With Liven Burn ACV Effervescent tablets, the users can enjoy incredible results. But consistent dosing method is essential for gaining effective results which is why the tablets are made simple,
+                                                delicious and potent for better results leaving people without any hesitation to use.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="card">
+                                    <div className="card-header">
+                                        <a href="#collapse7-6" className="expand">Q. Do our ACV tablets contain Mother?</a>
+                                    </div>
+                                    <div id="collapse7-6" className="collapsed">
+                                        <div className="card-body">
+                                            <p className="mb-0">Yes. Our tablets include the ACV with mother produced during fermentation and is effective in protecting the gut health as a probiotic.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="card">
+                                    <div className="card-header">
+                                        <a href="#collapse7-7" className="expand">Q. Whether Liven Burn Effervescent drink tastes sour and bitter?</a>
+                                    </div>
+                                    <div id="collapse7-7" className="collapsed">
+                                        <div className="card-body">
+                                            <p className="mb-0">
+                                                Liven Burn fizzy drink is made to taste sweet and it has no added sugar or preservatives. It is made of proper dilution and never leads to any adverse side effects.
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div className="col-sm-4">
+                        <div className="span12">
+                            <div className="thumbnail center well well-small text-center">
+                                <h2>Newsletter</h2>
+                                <p>Subscribe to our weekly Newsletter and stay tuned.</p>
+                                <form action="" method="post">
+                                    <div className="input-prepend">
+                                        <input type="text" id="" className="form-control" name="" placeholder="your@email.com" />
+                                    </div>
+                                    <br />
+                                    <input type="submit" value="Subscribe Now!" className="btn btn-large" />
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
+
 
         <section className="pt-3 mt-2 mb-2 need_sec">
                             <h2 className="title-echo mb-1"><span>Some Related Products</span></h2>

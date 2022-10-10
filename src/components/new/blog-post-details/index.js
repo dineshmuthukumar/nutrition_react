@@ -35,7 +35,7 @@ const BlogPost = () => {
             <ul className="nav-filters filter-underline blog-filters justify-content-center" data-target=".posts"></ul>
             
             <div className="row gutter-lg">
-                <div className="col-lg-9">
+                <div className="offset-sm-1 col-sm-10">
                     <article className="post-single">
                         <figure className="post-media">
                             <a href="post-single.html#">
@@ -288,13 +288,13 @@ const BlogPost = () => {
                         </ul>
                     </div>
 
-                    <div className="reply">
+                    <div className="reply mb-10">
                         <div className="title-wrapper text-left">
                             <br />
                             <h3 className="title title-simple text-left text-normal">Leave A Reply</h3>
                             <p>Your email address will not be published. Required fields are marked *</p>
                         </div>
-                        <form action="post-single.html#">
+                        <form action="blog_description">
                             <textarea id="reply-message" cols="30" rows="6" className="form-control mb-4"
                                 placeholder="Comment *" required></textarea>
                             <div className="row">
@@ -307,7 +307,7 @@ const BlogPost = () => {
                                         placeholder="Email *" required />
                                 </div>
                             </div>
-                            <button type="submit" className="btn btn-primary btn-rounded">POST COMMENT<i
+                            <button type="submit" className="btn-product btn-cart wid_200">POST COMMENT<i
                                     className="d-icon-arrow-right"></i></button>
                         </form>
                     </div>

@@ -310,6 +310,7 @@ const Footer = () => {
                 </div>
                 
             </div>
+            
     </>
   );
 };

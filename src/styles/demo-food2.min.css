@@ -7759,12 +7759,16 @@ button.mfp-arrow {
 }
 .post-details p {
     font-family: var(--font-monda);
-    font-size: 16px;
+    font-size: 14px;
     line-height: 25px;
-    color: #7f848b;
+    color: #000;
     text-align: left;
     padding: 2px 0px;
     margin: 0px;
+}
+.post-title a 
+{
+    color: #000;
 }
 .need_sec ul.nav.nav-tabs {
     padding: 25px 0px;

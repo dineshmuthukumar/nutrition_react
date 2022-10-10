@@ -127,7 +127,8 @@ h2.title.title-center.ls-s.mb-8 {
 .product-name.text-center a, .product-name a
 {
     color: #000;
-    font-size: 16px;
+    font-size: 15px;
+    font-weight: 500;
 }
 .product_banner a {
     font-size: 20px;
@@ -637,6 +638,7 @@ h2.pack_total_doller
   flex-basis: 100%;
   color: #252f42;
   margin-bottom: 20px;
+  font-family: var(--font-monda);
 }
 
 .plans .plan .plan-details p {
@@ -649,7 +651,10 @@ h2.pack_total_doller
   -webkit-box-shadow: 0px 3px 5px 0px #e8e8e8;
   box-shadow: 0px 3px 5px 0px #e8e8e8;
 }
-
+.blog_description
+{
+    min-height: 40px;
+}
 .plans .plan input[type="radio"]:checked + .plan-content:after {
   content: "";
   position: absolute;
@@ -1268,6 +1273,13 @@ td.product-thumbnail
 {
     padding: 2rem 2rem 1.5rem 0;
 }
+.product-thumbnail
+{
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    display: flex;
+}
 .cart .shop-table th 
 {
     padding: 0.2rem 0 1.8rem !important;
@@ -1283,9 +1295,6 @@ table.shop-table.cart-table .product-remove
     justify-content: center;
     text-align: center;
     font-size: 1.2rem;
-    width: 2.3rem;
-    height: 2.3rem;
-    border: 1px solid #ccc;
     border-radius: 50%;
     background-color: #fff;
     color: #222;
@@ -1349,8 +1358,25 @@ table.shop-table.cart-table thead
 .page-item:not(:first-child) .page-link
 {
     line-height: 30px;
+    text-align: center;
 }
 .acv_img
 {
     width:80%;
+}
+.abt-img
+{
+    width: 80%;
+}
+.gif-loader
+{
+    content: '';
+    position: absolute;
+    z-index: 999999;
+    top: 25%;
+    left: 35%;
+}
+.gif-loader img
+{
+    width: 50%;
 }

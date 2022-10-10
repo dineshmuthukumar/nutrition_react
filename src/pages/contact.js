@@ -121,7 +121,7 @@ const Contact = () => {
             <div className="page-header pl-4 pr-4" style={{background: "#7ea4b1"}}>
                 <h1 className="page-title font-weight-bold lh-1 text-white text-capitalize">Contact Us</h1>
             </div>
-            <div class="page-content mt-10 pt-10">
+            <div class="page-content pb-10 pt-10">
                 <ContactSection />
             </div>
           </div>
