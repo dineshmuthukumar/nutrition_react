@@ -1,6 +1,6 @@
 
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef } from "react";
 import OwlCarousel from "react-owl-carousel";
 import store_1 from "../../../images/new-images/subpages/store-1.jpg";
 import store_2 from "../../../images/new-images/subpages/store-2.jpg";
@@ -11,10 +11,52 @@ import pro_product_2 from "../../../images/new-images/demos/demo-food2/products/
 import pro_product_3 from "../../../images/new-images/demos/demo-food2/products/pro_product_3.jpg";
 import pro_product_4 from "../../../images/new-images/demos/demo-food2/products/pro_product_4.jpg";
 //import pro_product_5 from "../../../images/new-images/demos/demo-food2/products/pro_product_4.jpg";
+import Accordion from "../../accordion";
+
 
 import "./styles.scss";
 
+const accordionData = [
+    {
+      heading: "Q. What are Effervescent?",
+      content:
+        "Effervescent tablets are solid preparations of nutrients that are designed to release CO2 in contact with water through disintegration in a few minutes. It dissolves completely and becomes available in liquid form for easy and fastabsorbing dosing method. This occurs by a chemical reaction between the carbonate or bicarbonate salt (sodium bicarbonate) and a weak organic acid (citric or tartaric acid) in the liquid. It causes the tablets to make a bubbling effect producing fizzy drink making its usage interesting every time you take. It is also flavored naturally making the consumption tastier and simpler for supporting health."
+    },
+    {
+      heading: "Q. How safe is to take effervescent daily?",
+      content:
+        "It is safe to consume effervescent daily even in multiple count. It is necessary to take them with 8 ounces of water for each tablet. This might improve hydration and also support the desires in a healthy and fun way. Consulting with a medical professional is best before using or after finding discomforts with usage is beneficial. Also, taking it as recommended might prevent health complications."
+    },
+    {
+      heading: "Q. Why not capsules or other forms of drugs?",
+      content:
+        "Effervescent is the same as effervescent liquid drinks. It indulges users in consuming proper dosage and prevents stomach issues. This is not something like hard capsules which most of the people find difficulty to swallow and leaves no medicine taste behind even after swallowing. It can be naturally flavored and colored ensuring the taste and absorption without causing hesitation of consuming a health supplement.",
+    },
+    {
+        heading: "Q. What is the right way of taking these effervescent tablets?",
+        content:
+          "It is better to fizz and drink these tablets during day time than at night as it might cause some sleeping discomfort. It can be taken with or without food but taking with food works better and results no way of attaining any stomach discomforts by preventing any acidic reactions.",
+      },
+      {
+        heading: "Q. Any precautionary to be followed before taking effervescent drink?",
+        content:
+          "As said, taking multiple effervescent tablets is safe on a day. But if there is any prior health illness or already under medication kindly consult with the doctor before use. Do not exceed the limit or consume more numbers to prevent even mild side effects like stomach upset and nausea."
+      },
+      {
+        heading: "Q. What are the problems for which effervescent available?",
+        content:
+          "As of now, effervescent is the leading technology highly preferred by people to nourish their body and support. Hence, Liven consists of readily available effervescent tablet for weight loss (ACV), skin, hair, women's health, multivitamins and more."
+      },
+  ];
+
 const Product_Category = () => {
+
+    const accordionRef = useRef(null);
+  
+   const toggleAccordion = () => {
+     accordionRef.current.querySelector('button').click();
+   }
+
 
 
 return (<>                            
@@ -410,9 +452,9 @@ return (<>
                                         </div>
                                     </OwlCarousel>
                                 </div>
-    </section>
+                        </section>
 
-    <section className="new_our_idea pt-2 pt-md-7 pt-10 pb-8" id="distinct_table">
+                            <section className="new_our_idea pt-2 pt-md-7 pt-10 pb-8" id="distinct_table">
                                 <div className="container p-0">
                                 <h2 className="title-echo mb-1"><span>Why we are Distinct from other?</span></h2>
                                     <div className="row justify-content-center">
@@ -462,76 +504,23 @@ return (<>
                                         </div>
                                     </div>
                                 </div>
-    </section>
-                <section className="new_our_idea pt-2 pt-md-7 pt-10 pb-8">
+                             </section>
+                         <section className="new_our_idea pt-2 pt-md-7 pt-10 pb-8">
                                 <div className="container p-0">
                                 <h2 className="title-echo mb-1"><span>Frequently Asked Question?</span></h2>
                                 <p className="new_our_idea_des">Lorem Ipsum is simply dummy text of the printing and typesetting industry. <br />Lorem Ipsum has been the industry's standard dummy text ever since.</p>
                                 <div className="row justify-content-center">
                                     <div className="col-sm-9 offset-sm-1">
                                         <div className="code-template">
-                                            <div className="accordion accordion-background accordion-icon accordion-boxed accordion-card-border accordion-plus accordion-gutter-sm code-content">
-                                                <div className="card">
-                                                    <div className="card-header">
-                                                        <a href="#collapse7-1" className="expand">Q. What are Effervescent?</a>
-                                                    </div>
-                                                    <div id="collapse7-1" className="collapsed">
-                                                        <div className="card-body">
-                                                            <p className="mb-0">Effervescent tablets are solid preparations of nutrients that are designed to release CO2 in contact with water through disintegration in a few minutes. It dissolves completely and becomes available in liquid form for easy and fastabsorbing dosing method. This occurs by a chemical reaction between the carbonate or bicarbonate salt (sodium bicarbonate) and a weak organic acid (citric or tartaric acid) in the liquid. It causes the tablets to make a bubbling effect producing fizzy drink making its usage interesting every time you take. It is also flavored naturally making the consumption tastier and simpler for supporting health.</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="card">
-                                                    <div className="card-header">
-                                                        <a href="#collapse7-2" className="expand">Q. How safe is to take effervescent daily?</a>
-                                                    </div>
-                                                    <div id="collapse7-2" className="collapsed">
-                                                        <div className="card-body">
-                                                            <p className="mb-0">It is safe to consume effervescent daily even in multiple count. It is necessary to take them with 8 ounces of water for each tablet. This might improve hydration and also support the desires in a healthy and fun way. Consulting with a medical professional is best before using or after finding discomforts with usage is beneficial. Also, taking it as recommended might prevent health complications.</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="card">
-                                                    <div className="card-header">
-                                                        <a href="#collapse7-3" className="expand">Q. Why not capsules or other forms of drugs?</a>
-                                                    </div>
-                                                    <div id="collapse7-3" className="collapsed">
-                                                        <div className="card-body">
-                                                            <p className="mb-0">Effervescent is the same as effervescent liquid drinks. It indulges users in consuming proper dosage and prevents stomach issues. This is not something like hard capsules which most of the people find difficulty to swallow and leaves no medicine taste behind even after swallowing. It can be naturally flavored and colored ensuring the taste and absorption without causing hesitation of consuming a health supplement.</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="card">
-                                                    <div className="card-header">
-                                                        <a href="#collapse7-4" className="expand">Q. What is the right way of taking these effervescent tablets?</a>
-                                                    </div>
-                                                    <div id="collapse7-4" className="collapsed">
-                                                        <div className="card-body">
-                                                            <p className="mb-0">It is better to fizz and drink these tablets during day time than at night as it might cause some sleeping discomfort. It can be taken with or without food but taking with food works better and results no way of attaining any stomach discomforts by preventing any acidic reactions.</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="card">
-                                                    <div className="card-header">
-                                                        <a href="#collapse7-5" className="expand">Q. Any precautionary to be followed before taking effervescent drink?</a>
-                                                    </div>
-                                                    <div id="collapse7-5" className="collapsed">
-                                                        <div className="card-body">
-                                                            <p className="mb-0">As said, taking multiple effervescent tablets is safe on a day. But if there is any prior health illness or already under medication kindly consult with the doctor before use. Do not exceed the limit or consume more numbers to prevent even mild side effects like stomach upset and nausea.</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="card">
-                                                    <div className="card-header">
-                                                        <a href="#collapse7-6" className="expand">Q. What are the problems for which effervescent available?</a>
-                                                    </div>
-                                                    <div id="collapse7-6" className="collapsed">
-                                                        <div className="card-body">
-                                                            <p className="mb-0">As of now, effervescent is the leading technology highly preferred by people to nourish their body and support. Hence, Liven consists of readily available effervescent tablet for weight loss (ACV), skin, hair, women's health, multivitamins and more.</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        
+                                        <div className="accordion-background accordion-icon accordion-boxed accordion-card-border accordion-plus accordion-gutter-sm code-content">
+                                            {accordionData.map(({ heading, content }) => (
+                                                <Accordion heading={heading} content={content} />
+                                            ))}
+                                        </div>
+
+                                        
+                                        
                                         </div>  
                                     </div>
                                 </div>

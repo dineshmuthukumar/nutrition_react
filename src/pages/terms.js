@@ -21,7 +21,7 @@ const Terms = () => {
             </div>
             <div class="page-content mt-10 pt-10">
 
-              <section class="customer-section pb-10 appear-animate">
+              <section class="customer-section pb-10">
                   <div class="container">
                       <div class="row align-items-center">
                           <div class="col-md-12 mb-4">

@@ -12,6 +12,7 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 import { IoLogoWhatsapp } from "react-icons/io";
+import {  Link } from "react-router-dom";
 import "./style.scss";
 import { validateEmail } from "../../utils/common";
 import { subscribeApi } from "../../api/base-methods";
@@ -157,7 +158,7 @@ const Footer = () => {
                                     <h4 className="widget-title">INFORMATION</h4>
                                     <ul className="widget-body">
                                         <li><a href="#">ACG Capsules</a></li>
-                                        <li><a href="#">Blog</a></li>
+                                        <li><Link href="/blog">Blog</Link></li>
                                         <li><a href="#">Manufacturing</a></li>
                                         <li><a href="privacy.html">Privacy Policy</a></li>
                                     </ul>
@@ -215,10 +216,10 @@ const Footer = () => {
                                     <h4 className="widget-title">INFORMATION</h4>
                                     <ul className="widget-body">
                                         <li><a href="#">ACG Capsules</a></li>
-                                        <li><a href="#">Blog</a></li>
+                                        <li><Link to="/blog">Blog</Link></li>
                                         <li><a href="#">Manufacturing</a></li>
-                                        <li><a href="privacy.html">Privacy Policy</a></li>
-                                        <li><a href="terms.html">Terms & Condition</a></li>
+                                        <li><Link to="/privacy">Privacy Policy</Link></li>
+                                        <li><Link to="/terms">Terms & Condition</Link></li>
                                     </ul>
                                 </div>
                             </div>
@@ -269,7 +270,7 @@ const Footer = () => {
                                         <li><a href="#">Science of Wellbeing</a></li>
                                         <li><a href="#">Wellbeing Promise</a></li>
                                         <li><a href="#">Honesty Inside Out</a></li>
-                                        <li><a href="#">Our Blogs</a></li>
+                                        <li><Link href="/blog">Our Blogs</Link></li>
                                         <li><a href="#">Contact Us</a></li>
                                         <li><a href="#">Our Certifications</a></li>
                                         <li><a href="#">Privacy Policy</a></li>

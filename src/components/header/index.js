@@ -952,7 +952,8 @@ const Header = ({
                                     </div>
                                     
                                     <div className="cart-action">
-                                        <a href="#" className="btn btn-underline btn-link">View Cart</a>
+                                        
+                                        <Link className="btn btn-underline btn-link" to="/cart">View Cart</Link>
                                         <a href="#" className="btn btn-dark"><span>Go To Checkout</span></a>
                                     </div>
                                   

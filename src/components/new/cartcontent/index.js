@@ -26,7 +26,7 @@ const CartContent = () => {
 
   return (<>
 
-        <section className="customer-section appear-animate">
+        <section className="customer-section">
             <div className="step-by pr-4 pl-4">
                 <h3 className="title title-simple title-step active"><a href="#">Shopping Cart</a></h3>
             </div>

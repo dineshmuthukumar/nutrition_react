@@ -122,7 +122,7 @@ const Privacy = () => {
                 <h1 className="page-title font-weight-bold lh-1 text-white text-capitalize">Privacy Policy</h1>
             </div>
             <div class="page-content mt-10 pt-10">
-                <section className="customer-section pb-10 appear-animate">
+                <section className="customer-section pb-10">
                   <div className="container">
                       <div className="row align-items-center">
                           <div className="col-md-12 mb-4">

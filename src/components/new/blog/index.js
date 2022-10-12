@@ -169,7 +169,7 @@ const Blog = () => {
                             </div>
                             <ul className="pagination justify-content-center">
                                 <li className="page-item disabled">
-                                    <a className="page-link page-link-prev" href="#" aria-label="Previous" tabindex="-1"
+                                    <a className="page-link page-link-prev" href="#" aria-label="Previous" tabIndex="-1"
                                         aria-disabled="true">
                                         <i className="d-icon-arrow-left"></i>Prev
                                     </a>
