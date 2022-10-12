@@ -9376,7 +9376,8 @@ ul.blog-filters .nav-filter {
     transition: 0.3s;
     border: 1px solid var(--base-color);
     border-radius: 20px;
-    padding: 20px;
+    padding: 10px;
+    background: red;;
 }
 .product:hover .product-action,
 .product:hover .product-action-vertical {

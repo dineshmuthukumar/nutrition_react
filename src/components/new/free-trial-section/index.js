@@ -599,7 +599,7 @@ return (  <>
                     </div>
                     <div className="row pro_feature">
                         <div className="col-sm-12">
-                            <img src={apple_feature} />
+                            <img src={apple_feature} className="acv_img"/>
                         </div>
                     </div>
                     
@@ -740,7 +740,7 @@ return (  <>
                                             'items': 3
                                         },
                                         992: {
-                                            'items': 3
+                                            'items': 4
                                         }
                                     }}
                                     // autoplay
