@@ -43,6 +43,8 @@ const freetrial = lazy(() => import("./pages/free-trial"));
 const contact = lazy(() => import("./pages/contact"));
 const privacy = lazy(() => import("./pages/privacy"));
 const Terms = lazy(() => import("./pages/terms"));
+const Login = lazy(() => import("./pages/login"));
+const MyAccount = lazy(() => import("./pages/my-account"));
 
 
 
@@ -246,6 +248,9 @@ const WebContainer = () => {
         <Route exact path="/contact" component={contact} />
         <Route exact path="/privacy" component={privacy} />
         <Route exact path="/terms" component={Terms} />
+        {/* <Route exact path="/my-account" component={Login} /> */}
+        <Route exact path="/login" component={Login} />
+        <PrivateRoute exact path="/accounts/" component={MyAccount} />
 
         <Route exact component={() => <Redirect to="/"></Redirect>} />
       </Switch>
@@ -263,19 +268,19 @@ const mapDispatchToProps = (dispatch) => {
 
 export default connect(null, mapDispatchToProps)(App);
 
-// const PrivateRoute = ({ component: Component, authed, ...rest }) => {
-//   const user = useSelector((state) => state.user);
+const PrivateRoute = ({ component: Component, authed, ...rest }) => {
+  const user = useSelector((state) => state.user);
 
-//   return (
-//     <Route
-//       {...rest}
-//       render={(props) =>
-//         user.login ? (
-//           <Component {...props} />
-//         ) : (
-//           <Redirect to={{ pathname: "/", state: { from: props.location } }} />
-//         )
-//       }
-//     />
-//   );
-// };
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        // user.login ? (
+          <Component {...props} />
+        // ) : (
+        //   <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+        // )
+      }
+    />
+  );
+};
