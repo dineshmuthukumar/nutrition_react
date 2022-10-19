@@ -1,0 +1,17 @@
+.react-tel-input .form-control {
+  width: 100% !important;
+  padding: 0.7rem 0.75rem 0.7rem 60px !important;
+  border: 1px solid #ced4da;
+  border-radius: 8px !important;
+  font-weight: 500 !important;
+
+  &:focus {
+    border: solid 1px #9c9c9b;
+  }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1350px) {
+  .react-tel-input .form-control {
+    padding: 0.4rem 0.75rem 0.4rem 60px !important;
+  }
+}

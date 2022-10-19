@@ -34,6 +34,19 @@ export const user_load_by_token_thunk = (token) => {
   };
 };
 
+export const user_load_by_data_thunk = (data) => {
+  return async (dispatch) => {
+    try {
+      console.log(data,"data");
+      // const user = await userApi(token);
+
+      dispatch(user_login_action_success(data));
+    } catch (err) {
+      console.log("🚀 ~ file: user_thunk.js ~ line 58 ~ return ~ err", err);
+    }
+  };
+};
+
 export const market_live_thunk = () => {
   return async (dispatch) => {
     dispatch(market_live());

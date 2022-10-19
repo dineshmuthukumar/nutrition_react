@@ -896,12 +896,14 @@ const Header = ({
                                     </button>
                                 </form>
                             </div>
-                            <a className="nav-link nav-link-with-img border-rounded login-link d-xs-show" href="ajax/login.html" data-toggle="login-modal"
-                            title="login">
+                            {/* <a className="nav-link nav-link-with-img border-rounded login-link d-xs-show" href="ajax/login.html" data-toggle="login-modal" */}
+                            {/* title="login"> */}
+                            <Link to="/login" className="nav-link nav-link-with-img border-rounded login-link d-xs-show">
                                 <h3 className="img-cat-title mb-0">
                                     Login/Signup
                                 </h3>
-                            </a>
+                            {/* </a> */}
+                            </Link>
 
                            
 

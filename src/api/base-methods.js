@@ -3,7 +3,7 @@ import baseAxios from "./axios-base-utils";
 import axios from "axios";
 
 export const registerApi = (props) =>
-  baseAxios.post("/register", { user: { ...props } });
+  baseAxios.post("/register", {  ...props  });
 
 export const signOutApi = () => baseAxios.delete("/logout");
 

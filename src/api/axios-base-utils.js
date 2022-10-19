@@ -4,7 +4,7 @@ import { store } from "./../redux/store";
 import { user_logout_thunk } from "./../redux/thunk/user_thunk";
 
 const baseAxios = axios.create({
-  baseURL: process.env.REACT_APP_BASE_SERVER_URL,
+  baseURL: process.env.REACT_APP_BASE_URL,
 });
 
 baseAxios.interceptors.request.use(

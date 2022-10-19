@@ -463,3 +463,7 @@ export const detectWhatsapp = (uri) => {
 
   return window.navigator.msLaunchUri ? onIE() : notOnIE();
 };
+
+
+export const blockInvalidChar = (e) =>
+  ["e", "E", "+", "-", "."].includes(e.key) && e.preventDefault();
