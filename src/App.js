@@ -70,12 +70,12 @@ function App(props) {
 
     if (check) s_time.setSeconds(s_time.getSeconds() + 2);
 
-    if (new Date(market_start_date_utc) < s_time) {
-      dispatch(market_live_thunk());
-    } else {
-      set_market_time(market_start_date_utc);
-      dispatch(market_live_off_thunk());
-    }
+    // if (new Date(market_start_date_utc) < s_time) {
+    //   dispatch(market_live_thunk());
+    // } else {
+    //   set_market_time(market_start_date_utc);
+    //   dispatch(market_live_off_thunk());
+    // }
   };
 
   useEffect(() => {
@@ -138,7 +138,7 @@ function App(props) {
     const token = getCookies();
     if (token) dispatch(user_load_by_token_thunk(token));
 
-    if (user.data?.user && !token) dispatch(user_logout_thunk());
+    if (user?.login && !token) dispatch(user_logout_thunk());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -149,7 +149,7 @@ function App(props) {
     window.addEventListener("offline", (event) => {
       setOnline(navigator.onLine);
     });
-    getServerTime();
+    ////getServerTime();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

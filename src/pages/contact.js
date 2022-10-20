@@ -74,7 +74,7 @@ const Contact = () => {
       dispatch(user_load_by_token_thunk(token));
     }
 
-    categoriesList(1);
+    //categoriesList(1);
     if (_ga) {
       history.replace(url);
     }

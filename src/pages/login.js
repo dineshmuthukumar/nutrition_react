@@ -75,7 +75,7 @@ const Login = () => {
       dispatch(user_load_by_token_thunk(token));
     }
 
-    categoriesList(1);
+    ///categoriesList(1);
     if (_ga) {
       history.replace(url);
     }
@@ -117,20 +117,23 @@ const Login = () => {
         image="https://cdn.guardianlink.io/product-hotspot/images/og-image_jt.jpg"
       />
       <main className="main">
-
-            <nav className="breadcrumb-nav">
-                <div className="container">
-                    <ul className="breadcrumb">
-                        <li><a href="#"><i className="d-icon-home"></i></a></li>
-                        <li>My Account</li>
-                    </ul>
-                </div>
-            </nav>
-            <div className="page-content mt-6 pb-2 mb-10">
-                <div className="container">
-                    <Logincomponent />
-                </div>
-            </div>
+        <nav className="breadcrumb-nav">
+          <div className="container">
+            <ul className="breadcrumb">
+              <li>
+                <a href="#">
+                  <i className="d-icon-home"></i>
+                </a>
+              </li>
+              <li>My Account</li>
+            </ul>
+          </div>
+        </nav>
+        <div className="page-content mt-6 pb-2 mb-10">
+          <div className="container">
+            <Logincomponent />
+          </div>
+        </div>
       </main>
       <Footer />
       {/* <Footer /> */}

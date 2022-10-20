@@ -2,26 +2,22 @@ import baseAxios from "./axios-base-utils";
 
 import axios from "axios";
 
-export const registerApi = (props) =>
-  baseAxios.post("/register", {  ...props  });
+export const LoginApi = (props) => baseAxios.post("/login", { ...props });
 
+export const registerApi = (props) => baseAxios.post("/register", { ...props });
 
 export const LoginWithOtp = (props) =>
-  baseAxios.post("/verification/otp", {  ...props  });
+  baseAxios.post("/verification/otp", { ...props });
 
-export const getCategoryApi = () =>
-  baseAxios.get("/category");
-
-  
-export const getsubCategoryApi = (subcategoryId) =>
-baseAxios.get(`/subcategory/details?subCategoryId=${subcategoryId}`);
-
-  
-
-export const signOutApi = () => baseAxios.delete("/logout");
+export const getCategoryApi = () => baseAxios.get("/category");
 
 export const userApi = (token) =>
-  baseAxios.get("/users/me", { headers: { Authorization: token } });
+  baseAxios.get("/user", { headers: { Authorization: token } });
+
+export const getsubCategoryApi = (subcategoryId) =>
+  baseAxios.get(`/subcategory/details?subCategoryId=${subcategoryId}`);
+
+export const signOutApi = () => baseAxios.delete("/logout");
 
 export const getNotificationApi = (page) =>
   baseAxios.get(`/users/notifications?page=${page}`);

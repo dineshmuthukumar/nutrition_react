@@ -2,12 +2,12 @@ import React from "react";
 import OtpInput from "react-otp-input";
 
 const InputOTP = ({
-  numInputs = 4,
+  numInputs = 6,
   value = "",
   title,
   onChange,
   hideLabel = false,
-  disabled=false
+  disabled = false,
 }) => {
   return (
     <div className="otp-input">
