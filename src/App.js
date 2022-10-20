@@ -238,7 +238,7 @@ const WebContainer = () => {
     <>
       <Switch>
         <Route exact path="/" component={NewHome} />
-        <Route exact path="/category" component={Category} />
+        <Route path="/category/:categoryid?" component={Category} />
         <Route exact path="/product" component={Product} />
         <Route exact path="/about" component={About} />
         <Route exact path="/cart" component={Cart} />

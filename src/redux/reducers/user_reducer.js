@@ -2,6 +2,7 @@ import {
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
   USER_LOGIN_FAILURE,
+  USER_LOGIN_OTP,
   USER_WALLET_UPDATE,
   USER_LOGOUT,
   MARKET_LIVE,
@@ -40,6 +41,10 @@ const user_reducer = (state = initState, { payload, type }) => {
       errorData: {},
     };
   }
+  if (type === USER_LOGIN_OTP) {
+    state = { ...state, loading: false, login: false };
+  }
+
 
   if (type === USER_WALLET_UPDATE) {
     state = {

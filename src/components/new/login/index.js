@@ -4,10 +4,11 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import InputPhone from "../../input-phone";
 import InputText from "../../input-text";
+import InputOTP from "../../input-otp";
 
-import { registerApi } from "../../../api/base-methods"
+import { getCookies, setCookies } from "../../../utils/cookies";
 import {
-    user_load_by_data_thunk
+    user_login_with_email_thunk
   } from "../../../redux/thunk/user_thunk";
 
 import {
@@ -19,11 +20,23 @@ import {
     openWindowBlank,
   } from "./../../../utils/common";
 
+  import {
+    resendOtpApi,
+    LoginWithOtp,
+  } from "../../../api/base-methods";
+
   import "./styles.scss";
 
 const Logincomponent = () => {
     const dispatch = useDispatch();
+    const [navigate, setNavigate] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [tab, setTab] = useState("login");
+    const [error, setError] = useState();
+    const [otp, setOTP] = useState(false);
+    const [id, setId] = useState("");
+    const [otpValue, setOTPValue] = useState("");
+    const [verifyLoading, setVerifyLoading] = useState(false);
 
     const [register, setRegister] = useState({
         name: "",
@@ -129,18 +142,24 @@ const Logincomponent = () => {
         if (checkValidation()) {
             try {
                 setLoading(true);
-                let apiInput = { ...register };
-                console.log(apiInput,"apiInput");
-                const result = await registerApi(apiInput);
-                console.log(result,"result");
-                if (result.status === 200) {
-                    dispatch(user_load_by_data_thunk(result?.data?.responseData?.user));
-                }
+                // let apiInput = { ...register };
+                // console.log(apiInput,"apiInput");
+                dispatch(user_login_with_email_thunk(register, setError, setOTP,setId));
+                console.log(otp,"otp");
+                console.log(id,'id');
+                setLoading(false);
+                // const result = await registerApi(apiInput);
+                // console.log(result,"result");
+                // if (result.status === 200) {
+                //     dispatch(user_load_by_data_thunk(result?.data?.responseData?.user));
+                // }
 
             } catch (err) {
                 setLoading(false);
                     console.log(err);
                     if (err?.status === 422) {
+
+                      setError(err?.data?.message);
                       if (err?.data?.error_code === 0) {
                         
                         //   setError(
@@ -155,66 +174,40 @@ const Logincomponent = () => {
                       );
                     }
             }
-        //   try {
-        //     setLoading(true);
-    
-        //     let apiInput = { ...register };
-    
-        //     if (!checked) {
-        //       apiInput = { ...register };
-        //     }
-
-
-    
-            //const result = await registerApi(apiInput);
-    
-            // if (result.status === 201) {
-            //   setRegisterSuccess(true);
-    
-              // XENA Marketing Registration Endpoint
-            //   if (getCookiesByName("aid")) {
-            //     const response = await xena({
-            //       code: 10033,
-            //       uid: result?.data?.data?.user_id,
-            //       aid: getCookiesByName("aid"),
-            //       campaign: getCookiesByName("campaign"),
-            //       source: getCookiesByName("source"),
-            //       vid: getCookiesByName("vid"),
-            //       click_id: getCookiesByName("click_id"),
-            //       event_name: "registration",
-            //     });
-            //     if (process.env.REACT_APP_MARKETING_SCRIPT === "enabled") {
-            //       mixpanel.track("Sign up");
-            //     }
-            //     response.status === 200 && window.open("/signup/success", "_self");
-            //   } else {
-            //     if (process.env.REACT_APP_MARKETING_SCRIPT === "enabled") {
-            //       mixpanel.track("Sign up");
-            //     }
-            //     window.open("/signup/success", "_self");
-            //   }
-          //  }
-        //   } catch (err) {
-        //     setLoading(false);
-        //     console.log(err);
-        //     if (err?.status === 422) {
-        //       if (err?.data?.error_code === 0) {
-                
-        //           setError(
-        //             "This Email is already associated with a GuardianLink ID. Please Login or use a different email to register."
-        //           );
-        //       }
-        //     } else {
-        //       toast.error("An unexpected error occured. Please try again ");
-        //       console.log(
-        //         "🚀 ~ file: index.js ~ line 106 ~ handleSignUp ~ err",
-        //         err
-        //       );
-        //     }
-        //   }
-    
-        //   setLoading(false);
        }
+      };
+
+      const handleVerifyOTP = async () => {
+        setError(null);
+        if (otpValue.length === 4) {
+          try {
+            setVerifyLoading(true);
+    
+            const result = await LoginWithOtp({
+                id: id,
+                otp: otpValue,
+            });
+            console.log(result,"result")
+    
+            // dispatch(user_login_thunk(login, setError, setOTP));
+    
+            setCookies(result.data.data.token);
+            setVerifyLoading(false);
+            setNavigate(true);
+            ///dispatch(user_load_by_token_thunk(result.data.data.token));
+          } catch (error) {
+            setVerifyLoading(false);
+            setError(
+              "It seems you have entered the wrong OTP. Please check the number(s) you have entered."
+            );
+            console.log(
+              "🚀 ~ file: index.js ~ line 172 ~ handleVerifyOTP ~ error",
+              error
+            );
+          }
+        } else {
+          setError("Please enter the full OTP received through your email.");
+        }
       };
 
 return (  <>        
@@ -224,15 +217,15 @@ return (  <>
                                 <ul className="nav nav-tabs nav-fill align-items-center border-no justify-content-center mb-5"
                                     role="tablist">
                                     <li className="nav-item">
-                                        <a className="nav-link active border-no lh-1 ls-normal" href="#signin">Login</a>
+                                        <a className={`nav-link ${tab=="login"?"active":""} border-no lh-1 ls-normal`} href="#signin" onClick={()=>setTab("login")}>Login</a>
                                     </li>
                                     <li className="delimiter">or</li>
                                     <li className="nav-item">
-                                        <a className="nav-link border-no lh-1 ls-normal" href="#register">Register</a>
+                                        <a className={`nav-link ${tab=="register"?"active":""} border-no lh-1 ls-normal`} href="#register"  onClick={()=>setTab("register")}>Register</a>
                                     </li>
                                 </ul>
                                 <div className="tab-content">
-                                    <div className="tab-pane" id="signin">
+                                    <div className={`tab-pane ${tab=="login"?"active":""}`} id="signin">
                                         <form action="#">
                                             <div className="form-group mb-3">
                                                 <input type="text" className="form-control" id="singin-email" name="singin-email" placeholder="Mobile or Email *" required />
@@ -254,8 +247,34 @@ return (  <>
                                             <button className="btn btn-dark btn-block btn-rounded" type="submit">Request OTP</button>
                                         </div>
                                     </div>
-                                    <div className="tab-pane active" id="register">
-                                        <form action="#">
+                                    <div className={`tab-pane ${tab=="register"?"active":""}`}id="register">
+                                        {otp?
+                                            <div>
+                                                <h1>Enter the OTP</h1> <div onClick={()=>setOTP(false)}>Change</div>
+                                                <div className="form-group">
+                                                  <InputOTP onChange={(e) => setOTPValue(e)} value={otpValue} />
+                                                
+                                                </div>
+
+                                                <button
+                                                    type="button"
+                                                    className="bl_btn"
+                                                    onClick={handleVerifyOTP}
+                                                    disabled={verifyLoading || navigate}
+                                                    >
+                                                    {navigate ? (
+                                                        "Verified Successfully, please wait..."
+                                                    ) : (
+                                                        <>{verifyLoading ? "Verifying..." : "Continue"}</>
+                                                    )}
+                                                    </button>
+                                             {error && <p className="error_text text-center">{error}</p>}
+
+                                        </div>
+                                        
+                                        :<>
+                                        
+                                          <div>
                                             <div className="form-group">
                                                 <InputText
                                                     title={"Name"}
@@ -286,12 +305,7 @@ return (  <>
                                                     </p>
                                                     )}
                                                 </div>
-                                        {/* <div className="form-group">
-                                                <input type="password" className="form-control" id="register-password" name="register-password" placeholder="Password *" required />
-                                            </div>
-                                            <div className="form-group">
-                                                <input type="password" className="form-control" id="register-password" name="register-password" placeholder="Confirm Password *" required />
-                                            </div> */}
+                                     
                                             <div className="form-group">
                                                 <InputPhone
                                                     title={"Mobile"}
@@ -334,10 +348,29 @@ return (  <>
                                             <button className="btn btn-dark btn-block btn-rounded" disabled={loading}
                                                 type="button"
                                                 onClick={handleSignUp}>Register</button>
-                                        </form>
+
+                                         {(() => {
+                                            if (error === "confirm-email") {
+                                                return "";
+                                            } else if (error === "login-locked") {
+                                                return (
+                                                <p className="error_text text-center">
+                                                    Your login has been disabled because we detected a
+                                                    suspicions activity on your account.{" "}
+                                                    <a href="https://help.jump.trade/en/support/solutions/articles/84000345960-why-is-my-login-disabled-">
+                                                    Learn more
+                                                    </a>
+                                                </p>
+                                                );
+                                            } else {
+                                                return <p className="error_text text-center">{error}</p>;
+                                            }
+                                            })()}
+                                        </div>
+                                       
                                         <div className="form-choice text-center">
                                             <label className="ls-m">or Register With</label>
-                                        </div>
+                                        </div></>}
                                     </div>
                                 </div>
                             </div>

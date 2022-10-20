@@ -1,6 +1,7 @@
 
 
 import React, { useEffect, useState,useRef } from "react";
+import { useRouteMatch } from "react-router";
 import OwlCarousel from "react-owl-carousel";
 import store_1 from "../../../images/new-images/subpages/store-1.jpg";
 import store_2 from "../../../images/new-images/subpages/store-2.jpg";
@@ -12,6 +13,8 @@ import pro_product_3 from "../../../images/new-images/demos/demo-food2/products/
 import pro_product_4 from "../../../images/new-images/demos/demo-food2/products/pro_product_4.jpg";
 //import pro_product_5 from "../../../images/new-images/demos/demo-food2/products/pro_product_4.jpg";
 import Accordion from "../../accordion";
+
+import { getsubCategoryApi } from "../../../api/base-methods";
 
 
 import "./styles.scss";
@@ -50,6 +53,9 @@ const accordionData = [
   ];
 
 const Product_Category = () => {
+    
+    const match = useRouteMatch();
+    const { categoryid } = match.params;
 
     const accordionRef = useRef(null);
   
@@ -57,10 +63,23 @@ const Product_Category = () => {
      accordionRef.current.querySelector('button').click();
    }
 
+   useEffect(() => {
+
+    // if (query.get("forceUpdate") === "true" || !user.name) {
+        getsubCategory();
+  }, []);
+
+  const getsubCategory = async ()=>{
+
+    const result = await getsubCategoryApi(categoryid);
+    console.log(result);
+
+  }
+
 
 
 return (<>                            
-     <section className="customer-section pb-10 appear-animate">
+     <section className="customer-section pb-10">
         <div className="container">
             <div className="row align-items-center">
                 <div className="col-md-12 mb-4">

@@ -5,6 +5,19 @@ import axios from "axios";
 export const registerApi = (props) =>
   baseAxios.post("/register", {  ...props  });
 
+
+export const LoginWithOtp = (props) =>
+  baseAxios.post("/verification/otp", {  ...props  });
+
+export const getCategoryApi = () =>
+  baseAxios.get("/category");
+
+  
+export const getsubCategoryApi = (subcategoryId) =>
+baseAxios.get(`/subcategory/details?subCategoryId=${subcategoryId}`);
+
+  
+
 export const signOutApi = () => baseAxios.delete("/logout");
 
 export const userApi = (token) =>
