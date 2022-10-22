@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 import {  Link } from "react-router-dom";
 import images from "../../utils/images.json";
 import { user_logout_thunk } from "../../redux/thunk/user_thunk";
+import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
 import {
   accountDetail,
   cartCheckout,
@@ -27,16 +28,13 @@ import {
   get_cart_list_thunk,
 } from "../../redux/thunk/user_cart_thunk";
 
-
 // import Cart from "../cart";
 import AppHelmet from "../helmet";
 
+import Logo from "../../images/new-images/demos/demo-food2/liven-logo.png";
 
-import Logo from "../../images/new-images/demos/demo-food2/liven-logo.png"
-
-import One from "../../images/new-images/demos/demo-food2/products/1.jpg"
-import Two from "../../images/new-images/demos/demo-food2/products/2.jpg"
-
+import One from "../../images/new-images/demos/demo-food2/products/1.jpg";
+import Two from "../../images/new-images/demos/demo-food2/products/2.jpg";
 
 import "./style.scss";
 import Category from "../../pages/category";
@@ -64,11 +62,37 @@ const Header = ({
   //const [ribbon, setRibbon] = useState(true);
   const [cartPop, setCartPop] = useState(false);
   const [checkoutDevice, setCheckoutDevice] = useState(false);
+  const [sidebar, setSideBar] = useState(false);
 
-  const [categoryDetails,setCategoryDetails] = useState({});
+  const [categoryDetails, setCategoryDetails] = useState({});
+  const [categoryActive, setCategoryActive] = useState(false);
+  const [pageActive, setPageActive] = useState(false);
 
   const slug = user.data?.user ? user.data?.user?.slug : null;
   const userCart = cart?.data ? cart?.data : null;
+  useEffect(() => {
+    window.addEventListener("scroll", isSticky);
+    return () => {
+      window.removeEventListener("scroll", isSticky);
+    };
+  });
+  const isSticky = (e) => {
+    const header = document.querySelector(".sticky-content");
+    const scrollTop = window.scrollY;
+    scrollTop >= 250
+      ? header.classList.add("fixed")
+      : header.classList.remove("fixed");
+  };
+
+  const openModal = () => {
+    document.body.className = "mmenu-active";
+    console.log("open");
+    setSideBar(true);
+  };
+  const hideModal = (event) => {
+    document.body.className = "";
+    setSideBar(false);
+  };
 
   useEffect(() => {
     if (slug) {
@@ -108,13 +132,12 @@ const Header = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const getCategoryDetails = async () =>{
-    
+  const getCategoryDetails = async () => {
     try {
       setNotiLoading(true);
       const result = await getCategoryApi();
       //console.log(result?.data?.responseData?.categories);
-      setCategoryDetails(result?.data?.responseData?.categories)
+      setCategoryDetails(result?.data?.responseData?.categories);
       // setNotiLoading(false);
       // if (input === 1) {
       //   setNotification(result.data.data);
@@ -139,7 +162,7 @@ const Header = ({
         error
       );
     }
-  }
+  };
   // const handleChangeLang = () => {
   //   const u_lang = lang === "en" ? "hi" : "en";
   //   setLanguage(u_lang);
@@ -634,67 +657,68 @@ const Header = ({
           </div>
         </div>
 
-        <div className="header-middle sticky-header fix-top sticky-content sticky-top">
-          <div className="container">
-            <div className="header-left">
-              <Nav.Link
-                className="mobile-menu-toggle"
-                onClick={() => setMobileMenuActive(!mobileMenuActive)}
-              >
-                <i className="d-icon-bars2"></i>
-              </Nav.Link>
+        <div className="sticky-content-wrapper">
+          <div className="header-middle sticky-header fix-top sticky-content">
+            <div className="container">
+              <div className="header-left">
+                <Nav.Link
+                  className="mobile-menu-toggle"
+                  onClick={() => openModal()}
+                >
+                  <i className="d-icon-bars2"></i>
+                </Nav.Link>
 
-              <Nav.Link className="logo" onClick={() => history.push("/")}>
-                <img src={Logo} alt="logo" width="75" height="43" />
-              </Nav.Link>
-            </div>
-            <div className="header-center">
-              <nav className="main-nav ml-0 mr-0 ls-normal">
-                <ul className="menu">
-                  <li className="active submenu">
-                    <Nav.Link
-                      className="submenu"
-                      onClick={() => history.push("/")}
-                    >
-                      Shop
-                    </Nav.Link>
-                    <div className="megamenu">
-                      <div className="row">
-                        <div className="col-6 col-sm-6 col-md-6 col-lg-6">
-                          <h4 className="menu-title">Categories</h4>
-                          <ul>
-                            {(() => {
-                              if (categoryDetails?.length > 0) {
-                                return (
-                                  <>
-                                    {categoryDetails?.map(
-                                      (CategoriesDetail) => {
-                                        return (
-                                          <li>
-                                            <Link
-                                              to={`/category/${CategoriesDetail._id}`}
-                                            >
-                                              {CategoriesDetail.name}
-                                            </Link>
-                                          </li>
-                                        );
-                                      }
-                                    )}
-                                  </>
-                                );
-                              } else {
-                                return <li>No Categories Found</li>;
-                              }
-                            })()}
+                <Nav.Link className="logo" onClick={() => history.push("/")}>
+                  <img src={Logo} alt="logo" width="75" height="43" />
+                </Nav.Link>
+              </div>
+              <div className="header-center">
+                <nav className="main-nav ml-0 mr-0 ls-normal">
+                  <ul className="menu">
+                    <li className="active submenu">
+                      <Nav.Link
+                        className="submenu"
+                        onClick={() => history.push("/")}
+                      >
+                        Shop
+                      </Nav.Link>
+                      <div className="megamenu">
+                        <div className="row">
+                          <div className="col-3 col-sm-3 col-md-3 col-lg-3">
+                            <h4 className="menu-title">Categories</h4>
+                            <ul>
+                              {(() => {
+                                if (categoryDetails?.length > 0) {
+                                  return (
+                                    <>
+                                      {categoryDetails?.map(
+                                        (CategoriesDetail) => {
+                                          return (
+                                            <li>
+                                              <Link
+                                                to={`/category/${CategoriesDetail._id}`}
+                                              >
+                                                {CategoriesDetail.name}
+                                              </Link>
+                                            </li>
+                                          );
+                                        }
+                                      )}
+                                    </>
+                                  );
+                                } else {
+                                  return <li>No Categories Found</li>;
+                                }
+                              })()}
 
-                            <li>
-                              <Link onClick={() => history.push("/category")}>
-                                Shop All
-                              </Link>
-                            </li>
-                          </ul>
-                        </div>
-                        {/* <div className="col-6 col-sm-6 col-md-6 col-lg-6">
+                              <li>
+                                <Link onClick={() => history.push("/category")}>
+                                  Shop All
+                                </Link>
+                              </li>
+                            </ul>
+                          </div>
+                          {/* <div className="col-6 col-sm-6 col-md-6 col-lg-6">
                           <h4 className="menu-title">Top Sellers</h4>
                           <ul>
                             <li>
@@ -744,11 +768,11 @@ const Header = ({
                             </li>
                           </ul>
                         </div> */}
+                        </div>
                       </div>
-                    </div>
-                  </li>
+                    </li>
 
-                  {/* <li className="submenu">
+                    {/* <li className="submenu">
                     <Nav.Link
                       className="submenu"
                       onClick={() => history.push("/")}
@@ -841,157 +865,168 @@ const Header = ({
                     </div>
                   </li> */}
 
-                  <li className="submenu">
-                    <Nav.Link onClick={() => history.push("/")}>
-                      Discover
-                    </Nav.Link>
-                    <ul>
-                      <li>
-                        <a href="">Our Story</a>
-                      </li>
-                      <li>
-                        <a href="">Traceable Ingredients</a>
-                      </li>
-                      <li>
-                        <a href="">Science of Wellbeing</a>
-                      </li>
-                      <li>
-                        <a href="">Wishlist</a>
-                      </li>
-                      <li>
-                        <a href="">Wellbeing Promise</a>
-                      </li>
-                      <li>
-                        <a href="">Honesty Inside Out</a>
-                      </li>
-                      <li>
-                        {" "}
-                        <Link to="/blog">Blogs</Link>
-                      </li>
-                      <li>
-                        {" "}
-                        <Link to="/contact">Contact Us</Link>
-                      </li>
-                    </ul>
-                  </li>
+                    <li className="submenu">
+                      <Nav.Link onClick={() => history.push("/")}>
+                        Discover
+                      </Nav.Link>
+                      <ul>
+                        <li>
+                          <a href="">Our Story</a>
+                        </li>
+                        <li>
+                          <a href="">Traceable Ingredients</a>
+                        </li>
+                        <li>
+                          <a href="">Science of Wellbeing</a>
+                        </li>
+                        <li>
+                          <a href="">Wishlist</a>
+                        </li>
+                        <li>
+                          <a href="">Wellbeing Promise</a>
+                        </li>
+                        <li>
+                          <a href="">Honesty Inside Out</a>
+                        </li>
+                        <li>
+                          {" "}
+                          <Link to="/blog">Blogs</Link>
+                        </li>
+                        <li>
+                          {" "}
+                          <Link to="/contact">Contact Us</Link>
+                        </li>
+                      </ul>
+                    </li>
 
-                  <li>
-                    <Nav.Link onClick={() => history.push("/")}>
-                      Consult
-                    </Nav.Link>
-                  </li>
-                  <li>
-                    <Nav.Link onClick={() => history.push("/about")}>
-                      About Us
-                    </Nav.Link>
-                  </li>
-                  <li>
-                    <Nav.Link onClick={() => history.push("/blog")}>
-                      Blogs
-                    </Nav.Link>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-            <div className="header-right">
-              <div className="header-search hs-simple">
-                <form action="#" className="input-wrapper">
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="search"
-                    placeholder="Search..."
-                    required
-                  />
-                  <button className="btn btn-search" type="submit">
-                    <i className="d-icon-search"></i>
-                  </button>
-                </form>
+                    <li>
+                      <Nav.Link onClick={() => history.push("/")}>
+                        Consult
+                      </Nav.Link>
+                    </li>
+                    <li>
+                      <Nav.Link onClick={() => history.push("/about")}>
+                        About Us
+                      </Nav.Link>
+                    </li>
+                    <li>
+                      <Nav.Link onClick={() => history.push("/blog")}>
+                        Blogs
+                      </Nav.Link>
+                    </li>
+                  </ul>
+                </nav>
               </div>
-              {/* <a className="nav-link nav-link-with-img border-rounded login-link d-xs-show" href="ajax/login.html" data-toggle="login-modal" */}
-              {/* title="login"> */}
-              {user?.login ? (
-                <div
-                  className="nav-link nav-link-with-img border-rounded login-link d-xs-show"
-                  onClick={() => handlelogout()}
-                >
-                  <h3 className="img-cat-title mb-0">Logout</h3>
-                  {/* </a> */}
+              <div className="header-right">
+                <div className="header-search hs-simple">
+                  <form action="#" className="input-wrapper">
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="search"
+                      placeholder="Search..."
+                      required
+                    />
+                    <button className="btn btn-search" type="submit">
+                      <i className="d-icon-search"></i>
+                    </button>
+                  </form>
                 </div>
-              ) : (
-                <Link
-                  to="/login"
-                  className="nav-link nav-link-with-img border-rounded login-link d-xs-show"
-                >
-                  <h3 className="img-cat-title mb-0">Login/Signup</h3>
-                  {/* </a> */}
-                </Link>
-              )}
+                {/* <a className="nav-link nav-link-with-img border-rounded login-link d-xs-show" href="ajax/login.html" data-toggle="login-modal" */}
+                {/* title="login"> */}
+                {user?.login ? (
+                  <div
+                    className="nav-link nav-link-with-img border-rounded login-link d-xs-show"
+                    onClick={() => handlelogout()}
+                  >
+                    <h3 className="img-cat-title mb-0">Logout</h3>
+                    {/* </a> */}
+                  </div>
+                ) : (
+                  <Link
+                    to="/login"
+                    className="nav-link nav-link-with-img border-rounded login-link d-xs-show"
+                  >
+                    <h3 className="img-cat-title mb-0">Login/Signup</h3>
+                    {/* </a> */}
+                  </Link>
+                )}
 
-              <div className="dropdown cart-dropdown type2 mr-2">
-                <a href="#" className="cart-toggle link">
-                  <i className="d-icon-bag mb-1">
-                    <span className="cart-count bg-dark">1</span>
-                  </i>
-                </a>
+                <div className="dropdown cart-dropdown type2 mr-2">
+                  <a href="#" className="cart-toggle link">
+                    <i className="d-icon-bag mb-1">
+                      <span className="cart-count bg-dark">1</span>
+                    </i>
+                  </a>
 
-                <div className="dropdown-box">
-                  <div className="products scrollable">
-                    <div className="product product-cart">
-                      <figure className="product-media">
-                        <a href="#">
-                          <img src={One} alt="product" width="80" height="90" />
-                        </a>
-                        <button className="btn btn-link btn-close">
-                          <i className="fas fa-times"></i>
-                          <span className="sr-only">Close</span>
-                        </button>
-                      </figure>
-                      <div className="product-detail">
-                        <a href="#" className="product-name">
-                          Paprika
-                        </a>
-                        <div className="price-box">
-                          <span className="product-quantity">1</span>
-                          <span className="product-price">$21.00</span>
+                  <div className="dropdown-box">
+                    <div className="products scrollable">
+                      <div className="product product-cart">
+                        <figure className="product-media">
+                          <a href="#">
+                            <img
+                              src={One}
+                              alt="product"
+                              width="80"
+                              height="90"
+                            />
+                          </a>
+                          <button className="btn btn-link btn-close">
+                            <i className="fas fa-times"></i>
+                            <span className="sr-only">Close</span>
+                          </button>
+                        </figure>
+                        <div className="product-detail">
+                          <a href="#" className="product-name">
+                            Paprika
+                          </a>
+                          <div className="price-box">
+                            <span className="product-quantity">1</span>
+                            <span className="product-price">$21.00</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="product product-cart">
+                        <figure className="product-media">
+                          <a href="#">
+                            <img
+                              src={Two}
+                              alt="product"
+                              width="80"
+                              height="90"
+                            />
+                          </a>
+                          <button className="btn btn-link btn-close">
+                            <i className="fas fa-times"></i>
+                            <span className="sr-only">Close</span>
+                          </button>
+                        </figure>
+                        <div className="product-detail">
+                          <a href="#" className="product-name">
+                            Vegetable
+                          </a>
+                          <div className="price-box">
+                            <span className="product-quantity">1</span>
+                            <span className="product-price">$118.00</span>
+                          </div>
                         </div>
                       </div>
                     </div>
 
-                    <div className="product product-cart">
-                      <figure className="product-media">
-                        <a href="#">
-                          <img src={Two} alt="product" width="80" height="90" />
-                        </a>
-                        <button className="btn btn-link btn-close">
-                          <i className="fas fa-times"></i>
-                          <span className="sr-only">Close</span>
-                        </button>
-                      </figure>
-                      <div className="product-detail">
-                        <a href="#" className="product-name">
-                          Vegetable
-                        </a>
-                        <div className="price-box">
-                          <span className="product-quantity">1</span>
-                          <span className="product-price">$118.00</span>
-                        </div>
-                      </div>
+                    <div className="cart-total">
+                      <label>Subtotal:</label>
+                      <span className="price">$139.00</span>
                     </div>
-                  </div>
 
-                  <div className="cart-total">
-                    <label>Subtotal:</label>
-                    <span className="price">$139.00</span>
-                  </div>
-
-                  <div className="cart-action">
-                    <Link className="btn btn-underline btn-link" to="/cart">
-                      View Cart
-                    </Link>
-                    <a href="#" className="btn btn-dark">
-                      <span>Go To Checkout</span>
-                    </a>
+                    <div className="cart-action">
+                      <Link className="btn btn-underline btn-link" to="/cart">
+                        View Cart
+                      </Link>
+                      <a href="#" className="btn btn-dark">
+                        <span>Go To Checkout</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1005,11 +1040,7 @@ const Header = ({
       >
         <div className="mobile-menu-overlay"></div>
 
-        <a
-          className="mobile-menu-close"
-          href="demo-food2-product.html#"
-          onClick={() => setMobileMenuActive(false)}
-        >
+        <a className="mobile-menu-close" onClick={() => hideModal()}>
           <i className="d-icon-times"></i>
         </a>
 
@@ -1030,137 +1061,42 @@ const Header = ({
 
           <ul className="mobile-menu mmenu-anim">
             <li>
-              <a href="demo-food2.html">Home</a>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <a href="demo-food2-shop.html">Categories</a>
-              <ul>
-                <li>
-                  <a href="demo-food2-product.html#">Variations 1</a>
-                  <ul>
-                    <li>
-                      <a href="shop-classic-filter.html">Classic Filter</a>
-                    </li>
-                    <li>
-                      <a href="shop-left-toggle-sidebar.html">
-                        Left Toggle Filter
-                      </a>
-                    </li>
-                    <li>
-                      <a href="shop-right-toggle-sidebar.html">
-                        Right Toggle Sidebar
-                      </a>
-                    </li>
-                    <li>
-                      <a href="shop-horizontal-filter.html">
-                        Horizontal Filter{" "}
-                      </a>
-                    </li>
-                    <li>
-                      <a href="shop-navigation-filter.html">
-                        Navigation Filter
-                      </a>
-                    </li>
+              <Link to="/category" className="d-flex justify-content-between">
+                Categories{" "}
+                {categoryActive ? (
+                  <AiOutlineArrowDown
+                    onClick={() => setCategoryActive(false)}
+                  />
+                ) : (
+                  <AiOutlineArrowUp onClick={() => setCategoryActive(true)} />
+                )}
+              </Link>
 
-                    <li>
-                      <a href="shop-off-canvas-filter.html">
-                        Off-Canvas Filter{" "}
-                      </a>
-                    </li>
-                    <li>
-                      <a href="shop-top-banner.html">Top Banner</a>
-                    </li>
-                    <li>
-                      <a href="shop-inner-top-banner.html">Inner Top Banner</a>
-                    </li>
-                    <li>
-                      <a href="shop-with-bottom-block.html">
-                        With Bottom Block
-                      </a>
-                    </li>
-                    <li>
-                      <a href="shop-category-in-page-header.html">
-                        Category In Page Header
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="demo-food2-product.html#">Variations 2</a>
-                  <ul>
-                    <li>
-                      <a href="shop-grid-3cols.html">3 Columns Mode</a>
-                    </li>
-                    <li>
-                      <a href="shop-grid-4cols.html">4 Columns Mode</a>
-                    </li>
-                    <li>
-                      <a href="shop-grid-5cols.html">5 Columns Mode</a>
-                    </li>
-                    <li>
-                      <a href="shop-grid-6cols.html">6 Columns Mode</a>
-                    </li>
-                    <li>
-                      <a href="shop-grid-7cols.html">7 Columns Mode</a>
-                    </li>
-                    <li>
-                      <a href="shop-grid-8cols.html">8 Columns Mode</a>
-                    </li>
-                    <li>
-                      <a href="shop-list-mode.html">List Mode</a>
-                    </li>
-                    <li>
-                      <a href="shop-pagination.html">Pagination</a>
-                    </li>
-                    <li>
-                      <a href="shop-infinite-ajaxscroll.html">
-                        Infinite Ajaxscroll{" "}
-                      </a>
-                    </li>
-                    <li>
-                      <a href="shop-loadmore-button.html">Loadmore Button</a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="demo-food2-product.html#">Variations 3</a>
-                  <ul>
-                    <li>
-                      <a href="shop-category-grid-shop.html">
-                        Category Grid Shop
-                      </a>
-                    </li>
-                    <li>
-                      <a href="shop-category+products.html">
-                        Category + Products
-                      </a>
-                    </li>
-                    <li>
-                      <a href="shop-default-1.html">Shop Default 1 </a>
-                    </li>
-                    <li>
-                      <a href="shop-default-2.html">Shop Default 2</a>
-                    </li>
-                    <li>
-                      <a href="shop-default-3.html">Shop Default 3</a>
-                    </li>
-                    <li>
-                      <a href="shop-default-4.html">Shop Default 4</a>
-                    </li>
-                    <li>
-                      <a href="shop-default-5.html">Shop Default 5</a>
-                    </li>
-                    <li>
-                      <a href="shop-default-6.html">Shop Default 6</a>
-                    </li>
-                    <li>
-                      <a href="shop-default-7.html">Shop Default 7</a>
-                    </li>
-                    <li>
-                      <a href="shop-default-8.html">Shop Default 8</a>
-                    </li>
-                  </ul>
-                </li>
+              <ul
+                className={`${categoryActive ? "catergory-page-active" : ""}`}
+              >
+                {(() => {
+                  if (categoryDetails?.length > 0) {
+                    return (
+                      <>
+                        {categoryDetails?.map((CategoriesDetail) => {
+                          return (
+                            <li>
+                              <Link to={`/category/${CategoriesDetail._id}`}>
+                                {CategoriesDetail.name}
+                              </Link>
+                            </li>
+                          );
+                        })}
+                      </>
+                    );
+                  } else {
+                    return <li>No Categories Found</li>;
+                  }
+                })()}
               </ul>
             </li>
             <li>
@@ -1288,45 +1224,35 @@ const Header = ({
               </ul>
             </li>
             <li>
-              <a href="demo-food2-product.html#">Pages</a>
-              <ul>
+              <Link className="d-flex justify-content-between">
+                Pages{" "}
+                {pageActive ? (
+                  <AiOutlineArrowDown onClick={() => setPageActive(false)} />
+                ) : (
+                  <AiOutlineArrowUp onClick={() => setPageActive(true)} />
+                )}
+              </Link>
+              <ul className={`${pageActive ? "page-active" : ""}`}>
                 <li>
-                  <a href="about-us.html">About</a>
+                  <Link to="/about">About</Link>
                 </li>
                 <li>
-                  <a href="contact-us.html">Contact Us</a>
+                  <Link to="/contact">Contact Us</Link>
                 </li>
-                <li>
-                  <a href="account.html">Login</a>
-                </li>
-                <li>
+                {/* <li>
+                  <Link to="/login">Login</Link>
+                </li> */}
+                {/* <li>
                   <a href="faq.html">FAQs</a>
-                </li>
-                <li>
-                  <a href="error-404.html">Error 404</a>
-                  <ul>
-                    <li>
-                      <a href="error-404.html">Error 404-1</a>
-                    </li>
-                    <li>
-                      <a href="error-404-1.html">Error 404-2</a>
-                    </li>
-                    <li>
-                      <a href="error-404-2.html">Error 404-3</a>
-                    </li>
-                    <li>
-                      <a href="error-404-3.html">Error 404-4</a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
+                </li> */}
+                {/* <li>
                   <a href="coming-soon.html">Coming Soon</a>
-                </li>
+                </li> */}
               </ul>
             </li>
             <li>
-              <a href="blog-classic.html">Blog</a>
-              <ul>
+              <Link to="/blog">Blog</Link>
+              {/* <ul>
                 <li>
                   <a href="blog-classic.html">Classic</a>
                 </li>
@@ -1381,9 +1307,9 @@ const Header = ({
                 <li>
                   <a href="post-single.html">Single Post</a>
                 </li>
-              </ul>
+              </ul> */}
             </li>
-            <li>
+            {/* <li>
               <a href="element.html">Elements</a>
               <ul>
                 <li>
@@ -1515,19 +1441,19 @@ const Header = ({
                   </ul>
                 </li>
               </ul>
-            </li>
+            </li> */}
           </ul>
 
           <ul className="mobile-menu mmenu-anim">
             <li>
-              <a href="login.html">Login</a>
+              <Link to="/login">Login</Link>
             </li>
             <li>
-              <a href="cart.html">My Cart</a>
+              <Link to="/cart">My Cart</Link>
             </li>
-            <li>
+            {/* <li>
               <a href="wishlist.html">Wishlist</a>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

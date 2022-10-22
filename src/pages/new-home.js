@@ -16,6 +16,8 @@ import { useHistory, useRouteMatch } from "react-router";
 import { setCookiesByName, setCookies } from "../utils/cookies";
 import { user_load_by_token_thunk } from "../redux/thunk/user_thunk";
 import { nftCategoriesApi } from "../api/methods";
+import { homeContentApi } from "../api/base-methods";
+
 import useQuery from "../hook/useQuery";
 //import FavouriteNFTs from "../components/favourite-NFTs";
 // import HeroBanner from "../components/hero-banner";
@@ -38,7 +40,7 @@ import ProductBanner from "../components/new/product-banner";
 import WeakStrong from "../components/new/weak-strong";
 import OurIdea from "../components/new/our-idea";
 import ProductBannerOne from "../components/new/product-banner-one";
-import InstagramSection from '../components/new/instagram-section/index';
+import InstagramSection from "../components/new/instagram-section/index";
 import TeamSection from "../components/new/team_sec";
 import FirstBannerSection from "../components/new/final-banner-section";
 import Footer from "../components/footer";
@@ -51,6 +53,7 @@ const NewHome = () => {
   const fsz = query.get("fsz");
   const token = query.get("token");
   const _ga = query.get("_ga");
+  const [homeContent, setHomeContent] = useState({});
   // const { user } = useSelector((state) => state.user.data);
 
   const [list, setList] = useState([]);
@@ -59,11 +62,20 @@ const NewHome = () => {
   // const [favList, setFavList] = useState([]);
   // const [favLoading, setFavLoading] = useState(false);
   // const [favHasNext, setFavHasNext] = useState(false);
+  const homecontent = async () => {
+    try {
+      let response = await homeContentApi();
+      //console.log(response);
+      setHomeContent(response?.data?.responseData);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const categoriesList = async (page) => {
     try {
       let response = await nftCategoriesApi({ page });
-      setList([...list, ...response.data.data.categories]);
+      //setList([...list, ...response.data.data.categories]);
     } catch (err) {
       console.log(err);
     }
@@ -83,6 +95,7 @@ const NewHome = () => {
     }
 
     /// categoriesList(1);
+    homecontent();
     if (_ga) {
       history.replace(url);
     }
@@ -125,42 +138,42 @@ const NewHome = () => {
       />
       <main className="main home">
         <div className="page-content">
-          <Banner/>
-          <FeatureProduct/>
-          <ArrivalSection/>
-          <ProductBanner />
-          <WeakStrong/>
-          <OurIdea/>
-          <ProductBannerOne />
-          <InstagramSection/>
+          <Banner />
+          <FeatureProduct />
+          <ArrivalSection />
+          <ProductBanner homeContent={homeContent} />
+          <WeakStrong homeContent={homeContent} />
+          <OurIdea homeContent={homeContent} />
+          <ProductBannerOne homeContent={homeContent} />
+          <InstagramSection homeContent={homeContent} />
           <TeamSection />
           <FirstBannerSection />
           <Footer />
-        {/* <Banner list={list} /> */}
-        {/* <HotCollections /> */}
-        {/* <TopBuyers /> */}
-        {/* <TopSellers /> */}
-        {/* <HeroBanner /> */}
-        {/* <LeaderBoard /> */}
-        {/* <NewDropSection /> */}
-        {/* <TrailerVideo /> */}
-        {/* <MclGameLaunchTimer /> */}
-        {/* <MclGameLaunchOne /> */}
-        {/* <MclGameLaunchTwo /> */}
-        {/* <CollectionList /> */}
+          {/* <Banner list={list} /> */}
+          {/* <HotCollections /> */}
+          {/* <TopBuyers /> */}
+          {/* <TopSellers /> */}
+          {/* <HeroBanner /> */}
+          {/* <LeaderBoard /> */}
+          {/* <NewDropSection /> */}
+          {/* <TrailerVideo /> */}
+          {/* <MclGameLaunchTimer /> */}
+          {/* <MclGameLaunchOne /> */}
+          {/* <MclGameLaunchTwo /> */}
+          {/* <CollectionList /> */}
 
-        {/* design */}
-        {/* <MclTournaments /> */}
-        {/* <MclCompletedTournaments /> */}
-        {/* <MclGameButton /> */}
+          {/* design */}
+          {/* <MclTournaments /> */}
+          {/* <MclCompletedTournaments /> */}
+          {/* <MclGameButton /> */}
 
-        {/* <Trending />
+          {/* <Trending />
         <LiveAuctions />
         <RecentlySoldNFT /> */}
-        {/* {favList.length > 0 && (
+          {/* {favList.length > 0 && (
           <FavouriteNFTs list={favList} loading={favLoading} />
         )} */}
-        {/* <ShowAll categories={list} query={query} /> */}
+          {/* <ShowAll categories={list} query={query} /> */}
         </div>
       </main>
       {/* <Footer /> */}

@@ -14,6 +14,12 @@ export const getCategoryApi = () => baseAxios.get("/category");
 export const userApi = (token) =>
   baseAxios.get("/user", { headers: { Authorization: token } });
 
+
+export const homeContentApi = (token) => baseAxios.get("/homecontent");
+
+
+
+
 export const getsubCategoryApi = (subcategoryId) =>
   baseAxios.get(`/subcategory/details?subCategoryId=${subcategoryId}`);
 

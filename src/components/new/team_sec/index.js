@@ -8,13 +8,23 @@ const TeamSection = () => {
 
   return (
     <>
-    <section class="team_sec pb-5 pt-5 appear-animate" data-animation-options="{'name': 'fadeInUpShorter','duration': '1.2s', 'delay': '.2s' }" >
-    <div class="container">
-        <h2 class="title-echo"><span>Do Not Miss Out! Make a Glance of our Real Customer Transformations.</span></h2>
-        <p>Listen to real people before TRUSTING us! We believe Experience teaches BEST!</p>
-    </div>
-    </section>
-     
+      <section
+        class="team_sec pb-5 pt-5"
+        data-animation-options="{'name': 'fadeInUpShorter','duration': '1.2s', 'delay': '.2s' }"
+      >
+        <div class="container">
+          <h2 class="title-echo">
+            <span>
+              Do Not Miss Out! Make a Glance of our Real Customer
+              Transformations.
+            </span>
+          </h2>
+          <p>
+            Listen to real people before TRUSTING us! We believe Experience
+            teaches BEST!
+          </p>
+        </div>
+      </section>
     </>
   );
 };
