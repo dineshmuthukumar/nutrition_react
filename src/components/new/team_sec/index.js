@@ -9,11 +9,11 @@ const TeamSection = () => {
   return (
     <>
       <section
-        class="team_sec pb-5 pt-5"
+        className="team_sec pb-5 pt-5"
         data-animation-options="{'name': 'fadeInUpShorter','duration': '1.2s', 'delay': '.2s' }"
       >
-        <div class="container">
-          <h2 class="title-echo">
+        <div className="container">
+          <h2 className="title-echo">
             <span>
               Do Not Miss Out! Make a Glance of our Real Customer
               Transformations.

@@ -1050,7 +1050,7 @@ const Header = ({
               type="text"
               className="form-control"
               name="search"
-              autocomplete="off"
+              autoComplete="off"
               placeholder="Search your keyword..."
               required
             />

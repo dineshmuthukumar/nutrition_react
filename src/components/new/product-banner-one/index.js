@@ -36,14 +36,14 @@ const ProductBannerOne = ({ homeContent }) => {
               <div className="row">
                 {homeContent?.section?.fifth?.imageList &&
                   homeContent?.section?.fifth?.imageList?.map(
-                    (fifthcontentList) => {
+                    (fifthproductcontentList) => {
                       return (
                         <div className="col-sm-6">
                           <div className="icon-box icon-box-side">
                             <i className="icon-box-icon d-icon-truck"></i>
                             <div className="icon-box-content">
                               <h4 className="icon-box-title text-capitalize ls-normal">
-                                {fifthcontentList.text}
+                                {fifthproductcontentList.text}
                               </h4>
                             </div>
                           </div>

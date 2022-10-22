@@ -26,8 +26,8 @@ const WeakStrong = ({ homeContent }) => {
               <div className="col-sm-8">
                 {homeContent?.section?.second?.list &&
                   homeContent?.section?.second?.list?.map(
-                    (firstContentList) => {
-                      return <p>{firstContentList}</p>;
+                    (secondContentList) => {
+                      return <p>{secondContentList}</p>;
                     }
                   )}
               </div>
