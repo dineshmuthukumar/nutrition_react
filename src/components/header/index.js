@@ -120,14 +120,14 @@ const Header = ({
     //   );
     //   }
     // }
-    if (user?.data?.user) {
-      if (!user?.data?.user?.first_name && !user?.data?.user?.last_name) {
-        window.open(
-          `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile?forceUpdate=true`,
-          "_self"
-        );
-      }
-    }
+    // if (user?.data?.user) {
+    //   if (!user?.data?.user?.first_name && !user?.data?.user?.last_name) {
+    //     window.open(
+    //       `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile?forceUpdate=true`,
+    //       "_self"
+    //     );
+    //   }
+    // }
     getCategoryDetails();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -136,24 +136,8 @@ const Header = ({
     try {
       setNotiLoading(true);
       const result = await getCategoryApi();
-      //console.log(result?.data?.responseData?.categories);
+
       setCategoryDetails(result?.data?.responseData?.categories);
-      // setNotiLoading(false);
-      // if (input === 1) {
-      //   setNotification(result.data.data);
-      //   if (result.data.data.total > 0) {
-      //     setNotiRead(result.data.data.notifications_read);
-      //   }
-      // } else {
-      //   setNotification({
-      //     ...notification,
-      //     notifications: [
-      //       ...notification.notifications,
-      //       ...result.data.data.notifications,
-      //     ],
-      //     next_page: result.data.data.next_page,
-      //   });
-      // }
     } catch (error) {
       setNotiLoading(false);
 
@@ -684,7 +668,7 @@ const Header = ({
                       </Nav.Link>
                       <div className="megamenu">
                         <div className="row">
-                          <div className="col-3 col-sm-3 col-md-3 col-lg-3">
+                          <div className="col-6 col-sm-6 col-md-6 col-lg-6">
                             <h4 className="menu-title">Categories</h4>
                             <ul>
                               {(() => {
@@ -718,154 +702,154 @@ const Header = ({
                               </li>
                             </ul>
                           </div>
-                          {/* <div className="col-6 col-sm-6 col-md-6 col-lg-6">
-                          <h4 className="menu-title">Top Sellers</h4>
-                          <ul>
-                            <li>
-                              {" "}
-                              <Link to="/category">Essential Vitamins</Link>
-                            </li>
-                            <li>
-                              {" "}
-                              <Link to="/category">Daily Immunity Combo</Link>
-                            </li>
-                            <li>
-                              {" "}
-                              <Link to="/category">Deep Sleep Pack</Link>
-                            </li>
-                            <li>
-                              {" "}
-                              <Link to="/category">Happy Gut Combo</Link>
-                            </li>
-                            <li>
-                              {" "}
-                              <Link to="/category">
-                                Women’s Performance Pack
-                              </Link>
-                            </li>
+                          <div className="col-6 col-sm-6 col-md-6 col-lg-6">
+                            <h4 className="menu-title">Best Sellers</h4>
+                            <ul>
+                              <li>
+                                {" "}
+                                <Link to="/category">Essential Vitamins</Link>
+                              </li>
+                              <li>
+                                {" "}
+                                <Link to="/category">Daily Immunity Combo</Link>
+                              </li>
+                              <li>
+                                {" "}
+                                <Link to="/category">Deep Sleep Pack</Link>
+                              </li>
+                              <li>
+                                {" "}
+                                <Link to="/category">Happy Gut Combo</Link>
+                              </li>
+                              <li>
+                                {" "}
+                                <Link to="/category">
+                                  Women’s Performance Pack
+                                </Link>
+                              </li>
 
-                            <li>
-                              {" "}
-                              <Link to="/category">
-                                Beauty Sleep &amp; Healthy Hair Pack
-                              </Link>
-                            </li>
-                            <li>
-                              {" "}
-                              <Link to="/category">Stress Relief Combo</Link>
-                            </li>
-                            <li>
-                              {" "}
-                              <Link to="/category">Beauty Pack</Link>
-                            </li>
-                            <li>
-                              {" "}
-                              <Link to="/category">Performance Pack</Link>
-                            </li>
-                            <li>
-                              {" "}
-                              <Link to="/category">Hair Care Kit</Link>
-                            </li>
-                          </ul>
-                        </div> */}
+                              <li>
+                                {" "}
+                                <Link to="/category">
+                                  Beauty Sleep &amp; Healthy Hair Pack
+                                </Link>
+                              </li>
+                              <li>
+                                {" "}
+                                <Link to="/category">Stress Relief Combo</Link>
+                              </li>
+                              <li>
+                                {" "}
+                                <Link to="/category">Beauty Pack</Link>
+                              </li>
+                              <li>
+                                {" "}
+                                <Link to="/category">Performance Pack</Link>
+                              </li>
+                              <li>
+                                {" "}
+                                <Link to="/category">Hair Care Kit</Link>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li className="submenu">
+                      <Nav.Link
+                        className="submenu"
+                        onClick={() => history.push("/")}
+                      >
+                        Invent
+                      </Nav.Link>
+                      <div className="megamenu">
+                        <div className="row">
+                          <div className="col-6 col-sm-6 col-md-6">
+                            {/* <h4 className="menu-title">Sports Nutrition</h4> */}
+                            <ul>
+                              <li>
+                                {" "}
+                                <Link to="/category">Explore More</Link>
+                              </li>
+                              <li>
+                                {" "}
+                                <Link to="/category">Liven Dominance</Link>
+                              </li>
+                              {/* <li>
+                                {" "}
+                                <Link to="/category">Gut</Link>
+                              </li>
+                              <li>
+                                {" "}
+                                <Link to="/category">Weight</Link>
+                              </li>
+                              <li>
+                                {" "}
+                                <Link to="/category">Detox</Link>
+                              </li>
+                              <li>
+                                {" "}
+                                <Link to="/category">Beauty</Link>
+                              </li>
+                              <li>
+                                {" "}
+                                <Link to="/category">Essentials</Link>
+                              </li>
+                              <li>
+                                {" "}
+                                <Link to="/category">Energy</Link>
+                              </li>
+                              <li>
+                                {" "}
+                                <Link to="/category">Eye</Link>
+                              </li> */}
+                            </ul>
+                          </div>
+                          {/* <div className="col-6 col-sm-6 col-md-6">
+                            <h4 className="menu-title">Kids Nutrition</h4>
+                            <ul>
+                              <li>
+                                {" "}
+                                <Link to="/category">Throat</Link>
+                              </li>
+                              <li>
+                                {" "}
+                                <Link to="/category">Skin</Link>
+                              </li>
+                              <li>
+                                {" "}
+                                <Link to="/category">Skin</Link>
+                              </li>
+                              <li>
+                                {" "}
+                                <Link to="/category">Bone and Joints</Link>
+                              </li>
+                              <li>
+                                {" "}
+                                <Link to="/category">Heart</Link>
+                              </li>
+                              <li>
+                                {" "}
+                                <Link to="/category">Cognition</Link>
+                              </li>
+                              <li>
+                                {" "}
+                                <Link to="/category">Liver</Link>
+                              </li>
+                              <li>
+                                {" "}
+                                <Link to="/category">
+                                  Fertility and Pregnancy
+                                </Link>
+                              </li>
+                            </ul>
+                          </div> */}
                         </div>
                       </div>
                     </li>
 
                     {/* <li className="submenu">
-                    <Nav.Link
-                      className="submenu"
-                      onClick={() => history.push("/")}
-                    >
-                      Health Goals
-                    </Nav.Link>
-                    <div className="megamenu">
-                      <div className="row">
-                        <div className="col-6 col-sm-6 col-md-6">
-                          <h4 className="menu-title">Sports Nutrition</h4>
-                          <ul>
-                            <li>
-                              {" "}
-                              <Link to="/category">Immunity</Link>
-                            </li>
-                            <li>
-                              {" "}
-                              <Link to="/category">Sleep</Link>
-                            </li>
-                            <li>
-                              {" "}
-                              <Link to="/category">Gut</Link>
-                            </li>
-                            <li>
-                              {" "}
-                              <Link to="/category">Weight</Link>
-                            </li>
-                            <li>
-                              {" "}
-                              <Link to="/category">Detox</Link>
-                            </li>
-                            <li>
-                              {" "}
-                              <Link to="/category">Beauty</Link>
-                            </li>
-                            <li>
-                              {" "}
-                              <Link to="/category">Essentials</Link>
-                            </li>
-                            <li>
-                              {" "}
-                              <Link to="/category">Energy</Link>
-                            </li>
-                            <li>
-                              {" "}
-                              <Link to="/category">Eye</Link>
-                            </li>
-                          </ul>
-                        </div>
-                        <div className="col-6 col-sm-6 col-md-6">
-                          <h4 className="menu-title">Kids Nutrition</h4>
-                          <ul>
-                            <li>
-                              {" "}
-                              <Link to="/category">Throat</Link>
-                            </li>
-                            <li>
-                              {" "}
-                              <Link to="/category">Skin</Link>
-                            </li>
-                            <li>
-                              {" "}
-                              <Link to="/category">Skin</Link>
-                            </li>
-                            <li>
-                              {" "}
-                              <Link to="/category">Bone and Joints</Link>
-                            </li>
-                            <li>
-                              {" "}
-                              <Link to="/category">Heart</Link>
-                            </li>
-                            <li>
-                              {" "}
-                              <Link to="/category">Cognition</Link>
-                            </li>
-                            <li>
-                              {" "}
-                              <Link to="/category">Liver</Link>
-                            </li>
-                            <li>
-                              {" "}
-                              <Link to="/category">
-                                Fertility and Pregnancy
-                              </Link>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </li> */}
-
-                    <li className="submenu">
                       <Nav.Link onClick={() => history.push("/")}>
                         Discover
                       </Nav.Link>
@@ -897,13 +881,7 @@ const Header = ({
                           <Link to="/contact">Contact Us</Link>
                         </li>
                       </ul>
-                    </li>
-
-                    <li>
-                      <Nav.Link onClick={() => history.push("/")}>
-                        Consult
-                      </Nav.Link>
-                    </li>
+                    </li> */}
                     <li>
                       <Nav.Link onClick={() => history.push("/about")}>
                         About Us
@@ -911,7 +889,12 @@ const Header = ({
                     </li>
                     <li>
                       <Nav.Link onClick={() => history.push("/blog")}>
-                        Blogs
+                        Blog
+                      </Nav.Link>
+                    </li>
+                    <li>
+                      <Nav.Link onClick={() => history.push("/")}>
+                        Consult
                       </Nav.Link>
                     </li>
                   </ul>
