@@ -1,182 +1,302 @@
-
-
 import React, { useEffect, useState } from "react";
-import OwlCarousel from "react-owl-carousel";
-
+import Col from 'react-bootstrap/Col';
+import Nav from 'react-bootstrap/Nav';
+import Row from 'react-bootstrap/Row';
+import Tab from 'react-bootstrap/Tab';
+import Form from 'react-bootstrap/Form';
+import { Link } from 'react-router-dom';
 
 import "./styles.scss";
 
 const Accountcomponent = () => {
 
-return (  <>   
-            <div className="tab tab-vertical gutter-lg">
-                        <ul className="nav nav-tabs mb-4 col-lg-3 col-md-4" role="tablist">
-                            <li className="nav-item">
-                                <a className="nav-link active" href="#dashboard">Dashboard</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#orders">Orders</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#downloads">Downloads</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#address">Address</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#account">Account details</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="login.html">Logout</a>
-                            </li>
-                        </ul>
-                        <div className="tab-content col-lg-9 col-md-8">
-                            <div className="tab-pane active" id="dashboard">
-                                <p className="mb-0">
-                                    Hello <span>User</span> (not <span>User</span>? <a href="#" className="text-primary">Logout</a>)
-                                </p>
-                                <p className="mb-8">
-                                    From your account dashboard you can view your
-                                    <a href="#orders" className="link-to-tab text-primary">recent orders, manage your
-                                        shipping and billing addresses,<br/>and edit your password and account details</a>.
-                                </p>
-                                <a href="#" className="btn btn-dark btn-rounded">Go To Shop<i className="d-icon-arrow-right"></i></a>
-                            </div>
-                            <div className="tab-pane" id="orders">
-                                <div className="table-responsive text-center">
-                                    <table className="order-table table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th className="pl-2">Order</th>
-                                                <th>Date</th>
-                                                <th>Status</th>
-                                                <th>Total</th>
-                                                <th className="pr-2">Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td className="order-number"><a href="account.html#">#3596</a></td>
-                                                <td className="order-date"><span>February 24, 2022</span></td>
-                                                <td className="order-status"><span>On hold</span></td>
-                                                <td className="order-total"><span>$900.00 for 5 items</span></td>
-                                                <td className="order-action"><a href="#" className="btn btn-primary btn-link btn-underline">View</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="order-number"><a href="account.html#">#3593</a></td>
-                                                <td className="order-date"><span>February 21, 2022</span></td>
-                                                <td className="order-status"><span>On hold</span></td>
-                                                <td className="order-total"><span>$290.00 for 2 items</span></td>
-                                                <td className="order-action"><a href="#" className="btn btn-primary btn-link btn-underline">View</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="order-number"><a href="account.html#">#2547</a></td>
-                                                <td className="order-date"><span>January 4, 2022</span></td>
-                                                <td className="order-status"><span>On hold</span></td>
-                                                <td className="order-total"><span>$480.00 for 8 items</span></td>
-                                                <td className="order-action"><a href="#" className="btn btn-primary btn-link btn-underline">View</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="order-number"><a href="account.html#">#2549</a></td>
-                                                <td className="order-date"><span>January 19, 2022</span></td>
-                                                <td className="order-status"><span>On hold</span></td>
-                                                <td className="order-total"><span>$680.00 for 5 items</span></td>
-                                                <td className="order-action"><a href="#" className="btn btn-primary btn-link btn-underline">View</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="order-number"><a href="account.html#">#4523</a></td>
-                                                <td className="order-date"><span>Jun 6, 2022</span></td>
-                                                <td className="order-status"><span>On hold</span></td>
-                                                <td className="order-total"><span>$564.00 for 3 items</span></td>
-                                                <td className="order-action"><a href="#" className="btn btn-primary btn-link btn-underline">View</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td className="order-number"><a href="account.html#">#4526</a></td>
-                                                <td className="order-date"><span>Jun 19, 2022</span></td>
-                                                <td className="order-status"><span>On hold</span></td>
-                                                <td className="order-total"><span>$123.00 for 8 items</span></td>
-                                                <td className="order-action"><a href="#" className="btn btn-primary btn-link btn-underline">View</a></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+return (  
+        <>  
+        <div ClassName="profile_page">
+            <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+                <Row>
+                    <Col sm={3} className="account_form_box">
+                    <Nav variant="pills" className="flex-column">
+                        <Nav.Item>
+                            <Nav.Link eventKey="first">My Orders</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link eventKey="second">Profile</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link eventKey="third">Address</Nav.Link>
+                        </Nav.Item>
+                    </Nav>
+                    </Col>
+                    <Col sm={9} className="account_form_box">
+                    <Tab.Content>
+                        <Tab.Pane eventKey="first">
+                            <div class="row product_banner_2 text-left">
+                                <div class="col-sm-2">
+                                    <img src="http://localhost:4002/static/media/home_one.d0bce35b.jpg" width="100" height="100"></img>
+                                </div>
+                                <div class="col-sm-4"><p>Converse Training Shoes</p></div>
+                                <div class="col-sm-3"><p>$129.99</p></div>
+                                <div class="col-sm-3">
+                                    <h4><i class="fa fa-circle green_color_fa" aria-hidden="true"></i> Delivered on Oct 25</h4>
+                                    <p>Your item has been delivered</p>
                                 </div>
                             </div>
-                            <div className="tab-pane" id="downloads">
-                                <p className="mb-4 text-body">No downloads available yet.</p>
-                                <a href="#" className="btn btn-primary btn-link btn-underline">Browser Products<i className="d-icon-arrow-right"></i></a>
-                            </div>
-                            <div className="tab-pane" id="address">
-                                <p className="mb-2">The following addresses will be used on the checkout page by default.
-                                </p>
-                                <div className="row">
-                                    <div className="col-sm-6 mb-4">
-                                        <div className="card card-address">
-                                            <div className="card-body">
-                                                <h5 className="card-title text-uppercase">Billing Address</h5>
-                                                <p>John Doe<br />
-                                                    Riode Company<br />
-                                                    Steven street<br />
-                                                    El Carjon, CA 92020
-                                                </p>
-                                                <a href="#" className="btn btn-link btn-secondary btn-underline">Edit <i className="far fa-edit"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-sm-6 mb-4">
-                                        <div className="card card-address">
-                                            <div className="card-body">
-                                                <h5 className="card-title text-uppercase">Shipping Address</h5>
-                                                <p>You have not set up this type of address yet.</p>
-                                                <a href="#" className="btn btn-link btn-secondary btn-underline">Edit <i
-                                                        className="far fa-edit"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <div class="row product_banner_2 text-left">
+                                <div class="col-sm-2">
+                                    <img src="http://localhost:4002/static/media/home_one.d0bce35b.jpg" width="100" height="100"></img>
+                                </div>
+                                <div class="col-sm-4"><p>Converse Training Shoes</p></div>
+                                <div class="col-sm-3"><p>$129.99</p></div>
+                                <div class="col-sm-3">
+                                    <h4><i class="fa fa-circle red_color_fa" aria-hidden="true"></i> Delivered on Oct 25</h4>
+                                    <p>Your item has been delivered</p>
                                 </div>
                             </div>
-                            <div className="tab-pane" id="account">
-                                <form action="#" className="form">
-                                    <div className="row">
-                                        <div className="col-sm-6">
-                                            <label>First Name *</label>
-                                            <input type="text" className="form-control" name="first_name" required="" />
-                                        </div>
-                                        <div className="col-sm-6">
-                                            <label>Last Name *</label>
-                                            <input type="text" className="form-control" name="last_name" required="" />
+                            <div class="row product_banner_2 text-left">
+                                <div class="col-sm-2">
+                                    <img src="http://localhost:4002/static/media/home_one.d0bce35b.jpg" width="100" height="100"></img>
+                                </div>
+                                <div class="col-sm-4"><p>Converse Training Shoes</p></div>
+                                <div class="col-sm-3"><p>$129.99</p></div>
+                                <div class="col-sm-3">
+                                    <h4><i class="fa fa-circle green_color_fa" aria-hidden="true"></i> Delivered on Oct 25</h4>
+                                    <p>Your item has been delivered</p>
+                                </div>
+                            </div>
+                            <div class="row product_banner_2 text-left">
+                                <div class="col-sm-2">
+                                    <img src="http://localhost:4002/static/media/home_one.d0bce35b.jpg" width="100" height="100"></img>
+                                </div>
+                                <div class="col-sm-4"><p>Converse Training Shoes</p></div>
+                                <div class="col-sm-3"><p>$129.99</p></div>
+                                <div class="col-sm-3">
+                                    <h4><i class="fa fa-circle red_color_fa" aria-hidden="true"></i> Delivered on Oct 25</h4>
+                                    <p>Your item has been delivered</p>
+                                </div>
+                            </div>
+                        </Tab.Pane>
+                        <Tab.Pane eventKey="second">
+                            <form action="#" class="form">
+                                <Row>
+                                    <Col>
+                                        <h2 className="profile_heading">Profile</h2>
+                                    </Col>
+                                </Row>
+                                <div class="change_pass">
+                                    <Row>
+                                        <Col>
+                                            <Form>
+                                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                                    <Form.Label>First Name</Form.Label>
+                                                    <Form.Control type="text" placeholder="First Name" />
+                                                </Form.Group>
+                                            </Form>
+                                        </Col>
+                                        <Col>
+                                            <Form>
+                                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                                    <Form.Label>Last Name</Form.Label>
+                                                    <Form.Control type="text" placeholder="Last Name" />
+                                                </Form.Group>
+                                            </Form>
+                                        </Col>
+                                        <Col>
+                                            <Form>
+                                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                                    <Form.Label>User Name</Form.Label>
+                                                    <Form.Control type="text" placeholder="User Name" />
+                                                </Form.Group>
+                                            </Form>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col sm={4}>
+                                            <Form>
+                                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                                    <Form.Label>Email Address</Form.Label>
+                                                    <Form.Control type="email" placeholder="name@example.com" />
+                                                </Form.Group>
+                                            </Form>
+                                        </Col>
+                                        <Col sm={4}>
+                                            <Form>
+                                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                                    <Form.Label>Mobile Number</Form.Label>
+                                                    <Form.Control type="tel" placeholder="Mobile Number" />
+                                                </Form.Group>
+                                            </Form>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>
+                                            <button type="submit" class="btn-product btn-cart wid_200">SAVE</button>
+                                        </Col>
+                                    </Row>
+                                </div>
+                                <Row>
+                                    <Col>
+                                        <h2 className="profile_heading">Add New Address</h2>
+                                    </Col>
+                                </Row>
+                                <div class="change_pass">
+                                    <Row>
+                                        <Col>
+                                            <Form>
+                                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                                    <Form.Label>Name</Form.Label>
+                                                    <Form.Control type="text" placeholder="name" />
+                                                </Form.Group>
+                                            </Form>
+                                        </Col>
+                                        <Col>
+                                            <Form>
+                                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                                    <Form.Label>Mobile Number</Form.Label>
+                                                    <Form.Control type="tel" placeholder="Mobile Number" />
+                                                </Form.Group>
+                                            </Form>
+                                        </Col>
+                                        <Col>
+                                            <Form>
+                                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                                    <Form.Label>Phone Number</Form.Label>
+                                                    <Form.Control type="tel" placeholder="Phone Number" />
+                                                </Form.Group>
+                                            </Form>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>
+                                            <Form>
+                                                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                    <Form.Label>Example textarea</Form.Label>
+                                                    <Form.Control as="textarea" rows={3} />
+                                                </Form.Group>
+                                            </Form>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>
+                                            <label className="mb-3">City *</label>
+                                            <Form.Select aria-label="Default select example">
+                                                <option>City</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </Form.Select>
+                                        </Col>
+                                        <Col>
+                                            <label className="mb-3">State *</label>
+                                            <Form.Select aria-label="Default select example">
+                                                <option>State</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </Form.Select>
+                                        </Col>
+                                        <Col>
+                                            <Form>
+                                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                                    <Form.Label>Landmark</Form.Label>
+                                                    <Form.Control type="text" placeholder="name" />
+                                                </Form.Group>
+                                            </Form>
+                                        </Col>
+                                        <Col>
+                                            <Form>
+                                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                                    <Form.Label>Pincode</Form.Label>
+                                                    <Form.Control type="text" placeholder="name" />
+                                                </Form.Group>
+                                            </Form>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>
+                                            <button type="submit" class="btn-product btn-cart wid_200">SAVE</button>
+                                        </Col>
+                                    </Row>
+                                </div>
+                                <Row>
+                                    <Col>
+                                        <h2 className="profile_heading">Password Change</h2>
+                                    </Col>
+                                </Row>
+                                <div class="change_pass">
+                                    <Row>
+                                        <Col>
+                                            <Form>
+                                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                                    <Form.Label>Current Password</Form.Label>
+                                                    <Form.Control type="password" placeholder="Current Password" />
+                                                </Form.Group>
+                                            </Form>
+                                        </Col>
+                                        <Col>
+                                            <Form>
+                                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                                    <Form.Label>New Password</Form.Label>
+                                                    <Form.Control type="password" placeholder="New Password" />
+                                                </Form.Group>
+                                            </Form>
+                                        </Col>
+                                        <Col>
+                                            <Form>
+                                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                                    <Form.Label>Confirm Password</Form.Label>
+                                                    <Form.Control type="password" placeholder="Confirm Password" />
+                                                </Form.Group>
+                                            </Form>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>
+                                            <button type="submit" class="btn-product btn-cart wid_200">SAVE</button>
+                                        </Col>
+                                    </Row>
+                                </div>
+                            </form>
+                        </Tab.Pane>
+                        <Tab.Pane eventKey="third">
+                            <Row>
+                                <Col>
+                                    <div class="card card-address">
+                                        <div class="change_pass">
+                                            <h5 class="card-title text-uppercase">Billing Address</h5>
+                                            <p>
+                                                John Doe<br />
+                                                Riode Company<br />
+                                                Steven street<br />
+                                                El Carjon, CA 92020
+                                            </p>
+                                            <Link to = '' ClassName="btn btn-link">Edit <i class="far fa-edit"></i></Link>
                                         </div>
                                     </div>
-
-                                    <label>Display Name *</label>
-                                    <input type="text" className="form-control mb-0" name="display_name" required="" />
-                                    <small className="d-block form-text mb-7">This will be how your name will be displayed
-                                        in the account section and in reviews</small>
-
-                                    <label>Email Address *</label>
-                                    <input type="email" className="form-control" name="email" required="" />
-                                    <fieldset>
-                                        <legend>Password Change</legend>
-                                        <label>Current password (leave blank to leave unchanged)</label>
-                                        <input type="password" className="form-control" name="current_password" />
-
-                                        <label>New password (leave blank to leave unchanged)</label>
-                                        <input type="password" className="form-control" name="new_password" />
-
-                                        <label>Confirm new password</label>
-                                        <input type="password" className="form-control" name="confirm_password" />
-                                    </fieldset>
-                                    <br/>
-                                    <button type="submit" className="btn btn-primary">SAVE CHANGES</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>     
-       
+                                </Col>
+                                <Col>
+                                    <div class="card card-address">
+                                        <div class="change_pass">
+                                            <h5 class="card-title text-uppercase">Shipping Address</h5>
+                                            <p>
+                                                John Doe<br />
+                                                Riode Company<br />
+                                                Steven street<br />
+                                                El Carjon, CA 92020
+                                            </p>
+                                            <Link to = '' ClassName="btn btn-link">Edit <i class="far fa-edit"></i></Link>
+                                        </div>
+                                    </div>
+                                </Col>
+                            </Row>
+                        </Tab.Pane>
+                    </Tab.Content>
+                    </Col>
+                </Row>
+            </Tab.Container>
+        </div>
         </>
     );
-
 }
-
-
 
 export default Accountcomponent;

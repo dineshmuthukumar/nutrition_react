@@ -1,0 +1,93 @@
+.nav-pills
+{
+    background: transparent;
+    color: #000;
+}
+.flex-column.nav.nav-pills .nav-link
+{
+    display: block;
+    padding: 1.7rem 0.8rem 1.6rem;
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1;
+    text-transform: none;
+    color: var(--black);
+    text-align: left;
+}
+.nav-pills .nav-item 
+{
+    margin: 0px !important;
+    border-bottom: 1px solid #eee;
+}
+.nav-pills .nav-link.active
+{
+    background: transparent !important;
+    color: var(--base-color) !important;
+}
+.form .form-control 
+{
+    margin-bottom: 2rem;
+    min-height: 40px;
+    font-size: 14px;
+}
+.account_form_box
+{
+    padding: 20px;
+    border-radius: 10px;
+}
+h5.card-title.text-uppercase 
+{
+    font-size: 18px;
+}
+.card-address p 
+{
+    margin-bottom: 1rem;
+    font-size: 14px;
+    line-height: 30px;
+}
+.card-address p 
+{
+    margin-bottom: 1rem;
+    font-size: 14px;
+    line-height: 30px;
+}
+.account_shadow
+{
+    padding: 4.5rem 1rem 4.2rem;
+}
+.product_banner_2
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.change_pass
+{
+    justify-content: left;
+    align-items: left;
+    text-align: left;
+    box-shadow: 0px 3px 15px #1018200d;
+    padding: 20px;
+    border-radius: 10px;
+}
+.green_color_fa
+{
+    color: green;
+    font-size: 12px;
+}
+.red_color_fa
+{
+    color: red;
+    font-size: 12px;
+}
+select.form-select
+{
+    min-height: 40px;
+    font-size: 14px;
+}
+.profile_heading
+{
+    padding: 10px 0px;
+}
