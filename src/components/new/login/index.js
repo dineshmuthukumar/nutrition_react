@@ -194,11 +194,17 @@ const Logincomponent = () => {
         // let apiInput = { ...register };
         // console.log(apiInput,"apiInput");
         dispatch(
-          user_login_with_email_thunk(register, setError, setOTP, setId)
+          user_login_with_email_thunk(
+            register,
+            setError,
+            setOTP,
+            setId,
+            setLoading
+          )
         );
         console.log(otp, "otp");
         console.log(id, "id");
-        setLoading(false);
+        //setLoading(false);
         // const result = await registerApi(apiInput);
         // console.log(result,"result");
         // if (result.status === 200) {
@@ -316,6 +322,7 @@ const Logincomponent = () => {
                     setError("");
                     setNavigate("");
                     setVerifyLoading("");
+                    setLoading(false);
                   }}
                 >
                   Login
@@ -333,6 +340,7 @@ const Logincomponent = () => {
                     setError("");
                     setNavigate("");
                     setVerifyLoading("");
+                    setLoading(false);
                   }}
                 >
                   Register
@@ -418,8 +426,9 @@ const Logincomponent = () => {
                       className="btn btn-dark btn-block btn-rounded"
                       type="submit"
                       onClick={handleLoginOTP}
+                      disabled={loading}
                     >
-                      Request OTP
+                      {loading ? "Loading" : "Request OTP"}
                     </button>
 
                     {(() => {
@@ -572,7 +581,7 @@ const Logincomponent = () => {
                         type="button"
                         onClick={handleSignUp}
                       >
-                        Register
+                        {loading ? "Loading..." : "Register"}
                       </button>
 
                       {(() => {

@@ -54,7 +54,8 @@ export const user_login_with_email_thunk = (
   input,
   returnMessage,
   setOTP,
-  setId
+  setId,
+  setLoading
 ) => {
   return async (dispatch) => {
     try {
@@ -63,11 +64,13 @@ export const user_login_with_email_thunk = (
       const result = await registerApi(input);
 
       if (result.data.statusCode === 200) {
+        setLoading(false);
         setOTP(true);
         setId(result?.data?.responseData?.user?._id);
         dispatch(user_login_otp_action());
       }
     } catch (err) {
+      setLoading(false);
       if (err?.status === 422) {
         returnMessage(err?.data?.message);
         if (err?.data?.message === "email otp locked") {

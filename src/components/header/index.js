@@ -28,6 +28,9 @@ import {
   get_cart_list_thunk,
 } from "../../redux/thunk/user_cart_thunk";
 
+import NotificationICon from "../../images/notification.png";
+import UserIcon from "../../images/user.png";
+
 // import Cart from "../cart";
 import AppHelmet from "../helmet";
 
@@ -200,7 +203,7 @@ const Header = ({
 
   const UserToggleComponent = React.forwardRef(({ onClick }, ref) => (
     <UserComponent
-      user={user.data.user}
+      user={user?.data?.user}
       sref={ref}
       onClick={(e) => {
         e.preventDefault();
@@ -221,7 +224,7 @@ const Header = ({
           setNotiRead(true);
         }}
       >
-        <img src={images.bellNotify} height={22} alt="Nofity-Bell" />
+        <img src={NotificationICon} height={25} width={25} alt="Nofity-Bell" />
 
         {!notiRead && (
           <>
@@ -926,13 +929,116 @@ const Header = ({
                     {/* </a> */}
                   </div>
                 ) : (
-                  <Link
-                    to="/login"
-                    className="nav-link nav-link-with-img border-rounded login-link d-xs-show"
-                  >
-                    <h3 className="img-cat-title mb-0">Login/Signup</h3>
-                    {/* </a> */}
-                  </Link>
+                  <>
+                    <Link
+                      to="/login"
+                      className="nav-link nav-link-with-img border-rounded login-link d-xs-show"
+                    >
+                      <h3 className="img-cat-title mb-0">Login/Signup</h3>
+                      {/* </a> */}
+                    </Link>
+                    <Dropdown
+                      autoClose={["inside", "outside"]}
+                      onToggle={(e) => {
+                        if (e) {
+                          readNotification();
+                          setNotiRead(false);
+                        }
+                      }}
+                    >
+                      <Dropdown.Toggle
+                        align="start"
+                        drop="start"
+                        as={NotificationToggleComponent}
+                      ></Dropdown.Toggle>
+
+                      <Dropdown.Menu align="end" className="noti-container">
+                        <div className="noti-header">
+                          <BiBell size={25} color={"white"} /> Notifications
+                        </div>
+                        <div className="noti-content">
+                          {/* <div className="sub-header">Today</div> */}
+
+                          {notification?.notifications.length > 0 ? (
+                            <>
+                              {notification?.notifications.map((o, i) => (
+                                <Dropdown.Item key={`noti-item${i}`}>
+                                  <NotiCard key={`noti${i}`} data={o} />
+                                </Dropdown.Item>
+                              ))}
+
+                              {notiLoading && (
+                                <div className="noti-load-more text-secondary">
+                                  Loading...
+                                </div>
+                              )}
+
+                              {notification?.next_page ? (
+                                <div
+                                  className="noti-load-more text-secondary"
+                                  role="button"
+                                  onClick={() => {
+                                    setNPage(npage + 1);
+                                    handleGetNotification(npage + 1);
+                                  }}
+                                >
+                                  See More
+                                </div>
+                              ) : (
+                                <div className="noti-load-more text-secondary">
+                                  You have reached the end
+                                </div>
+                              )}
+                            </>
+                          ) : (
+                            <div className="noti-load-more text-secondary no-notify">
+                              No notifications found
+                            </div>
+                          )}
+                        </div>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                    <Dropdown autoClose="outside" className="mx-0">
+                      <Dropdown.Toggle
+                        align="start"
+                        drop="start"
+                        as={UserToggleComponent}
+                      ></Dropdown.Toggle>
+
+                      <Dropdown.Menu align="end">
+                        <Dropdown.Item
+                          as="button"
+                          // onClick={() =>
+                          //   window.open(
+                          //     `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`,
+                          //     "_self"
+                          //   )
+                          // }
+                        >
+                          My Profile
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          as="button"
+                          // onClick={() =>
+                          //   window.open(
+                          //     `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/mynft`,
+                          //     "_self"
+                          //   )
+                          // }
+                        >
+                          My Order
+                        </Dropdown.Item>
+
+                        <Dropdown.Divider />
+                        <Dropdown.Item
+                          as="button"
+                          onClick={() => dispatch(user_logout_thunk())}
+                        >
+                          Sign Out
+                        </Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>{" "}
+                  </>
                 )}
 
                 <div className="dropdown cart-dropdown type2 mr-2">
@@ -1454,12 +1560,12 @@ const UserComponent = ({ sref, user, onClick = () => {} }) => (
   <div className="header-user-details" onClick={onClick} ref={sref}>
     <img
       className="user-image"
-      src={user.avatar_url ? user.avatar_url : images.userJPG}
+      src={UserIcon}
+      width={35}
+      height={35}
       alt="user-icon"
     />
-    <div className="user-name">
-      {currencyFormat(user?.balance, user?.currency_name)}
-    </div>
+    <div className="user-name">{"Test"}</div>
   </div>
 );
 
