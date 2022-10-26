@@ -7416,9 +7416,10 @@ to {
   opacity:1
 }
 @media (max-width:767px) {
-  .page-title {
-  font-size:3.6rem
-}
+  .page-title 
+  {
+     font-size: 20px;
+  }
 }.pagination {
   display:flex;
   align-items:center;

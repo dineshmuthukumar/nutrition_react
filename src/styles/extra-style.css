@@ -316,6 +316,14 @@ img.weak_strongest_img_absolute
     {
         line-height: 50px;
     }
+    .page-header
+    {
+        height: auto !important;
+    }
+    .page-content
+    {
+        text-align: center;
+    }
 }
 
 @media (min-width: 768px) and (max-width: 1024px)
