@@ -1651,3 +1651,33 @@ span.seperator {
     margin-right: 0.5rem;
   }
 }
+
+
+
+.fade
+{
+  opacity: 1;
+}
+.toast strong.me-auto, .toast p
+{
+  font-size: 14px;
+  color: #000;
+}
+.toast_btn
+{
+  font-size: 14px;
+}
+.fade.toast.show 
+{
+  position: fixed;
+  content: '';
+  top: 5%;
+  right: 1%;
+  z-index: 999999;
+  height: 100px;
+  background: var(--base-color);
+}
+.toast-header
+{
+  background: transparent;
+}
