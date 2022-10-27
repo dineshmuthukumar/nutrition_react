@@ -250,7 +250,7 @@ const WebContainer = () => {
         <Route exact path="/terms" component={Terms} />
         {/* <Route exact path="/my-account" component={Login} /> */}
         <Route exact path="/login" component={Login} />
-        <PrivateRoute exact path="/accounts/" component={MyAccount} />
+        <PrivateRoute exact path="/accounts" component={MyAccount} />
 
         <Route exact component={() => <Redirect to="/"></Redirect>} />
       </Switch>
@@ -275,11 +275,11 @@ const PrivateRoute = ({ component: Component, authed, ...rest }) => {
     <Route
       {...rest}
       render={(props) =>
-        // user.login ? (
+        user.login ? (
           <Component {...props} />
-        // ) : (
-        //   <Redirect to={{ pathname: "/", state: { from: props.location } }} />
-        // )
+        ) : (
+          <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+        )
       }
     />
   );

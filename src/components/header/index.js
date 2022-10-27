@@ -132,6 +132,7 @@ const Header = ({
     //   }
     // }
     getCategoryDetails();
+    handleGetNotification();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -160,26 +161,26 @@ const Header = ({
     dispatch(user_logout_thunk());
   };
 
-  const handleGetNotification = async (input) => {
+  const handleGetNotification = async () => {
     try {
       setNotiLoading(true);
-      const result = await getNotificationApi(input);
+      const result = await getNotificationApi();
       setNotiLoading(false);
-      if (input === 1) {
-        setNotification(result.data.data);
-        if (result.data.data.total > 0) {
-          setNotiRead(result.data.data.notifications_read);
-        }
-      } else {
-        setNotification({
-          ...notification,
-          notifications: [
-            ...notification.notifications,
-            ...result.data.data.notifications,
-          ],
-          next_page: result.data.data.next_page,
-        });
-      }
+      // if (input === 1) {
+      setNotification(result.data.data);
+      // if (result.data.data.total > 0) {
+      //   setNotiRead(result.data.data.notifications_read);
+      // }
+      // } else {
+      //   setNotification({
+      //     ...notification,
+      //     notifications: [
+      //       ...notification.notifications,
+      //       ...result.data.data.notifications,
+      //     ],
+      //     next_page: result.data.data.next_page,
+      //   });
+      // }
     } catch (error) {
       setNotiLoading(false);
 
@@ -203,7 +204,7 @@ const Header = ({
 
   const UserToggleComponent = React.forwardRef(({ onClick }, ref) => (
     <UserComponent
-      user={user?.data?.user}
+      user={user}
       sref={ref}
       onClick={(e) => {
         e.preventDefault();
@@ -921,27 +922,12 @@ const Header = ({
                 {/* <a className="nav-link nav-link-with-img border-rounded login-link d-xs-show" href="ajax/login.html" data-toggle="login-modal" */}
                 {/* title="login"> */}
                 {user?.login ? (
-                  <div
-                    className="nav-link nav-link-with-img border-rounded login-link d-xs-show"
-                    onClick={() => handlelogout()}
-                  >
-                    <h3 className="img-cat-title mb-0">Logout</h3>
-                    {/* </a> */}
-                  </div>
-                ) : (
                   <>
-                    <Link
-                      to="/login"
-                      className="nav-link nav-link-with-img border-rounded login-link d-xs-show"
-                    >
-                      <h3 className="img-cat-title mb-0">Login/Signup</h3>
-                      {/* </a> */}
-                    </Link>
                     <Dropdown
                       autoClose={["inside", "outside"]}
                       onToggle={(e) => {
                         if (e) {
-                          readNotification();
+                          //readNotification();
                           setNotiRead(false);
                         }
                       }}
@@ -1008,23 +994,23 @@ const Header = ({
                       <Dropdown.Menu align="end">
                         <Dropdown.Item
                           as="button"
-                          // onClick={() =>
-                          //   window.open(
-                          //     `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`,
-                          //     "_self"
-                          //   )
-                          // }
+                          onClick={() =>
+                            window.open(
+                              `${process.env.REACT_APP_URL}/accounts`,
+                              "_self"
+                            )
+                          }
                         >
                           My Profile
                         </Dropdown.Item>
                         <Dropdown.Item
                           as="button"
-                          // onClick={() =>
-                          //   window.open(
-                          //     `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/mynft`,
-                          //     "_self"
-                          //   )
-                          // }
+                          onClick={() =>
+                            window.open(
+                              `${process.env.REACT_APP_URL}/accounts`,
+                              "_self"
+                            )
+                          }
                         >
                           My Order
                         </Dropdown.Item>
@@ -1038,6 +1024,16 @@ const Header = ({
                         </Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>{" "}
+                  </>
+                ) : (
+                  <>
+                    <Link
+                      to="/login"
+                      className="nav-link nav-link-with-img border-rounded login-link d-xs-show"
+                    >
+                      <h3 className="img-cat-title mb-0">Login/Signup</h3>
+                      {/* </a> */}
+                    </Link>
                   </>
                 )}
 
@@ -1560,7 +1556,7 @@ const UserComponent = ({ sref, user, onClick = () => {} }) => (
   <div className="header-user-details" onClick={onClick} ref={sref}>
     <img
       className="user-image"
-      src={UserIcon}
+      src={user?.data?.profilePhoto}
       width={35}
       height={35}
       alt="user-icon"

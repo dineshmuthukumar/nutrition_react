@@ -17,16 +17,14 @@ export const userApi = (token) =>
 
 export const homeContentApi = (token) => baseAxios.get("/homecontent");
 
-
-
+export const getNotificationApi = (page) => baseAxios.get(`/notifications`);
 
 export const getsubCategoryApi = (subcategoryId) =>
   baseAxios.get(`/subcategory/details?subCategoryId=${subcategoryId}`);
 
 export const signOutApi = () => baseAxios.delete("/logout");
 
-export const getNotificationApi = (page) =>
-  baseAxios.get(`/users/notifications?page=${page}`);
+
 
 export const readNotificationApi = () =>
   baseAxios.post("/users/notification_read");
