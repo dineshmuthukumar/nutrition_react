@@ -8,15 +8,22 @@ const ProductBannerOne = ({ homeContent }) => {
         <div className="container">
           <div className="row product_banner_2">
             <div className="col-sm-6 text-center">
-              <img src={home_two} className="best_img" />
+              {homeContent?.section?.fourth?.image && (
+                <img
+                  src={`http://54.177.7.240${homeContent?.section?.fourth?.image}`}
+                  className="best_img"
+                />
+              )}
             </div>
             <div className="col-sm-6">
               <h1>{homeContent?.section?.fourth?.header}</h1>
+              <h3 className="py-2">
+                {homeContent?.section?.fourth?.description}
+              </h3>
               <br></br>
-
               {homeContent?.section?.fourth?.list &&
                 homeContent?.section?.fourth?.list?.map((fourthContentList) => {
-                  return <p>{fourthContentList} </p>;
+                  return <p className="py-3">{fourthContentList} </p>;
                 })}
               {/* <p>
                 While People strive to mend their health concerns, LIVEN
@@ -34,16 +41,16 @@ const ProductBannerOne = ({ homeContent }) => {
                 reboots the wellness.
               </p> */}
               <div className="row">
-                {homeContent?.section?.fifth?.imageList &&
-                  homeContent?.section?.fifth?.imageList?.map(
-                    (fifthproductcontentList) => {
+                {homeContent?.section?.fourth?.imageList &&
+                  homeContent?.section?.fourth?.imageList?.map(
+                    (fourthproductcontentList) => {
                       return (
                         <div className="col-sm-6">
                           <div className="icon-box icon-box-side">
                             <i className="icon-box-icon d-icon-truck"></i>
                             <div className="icon-box-content">
                               <h4 className="icon-box-title text-capitalize ls-normal">
-                                {fifthproductcontentList.text}
+                                {fourthproductcontentList.text}
                               </h4>
                             </div>
                           </div>

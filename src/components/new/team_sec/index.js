@@ -2,10 +2,7 @@ import React, { useEffect, useState } from "react";
 import pro_bg2 from "../../../images/new-images/demos/demo-food2/products/pro_bg2.png";
 import nutri_leaf from "../../../images/new-images/demos/demo-food2/products/nutri_leaf.png";
 
-const TeamSection = () => {
-  
-
-
+const TeamSection = ({ homeContent }) => {
   return (
     <>
       <section
@@ -14,15 +11,9 @@ const TeamSection = () => {
       >
         <div className="container">
           <h2 className="title-echo">
-            <span>
-              Do Not Miss Out! Make a Glance of our Real Customer
-              Transformations.
-            </span>
+            <span>{homeContent?.section?.sixth?.title}</span>
           </h2>
-          <p>
-            Listen to real people before TRUSTING us! We believe Experience
-            teaches BEST!
-          </p>
+          <p>{homeContent?.section?.sixth?.description}</p>
         </div>
       </section>
     </>

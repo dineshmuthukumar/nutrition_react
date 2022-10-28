@@ -73,7 +73,12 @@ const ProductBanner = ({ homeContent }) => {
               </div> */}
             </div>
             <div className="col-sm-6 text-center">
-              <img src={home_one} />
+              {homeContent?.section?.first?.image && (
+                <img
+                  src={`http://54.177.7.240${homeContent?.section?.first?.image}`}
+                  alt="First Banner"
+                />
+              )}
             </div>
           </div>
         </div>

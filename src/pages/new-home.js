@@ -146,8 +146,8 @@ const NewHome = () => {
           <OurIdea homeContent={homeContent} />
           <ProductBannerOne homeContent={homeContent} />
           <InstagramSection homeContent={homeContent} />
-          <TeamSection />
-          <FirstBannerSection />
+          <TeamSection homeContent={homeContent} />
+          <FirstBannerSection homeContent={homeContent} />
           <Footer />
           {/* <Banner list={list} /> */}
           {/* <HotCollections /> */}

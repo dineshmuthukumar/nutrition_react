@@ -23,12 +23,20 @@ const OurIdea = ({ homeContent }) => {
                     <div className="col-xl-3 col-sm-6 col-12 category">
                       <a href="product.html">
                         <figure className="category-media">
-                          <img
+                          {/* <img
                             src={fit_1}
                             alt="category"
                             width="200"
                             height="200"
-                          />
+                          /> */}
+                          {thirdContentList?.image && (
+                            <img
+                              src={`http://54.177.7.240${thirdContentList?.image}`}
+                              alt="category"
+                              width="200"
+                              height="200"
+                            />
+                          )}
                         </figure>
                       </a>
                       <div className="category-content">

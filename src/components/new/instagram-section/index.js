@@ -18,9 +18,9 @@ const InstagramSection = ({ homeContent }) => {
       >
         <div className="container">
           <h2 className="title-echo mb-1">
-            <span>{homeContent?.section?.sixth?.title}</span>
+            <span>{homeContent?.section?.fifth?.title}</span>
           </h2>
-          <p>{homeContent?.section?.sixth?.description}</p>
+          <p>{homeContent?.section?.fifth?.description}</p>
           {/* <div
                                 className="owl-carousel owl-theme row cols-xl-5 cols-lg-4 cols-sm-3 cols-2"
                                 data-owl-options="{
@@ -69,7 +69,28 @@ const InstagramSection = ({ homeContent }) => {
             autoplayTimeout={2000}
             autoplayHoverPause={true}
           >
-            <figure className="instagram">
+            {homeContent?.section?.fifth?.imageList &&
+              homeContent?.section?.fifth?.imageList?.map(
+                (fifthproductcontentList) => {
+                  return (
+                    <figure className="instagram">
+                      <a href="product.html">
+                        <img
+                          src={`http://54.177.7.240${fifthproductcontentList.image}`}
+                          alt="Instagram"
+                          width="220"
+                          height="220"
+                        />
+                        <br />
+                        <span className="categories_title_name">
+                          <h5>{fifthproductcontentList.text}</h5>
+                        </span>
+                      </a>
+                    </figure>
+                  );
+                }
+              )}
+            {/* <figure className="instagram">
               <a href="product.html">
                 <img src={pro_1} alt="Instagram" width="220" height="220" />
                 <br />
@@ -113,7 +134,7 @@ const InstagramSection = ({ homeContent }) => {
                   <h5>Effervescent</h5>
                 </span>
               </a>
-            </figure>
+            </figure> */}
           </OwlCarousel>
         </div>
       </section>
