@@ -10,7 +10,9 @@ import { Link } from "react-router-dom";
 
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import Toast from 'react-bootstrap/Toast';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import "./style.scss";
 import { validateEmail } from "../../utils/common";
@@ -89,6 +91,16 @@ const Footer = () => {
 
 const [show, setShow] = useState(false);
 
+
+// Toast Message Start
+const showToastMessage = () => {
+  toast.success('Success Notification !', {
+      position: toast.POSITION.TOP_RIGHT
+  });
+};
+// Toast Message End
+
+
   return (
     <>
       <div className="footer">
@@ -96,9 +108,7 @@ const [show, setShow] = useState(false);
           <div className="footer-middle">
             <div className="row foot_white_logo">
               <div className="col-sm-12 text-center">
-                <a href="#" className="logo-footer">
-                  <img src={livenlogofooter} alt="logo-footer" width="100" height="auto" />
-                </a>
+                <Link to="" className="logo-footer"><img src={livenlogofooter} alt="logo-footer" width="100" height="auto" /></Link>
               </div>
             </div>
             <div className="row">
@@ -221,14 +231,8 @@ const [show, setShow] = useState(false);
                   {/* Toast Message Start */}
                   <Row>
                     <Col xs={12}>
-                      <Toast onClose={() => setShow(false)} show={show} delay={3000} autohide>
-                        <Toast.Header>
-                          <strong className="me-auto">Bootstrap</strong>
-                          <small><p>11 mins ago</p></small>
-                        </Toast.Header>
-                        <Toast.Body><p>Woohoo, you're reading this text in a Toast!</p></Toast.Body>
-                      </Toast>
-                      <Button className="toast_btn" onClick={() => setShow(true)}>Show Toast</Button>
+                      <button className="btn btn-primary btn-md" onClick={showToastMessage}>Toast</button>
+                      <ToastContainer />
                     </Col>
                   </Row>
                   {/* Toast Message End */}
