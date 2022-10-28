@@ -39,6 +39,7 @@
     "react-phone-input-2": "^2.15.1",
     "react-player": "^2.11.0",
     "react-qr-code": "^2.0.8",
+    "react-radio-buttons": "^1.2.2",
     "react-redux": "^7.2.9",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^5.3.4",

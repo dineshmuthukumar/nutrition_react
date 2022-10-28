@@ -5,6 +5,10 @@ import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
 import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
+
 import { useSelector, useDispatch } from "react-redux";
 import InputPhone from "../../input-phone";
 import "./styles.scss";
@@ -12,26 +16,30 @@ import Logo1 from "../../../images/banner-img.png";
 
 const Accountcomponent = () => {
   const user = useSelector((state) => state?.user);
-  console.log(user?.data, "user");
+  // console.log(user?.data, "user");
+  const [startDate, setStartDate] = useState(new Date());
+  const selectGender = (e) => {
+    console.log(e, "e");
+  };
 
   const [date, setDate] = useState(new Date());
 
   return (
     <>
       <div ClassName="profile_page">
-        <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+        <Tab.Container id="left-tabs-example" defaultActiveKey="second">
           <Row>
             <Col sm={3} className="account_form_box">
               <Nav variant="pills" className="flex-column">
                 <Nav.Item>
+                  <Nav.Link eventKey="second">My Account</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
                   <Nav.Link eventKey="first">My Orders</Nav.Link>
                 </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey="second">Profile</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
+                {/* <Nav.Item>
                   <Nav.Link eventKey="third">Address</Nav.Link>
-                </Nav.Item>
+                </Nav.Item> */}
               </Nav>
             </Col>
             <Col sm={9} className="account_form_box">
@@ -167,17 +175,13 @@ const Accountcomponent = () => {
                               className="mb-3"
                               controlId="exampleForm.ControlInput1"
                             >
-                              {/* <Form.Label>Mobile Number</Form.Label>
-                              <Form.Control
-                                type="tel"
-                                placeholder="Mobile Number"
-                                value={user?.data?.mobile}
-                              /> */}
+                             
 
                               <InputPhone
                                 title={"Mobile"}
                                 defaultCountry={"+91"}
                                 value={user?.data?.mobile}
+
                                 // required={lvalidation.phone_no}
                                 //onChange={(e, c_code) => {
                                 // setLogin({
@@ -200,38 +204,11 @@ const Accountcomponent = () => {
                             </Form.Group>
                           </Form>
                         </Col>
-
-
-                        {/* <Col>
-                          <Form>
-                            <Form.Group
-                              className="mb-3"
-                              controlId="exampleForm.ControlInput1"
-                            >
-                              <Form.Label>User Name</Form.Label>
-                              <Form.Control
-                                type="text"
-                                placeholder="User Name"
-                              />
-                            </Form.Group>
-                          </Form>
-                        </Col> */}
+                        
                       </Row>
                       <Row>
-                        {/* <Col sm={4}>
-                          <Form>
-                            <Form.Group
-                              className="mb-3"
-                              controlId="exampleForm.ControlInput1"
-                            >
-                              <Form.Label>Email Address</Form.Label>
-                              <Form.Control
-                                type="email"
-                                placeholder="name@example.com"
-                              />
-                            </Form.Group>
-                          </Form>
-                        </Col> */}
+                        
+                     
                         <Col sm={4}>
                           <Form>
                             <Form.Label>DOB</Form.Label>   
@@ -437,7 +414,110 @@ const Accountcomponent = () => {
                     </div>
                   </form>
                 </Tab.Pane>
-                <Tab.Pane eventKey="third">
+                <Tab.Pane eventKey="first">
+                  <div class="row product_banner_2 text-left">
+                    <div class="col-sm-2">
+                      <img
+                        src="http://localhost:4002/static/media/home_one.d0bce35b.jpg"
+                        width="100"
+                        height="100"
+                      ></img>
+                    </div>
+                    <div class="col-sm-4">
+                      <p>Converse Training Shoes</p>
+                    </div>
+                    <div class="col-sm-3">
+                      <p>$129.99</p>
+                    </div>
+                    <div class="col-sm-3">
+                      <h4>
+                        <i
+                          class="fa fa-circle green_color_fa"
+                          aria-hidden="true"
+                        ></i>{" "}
+                        Delivered on Oct 25
+                      </h4>
+                      <p>Your item has been delivered</p>
+                    </div>
+                  </div>
+                  <div class="row product_banner_2 text-left">
+                    <div class="col-sm-2">
+                      <img
+                        src="http://localhost:4002/static/media/home_one.d0bce35b.jpg"
+                        width="100"
+                        height="100"
+                      ></img>
+                    </div>
+                    <div class="col-sm-4">
+                      <p>Converse Training Shoes</p>
+                    </div>
+                    <div class="col-sm-3">
+                      <p>$129.99</p>
+                    </div>
+                    <div class="col-sm-3">
+                      <h4>
+                        <i
+                          class="fa fa-circle red_color_fa"
+                          aria-hidden="true"
+                        ></i>{" "}
+                        Delivered on Oct 25
+                      </h4>
+                      <p>Your item has been delivered</p>
+                    </div>
+                  </div>
+                  <div class="row product_banner_2 text-left">
+                    <div class="col-sm-2">
+                      <img
+                        src="http://localhost:4002/static/media/home_one.d0bce35b.jpg"
+                        width="100"
+                        height="100"
+                      ></img>
+                    </div>
+                    <div class="col-sm-4">
+                      <p>Converse Training Shoes</p>
+                    </div>
+                    <div class="col-sm-3">
+                      <p>$129.99</p>
+                    </div>
+                    <div class="col-sm-3">
+                      <h4>
+                        <i
+                          class="fa fa-circle green_color_fa"
+                          aria-hidden="true"
+                        ></i>{" "}
+                        Delivered on Oct 25
+                      </h4>
+                      <p>Your item has been delivered</p>
+                    </div>
+                  </div>
+                  <div class="row product_banner_2 text-left">
+                    <div class="col-sm-2">
+                      <img
+                        src="http://localhost:4002/static/media/home_one.d0bce35b.jpg"
+                        width="100"
+                        height="100"
+                      ></img>
+                    </div>
+                    <div class="col-sm-4">
+                      <p>Converse Training Shoes</p>
+                    </div>
+                    <div class="col-sm-3">
+                      <p>$129.99</p>
+                    </div>
+                    <div class="col-sm-3">
+                      <h4>
+                        <i
+                          class="fa fa-circle red_color_fa"
+                          aria-hidden="true"
+                        ></i>{" "}
+                        Delivered on Oct 25
+                      </h4>
+                      <p>Your item has been delivered</p>
+                    </div>
+                  </div>
+                </Tab.Pane>
+
+                {/* <Tab.Pane eventKey="third">
                   <Row>
                     <Col>
                       <div class="card card-address">
@@ -482,7 +562,7 @@ const Accountcomponent = () => {
                       </div>
                     </Col>
                   </Row>
-                </Tab.Pane>
+                </Tab.Pane> */}
               </Tab.Content>
             </Col>
           </Row>

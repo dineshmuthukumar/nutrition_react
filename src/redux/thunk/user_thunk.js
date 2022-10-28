@@ -12,7 +12,14 @@ import {
   user_login_action_failure,
 } from "../actions/user_action";
 
-export const user_login_thunk = (input, returnMessage, setOTP, setId) => {
+export const user_login_thunk = (
+  input,
+  returnMessage,
+  setOTP,
+  setId,
+  setShow,
+  setMessage
+) => {
   return async (dispatch) => {
     try {
       dispatch(user_login_action_request());
@@ -22,11 +29,16 @@ export const user_login_thunk = (input, returnMessage, setOTP, setId) => {
       if (result.data.statusCode === 200) {
         setOTP(true);
         setId(result?.data?.responseData?.user?._id);
+        setShow(true);
+        setMessage("OTP sent");
         dispatch(user_login_otp_action());
       }
     } catch (err) {
       if (err?.status === 422) {
+        setShow(true);
+        setMessage(err?.data?.message);
         returnMessage(err?.data?.message);
+
         if (err?.data?.message === "email otp locked") {
           returnMessage(
             "Account lock for security reasons, please login again after 10 mins"

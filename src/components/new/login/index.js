@@ -8,6 +8,10 @@ import InputOTP from "../../input-otp";
 import { useLocation, Redirect } from "react-router-dom";
 import { useHistory } from "react-router";
 
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import Toast from "react-bootstrap/Toast";
+
 import { getCookies, setCookies } from "../../../utils/cookies";
 import {
   user_login_with_email_thunk,
@@ -31,6 +35,8 @@ import { resendOtpApi, LoginWithOtp } from "../../../api/base-methods";
 import "./styles.scss";
 
 const Logincomponent = () => {
+  const [show, setShow] = useState(false);
+  const [message, setMessage] = useState("");
   const { user } = useSelector((state) => state);
   const history = useHistory();
   const location = useLocation();
@@ -265,16 +271,28 @@ const Logincomponent = () => {
       setError("Please enter the full OTP received through your email.");
     }
   };
+  const handleResendOTP = async () => {
+    dispatch(
+      user_login_thunk(login, setError, setOTP, setId, setShow, setMessage)
+    );
+    // setShow(true);
+    // setMessage("OTP Sent");
+  };
   const handleLoginOTP = async () => {
     if (LogincheckValidation()) {
       try {
         setLoading(true);
+        setError("");
         // let apiInput = { ...register };
         // console.log(apiInput,"apiInput");
-        dispatch(user_login_thunk(login, setError, setOTP, setId));
+        dispatch(
+          user_login_thunk(login, setError, setOTP, setId, setShow, setMessage)
+        );
         console.log(otp, "otp");
         console.log(id, "id");
         setLoading(false);
+        // setShow(true);
+        // setMessage("OTP Sent");
         // const result = await registerApi(apiInput);
         // console.log(result,"result");
         // if (result.status === 200) {
@@ -353,29 +371,56 @@ const Logincomponent = () => {
                 id="signin"
               >
                 {otp ? (
-                  <div>
-                    <h1>Enter the OTP</h1>{" "}
-                    <div onClick={() => setOTP(false)}>Change</div>
-                    <div className="form-group">
-                      <InputOTP
-                        onChange={(e) => setOTPValue(e)}
-                        value={otpValue}
-                      />
-                    </div>
-                    <button
-                      type="button"
-                      className="bl_btn"
-                      onClick={handleVerifyOTP}
-                      disabled={verifyLoading || navigate}
-                    >
-                      {navigate ? (
-                        "Verified Successfully, please wait..."
-                      ) : (
-                        <>{verifyLoading ? "Verifying..." : "Continue"}</>
+                  <>
+                    <div>
+                      <h1>Enter the OTP</h1>{" "}
+                      <div onClick={() => setOTP(false)}>Change</div>
+                      <div className="form-group">
+                        <InputOTP
+                          onChange={(e) => setOTPValue(e)}
+                          value={otpValue}
+                        />
+                      </div>
+                      <button
+                        type="button"
+                        className="bl_btn"
+                        onClick={handleVerifyOTP}
+                        disabled={verifyLoading || navigate}
+                      >
+                        {navigate ? (
+                          "Verified Successfully, please wait..."
+                        ) : (
+                          <>{verifyLoading ? "Verifying..." : "Continue"}</>
+                        )}
+                      </button>
+                      {error && (
+                        <p className="error_text text-center">{error}</p>
                       )}
-                    </button>
-                    {error && <p className="error_text text-center">{error}</p>}
-                  </div>
+                    </div>
+                    <div className="form-footer py-3">
+                      <div className="form-checkbox">
+                        <input
+                          type="checkbox"
+                          className="custom-checkbox"
+                          id="signin-remember"
+                          name="signin-remember"
+                        />
+                        <label
+                          className="form-control-label"
+                          for="signin-remember"
+                        >
+                          Remember me
+                        </label>
+                      </div>
+                      <a
+                        href="#"
+                        className="lost-link"
+                        onClick={() => handleResendOTP()}
+                      >
+                        Resend code
+                      </a>
+                    </div>
+                  </>
                 ) : (
                   <div>
                     <div className="form-group">
@@ -403,25 +448,7 @@ const Logincomponent = () => {
                         </p>
                       )}
                     </div>
-                    <div className="form-footer">
-                      <div className="form-checkbox">
-                        <input
-                          type="checkbox"
-                          className="custom-checkbox"
-                          id="signin-remember"
-                          name="signin-remember"
-                        />
-                        <label
-                          className="form-control-label"
-                          for="signin-remember"
-                        >
-                          Remember me
-                        </label>
-                      </div>
-                      <a href="#" className="lost-link">
-                        Resend code
-                      </a>
-                    </div>
+
                     <button
                       className="btn btn-dark btn-block btn-rounded"
                       type="submit"
@@ -612,6 +639,32 @@ const Logincomponent = () => {
                 )}
               </div>
             </div>
+
+            <Col sm={4}>
+              {/* Toast Message Start */}
+              <Row>
+                <Col xs={6}>
+                  <Toast
+                    onClose={() => setShow(false)}
+                    show={show}
+                    delay={3000}
+                    autohide
+                  >
+                    {/* <Toast.Header>
+                      <strong className="me-auto">Bootstrap</strong>
+                      <small>
+                        <p>11 mins ago</p>
+                      </small>
+                    </Toast.Header> */}
+                    <Toast.Body>
+                      <p>{message}</p>
+                    </Toast.Body>
+                  </Toast>
+                  {/* <Button className="toast_btn" onClick={() => setShow(true)}>Show Toast</Button> */}
+                </Col>
+              </Row>
+              {/* Toast Message End */}
+            </Col>
           </div>
         </div>
       </div>

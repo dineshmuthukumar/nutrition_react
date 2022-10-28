@@ -14,6 +14,7 @@ import Row from 'react-bootstrap/Row';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 import "./style.scss";
 import { validateEmail } from "../../utils/common";
 import { subscribeApi } from "../../api/base-methods";
@@ -119,18 +120,29 @@ const showToastMessage = () => {
                   Tamil Nadu,India - 600071.
                 </p>
                 <div className="d-flex-footer">
-                  <p><i className="fa fa-phone" aria-hidden="true"></i> +91 7871 988 988</p>
+                  <p>
+                    <i className="fa fa-phone" aria-hidden="true"></i> +91 7871
+                    988 988
+                  </p>
                   <span className="mail_footer">
-                    <a href=""><i className="fa fa-envelope" aria-hidden="true"></i>{" "}support@livenscience.com</a>
+                    <a href="">
+                      <i className="fa fa-envelope" aria-hidden="true"></i>{" "}
+                      support@livenscience.com
+                    </a>
                   </span>
                 </div>
               </div>
               <div className="col-sm-6">
                 <div className="widget widget-newsletter form-wrapper">
                   <div className="newsletter-info">
-                    <h4 className="widget-title">For Exclusive Information <br />& Offers</h4>
+                    <h4 className="widget-title">
+                      For Exclusive Information <br />& Offers
+                    </h4>
                   </div>
-                  <form action="#" className="input-wrapper input-wrapper-inline">
+                  <form
+                    action="#"
+                    className="input-wrapper input-wrapper-inline"
+                  >
                     <input
                       type="email"
                       className="form-control pl-4"
@@ -150,15 +162,30 @@ const showToastMessage = () => {
                 <div className="row border-top col-md-10">
                   <div className="col-sm-5 text-center">
                     <div className="social-links links">
-                      <a href="#" className="social-link social-facebook fab fa-facebook-f" title="Social Link"></a>
-                      <a href="#" className="social-link social-twitter fab fa-twitter" title="Social Link"></a>
-                      <a href="#" className="social-link social-instagram fab fa-instagram" title="Social Link"></a>
-                      <a href="#" className="social-link social-youtube fab fa-youtube" title="Social Link"></a>
+                      <a
+                        href="#"
+                        className="social-link social-facebook fab fa-facebook-f"
+                        title="Social Link"
+                      ></a>
+                      <a
+                        href="#"
+                        className="social-link social-twitter fab fa-twitter"
+                        title="Social Link"
+                      ></a>
+                      <a
+                        href="#"
+                        className="social-link social-instagram fab fa-instagram"
+                        title="Social Link"
+                      ></a>
+                      <a
+                        href="#"
+                        className="social-link social-youtube fab fa-youtube"
+                        title="Social Link"
+                      ></a>
                       {/* <FaFacebook color="royalblue" size={96} /> */}
                     </div>
                   </div>
-                  <div className="col-sm-2 text-center mobile_d_none">
-                  </div>
+                  <div className="col-sm-2 text-center mobile_d_none"></div>
                 </div>
               </div>
             </div>
@@ -167,11 +194,31 @@ const showToastMessage = () => {
                 <div className="widget widget-contact">
                   <h4 className="widget-title">Know Us</h4>
                   <ul className="widget-body">
-                    <li><Link to = '' ClassName="btn btn-link">Who We Are</Link></li>
-                    <li><Link to = '' ClassName="btn btn-link">Where we source?</Link></li>
-                    <li><Link to = '' ClassName="btn btn-link">Our Promise</Link></li>
-                    <li><Link to = '' ClassName="btn btn-link">Risk-Free trial</Link></li>
-                    <li><Link to = '' ClassName="btn btn-link">Rewards</Link></li>
+                    <li>
+                      <Link to="" ClassName="btn btn-link">
+                        Who We Are
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="" ClassName="btn btn-link">
+                        Where we source?
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="" ClassName="btn btn-link">
+                        Our Promise
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="" ClassName="btn btn-link">
+                        Risk-Free trial
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="" ClassName="btn btn-link">
+                        Rewards
+                      </Link>
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -207,22 +254,38 @@ const showToastMessage = () => {
                 <div className="widget widget-contact">
                   <h4 className="widget-title">Explore More</h4>
                   <ul className="widget-body">
-                    <li><Link to="/blog">Blog</Link></li>
-                    <li><Link to="/">Consult</Link></li>
-                    <li><Link to="/">Testimonials</Link></li>
-                    <li><Link to="/privacy">Privacy Policy</Link></li>
-                    <li><Link to="/terms">Terms & Conditions</Link></li>
-                    <li><Link to="/">Return & Refund</Link></li>
-                    <li><Link to="/">Disclaimers</Link></li>
-                    <li><Link to="/">Contact US</Link></li>
+                    <li>
+                      <Link to="/blog">Blog</Link>
+                    </li>
+                    <li>
+                      <Link to="/">Consult</Link>
+                    </li>
+                    <li>
+                      <Link to="/">Testimonials</Link>
+                    </li>
+                    <li>
+                      <Link to="/privacy">Privacy Policy</Link>
+                    </li>
+                    <li>
+                      <Link to="/terms">Terms & Conditions</Link>
+                    </li>
+                    <li>
+                      <Link to="/">Return & Refund</Link>
+                    </li>
+                    <li>
+                      <Link to="/">Disclaimers</Link>
+                    </li>
+                    <li>
+                      <Link to="/">Contact US</Link>
+                    </li>
                   </ul>
                 </div>
               </div>
             </div>
           </div>
           <div className="footer-bottom">
-              <Row>
-                <Col sm={8}>
+            <Row>
+              <Col sm={8}>
                 <div className="footer-center">
                   <p className="copyright">Copyright &copy; 2022. Nutrition</p>
                 </div>
