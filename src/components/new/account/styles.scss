@@ -92,7 +92,18 @@ select.form-select
     padding: 10px 0px;
 }
 
-
+.gender_list input[type=radio]~label:after, input[type=radio]~label:before
+{
+    display: none;
+}
+.gender_list input[type=radio]~label 
+{
+    padding-left: 1rem;
+}
+.form-label, label.input-title
+{
+    margin-bottom: 0.5rem;
+}
 
 
 @media (min-width: 320px) and (max-width: 767px)

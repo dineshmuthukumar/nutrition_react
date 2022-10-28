@@ -8,10 +8,13 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import InputPhone from "../../input-phone";
 import "./styles.scss";
+import Logo1 from "../../../images/banner-img.png";
 
 const Accountcomponent = () => {
   const user = useSelector((state) => state?.user);
   console.log(user?.data, "user");
+
+  const [date, setDate] = useState(new Date());
 
   return (
     <>
@@ -36,11 +39,7 @@ const Accountcomponent = () => {
                 <Tab.Pane eventKey="first">
                   <div class="row product_banner_2 text-left">
                     <div class="col-sm-2">
-                      <img
-                        src="http://localhost:4002/static/media/home_one.d0bce35b.jpg"
-                        width="100"
-                        height="100"
-                      ></img>
+                      <img src={Logo1} alt="logo" width="100" height="100" />
                     </div>
                     <div class="col-sm-4">
                       <p>Converse Training Shoes</p>
@@ -61,11 +60,7 @@ const Accountcomponent = () => {
                   </div>
                   <div class="row product_banner_2 text-left">
                     <div class="col-sm-2">
-                      <img
-                        src="http://localhost:4002/static/media/home_one.d0bce35b.jpg"
-                        width="100"
-                        height="100"
-                      ></img>
+                      <img src={Logo1} alt="logo" width="100" height="100" />
                     </div>
                     <div class="col-sm-4">
                       <p>Converse Training Shoes</p>
@@ -86,11 +81,7 @@ const Accountcomponent = () => {
                   </div>
                   <div class="row product_banner_2 text-left">
                     <div class="col-sm-2">
-                      <img
-                        src="http://localhost:4002/static/media/home_one.d0bce35b.jpg"
-                        width="100"
-                        height="100"
-                      ></img>
+                      <img src={Logo1} alt="logo" width="100" height="100" />
                     </div>
                     <div class="col-sm-4">
                       <p>Converse Training Shoes</p>
@@ -111,11 +102,7 @@ const Accountcomponent = () => {
                   </div>
                   <div class="row product_banner_2 text-left">
                     <div class="col-sm-2">
-                      <img
-                        src="http://localhost:4002/static/media/home_one.d0bce35b.jpg"
-                        width="100"
-                        height="100"
-                      ></img>
+                      <img src={Logo1} alt="logo" width="100" height="100" />
                     </div>
                     <div class="col-sm-4">
                       <p>Converse Training Shoes</p>
@@ -144,7 +131,7 @@ const Accountcomponent = () => {
                     </Row>
                     <div class="change_pass">
                       <Row>
-                        <Col>
+                        <Col sm={4}>
                           <Form>
                             <Form.Group
                               className="mb-3"
@@ -159,7 +146,7 @@ const Accountcomponent = () => {
                             </Form.Group>
                           </Form>
                         </Col>
-                        <Col>
+                        <Col sm={4}>
                           <Form>
                             <Form.Group
                               className="mb-3"
@@ -174,36 +161,6 @@ const Accountcomponent = () => {
                             </Form.Group>
                           </Form>
                         </Col>
-                        {/* <Col>
-                          <Form>
-                            <Form.Group
-                              className="mb-3"
-                              controlId="exampleForm.ControlInput1"
-                            >
-                              <Form.Label>User Name</Form.Label>
-                              <Form.Control
-                                type="text"
-                                placeholder="User Name"
-                              />
-                            </Form.Group>
-                          </Form>
-                        </Col> */}
-                      </Row>
-                      <Row>
-                        {/* <Col sm={4}>
-                          <Form>
-                            <Form.Group
-                              className="mb-3"
-                              controlId="exampleForm.ControlInput1"
-                            >
-                              <Form.Label>Email Address</Form.Label>
-                              <Form.Control
-                                type="email"
-                                placeholder="name@example.com"
-                              />
-                            </Form.Group>
-                          </Form>
-                        </Col> */}
                         <Col sm={4}>
                           <Form>
                             <Form.Group
@@ -241,6 +198,55 @@ const Accountcomponent = () => {
                                 </p>
                             )} */}
                             </Form.Group>
+                          </Form>
+                        </Col>
+
+
+                        {/* <Col>
+                          <Form>
+                            <Form.Group
+                              className="mb-3"
+                              controlId="exampleForm.ControlInput1"
+                            >
+                              <Form.Label>User Name</Form.Label>
+                              <Form.Control
+                                type="text"
+                                placeholder="User Name"
+                              />
+                            </Form.Group>
+                          </Form>
+                        </Col> */}
+                      </Row>
+                      <Row>
+                        {/* <Col sm={4}>
+                          <Form>
+                            <Form.Group
+                              className="mb-3"
+                              controlId="exampleForm.ControlInput1"
+                            >
+                              <Form.Label>Email Address</Form.Label>
+                              <Form.Control
+                                type="email"
+                                placeholder="name@example.com"
+                              />
+                            </Form.Group>
+                          </Form>
+                        </Col> */}
+                        <Col sm={4}>
+                          <Form>
+                            <Form.Label>DOB</Form.Label>   
+                            <Form.Control className="form-control" type="date" name="datepic" placeholder="DateRange" value={date} onChange={(e) => setDate(e.target.value)} />
+                          </Form>
+                        </Col>
+                        <Col sm={4}>
+                          <Form className="gender_list">
+                          <Form.Label>Gender</Form.Label>
+                          {['radio'].map((type) => (
+                            <div key={`inline-${type}`} className="mt-3">
+                              <Form.Check inline label="Male" name="group1" type={type} id={`inline-${type}-1`}/>
+                              <Form.Check inline label="Female" name="group1" type={type} id={`inline-${type}-2`}/>
+                            </div>
+                          ))}
                           </Form>
                         </Col>
                       </Row>
