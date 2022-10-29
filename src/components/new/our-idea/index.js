@@ -31,11 +31,7 @@ const OurIdea = ({ homeContent }) => {
                           /> */}
                           {thirdContentList?.image && (
                             <img
-                              src={`http://54.177.7.240${thirdContentList?.image}`}
-                              alt="category"
-                              width="200"
-                              height="200"
-                            />
+                              src={`http://54.177.7.240${thirdContentList?.image}`} alt="category" className="category_media_image" />
                           )}
                         </figure>
                       </a>
