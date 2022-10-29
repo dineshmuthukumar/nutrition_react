@@ -17586,3 +17586,15 @@ span.categories_title_name h5 {
 {
     padding: 0px 50px;
 }
+.header-user-details 
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+}
+.header-user-details .user-name 
+{
+    padding: 0px 10px;
+}
