@@ -905,6 +905,8 @@ const Header = ({
                 </nav>
               </div>
               <div className="header-right">
+                
+                
                 <div className="header-search hs-simple">
                   <form action="#" className="input-wrapper">
                     <input
@@ -940,7 +942,7 @@ const Header = ({
 
                       <Dropdown.Menu align="end" className="noti-container">
                         <div className="noti-header">
-                          <BiBell size={25} color={"white"} /> Notifications
+                          <BiBell size={25} color={"var(--black)"} /> Notifications
                         </div>
                         <div className="noti-content">
                           {/* <div className="sub-header">Today</div> */}
@@ -1554,14 +1556,8 @@ const Header = ({
 
 const UserComponent = ({ sref, user, onClick = () => {} }) => (
   <div className="header-user-details" onClick={onClick} ref={sref}>
-    <img
-      className="user-image"
-      src={user?.data?.profilePhoto}
-      width={35}
-      height={35}
-      alt="user-icon"
-    />
-    <div className="user-name">{"Test"}</div>
+      <img className="user-image" src={user?.data?.profilePhoto} width={35} height={35} alt="user-icon" />
+      <div className="user-name">{"Test"}</div>
   </div>
 );
 

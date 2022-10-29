@@ -13341,7 +13341,6 @@ figure.instagram img:hover {
 }
 .header-search.hs-simple {
     flex: 1;
-    margin-right: 2rem;
     max-width: 52.2rem;
 }
 .header-search.hs-simple input.form-control {
@@ -17511,7 +17510,7 @@ h2 {
 
 @media (min-width: 576px) {
     .header-middle .header-right {
-        flex: 1;
+        flex: 0;
     }
 }
 @media (min-width: 992px) {
@@ -17582,4 +17581,8 @@ span.categories_title_name h5 {
 .megamenu ul li a, .menu li a
 {
     color: #000 !important;
+}
+.header-right .mx-0.dropdown
+{
+    padding: 0px 50px;
 }

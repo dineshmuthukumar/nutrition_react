@@ -12,8 +12,8 @@
     color: var(--white);
 }
 .hs-simple {
-    width: 200px;
-    max-width: 200px !important;
+    width: 300px;
+    max-width: 300px !important;
 }
 .categories_title_name {
     text-align: center;
@@ -1414,4 +1414,22 @@ img.category_media_image
 {
     width: 150px !important;
     height: auto;
+}
+.noti-container.dropdown-menu.show.dropdown-menu-end 
+{
+    width: 200px;
+    text-align: left;
+    padding: 10px;
+    inset: 15px auto auto auto !important;
+}
+.noti-content 
+{
+    padding: 10px;
+}
+.dropdown-menu.show.dropdown-menu-end 
+{
+    width: 200px;
+    inset: 15px auto auto auto !important;
+    font-size: 14px;
+    font-family: var(--font-monda);
 }
