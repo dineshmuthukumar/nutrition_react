@@ -460,7 +460,7 @@ hr {
   border-top:1px solid #eee
 }
 input {
-  -webkit-appearance:none;
+  /* -webkit-appearance:none; */
   border:0;
   padding:0;
   font-family:Poppins,sans-serif
@@ -5702,11 +5702,11 @@ to {
 .symbol-no:after {
   display:none
 }
-.element-section 
-{
+/* .element-section 
+{ */
   /* padding:10.5rem 0 13.5rem;
   background-color:#F3F6F9 */
-}
+/* } */
 .element-section p {
   font-size:1.6rem;
   line-height:1.4
@@ -5894,7 +5894,7 @@ to {
 }
 [class*=" d-icon-"]:before,[class^=d-icon-]:before {
   font-family:"riode"!important;
-  speak:never;
+  /* speak:never; */
   font-style:normal;
   font-weight:normal;
   font-variant:normal;
@@ -6491,8 +6491,8 @@ textarea {
   font-family:inherit;
   letter-spacing:inherit;
   z-index:1;
-  -moz-appearance:none;
-  -webkit-appearance:none
+  /* -moz-appearance:none;
+  -webkit-appearance:none */
 }
 .select-box select:focus,.select-menu select:focus {
   outline:none
@@ -6518,11 +6518,12 @@ select:focus::-ms-value {
   background:transparent;
   color:currentColor
 }
-}input::-webkit-inner-spin-button,input::-webkit-outer-spin-button {
-  -webkit-appearance:none
 }
+/* input::-webkit-inner-spin-button,input::-webkit-outer-spin-button {
+  -webkit-appearance:none
+} */
 .quantity {
-  -moz-appearance:textfield;
+  /* -moz-appearance:textfield; */
   max-width:48px
 }
 .input-group {
@@ -6548,7 +6549,7 @@ select:focus::-ms-value {
   color:#222;
   background-color:transparent;
   cursor:pointer;
-  -webkit-appearance:none
+  /* -webkit-appearance:none */
 }
 .custom-radio {
   position:relative
@@ -6599,8 +6600,7 @@ input[type=radio]:checked~label:after {
 .input-wrapper-inline .btn {
   line-height:1
 }
-.input-wrapper-round {
-  }.input-wrapper-round .form-control {
+.input-wrapper-round .form-control {
   position:relative;
   border-radius:2.4rem
 }
@@ -9000,7 +9000,7 @@ button.mfp-arrow {
   z-index:1;
   opacity:0;
   box-shadow:0 0 1rem rgba(0,0,0,0.1);
-  -webkit-appearance:none;
+  /* -webkit-appearance:none; */
   cursor:pointer
 }
 .product-thumbs-wrap:hover button:not(.disabled) {
@@ -19052,8 +19052,7 @@ aside .service-list .icon-box-side .icon-box-content {
 .store-listing .toolbox p {
   font-size:1.3rem
 }
-}.element-product-banner {
-  }.element-product-banner .products-grid {
+}.element-product-banner .products-grid {
   display:grid;
   grid-template-columns:repeat(auto-fill,calc(100% / 11));
   margin:-1rem

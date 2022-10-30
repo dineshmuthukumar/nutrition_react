@@ -621,7 +621,7 @@ hr {
 }
 
 input {
-    -webkit-appearance: none;
+    /* -webkit-appearance: none; */
     border: 0;
     padding: 0;
     font-family: var(--font-monda);
@@ -5158,7 +5158,7 @@ blockquote {
 [class*=" d-icon-"]::before {
     /* use !important to prevent issues with browser extensions that change fonts */
     font-family: "riode" !important;
-    speak: never;
+    /* speak: never; */
     font-style: normal;
     font-weight: normal;
     font-variant: normal;
@@ -6214,8 +6214,8 @@ textarea {
     font-family: inherit;
     letter-spacing: inherit;
     z-index: 1;
-    -moz-appearance: none;
-    -webkit-appearance: none;
+    /* -moz-appearance: none;
+    -webkit-appearance: none; */
 }
 .select-box select:focus,
 .select-menu select:focus {
@@ -6247,13 +6247,13 @@ textarea {
         color: currentColor;
     }
 }
-input::-webkit-outer-spin-button,
+/* input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-}
+    /* -webkit-appearance: none; 
+} */
 
 .quantity {
-    -moz-appearance: textfield;
+    /* -moz-appearance: textfield; */
     max-width: 48px;
 }
 
@@ -6280,7 +6280,7 @@ input::-webkit-inner-spin-button {
     color: #222;
     background-color: transparent;
     cursor: pointer;
-    -webkit-appearance: none;
+    /* -webkit-appearance: none; */
 }
 
 .custom-radio {
@@ -6338,9 +6338,9 @@ input[type="radio"]:checked ~ label::after {
     line-height: 1;
 }
 
-.input-wrapper-round {
-    /* Issue */
-}
+/* .input-wrapper-round {
+   Issue 
+} */
 .input-wrapper-round .form-control {
     position: relative;
     border-radius: 2.4rem;
@@ -11221,7 +11221,7 @@ ul.blog-filters .nav-filter {
     z-index: 1;
     opacity: 0;
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
-    -webkit-appearance: none;
+    /* -webkit-appearance: none; */
     cursor: pointer;
 }
 .product-thumbs-wrap:hover button:not(.disabled) {

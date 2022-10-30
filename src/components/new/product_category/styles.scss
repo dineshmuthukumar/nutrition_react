@@ -1,0 +1,34 @@
+
+.single-product{
+    .page-content{
+        .container-fluid{
+            .page-content {
+                .need_sec{
+                    .container{
+                        .owl-carousel {
+                            width: 100%;
+                            -webkit-tap-highlight-color: transparent;
+                            position: relative;
+                            z-index: 1;
+                            display: block; 
+                            .owl-item {
+                                position: relative;
+                                min-height: 1px;
+                                // float: left;
+                                -webkit-tap-highlight-color: transparent;
+                            }
+                            .owl-stage-outer{
+                                .owl-stage{
+                                transform:translate3d(0,0,0) !important;
+                                transition: all 0s ease 0s;
+                                width: 1800px !important;
+                             ///width: auto !important;
+                                 }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
