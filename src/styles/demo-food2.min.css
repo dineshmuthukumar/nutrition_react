@@ -14485,16 +14485,23 @@ figure.instagram img:hover {
     z-index: 10;
     font-size: 14px;
 }
-.menu > .submenu > a::after {
+.menu > .submenu > a::after 
+{
     position: static;
     content: "";
     margin-top: 0;
 }
-.menu.no-arrow > li > a::after {
+.menu.no-arrow > li > a::after 
+{
     content: none;
 }
-
-.submenu > a::after {
+.menu .submenu > a 
+{
+    position: relative;
+    display: block;
+}
+.submenu > a::after 
+{
     display: inline-block;
     position: absolute;
     margin-top: 2px;
@@ -14509,19 +14516,23 @@ figure.instagram img:hover {
     content: "";
 }
 
-.vertical-menu {
+.vertical-menu 
+{
     display: block;
     min-width: 28rem;
 }
-.vertical-menu > li {
+.vertical-menu > li 
+{
     margin-right: 0;
     padding: 0 2rem;
 }
 .vertical-menu > li > ul,
-.vertical-menu > li .megamenu {
+.vertical-menu > li .megamenu 
+{
     transform: translate3d(-15px, 0, 0);
 }
-.vertical-menu > li > a {
+.vertical-menu > li > a 
+{
     display: inline-block;
 }
 .vertical-menu > li > a::after {

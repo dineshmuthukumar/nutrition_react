@@ -757,7 +757,7 @@ const Header = ({
                           <div className="col-6 col-sm-6 col-md-6 col-lg-6">
                             <h4 className="menu-title">Best Sellers</h4>
                             <ul>
-                              <li>
+                              <li className="submenu">
                                 {" "}
                                 <Link to="/category">Essential Vitamins</Link>
                                     <ul>
@@ -834,13 +834,41 @@ const Header = ({
                           <div className="col-6 col-sm-6 col-md-6">
                             {/* <h4 className="menu-title">Sports Nutrition</h4> */}
                             <ul>
-                              <li>
+                              <li className="submenu">
                                 {" "}
                                 <Link to="/category">Explore More</Link>
+                                <ul>
+                                      <li>
+                                        <Link to="">Demo1</Link>
+                                      </li>
+                                      <li>
+                                        <Link to="">Demo2</Link>
+                                      </li>
+                                      <li>
+                                        <Link to="">Demo3</Link>
+                                      </li>
+                                      <li>
+                                        <Link to="">Demo4</Link>
+                                      </li>
+                                    </ul>
                               </li>
-                              <li>
+                              <li className="submenu">
                                 {" "}
                                 <Link to="/category">Liven Dominance</Link>
+                                <ul>
+                                      <li>
+                                        <Link to="">Demo1</Link>
+                                      </li>
+                                      <li>
+                                        <Link to="">Demo2</Link>
+                                      </li>
+                                      <li>
+                                        <Link to="">Demo3</Link>
+                                      </li>
+                                      <li>
+                                        <Link to="">Demo4</Link>
+                                      </li>
+                                    </ul>
                               </li>
                               {/* <li>
                                 {" "}

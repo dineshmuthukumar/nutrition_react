@@ -12525,7 +12525,8 @@ to {
 .menu .show .megamenu,.menu .show>ul,.menu li:hover .megamenu,.menu li:hover>ul {
   visibility:visible;
   opacity:1;
-  top:-2rem;
+  top: 1.5rem;
+  border-radius: 5px;
   transform:translate3d(0,0,0)
 }
 .menu>li {
