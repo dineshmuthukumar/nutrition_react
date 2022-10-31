@@ -12687,10 +12687,11 @@ to {
 .main-nav {
   margin:0 0 0 0.3rem
 }
-.megamenu {
+.megamenu 
+{
   display:flex;
   padding:1rem;
-  min-width:94rem;
+  min-width: 50rem;
   background:#fff
 }
 .megamenu ul {

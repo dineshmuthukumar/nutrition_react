@@ -11,19 +11,30 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-color: #ccc;
+  background-color: transparent;
   padding: 1em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  font-family: var(--font-monda);
 }
 
 .accordion-toggle:hover {
-  background-color: #ddd;
+  background-color: transparent;
 }
 
 .accordion-toggle h3 {
   margin: 0;
+  font-size: 14px;
+  line-height: 30px;
 }
 
 .accordion-content {
   background-color: #eee;
   padding: 1em;
-}/*# sourceMappingURL=accordion.css.map */
+}
+
+.accordion-toggle span {
+  font-size: 25px;
+  line-height: 30px;
+} /*# sourceMappingURL=accordion.css.map *//*# sourceMappingURL=accordion.css.map */
