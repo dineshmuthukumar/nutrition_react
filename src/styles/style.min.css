@@ -6834,12 +6834,13 @@ input[type=radio]:checked~label:after {
   right:0;
   top:0;
   bottom:0;
-  background-color:#000;
-  opacity:0;
-  transition:opacity 0.3s;
+  background: transparent;
+  /* opacity:0;
+  transition:opacity 0.3s; */
   z-index:1
 }
-.instagram a:after {
+/* .instagram a:after 
+{
   content:"";
   display:inline-block;
   position:absolute;
@@ -6852,7 +6853,7 @@ input[type=radio]:checked~label:after {
   opacity:0;
   transition:opacity 0.3s,transform 0.3s;
   z-index:1
-}
+} */
 .instagram img {
   display:block;
   transition:transform 0.3s;
@@ -7631,11 +7632,14 @@ button.mfp-arrow {
   font-size:1.8rem;
   color:#ccc
 }
-.login-popup .tab .nav-item {
-  flex:none
+.login-popup .tab .nav-item 
+{
+  flex:none;
+  cursor: pointer;
 }
-.login-popup .nav-item .nav-link {
-  padding:0 0 1px;
+.login-popup .nav-item .nav-link 
+{
+  /* padding:0 0 1px; */
   color:#999;
   font-size:1.8rem;
   font-weight:700;
@@ -10184,8 +10188,12 @@ aside+div .product-single .product-details {
   flex-wrap:wrap;
   border-bottom:1px solid #ebebeb
 }
-.nav-tabs .nav-item .nav-link.active,.nav-tabs .nav-item.show .nav-link,.nav-tabs .nav-item:hover .nav-link {
-  color:#222
+.nav-tabs .nav-item .nav-link.active,.nav-tabs .nav-item.show .nav-link,.nav-tabs .nav-item:hover .nav-link 
+{
+  color: #4dae67;
+  font-family: var(--font-monda);
+  font-size: 20px;
+  font-weight: 700;
 }
 .nav-link {
   display:block;
@@ -10279,8 +10287,9 @@ aside+div .product-single .product-details {
 .tab-nav-right .nav {
   justify-content:flex-end
 }
-.tab-nav-boxed .nav-item {
-  margin-right:0
+.tab-nav-boxed .nav-item 
+{
+  margin: 0;
 }
 .tab-nav-boxed .nav-link {
   padding-left:2.4rem;

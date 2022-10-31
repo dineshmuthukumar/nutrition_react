@@ -373,20 +373,18 @@ const Logincomponent = () => {
                 {otp ? (
                   <>
                     <div>
-                      <h1>Enter the OTP</h1>{" "}
-                      <div onClick={() => setOTP(false)}>Change</div>
+                      <Row className="otp_flex">
+                        <Col><h3>Enter the OTP</h3>{" "}</Col>
+                        <Col className="text-right"><div className="cursor_pointer" onClick={() => setOTP(false)}><h4>Change</h4></div></Col>
+                      </Row>
+                      
+                      
                       <div className="form-group">
-                        <InputOTP
-                          onChange={(e) => setOTPValue(e)}
-                          value={otpValue}
-                        />
+                        <InputOTP onChange={(e) => setOTPValue(e)}value={otpValue}/>
                       </div>
                       <button
                         type="button"
-                        className="bl_btn"
-                        onClick={handleVerifyOTP}
-                        disabled={verifyLoading || navigate}
-                      >
+                        className="btn btn-dark btn-block btn-rounded" onClick={handleVerifyOTP} disabled={verifyLoading || navigate}>
                         {navigate ? (
                           "Verified Successfully, please wait..."
                         ) : (
@@ -412,13 +410,7 @@ const Logincomponent = () => {
                           Remember me
                         </label>
                       </div>
-                      <a
-                        href="#"
-                        className="lost-link"
-                        onClick={() => handleResendOTP()}
-                      >
-                        Resend code
-                      </a>
+                      <a href="#" className="lost-link" onClick={() => handleResendOTP()}>Resend code</a>
                     </div>
                   </>
                 ) : (
@@ -449,12 +441,7 @@ const Logincomponent = () => {
                       )}
                     </div>
 
-                    <button
-                      className="btn btn-dark btn-block btn-rounded"
-                      type="submit"
-                      onClick={handleLoginOTP}
-                      disabled={loading}
-                    >
+                    <button className="btn btn-dark btn-block btn-rounded" type="submit" onClick={handleLoginOTP} disabled={loading}>
                       {loading ? "Loading" : "Request OTP"}
                     </button>
 
@@ -495,8 +482,11 @@ const Logincomponent = () => {
               >
                 {otp ? (
                   <div>
-                    <h1>Enter the OTP</h1>{" "}
-                    <div onClick={() => setOTP(false)}>Change</div>
+                    <Row className="otp_flex">
+                      <Col><h3>Enter the OTP</h3>{" "}</Col>
+                      <Col className="text-right"><div className="cursor_pointer" onClick={() => setOTP(false)}><h4>Change</h4></div></Col>
+                    </Row>
+                    
                     <div className="form-group">
                       <InputOTP
                         onChange={(e) => setOTPValue(e)}
@@ -505,7 +495,7 @@ const Logincomponent = () => {
                     </div>
                     <button
                       type="button"
-                      className="bl_btn"
+                      className="btn btn-dark btn-block btn-rounded"
                       onClick={handleVerifyOTP}
                       disabled={verifyLoading || navigate}
                     >

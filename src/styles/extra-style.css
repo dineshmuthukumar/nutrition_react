@@ -1433,3 +1433,35 @@ img.category_media_image
     font-size: 14px;
     font-family: var(--font-monda);
 }
+.otp-input 
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.otp-input input 
+{
+    background: transparent;
+    width: 2em !important;
+    text-align: center !important;
+    border-radius: 5px !important;
+    border: 1px solid #ddd !important;
+    margin: 10px 10px !important;
+    padding: 10px !important;
+    line-height: 30px !important;
+}
+.cursor_pointer
+{
+    cursor: pointer;
+}
+.otp_flex
+{
+    justify-content: center;
+    align-items: center;
+}
+.otp_flex
+{
+    padding: 0px;
+    margin: 0px;
+}

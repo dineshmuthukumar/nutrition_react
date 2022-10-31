@@ -54,12 +54,7 @@ const FeatureProduct = () => {
                                             <Link to="/product">
                                                 <img src={product_1} alt="product" width="280" height="315" />
                                             </Link>
-                                            <div className="product-label-group">
-                                                <img src={priceTag} />
-                                            </div>
-                                            <div className="product-action-vertical">
-                                                <a href="#" className="btn-product-icon btn-wishlist" title="Add to wishlist"><i className="d-icon-heart"></i></a>
-                                            </div>
+                                            <div className="product-label-group"><img src={priceTag} /></div>
                                         </figure>
                                         <div className="product-details">
                                             <h3 className="product-name text-center">
@@ -89,9 +84,6 @@ const FeatureProduct = () => {
                                             <div className="product-label-group">
                                                 <img src={priceTag}/>
                                             </div>
-                                            <div className="product-action-vertical">
-                                                <a href="#" className="btn-product-icon btn-wishlist" title="Add to wishlist"><i className="d-icon-heart"></i></a>
-                                            </div>
                                         </figure>
                                         <div className="product-details">
                                             <h3 className="product-name text-center">
@@ -118,12 +110,7 @@ const FeatureProduct = () => {
                                             <Link to="/product">
                                                 <img src={product_3} alt="product" width="280" height="315" />
                                             </Link>
-                                            <div className="product-label-group">
-                                                <img src={priceTag} />
-                                            </div>
-                                            <div className="product-action-vertical">
-                                                <a href="#" className="btn-product-icon btn-wishlist" title="Add to wishlist"><i className="d-icon-heart"></i></a>
-                                            </div>
+                                            <div className="product-label-group"><img src={priceTag} /></div>
                                         </figure>
                                         <div className="product-details">
                                             <h3 className="product-name text-center">
@@ -150,12 +137,7 @@ const FeatureProduct = () => {
                                             <Link to="/product">
                                                 <img src={product_4} alt="product" width="280" height="315" />
                                                 </Link>
-                                            <div className="product-label-group">
-                                                <img src={priceTag} />
-                                            </div>
-                                            <div className="product-action-vertical">
-                                                <a href="#" className="btn-product-icon btn-wishlist" title="Add to wishlist"><i className="d-icon-heart"></i></a>
-                                            </div>
+                                            <div className="product-label-group"><img src={priceTag} /></div>
                                         </figure>
                                         <div className="product-details">
                                             <h3 className="product-name text-center">
@@ -182,9 +164,7 @@ const FeatureProduct = () => {
                                             <Link to="/product">
                                                 <img src={product_11} alt="product" width="280" height="315" />
                                             </Link>
-                                            <div className="product-action-vertical">
-                                                <a href="#" className="btn-product-icon btn-wishlist" title="Add to wishlist"><i className="d-icon-heart"></i></a>
-                                            </div>
+                                            <div className="product-label-group"><img src={priceTag} /></div>
                                         </figure>
                                         <div className="product-details">
                                             <h3 className="product-name">
@@ -206,9 +186,7 @@ const FeatureProduct = () => {
                                            <Link to="/product">
                                                 <img src={product_11} alt="product" width="280" height="315" />
                                             </Link>
-                                            <div className="product-action-vertical">
-                                                <a href="#" className="btn-product-icon btn-wishlist" title="Add to wishlist"><i className="d-icon-heart"></i></a>
-                                            </div>
+                                            <div className="product-label-group"><img src={priceTag} /></div>
                                         </figure>
                                         <div className="product-details">
                                             <h3 className="product-name">
@@ -230,9 +208,7 @@ const FeatureProduct = () => {
                                             <Link to="/product">
                                                  <img src={product_11} alt="product" width="280" height="315" />
                                             </Link>
-                                            <div className="product-action-vertical">
-                                                <a href="#" className="btn-product-icon btn-wishlist" title="Add to wishlist"><i className="d-icon-heart"></i></a>
-                                            </div>
+                                            <div className="product-label-group"><img src={priceTag} /></div>
                                         </figure>
                                         <div className="product-details">
                                             <h3 className="product-name">
