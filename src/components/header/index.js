@@ -21,7 +21,11 @@ import {
 
 import { currencyFormat } from "../../utils/common";
 import { user_wallet_update_action } from "../../redux/actions/user_action";
-import { getCategoryApi, getNotificationApi } from "../../api/base-methods";
+import {
+  getCategoryApi,
+  getNotificationApi,
+  getsubCategoryListApi,
+} from "../../api/base-methods";
 import { readNotificationApi } from "./../../api/base-methods";
 import {
   checkout_event_thunk,
@@ -69,6 +73,7 @@ const Header = ({
 
   const [categoryDetails, setCategoryDetails] = useState({});
   const [categoryActive, setCategoryActive] = useState(false);
+  const [subCategoryList, setSubCategoryList] = useState({});
   const [pageActive, setPageActive] = useState(false);
 
   const slug = user.data?.user ? user.data?.user?.slug : null;
@@ -133,8 +138,25 @@ const Header = ({
     // }
     getCategoryDetails();
     handleGetNotification();
+    getsubCategoryList();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const getsubCategoryList = async () => {
+    try {
+      setNotiLoading(true);
+      const result = await getsubCategoryListApi();
+
+      setSubCategoryList(result?.data?.responseData?.subCategories);
+    } catch (error) {
+      setNotiLoading(false);
+
+      console.log(
+        "🚀 ~ file: index.js ~ line 49 ~ handleGetNotification ~ error",
+        error
+      );
+    }
+  };
 
   const getCategoryDetails = async () => {
     try {
@@ -611,6 +633,29 @@ const Header = ({
       </div>
     );
   };
+  const DropdownMenuItem = (subCategoriesId) => {
+    ///console.log(subCategoriesId, "subCategoriesId");
+    if (subCategoryList?.length) {
+      var filterData = subCategoryList?.filter(
+        (x) => x?.categoryId?._id === subCategoriesId
+      );
+      if (filterData) {
+        return (
+          <ul className="dropdown-menu">
+            {filterData.map((subCategoriesDetail) => {
+              return (
+                <li className="dropdown-submenu">
+                  {subCategoriesDetail?.subCategoryName}
+                </li>
+              );
+            })}
+          </ul>
+        );
+      } else {
+        return "";
+      }
+    }
+  };
 
   return (
     <>
@@ -684,10 +729,13 @@ const Header = ({
                                           return (
                                             <li>
                                               <Link
-                                                to={`/category/${CategoriesDetail._id}`}
+                                                to={`/category/${CategoriesDetail?._id}`}
                                               >
                                                 {CategoriesDetail.name}
                                               </Link>
+                                              {DropdownMenuItem(
+                                                CategoriesDetail?._id
+                                              )}
                                             </li>
                                           );
                                         }
@@ -919,8 +967,6 @@ const Header = ({
                 </nav>
               </div>
               <div className="header-right">
-                
-                
                 <div className="header-search hs-simple">
                   <form action="#" className="input-wrapper">
                     <input
@@ -956,7 +1002,8 @@ const Header = ({
 
                       <Dropdown.Menu align="end" className="noti-container">
                         <div className="noti-header">
-                          <BiBell size={25} color={"var(--black)"} /> Notifications
+                          <BiBell size={25} color={"var(--black)"} />{" "}
+                          Notifications
                         </div>
                         <div className="noti-content">
                           {/* <div className="sub-header">Today</div> */}

@@ -25,6 +25,8 @@ export const getsubCategoryApi = (subcategoryId) =>
 export const signOutApi = () => baseAxios.delete("/logout");
 
 
+export const getsubCategoryListApi = () => baseAxios.get(`/subcategory/list`);
+
 
 export const readNotificationApi = () =>
   baseAxios.post("/users/notification_read");
