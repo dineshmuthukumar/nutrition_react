@@ -26,7 +26,7 @@ const Accountcomponent = () => {
 
   return (
     <>
-      <div ClassName="profile_page">
+      <div className="profile_page">
         <Tab.Container id="left-tabs-example" defaultActiveKey="second">
           <Row>
             <Col sm={3} className="account_form_box">
@@ -175,8 +175,6 @@ const Accountcomponent = () => {
                               className="mb-3"
                               controlId="exampleForm.ControlInput1"
                             >
-                             
-
                               <InputPhone
                                 title={"Mobile"}
                                 defaultCountry={"+91"}
@@ -204,26 +202,42 @@ const Accountcomponent = () => {
                             </Form.Group>
                           </Form>
                         </Col>
-                        
                       </Row>
                       <Row>
-                        
-                     
                         <Col sm={4}>
                           <Form>
-                            <Form.Label>DOB</Form.Label>   
-                            <Form.Control className="form-control" type="date" name="datepic" placeholder="DateRange" value={date} onChange={(e) => setDate(e.target.value)} />
+                            <Form.Label>DOB</Form.Label>
+                            <Form.Control
+                              className="form-control"
+                              type="date"
+                              name="datepic"
+                              placeholder="DateRange"
+                              value={date}
+                              onChange={(e) => setDate(e.target.value)}
+                            />
                           </Form>
                         </Col>
                         <Col sm={4}>
                           <Form className="gender_list">
-                          <Form.Label>Gender</Form.Label>
-                          {['radio'].map((type) => (
-                            <div key={`inline-${type}`} className="mt-3">
-                              <Form.Check inline label="Male" name="group1" type={type} id={`inline-${type}-1`}/>
-                              <Form.Check inline label="Female" name="group1" type={type} id={`inline-${type}-2`}/>
-                            </div>
-                          ))}
+                            <Form.Label>Gender</Form.Label>
+                            {["radio"].map((type) => (
+                              <div key={`inline-${type}`} className="mt-3">
+                                <Form.Check
+                                  inline
+                                  label="Male"
+                                  name="group1"
+                                  type={type}
+                                  id={`inline-${type}-1`}
+                                />
+                                <Form.Check
+                                  inline
+                                  label="Female"
+                                  name="group1"
+                                  type={type}
+                                  id={`inline-${type}-2`}
+                                />
+                              </div>
+                            ))}
                           </Form>
                         </Col>
                       </Row>

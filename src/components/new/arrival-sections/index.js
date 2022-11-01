@@ -1,18 +1,51 @@
-import React from "react";
-import {  Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import OwlCarousel from "react-owl-carousel";
+import { getsubCategoryApi } from "../../../api/base-methods";
+import { add_to_cart_thunk } from "../../../redux/thunk/user_cart_thunk";
+import { useDispatch, useSelector } from "react-redux";
 
-import product_1 from "../../../images/new-images/demos/demo-food2/products/pro_product_1.jpg"
-import product_2 from "../../../images/new-images/demos/demo-food2/products/pro_product_2.jpg"
-import product_3 from "../../../images/new-images/demos/demo-food2/products/pro_product_3.jpg"
-import product_4 from "../../../images/new-images/demos/demo-food2/products/pro_product_4.jpg"
+import product_1 from "../../../images/new-images/demos/demo-food2/products/pro_product_1.jpg";
+import product_2 from "../../../images/new-images/demos/demo-food2/products/pro_product_2.jpg";
+import product_3 from "../../../images/new-images/demos/demo-food2/products/pro_product_3.jpg";
+import product_4 from "../../../images/new-images/demos/demo-food2/products/pro_product_4.jpg";
 
 import priceTag from "../../../images/new-images/demos/demo-food2/products/price_tag.png";
 
 import "./style.scss";
 
 const ArrivalSection = ({ homeContent, categorylist }) => {
-  console.log(categorylist);
+  const dispatch = useDispatch();
+  const { user, cart } = useSelector((state) => state);
+  const [inCart, setInCart] = useState(false);
+
+  //console.log(user, "user");
+  const userSlug = user.data ? user.data : null;
+  const [prodList, setProdList] = useState({});
+  const [categoryActive, setCategoryActive] = useState(false);
+  const [productTabActive, setProductTabActive] = useState(false);
+  const userCart = cart?.data ? cart?.data : null;
+  const IsProductDetails = async (subcategoryId) => {
+    const result = await getsubCategoryApi(subcategoryId);
+    console.log(result?.data?.responseData?.Products, "result");
+    setProdList(result?.data?.responseData?.Products);
+    setCategoryActive(true);
+    setProductTabActive(true);
+  };
+
+  // useEffect(() => {
+  //   if (userSlug) {
+  //     const orderSlug = userCart?.line_items?.find(
+  //       (obj) => obj._id === nft?.order_details?.slug
+  //     );
+  //     if (orderSlug) {
+  //       setInCart(true);
+  //     } else {
+  //       setInCart(false);
+  //     }
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [userCart]);
   return (
     <>
       <section className="arrivals-section need_sec">
@@ -30,11 +63,18 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
                 if (categorylist?.length > 0) {
                   return (
                     <>
-                      {categorylist?.map((arrialecontent) => {
+                      {categorylist?.map((arrivalecontent) => {
                         return (
-                          <li className="nav-item ml-1 mr-1 pt-2 pb-2">
+                          <li
+                            className="nav-item ml-1 mr-1 pt-2 pb-2"
+                            onClick={() =>
+                              IsProductDetails(arrivalecontent._id)
+                            }
+                          >
                             <a
-                              className="nav-link nav-link-with-img border-rounded active"
+                              className={`nav-link nav-link-with-img border-rounded ${
+                                categoryActive ? "active" : ""
+                              }`}
                               href="#fruits"
                             >
                               <h3 className="img-cat-title mb-0">
@@ -42,7 +82,7 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
                                   className="fa fa-home"
                                   aria-hidden="true"
                                 ></i>{" "}
-                                {arrialecontent?.subCategoryName}
+                                {arrivalecontent?.subCategoryName}
                               </h3>
                             </a>
                           </li>
@@ -54,27 +94,10 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
               })()}
             </ul>
             <div className="tab-content">
-              <div className="tab-pane pt-4 active" id="fruits">
-                {/* <div
-                                            class="owl-carousel owl-theme row cols-lg-4 cols-md-3 cols-2"
-                                            data-owl-options="{
-                                                                    'nav': true,
-                                                                    'dots': false,
-                                                                    'margin': 20,
-                                                                    'autoplay': false,
-                                                                    'responsive': {
-                                                                        '0': {
-                                                                            'items': 1
-                                                                        },
-                                                                        '768': {
-                                                                            'items': 3
-                                                                        },
-                                                                        '992': {
-                                                                            'items': 3
-                                                                        }
-                                                                    }
-                                                                }"
-                                        > */}
+              <div
+                className={`tab-pane pt-4 ${productTabActive ? "active" : ""}`}
+                id="fruits"
+              >
                 <OwlCarousel
                   className="owl-carousel owl-theme row cols-lg-4 cols-md-3 cols-2"
                   margin={20}
@@ -94,1037 +117,74 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
                     },
                   }}
                   autoplay
-                  loop
                   autoplayTimeout={2000}
                   autoplayHoverPause={true}
                 >
-                  <div className="product text-center product-with-qty">
-                    <figure className="product-media">
-                      <Link to="/product">
-                        <img
-                          src={product_1}
-                          alt="product"
-                          width="280"
-                          height="315"
-                        />
-                      </Link>
-                      <div className="product-label-group">
-                        <img src={priceTag} />
-                      </div>
-                    </figure>
-                    <div className="product-details">
-                      <h3 className="product-name">
-                        <a href="#">Glow Japanese Marine Collagen Peptides</a>
-                      </h3>
-                      <div className="product-price ls-md offer_price_details">
-                        <span className="price">$140.00</span>
-                        <span className="price line-through">Rs. 2,499</span>
-                      </div>
-                      <div className="ratings-container">
-                        <div className="ratings-full">
-                          <span className="ratings"></span>
-                          <span className="tooltiptext tooltip-top"></span>
-                        </div>
-                      </div>
-
-                      <div className="product-action">
-                        <a
-                          href="#"
-                          className="btn-product btn-cart ls-l"
-                          data-toggle="modal"
-                          data-target="#addCartModal"
-                          title="Add to cart"
-                        >
-                          <i className="d-icon-bag"></i>
-                          <span>Add to cart</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="product text-center product-with-qty">
-                    <figure className="product-media">
-                      <Link to="/product">
-                        <img
-                          src={product_2}
-                          alt="product"
-                          width="280"
-                          height="315"
-                        />
-                      </Link>
-                      <div className="product-label-group">
-                        <img src={priceTag} />
-                      </div>
-                    </figure>
-                    <div className="product-details">
-                      <h3 className="product-name">
-                        <a href="#">Marvel Natural B12+ D3</a>
-                      </h3>
-                      <div className="product-price ls-md offer_price_details">
-                        <span className="price">$140.00</span>
-                        <span className="price line-through">Rs. 2,499</span>
-                      </div>
-                      <div className="ratings-container">
-                        <div className="ratings-full">
-                          <span className="ratings"></span>
-                          <span className="tooltiptext tooltip-top"></span>
-                        </div>
-                      </div>
-                      <div className="product-action">
-                        <a
-                          href="#"
-                          className="btn-product btn-cart ls-l"
-                          data-toggle="modal"
-                          data-target="#addCartModal"
-                          title="Add to cart"
-                        >
-                          <i className="d-icon-bag"></i>
-                          <span>Add to cart</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="product text-center product-with-qty">
-                    <figure className="product-media">
-                      <Link to="/product">
-                        <img
-                          src={product_3}
-                          alt="product"
-                          width="280"
-                          height="315"
-                        />
-                      </Link>
-                      <div className="product-label-group">
-                        <img src={priceTag} />
-                      </div>
-                    </figure>
-                    <div className="product-details">
-                      <h3 className="product-name">
-                        <a href="#">Disney Frozen Probiotic</a>
-                      </h3>
-                      <div className="product-price ls-md offer_price_details">
-                        <span className="price">$140.00</span>
-                        <span className="price line-through">Rs. 2,499</span>
-                      </div>
-                      <div className="ratings-container">
-                        <div className="ratings-full">
-                          <span className="ratings"></span>
-                          <span className="tooltiptext tooltip-top"></span>
-                        </div>
-                      </div>
-                      <div className="product-action">
-                        <a
-                          href="#"
-                          className="btn-product btn-cart ls-l"
-                          data-toggle="modal"
-                          data-target="#addCartModal"
-                          title="Add to cart"
-                        >
-                          <i className="d-icon-bag"></i>
-                          <span>Add to cart</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="product text-center product-with-qty">
-                    <figure className="product-media">
-                      <Link to="/product">
-                        <img
-                          src={product_4}
-                          alt="product"
-                          width="280"
-                          height="315"
-                        />
-                      </Link>
-                      <div className="product-label-group">
-                        <img src={priceTag} />
-                      </div>
-                    </figure>
-                    <div className="product-details">
-                      <h3 className="product-name">
-                        <a href="#">Daily Greens</a>
-                      </h3>
-                      <div className="product-price ls-md offer_price_details">
-                        <span className="price">$140.00</span>
-                        <span className="price line-through">Rs. 2,499</span>
-                      </div>
-                      <div className="ratings-container">
-                        <div className="ratings-full">
-                          <span className="ratings"></span>
-                          <span className="tooltiptext tooltip-top"></span>
-                        </div>
-                      </div>
-                      <div className="product-action">
-                        <a
-                          href="#"
-                          className="btn-product btn-cart ls-l"
-                          data-toggle="modal"
-                          data-target="#addCartModal"
-                          title="Add to cart"
-                        >
-                          <i class="d-icon-bag"></i>
-                          <span>Add to cart</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </OwlCarousel>
-              </div>
-              <div className="tab-pane pt-4" id="vegetables">
-                {/* <div
-                                            class="owl-carousel owl-theme row cols-lg-4 cols-md-3 cols-2"
-                                            data-owl-options="{
-                                                                    'nav': true,
-                                                                    'dots': false,
-                                                                    'margin': 20,
-                                                                    'autoplay': false,
-                                                                    'responsive': {
-                                                                        '0': {
-                                                                            'items': 1
-                                                                        },
-                                                                        '768': {
-                                                                            'items': 3
-                                                                        },
-                                                                        '992': {
-                                                                            'items': 3
-                                                                        }
-                                                                    }
-                                                                }"
-                                        > */}
-                <OwlCarousel
-                  className="owl-carousel owl-theme row cols-lg-4 cols-md-3 cols-2"
-                  margin={20}
-                  nav
-                  smartSpeed={500}
-                  dots={false}
-                  navContainerClass={"owl-nav"}
-                  responsive={{
-                    0: {
-                      items: 1,
-                    },
-                    768: {
-                      items: 3,
-                    },
-                    992: {
-                      items: 3,
-                    },
-                  }}
-                  autoplay
-                  loop
-                  autoplayTimeout={2000}
-                  autoplayHoverPause={true}
-                >
-                  <div className="product text-center product-with-qty">
-                    <figure className="product-media">
-                      <a href="#">
-                        <img
-                          src={product_1}
-                          alt="product"
-                          width="280"
-                          height="315"
-                        />
-                      </a>
-                      <div className="product-label-group">
-                        <img src={priceTag} />
-                      </div>
-                    </figure>
-                    <div className="product-details">
-                      <h3 className="product-name">
-                        <a href="#">Glow Japanese Marine Collagen Peptides</a>
-                      </h3>
-                      <div className="product-price ls-md offer_price_details">
-                        <span className="price">$140.00</span>
-                        <span className="price line-through">Rs. 2,499</span>
-                      </div>
-                      <div className="ratings-container">
-                        <div className="ratings-full">
-                          <span className="ratings"></span>
-                          <span className="tooltiptext tooltip-top"></span>
-                        </div>
-                      </div>
-                      <div className="product-action">
-                        <a
-                          href="#"
-                          className="btn-product btn-cart ls-l"
-                          data-toggle="modal"
-                          data-target="#addCartModal"
-                          title="Add to cart"
-                        >
-                          <i className="d-icon-bag"></i>
-                          <span>Add to cart</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="product text-center product-with-qty">
-                    <figure className="product-media">
-                      <a href="#">
-                        <img
-                          src={product_2}
-                          alt="product"
-                          width="280"
-                          height="315"
-                        />
-                      </a>
-                      <div className="product-label-group">
-                        <img src={priceTag} />
-                      </div>
-                    </figure>
-                    <div className="product-details">
-                      <h3 className="product-name">
-                        <a href="#">Marvel Natural B12+ D3</a>
-                      </h3>
-                      <div className="product-price ls-md offer_price_details">
-                        <span className="price">$140.00</span>
-                        <span className="price line-through">Rs. 2,499</span>
-                      </div>
-                      <div className="ratings-container">
-                        <div className="ratings-full">
-                          <span className="ratings"></span>
-                          <span className="tooltiptext tooltip-top"></span>
-                        </div>
-                      </div>
-                      <div className="product-action">
-                        <a
-                          href="#"
-                          className="btn-product btn-cart ls-l"
-                          data-toggle="modal"
-                          data-target="#addCartModal"
-                          title="Add to cart"
-                        >
-                          <i className="d-icon-bag"></i>
-                          <span>Add to cart</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="product text-center product-with-qty">
-                    <figure className="product-media">
-                      <a href="#">
-                        <img
-                          src={product_3}
-                          alt="product"
-                          width="280"
-                          height="315"
-                        />
-                      </a>
-                      <div className="product-label-group">
-                        <img src={priceTag} />
-                      </div>
-                    </figure>
-                    <div className="product-details">
-                      <h3 className="product-name">
-                        <a href="#">Disney Frozen Probiotic</a>
-                      </h3>
-                      <div className="product-price ls-md offer_price_details">
-                        <span className="price">$140.00</span>
-                        <span className="price line-through">Rs. 2,499</span>
-                      </div>
-                      <div className="ratings-container">
-                        <div className="ratings-full">
-                          <span className="ratings"></span>
-                          <span className="tooltiptext tooltip-top"></span>
-                        </div>
-                      </div>
-                      <div className="product-action">
-                        <a
-                          href="#"
-                          className="btn-product btn-cart ls-l"
-                          data-toggle="modal"
-                          data-target="#addCartModal"
-                          title="Add to cart"
-                        >
-                          <i className="d-icon-bag"></i>
-                          <span>Add to cart</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="product text-center product-with-qty">
-                    <figure className="product-media">
-                      <a href="#">
-                        <img
-                          src={product_4}
-                          alt="product"
-                          width="280"
-                          height="315"
-                        />
-                      </a>
-                      <div className="product-label-group">
-                        <img src={priceTag} />
-                      </div>
-                    </figure>
-                    <div className="product-details">
-                      <h3 className="product-name">
-                        <a href="#">Daily Greens</a>
-                      </h3>
-                      <div className="product-price ls-md offer_price_details">
-                        <span className="price">$140.00</span>
-                        <span className="price line-through">Rs. 2,499</span>
-                      </div>
-                      <div className="ratings-container">
-                        <div className="ratings-full">
-                          <span className="ratings"></span>
-                          <span className="tooltiptext tooltip-top"></span>
-                        </div>
-                      </div>
-                      <div className="product-action">
-                        <a
-                          href="#"
-                          className="btn-product btn-cart ls-l"
-                          data-toggle="modal"
-                          data-target="#addCartModal"
-                          title="Add to cart"
-                        >
-                          <i className="d-icon-bag"></i>
-                          <span>Add to cart</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </OwlCarousel>
-              </div>
-              <div className="tab-pane pt-4" id="dry_goods">
-                {/* <div
-                                            class="owl-carousel owl-theme row cols-lg-4 cols-md-3 cols-2"
-                                            data-owl-options="{
-                                                                    'nav': true,
-                                                                    'dots': false,
-                                                                    'margin': 20,
-                                                                    'autoplay': false,
-                                                                    'responsive': {
-                                                                        '0': {
-                                                                            'items': 1
-                                                                        },
-                                                                        '768': {
-                                                                            'items': 3
-                                                                        },
-                                                                        '992': {
-                                                                            'items': 3
-                                                                        }
-                                                                    }
-                                                                }"
-                                        > */}
-                <OwlCarousel
-                  className="owl-carousel owl-theme row cols-lg-4 cols-md-3 cols-2"
-                  margin={20}
-                  nav
-                  smartSpeed={500}
-                  dots={false}
-                  navContainerClass={"owl-nav"}
-                  responsive={{
-                    0: {
-                      items: 1,
-                    },
-                    768: {
-                      items: 3,
-                    },
-                    992: {
-                      items: 3,
-                    },
-                  }}
-                  autoplay
-                  loop
-                  autoplayTimeout={2000}
-                  autoplayHoverPause={true}
-                >
-                  <div className="product text-center product-with-qty">
-                    <figure className="product-media">
-                      <a href="#">
-                        <img
-                          src={product_1}
-                          alt="product"
-                          width="280"
-                          height="315"
-                        />
-                      </a>
-                      <div className="product-label-group">
-                        <img src={priceTag} />
-                      </div>
-                    </figure>
-                    <div className="product-details">
-                      <h3 className="product-name">
-                        <a href="#">Glow Japanese Marine Collagen Peptides</a>
-                      </h3>
-                      <div className="product-price ls-md offer_price_details">
-                        <span className="price">$140.00</span>
-                        <span className="price line-through">Rs. 2,499</span>
-                      </div>
-                      <div className="ratings-container">
-                        <div className="ratings-full">
-                          <span className="ratings"></span>
-                          <span className="tooltiptext tooltip-top"></span>
-                        </div>
-                      </div>
-
-                      <div className="product-action">
-                        <a
-                          href="#"
-                          className="btn-product btn-cart ls-l"
-                          data-toggle="modal"
-                          data-target="#addCartModal"
-                          title="Add to cart"
-                        >
-                          <i className="d-icon-bag"></i>
-                          <span>Add to cart</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="product text-center product-with-qty">
-                    <figure className="product-media">
-                      <a href="#">
-                        <img
-                          src={product_2}
-                          alt="product"
-                          width="280"
-                          height="315"
-                        />
-                      </a>
-                      <div className="product-label-group">
-                        <img src={priceTag} />
-                      </div>
-                    </figure>
-                    <div className="product-details">
-                      <h3 className="product-name">
-                        <a href="#">Marvel Natural B12+ D3</a>
-                      </h3>
-                      <div className="product-price ls-md offer_price_details">
-                        <span className="price">$140.00</span>
-                        <span className="price line-through">Rs. 2,499</span>
-                      </div>
-                      <div className="ratings-container">
-                        <div className="ratings-full">
-                          <span className="ratings"></span>
-                          <span className="tooltiptext tooltip-top"></span>
-                        </div>
-                      </div>
-                      <div className="product-action">
-                        <a
-                          href="#"
-                          className="btn-product btn-cart ls-l"
-                          data-toggle="modal"
-                          data-target="#addCartModal"
-                          title="Add to cart"
-                        >
-                          <i className="d-icon-bag"></i>
-                          <span>Add to cart</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="product text-center product-with-qty">
-                    <figure className="product-media">
-                      <a href="#">
-                        <img
-                          src={product_3}
-                          alt="product"
-                          width="280"
-                          height="315"
-                        />
-                      </a>
-                      <div className="product-label-group">
-                        <img src={priceTag} />
-                      </div>
-                    </figure>
-                    <div className="product-details">
-                      <h3 className="product-name">
-                        <a href="#">Disney Frozen Probiotic</a>
-                      </h3>
-                      <div className="product-price ls-md offer_price_details">
-                        <span className="price">$140.00</span>
-                        <span className="price line-through">Rs. 2,499</span>
-                      </div>
-                      <div className="ratings-container">
-                        <div className="ratings-full">
-                          <span className="ratings"></span>
-                          <span className="tooltiptext tooltip-top"></span>
-                        </div>
-                      </div>
-                      <div className="product-action">
-                        <a
-                          href="#"
-                          className="btn-product btn-cart ls-l"
-                          data-toggle="modal"
-                          data-target="#addCartModal"
-                          title="Add to cart"
-                        >
-                          <i className="d-icon-bag"></i>
-                          <span>Add to cart</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="product text-center product-with-qty">
-                    <figure className="product-media">
-                      <a href="#">
-                        <img
-                          src={product_4}
-                          alt="product"
-                          width="280"
-                          height="315"
-                        />
-                      </a>
-                      <div className="product-label-group">
-                        <img src={priceTag} />
-                      </div>
-                    </figure>
-                    <div className="product-details">
-                      <h3 className="product-name">
-                        <a href="#">Daily Greens</a>
-                      </h3>
-                      <div className="product-price ls-md offer_price_details">
-                        <span className="price">$140.00</span>
-                        <span className="price line-through">Rs. 2,499</span>
-                      </div>
-                      <div className="ratings-container">
-                        <div className="ratings-full">
-                          <span className="ratings"></span>
-                          <span className="tooltiptext tooltip-top"></span>
-                        </div>
-                      </div>
-                      <div className="product-action">
-                        <a
-                          href="#"
-                          className="btn-product btn-cart ls-l"
-                          data-toggle="modal"
-                          data-target="#addCartModal"
-                          title="Add to cart"
-                        >
-                          <i className="d-icon-bag"></i>
-                          <span>Add to cart</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </OwlCarousel>
-              </div>
-              <div className="tab-pane pt-4" id="sea_food">
-                {/* <div
-                                            class="owl-carousel owl-theme row cols-lg-4 cols-md-3 cols-2"
-                                            data-owl-options="{
-                                                                    'nav': true,
-                                                                    'dots': false,
-                                                                    'margin': 20,
-                                                                    'autoplay': false,
-                                                                    'responsive': {
-                                                                        '0': {
-                                                                            'items': 1
-                                                                        },
-                                                                        '768': {
-                                                                            'items': 3
-                                                                        },
-                                                                        '992': {
-                                                                            'items': 3
-                                                                        }
-                                                                    }
-                                                                }"
-                                        > */}
-                <OwlCarousel
-                  className="owl-carousel owl-theme row cols-lg-4 cols-md-3 cols-2"
-                  margin={20}
-                  nav
-                  smartSpeed={500}
-                  dots={false}
-                  navContainerClass={"owl-nav"}
-                  responsive={{
-                    0: {
-                      items: 1,
-                    },
-                    768: {
-                      items: 3,
-                    },
-                    992: {
-                      items: 3,
-                    },
-                  }}
-                  autoplay
-                  loop
-                  autoplayTimeout={2000}
-                  autoplayHoverPause={true}
-                >
-                  <div className="product text-center product-with-qty">
-                    <figure className="product-media">
-                      <a href="#">
-                        <img
-                          src={product_1}
-                          alt="product"
-                          width="280"
-                          height="315"
-                        />
-                      </a>
-                      <div className="product-label-group">
-                        <img src={priceTag} />
-                      </div>
-                    </figure>
-                    <div className="product-details">
-                      <h3 className="product-name">
-                        <a href="#">Glow Japanese Marine Collagen Peptides</a>
-                      </h3>
-                      <div className="product-price ls-md offer_price_details">
-                        <span className="price">$140.00</span>
-                        <span className="price line-through">Rs. 2,499</span>
-                      </div>
-                      <div className="ratings-container">
-                        <div className="ratings-full">
-                          <span className="ratings"></span>
-                          <span className="tooltiptext tooltip-top"></span>
-                        </div>
-                      </div>
-
-                      <div className="product-action">
-                        <a
-                          href="#"
-                          className="btn-product btn-cart ls-l"
-                          data-toggle="modal"
-                          data-target="#addCartModal"
-                          title="Add to cart"
-                        >
-                          <i className="d-icon-bag"></i>
-                          <span>Add to cart</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="product text-center product-with-qty">
-                    <figure className="product-media">
-                      <a href="#">
-                        <img
-                          src={product_2}
-                          alt="product"
-                          width="280"
-                          height="315"
-                        />
-                      </a>
-                      <div className="product-label-group">
-                        <img src={priceTag} />
-                      </div>
-                    </figure>
-                    <div className="product-details">
-                      <h3 className="product-name">
-                        <a href="#">Marvel Natural B12+ D3</a>
-                      </h3>
-                      <div className="product-price ls-md offer_price_details">
-                        <span className="price">$140.00</span>
-                        <span className="price line-through">Rs. 2,499</span>
-                      </div>
-                      <div className="ratings-container">
-                        <div className="ratings-full">
-                          <span className="ratings"></span>
-                          <span className="tooltiptext tooltip-top"></span>
-                        </div>
-                      </div>
-                      <div className="product-action">
-                        <a
-                          href="#"
-                          className="btn-product btn-cart ls-l"
-                          data-toggle="modal"
-                          data-target="#addCartModal"
-                          title="Add to cart"
-                        >
-                          <i className="d-icon-bag"></i>
-                          <span>Add to cart</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="product text-center product-with-qty">
-                    <figure className="product-media">
-                      <a href="#">
-                        <img
-                          src={product_3}
-                          alt="product"
-                          width="280"
-                          height="315"
-                        />
-                      </a>
-                      <div className="product-label-group">
-                        <img src={priceTag} />
-                      </div>
-                    </figure>
-                    <div className="product-details">
-                      <h3 className="product-name">
-                        <a href="#">Disney Frozen Probiotic</a>
-                      </h3>
-                      <div className="product-price ls-md offer_price_details">
-                        <span className="price">$140.00</span>
-                        <span className="price line-through">Rs. 2,499</span>
-                      </div>
-                      <div className="ratings-container">
-                        <div className="ratings-full">
-                          <span className="ratings"></span>
-                          <span className="tooltiptext tooltip-top"></span>
-                        </div>
-                      </div>
-                      <div className="product-action">
-                        <a
-                          href="#"
-                          className="btn-product btn-cart ls-l"
-                          data-toggle="modal"
-                          data-target="#addCartModal"
-                          title="Add to cart"
-                        >
-                          <i className="d-icon-bag"></i>
-                          <span>Add to cart</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="product text-center product-with-qty">
-                    <figure className="product-media">
-                      <a href="#">
-                        <img
-                          src={product_4}
-                          alt="product"
-                          width="280"
-                          height="315"
-                        />
-                      </a>
-                      <div className="product-label-group">
-                        <img src={priceTag} />
-                      </div>
-                    </figure>
-                    <div className="product-details">
-                      <h3 className="product-name">
-                        <a href="#">Daily Greens</a>
-                      </h3>
-                      <div className="product-price ls-md offer_price_details">
-                        <span className="price">$140.00</span>
-                        <span className="price line-through">Rs. 2,499</span>
-                      </div>
-                      <div className="ratings-container">
-                        <div className="ratings-full">
-                          <span className="ratings"></span>
-                          <span className="tooltiptext tooltip-top"></span>
-                        </div>
-                      </div>
-                      <div className="product-action">
-                        <a
-                          href="#"
-                          className="btn-product btn-cart ls-l"
-                          data-toggle="modal"
-                          data-target="#addCartModal"
-                          title="Add to cart"
-                        >
-                          <i className="d-icon-bag"></i>
-                          <span>Add to cart</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </OwlCarousel>
-              </div>
-              <div className="tab-pane pt-4" id="milk_cream">
-                {/* <div
-                                            class="owl-carousel owl-theme row cols-lg-4 cols-md-3 cols-2"
-                                            data-owl-options="{
-                                                                    'nav': true,
-                                                                    'dots': false,
-                                                                    'margin': 20,
-                                                                    'autoplay': false,
-                                                                    'responsive': {
-                                                                        '0': {
-                                                                            'items': 1
-                                                                        },
-                                                                        '768': {
-                                                                            'items': 3
-                                                                        },
-                                                                        '992': {
-                                                                            'items': 3
-                                                                        }
-                                                                    }
-                                                                }"
-                                        > */}
-                <OwlCarousel
-                  className="owl-carousel owl-theme row cols-lg-4 cols-md-3 cols-2"
-                  margin={20}
-                  nav
-                  smartSpeed={500}
-                  dots={false}
-                  navContainerClass={"owl-nav"}
-                  responsive={{
-                    0: {
-                      items: 1,
-                    },
-                    768: {
-                      items: 3,
-                    },
-                    992: {
-                      items: 3,
-                    },
-                  }}
-                  autoplay
-                  loop
-                  autoplayTimeout={2000}
-                  autoplayHoverPause={true}
-                >
-                  <div className="product text-center product-with-qty">
-                    <figure className="product-media">
-                      <a href="#">
-                        <img
-                          src={product_1}
-                          alt="product"
-                          width="280"
-                          height="315"
-                        />
-                      </a>
-                      <div className="product-label-group">
-                        <img src={priceTag} />
-                      </div>
-                    </figure>
-                    <div className="product-details">
-                      <h3 className="product-name">
-                        <a href="#">Glow Japanese Marine Collagen Peptides</a>
-                      </h3>
-                      <div className="product-price ls-md offer_price_details">
-                        <span className="price">$140.00</span>
-                        <span className="price line-through">Rs. 2,499</span>
-                      </div>
-                      <div className="ratings-container">
-                        <div className="ratings-full">
-                          <span className="ratings"></span>
-                          <span className="tooltiptext tooltip-top"></span>
-                        </div>
-                      </div>
-                      <div className="product-action">
-                        <a
-                          href="#"
-                          className="btn-product btn-cart ls-l"
-                          data-toggle="modal"
-                          data-target="#addCartModal"
-                          title="Add to cart"
-                        >
-                          <i className="d-icon-bag"></i>
-                          <span>Add to cart</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="product text-center product-with-qty">
-                    <figure className="product-media">
-                      <a href="#">
-                        <img
-                          src={product_2}
-                          alt="product"
-                          width="280"
-                          height="315"
-                        />
-                      </a>
-                      <div className="product-label-group">
-                        <img src={priceTag} />
-                      </div>
-                    </figure>
-                    <div className="product-details">
-                      <h3 className="product-name">
-                        <a href="#">Marvel Natural B12+ D3</a>
-                      </h3>
-                      <div className="product-price ls-md offer_price_details">
-                        <span className="price">$140.00</span>
-                        <span className="price line-through">Rs. 2,499</span>
-                      </div>
-                      <div className="ratings-container">
-                        <div className="ratings-full">
-                          <span className="ratings"></span>
-                          <span className="tooltiptext tooltip-top"></span>
-                        </div>
-                      </div>
-                      <div className="product-action">
-                        <a
-                          href="#"
-                          className="btn-product btn-cart ls-l"
-                          data-toggle="modal"
-                          data-target="#addCartModal"
-                          title="Add to cart"
-                        >
-                          <i className="d-icon-bag"></i>
-                          <span>Add to cart</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="product text-center product-with-qty">
-                    <figure className="product-media">
-                      <a href="#">
-                        <img
-                          src={product_3}
-                          alt="product"
-                          width="280"
-                          height="315"
-                        />
-                      </a>
-                      <div className="product-label-group">
-                        <img src={priceTag} />
-                      </div>
-                    </figure>
-                    <div className="product-details">
-                      <h3 className="product-name">
-                        <a href="#">Disney Frozen Probiotic</a>
-                      </h3>
-                      <div className="product-price ls-md offer_price_details">
-                        <span className="price">$140.00</span>
-                        <span className="price line-through">Rs. 2,499</span>
-                      </div>
-                      <div className="ratings-container">
-                        <div className="ratings-full">
-                          <span className="ratings"></span>
-                          <span className="tooltiptext tooltip-top"></span>
-                        </div>
-                      </div>
-                      <div className="product-action">
-                        <a
-                          href="#"
-                          className="btn-product btn-cart ls-l"
-                          data-toggle="modal"
-                          data-target="#addCartModal"
-                          title="Add to cart"
-                        >
-                          <i className="d-icon-bag"></i>
-                          <span>Add to cart</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="product text-center product-with-qty">
-                    <figure className="product-media">
-                      <a href="#">
-                        <img
-                          src={product_4}
-                          alt="product"
-                          width="280"
-                          height="315"
-                        />
-                      </a>
-                      <div className="product-label-group">
-                        <img src={priceTag} />
-                      </div>
-                    </figure>
-                    <div className="product-details">
-                      <h3 className="product-name">
-                        <a href="#">Daily Greens</a>
-                      </h3>
-                      <div className="product-price ls-md offer_price_details">
-                        <span className="price">$140.00</span>
-                        <span className="price line-through">Rs. 2,499</span>
-                      </div>
-                      <div className="ratings-container">
-                        <div className="ratings-full">
-                          <span className="ratings"></span>
-                          <span className="tooltiptext tooltip-top"></span>
-                        </div>
-                      </div>
-                      <div className="product-action">
-                        <a
-                          href="#"
-                          className="btn-product btn-cart ls-l"
-                          data-toggle="modal"
-                          data-target="#addCartModal"
-                          title="Add to cart"
-                        >
-                          <i class="d-icon-bag"></i>
-                          <span>Add to cart</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
+                  {(() => {
+                    if (prodList.length > 0) {
+                      return (
+                        <>
+                          {prodList?.map((prodDetails) => {
+                            return (
+                              <div className="product text-center product-with-qty">
+                                <figure className="product-media">
+                                  <Link to="/product">
+                                    <img
+                                      src={prodDetails.photos[0]}
+                                      alt="product"
+                                      width="280"
+                                      height="315"
+                                    />
+                                  </Link>
+                                  <div className="product-label-group">
+                                    <img src={priceTag} />
+                                  </div>
+                                </figure>
+                                <div className="product-details">
+                                  <h3 className="product-name">
+                                    <a href="#">{prodDetails?.name}</a>
+                                  </h3>
+                                  <div className="product-price ls-md offer_price_details">
+                                    <span className="price">
+                                      {prodDetails?.saleAmount}
+                                    </span>
+                                    <span className="price line-through">
+                                      Rs.{prodDetails?.actualAmount}
+                                    </span>
+                                  </div>
+                                  <div className="ratings-container">
+                                    <div className="ratings-full">
+                                      <span className="ratings"></span>
+                                      <span className="tooltiptext tooltip-top"></span>
+                                    </div>
+                                  </div>
+                                  <div className="product-action">
+                                    <a
+                                      href="#"
+                                      className="btn-product btn-cart ls-l"
+                                      data-toggle="modal"
+                                      data-target="#addCartModal"
+                                      title="Add to cart"
+                                      onClick={() => {
+                                        if (!inCart) {
+                                          dispatch(
+                                            add_to_cart_thunk(prodDetails?._id)
+                                          );
+                                        }
+                                      }}
+                                    >
+                                      <i class="d-icon-bag"></i>
+                                      <span>Add to cart</span>
+                                    </a>
+                                  </div>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </>
+                      );
+                    }
+                  })()}
                 </OwlCarousel>
               </div>
             </div>

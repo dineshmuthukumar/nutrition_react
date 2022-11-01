@@ -3,6 +3,7 @@
 import React, { useEffect, useState,useRef } from "react";
 import { useRouteMatch } from "react-router";
 import OwlCarousel from "react-owl-carousel";
+import "owl.carousel/dist/assets/owl.carousel.css";
 import store_1 from "../../../images/new-images/subpages/store-1.jpg";
 import store_2 from "../../../images/new-images/subpages/store-2.jpg";
 import store_3 from "../../../images/new-images/subpages/store-3.jpg";
@@ -14,45 +15,11 @@ import pro_product_4 from "../../../images/new-images/demos/demo-food2/products/
 //import pro_product_5 from "../../../images/new-images/demos/demo-food2/products/pro_product_4.jpg";
 import Accordion from "../../accordion";
 
-import { getsubCategoryApi } from "../../../api/base-methods";
-
-
+import Product from "../../product";
 import "./styles.scss";
 
-const accordionData = [
-    {
-      heading: "Q. What are Effervescent?",
-      content:
-        "Effervescent tablets are solid preparations of nutrients that are designed to release CO2 in contact with water through disintegration in a few minutes. It dissolves completely and becomes available in liquid form for easy and fastabsorbing dosing method. This occurs by a chemical reaction between the carbonate or bicarbonate salt (sodium bicarbonate) and a weak organic acid (citric or tartaric acid) in the liquid. It causes the tablets to make a bubbling effect producing fizzy drink making its usage interesting every time you take. It is also flavored naturally making the consumption tastier and simpler for supporting health."
-    },
-    {
-      heading: "Q. How safe is to take effervescent daily?",
-      content:
-        "It is safe to consume effervescent daily even in multiple count. It is necessary to take them with 8 ounces of water for each tablet. This might improve hydration and also support the desires in a healthy and fun way. Consulting with a medical professional is best before using or after finding discomforts with usage is beneficial. Also, taking it as recommended might prevent health complications."
-    },
-    {
-      heading: "Q. Why not capsules or other forms of drugs?",
-      content:
-        "Effervescent is the same as effervescent liquid drinks. It indulges users in consuming proper dosage and prevents stomach issues. This is not something like hard capsules which most of the people find difficulty to swallow and leaves no medicine taste behind even after swallowing. It can be naturally flavored and colored ensuring the taste and absorption without causing hesitation of consuming a health supplement.",
-    },
-    {
-        heading: "Q. What is the right way of taking these effervescent tablets?",
-        content:
-          "It is better to fizz and drink these tablets during day time than at night as it might cause some sleeping discomfort. It can be taken with or without food but taking with food works better and results no way of attaining any stomach discomforts by preventing any acidic reactions.",
-      },
-      {
-        heading: "Q. Any precautionary to be followed before taking effervescent drink?",
-        content:
-          "As said, taking multiple effervescent tablets is safe on a day. But if there is any prior health illness or already under medication kindly consult with the doctor before use. Do not exceed the limit or consume more numbers to prevent even mild side effects like stomach upset and nausea."
-      },
-      {
-        heading: "Q. What are the problems for which effervescent available?",
-        content:
-          "As of now, effervescent is the leading technology highly preferred by people to nourish their body and support. Hence, Liven consists of readily available effervescent tablet for weight loss (ACV), skin, hair, women's health, multivitamins and more."
-      },
-  ];
-
-const Product_Category = ({ categoryDetails }) => {
+const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
+  // const accordionData = categoryDetails?.questions;
   return (
     <>
       <section className="customer-section pb-10">
@@ -328,24 +295,46 @@ const Product_Category = ({ categoryDetails }) => {
           <h2 className="title-echo mb-1">
             <span>Available Products</span>
           </h2>
-          <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since. Lorem Ipsum is simply dummy text of the printing and
-            typesetting industry. Lorem Ipsum has been the industry's standard
-            dummy text ever since.
-          </p>
+          <p>{categoryDetails?.productDescription}</p>
+
+          {/* <OwlCarousel className="owl-theme" loop margin={10} nav>
+            <div class="item">
+              <img src={pro_product_1} />
+            </div>
+            <div class="item">
+              <img src={pro_product_2} />
+            </div>
+            <div class="item">
+              <img src={pro_product_1} />
+            </div>
+            <div class="item">
+              <img src={pro_product_1} />
+            </div>
+            <div class="item">
+              <img src={pro_product_1} />
+            </div>
+          </OwlCarousel> */}
           <OwlCarousel
-            className="owl-carousel owl-theme owl-loaded owl-drag"
+            className="owl-carousel owl-carousel owl-theme row cols-lg-4 cols-md-3 cols-2 owl-loaded owl-drag"
             margin={20}
             nav
+            navigation={true}
             smartSpeed={500}
             dots={false}
-            navContainerClass={"owl-nav"}
-            navText={[
-              `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png  />`,
-              `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png />`,
+            //navContainerClass={"owl-nav"}
+            navigationText={[
+              "<i class='icon-chevron-left icon-white'><</i>",
+              "<i class='icon-chevron-right icon-white'>></i>",
             ]}
+            navText={[
+              '<i class="fa fa-angle-left" aria-hidden="true"></i>',
+              '<i class="fa fa-angle-right" aria-hidden="true"></i>',
+            ]}
+            responsiveClass={true}
+            // navText={[
+            //   `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png  />`,
+            //   `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png />`,
+            // ]}
             responsive={{
               0: {
                 items: 2,
@@ -357,71 +346,24 @@ const Product_Category = ({ categoryDetails }) => {
                 items: 4,
               },
             }}
-            autoplay
-            loop
-            autoplayTimeout={2000}
-            autoplayHoverPause={true}
-          >
-            <div class="product text-center product-with-qty">
-              <figure class="product-media">
-                <a href="#">
-                  <img
-                    src={pro_product_1}
-                    alt="product"
-                    width="280"
-                    height="315"
-                  />
-                </a>
-                <div class="product-label-group">
-                  <label class="product-label label-sale">25% Off</label>
-                </div>
-                <div class="product-action-vertical">
-                  <a
-                    href="#"
-                    class="btn-product-icon btn-wishlist"
-                    title="Add to wishlist"
-                  >
-                    <i class="d-icon-heart"></i>
-                  </a>
-                </div>
-              </figure>
-              <div class="product-details">
-                <h3 class="product-name">
-                  <a href="#">Glow Japanese Marine Collagen Peptides</a>
-                </h3>
-                <div class="product-price ls-md offer_price_details">
-                  <span class="price">$140.00</span>
-                  <span class="price line-through">Rs. 2,499</span>
-                  {/* <!-- <span class="price base-color">25% off</span> --> */}
-                </div>
-                <div class="ratings-container">
-                  <div class="ratings-full">
-                    <span class="ratings" style={{ width: "100%" }}></span>
-                    <span class="tooltiptext tooltip-top"></span>
-                  </div>
-                </div>
-                {/* <!-- <div class="row">
-                                                            <div class="col-sm-12">
-                                                                <div class="product-action">
-                                                                    <a href="#" class="btn-product btn-cart ls-l" data-toggle="modal" data-target="#addCartModal" title="Add to cart"><i class="d-icon-bag"></i><span>Add to cart</span></a>
-                                                                </div>
-                                                            </div>
-                                                        </div> --> */}
+            pautoplay
 
-                <div class="product-action">
-                  <a
-                    href="#"
-                    class="btn-product btn-cart ls-l"
-                    data-toggle="modal"
-                    data-target="#addCartModal"
-                    title="Add to cart"
-                  >
-                    <i class="d-icon-bag"></i>
-                    <span>Add to cart</span>
-                  </a>
-                </div>
-              </div>
-            </div>
+            //autoplayTimeout={2000}
+            //autoplayHoverPause={true}
+          >
+            {(() => {
+              if (categoryProdDetails?.length > 0) {
+                return (
+                  <>
+                    {categoryProdDetails?.map((prodDetailsList, key) => {
+                      return (
+                        <Product key={key} ProductDetails={prodDetailsList} />
+                      );
+                    })}
+                  </>
+                );
+              }
+            })()}
           </OwlCarousel>
         </div>
       </section>
@@ -542,19 +484,14 @@ const Product_Category = ({ categoryDetails }) => {
             <span>Frequently Asked Question?</span>
           </h2>
           <p className="new_our_idea_des">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. <br />
-            Lorem Ipsum has been the industry's standard dummy text ever since.
+            {categoryDetails?.questionDescription}
           </p>
           <div className="row justify-content-center">
             <div className="col-sm-9 offset-sm-1">
               <div className="code-template">
                 <div className="accordion-background accordion-icon accordion-boxed accordion-card-border accordion-plus accordion-gutter-sm code-content">
-                  {categoryDetails?.questions?.map(({ questions }) => (
-                    <Accordion
-                      heading={questions?.title}
-                      content={questions?.description}
-                    />
+                  {categoryDetails?.questions?.map(({ question }) => (
+                    <Accordion content={question} />
                   ))}
                 </div>
               </div>

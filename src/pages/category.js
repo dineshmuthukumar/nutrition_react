@@ -26,6 +26,7 @@ const Category = () => {
   const match = useRouteMatch();
   const { categoryid } = match.params;
   const [categoryDetails, setCategoryDetails] = useState({});
+  const [categoryProdDetails, setCategoryProdDetails] = useState({});
 
   useEffect(() => {
     if (fsz) {
@@ -51,6 +52,7 @@ const Category = () => {
     const result = await getsubCategoryApi(categoryid);
     //console.log(result?.data?.responseData?.subCategories);
     setCategoryDetails(result?.data?.responseData?.subCategories);
+    setCategoryProdDetails(result?.data?.responseData?.Products);
     //console.log(categoryDetails?.bannerImage);
   };
 
@@ -71,11 +73,14 @@ const Category = () => {
               }}
             >
               <h1 className="page-title font-weight-bold lh-1 text-white text-capitalize">
-                {categoryDetails?.subCategoryName}
+                Product Category
               </h1>
             </div>
             <div class="page-content mt-10 pt-10">
-              <Product_Category categoryDetails={categoryDetails} />
+              <Product_Category
+                categoryDetails={categoryDetails}
+                categoryProdDetails={categoryProdDetails}
+              />
             </div>
           </div>
         </div>

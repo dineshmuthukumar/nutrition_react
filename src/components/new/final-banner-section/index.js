@@ -25,7 +25,10 @@ const FirstBannerSection = ({ homeContent }) => {
                         style={{ width: "100%" }}
                       >
                         <source
-                          src={sixthproductcontentList?.image}
+                          src={
+                            "http://54.177.7.240/" +
+                            sixthproductcontentList?.image
+                          }
                           type="video/mp4"
                         />
                       </video>

@@ -28,6 +28,12 @@ export const signOutApi = () => baseAxios.delete("/logout");
 export const getsubCategoryListApi = () => baseAxios.get(`/subcategory/list`);
 
 
+export const getProductDetailsApi = (productId) =>
+  baseAxios.get(`/product/details?id=${productId}`);
+
+
+
+
 export const readNotificationApi = () =>
   baseAxios.post("/users/notification_read");
 

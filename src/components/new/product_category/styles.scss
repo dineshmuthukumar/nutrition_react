@@ -19,7 +19,7 @@
                             }
                             .owl-stage-outer{
                                 .owl-stage{
-                                transform:translate3d(0,0,0) !important;
+                                transform:translate3d(-600px, 0px, 0px) !important;
                                 transition: all 0s ease 0s;
                                 width: 1800px !important;
                              ///width: auto !important;
@@ -32,3 +32,16 @@
         }
     }
 }
+
+.owl-carousel .owl-stage{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  
+  .owl-carousel .owl-item .item{
+    width: 120px;
+    min-height: 120px;
+    background-color: lightblue;
+  }
+  

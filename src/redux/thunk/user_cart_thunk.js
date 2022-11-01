@@ -6,6 +6,8 @@ import {
   getCartListApi,
   checkoutApi,
 } from "../../api/methods";
+
+import { getProductDetailsApi } from "../../api/base-methods";
 import {
   add_to_cart_action_request,
   add_to_cart_action_success,
@@ -22,27 +24,24 @@ import {
   checkout_event,
 } from "../actions/user_cart_action";
 
-export const add_to_cart_thunk = (order_slug, quantity) => {
+export const add_to_cart_thunk = (productid) => {
   return async (dispatch) => {
     try {
       dispatch(add_to_cart_action_request());
-      const result = await addToCartApi({ order_slug, quantity });
-      dispatch(add_to_cart_action_success(result.data.data));
-      dispatch(get_cart_list_thunk());
-      toast.success("The NFT is successfully added to your cart.", {
+      dispatch(get_cart_list_request());
+      const result = await getProductDetailsApi(productid);
+      //console.log(result?.data?.responseData?.product, "result?.data");
+      dispatch(add_to_cart_action_success(result?.data?.responseData?.product));
+      dispatch(get_cart_list_success(result?.data?.responseData?.product));
+      toast.success("The Product is successfully added to your cart.", {
         autoClose: 2000,
       });
 
       // Meta Pixel
-      if (process.env.REACT_APP_MARKETING_SCRIPT === "enabled") {
-        ReactPixel.init(process.env.REACT_APP_META_PIXEL_ID);
-        ReactPixel.pageView();
-        ReactPixel.track("AddToCart");
-      }
     } catch (err) {
       console.log(err?.response?.status);
       if (err?.response?.status === 404) {
-        toast.error("The NFT has either been sold or no longer listed.", {
+        toast.error("The Product has either been sold or no longer listed.", {
           autoClose: 2000,
         });
       }

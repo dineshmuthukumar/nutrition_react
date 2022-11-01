@@ -109,7 +109,14 @@ const showToastMessage = () => {
           <div className="footer-middle">
             <div className="row foot_white_logo">
               <div className="col-sm-12 text-center">
-                <Link to="" className="logo-footer"><img src={livenlogofooter} alt="logo-footer" width="100" height="auto" /></Link>
+                <Link to="" className="logo-footer">
+                  <img
+                    src={livenlogofooter}
+                    alt="logo-footer"
+                    width="100"
+                    height="auto"
+                  />
+                </Link>
               </div>
             </div>
             <div className="row">
@@ -195,27 +202,27 @@ const showToastMessage = () => {
                   <h4 className="widget-title">Know Us</h4>
                   <ul className="widget-body">
                     <li>
-                      <Link to="" ClassName="btn btn-link">
+                      <Link to="" className="btn btn-link">
                         Who We Are
                       </Link>
                     </li>
                     <li>
-                      <Link to="" ClassName="btn btn-link">
+                      <Link to="" className="btn btn-link">
                         Where we source?
                       </Link>
                     </li>
                     <li>
-                      <Link to="" ClassName="btn btn-link">
+                      <Link to="" className="btn btn-link">
                         Our Promise
                       </Link>
                     </li>
                     <li>
-                      <Link to="" ClassName="btn btn-link">
+                      <Link to="" className="btn btn-link">
                         Risk-Free trial
                       </Link>
                     </li>
                     <li>
-                      <Link to="" ClassName="btn btn-link">
+                      <Link to="" className="btn btn-link">
                         Rewards
                       </Link>
                     </li>
@@ -289,18 +296,23 @@ const showToastMessage = () => {
                 <div className="footer-center">
                   <p className="copyright">Copyright &copy; 2022. Nutrition</p>
                 </div>
-                </Col>
-                <Col sm={4}>
-                  {/* Toast Message Start */}
-                  <Row>
-                    <Col xs={12}>
-                      <button className="btn btn-primary btn-md" onClick={showToastMessage}>Toast</button>
-                      <ToastContainer />
-                    </Col>
-                  </Row>
-                  {/* Toast Message End */}
-                </Col>
-              </Row>
+              </Col>
+              <Col sm={4}>
+                {/* Toast Message Start */}
+                <Row>
+                  <Col xs={12}>
+                    <button
+                      className="btn btn-primary btn-md"
+                      onClick={showToastMessage}
+                    >
+                      Toast
+                    </button>
+                    <ToastContainer />
+                  </Col>
+                </Row>
+                {/* Toast Message End */}
+              </Col>
+            </Row>
           </div>
         </div>
       </div>
