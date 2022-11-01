@@ -75,6 +75,7 @@ const Header = ({
   const [categoryActive, setCategoryActive] = useState(false);
   const [subCategoryList, setSubCategoryList] = useState({});
   const [pageActive, setPageActive] = useState(false);
+  const [bestSellerDetails, setBestSellerDetails] = useState({});
 
   const slug = user.data?.user ? user.data?.user?.slug : null;
   const userCart = cart?.data ? cart?.data : null;
@@ -164,6 +165,7 @@ const Header = ({
       const result = await getCategoryApi();
 
       setCategoryDetails(result?.data?.responseData?.categories);
+      setBestSellerDetails(result?.data?.responseData?.beastProducts);
     } catch (error) {
       setNotiLoading(false);
 
@@ -639,13 +641,15 @@ const Header = ({
       var filterData = subCategoryList?.filter(
         (x) => x?.categoryId?._id === subCategoriesId
       );
-      if (filterData) {
+      if (filterData?.length) {
         return (
-          <ul className="dropdown-menu">
-            {filterData.map((subCategoriesDetail) => {
+          <ul>
+            {filterData?.map((subCategoriesDetail) => {
               return (
-                <li className="dropdown-submenu">
-                  {subCategoriesDetail?.subCategoryName}
+                <li>
+                  <Link to={`/category/${subCategoriesDetail?._id}`}>
+                    {subCategoriesDetail?.subCategoryName}
+                  </Link>
                 </li>
               );
             })}
@@ -654,7 +658,23 @@ const Header = ({
       } else {
         return "";
       }
+      return "";
     }
+  };
+  const IsDropdownMenuItem = (subCategoriesId) => {
+    let filterData = "";
+    if (subCategoryList?.length) {
+      filterData = subCategoryList?.filter(
+        (x) => x?.categoryId?._id === subCategoriesId
+      );
+      /// console.log(filterData);
+      if (filterData.length) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    return false;
   };
 
   return (
@@ -727,12 +747,17 @@ const Header = ({
                                       {categoryDetails?.map(
                                         (CategoriesDetail) => {
                                           return (
-                                            <li>
-                                              <Link
-                                                to={`/category/${CategoriesDetail?._id}`}
-                                              >
-                                                {CategoriesDetail.name}
-                                              </Link>
+                                            <li
+                                              className={`${
+                                                IsDropdownMenuItem(
+                                                  CategoriesDetail?._id
+                                                )
+                                                  ? "submenu"
+                                                  : ""
+                                              }`}
+                                            >
+                                              <a>{CategoriesDetail.name}</a>
+
                                               {DropdownMenuItem(
                                                 CategoriesDetail?._id
                                               )}
@@ -757,25 +782,47 @@ const Header = ({
                           <div className="col-6 col-sm-6 col-md-6 col-lg-6">
                             <h4 className="menu-title">Best Sellers</h4>
                             <ul>
-                              <li className="submenu">
+                              {(() => {
+                                if (bestSellerDetails?.length > 0) {
+                                  return (
+                                    <>
+                                      {bestSellerDetails?.map(
+                                        (bestSellerDetailsData) => {
+                                          return (
+                                            <li className="">
+                                              <a>
+                                                {bestSellerDetailsData.name}
+                                              </a>
+                                            </li>
+                                          );
+                                        }
+                                      )}
+                                    </>
+                                  );
+                                } else {
+                                  return <li>No Best Sellers Found</li>;
+                                }
+                              })()}
+
+                              {/* <li className="submenu">
                                 {" "}
                                 <Link to="/category">Essential Vitamins</Link>
-                                    <ul>
-                                      <li>
-                                        <Link to="">Demo1</Link>
-                                      </li>
-                                      <li>
-                                        <Link to="">Demo2</Link>
-                                      </li>
-                                      <li>
-                                        <Link to="">Demo3</Link>
-                                      </li>
-                                      <li>
-                                        <Link to="">Demo4</Link>
-                                      </li>
-                                    </ul>
-                              </li>
-                              <li>
+                                <ul>
+                                  <li>
+                                    <Link to="">Demo1</Link>
+                                  </li>
+                                  <li>
+                                    <Link to="">Demo2</Link>
+                                  </li>
+                                  <li>
+                                    <Link to="">Demo3</Link>
+                                  </li>
+                                  <li>
+                                    <Link to="">Demo4</Link>
+                                  </li>
+                                </ul>
+                              </li> */}
+                              {/* <li>
                                 {" "}
                                 <Link to="/category">Daily Immunity Combo</Link>
                               </li>
@@ -793,7 +840,6 @@ const Header = ({
                                   Women’s Performance Pack
                                 </Link>
                               </li>
-
                               <li>
                                 {" "}
                                 <Link to="/category">
@@ -815,7 +861,7 @@ const Header = ({
                               <li>
                                 {" "}
                                 <Link to="/category">Hair Care Kit</Link>
-                              </li>
+                              </li> */}
                             </ul>
                           </div>
                         </div>
@@ -838,37 +884,37 @@ const Header = ({
                                 {" "}
                                 <Link to="/category">Explore More</Link>
                                 <ul>
-                                      <li>
-                                        <Link to="">Demo1</Link>
-                                      </li>
-                                      <li>
-                                        <Link to="">Demo2</Link>
-                                      </li>
-                                      <li>
-                                        <Link to="">Demo3</Link>
-                                      </li>
-                                      <li>
-                                        <Link to="">Demo4</Link>
-                                      </li>
-                                    </ul>
+                                  <li>
+                                    <Link to="">Demo1</Link>
+                                  </li>
+                                  <li>
+                                    <Link to="">Demo2</Link>
+                                  </li>
+                                  <li>
+                                    <Link to="">Demo3</Link>
+                                  </li>
+                                  <li>
+                                    <Link to="">Demo4</Link>
+                                  </li>
+                                </ul>
                               </li>
                               <li className="submenu">
                                 {" "}
                                 <Link to="/category">Liven Dominance</Link>
                                 <ul>
-                                      <li>
-                                        <Link to="">Demo1</Link>
-                                      </li>
-                                      <li>
-                                        <Link to="">Demo2</Link>
-                                      </li>
-                                      <li>
-                                        <Link to="">Demo3</Link>
-                                      </li>
-                                      <li>
-                                        <Link to="">Demo4</Link>
-                                      </li>
-                                    </ul>
+                                  <li>
+                                    <Link to="">Demo1</Link>
+                                  </li>
+                                  <li>
+                                    <Link to="">Demo2</Link>
+                                  </li>
+                                  <li>
+                                    <Link to="">Demo3</Link>
+                                  </li>
+                                  <li>
+                                    <Link to="">Demo4</Link>
+                                  </li>
+                                </ul>
                               </li>
                               {/* <li>
                                 {" "}
@@ -1240,7 +1286,7 @@ const Header = ({
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/category" className="d-flex justify-content-between">
+              <a className="d-flex justify-content-between">
                 Categories{" "}
                 {categoryActive ? (
                   <AiOutlineArrowDown
@@ -1249,7 +1295,7 @@ const Header = ({
                 ) : (
                   <AiOutlineArrowUp onClick={() => setCategoryActive(true)} />
                 )}
-              </Link>
+              </a>
 
               <ul
                 className={`${categoryActive ? "catergory-page-active" : ""}`}
@@ -1260,10 +1306,16 @@ const Header = ({
                       <>
                         {categoryDetails?.map((CategoriesDetail) => {
                           return (
-                            <li>
-                              <Link to={`/category/${CategoriesDetail._id}`}>
-                                {CategoriesDetail.name}
-                              </Link>
+                            <li
+                              className={`${
+                                IsDropdownMenuItem(CategoriesDetail?._id)
+                                  ? "submenu"
+                                  : ""
+                              }`}
+                            >
+                              <a>{CategoriesDetail?.name}</a>
+
+                              {DropdownMenuItem(CategoriesDetail?._id)}
                             </li>
                           );
                         })}

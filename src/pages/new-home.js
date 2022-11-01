@@ -16,7 +16,7 @@ import { useHistory, useRouteMatch } from "react-router";
 import { setCookiesByName, setCookies } from "../utils/cookies";
 import { user_load_by_token_thunk } from "../redux/thunk/user_thunk";
 import { nftCategoriesApi } from "../api/methods";
-import { homeContentApi } from "../api/base-methods";
+import { homeContentApi, getsubCategoryListApi } from "../api/base-methods";
 
 import useQuery from "../hook/useQuery";
 //import FavouriteNFTs from "../components/favourite-NFTs";
@@ -72,14 +72,24 @@ const NewHome = () => {
     }
   };
 
-  const categoriesList = async (page) => {
+  const SubcategoryList = async () => {
     try {
-      let response = await nftCategoriesApi({ page });
-      //setList([...list, ...response.data.data.categories]);
+      let response = await getsubCategoryListApi();
+      //setList(response?.data?.responseData);
+      setList(response?.data?.responseData?.subCategories);
     } catch (err) {
       console.log(err);
     }
   };
+
+  // const categoriesList = async (page) => {
+  //   try {
+  //     let response = await nftCategoriesApi({ page });
+  //     //setList([...list, ...response.data.data.categories]);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   useEffect(() => {
     if (fsz) {
@@ -96,6 +106,8 @@ const NewHome = () => {
 
     /// categoriesList(1);
     homecontent();
+    SubcategoryList();
+
     if (_ga) {
       history.replace(url);
     }
@@ -138,9 +150,11 @@ const NewHome = () => {
       />
       <main className="main home">
         <div className="page-content">
-          <Banner />
-          <FeatureProduct />
-          <ArrivalSection />
+          <Banner bannerContent={homeContent?.banner} />
+          <FeatureProduct
+            featureProductsContent={homeContent?.featureProducts}
+          />
+          <ArrivalSection homeContent={homeContent} categorylist={list} />
           <ProductBanner homeContent={homeContent} />
           <WeakStrong homeContent={homeContent} />
           <OurIdea homeContent={homeContent} />
@@ -179,6 +193,6 @@ const NewHome = () => {
       {/* <Footer /> */}
     </>
   );
-};
+};;;;;;;
 
 export default NewHome;
