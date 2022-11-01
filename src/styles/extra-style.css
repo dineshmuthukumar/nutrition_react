@@ -1465,3 +1465,14 @@ img.category_media_image
     padding: 0px;
     margin: 0px;
 }
+
+
+
+@media (min-width: 320px) and (max-width: 767px)
+{
+    ul.mobile-menu.mmenu-anim a
+    {
+        color: var(--black);
+    }
+    
+}

@@ -12798,7 +12798,6 @@ to {
   width:100%;
   height:100%;
   overflow-y:auto;
-  background:#222529;
   box-shadow:1px 0 5px rgba(0,0,0,0.5);
   transform:translateX(-296px);
   transition:transform 0.4s
@@ -12829,9 +12828,11 @@ to {
   margin:0 0 0.5rem;
   font-size:inherit
 }
-.mobile-menu-container .mobile-menu {
-  margin-bottom:0.5rem;
-  background:#222529
+.mobile-menu-container .mobile-menu 
+{
+  margin: 2rem 0rem;
+  background: #ddd;
+  border-radius: 10px;
 }
 .mobile-menu-container .tab {
   margin-top:3rem
