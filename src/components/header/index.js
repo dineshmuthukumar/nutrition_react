@@ -880,7 +880,32 @@ const Header = ({
                           <div className="col-6 col-sm-6 col-md-6">
                             {/* <h4 className="menu-title">Sports Nutrition</h4> */}
                             <ul>
-                              <li className="submenu">
+                              {(() => {
+                                if (subCategoryList?.length > 0) {
+                                  return (
+                                    <>
+                                      {subCategoryList?.map(
+                                        (CategoriesDetail) => {
+                                          return (
+                                            <li className="">
+                                              <Link
+                                                to={`/category/${CategoriesDetail?._id}`}
+                                              >
+                                                {
+                                                  CategoriesDetail?.subCategoryName
+                                                }
+                                              </Link>
+                                            </li>
+                                          );
+                                        }
+                                      )}
+                                    </>
+                                  );
+                                } else {
+                                  return <li>No Categories Found</li>;
+                                }
+                              })()}
+                              {/* <li className="submenu">
                                 {" "}
                                 <Link to="/category">Explore More</Link>
                                 <ul>
@@ -915,7 +940,7 @@ const Header = ({
                                     <Link to="">Demo4</Link>
                                   </li>
                                 </ul>
-                              </li>
+                              </li> */}
                               {/* <li>
                                 {" "}
                                 <Link to="/category">Gut</Link>
