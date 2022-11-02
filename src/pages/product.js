@@ -32,31 +32,34 @@ import useQuery from "../hook/useQuery";
 
 import Header from "../components/header";
 import ProductDetails from "../components/new/product-details";
+import { getProductDetailsApi } from "../api/base-methods";
 import Banner from "../components/new/banner";
 
 import Footer from "../components/footer";
 
 const NewHome = () => {
   const { url } = useRouteMatch();
+  const match = useRouteMatch();
   const history = useHistory();
   const dispatch = useDispatch();
   let query = useQuery();
   const fsz = query.get("fsz");
   const token = query.get("token");
   const _ga = query.get("_ga");
+  const { productid } = match.params;
   // const { user } = useSelector((state) => state.user.data);
 
-  const [list, setList] = useState([]);
+  const [productData, setProductData] = useState({});
 
   // const [favPage, setFavPage] = useState(1);
   // const [favList, setFavList] = useState([]);
   // const [favLoading, setFavLoading] = useState(false);
   // const [favHasNext, setFavHasNext] = useState(false);
 
-  const categoriesList = async (page) => {
+  const getProductDetails = async () => {
     try {
-      let response = await nftCategoriesApi({ page });
-      setList([...list, ...response.data.data.categories]);
+      let response = await getProductDetailsApi(productid);
+      setProductData(response?.data?.responseData?.product);
     } catch (err) {
       console.log(err);
     }
@@ -75,6 +78,7 @@ const NewHome = () => {
       dispatch(user_load_by_token_thunk(token));
     }
 
+    getProductDetails();
     ///categoriesList(1);
     if (_ga) {
       history.replace(url);
@@ -118,11 +122,10 @@ const NewHome = () => {
       />
       <main className="main pt-6 single-product">
         <div className="page-content">
-            <div className="container">
-                <ProductDetails/>
-               
-            </div>
-            <Footer />
+          <div className="container">
+            <ProductDetails productData={productData} />
+          </div>
+          <Footer />
         </div>
       </main>
       {/* <Footer /> */}

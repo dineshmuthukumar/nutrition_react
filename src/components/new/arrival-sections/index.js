@@ -22,15 +22,15 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
   //console.log(user, "user");
   const userSlug = user.data ? user.data : null;
   const [prodList, setProdList] = useState({});
-  const [categoryActive, setCategoryActive] = useState(false);
-  const [productTabActive, setProductTabActive] = useState(false);
+  const [categoryActive, setCategoryActive] = useState("");
+  const [productTabActive, setProductTabActive] = useState("");
   const userCart = cart?.data ? cart?.data : null;
   const IsProductDetails = async (subcategoryId) => {
     const result = await getsubCategoryApi(subcategoryId);
     console.log(result?.data?.responseData?.Products, "result");
     setProdList(result?.data?.responseData?.Products);
-    setCategoryActive(true);
-    setProductTabActive(true);
+    setCategoryActive(subcategoryId);
+    setProductTabActive(subcategoryId);
   };
 
   // useEffect(() => {
@@ -73,7 +73,9 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
                           >
                             <a
                               className={`nav-link nav-link-with-img border-rounded ${
-                                categoryActive ? "active" : ""
+                                categoryActive == arrivalecontent._id
+                                  ? "active"
+                                  : ""
                               }`}
                               href="#fruits"
                             >

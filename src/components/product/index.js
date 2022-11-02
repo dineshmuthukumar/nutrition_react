@@ -1,9 +1,14 @@
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { getProductDetailsApi } from "../../api/base-methods";
 const Product = ({ ProductDetails, key }) => {
+  const [productData, setProductData] = useState(false);
   // const accordionData = categoryDetails?.questions;
+  //console.log(ProductDetails, "ProductDetails");
   return (
     <div class="product text-center product-with-qty" key={ProductDetails?._id}>
       <figure class="product-media">
-        <a href="#">
+        <Link to={`/product/${ProductDetails?._id}`}>
           <img
             src={ProductDetails?.photos}
             alt="product"
@@ -11,7 +16,7 @@ const Product = ({ ProductDetails, key }) => {
             height="315"
             style={{ width: "100%" }}
           />
-        </a>
+        </Link>
         <div class="product-label-group">
           <label class="product-label label-sale">25% Off</label>
         </div>

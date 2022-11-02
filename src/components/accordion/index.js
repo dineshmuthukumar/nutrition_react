@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./accordion.scss";
 
 const Accordion = ({ content }) => {
-  console.log(content, "content");
   const [isActive, setIsActive] = useState(false);
   return (
     <li className="accordion-item">

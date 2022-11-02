@@ -16,7 +16,6 @@ import pro_product_4 from "../../../images/new-images/demos/demo-food2/products/
 import Accordion from "../../accordion";
 
 import Product from "../../product";
-import "./styles.scss";
 
 const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
   // const accordionData = categoryDetails?.questions;
@@ -29,11 +28,16 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
               <h3 className="section-title lh-1 font-weight-bold">
                 {categoryDetails.subCategoryName}
               </h3>
-              <h4 className="section-title lh-1 font-weight-bold">
+              {/* <h4 className="section-title lh-1 font-weight-bold">
                 What you want to know about Effervescent?
-              </h4>
+              </h4> */}
               <p className="section-desc text-grey">
-                Effervescent are disintegrating capsules that releases carbon
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: categoryDetails?.categoryDescription,
+                  }}
+                />
+                {/* Effervescent are disintegrating capsules that releases carbon
                 dioxide when dropped into water. It makes the drugs as an easily
                 available solution for faster absorption from upper small
                 intestine with improved bioavailability. These are the compact
@@ -42,11 +46,11 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
                 is maintained with integrity and protected from moisture by
                 proper manufacturing and packing procedure. The effervescent
                 tablets are packed in tight, moisture-free plastic tubes with
-                Desiccants.
+                Desiccants. */}
               </p>
             </div>
           </div>
-          <div className="row align-items-center">
+          {/* <div className="row align-items-center">
             <div className="col-md-12 mb-4">
               <h4 className="section-title lh-1 font-weight-bold">
                 Resilience with Effervescent!
@@ -63,8 +67,8 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
                 tablets are packed in tight, moisture-free plastic tubes with
                 Desiccants.
               </p>
-            </div>
-          </div>
+            </div> 
+          </div> */}
         </div>
       </section>
 
@@ -315,21 +319,22 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
             </div>
           </OwlCarousel> */}
           <OwlCarousel
-            className="owl-carousel owl-carousel owl-theme row cols-lg-4 cols-md-3 cols-2 owl-loaded owl-drag"
+            className="owl-carousel owl-theme row cols-lg-4 cols-md-3 cols-2 owl-loaded owl-drag"
             margin={20}
-            nav={false}
+            nav={true}
             navigation={true}
             smartSpeed={500}
             dots={false}
-            //navContainerClass={"owl-nav"}
-            navigationText={[
-              "<i class='icon-chevron-left icon-white'><</i>",
-              "<i class='icon-chevron-right icon-white'>></i>",
-            ]}
-            navText={[
-              '<i class="fa fa-angle-left" aria-hidden="true"></i>',
-              '<i class="fa fa-angle-right" aria-hidden="true"></i>',
-            ]}
+            navContainerClass={"owl-nav"}
+            // navigationText={[
+            //   "<i class='icon-chevron-left icon-white'><</i>",
+            //   "<i class='icon-chevron-right icon-white'>></i>",
+            // ]}
+            // navText={[
+            //   '<i class="fa fa-angle-left" aria-hidden="true"></i>',
+            //   '<i class="fa fa-angle-right" aria-hidden="true"></i>',
+            // ]}
+            // navContainerClass={"owl-nav"}
             responsiveClass={true}
             // navText={[
             //   `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png  />`,
@@ -346,10 +351,10 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
                 items: 4,
               },
             }}
+            // loop
             autoplay={false}
-
-            //autoplayTimeout={2000}
-            //autoplayHoverPause={true}
+            autoplayTimeout={2000}
+            autoplayHoverPause={true}
           >
             {(() => {
               if (categoryProdDetails?.length > 0) {
@@ -490,9 +495,17 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
             <div className="col-sm-9 offset-sm-1">
               <div className="code-template">
                 <div className="accordion-background accordion-icon accordion-boxed accordion-card-border accordion-plus accordion-gutter-sm code-content">
-                  {categoryDetails?.questions?.map(({ question }) => (
-                    <Accordion content={question} />
-                  ))}
+                  {(() => {
+                    if (categoryDetails?.questions?.length > 0) {
+                      return (
+                        <>
+                          {categoryDetails?.questions?.map((contain) => {
+                            return <Accordion content={contain} />;
+                          })}
+                        </>
+                      );
+                    }
+                  })()}
                 </div>
               </div>
             </div>
