@@ -317,7 +317,7 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
           <OwlCarousel
             className="owl-carousel owl-carousel owl-theme row cols-lg-4 cols-md-3 cols-2 owl-loaded owl-drag"
             margin={20}
-            nav
+            nav={false}
             navigation={true}
             smartSpeed={500}
             dots={false}
@@ -346,7 +346,7 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
                 items: 4,
               },
             }}
-            pautoplay
+            autoplay={false}
 
             //autoplayTimeout={2000}
             //autoplayHoverPause={true}
