@@ -26,7 +26,7 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
           <div className="row align-items-center">
             <div className="col-md-12 mb-4">
               <h3 className="section-title lh-1 font-weight-bold">
-                {categoryDetails.subCategoryName}
+                {categoryDetails?.subCategoryName}
               </h3>
               {/* <h4 className="section-title lh-1 font-weight-bold">
                 What you want to know about Effervescent?
