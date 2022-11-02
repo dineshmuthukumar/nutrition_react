@@ -22,16 +22,23 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
   //console.log(user, "user");
   const userSlug = user.data ? user.data : null;
   const [prodList, setProdList] = useState({});
-  const [categoryActive, setCategoryActive] = useState("");
-  const [productTabActive, setProductTabActive] = useState("");
+  const [categoryActive, setCategoryActive] = useState(true);
+  const [productTabActive, setProductTabActive] = useState(true);
   const userCart = cart?.data ? cart?.data : null;
   const IsProductDetails = async (subcategoryId) => {
     const result = await getsubCategoryApi(subcategoryId);
     console.log(result?.data?.responseData?.Products, "result");
     setProdList(result?.data?.responseData?.Products);
-    setCategoryActive(subcategoryId);
-    setProductTabActive(subcategoryId);
+    setCategoryActive(true);
+    setProductTabActive(true);
   };
+
+  useEffect(() => {
+    if (categorylist?.length > 0) {
+      IsProductDetails(categorylist[0]?._id);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [categorylist]);
 
   // useEffect(() => {
   //   if (userSlug) {
@@ -61,9 +68,11 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
             <ul className="nav nav-tabs">
               {(() => {
                 if (categorylist?.length > 0) {
+                  let count = 0;
                   return (
                     <>
                       {categorylist?.map((arrivalecontent) => {
+                        count++;
                         return (
                           <li
                             className="nav-item ml-1 mr-1 pt-2 pb-2"
@@ -73,9 +82,7 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
                           >
                             <a
                               className={`nav-link nav-link-with-img border-rounded ${
-                                categoryActive == arrivalecontent._id
-                                  ? "active"
-                                  : ""
+                                categoryActive ? "active" : ""
                               }`}
                               href="#fruits"
                             >
