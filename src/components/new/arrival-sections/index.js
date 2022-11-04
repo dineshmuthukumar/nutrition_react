@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import OwlCarousel from "react-owl-carousel";
 import { getsubCategoryApi } from "../../../api/base-methods";
@@ -11,15 +11,16 @@ import product_3 from "../../../images/new-images/demos/demo-food2/products/pro_
 import product_4 from "../../../images/new-images/demos/demo-food2/products/pro_product_4.jpg";
 
 import priceTag from "../../../images/new-images/demos/demo-food2/products/price_tag.png";
+import Product from "../../product";
 
 import "./style.scss";
 
 const ArrivalSection = ({ homeContent, categorylist }) => {
+  const ref = useRef(null);
   const dispatch = useDispatch();
   const { user, cart } = useSelector((state) => state);
   const [inCart, setInCart] = useState(false);
 
-  //console.log(user, "user");
   const userSlug = user.data ? user.data : null;
   const [prodList, setProdList] = useState({});
   const [categoryActive, setCategoryActive] = useState(true);
@@ -34,6 +35,15 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
   };
 
   useEffect(() => {
+    //console.log("Usereffect");
+    //if (categorylist?.length > 0) {
+    IsProductDetails(categorylist[0]?._id);
+    ///}
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    //console.log("Usereffect");
     if (categorylist?.length > 0) {
       IsProductDetails(categorylist[0]?._id);
     }
@@ -76,6 +86,7 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
                         return (
                           <li
                             className="nav-item ml-1 mr-1 pt-2 pb-2"
+                            ref={ref}
                             onClick={() =>
                               IsProductDetails(arrivalecontent._id)
                             }
@@ -84,7 +95,6 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
                               className={`nav-link nav-link-with-img border-rounded ${
                                 categoryActive ? "active" : ""
                               }`}
-                              href="#fruits"
                             >
                               <h3 className="img-cat-title mb-0">
                                 <i
@@ -126,73 +136,23 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
                     },
                   }}
                   autoplay
-                  autoplayTimeout={2000}
-                  autoplayHoverPause={true}
+                  // autoplayTimeout={2000}
+                  //autoplayHoverPause={true}
                 >
                   {(() => {
-                    if (prodList.length > 0) {
-                      return (
-                        <>
-                          {prodList?.map((prodDetails) => {
+                    return (
+                      <>
+                        {prodList?.length > 0 &&
+                          prodList?.map((prodDetails, pkey) => {
                             return (
-                              <div className="product text-center product-with-qty">
-                                <figure className="product-media">
-                                  <Link to="/product">
-                                    <img
-                                      src={prodDetails.photos[0]}
-                                      alt="product"
-                                      width="280"
-                                      height="315"
-                                    />
-                                  </Link>
-                                  <div className="product-label-group">
-                                    <img src={priceTag} />
-                                  </div>
-                                </figure>
-                                <div className="product-details">
-                                  <h3 className="product-name">
-                                    <a href="#">{prodDetails?.name}</a>
-                                  </h3>
-                                  <div className="product-price ls-md offer_price_details">
-                                    <span className="price">
-                                      {prodDetails?.saleAmount}
-                                    </span>
-                                    <span className="price line-through">
-                                      Rs.{prodDetails?.actualAmount}
-                                    </span>
-                                  </div>
-                                  <div className="ratings-container">
-                                    <div className="ratings-full">
-                                      <span className="ratings"></span>
-                                      <span className="tooltiptext tooltip-top"></span>
-                                    </div>
-                                  </div>
-                                  <div className="product-action">
-                                    <a
-                                      href="#"
-                                      className="btn-product btn-cart ls-l"
-                                      data-toggle="modal"
-                                      data-target="#addCartModal"
-                                      title="Add to cart"
-                                      onClick={() => {
-                                        if (!inCart) {
-                                          dispatch(
-                                            add_to_cart_thunk(prodDetails?._id)
-                                          );
-                                        }
-                                      }}
-                                    >
-                                      <i class="d-icon-bag"></i>
-                                      <span>Add to cart</span>
-                                    </a>
-                                  </div>
-                                </div>
-                              </div>
+                              <Product
+                                ProductDetails={prodDetails}
+                                key={pkey}
+                              />
                             );
                           })}
-                        </>
-                      );
-                    }
+                      </>
+                    );
                   })()}
                 </OwlCarousel>
               </div>

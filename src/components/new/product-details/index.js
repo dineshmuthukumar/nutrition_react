@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {  Link } from "react-router-dom";
 import OwlCarousel from "react-owl-carousel";
-import product_1 from "../../../images/new-images/demos/demo-food2/products/final/product_1.jpg";
-import product_2 from "../../../images/new-images/demos/demo-food2/products/final/product_2.jpg";
-import product_3 from "../../../images/new-images/demos/demo-food2/products/final/product_3.jpg";
-import product_4 from "../../../images/new-images/demos/demo-food2/products/final/product_4.jpg";
-import packag from "../../../images/new-images/demos/demo-food2/products/final/Packages.png";
+
 import price_tag from "../../../images/new-images/demos/demo-food2/products/price_tag.png";
 import a from "../../../images/new-images/demos/demo-food2/products/a.png";
 import b from "../../../images/new-images/demos/demo-food2/products/b.png";
@@ -14,37 +10,34 @@ import d from "../../../images/new-images/demos/demo-food2/products/d.png";
 import e from "../../../images/new-images/demos/demo-food2/products/e.png";
 import f from "../../../images/new-images/demos/demo-food2/products/f.png";
 
-
 import pro_product_4 from "../../../images/new-images/demos/demo-food2/products/pro_product_4.jpg";
 import pro_product_1 from "../../../images/new-images/demos/demo-food2/products/pro_product_1.jpg";
 import pro_product_2 from "../../../images/new-images/demos/demo-food2/products/pro_product_2.jpg";
 import pro_product_3 from "../../../images/new-images/demos/demo-food2/products/pro_product_3.jpg";
-import pro_banner_2 from "../../../images/new-images/demos/demo-food2/products/pro_banner_2.jpg"
+import pro_banner_2 from "../../../images/new-images/demos/demo-food2/products/pro_banner_2.jpg";
 
 import a_1 from "../../../images/new-images/demos/demo-food2/icons/icon/1-a.png";
-import a_2 from "../../../images/new-images/demos/demo-food2/icons/icon/2-a.png"
-import a_3 from "../../../images/new-images/demos/demo-food2/icons/icon/3-a.png"
-import a_4 from "../../../images/new-images/demos/demo-food2/icons/icon/4-a.png"
-import a_5 from "../../../images/new-images/demos/demo-food2/icons/icon/5-a.png"
-import a_6 from "../../../images/new-images/demos/demo-food2/icons/icon/6-a.png"
-import a_7 from "../../../images/new-images/demos/demo-food2/icons/icon/7-a.png"
-import a_8 from "../../../images/new-images/demos/demo-food2/icons/icon/8-a.png"
-import a_9 from "../../../images/new-images/demos/demo-food2/icons/icon/9-a.png"
+import a_2 from "../../../images/new-images/demos/demo-food2/icons/icon/2-a.png";
+import a_3 from "../../../images/new-images/demos/demo-food2/icons/icon/3-a.png";
+import a_4 from "../../../images/new-images/demos/demo-food2/icons/icon/4-a.png";
+import a_5 from "../../../images/new-images/demos/demo-food2/icons/icon/5-a.png";
+import a_6 from "../../../images/new-images/demos/demo-food2/icons/icon/6-a.png";
+import a_7 from "../../../images/new-images/demos/demo-food2/icons/icon/7-a.png";
+import a_8 from "../../../images/new-images/demos/demo-food2/icons/icon/8-a.png";
+import a_9 from "../../../images/new-images/demos/demo-food2/icons/icon/9-a.png";
 import a_10 from "../../../images/new-images/demos/demo-food2/icons/icon/10-a.png";
-import a_11 from "../../../images/new-images/demos/demo-food2/icons/icon/11-a.png"
-import a_12 from "../../../images/new-images/demos/demo-food2/icons/icon/12-a.png"
+import a_11 from "../../../images/new-images/demos/demo-food2/icons/icon/11-a.png";
+import a_12 from "../../../images/new-images/demos/demo-food2/icons/icon/12-a.png";
 
+import usage_img from "../../../images/new-images/demos/demo-food2/products/final/usage_img.jpg";
 
-import usage_img from "../../../images/new-images/demos/demo-food2/products/final/usage_img.jpg"
+import radius_1 from "../../../images/new-images/demos/demo-food2/banners/radius_1.png";
+import radius_2 from "../../../images/new-images/demos/demo-food2/banners/radius_2.png";
+import radius_3 from "../../../images/new-images/demos/demo-food2/banners/radius_3.png";
+import radius_4 from "../../../images/new-images/demos/demo-food2/banners/radius_4.png";
 
-import radius_1 from "../../../images/new-images/demos/demo-food2/banners/radius_1.png"
-import radius_2 from "../../../images/new-images/demos/demo-food2/banners/radius_2.png"
-import radius_3 from "../../../images/new-images/demos/demo-food2/banners/radius_3.png"
-import radius_4 from "../../../images/new-images/demos/demo-food2/banners/radius_4.png"
-
-import apple_feature from "../../../images/new-images/demos/demo-food2/products/final/apple_feature.png"
+import apple_feature from "../../../images/new-images/demos/demo-food2/products/final/apple_feature.png";
 import why_choose from "../../../images/new-images/demos/demo-food2/products/why_choose.png";
-
 
 import app_1 from "../../../images/new-images/demos/demo-food2/products/final/app_1.png";
 import app_2 from "../../../images/new-images/demos/demo-food2/products/final/app_2.png";
@@ -58,10 +51,11 @@ import app_33 from "../../../images/new-images/demos/demo-food2/products/final/a
 import app_44 from "../../../images/new-images/demos/demo-food2/products/final/app_44.png";
 import app_55 from "../../../images/new-images/demos/demo-food2/products/final/app_55.png";
 
-import Comment_1 from "../../../images/new-images/blog/comments/1.jpg"
-import Comment_2 from "../../../images/new-images/blog/comments/2.jpg"
+import Comment_1 from "../../../images/new-images/blog/comments/1.jpg";
+import Comment_2 from "../../../images/new-images/blog/comments/2.jpg";
 
 import Accordion from "../../accordion";
+import "./style.scss";
 
 const ProductDetails = ({ productData }) => {
   return (
@@ -73,7 +67,7 @@ const ProductDetails = ({ productData }) => {
               <div className="product-gallery product-gallery-sticky mb-lg-9 mb-4 pb-0">
                 {/* <div className="product-single-carousel owl-carousel owl-theme owl-nav-inner row cols-1"> */}
                 <OwlCarousel
-                  className="owl-carousel owl-theme row cols-lg-4 cols-2"
+                  className="product-single-carousel owl-carousel owl-theme owl-nav-inner owl-loaded owl-drag"
                   margin={20}
                   nav
                   items={1}
@@ -104,7 +98,7 @@ const ProductDetails = ({ productData }) => {
                             return (
                               <figure className="product-image">
                                 <img
-                                  src={prodImgaes}
+                                  src={"http://54.177.7.240" + prodImgaes}
                                   data-zoom-image={prodImgaes}
                                   alt="Women's Brown Leather Backpacks"
                                   width="600"
@@ -131,7 +125,31 @@ const ProductDetails = ({ productData }) => {
                 >
                   <div className="row">
                     <div className="col-sm-9">
-                      <div className="product-thumbs">
+                      <OwlCarousel
+                        className="product-thumbs owl-carousel owl-loaded owl-drag"
+                        margin={20}
+                        nav
+                        items={1}
+                        smartSpeed={500}
+                        dots={false}
+                        // navContainerClass={"owl-nav"}
+                        responsive={{
+                          0: {
+                            items: 1,
+                          },
+                          768: {
+                            items: 1,
+                          },
+                          992: {
+                            items: 1,
+                          },
+                        }}
+                        // autoplay
+                        //   loop
+                        //   autoplayTimeout={2000}
+                        //   autoplayHoverPause={true}
+                      >
+                        {/* <div className="product-thumbs"> */}
                         {(() => {
                           if (productData?.photos?.length > 0) {
                             return (
@@ -140,7 +158,10 @@ const ProductDetails = ({ productData }) => {
                                   return (
                                     <div className="product-thumb active">
                                       <img
-                                        src={prodImgaesThumb}
+                                        src={
+                                          "http://54.177.7.240" +
+                                          prodImgaesThumb
+                                        }
                                         alt="product thumbnail"
                                         className="product-thumb_img"
                                       />
@@ -151,7 +172,8 @@ const ProductDetails = ({ productData }) => {
                             );
                           }
                         })()}
-                        {/* <div className="product-thumb active">
+                      </OwlCarousel>
+                      {/* <div className="product-thumb active">
                           <img
                             src={product_1}
                             alt="product thumbnail"
@@ -179,13 +201,13 @@ const ProductDetails = ({ productData }) => {
                             className="product-thumb_img"
                           />
                         </div> */}
-                      </div>
                     </div>
-                    {/* <!-- <div className="col-sm-4">
+                  </div>
+                  {/* <!-- <div className="col-sm-4">
                                     <button className="thumb-up disabled"><i className="fas fa-chevron-left"></i></button>
                                     <button className="thumb-down disabled"><i className="fas fa-chevron-right"></i></button>  
                                     </div> --> */}
-                  </div>
+                  {/* </div> */}
                 </div>
               </div>
             </div>
@@ -350,11 +372,11 @@ const ProductDetails = ({ productData }) => {
                   })()}
                 </div>
 
-                <div className="row">
+                {/* <div className="row">
                   <div className="col-sm-12">
                     <img src={packag} />
                   </div>
-                </div>
+                </div> */}
 
                 <div className="row">
                   <div className="col-sm-4"></div>
@@ -586,7 +608,9 @@ const ProductDetails = ({ productData }) => {
                           <a href="#" className="element-type">
                             <div className="element element-accordian dotted_border">
                               <img
-                                src={takelivenBurn?.image}
+                                src={
+                                  "http://54.177.7.240" + takelivenBurn?.image
+                                }
                                 className="whole_food_img"
                               />
                               <p>{takelivenBurn?.title}</p>
@@ -661,11 +685,14 @@ const ProductDetails = ({ productData }) => {
               <h2 className="description-title mb-4 font-weight-semi-bold ls-m">
                 How to Use?
               </h2>
-              <ul className="mb-8">
-                <li>
-                  <b>Pop</b>: Remove the Desiccant cap. product image here
-                </li>
-                <li>
+              <div className="mb-8">
+                <b>Pop</b>: Remove the Desiccant cap. product image here
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: productData?.howToUsedescription,
+                  }}
+                ></div>
+                {/* <li>
                   <b>Drop</b>: Put 1 tab in a glass of water (250ml).
                 </li>
                 <li>
@@ -674,11 +701,14 @@ const ProductDetails = ({ productData }) => {
                 <li>
                   <b>Savour</b>: Drink it for tasting the delicious benefits of
                   Liven BURN with ACV.
-                </li>
-              </ul>
+                </li> */}
+              </div>
             </div>
             <div className="col-md-5">
-              <img src={productData?.howToUseImage} style={{ width: "100%" }} />
+              <img
+                src={"http://54.177.7.240" + productData?.howToUseImage}
+                style={{ width: "100%" }}
+              />
             </div>
           </div>
         </div>
@@ -746,7 +776,10 @@ const ProductDetails = ({ productData }) => {
           </div>
           <div className="row pro_feature">
             <div className="col-sm-12">
-              <img src={apple_feature} className="acv_img" />
+              <img
+                src={"http://54.177.7.240" + productData?.chooseLivenBurnImage}
+                className="acv_img"
+              />
             </div>
           </div>
 
@@ -891,23 +924,17 @@ const ProductDetails = ({ productData }) => {
               <h2 className="description-title mb-4 font-weight-semi-bold ls-m">
                 Why Choose Liven BURN with AVC?
               </h2>
-              <p>
-                A pure extraction process that filters out the unnecessaries and
-                retains the healthy compounds with the mother making the fizzy
-                drink healthy and delicious.
-              </p>
-              <ul className="mb-8">
-                <li>Sweet to taste with natural sweeteners!</li>
-                <li>
-                  High quality ingredients with unpasteurized fermented apple
-                  juice.
-                </li>
-                <li>Highly beneficial to implement in daily routine.</li>
-                <li>Supports holistic health.</li>
-              </ul>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: productData?.chooseLivenBurndescription,
+                }}
+              ></div>
             </div>
             <div className="col-md-4">
-              <img src={why_choose} style={{ width: "85%" }} />
+              <img
+                src={"http://54.177.7.240" + productData?.chooseLivenBurnImage}
+                style={{ width: "85%" }}
+              />
             </div>
           </div>
         </div>

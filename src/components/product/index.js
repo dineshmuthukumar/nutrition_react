@@ -1,16 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getProductDetailsApi } from "../../api/base-methods";
+import { add_to_cart_thunk } from "../../redux/thunk/user_cart_thunk";
+import { useDispatch, useSelector } from "react-redux";
+
 const Product = ({ ProductDetails, key }) => {
+  const dispatch = useDispatch();
+  const { user, cart } = useSelector((state) => state);
+  const userCart = cart?.data ? cart?.data : null;
   const [productData, setProductData] = useState(false);
-  // const accordionData = categoryDetails?.questions;
-  //console.log(ProductDetails, "ProductDetails");
+  const [inCart, setInCart] = useState(false);
+
+  useEffect(() => {
+    if (user) {
+      const orderSlug = userCart?.line_items?.find(
+        (obj) => obj._id === ProductDetails?._id
+      );
+      if (orderSlug) {
+        setInCart(true);
+      } else {
+        setInCart(false);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userCart]);
+
   return (
     <div class="product text-center product-with-qty" key={ProductDetails?._id}>
       <figure class="product-media">
         <Link to={`/product/${ProductDetails?._id}`}>
           <img
-            src={ProductDetails?.photos}
+            src={"http://54.177.7.240" + ProductDetails?.photos[0]}
             alt="product"
             width="280"
             height="315"
@@ -58,11 +78,16 @@ const Product = ({ ProductDetails, key }) => {
 
         <div class="product-action">
           <a
-            href="#"
+            //  href="#"
             class="btn-product btn-cart ls-l"
             data-toggle="modal"
             data-target="#addCartModal"
             title="Add to cart"
+            onClick={() => {
+              if (!inCart) {
+                dispatch(add_to_cart_thunk(ProductDetails._id));
+              }
+            }}
           >
             <i class="d-icon-bag"></i>
             <span>Add to cart</span>
