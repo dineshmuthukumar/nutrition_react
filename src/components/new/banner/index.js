@@ -69,7 +69,7 @@ const Banner = ({ bannerContent }) => {
                       <div className={`intro-slide${key} banner banner-fixed`}>
                         <figure>
                           <img
-                            src={BannerDetail?.image}
+                            src={"http://54.177.7.240" + BannerDetail?.image}
                             alt="intro-banner"
                             width="1903"
                             height="540"
