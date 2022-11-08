@@ -13,17 +13,280 @@ import { useSelector, useDispatch } from "react-redux";
 import InputPhone from "../../input-phone";
 import "./styles.scss";
 import Logo1 from "../../../images/banner-img.png";
+import {
+  validateEmail,
+  validateName,
+  validateNameReplace,
+} from "../../../utils/common";
+import InputText from "../../input-text";
+import dayjs from "dayjs";
+import {
+  getCitiesApi,
+  getStatesApi,
+  UpdateProfileApi,
+} from "../../../api/base-methods";
 
 const Accountcomponent = () => {
   const user = useSelector((state) => state?.user);
-  // console.log(user?.data, "user");
+  console.log(user?.data, "user");
   const [startDate, setStartDate] = useState(new Date());
-  const selectGender = (e) => {
-    console.log(e, "e");
+  const [loading, setLoading] = useState(false);
+  const [stateList, setStateList] = useState({});
+  const [cityList, setCityList] = useState({});
+
+  const [profile, setProfile] = useState({
+    name: user?.data?.name,
+    email: user?.data?.email,
+    dob: user?.data?.dob,
+    gender: "",
+  });
+
+  const [profileValidation, setProfileValidation] = useState({
+    name: false,
+    valid_name: false,
+    email: false,
+    valid_email: false,
+    dob: false,
+    valid_dob: false,
+  });
+
+  const [address, setAddress] = useState({
+    address: "",
+    city: "",
+    state: "",
+    pincode: "",
+  });
+
+  const [addressValidation, setAddressValidation] = useState({
+    address: false,
+    valid_address: false,
+    city: false,
+    valid_city: false,
+    state: false,
+    valid_state: false,
+    pincode: false,
+    valid_pincode: false,
+  });
+
+  // useEffect(() => {
+
+  //   getStatesList();
+
+  // },[])}
+
+  useEffect(() => {
+    getStatesList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const getStatesList = async () => {
+    const StateListData = await getStatesApi();
+    setStateList(StateListData?.data?.responseData?.states);
   };
 
-  const [date, setDate] = useState(new Date());
+  const handleChangeEvent = (e) => {
+    if (e.target.value) {
+      if (e.target.name === "name") {
+        if (validateName(e.target.value)) {
+          setProfile({
+            ...profile,
+            [e.target.name]: validateNameReplace(e.target.value),
+          });
+          setProfileValidation({
+            ...profileValidation,
+            [e.target.name]: false,
+          });
+        }
+      } else if (e.target.name === "email") {
+        setProfile({ ...profile, [e.target.name]: e.target.value.trim() });
+        setProfileValidation({ ...profileValidation, [e.target.name]: false });
+      } else {
+        setProfile({ ...profile, [e.target.name]: e.target.value });
+        setProfileValidation({ ...profileValidation, [e.target.name]: false });
+      }
+    } else {
+      setProfile({ ...profile, [e.target.name]: e.target.value });
+      setProfileValidation({ ...profileValidation, [e.target.name]: true });
+    }
+    console.log(profile, "Profile");
+    console.log(profileValidation, "profileValidation");
+  };
 
+  const checkValidation = () => {
+    let c_validation = { ...profileValidation };
+    if (!profile.name) {
+      c_validation = { ...c_validation, name: true };
+    } else {
+      if (validateName(profile.name)) {
+        c_validation = { ...c_validation, valid_name: false };
+      } else {
+        c_validation = { ...c_validation, valid_name: true };
+      }
+    }
+
+    if (!profile.email) {
+      c_validation = { ...c_validation, email: true };
+    } else {
+      if (validateEmail(profile.email)) {
+        c_validation = { ...c_validation, valid_email: false };
+      } else {
+        c_validation = { ...c_validation, valid_email: true };
+      }
+    }
+
+    if (!profile.dob) {
+      c_validation = { ...c_validation, dob: true };
+    } else {
+      c_validation = { ...c_validation, valid_dob: false };
+    }
+
+    if (!profile.gender) {
+      c_validation = { ...c_validation, gender: true };
+    } else {
+      c_validation = { ...c_validation, valid_gender: false };
+    }
+
+    setProfileValidation(c_validation);
+    if (
+      !c_validation.name &&
+      !c_validation.valid_name &&
+      !c_validation.email &&
+      !c_validation.valid_email &&
+      !c_validation.dob &&
+      !c_validation.valid_dob &&
+      !c_validation.gender &&
+      !c_validation.valid_gender
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const handleKeyPressEvent = (event) => {
+    if (event.key === "Enter") {
+      // handleSignUp();
+    }
+  };
+
+  const handleProfileForm = async () => {
+    if (checkValidation()) {
+      // console.log(profile, "profile");
+      let ProfileData = { ...profile };
+      ProfileData._id = user?.data?._id;
+      ProfileData.dob = dayjs(ProfileData.dob).format("DD-MM-YYYY");
+      console.log(ProfileData);
+
+      try {
+        const result = await UpdateProfileApi(ProfileData);
+        console.log(result, "result");
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
+
+  const handleAddressChangeEvent = (e) => {
+    if (e.target.value) {
+      if (e.target.name === "name") {
+        if (validateName(e.target.value)) {
+          setAddress({
+            ...address,
+            [e.target.name]: validateNameReplace(e.target.value),
+          });
+          setAddressValidation({
+            ...addressValidation,
+            [e.target.name]: false,
+          });
+        }
+      } else if (e.target.name === "email") {
+        setAddress({ ...address, [e.target.name]: e.target.value.trim() });
+        setAddressValidation({ ...addressValidation, [e.target.name]: false });
+      } else {
+        setAddress({ ...address, [e.target.name]: e.target.value });
+        setAddressValidation({ ...addressValidation, [e.target.name]: false });
+      }
+    } else {
+      setAddress({ ...address, [e.target.name]: e.target.value });
+      setAddressValidation({ ...addressValidation, [e.target.name]: true });
+    }
+  };
+
+  const checkAddressValidation = () => {
+    let c_validation = { ...addressValidation };
+    if (!address.address) {
+      c_validation = { ...c_validation, address: true };
+      // c_validation = { ...c_validation, valid_address: true };
+    } else {
+      c_validation = { ...c_validation, address: false };
+    }
+
+    if (!address.state) {
+      c_validation = { ...c_validation, state: true };
+      // c_validation = { ...c_validation, valid_state: true };
+    } else {
+      c_validation = { ...c_validation, state: false };
+    }
+
+    if (!address.city) {
+      c_validation = { ...c_validation, city: true };
+      // c_validation = { ...c_validation, valid_city: true };
+    } else {
+      c_validation = { ...c_validation, city: false };
+    }
+
+    if (!address.pincode) {
+      c_validation = { ...c_validation, pincode: true };
+      // c_validation = { ...c_validation, valid_pincode: true };
+    } else {
+      c_validation = { ...c_validation, pincode: false };
+    }
+
+    setAddressValidation(c_validation);
+    if (
+      !c_validation.address &&
+      !c_validation.valid_address &&
+      !c_validation.state &&
+      !c_validation.valid_state &&
+      !c_validation.city &&
+      !c_validation.valid_city &&
+      !c_validation.pincode &&
+      !c_validation.valid_pincode
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const handleAddressKeyPressEvent = (event) => {
+    if (event.key === "Enter") {
+      // handleSignUp();
+    }
+  };
+
+  const handleProfileAddressForm = async () => {
+    console.log(addressValidation, "addressValidation");
+    if (checkAddressValidation()) {
+      console.log(profile, "profile");
+      return false;
+      // let ProfileData = { ...profile };
+      // ProfileData.dob = dayjs(ProfileData.dob).format("DD-MM-YYYY");
+      // console.log(ProfileData);
+    }
+  };
+
+  const handleState = async (data) => {
+    if (data?.target?.value) {
+      const CityListData = await getCitiesApi(data.target.value);
+      setCityList(CityListData?.data?.responseData?.cities);
+      setAddress({ ...address, state: data.target.value });
+      setAddressValidation({ ...profileValidation, state: false });
+    } else {
+      setAddress({ ...address, state: "" });
+      setAddressValidation({ ...profileValidation, state: true });
+    }
+  };
   return (
     <>
       <div className="profile_page">
@@ -131,134 +394,171 @@ const Accountcomponent = () => {
                   </div>
                 </Tab.Pane>
                 <Tab.Pane eventKey="second">
-                  <form action="#" class="form">
+                  {/* <form action="#" class="form"> */}
+                  <Row>
+                    <Col>
+                      <h2 className="profile_heading">Profile</h2>
+                    </Col>
+                  </Row>
+                  <div class="change_pass">
                     <Row>
-                      <Col>
-                        <h2 className="profile_heading">Profile</h2>
-                      </Col>
-                    </Row>
-                    <div class="change_pass">
-                      <Row>
-                        <Col sm={4}>
-                          <Form>
-                            <Form.Group
-                              className="mb-3"
-                              controlId="exampleForm.ControlInput1"
-                            >
-                              <Form.Label>Name</Form.Label>
-                              <Form.Control
+                      <Col sm={4}>
+                        <Form>
+                          <Form.Group
+                            className="mb-3"
+                            controlId="exampleForm.ControlInput1"
+                          >
+                            {/* <Form.Label>Name</Form.Label> */}
+                            {/* <Form.Control
                                 type="text"
                                 placeholder="Name"
                                 value={user?.data?.name}
-                              />
-                            </Form.Group>
-                          </Form>
-                        </Col>
-                        <Col sm={4}>
-                          <Form>
-                            <Form.Group
-                              className="mb-3"
-                              controlId="exampleForm.ControlInput1"
-                            >
-                              <Form.Label>Email</Form.Label>
-                              <Form.Control
-                                type="email"
-                                placeholder="Email"
-                                value={user?.data?.email}
-                              />
-                            </Form.Group>
-                          </Form>
-                        </Col>
-                        <Col sm={4}>
-                          <Form>
-                            <Form.Group
-                              className="mb-3"
-                              controlId="exampleForm.ControlInput1"
-                            >
-                              <InputPhone
-                                title={"Mobile"}
-                                defaultCountry={"+91"}
-                                value={user?.data?.mobile}
+                              /> */}
+                            <InputText
+                              title={"Name"}
+                              name="name"
+                              placeholder="Enter Name"
+                              value={profile.name}
+                              required={profileValidation.name}
+                              onKeyPress={handleKeyPressEvent}
+                              onChange={handleChangeEvent}
+                            />
+                            {profileValidation.valid_name && (
+                              <p className="error_text">
+                                Please enter a valid name
+                              </p>
+                            )}
+                          </Form.Group>
+                        </Form>
+                      </Col>
+                      <Col sm={4}>
+                        <Form>
+                          <Form.Group
+                            className="mb-3"
+                            controlId="exampleForm.ControlInput1"
+                          >
+                            <InputText
+                              title={"Email"}
+                              name="email"
+                              placeholder="Enter Email"
+                              value={profile.email}
+                              required={profileValidation.email}
+                              onKeyPress={handleKeyPressEvent}
+                              onChange={handleChangeEvent}
+                            />
+                            {profileValidation.valid_email && (
+                              <p className="error_text">
+                                Please enter a valid email address
+                              </p>
+                            )}
+                          </Form.Group>
+                        </Form>
+                      </Col>
+                      <Col sm={4}>
+                        <Form>
+                          <Form.Group
+                            className="mb-3"
+                            controlId="exampleForm.ControlInput1"
+                          >
+                            <InputPhone
+                              title={"Mobile"}
+                              defaultCountry={"+91"}
+                              value={user?.data?.mobile}
 
-                                // required={lvalidation.phone_no}
-                                //onChange={(e, c_code) => {
-                                // setLogin({
-                                //     ...login,
-                                //     mobile: e,
-                                //     phone_code: c_code?.countryCode?.toUpperCase(),
-                                // });
-                                // if (e) {
-                                //     setValidation({ ...lvalidation, phone_no: false });
-                                // } else {
-                                //     setValidation({ ...lvalidation, phone_no: true });
-                                // }
-                                // }}
-                              />
-                              {/* {lvalidation.valid_phone_no && (
+                              // required={lvalidation.phone_no}
+                              //onChange={(e, c_code) => {
+                              // setLogin({
+                              //     ...login,
+                              //     mobile: e,
+                              //     phone_code: c_code?.countryCode?.toUpperCase(),
+                              // });
+                              // if (e) {
+                              //     setValidation({ ...lvalidation, phone_no: false });
+                              // } else {
+                              //     setValidation({ ...lvalidation, phone_no: true });
+                              // }
+                              // }}
+                            />
+                            {/* {lvalidation.valid_phone_no && (
                                 <p className="error_text">
                                 Please enter a valid mobile number
                                 </p>
                             )} */}
-                            </Form.Group>
-                          </Form>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col sm={4}>
-                          <Form>
-                            <Form.Label>DOB</Form.Label>
-                            <Form.Control
-                              className="form-control"
-                              type="date"
-                              name="datepic"
-                              placeholder="DateRange"
-                              value={date}
-                              onChange={(e) => setDate(e.target.value)}
-                            />
-                          </Form>
-                        </Col>
-                        <Col sm={4}>
-                          <Form className="gender_list">
-                            <Form.Label>Gender</Form.Label>
-                            {["radio"].map((type) => (
-                              <div key={`inline-${type}`} className="mt-3">
-                                <Form.Check
-                                  inline
-                                  label="Male"
-                                  name="group1"
-                                  type={type}
-                                  id={`inline-${type}-1`}
-                                />
-                                <Form.Check
-                                  inline
-                                  label="Female"
-                                  name="group1"
-                                  type={type}
-                                  id={`inline-${type}-2`}
-                                />
-                              </div>
-                            ))}
-                          </Form>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col>
-                          <button
-                            type="submit"
-                            class="btn-product btn-cart wid_200"
-                          >
-                            SAVE
-                          </button>
-                        </Col>
-                      </Row>
-                    </div>
-                    <Row>
-                      <Col>
-                        <h2 className="profile_heading">Add New Address</h2>
+                          </Form.Group>
+                        </Form>
                       </Col>
                     </Row>
-                    <div class="change_pass">
-                      <Row>
+                    <Row>
+                      <Col sm={4}>
+                        <Form>
+                          <InputText
+                            title={"DOB"}
+                            type="date"
+                            name="dob"
+                            placeholder="Enter DOB"
+                            value={profile.dob}
+                            required={profileValidation.dob}
+                            onKeyPress={handleKeyPressEvent}
+                            onChange={handleChangeEvent}
+                          />
+                          {profileValidation.valid_dob && (
+                            <p className="error_text">Please select DOB</p>
+                          )}
+                        </Form>
+                      </Col>
+                      <Col sm={4}>
+                        <Form className="gender_list">
+                          <Form.Label>Gender</Form.Label>
+                          {["radio"].map((type) => (
+                            <div key={`inline-${type}`} className="mt-3">
+                              <Form.Check
+                                inline
+                                label="Male"
+                                name="gender"
+                                value="male"
+                                type={type}
+                                id={`inline-${type}-1`}
+                                onKeyPress={handleKeyPressEvent}
+                                onChange={handleChangeEvent}
+                              />
+                              <Form.Check
+                                inline
+                                label="Female"
+                                name="gender"
+                                value="female"
+                                type={type}
+                                id={`inline-${type}-2`}
+                                onKeyPress={handleKeyPressEvent}
+                                onChange={handleChangeEvent}
+                              />
+                            </div>
+                          ))}
+                          {!profile.gender && (
+                            <p className="error_text">Please select Gender</p>
+                          )}
+                        </Form>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col>
+                        <button
+                          // type="submit"
+                          class="btn-product btn-cart wid_200"
+                          onClick={handleProfileForm}
+                          disabled={loading}
+                        >
+                          SAVE
+                        </button>
+                      </Col>
+                    </Row>
+                  </div>
+                  <Row>
+                    <Col>
+                      <h2 className="profile_heading">Add New Address</h2>
+                    </Col>
+                  </Row>
+                  <div class="change_pass">
+                    {/* <Row>
                         <Col>
                           <Form>
                             <Form.Group
@@ -298,40 +598,77 @@ const Accountcomponent = () => {
                             </Form.Group>
                           </Form>
                         </Col>
-                      </Row>
-                      <Row>
-                        <Col>
-                          <Form>
-                            <Form.Group
-                              className="mb-3"
-                              controlId="exampleForm.ControlTextarea1"
-                            >
-                              <Form.Label>Example textarea</Form.Label>
-                              <Form.Control as="textarea" rows={3} />
-                            </Form.Group>
-                          </Form>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col>
-                          <label className="mb-3">City *</label>
-                          <Form.Select aria-label="Default select example">
-                            <option>City</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                          </Form.Select>
-                        </Col>
-                        <Col>
-                          <label className="mb-3">State *</label>
-                          <Form.Select aria-label="Default select example">
-                            <option>State</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                          </Form.Select>
-                        </Col>
-                        <Col>
+                      </Row> */}
+                    <Row>
+                      <Col>
+                        <Form>
+                          <Form.Group
+                            className="mb-3"
+                            controlId="exampleForm.ControlTextarea1"
+                          >
+                            <Form.Label>Address</Form.Label>
+                            <Form.Control
+                              as="textarea"
+                              name="address"
+                              rows={3}
+                              onChange={handleAddressChangeEvent}
+                            />
+                            {addressValidation.address && (
+                              <p className="error_text">Please Enter Address</p>
+                            )}
+                          </Form.Group>
+                        </Form>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col>
+                        {" "}
+                        <label className="mb-3 font-weight-bold">State *</label>
+                        <Form.Select
+                          aria-label="Default select example"
+                          name="state"
+                          onChange={handleState}
+                        >
+                          <option>State</option>
+
+                          {stateList?.length > 0 &&
+                            stateList?.map((ListState) => {
+                              return (
+                                <option value={ListState?._id}>
+                                  {ListState?.name}
+                                </option>
+                              );
+                            })}
+                        </Form.Select>
+                        {addressValidation.state && (
+                          <p className="error_text">Please select state</p>
+                        )}
+                      </Col>
+                      <Col>
+                        {" "}
+                        <label className="mb-3 font-weight-bold">City *</label>
+                        <Form.Select
+                          aria-label="Default select example"
+                          name="city"
+                          onChange={handleAddressChangeEvent}
+                        >
+                          <option>City</option>
+
+                          {cityList?.length > 0 &&
+                            cityList?.map((ListCity) => {
+                              return (
+                                <option value={ListCity?._id}>
+                                  {ListCity?.name}
+                                </option>
+                              );
+                            })}
+                        </Form.Select>
+                        {addressValidation.city && (
+                          <p className="error_text">Please select City</p>
+                        )}
+                      </Col>
+
+                      {/* <Col>
                           <Form>
                             <Form.Group
                               className="mb-3"
@@ -341,31 +678,42 @@ const Accountcomponent = () => {
                               <Form.Control type="text" placeholder="name" />
                             </Form.Group>
                           </Form>
-                        </Col>
-                        <Col>
-                          <Form>
-                            <Form.Group
-                              className="mb-3"
-                              controlId="exampleForm.ControlInput1"
-                            >
-                              <Form.Label>Pincode</Form.Label>
-                              <Form.Control type="text" placeholder="name" />
-                            </Form.Group>
-                          </Form>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col>
-                          <button
-                            type="submit"
-                            class="btn-product btn-cart wid_200"
+                        </Col> */}
+                      <Col>
+                        <Form>
+                          <Form.Group
+                            className="mb-3"
+                            controlId="exampleForm.ControlInput1"
                           >
-                            SAVE
-                          </button>
-                        </Col>
-                      </Row>
-                    </div>
+                            {/* <Form.Label>Pincode</Form.Label>
+                              <Form.Control type="text" placeholder="name" /> */}
+                            <InputText
+                              title={"Pincode"}
+                              type="number"
+                              name="pincode"
+                              placeholder="Enter Pin code"
+                              value={address.pincode}
+                              required={addressValidation.pincode}
+                              onKeyPress={handleAddressKeyPressEvent}
+                              onChange={handleAddressChangeEvent}
+                            />
+                          </Form.Group>
+                        </Form>
+                      </Col>
+                    </Row>
                     <Row>
+                      <Col>
+                        <button
+                          // type="submit"
+                          class="btn-product btn-cart wid_200"
+                          onClick={() => handleProfileAddressForm()}
+                        >
+                          SAVE
+                        </button>
+                      </Col>
+                    </Row>
+                  </div>
+                  {/* <Row>
                       <Col>
                         <h2 className="profile_heading">Password Change</h2>
                       </Col>
@@ -425,8 +773,8 @@ const Accountcomponent = () => {
                           </button>
                         </Col>
                       </Row>
-                    </div>
-                  </form>
+                    </div> */}
+                  {/* </form> */}
                 </Tab.Pane>
                 <Tab.Pane eventKey="first">
                   <div class="row product_banner_2 text-left">

@@ -12,12 +12,12 @@ import pro_product_1 from "../../../images/new-images/demos/demo-food2/products/
 import pro_product_2 from "../../../images/new-images/demos/demo-food2/products/pro_product_2.jpg";
 import pro_product_3 from "../../../images/new-images/demos/demo-food2/products/pro_product_3.jpg";
 import pro_product_4 from "../../../images/new-images/demos/demo-food2/products/pro_product_4.jpg";
-//import pro_product_5 from "../../../images/new-images/demos/demo-food2/products/pro_product_4.jpg";
 import Accordion from "../../accordion";
 
 import Product from "../../product";
 
 const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
+  console.log(categoryProdDetails, "categoryProdDetails");
   // const accordionData = categoryDetails?.questions;
   return (
     <>
@@ -31,7 +31,7 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
               {/* <h4 className="section-title lh-1 font-weight-bold">
                 What you want to know about Effervescent?
               </h4> */}
-              <p className="section-desc text-grey">
+              <div className="section-desc text-grey">
                 <div
                   dangerouslySetInnerHTML={{
                     __html: categoryDetails?.categoryDescription,
@@ -47,7 +47,7 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
                 proper manufacturing and packing procedure. The effervescent
                 tablets are packed in tight, moisture-free plastic tubes with
                 Desiccants. */}
-              </p>
+              </div>
             </div>
           </div>
           {/* <div className="row align-items-center">
@@ -318,58 +318,65 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
               <img src={pro_product_1} />
             </div>
           </OwlCarousel> */}
-          <OwlCarousel
-            className="owl-carousel owl-theme row cols-lg-4 cols-md-3 cols-2 owl-loaded owl-drag"
-            margin={20}
-            nav={true}
-            navigation={true}
-            smartSpeed={500}
-            dots={false}
-            navContainerClass={"owl-nav"}
-            // navigationText={[
-            //   "<i class='icon-chevron-left icon-white'><</i>",
-            //   "<i class='icon-chevron-right icon-white'>></i>",
-            // ]}
-            // navText={[
-            //   '<i class="fa fa-angle-left" aria-hidden="true"></i>',
-            //   '<i class="fa fa-angle-right" aria-hidden="true"></i>',
-            // ]}
-            // navContainerClass={"owl-nav"}
-            responsiveClass={true}
-            // navText={[
-            //   `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png  />`,
-            //   `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png />`,
-            // ]}
-            responsive={{
-              0: {
-                items: 2,
-              },
-              768: {
-                items: 3,
-              },
-              800: {
-                items: 4,
-              },
-            }}
-            // loop
-            autoplay={false}
-            autoplayTimeout={2000}
-            autoplayHoverPause={true}
-          >
-            {(() => {
-              if (categoryProdDetails?.length > 0) {
-                return (
-                  <>
-                    {categoryProdDetails?.map((prodDetailsList, key) => {
-                      return (
-                        <Product key={key} ProductDetails={prodDetailsList} />
-                      );
-                    })}
-                  </>
-                );
-              }
-            })()}
-          </OwlCarousel>
+          {categoryProdDetails?.length > 0 && (
+            <OwlCarousel
+              className="owl-carousel owl-theme row cols-lg-4 cols-md-3 cols-2 owl-loaded owl-drag"
+              margin={20}
+              nav={true}
+              smartSpeed={500}
+              dots={false}
+              navContainerClass={"owl-nav"}
+              mouseDrag={false}
+              stagePadding={0}
+              key={`carousel_1`}
+              // navigationText={[
+              //   "<i class='icon-chevron-left icon-white'><</i>",
+              //   "<i class='icon-chevron-right icon-white'>></i>",
+              // ]}
+              // navText={[
+              //   '<i class="fa fa-angle-left" aria-hidden="true"></i>',
+              //   '<i class="fa fa-angle-right" aria-hidden="true"></i>',
+              // ]}
+              // navContainerClass={"owl-nav"}
+              //responsiveClass={true}
+              // navText={[
+              //   `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png  />`,
+              //   `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png />`,
+              // ]}
+              responsive={{
+                0: {
+                  items: 2,
+                },
+                768: {
+                  items: 3,
+                },
+                800: {
+                  items: 4,
+                },
+              }}
+              // loop
+              autoplay={false}
+              autoplayTimeout={2000}
+              autoplayHoverPause={true}
+            >
+              {(() => {
+                if (categoryProdDetails?.length > 0) {
+                  return (
+                    <>
+                      {categoryProdDetails?.map((prodDetailsList, pkey) => {
+                        return (
+                          <Product
+                            key={pkey}
+                            ProductDetails={prodDetailsList}
+                          />
+                        );
+                      })}
+                    </>
+                  );
+                }
+              })()}
+            </OwlCarousel>
+          )}
         </div>
       </section>
 

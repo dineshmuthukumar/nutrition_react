@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-//import Image from "react-bootstrap/Image";
 import { BiArrowBack, BiRightArrowAlt } from "react-icons/bi";
 
 import { Button, Form } from "react-bootstrap";
@@ -17,12 +16,24 @@ import { IoLogoWhatsapp } from "react-icons/io";
 import customer from "../../../images/new-images/subpages/customer.jpg";
 import store from "../../../images/new-images/subpages/store.jpg";
 
+import { CustomPageApi } from "../../../api/base-methods";
+
 import "./style.scss";
 
 const Aboutus = () => {
+  const getCustomPage = async (page) => {
+    const Abouts = await CustomPageApi(page);
+
+    console.log(Abouts, "Abouts");
+  };
+
+  useEffect(() => {
+    getCustomPage("about");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <>
-      <section className="customer-section pb-10 appear-animate">
+      <section className="customer-section pb-10">
         <div className="container">
           <div className="row align-items-center">
             <div className="col-md-6 mb-4 abt-img">
@@ -55,7 +66,7 @@ const Aboutus = () => {
         </div>
       </section>
 
-      <section className="store-section pb-10 appear-animate">
+      <section className="store-section pb-10 ">
         <div className="container">
           <div className="row align-items-center">
             <div className="col-md-6 order-md-first mb-4">

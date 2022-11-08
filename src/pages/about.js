@@ -43,10 +43,8 @@ const About = () => {
   const fsz = query.get("fsz");
   const token = query.get("token");
   const _ga = query.get("_ga");
-  // const { user } = useSelector((state) => state.user.data);
 
   const [list, setList] = useState([]);
-
   // const [favPage, setFavPage] = useState(1);
   // const [favList, setFavList] = useState([]);
   // const [favLoading, setFavLoading] = useState(false);

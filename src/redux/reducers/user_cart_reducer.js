@@ -53,7 +53,7 @@ const user_cart_reducer = (state = initState, { payload, type }) => {
       loading: false,
       data: {
         ...state.data,
-        total_count: payload.count,
+        total_count: payload?.length,
       },
     };
   }

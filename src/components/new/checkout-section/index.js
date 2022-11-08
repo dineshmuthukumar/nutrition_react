@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import OwlCarousel from "react-owl-carousel";
-
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 //import Image from "react-bootstrap/Image";
 import { BiArrowBack, BiRightArrowAlt } from "react-icons/bi";
-
 import { Button, Form } from "react-bootstrap";
 import { HiOutlineArrowRight } from "react-icons/hi";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
 import {
   FaDiscord,
   FaInstagram,
@@ -15,56 +16,29 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 import { IoLogoWhatsapp } from "react-icons/io";
+import { Link } from "react-router-dom";
 
-import product18 from "../../../images/new-images/products/product18.jpg";
-import product19 from "../../../images/new-images/products/product19.jpg";
-
-import "./style.scss";
+import customer from "../../../images/new-images/subpages/customer.jpg";
+import store from "../../../images/new-images/subpages/store.jpg";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
-import { getCookies } from "../../../utils/cookies";
-import { currencyFormat } from "../../../utils/common";
 import { remove_from_cart_thunk } from "../../../redux/thunk/user_cart_thunk";
+import "./style.scss";
+import { currencyFormat } from "../../../utils/common";
 
-const CartContent = () => {
+const CheckoutSection = () => {
   const dispatch = useDispatch();
   const { user, cart } = useSelector((state) => state);
-  const { product, setProduct } = useState([]);
-  // console.log(cart?.data, "cart");
-
-  useEffect(() => {
-    //getProductDetails();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  //   const getProductDetails = () => {
-  //     if (cart?.data) {
-  //       console.log(cart, "cart");
-  //       cart?.data?.map(function (prodid) {
-  //         // if (prodid) {
-  //         let url =
-  //           process.env.REACT_APP_BASE_URL + "/product/details?id=" + prodid;
-  //         const auth_token = getCookies();
-  //         const headers = {
-  //           Authorization: auth_token,
-  //         };
-  //         axios.get(url, { headers }).then((res) => {
-  //           setProduct([...product, res?.data?.responseData?.product]);
-  //         });
-  //       });
-  //     }
-  //   };
   return (
     <>
-      <section className="customer-section">
+      <section className="checkout customer-section">
         <div className="step-by pr-4 pl-4">
           <h3 className="title title-simple title-step active">
-            <a href="#">Shopping Cart</a>
+            <a href="#">Checkout</a>
           </h3>
         </div>
         <div className="container mt-7 mb-2">
           <div className="row align-items-center">
-            <div className="col-lg-12 col-md-12 pr-lg-4">
+            <div className="col-lg-8 col-md-8 pr-lg-4">
               {cart?.data?.length > 0 ? (
                 <table className="shop-table cart-table">
                   <thead>
@@ -144,6 +118,7 @@ const CartContent = () => {
               ) : (
                 "No Items Found"
               )}
+
               <div className="cart-actions-right mb-6 pt-4">
                 {(() => {
                   if (cart?.data?.length > 0) {
@@ -165,11 +140,51 @@ const CartContent = () => {
                 })()}
               </div>
             </div>
+            <div className="col-md-4">
+              <div className="panel panel-danger pull-up">
+                <div className="panel-heading">
+                  <h5 className="text-left">YOUR ORDER</h5>
+                </div>
+                <h5>Product</h5>
+                <ul className="list-group list-group-flush">
+                  <li className="list-group-item">
+                    Fashionable Overnight Bag × 1{" "}
+                    <span className="plan_right_section">$110.00</span>
+                  </li>
+                  <li className="list-group-item">
+                    Fashionable Overnight Bag × 1{" "}
+                    <span className="plan_right_section">$110.00</span>
+                  </li>
+                  <li className="list-group-item">
+                    Discount{" "}
+                    <span className="plan_right_section dicount_span">
+                      -$10
+                    </span>
+                  </li>
+                  <li className="list-group-item">
+                    Delivery Charges{" "}
+                    <span className="plan_right_section dicount_span">
+                      Free
+                    </span>
+                  </li>
+                </ul>
+                <div className="panel-footer">
+                  <ul className="list-group list-group-flush">
+                    <li className="list-group-item">
+                      <h5>
+                        Total Amount
+                        <span className="plan_right_section">$118.00</span>
+                      </h5>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
     </>
   );
-};;
+};
 
-export default CartContent;
+export default CheckoutSection;

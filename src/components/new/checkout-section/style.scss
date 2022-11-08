@@ -1,0 +1,53 @@
+.checkout {
+li.list-group-item 
+{
+    font-weight: 400;
+    color: var(--black);
+    list-style-type: none;
+}
+ul.list-group.list-group-flush 
+{
+    padding: 0px;
+}
+.panel.panel-danger.pull-up 
+{
+    padding: 2.4rem 3rem 3rem;
+    border: 1px solid #e1e1e1;
+    border-radius: 2px;
+}
+.list-group-item 
+{
+    background: transparent;
+    padding: 0.75rem 0rem;
+}
+.panel-heading 
+{
+    border-bottom: 1px solid #e1e1e1;
+    margin-bottom: 1.9rem;
+}
+span.plan_right_section 
+{
+    text-align: right;
+    float: right;
+    color: var(--black);
+}
+.panel-footer 
+{
+    border-bottom: 1px solid #e1e1e1;
+    margin-bottom: 0;
+    padding: 0;
+    border-top: 1px solid #e1e1e1;
+}
+.panel-footer h5 
+{
+    margin: 0;
+    padding: 0;
+}
+table td, table th 
+{
+    padding: 5px;
+}
+.dicount_span
+{
+    color: green !important;
+}}

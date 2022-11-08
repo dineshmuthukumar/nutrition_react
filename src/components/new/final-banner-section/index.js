@@ -26,7 +26,7 @@ const FirstBannerSection = ({ homeContent }) => {
                       >
                         <source
                           src={
-                            "http://54.177.7.240/" +
+                            "http://54.177.7.240" +
                             sixthproductcontentList?.image
                           }
                           type="video/mp4"

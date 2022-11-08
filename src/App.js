@@ -45,8 +45,8 @@ const privacy = lazy(() => import("./pages/privacy"));
 const Terms = lazy(() => import("./pages/terms"));
 const Login = lazy(() => import("./pages/login"));
 const MyAccount = lazy(() => import("./pages/my-account"));
-
-
+const ProductList = lazy(() => import("./pages/productlist"));
+const Checkout = lazy(() => import("./pages/checkout"));
 
 function App(props) {
   const market_start_date = "Jul 13, 2022 11:30:00";
@@ -186,7 +186,12 @@ function App(props) {
               //   </div>
               // </div>
               <div className="d-flex gif-loader">
-                <img src={"https://flevix.com/wp-content/uploads/2019/07/Spin-Preloader-1.gif"} alt="loader" />
+                <img
+                  src={
+                    "https://flevix.com/wp-content/uploads/2019/07/Spin-Preloader-1.gif"
+                  }
+                  alt="loader"
+                />
               </div>
             }
           >
@@ -241,16 +246,18 @@ const WebContainer = () => {
         <Route path="/category/:categoryid?" component={Category} />
         <Route exact path="/product/:productid?" component={Product} />
         <Route exact path="/about" component={About} />
-        <Route exact path="/cart" component={Cart} />
         <Route exact path="/blog" component={blog} />
-        <Route exact path="/blogpost" component={blogPost} />
+        <Route exact path="/blogpost/:blogid?" component={blogPost} />
         <Route exact path="/freetrial" component={freetrial} />
         <Route exact path="/contact" component={contact} />
         <Route exact path="/privacy" component={privacy} />
         <Route exact path="/terms" component={Terms} />
         {/* <Route exact path="/my-account" component={Login} /> */}
         <Route exact path="/login" component={Login} />
+        <Route exact path="/products/list" component={ProductList} />
+        <PrivateRoute exact path="/cart" component={Cart} />
         <PrivateRoute exact path="/accounts" component={MyAccount} />
+        <PrivateRoute exact path="/checkout" component={Checkout} />
 
         <Route exact component={() => <Redirect to="/"></Redirect>} />
       </Switch>

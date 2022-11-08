@@ -25,13 +25,14 @@ import six from "../../../images/new-images/blog/3col/6.jpg";
 
 import { Link } from "react-router-dom";
 
-import { blogListApi } from "../../../api/base-methods";
+import { productListApi } from "../../../api/base-methods";
 
 import pagination from "../pagination";
+import Product from "../../product";
 
 import "./style.scss";
 
-const Blog = () => {
+const Productlist = () => {
   const [list, setList] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
   const [limit, setLimit] = useState(10);
@@ -40,18 +41,18 @@ const Blog = () => {
   const [totalPages, setTotalPages] = useState(1);
 
   useEffect(async () => {
-    const response = await blogListApi(1);
-    // console.log(response?.data?.responseData?.blogs?.docs, "response");
-    setList(response?.data?.responseData?.blogs?.docs);
-    setTotalCount(response?.data?.responseData?.blogs?.totalDocs);
-    setLimit(response?.data?.responseData?.blogs?.limit);
-    setCurrentPage(response?.data?.responseData?.blogs?.page);
-    setIsNextPage(response?.data?.responseData?.blogs?.hasNextPage);
-    setTotalPages(response?.data?.responseData?.blogs?.totalPages);
+    const response = await productListApi(1);
+    //console.log(response?.data?.responseData, "response");
+    setList(response?.data?.responseData?.product?.docs);
+    setTotalCount(response?.data?.responseData?.product?.totalDocs);
+    setLimit(response?.data?.responseData?.product?.limit);
+    setCurrentPage(response?.data?.responseData?.product?.page);
+    setIsNextPage(response?.data?.responseData?.product?.hasNextPage);
+    setTotalPages(response?.data?.responseData?.product?.totalPages);
   }, []);
 
   const handlePage = async (page) => {
-    const response = await blogListApi(currentPage);
+    const response = await productListApi(currentPage);
   };
 
   return (
@@ -64,56 +65,13 @@ const Blog = () => {
           ></ul>
           <div
             className="posts grid post-grid row"
-            data-grid-options="{
-                                'layoutMode': 'fitRows'
-                            }"
+            // data-grid-options="{
+            //                     'layoutMode': 'fitRows'
+            //                 }"
           >
             {list?.length > 0 &&
               list?.map((obj, index) => {
-                return (
-                  <div className="grid-item col-sm-6 col-lg-4 lifestyle shopping winter-sale">
-                    <article className="post">
-                      <figure className="post-media">
-                        <a href="#">
-                          <img
-                            src={"http://54.177.7.240" + obj?.image}
-                            width="380"
-                            height="280"
-                            alt="post"
-                          />
-                        </a>
-                      </figure>
-                      <div className="post-details">
-                        <div className="post-meta">
-                          on{" "}
-                          <a href="blog-grid-3col.html#" className="post-date">
-                            July 25, 2022
-                          </a>
-                          |{" "}
-                          <a
-                            href="blog-grid-3col.html#"
-                            className="post-comment"
-                          >
-                            <span>2</span> Comments
-                          </a>
-                        </div>
-                        <h4 className="post-title">
-                          <a href="#">{obj?.title}</a>
-                        </h4>
-                        <p className="post-content">{obj?.content}</p>
-                        {/* <a href="blog_post.html" className="btn btn-link btn-underline btn-primary">Read
-                                                                  more<i className="d-icon-arrow-right"></i></a> */}
-
-                        <Link
-                          to={`/blogpost/${obj?._id}`}
-                          className="btn btn-link btn-underline btn-primary"
-                        >
-                          Read more<i className="d-icon-arrow-right"></i>
-                        </Link>
-                      </div>
-                    </article>
-                  </div>
-                );
+                return <Product ProductDetails={obj} key={index} />;
               })}
           </div>
           {list?.length > 0 ? (
@@ -167,4 +125,4 @@ const Blog = () => {
   );
 };
 
-export default Blog;
+export default Productlist;

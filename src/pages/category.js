@@ -76,7 +76,7 @@ const Category = () => {
                 Product Category
               </h1>
             </div>
-            <div class="page-content mt-10 pt-10">
+            <div className="page-content mt-10 pt-10">
               <Product_Category
                 categoryDetails={categoryDetails}
                 categoryProdDetails={categoryProdDetails}

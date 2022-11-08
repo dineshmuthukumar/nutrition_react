@@ -4,8 +4,8 @@ import {
   addToCartApi,
   removeFromCartApi,
   getCartListApi,
-  checkoutApi,
-} from "../../api/methods";
+  //checkoutApi,
+} from "../../api/base-methods";
 
 import { getProductDetailsApi } from "../../api/base-methods";
 import {
@@ -29,16 +29,18 @@ export const add_to_cart_thunk = (productid) => {
     try {
       dispatch(add_to_cart_action_request());
       dispatch(get_cart_list_request());
-      const result = await getProductDetailsApi(productid);
+      let prodId = { productId: productid };
+      const result = await addToCartApi(prodId);
       //console.log(result?.data?.responseData?.product, "result?.data");
-      dispatch(add_to_cart_action_success(result?.data?.responseData?.product));
-      dispatch(get_cart_list_success(result?.data?.responseData?.product));
+      dispatch(add_to_cart_action_success(result?.data?.responseData?.cart));
+      dispatch(get_cart_list_thunk());
       toast.success("The Product is successfully added to your cart.", {
         autoClose: 2000,
       });
 
       // Meta Pixel
     } catch (err) {
+      debugger;
       console.log(err?.response?.status);
       if (err?.response?.status === 404) {
         toast.error("The Product has either been sold or no longer listed.", {
@@ -54,7 +56,7 @@ export const remove_from_cart_thunk = (line_item_slug) => {
   return async (dispatch) => {
     try {
       dispatch(remove_from_cart_action_request());
-      const result = await removeFromCartApi({ line_item_slug });
+      const result = await removeFromCartApi(line_item_slug);
       dispatch(remove_from_cart_action_success(result.data.data));
       dispatch(get_cart_list_thunk());
       toast.success("Removed from cart successfully", {
@@ -67,12 +69,28 @@ export const remove_from_cart_thunk = (line_item_slug) => {
   };
 };
 
+const getProductDetail = async (prodID) => {
+  // try {
+  //   setNotiLoading(true);
+  const result = await getProductDetailsApi(prodID);
+  //console.log(result.data.responseData.product);
+  return result.data.responseData.product;
+  // } catch (error) {
+  //   setNotiLoading(false);
+
+  //   console.log(
+  //     "🚀 ~ file: index.js ~ line 49 ~ getProductDetail ~ error",
+  //     error
+  //   );
+  //}
+};
 export const get_cart_list_thunk = () => {
   return async (dispatch) => {
     try {
       dispatch(get_cart_list_request());
       const result = await getCartListApi();
-      dispatch(get_cart_list_success(result.data.data));
+      console.log(result, "result");
+      dispatch(get_cart_list_success(result?.data?.responseData?.cart));
     } catch (err) {
       console.log(err);
       dispatch(get_cart_list_failure(err));
@@ -80,20 +98,20 @@ export const get_cart_list_thunk = () => {
   };
 };
 
-export const proceed_checkout_thunk = (selectedItems) => {
-  return async (dispatch) => {
-    try {
-      dispatch(proceed_checkout_request());
-      const result = await checkoutApi({
-        selectedItems,
-      });
-      dispatch(proceed_checkout_success(result.data.data));
-    } catch (err) {
-      console.log(err);
-      dispatch(proceed_checkout_failure(err));
-    }
-  };
-};
+// export const proceed_checkout_thunk = (selectedItems) => {
+//   return async (dispatch) => {
+//     try {
+//       dispatch(proceed_checkout_request());
+//       const result = await checkoutApi({
+//         selectedItems,
+//       });
+//       dispatch(proceed_checkout_success(result.data.data));
+//     } catch (err) {
+//       console.log(err);
+//       dispatch(proceed_checkout_failure(err));
+//     }
+//   };
+// };
 
 // export const clear_cart_thunk = () => {
 //   return async (dispatch) => {

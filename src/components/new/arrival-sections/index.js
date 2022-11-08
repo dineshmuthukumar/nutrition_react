@@ -28,7 +28,6 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
   const userCart = cart?.data ? cart?.data : null;
   const IsProductDetails = async (subcategoryId) => {
     const result = await getsubCategoryApi(subcategoryId);
-    console.log(result?.data?.responseData?.Products, "result");
     setProdList(result?.data?.responseData?.Products);
     setCategoryActive(true);
     setProductTabActive(true);
@@ -117,44 +116,46 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
                 className={`tab-pane pt-4 ${productTabActive ? "active" : ""}`}
                 id="fruits"
               >
-                <OwlCarousel
-                  className="owl-carousel owl-theme row cols-lg-4 cols-md-3 cols-2"
-                  margin={20}
-                  nav
-                  smartSpeed={500}
-                  dots={false}
-                  navContainerClass={"owl-nav"}
-                  responsive={{
-                    0: {
-                      items: 1,
-                    },
-                    768: {
-                      items: 3,
-                    },
-                    992: {
-                      items: 3,
-                    },
-                  }}
-                  autoplay
-                  // autoplayTimeout={2000}
-                  //autoplayHoverPause={true}
-                >
-                  {(() => {
-                    return (
-                      <>
-                        {prodList?.length > 0 &&
-                          prodList?.map((prodDetails, pkey) => {
-                            return (
-                              <Product
-                                ProductDetails={prodDetails}
-                                key={pkey}
-                              />
-                            );
-                          })}
-                      </>
-                    );
-                  })()}
-                </OwlCarousel>
+                {prodList?.length > 0 && (
+                  <OwlCarousel
+                    className="owl-carousel owl-theme row cols-lg-4 cols-md-3 cols-2"
+                    margin={20}
+                    nav
+                    smartSpeed={500}
+                    dots={false}
+                    navContainerClass={"owl-nav"}
+                    responsive={{
+                      0: {
+                        items: 1,
+                      },
+                      768: {
+                        items: 3,
+                      },
+                      992: {
+                        items: 3,
+                      },
+                    }}
+                    autoplay
+                    // autoplayTimeout={2000}
+                    //autoplayHoverPause={true}
+                  >
+                    {(() => {
+                      return (
+                        <>
+                          {prodList?.length > 0 &&
+                            prodList?.map((prodDetails, pkey) => {
+                              return (
+                                <Product
+                                  ProductDetails={prodDetails}
+                                  key={pkey}
+                                />
+                              );
+                            })}
+                        </>
+                      );
+                    })()}
+                  </OwlCarousel>
+                )}
               </div>
             </div>
           </div>

@@ -32,6 +32,30 @@ export const getProductDetailsApi = (productId) =>
   baseAxios.get(`/product/details?id=${productId}`);
 
 
+export const getCitiesApi = (stateId) => baseAxios.get(`/cities/${stateId}`);
+
+export const getStatesApi = () => baseAxios.get(`/states/101`);
+
+export const UpdateProfileApi = (props) =>
+  baseAxios.post("/profile", { ...props });
+
+export const CustomPageApi = (page) => baseAxios.get(`/page/${page}`);
+
+export const getCartListApi = (page) => baseAxios.get(`/cart/list`);
+
+export const addToCartApi = (props) =>
+  baseAxios.post("/cart/add", { ...props });
+
+export const removeFromCartApi = (props) =>
+  baseAxios.get(`/cart/remove/${props}`);
+
+export const blogListApi = (props) => baseAxios.get(`/blogs?page=${props}`);
+
+export const blogListIdApi = (props) => baseAxios.get(`/blogs/${props}`);
+
+export const productListApi = (props) =>
+  baseAxios.get(`/product/list?page=${props}`);
+
 
 
 export const readNotificationApi = () =>

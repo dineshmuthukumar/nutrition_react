@@ -31,11 +31,11 @@ import useQuery from "../hook/useQuery";
 // import MclGameButton from "../components/mcl-game-button";
 
 import Header from "../components/header";
-import Cartcontent from "../components/new/cartcontent";
+import CheckoutSection from "../components/new/checkout-section";
 
 import Footer from "../components/footer";
 
-const Cart = () => {
+const Checkout = () => {
   const { url } = useRouteMatch();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -74,10 +74,10 @@ const Cart = () => {
       dispatch(user_load_by_token_thunk(token));
     }
 
-    /// categoriesList(1);
-    // if (_ga) {
-    //   history.replace(url);
-    // }
+    //categoriesList(1);
+    if (_ga) {
+      history.replace(url);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -101,12 +101,12 @@ const Cart = () => {
   // };
 
   // Meta Pixel Code
-  // useEffect(() => {
-  //   if (process.env.REACT_APP_MARKETING_SCRIPT === "enabled") {
-  //     ReactPixel.init(process.env.REACT_APP_META_PIXEL_ID);
-  //     ReactPixel.pageView();
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (process.env.REACT_APP_MARKETING_SCRIPT === "enabled") {
+      ReactPixel.init(process.env.REACT_APP_META_PIXEL_ID);
+      ReactPixel.pageView();
+    }
+  }, []);
 
   return (
     <>
@@ -123,11 +123,11 @@ const Cart = () => {
               style={{ background: "#7ea4b1" }}
             >
               <h1 className="page-title font-weight-bold lh-1 text-white text-capitalize">
-                SHOPPING CART
+                Checkout
               </h1>
             </div>
-            <div class="page-content mt-10 pt-10">
-              <Cartcontent />
+            <div class="page-content pb-10 pt-10">
+              <CheckoutSection />
             </div>
           </div>
         </div>
@@ -136,6 +136,6 @@ const Cart = () => {
       {/* <Footer /> */}
     </>
   );
-};;
+};
 
-export default Cart;
+export default Checkout;

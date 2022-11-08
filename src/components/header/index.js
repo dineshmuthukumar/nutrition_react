@@ -3,13 +3,13 @@ import dayjs from "dayjs";
 import { Navbar, Nav, Dropdown, Container } from "react-bootstrap";
 import { BiBell, BiHelpCircle } from "react-icons/bi";
 import { useTranslation } from "react-multi-lang";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch, connect } from "react-redux";
 import { FaDiscord } from "react-icons/fa";
 import { CgMenuRight } from "react-icons/cg";
 import { VscChromeClose } from "react-icons/vsc";
 import { useHistory, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
-import {  Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import images from "../../utils/images.json";
 import { user_logout_thunk } from "../../redux/thunk/user_thunk";
 import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
@@ -25,11 +25,13 @@ import {
   getCategoryApi,
   getNotificationApi,
   getsubCategoryListApi,
+  getProductDetailsApi,
 } from "../../api/base-methods";
 import { readNotificationApi } from "./../../api/base-methods";
 import {
   checkout_event_thunk,
   get_cart_list_thunk,
+  remove_from_cart_thunk,
 } from "../../redux/thunk/user_cart_thunk";
 
 import NotificationICon from "../../images/notification.png";
@@ -44,9 +46,7 @@ import One from "../../images/new-images/demos/demo-food2/products/1.jpg";
 import Two from "../../images/new-images/demos/demo-food2/products/2.jpg";
 
 import "./style.scss";
-import Category from "../../pages/category";
 
-// import "./style.scss";
 const Header = ({
   hideOptions = false,
   hideSign = false,
@@ -95,7 +95,7 @@ const Header = ({
 
   const openModal = () => {
     document.body.className = "mmenu-active";
-    console.log("open");
+    // console.log("open");
     setSideBar(true);
   };
   const hideModal = (event) => {
@@ -104,22 +104,22 @@ const Header = ({
   };
 
   useEffect(() => {
-    if (slug) {
-      accountDetail(slug, (data) => {
-        dispatch(user_wallet_update_action(data));
-      });
-      handleGetNotification(npage);
+    if (user?.login) {
+      // accountDetail(slug, (data) => {
+      //   dispatch(user_wallet_update_action(data));
+      // });
+      //handleGetNotification(npage);
       dispatch(get_cart_list_thunk());
-      cartDetail(slug, (data) => {
-        dispatch(get_cart_list_thunk());
-      });
-      cartCheckout(slug, (data) => {
-        dispatch(checkout_event_thunk(data?.event === "start" ? true : false));
-      });
-      if (location.hash === "#cart") {
-        history.push("/");
-        setCartPop(true);
-      }
+      // cartDetail(slug, (data) => {
+      //   dispatch(get_cart_list_thunk());
+      // });
+      // cartCheckout(slug, (data) => {
+      //   dispatch(checkout_event_thunk(data?.event === "start" ? true : false));
+      // });
+      // if (location.hash === "#cart") {
+      //   history.push("/");
+      //   setCartPop(true);
+      // }
     }
     // if (user?.data?.user) {
     //   if(!user?.data?.user?.name){
@@ -677,6 +677,58 @@ const Header = ({
     return false;
   };
 
+  const getProductDetail = async (prodID) => {
+    // try {
+    //   setNotiLoading(true);
+    const result = await getProductDetailsApi(prodID);
+    //console.log(result.data.responseData.product);
+    return result.data.responseData.product;
+    // } catch (error) {
+    //   setNotiLoading(false);
+
+    //   console.log(
+    //     "🚀 ~ file: index.js ~ line 49 ~ getProductDetail ~ error",
+    //     error
+    //   );
+    //}
+  };
+  const getCartList = () => {
+    return cart?.data?.map(function (lineGroup) {
+      let list = getProductDetailsApi(lineGroup).then((result) => {
+        return result?.data?.responseData?.product;
+      });
+      console.log(list);
+      //console.log(list);
+      return (
+        <div className="product product-cart">
+          <figure className="product-media">
+            <a href="#">
+              <img
+                src={`http://54.177.7.240`}
+                alt="product"
+                width="80"
+                height="90"
+              />
+            </a>
+            <button className="btn btn-link btn-close">
+              <i className="fas fa-times"></i>
+              <span className="sr-only">Close</span>
+            </button>
+          </figure>
+          <div className="product-detail">
+            <a href="#" className="product-name">
+              Paprika
+            </a>
+            <div className="price-box">
+              <span className="product-quantity">1</span>
+              <span className="product-price">$21.00</span>
+            </div>
+          </div>
+        </div>
+      );
+    });
+  };
+
   return (
     <>
       {/* <AppHelmet
@@ -773,7 +825,9 @@ const Header = ({
                               })()}
 
                               <li>
-                                <Link onClick={() => history.push("/category")}>
+                                <Link
+                                  onClick={() => history.push("/products/list")}
+                                >
                                   Shop All
                                 </Link>
                               </li>
@@ -1202,13 +1256,59 @@ const Header = ({
                 <div className="dropdown cart-dropdown type2 mr-2">
                   <a href="#" className="cart-toggle link">
                     <i className="d-icon-bag mb-1">
-                      <span className="cart-count bg-dark">1</span>
+                      {cart?.data?.length > 0 ? (
+                        <span className="cart-count bg-dark">
+                          {cart?.data?.length}
+                        </span>
+                      ) : (
+                        ""
+                      )}
                     </i>
                   </a>
 
                   <div className="dropdown-box">
                     <div className="products scrollable">
-                      <div className="product product-cart">
+                      {cart?.data?.length > 0 &&
+                        cart?.data?.map((item, productcartkey) => {
+                          return (
+                            <div
+                              className="product product-cart"
+                              key={productcartkey}
+                            >
+                              <figure className="product-media">
+                                <a href="#">
+                                  <img
+                                    src={"http://54.177.7.240" + item?.photos}
+                                    alt="product"
+                                    width="80"
+                                    height="90"
+                                  />
+                                </a>
+                                <button
+                                  className="btn btn-link btn-close"
+                                  onClick={() =>
+                                    dispatch(remove_from_cart_thunk(item?._id))
+                                  }
+                                >
+                                  <i className="fas fa-times"></i>
+                                  <span className="sr-only">Close</span>
+                                </button>
+                              </figure>
+                              <div className="product-detail">
+                                <a href="#" className="product-name">
+                                  {item?.name}
+                                </a>
+                                <div className="price-box">
+                                  <span className="product-price">
+                                    {currencyFormat(item?.saleAmount, "INR")}
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      {/* {getCartList()} */}
+                      {/* <div className="product product-cart">
                         <figure className="product-media">
                           <a href="#">
                             <img
@@ -1258,7 +1358,7 @@ const Header = ({
                             <span className="product-price">$118.00</span>
                           </div>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
 
                     <div className="cart-total">
@@ -1270,9 +1370,13 @@ const Header = ({
                       <Link className="btn btn-underline btn-link" to="/cart">
                         View Cart
                       </Link>
-                      <a href="#" className="btn btn-dark">
+
+                      <Link
+                        onClick={() => history.push("/checkout")}
+                        className="btn btn-dark"
+                      >
                         <span>Go To Checkout</span>
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
