@@ -79,6 +79,7 @@ const Header = ({
 
   const slug = user.data?.user ? user.data?.user?.slug : null;
   const userCart = cart?.data ? cart?.data : null;
+  let totalAmount = 0;
   useEffect(() => {
     window.addEventListener("scroll", isSticky);
     return () => {
@@ -692,42 +693,6 @@ const Header = ({
     //   );
     //}
   };
-  const getCartList = () => {
-    return cart?.data?.map(function (lineGroup) {
-      let list = getProductDetailsApi(lineGroup).then((result) => {
-        return result?.data?.responseData?.product;
-      });
-      console.log(list);
-      //console.log(list);
-      return (
-        <div className="product product-cart">
-          <figure className="product-media">
-            <a href="#">
-              <img
-                src={`http://54.177.7.240`}
-                alt="product"
-                width="80"
-                height="90"
-              />
-            </a>
-            <button className="btn btn-link btn-close">
-              <i className="fas fa-times"></i>
-              <span className="sr-only">Close</span>
-            </button>
-          </figure>
-          <div className="product-detail">
-            <a href="#" className="product-name">
-              Paprika
-            </a>
-            <div className="price-box">
-              <span className="product-quantity">1</span>
-              <span className="product-price">$21.00</span>
-            </div>
-          </div>
-        </div>
-      );
-    });
-  };
 
   return (
     <>
@@ -1112,7 +1077,7 @@ const Header = ({
                       </Nav.Link>
                     </li>
                     <li>
-                      <Nav.Link onClick={() => history.push("/")}>
+                      <Nav.Link onClick={() => history.push("/cms/contactUs")}>
                         Consult
                       </Nav.Link>
                     </li>
@@ -1270,6 +1235,7 @@ const Header = ({
                     <div className="products scrollable">
                       {cart?.data?.length > 0 &&
                         cart?.data?.map((item, productcartkey) => {
+                          totalAmount = totalAmount + item?.saleAmount;
                           return (
                             <div
                               className="product product-cart"
@@ -1363,7 +1329,9 @@ const Header = ({
 
                     <div className="cart-total">
                       <label>Subtotal:</label>
-                      <span className="price">$139.00</span>
+                      <span className="price">
+                        {currencyFormat(totalAmount, "INR")}
+                      </span>
                     </div>
 
                     <div className="cart-action">
@@ -1591,10 +1559,10 @@ const Header = ({
               </Link>
               <ul className={`${pageActive ? "page-active" : ""}`}>
                 <li>
-                  <Link to="/about">About</Link>
+                  <Link to="/abouts">About</Link>
                 </li>
                 <li>
-                  <Link to="/contact">Contact Us</Link>
+                  <Link to="/cms/contactUs">Contact Us</Link>
                 </li>
                 {/* <li>
                   <Link to="/login">Login</Link>

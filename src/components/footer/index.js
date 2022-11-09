@@ -20,22 +20,38 @@ import { validateEmail } from "../../utils/common";
 import { subscribeApi } from "../../api/base-methods";
 import images from "../../utils/images.json";
 import livenlogofooter from "../../images/new-images/demos/demo-food2/liven-logo-footer.png";
-import { getCategoryApi } from "../../api/base-methods";
+import { getCategoryApi, cmsPages } from "../../api/base-methods";
 
 const Footer = () => {
   const [email, setEmail] = useState();
   const [vEmail, setVEmail] = useState();
   const [loading, setLoading] = useState(false);
   const [categoryDetails, setCategoryDetails] = useState({});
+  const [footerDetails, setFooterDetails] = useState({});
   const [notiLoading, setNotiLoading] = useState(false);
 
   const history = useHistory();
 
   useEffect(() => {
     getCategoryDetails();
+    getcmsPages();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const getcmsPages = async () => {
+    try {
+      setNotiLoading(true);
+      const result = await cmsPages();
+      setFooterDetails(result?.data?.responseData?.pages);
+    } catch (error) {
+      setNotiLoading(false);
+
+      console.log(
+        "🚀 ~ file: index.js ~ line 49 ~ handleGetNotification ~ error",
+        error
+      );
+    }
+  };
   const getCategoryDetails = async () => {
     try {
       setNotiLoading(true);
@@ -90,17 +106,15 @@ const Footer = () => {
     }
   };
 
-const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false);
 
-
-// Toast Message Start
-const showToastMessage = () => {
-  toast.success('Success Notification !', {
-      position: toast.POSITION.TOP_RIGHT
-  });
-};
-// Toast Message End
-
+  // Toast Message Start
+  const showToastMessage = () => {
+    toast.success("Success Notification !", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+  };
+  // Toast Message End
 
   return (
     <>
@@ -264,7 +278,15 @@ const showToastMessage = () => {
                     <li>
                       <Link to="/blog">Blog</Link>
                     </li>
-                    <li>
+                    {footerDetails?.length > 0 &&
+                      footerDetails?.map((obj, index) => {
+                        return (
+                          <li>
+                            <Link to={`/cms/${obj?.url}`}>{obj?.title}</Link>
+                          </li>
+                        );
+                      })}
+                    {/* <li>
                       <Link to="/">Consult</Link>
                     </li>
                     <li>
@@ -284,7 +306,7 @@ const showToastMessage = () => {
                     </li>
                     <li>
                       <Link to="/">Contact US</Link>
-                    </li>
+                    </li> */}
                   </ul>
                 </div>
               </div>
@@ -318,6 +340,6 @@ const showToastMessage = () => {
       </div>
     </>
   );
-};
+};;;;;;;
 
 export default Footer;

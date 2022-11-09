@@ -22,6 +22,7 @@ import {
   proceed_checkout_success,
   proceed_checkout_failure,
   checkout_event,
+  clear_cart_action,
 } from "../actions/user_cart_action";
 
 export const add_to_cart_thunk = (productid) => {
@@ -113,16 +114,15 @@ export const get_cart_list_thunk = () => {
 //   };
 // };
 
-// export const clear_cart_thunk = () => {
-//   return async (dispatch) => {
-//     try {
-//       const result = await clearCartApi();
-//       dispatch(clear_cart_action());
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   };
-// };
+export const clear_cart_thunk = () => {
+  return async (dispatch) => {
+    try {
+      dispatch(clear_cart_action());
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
 
 export const checkout_event_thunk = (event) => {
   return async (dispatch) => {

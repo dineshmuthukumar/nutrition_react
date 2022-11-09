@@ -47,6 +47,7 @@ const Login = lazy(() => import("./pages/login"));
 const MyAccount = lazy(() => import("./pages/my-account"));
 const ProductList = lazy(() => import("./pages/productlist"));
 const Checkout = lazy(() => import("./pages/checkout"));
+const Cms = lazy(() => import("./pages/cms"));
 
 function App(props) {
   const market_start_date = "Jul 13, 2022 11:30:00";
@@ -245,6 +246,7 @@ const WebContainer = () => {
         <Route exact path="/" component={NewHome} />
         <Route path="/category/:categoryid?" component={Category} />
         <Route exact path="/product/:productid?" component={Product} />
+        <Route exact path="/product/free/:productid?" component={freetrial} />
         <Route exact path="/about" component={About} />
         <Route exact path="/blog" component={blog} />
         <Route exact path="/blogpost/:blogid?" component={blogPost} />
@@ -258,6 +260,7 @@ const WebContainer = () => {
         <PrivateRoute exact path="/cart" component={Cart} />
         <PrivateRoute exact path="/accounts" component={MyAccount} />
         <PrivateRoute exact path="/checkout" component={Checkout} />
+        <Route exact path="/cms/:id?" component={Cms} />
 
         <Route exact component={() => <Redirect to="/"></Redirect>} />
       </Switch>

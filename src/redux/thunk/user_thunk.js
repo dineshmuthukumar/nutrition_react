@@ -12,6 +12,8 @@ import {
   user_login_action_failure,
 } from "../actions/user_action";
 
+import { clear_cart_thunk } from "./user_cart_thunk";
+
 export const user_login_thunk = (
   input,
   returnMessage,
@@ -118,6 +120,7 @@ export const user_logout_thunk = () => {
     // }
     removeCookies();
     dispatch(user_logout_action());
+    dispatch(clear_cart_thunk());
   };
 };
 

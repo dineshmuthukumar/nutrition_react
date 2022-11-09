@@ -57,6 +57,11 @@ export const productListApi = (props) =>
   baseAxios.get(`/product/list?page=${props}`);
 
 
+  export const cmsPages = (props) => baseAxios.get(`/pages`);
+
+  export const cmsPagetApi = (props) => baseAxios.get(`/page/${props}`);
+
+
 
 export const readNotificationApi = () =>
   baseAxios.post("/users/notification_read");

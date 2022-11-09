@@ -148,9 +148,12 @@ const CartContent = () => {
                 {(() => {
                   if (cart?.data?.length > 0) {
                     return (
-                      <a className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4">
+                      <Link
+                        to="/checkout"
+                        className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
+                      >
                         Continue Shopping <i className="d-icon-arrow-right"></i>
-                      </a>
+                      </Link>
                     );
                   } else {
                     return (

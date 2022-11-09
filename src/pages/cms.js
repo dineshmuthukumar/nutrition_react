@@ -31,12 +31,11 @@ import useQuery from "../hook/useQuery";
 // import MclGameButton from "../components/mcl-game-button";
 
 import Header from "../components/header";
-import Trial_Free_Section from "../components/new/trial-free-section";
-import Free_Trial_Section from "../components/new/free-trial-section";
+import Cms from "../components/new/cms";
 
 import Footer from "../components/footer";
 
-const FreeTrial = () => {
+const About = () => {
   const { url } = useRouteMatch();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -44,14 +43,21 @@ const FreeTrial = () => {
   const fsz = query.get("fsz");
   const token = query.get("token");
   const _ga = query.get("_ga");
-  // const { user } = useSelector((state) => state.user.data);
 
   const [list, setList] = useState([]);
-
   // const [favPage, setFavPage] = useState(1);
   // const [favList, setFavList] = useState([]);
   // const [favLoading, setFavLoading] = useState(false);
   // const [favHasNext, setFavHasNext] = useState(false);
+
+  const categoriesList = async (page) => {
+    try {
+      let response = await nftCategoriesApi({ page });
+      setList([...list, ...response.data.data.categories]);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   useEffect(() => {
     if (fsz) {
@@ -92,6 +98,14 @@ const FreeTrial = () => {
   //   }
   // };
 
+  // Meta Pixel Code
+  useEffect(() => {
+    if (process.env.REACT_APP_MARKETING_SCRIPT === "enabled") {
+      ReactPixel.init(process.env.REACT_APP_META_PIXEL_ID);
+      ReactPixel.pageView();
+    }
+  }, []);
+
   return (
     <>
       <Header
@@ -100,14 +114,26 @@ const FreeTrial = () => {
         image="https://cdn.guardianlink.io/product-hotspot/images/og-image_jt.jpg"
       />
       <main className="main single-product">
-        <div className="page-content mb-10 pb-6">
-          <Free_Trial_Section />
+        <div className="page-content">
+          <div className="container-fluid p-0">
+            <div
+              className="page-header pl-4 pr-4"
+              style={{ background: "#7ea4b1" }}
+            >
+              <h1 className="page-title font-weight-bold lh-1 text-white text-capitalize">
+                cms
+              </h1>
+            </div>
+            <div class="page-content mt-10 pt-10">
+              <Cms />
+            </div>
+          </div>
         </div>
       </main>
       <Footer />
       {/* <Footer /> */}
     </>
   );
-};;
+};
 
-export default FreeTrial;
+export default About;

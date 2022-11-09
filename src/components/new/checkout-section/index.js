@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import OwlCarousel from "react-owl-carousel";
 import { useHistory } from "react-router-dom";
 //import Image from "react-bootstrap/Image";
@@ -28,6 +28,47 @@ import { currencyFormat } from "../../../utils/common";
 const CheckoutSection = () => {
   const dispatch = useDispatch();
   const { user, cart } = useSelector((state) => state);
+  const options = {
+    key: "RVN2SYwr35DoBQzHU6bqWz8Q",
+    currency: "INR",
+    amount: 100,
+    name: "Learning To Code Online",
+    description: "Test Wallet Transaction",
+    image: "http://localhost:1337/logo.png",
+    order_id: "123",
+    handler: function (response) {
+      alert(response.razorpay_payment_id);
+      alert(response.razorpay_order_id);
+      alert(response.razorpay_signature);
+    },
+    prefill: {
+      name: "Anirudh Jwala",
+      email: "anirudh@gmail.com",
+      contact: "9999999999",
+    },
+  };
+
+  const open = () => {
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
+  };
+
+  const loadScript = (src) => {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.onload = () => {
+        resolve(true);
+      };
+      script.onerror = () => {
+        resolve(false);
+      };
+      document.body.appendChild(script);
+    });
+  };
+  useEffect(() => {
+    loadScript("https://checkout.razorpay.com/v1/checkout.js");
+  });
   return (
     <>
       <section className="checkout customer-section">
@@ -123,9 +164,13 @@ const CheckoutSection = () => {
                 {(() => {
                   if (cart?.data?.length > 0) {
                     return (
-                      <a className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4">
+                      <Link
+                        // to="#"
+                        onClick={() => open()}
+                        className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
+                      >
                         Continue Shopping <i className="d-icon-arrow-right"></i>
-                      </a>
+                      </Link>
                     );
                   } else {
                     return (

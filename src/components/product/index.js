@@ -11,6 +11,7 @@ const Product = ({ ProductDetails, key }) => {
   const [productData, setProductData] = useState(false);
   const [inCart, setInCart] = useState(false);
 
+  console.log(ProductDetails, "ProductDetails");
   useEffect(() => {
     if (user) {
       const orderSlug = userCart?.line_items?.find(
@@ -28,15 +29,33 @@ const Product = ({ ProductDetails, key }) => {
   return (
     <div class="product text-center product-with-qty" key={ProductDetails?._id}>
       <figure class="product-media">
-        <Link to={`/product/${ProductDetails?._id}`}>
-          <img
-            src={"http://54.177.7.240" + ProductDetails?.photos[0]}
-            alt="product"
-            width="280"
-            height="315"
-            style={{ width: "100%" }}
-          />
-        </Link>
+        {(() => {
+          if (ProductDetails?.isFree) {
+            return (
+              <Link to={`/product/free/${ProductDetails?._id}`}>
+                <img
+                  src={"http://54.177.7.240" + ProductDetails?.photos[0]}
+                  alt="product"
+                  width="280"
+                  height="315"
+                  style={{ width: "100%" }}
+                />
+              </Link>
+            );
+          } else {
+            return (
+              <Link to={`/product/${ProductDetails?._id}`}>
+                <img
+                  src={"http://54.177.7.240" + ProductDetails?.photos[0]}
+                  alt="product"
+                  width="280"
+                  height="315"
+                  style={{ width: "100%" }}
+                />
+              </Link>
+            );
+          }
+        })()}
         <div class="product-label-group">
           <label class="product-label label-sale">25% Off</label>
         </div>
@@ -77,21 +96,32 @@ const Product = ({ ProductDetails, key }) => {
                                 </div> --> */}
 
         <div class="product-action">
-          <a
-            //  href="#"
-            class="btn-product btn-cart ls-l"
-            data-toggle="modal"
-            data-target="#addCartModal"
-            title="Add to cart"
-            onClick={() => {
-              if (!inCart) {
-                dispatch(add_to_cart_thunk(ProductDetails._id));
-              }
-            }}
-          >
-            <i class="d-icon-bag"></i>
-            <span>Add to cart</span>
-          </a>
+          {user?.login ? (
+            !ProductDetails?.isFree ? (
+              <a
+                //  href="#"
+                class="btn-product btn-cart ls-l"
+                data-toggle="modal"
+                data-target="#addCartModal"
+                title="Add to cart"
+                onClick={() => {
+                  if (!inCart) {
+                    dispatch(add_to_cart_thunk(ProductDetails._id));
+                  }
+                }}
+              >
+                <i class="d-icon-bag"></i>
+                <span>Add to cart</span>
+              </a>
+            ) : (
+              ""
+            )
+          ) : (
+            <Link to="/Login" class="btn-product btn-cart ls-l">
+              {" "}
+              Login{" "}
+            </Link>
+          )}
         </div>
       </div>
     </div>
