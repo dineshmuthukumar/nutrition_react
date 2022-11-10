@@ -29,14 +29,14 @@ const CheckoutSection = () => {
   const dispatch = useDispatch();
   const { user, cart } = useSelector((state) => state);
   const options = {
-    key: "RVN2SYwr35DoBQzHU6bqWz8Q",
+    key: "rzp_test_2hFYTVjM8i6zhe",
     currency: "INR",
     amount: 100,
     name: "Learning To Code Online",
     description: "Test Wallet Transaction",
     image: "http://localhost:1337/logo.png",
-    order_id: "123",
     handler: function (response) {
+      console.log(response, "response");
       alert(response.razorpay_payment_id);
       alert(response.razorpay_order_id);
       alert(response.razorpay_signature);

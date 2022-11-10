@@ -64,7 +64,7 @@ const Productlist = () => {
             data-target=".posts"
           ></ul>
           <div
-            className="posts grid post-grid row"
+            className="posts grid post-grid row gap-4"
             // data-grid-options="{
             //                     'layoutMode': 'fitRows'
             //                 }"
