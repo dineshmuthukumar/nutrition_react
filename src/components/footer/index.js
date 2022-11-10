@@ -286,53 +286,29 @@ const Footer = () => {
                           </li>
                         );
                       })}
-                    {/* <li>
-                      <Link to="/">Consult</Link>
-                    </li>
-                    <li>
-                      <Link to="/">Testimonials</Link>
-                    </li>
-                    <li>
-                      <Link to="/privacy">Privacy Policy</Link>
-                    </li>
-                    <li>
-                      <Link to="/terms">Terms & Conditions</Link>
-                    </li>
-                    <li>
-                      <Link to="/">Return & Refund</Link>
-                    </li>
-                    <li>
-                      <Link to="/">Disclaimers</Link>
-                    </li>
-                    <li>
-                      <Link to="/">Contact US</Link>
-                    </li> */}
                   </ul>
                 </div>
               </div>
+
+              <div className="col-sm-3 flex-center">
+                <div className="widget widget-contact">
+                  <h4 className="widget-title">Explore More</h4>
+                  <ul className="widget-body">
+                    <li>
+                      <Link to="/blog">Blog</Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
             </div>
           </div>
           <div className="footer-bottom">
             <Row>
-              <Col sm={8}>
+              <Col>
                 <div className="footer-center">
                   <p className="copyright">Copyright &copy; 2022. Nutrition</p>
                 </div>
-              </Col>
-              <Col sm={4}>
-                {/* Toast Message Start */}
-                <Row>
-                  <Col xs={12}>
-                    <button
-                      className="btn btn-primary btn-md"
-                      onClick={showToastMessage}
-                    >
-                      Toast
-                    </button>
-                    <ToastContainer />
-                  </Col>
-                </Row>
-                {/* Toast Message End */}
               </Col>
             </Row>
           </div>

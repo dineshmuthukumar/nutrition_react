@@ -109,7 +109,9 @@ h2.title.title-center.ls-s.mb-8 {
 {
     color: var(--color-text);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
     font-family: var(--font-monda);
-    font-size: 25px;
+    font-size: 20px;
+    line-height: 30px;
+    margin-bottom: 15px;
     font-weight: 400;
 }
 .product_banner p {
@@ -1413,7 +1415,7 @@ table.shop-table.cart-table thead
 img.category_media_image 
 {
     width: 150px !important;
-    height: auto;
+    height: 150px !important;
 }
 .noti-container.dropdown-menu.show.dropdown-menu-end 
 {
@@ -1421,6 +1423,10 @@ img.category_media_image
     text-align: left;
     padding: 10px;
     inset: 15px auto auto auto !important;
+}
+img.weak_strongest_img_absolute 
+{
+    width: 80%;
 }
 .noti-content 
 {
@@ -1475,4 +1481,16 @@ img.category_media_image
         color: var(--black);
     }
     
+}
+
+.header-user-details 
+{
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    padding: 5px 10px;
+    background: var(--base-color);
+}
+.header-user-details  img.user-image 
+{
+    border-radius: 100%;
 }

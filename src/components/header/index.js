@@ -1237,33 +1237,19 @@ const Header = ({
                         cart?.data?.map((item, productcartkey) => {
                           totalAmount = totalAmount + item?.saleAmount;
                           return (
-                            <div
-                              className="product product-cart"
-                              key={productcartkey}
-                            >
+                            <div className="product product-cart" key={productcartkey}>
                               <figure className="product-media">
                                 <a href="#">
-                                  <img
-                                    src={"http://54.177.7.240" + item?.photos}
-                                    alt="product"
-                                    width="80"
-                                    height="90"
-                                  />
+                                  <img src={"http://54.177.7.240" + item?.photos} alt="product" width="80" height="auto"/>
                                 </a>
-                                <button
-                                  className="btn btn-link btn-close"
-                                  onClick={() =>
-                                    dispatch(remove_from_cart_thunk(item?._id))
-                                  }
-                                >
-                                  <i className="fas fa-times"></i>
+                                <button className="btn btn-link btn-close" onClick={() =>
+                                    dispatch(remove_from_cart_thunk(item?._id))}>
+                                  {/* <i className="fas fa-times"></i> */}
                                   <span className="sr-only">Close</span>
                                 </button>
                               </figure>
                               <div className="product-detail">
-                                <a href="#" className="product-name">
-                                  {item?.name}
-                                </a>
+                                <a href="#" className="product-name">{item?.name}</a>
                                 <div className="price-box">
                                   <span className="product-price">
                                     {currencyFormat(item?.saleAmount, "INR")}

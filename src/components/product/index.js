@@ -59,15 +59,7 @@ const Product = ({ ProductDetails, key }) => {
         <div class="product-label-group">
           <label class="product-label label-sale">25% Off</label>
         </div>
-        <div class="product-action-vertical">
-          <a
-            href="#"
-            class="btn-product-icon btn-wishlist"
-            title="Add to wishlist"
-          >
-            <i class="d-icon-heart"></i>
-          </a>
-        </div>
+       
       </figure>
       <div class="product-details">
         <h3 class="product-name">
