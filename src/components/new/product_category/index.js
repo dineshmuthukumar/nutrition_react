@@ -17,7 +17,7 @@ import Accordion from "../../accordion";
 import Product from "../../product";
 
 const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
-  console.log(categoryProdDetails, "categoryProdDetails");
+  // console.log(categoryProdDetails, "categoryProdDetails");
   // const accordionData = categoryDetails?.questions;
   return (
     <>

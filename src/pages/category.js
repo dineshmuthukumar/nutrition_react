@@ -48,6 +48,11 @@ const Category = () => {
     getsubCategory();
   }, []);
 
+  useEffect(() => {
+    // if (query.get("forceUpdate") === "true" || !user.name) {
+    getsubCategory();
+  }, [categoryid]);
+
   const getsubCategory = async () => {
     const result = await getsubCategoryApi(categoryid);
     //console.log(result?.data?.responseData?.subCategories);

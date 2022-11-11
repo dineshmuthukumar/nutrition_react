@@ -822,65 +822,6 @@ const Header = ({
                                   return <li>No Best Sellers Found</li>;
                                 }
                               })()}
-
-                              {/* <li className="submenu">
-                                {" "}
-                                <Link to="/category">Essential Vitamins</Link>
-                                <ul>
-                                  <li>
-                                    <Link to="">Demo1</Link>
-                                  </li>
-                                  <li>
-                                    <Link to="">Demo2</Link>
-                                  </li>
-                                  <li>
-                                    <Link to="">Demo3</Link>
-                                  </li>
-                                  <li>
-                                    <Link to="">Demo4</Link>
-                                  </li>
-                                </ul>
-                              </li> */}
-                              {/* <li>
-                                {" "}
-                                <Link to="/category">Daily Immunity Combo</Link>
-                              </li>
-                              <li>
-                                {" "}
-                                <Link to="/category">Deep Sleep Pack</Link>
-                              </li>
-                              <li>
-                                {" "}
-                                <Link to="/category">Happy Gut Combo</Link>
-                              </li>
-                              <li>
-                                {" "}
-                                <Link to="/category">
-                                  Women’s Performance Pack
-                                </Link>
-                              </li>
-                              <li>
-                                {" "}
-                                <Link to="/category">
-                                  Beauty Sleep &amp; Healthy Hair Pack
-                                </Link>
-                              </li>
-                              <li>
-                                {" "}
-                                <Link to="/category">Stress Relief Combo</Link>
-                              </li>
-                              <li>
-                                {" "}
-                                <Link to="/category">Beauty Pack</Link>
-                              </li>
-                              <li>
-                                {" "}
-                                <Link to="/category">Performance Pack</Link>
-                              </li>
-                              <li>
-                                {" "}
-                                <Link to="/category">Hair Care Kit</Link>
-                              </li> */}
                             </ul>
                           </div>
                         </div>
@@ -899,6 +840,15 @@ const Header = ({
                           <div className="col-6 col-sm-6 col-md-6">
                             {/* <h4 className="menu-title">Sports Nutrition</h4> */}
                             <ul>
+                              <li className="">
+                                {" "}
+                                <Link to="/">Explore More</Link>
+                              </li>
+                              <li className="">
+                                {" "}
+                                <Link to="/">Liven Dominance</Link>
+                              </li>
+
                               {(() => {
                                 if (subCategoryList?.length > 0) {
                                   return (
@@ -907,13 +857,21 @@ const Header = ({
                                         (CategoriesDetail) => {
                                           return (
                                             <li className="">
-                                              <Link
+                                              {/* <Link
                                                 to={`/category/${CategoriesDetail?._id}`}
+                                              > */}
+                                              <Nav.Link
+                                                onClick={() =>
+                                                  history.push(
+                                                    `/category/${CategoriesDetail?._id}`
+                                                  )
+                                                }
                                               >
                                                 {
                                                   CategoriesDetail?.subCategoryName
                                                 }
-                                              </Link>
+                                                {/* </Link> */}
+                                              </Nav.Link>
                                             </li>
                                           );
                                         }
@@ -1237,19 +1195,33 @@ const Header = ({
                         cart?.data?.map((item, productcartkey) => {
                           totalAmount = totalAmount + item?.saleAmount;
                           return (
-                            <div className="product product-cart" key={productcartkey}>
+                            <div
+                              className="product product-cart"
+                              key={productcartkey}
+                            >
                               <figure className="product-media">
                                 <a href="#">
-                                  <img src={"http://54.177.7.240" + item?.photos} alt="product" width="80" height="auto"/>
+                                  <img
+                                    src={"http://54.177.7.240" + item?.photos}
+                                    alt="product"
+                                    width="80"
+                                    height="auto"
+                                  />
                                 </a>
-                                <button className="btn btn-link btn-close" onClick={() =>
-                                    dispatch(remove_from_cart_thunk(item?._id))}>
+                                <button
+                                  className="btn btn-link btn-close"
+                                  onClick={() =>
+                                    dispatch(remove_from_cart_thunk(item?._id))
+                                  }
+                                >
                                   {/* <i className="fas fa-times"></i> */}
                                   <span className="sr-only">Close</span>
                                 </button>
                               </figure>
                               <div className="product-detail">
-                                <a href="#" className="product-name">{item?.name}</a>
+                                <a href="#" className="product-name">
+                                  {item?.name}
+                                </a>
                                 <div className="price-box">
                                   <span className="product-price">
                                     {currencyFormat(item?.saleAmount, "INR")}
