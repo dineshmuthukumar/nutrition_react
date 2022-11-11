@@ -30,6 +30,7 @@ import { blogListApi } from "../../../api/base-methods";
 import pagination from "../pagination";
 
 import "./style.scss";
+import dayjs from "dayjs";
 
 const Blog = () => {
   const [list, setList] = useState([]);
@@ -87,15 +88,16 @@ const Blog = () => {
                         <div className="post-meta">
                           on{" "}
                           <a href="blog-grid-3col.html#" className="post-date">
-                            July 25, 2022
+                            {/* July 25, 2022 */}
+                            {dayjs(obj?.createdAt).format("MMM DD,YYYY")}
                           </a>
                           |{" "}
-                          <a
+                          {/* <a
                             href="blog-grid-3col.html#"
                             className="post-comment"
                           >
                             <span>2</span> Comments
-                          </a>
+                          </a> */}
                         </div>
                         <h4 className="post-title">
                           <a href="#">{obj?.title}</a>

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import OwlCarousel from "react-owl-carousel";
 
 import { Link, useHistory } from "react-router-dom";
 //import Image from "react-bootstrap/Image";

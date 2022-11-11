@@ -34,20 +34,26 @@ const Aboutus = () => {
     getCustomPage();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  useEffect(() => {
+    getCustomPage();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
   return (
     <>
       <section className="customer-section pb-10">
         <div className="container">
           <div className="row align-items-center">
-            <div className="col-md-6 mb-4 abt-img">
-              <figure>
-                <img
-                  src={customer}
-                  alt="Happy Customer"
-                  className="banner-radius abt-img"
-                />
-              </figure>
-            </div>
+            {Data?.image != "false" && Data?.image && (
+              <div className="col-md-6 mb-4 abt-img">
+                <figure>
+                  <img
+                    src={"http://54.177.7.240" + Data?.image}
+                    alt="Happy Customer"
+                    className="banner-radius abt-img"
+                  />
+                </figure>
+              </div>
+            )}
             <div className="col-md-6 mb-4">
               <h3 className="section-title lh-1 font-weight-bold">
                 {" "}

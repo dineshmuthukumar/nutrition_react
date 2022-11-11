@@ -27,6 +27,7 @@ import comments_2 from "../../../images/new-images/blog/comments/2.jpg";
 import { blogListIdApi } from "../../../api/base-methods";
 import "./style.scss";
 import { Link } from "react-router-dom";
+import dayjs from "dayjs";
 
 const BlogPost = () => {
   const match = useRouteMatch();
@@ -59,30 +60,32 @@ const BlogPost = () => {
         <div className="row gutter-lg">
           <div className="offset-sm-1 col-sm-10">
             <article className="post-single">
-              <figure className="post-media">
-                <a href="post-single.html#">
-                  <img
-                    src={"http://54.177.7.240" + blogData?.image}
-                    width="880"
-                    height="450"
-                    alt="post"
-                  />
-                </a>
-              </figure>
+              {blogData?.image && (
+                <figure className="post-media">
+                  <a href="post-single.html#">
+                    <img
+                      src={"http://54.177.7.240" + blogData?.image}
+                      width="880"
+                      height="450"
+                      alt="post"
+                    />
+                  </a>
+                </figure>
+              )}
               <div className="post-details">
                 <div className="post-meta">
                   by{" "}
                   <a href="post-single.html#" className="post-author">
-                    John Doe
-                  </a>
+                    {blogData?.username}
+                  </a>{" "}
                   on{" "}
                   <a href="post-single.html#" className="post-date">
-                    Nov 22, 2018
+                    {dayjs(blogData?.createdAt).format("MMM DD,YYYY")}
                   </a>
-                  |{" "}
+                  {/* |{" "}
                   <a href="post-single.html#" className="post-comment">
                     <span>2</span> Comments
-                  </a>
+                  </a> */}
                 </div>
                 <h4 className="post-title">
                   <a href="post-single.html#">{blogData?.title}</a>
@@ -155,8 +158,18 @@ const BlogPost = () => {
                                   />
                                 </a>
                                 <div className="post-calendar">
-                                  <span className="post-day">19</span>
-                                  <span className="post-month">JAN</span>
+                                  <span className="post-day">
+                                    {" "}
+                                    {dayjs(Recentcontent?.createdAt).format(
+                                      "DD"
+                                    )}
+                                  </span>
+                                  <span className="post-month">
+                                    {" "}
+                                    {dayjs(Recentcontent?.createdAt).format(
+                                      "MMM"
+                                    )}
+                                  </span>
                                 </div>
                               </figure>
                               <div className="post-details">

@@ -26,6 +26,7 @@ import {
   getNotificationApi,
   getsubCategoryListApi,
   getProductDetailsApi,
+  cmsPages,
 } from "../../api/base-methods";
 import { readNotificationApi } from "./../../api/base-methods";
 import {
@@ -76,6 +77,7 @@ const Header = ({
   const [subCategoryList, setSubCategoryList] = useState({});
   const [pageActive, setPageActive] = useState(false);
   const [bestSellerDetails, setBestSellerDetails] = useState({});
+  const [footerDetails, setFooterDetails] = useState({});
 
   const slug = user.data?.user ? user.data?.user?.slug : null;
   const userCart = cart?.data ? cart?.data : null;
@@ -102,6 +104,10 @@ const Header = ({
   const hideModal = (event) => {
     document.body.className = "";
     setSideBar(false);
+  };
+  const getFooterDetails = async () => {
+    const result = await cmsPages();
+    setFooterDetails(result?.data?.responseData?.pages);
   };
 
   useEffect(() => {
@@ -141,6 +147,7 @@ const Header = ({
     getCategoryDetails();
     handleGetNotification();
     getsubCategoryList();
+    getFooterDetails();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -840,14 +847,38 @@ const Header = ({
                           <div className="col-6 col-sm-6 col-md-6">
                             {/* <h4 className="menu-title">Sports Nutrition</h4> */}
                             <ul>
-                              <li className="">
+                              {/* <li className="">
                                 {" "}
-                                <Link to="/">Explore More</Link>
-                              </li>
-                              <li className="">
+                                <Link to="/">Explore More</Link> */}
+                              {footerDetails?.length > 0 &&
+                                footerDetails?.map((obj, index) => {
+                                  if (obj.url == "exploreLiven") {
+                                    return (
+                                      <li>
+                                        <Link to={`/cms/${obj?.url}`}>
+                                          {obj?.title}
+                                        </Link>
+                                      </li>
+                                    );
+                                  }
+                                })}
+                              {footerDetails?.length > 0 &&
+                                footerDetails?.map((obj, index) => {
+                                  if (obj.url == "livenDominance") {
+                                    return (
+                                      <li>
+                                        <Link to={`/cms/${obj?.url}`}>
+                                          {obj?.title}
+                                        </Link>
+                                      </li>
+                                    );
+                                  }
+                                })}
+                              {/* </li> */}
+                              {/* <li className="">
                                 {" "}
                                 <Link to="/">Liven Dominance</Link>
-                              </li>
+                              </li> */}
 
                               {(() => {
                                 if (subCategoryList?.length > 0) {
@@ -1035,7 +1066,7 @@ const Header = ({
                       </Nav.Link>
                     </li>
                     <li>
-                      <Nav.Link onClick={() => history.push("/cms/contactUs")}>
+                      <Nav.Link onClick={() => history.push("/cms/Consult")}>
                         Consult
                       </Nav.Link>
                     </li>

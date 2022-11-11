@@ -52,6 +52,17 @@ const Footer = () => {
       );
     }
   };
+  // const getCmspageurl = async (name) => {
+  //   const responseData =
+  //     footerDetails?.length > 0 &&
+  //     footerDetails?.map((obj) => {
+  //       if (obj.url == name) {
+  //         return obj;
+  //       }
+  //     });
+
+  //   console.log(responseData, "obj");
+  // };
   const getCategoryDetails = async () => {
     try {
       setNotiLoading(true);
@@ -215,7 +226,57 @@ const Footer = () => {
                 <div className="widget widget-contact">
                   <h4 className="widget-title">Know Us</h4>
                   <ul className="widget-body">
-                    <li>
+                    {footerDetails?.length > 0 &&
+                      footerDetails?.map((obj, index) => {
+                        if (obj.url == "who_we_are") {
+                          return (
+                            <li>
+                              <Link to={`/cms/${obj?.url}`}>{obj?.title}</Link>
+                            </li>
+                          );
+                        }
+                      })}
+                    {footerDetails?.length > 0 &&
+                      footerDetails?.map((obj, index) => {
+                        if (obj.url == "source") {
+                          return (
+                            <li>
+                              <Link to={`/cms/${obj?.url}`}>{obj?.title}</Link>
+                            </li>
+                          );
+                        }
+                      })}
+                    {footerDetails?.length > 0 &&
+                      footerDetails?.map((obj, index) => {
+                        if (obj.url == "promise") {
+                          return (
+                            <li>
+                              <Link to={`/cms/${obj?.url}`}>{obj?.title}</Link>
+                            </li>
+                          );
+                        }
+                      })}
+                    {footerDetails?.length > 0 &&
+                      footerDetails?.map((obj, index) => {
+                        if (obj.url == "risk") {
+                          return (
+                            <li>
+                              <Link to={`/cms/${obj?.url}`}>{obj?.title}</Link>
+                            </li>
+                          );
+                        }
+                      })}
+                    {footerDetails?.length > 0 &&
+                      footerDetails?.map((obj, index) => {
+                        if (obj.url == "reward") {
+                          return (
+                            <li>
+                              <Link to={`/cms/${obj?.url}`}>{obj?.title}</Link>
+                            </li>
+                          );
+                        }
+                      })}
+                    {/* <li>
                       <Link to="" className="btn btn-link">
                         Who We Are
                       </Link>
@@ -234,12 +295,12 @@ const Footer = () => {
                       <Link to="" className="btn btn-link">
                         Risk-Free trial
                       </Link>
-                    </li>
-                    <li>
+                    </li> */}
+                    {/* <li>
                       <Link to="" className="btn btn-link">
                         Rewards
                       </Link>
-                    </li>
+                    </li> */}
                   </ul>
                 </div>
               </div>
@@ -280,17 +341,79 @@ const Footer = () => {
                     </li>
                     {footerDetails?.length > 0 &&
                       footerDetails?.map((obj, index) => {
-                        return (
-                          <li>
-                            <Link to={`/cms/${obj?.url}`}>{obj?.title}</Link>
-                          </li>
-                        );
+                        if (obj.url == "Consult") {
+                          return (
+                            <li>
+                              <Link to={`/cms/${obj?.url}`}>{obj?.title}</Link>
+                            </li>
+                          );
+                        }
+                      })}
+                    {footerDetails?.length > 0 &&
+                      footerDetails?.map((obj, index) => {
+                        if (obj.url == "testimonial") {
+                          return (
+                            <li>
+                              <Link to={`/cms/${obj?.url}`}>{obj?.title}</Link>
+                            </li>
+                          );
+                        }
+                      })}
+                    {footerDetails?.length > 0 &&
+                      footerDetails?.map((obj, index) => {
+                        if (obj.url == "privacy") {
+                          return (
+                            <li>
+                              <Link to={`/cms/${obj?.url}`}>{obj?.title}</Link>
+                            </li>
+                          );
+                        }
+                      })}
+                    {footerDetails?.length > 0 &&
+                      footerDetails?.map((obj, index) => {
+                        if (obj.url == "terms") {
+                          return (
+                            <li>
+                              <Link to={`/cms/${obj?.url}`}>{obj?.title}</Link>
+                            </li>
+                          );
+                        }
+                      })}
+                    {footerDetails?.length > 0 &&
+                      footerDetails?.map((obj, index) => {
+                        if (obj.url == "refund") {
+                          return (
+                            <li>
+                              <Link to={`/cms/${obj?.url}`}>{obj?.title}</Link>
+                            </li>
+                          );
+                        }
+                      })}
+                    {footerDetails?.length > 0 &&
+                      footerDetails?.map((obj, index) => {
+                        if (obj.url == "disclaimer") {
+                          return (
+                            <li>
+                              <Link to={`/cms/${obj?.url}`}>{obj?.title}</Link>
+                            </li>
+                          );
+                        }
+                      })}
+                    {footerDetails?.length > 0 &&
+                      footerDetails?.map((obj, index) => {
+                        if (obj.url == "contactUs") {
+                          return (
+                            <li>
+                              <Link to={`/cms/${obj?.url}`}>{obj?.title}</Link>
+                            </li>
+                          );
+                        }
                       })}
                   </ul>
                 </div>
               </div>
 
-              <div className="col-sm-3 flex-center">
+              {/* <div className="col-sm-3 flex-center">
                 <div className="widget widget-contact">
                   <h4 className="widget-title">Explore More</h4>
                   <ul className="widget-body">
@@ -299,8 +422,7 @@ const Footer = () => {
                     </li>
                   </ul>
                 </div>
-              </div>
-
+              </div> */}
             </div>
           </div>
           <div className="footer-bottom">

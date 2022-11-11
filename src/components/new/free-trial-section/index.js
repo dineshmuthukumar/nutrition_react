@@ -1,6 +1,10 @@
 
 
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { getProductDetailsApi } from "../../../api/base-methods";
+import { add_to_cart_thunk } from "../../../redux/thunk/user_cart_thunk";
+import { useDispatch, useSelector } from "react-redux";
 import OwlCarousel from "react-owl-carousel";
 
 import buy_now from "../../../images/new-images/demos/demo-food2/buy_now.png";

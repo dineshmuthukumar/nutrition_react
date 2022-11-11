@@ -36,6 +36,8 @@ import Free_Trial_Section from "../components/new/free-trial-section";
 
 import Footer from "../components/footer";
 
+
+
 const FreeTrial = () => {
   const { url } = useRouteMatch();
   const history = useHistory();
