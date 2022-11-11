@@ -80,11 +80,32 @@ const NewHome = () => {
 
     getProductDetails();
     ///categoriesList(1);
-    if (_ga) {
-      history.replace(url);
-    }
+    // if (_ga) {
+    //   history.replace(url);
+    // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (fsz) {
+      sessionStorage.setItem("fsz", fsz);
+      setCookiesByName("source", fsz);
+    }
+
+    if (token) {
+      setCookies(token);
+
+      history.replace(url);
+      dispatch(user_load_by_token_thunk(token));
+    }
+
+    getProductDetails();
+    ///categoriesList(1);
+    // if (_ga) {
+    //   history.replace(url)
+    // }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [productid]);
 
   // useEffect(() => {
   //   if (user) {
