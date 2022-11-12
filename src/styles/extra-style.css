@@ -1519,7 +1519,8 @@ section.arrivals-section.need_sec img
 {
     display: none;
 }
-article.post {
+article.post, .post 
+{
     border: 1px solid #ccc;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgb(0 0 0 / 10%);
@@ -1534,4 +1535,15 @@ article.post {
 textarea#exampleForm\.ControlTextarea1 
 {
     height: auto;
+}
+
+.btn-check:checked + .btn, :not(.btn-check) + .btn:active, .btn:first-child:active, .btn.active, .btn.show
+{
+    background: transparent !important; 
+}
+figure.post-media img 
+{
+    height: 200px;
+    max-height: 200px;
+    object-fit: contain;
 }

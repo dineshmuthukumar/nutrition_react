@@ -3962,11 +3962,17 @@ to {
   overflow:hidden;
   border-radius:0.3rem
 }
-.post-media img {
+.post-media img 
+{
   display:block;
   width:100%;
-  height:auto;
-  transition:transform 0.3s
+  height: 200px;
+  transition:transform 0.3s;
+}
+h4.post-title 
+{
+  height: 50px;
+  overflow: hidden;
 }
 .post-media .post-calendar {
   position:absolute;

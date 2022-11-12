@@ -54,7 +54,7 @@ const Aboutus = () => {
                 </figure>
               </div>
             )}
-            <div className="col-md-6 mb-4">
+            <div className="col-md-12 mb-4">
               <h3 className="section-title lh-1 font-weight-bold">
                 {" "}
                 {Data?.title}
