@@ -940,6 +940,14 @@
     }
 }
 
+
+.section.arrivals-section.need_sec .owl-carousel .owl-item img 
+{
+    min-height: 315px;
+    height: 315px;
+    object-fit: contain;
+}
+
 .product-single{
     .row{
         .col-sm-6{

@@ -1494,3 +1494,44 @@ img.weak_strongest_img_absolute
 {
     border-radius: 100%;
 }
+section.arrivals-section.need_sec img 
+{
+    min-height: 315px;
+    height: 315px;
+    object-fit: contain;
+}
+.intro-section .owl-carousel .owl-item img 
+{
+  height: 540px !important;
+  min-height: 540px !important;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  object-fit: fill;
+}
+
+#product_category_page_section .owl-carousel .owl-item img 
+{
+    min-height: 315px;
+    height: 315px;
+    object-fit: contain;
+}
+.owl-nav
+{
+    display: none;
+}
+article.post {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgb(0 0 0 / 10%);
+    padding: 20px;
+}
+
+.change_pass .form-control 
+{
+    height: 40px;
+    font-size: 14px;
+}
+textarea#exampleForm\.ControlTextarea1 
+{
+    height: auto;
+}

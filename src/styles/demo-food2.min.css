@@ -5,7 +5,7 @@
     --font-family-m: "circularstd-medium";
     --font-family-b: "circularstd-bold";
     --font-family-black: "circularstd-black";
-    --font-monda: 'Monda', sans-serif;
+    --font-monda: "circularstd-medium";
     --color-text: #1a1818;
 }
 body
@@ -14483,7 +14483,7 @@ figure.instagram img:hover {
 }
 .menu > .submenu > a {
     z-index: 10;
-    font-size: 14px;
+    font-size: 15px;
 }
 .menu > .submenu > a::after 
 {

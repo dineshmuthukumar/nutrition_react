@@ -12,6 +12,7 @@ import product_11 from "../../../images/new-images/demos/demo-food2/products/1.j
 import priceTag from "../../../images/new-images/demos/demo-food2/products/price_tag.png";
 
 import Product from "../../product";
+import "./style.scss";
 
 const FeatureProduct = ({ featureProductsContent }) => {
   const history = useHistory();

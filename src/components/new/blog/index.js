@@ -72,7 +72,7 @@ const Blog = () => {
             {list?.length > 0 &&
               list?.map((obj, index) => {
                 return (
-                  <div className="grid-item col-sm-6 col-lg-4 lifestyle shopping winter-sale">
+                  <div className="grid-item col-sm-6 col-lg-3 lifestyle shopping winter-sale">
                     <article className="post">
                       <figure className="post-media">
                         <a href="#">

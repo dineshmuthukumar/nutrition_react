@@ -4,15 +4,12 @@ import home_two from "../../../images/new-images//demos/demo-food2/products/fina
 const ProductBannerOne = ({ homeContent }) => {
   return (
     <>
-      <section className="product_banner_section_2 mb-10 pb-6">
+      <section className="product_banner_section_2 pb-6">
         <div className="container">
           <div className="row product_banner_2">
             <div className="col-sm-6 text-center">
               {homeContent?.section?.fourth?.image && (
-                <img
-                  src={`http://54.177.7.240${homeContent?.section?.fourth?.image}`}
-                  className="best_img"
-                />
+                <img src={`http://54.177.7.240${homeContent?.section?.fourth?.image}`} className="best_img"/>
               )}
             </div>
             <div className="col-sm-6">

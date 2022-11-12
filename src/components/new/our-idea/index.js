@@ -9,7 +9,7 @@ import fit_5 from "../../../images/new-images/demos/demo-food2/products/final/fi
 const OurIdea = ({ homeContent }) => {
   return (
     <>
-      <section className="new_our_idea pt-2 pt-md-7 pt-10 pb-8">
+      <section className="new_our_idea pt-10 pb-10">
         <div className="container p-0">
           <h2 className="title-echo mb-1">
             <span>{homeContent?.section?.third?.title}</span>
