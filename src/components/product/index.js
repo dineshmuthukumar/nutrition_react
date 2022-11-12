@@ -10,8 +10,6 @@ const Product = ({ ProductDetails, key }) => {
   const userCart = cart?.data ? cart?.data : null;
   const [productData, setProductData] = useState(false);
   const [inCart, setInCart] = useState(false);
-
-  console.log(ProductDetails, "ProductDetails");
   useEffect(() => {
     if (user) {
       const orderSlug = userCart?.line_items?.find(
