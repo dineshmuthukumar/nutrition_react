@@ -24,19 +24,21 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
   const userSlug = user.data ? user.data : null;
   const [prodList, setProdList] = useState({});
   const [categoryActive, setCategoryActive] = useState(true);
+  const [categoryActiveIndex, setCategoryActiveIndex] = useState(0);
   const [productTabActive, setProductTabActive] = useState(true);
   const userCart = cart?.data ? cart?.data : null;
-  const IsProductDetails = async (subcategoryId) => {
+  const IsProductDetails = async (subcategoryId, key) => {
     const result = await getsubCategoryApi(subcategoryId);
     setProdList(result?.data?.responseData?.Products);
     setCategoryActive(true);
     setProductTabActive(true);
+    setCategoryActiveIndex(key);
   };
 
   useEffect(() => {
     //console.log("Usereffect");
     //if (categorylist?.length > 0) {
-    IsProductDetails(categorylist[0]?._id);
+    IsProductDetails(categorylist[0]?._id, 0);
     ///}
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -44,7 +46,7 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
   useEffect(() => {
     //console.log("Usereffect");
     if (categorylist?.length > 0) {
-      IsProductDetails(categorylist[0]?._id);
+      IsProductDetails(categorylist[0]?._id, 0);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categorylist]);
@@ -80,19 +82,19 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
                   let count = 0;
                   return (
                     <>
-                      {categorylist?.map((arrivalecontent) => {
+                      {categorylist?.map((arrivalecontent, key) => {
                         count++;
                         return (
                           <li
                             className="nav-item ml-1 mr-1 pt-2 pb-2"
                             ref={ref}
                             onClick={() =>
-                              IsProductDetails(arrivalecontent._id)
+                              IsProductDetails(arrivalecontent._id, key)
                             }
                           >
                             <a
                               className={`nav-link nav-link-with-img border-rounded ${
-                                categoryActive ? "active" : ""
+                                categoryActiveIndex == key ? "active" : ""
                               }`}
                             >
                               <h3 className="img-cat-title mb-0">

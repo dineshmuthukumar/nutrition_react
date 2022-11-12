@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactPixel from "react-facebook-pixel";
 ///import { useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 //import Banner from "../components/banner";
 // import LiveAuctions from "../components/live-auctions";
@@ -11,9 +11,9 @@ import { useDispatch } from "react-redux";
 //import TopSellers from "../components/top-sellers";
 // import RecentlySoldNFT from "../components/recently-sold-nft";
 // import ShowAll from "../components/show-all";
-import { useHistory, useRouteMatch } from "react-router";
+import { useHistory, useRouteMatch, useLocation } from "react-router";
 
-import { setCookiesByName, setCookies } from "../utils/cookies";
+import { setCookiesByName, setCookies, getCookies } from "../utils/cookies";
 import { user_load_by_token_thunk } from "../redux/thunk/user_thunk";
 import { nftCategoriesApi } from "../api/methods";
 import useQuery from "../hook/useQuery";
@@ -37,6 +37,7 @@ import Footer from "../components/footer";
 import Logincomponent from "../components/new/login";
 
 const Login = () => {
+  const location = useLocation();
   const { url } = useRouteMatch();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -44,7 +45,8 @@ const Login = () => {
   const fsz = query.get("fsz");
   const token = query.get("token");
   const _ga = query.get("_ga");
-  // const { user } = useSelector((state) => state.user.data);
+  const redirect = query.get("redirect");
+  const { user } = useSelector((state) => state.user.data);
 
   const [list, setList] = useState([]);
 
@@ -52,15 +54,6 @@ const Login = () => {
   // const [favList, setFavList] = useState([]);
   // const [favLoading, setFavLoading] = useState(false);
   // const [favHasNext, setFavHasNext] = useState(false);
-
-  const categoriesList = async (page) => {
-    try {
-      let response = await nftCategoriesApi({ page });
-      setList([...list, ...response.data.data.categories]);
-    } catch (err) {
-      console.log(err);
-    }
-  };
 
   useEffect(() => {
     if (fsz) {
@@ -74,13 +67,23 @@ const Login = () => {
       history.replace(url);
       dispatch(user_load_by_token_thunk(token));
     }
-
-    ///categoriesList(1);
-    if (_ga) {
-      history.replace(url);
-    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  useEffect(() => {
+    if (user?.login && getCookies()) {
+      if (redirect) {
+        window.open(redirect, "_self");
+      } else {
+        history.push("/");
+        // if (location.state?.from) {
+        //   history.push(location.state?.from.pathname);
+        // } else {
+        //   // window.open(`${process.env.REACT_APP_MARKETPLACE_URL}`, "_self");
+        //   history.push("/accounts");
+        // }
+      }
+    }
+  }, [user, history, location.state?.from, redirect]);
 
   // useEffect(() => {
   //   if (user) {
@@ -139,6 +142,6 @@ const Login = () => {
       {/* <Footer /> */}
     </>
   );
-};
+};;;;;;;;;;;;;
 
 export default Login;

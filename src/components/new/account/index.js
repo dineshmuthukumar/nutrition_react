@@ -179,7 +179,7 @@ const Accountcomponent = () => {
 
       try {
         const result = await UpdateProfileApi(ProfileData);
-        console.log(result, "result");
+        //console.log(result, "result");
       } catch (err) {
         console.log(err);
       }

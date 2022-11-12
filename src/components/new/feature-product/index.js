@@ -16,7 +16,7 @@ import "./style.scss";
 
 const FeatureProduct = ({ featureProductsContent }) => {
   const history = useHistory();
-  console.log(featureProductsContent?.length);
+  //console.log(featureProductsContent?.length);
 
   return (
     <>

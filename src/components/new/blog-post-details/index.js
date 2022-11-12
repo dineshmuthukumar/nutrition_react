@@ -49,6 +49,11 @@ const BlogPost = () => {
     ///categoriesList(1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  useEffect(() => {
+    getBlogDetails();
+    ///categoriesList(1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [blogid]);
   return (
     <>
       <div className="container">
