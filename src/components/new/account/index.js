@@ -43,7 +43,7 @@ const Accountcomponent = () => {
   const [cityList, setCityList] = useState({});
 
   const [profile, setProfile] = useState({
-    name: user?.data?.name,
+    name: "",
     email: user?.data?.email,
     dob: user?.data?.dob,
     gender: user?.data?.gender,
@@ -57,6 +57,7 @@ const Accountcomponent = () => {
     dob: false,
     valid_dob: false,
   });
+  console.log(user?.data?.state?._id);
 
   const [address, setAddress] = useState({
     address: user?.data?.address,
@@ -82,11 +83,16 @@ const Accountcomponent = () => {
 
   // },[])}
 
-  useEffect(() => {
+  useEffect(async () => {
     getStatesList();
+    setProfile({ ...address, state: user?.data?.state?._id });
+
     if (user?.data?.state?._id) {
-      handleState(user?.data?.state?._id);
+      const CityListData = await getCitiesApi(user?.data?.state?._id);
+      setCityList(CityListData?.data?.responseData?.cities);
+      setProfile({ ...address, city: user?.data?.city?._id });
     }
+    // console.log(cityList, "cityList");
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -677,7 +683,7 @@ const Accountcomponent = () => {
                             });
                           }}
                         /> */}
-                        <Form.Select
+                        {/* <Form.Select
                           aria-label="Default select example"
                           name="state"
                           onChange={handleState}
@@ -689,12 +695,40 @@ const Accountcomponent = () => {
                           {stateList?.length > 0 &&
                             stateList?.map((ListState) => {
                               return (
-                                <option value={ListState?._id} selected>
+                                <option value={ListState?._id} selected={true}>
                                   {ListState?.name}
                                 </option>
                               );
                             })}
-                        </Form.Select>
+                        </Form.Select> */}
+                        <Select
+                          options={
+                            stateList?.length > 0 &&
+                            stateList?.map((o) => ({
+                              label: o.name,
+                              value: o._id,
+                            }))
+                          }
+                          value={{
+                            label:
+                              stateList?.length > 0 &&
+                              stateList?.find((o) => o._id === address?.state)
+                                ?.name,
+                            value: address?.state,
+                          }}
+                          onChange={async (data) => {
+                            //if (data?.value) {
+
+                            const CityListData = await getCitiesApi(
+                              data?.value
+                            );
+                            setCityList(
+                              CityListData?.data?.responseData?.cities
+                            );
+                            setAddress({ ...address, state: data?.value });
+                            //}
+                          }}
+                        />
                         {addressValidation.state && (
                           <p className="error_text">Please select state</p>
                         )}
@@ -702,11 +736,40 @@ const Accountcomponent = () => {
                       <Col>
                         {" "}
                         <label className="mb-3 font-weight-bold">City *</label>
-                        <Form.Select
+                        <Select
+                          options={
+                            cityList?.length > 0 &&
+                            cityList?.map((o) => ({
+                              label: o.name,
+                              value: o._id,
+                            }))
+                          }
+                          value={{
+                            label:
+                              cityList?.length > 0 &&
+                              cityList?.find((o) => o._id === address?.city)
+                                ?.name,
+                            value: address?.city,
+                          }}
+                          onChange={async (data) => {
+                            //if (data?.value) {
+
+                            // const CityListData = await getCitiesApi(
+                            //   data?.value
+                            // );
+                            // setCityList(
+                            //   CityListData?.data?.responseData?.cities
+                            // );
+                            setAddress({ ...address, city: data?.value });
+                            //}
+                          }}
+                        />
+                        {/* <Form.Select
                           aria-label="Default select example"
                           name="city"
+                          defaultValue={address?.city}
                           onChange={() => handleAddressChangeEvent}
-                          value={address?.city?._id}
+                          value={address?.city}
                         >
                           <option>City</option>
 
@@ -718,7 +781,7 @@ const Accountcomponent = () => {
                                 </option>
                               );
                             })}
-                        </Form.Select>
+                        </Form.Select> */}
                         {addressValidation.city && (
                           <p className="error_text">Please select City</p>
                         )}
