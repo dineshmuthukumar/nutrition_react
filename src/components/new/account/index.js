@@ -43,7 +43,7 @@ const Accountcomponent = () => {
   const [cityList, setCityList] = useState({});
 
   const [profile, setProfile] = useState({
-    name: "",
+    name: user?.data?.name,
     email: user?.data?.email,
     dob: user?.data?.dob,
     gender: user?.data?.gender,

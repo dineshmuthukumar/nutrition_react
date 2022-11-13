@@ -15,7 +15,7 @@ import { useHistory, useRouteMatch } from "react-router";
 
 import { setCookiesByName, setCookies } from "../utils/cookies";
 import { user_load_by_token_thunk } from "../redux/thunk/user_thunk";
-import { nftCategoriesApi } from "../api/methods";
+import { getProductDetailsApi } from "../api/base-methods";
 import useQuery from "../hook/useQuery";
 //import FavouriteNFTs from "../components/favourite-NFTs";
 // import HeroBanner from "../components/hero-banner";
@@ -31,12 +31,9 @@ import useQuery from "../hook/useQuery";
 // import MclGameButton from "../components/mcl-game-button";
 
 import Header from "../components/header";
-import Trial_Free_Section from "../components/new/trial-free-section";
 import Free_Trial_Section from "../components/new/free-trial-section";
 
 import Footer from "../components/footer";
-
-
 
 const FreeTrial = () => {
   const { url } = useRouteMatch();
@@ -46,21 +43,26 @@ const FreeTrial = () => {
   const fsz = query.get("fsz");
   const token = query.get("token");
   const _ga = query.get("_ga");
+  const match = useRouteMatch();
   // const { user } = useSelector((state) => state.user.data);
-
+  const { productid } = match.params;
   const [list, setList] = useState([]);
+  const [productData, setProductData] = useState({});
 
   // const [favPage, setFavPage] = useState(1);
   // const [favList, setFavList] = useState([]);
   // const [favLoading, setFavLoading] = useState(false);
   // const [favHasNext, setFavHasNext] = useState(false);
+  const getProductDetails = async () => {
+    try {
+      let response = await getProductDetailsApi(productid);
+      setProductData(response?.data?.responseData?.product);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   useEffect(() => {
-    if (fsz) {
-      sessionStorage.setItem("fsz", fsz);
-      setCookiesByName("source", fsz);
-    }
-
     if (token) {
       setCookies(token);
 
@@ -68,10 +70,7 @@ const FreeTrial = () => {
       dispatch(user_load_by_token_thunk(token));
     }
 
-    ///categoriesList(1);
-    if (_ga) {
-      history.replace(url);
-    }
+    getProductDetails();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -103,7 +102,7 @@ const FreeTrial = () => {
       />
       <main className="main single-product">
         <div className="page-content mb-10 pb-6">
-          <Free_Trial_Section />
+          <Free_Trial_Section productData={productData} />
         </div>
       </main>
       <Footer />
