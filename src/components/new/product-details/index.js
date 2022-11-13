@@ -67,7 +67,7 @@ const ProductDetails = ({ productData }) => {
               <div className="product-gallery product-gallery-sticky mb-lg-9 mb-4 pb-0">
                 {/* <div className="product-single-carousel owl-carousel owl-theme owl-nav-inner row cols-1"> */}
                 <OwlCarousel
-                  className="product-single-carousel owl-carousel owl-theme owl-nav-inner owl-loaded owl-drag"
+                  className=" owl-carousel owl-theme owl-nav-inner owl-loaded owl-drag"
                   margin={20}
                   nav
                   items={1}
@@ -86,7 +86,7 @@ const ProductDetails = ({ productData }) => {
                     },
                   }}
                   // autoplay
-                  //   loop
+                  loop
                   //   autoplayTimeout={2000}
                   //   autoplayHoverPause={true}
                 >
@@ -126,7 +126,7 @@ const ProductDetails = ({ productData }) => {
                   <div className="row">
                     <div className="col-sm-9">
                       <OwlCarousel
-                        className="product-thumbs owl-carousel owl-loaded owl-drag"
+                        className="product-thumbs owl-carousel owl-drag"
                         margin={20}
                         nav
                         items={1}
@@ -211,7 +211,7 @@ const ProductDetails = ({ productData }) => {
                 </div>
               </div>
             </div>
-            <div className="col-md-6">
+            <div className="col-md-6" style={{ backgroundColor: "aliceblue" }}>
               <div className="product-details">
                 <h1 className="product-name">{productData?.name}</h1>
                 <p>{productData?.description}</p>
@@ -875,21 +875,11 @@ const ProductDetails = ({ productData }) => {
               <h2 className="description-title mb-4 font-weight-semi-bold ls-m text-center">
                 How Liven Burn Works?
               </h2>
-              <p className="text-left">
-                A fizzy formula with infusion of pure ACV and Garcinia with HCA
-                compound to control appetite, Pomegranate to boost metabolism,
-                inulin fibers for better digestion and satiation that promotes
-                healthy weight loss. A fizzy formula with infusion of pure ACV
-                and Garcinia with HCA compound to control appetite, Pomegranate
-                to boost metabolism, inulin fibers for better digestion and
-                satiation that promotes healthy weight loss.
-              </p>
-              <p className="text-left">
-                A fizzy formula with infusion of pure ACV and Garcinia with HCA
-                compound to control appetite, Pomegranate to boost metabolism,
-                inulin fibers for better digestion and satiation that promotes
-                healthy weight loss.
-              </p>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: productData?.burnWorkdescription,
+                }}
+              />
             </div>
           </div>
           <div className="row burn_works mb-10">
@@ -940,10 +930,7 @@ const ProductDetails = ({ productData }) => {
         </div>
       </section>
 
-      <section
-        className="arrivals-section appear-animate"
-        id="Potential_product"
-      >
+      <section className="arrivals-section" id="Potential_product">
         <h2 className="title title-center ls-s mb-8 dis_block">
           Includes Healing Potential of:
         </h2>
@@ -971,9 +958,13 @@ const ProductDetails = ({ productData }) => {
                                     }"
                                         > */}
               <OwlCarousel
-                className="owl-carousel owl-theme row cols-lg-4 cols-md-3 cols-2"
+                className="owl-carousel healing cols-md-3 cols-2"
                 margin={20}
+                stagePadding={450}
+                // loop={true}
+                items={1} //
                 nav
+                autoWidth={true}
                 smartSpeed={500}
                 dots={false}
                 navContainerClass={"owl-nav"}
@@ -985,15 +976,15 @@ const ProductDetails = ({ productData }) => {
                   0: {
                     items: 1,
                   },
-                  768: {
-                    items: 1,
+                  600: {
+                    items: 3,
                   },
-                  800: {
-                    items: 4,
+                  1000: {
+                    items: 5,
                   },
                 }}
                 // autoplay
-                loop
+                // loop
                 autoplayTimeout={2000}
                 autoplayHoverPause={true}
                 // navText={[
@@ -1001,116 +992,50 @@ const ProductDetails = ({ productData }) => {
                 //   '<i class="fa fa-chevron-right"></i>'
                 // ]}
               >
-                <div className="product text-center product-with-qty no_border">
-                  <figure className="product-media">
-                    <a href="$">
-                      <img src={app_1} alt="product" width="280" height="315" />
-                      <img
-                        src={app_11}
-                        alt="product"
-                        width="280"
-                        height="315"
-                      />
-                    </a>
-                    <div className="product-action-vertical">
-                      <a
-                        href="#"
-                        className="btn-product-icon btn-wishlist"
-                        title="Add to wishlist"
-                      >
-                        <i className="d-icon-plus"></i>
-                      </a>
-                    </div>
-                  </figure>
-                </div>
-                <div className="product text-center product-with-qty no_border">
-                  <figure className="product-media">
-                    <a href="$">
-                      <img src={app_2} alt="product" width="280" height="315" />
-                      <img
-                        src={app_22}
-                        alt="product"
-                        width="280"
-                        height="315"
-                      />
-                    </a>
-                    <div className="product-action-vertical">
-                      <a
-                        href="#"
-                        className="btn-product-icon btn-wishlist"
-                        title="Add to wishlist"
-                      >
-                        <i className="d-icon-plus"></i>
-                      </a>
-                    </div>
-                  </figure>
-                </div>
-                <div className="product text-center product-with-qty no_border">
-                  <figure className="product-media">
-                    <a href="$">
-                      <img src={app_3} alt="product" width="280" height="315" />
-                      <img
-                        src={app_33}
-                        alt="product"
-                        width="280"
-                        height="315"
-                      />
-                    </a>
-                    <div className="product-action-vertical">
-                      <a
-                        href="#"
-                        className="btn-product-icon btn-wishlist"
-                        title="Add to wishlist"
-                      >
-                        <i className="d-icon-plus"></i>
-                      </a>
-                    </div>
-                  </figure>
-                </div>
-                <div className="product text-center product-with-qty no_border">
-                  <figure className="product-media">
-                    <a href="$">
-                      <img src={app_4} alt="product" width="280" height="315" />
-                      <img
-                        src={app_44}
-                        alt="product"
-                        width="280"
-                        height="315"
-                      />
-                    </a>
-                    <div className="product-action-vertical">
-                      <a
-                        href="#"
-                        className="btn-product-icon btn-wishlist"
-                        title="Add to wishlist"
-                      >
-                        <i className="d-icon-plus"></i>
-                      </a>
-                    </div>
-                  </figure>
-                </div>
-                <div className="product text-center product-with-qty no_border">
-                  <figure className="product-media">
-                    <a href="$">
-                      <img src={app_5} alt="product" width="280" height="315" />
-                      <img
-                        src={app_55}
-                        alt="product"
-                        width="280"
-                        height="315"
-                      />
-                    </a>
-                    <div className="product-action-vertical">
-                      <a
-                        href="#"
-                        className="btn-product-icon btn-wishlist"
-                        title="Add to wishlist"
-                      >
-                        <i className="d-icon-plus"></i>
-                      </a>
-                    </div>
-                  </figure>
-                </div>
+                {(() => {
+                  if (productData?.healingPotentials?.length > 0) {
+                    return (
+                      <>
+                        {productData?.healingPotentials?.map((healingPoten) => {
+                          return (
+                            <div className="product-refdc text-center product-with-qty no_border">
+                              <figure className="product-media">
+                                <a href="$">
+                                  <img
+                                    src={app_1}
+                                    alt="product"
+                                    width="280"
+                                    height="315"
+                                  />
+                                  <img
+                                    //src={app_11}
+                                    src={
+                                      "http://54.177.7.240" +
+                                      healingPoten?.image
+                                    }
+                                     className="healing_image"
+                                    alt="product"
+                                    width="280"
+                                    height="315"
+                                  />
+                                </a>
+                                <div className="product-action-vertical">
+                                  <a
+                                    href="#"
+                                    className="btn-product-icon btn-wishlist"
+                                    title="Add to wishlist"
+                                  >
+                                    <i className="d-icon-plus"></i>
+                                  </a>
+                                </div>
+                              </figure>
+                            </div>
+                          );
+                        })}
+                      </>
+                    );
+                  }
+                })()}
               </OwlCarousel>
             </div>
           </div>

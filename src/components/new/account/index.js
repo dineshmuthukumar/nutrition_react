@@ -38,7 +38,7 @@ const Accountcomponent = () => {
     name: user?.data?.name,
     email: user?.data?.email,
     dob: user?.data?.dob,
-    gender: "",
+    gender: user?.data?.gender,
   });
 
   const [profileValidation, setProfileValidation] = useState({
@@ -51,10 +51,10 @@ const Accountcomponent = () => {
   });
 
   const [address, setAddress] = useState({
-    address: "",
-    city: "",
-    state: "",
-    pincode: "",
+    address: user?.data?.address,
+    city: user?.data?.city,
+    state: user?.data?.state,
+    pincode: user?.data?.pincode,
   });
 
   const [addressValidation, setAddressValidation] = useState({
@@ -525,6 +525,7 @@ const Accountcomponent = () => {
                                 value="male"
                                 type={type}
                                 id={`inline-${type}-1`}
+                                checked={address.gender === "male"}
                                 onKeyPress={handleKeyPressEvent}
                                 onChange={handleChangeEvent}
                               />
@@ -533,6 +534,7 @@ const Accountcomponent = () => {
                                 label="Female"
                                 name="gender"
                                 value="female"
+                                checked={address.gender === "female"}
                                 type={type}
                                 id={`inline-${type}-2`}
                                 onKeyPress={handleKeyPressEvent}
@@ -617,6 +619,7 @@ const Accountcomponent = () => {
                             <Form.Control
                               as="textarea"
                               name="address"
+                              value={address.address}
                               rows={3}
                               onChange={handleAddressChangeEvent}
                             />
@@ -635,6 +638,7 @@ const Accountcomponent = () => {
                           aria-label="Default select example"
                           name="state"
                           onChange={handleState}
+                          defaultValue={address.state}
                         >
                           <option>State</option>
 
@@ -658,6 +662,7 @@ const Accountcomponent = () => {
                           aria-label="Default select example"
                           name="city"
                           onChange={handleAddressChangeEvent}
+                          defaultValue={address.city}
                         >
                           <option>City</option>
 

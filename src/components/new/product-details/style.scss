@@ -932,7 +932,7 @@
             .product-thumbs{
                 .owl-stage-outer{
                     .owl-stage{
-                        width: 106.063px !important;
+                        width: 406.063px !important;
                     }
                 }
             }
@@ -963,3 +963,26 @@
         }
     }
 }
+.owl-carousel .owl-stage{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  
+  .owl-carousel .owl-item .item{
+    width: 120px;
+    min-height: 120px;
+    background-color: lightblue;
+  }
+  
+  .healing{
+    .owl-stage-outer{
+        .owl-stage{
+            width: 1500px !important;
+        }
+    }
+  }
+  .healing_image{
+    width: 280px !important;
+    height: 315px !important;
+  }

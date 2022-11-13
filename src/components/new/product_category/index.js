@@ -294,7 +294,10 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
         </div>
       </section>
 
-      <section className="pt-3 mt-2 mb-2 pb-10 need_sec" id="product_category_page_section">
+      <section
+        className="pt-3 mt-2 mb-2 pb-10 need_sec"
+        id="product_category_page_section"
+      >
         <div className="container">
           <h2 className="title-echo mb-1">
             <span>Available Products</span>
@@ -320,14 +323,14 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
           </OwlCarousel> */}
           {categoryProdDetails?.length > 0 && (
             <OwlCarousel
-              className="owl-carousel owl-theme row cols-lg-4 cols-md-3 cols-2 owl-loaded owl-drag"
+              className="owl-carousel owl-loaded owl-drag"
               margin={20}
               nav={true}
               smartSpeed={500}
               dots={false}
               navContainerClass={"owl-nav"}
-              mouseDrag={false}
-              stagePadding={0}
+              mouseDrag={true}
+              // stagePadding={0}
               key={`carousel_1`}
               // navigationText={[
               //   "<i class='icon-chevron-left icon-white'><</i>",

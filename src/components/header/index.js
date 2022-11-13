@@ -1785,8 +1785,14 @@ const Header = ({
 
 const UserComponent = ({ sref, user, onClick = () => {} }) => (
   <div className="header-user-details" onClick={onClick} ref={sref}>
-      <img className="user-image" src={user?.data?.profilePhoto} width={35} height={35} alt="user-icon" />
-      <div className="user-name">{"Test"}</div>
+    <img
+      className="user-image"
+      src={user?.data?.profilePhoto}
+      width={35}
+      height={35}
+      alt="user-icon"
+    />
+    <div className="user-name">{user?.data?.name}</div>
   </div>
 );
 
