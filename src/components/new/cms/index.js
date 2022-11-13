@@ -27,6 +27,7 @@ const Aboutus = () => {
   const getCustomPage = async () => {
     const Abouts = await cmsPagetApi(id);
     setData(Abouts?.data?.responseData?.page[0]);
+    window.scrollTo(0, 0);
     //console.log(Abouts, "Abouts");
   };
 

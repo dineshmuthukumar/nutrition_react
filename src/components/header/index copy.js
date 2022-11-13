@@ -559,9 +559,9 @@ const Header = ({
         height={props?.height}
         canonical={props?.canonical}
       />
-     <div className="page-wrapper">
+      <div className="page-wrapper">
         <div className="header">
-          <div className="header-top">
+          {/* <div className="header-top">
                 <div className="container header_top_center">
                     <div className="row">
                         <div className="col-sm-12">
@@ -573,29 +573,29 @@ const Header = ({
                         </div>
                     </div>
                 </div>
-            </div>
-        <Navbar
-          bg="dark"
-          expand="md"
-          variant="dark"
-          sticky="top"
-          className={bgImage ? "bgImageHeader" : "transparent"}
-        >
-          <Container fluid>
-            <Navbar.Brand
-              onClick={() =>
-                window.open(process.env.REACT_APP_WEBSITE_URL, "_self")
-              }
-              role="button"
-              className="head-title"
-            >
-              {/* BeyondLife.club */}
-              <img
-                src={images.jumpTradeLogo}
-                alt="jumpTradeLogo"
-                className="logoImage"
-              />
-              {/* <div
+            </div> */}
+          <Navbar
+            bg="dark"
+            expand="md"
+            variant="dark"
+            sticky="top"
+            className={bgImage ? "bgImageHeader" : "transparent"}
+          >
+            <Container fluid>
+              <Navbar.Brand
+                onClick={() =>
+                  window.open(process.env.REACT_APP_WEBSITE_URL, "_self")
+                }
+                role="button"
+                className="head-title"
+              >
+                {/* BeyondLife.club */}
+                <img
+                  src={images.jumpTradeLogo}
+                  alt="jumpTradeLogo"
+                  className="logoImage"
+                />
+                {/* <div
                 className="sub-head-title header-powereby "
                 role="button"
                 onClick={() =>
@@ -604,454 +604,23 @@ const Header = ({
               >
                 Powered by GuardianLink
               </div> */}
-            </Navbar.Brand>
-            {!hideOptions && (
-              <>
-                <Nav className="d-flex me-0 ms-auto">
-                  <Nav.Link
-                    id="drop_outer"
-                    onClick={() => history.push("/nft-marketplace")}
-                  >
-                    Explore
-                  </Nav.Link>
-                  {/* <Nav.Link id="drop_outer" href={process.env.REACT_APP_DROP_URL}>
-                    Drop
-                  </Nav.Link> */}
-                  <Dropdown autoClose={["inside", "outside"]} className="me-0">
-                    <Dropdown.Toggle
-                      align="start"
-                      drop="start"
-                      as={DropToggle}
-                    ></Dropdown.Toggle>
-
-                    <Dropdown.Menu align="end">
-                      <Dropdown.Item
-                        as="button"
-                        onClick={() =>
-                          window.open(
-                            `${process.env.REACT_APP_MCL_URL}`,
-                            "_blank"
-                          )
-                        }
-                      >
-                        Meta Cricket League NFTs
-                      </Dropdown.Item>
-                      {/* <Dropdown.Item
-                        as="button"
-                        onClick={() =>
-                          window.open(
-                            `${process.env.REACT_APP_CHELSEA_URL}`,
-                            "_blank"
-                          )
-                        }
-                      >
-                        Football Memorabilia NFTs
-                      </Dropdown.Item> */}
-                    </Dropdown.Menu>
-                  </Dropdown>
-                  {!user?.marketLive ? (
+              </Navbar.Brand>
+              {!hideOptions && (
+                <>
+                  <Nav className="d-flex me-0 ms-auto">
                     <Nav.Link
                       id="drop_outer"
-                      role="button"
-                      // onClick={() => window.open("/mcl-game", "_self")}
-                    >
-                      <span className="beta-container">
-                        <span className="beta-tag">Coming soon</span>MCL Game
-                      </span>
-                    </Nav.Link>
-                  ) : (
-                    <Nav.Link
-                      id="drop_outer"
-                      role="button"
-                      onClick={() => window.open("/mcl-game", "_self")}
-                    >
-                      <span className="beta-container">
-                        <span className="beta-tag">Beta</span>MCL Game
-                      </span>
-                    </Nav.Link>
-                  )}
-                  <Nav.Link
-                    id="drop_outer"
-                    role="button"
-                    onClick={() =>
-                      window.open(process.env.REACT_APP_MARKETPLACE_URL, "_self")
-                    }
-                  >
-                    <span className="beta-container">
-                      <span className="beta-tag">Beta</span>
-                      Marketplace
-                    </span>
-                  </Nav.Link>
-                  <Nav.Link
-                    id="drop_outer"
-                    role="button"
-                    className="blink_contest"
-                    onClick={() =>
-                      window.open(
-                        `${process.env.REACT_APP_MARKETPLACE_URL}/nft-marketplace/contest`,
-                        "_self"
-                      )
-                    }
-                  >
-                    Contest
-                  </Nav.Link>
-                  {!hideSign && (
-                    <>
-                      {user.login ? (
-                        <>
-                          <Nav.Link href="#home" className="help_ic">
-                            <BiHelpCircle
-                              size={25}
-                              role="button"
-                              onClick={() =>
-                                window.open(
-                                  process.env.REACT_APP_HELP_URL,
-                                  "_blank"
-                                )
-                              }
-                            />
-                          </Nav.Link>
-                          <Dropdown
-                            autoClose={["inside", "outside"]}
-                            onToggle={(e) => {
-                              if (e) {
-                                readNotification();
-                                setNotiRead(false);
-                              }
-                            }}
-                          >
-                            <Dropdown.Toggle
-                              align="start"
-                              drop="start"
-                              as={NotificationToggleComponent}
-                            ></Dropdown.Toggle>
-
-                            <Dropdown.Menu align="end" className="noti-container">
-                              <div className="noti-header">
-                                <BiBell size={25} color={"white"} /> Notifications
-                              </div>
-                              <div className="noti-content">
-                                {/* <div className="sub-header">Today</div> */}
-
-                                {notification?.notifications.length > 0 ? (
-                                  <>
-                                    {notification?.notifications.map((o, i) => (
-                                      <Dropdown.Item key={`noti-item${i}`}>
-                                        <NotiCard key={`noti${i}`} data={o} />
-                                      </Dropdown.Item>
-                                    ))}
-
-                                    {notiLoading && (
-                                      <div className="noti-load-more text-secondary">
-                                        Loading...
-                                      </div>
-                                    )}
-
-                                    {notification?.next_page ? (
-                                      <div
-                                        className="noti-load-more text-secondary"
-                                        role="button"
-                                        onClick={() => {
-                                          setNPage(npage + 1);
-                                          handleGetNotification(npage + 1);
-                                        }}
-                                      >
-                                        See More
-                                      </div>
-                                    ) : (
-                                      <div className="noti-load-more text-secondary">
-                                        You have reached the end
-                                      </div>
-                                    )}
-                                  </>
-                                ) : (
-                                  <div className="noti-load-more text-secondary no-notify">
-                                    No notifications found
-                                  </div>
-                                )}
-                              </div>
-                            </Dropdown.Menu>
-                          </Dropdown>
-                          {slug && (
-                            <Nav.Link
-                              href=""
-                              className="cart_ic position-relative"
-                              onClick={() => {
-                                if (userCart?.checkout && !checkoutDevice) {
-                                  toast.error(
-                                    "Order is being processed. Can't access cart!",
-                                    {
-                                      autoClose: 2000,
-                                    }
-                                  );
-                                } else {
-                                  setCartPop(!cartPop);
-                                }
-                              }}
-                            >
-                              <img
-                                src={images.cartIconSVG}
-                                height={20}
-                                alt="CartIcon"
-                              />
-                              {parseInt(userCart?.total_count) > 0 && (
-                                <span className="badge cart-count rounded-pill bg-danger position-absolute">
-                                  {userCart?.total_count}
-                                </span>
-                              )}
-                            </Nav.Link>
-                          )}
-                          <Dropdown autoClose="outside" className="mx-0">
-                            <Dropdown.Toggle
-                              align="start"
-                              drop="start"
-                              as={UserToggleComponent}
-                            ></Dropdown.Toggle>
-
-                            <Dropdown.Menu align="end">
-                              <UserComponent user={user.data.user} />
-                              <Dropdown.Item
-                                id="drop_inner"
-                                href="/"
-                                target="_self"
-                              >
-                                Drops
-                              </Dropdown.Item>
-                              <Dropdown.Item
-                                as="button"
-                                onClick={() =>
-                                  window.open(
-                                    `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`,
-                                    "_self"
-                                  )
-                                }
-                              >
-                                My Profile
-                              </Dropdown.Item>
-                              <Dropdown.Item
-                                as="button"
-                                onClick={() =>
-                                  window.open(
-                                    `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/mynft`,
-                                    "_self"
-                                  )
-                                }
-                              >
-                                My NFTs
-                              </Dropdown.Item>
-                              <Dropdown.Item
-                                as="button"
-                                onClick={() =>
-                                  window.open(
-                                    `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/my-cards`,
-                                    "_self"
-                                  )
-                                }
-                              >
-                                My Cards
-                              </Dropdown.Item>
-                              <Dropdown.Item
-                                as="button"
-                                onClick={() =>
-                                  window.open(
-                                    `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
-                                    "_self"
-                                  )
-                                }
-                              >
-                                My GuardianLink Wallet
-                              </Dropdown.Item>
-                              <Dropdown.Item
-                                as="button"
-                                onClick={() =>
-                                  window.open(
-                                    `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/myinvoice`,
-                                    "_self"
-                                  )
-                                }
-                              >
-                                My Invoices
-                              </Dropdown.Item>
-                              <Dropdown.Item
-                                as="button"
-                                onClick={() =>
-                                  window.open(
-                                    `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/my-orders`,
-                                    "_self"
-                                  )
-                                }
-                              >
-                                My Orders
-                              </Dropdown.Item>
-                              <Dropdown.Item
-                                as="button"
-                                onClick={() =>
-                                  window.open(
-                                    `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/limit-orders`,
-                                    "_self"
-                                  )
-                                }
-                              >
-                                Limit Orders
-                                <i className="newbadge blink_me">new</i>
-                              </Dropdown.Item>
-                              <Dropdown.Item
-                                as="button"
-                                onClick={() =>
-                                  window.open(
-                                    `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/pre-orders`,
-                                    "_self"
-                                  )
-                                }
-                              >
-                                Pre Book
-                              </Dropdown.Item>
-                              <Dropdown.Item
-                                as="button"
-                                onClick={() =>
-                                  window.open(
-                                    `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/bid-activity`,
-                                    "_self"
-                                  )
-                                }
-                              >
-                                My Bids
-                              </Dropdown.Item>
-                              {/* <Dropdown.Item
-                                as="button"
-                                onClick={() =>
-                                  window.open(
-                                    `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/claim`,
-                                    "_self"
-                                  )
-                                }
-                              >
-                                Claim NFTs
-                              </Dropdown.Item> */}
-                              <Dropdown.Item
-                                as="button"
-                                onClick={() =>
-                                  window.open(
-                                    `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/user-activity`,
-                                    "_self"
-                                  )
-                                }
-                              >
-                                My Activity
-                              </Dropdown.Item>{" "}
-                              <Dropdown.Item
-                                as="button"
-                                onClick={() =>
-                                  window.open(
-                                    `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/settings`,
-                                    "_self"
-                                  )
-                                }
-                              >
-                                Settings
-                              </Dropdown.Item>
-                              <Dropdown.Divider />
-                              <Dropdown.Item
-                                as="button"
-                                onClick={() =>
-                                  window.open(
-                                    process.env.REACT_APP_HELP_URL,
-                                    "_blank"
-                                  )
-                                }
-                              >
-                                Help Center
-                              </Dropdown.Item>
-                              {/* <Dropdown.Divider />
-                            <Dropdown.Item as="button">
-                              <div className="d-flex justify-content-between">
-                                <div>Moon Mode</div>
-
-                                <div>
-                                  <ToggleButton
-                                    value={value || false}
-                                    onToggle={(value) => {
-                                      setValue(!value);
-                                    }}
-                                  />
-                                </div>
-                              </div>
-                            </Dropdown.Item> */}
-                              <Dropdown.Divider />
-                              <Dropdown.Item
-                                as="button"
-                                onClick={() => dispatch(user_logout_thunk())}
-                              >
-                                Sign Out
-                              </Dropdown.Item>
-                            </Dropdown.Menu>
-                          </Dropdown>{" "}
-                        </>
-                      ) : (
-                        <>
-                          <>
-                            <Nav.Link
-                              className="theme-btn mobile-signin"
-                              href={`${process.env.REACT_APP_ACCOUNTS_URL}/signin?redirect=${window.location.href}`}
-                              target="_self"
-                            >
-                              <span> {t("signin")}</span>
-                            </Nav.Link>
-                            <Nav.Link
-                              className="theme-btn mobile-signin"
-                              href={`${process.env.REACT_APP_ACCOUNTS_URL}/signup`}
-                              target="_self"
-                            >
-                              <span>{t("signup")}</span>
-                            </Nav.Link>
-                          </>
-                        </>
-                      )}
-                    </>
-                  )}
-                  <Nav.Link
-                    className="discord_ic"
-                    href={`https://discord.com/invite/JRWmNb38GW`}
-                    target="_blank"
-                    rel="nofollow noopener noreferrer"
-                  >
-                    <FaDiscord size={25} />
-                    {/* <span>Join Our Discord</span> */}
-                  </Nav.Link>
-                </Nav>
-                <Dropdown
-                  autoClose={["inside", "outside"]}
-                  onToggle={(e) => {
-                    if (e) {
-                      readNotification();
-                      setNotiRead(false);
-                    }
-                  }}
-                >
-                  <Dropdown.Toggle
-                    align="start"
-                    drop="start"
-                    as={HeaderMobileMenuIcon}
-                  ></Dropdown.Toggle>
-
-                  <Dropdown.Menu align="end" className="side-menu">
-                    <Dropdown.Item
-                      drop="start"
-                      as={HeaderMobileMenuCloseIcon}
-                    ></Dropdown.Item>
-                    {/* <Dropdown.Item href="/">Drops</Dropdown.Item> */}
-                    {/* <Dropdown.Item href="/creator-application">
-                      Creator
-                    </Dropdown.Item> */}
-                    <Dropdown.Item
                       onClick={() => history.push("/nft-marketplace")}
                     >
                       Explore
-                    </Dropdown.Item>
-                    {/* <Dropdown.Item href={process.env.REACT_APP_DROP_URL}>
-                      Drop
-                    </Dropdown.Item> */}
-                    <Dropdown autoClose={["inside", "outside"]} className="me-0">
+                    </Nav.Link>
+                    {/* <Nav.Link id="drop_outer" href={process.env.REACT_APP_DROP_URL}>
+                    Drop
+                  </Nav.Link> */}
+                    <Dropdown
+                      autoClose={["inside", "outside"]}
+                      className="me-0"
+                    >
                       <Dropdown.Toggle
                         align="start"
                         drop="start"
@@ -1071,6 +640,455 @@ const Header = ({
                           Meta Cricket League NFTs
                         </Dropdown.Item>
                         {/* <Dropdown.Item
+                        as="button"
+                        onClick={() =>
+                          window.open(
+                            `${process.env.REACT_APP_CHELSEA_URL}`,
+                            "_blank"
+                          )
+                        }
+                      >
+                        Football Memorabilia NFTs
+                      </Dropdown.Item> */}
+                      </Dropdown.Menu>
+                    </Dropdown>
+                    {!user?.marketLive ? (
+                      <Nav.Link
+                        id="drop_outer"
+                        role="button"
+                        // onClick={() => window.open("/mcl-game", "_self")}
+                      >
+                        <span className="beta-container">
+                          <span className="beta-tag">Coming soon</span>MCL Game
+                        </span>
+                      </Nav.Link>
+                    ) : (
+                      <Nav.Link
+                        id="drop_outer"
+                        role="button"
+                        onClick={() => window.open("/mcl-game", "_self")}
+                      >
+                        <span className="beta-container">
+                          <span className="beta-tag">Beta</span>MCL Game
+                        </span>
+                      </Nav.Link>
+                    )}
+                    <Nav.Link
+                      id="drop_outer"
+                      role="button"
+                      onClick={() =>
+                        window.open(
+                          process.env.REACT_APP_MARKETPLACE_URL,
+                          "_self"
+                        )
+                      }
+                    >
+                      <span className="beta-container">
+                        <span className="beta-tag">Beta</span>
+                        Marketplace
+                      </span>
+                    </Nav.Link>
+                    <Nav.Link
+                      id="drop_outer"
+                      role="button"
+                      className="blink_contest"
+                      onClick={() =>
+                        window.open(
+                          `${process.env.REACT_APP_MARKETPLACE_URL}/nft-marketplace/contest`,
+                          "_self"
+                        )
+                      }
+                    >
+                      Contest
+                    </Nav.Link>
+                    {!hideSign && (
+                      <>
+                        {user.login ? (
+                          <>
+                            <Nav.Link href="#home" className="help_ic">
+                              <BiHelpCircle
+                                size={25}
+                                role="button"
+                                onClick={() =>
+                                  window.open(
+                                    process.env.REACT_APP_HELP_URL,
+                                    "_blank"
+                                  )
+                                }
+                              />
+                            </Nav.Link>
+                            <Dropdown
+                              autoClose={["inside", "outside"]}
+                              onToggle={(e) => {
+                                if (e) {
+                                  readNotification();
+                                  setNotiRead(false);
+                                }
+                              }}
+                            >
+                              <Dropdown.Toggle
+                                align="start"
+                                drop="start"
+                                as={NotificationToggleComponent}
+                              ></Dropdown.Toggle>
+
+                              <Dropdown.Menu
+                                align="end"
+                                className="noti-container"
+                              >
+                                <div className="noti-header">
+                                  <BiBell size={25} color={"white"} />{" "}
+                                  Notifications
+                                </div>
+                                <div className="noti-content">
+                                  {/* <div className="sub-header">Today</div> */}
+
+                                  {notification?.notifications.length > 0 ? (
+                                    <>
+                                      {notification?.notifications.map(
+                                        (o, i) => (
+                                          <Dropdown.Item key={`noti-item${i}`}>
+                                            <NotiCard
+                                              key={`noti${i}`}
+                                              data={o}
+                                            />
+                                          </Dropdown.Item>
+                                        )
+                                      )}
+
+                                      {notiLoading && (
+                                        <div className="noti-load-more text-secondary">
+                                          Loading...
+                                        </div>
+                                      )}
+
+                                      {notification?.next_page ? (
+                                        <div
+                                          className="noti-load-more text-secondary"
+                                          role="button"
+                                          onClick={() => {
+                                            setNPage(npage + 1);
+                                            handleGetNotification(npage + 1);
+                                          }}
+                                        >
+                                          See More
+                                        </div>
+                                      ) : (
+                                        <div className="noti-load-more text-secondary">
+                                          You have reached the end
+                                        </div>
+                                      )}
+                                    </>
+                                  ) : (
+                                    <div className="noti-load-more text-secondary no-notify">
+                                      No notifications found
+                                    </div>
+                                  )}
+                                </div>
+                              </Dropdown.Menu>
+                            </Dropdown>
+                            {slug && (
+                              <Nav.Link
+                                href=""
+                                className="cart_ic position-relative"
+                                onClick={() => {
+                                  if (userCart?.checkout && !checkoutDevice) {
+                                    toast.error(
+                                      "Order is being processed. Can't access cart!",
+                                      {
+                                        autoClose: 2000,
+                                      }
+                                    );
+                                  } else {
+                                    setCartPop(!cartPop);
+                                  }
+                                }}
+                              >
+                                <img
+                                  src={images.cartIconSVG}
+                                  height={20}
+                                  alt="CartIcon"
+                                />
+                                {parseInt(userCart?.total_count) > 0 && (
+                                  <span className="badge cart-count rounded-pill bg-danger position-absolute">
+                                    {userCart?.total_count}
+                                  </span>
+                                )}
+                              </Nav.Link>
+                            )}
+                            <Dropdown autoClose="outside" className="mx-0">
+                              <Dropdown.Toggle
+                                align="start"
+                                drop="start"
+                                as={UserToggleComponent}
+                              ></Dropdown.Toggle>
+
+                              <Dropdown.Menu align="end">
+                                <UserComponent user={user.data.user} />
+                                <Dropdown.Item
+                                  id="drop_inner"
+                                  href="/"
+                                  target="_self"
+                                >
+                                  Drops
+                                </Dropdown.Item>
+                                <Dropdown.Item
+                                  as="button"
+                                  onClick={() =>
+                                    window.open(
+                                      `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/profile`,
+                                      "_self"
+                                    )
+                                  }
+                                >
+                                  My Profile
+                                </Dropdown.Item>
+                                <Dropdown.Item
+                                  as="button"
+                                  onClick={() =>
+                                    window.open(
+                                      `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/mynft`,
+                                      "_self"
+                                    )
+                                  }
+                                >
+                                  My NFTs
+                                </Dropdown.Item>
+                                <Dropdown.Item
+                                  as="button"
+                                  onClick={() =>
+                                    window.open(
+                                      `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/my-cards`,
+                                      "_self"
+                                    )
+                                  }
+                                >
+                                  My Cards
+                                </Dropdown.Item>
+                                <Dropdown.Item
+                                  as="button"
+                                  onClick={() =>
+                                    window.open(
+                                      `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/wallet`,
+                                      "_self"
+                                    )
+                                  }
+                                >
+                                  My GuardianLink Wallet
+                                </Dropdown.Item>
+                                <Dropdown.Item
+                                  as="button"
+                                  onClick={() =>
+                                    window.open(
+                                      `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/myinvoice`,
+                                      "_self"
+                                    )
+                                  }
+                                >
+                                  My Invoices
+                                </Dropdown.Item>
+                                <Dropdown.Item
+                                  as="button"
+                                  onClick={() =>
+                                    window.open(
+                                      `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/my-orders`,
+                                      "_self"
+                                    )
+                                  }
+                                >
+                                  My Orders
+                                </Dropdown.Item>
+                                <Dropdown.Item
+                                  as="button"
+                                  onClick={() =>
+                                    window.open(
+                                      `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/limit-orders`,
+                                      "_self"
+                                    )
+                                  }
+                                >
+                                  Limit Orders
+                                  <i className="newbadge blink_me">new</i>
+                                </Dropdown.Item>
+                                <Dropdown.Item
+                                  as="button"
+                                  onClick={() =>
+                                    window.open(
+                                      `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/pre-orders`,
+                                      "_self"
+                                    )
+                                  }
+                                >
+                                  Pre Book
+                                </Dropdown.Item>
+                                <Dropdown.Item
+                                  as="button"
+                                  onClick={() =>
+                                    window.open(
+                                      `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/bid-activity`,
+                                      "_self"
+                                    )
+                                  }
+                                >
+                                  My Bids
+                                </Dropdown.Item>
+                                {/* <Dropdown.Item
+                                as="button"
+                                onClick={() =>
+                                  window.open(
+                                    `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/claim`,
+                                    "_self"
+                                  )
+                                }
+                              >
+                                Claim NFTs
+                              </Dropdown.Item> */}
+                                <Dropdown.Item
+                                  as="button"
+                                  onClick={() =>
+                                    window.open(
+                                      `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/user-activity`,
+                                      "_self"
+                                    )
+                                  }
+                                >
+                                  My Activity
+                                </Dropdown.Item>{" "}
+                                <Dropdown.Item
+                                  as="button"
+                                  onClick={() =>
+                                    window.open(
+                                      `${process.env.REACT_APP_ACCOUNTS_URL}/accounts/settings`,
+                                      "_self"
+                                    )
+                                  }
+                                >
+                                  Settings
+                                </Dropdown.Item>
+                                <Dropdown.Divider />
+                                <Dropdown.Item
+                                  as="button"
+                                  onClick={() =>
+                                    window.open(
+                                      process.env.REACT_APP_HELP_URL,
+                                      "_blank"
+                                    )
+                                  }
+                                >
+                                  Help Center
+                                </Dropdown.Item>
+                                {/* <Dropdown.Divider />
+                            <Dropdown.Item as="button">
+                              <div className="d-flex justify-content-between">
+                                <div>Moon Mode</div>
+
+                                <div>
+                                  <ToggleButton
+                                    value={value || false}
+                                    onToggle={(value) => {
+                                      setValue(!value);
+                                    }}
+                                  />
+                                </div>
+                              </div>
+                            </Dropdown.Item> */}
+                                <Dropdown.Divider />
+                                <Dropdown.Item
+                                  as="button"
+                                  onClick={() => dispatch(user_logout_thunk())}
+                                >
+                                  Sign Out
+                                </Dropdown.Item>
+                              </Dropdown.Menu>
+                            </Dropdown>{" "}
+                          </>
+                        ) : (
+                          <>
+                            <>
+                              <Nav.Link
+                                className="theme-btn mobile-signin"
+                                href={`${process.env.REACT_APP_ACCOUNTS_URL}/signin?redirect=${window.location.href}`}
+                                target="_self"
+                              >
+                                <span> {t("signin")}</span>
+                              </Nav.Link>
+                              <Nav.Link
+                                className="theme-btn mobile-signin"
+                                href={`${process.env.REACT_APP_ACCOUNTS_URL}/signup`}
+                                target="_self"
+                              >
+                                <span>{t("signup")}</span>
+                              </Nav.Link>
+                            </>
+                          </>
+                        )}
+                      </>
+                    )}
+                    <Nav.Link
+                      className="discord_ic"
+                      href={`https://discord.com/invite/JRWmNb38GW`}
+                      target="_blank"
+                      rel="nofollow noopener noreferrer"
+                    >
+                      <FaDiscord size={25} />
+                      {/* <span>Join Our Discord</span> */}
+                    </Nav.Link>
+                  </Nav>
+                  <Dropdown
+                    autoClose={["inside", "outside"]}
+                    onToggle={(e) => {
+                      if (e) {
+                        readNotification();
+                        setNotiRead(false);
+                      }
+                    }}
+                  >
+                    <Dropdown.Toggle
+                      align="start"
+                      drop="start"
+                      as={HeaderMobileMenuIcon}
+                    ></Dropdown.Toggle>
+
+                    <Dropdown.Menu align="end" className="side-menu">
+                      <Dropdown.Item
+                        drop="start"
+                        as={HeaderMobileMenuCloseIcon}
+                      ></Dropdown.Item>
+                      {/* <Dropdown.Item href="/">Drops</Dropdown.Item> */}
+                      {/* <Dropdown.Item href="/creator-application">
+                      Creator
+                    </Dropdown.Item> */}
+                      <Dropdown.Item
+                        onClick={() => history.push("/nft-marketplace")}
+                      >
+                        Explore
+                      </Dropdown.Item>
+                      {/* <Dropdown.Item href={process.env.REACT_APP_DROP_URL}>
+                      Drop
+                    </Dropdown.Item> */}
+                      <Dropdown
+                        autoClose={["inside", "outside"]}
+                        className="me-0"
+                      >
+                        <Dropdown.Toggle
+                          align="start"
+                          drop="start"
+                          as={DropToggle}
+                        ></Dropdown.Toggle>
+
+                        <Dropdown.Menu align="end">
+                          <Dropdown.Item
+                            as="button"
+                            onClick={() =>
+                              window.open(
+                                `${process.env.REACT_APP_MCL_URL}`,
+                                "_blank"
+                              )
+                            }
+                          >
+                            Meta Cricket League NFTs
+                          </Dropdown.Item>
+                          {/* <Dropdown.Item
                           as="button"
                           onClick={() =>
                             window.open(
@@ -1081,40 +1099,40 @@ const Header = ({
                         >
                           Football Memorabilia NFTs
                         </Dropdown.Item> */}
-                      </Dropdown.Menu>
-                    </Dropdown>
-                    <Dropdown.Item href="/mcl-game">
-                      {" "}
-                      <span className="beta-container">
-                        <span className="beta-tag">Beta</span> MCL Game{" "}
-                      </span>{" "}
-                    </Dropdown.Item>
-                    <Dropdown.Item href="/">
-                      <span className="beta-container">
-                        <span className="beta-tag">Beta</span>
-                        Marketplace
-                      </span>
-                    </Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                      <Dropdown.Item href="/mcl-game">
+                        {" "}
+                        <span className="beta-container">
+                          <span className="beta-tag">Beta</span> MCL Game{" "}
+                        </span>{" "}
+                      </Dropdown.Item>
+                      <Dropdown.Item href="/">
+                        <span className="beta-container">
+                          <span className="beta-tag">Beta</span>
+                          Marketplace
+                        </span>
+                      </Dropdown.Item>
 
-                    <Dropdown.Item
-                      href="/nft-marketplace/contest"
-                      className="mob_blink_contest"
-                    >
-                      Contest
-                    </Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-              </>
-            )}
-          </Container>
-        </Navbar>
+                      <Dropdown.Item
+                        href="/nft-marketplace/contest"
+                        className="mob_blink_contest"
+                      >
+                        Contest
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </>
+              )}
+            </Container>
+          </Navbar>
 
-        <Cart
-          cartPop={cartPop}
-          setCartPop={setCartPop}
-          setCheckoutDevice={setCheckoutDevice}
-        />
-      </div>
+          <Cart
+            cartPop={cartPop}
+            setCartPop={setCartPop}
+            setCheckoutDevice={setCheckoutDevice}
+          />
+        </div>
       </div>
     </>
   );

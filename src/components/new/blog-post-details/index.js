@@ -34,11 +34,13 @@ const BlogPost = () => {
   const { blogid } = match.params;
   const [blogData, setBlogData] = useState({});
   const [recentData, setRecentData] = useState({});
+  const [offset, setOffset] = useState(0);
   const getBlogDetails = async () => {
     try {
       let response = await blogListIdApi(blogid);
       setBlogData(response?.data?.responseData?.blogs);
       setRecentData(response?.data?.responseData?.recentBlogs);
+      window.scrollTo(0, 0);
     } catch (err) {
       console.log(err);
     }
@@ -46,11 +48,19 @@ const BlogPost = () => {
 
   useEffect(() => {
     getBlogDetails();
+    // const onScroll = () => setOffset(window.pageYOffset);
+    // // clean up code
+    // window.removeEventListener("scroll", onScroll);
+    // window.addEventListener("scroll", onScroll, { passive: true });
+    // return () => window.removeEventListener("scroll", onScroll);
     ///categoriesList(1);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
     getBlogDetails();
+
+    //window.location.reload();
     ///categoriesList(1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blogid]);
@@ -58,7 +68,7 @@ const BlogPost = () => {
     <>
       <div className="container">
         <ul
-          className="nav-filters filter-underline blog-filters justify-content-center"
+          className="nav-filters j ustify-content-center"
           data-target=".posts"
         ></ul>
 
@@ -70,8 +80,8 @@ const BlogPost = () => {
                   <a href="post-single.html#">
                     <img
                       src={"http://54.177.7.240" + blogData?.image}
-                      width="880"
-                      height="450"
+                      width="500"
+                      height="500"
                       alt="post"
                     />
                   </a>

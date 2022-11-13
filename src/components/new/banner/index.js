@@ -29,56 +29,65 @@ const Banner = ({ bannerContent }) => {
   return (
     <>
       <section className="intro-section">
-        <OwlCarousel
-          className="owl-carousel owl-nav-inside owl-theme row owl-nav-fade intr o-slider animation-slider cols-1 gutter-no owl-nav-arrow"
-          margin={20}
-          nav
-          smartSpeed={500}
-          dots={false}
-          navContainerClass={"owl-nav"}
-          navText={[
-            `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png  />`,
-            `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png />`,
-          ]}
-          responsive={{
-            0: {
-              items: 1,
-            },
-            768: {
-              items: 1,
-            },
-            800: {
-              items: 1,
-            },
-          }}
-          autoplay
-          loop
-          autoplayTimeout={2000}
-          autoplayHoverPause={true}
-          // navText={[
-          //   '<i class="fa fa-chevron-left"></i>"',
-          //   '<i class="fa fa-chevron-right"></i>'
-          // ]}
-        >
-          {(() => {
-            if (bannerContent?.length > 0) {
-              return (
-                <>
-                  {bannerContent?.map((BannerDetail, key) => {
-                    return (
-                      <div className={`intro-slide${key} banner banner-fixed`}>
-                        <figure>
-                          <img
-                            src={"http://54.177.7.240" + BannerDetail?.image} alt="intro-banner" width="1903" height="540" intro-section/>
-                        </figure>
-                      </div>
-                    );
-                  })}
-                </>
-              );
-            }
-          })()}
-        </OwlCarousel>
+        {bannerContent?.length > 0 && (
+          <OwlCarousel
+            className="owl-carousel owl-nav-inside owl-theme row owl-nav-fade intr o-slider animation-slider cols-1 gutter-no owl-nav-arrow"
+            margin={20}
+            nav
+            smartSpeed={500}
+            dots={false}
+            navContainerClass={"owl-nav"}
+            navText={[
+              `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png  />`,
+              `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png />`,
+            ]}
+            responsive={{
+              0: {
+                items: 1,
+              },
+              768: {
+                items: 1,
+              },
+              800: {
+                items: 1,
+              },
+            }}
+            autoplay
+            loop
+            autoplayTimeout={2000}
+            autoplayHoverPause={true}
+            // navText={[
+            //   '<i class="fa fa-chevron-left"></i>"',
+            //   '<i class="fa fa-chevron-right"></i>'
+            // ]}
+          >
+            {(() => {
+              if (bannerContent?.length > 0) {
+                return (
+                  <>
+                    {bannerContent?.map((BannerDetail, key) => {
+                      return (
+                        <div
+                          className={`intro-slide${key} banner banner-fixed`}
+                        >
+                          <figure>
+                            <img
+                              src={"http://54.177.7.240" + BannerDetail?.image}
+                              alt="intro-banner"
+                              width="1903"
+                              height="540"
+                              intro-section
+                            />
+                          </figure>
+                        </div>
+                      );
+                    })}
+                  </>
+                );
+              }
+            })()}
+          </OwlCarousel>
+        )}
       </section>
     </>
   );

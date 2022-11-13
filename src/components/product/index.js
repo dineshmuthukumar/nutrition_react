@@ -57,7 +57,6 @@ const Product = ({ ProductDetails, key }) => {
         <div class="product-label-group">
           <label class="product-label label-sale">25% Off</label>
         </div>
-       
       </figure>
       <div class="product-details">
         <h3 class="product-name">
@@ -109,7 +108,7 @@ const Product = ({ ProductDetails, key }) => {
           ) : (
             <Link to="/Login" class="btn-product btn-cart ls-l">
               {" "}
-              Login{" "}
+              Cart{" "}
             </Link>
           )}
         </div>

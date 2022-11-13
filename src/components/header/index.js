@@ -713,7 +713,7 @@ const Header = ({
       /> */}
 
       <div className="header">
-        <div className="header-top">
+        {/* <div className="header-top">
           <div className="container header_top_center">
             <div className="row">
               <div className="col-sm-12">
@@ -732,7 +732,7 @@ const Header = ({
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="sticky-content-wrapper">
           <div className="header-middle sticky-header fix-top sticky-content">
@@ -815,10 +815,12 @@ const Header = ({
                                       {bestSellerDetails?.map(
                                         (bestSellerDetailsData) => {
                                           return (
-                                            <li className="">
-                                              <a>
+                                            <li>
+                                              <Link
+                                                to={`/product/${bestSellerDetailsData._id}`}
+                                              >
                                                 {bestSellerDetailsData.name}
-                                              </a>
+                                              </Link>
                                             </li>
                                           );
                                         }

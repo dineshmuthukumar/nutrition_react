@@ -58,6 +58,7 @@ const Category = () => {
     //console.log(result?.data?.responseData?.subCategories);
     setCategoryDetails(result?.data?.responseData?.subCategories);
     setCategoryProdDetails(result?.data?.responseData?.Products);
+    window.scrollTo(0, 0);
     //console.log(categoryDetails?.bannerImage);
   };
 
@@ -78,7 +79,7 @@ const Category = () => {
               }}
             >
               <h1 className="page-title font-weight-bold lh-1 text-white text-capitalize">
-                Product Category
+                {categoryDetails?.subCategoryName}
               </h1>
             </div>
             <div className="page-content mt-10 pt-10">

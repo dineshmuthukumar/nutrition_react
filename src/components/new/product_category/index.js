@@ -85,7 +85,7 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
                           <div className="image-box image-overlay">
                             <figure className="banner-radius">
                               <img
-                                src={queas?.image}
+                                src={"http://54.177.7.240" + queas?.image}
                                 alt="image-overlay"
                                 width="280"
                                 height="280"

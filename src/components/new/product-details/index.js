@@ -396,7 +396,7 @@ const ProductDetails = ({ productData }) => {
               </div>
             </div>
           </div>
-          <div className="add_to_whitelist">
+          {/* <div className="add_to_whitelist">
             <h2 className="title title-center ls-s mb-8 dis_block">
               Best to Opt with
             </h2>
@@ -531,7 +531,7 @@ const ProductDetails = ({ productData }) => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
 
