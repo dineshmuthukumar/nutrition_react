@@ -6,8 +6,15 @@ import Tab from 'react-bootstrap/Tab';
 import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
 import DatePicker from "react-datepicker";
-
+import {
+  Dropdown,
+  Modal,
+  Alert,
+  ButtonGroup,
+  ToggleButton as CustomToggle,
+} from "react-bootstrap";
 import "react-datepicker/dist/react-datepicker.css";
+import Select from "react-select";
 
 import { useSelector, useDispatch } from "react-redux";
 import InputPhone from "../../input-phone";
@@ -29,7 +36,7 @@ import { toast } from "react-toastify";
 
 const Accountcomponent = () => {
   const user = useSelector((state) => state?.user);
-  console.log(user?.data, "user");
+  // console.log(user?.data, "user");
   const [startDate, setStartDate] = useState(new Date());
   const [loading, setLoading] = useState(false);
   const [stateList, setStateList] = useState({});
@@ -53,8 +60,8 @@ const Accountcomponent = () => {
 
   const [address, setAddress] = useState({
     address: user?.data?.address,
-    city: user?.data?.city,
-    state: user?.data?.state,
+    city: user?.data?.city?._id,
+    state: user?.data?.state?._id,
     pincode: user?.data?.pincode,
   });
 
@@ -77,12 +84,20 @@ const Accountcomponent = () => {
 
   useEffect(() => {
     getStatesList();
+    if (user?.data?.state?._id) {
+      handleState(user?.data?.state?._id);
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getStatesList = async () => {
     const StateListData = await getStatesApi();
     setStateList(StateListData?.data?.responseData?.states);
+    let data = StateListData?.data?.responseData?.states?.find(
+      (o) => o?._id === address?.state
+    );
+    console.log(data?.name, "data");
   };
 
   const handleChangeEvent = (e) => {
@@ -174,7 +189,7 @@ const Accountcomponent = () => {
     if (checkValidation()) {
       // console.log(profile, "profile");
       let ProfileData = { ...profile };
-      ProfileData._id = user?.data?._id;
+      ProfileData.id = user?.data?._id;
       ProfileData.dob = dayjs(ProfileData.dob).format("DD-MM-YYYY");
       console.log(ProfileData);
 
@@ -274,12 +289,15 @@ const Accountcomponent = () => {
     if (checkAddressValidation() || checkValidation()) {
       let ProfileData = { ...profile, ...address };
 
-      ProfileData._id = user?.data?._id;
+      ProfileData.id = user?.data?._id;
       ProfileData.dob = dayjs(ProfileData.dob).format("DD-MM-YYYY");
-      console.log(ProfileData);
+      //console.log(ProfileData);
 
       try {
         const result = await UpdateProfileApi(ProfileData);
+        if (result.data.statusCode === 200) {
+          toast.success("Profile Updated Sucessfully");
+        }
         console.log(result, "result");
       } catch (err) {
         console.log(err);
@@ -289,9 +307,10 @@ const Accountcomponent = () => {
 
   const handleState = async (data) => {
     if (data?.target?.value) {
+      setAddress({ ...address, state: data.target.value });
       const CityListData = await getCitiesApi(data.target.value);
       setCityList(CityListData?.data?.responseData?.cities);
-      setAddress({ ...address, state: data.target.value });
+      console.log(data?.target?.value, "data?.target?.value");
       setAddressValidation({ ...profileValidation, state: false });
     } else {
       setAddress({ ...address, state: "" });
@@ -638,11 +657,40 @@ const Accountcomponent = () => {
                       <Col>
                         {" "}
                         <label className="mb-3 font-weight-bold">State *</label>
-                        <Form.Select
+                        {/* <p>Select your account type</p> */}
+                        <Select
+                          options={
+                            stateList?.length > 0 &&
+                            stateList?.map((o) => ({
+                              label: o?.name,
+                              value: o?._id,
+                            }))
+                          }
+                          value={
+                            stateList?.length > 0 && {
+                              label: stateList?.find(
+                                (o) => o?._id === address?.state
+                              )?.name,
+                              value: address?.state,
+                            }
+                          }
+                          onChange={async (data) => {
+                            console.log(data);
+                            setAddress({
+                              ...address,
+                              state: data?.value,
+                            });
+                            const CityListData = await getCitiesApi(data.value);
+                            setCityList(
+                              CityListData?.data?.responseData?.cities
+                            );
+                          }}
+                        />
+                        {/* <Form.Select
                           aria-label="Default select example"
                           name="state"
                           onChange={handleState}
-                          defaultValue={address.state}
+                          value={address?.state}
                         >
                           <option>State</option>
 
@@ -654,7 +702,7 @@ const Accountcomponent = () => {
                                 </option>
                               );
                             })}
-                        </Form.Select>
+                        </Form.Select> */}
                         {addressValidation.state && (
                           <p className="error_text">Please select state</p>
                         )}
@@ -662,11 +710,35 @@ const Accountcomponent = () => {
                       <Col>
                         {" "}
                         <label className="mb-3 font-weight-bold">City *</label>
-                        <Form.Select
+                        <Select
+                          options={
+                            cityList?.length > 0 &&
+                            cityList?.map((o) => ({
+                              label: o?.name,
+                              value: o?._id,
+                            }))
+                          }
+                          value={
+                            cityList?.length > 0 && {
+                              label: cityList?.find(
+                                (o) => o?._id === address?.city
+                              )?.name,
+                              value: 101,
+                            }
+                          }
+                          onChange={(data) => {
+                            console.log(data);
+                            setAddress({
+                              ...address,
+                              city: data?.value,
+                            });
+                          }}
+                        />
+                        {/* <Form.Select
                           aria-label="Default select example"
                           name="city"
-                          onChange={handleAddressChangeEvent}
-                          defaultValue={address.city}
+                          onChange={() => handleAddressChangeEvent}
+                          value={address?.city?._id}
                         >
                           <option>City</option>
 
@@ -678,7 +750,7 @@ const Accountcomponent = () => {
                                 </option>
                               );
                             })}
-                        </Form.Select>
+                        </Form.Select> */}
                         {addressValidation.city && (
                           <p className="error_text">Please select City</p>
                         )}
