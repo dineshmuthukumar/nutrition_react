@@ -94,10 +94,6 @@ const Accountcomponent = () => {
   const getStatesList = async () => {
     const StateListData = await getStatesApi();
     setStateList(StateListData?.data?.responseData?.states);
-    let data = StateListData?.data?.responseData?.states?.find(
-      (o) => o?._id === address?.state
-    );
-    console.log(data?.name, "data");
   };
 
   const handleChangeEvent = (e) => {
@@ -658,7 +654,7 @@ const Accountcomponent = () => {
                         {" "}
                         <label className="mb-3 font-weight-bold">State *</label>
                         {/* <p>Select your account type</p> */}
-                        <Select
+                        {/* <Select
                           options={
                             stateList?.length > 0 &&
                             stateList?.map((o) => ({
@@ -668,41 +664,37 @@ const Accountcomponent = () => {
                           }
                           value={
                             stateList?.length > 0 && {
-                              label: stateList?.find(
-                                (o) => o?._id === address?.state
-                              )?.name,
+                              label: stateList.find(
+                                (o) => o._id === address?.state
+                              )._id,
                               value: address?.state,
                             }
                           }
-                          onChange={async (data) => {
-                            console.log(data);
+                          onChange={(data) => {
                             setAddress({
                               ...address,
-                              state: data?.value,
+                              state: data._id,
                             });
-                            const CityListData = await getCitiesApi(data.value);
-                            setCityList(
-                              CityListData?.data?.responseData?.cities
-                            );
                           }}
-                        />
-                        {/* <Form.Select
+                        /> */}
+                        <Form.Select
                           aria-label="Default select example"
                           name="state"
                           onChange={handleState}
                           value={address?.state}
+                          //defaultValue={3}
                         >
                           <option>State</option>
 
                           {stateList?.length > 0 &&
                             stateList?.map((ListState) => {
                               return (
-                                <option value={ListState?._id}>
+                                <option value={ListState?._id} selected>
                                   {ListState?.name}
                                 </option>
                               );
                             })}
-                        </Form.Select> */}
+                        </Form.Select>
                         {addressValidation.state && (
                           <p className="error_text">Please select state</p>
                         )}
@@ -710,31 +702,7 @@ const Accountcomponent = () => {
                       <Col>
                         {" "}
                         <label className="mb-3 font-weight-bold">City *</label>
-                        <Select
-                          options={
-                            cityList?.length > 0 &&
-                            cityList?.map((o) => ({
-                              label: o?.name,
-                              value: o?._id,
-                            }))
-                          }
-                          value={
-                            cityList?.length > 0 && {
-                              label: cityList?.find(
-                                (o) => o?._id === address?.city
-                              )?.name,
-                              value: 101,
-                            }
-                          }
-                          onChange={(data) => {
-                            console.log(data);
-                            setAddress({
-                              ...address,
-                              city: data?.value,
-                            });
-                          }}
-                        />
-                        {/* <Form.Select
+                        <Form.Select
                           aria-label="Default select example"
                           name="city"
                           onChange={() => handleAddressChangeEvent}
@@ -750,7 +718,7 @@ const Accountcomponent = () => {
                                 </option>
                               );
                             })}
-                        </Form.Select> */}
+                        </Form.Select>
                         {addressValidation.city && (
                           <p className="error_text">Please select City</p>
                         )}
