@@ -25,6 +25,7 @@ import {
   getStatesApi,
   UpdateProfileApi,
 } from "../../../api/base-methods";
+import { toast } from "react-toastify";
 
 const Accountcomponent = () => {
   const user = useSelector((state) => state?.user);
@@ -179,6 +180,9 @@ const Accountcomponent = () => {
 
       try {
         const result = await UpdateProfileApi(ProfileData);
+        if (result.data.statusCode === 200) {
+          toast.success("Profile Updated Sucessfully");
+        }
         //console.log(result, "result");
       } catch (err) {
         console.log(err);
