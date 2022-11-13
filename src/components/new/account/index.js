@@ -266,13 +266,20 @@ const Accountcomponent = () => {
   };
 
   const handleProfileAddressForm = async () => {
-    console.log(addressValidation, "addressValidation");
-    if (checkAddressValidation()) {
-      console.log(profile, "profile");
-      return false;
-      // let ProfileData = { ...profile };
-      // ProfileData.dob = dayjs(ProfileData.dob).format("DD-MM-YYYY");
-      // console.log(ProfileData);
+    // console.log(addressValidation, "addressValidation");
+    if (checkAddressValidation() || checkValidation()) {
+      let ProfileData = { ...profile, ...address };
+
+      ProfileData._id = user?.data?._id;
+      ProfileData.dob = dayjs(ProfileData.dob).format("DD-MM-YYYY");
+      console.log(ProfileData);
+
+      try {
+        const result = await UpdateProfileApi(ProfileData);
+        console.log(result, "result");
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 
@@ -539,25 +546,25 @@ const Accountcomponent = () => {
                         </Form>
                       </Col>
                     </Row>
-                    <Row>
-                      <Col>
+                    {/* <Row>
+                      <Col className="py-4">
                         <button
                           // type="submit"
-                          class="btn-product btn-cart wid_200"
+                          class="btn-product btn-cart wid_200 "
                           onClick={handleProfileForm}
                           disabled={loading}
                         >
                           SAVE
                         </button>
                       </Col>
-                    </Row>
-                  </div>
-                  <Row>
-                    <Col>
-                      <h2 className="profile_heading">Add New Address</h2>
-                    </Col>
-                  </Row>
-                  <div class="change_pass">
+                    </Row> */}
+
+                    {/* <Row>
+                      <Col>
+                        <h2 className="profile_heading">Add New Address</h2>
+                      </Col>
+                    </Row> */}
+
                     {/* <Row>
                         <Col>
                           <Form>
@@ -600,11 +607,11 @@ const Accountcomponent = () => {
                         </Col>
                       </Row> */}
                     <Row>
-                      <Col>
+                      <Col className="py-4">
                         <Form>
                           <Form.Group
                             className="mb-3"
-                            controlId="exampleForm.ControlTextarea1"
+                            controlId="exampleForm.ControlTextarea1 "
                           >
                             <Form.Label>Address</Form.Label>
                             <Form.Control
@@ -702,7 +709,7 @@ const Accountcomponent = () => {
                       </Col>
                     </Row>
                     <Row>
-                      <Col>
+                      <Col className="py-4">
                         <button
                           // type="submit"
                           class="btn-product btn-cart wid_200"
