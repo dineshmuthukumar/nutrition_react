@@ -148,13 +148,13 @@ const About = () => {
         <div className="page-content">
           <div className="container-fluid p-0">
             <div
-              className="page-header pl-4 pr-4"
+              className="page-header pl-4 pr-4 cms-page-imge"
               style={{
                 backgroundImage: `url(${process.env.REACT_APP_PUBLIC_BASE_URL}${Data?.image})`,
               }}
             >
               <h1 className="page-title font-weight-bold lh-1 text-white text-capitalize">
-                Page
+                {/* Page */}
               </h1>
             </div>
             <div class="page-content mt-10 pt-10">

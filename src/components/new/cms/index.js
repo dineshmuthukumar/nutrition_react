@@ -44,7 +44,7 @@ const Aboutus = () => {
       <section className="customer-section pb-10">
         <div className="container">
           <div className="row align-items-center">
-            {Data?.image != "false" && Data?.image && (
+            {/* {Data?.image != "false" && Data?.image && (
               <div className="col-md-6 mb-4 abt-img">
                 <figure>
                   <img
@@ -54,14 +54,17 @@ const Aboutus = () => {
                   />
                 </figure>
               </div>
-            )}
+            )} */}
             <div className="col-md-12 mb-4">
-              <h3 className="section-title lh-1 font-weight-bold">
+              <h3 className="cms-page-title section-title lh-1 font-weight-bold">
                 {" "}
                 {Data?.title}
               </h3>
 
-              <div dangerouslySetInnerHTML={{ __html: Data?.content }}></div>
+              <div
+                dangerouslySetInnerHTML={{ __html: Data?.content }}
+                className="cms-page-content"
+              ></div>
             </div>
           </div>
         </div>
