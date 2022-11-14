@@ -2,7 +2,10 @@
 
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getProductDetailsApi } from "../../../api/base-methods";
+import {
+  getProductDetailsApi,
+  FreeProductApi,
+} from "../../../api/base-methods";
 import { add_to_cart_thunk } from "../../../redux/thunk/user_cart_thunk";
 import { useDispatch, useSelector } from "react-redux";
 import OwlCarousel from "react-owl-carousel";
@@ -11,33 +14,30 @@ import buy_now from "../../../images/new-images/demos/demo-food2/buy_now.png";
 import payment_logo from "../../../images/new-images/demos/demo-food2/payment-logo.png";
 
 import a_1 from "../../../images/new-images/demos/demo-food2/icons/icon/final/1-a.png";
-import a_2 from "../../../images/new-images/demos/demo-food2/icons/icon/final/2-a.png"
-import a_3 from "../../../images/new-images/demos/demo-food2/icons/icon/final/3-a.png"
-import a_4 from "../../../images/new-images/demos/demo-food2/icons/icon/final/4-a.png"
-import a_5 from "../../../images/new-images/demos/demo-food2/icons/icon/final/5-a.png"
-import a_6 from "../../../images/new-images/demos/demo-food2/icons/icon/final/6-a.png"
-import a_7 from "../../../images/new-images/demos/demo-food2/icons/icon/final/6-a.png"
-import a_8 from "../../../images/new-images/demos/demo-food2/icons/icon/final/6-a.png"
-import a_9 from "../../../images/new-images/demos/demo-food2/icons/icon/final/4-a.png"
-import a_10 from "../../../images/new-images/demos/demo-food2/icons/icon/final/4-a.png"
-import a_11 from "../../../images/new-images/demos/demo-food2/icons/icon/final/4-a.png"
-import a_12 from "../../../images/new-images/demos/demo-food2/icons/icon/final/4-a.png"
-
+import a_2 from "../../../images/new-images/demos/demo-food2/icons/icon/final/2-a.png";
+import a_3 from "../../../images/new-images/demos/demo-food2/icons/icon/final/3-a.png";
+import a_4 from "../../../images/new-images/demos/demo-food2/icons/icon/final/4-a.png";
+import a_5 from "../../../images/new-images/demos/demo-food2/icons/icon/final/5-a.png";
+import a_6 from "../../../images/new-images/demos/demo-food2/icons/icon/final/6-a.png";
+import a_7 from "../../../images/new-images/demos/demo-food2/icons/icon/final/6-a.png";
+import a_8 from "../../../images/new-images/demos/demo-food2/icons/icon/final/6-a.png";
+import a_9 from "../../../images/new-images/demos/demo-food2/icons/icon/final/4-a.png";
+import a_10 from "../../../images/new-images/demos/demo-food2/icons/icon/final/4-a.png";
+import a_11 from "../../../images/new-images/demos/demo-food2/icons/icon/final/4-a.png";
+import a_12 from "../../../images/new-images/demos/demo-food2/icons/icon/final/4-a.png";
 
 import usage_img from "../../../images/new-images/demos/demo-food2/products/final/usage_img.jpg";
 import claim_now from "../../../images/new-images/demos/demo-food2/claim_now.png";
 
-import radius_1 from "../../../images/new-images/demos/demo-food2/banners/radius_1.png"
-import radius_2 from "../../../images/new-images/demos/demo-food2/banners/radius_2.png"
-import radius_3 from "../../../images/new-images/demos/demo-food2/banners/radius_3.png"
-import radius_4 from "../../../images/new-images/demos/demo-food2/banners/radius_4.png"
+import radius_1 from "../../../images/new-images/demos/demo-food2/banners/radius_1.png";
+import radius_2 from "../../../images/new-images/demos/demo-food2/banners/radius_2.png";
+import radius_3 from "../../../images/new-images/demos/demo-food2/banners/radius_3.png";
+import radius_4 from "../../../images/new-images/demos/demo-food2/banners/radius_4.png";
 
-import apple_feature from "../../../images/new-images/demos/demo-food2/products/final/apple_feature.png"
+import apple_feature from "../../../images/new-images/demos/demo-food2/products/final/apple_feature.png";
 import why_choose from "../../../images/new-images/demos/demo-food2/products/why_choose.png";
 
-
-import pro_banner_2 from "../../../images/new-images/demos/demo-food2/products/pro_banner_2.jpg"
-
+import pro_banner_2 from "../../../images/new-images/demos/demo-food2/products/pro_banner_2.jpg";
 
 import a from "../../../images/new-images/demos/demo-food2/products/a.png";
 import b from "../../../images/new-images/demos/demo-food2/products/b.png";
@@ -77,8 +77,11 @@ import {
   validateNameReplace,
   validInternationalPhone,
 } from "../../../utils/common";
+import { toast } from "react-toastify";
 
 const Free_Trial_Section = ({ productData }) => {
+  //console.log(productData?._id, "productData");
+  const { user, cart } = useSelector((state) => state);
   const [stateList, setStateList] = useState({});
   const [cityList, setCityList] = useState({});
   const [validation, setValidation] = useState({
@@ -109,6 +112,7 @@ const Free_Trial_Section = ({ productData }) => {
     email: "",
     phone_no: "",
     zipcode: "",
+    productId: "",
   });
   useEffect(async () => {
     (async () => {
@@ -136,8 +140,12 @@ const Free_Trial_Section = ({ productData }) => {
           setValidation({ ...validation, [e.target.name]: false });
         }
       } else if (e.target.name === "email") {
+        // if (validateEmail(e.target.value)) {
         setData({ ...data, [e.target.name]: e.target.value.trim() });
         setValidation({ ...validation, [e.target.name]: false });
+        //} else {
+        //setValidation({ ...validation, [e.target.name]: true });
+        //}
       } else {
         setData({ ...data, [e.target.name]: e.target.value });
         setValidation({ ...validation, [e.target.name]: false });
@@ -191,10 +199,14 @@ const Free_Trial_Section = ({ productData }) => {
 
     setValidation(c_validation);
     if (
+      !c_validation.first_name &&
+      !c_validation.valid_first_name &&
+      !c_validation.last_name &&
+      !c_validation.valid_last_name &&
       !c_validation.phone_no &&
       !c_validation.valid_phone_no &&
-      !c_validation.phone_no &&
-      !c_validation.valid_phone_no
+      !c_validation.valid_email &&
+      !c_validation.email
     ) {
       return true;
     } else {
@@ -205,20 +217,36 @@ const Free_Trial_Section = ({ productData }) => {
   const handleForm = async () => {
     // console.log(addressValidation, "addressValidation");
     if (CheckValidation()) {
-      let ProfileData = { ...profile, ...address };
+      //console.log(data);
+      //return false;
+      let productDataDetails = { ...data };
 
-      ProfileData.id = user?.data?._id;
-      ProfileData.dob = dayjs(ProfileData.dob).format("DD-MM-YYYY");
+      productDataDetails.productId = productData?._id;
+      productDataDetails.name = productDataDetails?.first_name;
+      // ProfileData.dob = dayjs(ProfileData.dob).format("DD-MM-YYYY");
       //console.log(ProfileData);
 
       try {
-        const result = await UpdateProfileApi(ProfileData);
+        const result = await FreeProductApi(productDataDetails);
         if (result.data.statusCode === 200) {
-          toast.success("Profile Updated Sucessfully");
+          toast.success("Free product Request Created Sucessfully");
+          setData({
+            first_name: "",
+            last_name: "",
+            country: "",
+            address: "",
+            state: "",
+            city: "",
+            email: "",
+            phone_no: "",
+            zipcode: "",
+            productId: "",
+          });
         }
         console.log(result, "result");
       } catch (err) {
-        console.log(err);
+        //console.log(err);
+        toast.error(err?.data?.message);
       }
     }
   };
@@ -243,11 +271,11 @@ const Free_Trial_Section = ({ productData }) => {
                           name="first_name"
                           placeholder="Enter First Name"
                           value={data.first_name}
-                          required={validation.first_name}
+                          //required={validation.first_name}
                           // onKeyPress={handleKeyPressEvent}
                           onChange={handleChangeEvent}
                         />
-                        {validation.valid_first_name && (
+                        {validation.first_name && (
                           <p className="error_text">
                             Please enter a valid First name
                           </p>
@@ -259,11 +287,11 @@ const Free_Trial_Section = ({ productData }) => {
                           name="last_name"
                           placeholder="Enter Last Name"
                           value={data.last_name}
-                          required={validation.last_name}
+                          //required={validation.last_name}
                           // onKeyPress={handleKeyPressEvent}
                           onChange={handleChangeEvent}
                         />
-                        {validation.valid_last_name && (
+                        {validation.last_name && (
                           <p className="error_text">
                             Please enter a valid Last name
                           </p>
@@ -276,11 +304,11 @@ const Free_Trial_Section = ({ productData }) => {
                           name="address"
                           placeholder="Enter Addres"
                           value={data.address}
-                          required={validation.address}
+                          //required={validation.address}
                           // onKeyPress={handleKeyPressEvent}
                           onChange={handleChangeEvent}
                         />
-                        {validation.valid_address && (
+                        {!data.address && (
                           <p className="error_text">
                             Please enter a valid address
                           </p>
@@ -303,20 +331,19 @@ const Free_Trial_Section = ({ productData }) => {
                                 ?.name,
                             value: data?.state,
                           }}
-                          onChange={async (data) => {
-                            //if (data?.value) {
-
-                            const CityListData = await getCitiesApi(
-                              data?.value
-                            );
-                            setCityList(
-                              CityListData?.data?.responseData?.cities
-                            );
-                            setData({ ...data, state: data?.value });
-                            //}
+                          onChange={async (Statedata) => {
+                            if (Statedata?.value) {
+                              const CityListData = await getCitiesApi(
+                                Statedata?.value
+                              );
+                              setCityList(
+                                CityListData?.data?.responseData?.cities
+                              );
+                              setData({ ...data, state: Statedata?.value });
+                            }
                           }}
                         />
-                        {validation.state && (
+                        {!data.state && (
                           <p className="error_text">Please select state</p>
                         )}
                       </div>
@@ -335,17 +362,9 @@ const Free_Trial_Section = ({ productData }) => {
                               cityList?.find((o) => o._id === data?.city)?.name,
                             value: data?.city,
                           }}
-                          onChange={async (data) => {
-                            //if (data?.value) {
-
-                            // const CityListData = await getCitiesApi(
-                            //   data?.value
-                            // );
-                            // setCityList(
-                            //   CityListData?.data?.responseData?.cities
-                            // );
-                            setData({ ...data, city: data?.value });
-                            //}
+                          onChange={async (Ciytdata) => {
+                            setData({ ...data, city: Ciytdata?.value });
+                            console.log(data, "data");
                           }}
                         />
                         {/* <Form.Select
@@ -366,7 +385,7 @@ const Free_Trial_Section = ({ productData }) => {
                               );
                             })}
                         </Form.Select> */}
-                        {validation.city && (
+                        {!data.city && (
                           <p className="error_text">Please select City</p>
                         )}
                       </div>
@@ -376,7 +395,7 @@ const Free_Trial_Section = ({ productData }) => {
                           ///title={"Mobile"}
                           defaultCountry={"+91"}
                           value={data.mobile}
-                          required={validation.phone_no}
+                          //required={validation.phone_no}
                           //onEnterKeyPress={handleSignUp}
                           onChange={(e, c_code) => {
                             setData({
@@ -399,11 +418,11 @@ const Free_Trial_Section = ({ productData }) => {
                       </div>
                       <div className="input-prepend mb-2">
                         <InputText
-                          title={"Email"}
+                          //title={"Email"}
                           name="email"
                           placeholder="Enter Email"
                           value={data.email}
-                          required={validation.email}
+                          //required={validation.email}
                           //onKeyPress={handleKeyPressEvent}
                           onChange={handleChangeEvent}
                         />
@@ -417,10 +436,13 @@ const Free_Trial_Section = ({ productData }) => {
                         className="input-prepend mb-4 mt-4"
                         onClick={() => handleForm()}
                       >
-                        <img src={buy_now} class="trial_buy_now_btn heart" />
+                        <img
+                          src={buy_now}
+                          className="trial_buy_now_btn heart"
+                        />
                       </div>
-                      <div class="input-prepend mb-2 mt-2">
-                        <img src={payment_logo} class="trial_logo_btn" />
+                      <div className="input-prepend mb-2 mt-2">
+                        <img src={payment_logo} className="trial_logo_btn" />
                       </div>
                     </form>
                   </div>
@@ -906,7 +928,7 @@ const Free_Trial_Section = ({ productData }) => {
                         return (
                           <>
                             {productData?.questions?.map((prodcontain) => {
-                              console.log(prodcontain, "prodcontain");
+                              //console.log(prodcontain, "prodcontain");
                               return <Accordion content={prodcontain} />;
                             })}
                           </>

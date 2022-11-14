@@ -103,7 +103,12 @@ const Product = ({ ProductDetails, key }) => {
                 <span>Add to cart</span>
               </a>
             ) : (
-              ""
+              <Link
+                to={`/product/free/${ProductDetails?._id}`}
+                class="btn-product btn-cart ls-l"
+              >
+                Free
+              </Link>
             )
           ) : (
             <Link to="/Login" class="btn-product btn-cart ls-l">

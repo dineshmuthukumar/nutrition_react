@@ -92,7 +92,7 @@ const NewHome = () => {
       setCookiesByName("source", fsz);
     }
 
-    if (token) {
+  if (token) {
       setCookies(token);
 
       history.replace(url);

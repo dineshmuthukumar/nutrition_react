@@ -61,6 +61,9 @@ export const productListApi = (props) =>
 
   export const cmsPagetApi = (props) => baseAxios.get(`/page/${props}`);
 
+  export const FreeProductApi = (props) =>
+    baseAxios.post(`/freeProduct`, { ...props });
+
 
 
 export const readNotificationApi = () =>
