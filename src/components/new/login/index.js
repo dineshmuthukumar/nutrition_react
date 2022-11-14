@@ -87,12 +87,13 @@ const Logincomponent = () => {
       if (redirect) {
         window.open(redirect, "_self");
       } else {
-        if (location.state?.from) {
-          history.push(location.state?.from.pathname);
-        } else {
-          // window.open(`${process.env.REACT_APP_MARKETPLACE_URL}`, "_self");
-          history.push("/accounts/profile");
-        }
+        history.push("/");
+        // if (location.state?.from) {
+        //   history.push(location.state?.from.pathname);
+        // } else {
+        // window.open(`${process.env.REACT_APP_MARKETPLACE_URL}`, "_self");
+        //history.push("/accounts/profile");
+        //}
       }
     }
   }, [user, history, location.state?.from, redirect]);
