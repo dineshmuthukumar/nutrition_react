@@ -17,7 +17,7 @@ import { setCookiesByName, setCookies } from "../utils/cookies";
 import { user_load_by_token_thunk } from "../redux/thunk/user_thunk";
 import { nftCategoriesApi } from "../api/methods";
 import useQuery from "../hook/useQuery";
-import { homeContentApi } from "../api/base-methods";
+import { cmsPagetApi, homeContentApi } from "../api/base-methods";
 
 //import FavouriteNFTs from "../components/favourite-NFTs";
 // import HeroBanner from "../components/hero-banner";
@@ -47,6 +47,9 @@ const About = () => {
   const _ga = query.get("_ga");
   const [homeContent, setHomeContent] = useState({});
   const [list, setList] = useState([]);
+  const match = useRouteMatch();
+  const { id } = match.params;
+  const [Data, setData] = useState({});
   // const [favPage, setFavPage] = useState(1);
   // const [favList, setFavList] = useState([]);
   // const [favLoading, setFavLoading] = useState(false);
@@ -118,6 +121,21 @@ const About = () => {
   //     ReactPixel.pageView();
   //   }
   // }, []);
+  const getCustomPage = async () => {
+    const Abouts = await cmsPagetApi(id);
+    setData(Abouts?.data?.responseData?.page[0]);
+    window.scrollTo(0, 0);
+    //console.log(Abouts, "Abouts");
+  };
+
+  useEffect(() => {
+    getCustomPage();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  useEffect(() => {
+    getCustomPage();
+    // eslint-disable
+  }, [id]);
 
   return (
     <>
@@ -129,7 +147,12 @@ const About = () => {
       <main className="main single-product">
         <div className="page-content">
           <div className="container-fluid p-0">
-            <div className="page-header pl-4 pr-4">
+            <div
+              className="page-header pl-4 pr-4"
+              style={{
+                backgroundImage: `url(${process.env.REACT_APP_PUBLIC_BASE_URL}${Data?.image})`,
+              }}
+            >
               <h1 className="page-title font-weight-bold lh-1 text-white text-capitalize">
                 Page
               </h1>

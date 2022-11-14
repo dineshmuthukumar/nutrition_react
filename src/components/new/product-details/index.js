@@ -57,11 +57,29 @@ import Comment_2 from "../../../images/new-images/blog/comments/2.jpg";
 import Accordion from "../../accordion";
 import "./style.scss";
 import { currencyFormat } from "../../../utils/common";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { add_to_cart_thunk } from "../../../redux/thunk/user_cart_thunk";
 
 const ProductDetails = ({ productData }) => {
-  const user = useSelector((state) => state?.user);
+  const dispatch = useDispatch();
+  const { user, cart } = useSelector((state) => state);
   const [productFavor, setProductFavor] = useState("");
+  const userCart = cart?.data ? cart?.data : null;
+  //const [productData, setProductData] = useState(false);
+  const [inCart, setInCart] = useState(false);
+  useEffect(() => {
+    if (user) {
+      const orderSlug = userCart?.line_items?.find(
+        (obj) => obj._id === ProductDetails?._id
+      );
+      if (orderSlug) {
+        setInCart(true);
+      } else {
+        setInCart(false);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userCart]);
   return (
     <>
       <section className="">
@@ -394,7 +412,14 @@ const ProductDetails = ({ productData }) => {
                     <div className="product-form product-qty">
                       <div className="product-form-group">
                         {user?.login ? (
-                          <button className="btn-product btn-cart">
+                          <button
+                            className="btn-product btn-cart"
+                            onClick={() => {
+                              if (!inCart) {
+                                dispatch(add_to_cart_thunk(productData?._id));
+                              }
+                            }}
+                          >
                             <i className="d-icon-bag"></i>Add To BAG
                           </button>
                         ) : (
