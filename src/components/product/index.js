@@ -32,7 +32,7 @@ const Product = ({ ProductDetails, key }) => {
             return (
               <Link to={`/product/free/${ProductDetails?._id}`}>
                 <img
-                  src={"http://54.177.7.240" + ProductDetails?.photos[0]}
+                  src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${ProductDetails?.photos[0]}`}
                   alt="product"
                   width="280"
                   height="315"
@@ -44,7 +44,8 @@ const Product = ({ ProductDetails, key }) => {
             return (
               <Link to={`/product/${ProductDetails?._id}`}>
                 <img
-                  src={"http://54.177.7.240" + ProductDetails?.photos[0]}
+                  //src={"http://54.177.7.240" + ProductDetails?.photos[0]}
+                  src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${ProductDetails?.photos[0]}`}
                   alt="product"
                   width="280"
                   height="315"

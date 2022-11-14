@@ -196,10 +196,10 @@ const Header = ({
   const handleGetNotification = async () => {
     try {
       setNotiLoading(true);
-      const result = await getNotificationApi();
+      //const result = await getNotificationApi();
       setNotiLoading(false);
       // if (input === 1) {
-      setNotification(result.data.data);
+      //setNotification(result.data.data);
       // if (result.data.data.total > 0) {
       //   setNotiRead(result.data.data.notifications_read);
       // }
@@ -1235,7 +1235,8 @@ const Header = ({
                               <figure className="product-media">
                                 <a href="#">
                                   <img
-                                    src={"http://54.177.7.240" + item?.photos}
+                                    // src={"http://54.177.7.240" + item?.photos}
+                                    src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${item?.photos}`}
                                     alt="product"
                                     width="80"
                                     height="auto"

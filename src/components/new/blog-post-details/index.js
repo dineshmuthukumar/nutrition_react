@@ -79,7 +79,8 @@ const BlogPost = () => {
                 <figure className="post-media">
                   <a href="post-single.html#">
                     <img
-                      src={"http://54.177.7.240" + blogData?.image}
+                      //src={"http://54.177.7.240" + blogData?.image}
+                      src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${blogData?.image}`}
                       width="500"
                       height="500"
                       alt="post"
@@ -163,10 +164,11 @@ const BlogPost = () => {
                               <figure className="post-media">
                                 <a href="post-single.html#">
                                   <img
-                                    src={
-                                      "http://54.177.7.240" +
-                                      Recentcontent?.image
-                                    }
+                                    // src={
+                                    //   "http://54.177.7.240" +
+                                    //   Recentcontent?.image
+                                    // }
+                                    src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${Recentcontent?.image}`}
                                     width="380"
                                     height="250"
                                     alt="post"

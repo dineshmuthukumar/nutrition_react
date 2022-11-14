@@ -9,7 +9,10 @@ const ProductBannerOne = ({ homeContent }) => {
           <div className="row product_banner_2">
             <div className="col-sm-6 text-center">
               {homeContent?.section?.fourth?.image && (
-                <img src={`http://54.177.7.240${homeContent?.section?.fourth?.image}`} className="best_img"/>
+                <img
+                  src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${homeContent?.section?.fourth?.image}`}
+                  className="best_img"
+                />
               )}
             </div>
             <div className="col-sm-6">

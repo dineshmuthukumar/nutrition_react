@@ -77,7 +77,8 @@ const Blog = () => {
                       <figure className="post-media">
                         <a href="#">
                           <img
-                            src={"http://54.177.7.240" + obj?.image}
+                            //src={"http://54.177.7.240" + obj?.image}
+                            src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${obj?.image}`}
                             width="380"
                             height="280"
                             alt="post"

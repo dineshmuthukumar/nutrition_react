@@ -85,7 +85,7 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
                           <div className="image-box image-overlay">
                             <figure className="banner-radius">
                               <img
-                                src={"http://54.177.7.240" + queas?.image}
+                                src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${queas?.image}`}
                                 alt="image-overlay"
                                 width="280"
                                 height="280"

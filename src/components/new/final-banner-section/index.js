@@ -17,8 +17,19 @@ const FirstBannerSection = ({ homeContent }) => {
                 <div className="col-xl-2 col-sm-6 col-12">
                   <div className="banner1 banner banner-fixed overlay-zoom">
                     <figure>
-                      <video className="card_video__1z3he" width="auto" height="auto" autoPlay muted loop style={{ width: "100%" }}>
-                        <source src={"http://54.177.7.240" + sixthproductcontentList?.image} type="video/mp4" />
+                      <video
+                        className="card_video__1z3he"
+                        width="auto"
+                        height="auto"
+                        autoPlay
+                        muted
+                        loop
+                        style={{ width: "100%" }}
+                      >
+                        <source
+                          src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${sixthproductcontentList?.image}`}
+                          type="video/mp4"
+                        />
                       </video>
                     </figure>
 
@@ -26,7 +37,10 @@ const FirstBannerSection = ({ homeContent }) => {
                       <h4 className="banner-subtitle mb-0 font-weight-bold text-white text-uppercase">
                         {sixthproductcontentList?.text}
                       </h4>
-                      <a href="#" className="btn btn-md-ellipse btn-ellipse btn-solid btn-primary icon-arrow-right">
+                      <a
+                        href="#"
+                        className="btn btn-md-ellipse btn-ellipse btn-solid btn-primary icon-arrow-right"
+                      >
                         <i className="fa fa-play" aria-hidden="true"></i>
                       </a>
                     </div>

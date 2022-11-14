@@ -48,7 +48,8 @@ const Aboutus = () => {
               <div className="col-md-6 mb-4 abt-img">
                 <figure>
                   <img
-                    src={"http://54.177.7.240" + Data?.image}
+                    // src={"http://54.177.7.240" + Data?.image}
+                    src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${Data?.image}`}
                     alt="Happy Customer"
                     className="banner-radius abt-img"
                   />

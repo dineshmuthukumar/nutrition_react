@@ -502,9 +502,7 @@ const Free_Trial_Section = ({ productData }) => {
                             <a href="#" className="element-type">
                               <div className="element element-accordian dotted_border">
                                 <img
-                                  src={
-                                    "http://54.177.7.240" + takelivenBurn?.image
-                                  }
+                                  src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${takelivenBurn?.image}`}
                                   className="whole_food_img"
                                 />
                                 <p>{takelivenBurn?.title}</p>
@@ -600,7 +598,7 @@ const Free_Trial_Section = ({ productData }) => {
               </div>
               <div className="col-md-5">
                 <img
-                  src={"http://54.177.7.240" + productData?.howToUseImage}
+                  src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${productData?.howToUseImage}`}
                   style={{ width: "100%" }}
                 />
               </div>
@@ -667,9 +665,7 @@ const Free_Trial_Section = ({ productData }) => {
             <div className="row pro_feature">
               <div className="col-sm-12">
                 <img
-                  src={
-                    "http://54.177.7.240" + productData?.chooseLivenBurnImage
-                  }
+                  src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${productData?.chooseLivenBurnImage}`}
                   className="acv_img"
                 />
               </div>
@@ -873,10 +869,11 @@ const Free_Trial_Section = ({ productData }) => {
                                       />
                                       <img
                                         //src={app_11}
-                                        src={
-                                          "http://54.177.7.240" +
-                                          healingPoten?.image
-                                        }
+                                        // src={
+                                        //   "http://54.177.7.240" +
+                                        //   healingPoten?.image
+                                        // }
+                                        src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${healingPoten?.image}`}
                                         className="healing_image"
                                         alt="product"
                                         width="280"

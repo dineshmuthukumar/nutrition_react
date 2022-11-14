@@ -31,7 +31,10 @@ const OurIdea = ({ homeContent }) => {
                           /> */}
                           {thirdContentList?.image && (
                             <img
-                              src={`http://54.177.7.240${thirdContentList?.image}`} alt="category" className="category_media_image" />
+                              src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${thirdContentList?.image}`}
+                              alt="category"
+                              className="category_media_image"
+                            />
                           )}
                         </figure>
                       </a>

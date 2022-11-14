@@ -72,7 +72,7 @@ const Banner = ({ bannerContent }) => {
                         >
                           <figure>
                             <img
-                              src={"http://54.177.7.240" + BannerDetail?.image}
+                              src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${BannerDetail?.image}`}
                               alt="intro-banner"
                               width="1903"
                               height="540"

@@ -76,7 +76,7 @@ const InstagramSection = ({ homeContent }) => {
                     <figure className="instagram">
                       <a href="product.html">
                         <img
-                          src={`http://54.177.7.240${fifthproductcontentList.image}`}
+                          src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${fifthproductcontentList.image}`}
                           alt="Instagram"
                           width="220"
                           height="220"
