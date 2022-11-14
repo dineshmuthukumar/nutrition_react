@@ -375,17 +375,31 @@ const Logincomponent = () => {
                   <>
                     <div>
                       <Row className="otp_flex">
-                        <Col><h3>Enter the OTP</h3>{" "}</Col>
-                        <Col className="text-right"><div className="cursor_pointer" onClick={() => setOTP(false)}><h4>Change</h4></div></Col>
+                        <Col>
+                          <h3>Enter the OTP</h3>{" "}
+                        </Col>
+                        <Col className="text-right">
+                          <div
+                            className="cursor_pointer"
+                            onClick={() => setOTP(false)}
+                          >
+                            <h4>Change</h4>
+                          </div>
+                        </Col>
                       </Row>
-                      
-                      
+
                       <div className="form-group">
-                        <InputOTP onChange={(e) => setOTPValue(e)}value={otpValue}/>
+                        <InputOTP
+                          onChange={(e) => setOTPValue(e)}
+                          value={otpValue}
+                        />
                       </div>
                       <button
                         type="button"
-                        className="btn btn-dark btn-block btn-rounded" onClick={handleVerifyOTP} disabled={verifyLoading || navigate}>
+                        className="btn btn-dark btn-block btn-rounded"
+                        onClick={handleVerifyOTP}
+                        disabled={verifyLoading || navigate}
+                      >
                         {navigate ? (
                           "Verified Successfully, please wait..."
                         ) : (
@@ -411,7 +425,13 @@ const Logincomponent = () => {
                           Remember me
                         </label>
                       </div>
-                      <a href="#" className="lost-link" onClick={() => handleResendOTP()}>Resend code</a>
+                      <a
+                        href="#"
+                        className="lost-link"
+                        onClick={() => handleResendOTP()}
+                      >
+                        Resend code
+                      </a>
                     </div>
                   </>
                 ) : (
@@ -419,7 +439,7 @@ const Logincomponent = () => {
                     <div className="form-group">
                       <InputPhone
                         title={"Mobile"}
-                        defaultCountry={"+91"}
+                        defaultCountry={"in"}
                         value={login.mobile}
                         required={lvalidation.phone_no}
                         onChange={(e, c_code) => {
@@ -442,7 +462,12 @@ const Logincomponent = () => {
                       )}
                     </div>
 
-                    <button className="btn btn-dark btn-block btn-rounded" type="submit" onClick={handleLoginOTP} disabled={loading}>
+                    <button
+                      className="btn btn-dark btn-block btn-rounded"
+                      type="submit"
+                      onClick={handleLoginOTP}
+                      disabled={loading}
+                    >
                       {loading ? "Loading" : "Request OTP"}
                     </button>
 
@@ -484,10 +509,19 @@ const Logincomponent = () => {
                 {otp ? (
                   <div>
                     <Row className="otp_flex">
-                      <Col><h3>Enter the OTP</h3>{" "}</Col>
-                      <Col className="text-right"><div className="cursor_pointer" onClick={() => setOTP(false)}><h4>Change</h4></div></Col>
+                      <Col>
+                        <h3>Enter the OTP</h3>{" "}
+                      </Col>
+                      <Col className="text-right">
+                        <div
+                          className="cursor_pointer"
+                          onClick={() => setOTP(false)}
+                        >
+                          <h4>Change</h4>
+                        </div>
+                      </Col>
                     </Row>
-                    
+
                     <div className="form-group">
                       <InputOTP
                         onChange={(e) => setOTPValue(e)}
@@ -547,7 +581,7 @@ const Logincomponent = () => {
                       <div className="form-group">
                         <InputPhone
                           title={"Mobile"}
-                          defaultCountry={"+91"}
+                          defaultCountry={"in"}
                           value={register.mobile}
                           required={validation.phone_no}
                           onEnterKeyPress={handleSignUp}

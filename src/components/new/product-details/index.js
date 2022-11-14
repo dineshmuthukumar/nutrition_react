@@ -56,8 +56,12 @@ import Comment_2 from "../../../images/new-images/blog/comments/2.jpg";
 
 import Accordion from "../../accordion";
 import "./style.scss";
+import { currencyFormat } from "../../../utils/common";
+import { useSelector } from "react-redux";
 
 const ProductDetails = ({ productData }) => {
+  const user = useSelector((state) => state?.user);
+  const [productFavor, setProductFavor] = useState("");
   return (
     <>
       <section className="">
@@ -331,25 +335,34 @@ const ProductDetails = ({ productData }) => {
                                       type="radio"
                                       name="plan"
                                       id={producttype?.type}
+                                      onChange={() =>
+                                        setProductFavor(producttype?._id)
+                                      }
                                     />
                                     <div className="plan-content">
                                       <div className="plan-details">
                                         <span>{producttype?.type}</span>
                                         <div className="pack_padding">
                                           <h1 className="pack_tittle">
-                                            Per Bottle
+                                            {producttype?.title}
                                           </h1>
                                           <h1 className="pack_tittle_save">
                                             (Save $40.00)
                                           </h1>
-                                          <img src={pro_product_4} />
+                                          <img
+                                            src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${producttype?.image}`}
+                                          />
                                         </div>
                                         <div className="pack_add_cart">
                                           <i
                                             className="fa fa-inr"
                                             aria-hidden="true"
                                           ></i>{" "}
-                                          220 / Fulse
+                                          {currencyFormat(
+                                            producttype?.saleAmount,
+                                            "INR"
+                                          )}{" "}
+                                          / Fulse
                                         </div>
                                       </div>
                                     </div>
@@ -380,9 +393,17 @@ const ProductDetails = ({ productData }) => {
                   <div className="col-sm-4">
                     <div className="product-form product-qty">
                       <div className="product-form-group">
-                        <button className="btn-product btn-cart">
-                          <i className="d-icon-bag"></i>Add To BAG
-                        </button>
+                        {user?.login ? (
+                          <button className="btn-product btn-cart">
+                            <i className="d-icon-bag"></i>Add To BAG
+                          </button>
+                        ) : (
+                          <Link to="/login">
+                            <button className="btn-product btn-cart">
+                              <i className="d-icon-bag"></i>Add To BAG
+                            </button>
+                          </Link>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -1063,7 +1084,7 @@ const ProductDetails = ({ productData }) => {
                     </p>
                   </div>
                   <div className="rating-form">
-                    <label for="rating" className="text-dark">
+                    <label htmlFor="rating" className="text-dark">
                       Your rating *{" "}
                     </label>
                     <span className="rating-stars selected">
@@ -1467,7 +1488,7 @@ const ProductDetails = ({ productData }) => {
         </div>
       </section>
 
-      <section className="pt-3 mt-2 mb-2 need_sec">
+      <section className="pt-3 mt-2 mb-2 need_sec" style={{ display: "none" }}>
         <h2 className="title-echo mb-1">
           <span>Some Related Products</span>
         </h2>
@@ -1792,9 +1813,17 @@ const ProductDetails = ({ productData }) => {
         <div className="row mt-10">
           <div className="col-sm-12 text-center">
             <div className="product-form-group justify-content-center">
+              {/* {user?.login ? ( */}
               <button className="btn-product btn-cart wid_250">
                 <i className="d-icon-bag pr-2"></i> More Health Boosters
               </button>
+              {/* ) : (
+                <Link to="/login">
+                  <button className="btn-product btn-cart wid_250">
+                    <i className="d-icon-bag pr-2"></i> More Health Boosters
+                  </button>
+                </Link>
+              )} */}
             </div>
           </div>
         </div>
