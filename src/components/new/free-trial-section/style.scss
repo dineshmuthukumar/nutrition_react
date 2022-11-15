@@ -37,6 +37,7 @@
     display: flex;
     justify-content: center;
     align-items: flex-end;
+    width: unset !important;
   }
   
   .owl-carousel .owl-item .item{
@@ -49,6 +50,4 @@
     font-size: 1.4rem !important;
     //float: left;
   }
-  .small.text-danger.font-10{
-   // float: left;
-  }
+ 

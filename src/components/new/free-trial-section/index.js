@@ -242,6 +242,25 @@ const Free_Trial_Section = ({ productData }) => {
             zipcode: "",
             productId: "",
           });
+
+          setValidation({
+            first_name: false,
+            valid_first_name: false,
+            last_name: false,
+            valid_last_name: false,
+            country: false,
+            valid_country: false,
+            address: false,
+            valid_address: false,
+            zipcode: false,
+            valid_zipcode: false,
+            state: false,
+            city: false,
+            email: false,
+            valid_email: false,
+            phone_no: false,
+            valid_phone_no: false,
+          });
         }
         console.log(result, "result");
       } catch (err) {
@@ -612,64 +631,43 @@ const Free_Trial_Section = ({ productData }) => {
               Who to take Liven Burn with ACV?
             </h2>
             <br />
-            <div className="row mt-10" style={{ display: "none" }}>
-              <div className="col-sm-3">
-                <div className="icon-box icon-inversed text-center">
-                  <span className="icon-box-icon">
-                    <img src={radius_1} alt="category" />
-                  </span>
-                  <div className="icon-box-content">
-                    <p>
-                      Sed egestas, ante et vulputate volutpat, ros pede sempe.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="col-sm-3">
-                <div className="icon-box icon-inversed text-center">
-                  <span className="icon-box-icon">
-                    <img src={radius_2} alt="category" />
-                  </span>
-                  <div className="icon-box-content">
-                    <p>
-                      Sed egestas, ante et vulputate volutpat, ros pede sempe.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="col-sm-3">
-                <div className="icon-box icon-inversed text-center">
-                  <span className="icon-box-icon">
-                    <img src={radius_3} alt="category" />
-                  </span>
-                  <div className="icon-box-content">
-                    <p>
-                      Sed egestas, ante et vulputate volutpat, ros pede sempe.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="col-sm-3">
-                <div className="icon-box icon-inversed text-center">
-                  <span className="icon-box-icon">
-                    <img src={radius_4} alt="category" />
-                  </span>
-                  <div className="icon-box-content">
-                    <p>
-                      Sed egestas, ante et vulputate volutpat, ros pede sempe.
-                    </p>
-                  </div>
-                </div>
-              </div>
+            <div className="row mt-10">
+              {(() => {
+                if (productData?.livenBurns?.length > 0) {
+                  return (
+                    <>
+                      {productData?.livenBurns?.map(
+                        (livenBurnshealingPoten) => {
+                          return (
+                            <div className="col-sm-3 pt-4 pb-10">
+                              <div className="icon-box icon-inversed text-center">
+                                <span className="icon-box-icon">
+                                  <img
+                                    src={`${process.env.REACT_APP_PUBLIC_BASE_URL} ${livenBurnshealingPoten?.image}`}
+                                    alt="category"
+                                  />
+                                </span>
+                                <div className="icon-box-content">
+                                  <p>{livenBurnshealingPoten?.title}</p>
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        }
+                      )}
+                    </>
+                  );
+                }
+              })()}
             </div>
-            <div className="row pro_feature">
+            {/* <div className="row pro_feature">
               <div className="col-sm-12">
                 <img
                   src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${productData?.chooseLivenBurnImage}`}
                   className="acv_img"
                 />
               </div>
-            </div>
+            </div> */}
 
             <div className="row mt-5" style={{ display: "none" }}>
               <div className="col-sm-8">
@@ -816,89 +814,91 @@ const Free_Trial_Section = ({ productData }) => {
           <div className="tab tab-nav-center">
             <div className="tab-content">
               <div className="tab-pane pt-4 active" id="fruits">
-                <OwlCarousel
-                  className="owl-carousel healing cols-md-3 cols-2"
-                  margin={20}
-                  stagePadding={450}
-                  // loop={true}
-                  items={1} //
-                  nav
-                  autoWidth={true}
-                  smartSpeed={500}
-                  dots={false}
-                  navContainerClass={"owl-nav"}
-                  navText={[
-                    `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png  />`,
-                    `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png />`,
-                  ]}
-                  responsive={{
-                    0: {
-                      items: 1,
-                    },
-                    600: {
-                      items: 3,
-                    },
-                    1000: {
-                      items: 5,
-                    },
-                  }}
-                  // autoplay
-                  // loop
-                  autoplayTimeout={2000}
-                  autoplayHoverPause={true}
-                  // navText={[
-                  //   '<i class="fa fa-chevron-left"></i>"',
-                  //   '<i class="fa fa-chevron-right"></i>'
-                  // ]}
-                >
-                  {(() => {
-                    if (productData?.healingPotentials?.length > 0) {
-                      return (
-                        <>
-                          {productData?.healingPotentials?.map(
-                            (healingPoten) => {
-                              return (
-                                <div className="product-refdc text-center product-with-qty no_border">
-                                  <figure className="product-media">
-                                    <a href="$">
-                                      <img
-                                        src={app_1}
-                                        alt="product"
-                                        width="280"
-                                        height="315"
-                                      />
-                                      <img
-                                        //src={app_11}
-                                        // src={
-                                        //   "http://54.177.7.240" +
-                                        //   healingPoten?.image
-                                        // }
-                                        src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${healingPoten?.image}`}
-                                        className="healing_image"
-                                        alt="product"
-                                        width="280"
-                                        height="315"
-                                      />
-                                    </a>
-                                    <div className="product-action-vertical">
-                                      <a
-                                        href="#"
-                                        className="btn-product-icon btn-wishlist"
-                                        title="Add to wishlist"
-                                      >
-                                        <i className="d-icon-plus"></i>
+                {productData?.healingPotentials?.length > 0 && (
+                  <OwlCarousel
+                    className="owl-carousel healing"
+                    margin={20}
+                    stagePadding={450}
+                    // loop={true}
+                    items={1} //
+                    nav
+                    autoWidth={true}
+                    smartSpeed={500}
+                    dots={false}
+                    navContainerClass={"owl-nav"}
+                    navText={[
+                      `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png  />`,
+                      `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png />`,
+                    ]}
+                    responsive={{
+                      0: {
+                        items: 1,
+                      },
+                      600: {
+                        items: 3,
+                      },
+                      1000: {
+                        items: 5,
+                      },
+                    }}
+                    // autoplay
+                    // loop
+                    autoplayTimeout={2000}
+                    autoplayHoverPause={true}
+                    // navText={[
+                    //   '<i class="fa fa-chevron-left"></i>"',
+                    //   '<i class="fa fa-chevron-right"></i>'
+                    // ]}
+                  >
+                    {(() => {
+                      if (productData?.healingPotentials?.length > 0) {
+                        return (
+                          <>
+                            {productData?.healingPotentials?.map(
+                              (healingPoten) => {
+                                return (
+                                  <div className="product-refdc text-center product-with-qty no_border">
+                                    <figure className="product-media">
+                                      <a href="$">
+                                        <img
+                                          src={app_1}
+                                          alt="product"
+                                          width="280"
+                                          height="315"
+                                        />
+                                        <img
+                                          //src={app_11}
+                                          // src={
+                                          //   "http://54.177.7.240" +
+                                          //   healingPoten?.image
+                                          // }
+                                          src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${healingPoten?.image}`}
+                                          className="healing_image"
+                                          alt="product"
+                                          width="280"
+                                          height="315"
+                                        />
                                       </a>
-                                    </div>
-                                  </figure>
-                                </div>
-                              );
-                            }
-                          )}
-                        </>
-                      );
-                    }
-                  })()}
-                </OwlCarousel>
+                                      <div className="product-action-vertical">
+                                        <a
+                                          href="#"
+                                          className="btn-product-icon btn-wishlist"
+                                          title="Add to wishlist"
+                                        >
+                                          <i className="d-icon-plus"></i>
+                                        </a>
+                                      </div>
+                                    </figure>
+                                  </div>
+                                );
+                              }
+                            )}
+                          </>
+                        );
+                      }
+                    })()}
+                  </OwlCarousel>
+                )}
 
                 <div className="input-prepend text-center mt-10">
                   <a href="#trial_free_section" className="flex-gap">
