@@ -58,68 +58,34 @@ const Productlist = () => {
   return (
     <>
       <div className="page-content pb-10 mb-10">
-        <div className="container">
-          <ul
-            className="nav-filters filter-underline blog-filters justify-content-center"
-            data-target=".posts"
-          ></ul>
-          <div
-            className="posts grid post-grid row gap-4"
-            // data-grid-options="{
-            //                     'layoutMode': 'fitRows'
-            //                 }"
-          >
-            {list?.length > 0 &&
-              list?.map((obj, index) => {
-                return <Product ProductDetails={obj} key={index} />;
-              })}
-          </div>
-          {list?.length > 0 ? (
-            <div className="user-profile-table-pagination">
-              <pagination
-                className="pagination-bar"
-                currentPage={currentPage}
-                totalCount={totalCount}
-                pageSize={limit}
-                onPageChange={(page) => handlePage(page)}
-              />
+        <section class="pt-3 mt-2 mb-2 pb-10 need_sec">
+          <div className="container">
+            <div class="row">
+              {list?.length > 0 &&
+                list?.map((obj, index) => {
+                  return (
+                    <div className="col-sm-3">
+                      <Product ProductDetails={obj} key={index} />
+                    </div>
+                  );
+                })}
+
+              {list?.length > 0 ? (
+                <div className="user-profile-table-pagination">
+                  <pagination
+                    className="pagination-bar"
+                    currentPage={currentPage}
+                    totalCount={totalCount}
+                    pageSize={limit}
+                    onPageChange={(page) => handlePage(page)}
+                  />
+                </div>
+              ) : (
+                ""
+              )}
             </div>
-          ) : (
-            ""
-          )}
-          {/* <ul className="pagination justify-content-center">
-            <li className="page-item disabled">
-              <a
-                className="page-link page-link-prev"
-                href="#"
-                aria-label="Previous"
-                tabIndex="-1"
-                aria-disabled="true"
-              >
-                <i className="d-icon-arrow-left"></i>Prev
-              </a>
-            </li>
-            <li className="page-item active" aria-current="page">
-              <a className="page-link" href="#">
-                1
-              </a>
-            </li>
-            <li className="page-item">
-              <a className="page-link" href="#">
-                2
-              </a>
-            </li>
-            <li className="page-item">
-              <a
-                className="page-link page-link-next"
-                href="#"
-                aria-label="Next"
-              >
-                Next<i className="d-icon-arrow-right"></i>
-              </a>
-            </li>
-          </ul> */}
-        </div>
+          </div>
+        </section>
       </div>
     </>
   );

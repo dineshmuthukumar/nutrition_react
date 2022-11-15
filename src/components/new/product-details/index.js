@@ -416,7 +416,7 @@ const ProductDetails = ({ productData }) => {
                             className="btn-product btn-cart"
                             onClick={() => {
                               if (!inCart) {
-                                dispatch(add_to_cart_thunk(productData?._id));
+                                dispatch(add_to_cart_thunk(ProductDetails._id));
                               }
                             }}
                           >
@@ -757,9 +757,9 @@ const ProductDetails = ({ productData }) => {
 
       <section className="" id="absolute_cart">
         <div className="container">
-          <h2 className="title title-center ls-s mb-8 dis_block">
+          {/* <h2 className="title title-center ls-s mb-8 dis_block">
             Who to take Liven Burn with ACV?
-          </h2>
+          </h2> */}
           <br />
           <div className="row mt-10" style={{ display: "none" }}>
             <div className="col-sm-3">
@@ -816,13 +816,13 @@ const ProductDetails = ({ productData }) => {
             </div>
           </div>
           <div className="row pro_feature">
-            <div className="col-sm-12">
+            {/* <div className="col-sm-12">
               <img
                 //src={"http://54.177.7.240" + productData?.chooseLivenBurnImage}
                 src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${productData?.chooseLivenBurnImage}`}
                 className="acv_img"
               />
-            </div>
+            </div> */}
           </div>
 
           <div className="row mt-5" style={{ display: "none" }}>
