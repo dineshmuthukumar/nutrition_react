@@ -940,6 +940,13 @@
     }
 }
 
+img.product-thumb_img 
+{
+    width: 100px;
+    max-width: 100px;
+    height: 100px;
+    min-height: 100px;
+}
 
 .section.arrivals-section.need_sec .owl-carousel .owl-item img 
 {
@@ -978,11 +985,15 @@
   .healing{
     .owl-stage-outer{
         .owl-stage{
-            width: 1500px !important;
+            width: 100% !important;
         }
     }
   }
-  .healing_image{
+  .healing_image
+  {
     width: 280px !important;
-    height: 315px !important;
+    height: 180px !important;
+    min-height: 180px;
+    background-size: cover;
+    object-fit: contain !important;
   }

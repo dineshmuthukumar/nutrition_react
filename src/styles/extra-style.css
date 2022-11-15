@@ -868,8 +868,9 @@ button.btn-product.btn-cart
 }
 .count_pack_value
 {
-    width: 150px;
-    border-radius: 20px;
+    width: 150px !important;
+    border-radius: 20px !important;
+    height: 35px;
 }
 #absolute_cart
 {
@@ -1379,7 +1380,7 @@ table.shop-table.cart-table thead
 }
 .acv_img
 {
-    width:80%;
+    width:50%;
 }
 .abt-img
 {

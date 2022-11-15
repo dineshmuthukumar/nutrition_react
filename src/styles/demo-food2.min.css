@@ -9410,7 +9410,7 @@ ul.blog-filters .nav-filter {
     right: 0;
     top: 0;
     left: 0;
-    object-fit: cover;
+    /* object-fit: cover; */
 }
 .product-media img:first-child {
     position: relative;
@@ -11334,7 +11334,7 @@ ul.blog-filters .nav-filter {
     color: inherit;
 }
 .product-single .product-details {
-    padding: 0 0 3rem;
+    padding: 10px !important;
     background-color: transparent;
 }
 .container-fluid .product-single .product-details {
