@@ -178,7 +178,7 @@ const Free_Trial_Section = ({ productData }) => {
     }
 
     if (!data.email) {
-      c_validation = { ...c_validation, email: true };
+      c_validation = { ...c_validation, valid_email: true };
     } else {
       if (validateEmail(data.email)) {
         c_validation = { ...c_validation, valid_email: false };
@@ -188,7 +188,7 @@ const Free_Trial_Section = ({ productData }) => {
     }
 
     if (!data.mobile) {
-      c_validation = { ...c_validation, phone_no: true };
+      c_validation = { ...c_validation, valid_phone_no: true };
     } else {
       if (validInternationalPhone(data.mobile, data.phone_code)) {
         c_validation = { ...c_validation, valid_phone_no: false };
@@ -393,7 +393,7 @@ const Free_Trial_Section = ({ productData }) => {
                       <div className="input-prepend mb-2">
                         <InputPhone
                           ///title={"Mobile"}
-                          defaultCountry={"+91"}
+                          defaultCountry={"in"}
                           value={data.mobile}
                           //required={validation.phone_no}
                           //onEnterKeyPress={handleSignUp}

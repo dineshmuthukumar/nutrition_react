@@ -63,7 +63,9 @@ import { add_to_cart_thunk } from "../../../redux/thunk/user_cart_thunk";
 const ProductDetails = ({ productData }) => {
   const dispatch = useDispatch();
   const { user, cart } = useSelector((state) => state);
-  const [productFavor, setProductFavor] = useState("");
+  const [productFavor, setProductFavor] = useState(
+    productData?.productType[1]?._id
+  );
   const userCart = cart?.data ? cart?.data : null;
   //const [productData, setProductData] = useState(false);
   const [inCart, setInCart] = useState(false);
@@ -408,7 +410,7 @@ const ProductDetails = ({ productData }) => {
                     }
                   })()}
                 </div>
-                
+
                 {/* <div className="row">
                   <div className="col-sm-12">
                     <img src={packag} />
@@ -443,9 +445,8 @@ const ProductDetails = ({ productData }) => {
               </div>
             </div>
           </div>
-          
-          
-          <div className="add_to_whitelist">
+
+          {/* <div className="add_to_whitelist">
             <h2 className="title title-center ls-s mb-8 dis_block">
               Best to Opt with
             </h2>
@@ -580,7 +581,7 @@ const ProductDetails = ({ productData }) => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
 
@@ -648,10 +649,10 @@ const ProductDetails = ({ productData }) => {
           </h2>
           <div className="row elements justify-content-center">
             {(() => {
-              if (productData?.takeLivenBurn?.length > 0) {
+              if (productData?.livenBurns?.length > 0) {
                 return (
                   <>
-                    {productData?.takeLivenBurn?.map((takelivenBurn) => {
+                    {productData?.livenBurns?.map((takelivenBurn) => {
                       return (
                         <div className="col-xl-2 col col-lg-2 col-md-2 col-sm-2 col-12">
                           <a href="#" className="element-type">
@@ -660,7 +661,7 @@ const ProductDetails = ({ productData }) => {
                                 src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${takelivenBurn?.image}`}
                                 className="whole_food_img"
                               />
-                              <p>{takelivenBurn?.title}</p>
+                              <p>{takelivenBurn?.name}</p>
                             </div>
                           </a>
                         </div>
@@ -767,61 +768,34 @@ const ProductDetails = ({ productData }) => {
             Who to take Liven Burn with ACV?
           </h2>
           <br />
-          <div className="row mt-10" style={{ display: "none" }}>
-            <div className="col-sm-3">
-              <div className="icon-box icon-inversed text-center">
-                <span className="icon-box-icon">
-                  {/* <!-- <i className="d-icon-database"></i> --> */}
-                  <img src={radius_1} alt="category" />
-                </span>
-                <div className="icon-box-content">
-                  <p>
-                    Sed egestas, ante et vulputate volutpat, ros pede sempe.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-sm-3">
-              <div className="icon-box icon-inversed text-center">
-                <span className="icon-box-icon">
-                  {/* <!-- <i className="d-icon-database"></i> --> */}
-                  <img src={radius_2} alt="category" />
-                </span>
-                <div className="icon-box-content">
-                  <p>
-                    Sed egestas, ante et vulputate volutpat, ros pede sempe.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-sm-3">
-              <div className="icon-box icon-inversed text-center">
-                <span className="icon-box-icon">
-                  {/* <!-- <i className="d-icon-database"></i> --> */}
-                  <img src={radius_3} alt="category" />
-                </span>
-                <div className="icon-box-content">
-                  <p>
-                    Sed egestas, ante et vulputate volutpat, ros pede sempe.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-sm-3">
-              <div className="icon-box icon-inversed text-center">
-                <span className="icon-box-icon">
-                  {/* <!-- <i className="d-icon-database"></i> --> */}
-                  <img src={radius_4} alt="category" />
-                </span>
-                <div className="icon-box-content">
-                  <p>
-                    Sed egestas, ante et vulputate volutpat, ros pede sempe.
-                  </p>
-                </div>
-              </div>
-            </div>
+          <div className="row mt-10">
+            {(() => {
+              if (productData?.takeLivenBurn?.length > 0) {
+                return (
+                  <>
+                    {productData?.takeLivenBurn?.map((takelivenBurns) => {
+                      return (
+                        <div className="col-sm-3">
+                          <div className="icon-box icon-inversed text-center bg-livenburnitem">
+                            <span className="icon-box-icon">
+                              <img
+                                src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${takelivenBurns.image}`}
+                                alt="category"
+                              />
+                            </span>
+                            <div className="icon-box-content">
+                              <p>{takelivenBurns?.title}</p>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </>
+                );
+              }
+            })()}
           </div>
-          <div className="row pro_feature">
+          {/* <div className="row pro_feature">
             <div className="col-sm-12">
               <img
                 //src={"http://54.177.7.240" + productData?.chooseLivenBurnImage}
@@ -829,7 +803,7 @@ const ProductDetails = ({ productData }) => {
                 className="acv_img"
               />
             </div>
-          </div>
+          </div> */}
 
           <div className="row mt-5" style={{ display: "none" }}>
             <div className="col-sm-8">
@@ -931,6 +905,25 @@ const ProductDetails = ({ productData }) => {
             </div>
           </div>
           <div className="row burn_works mb-10">
+            {/* {(() => {
+              if (productData?.livenBurns?.length > 0) {
+                return (
+                  <>
+                    {productData?.livenBurns?.map((livenBurns) => {
+                      return (
+                        <div className="col-sm-4 burn_works">
+                          <img
+                            src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${livenBurns?.image}`}
+                            className="pro_des_icon2"
+                          />
+                          {livenBurns?.name}
+                        </div>
+                      );
+                    })}
+                  </>
+                );
+              }
+            })()} */}
             <div className="col-sm-4 burn_works">
               <img src={a} className="pro_des_icon2" />
               Provides Antioxidants & Skin Support
@@ -954,9 +947,9 @@ const ProductDetails = ({ productData }) => {
             <div className="col-sm-4 burn_works">
               <img src={f} className="pro_des_icon2" />
               Delicious
-            </div>
+            </div>{" "}
           </div>
-              <br></br>
+          <br></br>
           <div className="row mt-10">
             <div className="col-md-8">
               <h2 className="description-title mb-4 font-weight-semi-bold ls-m">
@@ -1089,7 +1082,7 @@ const ProductDetails = ({ productData }) => {
 
       <section
         className="new_our_idea pt-2 pt-md-7 pt-10"
-        style={{ }}
+        style={{ display: "none" }}
       >
         <div className="container p-0">
           <h2 className="title-echo mb-1">
@@ -1519,7 +1512,7 @@ const ProductDetails = ({ productData }) => {
         </div>
       </section>
 
-      <section className="pt-3 mt-2 mb-2 need_sec" style={{  }}>
+      <section className="pt-3 mt-2 mb-2 need_sec" style={{}}>
         <h2 className="title-echo mb-1">
           <span>Some Related Products</span>
         </h2>
