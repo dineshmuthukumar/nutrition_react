@@ -96,6 +96,7 @@ const ProductDetails = ({ productData }) => {
                   smartSpeed={500}
                   dots={false}
                   navContainerClass={"owl-nav"}
+                  id={"owlcaolse"}
                   responsive={{
                     0: {
                       items: 1,
@@ -154,6 +155,7 @@ const ProductDetails = ({ productData }) => {
                         items={1}
                         smartSpeed={500}
                         dots={false}
+                        id={"owlcaolse"}
                         // navContainerClass={"owl-nav"}
                         responsive={{
                           0: {
@@ -328,14 +330,18 @@ const ProductDetails = ({ productData }) => {
                   <div className="row mt-3 mb-3">
                     <div className="col-sm-12">
                       <div className="product-form-group">
-                        <button className="btn-product btn-cart">
+                        <button
+                          className="btn-product btn-cart"
+                          onClick={() =>
+                            setProductFavor(productData?.productType[0]?._id)
+                          }
+                        >
                           <i className="d-icon-bag"></i>Apple Flavour
                         </button>
                       </div>
                     </div>
                   </div>
                 </div>
-
                 <div className="row cart_packlist">
                   {(() => {
                     if (productData?.productType?.length > 0) {
@@ -353,8 +359,11 @@ const ProductDetails = ({ productData }) => {
                                       type="radio"
                                       name="plan"
                                       id={producttype?.type}
-                                      onChange={() =>
+                                      onClick={() =>
                                         setProductFavor(producttype?._id)
+                                      }
+                                      checked={
+                                        productFavor === producttype?._id
                                       }
                                     />
                                     <div className="plan-content">
@@ -399,13 +408,12 @@ const ProductDetails = ({ productData }) => {
                     }
                   })()}
                 </div>
-
+                ;
                 {/* <div className="row">
                   <div className="col-sm-12">
                     <img src={packag} />
                   </div>
                 </div> */}
-
                 <div className="row">
                   <div className="col-sm-4"></div>
                   <div className="col-sm-4">
@@ -416,7 +424,7 @@ const ProductDetails = ({ productData }) => {
                             className="btn-product btn-cart"
                             onClick={() => {
                               if (!inCart) {
-                                dispatch(add_to_cart_thunk(ProductDetails._id));
+                                dispatch(add_to_cart_thunk(productData?._id));
                               }
                             }}
                           >
@@ -434,7 +442,7 @@ const ProductDetails = ({ productData }) => {
                   </div>
                   <div className="col-sm-4"></div>
                 </div>
-
+                ;
                 <hr className="product-divider mb-3" />
               </div>
             </div>
@@ -1000,7 +1008,7 @@ const ProductDetails = ({ productData }) => {
                                     }"
                                         > */}
               <OwlCarousel
-                className="owl-carousel healing cols-md-3 cols-2"
+                className="owl-carousel healing"
                 margin={20}
                 stagePadding={450}
                 // loop={true}
