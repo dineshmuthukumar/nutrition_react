@@ -63,12 +63,11 @@ import { add_to_cart_thunk } from "../../../redux/thunk/user_cart_thunk";
 const ProductDetails = ({ productData }) => {
   const dispatch = useDispatch();
   const { user, cart } = useSelector((state) => state);
-  const [productFavor, setProductFavor] = useState(
-    productData?.productType[1]?._id
-  );
+  const [productFavor, setProductFavor] = useState("");
   const userCart = cart?.data ? cart?.data : null;
   //const [productData, setProductData] = useState(false);
   const [inCart, setInCart] = useState(false);
+  console.log(productData.productType, "ijedc");
   useEffect(() => {
     if (user) {
       const orderSlug = userCart?.line_items?.find(
@@ -82,6 +81,15 @@ const ProductDetails = ({ productData }) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userCart]);
+
+  useEffect(() => {
+    console.log(productData.productType, "productData.productType");
+    //console.log(productData?.productType, "ewdfcdw");
+    // eslint-di useEffect(() => {
+    if (productData.productType) {
+      setProductFavor(productData.productType[1]._id);
+    }
+  }, [productData.productType]);
   return (
     <>
       <section className="">
@@ -1854,7 +1862,7 @@ const ProductDetails = ({ productData }) => {
       </section>
     </>
   );
-};
+};;;;;
 
 
 export default ProductDetails;
