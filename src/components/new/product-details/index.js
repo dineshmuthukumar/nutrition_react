@@ -1520,7 +1520,7 @@ const ProductDetails = ({ productData }) => {
         </div>
       </section>
 
-      <section className="pt-3 mt-2 mb-2 need_sec" style={{}}>
+      <section className="pt-3 mt-2 mb-2 need_sec" style={{ display: "none" }}>
         <h2 className="title-echo mb-1">
           <span>Some Related Products</span>
         </h2>

@@ -32,7 +32,7 @@ const CheckoutSection = () => {
     key: "rzp_test_2hFYTVjM8i6zhe",
     currency: "INR",
     amount: 100,
-    name: "Learning To Code Online",
+    name: "LivenScience",
     description: "Test Wallet Transaction",
     image: "http://localhost:1337/logo.png",
     handler: function (response) {
@@ -104,14 +104,14 @@ const CheckoutSection = () => {
                         <tr key={productkey}>
                           <td className="product-thumbnail">
                             <figure>
-                              <a href="product-simple.html">
+                              <Link to={`/product/${item?._id}`}>
                                 <img
-                                  src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${item?.photos}`}
+                                  src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${item?.photos[0]}`}
                                   width="100"
                                   height="100"
                                   alt="product"
                                 />
-                              </a>
+                              </Link>
                             </figure>
                           </td>
                           <td className="product-name">
@@ -192,14 +192,27 @@ const CheckoutSection = () => {
                 </div>
                 <h5>Product</h5>
                 <ul className="list-group list-group-flush">
-                  <li className="list-group-item">
+                  {cart?.data?.length > 0
+                    ? cart?.data.map((item, productkey) => {
+                        return (
+                          <li className="list-group-item">
+                            {item?.name}
+                            <span className="plan_right_section">
+                              {currencyFormat(item?.saleAmount, "INR")}
+                            </span>
+                          </li>
+                        );
+                      })
+                    : "No Items Found"}
+
+                  {/* <li className="list-group-item">
                     Fashionable Overnight Bag × 1{" "}
                     <span className="plan_right_section">$110.00</span>
                   </li>
                   <li className="list-group-item">
                     Fashionable Overnight Bag × 1{" "}
                     <span className="plan_right_section">$110.00</span>
-                  </li>
+                  </li> */}
                   <li className="list-group-item">
                     Discount{" "}
                     <span className="plan_right_section dicount_span">

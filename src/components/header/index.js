@@ -1236,7 +1236,7 @@ const Header = ({
                                 <a href="#">
                                   <img
                                     // src={"http://54.177.7.240" + item?.photos}
-                                    src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${item?.photos}`}
+                                    src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${item?.photos[0]}`}
                                     alt="product"
                                     width="80"
                                     height="auto"

@@ -90,7 +90,7 @@ const CartContent = () => {
                             <figure>
                               <a href="product-simple.html">
                                 <img
-                                  src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${item?.photos}`}
+                                  src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${item?.photos[0]}`}
                                   width="100"
                                   height="100"
                                   alt="product"
