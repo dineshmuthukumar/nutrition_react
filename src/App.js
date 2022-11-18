@@ -258,7 +258,11 @@ const WebContainer = () => {
         {/* <Route exact path="/my-account" component={Login} /> */}
         {/* <Route exact path="/site-maintain" component={SiteMaintenance} /> */}
         <Route exact path="/login" component={Login} />
-        <Route exact path="/products/list" component={ProductList} />
+        <Route
+          exact
+          path="/products/list/:categoryid?"
+          component={ProductList}
+        />
         <PrivateRoute exact path="/cart" component={Cart} />
         <PrivateRoute exact path="/accounts" component={MyAccount} />
         <PrivateRoute exact path="/checkout" component={Checkout} />

@@ -16,7 +16,11 @@ import { useHistory, useRouteMatch } from "react-router";
 import { setCookiesByName, setCookies } from "../utils/cookies";
 import { user_load_by_token_thunk } from "../redux/thunk/user_thunk";
 import { nftCategoriesApi } from "../api/methods";
-import { homeContentApi, getsubCategoryListApi } from "../api/base-methods";
+import {
+  homeContentApi,
+  getsubCategoryListApi,
+  getCategoryApi,
+} from "../api/base-methods";
 
 import useQuery from "../hook/useQuery";
 //import FavouriteNFTs from "../components/favourite-NFTs";
@@ -82,6 +86,16 @@ const NewHome = () => {
     }
   };
 
+  const getCategoryList = async () => {
+    try {
+      let response = await getCategoryApi();
+      //setList(response?.data?.responseData);
+      setList(response?.data?.responseData?.categories);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   // const categoriesList = async (page) => {
   //   try {
   //     let response = await nftCategoriesApi({ page });
@@ -107,6 +121,7 @@ const NewHome = () => {
     /// categoriesList(1);
     homecontent();
     SubcategoryList();
+    getCategoryList();
 
     if (_ga) {
       history.replace(url);

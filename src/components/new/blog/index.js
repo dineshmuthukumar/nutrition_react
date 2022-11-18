@@ -27,7 +27,7 @@ import { Link } from "react-router-dom";
 
 import { blogListApi } from "../../../api/base-methods";
 
-import pagination from "../pagination";
+import Pagination from "../pagination";
 
 import "./style.scss";
 import dayjs from "dayjs";
@@ -121,7 +121,7 @@ const Blog = () => {
           </div>
           {list?.length > 0 ? (
             <div className="user-profile-table-pagination">
-              <pagination
+              <Pagination
                 className="pagination-bar"
                 currentPage={currentPage}
                 totalCount={totalCount}

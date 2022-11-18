@@ -91,7 +91,7 @@ export const get_cart_list_thunk = () => {
       dispatch(get_cart_list_request());
       const result = await getCartListApi();
       //console.log(result, "result");
-      dispatch(get_cart_list_success(result?.data?.responseData?.cart));
+      dispatch(get_cart_list_success(result?.data?.responseData));
     } catch (err) {
       console.log(err);
       dispatch(get_cart_list_failure(err));

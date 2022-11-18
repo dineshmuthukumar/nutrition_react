@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import OwlCarousel from "react-owl-carousel";
-import { getsubCategoryApi } from "../../../api/base-methods";
+import {
+  getsubCategoryApi,
+  productListCategoryApi,
+} from "../../../api/base-methods";
 import { add_to_cart_thunk } from "../../../redux/thunk/user_cart_thunk";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -28,12 +31,14 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
   const [productTabActive, setProductTabActive] = useState(true);
   const userCart = cart?.data ? cart?.data : null;
   const IsProductDetails = async (subcategoryId, key) => {
-    const result = await getsubCategoryApi(subcategoryId);
-    setProdList(result?.data?.responseData?.Products);
+    const result = await productListCategoryApi(subcategoryId);
+    console.log(result?.data?.responseData?.product?.docs);
+    setProdList(result?.data?.responseData?.product?.docs);
+    //console.log(result?.data?.responseData?.product?.docs?.length);
     setCategoryActive(true);
     setProductTabActive(true);
     setCategoryActiveIndex(key);
-  };
+  };;
 
   useEffect(() => {
     //console.log("Usereffect");
@@ -102,7 +107,7 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
                                   className="fa fa-home"
                                   aria-hidden="true"
                                 ></i>{" "}
-                                {arrivalecontent?.subCategoryName}
+                                {arrivalecontent?.name}
                               </h3>
                             </a>
                           </li>

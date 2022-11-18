@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import OwlCarousel from "react-owl-carousel";
 
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 //import Image from "react-bootstrap/Image";
-import { BiArrowBack,BiRightArrowAlt } from "react-icons/bi";
+import { BiArrowBack, BiRightArrowAlt } from "react-icons/bi";
 
 import { Button, Form } from "react-bootstrap";
 import { HiOutlineArrowRight } from "react-icons/hi";
@@ -21,7 +21,6 @@ import Banner_1 from "../../../images/new-images/demos/demo-food2/slides/banner_
 import Banner_2 from "../../../images/new-images/demos/demo-food2/slides/banner_2.jpg";
 
 import Banner_3 from "../../../images/new-images/demos/demo-food2/slides/banner_2.jpg";
-
 
 import "./style.scss";
 
@@ -67,19 +66,21 @@ const Banner = ({ bannerContent }) => {
                   <>
                     {bannerContent?.map((BannerDetail, key) => {
                       return (
-                        <div
-                          className={`intro-slide${key} banner banner-fixed`}
-                        >
-                          <figure>
-                            <img
-                              src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${BannerDetail?.image}`}
-                              alt="intro-banner"
-                              width="1903"
-                              height="540"
-                              intro-section
-                            />
-                          </figure>
-                        </div>
+                        <Link to={`/products/list/${BannerDetail.categoryId}`}>
+                          <div
+                            className={`intro-slide${key} banner banner-fixed`}
+                          >
+                            <figure>
+                              <img
+                                src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${BannerDetail?.image}`}
+                                alt="intro-banner"
+                                width="1903"
+                                height="540"
+                                intro-section
+                              />
+                            </figure>
+                          </div>
+                        </Link>
                       );
                     })}
                   </>

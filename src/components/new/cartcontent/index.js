@@ -28,7 +28,6 @@ import { remove_from_cart_thunk } from "../../../redux/thunk/user_cart_thunk";
 const CartContent = () => {
   const dispatch = useDispatch();
   const { user, cart } = useSelector((state) => state);
-  const { product, setProduct } = useState([]);
   // console.log(cart?.data, "cart");
 
   useEffect(() => {

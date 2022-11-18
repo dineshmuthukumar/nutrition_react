@@ -24,34 +24,94 @@ import { useDispatch, useSelector } from "react-redux";
 import { remove_from_cart_thunk } from "../../../redux/thunk/user_cart_thunk";
 import "./style.scss";
 import { currencyFormat } from "../../../utils/common";
+import {
+  getCheckoutApi,
+  OrderSuccessApi,
+  OrdersFailedApi,
+} from "../../../api/base-methods";
+import { toast } from "react-toastify";
+import { checkoutApi } from "../../../api/methods";
 
-const CheckoutSection = () => {
+const CheckoutSection = ({ orderInfo }) => {
   const dispatch = useDispatch();
   const { user, cart } = useSelector((state) => state);
-  const options = {
-    key: "rzp_test_2hFYTVjM8i6zhe",
-    currency: "INR",
-    amount: 100,
-    name: "LivenScience",
-    description: "Test Wallet Transaction",
-    image: "http://localhost:1337/logo.png",
-    handler: function (response) {
-      console.log(response, "response");
-      alert(response.razorpay_payment_id);
-      alert(response.razorpay_order_id);
-      alert(response.razorpay_signature);
-    },
-    prefill: {
-      name: "Anirudh Jwala",
-      email: "anirudh@gmail.com",
-      contact: "9999999999",
-    },
-  };
+  console.log(user?.data, "user");
+  const { orderDetails, setOrderDetails } = useState("");
+  const { totalAmount, setTotalAmount } = useState(0);
+  const { currency, setCurrency } = useState("INR");
 
-  const open = () => {
+  const checkDetails = async () => {
+    let requestData = { cartId: cart?.data?.cardId };
+    const CheckoutDetails = await getCheckoutApi(requestData);
+    //   console.log(CheckoutDetails?.data?.responseData?.orderInfo?.amount);
+    //   setTotalAmount(1000);
+    //   setCurrency(CheckoutDetails?.data?.responseData?.orderInfo?.currency);
+  };
+  useEffect(async () => {
+    checkDetails();
+    // console.log(response?.data?.responseData?.blogs?.docs, "response");
+  }, []);
+
+  const open = async () => {
+    // try {
+    //   //console.log("cart?.data?", cart?.data);
+    //   let requestData = { cartId: cart?.data?.cardId };
+    //   const CheckoutDetails = await getCheckoutApi(requestData);
+    //CheckoutDetails?.data?.responseData.orderInfo?.amount;
+    // console.log(
+    //   CheckoutDetails?.data?.responseData.orderInfo,
+    //   "CheckoutDetails"
+    // );
+    const options = {
+      key: "rzp_test_2hFYTVjM8i6zhe",
+      currency: orderInfo?.orderInfo?.currency,
+      amount: orderInfo?.orderInfo?.amount,
+      name: "LivenScience",
+      description: "Test Wallet Transaction",
+      image: "http://localhost:1337/logo.png",
+      order_id: orderInfo?.orderInfo?.order,
+      handler: async function (response) {
+        console.log(response, "response");
+
+        let RequestData = {
+          razorpay_payment_id: response.razorpay_payment_id,
+          razorpay_order_id: response.razorpay_order_id,
+          razorpay_signature: response.razorpay_signature,
+        };
+
+        const result = await OrderSuccessApi(RequestData);
+        if (result.data.statusCode === 200) {
+          toast.success("order sucessfully created");
+        }
+
+        // alert(response.razorpay_payment_id);
+        // alert(response.razorpay_order_id);
+        // alert(response.razorpay_signature);
+      },
+      prefill: {
+        name: user?.data?.name,
+        email: user?.data?.email,
+        contact: user?.data?.mobile,
+      },
+    };
     const paymentObject = new window.Razorpay(options);
     paymentObject.open();
-  };
+
+    paymentObject.on("payment.failed", function (response) {
+      console.log(response, "response");
+      console.log(response.error.code);
+      console.log(response.error.description);
+      console.log(response.error.source);
+      console.log(response.error.step);
+      console.log(response.error.reason);
+      console.log(response.error.metadata.order_id);
+      console.log(response.error.metadata.payment_id);
+    });
+    //   setTotalAmount(CheckoutDetails?.data?.responseData.orderInfo?.amount);
+    //   setCurrency(CheckoutDetails?.data?.responseData.orderInfo?.currency);
+    //   setOrderDetails(CheckoutDetails?.data?.responseData.orderInfo);
+    // } catch (err) {}
+  };;
 
   const loadScript = (src) => {
     return new Promise((resolve) => {
@@ -66,9 +126,11 @@ const CheckoutSection = () => {
       document.body.appendChild(script);
     });
   };
+
   useEffect(() => {
     loadScript("https://checkout.razorpay.com/v1/checkout.js");
   });
+
   return (
     <>
       <section className="checkout customer-section">
@@ -80,7 +142,7 @@ const CheckoutSection = () => {
         <div className="container mt-7 mb-2">
           <div className="row align-items-center">
             <div className="col-lg-8 col-md-8 pr-lg-4">
-              {cart?.data?.length > 0 ? (
+              {cart?.data?.cart?.length > 0 ? (
                 <table className="shop-table cart-table">
                   <thead>
                     <tr>
@@ -99,7 +161,7 @@ const CheckoutSection = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {cart?.data.map((item, productkey) => {
+                    {cart?.data?.cart?.map((item, productkey) => {
                       return (
                         <tr key={productkey}>
                           <td className="product-thumbnail">
@@ -162,7 +224,7 @@ const CheckoutSection = () => {
 
               <div className="cart-actions-right mb-6 pt-4">
                 {(() => {
-                  if (cart?.data?.length > 0) {
+                  if (cart?.data?.cart?.length > 0) {
                     return (
                       <Link
                         // to="#"
@@ -192,8 +254,8 @@ const CheckoutSection = () => {
                 </div>
                 <h5>Product</h5>
                 <ul className="list-group list-group-flush">
-                  {cart?.data?.length > 0
-                    ? cart?.data.map((item, productkey) => {
+                  {cart?.data?.cart.length > 0
+                    ? cart?.data?.cart?.map((item, productkey) => {
                         return (
                           <li className="list-group-item">
                             {item?.name}
@@ -213,16 +275,16 @@ const CheckoutSection = () => {
                     Fashionable Overnight Bag × 1{" "}
                     <span className="plan_right_section">$110.00</span>
                   </li> */}
-                  <li className="list-group-item">
+                  {/* <li className="list-group-item">
                     Discount{" "}
                     <span className="plan_right_section dicount_span">
                       -$10
                     </span>
-                  </li>
+                  </li> */}
                   <li className="list-group-item">
                     Delivery Charges{" "}
                     <span className="plan_right_section dicount_span">
-                      Free
+                      {currencyFormat(orderInfo?.deliveryCharge, "INR")}
                     </span>
                   </li>
                 </ul>
@@ -231,7 +293,12 @@ const CheckoutSection = () => {
                     <li className="list-group-item">
                       <h5>
                         Total Amount
-                        <span className="plan_right_section">$118.00</span>
+                        <span className="plan_right_section">
+                          {currencyFormat(
+                            orderInfo?.orderInfo?.amount / 100,
+                            "INR"
+                          )}
+                        </span>
                       </h5>
                     </li>
                   </ul>

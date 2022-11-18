@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactPixel from "react-facebook-pixel";
 ///import { useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 //import Banner from "../components/banner";
 // import LiveAuctions from "../components/live-auctions";
@@ -34,6 +34,7 @@ import Header from "../components/header";
 import CheckoutSection from "../components/new/checkout-section";
 
 import Footer from "../components/footer";
+import { getCheckoutApi } from "../api/base-methods";
 
 const Checkout = () => {
   const { url } = useRouteMatch();
@@ -43,23 +44,14 @@ const Checkout = () => {
   const fsz = query.get("fsz");
   const token = query.get("token");
   const _ga = query.get("_ga");
-  // const { user } = useSelector((state) => state.user.data);
+  const { cart, user } = useSelector((state) => state);
 
   const [list, setList] = useState([]);
 
   // const [favPage, setFavPage] = useState(1);
   // const [favList, setFavList] = useState([]);
   // const [favLoading, setFavLoading] = useState(false);
-  // const [favHasNext, setFavHasNext] = useState(false);
-
-  const categoriesList = async (page) => {
-    try {
-      let response = await nftCategoriesApi({ page });
-      setList([...list, ...response.data.data.categories]);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  const [orderInfo, setOrderInfo] = useState({});
 
   useEffect(() => {
     if (fsz) {
@@ -74,7 +66,7 @@ const Checkout = () => {
       dispatch(user_load_by_token_thunk(token));
     }
 
-    //categoriesList(1);
+    checkDetails();
     if (_ga) {
       history.replace(url);
     }
@@ -108,6 +100,13 @@ const Checkout = () => {
     }
   }, []);
 
+  const checkDetails = async () => {
+    let requestData = { cartId: cart?.data?.cardId };
+    const CheckoutDetails = await getCheckoutApi(requestData);
+    console.log(CheckoutDetails?.data?.responseData);
+
+    setOrderInfo(CheckoutDetails?.data?.responseData);
+  };
   return (
     <>
       <Header
@@ -126,8 +125,8 @@ const Checkout = () => {
                 Checkout
               </h1>
             </div>
-            <div class="page-content pb-10 pt-10">
-              <CheckoutSection />
+            <div className="page-content pb-10 pt-10">
+              <CheckoutSection orderInfo={orderInfo} />
             </div>
           </div>
         </div>

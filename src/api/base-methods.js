@@ -57,12 +57,30 @@ export const productListApi = (props) =>
   baseAxios.get(`/product/list?page=${props}`);
 
 
-  export const cmsPages = (props) => baseAxios.get(`/pages`);
+export const cmsPages = (props) => baseAxios.get(`/pages`);
 
-  export const cmsPagetApi = (props) => baseAxios.get(`/page/${props}`);
+export const cmsPagetApi = (props) => baseAxios.get(`/page/${props}`);
 
-  export const FreeProductApi = (props) =>
-    baseAxios.post(`/freeProduct`, { ...props });
+export const FreeProductApi = (props) =>
+  baseAxios.post(`/freeProduct`, { ...props });
+
+export const getCheckoutApi = (props) =>
+  baseAxios.post(`/checkout/order`, { ...props });
+
+export const OrderSuccessApi = (props) =>
+  baseAxios.post(`/checkout/response/success`, { ...props });
+
+export const OrdersFailedApi = (props) =>
+  baseAxios.post(`/checkout/response/failed`, { ...props });
+
+export const productListCategoryApi = (props) =>
+  baseAxios.get(`/product/list?categoryId=${props}`);
+
+export const productListCategoryApiwithpage = (page, categoriesId) =>
+  baseAxios.get(`/product/list?page=${page}&categoryId=${categoriesId}`);
+
+
+
 
 
 

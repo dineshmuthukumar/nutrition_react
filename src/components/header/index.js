@@ -59,6 +59,7 @@ const Header = ({
   const dispatch = useDispatch();
   const location = useLocation();
   const { user, cart } = useSelector((state) => state);
+
   const history = useHistory();
 
   const [notiLoading, setNotiLoading] = useState(false);
@@ -1212,9 +1213,9 @@ const Header = ({
                 <div className="dropdown cart-dropdown type2 mr-2">
                   <a href="#" className="cart-toggle link">
                     <i className="d-icon-bag mb-1">
-                      {cart?.data?.length > 0 ? (
+                      {cart?.data?.cart?.length > 0 ? (
                         <span className="cart-count bg-dark">
-                          {cart?.data?.length}
+                          {cart?.data?.cart?.length}
                         </span>
                       ) : (
                         ""
@@ -1224,8 +1225,8 @@ const Header = ({
 
                   <div className="dropdown-box">
                     <div className="products scrollable">
-                      {cart?.data?.length > 0 &&
-                        cart?.data?.map((item, productcartkey) => {
+                      {cart?.data?.cart?.length > 0 &&
+                        cart?.data?.cart?.map((item, productcartkey) => {
                           totalAmount = totalAmount + item?.saleAmount;
                           return (
                             <div

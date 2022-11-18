@@ -3,7 +3,9 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import ProductList from "../components/new/product-list";
 
-const Blogs = () => {
+import { useHistory, useRouteMatch } from "react-router";
+
+const Productlist = () => {
   return (
     <>
       <Header
@@ -31,4 +33,4 @@ const Blogs = () => {
   );
 };
 
-export default Blogs;
+export default Productlist;
