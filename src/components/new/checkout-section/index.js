@@ -42,7 +42,7 @@ const CheckoutSection = ({ orderInfo }) => {
 
   const checkDetails = async () => {
     let requestData = { cartId: cart?.data?.cardId };
-    const CheckoutDetails = await getCheckoutApi(requestData);
+    /// const CheckoutDetails = await getCheckoutApi(requestData);
     //   console.log(CheckoutDetails?.data?.responseData?.orderInfo?.amount);
     //   setTotalAmount(1000);
     //   setCurrency(CheckoutDetails?.data?.responseData?.orderInfo?.currency);

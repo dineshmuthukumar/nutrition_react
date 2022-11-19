@@ -59,8 +59,9 @@ import "./style.scss";
 import { currencyFormat } from "../../../utils/common";
 import { useDispatch, useSelector } from "react-redux";
 import { add_to_cart_thunk } from "../../../redux/thunk/user_cart_thunk";
+import Product from "../../product";
 
-const ProductDetails = ({ productData }) => {
+const ProductDetails = ({ productData, subCategoryProducts }) => {
   const dispatch = useDispatch();
   const { user, cart } = useSelector((state) => state);
   const [productFavor, setProductFavor] = useState("");
@@ -83,7 +84,7 @@ const ProductDetails = ({ productData }) => {
   }, [userCart]);
 
   useEffect(() => {
-    console.log(productData.productType, "productData.productType");
+    // console.log(productData.productType, "productData.productType");
     //console.log(productData?.productType, "ewdfcdw");
     // eslint-di useEffect(() => {
     if (productData.productType) {
@@ -1042,10 +1043,10 @@ const ProductDetails = ({ productData }) => {
                 // ]}
               >
                 {(() => {
-                  if (productData?.healingPotentials?.length > 0) {
+                  if (subCategoryProducts?.length > 0) {
                     return (
                       <>
-                        {productData?.healingPotentials?.map((healingPoten) => {
+                        {subCategoryProducts?.map((healingPoten) => {
                           return (
                             <div className="product-refdc text-center product-with-qty no_border">
                               <figure className="product-media">
@@ -1520,7 +1521,7 @@ const ProductDetails = ({ productData }) => {
         </div>
       </section>
 
-      <section className="pt-3 mt-2 mb-2 need_sec" style={{ display: "none" }}>
+      <section className="pt-3 mt-2 mb-2 need_sec">
         <h2 className="title-echo mb-1">
           <span>Some Related Products</span>
         </h2>
@@ -1575,280 +1576,34 @@ const ProductDetails = ({ productData }) => {
           //   '<i class="fa fa-chevron-right"></i>'
           // ]}
         >
-          <div className="product text-center product-with-qty">
-            <figure className="product-media">
-              <a href="#">
-                <img
-                  src={pro_product_1}
-                  alt="product"
-                  width="280"
-                  height="315"
-                />
-              </a>
-              <div className="product-label-group">
-                <img src={price_tag.png} />
-              </div>
-            </figure>
-            <div className="product-details">
-              <h3 className="product-name">
-                <a href="#">Glow Japanese Marine Collagen Peptides</a>
-              </h3>
-              <div className="product-price ls-md offer_price_details">
-                <span className="price">$140.00</span>
-                <span className="price line-through">Rs. 2,499</span>
-                {/* <!-- <span className="price base-color">25% off</span> --> */}
-              </div>
-              <div className="ratings-container">
-                <div className="ratings-full">
-                  <span className="ratings" style={{ width: "100%" }}></span>
-                  <span className="tooltiptext tooltip-top"></span>
-                </div>
-              </div>
-              {/* <!-- <div className="row">
-                                                        <div className="col-sm-12">
-                                                            <div className="product-action">
-                                                                <a href="#" className="btn-product btn-cart ls-l" data-toggle="modal" data-target="#addCartModal" title="Add to cart"><i className="d-icon-bag"></i><span>Add to cart</span></a>
-                                                            </div>
-                                                        </div>
-                                                    </div> --> */}
-              <div className="product-action">
-                <a
-                  href="#"
-                  className="btn-product btn-cart ls-l"
-                  data-toggle="modal"
-                  data-target="#addCartModal"
-                  title="Add to cart"
-                >
-                  <i className="d-icon-bag"></i>
-                  <span>Add to cart</span>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="product text-center product-with-qty">
-            <figure className="product-media">
-              <a href="#">
-                <img
-                  src={pro_product_2}
-                  alt="product"
-                  width="280"
-                  height="315"
-                />
-              </a>
-              <div className="product-label-group">
-                {/* <!-- <label className="product-label label-sale">25% Off</label> --> */}
-                <img src={price_tag} />
-              </div>
-            </figure>
-            <div className="product-details">
-              <h3 className="product-name">
-                <a href="#">Marvel Natural B12+ D3</a>
-              </h3>
-              <div className="product-price ls-md offer_price_details">
-                <span className="price">$140.00</span>
-                <span className="price line-through">Rs. 2,499</span>
-                {/* <!-- <span className="price base-color">25% off</span> --> */}
-              </div>
-              <div className="ratings-container">
-                <div className="ratings-full">
-                  <span className="ratings" style={{ width: "100%" }}></span>
-                  <span className="tooltiptext tooltip-top"></span>
-                </div>
-              </div>
-              <div className="product-action">
-                <a
-                  href="#"
-                  className="btn-product btn-cart ls-l"
-                  data-toggle="modal"
-                  data-target="#addCartModal"
-                  title="Add to cart"
-                >
-                  <i className="d-icon-bag"></i>
-                  <span>Add to cart</span>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="product text-center product-with-qty">
-            <figure className="product-media">
-              <a href="#">
-                <img
-                  src={pro_product_3}
-                  alt="product"
-                  width="280"
-                  height="315"
-                />
-              </a>
-              <div className="product-label-group">
-                <img src={price_tag} />
-              </div>
-            </figure>
-            <div className="product-details">
-              <h3 className="product-name">
-                <a href="#">Disney Frozen Probiotic</a>
-              </h3>
-              <div className="product-price ls-md offer_price_details">
-                <span className="price">$140.00</span>
-                <span className="price line-through">Rs. 2,499</span>
-                {/* <!-- <span className="price base-color">25% off</span> --> */}
-              </div>
-              <div className="ratings-container">
-                <div className="ratings-full">
-                  <span className="ratings" style={{ width: "100%" }}></span>
-                  <span className="tooltiptext tooltip-top"></span>
-                </div>
-              </div>
-              <div className="product-action">
-                <a
-                  href="#"
-                  className="btn-product btn-cart ls-l"
-                  data-toggle="modal"
-                  data-target="#addCartModal"
-                  title="Add to cart"
-                >
-                  <i className="d-icon-bag"></i>
-                  <span>Add to cart</span>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="product text-center product-with-qty">
-            <figure className="product-media">
-              <a href="#">
-                <img
-                  src={pro_product_4}
-                  alt="product"
-                  width="280"
-                  height="315"
-                />
-              </a>
-              <div className="product-label-group">
-                <img src={price_tag} />
-              </div>
-            </figure>
-            <div className="product-details">
-              <h3 className="product-name">
-                <a href="#">Daily Greens</a>
-              </h3>
-              <div className="product-price ls-md offer_price_details">
-                <span className="price">$140.00</span>
-                <span className="price line-through">Rs. 2,499</span>
-                {/* <!-- <span className="price base-color">25% off</span> --> */}
-              </div>
-              <div className="ratings-container">
-                <div className="ratings-full">
-                  <span className="ratings" style={{ width: "100%" }}></span>
-                  <span className="tooltiptext tooltip-top"></span>
-                </div>
-              </div>
-              <div className="product-action">
-                <a
-                  href="#"
-                  className="btn-product btn-cart ls-l"
-                  data-toggle="modal"
-                  data-target="#addCartModal"
-                  title="Add to cart"
-                >
-                  <i className="d-icon-bag"></i>
-                  <span>Add to cart</span>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="product text-center product-with-qty">
-            <figure className="product-media">
-              <a href="#">
-                <img
-                  src={pro_product_2}
-                  alt="product"
-                  width="280"
-                  height="315"
-                />
-              </a>
-              <div className="product-label-group">
-                <img src={price_tag} />
-              </div>
-            </figure>
-            <div className="product-details">
-              <h3 className="product-name">
-                <a href="#">Marvel Natural B12+ D3</a>
-              </h3>
-              <div className="product-price ls-md offer_price_details">
-                <span className="price">$140.00</span>
-                <span className="price line-through">Rs. 2,499</span>
-                {/* <!-- <span className="price base-color">25% off</span> --> */}
-              </div>
-              <div className="ratings-container">
-                <div className="ratings-full">
-                  <span className="ratings" style={{ width: "100%" }}></span>
-                  <span className="tooltiptext tooltip-top"></span>
-                </div>
-              </div>
-              <div className="product-action">
-                <a
-                  href="#"
-                  className="btn-product btn-cart ls-l"
-                  data-toggle="modal"
-                  data-target="#addCartModal"
-                  title="Add to cart"
-                >
-                  <i className="d-icon-bag"></i>
-                  <span>Add to cart</span>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="product text-center product-with-qty">
-            <figure className="product-media">
-              <a href="#">
-                <img
-                  src={pro_product_3}
-                  alt="product"
-                  width="280"
-                  height="315"
-                />
-              </a>
-              <div className="product-label-group">
-                <img src={price_tag} />
-              </div>
-            </figure>
-            <div className="product-details">
-              <h3 className="product-name">
-                <a href="#">Disney Frozen Probiotic</a>
-              </h3>
-              <div className="product-price ls-md offer_price_details">
-                <span className="price">$140.00</span>
-                <span className="price line-through">Rs. 2,499</span>
-                {/* <!-- <span className="price base-color">25% off</span> --> */}
-              </div>
-              <div className="ratings-container">
-                <div className="ratings-full">
-                  <span className="ratings" style={{ width: "100%" }}></span>
-                  <span className="tooltiptext tooltip-top"></span>
-                </div>
-              </div>
-              <div className="product-action">
-                <a
-                  href="#"
-                  className="btn-product btn-cart ls-l"
-                  data-toggle="modal"
-                  data-target="#addCartModal"
-                  title="Add to cart"
-                >
-                  <i className="d-icon-bag"></i>
-                  <span>Add to cart</span>
-                </a>
-              </div>
-            </div>
-          </div>
+          {(() => {
+            if (subCategoryProducts?.length > 0) {
+              return (
+                <>
+                  {subCategoryProducts?.map(
+                    (subCategoryProductsDetails, pkey) => {
+                      return (
+                        <Product
+                          ProductDetails={subCategoryProductsDetails}
+                          key={pkey}
+                        />
+                      );
+                    }
+                  )}
+                </>
+              );
+            }
+          })()}
         </OwlCarousel>
         <div className="row mt-10">
           <div className="col-sm-12 text-center">
             <div className="product-form-group justify-content-center">
               {/* {user?.login ? ( */}
-              <button className="btn-product btn-cart wid_250">
-                <i className="d-icon-bag pr-2"></i> More Health Boosters
-              </button>
+              <Link to={`/products/list/${productData.categoryId}`}>
+                <button className="btn-product btn-cart wid_250">
+                  <i className="d-icon-bag pr-2"></i> More Health Boosters
+                </button>
+              </Link>
               {/* ) : (
                 <Link to="/login">
                   <button className="btn-product btn-cart wid_250">

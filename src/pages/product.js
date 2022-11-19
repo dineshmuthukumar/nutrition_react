@@ -50,6 +50,7 @@ const NewHome = () => {
   // const { user } = useSelector((state) => state.user.data);
 
   const [productData, setProductData] = useState({});
+  const [subCategoryProducts, setSubCategoryProducts] = useState({});
 
   // const [favPage, setFavPage] = useState(1);
   // const [favList, setFavList] = useState([]);
@@ -60,6 +61,7 @@ const NewHome = () => {
     try {
       let response = await getProductDetailsApi(productid);
       setProductData(response?.data?.responseData?.product);
+      setSubCategoryProducts(response?.data?.responseData?.subcategoryProducts);
     } catch (err) {
       console.log(err);
     }
@@ -144,7 +146,10 @@ const NewHome = () => {
       <main className="main pt-6 single-product">
         <div className="page-content">
           <div className="container">
-            <ProductDetails productData={productData} />
+            <ProductDetails
+              productData={productData}
+              subCategoryProducts={subCategoryProducts}
+            />
           </div>
           <Footer />
         </div>

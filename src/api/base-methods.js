@@ -68,10 +68,10 @@ export const getCheckoutApi = (props) =>
   baseAxios.post(`/checkout/order`, { ...props });
 
 export const OrderSuccessApi = (props) =>
-  baseAxios.post(`/checkout/response/success`, { ...props });
+  baseAxios.post(`/checkout/order/response/success`, { ...props });
 
 export const OrdersFailedApi = (props) =>
-  baseAxios.post(`/checkout/response/failed`, { ...props });
+  baseAxios.post(`/checkout/order/response/failed`, { ...props });
 
 export const productListCategoryApi = (props) =>
   baseAxios.get(`/product/list?categoryId=${props}`);
