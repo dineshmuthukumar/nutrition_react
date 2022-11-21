@@ -222,7 +222,7 @@ const Footer = () => {
               </div>
             </div>
             <div className="row pt-10 new_bottom_footer_link">
-              <div className="col-sm-3 flex-center">
+              <div className="col-sm-4 flex-center">
                 <div className="widget widget-contact">
                   <h4 className="widget-title">Know Us</h4>
                   <ul className="widget-body">
@@ -304,7 +304,7 @@ const Footer = () => {
                   </ul>
                 </div>
               </div>
-              <div className="col-sm-3 flex-center">
+              <div className="col-sm-4 flex-center">
                 <div className="widget widget-contact">
                   <h4 className="widget-title">Ours Products</h4>
                   <ul className="widget-body">
@@ -332,7 +332,7 @@ const Footer = () => {
                   </ul>
                 </div>
               </div>
-              <div className="col-sm-3 flex-center">
+              <div className="col-sm-4 flex-center">
                 <div className="widget widget-contact">
                   <h4 className="widget-title">Explore More</h4>
                   <ul className="widget-body">

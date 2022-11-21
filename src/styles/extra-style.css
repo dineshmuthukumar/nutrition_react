@@ -992,7 +992,9 @@ i.d-icon-heart
 }
 .product-thumbs-wrap .product-thumbs .product-thumb_img
 {
+    height: 100px;
     border-radius: 100px;
+    width: 100px;
 }
 .product-thumb.active::before 
 {
@@ -1546,5 +1548,59 @@ figure.post-media img
 {
     height: 200px;
     max-height: 200px;
+    object-fit: contain;
+}
+
+
+
+.overlay.overlay-transparent p
+{
+color: #fff;
+}
+.image-box figure
+{
+height: 200px;
+min-height: 200px;
+}
+figure.banner-radius
+{
+height: 200px;
+min-height: 200px;
+}
+.image-overlay img
+{
+width: 100%;
+object-fit: cover;
+}
+.icon-box.icon-inversed .icon-box-icon img
+{
+border-radius: 50%;
+width: 100px;
+height: 100px;
+padding: 6px;
+}
+.product-media img:first-child 
+{
+    position: relative;
+    opacity: 1;
+    /* height: 300px;
+    min-height: 300px; */
+    object-fit: cover;
+}
+video.card_video__1z3he 
+{
+    object-fit: cover;
+}
+.banner1.banner.banner-fixed.overlay-zoom figure 
+{
+    overflow: hidden;
+    height: 300px;
+    min-height: 300px;
+    background-size: cover;
+}
+#product_des_page .product-media img:last-child
+{
+    min-height: 210px;
+    height: 210px;
     object-fit: contain;
 }

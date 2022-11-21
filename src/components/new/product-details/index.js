@@ -1521,7 +1521,7 @@ const ProductDetails = ({ productData, subCategoryProducts }) => {
         </div>
       </section>
 
-      <section className="pt-3 mt-2 mb-2 need_sec">
+      <section className="pt-3 mt-2 mb-2 need_sec" id="product_des_page">
         <h2 className="title-echo mb-1">
           <span>Some Related Products</span>
         </h2>
