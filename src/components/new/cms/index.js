@@ -56,7 +56,7 @@ const Aboutus = () => {
               </div>
             )} */}
             <div className="col-md-12 mb-4">
-              <h3 className="cms-page-title section-title lh-1 font-weight-bold">
+              <h3 className="cms-page-title section-title lh-1 font-weight-light">
                 {" "}
                 {Data?.title}
               </h3>

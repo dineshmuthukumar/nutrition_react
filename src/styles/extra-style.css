@@ -1604,3 +1604,8 @@ video.card_video__1z3he
     height: 210px;
     object-fit: contain;
 }
+.product-gallery.product-gallery-sticky figure.product-image img
+{  
+    object-fit: contain;
+    height: 500px;
+}
