@@ -21,7 +21,10 @@ import { Link } from "react-router-dom";
 import customer from "../../../images/new-images/subpages/customer.jpg";
 import store from "../../../images/new-images/subpages/store.jpg";
 import { useDispatch, useSelector } from "react-redux";
-import { remove_from_cart_thunk } from "../../../redux/thunk/user_cart_thunk";
+import {
+  get_cart_list_thunk,
+  remove_from_cart_thunk,
+} from "../../../redux/thunk/user_cart_thunk";
 import "./style.scss";
 import { currencyFormat } from "../../../utils/common";
 import {
@@ -48,6 +51,7 @@ const CheckoutSection = ({ orderInfo }) => {
     //   setCurrency(CheckoutDetails?.data?.responseData?.orderInfo?.currency);
   };
   useEffect(async () => {
+    dispatch(get_cart_list_thunk());
     checkDetails();
     // console.log(response?.data?.responseData?.blogs?.docs, "response");
   }, []);
@@ -93,7 +97,7 @@ const CheckoutSection = ({ orderInfo }) => {
       image: "https://manuarora.in/logo.png",
       // description: "Test Wallet Transaction",
       // image: "http://localhost:1337/logo.png",
-      //order_id: orderInfo?.orderInfo?.order,
+      order_id: orderInfo?.orderInfo?.id,
       handler: async function (response) {
         console.log(response, "response");
 

@@ -1,7 +1,7 @@
 
 
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {
   getProductDetailsApi,
   FreeProductApi,
@@ -80,7 +80,9 @@ import {
 import { toast } from "react-toastify";
 
 const Free_Trial_Section = ({ productData }) => {
+  const history = useHistory();
   //console.log(productData?._id, "productData");
+  const dispatch = useDispatch();
   const { user, cart } = useSelector((state) => state);
   const [stateList, setStateList] = useState({});
   const [cityList, setCityList] = useState({});
@@ -263,6 +265,8 @@ const Free_Trial_Section = ({ productData }) => {
           });
         }
         console.log(result, "result");
+        dispatch(add_to_cart_thunk(productData?._id));
+        history.push("/cart");
       } catch (err) {
         //console.log(err);
         toast.error(err?.data?.message);
