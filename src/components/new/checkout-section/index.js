@@ -52,8 +52,30 @@ const CheckoutSection = ({ orderInfo }) => {
     // console.log(response?.data?.responseData?.blogs?.docs, "response");
   }, []);
 
+  const initializeRazorpay = () => {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = "https://checkout.razorpay.com/v1/checkout.js";
+
+      script.onload = () => {
+        resolve(true);
+      };
+      script.onerror = () => {
+        resolve(false);
+      };
+
+      document.body.appendChild(script);
+    });
+  };
+
   const open = async () => {
     // try {
+    const res = await initializeRazorpay();
+
+    if (!res) {
+      alert("Razorpay SDK Failed to load");
+      return;
+    }
     //   //console.log("cart?.data?", cart?.data);
     //   let requestData = { cartId: cart?.data?.cardId };
     //   const CheckoutDetails = await getCheckoutApi(requestData);
@@ -67,9 +89,11 @@ const CheckoutSection = ({ orderInfo }) => {
       currency: orderInfo?.orderInfo?.currency,
       amount: orderInfo?.orderInfo?.amount,
       name: "LivenScience",
-      description: "Test Wallet Transaction",
-      image: "http://localhost:1337/logo.png",
-      order_id: orderInfo?.orderInfo?.order,
+      description: "Thankyou for your order",
+      image: "https://manuarora.in/logo.png",
+      // description: "Test Wallet Transaction",
+      // image: "http://localhost:1337/logo.png",
+      //order_id: orderInfo?.orderInfo?.order,
       handler: async function (response) {
         console.log(response, "response");
 
@@ -107,29 +131,11 @@ const CheckoutSection = ({ orderInfo }) => {
       console.log(response.error.metadata.order_id);
       console.log(response.error.metadata.payment_id);
     });
-    //   setTotalAmount(CheckoutDetails?.data?.responseData.orderInfo?.amount);
+    //      setTotalAmount(CheckoutDetails?.data?.responseData.orderInfo?.amount);
     //   setCurrency(CheckoutDetails?.data?.responseData.orderInfo?.currency);
     //   setOrderDetails(CheckoutDetails?.data?.responseData.orderInfo);
     // } catch (err) {}
-  };;
-
-  const loadScript = (src) => {
-    return new Promise((resolve) => {
-      const script = document.createElement("script");
-      script.src = src;
-      script.onload = () => {
-        resolve(true);
-      };
-      script.onerror = () => {
-        resolve(false);
-      };
-      document.body.appendChild(script);
-    });
   };
-
-  useEffect(() => {
-    loadScript("https://checkout.razorpay.com/v1/checkout.js");
-  });
 
   return (
     <>
@@ -258,7 +264,7 @@ const CheckoutSection = ({ orderInfo }) => {
                     ? cart?.data?.cart?.map((item, productkey) => {
                         return (
                           <li className="list-group-item">
-                            {item?.name}
+                            {item?.name} {"x 1"}
                             <span className="plan_right_section">
                               {currencyFormat(item?.saleAmount, "INR")}
                             </span>

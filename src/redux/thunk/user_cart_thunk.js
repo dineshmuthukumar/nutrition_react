@@ -25,12 +25,12 @@ import {
   clear_cart_action,
 } from "../actions/user_cart_action";
 
-export const add_to_cart_thunk = (productid) => {
+export const add_to_cart_thunk = (productid, type = "BASIC") => {
   return async (dispatch) => {
     try {
       dispatch(add_to_cart_action_request());
       dispatch(get_cart_list_request());
-      let prodId = { productId: productid };
+      let prodId = { productId: productid, type: type };
       const result = await addToCartApi(prodId);
       //console.log(result?.data?.responseData?.product, "result?.data");
       dispatch(add_to_cart_action_success(result?.data?.responseData?.cart));

@@ -28,7 +28,7 @@ import { remove_from_cart_thunk } from "../../../redux/thunk/user_cart_thunk";
 const CartContent = () => {
   const dispatch = useDispatch();
   const { user, cart } = useSelector((state) => state);
-  // console.log(cart?.data, "cart");
+  // console.log(cart?.data?.cart, "cart");
 
   useEffect(() => {
     //getProductDetails();
@@ -63,7 +63,7 @@ const CartContent = () => {
         <div className="container mt-7 mb-2">
           <div className="row align-items-center">
             <div className="col-lg-12 col-md-12 pr-lg-4">
-              {cart?.data?.length > 0 ? (
+              {cart?.data?.cart?.length > 0 ? (
                 <table className="shop-table cart-table">
                   <thead>
                     <tr>
@@ -82,7 +82,7 @@ const CartContent = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {cart?.data.map((item, productkey) => {
+                    {cart?.data?.cart?.map((item, productkey) => {
                       return (
                         <tr key={productkey}>
                           <td className="product-thumbnail">
@@ -144,7 +144,7 @@ const CartContent = () => {
               )}
               <div className="cart-actions-right mb-6 pt-4">
                 {(() => {
-                  if (cart?.data?.length > 0) {
+                  if (cart?.data?.cart?.length > 0) {
                     return (
                       <Link
                         to="/checkout"

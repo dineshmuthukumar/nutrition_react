@@ -68,7 +68,7 @@ const ProductDetails = ({ productData, subCategoryProducts }) => {
   const userCart = cart?.data ? cart?.data : null;
   //const [productData, setProductData] = useState(false);
   const [inCart, setInCart] = useState(false);
-  console.log(productData.productType, "ijedc");
+  //console.log(productData.productType, "ijedc");
   useEffect(() => {
     if (user) {
       const orderSlug = userCart?.line_items?.find(
@@ -88,7 +88,7 @@ const ProductDetails = ({ productData, subCategoryProducts }) => {
     //console.log(productData?.productType, "ewdfcdw");
     // eslint-di useEffect(() => {
     if (productData.productType) {
-      setProductFavor(productData.productType[1]._id);
+      setProductFavor(productData.productType[1].type);
     }
   }, [productData.productType]);
   return (
@@ -338,20 +338,25 @@ const ProductDetails = ({ productData, subCategoryProducts }) => {
                       </ul>
                     </div>
                   </div>
-                  <div className="row mt-3 mb-3">
-                    <div className="col-sm-12">
-                      <div className="product-form-group">
-                        <button
-                          className="btn-product btn-cart"
-                          onClick={() =>
-                            setProductFavor(productData?.productType[0]?._id)
-                          }
-                        >
-                          <i className="d-icon-bag"></i>Apple Flavour
-                        </button>
+                  {productData?.favorName ? (
+                    <div className="row mt-3 mb-3">
+                      <div className="col-sm-12">
+                        <div className="product-form-group">
+                          <button
+                            className="btn-product btn-cart"
+                            onClick={() =>
+                              setProductFavor(productData?.productType[0]?.type)
+                            }
+                          >
+                            <i className="d-icon-bag"></i>
+                            {productData?.favorName} Flavour
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  ) : (
+                    ""
+                  )}
                 </div>
                 <div className="row cart_packlist">
                   {(() => {
@@ -371,10 +376,10 @@ const ProductDetails = ({ productData, subCategoryProducts }) => {
                                       name="plan"
                                       id={producttype?.type}
                                       onClick={() =>
-                                        setProductFavor(producttype?._id)
+                                        setProductFavor(producttype?.type)
                                       }
                                       checked={
-                                        productFavor === producttype?._id
+                                        productFavor === producttype?.type
                                       }
                                     />
                                     <div className="plan-content">
@@ -434,7 +439,12 @@ const ProductDetails = ({ productData, subCategoryProducts }) => {
                             className="btn-product btn-cart"
                             onClick={() => {
                               if (!inCart) {
-                                dispatch(add_to_cart_thunk(productData?._id));
+                                dispatch(
+                                  add_to_cart_thunk(
+                                    productData?._id,
+                                    productFavor
+                                  )
+                                );
                               }
                             }}
                           >
@@ -1043,10 +1053,10 @@ const ProductDetails = ({ productData, subCategoryProducts }) => {
                 // ]}
               >
                 {(() => {
-                  if (subCategoryProducts?.length > 0) {
+                  if (productData?.healingPotentials?.length > 0) {
                     return (
                       <>
-                        {subCategoryProducts?.map((healingPoten) => {
+                        {productData?.healingPotentials?.map((healingPoten) => {
                           return (
                             <div className="product-refdc text-center product-with-qty no_border">
                               <figure className="product-media">
