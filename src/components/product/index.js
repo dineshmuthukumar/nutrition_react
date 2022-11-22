@@ -96,7 +96,13 @@ const Product = ({ ProductDetails, key }) => {
                 title="Add to cart"
                 onClick={() => {
                   if (!inCart) {
-                    dispatch(add_to_cart_thunk(ProductDetails._id));
+                    dispatch(
+                      add_to_cart_thunk(
+                        ProductDetails._id,
+                        "BASIC",
+                        ProductDetails?.productType[0]?.saleAmount
+                      )
+                    );
                   }
                 }}
               >
@@ -111,10 +117,17 @@ const Product = ({ ProductDetails, key }) => {
                 Free
               </Link>
             )
-          ) : (
+          ) : !ProductDetails?.isFree ? (
             <Link to="/Login" class="btn-product btn-cart ls-l">
               {" "}
               Cart{" "}
+            </Link>
+          ) : (
+            <Link
+              to={`/product/free/${ProductDetails?._id}`}
+              class="btn-product btn-cart ls-l"
+            >
+              Free
             </Link>
           )}
         </div>

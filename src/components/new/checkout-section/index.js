@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Modal from "react-bootstrap/Modal";
 import OwlCarousel from "react-owl-carousel";
 import { useHistory } from "react-router-dom";
 //import Image from "react-bootstrap/Image";
@@ -37,11 +38,13 @@ import { checkoutApi } from "../../../api/methods";
 
 const CheckoutSection = ({ orderInfo }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { user, cart } = useSelector((state) => state);
-  console.log(user?.data, "user");
-  const { orderDetails, setOrderDetails } = useState("");
-  const { totalAmount, setTotalAmount } = useState(0);
-  const { currency, setCurrency } = useState("INR");
+  const [show, setShow] = useState(false);
+
+  // const { orderDetails, setOrderDetails } = useState("");
+  // const { totalAmount, setTotalAmount } = useState(0);
+  // const { currency, setCurrency } = useState("INR");
 
   const checkDetails = async () => {
     let requestData = { cartId: cart?.data?.cardId };
@@ -71,6 +74,8 @@ const CheckoutSection = ({ orderInfo }) => {
       document.body.appendChild(script);
     });
   };
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const open = async () => {
     // try {
@@ -106,10 +111,14 @@ const CheckoutSection = ({ orderInfo }) => {
           razorpay_order_id: response.razorpay_order_id,
           razorpay_signature: response.razorpay_signature,
         };
-
-        const result = await OrderSuccessApi(RequestData);
-        if (result.data.statusCode === 200) {
-          toast.success("order sucessfully created");
+        try {
+          const result = await OrderSuccessApi(RequestData);
+          if (result.data.statusCode === 200) {
+            toast.success("order sucessfully created");
+            setShow(true);
+          }
+        } catch (err) {
+          toast.error(err?.data?.message);
         }
 
         // alert(response.razorpay_payment_id);
@@ -125,15 +134,25 @@ const CheckoutSection = ({ orderInfo }) => {
     const paymentObject = new window.Razorpay(options);
     paymentObject.open();
 
-    paymentObject.on("payment.failed", function (response) {
-      console.log(response, "response");
-      console.log(response.error.code);
-      console.log(response.error.description);
-      console.log(response.error.source);
-      console.log(response.error.step);
-      console.log(response.error.reason);
-      console.log(response.error.metadata.order_id);
-      console.log(response.error.metadata.payment_id);
+    paymentObject.on("payment.failed", async function (response) {
+      try {
+        const result = await OrdersFailedApi(response);
+        //if (result?.data?.statusCode === 200) {
+        console.log(result?.data, "results");
+        toast.error("Payment failed. Try again sometimes");
+      } catch (err) {
+        console.log(err, "erro");
+        toast.error(err?.data?.message);
+      }
+      //}
+      // console.log(response, "response");
+      // console.log(response.error.code);
+      // console.log(response.error.description);
+      // console.log(response.error.source);
+      // console.log(response.error.step);
+      // console.log(response.error.reason);
+      // console.log(response.error.metadata.order_id);
+      // console.log(response.error.metadata.payment_id);
     });
     //      setTotalAmount(CheckoutDetails?.data?.responseData.orderInfo?.amount);
     //   setCurrency(CheckoutDetails?.data?.responseData.orderInfo?.currency);
@@ -267,7 +286,7 @@ const CheckoutSection = ({ orderInfo }) => {
                   {cart?.data?.cart.length > 0
                     ? cart?.data?.cart?.map((item, productkey) => {
                         return (
-                          <li className="list-group-item">
+                          <li className="list-group-item" key={productkey}>
                             {item?.name} {"x 1"}
                             <span className="plan_right_section">
                               {currencyFormat(item?.saleAmount, "INR")}
@@ -291,6 +310,12 @@ const CheckoutSection = ({ orderInfo }) => {
                       -$10
                     </span>
                   </li> */}
+                  <li className="list-group-item">
+                    Tax{" "}
+                    <span className="plan_right_section dicount_span">
+                      {currencyFormat(0, "INR")}
+                    </span>
+                  </li>
                   <li className="list-group-item">
                     Delivery Charges{" "}
                     <span className="plan_right_section dicount_span">
@@ -318,8 +343,20 @@ const CheckoutSection = ({ orderInfo }) => {
           </div>
         </div>
       </section>
+
+      <Modal show={show}>
+        <Modal.Header closeButton>
+          <Modal.Title>Order</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Your Order Successfully placed</Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={() => history.push("/accounts")}>
+            Ok
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
-};
+};;;;;;;;;;;;;
 
 export default CheckoutSection;

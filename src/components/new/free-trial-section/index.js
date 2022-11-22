@@ -278,7 +278,13 @@ const Free_Trial_Section = ({ productData }) => {
       <section className="" id="trial_free_section">
         <div className="intro-slide1 banner banner-fixed">
           <figure>
-            <img src={banner_1} alt="intro-banner" width="1903" height="540" />
+            <img
+              src={banner_1}
+              //src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${productData?.photos[0]}`}
+              alt="intro-banner"
+              width="1903"
+              height="540"
+            />
           </figure>
           <div className="container">
             <div className="banner-content y-50">
@@ -647,7 +653,7 @@ const Free_Trial_Section = ({ productData }) => {
                               <div className="icon-box icon-inversed text-center">
                                 <span className="icon-box-icon">
                                   <img
-                                    src={`${process.env.REACT_APP_PUBLIC_BASE_URL} ${livenBurnshealingPoten?.image}`}
+                                    src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${livenBurnshealingPoten?.image}`}
                                     alt="category"
                                   />
                                 </span>

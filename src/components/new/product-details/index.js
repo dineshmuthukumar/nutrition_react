@@ -249,7 +249,7 @@ const ProductDetails = ({ productData, subCategoryProducts }) => {
                 <p>{productData?.description}</p>
                 <div className="ratings-container justify-content-start">
                   <div className="ratings-full">
-                    <span className="ratings" style={{ width: "0%" }}></span>
+                    <span className="ratings" style={{ width: "100%" }}></span>
                     <span className="tooltiptext tooltip-top"></span>
                   </div>
                   {/* <a
