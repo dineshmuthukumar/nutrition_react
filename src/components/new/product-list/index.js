@@ -119,6 +119,103 @@ const Productlist = () => {
       <div className="page-content pb-10 mb-10">
         <section class="pt-3 mt-2 mb-2 pb-10 need_sec">
           <div className="container">
+        <div class=" shop_filter mb-5">
+          <div class="">
+            <div class="counter">                              
+            <div class="row">
+              <div class="col-sm-6">
+              <Form.Label>Category</Form.Label>
+                <Form>
+                  {['radio'].map((type) => (
+                    <div key={`inline-${type}`} className="mb-3">
+                      <Form.Check
+                        inline
+                        label="Apple"
+                        name="group1"
+                        type={type}
+                        id={`inline-${type}-1`}
+                      />
+                      <Form.Check
+                        inline
+                        label="Apple"
+                        name="group1"
+                        type={type}
+                        id={`inline-${type}-2`}
+                      />
+                      <Form.Check
+                        inline
+                        label="Apple"
+                        name="group1"
+                        type={type}
+                        id={`inline-${type}-3`}
+                      />
+                      <Form.Check
+                        inline
+                        label="Apple"
+                        name="group1"
+                        type={type}
+                        id={`inline-${type}-4`}
+                      />
+                      <Form.Check
+                        inline
+                        label="Apple"
+                        name="group1"
+                        type={type}
+                        id={`inline-${type}-5`}
+                      />
+                    </div>
+                  ))}
+                </Form>                             
+              </div>
+              <div class="col-sm-6">
+              <Form.Label>Category</Form.Label>
+              <Form>
+                {['checkbox'].map((type) => (
+                  <div key={`inline-${type}`} className="mb-3">
+                    <Form.Check
+                      inline
+                      label="Apple"
+                      name="group1"
+                      type={type}
+                      id={`inline-${type}-1`}
+                    />
+                    <Form.Check
+                      inline
+                      label="Apple"
+                      name="group1"
+                      type={type}
+                      id={`inline-${type}-2`}
+                    />
+                    <Form.Check
+                      inline
+                      label="Apple"
+                      name="group1"
+                      type={type}
+                      id={`inline-${type}-3`}
+                    />
+                    <Form.Check
+                      inline
+                      label="Apple"
+                      name="group1"
+                      type={type}
+                      id={`inline-${type}-4`}
+                    />
+                    <Form.Check
+                      inline
+                      label="Apple"
+                      name="group1"
+                      type={type}
+                      id={`inline-${type}-5`}
+                    />
+                  </div>
+                ))}
+              </Form>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+
             {loading ? (
               <p>Loading Please wait...</p>
             ) : (

@@ -347,8 +347,8 @@ const Logincomponent = () => {
                   Login
                 </a>
               </li>
-              <li className="delimiter">or</li>
-              <li className="nav-item">
+              {/* <li className="delimiter">or</li> */}
+              {/* <li className="nav-item">
                 <a
                   className={`nav-link ${
                     tab == "register" ? "active" : ""
@@ -364,7 +364,7 @@ const Logincomponent = () => {
                 >
                   Register
                 </a>
-              </li>
+              </li> */}
             </ul>
             <div className="tab-content">
               <div

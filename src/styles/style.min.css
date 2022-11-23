@@ -6731,7 +6731,7 @@ input[type=radio]:checked~label:after {
   width:5rem;
   height:5rem;
   border-radius:50%;
-  background-color:#26c;
+  background:var(--base-color);
   color:#fff;
   font-size:2.5rem
 }

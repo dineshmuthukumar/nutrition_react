@@ -1505,11 +1505,11 @@ section.arrivals-section.need_sec img
 }
 .intro-section .owl-carousel .owl-item img 
 {
-  height: 540px !important;
-  min-height: 540px !important;
+  height: 700px !important;
+  min-height: 700px !important;
   background-attachment: fixed;
   background-size: 100% 100%;
-  object-fit: fill;
+  object-fit: cover;
 }
 
 #product_category_page_section .owl-carousel .owl-item img 
@@ -1608,4 +1608,12 @@ video.card_video__1z3he
 {  
     object-fit: contain;
     height: 500px;
+}
+
+
+
+.shop_filter .counter
+{
+    padding: 2rem 2rem;
+    box-shadow: 0px 5px 40px 0px rgb(0 0 0 / 5%);
 }
