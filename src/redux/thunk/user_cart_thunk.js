@@ -25,7 +25,12 @@ import {
   clear_cart_action,
 } from "../actions/user_cart_action";
 
-export const add_to_cart_thunk = (productid, type = "BASIC", saleAmount) => {
+export const add_to_cart_thunk = (
+  productid,
+  type = "BASIC",
+  saleAmount,
+  setStatus
+) => {
   return async (dispatch) => {
     try {
       dispatch(add_to_cart_action_request());
@@ -38,6 +43,7 @@ export const add_to_cart_thunk = (productid, type = "BASIC", saleAmount) => {
       toast.success("The Product is successfully added to your cart.", {
         autoClose: 2000,
       });
+      setStatus(true);
 
       // Meta Pixel
     } catch (err) {

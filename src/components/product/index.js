@@ -30,7 +30,9 @@ const Product = ({ ProductDetails, key }) => {
         {(() => {
           if (ProductDetails?.isFree) {
             return (
-              <Link to={`/product/free/${ProductDetails?._id}`}>
+              <Link
+                to={`/product/free/${ProductDetails?._id}?rediret=${process.env.REACT_APP_URL}/cart`}
+              >
                 <img
                   src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${ProductDetails?.photos[0]}`}
                   alt="product"
@@ -124,7 +126,7 @@ const Product = ({ ProductDetails, key }) => {
             </Link>
           ) : (
             <Link
-              to={`/product/free/${ProductDetails?._id}`}
+              to={`/product/free/${ProductDetails?._id}?rediret=${process.env.REACT_APP_URL}/cart`}
               class="btn-product btn-cart ls-l"
             >
               Free

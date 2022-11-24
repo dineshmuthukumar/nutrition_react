@@ -132,17 +132,19 @@ const Free_Trial_Section = ({ productData }) => {
   const [verifyLoading, setVerifyLoading] = useState(false);
   const [navigate, setNavigate] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState(false);
   const [id, setId] = useState("");
 
   useEffect(async () => {
-    (async () => {
-      getStatesList();
-    })();
-
-    // console.log(cityList, "cityList");
-
+    getStatesList();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  useEffect(() => {
+    if (user?.login) {
+      history.push("/cart");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user?.login]);
 
   const getStatesList = async () => {
     const StateListData = await getStatesApi();
@@ -313,7 +315,7 @@ const Free_Trial_Section = ({ productData }) => {
         });
         setCookies(result?.data?.responseData?.user?.token);
         setVerifyLoading(false);
-        setNavigate(true);
+        //setNavigate(true);
         dispatch(
           user_load_by_token_thunk(result?.data?.responseData?.user?.token)
         );
@@ -321,10 +323,14 @@ const Free_Trial_Section = ({ productData }) => {
           add_to_cart_thunk(
             productData?._id,
             productData?.productType[0]?.type,
-            productData?.saleAmount
+            productData?.saleAmount,
+            setStatus
           )
         );
-        history.push("/cart");
+        // console.log(user)
+        // if (status) {
+        //   history.push("/cart");
+        // }
       } catch (error) {
         setVerifyLoading(false);
         setError(
