@@ -37,7 +37,7 @@
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    width: unset !important;
+    // width: unset !important;
   }
   
   .owl-carousel .owl-item .item{
@@ -53,5 +53,16 @@
   .healing_image{
     width: 50% !important;
     margin-left: 6rem;
+  }
+  .free-trial-input-section{
+    .otp-input{
+        input{
+            font-size: 1.7rem;
+        }
+    }
+  }
+
+  .otp-submin-button-free{
+    padding: 1.6rem;
   }
  

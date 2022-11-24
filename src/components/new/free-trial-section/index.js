@@ -2,9 +2,15 @@
 
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import Modal from "react-bootstrap/Modal";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+
 import {
   getProductDetailsApi,
   FreeProductApi,
+  registerApi,
+  LoginWithOtp,
 } from "../../../api/base-methods";
 import { add_to_cart_thunk } from "../../../redux/thunk/user_cart_thunk";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,6 +18,7 @@ import OwlCarousel from "react-owl-carousel";
 
 import buy_now from "../../../images/new-images/demos/demo-food2/buy_now.png";
 import payment_logo from "../../../images/new-images/demos/demo-food2/payment-logo.png";
+import InputOTP from "../../input-otp";
 
 import a_1 from "../../../images/new-images/demos/demo-food2/icons/icon/final/1-a.png";
 import a_2 from "../../../images/new-images/demos/demo-food2/icons/icon/final/2-a.png";
@@ -78,6 +85,8 @@ import {
   validInternationalPhone,
 } from "../../../utils/common";
 import { toast } from "react-toastify";
+import { setCookies } from "../../../utils/cookies";
+import { user_load_by_token_thunk } from "../../../redux/thunk/user_thunk";
 
 const Free_Trial_Section = ({ productData }) => {
   const history = useHistory();
@@ -116,6 +125,15 @@ const Free_Trial_Section = ({ productData }) => {
     zipcode: "",
     productId: "",
   });
+  const [show, setShow] = useState(false);
+  const [otp, setOTP] = useState(false);
+  const [otpValue, setOTPValue] = useState("");
+  const [error, setError] = useState();
+  const [verifyLoading, setVerifyLoading] = useState(false);
+  const [navigate, setNavigate] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [id, setId] = useState("");
+
   useEffect(async () => {
     (async () => {
       getStatesList();
@@ -198,6 +216,21 @@ const Free_Trial_Section = ({ productData }) => {
         c_validation = { ...c_validation, valid_phone_no: true };
       }
     }
+    if (!data.address) {
+      c_validation = { ...c_validation, valid_address: true };
+    } else {
+      c_validation = { ...c_validation, valid_address: false };
+    }
+    if (!data.state) {
+      c_validation = { ...c_validation, state: true };
+    } else {
+      c_validation = { ...c_validation, state: false };
+    }
+    if (!data.city) {
+      c_validation = { ...c_validation, city: true };
+    } else {
+      c_validation = { ...c_validation, city: false };
+    }
 
     setValidation(c_validation);
     if (
@@ -208,7 +241,10 @@ const Free_Trial_Section = ({ productData }) => {
       !c_validation.phone_no &&
       !c_validation.valid_phone_no &&
       !c_validation.valid_email &&
-      !c_validation.email
+      !c_validation.email &&
+      !c_validation.valid_address &&
+      !c_validation.state &&
+      !c_validation.city
     ) {
       return true;
     } else {
@@ -218,74 +254,106 @@ const Free_Trial_Section = ({ productData }) => {
 
   const handleForm = async () => {
     // console.log(addressValidation, "addressValidation");
-    if (CheckValidation()) {
-      //console.log(data);
-      //return false;
-      let productDataDetails = { ...data };
+    if (!user.login) {
+      if (CheckValidation()) {
+        setLoading(true);
+        //console.log(data);
+        //return false;
 
-      productDataDetails.productId = productData?._id;
-      productDataDetails.name = productDataDetails?.first_name;
-      // ProfileData.dob = dayjs(ProfileData.dob).format("DD-MM-YYYY");
-      //console.log(ProfileData);
+        //productDataDetails.name = productDataDetails?.first_name;
+        // ProfileData.dob = dayjs(ProfileData.dob).format("DD-MM-YYYY");
+        //console.log(ProfileData);
 
-      try {
-        const result = await FreeProductApi(productDataDetails);
-        if (result.data.statusCode === 200) {
-          toast.success("Free product Request Created Sucessfully");
-          setData({
-            first_name: "",
-            last_name: "",
-            country: "",
-            address: "",
-            state: "",
-            city: "",
-            email: "",
-            phone_no: "",
-            zipcode: "",
-            productId: "",
-          });
+        try {
+          let Newdata = {
+            name: data?.first_name,
+            email: data?.email,
+            address: data?.address,
+            mobile: data?.mobile,
+            state: data?.state,
+            city: data?.city,
+          };
+          //console.log(data, "data");
+          //return false;
+          //const result = await registerApi(productDataDetails);
+          const result = await registerApi(Newdata);
 
-          setValidation({
-            first_name: false,
-            valid_first_name: false,
-            last_name: false,
-            valid_last_name: false,
-            country: false,
-            valid_country: false,
-            address: false,
-            valid_address: false,
-            zipcode: false,
-            valid_zipcode: false,
-            state: false,
-            city: false,
-            email: false,
-            valid_email: false,
-            phone_no: false,
-            valid_phone_no: false,
-          });
+          if (result.data.statusCode === 200) {
+            setLoading(false);
+            setShow(true);
+            setId(result?.data?.responseData?.user?._id);
+            //dispatch(user_login_otp_action());
+          }
+        } catch (err) {
+          //console.log(err);
+          toast.error(err?.data?.message);
+          setLoading(false);
         }
-        console.log(result, "result");
-        dispatch(add_to_cart_thunk(productData?._id));
-        history.push("/cart");
-      } catch (err) {
-        //console.log(err);
-        toast.error(err?.data?.message);
       }
+    } else {
+      dispatch(
+        add_to_cart_thunk(
+          productData?._id,
+          productData?.productType[0]?.type,
+          productData?.saleAmount
+        )
+      );
+      history.push("/cart");
+    }
+  };
+  const handleVerifyOTP = async () => {
+    setError(null);
+    if (otpValue.length === 6) {
+      try {
+        setError("");
+        setVerifyLoading(true);
+        const result = await LoginWithOtp({
+          id: id,
+          otp: otpValue,
+        });
+        setCookies(result?.data?.responseData?.user?.token);
+        setVerifyLoading(false);
+        setNavigate(true);
+        dispatch(
+          user_load_by_token_thunk(result?.data?.responseData?.user?.token)
+        );
+        dispatch(
+          add_to_cart_thunk(
+            productData?._id,
+            productData?.productType[0]?.type,
+            productData?.saleAmount
+          )
+        );
+        history.push("/cart");
+      } catch (error) {
+        setVerifyLoading(false);
+        setError(
+          "It seems you have entered the wrong OTP. Please check the number(s) you have entered."
+        );
+        console.log(
+          "🚀 ~ file: index.js ~ line 172 ~ handleVerifyOTP ~ error",
+          error
+        );
+      }
+    } else {
+      setError("Please enter the full OTP received through your phone.");
     }
   };
   return (
     <>
       <section className="" id="trial_free_section">
         <div className="intro-slide1 banner banner-fixed">
-          <figure>
-            <img
-              src={banner_1}
-              //src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${productData?.photos[0]}`}
-              alt="intro-banner"
-              width="1903"
-              height="540"
-            />
-          </figure>
+          {productData?.photos && (
+            <figure>
+              <img
+                //src={banner_1}
+                src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${productData?.photos[0]}`}
+                alt="intro-banner"
+                width="1903"
+                height="540"
+              />
+            </figure>
+          )}
           <div className="container">
             <div className="banner-content y-50">
               <div className="col-sm-4">
@@ -294,109 +362,112 @@ const Free_Trial_Section = ({ productData }) => {
                     <h5>TELL US WHERE TO SEND</h5>
                     <p>YOUR BOTTLE</p>
                     <form action="" method="post">
-                      <div className="input-prepend mb-2">
-                        <InputText
-                          //title={"First Name"}
-                          name="first_name"
-                          placeholder="Enter First Name"
-                          value={data.first_name}
-                          //required={validation.first_name}
-                          // onKeyPress={handleKeyPressEvent}
-                          onChange={handleChangeEvent}
-                        />
-                        {validation.first_name && (
-                          <p className="error_text">
-                            Please enter a valid First name
-                          </p>
-                        )}
-                      </div>
-                      <div className="input-prepend mb-2">
-                        <InputText
-                          //title={"Last Name"}
-                          name="last_name"
-                          placeholder="Enter Last Name"
-                          value={data.last_name}
-                          //required={validation.last_name}
-                          // onKeyPress={handleKeyPressEvent}
-                          onChange={handleChangeEvent}
-                        />
-                        {validation.last_name && (
-                          <p className="error_text">
-                            Please enter a valid Last name
-                          </p>
-                        )}
-                      </div>
+                      {!user?.login && (
+                        <>
+                          <div className="input-prepend mb-2">
+                            <InputText
+                              //title={"First Name"}
+                              name="first_name"
+                              placeholder="Enter First Name"
+                              value={data.first_name}
+                              //required={validation.first_name}
+                              // onKeyPress={handleKeyPressEvent}
+                              onChange={handleChangeEvent}
+                            />
+                            {validation.first_name && (
+                              <p className="error_text">
+                                Please enter a valid First name
+                              </p>
+                            )}
+                          </div>
+                          <div className="input-prepend mb-2">
+                            <InputText
+                              //title={"Last Name"}
+                              name="last_name"
+                              placeholder="Enter Last Name"
+                              value={data.last_name}
+                              //required={validation.last_name}
+                              // onKeyPress={handleKeyPressEvent}
+                              onChange={handleChangeEvent}
+                            />
+                            {validation.last_name && (
+                              <p className="error_text">
+                                Please enter a valid Last name
+                              </p>
+                            )}
+                          </div>
 
-                      <div className="input-prepend mb-2">
-                        <InputText
-                          //title={"Last Name"}
-                          name="address"
-                          placeholder="Enter Addres"
-                          value={data.address}
-                          //required={validation.address}
-                          // onKeyPress={handleKeyPressEvent}
-                          onChange={handleChangeEvent}
-                        />
-                        {!data.address && (
-                          <p className="error_text">
-                            Please enter a valid address
-                          </p>
-                        )}
-                      </div>
+                          <div className="input-prepend mb-2">
+                            <InputText
+                              //title={"Last Name"}
+                              name="address"
+                              placeholder="Enter Addres"
+                              value={data.address}
+                              //required={validation.address}
+                              // onKeyPress={handleKeyPressEvent}
+                              onChange={handleChangeEvent}
+                            />
+                            {validation.valid_address && (
+                              <p className="error_text">
+                                Please enter a valid address
+                              </p>
+                            )}
+                          </div>
 
-                      <div className="input-prepend mb-2">
-                        <Select
-                          options={
-                            stateList?.length > 0 &&
-                            stateList?.map((o) => ({
-                              label: o.name,
-                              value: o._id,
-                            }))
-                          }
-                          value={{
-                            label:
-                              stateList?.length > 0 &&
-                              stateList?.find((o) => o._id === data?.state)
-                                ?.name,
-                            value: data?.state,
-                          }}
-                          onChange={async (Statedata) => {
-                            if (Statedata?.value) {
-                              const CityListData = await getCitiesApi(
-                                Statedata?.value
-                              );
-                              setCityList(
-                                CityListData?.data?.responseData?.cities
-                              );
-                              setData({ ...data, state: Statedata?.value });
-                            }
-                          }}
-                        />
-                        {!data.state && (
-                          <p className="error_text">Please select state</p>
-                        )}
-                      </div>
-                      <div className="input-prepend mb-2">
-                        <Select
-                          options={
-                            cityList?.length > 0 &&
-                            cityList?.map((o) => ({
-                              label: o.name,
-                              value: o._id,
-                            }))
-                          }
-                          value={{
-                            label:
-                              cityList?.length > 0 &&
-                              cityList?.find((o) => o._id === data?.city)?.name,
-                            value: data?.city,
-                          }}
-                          onChange={async (Ciytdata) => {
-                            setData({ ...data, city: Ciytdata?.value });
-                            console.log(data, "data");
-                          }}
-                        />
-                        {/* <Form.Select
+                          <div className="input-prepend mb-2">
+                            <Select
+                              options={
+                                stateList?.length > 0 &&
+                                stateList?.map((o) => ({
+                                  label: o.name,
+                                  value: o._id,
+                                }))
+                              }
+                              value={{
+                                label:
+                                  stateList?.length > 0 &&
+                                  stateList?.find((o) => o._id === data?.state)
+                                    ?.name,
+                                value: data?.state,
+                              }}
+                              onChange={async (Statedata) => {
+                                if (Statedata?.value) {
+                                  const CityListData = await getCitiesApi(
+                                    Statedata?.value
+                                  );
+                                  setCityList(
+                                    CityListData?.data?.responseData?.cities
+                                  );
+                                  setData({ ...data, state: Statedata?.value });
+                                }
+                              }}
+                            />
+                            {validation.state && (
+                              <p className="error_text">Please select state</p>
+                            )}
+                          </div>
+                          <div className="input-prepend mb-2">
+                            <Select
+                              options={
+                                cityList?.length > 0 &&
+                                cityList?.map((o) => ({
+                                  label: o.name,
+                                  value: o._id,
+                                }))
+                              }
+                              value={{
+                                label:
+                                  cityList?.length > 0 &&
+                                  cityList?.find((o) => o._id === data?.city)
+                                    ?.name,
+                                value: data?.city,
+                              }}
+                              onChange={async (Ciytdata) => {
+                                setData({ ...data, city: Ciytdata?.value });
+                                console.log(data, "data");
+                              }}
+                            />
+                            {/* <Form.Select
                           aria-label="Default select example"
                           name="city"
                           defaultValue={address?.city}
@@ -414,62 +485,75 @@ const Free_Trial_Section = ({ productData }) => {
                               );
                             })}
                         </Form.Select> */}
-                        {!data.city && (
-                          <p className="error_text">Please select City</p>
-                        )}
-                      </div>
+                            {validation.city && (
+                              <p className="error_text">Please select City</p>
+                            )}
+                          </div>
 
-                      <div className="input-prepend mb-2">
-                        <InputPhone
-                          ///title={"Mobile"}
-                          defaultCountry={"in"}
-                          value={data.mobile}
-                          //required={validation.phone_no}
-                          //onEnterKeyPress={handleSignUp}
-                          onChange={(e, c_code) => {
-                            setData({
-                              ...data,
-                              mobile: e,
-                              phone_code: c_code?.countryCode?.toUpperCase(),
-                            });
-                            if (e) {
-                              setValidation({ ...validation, phone_no: false });
-                            } else {
-                              setValidation({ ...validation, phone_no: true });
-                            }
-                          }}
-                        />
-                        {validation.valid_phone_no && (
-                          <p className="error_text">
-                            Please enter a valid mobile number
-                          </p>
-                        )}
-                      </div>
-                      <div className="input-prepend mb-2">
-                        <InputText
-                          //title={"Email"}
-                          name="email"
-                          placeholder="Enter Email"
-                          value={data.email}
-                          //required={validation.email}
-                          //onKeyPress={handleKeyPressEvent}
-                          onChange={handleChangeEvent}
-                        />
-                        {validation.valid_email && (
-                          <p className="error_text">
-                            Please enter a valid email address
-                          </p>
-                        )}
-                      </div>
-                      <div
-                        className="input-prepend mb-4 mt-4"
-                        onClick={() => handleForm()}
-                      >
-                        <img
-                          src={buy_now}
-                          className="trial_buy_now_btn heart"
-                        />
-                      </div>
+                          <div className="input-prepend mb-2">
+                            <InputPhone
+                              ///title={"Mobile"}
+                              defaultCountry={"in"}
+                              value={data.mobile}
+                              //required={validation.phone_no}
+                              //onEnterKeyPress={handleSignUp}
+                              onChange={(e, c_code) => {
+                                setData({
+                                  ...data,
+                                  mobile: e,
+                                  phone_code:
+                                    c_code?.countryCode?.toUpperCase(),
+                                });
+                                if (e) {
+                                  setValidation({
+                                    ...validation,
+                                    phone_no: false,
+                                  });
+                                } else {
+                                  setValidation({
+                                    ...validation,
+                                    phone_no: true,
+                                  });
+                                }
+                              }}
+                            />
+                            {validation.valid_phone_no && (
+                              <p className="error_text">
+                                Please enter a valid mobile number
+                              </p>
+                            )}
+                          </div>
+                          <div className="input-prepend mb-2">
+                            <InputText
+                              //title={"Email"}
+                              name="email"
+                              placeholder="Enter Email"
+                              value={data.email}
+                              //required={validation.email}
+                              //onKeyPress={handleKeyPressEvent}
+                              onChange={handleChangeEvent}
+                            />
+                            {validation.valid_email && (
+                              <p className="error_text">
+                                Please enter a valid email address
+                              </p>
+                            )}
+                          </div>
+                        </>
+                      )}
+                      {loading ? (
+                        "Loading"
+                      ) : (
+                        <div
+                          className="input-prepend mb-4 mt-4"
+                          onClick={() => handleForm()}
+                        >
+                          <img
+                            src={buy_now}
+                            className="trial_buy_now_btn heart"
+                          />
+                        </div>
+                      )}
                       <div className="input-prepend mb-2 mt-2">
                         <img src={payment_logo} className="trial_logo_btn" />
                       </div>
@@ -974,6 +1058,54 @@ const Free_Trial_Section = ({ productData }) => {
           </div>
         </section>
       </div>
+
+      <Modal show={show}>
+        <Modal.Header closeButton>
+          <Modal.Title>Login Verification</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div>
+            <Row className="otp_flex">
+              <Col>
+                <h3>Enter the OTP</h3>{" "}
+              </Col>
+              <Col className="text-right">
+                <div
+                  className="cursor_pointer"
+                  onClick={() => {
+                    setShow(false);
+                    setLoading(false);
+                  }}
+                >
+                  <h4>Change</h4>
+                </div>
+              </Col>
+            </Row>
+
+            <div className="form-group free-trial-input-section">
+              <InputOTP onChange={(e) => setOTPValue(e)} value={otpValue} />
+            </div>
+            <button
+              type="button"
+              className="btn btn-dark btn-block btn-rounded otp-submin-button-free"
+              onClick={handleVerifyOTP}
+              disabled={verifyLoading || navigate}
+            >
+              {navigate ? (
+                "Verified Successfully, please wait..."
+              ) : (
+                <>{verifyLoading ? "Verifying..." : "Continue"}</>
+              )}
+            </button>
+            {error && <p className="error_text text-center">{error}</p>}
+          </div>
+        </Modal.Body>
+        {/* <Modal.Footer>
+          <Button variant="primary" onClick={() => history.push("/accounts")}>
+            Ok
+          </Button>
+        </Modal.Footer> */}
+      </Modal>
     </>
   );
 };

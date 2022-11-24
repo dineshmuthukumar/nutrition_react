@@ -80,6 +80,13 @@ export const productListCategoryApiwithpage = (page, categoriesId) =>
   baseAxios.get(`/product/list?page=${page}&categoryId=${categoriesId}`);
 
 
+  export const productListSubCategoryApiwithpage = (page, categoriesId) =>
+    baseAxios.get(`/product/list?page=${page}&subCategoryId=${categoriesId}`);
+
+
+
+
+
 
 
 

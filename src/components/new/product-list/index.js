@@ -28,6 +28,8 @@ import { Link } from "react-router-dom";
 import {
   productListApi,
   productListCategoryApiwithpage,
+  getsubCategoryListApi,
+  productListSubCategoryApiwithpage,
 } from "../../../api/base-methods";
 
 import pagination from "../pagination";
@@ -46,6 +48,14 @@ const Productlist = () => {
   const [isNextPage, setIsNextPage] = useState(false);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [subCategoryDetails, setSubCategoryDetails] = useState({});
+  const [selectedCategory, setSelectedCategory] = useState("");
+
+  useEffect(async () => {
+    const response = await getsubCategoryListApi(1);
+    setSubCategoryDetails(response?.data?.responseData?.subCategories);
+    console.log(response?.data?.responseData?.subCategories);
+  }, []);
 
   useEffect(async () => {
     if (categoryid) {
@@ -60,16 +70,32 @@ const Productlist = () => {
       setLoading(false);
       window.scrollTo(0, 0);
     } else {
-      setLoading(true);
-      let response = await productListApi(1);
-      setList(response?.data?.responseData?.product?.docs);
-      setTotalCount(response?.data?.responseData?.product?.totalDocs);
-      // setLimit(response?.data?.responseData?.product?.limit);
-      setCurrentPage(response?.data?.responseData?.product?.page);
-      setIsNextPage(response?.data?.responseData?.product?.hasNextPage);
-      setTotalPages(response?.data?.responseData?.product?.totalPages);
-      setLoading(false);
-      window.scrollTo(0, 0);
+      if (selectedCategory) {
+        setLoading(true);
+        const response = await productListSubCategoryApiwithpage(
+          1,
+          selectedCategory
+        );
+        setList(response?.data?.responseData?.product?.docs);
+        setTotalCount(response?.data?.responseData?.product?.totalDocs);
+        // setLimit(response?.data?.responseData?.product?.limit);
+        setCurrentPage(response?.data?.responseData?.product?.page);
+        setIsNextPage(response?.data?.responseData?.product?.hasNextPage);
+        setTotalPages(response?.data?.responseData?.product?.totalPages);
+        setLoading(false);
+        window.scrollTo(0, 0);
+      } else {
+        setLoading(true);
+        let response = await productListApi(1);
+        setList(response?.data?.responseData?.product?.docs);
+        setTotalCount(response?.data?.responseData?.product?.totalDocs);
+        // setLimit(response?.data?.responseData?.product?.limit);
+        setCurrentPage(response?.data?.responseData?.product?.page);
+        setIsNextPage(response?.data?.responseData?.product?.hasNextPage);
+        setTotalPages(response?.data?.responseData?.product?.totalPages);
+        setLoading(false);
+        window.scrollTo(0, 0);
+      }
     }
   }, []);
 
@@ -99,6 +125,48 @@ const Productlist = () => {
     }
   }, [categoryid]);
 
+  useEffect(async () => {
+    if (categoryid) {
+      setLoading(true);
+      let response = await productListCategoryApiwithpage(1, categoryid);
+      setList(response?.data?.responseData?.product?.docs);
+      setTotalCount(response?.data?.responseData?.product?.totalDocs);
+      //setLimit(response?.data?.responseData?.product?.limit);
+      setCurrentPage(response?.data?.responseData?.product?.page);
+      setIsNextPage(response?.data?.responseData?.product?.hasNextPage);
+      setTotalPages(response?.data?.responseData?.product?.totalPages);
+      setLoading(false);
+      window.scrollTo(0, 0);
+    } else {
+      if (selectedCategory) {
+        setLoading(true);
+        const response = await productListSubCategoryApiwithpage(
+          1,
+          selectedCategory
+        );
+        setList(response?.data?.responseData?.product?.docs);
+        setTotalCount(response?.data?.responseData?.product?.totalDocs);
+        // setLimit(response?.data?.responseData?.product?.limit);
+        setCurrentPage(response?.data?.responseData?.product?.page);
+        setIsNextPage(response?.data?.responseData?.product?.hasNextPage);
+        setTotalPages(response?.data?.responseData?.product?.totalPages);
+        setLoading(false);
+        window.scrollTo(0, 0);
+      } else {
+        setLoading(true);
+        let response = await productListApi(1);
+        setList(response?.data?.responseData?.product?.docs);
+        setTotalCount(response?.data?.responseData?.product?.totalDocs);
+        // setLimit(response?.data?.responseData?.product?.limit);
+        setCurrentPage(response?.data?.responseData?.product?.page);
+        setIsNextPage(response?.data?.responseData?.product?.hasNextPage);
+        setTotalPages(response?.data?.responseData?.product?.totalPages);
+        setLoading(false);
+        window.scrollTo(0, 0);
+      }
+    }
+  }, [selectedCategory]);
+
   const handlePage = async (page) => {
     if (categoryid) {
       const response = await productListCategoryApiwithpage(
@@ -108,9 +176,26 @@ const Productlist = () => {
       setList(response?.data?.responseData?.product?.docs);
       setCurrentPage(page);
     } else {
-      const response = await productListApi(currentPage);
-      setList(response?.data?.responseData?.product?.docs);
-      setCurrentPage(page);
+      if (selectedCategory) {
+        const response = await productListSubCategoryApiwithpage(
+          currentPage,
+          selectedCategory
+        );
+        setList(response?.data?.responseData?.product?.docs);
+        setCurrentPage(page);
+      } else {
+        const response = await productListApi(currentPage);
+        setList(response?.data?.responseData?.product?.docs);
+        setCurrentPage(page);
+      }
+    }
+  };
+  const handleChangeEvent = (e) => {
+    console.log(e.target.value, "selectCategroy");
+    if (e.target.value) {
+      setSelectedCategory(e.target.value);
+    } else {
+      setSelectedCategory("");
     }
   };
 
@@ -119,56 +204,34 @@ const Productlist = () => {
       <div className="page-content pb-10 mb-10">
         <section class="pt-3 mt-2 mb-2 pb-10 need_sec">
           <div className="container">
-        <div class=" shop_filter mb-5">
-          <div class="">
-            <div class="counter">                              
-            <div class="row">
-              <div class="col-sm-6">
-              <Form.Label>Category</Form.Label>
-                <Form>
-                  {['radio'].map((type) => (
-                    <div key={`inline-${type}`} className="mb-3">
-                      <Form.Check
-                        inline
-                        label="Apple"
-                        name="group1"
-                        type={type}
-                        id={`inline-${type}-1`}
-                      />
-                      <Form.Check
-                        inline
-                        label="Apple"
-                        name="group1"
-                        type={type}
-                        id={`inline-${type}-2`}
-                      />
-                      <Form.Check
-                        inline
-                        label="Apple"
-                        name="group1"
-                        type={type}
-                        id={`inline-${type}-3`}
-                      />
-                      <Form.Check
-                        inline
-                        label="Apple"
-                        name="group1"
-                        type={type}
-                        id={`inline-${type}-4`}
-                      />
-                      <Form.Check
-                        inline
-                        label="Apple"
-                        name="group1"
-                        type={type}
-                        id={`inline-${type}-5`}
-                      />
-                    </div>
-                  ))}
-                </Form>                             
-              </div>
-              <div class="col-sm-6">
-              <Form.Label>Category</Form.Label>
+            {!categoryid && (
+              <div class=" shop_filter mb-5">
+                <div class="">
+                  <div class="counter">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <Form.Label>Sub Category</Form.Label>
+                        <Form className="d-flex">
+                          {subCategoryDetails.length > 0 &&
+                            subCategoryDetails?.map((data, type) => (
+                              <div key={`inline-${type}`} className="mb-3">
+                                <Form.Check
+                                  inline
+                                  label={data.subCategoryName}
+                                  name={`group`}
+                                  type={"radio"}
+                                  value={data._id}
+                                  id={`inline-${type}-1`}
+                                  checked={data._id == selectedCategory}
+                                  //onKeyPress={handleKeyPressEvent}
+                                  onChange={handleChangeEvent}
+                                />
+                              </div>
+                            ))}
+                        </Form>
+                      </div>
+                      <div class="col-sm-6">
+                        {/* <Form.Label>Category</Form.Label>
               <Form>
                 {['checkbox'].map((type) => (
                   <div key={`inline-${type}`} className="mb-3">
@@ -209,12 +272,13 @@ const Productlist = () => {
                     />
                   </div>
                 ))}
-              </Form>
+              </Form> */}
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-            </div>
-          </div>
-        </div>
+            )}
 
             {loading ? (
               <p>Loading Please wait...</p>
