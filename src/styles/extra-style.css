@@ -1491,7 +1491,7 @@ img.weak_strongest_img_absolute
     border: 1px solid #ccc;
     border-radius: 50px;
     padding: 5px 10px;
-    background: var(--base-color);
+    background: transparent;
 }
 .header-user-details  img.user-image 
 {

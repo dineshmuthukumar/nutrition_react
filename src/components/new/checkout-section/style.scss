@@ -55,3 +55,41 @@ table td, table th
 .modal-dialog{
     padding-top: 9rem;
 }
+
+
+
+.modal-dialog 
+{
+    width: 70%;
+    max-width: 70%;
+}
+.modal-header .modal-title.h4
+{
+    font-size: 20px;
+}
+.sucess_img
+{
+    width: 80px;
+}
+.modal-body 
+{
+    text-align: center;
+}
+thead, tbody, tfoot, tr, td, th
+{
+    font-size: 12px;
+}
+.wid_300
+{
+    width: 300px;
+}
+.sucss-cont img
+{
+    padding: 20px 0px;
+}
+button.btn.btn-primary {
+    font-size: 20px;
+    width: 100px;
+    background: var(--base-color);
+    border: none;
+}
