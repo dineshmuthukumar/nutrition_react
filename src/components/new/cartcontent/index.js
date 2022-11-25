@@ -60,6 +60,7 @@ const CartContent = () => {
             <a href="#">Shopping Cart</a>
           </h3>
         </div>
+
         <div className="container mt-7 mb-2">
           <div className="row align-items-center">
             <div className="col-lg-12 col-md-12 pr-lg-4">
@@ -167,7 +168,133 @@ const CartContent = () => {
               </div>
             </div>
           </div>
+
+            <div className="cart-card">
+              <div className="row">
+                <div className="col-sm-6">
+                  <h1 class="">Billing Address</h1>
+                <Form>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                        <Form.Label>Name</Form.Label>
+                        <Form.Control type="text" placeholder="name" />
+                      </Form.Group>
+                    </div>
+                    <div class="col-sm-6">
+                      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control type="text" placeholder="name" />
+                      </Form.Group>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                        <Form.Label>Mobile Number</Form.Label>
+                        <Form.Control type="tel" placeholder="999999999" />
+                      </Form.Group>
+                    </div>
+                    <div class="col-sm-6">
+                      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                        <Form.Label>Phone Number</Form.Label>
+                        <Form.Control type="tel" placeholder="name" />
+                      </Form.Group>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                        <Form.Label>Address</Form.Label>
+                        <Form.Control as="textarea" rows={4} />
+                      </Form.Group>
+                    </div>
+                  </div>
+                  
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <Form.Label>City</Form.Label>
+                      <Form.Select aria-label="Default select example">
+                        <option>City</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                      </Form.Select>
+                    </div>
+                    <div class="col-sm-4">
+                      <Form.Label>State</Form.Label>
+                      <Form.Select aria-label="Default select example">
+                        <option>State</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                      </Form.Select>
+                    </div>
+                    <div class="col-sm-4">
+                      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                        <Form.Label>Pincode</Form.Label>
+                        <Form.Control type="text" placeholder="123456" />
+                      </Form.Group>
+                    </div>
+                  </div>
+
+                  <div class="row pt-4">
+                    <div class="col-sm-4">
+                        <button class="btn-product btn-cart wid_200">Update</button>
+                    </div>
+                  </div>
+                  
+                </Form>
+                </div>
+
+                
+                <div className="col-sm-6">
+
+                <div class="card_inner">
+                  <div class="row pt-4">
+                    <div class="col-sm-6">
+                      <h1 class="">Billing Address</h1>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                      <img src="https://icons.veryicon.com/png/o/miscellaneous/linear-small-icon/edit-246.png" class="address_edit_icon"></img>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-4"><p>Name</p></div>
+                    <div class="col-sm-8"><p>Demo</p></div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-4"><p>Email</p></div>
+                    <div class="col-sm-8"><p>demo@gmail.com</p></div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-4"><p>Mobile Number</p></div>
+                    <div class="col-sm-8"><p>5555555555</p></div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-4"><p>Address</p></div>
+                    <div class="col-sm-8"><p>dfdjkhfjkdhfdjskhfjdshfk<br></br>sdnszbdsmabdsads<br></br></p></div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-4"><p>State</p></div>
+                    <div class="col-sm-8"><p>Demo</p></div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-4"><p>City</p></div>
+                    <div class="col-sm-8"><p>Demo</p></div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-4"><p>pincode</p></div>
+                    <div class="col-sm-8"><p>5555555555</p></div>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+
         </div>
+
       </section>
     </>
   );
