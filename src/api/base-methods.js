@@ -48,6 +48,8 @@ export const addToCartApi = (props) =>
 
 export const removeFromCartApi = (props) =>
   baseAxios.get(`/cart/remove/${props}`);
+  
+  export const removeFromCartAllApi = () => baseAxios.get(`/cart/remove`);
 
 export const blogListApi = (props) => baseAxios.get(`/blogs?page=${props}`);
 

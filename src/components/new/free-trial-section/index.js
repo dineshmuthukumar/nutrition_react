@@ -140,7 +140,7 @@ const Free_Trial_Section = ({ productData }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
-    if (user?.login) {
+    if (user?.login && status) {
       history.push("/cart");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

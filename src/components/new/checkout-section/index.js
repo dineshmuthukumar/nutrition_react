@@ -32,6 +32,7 @@ import {
   getCheckoutApi,
   OrderSuccessApi,
   OrdersFailedApi,
+  removeFromCartAllApi,
 } from "../../../api/base-methods";
 import { toast } from "react-toastify";
 import { checkoutApi } from "../../../api/methods";
@@ -76,6 +77,13 @@ const CheckoutSection = ({ orderInfo }) => {
   };
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const orderReset = async () => {
+    try {
+      const result = await removeFromCartAllApi();
+    } catch (err) {
+      toast.error(err?.data?.message);
+    }
+  };
 
   const open = async () => {
     // try {
@@ -116,6 +124,7 @@ const CheckoutSection = ({ orderInfo }) => {
           if (result.data.statusCode === 200) {
             toast.success("order sucessfully created");
             setShow(true);
+            orderReset();
           }
         } catch (err) {
           toast.error(err?.data?.message);
@@ -310,32 +319,36 @@ const CheckoutSection = ({ orderInfo }) => {
                       -$10
                     </span>
                   </li> */}
-                  <li className="list-group-item">
+                  {/* <li className="list-group-item">
                     Tax{" "}
                     <span className="plan_right_section dicount_span">
                       {currencyFormat(0, "INR")}
                     </span>
-                  </li>
-                  <li className="list-group-item">
-                    Delivery Charges{" "}
-                    <span className="plan_right_section dicount_span">
-                      {currencyFormat(orderInfo?.deliveryCharge, "INR")}
-                    </span>
-                  </li>
+                  </li> */}
+                  {cart?.data?.cart.length > 0 && (
+                    <li className="list-group-item">
+                      Delivery Charges{" "}
+                      <span className="plan_right_section dicount_span">
+                        {currencyFormat(orderInfo?.deliveryCharge, "INR")}
+                      </span>
+                    </li>
+                  )}
                 </ul>
                 <div className="panel-footer">
                   <ul className="list-group list-group-flush">
-                    <li className="list-group-item">
-                      <h5>
-                        Total Amount
-                        <span className="plan_right_section">
-                          {currencyFormat(
-                            orderInfo?.orderInfo?.amount / 100,
-                            "INR"
-                          )}
-                        </span>
-                      </h5>
-                    </li>
+                    {cart?.data?.cart.length > 0 && (
+                      <li className="list-group-item">
+                        <h5>
+                          Total Amount
+                          <span className="plan_right_section">
+                            {currencyFormat(
+                              orderInfo?.orderInfo?.amount / 100,
+                              "INR"
+                            )}
+                          </span>
+                        </h5>
+                      </li>
+                    )}
                   </ul>
                 </div>
               </div>
@@ -350,7 +363,10 @@ const CheckoutSection = ({ orderInfo }) => {
         </Modal.Header>
         <Modal.Body>
           <div className="sucss-cont">
-            <img src="https://uxwing.com/wp-content/themes/uxwing/download/checkmark-cross/success-green-check-mark-icon.png" className="sucess_img"></img>
+            <img
+              src="https://uxwing.com/wp-content/themes/uxwing/download/checkmark-cross/success-green-check-mark-icon.png"
+              className="sucess_img"
+            ></img>
             <p>Thanks for you ordered product.</p>
             <table class="table table-bordered">
               <thead>
@@ -367,7 +383,11 @@ const CheckoutSection = ({ orderInfo }) => {
               </thead>
               <tbody>
                 <tr>
-                  <td>Ns zone Heavy bass earphone with mic and volume control buttons 3.5mm White 1 | aplearphone-we | Not eligible for return | IMEI/SrNo:HS</td>
+                  <td>
+                    Ns zone Heavy bass earphone with mic and volume control
+                    buttons 3.5mm White 1 | aplearphone-we | Not eligible for
+                    return | IMEI/SrNo:HS
+                  </td>
                   <td>HSN: 8518 | IGST: 18%</td>
                   <td>1</td>
                   <td>60.00</td>
@@ -377,7 +397,11 @@ const CheckoutSection = ({ orderInfo }) => {
                   <td>50.0</td>
                 </tr>
                 <tr>
-                  <td>Ns zone Heavy bass earphone with mic and volume control buttons 3.5mm White 1 | aplearphone-we | Not eligible for return | IMEI/SrNo:HS</td>
+                  <td>
+                    Ns zone Heavy bass earphone with mic and volume control
+                    buttons 3.5mm White 1 | aplearphone-we | Not eligible for
+                    return | IMEI/SrNo:HS
+                  </td>
                   <td>HSN: 8518 | IGST: 18%</td>
                   <td>1</td>
                   <td>60.00</td>
@@ -386,17 +410,18 @@ const CheckoutSection = ({ orderInfo }) => {
                   <td>7.0</td>
                   <td>50.0</td>
                 </tr>
-                
               </tbody>
             </table>
           </div>
         </Modal.Body>
         <Modal.Footer className="mt-4 mb-4">
-          <Button variant="primary" onClick={() => history.push("/accounts")}>Ok</Button>
+          <Button variant="primary" onClick={() => history.push("/accounts")}>
+            Ok
+          </Button>
         </Modal.Footer>
       </Modal>
     </>
   );
-};;;;;;;;;;;;;
+};
 
 export default CheckoutSection;

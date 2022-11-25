@@ -286,8 +286,15 @@ const Logincomponent = () => {
         setError("");
         // let apiInput = { ...register };
         // console.log(apiInput,"apiInput");
+
         dispatch(
-          user_login_thunk(login, setError, setOTP, setId, setShow, setMessage)
+          user_login_with_email_thunk(
+            login,
+            setError,
+            setOTP,
+            setId,
+            setLoading
+          )
         );
         console.log(otp, "otp");
         console.log(id, "id");
