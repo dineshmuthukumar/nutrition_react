@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Modal from "react-bootstrap/Modal";
 
 import { Link, useHistory } from "react-router-dom";
 //import Image from "react-bootstrap/Image";
@@ -27,6 +28,7 @@ import { remove_from_cart_thunk } from "../../../redux/thunk/user_cart_thunk";
 
 const CartContent = () => {
   const dispatch = useDispatch();
+  const [show, setShow] = useState(false);
   const { user, cart } = useSelector((state) => state);
   // console.log(cart?.data?.cart, "cart");
 
@@ -296,6 +298,67 @@ const CartContent = () => {
         </div>
 
       </section>
+      <Modal show={show}>
+        <Modal.Header closeButton>
+          <Modal.Title className="text-center">Order Placed</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="sucss-cont">
+            <img
+              src="https://uxwing.com/wp-content/themes/uxwing/download/checkmark-cross/success-green-check-mark-icon.png"
+              className="sucess_img"
+            ></img>
+            <p>Thanks for you ordered product.</p>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th class="wid_300">Product</th>
+                  <th>Description</th>
+                  <th>Qty</th>
+                  <th>Gross Amount Discount</th>
+                  <th>Taxable</th>
+                  <th>Value</th>
+                  <th>IGST Total</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    Ns zone Heavy bass earphone with mic and volume control
+                    buttons 3.5mm White 1 | aplearphone-we | Not eligible for
+                    return | IMEI/SrNo:HS
+                  </td>
+                  <td>HSN: 8518 | IGST: 18%</td>
+                  <td>1</td>
+                  <td>60.00</td>
+                  <td>-10.00</td>
+                  <td>42.0</td>
+                  <td>7.0</td>
+                  <td>50.0</td>
+                </tr>
+                <tr>
+                  <td>
+                    Ns zone Heavy bass earphone with mic and volume control
+                    buttons 3.5mm White 1 | aplearphone-we | Not eligible for
+                    return | IMEI/SrNo:HS
+                  </td>
+                  <td>HSN: 8518 | IGST: 18%</td>
+                  <td>1</td>
+                  <td>60.00</td>
+                  <td>-10.00</td>
+                  <td>42.0</td>
+                  <td>7.0</td>
+                  <td>50.0</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </Modal.Body>
+        <Modal.Footer className="mt-4 mb-4">
+          <Button variant="primary">Ok</Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };;
