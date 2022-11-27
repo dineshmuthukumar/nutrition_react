@@ -171,6 +171,20 @@ const CartContent = () => {
     }
   };
 
+  const getAddressStatus = () => {
+    if (
+      address?.address &&
+      address?.state &&
+      address?.city &&
+      address?.pincode &&
+      profile.name &&
+      profile.email
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  };
   const handleAddressChangeEvent = (e) => {
     if (e.target.value) {
       if (e.target.name === "name") {
@@ -247,6 +261,11 @@ const CartContent = () => {
     } else {
       return false;
     }
+  };
+  const UpdateAddress = (e) => {
+    e.preventDefault();
+    toast.error("Please Updated the address");
+    return false;
   };
   const handleProfileAddressForm = async () => {
     if (checkAddressValidation() && checkValidation()) {
@@ -382,13 +401,33 @@ const CartContent = () => {
               <div className="cart-actions-left mb-6 pt-4">
                 {(() => {
                   if (cart?.data?.cart?.length > 0) {
+                    console.log(getAddressStatus, "getAddressStatus");
                     return (
-                      <Link
-                        to="/checkout"
-                        className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
-                      >
-                        Continue Shopping <i className="d-icon-arrow-right"></i>
-                      </Link>
+                      <>
+                        {address?.address &&
+                        address?.state &&
+                        address?.city &&
+                        // address?.pincode &&
+                        profile.name &&
+                        profile.email ? (
+                          <Link
+                            to="/checkout"
+                            className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
+                          >
+                            Continue Shopping{" "}
+                            <i className="d-icon-arrow-right"></i>
+                          </Link>
+                        ) : (
+                          <Link
+                            to="/"
+                            className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
+                            onClick={(e) => UpdateAddress(e)}
+                          >
+                            Continue Shopping{" "}
+                            <i className="d-icon-arrow-right"></i>
+                          </Link>
+                        )}
+                      </>
                     );
                   } else {
                     return (

@@ -50,6 +50,7 @@ const About = () => {
   const match = useRouteMatch();
   const { id } = match.params;
   const [Data, setData] = useState({});
+  const [loading, setLoading] = useState(false);
   // const [favPage, setFavPage] = useState(1);
   // const [favList, setFavList] = useState([]);
   // const [favLoading, setFavLoading] = useState(false);
@@ -65,28 +66,7 @@ const About = () => {
     }
   };
 
-  const categoriesList = async (page) => {
-    try {
-      let response = await nftCategoriesApi({ page });
-      setList([...list, ...response.data.data.categories]);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   useEffect(() => {
-    if (fsz) {
-      sessionStorage.setItem("fsz", fsz);
-      setCookiesByName("source", fsz);
-    }
-
-    if (token) {
-      setCookies(token);
-
-      history.replace(url);
-      dispatch(user_load_by_token_thunk(token));
-    }
-
     ///categoriesList(1);
     // if (_ga) {
     //   history.replace(url);
@@ -122,9 +102,16 @@ const About = () => {
   //   }
   // }, []);
   const getCustomPage = async () => {
-    const Abouts = await cmsPagetApi(id);
-    setData(Abouts?.data?.responseData?.page[0]);
-    window.scrollTo(0, 0);
+    setLoading(true);
+    try {
+      const Abouts = await cmsPagetApi(id);
+      setData(Abouts?.data?.responseData?.page[0]);
+      setLoading(false);
+      window.scrollTo(0, 0);
+    } catch (err) {
+      setLoading(false);
+      console.log(err);
+    }
     //console.log(Abouts, "Abouts");
   };
 
@@ -158,7 +145,7 @@ const About = () => {
               </h1>
             </div>
             <div class="page-content mt-10 pt-10">
-              <Cms />
+              {!loading ? <Cms /> : "Please wait Loading"}
             </div>
           </div>
         </div>

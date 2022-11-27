@@ -37,7 +37,7 @@ import {
 import { toast } from "react-toastify";
 import { checkoutApi } from "../../../api/methods";
 
-const CheckoutSection = ({ orderInfo }) => {
+const CheckoutSection = ({ orderInfo, loading }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { user, cart } = useSelector((state) => state);
@@ -59,6 +59,12 @@ const CheckoutSection = ({ orderInfo }) => {
     checkDetails();
     // console.log(response?.data?.responseData?.blogs?.docs, "response");
   }, []);
+
+  const UpdateAddress = (e) => {
+    e.preventDefault();
+    toast.error("Please Updated the address in cart page or profile page");
+    return false;
+  };
 
   const initializeRazorpay = () => {
     return new Promise((resolve) => {
@@ -259,99 +265,108 @@ const CheckoutSection = ({ orderInfo }) => {
               ) : (
                 "No Items Found"
               )}
-
-              <div className="cart-actions-right mb-6 pt-4">
-                {(() => {
-                  if (cart?.data?.cart?.length > 0) {
-                    return (
-                      <Link
-                        // to="#"
-                        onClick={() => open()}
-                        className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
-                      >
-                        Continue Shopping <i className="d-icon-arrow-right"></i>
-                      </Link>
-                    );
-                  } else {
-                    return (
-                      <Link
-                        to="/"
-                        className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
-                      >
-                        Back
-                      </Link>
-                    );
-                  }
-                })()}
-              </div>
+              {!loading ? (
+                <>
+                  <div className="cart-actions-right mb-6 pt-4">
+                    {(() => {
+                      if (cart?.data?.cart?.length > 0) {
+                        return (
+                          <>
+                            {user?.data?.address &&
+                            user?.data?.state &&
+                            user?.data?.city &&
+                            // user?.data?.pincode &&
+                            user?.data?.name &&
+                            user?.data?.email ? (
+                              <Link
+                                // to="#"
+                                onClick={() => open()}
+                                className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
+                              >
+                                Continue Shopping{" "}
+                                <i className="d-icon-arrow-right"></i>
+                              </Link>
+                            ) : (
+                              <Link
+                                // to="#"
+                                onClick={(e) => UpdateAddress(e)}
+                                className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
+                              >
+                                Continue Shopping{" "}
+                                <i className="d-icon-arrow-right"></i>
+                              </Link>
+                            )}
+                          </>
+                        );
+                      } else {
+                        return (
+                          <Link
+                            to="/"
+                            className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
+                          >
+                            Back
+                          </Link>
+                        );
+                      }
+                    })()}
+                  </div>
+                </>
+              ) : (
+                "Loading please wait"
+              )}
             </div>
             <div className="col-md-4">
-              <div className="panel panel-danger pull-up">
-                <div className="panel-heading">
-                  <h5 className="text-left">YOUR ORDER</h5>
-                </div>
-                <h5>Product</h5>
-                <ul className="list-group list-group-flush">
-                  {cart?.data?.cart.length > 0
-                    ? cart?.data?.cart?.map((item, productkey) => {
-                        return (
-                          <li className="list-group-item" key={productkey}>
-                            {item?.name} {"x 1"}
-                            <span className="plan_right_section">
-                              {currencyFormat(item?.saleAmount, "INR")}
-                            </span>
-                          </li>
-                        );
-                      })
-                    : "No Items Found"}
-
-                  {/* <li className="list-group-item">
-                    Fashionable Overnight Bag × 1{" "}
-                    <span className="plan_right_section">$110.00</span>
-                  </li>
-                  <li className="list-group-item">
-                    Fashionable Overnight Bag × 1{" "}
-                    <span className="plan_right_section">$110.00</span>
-                  </li> */}
-                  {/* <li className="list-group-item">
-                    Discount{" "}
-                    <span className="plan_right_section dicount_span">
-                      -$10
-                    </span>
-                  </li> */}
-                  {/* <li className="list-group-item">
-                    Tax{" "}
-                    <span className="plan_right_section dicount_span">
-                      {currencyFormat(0, "INR")}
-                    </span>
-                  </li> */}
-                  {cart?.data?.cart.length > 0 && (
-                    <li className="list-group-item">
-                      Delivery Charges{" "}
-                      <span className="plan_right_section dicount_span">
-                        {currencyFormat(orderInfo?.deliveryCharge, "INR")}
-                      </span>
-                    </li>
-                  )}
-                </ul>
-                <div className="panel-footer">
+              {" "}
+              {!loading ? (
+                <div className="panel panel-danger pull-up">
+                  <div className="panel-heading">
+                    <h5 className="text-left">YOUR ORDER</h5>
+                  </div>
+                  <h5>Product</h5>
                   <ul className="list-group list-group-flush">
+                    {cart?.data?.cart.length > 0
+                      ? cart?.data?.cart?.map((item, productkey) => {
+                          return (
+                            <li className="list-group-item" key={productkey}>
+                              {item?.name} {"x 1"}
+                              <span className="plan_right_section">
+                                {currencyFormat(item?.saleAmount, "INR")}
+                              </span>
+                            </li>
+                          );
+                        })
+                      : "No Items Found"}
+
                     {cart?.data?.cart.length > 0 && (
                       <li className="list-group-item">
-                        <h5>
-                          Total Amount
-                          <span className="plan_right_section">
-                            {currencyFormat(
-                              orderInfo?.orderInfo?.amount / 100,
-                              "INR"
-                            )}
-                          </span>
-                        </h5>
+                        Delivery Charges{" "}
+                        <span className="plan_right_section dicount_span">
+                          {currencyFormat(orderInfo?.deliveryCharge, "INR")}
+                        </span>
                       </li>
                     )}
                   </ul>
+                  <div className="panel-footer">
+                    <ul className="list-group list-group-flush">
+                      {cart?.data?.cart.length > 0 && (
+                        <li className="list-group-item">
+                          <h5>
+                            Total Amount
+                            <span className="plan_right_section">
+                              {currencyFormat(
+                                orderInfo?.orderInfo?.amount / 100,
+                                "INR"
+                              )}
+                            </span>
+                          </h5>
+                        </li>
+                      )}
+                    </ul>
+                  </div>
                 </div>
-              </div>
+              ) : (
+                "Loading please wait"
+              )}
             </div>
           </div>
         </div>
@@ -421,9 +436,7 @@ const CheckoutSection = ({ orderInfo }) => {
         </Modal.Footer>
       </Modal>
 
-
-
-{/* 27-Novermber Start*/}
+      {/* 27-Novermber Start*/}
 
       {/* <Modal show={show}>
         <Modal.Header closeButton>
@@ -458,9 +471,7 @@ const CheckoutSection = ({ orderInfo }) => {
         </Modal.Footer>
       </Modal> */}
 
-{/* 27-Novermber End*/}
-
-
+      {/* 27-Novermber End*/}
     </>
   );
 };

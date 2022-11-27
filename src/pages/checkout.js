@@ -47,6 +47,7 @@ const Checkout = () => {
   const { cart, user } = useSelector((state) => state);
 
   const [list, setList] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   // const [favPage, setFavPage] = useState(1);
   // const [favList, setFavList] = useState([]);
@@ -101,11 +102,16 @@ const Checkout = () => {
   }, []);
 
   const checkDetails = async () => {
-    let requestData = { cartId: cart?.data?.cardId };
-    const CheckoutDetails = await getCheckoutApi(requestData);
-    console.log(CheckoutDetails?.data?.responseData);
-
-    setOrderInfo(CheckoutDetails?.data?.responseData);
+    setLoading(true);
+    try {
+      let requestData = { cartId: cart?.data?.cardId };
+      const CheckoutDetails = await getCheckoutApi(requestData);
+      setOrderInfo(CheckoutDetails?.data?.responseData);
+      setLoading(false);
+    } catch (err) {
+      setLoading(false);
+      console.log(err);
+    }
   };
   return (
     <>
@@ -126,7 +132,7 @@ const Checkout = () => {
               </h1>
             </div>
             <div className="page-content pb-10 pt-10">
-              <CheckoutSection orderInfo={orderInfo} />
+              <CheckoutSection orderInfo={orderInfo} loading={loading} />
             </div>
           </div>
         </div>
