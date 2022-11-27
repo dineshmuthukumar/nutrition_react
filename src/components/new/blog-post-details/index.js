@@ -77,25 +77,20 @@ const BlogPost = () => {
             <article className="post-single">
               {blogData?.image && (
                 <figure className="post-media">
-                  <a href="post-single.html#">
-                    <img
-                      //src={"http://54.177.7.240" + blogData?.image}
-                      src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${blogData?.image}`}
-                      width="500"
-                      height="500"
-                      alt="post"
-                    />
+                  <a href="">
+                    <img //src={"http://54.177.7.240" + blogData?.image}
+                      src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${blogData?.image}`} className="blog_post_img" alt="post" />
                   </a>
                 </figure>
               )}
               <div className="post-details">
                 <div className="post-meta">
                   by{" "}
-                  <a href="post-single.html#" className="post-author">
+                  <a href="" className="post-author">
                     {blogData?.username}
                   </a>{" "}
                   on{" "}
-                  <a href="post-single.html#" className="post-date">
+                  <a href="" className="post-date">
                     {dayjs(blogData?.createdAt).format("MMM DD,YYYY")}
                   </a>
                   {/* |{" "}

@@ -145,7 +145,7 @@ const CartContent = () => {
               ) : (
                 "No Items Found"
               )}
-              <div className="cart-actions-right mb-6 pt-4">
+              <div className="cart-actions-left mb-6 pt-4">
                 {(() => {
                   if (cart?.data?.cart?.length > 0) {
                     return (
@@ -167,9 +167,82 @@ const CartContent = () => {
                     );
                   }
                 })()}
+                <a class="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4" href="#">Apply Coupons <i class="d-icon-heart"></i></a>
               </div>
             </div>
           </div>
+
+            <div className="cart-card">
+              <div class="row">
+                <div class="col-sm-12 coupon_card">
+                <h1 class="">Apply Coupons</h1>
+                  <Form>
+                    <div class="row">
+                      <div class="col-sm-4">
+                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                          <Form.Control type="text" placeholder="name" />
+                        </Form.Group>
+                      </div>
+                      <div class="col-sm-3">
+                        <button class="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4" href="#">Apply Coupons <i class="d-icon-arrow-right"></i></button>
+                      </div>
+                    </div>
+                  </Form>
+
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <div class="coupon-card">
+                        <h3>20% flat offer</h3>
+                        <di class="coupon-row">
+                            <span id="cpnCode">STEALDEAL20</span>
+                            <span id="cpnBtn">Copy Code</span>
+                        </di>
+                        <p>Valid Till: 20Dec, 2021</p>
+                        <div class="circle1"></div>
+                        <div class="circle2"></div>
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <div class="coupon-card">
+                        <h3>20% flat offer</h3>
+                        <di class="coupon-row">
+                            <span id="cpnCode">STEALDEAL20</span>
+                            <span id="cpnBtn">Copy Code</span>
+                        </di>
+                        <p>Valid Till: 20Dec, 2021</p>
+                        <div class="circle1"></div>
+                        <div class="circle2"></div>
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <div class="coupon-card">
+                        <h3>20% flat offer</h3>
+                        <di class="coupon-row">
+                            <span id="cpnCode">STEALDEAL20</span>
+                            <span id="cpnBtn">Copy Code</span>
+                        </di>
+                        <p>Valid Till: 20Dec, 2021</p>
+                        <div class="circle1"></div>
+                        <div class="circle2"></div>
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <div class="coupon-card">
+                        <h3>20% flat offer</h3>
+                        <di class="coupon-row">
+                            <span id="cpnCode">STEALDEAL20</span>
+                            <span id="cpnBtn">Copy Code</span>
+                        </di>
+                        <p>Valid Till: 20Dec, 2021</p>
+                        <div class="circle1"></div>
+                        <div class="circle2"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                </div>
+              </div>
+            </div>
 
             <div className="cart-card">
               <div className="row">

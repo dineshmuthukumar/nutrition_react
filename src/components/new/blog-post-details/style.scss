@@ -52,3 +52,21 @@
     display: flex;
     justify-content: center;
 }
+
+
+
+.blog_post_img
+{
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 300px;
+    min-height: 300px;
+}
+figure.post-media 
+{
+    display: block;
+}
+img.blog_post_img 
+{
+    width: 100% !important;
+}

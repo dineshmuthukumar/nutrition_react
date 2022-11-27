@@ -747,7 +747,7 @@ const ProductDetails = ({ productData, subCategoryProducts }) => {
 
       <section className="element-section" id="why_choose_image">
         <div className="container">
-          <div className="row mt-5">
+          <div className="row mt-5 why_choose_dflex">
             <div className="col-md-7">
               <h2 className="description-title mb-4 font-weight-semi-bold ls-m">
                 How to Use?
@@ -772,10 +772,7 @@ const ProductDetails = ({ productData, subCategoryProducts }) => {
               </div>
             </div>
             <div className="col-md-5">
-              <img
-                src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${productData?.howToUseImage}`}
-                style={{ width: "100%" }}
-              />
+              <img src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${productData?.howToUseImage}`} className="why_choose_img" />
             </div>
           </div>
         </div>
@@ -969,7 +966,7 @@ const ProductDetails = ({ productData, subCategoryProducts }) => {
             </div>{" "}
           </div>
           <br></br>
-          <div className="row mt-10">
+          <div className="row mt-10 why_choose_dflex">
             <div className="col-md-8">
               <h2 className="description-title mb-4 font-weight-semi-bold ls-m">
                 Why Choose Liven BURN with AVC?
@@ -980,11 +977,9 @@ const ProductDetails = ({ productData, subCategoryProducts }) => {
                 }}
               ></div>
             </div>
-            <div className="col-md-4">
+            <div className="col-md-4 text-center">
               <img
-                src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${productData?.chooseLivenBurnImage}`}
-                style={{ width: "85%" }}
-              />
+                src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${productData?.chooseLivenBurnImage}`}className="why_choose_img" />
             </div>
           </div>
         </div>

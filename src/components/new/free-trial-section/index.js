@@ -354,10 +354,7 @@ const Free_Trial_Section = ({ productData }) => {
               <img
                 //src={banner_1}
                 src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${productData?.photos[0]}`}
-                alt="intro-banner"
-                width="1903"
-                height="540"
-              />
+                alt="intro-banner" width="1903" height="540" className="free_trial_banner"/>
             </figure>
           )}
           <div className="container">

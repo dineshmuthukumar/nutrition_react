@@ -420,6 +420,47 @@ const CheckoutSection = ({ orderInfo }) => {
           </Button>
         </Modal.Footer>
       </Modal>
+
+
+
+{/* 27-Novermber Start*/}
+
+      {/* <Modal show={show}>
+        <Modal.Header closeButton>
+          <Modal.Title className="text-center">Product</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="product_show_details_section">
+            <div class="row">
+              <div class="col-sm-6">
+                  <div class="product_show_details"><img src="https://d-themes.com/html/riode/images/product/product-2-1-580x652.jpg" className=""></img></div>
+              </div>
+              <div class="col-sm-6 right_des_section">
+                  <div class="pin-wrapper">
+                    <div class="product-details sticky-sidebar">
+                        <h1 class="product-name">Comfortable Brown Scarf</h1>                      
+                        <div class="product-price">$47.34</div>
+                        <p class="product-short-desc">Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus liberpuro ate vol faucibus adipiscing. Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus liberpuro ate vol faucibus adipiscing.</p>
+                        <div class="product-form product-qty">
+                          <div class="product-form-group">
+                            <button class="btn-product btn-cart text-normal ls-normal font-weight-semi-bold"><i class="d-icon-bag"></i>Add to
+                              Cart</button>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </Modal.Body>
+        <Modal.Footer className="mt-4 mb-4">
+          <Button variant="primary" onClick={() => history.push("/accounts")}>Ok</Button>
+        </Modal.Footer>
+      </Modal> */}
+
+{/* 27-Novermber End*/}
+
+
     </>
   );
 };
