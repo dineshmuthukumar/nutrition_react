@@ -57,7 +57,6 @@ const Accountcomponent = () => {
     dob: false,
     valid_dob: false,
   });
-  console.log(user?.data?.state?._id);
 
   const [address, setAddress] = useState({
     address: user?.data?.address,
@@ -85,12 +84,12 @@ const Accountcomponent = () => {
 
   useEffect(async () => {
     getStatesList();
-    setProfile({ ...address, state: user?.data?.state?._id });
+    setAddress({ ...address, state: user?.data?.state?._id });
 
     if (user?.data?.state?._id) {
       const CityListData = await getCitiesApi(user?.data?.state?._id);
       setCityList(CityListData?.data?.responseData?.cities);
-      setProfile({ ...address, city: user?.data?.city?._id });
+      setAddress({ ...address, city: user?.data?.city?._id });
     }
     // console.log(cityList, "cityList");
 
@@ -126,8 +125,6 @@ const Accountcomponent = () => {
       setProfile({ ...profile, [e.target.name]: e.target.value });
       setProfileValidation({ ...profileValidation, [e.target.name]: true });
     }
-    console.log(profile, "Profile");
-    console.log(profileValidation, "profileValidation");
   };
 
   const checkValidation = () => {
@@ -235,6 +232,8 @@ const Accountcomponent = () => {
 
   const checkAddressValidation = () => {
     let c_validation = { ...addressValidation };
+
+    console.log(addressValidation, "addressValidation");
     if (!address.address) {
       c_validation = { ...c_validation, address: true };
       // c_validation = { ...c_validation, valid_address: true };
@@ -262,6 +261,8 @@ const Accountcomponent = () => {
     } else {
       c_validation = { ...c_validation, pincode: false };
     }
+
+    console.log(c_validation, "c_validation");
 
     setAddressValidation(c_validation);
     if (
