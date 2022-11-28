@@ -450,7 +450,7 @@ const CartContent = () => {
             </div>
           </div>
 
-          <div className="cart-card">
+          {/* <div className="cart-card">
             <div class="row">
               <div class="col-sm-12 coupon_card">
                 <h1 class="">Apply Coupons</h1>
@@ -527,7 +527,7 @@ const CartContent = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
 
           <div className="cart-card">
             <div className="row">

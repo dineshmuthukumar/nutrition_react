@@ -184,7 +184,8 @@ const CheckoutSection = ({ orderInfo, loading }) => {
           </h3>
         </div>
         <div className="container mt-7 mb-2">
-          <div className="row align-items-center">
+
+          <div className="row">
             <div className="col-lg-8 col-md-8 pr-lg-4">
               {cart?.data?.cart?.length > 0 ? (
                 <table className="shop-table cart-table">
@@ -278,8 +279,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                             // user?.data?.pincode &&
                             user?.data?.name &&
                             user?.data?.email ? (
-                              <Link
-                                // to="#"
+                              <Link // to="#"
                                 onClick={() => open()}
                                 className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
                               >
@@ -309,6 +309,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                         );
                       }
                     })()}
+                    <a class="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4" href="#">Apply Coupons <i class="d-icon-heart"></i></a>
                   </div>
                 </>
               ) : (
@@ -369,6 +370,221 @@ const CheckoutSection = ({ orderInfo, loading }) => {
               )}
             </div>
           </div>
+              
+          {/*  Coupon Add Start*/}
+
+          <div className="cart-card">
+            <div class="row">
+              <div class="col-sm-12 coupon_card">
+                <h1 class="">Apply Coupons</h1>
+                <Form>
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <Form.Group
+                        className="mb-3"
+                        controlId="exampleForm.ControlInput1"
+                      >
+                        <Form.Control type="text" placeholder="name" />
+                      </Form.Group>
+                    </div>
+                    <div class="col-sm-3">
+                      <button
+                        class="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
+                        href="#"
+                      >
+                        Apply Coupons <i class="d-icon-arrow-right"></i>
+                      </button>
+                    </div>
+                  </div>
+                </Form>
+
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="coupon-card">
+                      <h3>20% flat offer</h3>
+                      <di class="coupon-row">
+                        <span id="cpnCode">STEALDEAL20</span>
+                        <span id="cpnBtn">Copy Code</span>
+                      </di>
+                      <p>Valid Till: 20Dec, 2021</p>
+                      <div class="circle1"></div>
+                      <div class="circle2"></div>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="coupon-card">
+                      <h3>20% flat offer</h3>
+                      <di class="coupon-row">
+                        <span id="cpnCode">STEALDEAL20</span>
+                        <span id="cpnBtn">Copy Code</span>
+                      </di>
+                      <p>Valid Till: 20Dec, 2021</p>
+                      <div class="circle1"></div>
+                      <div class="circle2"></div>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="coupon-card">
+                      <h3>20% flat offer</h3>
+                      <di class="coupon-row">
+                        <span id="cpnCode">STEALDEAL20</span>
+                        <span id="cpnBtn">Copy Code</span>
+                      </di>
+                      <p>Valid Till: 20Dec, 2021</p>
+                      <div class="circle1"></div>
+                      <div class="circle2"></div>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="coupon-card">
+                      <h3>20% flat offer</h3>
+                      <di class="coupon-row">
+                        <span id="cpnCode">STEALDEAL20</span>
+                        <span id="cpnBtn">Copy Code</span>
+                      </di>
+                      <p>Valid Till: 20Dec, 2021</p>
+                      <div class="circle1"></div>
+                      <div class="circle2"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/*  Coupon Add End*/}
+
+          {/* Address Add Start */}
+
+          <div className="cart-card">
+            <div className="row">
+                <div className="col-sm-6">
+                    <h1 class="">Billing Address</h1>
+                    <form>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                    <Form.Label>Name</Form.Label>
+                                    <Form.Control type="text" placeholder="name" />
+                                </Form.Group>
+                            </div>
+                            <div class="col-sm-6">
+                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                    <Form.Label>Email</Form.Label>
+                                    <Form.Control type="text" placeholder="name" />
+                                </Form.Group>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                    <Form.Label>Mobile Number</Form.Label>
+                                    <Form.Control type="tel" placeholder="999999999" />
+                                </Form.Group>
+                            </div>
+                            <div class="col-sm-6">
+                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                    <Form.Label>Phone Number</Form.Label>
+                                    <Form.Control type="tel" placeholder="name" />
+                                </Form.Group>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                    <Form.Label>Address</Form.Label>
+                                    <Form.Control as="textarea" rows="{4}" />
+                                </Form.Group>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <Form.Label>City</Form.Label>
+                                <Form.Select aria-label="Default select example">
+                                    <option>City</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </Form.Select>
+                            </div>
+                            <div class="col-sm-4">
+                                <Form.Label>State</Form.Label>
+                                <Form.Select aria-label="Default select example">
+                                    <option>State</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </Form.Select>
+                            </div>
+                            <div class="col-sm-4">
+                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                    <Form.Label>Pincode</Form.Label>
+                                    <Form.Control type="text" placeholder="123456" />
+                                </Form.Group>
+                            </div>
+                        </div>
+
+                        <div class="row pt-4">
+                            <div class="col-sm-4">
+                                <button class="btn-product btn-cart wid_200">Update</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div className="col-sm-6">
+                    <div class="card_inner">
+                        <div class="row pt-4">
+                            <div class="col-sm-6">
+                                <h1 class="">Billing Address</h1>
+                            </div>
+                            <div class="col-sm-6 text-right">
+                                <img src="https://icons.veryicon.com/png/o/miscellaneous/linear-small-icon/edit-246.png" class="address_edit_icon" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4"><p>Name</p></div>
+                            <div class="col-sm-8"><p>Demo</p></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4"><p>Email</p></div>
+                            <div class="col-sm-8"><p>demo@gmail.com</p></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4"><p>Mobile Number</p></div>
+                            <div class="col-sm-8"><p>5555555555</p></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4"><p>Address</p></div>
+                            <div class="col-sm-8">
+                                <p>
+                                    dfdjkhfjkdhfdjskhfjdshfk<br />
+                                    sdnszbdsmabdsads<br />
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4"><p>State</p></div>
+                            <div class="col-sm-8"><p>Demo</p></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4"><p>City</p></div>
+                            <div class="col-sm-8"><p>Demo</p></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4"><p>pincode</p></div>
+                            <div class="col-sm-8"><p>5555555555</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+
+          {/* Address Add End */}
+
+
         </div>
       </section>
 
