@@ -614,7 +614,7 @@ const Free_Trial_Section = ({ productData }) => {
                     <>
                       {productData?.livenBurns?.map((takelivenBurn) => {
                         return (
-                          <div className="col-xl-3col col-lg-2 col-md-4 col-sm-4 col-12">
+                          <div className="col-xl-3col col-lg-2 col-md-4 col-sm-4 col-12 burn_img_section">
                             <a href="#" className="element-type">
                               <div className="element element-accordian dotted_border">
                                 <img
@@ -999,7 +999,7 @@ const Free_Trial_Section = ({ productData }) => {
 
                 <div className="input-prepend text-center mt-10">
                   <a href="#trial_free_section" className="flex-gap">
-                    <img src={claim_now} className="wid_60" />
+                    <img src={claim_now} className="wid_60 trial_enquery-btn" />
                   </a>
                 </div>
               </div>
@@ -1007,7 +1007,7 @@ const Free_Trial_Section = ({ productData }) => {
           </div>
         </section>
 
-        <section className="new_our_idea pt-2 pt-md-7 pt-10 pb-8">
+        <section className="new_our_idea pt-2 pt-md-7 pt-10 pb-8" id="trial_faq">
           <div className="container p-0">
             <h2 className="title-echo mb-1">
               <span>Clear Your Mind Now! Answers for Your Queries!</span>

@@ -290,8 +290,8 @@ img.weak_strongest_img_absolute
     }
     .pro_before_img 
     {
-        left: 1rem !important;
-        top: 4rem !important;
+        left: 7rem !important;
+        top: rem !important;
     }
     .footer-middle .widget-body li
     {
@@ -1677,4 +1677,116 @@ height: 40px;
     justify-content: center;
     align-items: center;
     text-align: left;
+}
+
+
+
+
+
+
+
+
+
+@media (min-width: 320px) and (max-width: 767px)
+{
+    .intro-section .owl-carousel .owl-item img 
+    {
+        height: auto !important;
+        min-height: auto !important;
+        background-size: cover;
+    }
+    .product_banner_3
+    {
+        padding: 20px 10px;
+    }
+    .product_banner_2
+    {
+        padding: 0px;
+    }
+    .title-echo span 
+    {
+        position: relative !important;
+        margin-top: 70px;
+        font-size: 20px !important;
+        line-height: 30px;
+    }
+    .title-echo
+    {
+        padding-bottom: 0px;
+    }
+    section.new_our_idea .title-echo span
+    {
+        left: 33%;
+        margin: 0px;
+    }
+    #weak_strongest .title-echo span
+    {
+        left: 35%;
+        margin: 0px;
+    }
+    section.product_banner_section_2 .title-echo span
+    {
+        left: 40%;
+        margin: 0px;
+    }
+    section.category-section .title-echo span
+    {
+        left: 30%;
+        margin: 0px;
+    }
+    section.team_sec .title-echo span
+    {
+        margin: 0px;
+    }
+    /* section.category-section .container
+    {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    } */
+    h2.title.title-center.ls-s.mb-8 
+    {
+        font-size: 20px;
+        line-height: 30px;
+    }
+    #free_trial_section p
+    {
+        text-align: center !important;
+    }
+    .whole_food_img 
+    {
+        width: 75px;
+    }
+    .element.element-accordian.dotted_border 
+    {
+        padding: 0px !important;
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: center;
+    }
+    .burn_img_section
+    {
+        display: contents;
+    }
+    .input-prepend.text-center.mt-10 
+    {
+        margin: 0px !important;
+    }
+    .trial_enquery-btn
+    {
+        width: 100% !important;
+        margin-bottom: 30px;
+    }
+    #trial_faq .title-echo span
+    {
+        left: 50%;
+        margin: 0px;
+    }
+    .span12
+    {
+        padding: 20px;
+    }
+    .cms-page-content
+    {
+        padding: 10px !important;
+    }
 }
