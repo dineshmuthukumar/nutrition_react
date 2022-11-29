@@ -68,6 +68,9 @@ const ProductDetails = ({ productData, subCategoryProducts }) => {
   const userCart = cart?.data ? cart?.data : null;
   //const [productData, setProductData] = useState(false);
   const [inCart, setInCart] = useState(false);
+  const [productThumb, setProductThumb] = useState(0);
+  const [slideBy, setSlideBy] = useState(0);
+
   //console.log(productData.productType, "ijedc");
   useEffect(() => {
     if (user) {
@@ -91,6 +94,24 @@ const ProductDetails = ({ productData, subCategoryProducts }) => {
       setProductFavor(productData.productType[1].type);
     }
   }, [productData.productType]);
+  useEffect(() => {
+    console.log(productThumb, "productThumb");
+    setSlideBy(productThumb);
+  }, [productThumb]);
+  function callback(event) {
+    var items = event.item.count; // Number of items
+    var item = event.item.index;
+    console.log(items, "items");
+    console.log(item, "item");
+    setSlideBy(item);
+    setProductThumb(item);
+  }
+  // function callbackSlider(event) {
+  //   var items = event.item.count; // Number of items
+  //   var item = event.item.index;
+  //   console.log(items, "items");
+  //   console.log(item, "item");
+  // }
   return (
     <>
       <section className="">
@@ -102,11 +123,13 @@ const ProductDetails = ({ productData, subCategoryProducts }) => {
                 <OwlCarousel
                   className=" owl-carousel owl-theme owl-nav-inner owl-loaded owl-drag"
                   margin={20}
+                  startPosition={slideBy}
                   nav
                   items={1}
                   smartSpeed={500}
                   dots={false}
                   navContainerClass={"owl-nav"}
+                  onDragged={callback}
                   id={"owlcaolse"}
                   responsive={{
                     0: {
@@ -120,7 +143,7 @@ const ProductDetails = ({ productData, subCategoryProducts }) => {
                     },
                   }}
                   // autoplay
-                  loop
+
                   //   autoplayTimeout={2000}
                   //   autoplayHoverPause={true}
                 >
@@ -158,8 +181,8 @@ const ProductDetails = ({ productData, subCategoryProducts }) => {
                   style={{ display: "block" }}
                 >
                   <div className="row">
-                    <div className="col-sm-9 offset-sm-2">
-                      <OwlCarousel
+                    <div className="">
+                      {/* <OwlCarousel
                         className="product-thumbs owl-carousel owl-drag"
                         margin={20}
                         nav
@@ -178,33 +201,39 @@ const ProductDetails = ({ productData, subCategoryProducts }) => {
                           992: {
                             items: 1,
                           },
-                        }}
-                        // autoplay
-                        //   loop
-                        //   autoplayTimeout={2000}
-                        //   autoplayHoverPause={true}
-                      >
-                        {/* <div className="product-thumbs"> */}
+                        }} */}
+                      {/* // autoplay // loop // autoplayTimeout={2000}
+                      // autoplayHoverPause={true}> */}
+                      {/* <div className="product-thumbs"> */}
+                      <div className="product-thumbs">
                         {(() => {
                           if (productData?.photos?.length > 0) {
                             return (
                               <>
-                                {productData?.photos?.map((prodImgaesThumb) => {
-                                  return (
-                                    <div className="product-thumb active">
-                                      <img
-                                        src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${prodImgaesThumb}`}
-                                        alt="product thumbnail"
-                                        className="product-thumb_img"
-                                      />
-                                    </div>
-                                  );
-                                })}
+                                {productData?.photos?.map(
+                                  (prodImgaesThumb, key) => {
+                                    return (
+                                      <div
+                                        className={`product-thumb ${
+                                          productThumb == key ? "active" : ""
+                                        }`}
+                                        onClick={() => setProductThumb(key)}
+                                      >
+                                        <img
+                                          src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${prodImgaesThumb}`}
+                                          alt="product thumbnail"
+                                          className="product-thumb_img"
+                                        />
+                                      </div>
+                                    );
+                                  }
+                                )}
                               </>
                             );
                           }
                         })()}
-                      </OwlCarousel>
+                      </div>
+                      {/* </OwlCarousel> */}
                       {/* <div className="product-thumb active">
                           <img
                             src={product_1}
@@ -772,7 +801,10 @@ const ProductDetails = ({ productData, subCategoryProducts }) => {
               </div>
             </div>
             <div className="col-md-5">
-              <img src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${productData?.howToUseImage}`} className="why_choose_img" />
+              <img
+                src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${productData?.howToUseImage}`}
+                className="why_choose_img"
+              />
             </div>
           </div>
         </div>
@@ -979,7 +1011,9 @@ const ProductDetails = ({ productData, subCategoryProducts }) => {
             </div>
             <div className="col-md-4 text-center">
               <img
-                src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${productData?.chooseLivenBurnImage}`}className="why_choose_img" />
+                src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${productData?.chooseLivenBurnImage}`}
+                className="why_choose_img"
+              />
             </div>
           </div>
         </div>
@@ -1622,7 +1656,7 @@ const ProductDetails = ({ productData, subCategoryProducts }) => {
       </section>
     </>
   );
-};;;;;
+};;;;;;;;;;;;;;;;;
 
 
 export default ProductDetails;

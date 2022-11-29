@@ -20,6 +20,8 @@ import { useSelector, useDispatch } from "react-redux";
 import InputPhone from "../../input-phone";
 import "./styles.scss";
 import Logo1 from "../../../images/banner-img.png";
+import { useLocation } from "react-router";
+
 import {
   validateEmail,
   validateName,
@@ -32,9 +34,14 @@ import {
   getStatesApi,
   UpdateProfileApi,
 } from "../../../api/base-methods";
+import { useQuery } from "../../../hook/url-params";
+
 import { toast } from "react-toastify";
 
 const Accountcomponent = () => {
+  const location = useLocation();
+  const defaultkey = useQuery(location.accounts);
+  console.log(defaultkey.get("defaultkey"), "defaultkey");
   const user = useSelector((state) => state?.user);
   // console.log(user?.data, "user");
   const [startDate, setStartDate] = useState(new Date());
@@ -1052,6 +1059,6 @@ const Accountcomponent = () => {
       </div>
     </>
   );
-};
+};;
 
 export default Accountcomponent;

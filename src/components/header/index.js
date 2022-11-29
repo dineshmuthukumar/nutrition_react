@@ -1059,9 +1059,14 @@ const Header = ({
                       </ul>
                     </li> */}
                     <li>
-                      <Nav.Link onClick={() => history.push("/about")}>
-                        About Us
-                      </Nav.Link>
+                      {footerDetails?.length > 0 &&
+                        footerDetails?.map((obj, index) => {
+                          if (obj.url == "aboutus") {
+                            return (
+                              <Link to={`/cms/${obj?.url}`}>{obj?.title}</Link>
+                            );
+                          }
+                        })}
                     </li>
                     <li>
                       <Nav.Link onClick={() => history.push("/blog")}>
@@ -1169,7 +1174,7 @@ const Header = ({
                           as="button"
                           onClick={() =>
                             window.open(
-                              `${process.env.REACT_APP_URL}/accounts`,
+                              `${process.env.REACT_APP_URL}/accounts?defaultkey=second`,
                               "_self"
                             )
                           }
@@ -1180,7 +1185,7 @@ const Header = ({
                           as="button"
                           onClick={() =>
                             window.open(
-                              `${process.env.REACT_APP_URL}/accounts`,
+                              `${process.env.REACT_APP_URL}/accounts?defaultkey=one`,
                               "_self"
                             )
                           }
