@@ -1185,7 +1185,7 @@ const Header = ({
                           as="button"
                           onClick={() =>
                             window.open(
-                              `${process.env.REACT_APP_URL}/accounts?defaultkey=one`,
+                              `${process.env.REACT_APP_URL}/accounts?defaultkey=first`,
                               "_self"
                             )
                           }

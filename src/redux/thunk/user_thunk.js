@@ -13,6 +13,7 @@ import {
 } from "../actions/user_action";
 
 import { clear_cart_thunk } from "./user_cart_thunk";
+import { toast } from "react-toastify";
 
 export const user_login_thunk = (
   input,
@@ -84,9 +85,12 @@ export const user_login_with_email_thunk = (
         dispatch(user_login_otp_action());
       }
     } catch (err) {
-      setLoading(false);
       if (err?.status === 422) {
-        returnMessage(err?.data?.message);
+        toast.error("Please try Again later...");
+        // console.log(err?.data?.title, "error");
+        returnMessage(
+          err?.data?.message ? err?.data?.message : err?.data?.title
+        );
         if (err?.data?.message === "email otp locked") {
           returnMessage(
             "Account lock for security reasons, please login again after 10 mins"

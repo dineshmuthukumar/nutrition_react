@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
-
+import OwlCarousel from "react-owl-carousel";
 import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 import Row from "react-bootstrap/Row";
@@ -32,6 +32,7 @@ import axios from "axios";
 import { getCookies } from "../../../utils/cookies";
 import { currencyFormat } from "../../../utils/common";
 import { remove_from_cart_thunk } from "../../../redux/thunk/user_cart_thunk";
+import Product from "../../product";
 
 import {
   validateEmail,
@@ -45,6 +46,8 @@ import {
   getCitiesApi,
   getStatesApi,
   UpdateProfileApi,
+  getAddonListApi,
+  homeContentApi,
 } from "../../../api/base-methods";
 import { toast } from "react-toastify";
 
@@ -54,6 +57,7 @@ const CartContent = () => {
   const { user, cart } = useSelector((state) => state);
   const [stateList, setStateList] = useState({});
   const [cityList, setCityList] = useState({});
+  const [addonList, setAddonList] = useState({});
 
   const [profile, setProfile] = useState({
     name: user?.data?.name,
@@ -88,6 +92,7 @@ const CartContent = () => {
 
   useEffect(() => {
     getStatesList();
+    getAddonProduct();
     setAddress({ ...address, state: user?.data?.state?._id });
 
     getCityUser();
@@ -104,6 +109,16 @@ const CartContent = () => {
   const getStatesList = async () => {
     const StateListData = await getStatesApi();
     setStateList(StateListData?.data?.responseData?.states);
+  };
+  const getAddonProduct = async () => {
+    try {
+      const response = await getAddonListApi();
+      setAddonList(response?.data?.responseData?.product);
+      //setAddonList(response?.data?.responseData?.featureProducts);
+      //setAddonList
+    } catch (error) {
+      console.log(error, "error");
+    }
   };
 
   const handleChangeEvent = (e) => {
@@ -326,7 +341,7 @@ const CartContent = () => {
                       <th>
                         <span>Product</span>
                       </th>
-                      <th>Description</th>
+                      <th>Name</th>
                       <th>
                         <span>Price</span>
                       </th>
@@ -401,7 +416,6 @@ const CartContent = () => {
               <div className="cart-actions-right mb-6 pt-4">
                 {(() => {
                   if (cart?.data?.cart?.length > 0) {
-                    console.log(getAddressStatus, "getAddressStatus");
                     return (
                       <Link
                         to="/checkout"
@@ -412,12 +426,12 @@ const CartContent = () => {
                     );
                   }
                 })()}
-                <a
+                {/* <a
                   class="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
                   href="#"
                 >
                   Apply Coupons <i class="d-icon-heart"></i>
-                </a>
+                </a> */}
               </div>
             </div>
           </div>
@@ -500,9 +514,57 @@ const CartContent = () => {
               </div>
             </div>
           </div> */}
+          <div className="container">
+            {addonList?.length > 0 && (
+              <>
+                <h4 className="py-2">Product Addons :-</h4>
+                <OwlCarousel
+                  className="owl-carousel owl-theme row cols-lg-4 cols-2"
+                  margin={20}
+                  nav
+                  items={1}
+                  smartSpeed={500}
+                  dots={false}
+                  navContainerClass={"owl-nav"}
+                  responsive={{
+                    0: {
+                      items: 1,
+                    },
+                    768: {
+                      items: 3,
+                    },
+                    992: {
+                      items: 3,
+                    },
+                  }}
+                  // autoplay
+                  //   loop
+                  autoplayTimeout={2000}
+                  autoplayHoverPause={true}
+                >
+                  {(() => {
+                    if (addonList?.length > 0) {
+                      return (
+                        <>
+                          {addonList?.map((Featurecontent, fkey) => {
+                            return (
+                              <Product
+                                ProductDetails={Featurecontent}
+                                key={fkey}
+                              />
+                            );
+                          })}
+                        </>
+                      );
+                    }
+                  })()}
+                </OwlCarousel>
+              </>
+            )}
+          </div>
         </div>
       </section>
-      <Modal show={show}>
+      {/* <Modal show={show}>
         <Modal.Header closeButton>
           <Modal.Title className="text-center">Order Placed</Modal.Title>
         </Modal.Header>
@@ -562,7 +624,7 @@ const CartContent = () => {
         <Modal.Footer className="mt-4 mb-4">
           <Button variant="primary">Ok</Button>
         </Modal.Footer>
-      </Modal>
+      </Modal> */}
     </>
   );
 };;

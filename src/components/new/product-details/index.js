@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {  Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import OwlCarousel from "react-owl-carousel";
 
 import price_tag from "../../../images/new-images/demos/demo-food2/products/price_tag.png";
@@ -62,14 +62,17 @@ import { add_to_cart_thunk } from "../../../redux/thunk/user_cart_thunk";
 import Product from "../../product";
 
 const ProductDetails = ({ productData, subCategoryProducts }) => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const { user, cart } = useSelector((state) => state);
   const [productFavor, setProductFavor] = useState("");
+  const [productAmount, setProductAmount] = useState("");
   const userCart = cart?.data ? cart?.data : null;
   //const [productData, setProductData] = useState(false);
   const [inCart, setInCart] = useState(false);
   const [productThumb, setProductThumb] = useState(0);
   const [slideBy, setSlideBy] = useState(0);
+  const [status, setStatus] = useState(false);
 
   //console.log(productData.productType, "ijedc");
   useEffect(() => {
@@ -92,20 +95,24 @@ const ProductDetails = ({ productData, subCategoryProducts }) => {
     // eslint-di useEffect(() => {
     if (productData.productType) {
       setProductFavor(productData.productType[1].type);
+      setProductAmount(productData.productType[1]?.saleAmount);
     }
   }, [productData.productType]);
   useEffect(() => {
-    console.log(productThumb, "productThumb");
     setSlideBy(productThumb);
   }, [productThumb]);
   function callback(event) {
     var items = event.item.count; // Number of items
     var item = event.item.index;
-    console.log(items, "items");
-    console.log(item, "item");
     setSlideBy(item);
     setProductThumb(item);
   }
+  useEffect(() => {
+    if (user?.login && status) {
+      history.push("/cart");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [status]);
   // function callbackSlider(event) {
   //   var items = event.item.count; // Number of items
   //   var item = event.item.index;
@@ -373,9 +380,14 @@ const ProductDetails = ({ productData, subCategoryProducts }) => {
                         <div className="product-form-group">
                           <button
                             className="btn-product btn-cart"
-                            onClick={() =>
-                              setProductFavor(productData?.productType[0]?.type)
-                            }
+                            onClick={() => {
+                              setProductFavor(
+                                productData?.productType[0]?.type
+                              );
+                              setProductAmount(
+                                productData?.productType[0]?.saleAmount
+                              );
+                            }}
                           >
                             <i className="d-icon-bag"></i>
                             {productData?.favorName} Flavour
@@ -471,7 +483,9 @@ const ProductDetails = ({ productData, subCategoryProducts }) => {
                                 dispatch(
                                   add_to_cart_thunk(
                                     productData?._id,
-                                    productFavor
+                                    productFavor,
+                                    productAmount,
+                                    setStatus
                                   )
                                 );
                               }

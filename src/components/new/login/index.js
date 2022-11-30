@@ -351,7 +351,7 @@ const Logincomponent = () => {
                     setLoading(false);
                   }}
                 >
-                  Login
+                  Login/Register
                 </a>
               </li>
               {/* <li className="delimiter">or</li> */}

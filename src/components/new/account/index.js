@@ -23,6 +23,7 @@ import Logo1 from "../../../images/banner-img.png";
 import { useLocation } from "react-router";
 
 import {
+  currencyFormat,
   validateEmail,
   validateName,
   validateNameReplace,
@@ -33,21 +34,33 @@ import {
   getCitiesApi,
   getStatesApi,
   UpdateProfileApi,
+  getOrderListApi,
 } from "../../../api/base-methods";
 import { useQuery } from "../../../hook/url-params";
 
+import { withRouter } from "react-router-dom";
+import queryString from "query-string";
+
 import { toast } from "react-toastify";
+import Pagination from "../pagination";
 
 const Accountcomponent = () => {
   const location = useLocation();
-  const defaultkey = useQuery(location.accounts);
-  console.log(defaultkey.get("defaultkey"), "defaultkey");
+  let params = queryString.parse(location.search);
+  //let params = queryString.parse(location.defaultkey)
   const user = useSelector((state) => state?.user);
   // console.log(user?.data, "user");
   const [startDate, setStartDate] = useState(new Date());
   const [loading, setLoading] = useState(false);
   const [stateList, setStateList] = useState({});
   const [cityList, setCityList] = useState({});
+  // const [orderList, setOrderList] = useState({});
+  const [list, setList] = useState([]);
+  const [totalCount, setTotalCount] = useState(0);
+  const [limit, setLimit] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isNextPage, setIsNextPage] = useState(false);
+  const [totalPages, setTotalPages] = useState(1);
 
   const [profile, setProfile] = useState({
     name: user?.data?.name,
@@ -83,6 +96,29 @@ const Accountcomponent = () => {
     valid_pincode: false,
   });
 
+  const getOrderList = async () => {
+    try {
+      const response = await getOrderListApi(1);
+
+      setList(response?.data?.responseData?.product?.docs);
+      setTotalCount(response?.data?.responseData?.product?.totalDocs);
+      setLimit(response?.data?.responseData?.product?.limit);
+      setCurrentPage(response?.data?.responseData?.product?.page);
+      setIsNextPage(response?.data?.responseData?.product?.hasNextPage);
+      setTotalPages(response?.data?.responseData?.product?.totalPages);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handlePage = async (page) => {
+    const response = await getOrderListApi(page);
+    setList(response?.data?.responseData?.product?.docs);
+    setTotalCount(response?.data?.responseData?.product?.totalDocs);
+    setLimit(response?.data?.responseData?.product?.limit);
+    setCurrentPage(response?.data?.responseData?.product?.page);
+    setIsNextPage(response?.data?.responseData?.product?.hasNextPage);
+    setTotalPages(response?.data?.responseData?.product?.totalPages);
+  };
   // useEffect(() => {
 
   //   getStatesList();
@@ -92,6 +128,7 @@ const Accountcomponent = () => {
   useEffect(async () => {
     getStatesList();
     setAddress({ ...address, state: user?.data?.state?._id });
+    getOrderList();
 
     if (user?.data?.state?._id) {
       const CityListData = await getCitiesApi(user?.data?.state?._id);
@@ -269,7 +306,7 @@ const Accountcomponent = () => {
       c_validation = { ...c_validation, pincode: false };
     }
 
-    console.log(c_validation, "c_validation");
+    // console.log(c_validation, "c_validation");
 
     setAddressValidation(c_validation);
     if (
@@ -315,22 +352,27 @@ const Accountcomponent = () => {
     }
   };
 
-  const handleState = async (data) => {
-    if (data?.target?.value) {
-      setAddress({ ...address, state: data.target.value });
-      const CityListData = await getCitiesApi(data.target.value);
-      setCityList(CityListData?.data?.responseData?.cities);
-      console.log(data?.target?.value, "data?.target?.value");
-      setAddressValidation({ ...profileValidation, state: false });
-    } else {
-      setAddress({ ...address, state: "" });
-      setAddressValidation({ ...profileValidation, state: true });
-    }
-  };
+  // const handleState = async (data) => {
+  //   if (data?.target?.value) {
+  //     setAddress({ ...address, state: data.target.value });
+  //     const CityListData = await getCitiesApi(data.target.value);
+  //     setCityList(CityListData?.data?.responseData?.cities);
+  //     console.log(data?.target?.value, "data?.target?.value");
+  //     setAddressValidation({ ...profileValidation, state: false });
+  //   } else {
+  //     setAddress({ ...address, state: "" });
+  //     setAddressValidation({ ...profileValidation, state: true });
+  //   }
+  // };
   return (
     <>
       <div className="profile_page">
-        <Tab.Container id="left-tabs-example" defaultActiveKey="second">
+        <Tab.Container
+          id="left-tabs-example"
+          defaultActiveKey={`${
+            params?.defaultkey ? params?.defaultkey : "second"
+          }`}
+        >
           <Row>
             <Col sm={3} className="account_form_box">
               <Nav variant="pills" className="flex-column">
@@ -347,7 +389,7 @@ const Accountcomponent = () => {
             </Col>
             <Col sm={9} className="account_form_box">
               <Tab.Content>
-                <Tab.Pane eventKey="first">
+                {/* <Tab.Pane eventKey="first">
                   <div class="row product_banner_2 text-left">
                     <div class="col-sm-2">
                       <img src={Logo1} alt="logo" width="100" height="100" />
@@ -432,7 +474,7 @@ const Accountcomponent = () => {
                       <p>Your item has been delivered</p>
                     </div>
                   </div>
-                </Tab.Pane>
+                </Tab.Pane> */}
                 <Tab.Pane eventKey="second">
                   {/* <form action="#" class="form"> */}
                   <Row>
@@ -904,7 +946,85 @@ const Accountcomponent = () => {
                   {/* </form> */}
                 </Tab.Pane>
                 <Tab.Pane eventKey="first">
-                  <div class="row product_banner_2 text-left">
+                  {(() => {
+                    if (list?.length > 0) {
+                      return (
+                        <>
+                          {list?.map((orderListproduct, key) => {
+                            return (
+                              <>
+                                <Link
+                                  to={`/products/${orderListproduct.categoryId}`}
+                                >
+                                  <div class="row product_banner_2 text-left">
+                                    <div class="col-sm-2">
+                                      <img
+                                        // src="http://localhost:4002/static/media/home_one.d0bce35b.jpg"
+                                        src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${orderListproduct?.image}`}
+                                        width="100"
+                                        height="100"
+                                      ></img>
+                                    </div>
+                                    <div class="col-sm-4">
+                                      <p>Converse Training Shoes</p>
+                                    </div>
+                                    <div class="col-sm-3">
+                                      <p>
+                                        {currencyFormat(
+                                          orderListproduct.totalAmount,
+                                          "INR"
+                                        )}
+                                      </p>
+                                    </div>
+                                    <div class="col-sm-3">
+                                      {orderListproduct?.status ==
+                                        "DELIVERED" && (
+                                        <h4>
+                                          <i
+                                            class="fa fa-circle green_color_fa"
+                                            aria-hidden="true"
+                                          ></i>{" "}
+                                          Delivered on{" "}
+                                          {dayjs(
+                                            orderListproduct?.updatedAt
+                                          ).format("D M")}
+                                        </h4>
+                                      )}
+                                      <p>
+                                        Your item has been{" "}
+                                        {orderListproduct?.status}
+                                      </p>
+                                    </div>
+                                  </div>
+                                </Link>
+                              </>
+                            );
+                          })}
+                        </>
+                      );
+                    } else {
+                      return (
+                        <div class="row product_banner_2 text-left">
+                          No Order found
+                        </div>
+                      );
+                    }
+                  })()}
+                  {list?.length > 0 ? (
+                    <div className="user-profile-table-pagination">
+                      <Pagination
+                        className="pagination-bar"
+                        currentPage={currentPage}
+                        totalCount={totalCount}
+                        pageSize={limit}
+                        onPageChange={(page) => handlePage(page)}
+                      />
+                    </div>
+                  ) : (
+                    ""
+                  )}
+
+                  {/* <div class="row product_banner_2 text-left">
                     <div class="col-sm-2">
                       <img
                         src="http://localhost:4002/static/media/home_one.d0bce35b.jpg"
@@ -1003,7 +1123,7 @@ const Accountcomponent = () => {
                       </h4>
                       <p>Your item has been delivered</p>
                     </div>
-                  </div>
+                  </div> */}
                 </Tab.Pane>
 
                 {/* <Tab.Pane eventKey="third">
@@ -1059,6 +1179,6 @@ const Accountcomponent = () => {
       </div>
     </>
   );
-};;
+};;;;;;;;;;;;;
 
 export default Accountcomponent;

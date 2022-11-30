@@ -438,7 +438,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                       <th>
                         <span>Product</span>
                       </th>
-                      <th>Description</th>
+                      <th>Name</th>
                       <th>
                         <span>Price</span>
                       </th>
@@ -527,7 +527,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                                 onClick={() => open()}
                                 className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
                               >
-                                Continue Shopping{" "}
+                                Continue to pay{" "}
                                 <i className="d-icon-arrow-right"></i>
                               </Link>
                             ) : (
@@ -536,7 +536,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                                 onClick={(e) => UpdateAddress(e)}
                                 className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
                               >
-                                Continue Shopping{" "}
+                                Continue to pay{" "}
                                 <i className="d-icon-arrow-right"></i>
                               </Link>
                             )}
@@ -553,12 +553,12 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                         );
                       }
                     })()}
-                    <a
+                    {/* <a
                       class="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
                       href="#"
                     >
                       Apply Coupons <i class="d-icon-heart"></i>
-                    </a>
+                    </a> */}
                   </div>
                 </>
               ) : (

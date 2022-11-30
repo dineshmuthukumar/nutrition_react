@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { getProductDetailsApi } from "../../api/base-methods";
 import { add_to_cart_thunk } from "../../redux/thunk/user_cart_thunk";
 import { useDispatch, useSelector } from "react-redux";
 
 const Product = ({ ProductDetails, key }) => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const { user, cart } = useSelector((state) => state);
   const userCart = cart?.data ? cart?.data : null;
   const [productData, setProductData] = useState(false);
   const [inCart, setInCart] = useState(false);
+  const [status, setStatus] = useState(false);
   useEffect(() => {
     if (user) {
       const orderSlug = userCart?.line_items?.find(
@@ -23,6 +25,14 @@ const Product = ({ ProductDetails, key }) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userCart]);
+
+  useEffect(() => {
+    console.log(status, "status");
+    if (user?.login && status) {
+      history.push("/cart");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [status]);
 
   return (
     <div class="product text-center product-with-qty" key={ProductDetails?._id}>
@@ -100,7 +110,8 @@ const Product = ({ ProductDetails, key }) => {
                       add_to_cart_thunk(
                         ProductDetails._id,
                         "BASIC",
-                        ProductDetails?.productType[0]?.saleAmount
+                        ProductDetails?.productType[0]?.saleAmount,
+                        setStatus
                       )
                     );
                   }
