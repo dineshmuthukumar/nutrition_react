@@ -193,3 +193,38 @@ button.btn.btn-primary {
 .circle2{
     right: -25px;
 }
+
+
+
+.address_user
+{
+    font-size: 16px;
+    font-weight: 700;
+
+}
+.address_list
+{
+    padding: 0px;
+}
+.address_list li
+{
+    list-style-type: none;
+    line-height: 2;
+}
+input[type=radio]~label:before, input[type=radio]:checked~label:after
+{
+    display: none;
+}
+input[type=radio]~label {
+    padding-left: 0rem;
+    line-height: 30px;
+}
+label.input-title 
+{
+    float: left;
+    display: contents;
+}
+.max_width
+{
+    width: 100%;
+}

@@ -430,8 +430,283 @@ const CheckoutSection = ({ orderInfo, loading }) => {
         </div>
         <div className="container mt-7 mb-2">
           <div className="row">
-            <div className="col-lg-8 col-md-8 pr-lg-4">
-              {cart?.data?.cart?.length > 0 ? (
+            <div className="col-lg-7 col-md-7 pr-lg-4">
+
+            <div class="card_inner">
+                  
+                  {/* <div class="row pt-4">
+                    <div class="col-sm-8">
+                      <h1 class="">Billing Address</h1>
+                      <hr></hr>
+                    </div>
+                    <div class="col-sm-4 text-right">
+                      <img
+                        src="https://icons.veryicon.com/png/o/miscellaneous/linear-small-icon/edit-246.png"
+                        class="address_edit_icon"
+                      ></img>
+                    </div>
+                  </div> */}
+
+
+                {/* New Address Section Start */}
+                <div className="row">
+                  <div className="col-sm-12">
+                  <h1 className="address_user">Shipping Address</h1>
+                    <hr></hr>
+                    <h1 className="address_user">User</h1>
+                    <ul className="address_list">
+                      <li>No. 00/00 Nort Street, West Mambalam, Chennai-33, Tamil Nadu.</li>
+                      <li><i class="fa fa-envelope" aria-hidden="true"></i> +91 00000 00000</li>
+                      <li><i class="fa fa-phone" aria-hidden="true"></i> user@gmail.com</li>
+                      <li><button class="btn btn-dark btn-sm" href="#">Changes</button></li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="row">
+                  <div className="col-sm-12">
+                  <h1 className="address_user">Edit Address</h1>
+                    <hr></hr>
+                    <Row>
+                  <Col sm={4}>
+                    <Form>
+                      <Form.Group
+                        className="mb-3"
+                        controlId="exampleForm.ControlInput1"
+                      >
+                        {/* <Form.Label>Name</Form.Label> */}
+                        {/* <Form.Control
+                                type="text"
+                                placeholder="Name"
+                                value={user?.data?.name}
+                              /> */}
+                        <InputText
+                          title={"Name"}
+                          name="name"
+                          placeholder="Enter Name"
+                          value={profile.name}
+                          required={profileValidation.name}
+                          onKeyPress={handleKeyPressEvent}
+                          onChange={handleChangeEvent}
+                        />
+                        {profileValidation.valid_name && (
+                          <p className="error_text">
+                            Please enter a valid name
+                          </p>
+                        )}
+                      </Form.Group>
+                    </Form>
+                  </Col>
+                  <Col sm={4}>
+                    <Form>
+                      <Form.Group
+                        className="mb-3"
+                        controlId="exampleForm.ControlInput1"
+                      >
+                        <InputText
+                          title={"Email"}
+                          name="email"
+                          placeholder="Enter Email"
+                          value={profile.email}
+                          required={profileValidation.email}
+                          onKeyPress={handleKeyPressEvent}
+                          onChange={handleChangeEvent}
+                        />
+                        {profileValidation.valid_email && (
+                          <p className="error_text">
+                            Please enter a valid email address
+                          </p>
+                        )}
+                      </Form.Group>
+                    </Form>
+                  </Col>
+                  <Col sm={4}>
+                    <Form>
+                      <Form.Group
+                        className="mb-3"
+                        controlId="exampleForm.ControlInput1"
+                      >
+                        <InputPhone
+                          title={"Mobile"}
+                          defaultCountry={"+91"}
+                          value={user?.data?.mobile}
+
+                          // required={lvalidation.phone_no}
+                          //onChange={(e, c_code) => {
+                          // setLogin({
+                          //     ...login,
+                          //     mobile: e,
+                          //     phone_code: c_code?.countryCode?.toUpperCase(),
+                          // });
+                          // if (e) {
+                          //     setValidation({ ...lvalidation, phone_no: false });
+                          // } else {
+                          //     setValidation({ ...lvalidation, phone_no: true });
+                          // }
+                          // }}
+                        />
+                        {/* {lvalidation.valid_phone_no && (
+                                <p className="error_text">
+                                Please enter a valid mobile number
+                                </p>
+                            )} */}
+                      </Form.Group>
+                    </Form>
+                  </Col>
+                </Row>
+
+                <Row>
+                  <Col className="py-4">
+                    <Form>
+                      <Form.Group
+                        className="mb-3"
+                        controlId="exampleForm.ControlTextarea1 "
+                      >
+                        <Form.Label>Address</Form.Label>
+                        <Form.Control
+                          as="textarea"
+                          name="address"
+                          value={address.address}
+                          rows={3}
+                          onChange={handleAddressChangeEvent}
+                        />
+                        {addressValidation.address && (
+                          <p className="error_text">Please Enter Address</p>
+                        )}
+                      </Form.Group>
+                    </Form>
+                  </Col>
+                </Row>
+
+                <Row>
+                  <Col>
+                    {" "}
+                    <label className="mb-3 font-weight-bold">State *</label>
+                    <Select
+                      options={
+                        stateList?.length > 0 &&
+                        stateList?.map((o) => ({
+                          label: o.name,
+                          value: o._id,
+                        }))
+                      }
+                      value={{
+                        label:
+                          stateList?.length > 0 &&
+                          stateList?.find((o) => o._id === address?.state)
+                            ?.name,
+                        value: address?.state,
+                      }}
+                      onChange={async (data) => {
+                        //if (data?.value) {
+
+                        const CityListData = await getCitiesApi(data?.value);
+                        setCityList(CityListData?.data?.responseData?.cities);
+                        setAddress({ ...address, state: data?.value });
+                        //}
+                      }}
+                    />
+                    {addressValidation.state && (
+                      <p className="error_text">Please select state</p>
+                    )}
+                  </Col>
+                  <Col>
+                    {" "}
+                    <label className="mb-3 font-weight-bold">City *</label>
+                    <Select
+                      options={
+                        cityList?.length > 0 &&
+                        cityList?.map((o) => ({
+                          label: o.name,
+                          value: o._id,
+                        }))
+                      }
+                      value={{
+                        label:
+                          cityList?.length > 0 &&
+                          cityList?.find((o) => o._id === address?.city)?.name,
+                        value: address?.city,
+                      }}
+                      onChange={async (data) => {
+                        //if (data?.value) {
+
+                        // const CityListData = await getCitiesApi(
+                        //   data?.value
+                        // );
+                        // setCityList(
+                        //   CityListData?.data?.responseData?.cities
+                        // );
+                        setAddress({ ...address, city: data?.value });
+                        //}
+                      }}
+                    />
+                    {/* <Form.Select
+                          aria-label="Default select example"
+                          name="city"
+                          defaultValue={address?.city}
+                          onChange={() => handleAddressChangeEvent}
+                          value={address?.city}
+                        >
+                          <option>City</option>
+
+                          {cityList?.length > 0 &&
+                            cityList?.map((ListCity) => {
+                              return (
+                                <option value={ListCity?._id}>
+                                  {ListCity?.name}
+                                </option>
+                              );
+                            })}
+                        </Form.Select> */}
+                    {addressValidation.city && (
+                      <p className="error_text">Please select City</p>
+                    )}
+                  </Col>
+                  <Col>
+                    <Form>
+                      <Form.Group
+                        className="mb-3"
+                        controlId="exampleForm.ControlInput1"
+                      >
+                        {/* <Form.Label>Pincode</Form.Label>
+                              <Form.Control type="text" placeholder="name" /> */}
+                        <InputText
+                          title={"Pincode"}
+                          type="number"
+                          name="pincode"
+                          placeholder="Enter Pin code"
+                          value={address?.pincode}
+                          required={addressValidation?.pincode}
+                          onChange={handleAddressChangeEvent}
+                        />
+                      </Form.Group>
+                    </Form>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col className="py-4">
+                    <button class="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4" onClick={() => handleProfileAddressForm()}>SAVE</button>
+                  </Col>
+                </Row>
+
+            </div>
+                  </div>
+                </div>
+
+
+                <div className="row">
+                  <div className="col-sm-12">
+                    <ul className="address_list">
+                      <li><strong><i class="fa fa-truck" aria-hidden="true"></i> Expected Date : 00:Dec:2022</strong></li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="row">
+                  <div className="col-sm-12">
+                    <h1 className="address_user">Your Orders</h1>
+                    <hr></hr>
+                    {cart?.data?.cart?.length > 0 ? (
                 <table className="shop-table cart-table">
                   <thead>
                     <tr>
@@ -564,8 +839,97 @@ const CheckoutSection = ({ orderInfo, loading }) => {
               ) : (
                 "Loading please wait"
               )}
+                  </div>
+                </div>
+
+                <div className="row">
+                  <div className="col-sm-12">
+                    <h1 className="address_user">Payments Methods</h1>
+                    <hr></hr>
+                    <Form>
+                      {['radio'].map((type) => (
+                        <div key={`default-${type}`} className="mb-3">
+                          <Form.Check type={type} id={`default-${type}`} label={`Razopay Secure (UPI, Cards,Wallets, Netbanking)`} />
+                          <Form.Check type={type} id={`default-${type}`} label={`Cash on Delivery (COD)`} />
+                        </div>
+                      ))}
+                    </Form>
+                  </div>
+                </div>
+
+                {/* New Address Section End */}
+
+                  {/* <div class="row">
+                    <div class="col-sm-4">
+                      <p>Name</p>
+                    </div>
+                    <div class="col-sm-8">
+                      <p>{user?.data?.name}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <p>Email</p>
+                    </div>
+                    <div class="col-sm-8">
+                      <p>{user?.data?.email}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <p>Mobile Number</p>
+                    </div>
+                    <div class="col-sm-8">
+                      <p>{user?.data?.mobile}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <p>Address</p>
+                    </div>
+                    <div class="col-sm-8">
+                      <p>
+                        {address?.address}
+                        <br></br>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <p>State</p>
+                    </div>
+                    <div class="col-sm-8">
+                      <p>
+                        {stateList?.length > 0 &&
+                          stateList?.find((o) => o._id === address?.state)
+                            ?.name}
+                      </p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <p>City</p>
+                    </div>
+                    <div class="col-sm-8">
+                      <p>
+                        {cityList?.length > 0 &&
+                          cityList?.find((o) => o._id === address?.city)?.name}
+                      </p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <p>pincode</p>
+                    </div>
+                    <div class="col-sm-8">
+                      <p>{address?.pincode ? address?.pincode : "-"}</p>
+                    </div>
+                  </div> */}
+
+
             </div>
-            <div className="col-md-4">
+
+            <div className="col-md-5 col-lg-5">
               {" "}
               {!loading ? (
                 <div className="panel panel-danger pull-up">
@@ -613,6 +977,24 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                       )}
                     </ul>
                   </div>
+                  <Form>
+                  <div class="row">
+                    <div class="col-sm-8 mt-2">
+                    <Form.Label>Apply Coupon</Form.Label>
+                      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                        <Form.Control type="text" placeholder="name" />
+                      </Form.Group>
+                    </div>
+                    <div class="col-sm-4">
+                      <button class="btn btn-dark btn-md btn-rounded btn-icon-left mt-4 mb-4" href="#">Apply Coupons</button>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12 mt-2">
+                      <a class="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4 max_width" href="">Continue to pay<i class="d-icon-arrow-right"></i></a>
+                    </div>
+                  </div>
+                </Form>
                 </div>
               ) : (
                 "Loading please wait"
@@ -705,323 +1087,6 @@ const CheckoutSection = ({ orderInfo, loading }) => {
 
           {/* Address Add Start */}
 
-          <div className="cart-card">
-            <div className="row">
-              <div className="col-sm-6">
-                <h1 class="">Billing Address</h1>
-                <Row>
-                  <Col sm={4}>
-                    <Form>
-                      <Form.Group
-                        className="mb-3"
-                        controlId="exampleForm.ControlInput1"
-                      >
-                        {/* <Form.Label>Name</Form.Label> */}
-                        {/* <Form.Control
-                                type="text"
-                                placeholder="Name"
-                                value={user?.data?.name}
-                              /> */}
-                        <InputText
-                          title={"Name"}
-                          name="name"
-                          placeholder="Enter Name"
-                          value={profile.name}
-                          required={profileValidation.name}
-                          onKeyPress={handleKeyPressEvent}
-                          onChange={handleChangeEvent}
-                        />
-                        {profileValidation.valid_name && (
-                          <p className="error_text">
-                            Please enter a valid name
-                          </p>
-                        )}
-                      </Form.Group>
-                    </Form>
-                  </Col>
-                  <Col sm={4}>
-                    <Form>
-                      <Form.Group
-                        className="mb-3"
-                        controlId="exampleForm.ControlInput1"
-                      >
-                        <InputText
-                          title={"Email"}
-                          name="email"
-                          placeholder="Enter Email"
-                          value={profile.email}
-                          required={profileValidation.email}
-                          onKeyPress={handleKeyPressEvent}
-                          onChange={handleChangeEvent}
-                        />
-                        {profileValidation.valid_email && (
-                          <p className="error_text">
-                            Please enter a valid email address
-                          </p>
-                        )}
-                      </Form.Group>
-                    </Form>
-                  </Col>
-                  <Col sm={4}>
-                    <Form>
-                      <Form.Group
-                        className="mb-3"
-                        controlId="exampleForm.ControlInput1"
-                      >
-                        <InputPhone
-                          title={"Mobile"}
-                          defaultCountry={"+91"}
-                          value={user?.data?.mobile}
-
-                          // required={lvalidation.phone_no}
-                          //onChange={(e, c_code) => {
-                          // setLogin({
-                          //     ...login,
-                          //     mobile: e,
-                          //     phone_code: c_code?.countryCode?.toUpperCase(),
-                          // });
-                          // if (e) {
-                          //     setValidation({ ...lvalidation, phone_no: false });
-                          // } else {
-                          //     setValidation({ ...lvalidation, phone_no: true });
-                          // }
-                          // }}
-                        />
-                        {/* {lvalidation.valid_phone_no && (
-                                <p className="error_text">
-                                Please enter a valid mobile number
-                                </p>
-                            )} */}
-                      </Form.Group>
-                    </Form>
-                  </Col>
-                </Row>
-
-                <Row>
-                  <Col className="py-4">
-                    <Form>
-                      <Form.Group
-                        className="mb-3"
-                        controlId="exampleForm.ControlTextarea1 "
-                      >
-                        <Form.Label>Address</Form.Label>
-                        <Form.Control
-                          as="textarea"
-                          name="address"
-                          value={address.address}
-                          rows={3}
-                          onChange={handleAddressChangeEvent}
-                        />
-                        {addressValidation.address && (
-                          <p className="error_text">Please Enter Address</p>
-                        )}
-                      </Form.Group>
-                    </Form>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col>
-                    {" "}
-                    <label className="mb-3 font-weight-bold">State *</label>
-                    <Select
-                      options={
-                        stateList?.length > 0 &&
-                        stateList?.map((o) => ({
-                          label: o.name,
-                          value: o._id,
-                        }))
-                      }
-                      value={{
-                        label:
-                          stateList?.length > 0 &&
-                          stateList?.find((o) => o._id === address?.state)
-                            ?.name,
-                        value: address?.state,
-                      }}
-                      onChange={async (data) => {
-                        //if (data?.value) {
-
-                        const CityListData = await getCitiesApi(data?.value);
-                        setCityList(CityListData?.data?.responseData?.cities);
-                        setAddress({ ...address, state: data?.value });
-                        //}
-                      }}
-                    />
-                    {addressValidation.state && (
-                      <p className="error_text">Please select state</p>
-                    )}
-                  </Col>
-                  <Col>
-                    {" "}
-                    <label className="mb-3 font-weight-bold">City *</label>
-                    <Select
-                      options={
-                        cityList?.length > 0 &&
-                        cityList?.map((o) => ({
-                          label: o.name,
-                          value: o._id,
-                        }))
-                      }
-                      value={{
-                        label:
-                          cityList?.length > 0 &&
-                          cityList?.find((o) => o._id === address?.city)?.name,
-                        value: address?.city,
-                      }}
-                      onChange={async (data) => {
-                        //if (data?.value) {
-
-                        // const CityListData = await getCitiesApi(
-                        //   data?.value
-                        // );
-                        // setCityList(
-                        //   CityListData?.data?.responseData?.cities
-                        // );
-                        setAddress({ ...address, city: data?.value });
-                        //}
-                      }}
-                    />
-                    {/* <Form.Select
-                          aria-label="Default select example"
-                          name="city"
-                          defaultValue={address?.city}
-                          onChange={() => handleAddressChangeEvent}
-                          value={address?.city}
-                        >
-                          <option>City</option>
-
-                          {cityList?.length > 0 &&
-                            cityList?.map((ListCity) => {
-                              return (
-                                <option value={ListCity?._id}>
-                                  {ListCity?.name}
-                                </option>
-                              );
-                            })}
-                        </Form.Select> */}
-                    {addressValidation.city && (
-                      <p className="error_text">Please select City</p>
-                    )}
-                  </Col>
-                  <Col>
-                    <Form>
-                      <Form.Group
-                        className="mb-3"
-                        controlId="exampleForm.ControlInput1"
-                      >
-                        {/* <Form.Label>Pincode</Form.Label>
-                              <Form.Control type="text" placeholder="name" /> */}
-                        <InputText
-                          title={"Pincode"}
-                          type="number"
-                          name="pincode"
-                          placeholder="Enter Pin code"
-                          value={address?.pincode}
-                          required={addressValidation?.pincode}
-                          onChange={handleAddressChangeEvent}
-                        />
-                      </Form.Group>
-                    </Form>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col className="py-4">
-                    <button
-                      // type="submit"
-                      class="btn-product btn-cart wid_200"
-                      onClick={() => handleProfileAddressForm()}
-                    >
-                      SAVE
-                    </button>
-                  </Col>
-                </Row>
-              </div>
-
-              <div className="col-sm-6">
-                <div class="card_inner">
-                  <div class="row pt-4">
-                    <div class="col-sm-6">
-                      <h1 class="">Billing Address</h1>
-                    </div>
-                    <div class="col-sm-6 text-right">
-                      <img
-                        src="https://icons.veryicon.com/png/o/miscellaneous/linear-small-icon/edit-246.png"
-                        class="address_edit_icon"
-                      ></img>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-4">
-                      <p>Name</p>
-                    </div>
-                    <div class="col-sm-8">
-                      <p>{user?.data?.name}</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-4">
-                      <p>Email</p>
-                    </div>
-                    <div class="col-sm-8">
-                      <p>{user?.data?.email}</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-4">
-                      <p>Mobile Number</p>
-                    </div>
-                    <div class="col-sm-8">
-                      <p>{user?.data?.mobile}</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-4">
-                      <p>Address</p>
-                    </div>
-                    <div class="col-sm-8">
-                      <p>
-                        {address?.address}
-                        <br></br>
-                      </p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-4">
-                      <p>State</p>
-                    </div>
-                    <div class="col-sm-8">
-                      <p>
-                        {stateList?.length > 0 &&
-                          stateList?.find((o) => o._id === address?.state)
-                            ?.name}
-                      </p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-4">
-                      <p>City</p>
-                    </div>
-                    <div class="col-sm-8">
-                      <p>
-                        {cityList?.length > 0 &&
-                          cityList?.find((o) => o._id === address?.city)?.name}
-                      </p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-4">
-                      <p>pincode</p>
-                    </div>
-                    <div class="col-sm-8">
-                      <p>{address?.pincode ? address?.pincode : "-"}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Address Add End */}
         </div>
       </section>
 
