@@ -41,13 +41,7 @@ const Product = ({ ProductDetails, key }) => {
           if (ProductDetails?.isFree) {
             return (
               <Link to={`/product/free/${ProductDetails?._id}`}>
-                <img
-                  src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${ProductDetails?.photos[0]}`}
-                  alt="product"
-                  width="280"
-                  height="315"
-                  style={{ width: "100%" }}
-                />
+                <img src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${ProductDetails?.photos[0]}`} alt="product" class="img-fluid" width="280" height="315"/>
               </Link>
             );
           } else {
@@ -55,12 +49,7 @@ const Product = ({ ProductDetails, key }) => {
               <Link to={`/product/${ProductDetails?._id}`}>
                 <img
                   //src={"http://54.177.7.240" + ProductDetails?.photos[0]}
-                  src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${ProductDetails?.photos[0]}`}
-                  alt="product"
-                  width="280"
-                  height="315"
-                  style={{ width: "100%" }}
-                />
+                  src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${ProductDetails?.photos[0]}`} alt="product" class="img-fluid" width="280" height="315"/>
               </Link>
             );
           }
@@ -117,9 +106,7 @@ const Product = ({ ProductDetails, key }) => {
                   }
                 }}
               >
-                <i class="d-icon-bag"></i>
-                <span>Add to cart</span>
-              </a>
+                <i class="d-icon-bag"></i><span>Add to Bag</span></a>
             ) : (
               <Link
                 to={`/product/free/${ProductDetails?._id}`}

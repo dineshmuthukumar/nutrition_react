@@ -4972,7 +4972,8 @@ to {
   width:100%;
   height:auto;
   margin-left:auto;
-  margin-right:auto
+  margin-right:auto;
+  object-fit: cover;
 }
 .category .category-name {
   margin-bottom:0.3rem;
@@ -8242,7 +8243,7 @@ button.mfp-arrow {
   position:absolute;
   right :2rem;
   top :2rem;
-  max-width: 6rem
+  max-width: 8rem;
 }
 .product-label {
   display:inline-block;
@@ -8260,7 +8261,9 @@ button.mfp-arrow {
   background:#26c
 }
 .product-label.label-sale {
-  background:#d26e4b
+  background:#d26e4b;
+  padding: 1rem;
+  font-size: 14px;
 }
 .product-label.label-top {
   background:#26c
@@ -19537,4 +19540,43 @@ aside .service-list .icon-box-side .icon-box-content {
 .image-overlay img {
   width:100%;
   display:block
+}
+
+
+
+.banner figure img 
+{
+  object-fit: fill;
+  max-width: 100%;
+  height: 540px;
+  min-height: 540px;
+  width: 100%;
+}
+.swiper-slide.swiper-slide-active 
+{
+  margin-right: 0px !important;
+}
+.swiper-container-horizontal>.swiper-scrollbar 
+{
+  display: none;
+}
+
+
+/* .owl-item {
+  width: 384px !important;
+  margin-right: 10px !important;
+} */
+
+.owl-item.active 
+{
+  margin-right: 10px !important;
+}
+.owl-stage-outer 
+{
+  padding: 0;
+  margin: 0;
+}
+h3.img-cat-title i 
+{
+  color: #000;
 }

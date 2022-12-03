@@ -158,7 +158,8 @@ h2.title.title-center.ls-s.mb-8 {
     padding: 50px;
     /*background: #cfece76e; */
     border-radius: 10px;
-    background: url("../images/new-images/demos/demo-food2/products/pro_bg3.png") no-repeat;
+    /* background: url("../images/new-images/demos/demo-food2/products/pro_bg3.png") no-repeat; */
+    background: url("../images/green_bg.jpg") no-repeat;
     border-radius: 10px;
     /*background-position: center;*/
     background-size: cover; 
@@ -196,10 +197,10 @@ img.weak_strongest_img_absolute
 }
 .weak_strongest_img
 {
-    /*position: absolute;*/
-    width: 50%;
-    top: -5px;
-    left: 55px;
+    position: absolute;
+    width: 80%;
+    top: -15px;
+    left: 0px;
     bottom: 0;
     right: 0;
     content: '';
@@ -403,9 +404,10 @@ span.mail_footer a
     display: flex !important;
     align-items: center;
     justify-content: center;
-    width: 8.5rem;
-    height: 8.5rem;
-    margin-bottom: 1.4rem;
+    width: 5rem;
+    height: 5rem;
+    margin-bottom: 1.4rem !important;
+    padding: 10px;
     border-radius: 50%;
     box-shadow: 0 3px 20px rgb(0 0 0 / 7%);
 }
@@ -445,7 +447,7 @@ span.mail_footer a
 .border-top {
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
-    padding: 5px 0px;
+    padding: 10px 0px;
 }
 .margin_left_16 {
     margin-left: 16%;
@@ -1123,7 +1125,7 @@ h4.icon-box-title.text-capitalize.ls-normal
 section.instagram-section p 
 {
     font-family: var(--font-monda);
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.86;
     color: var(--color-text);
     text-align: center;
@@ -1413,7 +1415,11 @@ table.shop-table.cart-table thead
     line-height: 30px;
     color: var(--color-text);
 }
-.nurtures_images, img.best_img
+.nurtures_images
+{
+    width: 75%;
+}
+img.best_img
 {
     width: 50%;
 }
@@ -1431,7 +1437,13 @@ img.category_media_image
 }
 img.weak_strongest_img_absolute 
 {
-    width: 80%;
+    position: absolute;
+    width: 100%;
+    top: -150px;
+    left: -31px;
+    bottom: 0;
+    right: 0;
+    content: '';
 }
 .noti-content 
 {
@@ -1503,7 +1515,9 @@ section.arrivals-section.need_sec img
 {
     min-height: 315px;
     height: 315px;
-    object-fit: contain;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 10px;
 }
 .intro-section .owl-carousel .owl-item img 
 {

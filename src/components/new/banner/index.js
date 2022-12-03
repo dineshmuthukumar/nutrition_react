@@ -97,13 +97,7 @@ const Banner = ({ bannerContent }) => {
                               className={`intro-slide${key} banner banner-fixed`}
                             >
                               <figure>
-                                <img
-                                  src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${BannerDetail?.image}`}
-                                  alt="intro-banner"
-                                  width="1903"
-                                  height="540"
-                                  intro-section
-                                />
+                                <img src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${BannerDetail?.image}`} alt="intro-banner"/>
                               </figure>
                             </div>
                           </Link>

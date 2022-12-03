@@ -192,7 +192,7 @@ const Footer = () => {
                   </form>
                 </div>
                 <div className="row border-top col-md-10">
-                  <div className="col-sm-5 text-center">
+                  <div className="col-sm-12 text-center">
                     <div className="social-links links">
                       <a
                         href="#"
@@ -217,7 +217,7 @@ const Footer = () => {
                       {/* <FaFacebook color="royalblue" size={96} /> */}
                     </div>
                   </div>
-                  <div className="col-sm-2 text-center mobile_d_none"></div>
+                  
                 </div>
               </div>
             </div>

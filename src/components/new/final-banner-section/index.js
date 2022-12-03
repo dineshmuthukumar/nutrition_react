@@ -17,20 +17,8 @@ const FirstBannerSection = ({ homeContent }) => {
                 <div className="col-xl-2 col-sm-6 col-12">
                   <div className="banner1 banner banner-fixed overlay-zoom">
                     <figure>
-                      <video
-                        className="card_video__1z3he"
-                        width="auto"
-                        height="auto"
-                        autoPlay
-                        muted
-                        loop
-                        style={{ width: "100%" }}
-                      >
-                        <source
-                          src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${sixthproductcontentList?.image}`}
-                          type="video/mp4"
-                        />
-                      </video>
+                      <video className="card_video__1z3he" width="auto" height="auto" autoPlay muted loop style={{ width: "100%" }}>
+                        <source src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${sixthproductcontentList?.image}`} type="video/mp4" /></video>
                     </figure>
 
                     <div className="category-content y-50 x-50 w-100 pl-2 pr-2 pb-1 p-absolute appear-animate">

@@ -30,11 +30,7 @@ const OurIdea = ({ homeContent }) => {
                             height="200"
                           /> */}
                           {thirdContentList?.image && (
-                            <img
-                              src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${thirdContentList?.image}`}
-                              alt="category"
-                              className="category_media_image"
-                            />
+                            <img src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${thirdContentList?.image}`} alt="category" className="category_media_image" />
                           )}
                         </figure>
                       </a>

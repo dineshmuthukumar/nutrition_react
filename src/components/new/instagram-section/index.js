@@ -20,6 +20,7 @@ const InstagramSection = ({ homeContent }) => {
           <h2 className="title-echo mb-1">
             <span>{homeContent?.section?.fifth?.title}</span>
           </h2>
+          <p>No more boring methods – Liven makes the convenient routes <br></br>for all people making them free of hesitating or hard methods of supplementation.</p>
           <p>{homeContent?.section?.fifth?.description}</p>
           {/* <div
                                 className="owl-carousel owl-theme row cols-xl-5 cols-lg-4 cols-sm-3 cols-2"

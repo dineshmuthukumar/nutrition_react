@@ -23,7 +23,7 @@ const WeakStrong = ({ homeContent }) => {
               </div>
             </div>
             <div className="row">
-              <div className="col-sm-8">
+              <div className="col-sm-7">
                 {homeContent?.section?.second?.list &&
                   homeContent?.section?.second?.list?.map(
                     (secondContentList) => {
@@ -31,14 +31,10 @@ const WeakStrong = ({ homeContent }) => {
                     }
                   )}
               </div>
-              <div className="col-sm-4">
+              <div className="col-sm-5">
                 {/* <img src={pro_bg2} className="weak_strongest_img_absolute" /> */}
                 {homeContent?.section?.second && (
-                  <img
-                    src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${homeContent?.section?.second?.image}`}
-                    className="weak_strongest_img_absolute"
-                    alt="First Banner"
-                  />
+                  <img src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${homeContent?.section?.second?.image}`} className="weak_strongest_img_absolute" alt="First Banner" />
                 )}
               </div>
             </div>
@@ -58,6 +54,7 @@ const WeakStrong = ({ homeContent }) => {
                   Research-based nutrients and veracious inputs that can put you
                   on the right track of leading healthier and pleasurable life.
                 </p>
+                <br></br>
               </div>
             </div>
           </div>
