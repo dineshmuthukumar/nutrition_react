@@ -54,15 +54,18 @@ const NewHome = () => {
 
   // const [favPage, setFavPage] = useState(1);
   // const [favList, setFavList] = useState([]);
-  // const [favLoading, setFavLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   // const [favHasNext, setFavHasNext] = useState(false);
 
   const getProductDetails = async () => {
     try {
+      setLoading(true);
       let response = await getProductDetailsApi(productid);
       setProductData(response?.data?.responseData?.product);
       setSubCategoryProducts(response?.data?.responseData?.subcategoryProducts);
+      setLoading(false);
     } catch (err) {
+      setLoading(false);
       console.log(err);
     }
   };
@@ -94,7 +97,7 @@ const NewHome = () => {
       setCookiesByName("source", fsz);
     }
 
-  if (token) {
+    if (token) {
       setCookies(token);
 
       history.replace(url);
@@ -149,6 +152,7 @@ const NewHome = () => {
             <ProductDetails
               productData={productData}
               subCategoryProducts={subCategoryProducts}
+              loading={loading}
             />
           </div>
           <Footer />

@@ -132,7 +132,11 @@ const Checkout = () => {
               </h1>
             </div>
             <div className="page-content pb-10 pt-10">
-              <CheckoutSection orderInfo={orderInfo} loading={loading} />
+              <CheckoutSection
+                orderInfo={orderInfo}
+                checkoutDetails={checkDetails}
+                loading={loading}
+              />
             </div>
           </div>
         </div>

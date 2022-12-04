@@ -16,6 +16,7 @@ import {
   FaTelegramPlane,
   FaYoutube,
 } from "react-icons/fa";
+import { CiCircleRemove } from "react-icons/ci";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { Link } from "react-router-dom";
 
@@ -28,12 +29,15 @@ import {
   remove_from_cart_thunk,
 } from "../../../redux/thunk/user_cart_thunk";
 import "./style.scss";
-import { currencyFormat } from "../../../utils/common";
+import { currencyFormat, percentage } from "../../../utils/common";
 import {
   getCheckoutApi,
   OrderSuccessApi,
   OrdersFailedApi,
   removeFromCartAllApi,
+  getPromocodeListApi,
+  applypromocodeApi,
+  removepromocodeApi,
 } from "../../../api/base-methods";
 import { toast } from "react-toastify";
 import { checkoutApi } from "../../../api/methods";
@@ -53,14 +57,21 @@ import {
 } from "../../../api/base-methods";
 // import { toast } from "react-toastify";
 
-const CheckoutSection = ({ orderInfo, loading }) => {
+const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { user, cart } = useSelector((state) => state);
   const [show, setShow] = useState(false);
+  const [couponShow, setCouponShow] = useState(false);
+
+  const [showAddressSection, setShowAddressSection] = useState(false);
 
   const [stateList, setStateList] = useState({});
   const [cityList, setCityList] = useState({});
+  const [promoCodeList, setPromoCodeList] = useState({});
+  const [promoCodeDetails, setPromoCodeDetails] = useState({});
+
+  const [promoCodeValue, setPromoCodeValue] = useState("");
 
   const [profile, setProfile] = useState({
     name: user?.data?.name,
@@ -92,6 +103,9 @@ const CheckoutSection = ({ orderInfo, loading }) => {
     valid_pincode: false,
   });
 
+  const [promoCode, setPromoCode] = useState("");
+  const [promoError, setPromoError] = useState("");
+
   // const { orderDetails, setOrderDetails } = useState("");
   // const { totalAmount, setTotalAmount } = useState(0);
   // const { currency, setCurrency } = useState("INR");
@@ -103,6 +117,12 @@ const CheckoutSection = ({ orderInfo, loading }) => {
     //   setTotalAmount(1000);
     //   setCurrency(CheckoutDetails?.data?.responseData?.orderInfo?.currency);
   };
+  const getPromocodeList = async () => {
+    const response = await getPromocodeListApi();
+    setPromoCodeList(response?.data?.responseData?.promocodes);
+
+    console.log(response?.data?.responseData?.promocodes, "response");
+  };
   useEffect(async () => {
     dispatch(get_cart_list_thunk());
     checkDetails();
@@ -110,6 +130,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
     setAddress({ ...address, state: user?.data?.state?._id });
 
     getCityUser();
+    getPromocodeList();
     // console.log(response?.data?.responseData?.blogs?.docs, "response");
   }, []);
 
@@ -269,8 +290,6 @@ const CheckoutSection = ({ orderInfo, loading }) => {
       c_validation = { ...c_validation, valid_pincode: false };
     }
 
-    console.log(c_validation, "c_validation");
-
     setAddressValidation(c_validation);
     if (
       !c_validation.address &&
@@ -352,10 +371,25 @@ const CheckoutSection = ({ orderInfo, loading }) => {
     //   CheckoutDetails?.data?.responseData.orderInfo,
     //   "CheckoutDetails"
     // );
+    let discountAmount = 0;
+    if (promoCodeDetails && Object.keys(promoCodeDetails)?.length) {
+      if (promoCodeDetails?.promoType == "percentage") {
+        discountAmount = percentage(
+          promoCodeDetails?.percentage,
+          orderInfo?.orderInfo?.amount / 100
+        );
+      } else {
+        discountAmount = promoCodeDetails?.discountAmount;
+      }
+    }
+    let amount =
+      parseFloat(orderInfo?.orderInfo?.amount) - parseFloat(discountAmount);
+
+    console.log(amount, "amount");
     const options = {
       key: "rzp_test_2hFYTVjM8i6zhe",
       currency: orderInfo?.orderInfo?.currency,
-      amount: orderInfo?.orderInfo?.amount,
+      amount: amount / 100,
       name: "LivenScience",
       description: "Thankyou for your order",
       image: "https://manuarora.in/logo.png",
@@ -366,6 +400,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
         console.log(response, "response");
 
         let RequestData = {
+          cartId: cart?.data?.cardId,
           razorpay_payment_id: response.razorpay_payment_id,
           razorpay_order_id: response.razorpay_order_id,
           razorpay_signature: response.razorpay_signature,
@@ -419,6 +454,66 @@ const CheckoutSection = ({ orderInfo, loading }) => {
     //   setOrderDetails(CheckoutDetails?.data?.responseData.orderInfo);
     // } catch (err) {}
   };
+  const handleCopy = (copytext) => {
+    // For mobile devices
+    // Copy the text inside the text field
+    navigator.clipboard.writeText(copytext);
+
+    toast.success("Copy the promo code");
+  };
+  const applypromocode = async (e) => {
+    e.preventDefault();
+    if (promoCodeValue) {
+      setPromoError(false);
+    } else {
+      setPromoError(true);
+      return false;
+    }
+    // console.log(Object.keys(promoCodeDetails).length, "promoCodeDetails");
+    //if (Object.keys(promoCodeDetails)?.length == 0) {
+    if (promoCodeList?.find((obj) => obj?.promo === promoCodeValue)) {
+      try {
+        var req = { promoCode: promoCodeValue };
+        const result = await applypromocodeApi(req, cart?.data?.cardId);
+
+        console.log(result?.data?.responseData.promoDetails);
+        if (result.data.statusCode === 200) {
+          toast.success("Promocode Applied Sucessfully");
+          setPromoCodeDetails(result?.data?.responseData.promoDetails);
+          setCouponShow(false);
+        }
+        console.log(result, "result");
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      toast.error("Invalid Promo Code ");
+    }
+    // } else {
+    //   toast.error("Promo Code already applied ");
+    // }
+  };
+
+  const removePromoCode = async () => {
+    // console.log(cart?.data, "cart?.data?");
+    if (promoCodeDetails && Object.keys(promoCodeDetails)?.length) {
+      try {
+        const result = await removepromocodeApi(cart?.data?.cardId);
+
+        // console.log(result?.data?.responseData.promoDetails);
+        if (result.data.statusCode === 200) {
+          toast.success("Promocode Removed Sucessfully");
+          setPromoCodeDetails({});
+          setCouponShow(false);
+        }
+        console.log(result, "result");
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      toast.error("Invalid Promo Code ");
+    }
+  };
 
   return (
     <>
@@ -431,10 +526,8 @@ const CheckoutSection = ({ orderInfo, loading }) => {
         <div className="container mt-7 mb-2">
           <div className="row">
             <div className="col-lg-7 col-md-7 pr-lg-4">
-
-            <div class="card_inner">
-                  
-                  {/* <div class="row pt-4">
+              <div class="card_inner">
+                {/* <div class="row pt-4">
                     <div class="col-sm-8">
                       <h1 class="">Billing Address</h1>
                       <hr></hr>
@@ -447,200 +540,235 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                     </div>
                   </div> */}
 
-
                 {/* New Address Section Start */}
-                <div className="row">
-                  <div className="col-sm-12">
-                  <h1 className="address_user">Shipping Address</h1>
-                    <hr></hr>
-                    <h1 className="address_user">User</h1>
-                    <ul className="address_list">
-                      <li>No. 00/00 Nort Street, West Mambalam, Chennai-33, Tamil Nadu.</li>
-                      <li><i class="fa fa-envelope" aria-hidden="true"></i> +91 00000 00000</li>
-                      <li><i class="fa fa-phone" aria-hidden="true"></i> user@gmail.com</li>
-                      <li><button class="btn btn-dark btn-sm" href="#">Changes</button></li>
-                    </ul>
-                  </div>
-                </div>
+                {cart?.data?.cart.length > 0 && (
+                  <>
+                    <div className="row">
+                      <div className="col-sm-12">
+                        <h1 className="address_user">Shipping Address</h1>
+                        <hr></hr>
+                        <h1 className="address_user">User</h1>
+                        <ul className="address_list">
+                          <li>{user?.data?.address}</li>
+                          <li>
+                            <i class="fa fa-envelope" aria-hidden="true"></i> +
+                            {user?.data?.mobile}
+                          </li>
+                          <li>
+                            <i class="fa fa-phone" aria-hidden="true"></i>{" "}
+                            {user?.data?.email}
+                          </li>
+                          <li>
+                            <button
+                              class="btn btn-dark btn-sm"
+                              href="#"
+                              onClick={() =>
+                                setShowAddressSection(!showAddressSection)
+                              }
+                            >
+                              Changes
+                            </button>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
 
-                <div className="row">
-                  <div className="col-sm-12">
-                  <h1 className="address_user">Edit Address</h1>
-                    <hr></hr>
-                    <Row>
-                  <Col sm={4}>
-                    <Form>
-                      <Form.Group
-                        className="mb-3"
-                        controlId="exampleForm.ControlInput1"
-                      >
-                        {/* <Form.Label>Name</Form.Label> */}
-                        {/* <Form.Control
+                    <div
+                      className={`row ${
+                        showAddressSection
+                          ? "show-address-section"
+                          : "hide-address-section"
+                      }`}
+                    >
+                      <div className="col-sm-12">
+                        <h1 className="address_user">Edit Address</h1>
+                        <hr></hr>
+                        <Row>
+                          <Col sm={4}>
+                            <Form>
+                              <Form.Group
+                                className="mb-3"
+                                controlId="exampleForm.ControlInput1"
+                              >
+                                {/* <Form.Label>Name</Form.Label> */}
+                                {/* <Form.Control
                                 type="text"
                                 placeholder="Name"
                                 value={user?.data?.name}
                               /> */}
-                        <InputText
-                          title={"Name"}
-                          name="name"
-                          placeholder="Enter Name"
-                          value={profile.name}
-                          required={profileValidation.name}
-                          onKeyPress={handleKeyPressEvent}
-                          onChange={handleChangeEvent}
-                        />
-                        {profileValidation.valid_name && (
-                          <p className="error_text">
-                            Please enter a valid name
-                          </p>
-                        )}
-                      </Form.Group>
-                    </Form>
-                  </Col>
-                  <Col sm={4}>
-                    <Form>
-                      <Form.Group
-                        className="mb-3"
-                        controlId="exampleForm.ControlInput1"
-                      >
-                        <InputText
-                          title={"Email"}
-                          name="email"
-                          placeholder="Enter Email"
-                          value={profile.email}
-                          required={profileValidation.email}
-                          onKeyPress={handleKeyPressEvent}
-                          onChange={handleChangeEvent}
-                        />
-                        {profileValidation.valid_email && (
-                          <p className="error_text">
-                            Please enter a valid email address
-                          </p>
-                        )}
-                      </Form.Group>
-                    </Form>
-                  </Col>
-                  <Col sm={4}>
-                    <Form>
-                      <Form.Group
-                        className="mb-3"
-                        controlId="exampleForm.ControlInput1"
-                      >
-                        <InputPhone
-                          title={"Mobile"}
-                          defaultCountry={"+91"}
-                          value={user?.data?.mobile}
+                                <InputText
+                                  title={"Name"}
+                                  name="name"
+                                  placeholder="Enter Name"
+                                  value={profile.name}
+                                  required={profileValidation.name}
+                                  onKeyPress={handleKeyPressEvent}
+                                  onChange={handleChangeEvent}
+                                />
+                                {profileValidation.valid_name && (
+                                  <p className="error_text">
+                                    Please enter a valid name
+                                  </p>
+                                )}
+                              </Form.Group>
+                            </Form>
+                          </Col>
+                          <Col sm={4}>
+                            <Form>
+                              <Form.Group
+                                className="mb-3"
+                                controlId="exampleForm.ControlInput1"
+                              >
+                                <InputText
+                                  title={"Email"}
+                                  name="email"
+                                  placeholder="Enter Email"
+                                  value={profile.email}
+                                  required={profileValidation.email}
+                                  onKeyPress={handleKeyPressEvent}
+                                  onChange={handleChangeEvent}
+                                />
+                                {profileValidation.valid_email && (
+                                  <p className="error_text">
+                                    Please enter a valid email address
+                                  </p>
+                                )}
+                              </Form.Group>
+                            </Form>
+                          </Col>
+                          <Col sm={4}>
+                            <Form>
+                              <Form.Group
+                                className="mb-3"
+                                controlId="exampleForm.ControlInput1"
+                              >
+                                <InputPhone
+                                  title={"Mobile"}
+                                  defaultCountry={"+91"}
+                                  value={user?.data?.mobile}
 
-                          // required={lvalidation.phone_no}
-                          //onChange={(e, c_code) => {
-                          // setLogin({
-                          //     ...login,
-                          //     mobile: e,
-                          //     phone_code: c_code?.countryCode?.toUpperCase(),
-                          // });
-                          // if (e) {
-                          //     setValidation({ ...lvalidation, phone_no: false });
-                          // } else {
-                          //     setValidation({ ...lvalidation, phone_no: true });
-                          // }
-                          // }}
-                        />
-                        {/* {lvalidation.valid_phone_no && (
+                                  // required={lvalidation.phone_no}
+                                  //onChange={(e, c_code) => {
+                                  // setLogin({
+                                  //     ...login,
+                                  //     mobile: e,
+                                  //     phone_code: c_code?.countryCode?.toUpperCase(),
+                                  // });
+                                  // if (e) {
+                                  //     setValidation({ ...lvalidation, phone_no: false });
+                                  // } else {
+                                  //     setValidation({ ...lvalidation, phone_no: true });
+                                  // }
+                                  // }}
+                                />
+                                {/* {lvalidation.valid_phone_no && (
                                 <p className="error_text">
                                 Please enter a valid mobile number
                                 </p>
                             )} */}
-                      </Form.Group>
-                    </Form>
-                  </Col>
-                </Row>
+                              </Form.Group>
+                            </Form>
+                          </Col>
+                        </Row>
 
-                <Row>
-                  <Col className="py-4">
-                    <Form>
-                      <Form.Group
-                        className="mb-3"
-                        controlId="exampleForm.ControlTextarea1 "
-                      >
-                        <Form.Label>Address</Form.Label>
-                        <Form.Control
-                          as="textarea"
-                          name="address"
-                          value={address.address}
-                          rows={3}
-                          onChange={handleAddressChangeEvent}
-                        />
-                        {addressValidation.address && (
-                          <p className="error_text">Please Enter Address</p>
-                        )}
-                      </Form.Group>
-                    </Form>
-                  </Col>
-                </Row>
+                        <Row>
+                          <Col className="py-4">
+                            <Form>
+                              <Form.Group
+                                className="mb-3"
+                                controlId="exampleForm.ControlTextarea1 "
+                              >
+                                <Form.Label>Address</Form.Label>
+                                <Form.Control
+                                  as="textarea"
+                                  name="address"
+                                  value={address.address}
+                                  rows={3}
+                                  onChange={handleAddressChangeEvent}
+                                />
+                                {addressValidation.address && (
+                                  <p className="error_text">
+                                    Please Enter Address
+                                  </p>
+                                )}
+                              </Form.Group>
+                            </Form>
+                          </Col>
+                        </Row>
 
-                <Row>
-                  <Col>
-                    {" "}
-                    <label className="mb-3 font-weight-bold">State *</label>
-                    <Select
-                      options={
-                        stateList?.length > 0 &&
-                        stateList?.map((o) => ({
-                          label: o.name,
-                          value: o._id,
-                        }))
-                      }
-                      value={{
-                        label:
-                          stateList?.length > 0 &&
-                          stateList?.find((o) => o._id === address?.state)
-                            ?.name,
-                        value: address?.state,
-                      }}
-                      onChange={async (data) => {
-                        //if (data?.value) {
+                        <Row>
+                          <Col>
+                            {" "}
+                            <label className="mb-3 font-weight-bold">
+                              State *
+                            </label>
+                            <Select
+                              options={
+                                stateList?.length > 0 &&
+                                stateList?.map((o) => ({
+                                  label: o.name,
+                                  value: o._id,
+                                }))
+                              }
+                              value={{
+                                label:
+                                  stateList?.length > 0 &&
+                                  stateList?.find(
+                                    (o) => o._id === address?.state
+                                  )?.name,
+                                value: address?.state,
+                              }}
+                              onChange={async (data) => {
+                                //if (data?.value) {
 
-                        const CityListData = await getCitiesApi(data?.value);
-                        setCityList(CityListData?.data?.responseData?.cities);
-                        setAddress({ ...address, state: data?.value });
-                        //}
-                      }}
-                    />
-                    {addressValidation.state && (
-                      <p className="error_text">Please select state</p>
-                    )}
-                  </Col>
-                  <Col>
-                    {" "}
-                    <label className="mb-3 font-weight-bold">City *</label>
-                    <Select
-                      options={
-                        cityList?.length > 0 &&
-                        cityList?.map((o) => ({
-                          label: o.name,
-                          value: o._id,
-                        }))
-                      }
-                      value={{
-                        label:
-                          cityList?.length > 0 &&
-                          cityList?.find((o) => o._id === address?.city)?.name,
-                        value: address?.city,
-                      }}
-                      onChange={async (data) => {
-                        //if (data?.value) {
+                                const CityListData = await getCitiesApi(
+                                  data?.value
+                                );
+                                setCityList(
+                                  CityListData?.data?.responseData?.cities
+                                );
+                                setAddress({ ...address, state: data?.value });
+                                //}
+                              }}
+                            />
+                            {addressValidation.state && (
+                              <p className="error_text">Please select state</p>
+                            )}
+                          </Col>
+                          <Col>
+                            {" "}
+                            <label className="mb-3 font-weight-bold">
+                              City *
+                            </label>
+                            <Select
+                              options={
+                                cityList?.length > 0 &&
+                                cityList?.map((o) => ({
+                                  label: o.name,
+                                  value: o._id,
+                                }))
+                              }
+                              value={{
+                                label:
+                                  cityList?.length > 0 &&
+                                  cityList?.find((o) => o._id === address?.city)
+                                    ?.name,
+                                value: address?.city,
+                              }}
+                              onChange={async (data) => {
+                                //if (data?.value) {
 
-                        // const CityListData = await getCitiesApi(
-                        //   data?.value
-                        // );
-                        // setCityList(
-                        //   CityListData?.data?.responseData?.cities
-                        // );
-                        setAddress({ ...address, city: data?.value });
-                        //}
-                      }}
-                    />
-                    {/* <Form.Select
+                                // const CityListData = await getCitiesApi(
+                                //   data?.value
+                                // );
+                                // setCityList(
+                                //   CityListData?.data?.responseData?.cities
+                                // );
+                                setAddress({ ...address, city: data?.value });
+                                //}
+                              }}
+                            />
+                            {/* <Form.Select
                           aria-label="Default select example"
                           name="city"
                           defaultValue={address?.city}
@@ -658,99 +786,109 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                               );
                             })}
                         </Form.Select> */}
-                    {addressValidation.city && (
-                      <p className="error_text">Please select City</p>
-                    )}
-                  </Col>
-                  <Col>
-                    <Form>
-                      <Form.Group
-                        className="mb-3"
-                        controlId="exampleForm.ControlInput1"
-                      >
-                        {/* <Form.Label>Pincode</Form.Label>
+                            {addressValidation.city && (
+                              <p className="error_text">Please select City</p>
+                            )}
+                          </Col>
+                          <Col>
+                            <Form>
+                              <Form.Group
+                                className="mb-3"
+                                controlId="exampleForm.ControlInput1"
+                              >
+                                {/* <Form.Label>Pincode</Form.Label>
                               <Form.Control type="text" placeholder="name" /> */}
-                        <InputText
-                          title={"Pincode"}
-                          type="number"
-                          name="pincode"
-                          placeholder="Enter Pin code"
-                          value={address?.pincode}
-                          required={addressValidation?.pincode}
-                          onChange={handleAddressChangeEvent}
-                        />
-                      </Form.Group>
-                    </Form>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col className="py-4">
-                    <button class="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4" onClick={() => handleProfileAddressForm()}>SAVE</button>
-                  </Col>
-                </Row>
+                                <InputText
+                                  title={"Pincode"}
+                                  type="number"
+                                  name="pincode"
+                                  placeholder="Enter Pin code"
+                                  value={address?.pincode}
+                                  required={addressValidation?.pincode}
+                                  onChange={handleAddressChangeEvent}
+                                />
+                              </Form.Group>
+                            </Form>
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col className="py-4">
+                            <button
+                              class="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
+                              onClick={() => handleProfileAddressForm()}
+                            >
+                              SAVE
+                            </button>
+                          </Col>
+                        </Row>
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
 
-            </div>
-                  </div>
+              {/* <div className="row">
+                <div className="col-sm-12">
+                  <ul className="address_list">
+                    <li>
+                      <strong>
+                        <i class="fa fa-truck" aria-hidden="true"></i> Expected
+                        Date : 00:Dec:2022
+                      </strong>
+                    </li>
+                  </ul>
                 </div>
+              </div> */}
 
-
-                <div className="row">
-                  <div className="col-sm-12">
-                    <ul className="address_list">
-                      <li><strong><i class="fa fa-truck" aria-hidden="true"></i> Expected Date : 00:Dec:2022</strong></li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="row">
-                  <div className="col-sm-12">
-                    <h1 className="address_user">Your Orders</h1>
-                    <hr></hr>
-                    {cart?.data?.cart?.length > 0 ? (
-                <table className="shop-table cart-table">
-                  <thead>
-                    <tr>
-                      <th>
-                        <span>Product</span>
-                      </th>
-                      <th>Name</th>
-                      <th>
-                        <span>Price</span>
-                      </th>
-                      {/* <th>
+              <div className="row">
+                <div className="col-sm-12">
+                  <h1 className="address_user">Your Orders</h1>
+                  <hr></hr>
+                  {cart?.data?.cart?.length > 0 ? (
+                    <table className="shop-table cart-table">
+                      <thead>
+                        <tr>
+                          <th>
+                            <span>Product</span>
+                          </th>
+                          <th>Name</th>
+                          <th>
+                            <span>Price</span>
+                          </th>
+                          {/* <th>
                         <span>quantity</span>
                       </th>
                       <th>Subtotal</th> */}
-                      <th>Remove</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {cart?.data?.cart?.map((item, productkey) => {
-                      return (
-                        <tr key={productkey}>
-                          <td className="product-thumbnail">
-                            <figure>
-                              <Link to={`/product/${item?._id}`}>
-                                <img
-                                  src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${item?.photos[0]}`}
-                                  width="100"
-                                  height="100"
-                                  alt="product"
-                                />
-                              </Link>
-                            </figure>
-                          </td>
-                          <td className="product-name">
-                            <div className="product-name-section">
-                              <a href="product-simple.html">{item?.name}</a>
-                            </div>
-                          </td>
-                          <td className="product-subtotal">
-                            <span className="amount">
-                              {currencyFormat(item?.saleAmount, "INR")}
-                            </span>
-                          </td>
-                          {/* <td className="product-quantity">
+                          <th>Remove</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {cart?.data?.cart?.map((item, productkey) => {
+                          return (
+                            <tr key={productkey}>
+                              <td className="product-thumbnail">
+                                <figure>
+                                  <Link to={`/product/${item?._id}`}>
+                                    <img
+                                      src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${item?.photos[0]}`}
+                                      width="100"
+                                      height="100"
+                                      alt="product"
+                                    />
+                                  </Link>
+                                </figure>
+                              </td>
+                              <td className="product-name">
+                                <div className="product-name-section">
+                                  <a href="product-simple.html">{item?.name}</a>
+                                </div>
+                              </td>
+                              <td className="product-subtotal">
+                                <span className="amount">
+                                  {currencyFormat(item?.saleAmount, "INR")}
+                                </span>
+                              </td>
+                              {/* <td className="product-quantity">
                             <div className="input-group">
                               <button className="quantity-minus d-icon-minus"></button>
                               <input
@@ -765,101 +903,60 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                           <td className="product-price">
                             <span className="amount">$129.99</span>
                           </td> */}
-                          <td className="product-close">
-                            <a
-                              //href="cart.html#"
-                              className="product-remove"
-                              title="Remove this product"
-                              onClick={() =>
-                                dispatch(remove_from_cart_thunk(item?._id))
-                              }
-                            >
-                              <i className="fas fa-times"></i>
-                            </a>
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              ) : (
-                "No Items Found"
-              )}
-              {!loading ? (
+                              <td className="product-close">
+                                <a
+                                  //href="cart.html#"
+                                  className="product-remove"
+                                  title="Remove this product"
+                                  onClick={() =>
+                                    dispatch(remove_from_cart_thunk(item?._id))
+                                  }
+                                >
+                                  <i className="fas fa-times"></i>
+                                </a>
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  ) : (
+                    "No Items Found"
+                  )}
+                </div>
+              </div>
+
+              {cart?.data?.cart?.length > 0 && (
                 <>
-                  <div className="cart-actions-right mb-6 pt-4">
-                    {(() => {
-                      if (cart?.data?.cart?.length > 0) {
-                        return (
-                          <>
-                            {user?.data?.address &&
-                            user?.data?.state &&
-                            user?.data?.city &&
-                            // user?.data?.pincode &&
-                            user?.data?.name &&
-                            user?.data?.email ? (
-                              <Link // to="#"
-                                onClick={() => open()}
-                                className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
-                              >
-                                Continue to pay{" "}
-                                <i className="d-icon-arrow-right"></i>
-                              </Link>
-                            ) : (
-                              <Link
-                                // to="#"
-                                onClick={(e) => UpdateAddress(e)}
-                                className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
-                              >
-                                Continue to pay{" "}
-                                <i className="d-icon-arrow-right"></i>
-                              </Link>
-                            )}
-                          </>
-                        );
-                      } else {
-                        return (
-                          <Link
-                            to="/"
-                            className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
-                          >
-                            Back
-                          </Link>
-                        );
-                      }
-                    })()}
-                    {/* <a
-                      class="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
-                      href="#"
-                    >
-                      Apply Coupons <i class="d-icon-heart"></i>
-                    </a> */}
+                  <div className="row">
+                    <div className="col-sm-12">
+                      <h1 className="address_user">Payments Methods</h1>
+                      <hr></hr>
+                      <Form>
+                        {["radio"].map((type) => (
+                          <div key={`default-${type}`} className="mb-3">
+                            <Form.Check
+                              type={type}
+                              id={`default-${type}`}
+                              checked
+                              label={`Razopay Secure (UPI, Cards,Wallets, Netbanking)`}
+                            />
+                            <Form.Check
+                              type={type}
+                              id={`default-${type}`}
+                              label={`Cash on Delivery (COD)`}
+                            />
+                          </div>
+                        ))}
+                      </Form>
+                    </div>
                   </div>
                 </>
-              ) : (
-                "Loading please wait"
               )}
-                  </div>
-                </div>
 
-                <div className="row">
-                  <div className="col-sm-12">
-                    <h1 className="address_user">Payments Methods</h1>
-                    <hr></hr>
-                    <Form>
-                      {['radio'].map((type) => (
-                        <div key={`default-${type}`} className="mb-3">
-                          <Form.Check type={type} id={`default-${type}`} label={`Razopay Secure (UPI, Cards,Wallets, Netbanking)`} />
-                          <Form.Check type={type} id={`default-${type}`} label={`Cash on Delivery (COD)`} />
-                        </div>
-                      ))}
-                    </Form>
-                  </div>
-                </div>
+              {/* New Address Section End */}
 
-                {/* New Address Section End */}
-
-                  {/* <div class="row">
+              {/* <div class="row">
                     <div class="col-sm-4">
                       <p>Name</p>
                     </div>
@@ -925,8 +1022,6 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                       <p>{address?.pincode ? address?.pincode : "-"}</p>
                     </div>
                   </div> */}
-
-
             </div>
 
             <div className="col-md-5 col-lg-5">
@@ -959,6 +1054,39 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                         </span>
                       </li>
                     )}
+                    {promoCodeDetails &&
+                      Object.keys(promoCodeDetails)?.length > 0 && (
+                        <li className="list-group-item">
+                          Promocode{" "}
+                          {promoCodeDetails?.promoType == "percentage"
+                            ? `(${promoCodeDetails?.percentage}%)`
+                            : `(${currencyFormat(
+                                promoCodeDetails?.discountAmount,
+                                "INR"
+                              )})`}
+                          <span className="plan_right_section dicount_span">
+                            -
+                            {promoCodeDetails?.promoType == "percentage"
+                              ? currencyFormat(
+                                  percentage(
+                                    promoCodeDetails?.percentage,
+                                    orderInfo?.orderInfo?.amount / 100
+                                  ),
+                                  "INR"
+                                )
+                              : currencyFormat(
+                                  promoCodeDetails?.discountAmount,
+                                  "INR"
+                                )}
+                            <CiCircleRemove
+                              className="remove-icon"
+                              width={50}
+                              height={50}
+                              onClick={() => removePromoCode()}
+                            />
+                          </span>
+                        </li>
+                      )}
                   </ul>
                   <div className="panel-footer">
                     <ul className="list-group list-group-flush">
@@ -967,10 +1095,34 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                           <h5>
                             Total Amount
                             <span className="plan_right_section">
-                              {currencyFormat(
-                                orderInfo?.orderInfo?.amount / 100,
-                                "INR"
-                              )}
+                              {promoCodeDetails &&
+                              Object.keys(promoCodeDetails)?.length
+                                ? promoCodeDetails?.promoType == "percentage"
+                                  ? currencyFormat(
+                                      parseFloat(
+                                        orderInfo?.orderInfo?.amount / 100
+                                      ) -
+                                        parseFloat(
+                                          percentage(
+                                            promoCodeDetails?.percentage,
+                                            orderInfo?.orderInfo?.amount / 100
+                                          )
+                                        ),
+                                      "INR"
+                                    )
+                                  : currencyFormat(
+                                      parseFloat(
+                                        orderInfo?.orderInfo?.amount / 100
+                                      ) -
+                                        parseFloat(
+                                          promoCodeDetails?.discountAmount
+                                        ),
+                                      "INR"
+                                    )
+                                : currencyFormat(
+                                    orderInfo?.orderInfo?.amount / 100,
+                                    "INR"
+                                  )}
                             </span>
                           </h5>
                         </li>
@@ -978,23 +1130,84 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                     </ul>
                   </div>
                   <Form>
-                  <div class="row">
-                    <div class="col-sm-8 mt-2">
-                    <Form.Label>Apply Coupon</Form.Label>
-                      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                        <Form.Control type="text" placeholder="name" />
-                      </Form.Group>
+                    <div class="row">
+                      {/* <div class="col-sm-8 mt-2">
+                        <Form.Label>Apply Coupon</Form.Label>
+                        <Form.Group
+                          className="mb-3"
+                          controlId="exampleForm.ControlInput1"
+                        >
+                          <Form.Control type="text" placeholder="name" />
+                        </Form.Group>
+                      </div> */}
+                      {cart?.data?.cart.length > 0 && (
+                        <div class="cart-actions-right">
+                          <div
+                            class="btn btn-dark btn-md btn-rounded btn-icon-left mt-4 mb-4"
+                            onClick={() => {
+                              setCouponShow(true);
+                              setPromoError(false);
+                              setPromoCodeValue("");
+                            }}
+                          >
+                            Apply Coupons
+                          </div>
+                        </div>
+                      )}
                     </div>
-                    <div class="col-sm-4">
-                      <button class="btn btn-dark btn-md btn-rounded btn-icon-left mt-4 mb-4" href="#">Apply Coupons</button>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-12 mt-2">
-                      <a class="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4 max_width" href="">Continue to pay<i class="d-icon-arrow-right"></i></a>
-                    </div>
-                  </div>
-                </Form>
+                    {!loading ? (
+                      <>
+                        {(() => {
+                          if (cart?.data?.cart?.length > 0) {
+                            return (
+                              <>
+                                {user?.data?.address &&
+                                user?.data?.state &&
+                                user?.data?.city &&
+                                // user?.data?.pincode &&
+                                user?.data?.name &&
+                                user?.data?.email ? (
+                                  <Link // to="#"
+                                    onClick={() => open()}
+                                    className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
+                                  >
+                                    Continue to pay{" "}
+                                    <i className="d-icon-arrow-right"></i>
+                                  </Link>
+                                ) : (
+                                  <Link
+                                    // to="#"
+                                    onClick={(e) => UpdateAddress(e)}
+                                    className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
+                                  >
+                                    Continue to pay{" "}
+                                    <i className="d-icon-arrow-right"></i>
+                                  </Link>
+                                )}
+                              </>
+                            );
+                          } else {
+                            return (
+                              <Link
+                                to="/"
+                                className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
+                              >
+                                Back
+                              </Link>
+                            );
+                          }
+                        })()}
+                        {/* <a
+                      class="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
+                      href="#"
+                    >
+                      Apply Coupons <i class="d-icon-heart"></i>
+                    </a> */}
+                      </>
+                    ) : (
+                      "Loading please wait"
+                    )}
+                  </Form>
                 </div>
               ) : (
                 "Loading please wait"
@@ -1004,89 +1217,9 @@ const CheckoutSection = ({ orderInfo, loading }) => {
 
           {/*  Coupon Add Start*/}
 
-          <div className="cart-card">
-            <div class="row">
-              <div class="col-sm-12 coupon_card">
-                <h1 class="">Apply Coupons</h1>
-                <Form>
-                  <div class="row">
-                    <div class="col-sm-4">
-                      <Form.Group
-                        className="mb-3"
-                        controlId="exampleForm.ControlInput1"
-                      >
-                        <Form.Control type="text" placeholder="name" />
-                      </Form.Group>
-                    </div>
-                    <div class="col-sm-3">
-                      <button
-                        class="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
-                        href="#"
-                      >
-                        Apply Coupons <i class="d-icon-arrow-right"></i>
-                      </button>
-                    </div>
-                  </div>
-                </Form>
-
-                <div class="row">
-                  <div class="col-sm-3">
-                    <div class="coupon-card">
-                      <h3>20% flat offer</h3>
-                      <di class="coupon-row">
-                        <span id="cpnCode">STEALDEAL20</span>
-                        <span id="cpnBtn">Copy Code</span>
-                      </di>
-                      <p>Valid Till: 20Dec, 2021</p>
-                      <div class="circle1"></div>
-                      <div class="circle2"></div>
-                    </div>
-                  </div>
-                  <div class="col-sm-3">
-                    <div class="coupon-card">
-                      <h3>20% flat offer</h3>
-                      <di class="coupon-row">
-                        <span id="cpnCode">STEALDEAL20</span>
-                        <span id="cpnBtn">Copy Code</span>
-                      </di>
-                      <p>Valid Till: 20Dec, 2021</p>
-                      <div class="circle1"></div>
-                      <div class="circle2"></div>
-                    </div>
-                  </div>
-                  <div class="col-sm-3">
-                    <div class="coupon-card">
-                      <h3>20% flat offer</h3>
-                      <di class="coupon-row">
-                        <span id="cpnCode">STEALDEAL20</span>
-                        <span id="cpnBtn">Copy Code</span>
-                      </di>
-                      <p>Valid Till: 20Dec, 2021</p>
-                      <div class="circle1"></div>
-                      <div class="circle2"></div>
-                    </div>
-                  </div>
-                  <div class="col-sm-3">
-                    <div class="coupon-card">
-                      <h3>20% flat offer</h3>
-                      <di class="coupon-row">
-                        <span id="cpnCode">STEALDEAL20</span>
-                        <span id="cpnBtn">Copy Code</span>
-                      </di>
-                      <p>Valid Till: 20Dec, 2021</p>
-                      <div class="circle1"></div>
-                      <div class="circle2"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
           {/*  Coupon Add End*/}
 
           {/* Address Add Start */}
-
         </div>
       </section>
 
@@ -1101,56 +1234,140 @@ const CheckoutSection = ({ orderInfo, loading }) => {
               className="sucess_img"
             ></img>
             <p>Thanks for you ordered product.</p>
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th class="wid_300">Product</th>
-                  <th>Description</th>
-                  <th>Qty</th>
-                  <th>Gross Amount Discount</th>
-                  <th>Taxable</th>
-                  <th>Value</th>
-                  <th>IGST Total</th>
-                  <th>Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    Ns zone Heavy bass earphone with mic and volume control
-                    buttons 3.5mm White 1 | aplearphone-we | Not eligible for
-                    return | IMEI/SrNo:HS
-                  </td>
-                  <td>HSN: 8518 | IGST: 18%</td>
-                  <td>1</td>
-                  <td>60.00</td>
-                  <td>-10.00</td>
-                  <td>42.0</td>
-                  <td>7.0</td>
-                  <td>50.0</td>
-                </tr>
-                <tr>
-                  <td>
-                    Ns zone Heavy bass earphone with mic and volume control
-                    buttons 3.5mm White 1 | aplearphone-we | Not eligible for
-                    return | IMEI/SrNo:HS
-                  </td>
-                  <td>HSN: 8518 | IGST: 18%</td>
-                  <td>1</td>
-                  <td>60.00</td>
-                  <td>-10.00</td>
-                  <td>42.0</td>
-                  <td>7.0</td>
-                  <td>50.0</td>
-                </tr>
-              </tbody>
-            </table>
           </div>
         </Modal.Body>
         <Modal.Footer className="mt-4 mb-4">
-          <Button variant="primary" onClick={() => history.push("/accounts")}>
+          <Button
+            variant="primary"
+            onClick={() => history.push("/accounts?defaultkey=first")}
+          >
             Ok
           </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal
+        show={couponShow}
+        onHide={() => {
+          setCouponShow(!couponShow);
+          setPromoError(false);
+        }}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title className="text-center">Apply Promocode</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="cart-card">
+            <div class="row">
+              <div class="col-sm-12 coupon_card">
+                <h1 class="">Promocode</h1>
+                <Form>
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <Form.Group
+                        className="mb-3"
+                        controlId="exampleForm.ControlInput1"
+                      >
+                        <Form.Control
+                          type="text"
+                          placeholder="name"
+                          onChange={(e) => setPromoCodeValue(e?.target?.value)}
+                        />
+
+                        {promoError && (
+                          <p className="error_text">Enter valid Promocode</p>
+                        )}
+                      </Form.Group>
+                    </div>
+                    <div class="col-sm-3">
+                      <button
+                        class="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
+                        onClick={(e) => applypromocode(e)}
+                      >
+                        Apply Promocode <i class="d-icon-arrow-right"></i>
+                      </button>
+                    </div>
+                  </div>
+                </Form>
+
+                <div class="row">
+                  {(() => {
+                    if (promoCodeList?.length > 0) {
+                      return (
+                        <>
+                          {promoCodeList?.map((promocodes, fkey) => {
+                            var today = new Date();
+
+                            if (
+                              promocodes?.status == "active" &&
+                              new Date(
+                                promocodes?.expiryDate
+                              )?.toDateString() >= today.toDateString()
+                            ) {
+                              return (
+                                <div class="col-sm-3">
+                                  <div class="coupon-card">
+                                    {promocodes?.promoType == "percentage" ? (
+                                      <h3>
+                                        {promocodes?.percentage}% flat offer
+                                      </h3>
+                                    ) : (
+                                      <h3>
+                                        {currencyFormat(
+                                          promocodes?.discountAmount,
+                                          "INR"
+                                        )}{" "}
+                                        flat offer
+                                      </h3>
+                                    )}
+                                    <di class="coupon-row">
+                                      <span id="cpnCode">
+                                        {promocodes?.promo}
+                                      </span>
+                                      <span
+                                        id="cpnBtn"
+                                        onClick={() =>
+                                          handleCopy(promocodes?.promo)
+                                        }
+                                      >
+                                        Copy Code
+                                      </span>
+                                    </di>
+                                    <p>
+                                      Valid Till:
+                                      {dayjs(promocodes?.expiryDate).format(
+                                        "DD MMM,YYYY"
+                                      )}{" "}
+                                    </p>
+                                    <div class="circle1"></div>
+                                    <div class="circle2"></div>
+                                  </div>
+                                </div>
+                              );
+                            }
+                          })}
+                        </>
+                      );
+                    }
+                  })()}
+                </div>
+              </div>
+            </div>
+          </div>
+        </Modal.Body>
+        <Modal.Footer className="mt-4 mb-4">
+          <Button
+            variant="primary"
+            onClick={() => {
+              setCouponShow(false);
+              setPromoError(false);
+            }}
+          >
+            Close
+          </Button>
+          {/* <Button variant="primary" onClick={() => history.push("/accounts")}>
+            Ok
+          </Button> */}
         </Modal.Footer>
       </Modal>
 

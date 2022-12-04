@@ -467,3 +467,12 @@ export const detectWhatsapp = (uri) => {
 
 export const blockInvalidChar = (e) =>
   ["e", "E", "+", "-", "."].includes(e.key) && e.preventDefault();
+
+
+  export const getExtension = (filename) => {
+    return filename.split(".").pop();
+  };
+
+  export const percentage = (percent, total) => {
+    return ((percent / 100) * total).toFixed(2);
+  };

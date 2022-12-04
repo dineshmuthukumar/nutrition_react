@@ -92,6 +92,16 @@ export const productListCategoryApiwithpage = (page, categoriesId) =>
       baseAxios.get(`/product/addons/list`);
 
 
+      export const getPromocodeListApi = (page) =>
+        baseAxios.get(`/promocode/list`);
+
+      export const applypromocodeApi = (props, cartId) =>
+        baseAxios.post(`/cart/coupon/${cartId}/add`, { ...props });
+
+      export const removepromocodeApi = (cartId) =>
+        baseAxios.post(`/cart/coupon/${cartId}/remove`);
+
+
 
 
 
