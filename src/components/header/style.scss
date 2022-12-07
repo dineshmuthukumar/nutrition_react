@@ -342,3 +342,20 @@
 .page-active,.catergory-page-active{
   display: block !important;
 }
+.header {
+  .sticky-content-wrapper{
+    .header-middle{
+      .container{
+        .header-right{
+          .cart-dropdown{
+            .cartListOn{
+              visibility:visible;
+              opacity:1;
+              top:99%
+            }
+          }
+        }
+      }
+    }
+  }
+}

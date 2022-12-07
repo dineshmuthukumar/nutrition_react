@@ -514,7 +514,7 @@ const CartContent = () => {
               </div>
             </div>
           </div> */}
-          <div className="container">
+          {/* <div className="container">
             {addonList?.length > 0 && (
               <>
                 <h4 className="py-2">Product Addons :-</h4>
@@ -561,7 +561,7 @@ const CartContent = () => {
                 </OwlCarousel>
               </>
             )}
-          </div>
+          </div> */}
         </div>
       </section>
       {/* <Modal show={show}>

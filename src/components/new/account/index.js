@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
 import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
+import Button from "react-bootstrap/Button";
 import DatePicker from "react-datepicker";
 import {
   Dropdown,
@@ -61,6 +62,7 @@ const Accountcomponent = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isNextPage, setIsNextPage] = useState(false);
   const [totalPages, setTotalPages] = useState(1);
+  const [productDetails, setProductDetails] = useState("");
 
   const [profile, setProfile] = useState({
     name: user?.data?.name,
@@ -95,6 +97,10 @@ const Accountcomponent = () => {
     pincode: false,
     valid_pincode: false,
   });
+  const [show, setShow] = useState(true);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const getOrderList = async () => {
     try {
@@ -364,6 +370,12 @@ const Accountcomponent = () => {
   //     setAddressValidation({ ...profileValidation, state: true });
   //   }
   // };
+
+  const handlePop = (Data) => {
+    console.log(Data, "Data");
+    setProductDetails(Data);
+    setShow(true);
+  };
   return (
     <>
       <div className="profile_page">
@@ -953,20 +965,27 @@ const Accountcomponent = () => {
                           {list?.map((orderListproduct, key) => {
                             return (
                               <>
-                                <Link
-                                  to={`/products/${orderListproduct.categoryId}`}
+                                <div
+                                  onClick={() => handlePop(orderListproduct)}
                                 >
                                   <div class="row product_banner_2 text-left">
                                     <div class="col-sm-2">
                                       <img
-                                        // src="http://localhost:4002/static/media/home_one.d0bce35b.jpg"
-                                        src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${orderListproduct?.image}`}
+                                        src="https://cdn-icons-png.flaticon.com/512/1007/1007908.png "
+                                        //src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${orderListproduct?.image}`}
                                         width="100"
                                         height="100"
                                       ></img>
                                     </div>
                                     <div class="col-sm-4">
-                                      <p>Converse Training Shoes</p>
+                                      {orderListproduct?.productDetails.map(
+                                        (productDetailsDat, pkey) => (
+                                          <p>
+                                            Product Name :{" "}
+                                            {productDetailsDat?.name}
+                                          </p>
+                                        )
+                                      )}
                                     </div>
                                     <div class="col-sm-3">
                                       <p>
@@ -996,7 +1015,7 @@ const Accountcomponent = () => {
                                       </p>
                                     </div>
                                   </div>
-                                </Link>
+                                </div>
                               </>
                             );
                           })}
@@ -1176,9 +1195,59 @@ const Accountcomponent = () => {
             </Col>
           </Row>
         </Tab.Container>
+        {productDetails && (
+          <Modal show={show} onHide={handleClose} animation={false}>
+            <Modal.Header closeButton>
+              <Modal.Title>Order Details</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <p>Receipt ID : {productDetails?.receiptId}</p>
+              <h3>Product Details :</h3>
+              <div>
+                {productDetails?.productDetails?.map(
+                  (productDetailsDat, pkey) => (
+                    <p className="text-bold">
+                      Product Name : {productDetailsDat?.name}
+                    </p>
+                  )
+                )}
+              </div>
+
+              <h3>Order Details :</h3>
+              <div>
+                <p>
+                  Order Created :{" "}
+                  {dayjs(productDetails?.createdAt).format("DD MMM,YYYY")}
+                </p>
+                <p>
+                  Delivery Amount:{" "}
+                  {currencyFormat(
+                    productDetails?.deliveryCharge,
+                    productDetails?.orderResponse?.currency
+                  )}
+                </p>
+                <p>
+                  Total Amount:{" "}
+                  {currencyFormat(
+                    productDetails?.orderResponse?.amount / 1000,
+                    productDetails?.orderResponse?.currency
+                  )}
+                </p>
+              </div>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Close
+              </Button>
+              {/* <Button variant="primary" onClick={handleClose}>
+                Save Changes
+              </Button> */}
+            </Modal.Footer>
+          </Modal>
+        )}
       </div>
     </>
   );
-};;;;;;;;;;;;;
+};
 
 export default Accountcomponent;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Modal from "react-bootstrap/Modal";
 import OwlCarousel from "react-owl-carousel";
 import { useHistory } from "react-router-dom";
@@ -105,6 +105,29 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
 
   const [promoCode, setPromoCode] = useState("");
   const [promoError, setPromoError] = useState("");
+  const [isFreeProduct, setIsFreeProduct] = useState(false);
+
+  const [minutes, setMinutes] = useState(10);
+  const [seconds, setSeconds] = useState(0);
+
+  useEffect(() => {
+    let myInterval = setInterval(() => {
+      if (seconds > 0) {
+        setSeconds(seconds - 1);
+      }
+      if (seconds === 0) {
+        if (minutes === 0) {
+          clearInterval(myInterval);
+        } else {
+          setMinutes(minutes - 1);
+          setSeconds(59);
+        }
+      }
+    }, 1000);
+    return () => {
+      clearInterval(myInterval);
+    };
+  });
 
   // const { orderDetails, setOrderDetails } = useState("");
   // const { totalAmount, setTotalAmount } = useState(0);
@@ -131,6 +154,12 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
 
     getCityUser();
     getPromocodeList();
+    if (user?.login) {
+      let Data = cart?.data?.cart?.find((obj) => obj?.isFreeProduct == true);
+      if (Data) {
+        setIsFreeProduct(true);
+      }
+    }
     // console.log(response?.data?.responseData?.blogs?.docs, "response");
   }, []);
 
@@ -823,6 +852,27 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
                         </Row>
                       </div>
                     </div>
+                    <p>
+                      {" "}
+                      <span className="text-bold">Great Job! </span>
+                      You're Taking First step towards a better you!
+                    </p>
+                    <p>
+                      Your Reservation of{" "}
+                      <span className="text-bold">
+                        Himalayan Apple Cider Vinegar
+                      </span>{" "}
+                      expires in
+                      {/* <div> */}
+                      {minutes === 0 && seconds === 0 ? null : (
+                        <>
+                          {" "}
+                          {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
+                        </>
+                      )}
+                      {/* </div>{" "} */}
+                    </p>
+                    <p>Act now before supplies run out </p>
                   </>
                 )}
               </div>
@@ -845,50 +895,53 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
                   <h1 className="address_user">Your Orders</h1>
                   <hr></hr>
                   {cart?.data?.cart?.length > 0 ? (
-                    <table className="shop-table cart-table">
-                      <thead>
-                        <tr>
-                          <th>
-                            <span>Product</span>
-                          </th>
-                          <th>Name</th>
-                          <th>
-                            <span>Price</span>
-                          </th>
-                          {/* <th>
+                    <>
+                      <table className="shop-table cart-table">
+                        <thead>
+                          <tr>
+                            <th>
+                              <span>Product</span>
+                            </th>
+                            <th>Name</th>
+                            <th>
+                              <span>Price</span>
+                            </th>
+                            {/* <th>
                         <span>quantity</span>
                       </th>
                       <th>Subtotal</th> */}
-                          <th>Remove</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {cart?.data?.cart?.map((item, productkey) => {
-                          return (
-                            <tr key={productkey}>
-                              <td className="product-thumbnail">
-                                <figure>
-                                  <Link to={`/product/${item?._id}`}>
-                                    <img
-                                      src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${item?.photos[0]}`}
-                                      width="100"
-                                      height="100"
-                                      alt="product"
-                                    />
-                                  </Link>
-                                </figure>
-                              </td>
-                              <td className="product-name">
-                                <div className="product-name-section">
-                                  <a href="product-simple.html">{item?.name}</a>
-                                </div>
-                              </td>
-                              <td className="product-subtotal">
-                                <span className="amount">
-                                  {currencyFormat(item?.saleAmount, "INR")}
-                                </span>
-                              </td>
-                              {/* <td className="product-quantity">
+                            <th>Remove</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {cart?.data?.cart?.map((item, productkey) => {
+                            return (
+                              <tr key={productkey}>
+                                <td className="product-thumbnail">
+                                  <figure>
+                                    <Link to={`/product/${item?._id}`}>
+                                      <img
+                                        src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${item?.photos[0]}`}
+                                        width="100"
+                                        height="100"
+                                        alt="product"
+                                      />
+                                    </Link>
+                                  </figure>
+                                </td>
+                                <td className="product-name">
+                                  <div className="product-name-section">
+                                    <a href="product-simple.html">
+                                      {item?.name}
+                                    </a>
+                                  </div>
+                                </td>
+                                <td className="product-subtotal">
+                                  <span className="amount">
+                                    {currencyFormat(item?.saleAmount, "INR")}
+                                  </span>
+                                </td>
+                                {/* <td className="product-quantity">
                             <div className="input-group">
                               <button className="quantity-minus d-icon-minus"></button>
                               <input
@@ -903,23 +956,36 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
                           <td className="product-price">
                             <span className="amount">$129.99</span>
                           </td> */}
-                              <td className="product-close">
-                                <a
-                                  //href="cart.html#"
-                                  className="product-remove"
-                                  title="Remove this product"
-                                  onClick={() =>
-                                    dispatch(remove_from_cart_thunk(item?._id))
-                                  }
-                                >
-                                  <i className="fas fa-times"></i>
-                                </a>
-                              </td>
-                            </tr>
-                          );
-                        })}
-                      </tbody>
-                    </table>
+                                <td className="product-close">
+                                  <a
+                                    //href="cart.html#"
+                                    className="product-remove"
+                                    title="Remove this product"
+                                    onClick={() =>
+                                      dispatch(
+                                        remove_from_cart_thunk(item?._id)
+                                      )
+                                    }
+                                  >
+                                    <i className="fas fa-times"></i>
+                                  </a>
+                                </td>
+                              </tr>
+                            );
+                          })}
+                        </tbody>
+                      </table>
+                      {isFreeProduct && (
+                        <div className="pt-5">
+                          <p className="p-2 border-header">
+                            After Your trial period has expired you will be
+                            enrolled in our membership program for{" "}
+                            {currencyFormat("000", "INR")} per month. You can
+                            cancel anytime by calling +91 78719 88988
+                          </p>
+                        </div>
+                      )}
+                    </>
                   ) : (
                     "No Items Found"
                   )}
@@ -928,7 +994,7 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
 
               {cart?.data?.cart?.length > 0 && (
                 <>
-                  <div className="row">
+                  <div className="row pt-4">
                     <div className="col-sm-12">
                       <h1 className="address_user">Payments Methods</h1>
                       <hr></hr>

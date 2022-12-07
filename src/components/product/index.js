@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import { getProductDetailsApi } from "../../api/base-methods";
 import { add_to_cart_thunk } from "../../redux/thunk/user_cart_thunk";
 import { useDispatch, useSelector } from "react-redux";
+import { cart_on_thunk } from "../../redux/thunk/user_thunk";
 
 const Product = ({ ProductDetails, key }) => {
   const history = useHistory();
@@ -29,7 +30,7 @@ const Product = ({ ProductDetails, key }) => {
   useEffect(() => {
     console.log(status, "status");
     if (user?.login && status) {
-      history.push("/cart");
+      dispatch(cart_on_thunk());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
@@ -41,7 +42,13 @@ const Product = ({ ProductDetails, key }) => {
           if (ProductDetails?.isFree) {
             return (
               <Link to={`/product/free/${ProductDetails?._id}`}>
-                <img src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${ProductDetails?.photos[0]}`} alt="product" class="img-fluid" width="280" height="315"/>
+                <img
+                  src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${ProductDetails?.photos[0]}`}
+                  alt="product"
+                  class="img-fluid"
+                  width="280"
+                  height="315"
+                />
               </Link>
             );
           } else {
@@ -49,7 +56,12 @@ const Product = ({ ProductDetails, key }) => {
               <Link to={`/product/${ProductDetails?._id}`}>
                 <img
                   //src={"http://54.177.7.240" + ProductDetails?.photos[0]}
-                  src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${ProductDetails?.photos[0]}`} alt="product" class="img-fluid" width="280" height="315"/>
+                  src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${ProductDetails?.photos[0]}`}
+                  alt="product"
+                  class="img-fluid"
+                  width="280"
+                  height="315"
+                />
               </Link>
             );
           }
@@ -106,7 +118,9 @@ const Product = ({ ProductDetails, key }) => {
                   }
                 }}
               >
-                <i class="d-icon-bag"></i><span>Add to Bag</span></a>
+                <i class="d-icon-bag"></i>
+                <span>Add to Bag</span>
+              </a>
             ) : (
               <Link
                 to={`/product/free/${ProductDetails?._id}`}

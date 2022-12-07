@@ -11,7 +11,11 @@ import { useHistory, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import images from "../../utils/images.json";
-import { user_logout_thunk } from "../../redux/thunk/user_thunk";
+import {
+  user_logout_thunk,
+  cart_off_thunk,
+  cart_on_thunk,
+} from "../../redux/thunk/user_thunk";
 import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
 import {
   accountDetail,
@@ -59,6 +63,7 @@ const Header = ({
   const dispatch = useDispatch();
   const location = useLocation();
   const { user, cart } = useSelector((state) => state);
+  // console.log(user, "user");
 
   const history = useHistory();
 
@@ -701,6 +706,10 @@ const Header = ({
     //   );
     //}
   };
+  const showHideUpdateRow = () => {
+    console.log("cart in off");
+    dispatch(cart_off_thunk());
+  };
 
   return (
     <>
@@ -1228,7 +1237,12 @@ const Header = ({
                     </i>
                   </a>
 
-                  <div className="dropdown-box">
+                  <div
+                    className={`dropdown-box ${
+                      user?.cartlist ? "cartListOn" : ""
+                    }`}
+                    onMouseOut={showHideUpdateRow}
+                  >
                     <div className="products scrollable">
                       {cart?.data?.cart?.length > 0 &&
                         cart?.data?.cart?.map((item, productcartkey) => {

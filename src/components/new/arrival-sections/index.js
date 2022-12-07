@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import OwlCarousel from "react-owl-carousel";
 import {
+  getCategoryApi,
   getsubCategoryApi,
   productListCategoryApi,
 } from "../../../api/base-methods";
@@ -29,21 +30,42 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
   const [categoryActive, setCategoryActive] = useState(true);
   const [categoryActiveIndex, setCategoryActiveIndex] = useState(0);
   const [productTabActive, setProductTabActive] = useState(true);
+  const [bestSellerDetails, setBestSellerDetails] = useState({});
+  const getCategoryDetails = async () => {
+    try {
+      const result = await getCategoryApi();
+      setBestSellerDetails(result?.data?.responseData?.beastProducts);
+    } catch (error) {
+      console.log(
+        "🚀 ~ file: index.js ~ line 49 ~ handleGetNotification ~ error",
+        error
+      );
+    }
+  };
+
   const userCart = cart?.data ? cart?.data : null;
   const IsProductDetails = async (subcategoryId, key) => {
-    const result = await productListCategoryApi(subcategoryId);
-    console.log(result?.data?.responseData?.product?.docs);
-    setProdList(result?.data?.responseData?.product?.docs);
-    //console.log(result?.data?.responseData?.product?.docs?.length);
-    setCategoryActive(true);
-    setProductTabActive(true);
-    setCategoryActiveIndex(key);
-  };;
+    if (subcategoryId == 0) {
+      setProdList(bestSellerDetails);
+      setCategoryActive(true);
+      setProductTabActive(true);
+      setCategoryActiveIndex(key);
+    } else {
+      const result = await productListCategoryApi(subcategoryId);
+      setProdList(result?.data?.responseData?.product?.docs);
+      //console.log(result?.data?.responseData?.product?.docs?.length);
+      setCategoryActive(true);
+      setProductTabActive(true);
+      setCategoryActiveIndex(key);
+    }
+  };
 
   useEffect(() => {
     //console.log("Usereffect");
     //if (categorylist?.length > 0) {
-    IsProductDetails(categorylist[0]?._id, 0);
+    //IsProductDetails(categorylist[0]?._id, 0);
+    getCategoryDetails();
+    IsProductDetails(0, "best_product");
     ///}
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -51,7 +73,9 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
   useEffect(() => {
     //console.log("Usereffect");
     if (categorylist?.length > 0) {
-      IsProductDetails(categorylist[0]?._id, 0);
+      //IsProductDetails(categorylist[0]?._id, 0);
+      getCategoryDetails();
+      IsProductDetails(0, "best_product");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categorylist]);
@@ -82,6 +106,22 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
           </p>
           <div className="tab tab-nav-center">
             <ul className="nav nav-tabs">
+              <li
+                className="nav-item ml-1 mr-1 pt-2 pb-2"
+                ref={ref}
+                onClick={() => IsProductDetails(0, "best_product")}
+              >
+                <a
+                  className={`nav-link nav-link-with-img border-rounded ${
+                    categoryActiveIndex == "best_product" ? "active" : ""
+                  }`}
+                >
+                  <h3 className="img-cat-title mb-0">
+                    <i className="fa fa-home" aria-hidden="true"></i> best
+                    sellers
+                  </h3>
+                </a>
+              </li>
               {(() => {
                 if (categorylist?.length > 0) {
                   let count = 0;
@@ -107,7 +147,7 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
                                   className="fa fa-home"
                                   aria-hidden="true"
                                 ></i>{" "}
-                                {arrivalecontent?.name}
+                                Best Sellers
                               </h3>
                             </a>
                           </li>
@@ -151,12 +191,15 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
                         <>
                           {prodList?.length > 0 &&
                             prodList?.map((prodDetails, pkey) => {
-                              return (
-                                <Product
-                                  ProductDetails={prodDetails}
-                                  key={pkey}
-                                />
-                              );
+                              //console.log(prodDetails, "prodDetails");
+                              if (prodDetails?.actualAmount) {
+                                return (
+                                  <Product
+                                    ProductDetails={prodDetails}
+                                    key={pkey}
+                                  />
+                                );
+                              }
                             })}
                         </>
                       );

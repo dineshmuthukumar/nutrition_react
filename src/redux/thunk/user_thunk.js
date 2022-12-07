@@ -10,6 +10,8 @@ import {
   user_login_action_request,
   user_login_otp_action,
   user_login_action_failure,
+  cart_list_off,
+  cart_list_on,
 } from "../actions/user_action";
 
 import { clear_cart_thunk } from "./user_cart_thunk";
@@ -142,7 +144,7 @@ export const user_load_by_token_thunk = (token) => {
 export const user_load_by_data_thunk = (data) => {
   return async (dispatch) => {
     try {
-      console.log(data,"data");
+      console.log(data, "data");
       // const user = await userApi(token);
 
       dispatch(user_login_action_success(data));
@@ -161,5 +163,17 @@ export const market_live_thunk = () => {
 export const market_live_off_thunk = () => {
   return async (dispatch) => {
     dispatch(market_live_off());
+  };
+};
+
+export const cart_off_thunk = () => {
+  return async (dispatch) => {
+    dispatch(cart_list_off());
+  };
+};
+
+export const cart_on_thunk = () => {
+  return async (dispatch) => {
+    dispatch(cart_list_on());
   };
 };

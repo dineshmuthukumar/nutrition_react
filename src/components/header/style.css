@@ -472,3 +472,10 @@ section.our-investor-section .investor-member .investor-member-name-desc .invest
 .page-active, .catergory-page-active {
   display: block !important;
 }/*# sourceMappingURL=style.css.map */
+
+
+.dropdown.show .dropdown-box,.dropdown:hover .cartListOn{
+  visibility:visible;
+  opacity:1;
+  top:99%
+}

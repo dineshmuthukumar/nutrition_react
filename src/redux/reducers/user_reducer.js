@@ -7,6 +7,8 @@ import {
   USER_LOGOUT,
   MARKET_LIVE,
   MARKET_LIVE_OFF,
+  CART_LIST_ON,
+  CART_LIST_OFF,
 } from "./../actions/user_action";
 
 const initState = {
@@ -16,6 +18,7 @@ const initState = {
   error: false,
   errorData: {},
   marketLive: false,
+  cartlist: false,
 };
 
 const user_reducer = (state = initState, { payload, type }) => {
@@ -39,12 +42,12 @@ const user_reducer = (state = initState, { payload, type }) => {
       loading: false,
       error: false,
       errorData: {},
+      cartlist: false,
     };
   }
   if (type === USER_LOGIN_OTP) {
     state = { ...state, loading: false, login: false };
   }
-
 
   if (type === USER_WALLET_UPDATE) {
     state = {
@@ -65,6 +68,14 @@ const user_reducer = (state = initState, { payload, type }) => {
 
   if (type === MARKET_LIVE_OFF) {
     state = { ...state, marketLive: false };
+  }
+
+  if (type === CART_LIST_ON) {
+    state = { ...state, cartlist: true };
+  }
+
+  if (type === CART_LIST_OFF) {
+    state = { ...state, cartlist: false };
   }
 
   return state;

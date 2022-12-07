@@ -60,6 +60,7 @@ import { currencyFormat } from "../../../utils/common";
 import { useDispatch, useSelector } from "react-redux";
 import { add_to_cart_thunk } from "../../../redux/thunk/user_cart_thunk";
 import Product from "../../product";
+import { cart_on_thunk } from "../../../redux/thunk/user_thunk";
 
 const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
   const history = useHistory();
@@ -109,7 +110,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
   }
   useEffect(() => {
     if (user?.login && status) {
-      history.push("/cart");
+      dispatch(cart_on_thunk());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
@@ -276,8 +277,12 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                         </div>
                       </div>
                       <div className="col-sm-4">
-                          <button className="thumb-up disabled"><i className="fas fa-chevron-left"></i></button>
-                          <button className="thumb-down disabled"><i className="fas fa-chevron-right"></i></button>  
+                        <button className="thumb-up disabled">
+                          <i className="fas fa-chevron-left"></i>
+                        </button>
+                        <button className="thumb-down disabled">
+                          <i className="fas fa-chevron-right"></i>
+                        </button>
                       </div>
                       {/* </div> */}
                     </div>

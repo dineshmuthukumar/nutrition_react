@@ -9,6 +9,9 @@ export const USER_LOGOUT = "USER_LOGOUT";
 export const MARKET_LIVE = "MARKET_LIVE";
 export const MARKET_LIVE_OFF = "MARKET_LIVE_OFF";
 
+export const CART_LIST_ON = "CART_LIST_ON";
+export const CART_LIST_OFF = "CART_LIST_OFF";
+
 export const user_login_action_request = () => {
   return {
     type: USER_LOGIN_REQUEST,
@@ -28,7 +31,6 @@ export const user_login_action_failure = (input) => {
     payload: input,
   };
 };
-
 
 export const user_logout_action = () => {
   return {
@@ -58,5 +60,17 @@ export const market_live = () => {
 export const market_live_off = () => {
   return {
     type: MARKET_LIVE_OFF,
+  };
+};
+
+export const cart_list_off = () => {
+  return {
+    type: CART_LIST_OFF,
+  };
+};
+
+export const cart_list_on = () => {
+  return {
+    type: CART_LIST_ON,
   };
 };
