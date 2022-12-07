@@ -19580,3 +19580,40 @@ h3.img-cat-title i
 {
   color: #000;
 }
+
+
+@media (min-width: 320px) and (max-width: 767px)
+{
+  .banner figure img 
+  {
+    object-fit: fill;
+    max-width: 100%;
+    height: auto;
+    min-height: auto;
+    width: 100%;
+  }
+  img.weak_strongest_img_absolute 
+  {
+    position: relative;
+    width: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    content: '';
+  }
+  .weak_strongest_img 
+  {
+    position: relative;
+    width: 80%;
+    top: 0;
+    left: 0px;
+    bottom: 0;
+    right: 0;
+    content: '';
+  }
+  .product_banner_3 ul li
+  {
+    list-style-type: none;
+  }
+}

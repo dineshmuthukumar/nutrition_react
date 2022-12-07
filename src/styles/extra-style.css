@@ -1540,9 +1540,17 @@ section.arrivals-section.need_sec img
     height: 315px;
     object-fit: contain;
 }
-.owl-nav
+/* .owl-nav
 {
     display: none;
+} */
+button.owl-prev.disabled span, button.owl-next span
+{
+    color: #000;
+}
+.owl-theme .owl-nav .owl-next 
+{
+    background: var(--base-color) !important;
 }
 article.post, .post 
 {

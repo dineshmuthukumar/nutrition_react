@@ -21,7 +21,7 @@ const ProductBannerOne = ({ homeContent }) => {
                 {homeContent?.section?.fourth?.description}
               </h3>
               <br></br>
-              <div className="row">
+              {/* <div className="row">
                 {homeContent?.section?.fourth?.list &&
                   homeContent?.section?.fourth?.list?.map(
                     (fourthproductcontentList) => {
@@ -39,7 +39,7 @@ const ProductBannerOne = ({ homeContent }) => {
                       );
                     }
                   )}
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
