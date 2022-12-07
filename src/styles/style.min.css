@@ -7111,7 +7111,7 @@ figure:hover .overlay {
 }
 figure:hover .overlay-visible {
   background:rgba(34,102,204,0.9);
-  padding-bottom:9rem
+  padding-bottom: 8rem;
 }
 .overlay-transparent {
   background:transparent
@@ -14282,10 +14282,15 @@ section.badge-section .height-x2,section.masonry-section .height-x2 {
 .banner-3 .banner-content {
   left:7.8%
 }
-.banner-4 .banner-subtitle {
-  margin-bottom:-0.4rem;
+.banner-4 .banner-subtitle 
+{
   letter-spacing:-0.0428em;
-  line-height:1.3
+  line-height:1.3;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 30px;
+    padding-bottom: 20px;
+    font-size: 2.4rem;
 }
 .banner-4 .banner-title {
   font-family:"Segoe Script",sans-serif;
@@ -19548,9 +19553,11 @@ aside .service-list .icon-box-side .icon-box-content {
 {
   object-fit: fill;
   max-width: 100%;
-  height: 540px;
-  min-height: 540px;
+  /* height: 540px;
+  min-height: 540px; */
   width: 100%;
+  height: auto;
+  border-radius: 10px;
 }
 .swiper-slide.swiper-slide-active 
 {

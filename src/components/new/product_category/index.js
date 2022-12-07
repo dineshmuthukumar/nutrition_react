@@ -178,7 +178,9 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
                 </figure>
               </div> */}
             </div>
-            {/* <div className="row justify-content-center">
+            
+            
+            <div className="row justify-content-center">
               <div className="col-lg-4 col-sm-6 mb-4 order-lg-auto order-sm-last">
                 <div className="banner banner-4 banner-fixed banner-radius overlay-effect2 content-middle content-center appear-animate fadeIn appear-animation-visible">
                   <figure>
@@ -224,9 +226,10 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
                     <div className="mr-auto mb-4 mb-md-0">
                       <h4 className="banner-subtitle text-white">No worries</h4>
                       <p className="text-white">
-                        There are no health-harming compounds and this formula
-                        has undergone certain certifications for daily
-                        consumption.
+                      The active molecules in the formula gets bubbled and
+                        dissolves the nutrients in the water making it fun and
+                        delicious to consume, maintaining the properties intact
+                        in each sip.
                       </p>
                     </div>
                   </div>
@@ -254,8 +257,10 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
                         Travel friendly
                       </h4>
                       <p className="text-white">
-                        The packing is portable and easy to carry, so you never
-                        giveup the try for a healthy lifestyle.
+                      The active molecules in the formula gets bubbled and
+                        dissolves the nutrients in the water making it fun and
+                        delicious to consume, maintaining the properties intact
+                        in each sip.
                       </p>
                     </div>
                   </div>
@@ -289,19 +294,44 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
                   </div>
                 </div>
               </div>
-            </div> */}
+            </div>
+
+
           </div>
         </div>
       </section>
+
+
+
+    <section className="category_product_list">
+      <div className="container">
+          <h2 className="title-echo mb-1"><span>Available Products</span></h2>
+          <p className="text-center">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.</p>
+      </div>
+      <div className="container">
+        <div className="row mt-10">
+          <div className="offset-sm-2 col-sm-3">1</div>
+          <div className="col-sm-3">1</div>
+          <div className="col-sm-3">1</div>
+        </div>
+        <div className="row mt-10">
+          <div className="offset-sm-2 col-sm-3">1</div>
+          <div className="col-sm-3">1</div>
+          <div className="col-sm-3">1</div>
+        </div>
+      </div>
+    </section>
+
+
+
+
 
       <section
         className="pt-3 mt-2 mb-2 pb-10 need_sec"
         id="product_category_page_section"
       >
         <div className="container">
-          <h2 className="title-echo mb-1">
-            <span>Available Products</span>
-          </h2>
+          <h2 className="title-echo mb-1"><span>Available Products</span></h2>          
           <p>{categoryDetails?.productDescription}</p>
 
           {/* <OwlCarousel className="owl-theme" loop margin={10} nav>
@@ -383,10 +413,7 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
         </div>
       </section>
 
-      <section
-        className="new_our_idea pt-2 pt-md-7 pt-10 pb-8"
-        id="distinct_table"
-      >
+      <section className="new_our_idea pt-2 pt-md-7 pt-10 pb-8" id="distinct_table">
         <div className="container p-0">
           <h2 className="title-echo mb-1">
             <span>Why we are Distinct from other?</span>

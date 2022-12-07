@@ -190,7 +190,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                       style={{ display: "block" }}
                     >
                       <div className="row">
-                        <div className="">
+                        <div className="col-sm-9">
                           {/* <OwlCarousel
                         className="product-thumbs owl-carousel owl-drag"
                         margin={20}
@@ -275,10 +275,10 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                         </div> */}
                         </div>
                       </div>
-                      {/* <!-- <div className="col-sm-4">
-                                    <button className="thumb-up disabled"><i className="fas fa-chevron-left"></i></button>
-                                    <button className="thumb-down disabled"><i className="fas fa-chevron-right"></i></button>  
-                                    </div> --> */}
+                      <div className="col-sm-4">
+                          <button className="thumb-up disabled"><i className="fas fa-chevron-left"></i></button>
+                          <button className="thumb-down disabled"><i className="fas fa-chevron-right"></i></button>  
+                      </div>
                       {/* </div> */}
                     </div>
                   </div>
