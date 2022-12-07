@@ -117,7 +117,7 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
                   }`}
                 >
                   <h3 className="img-cat-title mb-0">
-                    <i className="fa fa-home" aria-hidden="true"></i> best
+                    <i className="fa fa-home" aria-hidden="true"></i> Best
                     sellers
                   </h3>
                 </a>
@@ -147,7 +147,7 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
                                   className="fa fa-home"
                                   aria-hidden="true"
                                 ></i>{" "}
-                                Best Sellers
+                                {arrivalecontent?.name}
                               </h3>
                             </a>
                           </li>
