@@ -1536,8 +1536,14 @@ section.arrivals-section.need_sec img
 
 #product_category_page_section .owl-carousel .owl-item img 
 {
+    /* min-height: 315px;
+    height: 315px;
+    object-fit: contain; */
     min-height: 315px;
     height: 315px;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 10px;
     object-fit: contain;
 }
 /* .owl-nav
@@ -1622,12 +1628,23 @@ video.card_video__1z3he
 {
     object-fit: cover;
 }
-.banner1.banner.banner-fixed.overlay-zoom figure 
+/* .banner1.banner.banner-fixed.overlay-zoom figure 
 {
-    overflow: hidden;
-    height: 300px;
     min-height: 300px;
-    background-size: cover;
+    height: 300px;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 10px;
+} */
+
+.banner1.banner.banner-fixed.overlay-zoom video.card_video__1z3he 
+{
+    height: 350px;
+    /* object-fit: contain; */
+    background: #00000030;
+    max-width: 100%;
+    border-radius: 5px;
+    overflow: hidden;
 }
 #product_des_page .product-media img:last-child
 {

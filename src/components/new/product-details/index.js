@@ -294,7 +294,8 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                 >
                   <div className="product-details">
                     <h1 className="product-name">{productData?.name}</h1>
-                    <p>{productData?.description}</p>
+                    <p className="product-short-desc">A fizzy formula with infusion of pure ACV and Garcinia with HCA compound to control appetite, Pomegranate to boost
+                    metabolism, inulin fibers for better digestion and satiation that promotes healthy weight loss.</p>
                     <div className="ratings-container justify-content-start">
                       <div className="ratings-full">
                         <span
@@ -303,19 +304,10 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                         ></span>
                         <span className="tooltiptext tooltip-top"></span>
                       </div>
-                      {/* <a
-                    href="#product-tab-reviews"
-                    className="link-to-tab rating-reviews"
-                  >
-                    ( 0 reviews )
-                  </a> */}
+                      <a href="#product-tab-reviews" className="link-to-tab rating-reviews">( 0 reviews )</a>
                     </div>
-                    {/* <p className="product-short-desc">
-                  A fizzy formula with infusion of pure ACV and Garcinia with
-                  HCA compound to control appetite, Pomegranate to boost
-                  metabolism, inulin fibers for better digestion and satiation
-                  that promotes healthy weight loss.
-                </p> */}
+                    <p>{productData?.description}</p>
+                    
                     <div className="product_list_icon">
                       <div className="row" style={{ display: "none" }}>
                         <div className="col-sm-12">
