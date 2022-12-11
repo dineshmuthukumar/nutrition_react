@@ -1115,16 +1115,16 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                                   <div className="product-refdc text-center product-with-qty no_border">
                                     <figure className="product-media">
                                       <a href="$">
-                                        <img
+                                        {/* <img
                                           src={app_1}
                                           alt="product"
                                           width="280"
                                           height="315"
-                                        />
+                                        /> */}
                                         <img
                                           //src={app_11}
                                           src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${healingPoten?.image}`}
-                                          className="healing_image"
+                                          //className="healing_image"
                                           alt="product"
                                           width="280"
                                           height="315"

@@ -1244,47 +1244,54 @@ const Header = ({
                     onMouseOut={showHideUpdateRow}
                   >
                     <div className="products scrollable">
-                      {cart?.data?.cart?.length > 0 &&
-                        cart?.data?.cart?.map((item, productcartkey) => {
-                          totalAmount = totalAmount + item?.saleAmount;
-                          return (
-                            <div
-                              className="product product-cart"
-                              key={productcartkey}
-                            >
-                              <figure className="product-media">
-                                <a href="#">
-                                  <img
-                                    // src={"http://54.177.7.240" + item?.photos}
-                                    src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${item?.photos[0]}`}
-                                    alt="product"
-                                    width="80"
-                                    height="auto"
-                                  />
-                                </a>
-                                <button
-                                  className="btn btn-link btn-close"
-                                  onClick={() =>
-                                    dispatch(remove_from_cart_thunk(item?._id))
-                                  }
-                                >
-                                  {/* <i className="fas fa-times"></i> */}
-                                  <span className="sr-only">Close</span>
-                                </button>
-                              </figure>
-                              <div className="product-detail">
-                                <a href="#" className="product-name">
-                                  {item?.name}
-                                </a>
-                                <div className="price-box">
-                                  <span className="product-price">
-                                    {currencyFormat(item?.saleAmount, "INR")}
-                                  </span>
+                      {cart?.data?.cartProductDetails?.length > 0 &&
+                        cart?.data?.cartProductDetails?.map(
+                          (item, productcartkey) => {
+                            totalAmount =
+                              totalAmount + item?.qty * item?.saleAmount;
+                            return (
+                              <div
+                                className="product product-cart"
+                                key={productcartkey}
+                              >
+                                <figure className="product-media">
+                                  <a href="#">
+                                    <img
+                                      // src={"http://54.177.7.240" + item?.photos}
+                                      src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${item?.photos[0]}`}
+                                      alt="product"
+                                      width="80"
+                                      height="auto"
+                                    />
+                                  </a>
+                                  <button
+                                    className="btn btn-link btn-close"
+                                    onClick={() =>
+                                      dispatch(
+                                        remove_from_cart_thunk(item?._id)
+                                      )
+                                    }
+                                  >
+                                    {/* <i className="fas fa-times"></i> */}
+                                    <span className="sr-only">Close</span>
+                                  </button>
+                                </figure>
+                                <div className="product-detail">
+                                  <a href="#" className="product-name">
+                                    {item?.name}
+                                  </a>
+                                  <div className="price-box">
+                                    <span className="product-price">
+                                      {item?.qty}
+                                      {" X "}{" "}
+                                      {currencyFormat(item?.saleAmount, "INR")}{" "}
+                                    </span>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                          );
-                        })}
+                            );
+                          }
+                        )}
                       {/* {getCartList()} */}
                       {/* <div className="product product-cart">
                         <figure className="product-media">

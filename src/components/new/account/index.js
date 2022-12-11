@@ -981,7 +981,7 @@ const Accountcomponent = () => {
                                       {orderListproduct?.productDetails.map(
                                         (productDetailsDat, pkey) => (
                                           <p>
-                                            Product Name :{" "}
+                                            Product Name {pkey + 1} :{" "}
                                             {productDetailsDat?.name}
                                           </p>
                                         )
@@ -1207,7 +1207,7 @@ const Accountcomponent = () => {
                 {productDetails?.productDetails?.map(
                   (productDetailsDat, pkey) => (
                     <p className="text-bold">
-                      Product Name : {productDetailsDat?.name}
+                      Product Name {pkey + 1} : {productDetailsDat?.name}
                     </p>
                   )
                 )}

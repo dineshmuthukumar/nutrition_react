@@ -155,7 +155,9 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
     getCityUser();
     getPromocodeList();
     if (user?.login) {
-      let Data = cart?.data?.cart?.find((obj) => obj?.isFreeProduct == true);
+      let Data = cart?.data?.cartProductDetails?.find(
+        (obj) => obj?.isFree == true
+      );
       if (Data) {
         setIsFreeProduct(true);
       }
@@ -510,6 +512,7 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
           toast.success("Promocode Applied Sucessfully");
           setPromoCodeDetails(result?.data?.responseData.promoDetails);
           setCouponShow(false);
+          checkoutDetails();
         }
         console.log(result, "result");
       } catch (err) {
@@ -534,6 +537,7 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
           toast.success("Promocode Removed Sucessfully");
           setPromoCodeDetails({});
           setCouponShow(false);
+          checkoutDetails();
         }
         console.log(result, "result");
       } catch (err) {
@@ -877,24 +881,29 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
                 )}
               </div>
 
-              {/* <div className="row">
+              <div className="row">
                 <div className="col-sm-12">
                   <ul className="address_list">
                     <li>
                       <strong>
                         <i class="fa fa-truck" aria-hidden="true"></i> Expected
-                        Date : 00:Dec:2022
+                        Date :{" "}
+                        {dayjs(
+                          new Date(
+                            new Date().getTime() + 3 * 24 * 60 * 60 * 1000
+                          )
+                        ).format("DD MMM,YYYY")}
                       </strong>
                     </li>
                   </ul>
                 </div>
-              </div> */}
+              </div>
 
               <div className="row">
                 <div className="col-sm-12">
                   <h1 className="address_user">Your Orders</h1>
                   <hr></hr>
-                  {cart?.data?.cart?.length > 0 ? (
+                  {cart?.data?.cartProductDetails?.length > 0 ? (
                     <>
                       <table className="shop-table cart-table">
                         <thead>
@@ -906,73 +915,71 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
                             <th>
                               <span>Price</span>
                             </th>
-                            {/* <th>
-                        <span>quantity</span>
-                      </th>
-                      <th>Subtotal</th> */}
+                            <th>
+                              <span>quantity</span>
+                            </th>
+                            <th>Subtotal</th>
                             <th>Remove</th>
                           </tr>
                         </thead>
                         <tbody>
-                          {cart?.data?.cart?.map((item, productkey) => {
-                            return (
-                              <tr key={productkey}>
-                                <td className="product-thumbnail">
-                                  <figure>
-                                    <Link to={`/product/${item?._id}`}>
-                                      <img
-                                        src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${item?.photos[0]}`}
-                                        width="100"
-                                        height="100"
-                                        alt="product"
-                                      />
-                                    </Link>
-                                  </figure>
-                                </td>
-                                <td className="product-name">
-                                  <div className="product-name-section">
-                                    <a href="product-simple.html">
-                                      {item?.name}
+                          {cart?.data?.cartProductDetails?.map(
+                            (item, productkey) => {
+                              return (
+                                <tr key={productkey}>
+                                  <td className="product-thumbnail">
+                                    <figure>
+                                      <Link to={`/product/${item?._id}`}>
+                                        <img
+                                          src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${item?.photos[0]}`}
+                                          width="100"
+                                          height="100"
+                                          alt="product"
+                                        />
+                                      </Link>
+                                    </figure>
+                                  </td>
+                                  <td className="product-name">
+                                    <div className="product-name-section">
+                                      <a href="product-simple.html">
+                                        {item?.name}
+                                      </a>
+                                    </div>
+                                  </td>
+                                  <td className="product-subtotal">
+                                    <span className="amount">
+                                      {currencyFormat(item?.saleAmount, "INR")}
+                                    </span>
+                                  </td>
+                                  <td className="product-quantity">
+                                    <span className="amount">{item?.qty}</span>
+                                  </td>
+                                  <td className="product-price">
+                                    <span className="amount">
+                                      {currencyFormat(
+                                        item?.qty * item?.saleAmount,
+                                        "INR"
+                                      )}
+                                    </span>
+                                  </td>
+                                  <td className="product-close">
+                                    <a
+                                      //href="cart.html#"
+                                      className="product-remove"
+                                      title="Remove this product"
+                                      onClick={() =>
+                                        dispatch(
+                                          remove_from_cart_thunk(item?._id)
+                                        )
+                                      }
+                                    >
+                                      <i className="fas fa-times"></i>
                                     </a>
-                                  </div>
-                                </td>
-                                <td className="product-subtotal">
-                                  <span className="amount">
-                                    {currencyFormat(item?.saleAmount, "INR")}
-                                  </span>
-                                </td>
-                                {/* <td className="product-quantity">
-                            <div className="input-group">
-                              <button className="quantity-minus d-icon-minus"></button>
-                              <input
-                                className="quantity form-control"
-                                type="number"
-                                min="1"
-                                max="1000000"
-                              />
-                              <button className="quantity-plus d-icon-plus"></button>
-                            </div>
-                          </td>
-                          <td className="product-price">
-                            <span className="amount">$129.99</span>
-                          </td> */}
-                                <td className="product-close">
-                                  <a
-                                    //href="cart.html#"
-                                    className="product-remove"
-                                    title="Remove this product"
-                                    onClick={() =>
-                                      dispatch(
-                                        remove_from_cart_thunk(item?._id)
-                                      )
-                                    }
-                                  >
-                                    <i className="fas fa-times"></i>
-                                  </a>
-                                </td>
-                              </tr>
-                            );
-                          })}
+                                  </td>
+                                </tr>
+                              );
+                            }
+                          )}
                         </tbody>
                       </table>
                       {isFreeProduct && (
@@ -1004,12 +1011,14 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
                             <Form.Check
                               type={type}
                               id={`default-${type}`}
+                              name="payment_method"
                               checked
                               label={`Razopay Secure (UPI, Cards,Wallets, Netbanking)`}
                             />
                             <Form.Check
                               type={type}
                               id={`default-${type}`}
+                              name="payment_method"
                               label={`Cash on Delivery (COD)`}
                             />
                           </div>
@@ -1099,27 +1108,35 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
                   </div>
                   <h5>Product</h5>
                   <ul className="list-group list-group-flush">
-                    {cart?.data?.cart.length > 0
-                      ? cart?.data?.cart?.map((item, productkey) => {
-                          return (
-                            <li className="list-group-item" key={productkey}>
-                              {item?.name} {"x 1"}
-                              <span className="plan_right_section">
-                                {currencyFormat(item?.saleAmount, "INR")}
-                              </span>
-                            </li>
-                          );
-                        })
+                    {cart?.data?.cartProductDetails?.length > 0
+                      ? cart?.data?.cartProductDetails?.map(
+                          (item, productkey) => {
+                            return (
+                              <li className="list-group-item" key={productkey}>
+                                {item?.name} {"x"}
+                                {item?.qty}
+                                <span className="plan_right_section">
+                                  {currencyFormat(
+                                    item?.qty * item?.saleAmount,
+                                    "INR"
+                                  )}
+                                </span>
+                              </li>
+                            );
+                          }
+                        )
                       : "No Items Found"}
 
-                    {cart?.data?.cart.length > 0 && (
-                      <li className="list-group-item">
-                        Delivery Charges{" "}
-                        <span className="plan_right_section dicount_span">
-                          {currencyFormat(orderInfo?.deliveryCharge, "INR")}
-                        </span>
-                      </li>
-                    )}
+                    {cart?.data?.cartProductDetails.length > 0 &&
+                      cart?.data?.cartSetting?.deliveryMinimumAmount >
+                        parseFloat(orderInfo?.orderInfo?.amount / 100) && (
+                        <li className="list-group-item">
+                          Delivery Charges{" "}
+                          <span className="plan_right_section dicount_span">
+                            {currencyFormat(orderInfo?.deliveryCharge, "INR")}
+                          </span>
+                        </li>
+                      )}
                     {promoCodeDetails &&
                       Object.keys(promoCodeDetails)?.length > 0 && (
                         <li className="list-group-item">
@@ -1161,34 +1178,10 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
                           <h5>
                             Total Amount
                             <span className="plan_right_section">
-                              {promoCodeDetails &&
-                              Object.keys(promoCodeDetails)?.length
-                                ? promoCodeDetails?.promoType == "percentage"
-                                  ? currencyFormat(
-                                      parseFloat(
-                                        orderInfo?.orderInfo?.amount / 100
-                                      ) -
-                                        parseFloat(
-                                          percentage(
-                                            promoCodeDetails?.percentage,
-                                            orderInfo?.orderInfo?.amount / 100
-                                          )
-                                        ),
-                                      "INR"
-                                    )
-                                  : currencyFormat(
-                                      parseFloat(
-                                        orderInfo?.orderInfo?.amount / 100
-                                      ) -
-                                        parseFloat(
-                                          promoCodeDetails?.discountAmount
-                                        ),
-                                      "INR"
-                                    )
-                                : currencyFormat(
-                                    orderInfo?.orderInfo?.amount / 100,
-                                    "INR"
-                                  )}
+                              {currencyFormat(
+                                orderInfo?.orderInfo?.amount / 100,
+                                "INR"
+                              )}
                             </span>
                           </h5>
                         </li>

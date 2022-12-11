@@ -334,7 +334,7 @@ const CartContent = () => {
         <div className="container mt-7 mb-2">
           <div className="row align-items-center">
             <div className="col-lg-12 col-md-12 pr-lg-4">
-              {cart?.data?.cart?.length > 0 ? (
+              {cart?.data?.cartProductDetails?.length > 0 ? (
                 <table className="shop-table cart-table">
                   <thead>
                     <tr>
@@ -343,17 +343,18 @@ const CartContent = () => {
                       </th>
                       <th>Name</th>
                       <th>
+                        <span>Quantity</span>
+                      </th>
+                      <th>
                         <span>Price</span>
                       </th>
-                      {/* <th>
-                        <span>quantity</span>
-                      </th>
-                      <th>Subtotal</th> */}
+
+                      <th>Subtotal</th>
                       <th>Remove</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {cart?.data?.cart?.map((item, productkey) => {
+                    {cart?.data?.cartProductDetails?.map((item, productkey) => {
                       return (
                         <tr key={productkey}>
                           <td className="product-thumbnail">
@@ -373,26 +374,21 @@ const CartContent = () => {
                               <a href="product-simple.html">{item?.name}</a>
                             </div>
                           </td>
+                          <td className="product-quantity">{item?.qty}</td>
                           <td className="product-subtotal">
                             <span className="amount">
                               {currencyFormat(item?.saleAmount, "INR")}
                             </span>
                           </td>
-                          {/* <td className="product-quantity">
-                            <div className="input-group">
-                              <button className="quantity-minus d-icon-minus"></button>
-                              <input
-                                className="quantity form-control"
-                                type="number"
-                                min="1"
-                                max="1000000"
-                              />
-                              <button className="quantity-plus d-icon-plus"></button>
-                            </div>
+
+                          <td className="product-subtotal">
+                            <span className="amount">
+                              {currencyFormat(
+                                item?.qty * item?.saleAmount,
+                                "INR"
+                              )}
+                            </span>
                           </td>
-                          <td className="product-price">
-                            <span className="amount">$129.99</span>
-                          </td> */}
                           <td className="product-close">
                             <a
                               //href="cart.html#"
