@@ -189,8 +189,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                       {/* <img src={price_tag} /> */}
                     </div>
 
-                    <div
-                      className="product-thumbs-wrap">
+                    <div className="product-thumbs-wrap">
                       <div className="row">
                         <div className="col-sm-9">
                           {/* <OwlCarousel
@@ -277,11 +276,15 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                         </div> */}
                         </div>
                         <div className="col-sm-3">
-                          <button className="thumb-up"><i className="fas fa-chevron-left"></i></button>
-                          <button className="thumb-down"><i className="fas fa-chevron-right"></i></button>
+                          <button className="thumb-up">
+                            <i className="fas fa-chevron-left"></i>
+                          </button>
+                          <button className="thumb-down">
+                            <i className="fas fa-chevron-right"></i>
+                          </button>
                         </div>
                       </div>
-                      
+
                       {/* </div> */}
                     </div>
                   </div>
@@ -291,9 +294,15 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                   style={{ backgroundColor: "aliceblue" }}
                 >
                   <div className="product-details">
-                    <h1 className="product-name text-left">{productData?.name}</h1>
-                    <p className="product-short-desc">A fizzy formula with infusion of pure ACV and Garcinia with HCA compound to control appetite, Pomegranate to boost
-                    metabolism, inulin fibers for better digestion and satiation that promotes healthy weight loss.</p>
+                    <h1 className="product-name text-left">
+                      {productData?.name}
+                    </h1>
+                    <p className="product-short-desc">
+                      A fizzy formula with infusion of pure ACV and Garcinia
+                      with HCA compound to control appetite, Pomegranate to
+                      boost metabolism, inulin fibers for better digestion and
+                      satiation that promotes healthy weight loss.
+                    </p>
                     <div className="ratings-container justify-content-start">
                       <div className="ratings-full">
                         <span
@@ -302,10 +311,15 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                         ></span>
                         <span className="tooltiptext tooltip-top"></span>
                       </div>
-                      <a href="#product-tab-reviews" className="link-to-tab rating-reviews">( 0 reviews )</a>
+                      <a
+                        href="#product-tab-reviews"
+                        className="link-to-tab rating-reviews"
+                      >
+                        ( 0 reviews )
+                      </a>
                     </div>
                     <p>{productData?.description}</p>
-                    
+
                     <div className="product_list_icon">
                       <div className="row" style={{ display: "none" }}>
                         <div className="col-sm-12">
@@ -404,7 +418,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                         ""
                       )}
                     </div>
-                    <div className="row cart_packlist" style={{ display: "none" }}>
+                    <div className="row cart_packlist">
                       {(() => {
                         if (productData?.productType?.length > 0) {
                           return (
@@ -471,12 +485,6 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                       })()}
                     </div>
 
-                    <div className="row">
-                      <div className="col-sm-12">
-                        <img src={packag} />
-                      </div>
-                    </div>
-
                     <div className="row align-items-center justify-content-center mt-5">
                       <div className="col-sm-4">
                         <div className="product-form product-qty">
@@ -514,143 +522,142 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                 </div>
               </div>
 
-              <div className="add_to_whitelist">
-            <h2 className="title title-center ls-s mb-8 dis_block">
-              Best to Opt with
-            </h2>
-            <div className="row d-flex-center">
-              <div className="col-sm-8">
+              <div className="add_to_whitelist" style={{ display: "none" }}>
+                <h2 className="title title-center ls-s mb-8 dis_block">
+                  Best to Opt with
+                </h2>
+                <div className="row d-flex-center">
+                  <div className="col-sm-8">
+                    <div className="row">
+                      <div className="col-sm-4">
+                        <img src={pro_product_1} className="" />
+                        <a href="#" className="no-hover cart_plus_icon">
+                          <i className="fas fa-plus"></i>
+                        </a>
+                      </div>
+                      <div className="col-sm-4">
+                        <img src={pro_product_2} className="" />
+                        <a href="#" className="no-hover cart_plus_icon">
+                          <i className="fas fa-plus"></i>
+                        </a>
+                      </div>
+                      <div className="col-sm-4">
+                        <img src={pro_product_3} className="" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-sm-4">
+                    <div className="product-price ls-md offer_price_details">
+                      <span className="">Total Price : </span>
+                      <span className="price">$140.00</span>
+                      <span className="price line-through">Rs. 2,499</span>
+                    </div>
+                    <div className="product-form-group justify-content-center">
+                      <button className="btn-product btn-cart wid_200">
+                        <i className="d-icon-bag pr-2"></i> Add To Cart
+                      </button>
+                    </div>
+                  </div>
+                </div>
                 <div className="row">
-                  <div className="col-sm-4">
-                    <img src={pro_product_1} className="" />
-                    <a href="#" className="no-hover cart_plus_icon">
-                      <i className="fas fa-plus"></i>
-                    </a>
+                  <div className="col-sm-3">
+                    <div className="form-checkbox mb-0">
+                      <input
+                        type="checkbox"
+                        className="custom-checkbox"
+                        id="create-account"
+                        name="create-account"
+                      />
+                      <label
+                        className="form-control-label ls-s"
+                        for="create-account"
+                      >
+                        This item: Glow Japanese Marine Collagen Peptides
+                      </label>
+                      <div className="product_pack_count">
+                        <select
+                          name="orderby"
+                          className="form-control count_pack_value"
+                        >
+                          <option value="default">Pack of 1</option>
+                          <option value="popularity" selected="selected">
+                            Pack of 2
+                          </option>
+                        </select>
+                      </div>
+                      <div className="product-price ls-md offer_price_details">
+                        <span className="price line-through">Rs. 2,499</span>
+                        <span className="price">$140.00</span>
+                        <span className="price base-color">25% off</span>
+                      </div>
+                    </div>
                   </div>
-                  <div className="col-sm-4">
-                    <img src={pro_product_2} className="" />
-                    <a href="#" className="no-hover cart_plus_icon">
-                      <i className="fas fa-plus"></i>
-                    </a>
+                  <div className="col-sm-3">
+                    <div className="form-checkbox mb-6">
+                      <input
+                        type="checkbox"
+                        className="custom-checkbox"
+                        id="different-address"
+                        name="different-address"
+                      />
+                      <label
+                        className="form-control-label ls-s"
+                        htmlFor="different-address"
+                      >
+                        Beauty Japanese Marine Collagen Peptides
+                      </label>
+                      <div className="product_pack_count">
+                        <select
+                          name="orderby"
+                          className="form-control count_pack_value"
+                        >
+                          <option value="default">Pack of 1</option>
+                          <option value="popularity" defaultValue="selected">
+                            Pack of 2
+                          </option>
+                        </select>
+                      </div>
+                      <div className="product-price ls-md offer_price_details">
+                        <span className="price line-through">Rs. 2,499</span>
+                        <span className="price">$140.00</span>
+                        <span className="price base-color">25% off</span>
+                      </div>
+                    </div>
                   </div>
-                  <div className="col-sm-4">
-                    <img src={pro_product_3} className="" />
-                  </div>
-                </div>
-              </div>
-              <div className="col-sm-4">
-                <div className="product-price ls-md offer_price_details">
-                  <span className="">Total Price : </span>
-                  <span className="price">$140.00</span>
-                  <span className="price line-through">Rs. 2,499</span>
-                </div>
-                <div className="product-form-group justify-content-center">
-                  <button className="btn-product btn-cart wid_200">
-                    <i className="d-icon-bag pr-2"></i> Add To Cart
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-sm-3">
-                <div className="form-checkbox mb-0">
-                  <input
-                    type="checkbox"
-                    className="custom-checkbox"
-                    id="create-account"
-                    name="create-account"
-                  />
-                  <label
-                    className="form-control-label ls-s"
-                    for="create-account"
-                  >
-                    This item: Glow Japanese Marine Collagen Peptides
-                  </label>
-                  <div className="product_pack_count">
-                    <select
-                      name="orderby"
-                      className="form-control count_pack_value"
-                    >
-                      <option value="default">Pack of 1</option>
-                      <option value="popularity" selected="selected">
-                        Pack of 2
-                      </option>
-                    </select>
-                  </div>
-                  <div className="product-price ls-md offer_price_details">
-                    <span className="price line-through">Rs. 2,499</span>
-                    <span className="price">$140.00</span>
-                    <span className="price base-color">25% off</span>
-                  </div>
-                </div>
-              </div>
-              <div className="col-sm-3">
-                <div className="form-checkbox mb-6">
-                  <input
-                    type="checkbox"
-                    className="custom-checkbox"
-                    id="different-address"
-                    name="different-address"
-                  />
-                  <label
-                    className="form-control-label ls-s"
-                    htmlFor="different-address"
-                  >
-                    Beauty Japanese Marine Collagen Peptides
-                  </label>
-                  <div className="product_pack_count">
-                    <select
-                      name="orderby"
-                      className="form-control count_pack_value"
-                    >
-                      <option value="default">Pack of 1</option>
-                      <option value="popularity" defaultValue="selected">
-                        Pack of 2
-                      </option>
-                    </select>
-                  </div>
-                  <div className="product-price ls-md offer_price_details">
-                    <span className="price line-through">Rs. 2,499</span>
-                    <span className="price">$140.00</span>
-                    <span className="price base-color">25% off</span>
-                  </div>
-                </div>
-              </div>
-              <div className="col-sm-3">
-                <div className="form-checkbox mb-0">
-                  <input
-                    type="checkbox"
-                    className="custom-checkbox"
-                    id="create-account-add"
-                    name="create-account-add"
-                  />
-                  <label
-                    className="form-control-label ls-s"
-                    htmlFor="create-account-add"
-                  >
-                    This item: Glow Japanese Marine Collagen Peptides
-                  </label>
-                  <div className="product_pack_count">
-                    <select
-                      name="orderby"
-                      className="form-control count_pack_value"
-                    >
-                      <option value="default">Pack of 1</option>
-                      <option value="popularity" defaultValue="selected">
-                        Pack of 2
-                      </option>
-                    </select>
-                  </div>
-                  <div className="product-price ls-md offer_price_details">
-                    <span className="price line-through">Rs. 2,499</span>
-                    <span className="price">$140.00</span>
-                    <span className="price base-color">25% off</span>
+                  <div className="col-sm-3">
+                    <div className="form-checkbox mb-0">
+                      <input
+                        type="checkbox"
+                        className="custom-checkbox"
+                        id="create-account-add"
+                        name="create-account-add"
+                      />
+                      <label
+                        className="form-control-label ls-s"
+                        htmlFor="create-account-add"
+                      >
+                        This item: Glow Japanese Marine Collagen Peptides
+                      </label>
+                      <div className="product_pack_count">
+                        <select
+                          name="orderby"
+                          className="form-control count_pack_value"
+                        >
+                          <option value="default">Pack of 1</option>
+                          <option value="popularity" defaultValue="selected">
+                            Pack of 2
+                          </option>
+                        </select>
+                      </div>
+                      <div className="product-price ls-md offer_price_details">
+                        <span className="price line-through">Rs. 2,499</span>
+                        <span className="price">$140.00</span>
+                        <span className="price base-color">25% off</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-
             </div>
           </section>
 
