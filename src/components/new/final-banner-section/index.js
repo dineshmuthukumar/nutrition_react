@@ -25,10 +25,7 @@ const FirstBannerSection = ({ homeContent }) => {
                         sixthproductcontentList?.image
                       ).toLowerCase() === "mp4" ? (
                         <video className="card_video__1z3he" width="auto" height="auto" autoPlay muted loop controls style={{ width: "100%" }}>
-                          <source
-                            src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${sixthproductcontentList?.image}`}
-                            type="video/mp4"
-                          />
+                          <source src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${sixthproductcontentList?.image}`} type="video/mp4"/>
                         </video>
                       ) : (
                         <>
@@ -41,11 +38,7 @@ const FirstBannerSection = ({ homeContent }) => {
                             loop
                             style={{ width: "100%" }}
                           > */}
-                          <image
-                            className="card_video__1z3he"
-                            width="auto"
-                            height="auto"
-                            src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${sixthproductcontentList?.image}`}
+                          <img className="card_video__1z3he" width="auto" height="auto" src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${sixthproductcontentList?.image}`}
                             style={{ width: "100%" }}
                           />
                           {/* </video> */}

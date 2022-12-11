@@ -1004,3 +1004,40 @@ img.product-thumb_img
   .ratings::before{
     color: #fd990b !important;
   }
+
+  .icon-box-content p
+  {
+    font-size: 2rem;
+  }
+  .form-control 
+  {
+    color: #fff;
+    min-height: 40px;
+    font-size: 14px;
+  }
+  input.btn.btn-large {
+    display: inline-block;
+    border: 2px solid #e4eaec;
+    background-color: var(--base-color);
+    color: #000;
+    outline: 0;
+    padding: 1.22em 2.78em;
+    font-weight: 100;
+    font-size: 1.4rem;
+    font-family: circularstd-medium;
+    letter-spacing: 0;
+    line-height: 1.2;
+    text-transform: uppercase;
+    text-align: center;
+    transition: color 0.3s, border-color 0.3s, background-color 0.3s, box-shadow 0.3s;
+    white-space: nowrap;
+    cursor: pointer;
+}
+select.form-control.count_pack_value {
+    color: #000;
+    text-align: center;
+}
+.d-mobile .owl-nav
+{
+    display: none;
+}

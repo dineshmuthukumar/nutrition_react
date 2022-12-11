@@ -54,6 +54,9 @@ import app_55 from "../../../images/new-images/demos/demo-food2/products/final/a
 import Comment_1 from "../../../images/new-images/blog/comments/1.jpg";
 import Comment_2 from "../../../images/new-images/blog/comments/2.jpg";
 
+
+import packag from "../../../images/new-images/demos/demo-food2/products/final/packages.png";
+
 import Accordion from "../../accordion";
 import "./style.scss";
 import { currencyFormat } from "../../../utils/common";
@@ -131,7 +134,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                   <div className="product-gallery product-gallery-sticky mb-lg-9 mb-4 pb-0">
                     {/* <div className="product-single-carousel owl-carousel owl-theme owl-nav-inner row cols-1"> */}
                     <OwlCarousel
-                      className=" owl-carousel owl-theme owl-nav-inner owl-loaded owl-drag"
+                      className=" owl-carousel owl-theme owl-nav-inner owl-loaded owl-drag d-mobile"
                       margin={20}
                       startPosition={slideBy}
                       nav
@@ -187,9 +190,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                     </div>
 
                     <div
-                      className="product-thumbs-wrap"
-                      style={{ display: "block" }}
-                    >
+                      className="product-thumbs-wrap">
                       <div className="row">
                         <div className="col-sm-9">
                           {/* <OwlCarousel
@@ -275,15 +276,12 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                           />
                         </div> */}
                         </div>
+                        <div className="col-sm-3">
+                          <button className="thumb-up"><i className="fas fa-chevron-left"></i></button>
+                          <button className="thumb-down"><i className="fas fa-chevron-right"></i></button>
+                        </div>
                       </div>
-                      <div className="col-sm-4">
-                        <button className="thumb-up disabled">
-                          <i className="fas fa-chevron-left"></i>
-                        </button>
-                        <button className="thumb-down disabled">
-                          <i className="fas fa-chevron-right"></i>
-                        </button>
-                      </div>
+                      
                       {/* </div> */}
                     </div>
                   </div>
@@ -293,7 +291,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                   style={{ backgroundColor: "aliceblue" }}
                 >
                   <div className="product-details">
-                    <h1 className="product-name">{productData?.name}</h1>
+                    <h1 className="product-name text-left">{productData?.name}</h1>
                     <p className="product-short-desc">A fizzy formula with infusion of pure ACV and Garcinia with HCA compound to control appetite, Pomegranate to boost
                     metabolism, inulin fibers for better digestion and satiation that promotes healthy weight loss.</p>
                     <div className="ratings-container justify-content-start">
@@ -406,7 +404,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                         ""
                       )}
                     </div>
-                    <div className="row cart_packlist">
+                    <div className="row cart_packlist" style={{ display: "none" }}>
                       {(() => {
                         if (productData?.productType?.length > 0) {
                           return (
@@ -473,11 +471,12 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                       })()}
                     </div>
 
-                    {/* <div className="row">
-                  <div className="col-sm-12">
-                    <img src={packag} />
-                  </div>
-                </div> */}
+                    <div className="row">
+                      <div className="col-sm-12">
+                        <img src={packag} />
+                      </div>
+                    </div>
+
                     <div className="row align-items-center justify-content-center mt-5">
                       <div className="col-sm-4">
                         <div className="product-form product-qty">
@@ -515,7 +514,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                 </div>
               </div>
 
-              {/* <div className="add_to_whitelist">
+              <div className="add_to_whitelist">
             <h2 className="title title-center ls-s mb-8 dis_block">
               Best to Opt with
             </h2>
@@ -650,7 +649,8 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                 </div>
               </div>
             </div>
-          </div> */}
+          </div>
+
             </div>
           </section>
 
@@ -976,7 +976,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                   />
                 </div>
               </div>
-              <div className="row burn_works mb-10">
+              <div className="row burn_works mb-3">
                 {/* {(() => {
               if (productData?.livenBurns?.length > 0) {
                 return (

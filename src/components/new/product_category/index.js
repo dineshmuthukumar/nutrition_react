@@ -326,10 +326,7 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
 
 
 
-      <section
-        className="pt-3 mt-2 mb-2 pb-10 need_sec"
-        id="product_category_page_section"
-      >
+      <section className="pt-3 mt-2 mb-2 pb-10 need_sec cat_new_carosal" id="product_category_page_section">
         <div className="container">
           <h2 className="title-echo mb-1"><span>Available Products</span></h2>          
           <p>{categoryDetails?.productDescription}</p>
@@ -378,7 +375,7 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
               // ]}
               responsive={{
                 0: {
-                  items: 2,
+                  items: 1,
                 },
                 768: {
                   items: 3,
