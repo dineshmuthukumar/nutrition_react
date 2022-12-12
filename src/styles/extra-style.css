@@ -1871,3 +1871,11 @@ height: 40px;
         font-size: 12px;
     }
 }
+
+
+
+.icon-box.icon-inversed.text-center.bg-livenburnitem 
+{
+    min-height: 178px;
+    height: 178px;
+}
