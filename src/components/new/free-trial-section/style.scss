@@ -37,6 +37,7 @@
     display: flex;
     justify-content: center;
     align-items: flex-end;
+    width: unset !important;
     // width: unset !important;
   }
   
@@ -51,8 +52,8 @@
     //float: left;
   }
   .healing_image{
-    width: 50% !important;
-    margin-left: 6rem;
+    // width: 50% !important;
+    // margin-left: 6rem;
   }
   .free-trial-input-section{
     .otp-input{

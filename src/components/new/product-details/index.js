@@ -1631,7 +1631,6 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
             <OwlCarousel
               className="owl-carousel owl-theme row cols-lg-4 cols-md-3 cols-2"
               margin={20}
-              nav
               smartSpeed={500}
               dots={false}
               navContainerClass={"owl-nav"}

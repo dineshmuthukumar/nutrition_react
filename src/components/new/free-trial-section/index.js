@@ -354,7 +354,11 @@ const Free_Trial_Section = ({ productData }) => {
               <img
                 //src={banner_1}
                 src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${productData?.photos[0]}`}
-                alt="intro-banner" width="1903" height="540" className="free_trial_banner"/>
+                alt="intro-banner"
+                width="1903"
+                height="540"
+                className="free_trial_banner"
+              />
             </figure>
           )}
           <div className="container">
@@ -720,6 +724,11 @@ const Free_Trial_Section = ({ productData }) => {
               </div>
             </div>
           </div>
+          <div className="input-prepend text-center mt-10">
+            <a href="#trial_free_section" className="flex-gap">
+              <img src={claim_now} className="wid_60 trial_enquery-btn" />
+            </a>
+          </div>
         </section>
 
         <section id="absolute_cart">
@@ -851,58 +860,62 @@ const Free_Trial_Section = ({ productData }) => {
           </div>
         </section>
 
-        {/* <section className="element-section mt-9 mb-9" id="why_choose_image">
-                <div className="container">
-                    <div className="row mt-10">
-                        <div className="col-md-8">
-                            <h2 className="description-title mb-4 font-weight-semi-bold ls-m">How Liven Burn Works?</h2>
-                            <p>A pure extraction process that filters out the unnecessaries and retains the healthy compounds with the mother making the fizzy drink healthy and delicious.</p>
-                            <ul className="mb-8">
-                                <li>Sweet to taste with natural sweeteners!</li>
-                                <li>High quality ingredients with unpasteurized fermented apple juice.</li>
-                                <li>Highly beneficial to implement in daily routine.</li>
-                                <li>Supports holistic health.</li>
-                            </ul>
-                        </div>
-                        <div className="col-md-4">
-                            <img src={why_choose} style={{width:"85%"}} />
-                        </div>
-                    </div>
-                    <div className="row mt-5 mb-10">
-                        <div className="col-md-12">
-                            <h2 className="description-title mb-4 font-weight-semi-bold ls-m text-center">Why Choose Liven BURN with AVC?</h2>
-                            <p className="text-left">A fizzy formula with infusion of pure ACV and Garcinia with HCA compound to control appetite, Pomegranate to boost metabolism, inulin fibers for better digestion and satiation that promotes healthy weight loss. A fizzy formula with infusion of pure ACV and Garcinia with HCA compound to control appetite, Pomegranate to boost metabolism, inulin fibers for better digestion and satiation that promotes healthy weight loss.</p>
-                            <p className="text-left">A fizzy formula with infusion of pure ACV and Garcinia with HCA compound to control appetite, Pomegranate to boost metabolism, inulin fibers for better digestion and satiation that promotes healthy weight loss.</p>
-                        </div>
-                    </div>
-                    <div className="row burn_works mb-10" style="display:none;">
+        <section className="element-section" id="why_choose_image">
+          <div className="container">
+            <div className="row mt-5">
+              <div className="col-md-12">
+                <h2 className="description-title mb-4 font-weight-semi-bold ls-m text-center">
+                  How Liven Burn Works?
+                </h2>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: productData?.burnWorkdescription,
+                  }}
+                />
+              </div>
+            </div>
+            <div className="row burn_works mb-3">
+              {/* {(() => {
+              if (productData?.livenBurns?.length > 0) {
+                return (
+                  <>
+                    {productData?.livenBurns?.map((livenBurns) => {
+                      return (
                         <div className="col-sm-4 burn_works">
-                            <img src={a} className="pro_des_icon2" />
-                            Provides Antioxidants & Skin Support
+                          <img
+                            src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${livenBurns?.image}`}
+                            className="pro_des_icon2"
+                          />
+                          {livenBurns?.name}
                         </div>
-                        <div className="col-sm-4 burn_works">
-                            <img src={b} className="pro_des_icon2" />
-                            Enhances Fat-Burning
-                        </div>
-                        <div className="col-sm-4 burn_works">
-                            <img src="images/demos/demo-food2/products/c.png" className="pro_des_icon2" />
-                            Suppresses Cravings
-                        </div>
-                        <div className="col-sm-4 burn_works">
-                            <img src={d} className="pro_des_icon2" />
-                            Supports Heart Health
-                        </div>
-                        <div className="col-sm-4 burn_works">
-                            <img src={e} className="pro_des_icon2" />
-                            Keeps You Hydrated
-                        </div>
-                        <div className="col-sm-4 burn_works">
-                            <img src={f} className="pro_des_icon2" />
-                            Delicious
-                        </div>
-                    </div>
-                </div>
-            </section> */}
+                      );
+                    })}
+                  </>
+                );
+              }
+            })()} */}
+            </div>
+            <br></br>
+            <div className="row mt-10 why_choose_dflex">
+              <div className="col-md-8">
+                <h2 className="description-title mb-4 font-weight-semi-bold ls-m">
+                  Why Choose Liven BURN with AVC?
+                </h2>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: productData?.chooseLivenBurndescription,
+                  }}
+                ></div>
+              </div>
+              <div className="col-md-4 text-center">
+                <img
+                  src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${productData?.chooseLivenBurnImage}`}
+                  className="why_choose_img"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
 
         <section className="arrivals-section" id="Potential_product">
           <h2 className="title title-center ls-s mb-8 mt-9 dis_block">
@@ -918,15 +931,14 @@ const Free_Trial_Section = ({ productData }) => {
                     stagePadding={450}
                     // loop={true}
                     items={1} //
-                    nav
                     autoWidth={true}
                     smartSpeed={500}
                     dots={false}
                     navContainerClass={"owl-nav"}
-                    navText={[
-                      `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png  />`,
-                      `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png />`,
-                    ]}
+                    // navText={[
+                    //   `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png  />`,
+                    //   `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png />`,
+                    // ]}
                     responsive={{
                       0: {
                         items: 1,
@@ -948,51 +960,50 @@ const Free_Trial_Section = ({ productData }) => {
                     // ]}
                   >
                     {(() => {
-                      if (productData?.healingPotentials?.length > 0) {
-                        return (
-                          <>
-                            {productData?.healingPotentials?.map(
-                              (healingPoten) => {
-                                return (
-                                  <div className="product-refdc text-center product-with-qty no_border">
-                                    <figure className="product-media">
-                                      <a href="$">
-                                        <img
-                                          src={app_1}
-                                          alt="product"
-                                          width="280"
-                                          height="315"
-                                        />
-                                        <img
-                                          //src={app_11}
-                                          // src={
-                                          //   "http://54.177.7.240" +
-                                          //   healingPoten?.image
-                                          // }
-                                          src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${healingPoten?.image}`}
-                                          className="healing_image"
-                                          alt="product"
-                                          width="280"
-                                          height="315"
-                                        />
+                      return (
+                        <>
+                          {productData?.healingPotentials?.map(
+                            (healingPoten) => {
+                              return (
+                                <div className="product-refdc text-center product-with-qty no_border">
+                                  <figure className="product-media">
+                                    <a href="$">
+                                      <img
+                                        src={app_1}
+                                        alt="product"
+                                        // width="280"
+                                        // height="315"
+                                      />
+                                      <img
+                                        //src={app_11}
+                                        // src={
+                                        //   "http://54.177.7.240" +
+                                        //   healingPoten?.image
+                                        // }
+                                        src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${healingPoten?.image}`}
+                                        className="healing_image"
+                                        alt="product"
+                                        style={{ width: "100% !important" }}
+                                        // width="280"
+                                        // height="315"
+                                      />
+                                    </a>
+                                    <div className="product-action-vertical">
+                                      <a
+                                        href="#"
+                                        className="btn-product-icon btn-wishlist"
+                                        title="Add to wishlist"
+                                      >
+                                        <i className="d-icon-plus"></i>
                                       </a>
-                                      <div className="product-action-vertical">
-                                        <a
-                                          href="#"
-                                          className="btn-product-icon btn-wishlist"
-                                          title="Add to wishlist"
-                                        >
-                                          <i className="d-icon-plus"></i>
-                                        </a>
-                                      </div>
-                                    </figure>
-                                  </div>
-                                );
-                              }
-                            )}
-                          </>
-                        );
-                      }
+                                    </div>
+                                  </figure>
+                                </div>
+                              );
+                            }
+                          )}
+                        </>
+                      );
                     })()}
                   </OwlCarousel>
                 )}
@@ -1007,7 +1018,10 @@ const Free_Trial_Section = ({ productData }) => {
           </div>
         </section>
 
-        <section className="new_our_idea pt-2 pt-md-7 pt-10 pb-8" id="trial_faq">
+        <section
+          className="new_our_idea pt-2 pt-md-7 pt-10 pb-8"
+          id="trial_faq"
+        >
           <div className="container p-0">
             <h2 className="title-echo mb-1">
               <span>Clear Your Mind Now! Answers for Your Queries!</span>
