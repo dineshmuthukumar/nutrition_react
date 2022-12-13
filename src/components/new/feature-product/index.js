@@ -31,7 +31,6 @@ const FeatureProduct = ({ featureProductsContent }) => {
             <OwlCarousel
               className="owl-carousel owl-theme row cols-lg-4 cols-2"
               margin={20}
-              nav
               items={1}
               smartSpeed={500}
               dots={false}

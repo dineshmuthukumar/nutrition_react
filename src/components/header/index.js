@@ -11,12 +11,18 @@ import { useHistory, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import images from "../../utils/images.json";
+
+
 import {
   user_logout_thunk,
   cart_off_thunk,
   cart_on_thunk,
 } from "../../redux/thunk/user_thunk";
-import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
+import {
+  AiOutlineArrowDown,
+  AiOutlineArrowUp,
+  AiOutlineArrowRight,
+} from "react-icons/ai";
 import {
   accountDetail,
   cartCheckout,
@@ -768,6 +774,7 @@ const Header = ({
                         onClick={() => history.push("/")}
                       >
                         Shop
+                        <AiOutlineArrowDown />
                       </Nav.Link>
                       <div className="megamenu">
                         <div className="row">
@@ -786,11 +793,20 @@ const Header = ({
                                                 IsDropdownMenuItem(
                                                   CategoriesDetail?._id
                                                 )
-                                                  ? "submenu"
+                                                  ? ""
                                                   : ""
                                               }`}
                                             >
-                                              <a>{CategoriesDetail.name}</a>
+                                              <a className="d-flex justify-content-between">
+                                                {CategoriesDetail.name}{" "}
+                                                {IsDropdownMenuItem(
+                                                  CategoriesDetail?._id
+                                                ) ? (
+                                                  <AiOutlineArrowRight />
+                                                ) : (
+                                                  ""
+                                                )}
+                                              </a>
 
                                               {DropdownMenuItem(
                                                 CategoriesDetail?._id
@@ -853,6 +869,7 @@ const Header = ({
                         onClick={() => history.push("/")}
                       >
                         Invent
+                        <AiOutlineArrowDown />
                       </Nav.Link>
                       <div className="megamenu">
                         <div className="row">
@@ -1358,10 +1375,7 @@ const Header = ({
                         View Cart
                       </Link>
 
-                      <Link
-                        onClick={() => history.push("/checkout")}
-                        className="btn btn-dark"
-                      >
+                      <Link to="/checkout">
                         <span>Go To Checkout</span>
                       </Link>
                     </div>
@@ -1430,8 +1444,8 @@ const Header = ({
                               }`}
                             >
                               <a>{CategoriesDetail?.name}</a>
-
-                              {DropdownMenuItem(CategoriesDetail?._id)}
+                              <AiOutlineArrowDown />
+                              {DropdownMenuItem(CategoriesDetail?._id)}{" "}
                             </li>
                           );
                         })}
@@ -1568,14 +1582,14 @@ const Header = ({
               </ul>
             </li>
             <li>
-              <Link className="d-flex justify-content-between">
+              <div className="d-flex justify-content-between">
                 Pages{" "}
                 {pageActive ? (
                   <AiOutlineArrowDown onClick={() => setPageActive(false)} />
                 ) : (
                   <AiOutlineArrowUp onClick={() => setPageActive(true)} />
                 )}
-              </Link>
+              </div>
               <ul className={`${pageActive ? "page-active" : ""}`}>
                 <li>
                   <Link to="/abouts">About</Link>

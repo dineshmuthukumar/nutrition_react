@@ -1229,7 +1229,7 @@ const Accountcomponent = () => {
                 <p>
                   Total Amount:{" "}
                   {currencyFormat(
-                    productDetails?.orderResponse?.amount / 1000,
+                    productDetails?.orderResponse?.amount / 100,
                     productDetails?.orderResponse?.currency
                   )}
                 </p>

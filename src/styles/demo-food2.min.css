@@ -14569,7 +14569,7 @@ figure.instagram img:hover {
 .menu > .submenu > a::after 
 {
     position: static;
-    content: "";
+    /* content: ""; */
     margin-top: 0;
 }
 .menu.no-arrow > li > a::after 
@@ -14594,7 +14594,7 @@ figure.instagram img:hover {
     font-weight: 700;
     font-size: 1.1rem;
     color: inherit;
-    content: "";
+    /* content: ""; */
 }
 
 .vertical-menu 

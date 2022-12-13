@@ -570,7 +570,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                       />
                       <label
                         className="form-control-label ls-s"
-                        for="create-account"
+                        htmlFor="create-account"
                       >
                         This item: Glow Japanese Marine Collagen Peptides
                       </label>

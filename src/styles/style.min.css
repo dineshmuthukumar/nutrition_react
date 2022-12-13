@@ -12590,7 +12590,7 @@ to {
 }
 .menu>.submenu>a:after {
   position:static;
-  content:"";
+  /* content:""; */
   margin-top:0
 }
 .menu.no-arrow>li>a:after {
@@ -12608,7 +12608,7 @@ to {
   font-weight:700;
   font-size:1.1rem;
   color:inherit;
-  content:""
+  /* content:"" */
 }
 .vertical-menu {
   display:block;
@@ -12643,7 +12643,7 @@ to {
 .vertical-menu>.submenu>a:after {
   position:absolute;
   line-height:0;
-  content:""
+  /* content:"" */
 }
 .vertical-menu.no-arrow>li {
   display:flex

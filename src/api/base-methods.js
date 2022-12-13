@@ -102,6 +102,9 @@ export const productListCategoryApiwithpage = (page, categoriesId) =>
         baseAxios.post(`/cart/coupon/${cartId}/remove`);
 
 
+        export const settingsApi = () => baseAxios.get(`/settings`);
+
+
 
 
 

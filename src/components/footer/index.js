@@ -20,7 +20,7 @@ import { validateEmail } from "../../utils/common";
 import { subscribeApi } from "../../api/base-methods";
 import images from "../../utils/images.json";
 import livenlogofooter from "../../images/new-images/demos/demo-food2/liven-logo-footer.png";
-import { getCategoryApi, cmsPages } from "../../api/base-methods";
+import { getCategoryApi, cmsPages, settingsApi } from "../../api/base-methods";
 
 const Footer = () => {
   const [email, setEmail] = useState();
@@ -28,6 +28,7 @@ const Footer = () => {
   const [loading, setLoading] = useState(false);
   const [categoryDetails, setCategoryDetails] = useState({});
   const [footerDetails, setFooterDetails] = useState({});
+  const [settingsDetails, setSettingsDetails] = useState({});
   const [notiLoading, setNotiLoading] = useState(false);
 
   const history = useHistory();
@@ -35,6 +36,7 @@ const Footer = () => {
   useEffect(() => {
     getCategoryDetails();
     getcmsPages();
+    getSettings();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -45,6 +47,21 @@ const Footer = () => {
       setFooterDetails(result?.data?.responseData?.pages);
     } catch (error) {
       setNotiLoading(false);
+
+      console.log(
+        "🚀 ~ file: index.js ~ line 49 ~ handleGetNotification ~ error",
+        error
+      );
+    }
+  };
+  const getSettings = async () => {
+    try {
+      // setNotiLoading(true);
+      const result = await settingsApi();
+      setSettingsDetails(result?.data?.responseData);
+      //setSettingsDetails(result?.data?.responseData?.pages);
+    } catch (error) {
+      //setNotiLoading(false);
 
       console.log(
         "🚀 ~ file: index.js ~ line 49 ~ handleGetNotification ~ error",
@@ -194,7 +211,25 @@ const Footer = () => {
                 <div className="row border-top col-md-10">
                   <div className="col-sm-12 text-center">
                     <div className="social-links links">
-                      <a
+                      {settingsDetails?.socialLink &&
+                        Object.keys(settingsDetails?.socialLink).length > 0 &&
+                        Object.keys(settingsDetails?.socialLink).map(
+                          (tudata, tuindex) => (
+                            <a
+                              href={settingsDetails?.socialLink[tudata].url}
+                              className="social-link social-facebook fab fa-facebook-f"
+                              title={settingsDetails?.socialLink[tudata].name}
+                            >
+                              <img
+                                src={
+                                  settingsDetails?.socialLink[tudata].picture
+                                }
+                              />
+                            </a>
+                          )
+                        )}
+
+                      {/* <a
                         href="#"
                         className="social-link social-facebook fab fa-facebook-f"
                         title="Social Link"
@@ -213,11 +248,10 @@ const Footer = () => {
                         href="#"
                         className="social-link social-youtube fab fa-youtube"
                         title="Social Link"
-                      ></a>
+                      ></a> */}
                       {/* <FaFacebook color="royalblue" size={96} /> */}
                     </div>
                   </div>
-                  
                 </div>
               </div>
             </div>

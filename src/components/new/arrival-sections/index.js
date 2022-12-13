@@ -17,6 +17,8 @@ import product_4 from "../../../images/new-images/demos/demo-food2/products/pro_
 import priceTag from "../../../images/new-images/demos/demo-food2/products/price_tag.png";
 import Product from "../../product";
 
+import { AiFillHome } from "react-icons/ai";
+
 import "./style.scss";
 
 const ArrivalSection = ({ homeContent, categorylist }) => {
@@ -117,8 +119,7 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
                   }`}
                 >
                   <h3 className="img-cat-title mb-0">
-                    <i className="fa fa-home" aria-hidden="true"></i> Best
-                    sellers
+                    <AiFillHome /> Best sellers
                   </h3>
                 </a>
               </li>
@@ -143,10 +144,7 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
                               }`}
                             >
                               <h3 className="img-cat-title mb-0">
-                                <i
-                                  className="fa fa-home"
-                                  aria-hidden="true"
-                                ></i>{" "}
+                                <AiFillHome />
                                 {arrivalecontent?.name}
                               </h3>
                             </a>

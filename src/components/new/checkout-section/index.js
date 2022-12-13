@@ -858,15 +858,12 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
                     </div>
                     <p>
                       {" "}
-                      <span className="text-bold">Great Job! </span>
-                      You're Taking First step towards a better you!
+                      {cart?.data?.cartSetting?.checkoutContent1}
+                      {/* <span className="text-bold">Great Job! </span>
+                      You're Taking First step towards a better you! */}
                     </p>
                     <p>
-                      Your Reservation of{" "}
-                      <span className="text-bold">
-                        Himalayan Apple Cider Vinegar
-                      </span>{" "}
-                      expires in
+                      {cart?.data?.cartSetting?.checkoutContent2}
                       {/* <div> */}
                       {minutes === 0 && seconds === 0 ? null : (
                         <>
@@ -985,10 +982,16 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
                       {isFreeProduct && (
                         <div className="pt-5">
                           <p className="p-2 border-header">
-                            After Your trial period has expired you will be
-                            enrolled in our membership program for{" "}
-                            {currencyFormat("000", "INR")} per month. You can
-                            cancel anytime by calling +91 78719 88988
+                            {cart?.data?.cartSetting?.checkoutContent3 ? (
+                              cart?.data?.cartSetting?.checkoutContent3
+                            ) : (
+                              <>
+                                After Your trial period has expired you will be
+                                enrolled in our membership program for{" "}
+                                {currencyFormat("000", "INR")} per month. You
+                                can cancel anytime by calling +91 78719 88988
+                              </>
+                            )}
                           </p>
                         </div>
                       )}
@@ -1128,8 +1131,9 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
                       : "No Items Found"}
 
                     {cart?.data?.cartProductDetails.length > 0 &&
-                      cart?.data?.cartSetting?.deliveryMinimumAmount >
-                        parseFloat(orderInfo?.orderInfo?.amount / 100) && (
+                      parseFloat(
+                        cart?.data?.cartSetting?.deliveryMinimumAmount
+                      ) >= parseFloat(orderInfo?.orderInfo?.amount / 100) && (
                         <li className="list-group-item">
                           Delivery Charges{" "}
                           <span className="plan_right_section dicount_span">
