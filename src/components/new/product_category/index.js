@@ -19,6 +19,25 @@ import Product from "../../product";
 const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
   // console.log(categoryProdDetails, "categoryProdDetails");
   // const accordionData = categoryDetails?.questions;
+
+  const perChunk = 2; // items per chunk
+
+  const result = categoryDetails?.description?.reduce(
+    (resultArray, item, index) => {
+      const chunkIndex = Math.floor(index / perChunk);
+
+      if (!resultArray[chunkIndex]) {
+        resultArray[chunkIndex] = []; // start a new chunk
+      }
+
+      resultArray[chunkIndex].push(item);
+
+      return resultArray;
+    },
+    []
+  );
+  console.log(result, "result");
+
   return (
     <>
       <section className="customer-section pb-10">
@@ -71,40 +90,53 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
           </div> */}
         </div>
       </section>
-
       <section className="overlay_product">
         <div className="container">
           <div className="code-template">
-            {/* <div className="row cols-sm-2 cols-lg-4 code-content">
-              {(() => {
-                if (categoryDetails?.description?.length > 0) {
-                  return (
-                    <>
-                      {categoryDetails?.description?.map((queas) => {
-                        return (
-                          <div className="image-box image-overlay">
-                            <figure className="banner-radius">
+            {/* <div className="row cols-sm-2 cols-lg-4 code-content"> */}
+            {result &&
+              Object.keys(result).map((template_name) => {
+                return (
+                  <div className="row justify-content-center">
+                    {result[template_name]?.map((queas) => {
+                      return (
+                        <div className="col-lg-4 col-sm-6 mb-4 order-lg-auto order-sm-last ">
+                          <div className="banner banner-4 banner-fixed banner-radius overlay-effect2 content-middle content-center appear-animate fadeIn appear-animation-visible">
+                            <figure>
                               <img
                                 src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${queas?.image}`}
-                                alt="image-overlay"
-                                width="280"
-                                height="280"
+                                alt="banner"
+                                width="350"
+                                height="177"
+                                style={{
+                                  backgroundColor: "#1e1e1e",
+                                  height: "50vh",
+                                }}
                               />
-                              <h4 className="overlay-visible">
-                                {queas?.title}
-                              </h4>
-                              <div className="overlay overlay-transparent">
-                                <p className="">{queas?.description}</p>
-                              </div>
                             </figure>
+                            <div
+                              className="banner-content d-flex align-items-center w-100 text-left"
+                              style={{ padding: "20px" }}
+                            >
+                              <div className="mr-auto mb-4 mb-md-0">
+                                <h4 className="banner-subtitle text-white">
+                                  {" "}
+                                  {queas?.title}
+                                </h4>
+                                <p className="text-white">
+                                  {queas?.description}
+                                </p>
+                              </div>
+                            </div>
                           </div>
-                        );
-                      })}
-                    </>
-                  );
-                }
-              })()}
-              {/* <div className="image-box image-overlay">
+                        </div>
+                      );
+                    })}
+                  </div>
+                );
+              })}
+
+            {/* <div className="image-box image-overlay">
                 <figure className="banner-radius">
                   <img
                     src={store_1}
@@ -176,159 +208,120 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
                     </p>
                   </div>
                 </figure>
-              </div>
-            </div> */}
-
-            <div className="row justify-content-center">
-              {(() => {
-                if (categoryDetails?.description?.length > 0) {
-                  return (
-                    <>
-                      {categoryDetails?.description?.map((queas) => {
-                        return (
-                          <div className="col-lg-4 col-sm-6 mb-4 order-lg-auto order-sm-last">
-                            <div className="banner banner-4 banner-fixed banner-radius overlay-effect2 content-middle content-center appear-animate fadeIn appear-animation-visible">
-                              <figure>
-                                <img
-                                  src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${queas?.image}`}
-                                  alt="banner"
-                                  width="350"
-                                  height="177"
-                                  style={{ backgroundColor: "#1e1e1e" }}
-                                />
-                              </figure>
-                              <div
-                                className="banner-content d-flex align-items-center w-100 text-left"
-                                style={{ padding: "20px" }}
-                              >
-                                <div className="mr-auto mb-4 mb-md-0">
-                                  <h4 className="banner-subtitle text-white">
-                                    {" "}
-                                    {queas?.title}
-                                  </h4>
-                                  <p className="text-white">
-                                    {queas?.description}
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </>
-                  );
-                }
-              })()}
-              {/* <div className="col-lg-4 col-sm-6 mb-4 order-lg-auto order-sm-last">
-                <div className="banner banner-4 banner-fixed banner-radius overlay-effect2 content-middle content-center appear-animate fadeIn appear-animation-visible">
-                  <figure>
-                    <img
-                      src="https://d-themes.com/html/riode/images/demos/demo1/banners/banner2.jpg"
-                      alt="banner"
-                      width="350"
-                      height="177"
-                      style={{ backgroundColor: "#1e1e1e" }}
-                    />
-                  </figure>
-                  <div
-                    className="banner-content d-flex align-items-center w-100 text-left"
-                    style={{ padding: "20px" }}
-                  >
-                    <div className="mr-auto mb-4 mb-md-0">
-                      <h4 className="banner-subtitle text-white">Fizzy</h4>
-                      <p className="text-white">
-                        The active molecules in the formula gets bubbled and
-                        dissolves the nutrients in the water making it fun and
-                        delicious to consume, maintaining the properties intact
-                        in each sip.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-4 col-sm-6 mb-4 order-lg-auto order-sm-last">
-                <div className="banner banner-4 banner-fixed banner-radius overlay-effect2 content-middle content-center appear-animate fadeIn appear-animation-visible">
-                  <figure>
-                    <img
-                      src="https://d-themes.com/html/riode/images/demos/demo1/banners/banner2.jpg"
-                      alt="banner"
-                      width="350"
-                      height="177"
-                      style={{ backgroundColor: "#1e1e1e" }}
-                    />
-                  </figure>
-                  <div
-                    className="banner-content d-flex align-items-center w-100 text-left"
-                    style={{ padding: "20px" }}
-                  >
-                    <div className="mr-auto mb-4 mb-md-0">
-                      <h4 className="banner-subtitle text-white">No worries</h4>
-                      <p className="text-white">
-                        The active molecules in the formula gets bubbled and
-                        dissolves the nutrients in the water making it fun and
-                        delicious to consume, maintaining the properties intact
-                        in each sip.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-4 col-sm-6 mb-4 order-lg-auto order-sm-last">
-                <div className="banner banner-4 banner-fixed banner-radius overlay-effect2 content-middle content-center appear-animate fadeIn appear-animation-visible">
-                  <figure>
-                    <img
-                      src="https://d-themes.com/html/riode/images/demos/demo1/banners/banner2.jpg"
-                      alt="banner"
-                      width="350"
-                      height="177"
-                      style={{ backgroundColor: "#1e1e1e" }}
-                    />
-                  </figure>
-                  <div
-                    className="banner-content d-flex align-items-center w-100 text-left"
-                    style={{ padding: "20px" }}
-                  >
-                    <div className="mr-auto mb-4 mb-md-0">
-                      <h4 className="banner-subtitle text-white">Fizzy</h4>
-                      <p className="text-white">
-                        The active molecules in the formula gets bubbled and
-                        dissolves the nutrients in the water making it fun and
-                        delicious to consume, maintaining the properties intact
-                        in each sip.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-4 col-sm-6 mb-4 order-lg-auto order-sm-last">
-                <div className="banner banner-4 banner-fixed banner-radius overlay-effect2 content-middle content-center appear-animate fadeIn appear-animation-visible">
-                  <figure>
-                    <img
-                      src="https://d-themes.com/html/riode/images/demos/demo1/banners/banner2.jpg"
-                      alt="banner"
-                      width="350"
-                      height="177"
-                      style={{ backgroundColor: "#1e1e1e" }}
-                    />
-                  </figure>
-                  <div
-                    className="banner-content d-flex align-items-center w-100 text-left"
-                    style={{ padding: "20px" }}
-                  >
-                    <div className="mr-auto mb-4 mb-md-0">
-                      <h4 className="banner-subtitle text-white">No worries</h4>
-                      <p className="text-white">
-                        The active molecules in the formula gets bubbled and
-                        dissolves the nutrients in the water making it fun and
-                        delicious to consume, maintaining the properties intact
-                        in each sip.
-                      </p>
-                    </div>
-                  </div>
-                </div>
               </div> */}
-            </div>
+            {/* </div> */}
+
             {/* <div className="row justify-content-center">
+              <div className="col-lg-4 col-sm-6 mb-4 order-lg-auto order-sm-last">
+                <div className="banner banner-4 banner-fixed banner-radius overlay-effect2 content-middle content-center appear-animate fadeIn appear-animation-visible">
+                  <figure>
+                    <img
+                      src="https://d-themes.com/html/riode/images/demos/demo1/banners/banner2.jpg"
+                      alt="banner"
+                      width="350"
+                      height="177"
+                      style={{ backgroundColor: "#1e1e1e" }}
+                    />
+                  </figure>
+                  <div
+                    className="banner-content d-flex align-items-center w-100 text-left"
+                    style={{ padding: "20px" }}
+                  >
+                    <div className="mr-auto mb-4 mb-md-0">
+                      <h4 className="banner-subtitle text-white">Fizzy</h4>
+                      <p className="text-white">
+                        The active molecules in the formula gets bubbled and
+                        dissolves the nutrients in the water making it fun and
+                        delicious to consume, maintaining the properties intact
+                        in each sip.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-4 col-sm-6 mb-4 order-lg-auto order-sm-last">
+                <div className="banner banner-4 banner-fixed banner-radius overlay-effect2 content-middle content-center appear-animate fadeIn appear-animation-visible">
+                  <figure>
+                    <img
+                      src="https://d-themes.com/html/riode/images/demos/demo1/banners/banner2.jpg"
+                      alt="banner"
+                      width="350"
+                      height="177"
+                      style={{ backgroundColor: "#1e1e1e" }}
+                    />
+                  </figure>
+                  <div
+                    className="banner-content d-flex align-items-center w-100 text-left"
+                    style={{ padding: "20px" }}
+                  >
+                    <div className="mr-auto mb-4 mb-md-0">
+                      <h4 className="banner-subtitle text-white">No worries</h4>
+                      <p className="text-white">
+                        The active molecules in the formula gets bubbled and
+                        dissolves the nutrients in the water making it fun and
+                        delicious to consume, maintaining the properties intact
+                        in each sip.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-4 col-sm-6 mb-4 order-lg-auto order-sm-last">
+                <div className="banner banner-4 banner-fixed banner-radius overlay-effect2 content-middle content-center appear-animate fadeIn appear-animation-visible">
+                  <figure>
+                    <img
+                      src="https://d-themes.com/html/riode/images/demos/demo1/banners/banner2.jpg"
+                      alt="banner"
+                      width="350"
+                      height="177"
+                      style={{ backgroundColor: "#1e1e1e" }}
+                    />
+                  </figure>
+                  <div
+                    className="banner-content d-flex align-items-center w-100 text-left"
+                    style={{ padding: "20px" }}
+                  >
+                    <div className="mr-auto mb-4 mb-md-0">
+                      <h4 className="banner-subtitle text-white">Fizzy</h4>
+                      <p className="text-white">
+                        The active molecules in the formula gets bubbled and
+                        dissolves the nutrients in the water making it fun and
+                        delicious to consume, maintaining the properties intact
+                        in each sip.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-4 col-sm-6 mb-4 order-lg-auto order-sm-last">
+                <div className="banner banner-4 banner-fixed banner-radius overlay-effect2 content-middle content-center appear-animate fadeIn appear-animation-visible">
+                  <figure>
+                    <img
+                      src="https://d-themes.com/html/riode/images/demos/demo1/banners/banner2.jpg"
+                      alt="banner"
+                      width="350"
+                      height="177"
+                      style={{ backgroundColor: "#1e1e1e" }}
+                    />
+                  </figure>
+                  <div
+                    className="banner-content d-flex align-items-center w-100 text-left"
+                    style={{ padding: "20px" }}
+                  >
+                    <div className="mr-auto mb-4 mb-md-0">
+                      <h4 className="banner-subtitle text-white">No worries</h4>
+                      <p className="text-white">
+                        The active molecules in the formula gets bubbled and
+                        dissolves the nutrients in the water making it fun and
+                        delicious to consume, maintaining the properties intact
+                        in each sip.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="row justify-content-center">
               <div className="col-lg-4 col-sm-6 mb-4 order-lg-auto order-sm-last">
                 <div className="banner banner-4 banner-fixed banner-radius overlay-effect2 content-middle content-center appear-animate fadeIn appear-animation-visible">
                   <figure>
@@ -390,7 +383,6 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
           </div>
         </div>
       </section>
-
       {/* <section className="category_product_list">
         <div className="container">
           <h2 className="title-echo mb-1">
@@ -416,7 +408,7 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
             <div className="col-sm-3">1</div>
           </div>
         </div>
-      </section> */}
+      </section>{" "} */}
 
       <section
         className="pt-3 mt-2 mb-2 pb-10 need_sec cat_new_carosal"
@@ -510,7 +502,6 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
           )}
         </div>
       </section>
-
       <section
         className="new_our_idea pt-2 pt-md-7 pt-10 pb-8"
         id="distinct_table"
@@ -523,26 +514,32 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
             <div className="col-sm-6">
               <div className="table-responsive table-bordered">
                 <table className="table">
-                  <thead className="base-bg">
+                  {/* <thead className="base-bg">
                     <tr>
                       <th>Be Bodywise Advantage</th>
                     </tr>
-                  </thead>
+                  </thead> */}
                   <tbody>
                     {(() => {
                       if (categoryDetails?.advantage?.length > 0) {
                         return (
                           <>
-                            {categoryDetails?.advantage?.map((advantage) => {
-                              return (
-                                <tr>
-                                  <td>
-                                    <i className="fas fa-certificate"></i>
-                                    {advantage?.title}
-                                  </td>
-                                </tr>
-                              );
-                            })}
+                            {categoryDetails?.advantage?.map(
+                              (advantage, addkey) => {
+                                return (
+                                  <tr
+                                    className={`${
+                                      addkey == 0 ? "base-bg" : ""
+                                    }`}
+                                  >
+                                    <td>
+                                      <i className="fas fa-certificate"></i>
+                                      {advantage?.title}
+                                    </td>
+                                  </tr>
+                                );
+                              }
+                            )}
                           </>
                         );
                       }
@@ -570,20 +567,22 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
             <div className="col-sm-6">
               <div className="table-responsive table-bordered">
                 <table className="table">
-                  <thead className="red-bg">
+                  {/* <thead className="red-bg">
                     <tr>
                       <th>Ordinary Products</th>
                     </tr>
-                  </thead>
+                  </thead> */}
                   <tbody>
                     {(() => {
                       if (categoryDetails?.ordinaryProducts?.length > 0) {
                         return (
                           <>
                             {categoryDetails?.ordinaryProducts?.map(
-                              (deadvantage) => {
+                              (deadvantage, diskey) => {
                                 return (
-                                  <tr>
+                                  <tr
+                                    className={`${diskey == 0 ? "red-bg" : ""}`}
+                                  >
                                     <td>
                                       <i className="fas fa-certificate"></i>
                                       {deadvantage?.title}
@@ -626,9 +625,9 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
           <h2 className="title-echo mb-1">
             <span>Frequently Asked Question?</span>
           </h2>
-          <p className="new_our_idea_des">
+          {/* <p className="new_our_idea_des">
             {categoryDetails?.questionDescription}
-          </p>
+          </p> */}
           <div className="row justify-content-center">
             <div className="col-sm-9 offset-sm-1">
               <div className="code-template">

@@ -4,16 +4,23 @@ import { useHistory } from "react-router-dom";
 import { BiLoaderAlt } from "react-icons/bi";
 import { Button, Container, Form } from "react-bootstrap";
 import { HiOutlineArrowRight } from "react-icons/hi";
-import {FaDiscord,FaInstagram,FaTwitter,FaTelegramPlane,FaYoutube, FaFacebook,} from "react-icons/fa";
-import { IoLogoWhatsapp } from "react-icons/io";
+import { FaFacebook } from "react-icons/fa";
+import {
+  AiFillGoogleCircle,
+  AiFillTwitterCircle,
+  AiFillLinkedin,
+  AiOutlineInstagram,
+} from "react-icons/ai";
+
+import { BsPinterest } from "react-icons/bs";
+
 import { Link } from "react-router-dom";
 
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import "./style.scss";
 import { validateEmail } from "../../utils/common";
@@ -217,14 +224,28 @@ const Footer = () => {
                           (tudata, tuindex) => (
                             <a
                               href={settingsDetails?.socialLink[tudata].url}
-                              className="social-link social-facebook fab fa-facebook-f"
+                              className="social-link social-facebook fab"
                               title={settingsDetails?.socialLink[tudata].name}
                             >
-                              <img
+                              {settingsDetails?.socialLink[tudata].name ==
+                                "Facebook Link" && <FaFacebook />}
+                              {settingsDetails?.socialLink[tudata].name ==
+                                "Google Plus Link" && <AiFillGoogleCircle />}
+                              {settingsDetails?.socialLink[tudata].name ==
+                                "Twitter Link" && <AiFillTwitterCircle />}
+                              {settingsDetails?.socialLink[tudata].name ==
+                                "LinkedIn Link" && <AiFillLinkedin />}
+                              {settingsDetails?.socialLink[tudata].name ==
+                                "Instagram Link" && <AiOutlineInstagram />}
+
+                              {settingsDetails?.socialLink[tudata].name ==
+                                "Pinterest Link" && <BsPinterest />}
+
+                              {/* <img
                                 src={
                                   settingsDetails?.socialLink[tudata].picture
                                 }
-                              />
+                              /> */}
                             </a>
                           )
                         )}

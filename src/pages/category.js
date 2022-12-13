@@ -79,7 +79,7 @@ const Category = () => {
               }}
             >
               <h1 className="page-title font-weight-bold lh-1 text-white text-capitalize">
-                {categoryDetails?.subCategoryName}
+                {/* {categoryDetails?.subCategoryName} */}
               </h1>
             </div>
             <div className="page-content mt-10 pt-10">
