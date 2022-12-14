@@ -724,7 +724,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
           <section className="element-section mt-9 mb-10">
             <div className="container">
               <h2 className="title title-center ls-s mb-8 dis_block">
-                Liven Burn is Safe!
+                {productData?.chooseLivenBurnTitle}
               </h2>
               <div className="row elements justify-content-center">
                 {(() => {
@@ -810,7 +810,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
               <div className="row mt-5 why_choose_dflex">
                 <div className="col-md-7">
                   <h2 className="description-title mb-4 font-weight-semi-bold ls-m">
-                    How to Use?
+                    {productData?.howToUseTitle}
                   </h2>
                   <div className="mb-8">
                     <b>Pop</b>: Remove the Desiccant cap. product image here
@@ -844,7 +844,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
           <section className="" id="absolute_cart">
             <div className="container">
               <h2 className="title title-center ls-s mb-8 dis_block">
-                Who to take Liven Burn with ACV?
+                {productData?.chooseLivenBurnTitle}
               </h2>
               <br />
               <div className="row mt-10">
@@ -974,7 +974,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
               <div className="row mt-5">
                 <div className="col-md-12">
                   <h2 className="description-title mb-4 font-weight-semi-bold ls-m text-center">
-                    How Liven Burn Works?
+                    {productData?.burnWorkTitle}
                   </h2>
                   <div
                     dangerouslySetInnerHTML={{

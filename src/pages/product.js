@@ -148,7 +148,7 @@ const NewHome = () => {
       />
       <main className="main pt-6 single-product">
         <div className="page-content">
-          <div className="container">
+          <div className="container min-height">
             <ProductDetails
               productData={productData}
               subCategoryProducts={subCategoryProducts}

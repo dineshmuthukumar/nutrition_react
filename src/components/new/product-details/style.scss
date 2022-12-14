@@ -1041,3 +1041,13 @@ select.form-control.count_pack_value {
 {
     display: none;
 }
+.gif-loader{
+    content: '';
+    position: absolute;
+    z-index: 999999;
+    top: 7%;
+    left: 45%;
+}
+.min-height{
+    min-height: 100vh;
+}

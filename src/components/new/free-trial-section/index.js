@@ -349,6 +349,17 @@ const Free_Trial_Section = ({ productData }) => {
     <>
       <section className="" id="trial_free_section">
         <div className="intro-slide1 banner banner-fixed">
+          {productData?.bannerTitle && (
+            <div class="bannerTitle">
+              <h3>{productData?.bannerTitle}</h3>
+            </div>
+          )}
+
+          {productData?.bannerDescription && (
+            <div class="bannerDescription">
+              <h4>{productData?.bannerDescription}</h4>
+            </div>
+          )}
           {productData?.photos && (
             <figure>
               <img
@@ -606,10 +617,10 @@ const Free_Trial_Section = ({ productData }) => {
           </div>
         </section>
 
-        <section className="element-section mb-10">
+        <section className="element-section mt-9 mb-10">
           <div className="container">
             <h2 className="title title-center ls-s mb-8 dis_block">
-              Liven Burn is Safe!
+              {productData?.chooseLivenBurnTitle}
             </h2>
             <div className="row elements justify-content-center">
               {(() => {
@@ -618,14 +629,14 @@ const Free_Trial_Section = ({ productData }) => {
                     <>
                       {productData?.livenBurns?.map((takelivenBurn) => {
                         return (
-                          <div className="col-xl-3col col-lg-2 col-md-4 col-sm-4 col-12 burn_img_section">
+                          <div className="col-xl-2 col col-lg-2 col-md-2 col-sm-2 col-12">
                             <a href="#" className="element-type">
                               <div className="element element-accordian dotted_border">
                                 <img
                                   src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${takelivenBurn?.image}`}
                                   className="whole_food_img"
                                 />
-                                <p>{takelivenBurn?.title}</p>
+                                <p>{takelivenBurn?.name}</p>
                               </div>
                             </a>
                           </div>
@@ -695,7 +706,7 @@ const Free_Trial_Section = ({ productData }) => {
             <div className="row mt-5">
               <div className="col-md-7">
                 <h2 className="description-title mb-4 font-weight-semi-bold ls-m">
-                  How to Use?
+                  {productData?.howToUseTitle}
                 </h2>
                 <div className="mb-8">
                   <b>Pop</b>: Remove the Desiccant cap. product image here
@@ -734,7 +745,7 @@ const Free_Trial_Section = ({ productData }) => {
         <section id="absolute_cart">
           <div className="container">
             <h2 className="title title-center ls-s mb-8 dis_block">
-              Who to take Liven Burn with ACV?
+              {productData?.chooseLivenBurnTitle}
             </h2>
             <br />
             <div className="row mt-10">
@@ -754,7 +765,7 @@ const Free_Trial_Section = ({ productData }) => {
                                   />
                                 </span>
                                 <div className="icon-box-content">
-                                  <p>{livenBurnshealingPoten?.title}</p>
+                                  <p>{livenBurnshealingPoten?.name}</p>
                                 </div>
                               </div>
                             </div>
@@ -865,7 +876,7 @@ const Free_Trial_Section = ({ productData }) => {
             <div className="row mt-5">
               <div className="col-md-12">
                 <h2 className="description-title mb-4 font-weight-semi-bold ls-m text-center">
-                  How Liven Burn Works?
+                  {productData?.burnWorkTitle}
                 </h2>
                 <div
                   dangerouslySetInnerHTML={{
