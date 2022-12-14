@@ -72,7 +72,7 @@ const ProductBanner = ({ homeContent }) => {
                 </div>
               </div> */}
             </div>
-            <div className="col-sm-6 text-left">
+            <div className="col-sm-6 text-center">
               {homeContent?.section?.first?.image && (
                 <img src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${homeContent?.section?.first?.image}`} alt="First Banner" className="nurtures_images" />
               )}
