@@ -910,7 +910,7 @@ const Free_Trial_Section = ({ productData }) => {
             <div className="row mt-10 why_choose_dflex">
               <div className="col-md-8">
                 <h2 className="description-title mb-4 font-weight-semi-bold ls-m">
-                  Why Choose Liven BURN with AVC?
+                  {productData?.chooseLivenBurnTitle}
                 </h2>
                 <div
                   dangerouslySetInnerHTML={{
@@ -937,7 +937,7 @@ const Free_Trial_Section = ({ productData }) => {
               <div className="tab-pane pt-4 active" id="fruits">
                 {productData?.healingPotentials?.length > 0 && (
                   <OwlCarousel
-                    className="owl-carousel healing"
+                    className="owl-carousel owl-carousel-healing"
                     margin={20}
                     stagePadding={450}
                     // loop={true}
@@ -982,8 +982,8 @@ const Free_Trial_Section = ({ productData }) => {
                                       <img
                                         src={app_1}
                                         alt="product"
-                                        // width="280"
-                                        // height="315"
+                                        width="280"
+                                        height="315"
                                       />
                                       <img
                                         //src={app_11}
@@ -994,9 +994,9 @@ const Free_Trial_Section = ({ productData }) => {
                                         src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${healingPoten?.image}`}
                                         className="healing_image"
                                         alt="product"
-                                        style={{ width: "100% !important" }}
-                                        // width="280"
-                                        // height="315"
+                                        style={{ width: "50% !important" }}
+                                        width="280"
+                                        height="315"
                                       />
                                     </a>
                                     <div className="product-action-vertical">

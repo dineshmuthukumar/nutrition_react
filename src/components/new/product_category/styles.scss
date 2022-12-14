@@ -6,6 +6,28 @@
                 .need_sec{
                     .container{
                         .owl-carousel {
+                            button.owl-prev {
+                                position: absolute;
+                                top: 50%;
+                                left: -5%;
+                                z-index: 99;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                width: 40px;
+                                height: 40px;
+                                margin: 0;
+                                margin-top: -15px;
+                                color: #2b579a;
+                                font-size: 16px;
+                                line-height: 1;
+                                padding: 0;
+                                border: 0.1rem solid #ebebeb;
+                                background: var(--base-color) !important;
+                                cursor: pointer;
+                                border-radius: 50px;
+                                transition: all .3s ease;
+                            }
                             width: 100%;
                             -webkit-tap-highlight-color: transparent;
                             position: relative;
@@ -50,5 +72,28 @@
     justify-content: center;
     margin: 10rem;
   }
+}
+
+.cat_new_carosal button.owl-prev {
+    position: absolute;
+    top: 50%;
+    left: -5%;
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    margin-top: -15px;
+    color: #2b579a;
+    font-size: 16px;
+    line-height: 1;
+    padding: 0;
+    border: 0.1rem solid #ebebeb;
+    background: var(--base-color) !important;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: all .3s ease;
 }
   

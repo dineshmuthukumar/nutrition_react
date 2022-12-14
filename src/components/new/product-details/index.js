@@ -738,6 +738,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                                 <div className="element element-accordian dotted_border">
                                   <img
                                     src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${takelivenBurn?.image}`}
+                                    style={{ height: "20vh" }}
                                     className="whole_food_img"
                                   />
                                   <p>{takelivenBurn?.name}</p>
@@ -1032,7 +1033,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
               <div className="row mt-10 why_choose_dflex">
                 <div className="col-md-8">
                   <h2 className="description-title mb-4 font-weight-semi-bold ls-m">
-                    Why Choose Liven BURN with AVC?
+                    {productData?.chooseLivenBurnTitle}
                   </h2>
                   <div
                     dangerouslySetInnerHTML={{
@@ -1135,6 +1136,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                                           alt="product"
                                           width="280"
                                           height="315"
+                                          // style={{ width: "50%" }}
                                         />
                                       </a>
                                       <div className="product-action-vertical">
@@ -1629,24 +1631,26 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                         }"
                             > */}
             <OwlCarousel
-              className="owl-carousel owl-theme row cols-lg-4 cols-md-3 cols-2"
-              margin={20}
+              className="owl-carousel owl-theme own-carosuel-releadproduct row cols-lg-4"
+              margin={10}
+              nav={false}
               smartSpeed={500}
               dots={false}
               navContainerClass={"owl-nav"}
-              navText={[
-                `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png  />`,
-                `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png />`,
-              ]}
+              // navContainerClass={"owl-nav"}
+              // navText={[
+              //   `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png  />`,
+              //   `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png />`,
+              // ]}
               responsive={{
                 0: {
                   items: 1,
                 },
                 768: {
-                  items: 1,
+                  items: 3,
                 },
                 800: {
-                  items: 4,
+                  items: 3,
                 },
               }}
               autoplay

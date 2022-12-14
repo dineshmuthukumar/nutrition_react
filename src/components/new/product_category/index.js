@@ -110,7 +110,7 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
                                 height="177"
                                 style={{
                                   backgroundColor: "#1e1e1e",
-                                  height: "50vh",
+                                  height: "35vh",
                                 }}
                               />
                             </figure>
@@ -440,13 +440,13 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
           {categoryProdDetails?.length > 0 ? (
             <OwlCarousel
               className="owl-carousel owl-loaded owl-drag"
-              margin={20}
+              margin={10}
               nav={true}
               smartSpeed={500}
               dots={false}
               navContainerClass={"owl-nav"}
               mouseDrag={true}
-              // stagePadding={0}
+              stagePadding={0}
               key={`carousel_1`}
               // navigationText={[
               //   "<i class='icon-chevron-left icon-white'><</i>",
@@ -456,7 +456,7 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
               //   '<i class="fa fa-angle-left" aria-hidden="true"></i>',
               //   '<i class="fa fa-angle-right" aria-hidden="true"></i>',
               // ]}
-              // navContainerClass={"owl-nav"}
+              //navContainerClass={"owl-nav"}
               //responsiveClass={true}
               // navText={[
               //   `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png  />`,

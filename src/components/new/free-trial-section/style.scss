@@ -1,11 +1,18 @@
 
-.single-product{
+.free-single-product{
     .page-content{
         .container-fluid{
             .page-content {
                 .need_sec{
                     .container{
-                        .owl-carousel {
+                        .owl-carousel-healing {
+                           .owl-stage{
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: flex-end;
+                                    //width: max-content !important;
+                                     width: unset !important;
+                                  }
                             width: 100%;
                             -webkit-tap-highlight-color: transparent;
                             position: relative;
@@ -33,15 +40,15 @@
     }
 }
 
-.owl-carousel .owl-stage{
+.owl-carousel-healing .owl-stage{
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    width: unset !important;
-    // width: unset !important;
+    //width: max-content !important;
+     width: unset !important;
   }
   
-  .owl-carousel .owl-item .item{
+  .owl-carousel-healing .owl-item .item{
     width: 120px;
     min-height: 120px;
     background-color: lightblue;
@@ -86,3 +93,4 @@
     //     color: white;
     //     }
   }
+

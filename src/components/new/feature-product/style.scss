@@ -17,3 +17,10 @@
     color: white;
    }
 } 
+.owl-carousel .owl-stage{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    //width: 2460px !important;
+    width: max-content !important;
+  }

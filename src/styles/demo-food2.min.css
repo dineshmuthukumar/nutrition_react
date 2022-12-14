@@ -106,6 +106,31 @@ a
         top: 50%;
         right: -5%;
 }
+
+.cat_new_carosal .owl-nav .owl-prev
+{
+        position: absolute;
+        content: '';
+        top: 50%;
+        left: -5%;
+        z-index: 99;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        margin: 0;
+        margin-top: -15px;
+        color:white;
+        font-size: 16px;
+        line-height: 1;
+        padding: 0;
+        border: 0.1rem solid #ebebeb;
+        background:  #2b579a !important;
+        cursor: pointer;
+        border-radius: 50px;
+        transition: all .3s ease;
+}
 .cat_new_carosal button.owl-prev.disabled span, button.owl-next span 
 {
     color: #000;
