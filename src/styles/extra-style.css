@@ -1663,13 +1663,13 @@ textarea#exampleForm\.ControlTextarea1 {
     height: auto;
 }
 
-.btn-check:checked+.btn,
+/* .btn-check:checked+.btn,
 :not(.btn-check)+.btn:active,
 .btn:first-child:active,
 .btn.active,
 .btn.show {
     background: transparent !important;
-}
+} */
 
 figure.post-media img {
     height: 200px;
@@ -1959,4 +1959,10 @@ label.form-label {
 
 #product_category_page_section .owl-item {
     margin-right: 10px !important;
+}
+
+.widget.widget-newsletter.form-wrapper button.btn.btn-primary {
+    font-size: 15px;
+    background: var(--base-color);
+    border: none;
 }

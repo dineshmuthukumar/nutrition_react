@@ -9902,6 +9902,14 @@ figure:hover .overlay-visible {
   color: #222
 }
 
+.page-header.pl-4.pr-4.cms-page-imge {
+  height: 400px;
+}
+
+.submenu svg {
+  margin-left: 10px;
+}
+
 .page-header .breadcrumb {
   justify-content: center
 }

@@ -333,7 +333,7 @@ const CartContent = () => {
 
         <div className="container mt-7 mb-2">
           <div className="row align-items-center">
-            <div className="col-lg-12 col-md-12 pr-lg-4">
+            <div className="offset-lg-2 col-lg-9 col-md-9 pr-lg-4">
               {cart?.data?.cartProductDetails?.length > 0 ? (
                 <table className="shop-table cart-table">
                   <thead>
