@@ -7,7 +7,7 @@ const ProductBannerOne = ({ homeContent }) => {
       <section className="product_banner_section_2 pb-6">
         <div className="container">
           <div className="row product_banner_2">
-            <div className="col-sm-6 text-center">
+            <div className="col-sm-4 text-center">
               {homeContent?.section?.fourth?.image && (
                 <img
                   src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${homeContent?.section?.fourth?.image}`}
@@ -15,7 +15,7 @@ const ProductBannerOne = ({ homeContent }) => {
                 />
               )}
             </div>
-            <div className="col-sm-6">
+            <div className="col-sm-8">
               <h1>{homeContent?.section?.fourth?.header}</h1>
               <h3 className="py-2">
                 {homeContent?.section?.fourth?.description}

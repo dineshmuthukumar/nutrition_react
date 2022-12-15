@@ -372,9 +372,9 @@ img.weak_strongest_img_absolute {
     }
 }
 
-#Potential_product .owl-nav.disabled {
+/* #Potential_product .owl-nav.disabled {
     display: none;
-}
+} */
 
 @media (min-width: 768px) and (max-width: 1024px) {
     .need_sec ul.nav.nav-tabs {
@@ -1502,7 +1502,7 @@ table.shop-table.cart-table thead {
 }
 
 img.best_img {
-    width: 50%;
+    width: 100%;
 }
 
 img.category_media_image {
@@ -1946,10 +1946,10 @@ label.form-label {
 }
 
 
-/* section.instagram-section.pt-2.pt-md-7.pt-10.pb-8 .owl-item {
+section.instagram-section.pt-2.pt-md-7.pt-10.pb-8 .owl-item {
     width: 220px !important;
     margin-right: 30.3px !important;
-} */
+}
 
 .login-popup button.btn.btn-dark.btn-block.btn-rounded:active {
     color: var(--bs-btn-hover-color);
@@ -1966,3 +1966,81 @@ label.form-label {
     background: var(--base-color);
     border: none;
 }
+
+
+/* 
+#Potential_product .owl-theme .owl-nav .owl-prev {
+    background: var(--base-color);
+}
+
+#Potential_product .owl-theme .owl-nav .owl-prev {
+    background: var(--base-color) !important;
+}
+
+#Potential_product .owl-theme .owl-nav .owl-prev {
+    left: -60px !important;
+    top: -200px !important;
+}
+
+#Potential_product .owl-theme .owl-nav .owl-prev,
+#Potential_product .owl-theme .owl-nav .owl-next {
+    margin: 0 !important;
+    transform: translateY(-50%) !important;
+    font-size: 20px !important;
+    font-weight: 400 !important;
+    color: var(--base-color) !important;
+}
+
+#Potential_product .owl-theme .owl-nav [class*=owl-] {
+    position: absolute;
+    top: 50%;
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    margin-top: -15px;
+    color: #2b579a;
+    font-size: 16px;
+    line-height: 1;
+    padding: 0;
+    border: 0.1rem solid #ebebeb;
+    background: 0 0;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: all .3s ease;
+} */
+
+#Potential_product .owl-nav.disabled button.owl-prev,
+#Potential_product .owl-nav.disabled button.owl-next {
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    color: #2b579a;
+    font-size: 16px;
+    line-height: 1;
+    padding: 0;
+    border: 0.1rem solid #ebebeb;
+    cursor: pointer;
+    border-radius: 50px;
+    background: var(--base-color);
+}
+
+#Potential_product button.owl-prev {
+    left: -60px;
+    top: 100px;
+    position: absolute;
+}
+
+#Potential_product button.owl-next {
+    right: -60px;
+    top: 100px;
+    position: absolute;
+}
+
+/* #Potential_product .owl-theme .owl-nav .owl-prev {
+    left: -60px !important;
+    top: -200px !important;
+} */

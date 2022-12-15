@@ -155,10 +155,10 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                           items: 1,
                         },
                       }}
-                      // autoplay
+                    // autoplay
 
-                      //   autoplayTimeout={2000}
-                      //   autoplayHoverPause={true}
+                    //   autoplayTimeout={2000}
+                    //   autoplayHoverPause={true}
                     >
                       {(() => {
                         if (productData?.photos?.length > 0) {
@@ -224,11 +224,10 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                                       (prodImgaesThumb, key) => {
                                         return (
                                           <div
-                                            className={`product-thumb ${
-                                              productThumb == key
+                                            className={`product-thumb ${productThumb == key
                                                 ? "active"
                                                 : ""
-                                            }`}
+                                              }`}
                                             onClick={() => setProductThumb(key)}
                                           >
                                             <img
@@ -736,11 +735,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                             <div className="col-xl-2 col col-lg-2 col-md-2 col-sm-2 col-12">
                               <a href="#" className="element-type">
                                 <div className="element element-accordian dotted_border">
-                                  <img
-                                    src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${takelivenBurn?.image}`}
-                                    style={{ height: "20vh" }}
-                                    className="whole_food_img"
-                                  />
+                                  <img src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${takelivenBurn?.image}`} className="whole_food_img" />
                                   <p>{takelivenBurn?.name}</p>
                                 </div>
                               </a>
@@ -1090,8 +1085,8 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                     dots={false}
                     navContainerClass={"owl-nav"}
                     navText={[
-                      `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png  />`,
-                      `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png />`,
+                      // `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png  />`,
+                      // `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png />`,
                     ]}
                     responsive={{
                       0: {
@@ -1108,10 +1103,10 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                     // loop
                     autoplayTimeout={2000}
                     autoplayHoverPause={true}
-                    // navText={[
-                    //   '<i class="fa fa-chevron-left"></i>"',
-                    //   '<i class="fa fa-chevron-right"></i>'
-                    // ]}
+                  // navText={[
+                  //   '<i class="fa fa-chevron-left"></i>"',
+                  //   '<i class="fa fa-chevron-right"></i>'
+                  // ]}
                   >
                     {(() => {
                       if (productData?.healingPotentials?.length > 0) {
@@ -1136,7 +1131,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                                           alt="product"
                                           width="280"
                                           height="315"
-                                          // style={{ width: "50%" }}
+                                        // style={{ width: "50%" }}
                                         />
                                       </a>
                                       <div className="product-action-vertical">
@@ -1657,10 +1652,10 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
               loop
               autoplayTimeout={2000}
               autoplayHoverPause={true}
-              // navText={[
-              //   '<i class="fa fa-chevron-left"></i>"',
-              //   '<i class="fa fa-chevron-right"></i>'
-              // ]}
+            // navText={[
+            //   '<i class="fa fa-chevron-left"></i>"',
+            //   '<i class="fa fa-chevron-right"></i>'
+            // ]}
             >
               {(() => {
                 if (subCategoryProducts?.length > 0) {

@@ -67,4 +67,19 @@
     font-weight: 400;
     min-width: 12.1rem;
     font-family: var(--font-monda);
+    color: #000;
+}
+
+
+.arrivals-section {
+    li.nav-item {
+        h3 {
+            color: #000;
+            padding-left: 5px;
+        }
+
+        svg {
+            margin-right: 5px;
+        }
+    }
 }

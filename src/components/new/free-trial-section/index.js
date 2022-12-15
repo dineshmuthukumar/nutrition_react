@@ -757,7 +757,7 @@ const Free_Trial_Section = ({ productData }) => {
                         (livenBurnshealingPoten) => {
                           return (
                             <div className="col-sm-3 pt-4 pb-10">
-                              <div className="icon-box icon-inversed text-center">
+                              <div className="icon-box icon-inversed text-center bg-livenburnitem">
                                 <span className="icon-box-icon">
                                   <img
                                     src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${livenBurnshealingPoten?.image}`}
@@ -965,10 +965,10 @@ const Free_Trial_Section = ({ productData }) => {
                     // loop
                     autoplayTimeout={2000}
                     autoplayHoverPause={true}
-                    // navText={[
-                    //   '<i class="fa fa-chevron-left"></i>"',
-                    //   '<i class="fa fa-chevron-right"></i>'
-                    // ]}
+                  // navText={[
+                  //   '<i class="fa fa-chevron-left"></i>"',
+                  //   '<i class="fa fa-chevron-right"></i>'
+                  // ]}
                   >
                     {(() => {
                       return (

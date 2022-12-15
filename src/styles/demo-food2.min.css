@@ -6898,7 +6898,7 @@ input[type="radio"]:checked~label::after {
 }
 
 .nav-tabs .nav-item .nav-link.active h3 {
-    color: var(--white);
+    color: var(--black);
 }
 
 .nav-link {
