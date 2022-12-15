@@ -126,3 +126,74 @@ input.btn.btn-large:active {
   white-space: nowrap;
   cursor: pointer;
 }
+
+
+
+#Potential_product {
+  .owl-nav.disabled button.owl-prev {
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    color: #2b579a;
+    font-size: 16px;
+    line-height: 1;
+    padding: 0;
+    border: 0.1rem solid #ebebeb;
+    cursor: pointer;
+    border-radius: 50px;
+    background: var(--base-color);
+  }
+
+  .owl-nav.disabled button.owl-next {
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    color: #2b579a;
+    font-size: 16px;
+    line-height: 1;
+    padding: 0;
+    border: 0.1rem solid #ebebeb;
+    cursor: pointer;
+    border-radius: 50px;
+    background: var(--base-color);
+  }
+
+  button.owl-prev {
+    left: -60px;
+    top: 100px;
+    position: absolute;
+  }
+
+  button.owl-next {
+    right: -60px;
+    top: 100px;
+    position: absolute;
+  }
+}
+
+// #Potential_product .owl-nav.disabled button.owl-prev,
+// #Potential_product .owl-nav.disabled button.owl-next {
+//   width: 40px;
+//   height: 40px;
+//   margin: 0;
+//   color: #2b579a;
+//   font-size: 16px;
+//   line-height: 1;
+//   padding: 0;
+//   border: 0.1rem solid #ebebeb;
+//   cursor: pointer;
+//   border-radius: 50px;
+//   background: var(--base-color);
+// }
+
+// #Potential_product button.owl-prev {
+//   left: -60px;
+//   top: 100px;
+//   position: absolute;
+// }
+
+// #Potential_product button.owl-next {
+//   right: -60px;
+//   top: 100px;
+//   position: absolute;
+// }

@@ -225,8 +225,8 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                                         return (
                                           <div
                                             className={`product-thumb ${productThumb == key
-                                                ? "active"
-                                                : ""
+                                              ? "active"
+                                              : ""
                                               }`}
                                             onClick={() => setProductThumb(key)}
                                           >
@@ -276,12 +276,13 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                         </div>
                         <div className="col-sm-3">
                           <button className="thumb-up">
-                            <i className="fas fa-chevron-left"></i>
+                            <i class="d-icon-arrow-left"></i>
                           </button>
                           <button className="thumb-down">
-                            <i className="fas fa-chevron-right"></i>
+                            <i class="d-icon-arrow-right"></i>
                           </button>
                         </div>
+
                       </div>
 
                       {/* </div> */}

@@ -1091,6 +1091,21 @@ img.product-thumb_img {
                 }
             }
         }
+
+        .product-thumbs-wrap button {
+            opacity: 1;
+            box-shadow: none;
+            font-size: 30px;
+            width: 100%;
+
+            button.thumb-down {
+                padding-left: 10%;
+            }
+
+            i.d-icon-arrow-left {
+                padding-right: 50%;
+            }
+        }
     }
 }
 
