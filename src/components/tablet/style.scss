@@ -1,0 +1,70 @@
+@mixin tablet-defaults {
+  position: fixed;
+  inset: 20% auto auto 50%;
+  translate: -50% 0;
+  width: 6rem;
+  height: 12rem;
+  display: inline-block;
+  background-size: contain;
+  z-index: 1000;
+  transition: 0.5s all ease !important;
+}
+
+.tablet {
+  span.t {
+    &-show {
+      background: url("../../images/tablet-animation/tablet-5.png") no-repeat
+        center;
+      opacity: 1;
+      @include tablet-defaults;
+      position: absolute;
+    }
+    &-hide {
+      background: url("../../images/tablet-animation/tablet-5.png") no-repeat
+        center;
+      opacity: 0;
+      @include tablet-defaults;
+      position: absolute;
+    }
+    &-start {
+      background: url("../../images/tablet-animation/tablet-0.png") no-repeat
+        center;
+      transform: rotateZ(90deg);
+      @include tablet-defaults;
+    }
+    &-1 {
+      background: url("../../images/tablet-animation/tablet-1.png") no-repeat
+        center;
+      transform: rotateZ(0deg);
+      @include tablet-defaults;
+    }
+    &-2 {
+      background: url("../../images/tablet-animation/tablet-2.png") no-repeat
+        center;
+      @include tablet-defaults;
+    }
+    &-3 {
+      background: url("../../images/tablet-animation/tablet-3.png") no-repeat
+        center;
+      @include tablet-defaults;
+    }
+    &-4 {
+      background: url("../../images/tablet-animation/tablet-4.png") no-repeat
+        center;
+      @include tablet-defaults;
+    }
+    &-5 {
+      background: url("../../images/tablet-animation/tablet-5.png") no-repeat
+        center;
+      @include tablet-defaults;
+    }
+    &-end {
+      background: url("../../images/tablet-animation/tablet-5.png") no-repeat
+        center;
+      opacity: 0;
+      @include tablet-defaults;
+      inset: 50% auto auto 50%;
+      transition-delay: 3s;
+    }
+  }
+}

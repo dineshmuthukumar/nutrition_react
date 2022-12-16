@@ -30,8 +30,6 @@ import "./styles/demo-food2.min.css";
 import "./styles/extra-style.css";
 import "./styles/style.min.css";
 
-
-
 const NewHome = lazy(() => import("./pages/new-home"));
 const Category = lazy(() => import("./pages/category"));
 const Product = lazy(() => import("./pages/product"));
@@ -48,6 +46,9 @@ const MyAccount = lazy(() => import("./pages/my-account"));
 const ProductList = lazy(() => import("./pages/productlist"));
 const Checkout = lazy(() => import("./pages/checkout"));
 const Cms = lazy(() => import("./pages/cms"));
+const AboutUs = lazy(() => import("./pages/aboutus"));
+const Explore = lazy(() => import("./pages/explore"));
+const Dominance = lazy(() => import("./pages/dominance"));
 //const SiteMaintenance = lazy(() => import("./pages/si"));
 
 function App(props) {
@@ -249,6 +250,9 @@ const WebContainer = () => {
         <Route exact path="/product/:productid?" component={Product} />
         <Route exact path="/product/free/:productid?" component={freetrial} />
         <Route exact path="/about" component={About} />
+        <Route exact path="/aboutus" component={AboutUs} />
+        <Route exact path="/explore" component={Explore} />
+        <Route exact path="/dominance" component={Dominance} />
         <Route exact path="/blog" component={blog} />
         <Route exact path="/blogpost/:blogid?" component={blogPost} />
         <Route exact path="/freetrial" component={freetrial} />

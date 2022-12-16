@@ -12,7 +12,6 @@ import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import images from "../../utils/images.json";
 
-
 import {
   user_logout_thunk,
   cart_off_thunk,
@@ -1088,9 +1087,10 @@ const Header = ({
                       {footerDetails?.length > 0 &&
                         footerDetails?.map((obj, index) => {
                           if (obj.url == "aboutus") {
-                            return (
-                              <Link to={`/cms/${obj?.url}`}>{obj?.title}</Link>
-                            );
+                            // return (
+                            //   <Link to={`/cms/${obj?.url}`}>{obj?.title}</Link>
+                            // );
+                            return <Link to={`/aboutus`}>{obj?.title}</Link>;
                           }
                         })}
                     </li>
