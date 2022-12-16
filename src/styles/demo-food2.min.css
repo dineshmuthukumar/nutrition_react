@@ -11097,7 +11097,7 @@ ul.blog-filters .nav-filter {
 .product.product-with-qty .product-details .btn-cart {
     font-size: 16px;
     padding: 0;
-    border-color: var(--base-color);
+    background: var(--base-color);
     font-family: var(--font-monda);
     color: var(--black);
     border-radius: 5px;
