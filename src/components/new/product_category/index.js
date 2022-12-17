@@ -497,7 +497,7 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
             </OwlCarousel>
           ) : (
             <div className="no-product d-flex justify-content-center my-7">
-              No Product Found
+              <h3 className="font-weight-bold">No Product Found!</h3>
             </div>
           )}
         </div>

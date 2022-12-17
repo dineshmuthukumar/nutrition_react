@@ -64,7 +64,7 @@ import { add_to_cart_thunk } from "../../../redux/thunk/user_cart_thunk";
 import Product from "../../product";
 import { cart_on_thunk } from "../../../redux/thunk/user_thunk";
 import FeatureProduct from "../feature-product";
-import { subscribeApi } from "../../../api/base-methods";
+import { EnquiryApi, subscribeApi } from "../../../api/base-methods";
 
 const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
   const history = useHistory();
@@ -142,18 +142,15 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
 
         // const formData = new FormData();
         // formData.append("Nemail", email);
+        let arr = { type: "que", content: email };
 
-        // const result = await subscribeApi(formData);
+        const result = await EnquiryApi(arr);
 
-        // if (result.data.status) {
-        setVEmail(
-          "We will buzz you with important updates. Thank you for being a part of LivenScience"
-        );
-        // } else {
-        //   setVEmail(
-        //     "We got it again!, We are excited to have you as part of our NFT club. Details have been noted already. We will buzz you with important updates. See you soon!"
-        //   );
-        // }
+        if (result.data.statusCode === 200) {
+          setVEmail(
+            "We will buzz you with important updates. Thank you for being a part of LivenScience"
+          );
+        }
 
         setEmail("");
         //setLoading(false);
@@ -196,13 +193,13 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                         dots={false}
                         // rtl={true}
                         autoWidth={true}
-                      // responsive={false}
-                      // id={"owlcaolse"}
+                        // responsive={false}
+                        // id={"owlcaolse"}
 
-                      // autoplay
+                        // autoplay
 
-                      //   autoplayTimeout={2000}
-                      //   autoplayHoverPause={true}
+                        //   autoplayTimeout={2000}
+                        //   autoplayHoverPause={true}
                       >
                         {(() => {
                           if (productData?.photos?.length > 0) {
@@ -269,10 +266,11 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                                       (prodImgaesThumb, key) => {
                                         return (
                                           <div
-                                            className={`product-thumb ${productThumb == key
-                                              ? "active"
-                                              : ""
-                                              }`}
+                                            className={`product-thumb ${
+                                              productThumb == key
+                                                ? "active"
+                                                : ""
+                                            }`}
                                             onClick={() => setProductThumb(key)}
                                           >
                                             <img
@@ -507,12 +505,18 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                                               <h1 className="pack_tittle">
                                                 {producttype?.title}
                                               </h1>
-                                              <h1 className="pack_tittle_save">(Save $40.00)</h1>
-                                              <img src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${producttype?.image}`} />
+                                              <h1 className="pack_tittle_save">
+                                                (Save $40.00)
+                                              </h1>
+                                              <img
+                                                src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${producttype?.image}`}
+                                              />
                                             </div>
                                             <div className="pack_add_cart">
                                               <i
-                                                className="fa fa-inr" aria-hidden="true"></i>{" "}
+                                                className="fa fa-inr"
+                                                aria-hidden="true"
+                                              ></i>{" "}
                                               {currencyFormat(
                                                 producttype?.saleAmount,
                                                 "INR"
@@ -1139,10 +1143,10 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                       // loop
                       autoplayTimeout={2000}
                       autoplayHoverPause={true}
-                    // navText={[
-                    //   '<i class="fa fa-chevron-left"></i>"',
-                    //   '<i class="fa fa-chevron-right"></i>'
-                    // ]}
+                      // navText={[
+                      //   '<i class="fa fa-chevron-left"></i>"',
+                      //   '<i class="fa fa-chevron-right"></i>'
+                      // ]}
                     >
                       {(() => {
                         return (
@@ -1636,7 +1640,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                           value={email}
                           required
                           onChange={(e) => setEmail(e.target.value)}
-                          style={{ color: "white" }}
+                          style={{ color: "black" }}
                         />
                       </div>
                       {vEmail && <span className="d-flex">{vEmail}</span>}
@@ -1711,10 +1715,10 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                 loop
                 autoplayTimeout={2000}
                 autoplayHoverPause={true}
-              // navText={[
-              //   '<i class="fa fa-chevron-left"></i>"',
-              //   '<i class="fa fa-chevron-right"></i>'
-              // ]}
+                // navText={[
+                //   '<i class="fa fa-chevron-left"></i>"',
+                //   '<i class="fa fa-chevron-right"></i>'
+                // ]}
               >
                 {(() => {
                   if (subCategoryProducts?.length > 0) {

@@ -20,7 +20,7 @@ const FeatureProduct = ({ featureProductsContent }) => {
 
   return (
     <>
-      <div className="container-fluid base-color-bg">
+      <div className="container-fluid base-color-bg" id="feature-product">
         <section className="category-section mb-4 mb-lg-6 pb-7">
           <h2 className="title-echo mb-2">
             <span>Featured product</span>

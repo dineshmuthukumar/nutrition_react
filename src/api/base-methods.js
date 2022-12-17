@@ -94,6 +94,12 @@ export const removepromocodeApi = (cartId) =>
 
 export const settingsApi = () => baseAxios.get(`/settings`);
 
+
+export const EnquiryApi = (props) => baseAxios.post(`/enquiry`, { ...props });
+
+
+
+
 export const readNotificationApi = () =>
   baseAxios.post("/users/notification_read");
 

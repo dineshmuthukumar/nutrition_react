@@ -24,7 +24,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import "./style.scss";
 import { validateEmail } from "../../utils/common";
-import { subscribeApi } from "../../api/base-methods";
+import { EnquiryApi, subscribeApi } from "../../api/base-methods";
 import images from "../../utils/images.json";
 import livenlogofooter from "../../images/new-images/demos/demo-food2/liven-logo-footer.png";
 import { getCategoryApi, cmsPages, settingsApi } from "../../api/base-methods";
@@ -109,27 +109,22 @@ const Footer = () => {
 
       try {
         setLoading(true);
-        console.log("object", "sfsfsf");
 
-        // const formData = new FormData();
-        // formData.append("Nemail", email);
+        let arr = { type: "sub", content: email };
 
-        // const result = await subscribeApi(formData);
+        const result = await EnquiryApi(arr);
 
-        // if (result.data.status) {
-        setVEmail(
-          "We will buzz you with important updates. Thank you for being a part"
-        );
-        // } else {
-        //   setVEmail(
-        //     "We got it again!,Details have been noted already. We will buzz you with important updates. See you soon!"
-        //   );
-        // }
+        if (result.data.statusCode === 200) {
+          setVEmail(
+            "We will buzz you with important updates. Thank you for being a part of LivenScience"
+          );
+        }
 
         setEmail("");
         setLoading(false);
       } catch (error) {
         setLoading(false);
+        toast.error("Something weng wrong");
 
         console.log(
           "🚀 ~ file: index.js ~ line 46 ~ handleSendNewsLetter ~ error",
@@ -195,10 +190,7 @@ const Footer = () => {
                       For Exclusive Information <br />& Offers
                     </h4>
                   </div>
-                  <form
-                    action="#"
-                    className="input-wrapper input-wrapper-inline"
-                  >
+                  <div className="input-wrapper input-wrapper-inline">
                     <input
                       type="email"
                       className="form-control pl-4"
@@ -216,7 +208,7 @@ const Footer = () => {
                     >
                       subscribe <i className="d-icon-arrow-right"></i>
                     </button>
-                  </form>
+                  </div>
                   {vEmail && <span className="d-flex">{vEmail}</span>}
                 </div>
                 <div className="row border-top col-md-10">
