@@ -196,13 +196,13 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                         dots={false}
                         // rtl={true}
                         autoWidth={true}
-                        // responsive={false}
-                        // id={"owlcaolse"}
+                      // responsive={false}
+                      // id={"owlcaolse"}
 
-                        // autoplay
+                      // autoplay
 
-                        //   autoplayTimeout={2000}
-                        //   autoplayHoverPause={true}
+                      //   autoplayTimeout={2000}
+                      //   autoplayHoverPause={true}
                       >
                         {(() => {
                           if (productData?.photos?.length > 0) {
@@ -269,11 +269,10 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                                       (prodImgaesThumb, key) => {
                                         return (
                                           <div
-                                            className={`product-thumb ${
-                                              productThumb == key
-                                                ? "active"
-                                                : ""
-                                            }`}
+                                            className={`product-thumb ${productThumb == key
+                                              ? "active"
+                                              : ""
+                                              }`}
                                             onClick={() => setProductThumb(key)}
                                           >
                                             <img
@@ -508,18 +507,12 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                                               <h1 className="pack_tittle">
                                                 {producttype?.title}
                                               </h1>
-                                              <h1 className="pack_tittle_save">
-                                                (Save $40.00)
-                                              </h1>
-                                              <img
-                                                src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${producttype?.image}`}
-                                              />
+                                              <h1 className="pack_tittle_save">(Save $40.00)</h1>
+                                              <img src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${producttype?.image}`} />
                                             </div>
                                             <div className="pack_add_cart">
                                               <i
-                                                className="fa fa-inr"
-                                                aria-hidden="true"
-                                              ></i>{" "}
+                                                className="fa fa-inr" aria-hidden="true"></i>{" "}
                                               {currencyFormat(
                                                 producttype?.saleAmount,
                                                 "INR"
@@ -1146,10 +1139,10 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                       // loop
                       autoplayTimeout={2000}
                       autoplayHoverPause={true}
-                      // navText={[
-                      //   '<i class="fa fa-chevron-left"></i>"',
-                      //   '<i class="fa fa-chevron-right"></i>'
-                      // ]}
+                    // navText={[
+                    //   '<i class="fa fa-chevron-left"></i>"',
+                    //   '<i class="fa fa-chevron-right"></i>'
+                    // ]}
                     >
                       {(() => {
                         return (
@@ -1718,10 +1711,10 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                 loop
                 autoplayTimeout={2000}
                 autoplayHoverPause={true}
-                // navText={[
-                //   '<i class="fa fa-chevron-left"></i>"',
-                //   '<i class="fa fa-chevron-right"></i>'
-                // ]}
+              // navText={[
+              //   '<i class="fa fa-chevron-left"></i>"',
+              //   '<i class="fa fa-chevron-right"></i>'
+              // ]}
               >
                 {(() => {
                   if (subCategoryProducts?.length > 0) {
