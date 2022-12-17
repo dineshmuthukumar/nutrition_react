@@ -58,12 +58,13 @@ import packag from "../../../images/new-images/demos/demo-food2/products/final/p
 
 import Accordion from "../../accordion";
 import "./style.scss";
-import { currencyFormat } from "../../../utils/common";
+import { currencyFormat, validateEmail } from "../../../utils/common";
 import { useDispatch, useSelector } from "react-redux";
 import { add_to_cart_thunk } from "../../../redux/thunk/user_cart_thunk";
 import Product from "../../product";
 import { cart_on_thunk } from "../../../redux/thunk/user_thunk";
 import FeatureProduct from "../feature-product";
+import { subscribeApi } from "../../../api/base-methods";
 
 const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
   const history = useHistory();
@@ -78,6 +79,8 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
   const [slideBy, setSlideBy] = useState(0);
   const [status, setStatus] = useState(false);
 
+  const [email, setEmail] = useState();
+  const [vEmail, setVEmail] = useState();
   //console.log(productData.productType, "ijedc");
   useEffect(() => {
     if (user) {
@@ -126,6 +129,45 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
     } else {
       setSlideBy(parseInt(slideBy) + 1);
       setProductThumb(parseInt(productThumb) + 1);
+    }
+  };
+
+  const handleSendNewsLetter = async () => {
+    if (validateEmail(email)) {
+      setVEmail(null);
+
+      try {
+        setLoading(true);
+        // console.log("object", "sfsfsf");
+
+        // const formData = new FormData();
+        // formData.append("Nemail", email);
+
+        // const result = await subscribeApi(formData);
+
+        // if (result.data.status) {
+        setVEmail(
+          "We will buzz you with important updates. Thank you for being a part of Jump.trade #jump.trade #nft"
+        );
+        // } else {
+        //   setVEmail(
+        //     "We got it again!, We are excited to have you as part of our NFT club. Details have been noted already. We will buzz you with important updates. See you soon!"
+        //   );
+        // }
+
+        setEmail("");
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+
+        console.log(
+          "🚀 ~ file: index.js ~ line 46 ~ handleSendNewsLetter ~ error",
+          error
+        );
+      }
+    } else {
+      setVEmail("Please provide a valid email");
+      return false;
     }
   };
   // function callbackSlider(event) {
@@ -1591,23 +1633,28 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                     <div className="thumbnail center well well-small text-center">
                       <h2>Newsletter</h2>
                       <p>Subscribe to our weekly Newsletter and stay tuned.</p>
-                      <form action="" method="post">
-                        <div className="input-prepend">
-                          <input
-                            type="text"
-                            id=""
-                            className="form-control"
-                            name=""
-                            placeholder="your@email.com"
-                          />
-                        </div>
-                        <br />
+                      {/* <form action="" method="post"> */}
+                      <div className="input-prepend">
                         <input
-                          type="submit"
-                          value="Subscribe Now!"
-                          className="btn btn-large"
+                          type="text"
+                          id=""
+                          placeholder="Entet Email"
+                          className="form-control"
+                          value={email}
+                          required
+                          onChange={(e) => setEmail(e.target.value)}
+                          style={{ color: "white" }}
                         />
-                      </form>
+                      </div>
+                      {vEmail && <span className="d-flex">{vEmail}</span>}
+                      <br />
+                      <input
+                        type="submit"
+                        value="Subscribe Now!"
+                        className="btn btn-large"
+                        onClick={() => handleSendNewsLetter()}
+                      />
+                      {/* </form> */}
                     </div>
                   </div>
                 </div>

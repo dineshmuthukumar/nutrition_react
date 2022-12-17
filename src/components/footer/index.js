@@ -111,20 +111,20 @@ const Footer = () => {
         setLoading(true);
         console.log("object", "sfsfsf");
 
-        const formData = new FormData();
-        formData.append("Nemail", email);
+        // const formData = new FormData();
+        // formData.append("Nemail", email);
 
-        const result = await subscribeApi(formData);
+        // const result = await subscribeApi(formData);
 
-        if (result.data.status) {
-          setVEmail(
-            "We will buzz you with important updates. Thank you for being a part of Jump.trade #jump.trade #nft"
-          );
-        } else {
-          setVEmail(
-            "We got it again!, We are excited to have you as part of our NFT club. Details have been noted already. We will buzz you with important updates. See you soon!"
-          );
-        }
+        // if (result.data.status) {
+        setVEmail(
+          "We will buzz you with important updates. Thank you for being a part"
+        );
+        // } else {
+        //   setVEmail(
+        //     "We got it again!,Details have been noted already. We will buzz you with important updates. See you soon!"
+        //   );
+        // }
 
         setEmail("");
         setLoading(false);
@@ -205,15 +205,19 @@ const Footer = () => {
                       name="email"
                       id="email"
                       placeholder="Email address here..."
+                      value={email}
                       required
+                      onChange={(e) => setEmail(e.target.value)}
                     />
                     <button
                       className="btn btn-primary btn-rounded btn-md ls-m ml-2"
                       type="submit"
+                      onClick={() => handleSendNewsLetter()}
                     >
                       subscribe <i className="d-icon-arrow-right"></i>
                     </button>
                   </form>
+                  {vEmail && <span className="d-flex">{vEmail}</span>}
                 </div>
                 <div className="row border-top col-md-10">
                   <div className="col-sm-12 text-center">
