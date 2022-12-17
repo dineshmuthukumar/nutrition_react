@@ -147,7 +147,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
 
         // if (result.data.status) {
         setVEmail(
-          "We will buzz you with important updates. Thank you for being a part of Jump.trade #jump.trade #nft"
+          "We will buzz you with important updates. Thank you for being a part of LivenScience"
         );
         // } else {
         //   setVEmail(
