@@ -19308,10 +19308,10 @@ h2 {
     z-index: 1002;
 }
 
-.intro-section img {
+/* .intro-section img {
     min-height: 54rem;
     object-fit: cover;
-}
+} */
 
 .intro-section .banner-subtitle {
     font-size: 2rem;

@@ -8890,7 +8890,7 @@ input[type=radio]:checked~label:after {
   font-size: 1.4rem;
   line-height: 1.72;
   letter-spacing: 0;
-  color: #666
+  color: #fff;
 }
 
 .icon-box i:before {
@@ -25391,7 +25391,7 @@ aside .owl-nav-top .owl-nav i:before {
   /* height: 540px;
   min-height: 540px; */
   width: 100%;
-  height: auto;
+  height: 670px;
   border-radius: 10px;
 }
 
