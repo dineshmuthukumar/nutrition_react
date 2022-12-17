@@ -54,7 +54,6 @@ import app_55 from "../../../images/new-images/demos/demo-food2/products/final/a
 import Comment_1 from "../../../images/new-images/blog/comments/1.jpg";
 import Comment_2 from "../../../images/new-images/blog/comments/2.jpg";
 
-
 import packag from "../../../images/new-images/demos/demo-food2/products/final/packages.png";
 
 import Accordion from "../../accordion";
@@ -64,6 +63,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { add_to_cart_thunk } from "../../../redux/thunk/user_cart_thunk";
 import Product from "../../product";
 import { cart_on_thunk } from "../../../redux/thunk/user_thunk";
+import FeatureProduct from "../feature-product";
 
 const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
   const history = useHistory();
@@ -117,6 +117,17 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
+  const ProductThumbIncrea = (type) => {
+    // console.log(slideBy, "slideBy");
+    // console.log(productThumb, "productThumb");
+    if (type == "left") {
+      setSlideBy(parseInt(slideBy) - 1);
+      setProductThumb(parseInt(productThumb) - 1);
+    } else {
+      setSlideBy(parseInt(slideBy) + 1);
+      setProductThumb(parseInt(productThumb) + 1);
+    }
+  };
   // function callbackSlider(event) {
   //   var items = event.item.count; // Number of items
   //   var item = event.item.index;
@@ -130,58 +141,50 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
           <section className="">
             <div className="product product-single" id="cart_product_page">
               <div className="row">
-                <div className="col-md-6">
+                <div className="col-md-6" style={{ padding: "1rem" }}>
                   <div className="product-gallery product-gallery-sticky mb-lg-9 mb-4 pb-0">
                     {/* <div className="product-single-carousel owl-carousel owl-theme owl-nav-inner row cols-1"> */}
-                    <OwlCarousel
-                      className=" owl-carousel owl-theme owl-nav-inner owl-loaded owl-drag d-mobile"
-                      margin={20}
-                      startPosition={slideBy}
-                      nav
-                      items={1}
-                      smartSpeed={500}
-                      dots={false}
-                      navContainerClass={"owl-nav"}
-                      onDragged={callback}
-                      id={"owlcaolse"}
-                      responsive={{
-                        0: {
-                          items: 1,
-                        },
-                        768: {
-                          items: 1,
-                        },
-                        992: {
-                          items: 1,
-                        },
-                      }}
-                    // autoplay
+                    {productData?.photos?.length > 0 && (
+                      <OwlCarousel
+                        className=" owl-carousel owl-theme owl-nav-inner owl-loaded owl-drag d-mobile owl-carousel-product"
+                        margin={20}
+                        startPosition={slideBy}
+                        items={1}
+                        smartSpeed={500}
+                        dots={false}
+                        // rtl={true}
+                        autoWidth={true}
+                        // responsive={false}
+                        // id={"owlcaolse"}
 
-                    //   autoplayTimeout={2000}
-                    //   autoplayHoverPause={true}
-                    >
-                      {(() => {
-                        if (productData?.photos?.length > 0) {
-                          return (
-                            <>
-                              {productData?.photos?.map((prodImgaes) => {
-                                return (
-                                  <figure className="product-image">
-                                    <img
-                                      src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${prodImgaes}`}
-                                      data-zoom-image={prodImgaes}
-                                      alt="Women's Brown Leather Backpacks"
-                                      width="600"
-                                      height="675"
-                                    />
-                                  </figure>
-                                );
-                              })}
-                            </>
-                          );
-                        }
-                      })()}
-                    </OwlCarousel>
+                        // autoplay
+
+                        //   autoplayTimeout={2000}
+                        //   autoplayHoverPause={true}
+                      >
+                        {(() => {
+                          if (productData?.photos?.length > 0) {
+                            return (
+                              <>
+                                {productData?.photos?.map((prodImgaes) => {
+                                  return (
+                                    <figure className="product-image">
+                                      <img
+                                        src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${prodImgaes}`}
+                                        data-zoom-image={prodImgaes}
+                                        alt="Women's Brown Leather Backpacks"
+                                        width="600"
+                                        height="675"
+                                      />
+                                    </figure>
+                                  );
+                                })}
+                              </>
+                            );
+                          }
+                        })()}
+                      </OwlCarousel>
+                    )}
                     {/* </div> */}
 
                     <div className="inner-product-label-group">
@@ -224,10 +227,11 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                                       (prodImgaesThumb, key) => {
                                         return (
                                           <div
-                                            className={`product-thumb ${productThumb == key
-                                              ? "active"
-                                              : ""
-                                              }`}
+                                            className={`product-thumb ${
+                                              productThumb == key
+                                                ? "active"
+                                                : ""
+                                            }`}
                                             onClick={() => setProductThumb(key)}
                                           >
                                             <img
@@ -274,15 +278,26 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                           />
                         </div> */}
                         </div>
-                        <div className="col-sm-3">
-                          <button className="thumb-up">
-                            <i class="d-icon-arrow-left"></i>
-                          </button>
-                          <button className="thumb-down">
-                            <i class="d-icon-arrow-right"></i>
-                          </button>
-                        </div>
-
+                        {(() => {
+                          if (productData?.photos?.length > 0) {
+                            return (
+                              <div className="col-sm-3">
+                                <button
+                                  className="thumb-up"
+                                  onClick={() => ProductThumbIncrea("left")}
+                                >
+                                  <i class="d-icon-arrow-left"></i>
+                                </button>
+                                <button
+                                  className="thumb-down"
+                                  onClick={() => ProductThumbIncrea("right")}
+                                >
+                                  <i class="d-icon-arrow-right"></i>
+                                </button>
+                              </div>
+                            );
+                          }
+                        })()}
                       </div>
 
                       {/* </div> */}
@@ -291,7 +306,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                 </div>
                 <div
                   className="col-md-6"
-                  style={{ backgroundColor: "aliceblue" }}
+                  style={{ backgroundColor: "white", padding: "1rem" }}
                 >
                   <div className="product-details">
                     <h1 className="product-name text-left">
@@ -425,7 +440,9 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                             <>
                               {productData?.productType?.map((producttype) => {
                                 return (
-                                  <div className="col-sm-4 p-0">
+                                  <div
+                                    className={`col-sm-4 p-0 ${producttype?.type}-plan`}
+                                  >
                                     <div className="plans">
                                       <label
                                         className={`plan ${producttype?.type}-plan`}
@@ -736,7 +753,10 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                             <div className="col-xl-2 col col-lg-2 col-md-2 col-sm-2 col-12">
                               <a href="#" className="element-type">
                                 <div className="element element-accordian dotted_border">
-                                  <img src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${takelivenBurn?.image}`} className="whole_food_img" />
+                                  <img
+                                    src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${takelivenBurn?.image}`}
+                                    className="whole_food_img"
+                                  />
                                   <p>{takelivenBurn?.name}</p>
                                 </div>
                               </a>
@@ -1048,69 +1068,48 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
           </section>
 
           <section className="arrivals-section" id="Potential_product">
-            <h2 className="title title-center ls-s mb-8 dis_block">
+            <h2 className="title title-center ls-s mb-8 mt-9 dis_block">
               Includes Healing Potential of:
             </h2>
             <div className="tab tab-nav-center">
               <div className="tab-content">
                 <div className="tab-pane pt-4 active" id="fruits">
-                  {/* <div
-                                            className="owl-carousel owl-theme row cols-lg-4 cols-md-3 cols-2"
-                                            data-owl-options="{
-                                        'nav': false,
-                                        'dots': false,
-                                        'margin': 20,
-                                        'autoplay': false,
-                                        'responsive': {
-                                            '0': {
-                                                'items': 2
-                                            },
-                                            '768': {
-                                                'items': 4
-                                            },
-                                            '992': {
-                                                'items': 4
-                                            }
-                                        }
-                                    }"
-                                        > */}
-                  <OwlCarousel
-                    className="owl-carousel healing"
-                    margin={20}
-                    stagePadding={450}
-                    // loop={true}
-                    items={1} //
-                    nav
-                    autoWidth={true}
-                    smartSpeed={500}
-                    dots={false}
-                    navContainerClass={"owl-nav"}
-                    navText={[
-                      // `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png  />`,
-                      // `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png />`,
-                    ]}
-                    responsive={{
-                      0: {
-                        items: 1,
-                      },
-                      600: {
-                        items: 3,
-                      },
-                      1000: {
-                        items: 5,
-                      },
-                    }}
-                    // autoplay
-                    // loop
-                    autoplayTimeout={2000}
-                    autoplayHoverPause={true}
-                  // navText={[
-                  //   '<i class="fa fa-chevron-left"></i>"',
-                  //   '<i class="fa fa-chevron-right"></i>'
-                  // ]}
-                  >
-                    {(() => {
-                      if (productData?.healingPotentials?.length > 0) {
+                  {productData?.healingPotentials?.length > 0 && (
+                    <OwlCarousel
+                      className="owl-carousel owl-carousel-healing"
+                      margin={20}
+                      stagePadding={10}
+                      // loop={true}
+                      items={1} //
+                      autoWidth={true}
+                      smartSpeed={500}
+                      dots={false}
+                      navContainerClass={"owl-nav"}
+                      // navText={[
+                      //   `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png  />`,
+                      //   `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png />`,
+                      // ]}
+                      responsive={{
+                        0: {
+                          items: 1,
+                        },
+                        600: {
+                          items: 3,
+                        },
+                        1000: {
+                          items: 5,
+                        },
+                      }}
+                      // autoplay
+                      // loop
+                      autoplayTimeout={2000}
+                      autoplayHoverPause={true}
+                      // navText={[
+                      //   '<i class="fa fa-chevron-left"></i>"',
+                      //   '<i class="fa fa-chevron-right"></i>'
+                      // ]}
+                    >
+                      {(() => {
                         return (
                           <>
                             {productData?.healingPotentials?.map(
@@ -1118,21 +1117,26 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                                 return (
                                   <div className="product-refdc text-center product-with-qty no_border">
                                     <figure className="product-media">
-                                      <a href="$">
-                                        {/* <img
+                                      <a href="javascript:void">
+                                        <img
                                           src={app_1}
                                           alt="product"
                                           width="280"
                                           height="315"
-                                        /> */}
+                                          className="healing_image"
+                                        />
                                         <img
                                           //src={app_11}
+                                          // src={
+                                          //   "http://54.177.7.240" +
+                                          //   healingPoten?.image
+                                          // }
                                           src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${healingPoten?.image}`}
                                           //className="healing_image"
                                           alt="product"
+                                          style={{ width: "50% !important" }}
                                           width="280"
                                           height="315"
-                                        // style={{ width: "50%" }}
                                         />
                                       </a>
                                       <div className="product-action-vertical">
@@ -1151,9 +1155,18 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                             )}
                           </>
                         );
-                      }
-                    })()}
-                  </OwlCarousel>
+                      })()}
+                    </OwlCarousel>
+                  )}
+
+                  {/* <div className="input-prepend text-center mt-10">
+                    <a href="#trial_free_section" className="flex-gap">
+                      <img
+                        src={claim_now}
+                        className="wid_60 trial_enquery-btn"
+                      />
+                    </a>
+                  </div> */}
                 </div>
               </div>
             </div>
@@ -1626,57 +1639,63 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                             }
                         }"
                             > */}
-            <OwlCarousel
-              className="owl-carousel owl-theme own-carosuel-releadproduct row cols-lg-4"
-              margin={10}
-              nav={false}
-              smartSpeed={500}
-              dots={false}
-              navContainerClass={"owl-nav"}
-              // navContainerClass={"owl-nav"}
-              // navText={[
-              //   `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png  />`,
-              //   `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png />`,
-              // ]}
-              responsive={{
-                0: {
-                  items: 1,
-                },
-                768: {
-                  items: 3,
-                },
-                800: {
-                  items: 3,
-                },
-              }}
-              autoplay
-              loop
-              autoplayTimeout={2000}
-              autoplayHoverPause={true}
-            // navText={[
-            //   '<i class="fa fa-chevron-left"></i>"',
-            //   '<i class="fa fa-chevron-right"></i>'
-            // ]}
-            >
-              {(() => {
-                if (subCategoryProducts?.length > 0) {
-                  return (
-                    <>
-                      {subCategoryProducts?.map(
-                        (subCategoryProductsDetails, pkey) => {
-                          return (
-                            <Product
-                              ProductDetails={subCategoryProductsDetails}
-                              key={pkey}
-                            />
-                          );
-                        }
-                      )}
-                    </>
-                  );
-                }
-              })()}
-            </OwlCarousel>
+            {subCategoryProducts?.length > 0 && (
+              <OwlCarousel
+                // className="owl-carousel owl-theme own-carosuel-releadproduct row cols-lg-4"
+                className="owl-carousel owl-carousel-healing"
+                margin={20}
+                stagePadding={10}
+                // loop={true}
+                items={1} //
+                // autoWidth={true}
+                smartSpeed={500}
+                dots={false}
+                navContainerClass={"owl-nav"}
+                // navContainerClass={"owl-nav"}
+                // navText={[
+                //   `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png  />`,
+                //   `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png />`,
+                // ]}
+                responsive={{
+                  0: {
+                    items: 1,
+                  },
+                  768: {
+                    items: 3,
+                  },
+                  800: {
+                    items: 3,
+                  },
+                }}
+                autoplay
+                loop
+                autoplayTimeout={2000}
+                autoplayHoverPause={true}
+                // navText={[
+                //   '<i class="fa fa-chevron-left"></i>"',
+                //   '<i class="fa fa-chevron-right"></i>'
+                // ]}
+              >
+                {(() => {
+                  if (subCategoryProducts?.length > 0) {
+                    return (
+                      <>
+                        {subCategoryProducts?.map(
+                          (subCategoryProductsDetails, pkey) => {
+                            return (
+                              <Product
+                                ProductDetails={subCategoryProductsDetails}
+                                key={pkey}
+                              />
+                            );
+                          }
+                        )}
+                      </>
+                    );
+                  }
+                })()}
+              </OwlCarousel>
+            )}
             <div className="row mt-10">
               <div className="col-sm-12 text-center">
                 <div className="product-form-group justify-content-center">
