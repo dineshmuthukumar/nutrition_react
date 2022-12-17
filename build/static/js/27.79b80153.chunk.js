@@ -1,0 +1,2 @@
+(this["webpackJsonpnew-app"]=this["webpackJsonpnew-app"]||[]).push([[27],{702:function(n,p,t){"use strict";t.r(p);t(1);var e=t(4);p.default=function(){return Object(e.jsx)("div",{})}}}]);
+//# sourceMappingURL=27.79b80153.chunk.js.map

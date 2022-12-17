@@ -137,7 +137,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
       setVEmail(null);
 
       try {
-        setLoading(true);
+        //setLoading(true);
         // console.log("object", "sfsfsf");
 
         // const formData = new FormData();
@@ -156,9 +156,9 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
         // }
 
         setEmail("");
-        setLoading(false);
+        //setLoading(false);
       } catch (error) {
-        setLoading(false);
+        //setLoading(false);
 
         console.log(
           "🚀 ~ file: index.js ~ line 46 ~ handleSendNewsLetter ~ error",

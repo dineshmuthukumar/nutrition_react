@@ -1,0 +1,1 @@
+{"version":3,"sources":["pages/explore.js"],"names":["Explore"],"mappings":"2GAAA,uBAMeA,UAJC,WACd,OAAO,uBACR,C","file":"static/js/28.93b8cdc0.chunk.js","sourcesContent":["import React from \"react\";\n\nconst Explore = () => {\n  return <div></div>;\n};\n\nexport default Explore;\n"],"sourceRoot":""}
