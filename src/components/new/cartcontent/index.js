@@ -395,7 +395,7 @@ const CartContent = () => {
                               className="product-remove"
                               title="Remove this product"
                               onClick={() =>
-                                dispatch(remove_from_cart_thunk(item?._id))
+                                dispatch(remove_from_cart_thunk(item?.productId))
                               }
                             >
                               <i className="fas fa-times"></i>

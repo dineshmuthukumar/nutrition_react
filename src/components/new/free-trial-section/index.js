@@ -144,7 +144,7 @@ const Free_Trial_Section = ({ productData }) => {
       history.push("/cart");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user?.login]);
+  }, [user?.login,status]);
 
   const getStatesList = async () => {
     const StateListData = await getStatesApi();
