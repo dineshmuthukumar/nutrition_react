@@ -13,26 +13,28 @@ const Content = ({ data = {}, variant = "content", className = "" }) => (
         <h4>{`${data?.title}`}</h4>
       ))}
     {data?.description && <p>{`${data?.description}`}</p>}
-    {/* {data?.image && <img src={data?.image}></img>} */}
-    {
-      <img src="https://admin.livenscience.com/pem/image_1671101192858.jpg"></img>
-    }
+    {data?.image && (
+      <img src={`https://admin.livenscience.com${data?.image}`}></img>
+    )}
   </div>
 );
 
-const AboutUsSection = ({ data = [] }) => {
-  const [first, ...rest] = data;
+const AboutUsSection = ({ data = {} }) => {
+  const { bannerImage = null, sectionArray = [] } = data;
+  const [contentWithBg, ...rest] = sectionArray;
   return (
     <>
       <Tablet />
       <section className="aboutus">
         <div className="banner-block">
-          <Content variant="banner" data={first} />
+          <Content variant="banner" data={{ image: bannerImage }} />
         </div>
         <div className="content-block">
-          {rest.map((item, i) => (
-            <Content key={i} variant="content" data={item} />
-          ))}
+          <Content variant="content-with-bg" data={contentWithBg}></Content>
+          {rest &&
+            rest.map((item, i) => (
+              <Content key={i} variant="content" data={item} />
+            ))}
         </div>
         <div className="position-relative w-100" style={{ height: "100px" }}>
           <Tablet trigger={70}></Tablet>

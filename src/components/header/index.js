@@ -883,9 +883,7 @@ const Header = ({
                                   if (obj.url == "exploreLiven") {
                                     return (
                                       <li>
-                                        <Link to={`/cms/${obj?.url}`}>
-                                          {obj?.title}
-                                        </Link>
+                                        <Link to={`explore`}>{obj?.title}</Link>
                                       </li>
                                     );
                                   }
@@ -895,7 +893,7 @@ const Header = ({
                                   if (obj.url == "livenDominance") {
                                     return (
                                       <li>
-                                        <Link to={`/cms/${obj?.url}`}>
+                                        <Link to={`/dominance`}>
                                           {obj?.title}
                                         </Link>
                                       </li>

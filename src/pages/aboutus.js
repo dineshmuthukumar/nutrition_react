@@ -30,13 +30,13 @@ const STATIC_DATA = [
 ];
 
 const AboutUs = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
 
   const getData = async () => {
     const response = await aboutusApi();
-    if (response.status === 200 && response?.data?.responseData?.sectopnArray)
-      setData(response?.data?.responseData?.sectopnArray || []);
-    setData(STATIC_DATA);
+    if (response.status === 200 && response?.data?.responseData)
+      setData(response?.data?.responseData || {});
+    // setData(STATIC_DATA);
   };
 
   useEffect(() => {
@@ -46,7 +46,7 @@ const AboutUs = () => {
   return (
     <>
       <Header></Header>
-      <AboutUsSection data={data} />
+      {data ? <AboutUsSection data={data} /> : <>Loading</>}
       <Footer />
     </>
   );
