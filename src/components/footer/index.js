@@ -222,6 +222,7 @@ const Footer = () => {
                               href={settingsDetails?.socialLink[tudata].url}
                               className="social-link social-facebook fab"
                               title={settingsDetails?.socialLink[tudata].name}
+                              target="_blank"
                             >
                               {settingsDetails?.socialLink[tudata].name ==
                                 "Facebook Link" && <FaFacebook />}

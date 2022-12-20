@@ -502,25 +502,25 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
     }
     // console.log(Object.keys(promoCodeDetails).length, "promoCodeDetails");
     //if (Object.keys(promoCodeDetails)?.length == 0) {
-    if (promoCodeList?.find((obj) => obj?.promo === promoCodeValue)) {
-      try {
-        var req = { promoCode: promoCodeValue };
-        const result = await applypromocodeApi(req, cart?.data?.cardId);
+    //if (promoCodeList?.find((obj) => obj?.promo === promoCodeValue)) {
+    try {
+      var req = { promoCode: promoCodeValue };
+      const result = await applypromocodeApi(req, cart?.data?.cardId);
 
-        console.log(result?.data?.responseData.promoDetails);
-        if (result.data.statusCode === 200) {
-          toast.success("Promocode Applied Sucessfully");
-          setPromoCodeDetails(result?.data?.responseData.promoDetails);
-          setCouponShow(false);
-          checkoutDetails();
-        }
-        console.log(result, "result");
-      } catch (err) {
-        console.log(err);
+      console.log(result?.data?.responseData.promoDetails);
+      if (result.data.statusCode === 200) {
+        toast.success("Promocode Applied Sucessfully");
+        setPromoCodeDetails(result?.data?.responseData.promoDetails);
+        setCouponShow(false);
+        checkoutDetails();
       }
-    } else {
-      toast.error("Invalid Promo Code ");
+      console.log(result, "result");
+    } catch (err) {
+      toast.error(err?.data?.message);
     }
+    // } else {
+    //   toast.error("Invalid Promo Code ");
+    // }
     // } else {
     //   toast.error("Promo Code already applied ");
     // }
@@ -607,10 +607,11 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
                     </div>
 
                     <div
-                      className={`row ${showAddressSection
-                        ? "show-address-section"
-                        : "hide-address-section"
-                        }`}
+                      className={`row ${
+                        showAddressSection
+                          ? "show-address-section"
+                          : "hide-address-section"
+                      }`}
                     >
                       <div className="col-sm-12">
                         <h1 className="address_user">Edit Address</h1>
@@ -679,19 +680,19 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
                                   defaultCountry={"+91"}
                                   value={user?.data?.mobile}
 
-                                // required={lvalidation.phone_no}
-                                //onChange={(e, c_code) => {
-                                // setLogin({
-                                //     ...login,
-                                //     mobile: e,
-                                //     phone_code: c_code?.countryCode?.toUpperCase(),
-                                // });
-                                // if (e) {
-                                //     setValidation({ ...lvalidation, phone_no: false });
-                                // } else {
-                                //     setValidation({ ...lvalidation, phone_no: true });
-                                // }
-                                // }}
+                                  // required={lvalidation.phone_no}
+                                  //onChange={(e, c_code) => {
+                                  // setLogin({
+                                  //     ...login,
+                                  //     mobile: e,
+                                  //     phone_code: c_code?.countryCode?.toUpperCase(),
+                                  // });
+                                  // if (e) {
+                                  //     setValidation({ ...lvalidation, phone_no: false });
+                                  // } else {
+                                  //     setValidation({ ...lvalidation, phone_no: true });
+                                  // }
+                                  // }}
                                 />
                                 {/* {lvalidation.valid_phone_no && (
                                 <p className="error_text">
@@ -965,7 +966,9 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
                                       title="Remove this product"
                                       onClick={() =>
                                         dispatch(
-                                          remove_from_cart_thunk(item?._id)
+                                          remove_from_cart_thunk(
+                                            item?.productId
+                                          )
                                         )
                                       }
                                     >
@@ -1112,21 +1115,21 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
                   <ul className="list-group list-group-flush">
                     {cart?.data?.cartProductDetails?.length > 0
                       ? cart?.data?.cartProductDetails?.map(
-                        (item, productkey) => {
-                          return (
-                            <li className="list-group-item" key={productkey}>
-                              {item?.name} {"x"}
-                              {item?.qty}
-                              <span className="plan_right_section">
-                                {currencyFormat(
-                                  item?.qty * item?.saleAmount,
-                                  "INR"
-                                )}
-                              </span>
-                            </li>
-                          );
-                        }
-                      )
+                          (item, productkey) => {
+                            return (
+                              <li className="list-group-item" key={productkey}>
+                                {item?.name} {"x"}
+                                {item?.qty}
+                                <span className="plan_right_section">
+                                  {currencyFormat(
+                                    item?.qty * item?.saleAmount,
+                                    "INR"
+                                  )}
+                                </span>
+                              </li>
+                            );
+                          }
+                        )
                       : "No Items Found"}
 
                     {cart?.data?.cartProductDetails.length > 0 &&
@@ -1147,23 +1150,23 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
                           {promoCodeDetails?.promoType == "percentage"
                             ? `(${promoCodeDetails?.percentage}%)`
                             : `(${currencyFormat(
-                              promoCodeDetails?.discountAmount,
-                              "INR"
-                            )})`}
+                                promoCodeDetails?.discountAmount,
+                                "INR"
+                              )})`}
                           <span className="plan_right_section dicount_span">
                             -
                             {promoCodeDetails?.promoType == "percentage"
                               ? currencyFormat(
-                                percentage(
-                                  promoCodeDetails?.percentage,
-                                  orderInfo?.orderInfo?.amount / 100
-                                ),
-                                "INR"
-                              )
+                                  percentage(
+                                    promoCodeDetails?.percentage,
+                                    orderInfo?.orderInfo?.amount / 100
+                                  ),
+                                  "INR"
+                                )
                               : currencyFormat(
-                                promoCodeDetails?.discountAmount,
-                                "INR"
-                              )}
+                                  promoCodeDetails?.discountAmount,
+                                  "INR"
+                                )}
                             <CiCircleRemove
                               className="remove-icon"
                               width={50}
@@ -1224,11 +1227,11 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
                             return (
                               <>
                                 {user?.data?.address &&
-                                  user?.data?.state &&
-                                  user?.data?.city &&
-                                  // user?.data?.pincode &&
-                                  user?.data?.name &&
-                                  user?.data?.email ? (
+                                user?.data?.state &&
+                                user?.data?.city &&
+                                // user?.data?.pincode &&
+                                user?.data?.name &&
+                                user?.data?.email ? (
                                   <Link // to="#"
                                     onClick={() => open()}
                                     className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"

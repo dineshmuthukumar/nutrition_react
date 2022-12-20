@@ -144,7 +144,7 @@ const Free_Trial_Section = ({ productData }) => {
       history.push("/cart");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user?.login,status]);
+  }, [user?.login, status]);
 
   const getStatesList = async () => {
     const StateListData = await getStatesApi();
@@ -424,6 +424,7 @@ const Free_Trial_Section = ({ productData }) => {
                               //required={validation.address}
                               // onKeyPress={handleKeyPressEvent}
                               onChange={handleChangeEvent}
+                              style={{ height: "16vh" }}
                             />
                             {validation.valid_address && (
                               <p className="error_text">
@@ -448,6 +449,9 @@ const Free_Trial_Section = ({ productData }) => {
                                     ?.name,
                                 value: data?.state,
                               }}
+                              label="Single select"
+                              placeholder="Placeholder test"
+                              styles={colorStyles}
                               onChange={async (Statedata) => {
                                 if (Statedata?.value) {
                                   const CityListData = await getCitiesApi(
@@ -484,6 +488,7 @@ const Free_Trial_Section = ({ productData }) => {
                                 setData({ ...data, city: Ciytdata?.value });
                                 console.log(data, "data");
                               }}
+                              placeholder="Select City"
                             />
                             {/* <Form.Select
                           aria-label="Default select example"
@@ -965,10 +970,10 @@ const Free_Trial_Section = ({ productData }) => {
                     // loop
                     autoplayTimeout={2000}
                     autoplayHoverPause={true}
-                  // navText={[
-                  //   '<i class="fa fa-chevron-left"></i>"',
-                  //   '<i class="fa fa-chevron-right"></i>'
-                  // ]}
+                    // navText={[
+                    //   '<i class="fa fa-chevron-left"></i>"',
+                    //   '<i class="fa fa-chevron-right"></i>'
+                    // ]}
                   >
                     {(() => {
                       return (
@@ -1138,6 +1143,14 @@ const Free_Trial_Section = ({ productData }) => {
   );
 };
 
+const colorStyles = {
+  placeholder: (defaultStyles) => {
+    return {
+      ...defaultStyles,
+      color: "black",
+    };
+  },
+};
 
 
 export default Free_Trial_Section;
