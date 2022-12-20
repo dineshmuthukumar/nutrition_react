@@ -144,7 +144,7 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
     const response = await getPromocodeListApi();
     setPromoCodeList(response?.data?.responseData?.promocodes);
 
-    console.log(response?.data?.responseData?.promocodes, "response");
+    // console.log(response?.data?.responseData?.promocodes, "response");
   };
   useEffect(async () => {
     dispatch(get_cart_list_thunk());
@@ -1367,7 +1367,7 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
                               promocodes?.status == "active" &&
                               new Date(
                                 promocodes?.expiryDate
-                              )?.toDateString() >= today.toDateString()
+                              )?.toDateString() >= today.toISOString()
                             ) {
                               return (
                                 <div class="col-sm-3">
