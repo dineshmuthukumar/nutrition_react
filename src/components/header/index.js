@@ -1283,7 +1283,7 @@ const Header = ({
                                     className="btn btn-link btn-close"
                                     onClick={() =>
                                       dispatch(
-                                        remove_from_cart_thunk(item?._id)
+                                        remove_from_cart_thunk(item?.productId)
                                       )
                                     }
                                   >
@@ -1373,7 +1373,10 @@ const Header = ({
                         View Cart
                       </Link>
 
-                      <Link to="/checkout">
+                      <Link
+                        to="/checkout"
+                        className="d-flex justify-content-center"
+                      >
                         <span>Go To Checkout</span>
                       </Link>
                     </div>

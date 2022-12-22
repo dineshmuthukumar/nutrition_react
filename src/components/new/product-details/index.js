@@ -513,10 +513,6 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                                               />
                                             </div>
                                             <div className="pack_add_cart">
-                                              <i
-                                                className="fa fa-inr"
-                                                aria-hidden="true"
-                                              ></i>{" "}
                                               {currencyFormat(
                                                 producttype?.saleAmount,
                                                 "INR"
@@ -564,7 +560,10 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                                 <i className="d-icon-bag"></i>Add To BAG
                               </button>
                             ) : (
-                              <Link to="/login">
+                              <Link
+                                to={`/login?redirect=${window.location.href}`}
+                                //to="/login"
+                              >
                                 <button className="btn-product btn-cart">
                                   <i className="d-icon-bag"></i>Add To BAG
                                 </button>
