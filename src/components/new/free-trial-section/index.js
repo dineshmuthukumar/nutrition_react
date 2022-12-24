@@ -223,11 +223,18 @@ const Free_Trial_Section = ({ productData }) => {
     } else {
       c_validation = { ...c_validation, valid_address: false };
     }
+    if (!data.zipcode) {
+      c_validation = { ...c_validation, valid_zipcode: true };
+    } else {
+      c_validation = { ...c_validation, valid_zipcode: false };
+    }
+
     if (!data.state) {
       c_validation = { ...c_validation, state: true };
     } else {
       c_validation = { ...c_validation, state: false };
     }
+
     if (!data.city) {
       c_validation = { ...c_validation, city: true };
     } else {
@@ -245,6 +252,7 @@ const Free_Trial_Section = ({ productData }) => {
       !c_validation.valid_email &&
       !c_validation.email &&
       !c_validation.valid_address &&
+      !c_validation.valid_zipcode &&
       !c_validation.state &&
       !c_validation.city
     ) {
@@ -274,6 +282,7 @@ const Free_Trial_Section = ({ productData }) => {
             mobile: data?.mobile,
             state: data?.state,
             city: data?.city,
+            zipcode: data?.zipcode,
           };
           //console.log(data, "data");
           //return false;
@@ -424,11 +433,29 @@ const Free_Trial_Section = ({ productData }) => {
                               //required={validation.address}
                               // onKeyPress={handleKeyPressEvent}
                               onChange={handleChangeEvent}
-                              style={{ height: "16vh" }}
+                              style={{ height: "10vh" }}
                             />
                             {validation.valid_address && (
                               <p className="error_text">
                                 Please enter a valid address
+                              </p>
+                            )}
+                          </div>
+
+                          <div className="input-prepend mb-2">
+                            <InputText
+                              //title={"Last Name"}
+                              name="zipcode"
+                              placeholder="Enter zipcode"
+                              value={data.zipcode}
+                              //required={validation.address}
+                              // onKeyPress={handleKeyPressEvent}
+                              onChange={handleChangeEvent}
+                              // style={{ height: "16vh" }}
+                            />
+                            {validation.valid_zipcode && (
+                              <p className="error_text">
+                                Please enter a valid zipcode
                               </p>
                             )}
                           </div>

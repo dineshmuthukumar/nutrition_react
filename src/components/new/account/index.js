@@ -7,6 +7,7 @@ import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
 import Button from "react-bootstrap/Button";
 import DatePicker from "react-datepicker";
+import moment from "moment";
 import {
   Dropdown,
   Modal,
@@ -67,7 +68,7 @@ const Accountcomponent = () => {
   const [profile, setProfile] = useState({
     name: user?.data?.name,
     email: user?.data?.email,
-    dob: user?.data?.dob,
+    dob: moment(user?.data?.dob, "DD/MM/YYYY").format("YYYY-MM-DD"),
     gender: user?.data?.gender,
   });
 
@@ -84,7 +85,7 @@ const Accountcomponent = () => {
     address: user?.data?.address,
     city: user?.data?.city?._id,
     state: user?.data?.state?._id,
-    pincode: user?.data?.pincode,
+    pincode: user?.data?.zipcode,
   });
 
   const [addressValidation, setAddressValidation] = useState({
@@ -135,6 +136,8 @@ const Accountcomponent = () => {
     getStatesList();
     setAddress({ ...address, state: user?.data?.state?._id });
     getOrderList();
+    // const maxDate = moment(user?.data?.dob, "DD-MM-YYYY").format("DD/MM/YYYY"); // 15-11-2017T11:17:30+01:00
+    // console.log(maxDate, "maxDate");
 
     if (user?.data?.state?._id) {
       const CityListData = await getCitiesApi(user?.data?.state?._id);
@@ -344,6 +347,7 @@ const Accountcomponent = () => {
 
       ProfileData.id = user?.data?._id;
       ProfileData.dob = dayjs(ProfileData.dob).format("DD-MM-YYYY");
+      ProfileData.zipcode = ProfileData.pincode;
       //console.log(ProfileData);
 
       try {
@@ -590,7 +594,7 @@ const Accountcomponent = () => {
                             type="date"
                             name="dob"
                             placeholder="Enter DOB"
-                            value={profile.dob}
+                            value={profile?.dob}
                             required={profileValidation.dob}
                             onKeyPress={handleKeyPressEvent}
                             onChange={handleChangeEvent}
@@ -612,7 +616,7 @@ const Accountcomponent = () => {
                                 value="male"
                                 type={type}
                                 id={`inline-${type}-1`}
-                                checked={address.gender === "male"}
+                                checked={address?.gender === "male"}
                                 onKeyPress={handleKeyPressEvent}
                                 onChange={handleChangeEvent}
                               />
@@ -621,7 +625,7 @@ const Accountcomponent = () => {
                                 label="Female"
                                 name="gender"
                                 value="female"
-                                checked={address.gender === "female"}
+                                checked={address?.gender === "female"}
                                 type={type}
                                 id={`inline-${type}-2`}
                                 onKeyPress={handleKeyPressEvent}

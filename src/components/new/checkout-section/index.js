@@ -89,7 +89,7 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
     address: user?.data?.address,
     city: user?.data?.city?._id,
     state: user?.data?.state?._id,
-    pincode: user?.data?.pincode,
+    pincode: user?.data?.zipcode,
   });
 
   const [addressValidation, setAddressValidation] = useState({
@@ -343,6 +343,7 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
       let ProfileData = { ...profile, ...address };
 
       ProfileData.id = user?.data?._id;
+      ProfileData.zipcode = address?.pincode;
 
       try {
         const result = await UpdateProfileApi(ProfileData);
@@ -1229,7 +1230,7 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
                                 {user?.data?.address &&
                                 user?.data?.state &&
                                 user?.data?.city &&
-                                // user?.data?.pincode &&
+                                user?.data?.zipcode &&
                                 user?.data?.name &&
                                 user?.data?.email ? (
                                   <Link // to="#"
