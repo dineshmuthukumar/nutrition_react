@@ -1273,11 +1273,7 @@ const Header = ({
                                   <a href="#">
                                     <img
                                       // src={"http://54.177.7.240" + item?.photos}
-                                      src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${item?.photos[0]}`}
-                                      alt="product"
-                                      width="80"
-                                      height="auto"
-                                    />
+                                      src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${item?.photos[0]}`} alt="product" />
                                   </a>
                                   <button
                                     className="btn btn-link btn-close"
@@ -1373,10 +1369,7 @@ const Header = ({
                         View Cart
                       </Link>
 
-                      <Link
-                        to="/checkout"
-                        className="d-flex justify-content-center"
-                      >
+                      <Link to="/checkout" className="d-flex justify-content-center btn btn-dark btn-md btn-rounded">
                         <span>Go To Checkout</span>
                       </Link>
                     </div>
