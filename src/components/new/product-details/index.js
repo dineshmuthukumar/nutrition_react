@@ -1060,27 +1060,29 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
             })()} */}
                 <div className="col-sm-4 burn_works">
                   <img src={a} className="pro_des_icon2" />
-                  Provides Antioxidants & Skin Support
+                  {productData?.title1}
                 </div>
                 <div className="col-sm-4 burn_works">
                   <img src={b} className="pro_des_icon2" />
-                  Enhances Fat-Burning
+
+                  {productData?.title2}
                 </div>
                 <div className="col-sm-4 burn_works">
                   <img src={c} className="pro_des_icon2" />
-                  Suppresses Cravings
+
+                  {productData?.title3}
                 </div>
                 <div className="col-sm-4 burn_works">
                   <img src={d} className="pro_des_icon2" />
-                  Supports Heart Health
+                  {productData?.title4}
                 </div>
                 <div className="col-sm-4 burn_works">
                   <img src={e} className="pro_des_icon2" />
-                  Keeps You Hydrated
+                  {productData?.title5}
                 </div>
                 <div className="col-sm-4 burn_works">
                   <img src={f} className="pro_des_icon2" />
-                  Delicious
+                  {productData?.title6}
                 </div>{" "}
               </div>
               <br></br>

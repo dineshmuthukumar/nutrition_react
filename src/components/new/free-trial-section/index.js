@@ -141,7 +141,7 @@ const Free_Trial_Section = ({ productData }) => {
   }, []);
   useEffect(() => {
     if (user?.login && status) {
-      history.push("/cart");
+      history.push("/checkout");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user?.login, status]);
@@ -433,7 +433,7 @@ const Free_Trial_Section = ({ productData }) => {
                               //required={validation.address}
                               // onKeyPress={handleKeyPressEvent}
                               onChange={handleChangeEvent}
-                              style={{ height: "10vh" }}
+                              // style={{ height: "10vh" }}
                             />
                             {validation.valid_address && (
                               <p className="error_text">

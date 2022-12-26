@@ -796,7 +796,10 @@ const Header = ({
                                                   : ""
                                               }`}
                                             >
-                                              <a className="d-flex justify-content-between">
+                                              <a
+                                                className="d-flex justify-content-between"
+                                                href={`/products/list/${CategoriesDetail?._id}`}
+                                              >
                                                 {CategoriesDetail.name}{" "}
                                                 {IsDropdownMenuItem(
                                                   CategoriesDetail?._id

@@ -38,6 +38,7 @@ import {
   getPromocodeListApi,
   applypromocodeApi,
   removepromocodeApi,
+  cmsPages,
 } from "../../../api/base-methods";
 import { toast } from "react-toastify";
 import { checkoutApi } from "../../../api/methods";
@@ -72,6 +73,7 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
   const [promoCodeDetails, setPromoCodeDetails] = useState({});
 
   const [promoCodeValue, setPromoCodeValue] = useState("");
+  const [footerDetails, setFooterDetails] = useState({});
 
   const [profile, setProfile] = useState({
     name: user?.data?.name,
@@ -129,6 +131,18 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
     };
   });
 
+  const getcmsPages = async () => {
+    try {
+      const result = await cmsPages();
+      setFooterDetails(result?.data?.responseData?.pages);
+    } catch (error) {
+      console.log(
+        "🚀 ~ file: index.js ~ line 49 ~ handleGetNotification ~ error",
+        error
+      );
+    }
+  };
+
   // const { orderDetails, setOrderDetails } = useState("");
   // const { totalAmount, setTotalAmount } = useState(0);
   // const { currency, setCurrency } = useState("INR");
@@ -162,6 +176,7 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
         setIsFreeProduct(true);
       }
     }
+    getcmsPages();
     // console.log(response?.data?.responseData?.blogs?.docs, "response");
   }, []);
 
@@ -585,11 +600,11 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
                         <ul className="address_list">
                           <li>{user?.data?.address}</li>
                           <li>
-                            <i class="fa fa-envelope" aria-hidden="true"></i> +
+                            <i class="fa fa-phone" aria-hidden="true"></i> +
                             {user?.data?.mobile}
                           </li>
                           <li>
-                            <i class="fa fa-phone" aria-hidden="true"></i>{" "}
+                            <i class="fa fa-envelope" aria-hidden="true"></i>{" "}
                             {user?.data?.email}
                           </li>
                           <li>
@@ -857,13 +872,13 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
                         </Row>
                       </div>
                     </div>
-                    <p>
+                    <p className="high">
                       {" "}
                       {cart?.data?.cartSetting?.checkoutContent1}
                       {/* <span className="text-bold">Great Job! </span>
                       You're Taking First step towards a better you! */}
                     </p>
-                    <p>
+                    <p className="high">
                       {cart?.data?.cartSetting?.checkoutContent2}
                       {/* <div> */}
                       {minutes === 0 && seconds === 0 ? null : (
@@ -874,7 +889,7 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
                       )}
                       {/* </div>{" "} */}
                     </p>
-                    <p>Act now before supplies run out </p>
+                    <p className="high">Act now before supplies run out </p>
                   </>
                 )}
               </div>
@@ -1026,6 +1041,7 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
                               id={`default-${type}`}
                               name="payment_method"
                               label={`Cash on Delivery (COD)`}
+                              disabled
                             />
                           </div>
                         ))}
@@ -1278,6 +1294,26 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
               ) : (
                 "Loading please wait"
               )}
+            </div>
+            <div className="d-flex justify-content-around">
+              {footerDetails?.length > 0 &&
+                footerDetails?.map((obj, index) => {
+                  if (obj.url == "privacy") {
+                    return <Link to={`/cms/${obj?.url}`}>{obj?.title}</Link>;
+                  }
+                })}
+              {footerDetails?.length > 0 &&
+                footerDetails?.map((obj, index) => {
+                  if (obj.url == "terms") {
+                    return <Link to={`/cms/${obj?.url}`}>{obj?.title}</Link>;
+                  }
+                })}
+              {footerDetails?.length > 0 &&
+                footerDetails?.map((obj, index) => {
+                  if (obj.url == "disclaimer") {
+                    return <Link to={`/cms/${obj?.url}`}>{obj?.title}</Link>;
+                  }
+                })}
             </div>
           </div>
 
