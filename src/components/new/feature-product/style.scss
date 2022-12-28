@@ -155,6 +155,11 @@
     {
         background: var(--base-color);
     }
+    .swipper_back_arrow:disabled
+    {
+        background: grey;
+        opacity: 0.5;
+    }
     .swipper_back_arrow
     {
         width: 40px;
