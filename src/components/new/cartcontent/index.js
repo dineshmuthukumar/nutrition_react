@@ -13,7 +13,7 @@ import { Link, useHistory } from "react-router-dom";
 import { BiArrowBack, BiRightArrowAlt } from "react-icons/bi";
 
 import { Button, Form } from "react-bootstrap";
-import { HiOutlineArrowRight } from "react-icons/hi";
+import { MdRemoveCircle } from "react-icons/md";
 import {
   FaDiscord,
   FaInstagram,
@@ -395,10 +395,15 @@ const CartContent = () => {
                               className="product-remove"
                               title="Remove this product"
                               onClick={() =>
-                                dispatch(remove_from_cart_thunk(item?.productId))
+                                dispatch(
+                                  remove_from_cart_thunk(item?.productId)
+                                )
                               }
                             >
-                              <i className="fas fa-times"></i>
+                              <MdRemoveCircle
+                                size={30}
+                                style={{ cursor: "pointer" }}
+                              />
                             </a>
                           </td>
                         </tr>

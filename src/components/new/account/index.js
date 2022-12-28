@@ -85,7 +85,7 @@ const Accountcomponent = () => {
     address: user?.data?.address,
     city: user?.data?.city?._id,
     state: user?.data?.state?._id,
-    pincode: user?.data?.zipcode,
+    pincode: user?.data?.zipCode,
   });
 
   const [addressValidation, setAddressValidation] = useState({
@@ -347,7 +347,8 @@ const Accountcomponent = () => {
 
       ProfileData.id = user?.data?._id;
       ProfileData.dob = dayjs(ProfileData.dob).format("DD-MM-YYYY");
-      ProfileData.zipcode = ProfileData.pincode;
+      ProfileData.zipCode = ProfileData.pincode;
+      ProfileData.pincode = "";
       //console.log(ProfileData);
 
       try {

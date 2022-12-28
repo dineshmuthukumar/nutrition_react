@@ -1647,10 +1647,37 @@ button.owl-prev span {
 
 .owl-theme .owl-nav .owl-next {
     background: var(--base-color) !important;
+    right: -1000px !important;
+    top: -200px !important;
+    position: absolute !important;
+    width: 40px !important;
+    height: 40px !important;
+    margin: 0 !important;
+    color: #2b579a !important;
+    font-size: 16px !important;
+    line-height: 1 !important;
+    padding: 0 !important;
+    border: 0.1rem solid #ebebeb !important;
+    cursor: pointer !important;
+    border-radius: 50px !important;
 }
 
 .owl-theme .owl-nav .owl-prev {
     background: var(--base-color) !important;
+    left: -60px !important;
+    top: -200px !important;
+    position: absolute !important;
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    color: #2b579a;
+    font-size: 16px;
+    line-height: 1;
+    padding: 0;
+    border: 0.1rem solid #ebebeb;
+    cursor: pointer;
+    border-radius: 50px;
+
 }
 
 article.post,

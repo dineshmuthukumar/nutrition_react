@@ -65,6 +65,7 @@ import Product from "../../product";
 import { cart_on_thunk } from "../../../redux/thunk/user_thunk";
 import FeatureProduct from "../feature-product";
 import { EnquiryApi, subscribeApi } from "../../../api/base-methods";
+import { AiOutlineArrowRight } from "react-icons/ai";
 
 const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
   const history = useHistory();
@@ -351,12 +352,12 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                     <h1 className="product-name text-left">
                       {productData?.name}
                     </h1>
-                    <p className="product-short-desc">
+                    {/* <p className="product-short-desc">
                       A fizzy formula with infusion of pure ACV and Garcinia
                       with HCA compound to control appetite, Pomegranate to
                       boost metabolism, inulin fibers for better digestion and
                       satiation that promotes healthy weight loss.
-                    </p>
+                    </p> */}
                     <div className="ratings-container justify-content-start">
                       <div className="ratings-full">
                         <span
@@ -365,12 +366,12 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                         ></span>
                         <span className="tooltiptext tooltip-top"></span>
                       </div>
-                      <a
+                      {/* <a
                         href="#product-tab-reviews"
                         className="link-to-tab rating-reviews"
                       >
                         ( 0 reviews )
-                      </a>
+                      </a> */}
                     </div>
                     <p>{productData?.description}</p>
 
@@ -505,9 +506,9 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                                               <h1 className="pack_tittle">
                                                 {producttype?.title}
                                               </h1>
-                                              <h1 className="pack_tittle_save">
+                                              {/* <h1 className="pack_tittle_save">
                                                 (Save $40.00)
-                                              </h1>
+                                              </h1> */}
                                               <img
                                                 src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${producttype?.image}`}
                                               />
@@ -1039,7 +1040,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                 </div>
               </div>
               <div className="row burn_works mb-3">
-                {/* {(() => {
+                {/* (() => {
               if (productData?.livenBurns?.length > 0) {
                 return (
                   <>
@@ -1055,10 +1056,31 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                       );
                     })}
                   </>
-                );
+                )
               }
-            })()} */}
-                <div className="col-sm-4 burn_works">
+            })() */}
+                {(() => {
+                  if (productData?.livenBurnWorkIcon?.length > 0) {
+                    return (
+                      <>
+                        {productData?.livenBurnWorkIcon?.map(
+                          (livenBurnWorkIconData) => {
+                            return (
+                              <div className="col-sm-4 burn_works">
+                                <img
+                                  src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${livenBurnWorkIconData?.image}`}
+                                  className="pro_des_icon2"
+                                />
+                                {livenBurnWorkIconData?.name}
+                              </div>
+                            );
+                          }
+                        )}
+                      </>
+                    );
+                  }
+                })()}
+                {/* <div className="col-sm-4 burn_works">
                   <img src={a} className="pro_des_icon2" />
                   {productData?.title1}
                 </div>
@@ -1083,7 +1105,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                 <div className="col-sm-4 burn_works">
                   <img src={f} className="pro_des_icon2" />
                   {productData?.title6}
-                </div>{" "}
+                </div>{" "} */}
               </div>
               <br></br>
               <div className="row mt-10 why_choose_dflex">
@@ -1125,10 +1147,10 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                       smartSpeed={500}
                       dots={false}
                       navContainerClass={"owl-nav"}
-                      // navText={[
-                      //   `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png  />`,
-                      //   `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png />`,
-                      // ]}
+                      navText={[
+                        `<img src=https://cdn-icons-png.flaticon.com/512/109/109618.png  />`,
+                        `<img src=https://cdn-icons-png.flaticon.com/512/109/109617.png  />`,
+                      ]}
                       responsive={{
                         0: {
                           items: 1,
@@ -1691,6 +1713,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                 margin={20}
                 stagePadding={10}
                 // loop={true}
+                nav={true}
                 items={1} //
                 // autoWidth={true}
                 smartSpeed={500}
@@ -1700,6 +1723,10 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                 // navText={[
                 //   `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png  />`,
                 //   `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png />`,
+                // ]}
+                // navText={[
+                //   `<img src=https://cdn-icons-png.flaticon.com/512/109/109618.png  />`,
+                //   `<img src=https://cdn-icons-png.flaticon.com/512/109/109617.png  />`,
                 // ]}
                 responsive={{
                   0: {
@@ -1713,7 +1740,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                   },
                 }}
                 autoplay
-                loop
+                // loop
                 autoplayTimeout={2000}
                 autoplayHoverPause={true}
                 // navText={[

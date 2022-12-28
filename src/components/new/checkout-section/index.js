@@ -56,6 +56,7 @@ import {
   getStatesApi,
   UpdateProfileApi,
 } from "../../../api/base-methods";
+import { MdRemoveCircle } from "react-icons/md";
 // import { toast } from "react-toastify";
 
 const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
@@ -91,7 +92,7 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
     address: user?.data?.address,
     city: user?.data?.city?._id,
     state: user?.data?.state?._id,
-    pincode: user?.data?.zipcode,
+    pincode: user?.data?.zipCode,
   });
 
   const [addressValidation, setAddressValidation] = useState({
@@ -988,7 +989,10 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
                                         )
                                       }
                                     >
-                                      <i className="fas fa-times"></i>
+                                      <MdRemoveCircle
+                                        size={30}
+                                        style={{ cursor: "pointer" }}
+                                      />
                                     </a>
                                   </td>
                                 </tr>
@@ -1246,7 +1250,7 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
                                 {user?.data?.address &&
                                 user?.data?.state &&
                                 user?.data?.city &&
-                                user?.data?.zipcode &&
+                                user?.data?.zipCode &&
                                 user?.data?.name &&
                                 user?.data?.email ? (
                                   <Link // to="#"

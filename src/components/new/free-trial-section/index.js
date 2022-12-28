@@ -122,7 +122,7 @@ const Free_Trial_Section = ({ productData }) => {
     city: "",
     email: "",
     phone_no: "",
-    zipcode: "",
+    zipCode: "",
     productId: "",
   });
   const [show, setShow] = useState(false);
@@ -282,7 +282,7 @@ const Free_Trial_Section = ({ productData }) => {
             mobile: data?.mobile,
             state: data?.state,
             city: data?.city,
-            zipcode: data?.zipcode,
+            zipCode: data?.zipcode,
           };
           //console.log(data, "data");
           //return false;

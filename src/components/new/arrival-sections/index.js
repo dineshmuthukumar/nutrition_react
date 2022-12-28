@@ -180,6 +180,10 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
                         items: 3,
                       },
                     }}
+                    navText={[
+                      `<img src=https://cdn-icons-png.flaticon.com/512/109/109618.png  />`,
+                      `<img src=https://cdn-icons-png.flaticon.com/512/109/109617.png  />`,
+                    ]}
                     autoplay
                     // autoplayTimeout={2000}
                     //autoplayHoverPause={true}
