@@ -162,7 +162,7 @@ const FeatureProduct = ({ featureProductsContent }) => {
           </div>
 
           <button
-            className={``}
+            className="swipper_back_arrow"
             onClick={() => handleNavigation("prev")}
             disabled={swiperRef?.current?.swiper?.isBeginning}
           >
@@ -174,7 +174,7 @@ const FeatureProduct = ({ featureProductsContent }) => {
             />
           </button>
           <button
-            className={``}
+            className="swipper_front_arrow"
             onClick={() => handleNavigation("next")}
             disabled={swiperRef?.current?.swiper?.isEnd}
           >
