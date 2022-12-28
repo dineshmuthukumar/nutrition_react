@@ -1597,12 +1597,12 @@ img.weak_strongest_img_absolute {
 }
 
 section.arrivals-section.need_sec img {
-    min-height: 315px;
+    /* min-height: 315px;
     height: 315px;
     width: 100%;
     max-width: 100%;
     border-radius: 10px;
-    object-fit: fill;
+    object-fit: fill; */
 }
 
 .intro-section .owl-carousel .owl-item img {

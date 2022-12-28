@@ -197,3 +197,43 @@ input.btn.btn-large:active {
 //   top: 100px;
 //   position: absolute;
 // }
+
+.arrivals-section
+{
+    .tab{
+    button
+    {
+        background: var(--base-color);
+    }
+    .swipper_back_arrow:disabled
+    {
+        background: grey;
+        opacity: 0.5;
+    }
+    .swipper_front_arrow:disabled
+    {
+        background: grey;
+        opacity: 0.5;
+    }
+    .swipper_back_arrow
+    {
+        width: 40px;
+        height: 40px;
+        border-radius: 50px;
+        border: none;
+        position: absolute;
+        left: -4% !important;
+        bottom: 43% !important;
+    }
+    .swipper_front_arrow
+    {
+        width: 40px;
+        height: 40px;
+        border-radius: 50px;
+        border: none;
+        position: absolute;
+        right: -4% !important;
+        bottom: 43% !important;
+    }
+}
+}

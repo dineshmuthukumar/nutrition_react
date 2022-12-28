@@ -14222,10 +14222,10 @@ figure:hover .overlay-visible {
 }
 
 .instagram img {
-    display: block;
+    /* display: block;
     transition: transform 1s;
     width: 100%;
-    height: auto;
+    height: auto; */
 }
 
 figure.instagram img:hover {

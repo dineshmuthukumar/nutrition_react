@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import OwlCarousel from "react-owl-carousel";
 
@@ -66,6 +66,14 @@ import { cart_on_thunk } from "../../../redux/thunk/user_thunk";
 import FeatureProduct from "../feature-product";
 import { EnquiryApi, subscribeApi } from "../../../api/base-methods";
 import { AiOutlineArrowRight } from "react-icons/ai";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import "swiper/swiper-bundle.min.css";
+import "swiper/swiper.scss";
+
+import "swiper/swiper-bundle.css";
+
+import SwiperCore, { EffectFlip, Navigation, Pagination } from "swiper";
 
 const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
   const history = useHistory();
@@ -83,6 +91,22 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
   const [email, setEmail] = useState();
   const [vEmail, setVEmail] = useState();
   //console.log(productData.productType, "ijedc");
+
+  const swiperRef = useRef();
+  const [update, setUpdate] = useState(0);
+
+  const handleNavigation = useCallback((direction = "") => {
+    setUpdate(Math.random());
+    console.log(direction, "direction");
+    //if (!direction || !swiperRef.current) return;
+    if (direction === "next") swiperRef.current.swiper.slideNext();
+    else swiperRef.current.swiper.slidePrev();
+  }, []);
+
+  useEffect(() => {
+    setUpdate(Math.random());
+  }, [swiperRef?.current?.swiper]);
+
   useEffect(() => {
     if (user) {
       const orderSlug = userCart?.line_items?.find(
@@ -1137,39 +1161,22 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
               <div className="tab-content">
                 <div className="tab-pane pt-4 active" id="fruits">
                   {productData?.healingPotentials?.length > 0 && (
-                    <OwlCarousel
-                      className="owl-carousel owl-carousel-healing"
-                      margin={20}
-                      stagePadding={10}
+                    <Swiper
+                      ref={swiperRef}
+                      slidesPerView={5}
+                      spaceBetween={4}
+                      slidesPerGroup={4}
                       // loop={true}
-                      items={1} //
-                      autoWidth={true}
-                      smartSpeed={500}
-                      dots={false}
-                      navContainerClass={"owl-nav"}
-                      navText={[
-                        `<img src=https://cdn-icons-png.flaticon.com/512/109/109618.png  />`,
-                        `<img src=https://cdn-icons-png.flaticon.com/512/109/109617.png  />`,
-                      ]}
-                      responsive={{
-                        0: {
-                          items: 1,
-                        },
-                        600: {
-                          items: 3,
-                        },
-                        1000: {
-                          items: 5,
-                        },
+                      // loopFillGroupWithBlank={true}
+                      navigation={false}
+                      modules={[Navigation]}
+                      className="mySwiper"
+                      breakpoints={{
+                        320: { slidesPerView: 3, spaceBetween: 5 },
+                        480: { slidesPerView: 3, spaceBetween: 5 },
+                        768: { slidesPerView: 4, spaceBetween: 5 },
+                        1024: { slidesPerView: 5, spaceBetween: 5 },
                       }}
-                      // autoplay
-                      // loop
-                      autoplayTimeout={2000}
-                      autoplayHoverPause={true}
-                      // navText={[
-                      //   '<i class="fa fa-chevron-left"></i>"',
-                      //   '<i class="fa fa-chevron-right"></i>'
-                      // ]}
                     >
                       {(() => {
                         return (
@@ -1177,48 +1184,51 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                             {productData?.healingPotentials?.map(
                               (healingPoten) => {
                                 return (
-                                  <div className="product-refdc text-center product-with-qty no_border">
-                                    <figure className="product-media">
-                                      <a href="javascript:void">
-                                        <img
-                                          src={app_1}
-                                          alt="product"
-                                          width="280"
-                                          height="315"
-                                          className="healing_image"
-                                        />
-                                        <img
-                                          //src={app_11}
-                                          // src={
-                                          //   "http://54.177.7.240" +
-                                          //   healingPoten?.image
-                                          // }
-                                          src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${healingPoten?.image}`}
-                                          //className="healing_image"
-                                          alt="product"
-                                          style={{ width: "50% !important" }}
-                                          width="280"
-                                          height="315"
-                                        />
-                                      </a>
-                                      <div className="product-action-vertical">
-                                        <a
-                                          href="#"
-                                          className="btn-product-icon btn-wishlist"
-                                          title="Add to wishlist"
-                                        >
-                                          <i className="d-icon-plus"></i>
+                                  <SwiperSlide>
+                                    {" "}
+                                    <div className="product-refdc text-center product-with-qty no_border">
+                                      <figure className="product-media">
+                                        <a href="javascript:void">
+                                          <img
+                                            src={app_1}
+                                            alt="product"
+                                            width="280"
+                                            height="315"
+                                            className="healing_image"
+                                          />
+                                          <img
+                                            //src={app_11}
+                                            // src={
+                                            //   "http://54.177.7.240" +
+                                            //   healingPoten?.image
+                                            // }
+                                            src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${healingPoten?.image}`}
+                                            //className="healing_image"
+                                            alt="product"
+                                            style={{ width: "50% !important" }}
+                                            width="280"
+                                            height="315"
+                                          />
                                         </a>
-                                      </div>
-                                    </figure>
-                                  </div>
+                                        <div className="product-action-vertical">
+                                          <a
+                                            href="#"
+                                            className="btn-product-icon btn-wishlist"
+                                            title="Add to wishlist"
+                                          >
+                                            <i className="d-icon-plus"></i>
+                                          </a>
+                                        </div>
+                                      </figure>
+                                    </div>
+                                  </SwiperSlide>
                                 );
                               }
                             )}
                           </>
                         );
                       })()}
-                    </OwlCarousel>
+                    </Swiper>
                   )}
 
                   {/* <div className="input-prepend text-center mt-10">
@@ -1230,6 +1240,31 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                     </a>
                   </div> */}
                 </div>
+
+                <button
+                  className="swipper_back_arrow"
+                  onClick={() => handleNavigation("prev")}
+                  disabled={swiperRef?.current?.swiper?.isBeginning}
+                >
+                  <img
+                    src="https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png"
+                    width="40"
+                    height="40"
+                    alt="Arrow"
+                  />
+                </button>
+                <button
+                  className="swipper_front_arrow"
+                  onClick={() => handleNavigation("next")}
+                  disabled={swiperRef?.current?.swiper?.isEnd}
+                >
+                  <img
+                    src="https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/front-arrow.png"
+                    width="40"
+                    height="40"
+                    alt="Arrow"
+                  />
+                </button>
               </div>
             </div>
           </section>
@@ -1802,6 +1837,5 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
     </>
   );
 };
-
 
 export default ProductDetails;

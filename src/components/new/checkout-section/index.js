@@ -356,10 +356,13 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
 
   const handleProfileAddressForm = async () => {
     if (checkAddressValidation() && checkValidation()) {
-      let ProfileData = { ...profile, ...address };
+      let ProfileData = { ...profile };
 
       ProfileData.id = user?.data?._id;
-      ProfileData.zipcode = address?.pincode;
+      ProfileData.zipCode = parseInt(address.pincode);
+      ProfileData.state = address.state;
+      ProfileData.city = address.city;
+      ProfileData.address = address.address;
 
       try {
         const result = await UpdateProfileApi(ProfileData);

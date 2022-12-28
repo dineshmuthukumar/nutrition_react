@@ -1,0 +1,67 @@
+.swiper {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    padding: 1rem;
+  
+   
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+  }
+  
+//   .swiper-slide img {
+//     display: block;
+//     width: 100%;
+//     height: 100%;
+//     object-fit: cover !important;
+//   }
+ 
+
+.instagram-section
+{
+    button
+    {
+        background: var(--base-color);
+    }
+    .swipper_back_arrow:disabled
+    {
+        background: grey;
+        opacity: 0.5;
+    }
+    .swipper_front_arrow:disabled
+    {
+        background: grey;
+        opacity: 0.5;
+    }
+    .swipper_back_arrow
+    {
+        width: 40px;
+        height: 40px;
+        border-radius: 50px;
+        border: none;
+        position: absolute;
+        left: 1% !important;
+        bottom: 25% !important;
+    }
+    .swipper_front_arrow
+    {
+        width: 40px;
+        height: 40px;
+        border-radius: 50px;
+        border: none;
+        position: absolute;
+        right: 1% !important;
+        bottom: 25% !important;
+    }
+}

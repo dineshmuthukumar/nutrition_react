@@ -138,6 +138,12 @@ const FeatureProduct = ({ featureProductsContent }) => {
                 navigation={false}
                 modules={[Navigation]}
                 className="mySwiper"
+                breakpoints={{
+                  320: { slidesPerView: 1, spaceBetween: 80 },
+                  480: { slidesPerView: 2, spaceBetween: 5 },
+                  768: { slidesPerView: 3, spaceBetween: 4 },
+                  1024: { slidesPerView: 3, spaceBetween: 4 },
+                }}
               >
                 {(() => {
                   if (featureProductsContent?.length > 0) {

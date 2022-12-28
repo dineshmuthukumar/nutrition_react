@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
 import OwlCarousel from "react-owl-carousel";
 import {
@@ -19,6 +19,15 @@ import Product from "../../product";
 
 import { AiFillHome } from "react-icons/ai";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import "swiper/swiper-bundle.min.css";
+import "swiper/swiper.scss";
+
+import "swiper/swiper-bundle.css";
+
+import SwiperCore, { EffectFlip, Navigation, Pagination } from "swiper";
+
 import "./style.scss";
 
 const ArrivalSection = ({ homeContent, categorylist }) => {
@@ -33,6 +42,22 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
   const [categoryActiveIndex, setCategoryActiveIndex] = useState(0);
   const [productTabActive, setProductTabActive] = useState(true);
   const [bestSellerDetails, setBestSellerDetails] = useState({});
+
+  const swiperRef = useRef();
+  const [update, setUpdate] = useState(0);
+
+  const handleNavigation = useCallback((direction = "") => {
+    setUpdate(Math.random());
+    console.log(direction, "direction");
+    //if (!direction || !swiperRef.current) return;
+    if (direction === "next") swiperRef.current.swiper.slideNext();
+    else swiperRef.current.swiper.slidePrev();
+  }, []);
+
+  useEffect(() => {
+    setUpdate(Math.random());
+  }, [swiperRef?.current?.swiper]);
+
   const getCategoryDetails = async () => {
     try {
       const result = await getCategoryApi();
@@ -162,31 +187,48 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
                 id="fruits"
               >
                 {prodList?.length > 0 && (
-                  <OwlCarousel
-                    className="owl-carousel owl-theme row cols-lg-4 cols-md-3 cols-2"
-                    margin={20}
-                    nav
-                    smartSpeed={500}
-                    dots={false}
-                    navContainerClass={"owl-nav"}
-                    responsive={{
-                      0: {
-                        items: 1,
-                      },
-                      768: {
-                        items: 3,
-                      },
-                      992: {
-                        items: 3,
-                      },
+                  // <OwlCarousel
+                  //   className="owl-carousel owl-theme row cols-lg-4 cols-md-3 cols-2"
+                  //   margin={20}
+                  //   nav
+                  //   smartSpeed={500}
+                  //   dots={false}
+                  //   navContainerClass={"owl-nav"}
+                  //   responsive={{
+                  //     0: {
+                  //       items: 1,
+                  //     },
+                  //     768: {
+                  //       items: 3,
+                  //     },
+                  //     992: {
+                  //       items: 3,
+                  //     },
+                  //   }}
+                  //   navText={[
+                  //     `<img src=https://cdn-icons-png.flaticon.com/512/109/109618.png  />`,
+                  //     `<img src=https://cdn-icons-png.flaticon.com/512/109/109617.png  />`,
+                  //   ]}
+                  //   autoplay
+                  //   autoplayTimeout={2000}
+                  //   autoplayHoverPause={true}
+                  // >
+                  <Swiper
+                    ref={swiperRef}
+                    slidesPerView={3}
+                    spaceBetween={4}
+                    slidesPerGroup={3}
+                    // loop={true}
+                    // loopFillGroupWithBlank={true}
+                    navigation={false}
+                    modules={[Navigation]}
+                    className="mySwiper"
+                    breakpoints={{
+                      320: { slidesPerView: 1, spaceBetween: 80 },
+                      480: { slidesPerView: 2, spaceBetween: 5 },
+                      768: { slidesPerView: 3, spaceBetween: 4 },
+                      1024: { slidesPerView: 3, spaceBetween: 4 },
                     }}
-                    navText={[
-                      `<img src=https://cdn-icons-png.flaticon.com/512/109/109618.png  />`,
-                      `<img src=https://cdn-icons-png.flaticon.com/512/109/109617.png  />`,
-                    ]}
-                    autoplay
-                    // autoplayTimeout={2000}
-                    //autoplayHoverPause={true}
                   >
                     {(() => {
                       return (
@@ -196,20 +238,46 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
                               //console.log(prodDetails, "prodDetails");
                               if (prodDetails?.actualAmount) {
                                 return (
-                                  <Product
-                                    ProductDetails={prodDetails}
-                                    key={pkey}
-                                  />
+                                  <SwiperSlide>
+                                    <Product
+                                      ProductDetails={prodDetails}
+                                      key={pkey}
+                                    />
+                                  </SwiperSlide>
                                 );
                               }
                             })}
                         </>
                       );
                     })()}
-                  </OwlCarousel>
+                  </Swiper>
                 )}
                 {prodList?.length > 0 ? "" : "No found Product"}
               </div>
+              <button
+                className="swipper_back_arrow"
+                onClick={() => handleNavigation("prev")}
+                disabled={swiperRef?.current?.swiper?.isBeginning}
+              >
+                <img
+                  src="https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png"
+                  width="40"
+                  height="40"
+                  alt="Arrow"
+                />
+              </button>
+              <button
+                className="swipper_front_arrow"
+                onClick={() => handleNavigation("next")}
+                disabled={swiperRef?.current?.swiper?.isEnd}
+              >
+                <img
+                  src="https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/front-arrow.png"
+                  width="40"
+                  height="40"
+                  alt="Arrow"
+                />
+              </button>
             </div>
           </div>
         </div>

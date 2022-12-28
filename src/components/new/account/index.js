@@ -343,12 +343,14 @@ const Accountcomponent = () => {
   const handleProfileAddressForm = async () => {
     // console.log(addressValidation, "addressValidation");
     if (checkAddressValidation() || checkValidation()) {
-      let ProfileData = { ...profile, ...address };
+      let ProfileData = { ...profile };
 
       ProfileData.id = user?.data?._id;
       ProfileData.dob = dayjs(ProfileData.dob).format("DD-MM-YYYY");
-      ProfileData.zipCode = ProfileData.pincode;
-      ProfileData.pincode = "";
+      ProfileData.zipCode = parseInt(address.pincode);
+      ProfileData.state = address.state;
+      ProfileData.city = address.city;
+      ProfileData.address = address.address;
       //console.log(ProfileData);
 
       try {
