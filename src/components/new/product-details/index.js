@@ -923,7 +923,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                     {productData?.howToUseTitle}
                   </h2>
                   <div className="mb-8">
-                    <b>Pop</b>: Remove the Desiccant cap. product image here
+                    {/* <b>Pop</b>: Remove the Desiccant cap. product image here */}
                     <div
                       dangerouslySetInnerHTML={{
                         __html: productData?.howToUsedescription,
