@@ -280,3 +280,9 @@ label.input-title {
     font-weight: bolder;
     color: #0d6efd;
 }
+
+.form-check-input{
+    &checked{
+        color: green;
+    }
+}

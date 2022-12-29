@@ -58,7 +58,7 @@ import packag from "../../../images/new-images/demos/demo-food2/products/final/p
 
 import Accordion from "../../accordion";
 import "./style.scss";
-import { currencyFormat, validateEmail } from "../../../utils/common";
+import { currencyFormat, getPrice, validateEmail } from "../../../utils/common";
 import { useDispatch, useSelector } from "react-redux";
 import { add_to_cart_thunk } from "../../../redux/thunk/user_cart_thunk";
 import Product from "../../product";
@@ -209,22 +209,40 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                   <div className="product-gallery product-gallery-sticky mb-lg-9 mb-4 pb-0">
                     {/* <div className="product-single-carousel owl-carousel owl-theme owl-nav-inner row cols-1"> */}
                     {productData?.photos?.length > 0 && (
-                      <OwlCarousel
-                        className=" owl-carousel owl-theme owl-nav-inner owl-loaded owl-drag d-mobile owl-carousel-product"
-                        margin={20}
-                        startPosition={slideBy}
-                        items={1}
-                        smartSpeed={500}
-                        dots={false}
-                        // rtl={true}
-                        autoWidth={true}
-                        // responsive={false}
-                        // id={"owlcaolse"}
+                      // <OwlCarousel
+                      //   className=" owl-carousel owl-theme owl-nav-inner owl-loaded owl-drag d-mobile owl-carousel-product"
+                      //   margin={20}
+                      //   startPosition={slideBy}
+                      //   items={1}
+                      //   smartSpeed={500}
+                      //   dots={false}
+                      //   // rtl={true}
+                      //   autoWidth={true}
+                      //   // responsive={false}
+                      //   // id={"owlcaolse"}
 
-                        // autoplay
+                      //   // autoplay
 
-                        //   autoplayTimeout={2000}
-                        //   autoplayHoverPause={true}
+                      //   //   autoplayTimeout={2000}
+                      //   //   autoplayHoverPause={true}
+                      // >
+                      <Swiper
+                        slidesPerView={1}
+                        spaceBetween={4}
+                        slidesPerGroup={1}
+                        pagination={true}
+                        // loop={true}
+                        loopFillGroupWithBlank={true}
+                        navigation={false}
+                        activeSlideKey={slideBy}
+                        className="mySwiper"
+
+                        // breakpoints={{
+                        //   320: { slidesPerView: 3, spaceBetween: 5 },
+                        //   480: { slidesPerView: 3, spaceBetween: 5 },
+                        //   768: { slidesPerView: 4, spaceBetween: 5 },
+                        //   1024: { slidesPerView: 5, spaceBetween: 5 },
+                        // }}
                       >
                         {(() => {
                           if (productData?.photos?.length > 0) {
@@ -232,22 +250,24 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                               <>
                                 {productData?.photos?.map((prodImgaes) => {
                                   return (
-                                    <figure className="product-image">
-                                      <img
-                                        src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${prodImgaes}`}
-                                        data-zoom-image={prodImgaes}
-                                        alt="Women's Brown Leather Backpacks"
-                                        width="600"
-                                        height="675"
-                                      />
-                                    </figure>
+                                    <SwiperSlide>
+                                      <figure className="product-image">
+                                        <img
+                                          src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${prodImgaes}`}
+                                          data-zoom-image={prodImgaes}
+                                          alt="Women's Brown Leather Backpacks"
+                                          width="600"
+                                          height="675"
+                                        />
+                                      </figure>
+                                    </SwiperSlide>
                                   );
                                 })}
                               </>
                             );
                           }
                         })()}
-                      </OwlCarousel>
+                      </Swiper>
                     )}
                     {/* </div> */}
 
@@ -547,11 +567,21 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                                           </div>
                                         </div>
                                       </label>
-                                      <div className="inner-product-label-group2">
-                                        <label className="inner-product-label label-sale2">
-                                          25% Off
-                                        </label>
-                                      </div>
+                                      {getPrice(
+                                        producttype?.saleAmount,
+                                        productData.saleAmount
+                                      ) > 0 && (
+                                        <div className="inner-product-label-group2">
+                                          <label className="inner-product-label label-sale2">
+                                            {getPrice(
+                                              producttype?.saleAmount,
+                                              productData.saleAmount
+                                            )}
+                                            {"% "}
+                                            Off
+                                          </label>
+                                        </div>
+                                      )}
                                     </div>
                                   </div>
                                 );

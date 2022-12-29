@@ -359,7 +359,7 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
       let ProfileData = { ...profile };
 
       ProfileData.id = user?.data?._id;
-      ProfileData.zipCode = parseInt(address.pincode);
+      ProfileData.zipCode = address.pincode;
       ProfileData.state = address.state;
       ProfileData.city = address.city;
       ProfileData.address = address.address;

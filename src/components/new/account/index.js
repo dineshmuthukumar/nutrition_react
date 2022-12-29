@@ -172,7 +172,9 @@ const Accountcomponent = () => {
         setProfileValidation({ ...profileValidation, [e.target.name]: false });
       } else {
         setProfile({ ...profile, [e.target.name]: e.target.value });
+        // console.log(e.target.name, e.target.value);
         setProfileValidation({ ...profileValidation, [e.target.name]: false });
+        console.log(profile, "profile");
       }
     } else {
       setProfile({ ...profile, [e.target.name]: e.target.value });
@@ -611,15 +613,15 @@ const Accountcomponent = () => {
                         <Form className="gender_list">
                           <Form.Label>Gender</Form.Label>
                           {["radio"].map((type) => (
-                            <div key={`inline-${type}`} className="mt-3">
+                            <div key={`inline-}`} className="mt-3">
                               <Form.Check
                                 inline
                                 label="Male"
                                 name="gender"
                                 value="male"
-                                type={type}
-                                id={`inline-${type}-1`}
-                                checked={address?.gender === "male"}
+                                type={"radio"}
+                                id={`inline--1`}
+                                checked={profile?.gender == "male" ? true : ""}
                                 onKeyPress={handleKeyPressEvent}
                                 onChange={handleChangeEvent}
                               />
@@ -628,9 +630,11 @@ const Accountcomponent = () => {
                                 label="Female"
                                 name="gender"
                                 value="female"
-                                checked={address?.gender === "female"}
-                                type={type}
-                                id={`inline-${type}-2`}
+                                checked={
+                                  profile?.gender === "female" ? true : ""
+                                }
+                                type={"radio"}
+                                id={`inline--1`}
                                 onKeyPress={handleKeyPressEvent}
                                 onChange={handleChangeEvent}
                               />

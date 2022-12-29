@@ -724,6 +724,7 @@ h2.pack_total_doller {
     height: 8px;
     width: 8px;
     background: #216fe0;
+    display: none;
     right: 30px;
     top: 60px;
     border-radius: 100%;

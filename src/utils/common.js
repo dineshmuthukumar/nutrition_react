@@ -489,3 +489,10 @@ export const blockInvalidChar = (e) =>
 
     return [year, month, day].join("-");
   };
+
+
+  export const getPrice = (numVal1, numVal2) => {
+    var result = (numVal1 - numVal2) / numVal1;
+    var result2 = result * 100;
+    return Math.floor(result2);
+  };
