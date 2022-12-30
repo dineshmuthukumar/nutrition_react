@@ -93,6 +93,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
   //console.log(productData.productType, "ijedc");
 
   const swiperRef = useRef();
+  const swiperRefBanner = useRef();
   const [update, setUpdate] = useState(0);
 
   const handleNavigation = useCallback((direction = "") => {
@@ -148,12 +149,18 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
   const ProductThumbIncrea = (type) => {
     // console.log(slideBy, "slideBy");
     // console.log(productThumb, "productThumb");
+
     if (type == "left") {
+      // console.log("LEtgf");
       setSlideBy(parseInt(slideBy) - 1);
+
+      swiperRefBanner.current.swiper.slidePrev();
       setProductThumb(parseInt(productThumb) - 1);
+      //slideBy.slideTo(parseInt(slideBy) - 1);
     } else {
       setSlideBy(parseInt(slideBy) + 1);
       setProductThumb(parseInt(productThumb) + 1);
+      swiperRefBanner.current.swiper.slideNext();
     }
   };
 
@@ -227,16 +234,17 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                       //   //   autoplayHoverPause={true}
                       // >
                       <Swiper
+                        ref={swiperRefBanner}
                         slidesPerView={1}
                         spaceBetween={4}
                         slidesPerGroup={1}
                         pagination={true}
                         // loop={true}
+                        // initialSlide={slideBy}
                         loopFillGroupWithBlank={true}
-                        navigation={false}
-                        activeSlideKey={slideBy}
+                        // navigation={true}
+                        // activeSlideKey={slideBy}
                         className="mySwiper"
-
                         // breakpoints={{
                         //   320: { slidesPerView: 3, spaceBetween: 5 },
                         //   480: { slidesPerView: 3, spaceBetween: 5 },
@@ -316,7 +324,12 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                                                 ? "active"
                                                 : ""
                                             }`}
-                                            onClick={() => setProductThumb(key)}
+                                            onClick={() => {
+                                              setProductThumb(key);
+                                              swiperRefBanner.current.swiper.slideTo(
+                                                key
+                                              );
+                                            }}
                                           >
                                             <img
                                               src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${prodImgaesThumb}`}

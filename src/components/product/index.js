@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { cart_on_thunk } from "../../redux/thunk/user_thunk";
 
 const Product = ({ ProductDetails, key }) => {
-  console.log(ProductDetails, "ProductDetails");
+  ///console.log(ProductDetails, "ProductDetails");
   const history = useHistory();
   const dispatch = useDispatch();
   const { user, cart } = useSelector((state) => state);
