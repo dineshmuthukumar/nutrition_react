@@ -65,7 +65,7 @@ import Product from "../../product";
 import { cart_on_thunk } from "../../../redux/thunk/user_thunk";
 import FeatureProduct from "../feature-product";
 import { EnquiryApi, subscribeApi } from "../../../api/base-methods";
-import { AiOutlineArrowRight } from "react-icons/ai";
+import { AiOutlineArrowRight, AiOutlineArrowLeft } from "react-icons/ai";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/swiper-bundle.min.css";
@@ -146,8 +146,16 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
-  const ProductThumbIncrea = (type) => {
-    // console.log(slideBy, "slideBy");
+
+  useEffect(() => {
+    if (user?.login && status) {
+      dispatch(cart_on_thunk());
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [status]);
+
+  const ProductThumbIncrea = (type = "right") => {
+    console.log(type, "type");
     // console.log(productThumb, "productThumb");
 
     if (type == "left") {
@@ -159,8 +167,26 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
       //slideBy.slideTo(parseInt(slideBy) - 1);
     } else {
       setSlideBy(parseInt(slideBy) + 1);
-      setProductThumb(parseInt(productThumb) + 1);
       swiperRefBanner.current.swiper.slideNext();
+      setProductThumb(parseInt(productThumb) + 1);
+    }
+  };
+
+  const ProductThumbIncreatype = (type) => {
+    console.log(type, "type");
+    // console.log(productThumb, "productThumb");
+
+    if (type == "left") {
+      // console.log("LEtgf");
+      setSlideBy(parseInt(slideBy) - 1);
+
+      swiperRefBanner.current.swiper.slidePrev();
+      setProductThumb(parseInt(productThumb) - 1);
+      //slideBy.slideTo(parseInt(slideBy) - 1);
+    } else {
+      setSlideBy(parseInt(slideBy) + 1);
+      swiperRefBanner.current.swiper.slideNext();
+      setProductThumb(parseInt(productThumb) + 1);
     }
   };
 
@@ -376,24 +402,71 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                         </div> */}
                         </div>
                         {(() => {
-                          if (productData?.photos?.length > 0) {
-                            return (
-                              <div className="col-sm-3">
-                                <button
-                                  className="thumb-up"
-                                  onClick={() => ProductThumbIncrea("left")}
-                                >
-                                  <i class="d-icon-arrow-left"></i>
-                                </button>
-                                <button
-                                  className="thumb-down"
-                                  onClick={() => ProductThumbIncrea("right")}
-                                >
-                                  <i class="d-icon-arrow-right"></i>
-                                </button>
-                              </div>
-                            );
-                          }
+                          // if (productData?.photos?.length > 0) {
+                          return (
+                            <div className="col-sm-3">
+                              <button
+                                className="thumb-up11"
+                                onClick={() => {
+                                  console.log(
+                                    parseInt(slideBy),
+                                    "parseInt(slideBy)"
+                                  );
+                                  if (parseInt(slideBy) == 0) {
+                                    setSlideBy(productData?.photos?.length - 1);
+                                    swiperRefBanner.current.swiper.slideTo(
+                                      productData?.photos?.length - 1
+                                    );
+                                    setProductThumb(
+                                      productData?.photos?.length - 1
+                                    );
+                                  }
+                                  if (parseInt(slideBy) - 1 <= 0) {
+                                    console.log(true, "erfcre");
+                                  } else {
+                                    console.log(false);
+                                  }
+                                  if (parseInt(slideBy) - 1 <= -1) {
+                                    setSlideBy(productData?.photos?.length - 1);
+                                    swiperRefBanner.current.swiper.slideTo(
+                                      productData?.photos?.length - 1
+                                    );
+                                    setProductThumb(
+                                      productData?.photos?.length - 1
+                                    );
+                                  } else {
+                                    setSlideBy(parseInt(slideBy) - 1);
+                                    swiperRefBanner.current.swiper.slidePrev();
+                                    setProductThumb(parseInt(productThumb) - 1);
+                                  }
+                                }}
+                                key="prdni1"
+                              >
+                                <i class="d-icon-arrow-left"></i>
+                              </button>
+                              <button
+                                className="thumb-down22"
+                                onClick={() => {
+                                  if (
+                                    parseInt(slideBy) + 1 >=
+                                    productData?.photos?.length
+                                  ) {
+                                    setSlideBy(0);
+                                    swiperRefBanner.current.swiper.slideTo(0);
+                                    setProductThumb(0);
+                                  } else {
+                                    setSlideBy(parseInt(slideBy) + 1);
+                                    swiperRefBanner.current.swiper.slideNext();
+                                    setProductThumb(parseInt(productThumb) + 1);
+                                  }
+                                }}
+                                key="prdni34"
+                              >
+                                <i class="d-icon-arrow-right"></i>
+                              </button>
+                            </div>
+                          );
+                          // }
                         })()}
                       </div>
 
@@ -536,68 +609,75 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                           return (
                             <>
                               {productData?.productType?.map((producttype) => {
-                                return (
-                                  <div
-                                    className={`col-sm-4 p-0 ${producttype?.type}-plan`}
-                                  >
-                                    <div className="plans">
-                                      <label
-                                        className={`plan ${producttype?.type}-plan`}
-                                        htmlFor={producttype?.type}
-                                      >
-                                        <input
-                                          type="radio"
-                                          name="plan"
-                                          id={producttype?.type}
-                                          onClick={() =>
-                                            setProductFavor(producttype?.type)
-                                          }
-                                          checked={
-                                            productFavor === producttype?.type
-                                          }
-                                        />
-                                        <div className="plan-content">
-                                          <div className="plan-details">
-                                            <span>{producttype?.type}</span>
-                                            <div className="pack_padding">
-                                              <h1 className="pack_tittle">
-                                                {producttype?.title}
-                                              </h1>
-                                              {/* <h1 className="pack_tittle_save">
-                                                (Save $40.00)
-                                              </h1> */}
-                                              <img
-                                                src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${producttype?.image}`}
-                                              />
-                                            </div>
-                                            <div className="pack_add_cart">
-                                              {currencyFormat(
-                                                producttype?.saleAmount,
-                                                "INR"
-                                              )}{" "}
-                                              / Fulse
+                                if (producttype?.discount) {
+                                  return (
+                                    <div
+                                      className={`col-sm-4 p-0 ${producttype?.type}-plan`}
+                                    >
+                                      <div className="plans">
+                                        <label
+                                          className={`plan ${producttype?.type}-plan`}
+                                          htmlFor={producttype?.type}
+                                        >
+                                          <input
+                                            type="radio"
+                                            name="plan"
+                                            id={producttype?.type}
+                                            onClick={() =>
+                                              setProductFavor(producttype?.type)
+                                            }
+                                            checked={
+                                              productFavor === producttype?.type
+                                            }
+                                          />
+                                          <div className="plan-content">
+                                            <div className="plan-details">
+                                              <span>{producttype?.type}</span>
+                                              <div className="pack_padding">
+                                                <h1 className="pack_tittle">
+                                                  {producttype?.title}
+                                                </h1>
+                                                <h1 className="pack_tittle_save">
+                                                  (Save{" "}
+                                                  {currencyFormat(
+                                                    parseFloat(
+                                                      producttype?.actualAmount
+                                                    ) -
+                                                      parseFloat(
+                                                        producttype?.saleAmount
+                                                      ),
+                                                    "INR"
+                                                  )}
+                                                  )
+                                                </h1>
+                                                <img
+                                                  src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${producttype?.image}`}
+                                                />
+                                              </div>
+                                              <div className="pack_add_cart">
+                                                {currencyFormat(
+                                                  producttype?.saleAmount /
+                                                    producttype?.package,
+                                                  "INR"
+                                                )}{" "}
+                                                / Fulse
+                                              </div>
                                             </div>
                                           </div>
-                                        </div>
-                                      </label>
-                                      {getPrice(
-                                        producttype?.saleAmount,
-                                        productData.saleAmount
-                                      ) > 0 && (
-                                        <div className="inner-product-label-group2">
-                                          <label className="inner-product-label label-sale2">
-                                            {getPrice(
-                                              producttype?.saleAmount,
-                                              productData.saleAmount
-                                            )}
-                                            {"% "}
-                                            Off
-                                          </label>
-                                        </div>
-                                      )}
+                                        </label>
+                                        {producttype?.discount > 0 && (
+                                          <div className="inner-product-label-group2">
+                                            <label className="inner-product-label label-sale2">
+                                              {producttype?.discount}
+                                              {"% "}
+                                              Off
+                                            </label>
+                                          </div>
+                                        )}
+                                      </div>
                                     </div>
-                                  </div>
-                                );
+                                  );
+                                }
                               })}
                             </>
                           );

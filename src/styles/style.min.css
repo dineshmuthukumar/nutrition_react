@@ -11977,7 +11977,7 @@ screen and (-ms-high-contrast:active) and (max-width:575px) {
 
 .product-thumb:before,
 .product-thumbs-wrap button {
-  position: absolute;
+  /* position: absolute; */
   left: 0;
   right: 0;
   top: 0;
@@ -12016,7 +12016,7 @@ screen and (-ms-high-contrast:active) and (max-width:575px) {
   overflow: hidden
 }
 
-.product-thumb:before {
+.product-thumb:before img {
   content: "";
   transition: border-color 0.3s;
   border: 2px solid transparent;
