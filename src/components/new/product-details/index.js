@@ -611,85 +611,100 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                         ""
                       )}
                     </div>
-                    <div className="row cart_packlist d-flex justify-content-center w-100 mt-5">
-
+                    <div className="row cart_packlist d-flex justify-content-center w-100 mt-5 gap-2">
                       {/* Product Pro Start */}
-                        <div class="col-sm-4 p-0 BASIC-plan">
-                          <div class="plans">
-                              <label class="plan BASIC-plan" for="BASIC">
-                                  <input type="radio" name="plan" id="BASIC" />
-                                  <div class="plan-content">
-                                      <div class="plan-details">
-                                          <span>BASIC</span>
-                                          <div class="pack_padding">
-                                              <h1 class="pack_tittle">pack of 1</h1>
-                                              <h1 class="pack_tittle_save">(Save ₹100.00)</h1>
-                                              <img src="https://admin.livenscience.com/images/product/1672661002579_5-a.png" />
-                                          </div>
-                                          <div class="pack_add_cart">₹900.00 / Fulse</div>
-                                      </div>
-                                  </div>
-                              </label>
-                              <div class="inner-product-label-group2">
-                                  <label class="inner-product-label label-sale2">10% Off</label>
+                      {/* <div class="col-sm-4 p-0 BASIC-plan">
+                        <div class="plans">
+                          <label class="plan BASIC-plan" for="BASIC">
+                            <input type="radio" name="plan" id="BASIC" />
+                            <div class="plan-content">
+                              <div class="plan-details">
+                                <span>BASIC</span>
+                                <div class="pack_padding">
+                                  <h1 class="pack_tittle">pack of 1</h1>
+                                  <h1 class="pack_tittle_save">
+                                    (Save ₹100.00)
+                                  </h1>
+                                  <img src="https://admin.livenscience.com/images/product/1672661002579_5-a.png" />
+                                </div>
+                                <div class="pack_add_cart">₹900.00 / Fulse</div>
                               </div>
+                            </div>
+                          </label>
+                          <div class="inner-product-label-group2">
+                            <label class="inner-product-label label-sale2">
+                              10% Off
+                            </label>
                           </div>
                         </div>
-                        <div class="col-sm-4 p-0 BASIC-plan plan_height">
-                            <div class="plans">
-                                <label class="plan BASIC-plan" for="BASIC">
-                                    <input type="radio" name="plan" id="BASIC" />
-                                    <div class="plan-content">
-                                        <div class="plan-details">
-                                            <span>BASIC</span>
-                                            <div class="pack_padding">
-                                                <h1 class="pack_tittle">pack of 1</h1>
-                                                <h1 class="pack_tittle_save">(Save ₹100.00)</h1>
-                                                <img src="https://admin.livenscience.com/images/product/1672661002579_5-a.png" />
-                                            </div>
-                                            <div class="pack_add_cart">₹900.00 / Fulse</div>
-                                        </div>
-                                    </div>
-                                </label>
-                                <div class="inner-product-label-group2">
-                                    <label class="inner-product-label label-sale2">10% Off</label>
+                      </div>
+                      <div class="col-sm-4 p-0 BASIC-plan plan_height">
+                        <div class="plans">
+                          <label class="plan BASIC-plan" for="BASIC">
+                            <input type="radio" name="plan" id="BASIC" />
+                            <div class="plan-content">
+                              <div class="plan-details">
+                                <span>BASIC</span>
+                                <div class="pack_padding">
+                                  <h1 class="pack_tittle">pack of 1</h1>
+                                  <h1 class="pack_tittle_save">
+                                    (Save ₹100.00)
+                                  </h1>
+                                  <img src="https://admin.livenscience.com/images/product/1672661002579_5-a.png" />
                                 </div>
+                                <div class="pack_add_cart">₹900.00 / Fulse</div>
+                              </div>
                             </div>
+                          </label>
+                          <div class="inner-product-label-group2">
+                            <label class="inner-product-label label-sale2">
+                              10% Off
+                            </label>
+                          </div>
                         </div>
-                        <div class="col-sm-4 p-0 BASIC-plan">
-                            <div class="plans">
-                                <label class="plan BASIC-plan" for="BASIC">
-                                    <input type="radio" name="plan" id="BASIC" />
-                                    <div class="plan-content">
-                                        <div class="plan-details">
-                                            <span>BASIC</span>
-                                            <div class="pack_padding">
-                                                <h1 class="pack_tittle">pack of 1</h1>
-                                                <h1 class="pack_tittle_save">(Save ₹100.00)</h1>
-                                                <img src="https://admin.livenscience.com/images/product/1672661002579_5-a.png" />
-                                            </div>
-                                            <div class="pack_add_cart">₹900.00 / Fulse</div>
-                                        </div>
-                                    </div>
-                                </label>
-                                <div class="inner-product-label-group2">
-                                    <label class="inner-product-label label-sale2">10% Off</label>
+                      </div>
+                      <div class="col-sm-4 p-0 BASIC-plan">
+                        <div class="plans">
+                          <label class="plan BASIC-plan" for="BASIC">
+                            <input type="radio" name="plan" id="BASIC" />
+                            <div class="plan-content">
+                              <div class="plan-details">
+                                <span>BASIC</span>
+                                <div class="pack_padding">
+                                  <h1 class="pack_tittle">pack of 1</h1>
+                                  <h1 class="pack_tittle_save">
+                                    (Save ₹100.00)
+                                  </h1>
+                                  <img src="https://admin.livenscience.com/images/product/1672661002579_5-a.png" />
                                 </div>
+                                <div class="pack_add_cart">₹900.00 / Fulse</div>
+                              </div>
                             </div>
+                          </label>
+                          <div class="inner-product-label-group2">
+                            <label class="inner-product-label label-sale2">
+                              10% Off
+                            </label>
+                          </div>
                         </div>
+                      </div> */}
                       {/* Product Pro End */}
 
-
-                      {/* {(() => {
+                      {(() => {
                         if (productData?.productType?.length > 0) {
                           return (
                             <>
                               {productData?.productType?.map((producttype) => {
                                 if (producttype?.actualAmount) {
                                   return (
-                        
                                     <div
-                                      className={`col-sm-4 p-0 ${producttype?.type}-plan`}
+                                      className={`col-sm-4 p-0 ${
+                                        producttype?.type
+                                      }-plan ${
+                                        producttype?.type == "PRO"
+                                          ? "plan_height"
+                                          : ""
+                                      }`}
                                     >
                                       <div className="plans">
                                         <label
@@ -753,15 +768,13 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                                         )}
                                       </div>
                                     </div>
-
                                   );
                                 }
                               })}
                             </>
                           );
                         }
-                      })()} */}
-
+                      })()}
                     </div>
 
                     <div className="row align-items-center justify-content-center mt-5">
@@ -1392,20 +1405,28 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                                       <figure className="product-media">
                                         <a href="javascript:void">
                                           <img
-                                            src={app_1}
+                                            //src={app_1}
+                                            src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${healingPoten?.image}`}
                                             alt="product"
                                             width="280"
                                             height="315"
                                             className="healing_image"
                                           />
+                                          <div class="title-bottom-left">
+                                            {healingPoten?.name}
+                                          </div>
+                                          <div class="description-bottom-left">
+                                            {healingPoten?.description}
+                                          </div>
                                           <img
                                             //src={app_11}
                                             // src={
                                             //   "http://54.177.7.240" +
                                             //   healingPoten?.image
                                             // }
-                                            src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${healingPoten?.image}`}
-                                            //className="healing_image"
+
+                                            src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${healingPoten?.layoutPhoto}`}
+                                            className="healing_image-top"
                                             alt="product"
                                             style={{ width: "50% !important" }}
                                             width="280"

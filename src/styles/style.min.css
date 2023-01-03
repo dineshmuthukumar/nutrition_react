@@ -10926,13 +10926,13 @@ button.mfp-arrow {
   opacity: 1
 }
 
-.product-media:hover img:first-child {
+/* .product-media:hover img:first-child {
   opacity: 0
 }
 
 .product-media:hover img:last-child {
   opacity: 1
-}
+} */
 
 .product-media {
   position: relative;

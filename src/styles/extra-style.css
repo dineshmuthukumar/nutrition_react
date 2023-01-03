@@ -1058,8 +1058,9 @@ i.d-icon-heart {
     min-height: 80px;
 }
 
-.product-thumb.active::before {
-    border-radius: 100px;
+.product-thumb.active::before img{
+   
+       border-radius: 100px;
 }
 
 .product-thumbs-wrap .product-thumbs .owl-next {
