@@ -402,71 +402,79 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                         </div> */}
                         </div>
                         {(() => {
-                          // if (productData?.photos?.length > 0) {
-                          return (
-                            <div className="col-sm-3">
-                              <button
-                                className="thumb-up11"
-                                onClick={() => {
-                                  console.log(
-                                    parseInt(slideBy),
-                                    "parseInt(slideBy)"
-                                  );
-                                  if (parseInt(slideBy) == 0) {
-                                    setSlideBy(productData?.photos?.length - 1);
-                                    swiperRefBanner.current.swiper.slideTo(
-                                      productData?.photos?.length - 1
+                          if (productData?.photos?.length > 0) {
+                            return (
+                              <div className="col-sm-3 d-flex">
+                                <button
+                                  className="thumb-up11"
+                                  onClick={() => {
+                                    console.log(
+                                      parseInt(slideBy),
+                                      "parseInt(slideBy)"
                                     );
-                                    setProductThumb(
-                                      productData?.photos?.length - 1
-                                    );
-                                  }
-                                  if (parseInt(slideBy) - 1 <= 0) {
-                                    console.log(true, "erfcre");
-                                  } else {
-                                    console.log(false);
-                                  }
-                                  if (parseInt(slideBy) - 1 <= -1) {
-                                    setSlideBy(productData?.photos?.length - 1);
-                                    swiperRefBanner.current.swiper.slideTo(
-                                      productData?.photos?.length - 1
-                                    );
-                                    setProductThumb(
-                                      productData?.photos?.length - 1
-                                    );
-                                  } else {
-                                    setSlideBy(parseInt(slideBy) - 1);
-                                    swiperRefBanner.current.swiper.slidePrev();
-                                    setProductThumb(parseInt(productThumb) - 1);
-                                  }
-                                }}
-                                key="prdni1"
-                              >
-                                <i class="d-icon-arrow-left"></i>
-                              </button>
-                              <button
-                                className="thumb-down22"
-                                onClick={() => {
-                                  if (
-                                    parseInt(slideBy) + 1 >=
-                                    productData?.photos?.length
-                                  ) {
-                                    setSlideBy(0);
-                                    swiperRefBanner.current.swiper.slideTo(0);
-                                    setProductThumb(0);
-                                  } else {
-                                    setSlideBy(parseInt(slideBy) + 1);
-                                    swiperRefBanner.current.swiper.slideNext();
-                                    setProductThumb(parseInt(productThumb) + 1);
-                                  }
-                                }}
-                                key="prdni34"
-                              >
-                                <i class="d-icon-arrow-right"></i>
-                              </button>
-                            </div>
-                          );
-                          // }
+                                    if (parseInt(slideBy) == 0) {
+                                      setSlideBy(
+                                        productData?.photos?.length - 1
+                                      );
+                                      swiperRefBanner.current.swiper.slideTo(
+                                        productData?.photos?.length - 1
+                                      );
+                                      setProductThumb(
+                                        productData?.photos?.length - 1
+                                      );
+                                    }
+                                    if (parseInt(slideBy) - 1 <= 0) {
+                                      console.log(true, "erfcre");
+                                    } else {
+                                      console.log(false);
+                                    }
+                                    if (parseInt(slideBy) - 1 <= -1) {
+                                      setSlideBy(
+                                        productData?.photos?.length - 1
+                                      );
+                                      swiperRefBanner.current.swiper.slideTo(
+                                        productData?.photos?.length - 1
+                                      );
+                                      setProductThumb(
+                                        productData?.photos?.length - 1
+                                      );
+                                    } else {
+                                      setSlideBy(parseInt(slideBy) - 1);
+                                      swiperRefBanner.current.swiper.slidePrev();
+                                      setProductThumb(
+                                        parseInt(productThumb) - 1
+                                      );
+                                    }
+                                  }}
+                                  key="prdni1"
+                                >
+                                  <i class="d-icon-arrow-left"></i>
+                                </button>
+                                <button
+                                  className="thumb-down22"
+                                  onClick={() => {
+                                    if (
+                                      parseInt(slideBy) + 1 >=
+                                      productData?.photos?.length
+                                    ) {
+                                      setSlideBy(0);
+                                      swiperRefBanner.current.swiper.slideTo(0);
+                                      setProductThumb(0);
+                                    } else {
+                                      setSlideBy(parseInt(slideBy) + 1);
+                                      swiperRefBanner.current.swiper.slideNext();
+                                      setProductThumb(
+                                        parseInt(productThumb) + 1
+                                      );
+                                    }
+                                  }}
+                                  key="prdni34"
+                                >
+                                  <i class="d-icon-arrow-right"></i>
+                                </button>
+                              </div>
+                            );
+                          }
                         })()}
                       </div>
 
