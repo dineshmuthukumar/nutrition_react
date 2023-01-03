@@ -905,9 +905,9 @@ button.btn-product.btn-cart {
 
 .cart_packlist {
     padding: 5px;
-    background: #f1f3f3;
+    /* background: #f1f3f3; */
     border-radius: 20px;
-    box-shadow: 0 2rem 3rem rgb(0 0 0 / 5%), 0 0 5px rgb(0 0 0 / 5%);
+    /* box-shadow: 0 2rem 3rem rgb(0 0 0 / 5%), 0 0 5px rgb(0 0 0 / 5%); */
     transition: transform 0.3s;
 }
 

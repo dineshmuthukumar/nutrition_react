@@ -603,13 +603,13 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                         ""
                       )}
                     </div>
-                    <div className="row cart_packlist">
+                    <div className="row cart_packlist d-flex justify-content-center w-100">
                       {(() => {
                         if (productData?.productType?.length > 0) {
                           return (
                             <>
                               {productData?.productType?.map((producttype) => {
-                                if (producttype?.discount) {
+                                if (producttype?.actualAmount) {
                                   return (
                                     <div
                                       className={`col-sm-4 p-0 ${producttype?.type}-plan`}
