@@ -1565,3 +1565,27 @@ select.form-control.count_pack_value {
     }
 }
 }
+
+.cart_packlist
+{
+    .plan_height
+    {
+        .pack_padding 
+        {
+            padding: 25px 0px;
+        }
+    }
+}
+.product-gallery
+{
+    .product-thumbs-wrap
+    {
+        .product-thumb.active
+        {
+            img
+            {
+                border: 2px solid var(--base-color);
+            }
+        }
+    }
+}

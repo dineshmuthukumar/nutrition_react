@@ -611,14 +611,83 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                         ""
                       )}
                     </div>
-                    <div className="row cart_packlist d-flex justify-content-center w-100">
-                      {(() => {
+                    <div className="row cart_packlist d-flex justify-content-center w-100 mt-5">
+
+                      {/* Product Pro Start */}
+                        <div class="col-sm-4 p-0 BASIC-plan">
+                          <div class="plans">
+                              <label class="plan BASIC-plan" for="BASIC">
+                                  <input type="radio" name="plan" id="BASIC" />
+                                  <div class="plan-content">
+                                      <div class="plan-details">
+                                          <span>BASIC</span>
+                                          <div class="pack_padding">
+                                              <h1 class="pack_tittle">pack of 1</h1>
+                                              <h1 class="pack_tittle_save">(Save ₹100.00)</h1>
+                                              <img src="https://admin.livenscience.com/images/product/1672661002579_5-a.png" />
+                                          </div>
+                                          <div class="pack_add_cart">₹900.00 / Fulse</div>
+                                      </div>
+                                  </div>
+                              </label>
+                              <div class="inner-product-label-group2">
+                                  <label class="inner-product-label label-sale2">10% Off</label>
+                              </div>
+                          </div>
+                        </div>
+                        <div class="col-sm-4 p-0 BASIC-plan plan_height">
+                            <div class="plans">
+                                <label class="plan BASIC-plan" for="BASIC">
+                                    <input type="radio" name="plan" id="BASIC" />
+                                    <div class="plan-content">
+                                        <div class="plan-details">
+                                            <span>BASIC</span>
+                                            <div class="pack_padding">
+                                                <h1 class="pack_tittle">pack of 1</h1>
+                                                <h1 class="pack_tittle_save">(Save ₹100.00)</h1>
+                                                <img src="https://admin.livenscience.com/images/product/1672661002579_5-a.png" />
+                                            </div>
+                                            <div class="pack_add_cart">₹900.00 / Fulse</div>
+                                        </div>
+                                    </div>
+                                </label>
+                                <div class="inner-product-label-group2">
+                                    <label class="inner-product-label label-sale2">10% Off</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 p-0 BASIC-plan">
+                            <div class="plans">
+                                <label class="plan BASIC-plan" for="BASIC">
+                                    <input type="radio" name="plan" id="BASIC" />
+                                    <div class="plan-content">
+                                        <div class="plan-details">
+                                            <span>BASIC</span>
+                                            <div class="pack_padding">
+                                                <h1 class="pack_tittle">pack of 1</h1>
+                                                <h1 class="pack_tittle_save">(Save ₹100.00)</h1>
+                                                <img src="https://admin.livenscience.com/images/product/1672661002579_5-a.png" />
+                                            </div>
+                                            <div class="pack_add_cart">₹900.00 / Fulse</div>
+                                        </div>
+                                    </div>
+                                </label>
+                                <div class="inner-product-label-group2">
+                                    <label class="inner-product-label label-sale2">10% Off</label>
+                                </div>
+                            </div>
+                        </div>
+                      {/* Product Pro End */}
+
+
+                      {/* {(() => {
                         if (productData?.productType?.length > 0) {
                           return (
                             <>
                               {productData?.productType?.map((producttype) => {
                                 if (producttype?.actualAmount) {
                                   return (
+                        
                                     <div
                                       className={`col-sm-4 p-0 ${producttype?.type}-plan`}
                                     >
@@ -684,13 +753,15 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                                         )}
                                       </div>
                                     </div>
+
                                   );
                                 }
                               })}
                             </>
                           );
                         }
-                      })()}
+                      })()} */}
+
                     </div>
 
                     <div className="row align-items-center justify-content-center mt-5">

@@ -12422,9 +12422,9 @@ ul.blog-filters .nav-filter {
     border: 2px solid transparent;
 }
 
-.product-thumb.active::before {
+/* .product-thumb.active::before {
     border-color: #4dae67;
-}
+} */
 
 .product-thumb .btn-play {
     position: relative;
