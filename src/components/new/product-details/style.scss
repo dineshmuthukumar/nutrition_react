@@ -1164,28 +1164,82 @@ img.product-thumb_img {
     z-index: 8;
 }
 
-.title-bottom-left{
-    position: relative;
-    text-align: center;
-    color: black;
-    z-index: 8;
-    top: -120px;
-    right: 7px;
-    font-size: 24px;
-    display: none;
-}
+// .title-bottom-left{
+//     position: relative;
+//     text-align: center;
+//     color: black;
+//     z-index: 8;
+//     top: -120px;
+//     right: 7px;
+//     font-size: 24px;
+//     display: none;
+// }
 
-.description-bottom-left{
+// .description-bottom-left{
+//     position: relative;
+//     text-align: center;
+//     // color: white;
+//     color: black;
+//     z-index: 7;
+//     display: none;
+//     top: -124px;
+//     right: 4px;
+//     font-size: 10px;
+//     padding: 1rem;
+// }
+
+#Potential_product
+{
     position: relative;
-    text-align: center;
-    // color: white;
-    color: black;
-    z-index: 7;
-    display: none;
-    top: -124px;
-    right: 4px;
-    font-size: 10px;
-    padding: 1rem;
+    figure.product-media
+    {
+        &:hover
+        {
+            .title-bottom-left
+            {
+                opacity: 1;   
+            }    
+        }
+        &:hover
+        {
+            .description-bottom-left
+            {
+                opacity: 1;   
+            }    
+        }
+        img.healing_image-top
+        {
+            background: #e1fff1;
+            border-radius: 20px;
+        }
+    }
+    .title-bottom-left
+    {
+        position: absolute;
+        z-index: 999;
+        content: '';
+        top: 20%;
+        color: var(--black);
+        left: 0;
+        bottom: 0;
+        right: 0;
+        opacity: 0;
+    }
+    .description-bottom-left
+    {
+        position: absolute;
+        z-index: 999;
+        content: '';
+        top: 30%;
+        color: var(--black);
+        font-size: 12px;
+        line-height: 1.6;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        opacity: 0;
+        padding: 15px;
+    }
 }
 
 
