@@ -611,7 +611,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                         ""
                       )}
                     </div>
-                    <div className="row cart_packlist d-flex justify-content-center w-100 mt-5 gap-2">
+                    <div className="row cart_packlist d-flex justify-content-center w-100 mt-5">
                       {/* Product Pro Start */}
                       {/* <div class="col-sm-4 p-0 BASIC-plan">
                         <div class="plans">
