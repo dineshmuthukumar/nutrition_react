@@ -1020,20 +1020,28 @@ const Free_Trial_Section = ({ productData }) => {
                                     <figure className="product-media">
                                       <a href="javascript:void">
                                         <img
-                                          src={app_1}
+                                          //src={app_1}
+                                          src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${healingPoten?.image}`}
                                           alt="product"
                                           width="280"
                                           height="315"
                                           className="healing_image"
                                         />
+                                        <div class="title-bottom-left">
+                                          {healingPoten?.name}
+                                        </div>
+                                        <div class="description-bottom-left">
+                                          {healingPoten?.description}
+                                        </div>
                                         <img
                                           //src={app_11}
                                           // src={
                                           //   "http://54.177.7.240" +
                                           //   healingPoten?.image
                                           // }
-                                          src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${healingPoten?.image}`}
-                                          //className="healing_image"
+
+                                          src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${healingPoten?.layoutPhoto}`}
+                                          className="healing_image-top"
                                           alt="product"
                                           style={{ width: "50% !important" }}
                                           width="280"
