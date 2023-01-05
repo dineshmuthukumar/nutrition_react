@@ -1580,11 +1580,20 @@ img.weak_strongest_img_absolute {
 
 
 
-@media (min-width: 320px) and (max-width: 767px) {
-    ul.mobile-menu.mmenu-anim a {
+@media (min-width: 320px) and (max-width: 767px) 
+{
+    ul.mobile-menu.mmenu-anim a 
+    {
         color: var(--black);
     }
-
+    .header-middle 
+    {
+        padding: 2.7rem 2rem;
+    }
+    .product.product-with-qty .product-details .btn-cart 
+    {
+        max-width: 100% !important;
+    }
 }
 
 .header-user-details {
