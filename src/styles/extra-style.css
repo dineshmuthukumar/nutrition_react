@@ -1624,8 +1624,8 @@ section.arrivals-section.need_sec img {
 }
 
 .intro-slide1.banner.banner-fixed .free_trial_banner {
-    height: 600px !important;
-    min-height: 600px !important;
+    height: 670px !important;
+    min-height: 670px !important;
     background-size: contain;
     object-fit: fill;
 }

@@ -95,8 +95,6 @@
     font-size: 18px;
     background: #fff;
     padding: 1rem;
-  
-   
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     -webkit-justify-content: center;
@@ -106,6 +104,10 @@
     -webkit-align-items: center;
     align-items: center;
   }
+  .swiper-slide.swiper-slide-active {
+    padding: 0;
+    margin: 0;
+}
   
   .swiper-slide img {
     display: block;
