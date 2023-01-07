@@ -1638,7 +1638,7 @@ section.arrivals-section.need_sec img {
     height: 315px;
     width: 100%;
     max-width: 100%;
-    border-radius: 10px;
+    border-radius: 5px;
     object-fit: fill;
 }
 
