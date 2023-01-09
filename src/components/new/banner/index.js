@@ -79,9 +79,9 @@ const Banner = ({ bannerContent }) => {
             onSwiper={(swiper) => console.log(swiper)}
             modules={[Navigation, Pagination, Scrollbar, A11y]}
             // navigation={true}
+            className="bannerSwiper"
             pagination={{ clickable: true }}
-            scrollbar={{ draggable: true }}
-          >
+            scrollbar={{ draggable: true }}>
             {(() => {
               if (bannerContent?.length > 0) {
                 return (
@@ -91,13 +91,14 @@ const Banner = ({ bannerContent }) => {
                         <SwiperSlide>
                           {" "}
                           <Link
-                            to={`/products/list/${BannerDetail.categoryId}`}
-                          >
+                            to={`/products/list/${BannerDetail.categoryId}`}>
                             <div
-                              className={`intro-slide${key} banner banner-fixed`}
-                            >
+                              className={`intro-slide${key} banner banner-fixed`}>
                               <figure>
-                                <img src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${BannerDetail?.image}`} alt="intro-banner" />
+                                <img
+                                  src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${BannerDetail?.image}`}
+                                  alt="intro-banner"
+                                />
                               </figure>
                             </div>
                           </Link>
