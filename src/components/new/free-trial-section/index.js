@@ -1,5 +1,3 @@
-
-
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
@@ -619,8 +617,7 @@ const Free_Trial_Section = ({ productData }) => {
                       ) : (
                         <div
                           className="input-prepend mb-4 mt-4"
-                          onClick={() => handleForm()}
-                        >
+                          onClick={() => handleForm()}>
                           <img
                             src={buy_now}
                             className="trial_buy_now_btn heart"
@@ -768,8 +765,7 @@ const Free_Trial_Section = ({ productData }) => {
                   <div
                     dangerouslySetInnerHTML={{
                       __html: productData?.howToUsedescription,
-                    }}
-                  ></div>
+                    }}></div>
                   {/* <li>
                   <b>Drop</b>: Put 1 tab in a glass of water (250ml).
                 </li>
@@ -970,8 +966,7 @@ const Free_Trial_Section = ({ productData }) => {
                 <div
                   dangerouslySetInnerHTML={{
                     __html: productData?.chooseLivenBurndescription,
-                  }}
-                ></div>
+                  }}></div>
               </div>
               <div className="col-md-4 text-center">
                 <img
@@ -1000,14 +995,13 @@ const Free_Trial_Section = ({ productData }) => {
                     // loopFillGroupWithBlank={true}
                     navigation={false}
                     modules={[Navigation]}
-                    className="mySwiper"
+                    className="mySwiper11"
                     breakpoints={{
                       320: { slidesPerView: 3, spaceBetween: 5 },
                       480: { slidesPerView: 3, spaceBetween: 5 },
                       768: { slidesPerView: 4, spaceBetween: 5 },
                       1024: { slidesPerView: 5, spaceBetween: 5 },
-                    }}
-                  >
+                    }}>
                     {(() => {
                       return (
                         <>
@@ -1052,8 +1046,7 @@ const Free_Trial_Section = ({ productData }) => {
                                         <a
                                           href="#"
                                           className="btn-product-icon btn-wishlist"
-                                          title="Add to wishlist"
-                                        >
+                                          title="Add to wishlist">
                                           <i className="d-icon-plus"></i>
                                         </a>
                                       </div>
@@ -1082,8 +1075,7 @@ const Free_Trial_Section = ({ productData }) => {
               <button
                 className="swipper_back_arrow"
                 onClick={() => handleNavigation("prev")}
-                disabled={swiperRef?.current?.swiper?.isBeginning}
-              >
+                disabled={swiperRef?.current?.swiper?.isBeginning}>
                 <img
                   src="https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png"
                   width="40"
@@ -1094,8 +1086,7 @@ const Free_Trial_Section = ({ productData }) => {
               <button
                 className="swipper_front_arrow"
                 onClick={() => handleNavigation("next")}
-                disabled={swiperRef?.current?.swiper?.isEnd}
-              >
+                disabled={swiperRef?.current?.swiper?.isEnd}>
                 <img
                   src="https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/front-arrow.png"
                   width="40"
@@ -1109,8 +1100,7 @@ const Free_Trial_Section = ({ productData }) => {
 
         <section
           className="new_our_idea pt-2 pt-md-7 pt-10 pb-8"
-          id="trial_faq"
-        >
+          id="trial_faq">
           <div className="container p-0">
             <h2 className="title-echo mb-1">
               <span>Clear Your Mind Now! Answers for Your Queries!</span>
@@ -1181,8 +1171,7 @@ const Free_Trial_Section = ({ productData }) => {
                   onClick={() => {
                     setShow(false);
                     setLoading(false);
-                  }}
-                >
+                  }}>
                   <h4>Change</h4>
                 </div>
               </Col>
@@ -1195,8 +1184,7 @@ const Free_Trial_Section = ({ productData }) => {
               type="button"
               className="btn btn-dark btn-block btn-rounded otp-submin-button-free"
               onClick={handleVerifyOTP}
-              disabled={verifyLoading || navigate}
-            >
+              disabled={verifyLoading || navigate}>
               {navigate ? (
                 "Verified Successfully, please wait..."
               ) : (
@@ -1224,6 +1212,5 @@ const colorStyles = {
     };
   },
 };
-
 
 export default Free_Trial_Section;

@@ -38,8 +38,7 @@ const InstagramSection = ({ homeContent }) => {
     <>
       <section
         className="instagram-section pt-2 pt-md-7 pt-10 pb-8"
-        data-animation-options="{'delay': '.2s', 'duration': '.5s' }"
-      >
+        data-animation-options="{'delay': '.2s', 'duration': '.5s' }">
         <div className="container">
           <h2 className="title-echo mb-1">
             <span>{homeContent?.section?.fifth?.title}</span>
@@ -111,14 +110,13 @@ const InstagramSection = ({ homeContent }) => {
             // loopFillGroupWithBlank={true}
             navigation={false}
             modules={[Navigation]}
-            className="mySwiper"
+            className="mySwiper11"
             breakpoints={{
               320: { slidesPerView: 3, spaceBetween: 5 },
               480: { slidesPerView: 3, spaceBetween: 5 },
               768: { slidesPerView: 5, spaceBetween: 5 },
               1024: { slidesPerView: 5, spaceBetween: 5 },
-            }}
-          >
+            }}>
             {homeContent?.section?.fifth?.imageList &&
               homeContent?.section?.fifth?.imageList?.map(
                 (fifthproductcontentList) => {
@@ -192,8 +190,7 @@ const InstagramSection = ({ homeContent }) => {
           <button
             className="swipper_back_arrow"
             onClick={() => handleNavigation("prev")}
-            disabled={swiperRef?.current?.swiper?.isBeginning}
-          >
+            disabled={swiperRef?.current?.swiper?.isBeginning}>
             <img
               src="https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png"
               width="40"
@@ -204,8 +201,7 @@ const InstagramSection = ({ homeContent }) => {
           <button
             className="swipper_front_arrow"
             onClick={() => handleNavigation("next")}
-            disabled={swiperRef?.current?.swiper?.isEnd}
-          >
+            disabled={swiperRef?.current?.swiper?.isEnd}>
             <img
               src="https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/front-arrow.png"
               width="40"
