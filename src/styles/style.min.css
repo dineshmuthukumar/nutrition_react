@@ -25424,12 +25424,12 @@ aside .owl-nav-top .owl-nav i:before {
   height: 640px;
 }
 .banner figure img {
-  object-fit: fill;
+  object-fit: fill !important;
   max-width: 100%;
   /* height: 540px;
   min-height: 540px; */
   width: 100%;
-  height: 670px;
+  height: 640px;
   border-radius: 0px;
 }
 
