@@ -323,14 +323,21 @@ const Free_Trial_Section = ({ productData }) => {
         }
       }
     } else {
-      dispatch(
-        add_to_cart_thunk(
-          productData?._id,
-          productData?.productType[0]?.type,
-          productData?.saleAmount
-        )
+      let Data = cart?.data?.cartProductDetails?.find(
+        (obj) => obj?.isFree == true
       );
-      history.push("/cart");
+      if (!Data) {
+        dispatch(
+          add_to_cart_thunk(
+            productData?._id,
+            productData?.productType[0]?.type,
+            productData?.saleAmount
+          )
+        );
+        history.push("/cart");
+      } else {
+        toast.info("Free product at a time when only one product is allowed");
+      }
     }
   };
   const handleVerifyOTP = async () => {

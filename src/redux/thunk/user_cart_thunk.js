@@ -8,6 +8,9 @@ import {
 } from "../../api/base-methods";
 
 import { getProductDetailsApi } from "../../api/base-methods";
+
+import { removeCookiesByName } from "../../utils/cookies";
+
 import {
   add_to_cart_action_request,
   add_to_cart_action_success,
@@ -43,6 +46,8 @@ export const add_to_cart_thunk = (
       toast.success("The Product is successfully added to your cart.", {
         autoClose: 2000,
       });
+      removeCookiesByName("type");
+      removeCookiesByName("saleAmount");
       setStatus(true);
 
       // Meta Pixel

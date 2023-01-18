@@ -121,17 +121,15 @@ const Product = ({ ProductDetails, key }) => {
                       )
                     );
                   }
-                }}
-              >
+                }}>
                 <i class="d-icon-bag"></i>
                 <span>Add to Bag</span>
               </a>
             ) : (
               <Link
                 to={`/product/free/${ProductDetails?._id}`}
-                class="btn-product btn-cart ls-l"
-              >
-                Free
+                class="btn-product btn-cart ls-l">
+                Cart
               </Link>
             )
           ) : !ProductDetails?.isFree ? (
@@ -142,9 +140,8 @@ const Product = ({ ProductDetails, key }) => {
           ) : (
             <Link
               to={`/product/free/${ProductDetails?._id}`}
-              class="btn-product btn-cart ls-l"
-            >
-              Free
+              class="btn-product btn-cart ls-l">
+              Cart
             </Link>
           )}
         </div>

@@ -67,6 +67,11 @@ import FeatureProduct from "../feature-product";
 import { EnquiryApi, subscribeApi } from "../../../api/base-methods";
 import { AiOutlineArrowRight, AiOutlineArrowLeft } from "react-icons/ai";
 import { Swiper, SwiperSlide } from "swiper/react";
+import {
+  setCookiesByName,
+  getTypeCookies,
+  getsaleAmountCookies,
+} from "../../../utils/cookies";
 
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.scss";
@@ -95,7 +100,8 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
   const swiperRef = useRef();
   const swiperRefBanner = useRef();
   const [update, setUpdate] = useState(0);
-
+  let TypeCookies = getTypeCookies();
+  let SaleAmountCookies = getsaleAmountCookies();
   const handleNavigation = useCallback((direction = "") => {
     setUpdate(Math.random());
     console.log(direction, "direction");
@@ -107,6 +113,20 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
   useEffect(() => {
     setUpdate(Math.random());
   }, [swiperRef?.current?.swiper]);
+
+  useEffect(() => {
+    console.log(SaleAmountCookies, "TypeCookies");
+    if (SaleAmountCookies) {
+      dispatch(
+        add_to_cart_thunk(
+          productData?._id,
+          TypeCookies,
+          SaleAmountCookies,
+          setStatus
+        )
+      );
+    }
+  }, []);
 
   useEffect(() => {
     if (user) {
@@ -123,17 +143,33 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
   }, [userCart]);
 
   useEffect(() => {
+    console.log(productData?.productType, "producttype");
     // console.log(productData.productType, "productData.productType");
     //console.log(productData?.productType, "ewdfcdw");
     // eslint-di useEffect(() => {
-    if (productData.productType) {
-      setProductFavor(productData.productType[1].type);
-      setProductAmount(productData.productType[1]?.saleAmount);
+    if (productData?.productType) {
+      if (productData?.productType[1]?.saleAmount) {
+        setProductFavor(productData.productType[1].type);
+        setProductAmount(productData.productType[1]?.saleAmount);
+        setCookiesByName("type", productData.productType[1].type);
+        setCookiesByName("saleAmount", productData.productType[1].saleAmount);
+      } else if (productData?.productType[0]?.saleAmount) {
+        setProductFavor(productData.productType[0].type);
+        setProductAmount(productData.productType[0]?.saleAmount);
+        setCookiesByName("type", productData.productType[0].type);
+        setCookiesByName("saleAmount", productData.productType[0].saleAmount);
+      } else if (productData?.productType[2]?.saleAmount) {
+        setProductFavor(productData.productType[2].type);
+        setProductAmount(productData.productType[2]?.saleAmount);
+        setCookiesByName("type", productData.productType[2].type);
+        setCookiesByName("saleAmount", productData.productType[2].saleAmount);
+      }
     }
   }, [productData.productType]);
   useEffect(() => {
     setSlideBy(productThumb);
   }, [productThumb]);
+
   function callback(event) {
     var items = event.item.count; // Number of items
     var item = event.item.index;

@@ -13,7 +13,11 @@ import { useDispatch } from "react-redux";
 // import ShowAll from "../components/show-all";
 import { useHistory, useRouteMatch } from "react-router";
 
-import { setCookiesByName, setCookies } from "../utils/cookies";
+import {
+  setCookiesByName,
+  setCookies,
+  removeCookiesByName,
+} from "../utils/cookies";
 import { user_load_by_token_thunk } from "../redux/thunk/user_thunk";
 import { nftCategoriesApi } from "../api/methods";
 import useQuery from "../hook/useQuery";
@@ -108,6 +112,11 @@ const Cart = () => {
   //   }
   // }, []);
 
+  useEffect(() => {
+    removeCookiesByName("type");
+    removeCookiesByName("saleAmount");
+  }, []);
+
   return (
     <>
       <Header
@@ -120,8 +129,7 @@ const Cart = () => {
           <div className="container-fluid p-0">
             <div
               className="page-header pl-4 pr-4"
-              style={{ background: "#7ea4b1" }}
-            >
+              style={{ background: "#7ea4b1" }}>
               <h1 className="page-title font-weight-bold lh-1 text-white text-capitalize">
                 SHOPPING CART
               </h1>
@@ -136,6 +144,6 @@ const Cart = () => {
       {/* <Footer /> */}
     </>
   );
-};;
+};
 
 export default Cart;

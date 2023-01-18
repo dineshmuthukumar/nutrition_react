@@ -1,6 +1,8 @@
 import cookie from "react-cookies";
 
 const cookie_token = "bl_base_user_token";
+const type = "type";
+const saleAmount = "saleAmount";
 
 export const setCookiesByName = (name, input) => {
   const expires = new Date();
@@ -47,6 +49,13 @@ export const removeCookiesByName = (name) => {
 
 export const getCookies = () => {
   return cookie.load(cookie_token);
+};
+
+export const getTypeCookies = () => {
+  return cookie.load(type);
+};
+export const getsaleAmountCookies = () => {
+  return cookie.load(saleAmount);
 };
 
 export const removeCookies = () => {
