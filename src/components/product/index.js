@@ -133,7 +133,9 @@ const Product = ({ ProductDetails, key }) => {
               </Link>
             )
           ) : !ProductDetails?.isFree ? (
-            <Link to="/Login" class="btn-product btn-cart ls-l">
+            <Link
+              to={`/product/${ProductDetails?._id}`}
+              class="btn-product btn-cart ls-l">
               {" "}
               Add to Bag{" "}
             </Link>

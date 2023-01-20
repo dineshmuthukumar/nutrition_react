@@ -1673,13 +1673,13 @@ input.btn.btn-large:active {
     }
 }
 
-.cart_packlist {
-    .plan_height {
-        .pack_padding {
-            padding: 25px 0px;
-        }
-    }
-}
+// .cart_packlist {
+//     .plan_height {
+//         .pack_padding {
+//             padding: 25px 0px;
+//         }
+//     }
+// }
 
 .product-gallery {
     .product-thumbs-wrap {
@@ -1705,7 +1705,7 @@ input.btn.btn-large:active {
     transition: .5s;
 }
 
-.ADVANCED-plan {
+.ADVANCED-plan:hover {
     transform: translateY(-10px);
     transition: .5s;
 }
