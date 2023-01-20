@@ -71,6 +71,7 @@ import {
   setCookiesByName,
   getTypeCookies,
   getsaleAmountCookies,
+  getproductIdCookies,
 } from "../../../utils/cookies";
 
 import "swiper/swiper-bundle.min.css";
@@ -99,9 +100,11 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
 
   const swiperRef = useRef();
   const swiperRefBanner = useRef();
+  const swiperRefRelated = useRef();
   const [update, setUpdate] = useState(0);
   let TypeCookies = getTypeCookies();
   let SaleAmountCookies = getsaleAmountCookies();
+  let productIdCookies = getproductIdCookies();
   const handleNavigation = useCallback((direction = "") => {
     setUpdate(Math.random());
     console.log(direction, "direction");
@@ -115,18 +118,24 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
   }, [swiperRef?.current?.swiper]);
 
   useEffect(() => {
-    console.log(SaleAmountCookies, "TypeCookies");
-    if (SaleAmountCookies) {
-      dispatch(
-        add_to_cart_thunk(
-          productData?._id,
-          TypeCookies,
-          SaleAmountCookies,
-          setStatus
-        )
-      );
+    // console.log(SaleAmountCookies, "TypeCookies");
+    if (productIdCookies && user?.login) {
+      console.log(SaleAmountCookies, "TypeCookies");
+      // console.log(productIdCookies, "productIdCookies");
+      if (productData?._id == productIdCookies) {
+        console.log("getproductIdCookies", getproductIdCookies());
+        dispatch(
+          add_to_cart_thunk(
+            productData?._id,
+            TypeCookies,
+            SaleAmountCookies,
+            setStatus
+          )
+        );
+        history.push("/cart");
+      }
     }
-  }, []);
+  }, [productIdCookies, productData]);
 
   useEffect(() => {
     if (user) {
@@ -143,29 +152,42 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
   }, [userCart]);
 
   useEffect(() => {
-    console.log(productData?.productType, "producttype");
+    // console.log(productData._id, "producttype");
     // console.log(productData.productType, "productData.productType");
     //console.log(productData?.productType, "ewdfcdw");
     // eslint-di useEffect(() => {
+
     if (productData?.productType) {
       if (productData?.productType[1]?.saleAmount) {
         setProductFavor(productData.productType[1].type);
         setProductAmount(productData.productType[1]?.saleAmount);
-        setCookiesByName("type", productData.productType[1].type);
-        setCookiesByName("saleAmount", productData.productType[1].saleAmount);
+        if (!user?.login) {
+          setCookiesByName("type", productData.productType[1].type);
+          setCookiesByName("saleAmount", productData.productType[1].saleAmount);
+          setCookiesByName("productid", productData?._id);
+        }
       } else if (productData?.productType[0]?.saleAmount) {
         setProductFavor(productData.productType[0].type);
         setProductAmount(productData.productType[0]?.saleAmount);
-        setCookiesByName("type", productData.productType[0].type);
-        setCookiesByName("saleAmount", productData.productType[0].saleAmount);
+        if (!user?.login) {
+          setCookiesByName("type", productData.productType[0].type);
+          setCookiesByName("saleAmount", productData.productType[0].saleAmount);
+          setCookiesByName("productid", productData?._id);
+        }
       } else if (productData?.productType[2]?.saleAmount) {
         setProductFavor(productData.productType[2].type);
         setProductAmount(productData.productType[2]?.saleAmount);
-        setCookiesByName("type", productData.productType[2].type);
-        setCookiesByName("saleAmount", productData.productType[2].saleAmount);
+        if (!user?.login) {
+          setCookiesByName("type", productData.productType[2].type);
+          setCookiesByName("saleAmount", productData.productType[2].saleAmount);
+          setCookiesByName("productid", productData?._id);
+        }
       }
     }
-  }, [productData.productType]);
+    if (productData?.productType && !user?.login) {
+      setCookiesByName("productid", productData?._id);
+    }
+  }, [productData?.productType, productData]);
   useEffect(() => {
     setSlideBy(productThumb);
   }, [productThumb]);
@@ -1941,6 +1963,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
             <h2 className="title-echo mb-1">
               <span>Some Related Products</span>
             </h2>
+
             {/* <div
                                 className="owl-carousel owl-theme row cols-lg-4 cols-md-3 cols-2"
                                 data-owl-options="{
@@ -1962,47 +1985,70 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                         }"
                             > */}
             {subCategoryProducts?.length > 0 && (
-              <OwlCarousel
-                // className="owl-carousel owl-theme own-carosuel-releadproduct row cols-lg-4"
-                className="owl-carousel owl-carousel-healing"
-                margin={20}
-                stagePadding={10}
+              <Swiper
+                ref={swiperRefRelated}
+                slidesPerView={5}
+                spaceBetween={4}
+                slidesPerGroup={4}
                 // loop={true}
-                nav={true}
-                items={1} //
-                // autoWidth={true}
-                smartSpeed={500}
-                dots={false}
-                navContainerClass={"owl-nav"}
-                // navContainerClass={"owl-nav"}
-                // navText={[
-                //   `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png  />`,
-                //   `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png />`,
-                // ]}
-                // navText={[
-                //   `<img src=https://cdn-icons-png.flaticon.com/512/109/109618.png  />`,
-                //   `<img src=https://cdn-icons-png.flaticon.com/512/109/109617.png  />`,
-                // ]}
-                responsive={{
-                  0: {
-                    items: 1,
-                  },
-                  768: {
-                    items: 3,
-                  },
-                  800: {
-                    items: 3,
-                  },
+                // loopFillGroupWithBlank={true}
+                navigation={false}
+                modules={[Navigation]}
+                className="mySwiper11122d"
+                breakpoints={{
+                  320: { slidesPerView: 3, spaceBetween: 5 },
+                  480: { slidesPerView: 3, spaceBetween: 5 },
+                  768: { slidesPerView: 4, spaceBetween: 5 },
+                  1024: { slidesPerView: 5, spaceBetween: 5 },
                 }}
-                autoplay
-                // loop
-                autoplayTimeout={2000}
-                autoplayHoverPause={true}
-                // navText={[
-                //   '<i class="fa fa-chevron-left"></i>"',
-                //   '<i class="fa fa-chevron-right"></i>'
-                // ]}
+                // breakpoints={{
+                //   320: { slidesPerView: 3, spaceBetween: 5 },
+                //   480: { slidesPerView: 3, spaceBetween: 5 },
+                //   768: { slidesPerView: 4, spaceBetween: 5 },
+                //   1024: { slidesPerView: 5, spaceBetween: 5 },
+                // }}
               >
+                {/* <OwlCarousel
+                  // className="owl-carousel owl-theme own-carosuel-releadproduct row cols-lg-4"
+                  className="owl-carousel owl-carousel-healing"
+                  margin={20}
+                  stagePadding={10}
+                  // loop={true}
+                  nav={true}
+                  items={1} //
+                  // autoWidth={true}
+                  smartSpeed={500}
+                  dots={false}
+                  navContainerClass={"owl-nav"}
+                  // navContainerClass={"owl-nav"}
+                  // navText={[
+                  //   `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png  />`,
+                  //   `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png />`,
+                  // ]}
+                  // navText={[
+                  //   `<img src=https://cdn-icons-png.flaticon.com/512/109/109618.png  />`,
+                  //   `<img src=https://cdn-icons-png.flaticon.com/512/109/109617.png  />`,
+                  // ]}
+                  responsive={{
+                    0: {
+                      items: 1,
+                    },
+                    768: {
+                      items: 3,
+                    },
+                    800: {
+                      items: 3,
+                    },
+                  }}
+                  autoplay
+                  // loop
+                  autoplayTimeout={2000}
+                  autoplayHoverPause={true}
+                  // navText={[
+                  //   '<i class="fa fa-chevron-left"></i>"',
+                  //   '<i class="fa fa-chevron-right"></i>'
+                  // ]}
+                > */}
                 {(() => {
                   if (subCategoryProducts?.length > 0) {
                     return (
@@ -2010,10 +2056,13 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                         {subCategoryProducts?.map(
                           (subCategoryProductsDetails, pkey) => {
                             return (
-                              <Product
-                                ProductDetails={subCategoryProductsDetails}
-                                key={pkey}
-                              />
+                              <SwiperSlide>
+                                {" "}
+                                <Product
+                                  ProductDetails={subCategoryProductsDetails}
+                                  key={pkey}
+                                />
+                              </SwiperSlide>
                             );
                           }
                         )}
@@ -2021,8 +2070,31 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                     );
                   }
                 })()}
-              </OwlCarousel>
+                {/* </OwlCarousel> */}
+              </Swiper>
             )}
+            <button
+              className="swipper_back_arrow"
+              onClick={() => handleNavigation("prev")}
+              disabled={swiperRef?.current?.swiper?.isBeginning}>
+              <img
+                src="https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png"
+                width="40"
+                height="40"
+                alt="Arrow"
+              />
+            </button>
+            <button
+              className="swipper_front_arrow"
+              onClick={() => handleNavigation("next")}
+              disabled={swiperRef?.current?.swiper?.isEnd}>
+              <img
+                src="https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/front-arrow.png"
+                width="40"
+                height="40"
+                alt="Arrow"
+              />
+            </button>
             <div className="row mt-10">
               <div className="col-sm-12 text-center">
                 <div className="product-form-group justify-content-center">

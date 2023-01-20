@@ -57,6 +57,9 @@ export const getTypeCookies = () => {
 export const getsaleAmountCookies = () => {
   return cookie.load(saleAmount);
 };
+export const getproductIdCookies = () => {
+  return cookie.load("productid");
+};
 
 export const removeCookies = () => {
   cookie.remove(cookie_token, {

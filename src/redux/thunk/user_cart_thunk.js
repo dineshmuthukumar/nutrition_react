@@ -48,6 +48,7 @@ export const add_to_cart_thunk = (
       });
       removeCookiesByName("type");
       removeCookiesByName("saleAmount");
+      removeCookiesByName("productid");
       setStatus(true);
 
       // Meta Pixel
