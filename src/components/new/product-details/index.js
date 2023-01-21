@@ -798,8 +798,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                                               </div>
                                               <div className="pack_add_cart">
                                                 {currencyFormat(
-                                                  producttype?.saleAmount /
-                                                    producttype?.package,
+                                                  producttype?.saleAmount,
                                                   "INR"
                                                 )}{" "}
                                                 / Fulse
