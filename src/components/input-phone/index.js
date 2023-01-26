@@ -10,6 +10,7 @@ const InputPhone = ({
   value,
   required = false,
   className = "",
+  disabled = false,
   onEnterKeyPress = () => {},
   title,
 }) => {
@@ -27,6 +28,7 @@ const InputPhone = ({
         value={value}
         onChange={onChange}
         inputClass={classInput}
+        disabled={disabled}
       />
     </>
   );

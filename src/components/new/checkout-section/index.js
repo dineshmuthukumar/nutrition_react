@@ -331,10 +331,10 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
 
     if (!address?.pincode || address.pincode === undefined) {
       c_validation = { ...c_validation, pincode: true };
-      c_validation = { ...c_validation, valid_pincode: true };
+      //c_validation = { ...c_validation, valid_pincode: true };
     } else {
       c_validation = { ...c_validation, pincode: false };
-      c_validation = { ...c_validation, valid_pincode: false };
+      //c_validation = { ...c_validation, valid_pincode: false };
     }
 
     setAddressValidation(c_validation);
@@ -345,8 +345,8 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
       !c_validation.valid_state &&
       !c_validation.city &&
       !c_validation.valid_city &&
-      !c_validation.pincode &&
-      !c_validation.valid_pincode
+      !c_validation.pincode
+      //!c_validation.valid_pincode
     ) {
       return true;
     } else {
@@ -694,6 +694,7 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
                                   title={"Mobile"}
                                   defaultCountry={"+91"}
                                   value={user?.data?.mobile}
+                                  disabled={true}
 
                                   // required={lvalidation.phone_no}
                                   //onChange={(e, c_code) => {
