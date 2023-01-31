@@ -102,7 +102,7 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
     valid_city: false,
     state: false,
     valid_state: false,
-    pincode: true,
+    pincode: false,
     valid_pincode: false,
   });
 
@@ -368,6 +368,9 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
         const result = await UpdateProfileApi(ProfileData);
         if (result.data.statusCode === 200) {
           toast.success("Profile Updated Sucessfully");
+          setTimeout(function () {
+            window.location.reload();
+          }, 250);
         }
         console.log(result, "result");
       } catch (err) {

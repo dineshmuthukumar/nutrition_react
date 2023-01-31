@@ -148,11 +148,9 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
               </li>
               {(() => {
                 if (categorylist?.length > 0) {
-                  let count = 0;
                   return (
                     <>
                       {categorylist?.map((arrivalecontent, key) => {
-                        count++;
                         return (
                           <li
                             className="nav-item ml-1 mr-1 pt-2 pb-2"
@@ -165,12 +163,14 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
                                 categoryActiveIndex == key ? "active" : ""
                               }`}>
                               <h3 className="img-cat-title mb-0 gap-4">
-                                <img
-                                  src={arrivalecontent?.layoutPhoto}
-                                  alt={arrivalecontent?.name}
-                                  width="14"
-                                  height="14"
-                                />
+                                {arrivalecontent?.layoutPhoto && (
+                                  <img
+                                    src={arrivalecontent?.layoutPhoto}
+                                    alt={"Image"}
+                                    width="14"
+                                    height="14"
+                                  />
+                                )}
                                 <span>{arrivalecontent?.name}</span>
                               </h3>
                             </a>
