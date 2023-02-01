@@ -353,7 +353,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
   const checkAddressValidation = () => {
     let c_validation = { ...addressValidation };
 
-    console.log(addressValidation, "addressValidation");
+    //console.log(addressValidation, "addressValidation");
     if (!address?.address) {
       c_validation = { ...c_validation, address: true };
       // c_validation = { ...c_validation, valid_address: true };
@@ -418,7 +418,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
             window.location.reload();
           }, 250);
         }
-        console.log(result, "result");
+        //console.log(result, "result");
       } catch (err) {
         console.log(err);
       }
@@ -465,7 +465,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
     }
 
     let CheckoutDetails = "";
-    let isSub = false;
+
     let SubId = "";
     try {
       setCheckoutLoading(true);
@@ -480,10 +480,6 @@ const CheckoutSection = ({ orderInfo, loading }) => {
       setCheckoutLoading(false);
     }
 
-    if (CheckoutDetails?.data?.responseData?.plan_id) {
-      isSub = true;
-      //SubId = CheckoutDetails?.data?.responseData?.orderInfo?.id;
-    }
     // console.log(
     //   CheckoutDetails?.data?.responseData?.orderInfo,
     //   "CheckoutDetails"
@@ -523,7 +519,12 @@ const CheckoutSection = ({ orderInfo, loading }) => {
       // image: "http://localhost:1337/logo.png",
       order_id: CheckoutDetails?.data?.responseData?.orderInfo?.id,
       handler: async function (response) {
-        console.log(response, "response");
+        //console.log(response, "response");
+        let isSub = false;
+        if (CheckoutDetails?.data?.responseData?.plan_id) {
+          isSub = true;
+          //SubId = CheckoutDetails?.data?.responseData?.orderInfo?.id;
+        }
         let RequestData;
         if (isSub) {
           RequestData = {
@@ -566,7 +567,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
       try {
         const result = await OrdersFailedApi(response);
         //if (result?.data?.statusCode === 200) {
-        console.log(result?.data, "results");
+        //console.log(result?.data, "results");
         toast.error("Payment failed. Try again sometimes");
       } catch (err) {
         console.log(err, "erro");
@@ -609,7 +610,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
       var req = { promoCode: promoCodeValue };
       const result = await applypromocodeApi(req, cart?.data?.cardId);
 
-      console.log(result?.data?.responseData.promoDetails);
+      //console.log(result?.data?.responseData.promoDetails);
       if (result.data.statusCode === 200) {
         toast.success("Promocode Applied Sucessfully");
         setPromoCodeDetails(result?.data?.responseData.promoDetails);
@@ -618,7 +619,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
         setCouponShow(false);
         //checkoutDetails();
       }
-      console.log(result, "result");
+      //console.log(result, "result");
     } catch (err) {
       toast.error(err?.data?.message);
     }
@@ -645,7 +646,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
           refreshData();
           //checkoutDetails();
         }
-        console.log(result, "result");
+        //console.log(result, "result");
       } catch (err) {
         console.log(err);
       }
