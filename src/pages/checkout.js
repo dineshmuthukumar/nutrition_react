@@ -67,7 +67,7 @@ const Checkout = () => {
       dispatch(user_load_by_token_thunk(token));
     }
 
-    checkDetails();
+    ///checkDetails();
     if (_ga) {
       history.replace(url);
     }
@@ -101,18 +101,18 @@ const Checkout = () => {
     }
   }, []);
 
-  const checkDetails = async () => {
-    setLoading(true);
-    try {
-      let requestData = { cartId: cart?.data?.cardId };
-      const CheckoutDetails = await getCheckoutApi(requestData);
-      setOrderInfo(CheckoutDetails?.data?.responseData);
-      setLoading(false);
-    } catch (err) {
-      setLoading(false);
-      console.log(err);
-    }
-  };
+  // const checkDetails = async () => {
+  //   setLoading(true);
+  //   try {
+  //     let requestData = { cartId: cart?.data?.cardId };
+  //     const CheckoutDetails = await getCheckoutApi(requestData);
+  //     setOrderInfo(CheckoutDetails?.data?.responseData);
+  //     setLoading(false);
+  //   } catch (err) {
+  //     setLoading(false);
+  //     console.log(err);
+  //   }
+  // };
   return (
     <>
       <Header
@@ -125,18 +125,13 @@ const Checkout = () => {
           <div className="container-fluid p-0">
             <div
               className="page-header pl-4 pr-4"
-              style={{ background: "#7ea4b1" }}
-            >
+              style={{ background: "#7ea4b1" }}>
               <h1 className="page-title font-weight-bold lh-1 text-white text-capitalize">
                 Checkout
               </h1>
             </div>
             <div className="page-content pb-10 pt-10">
-              <CheckoutSection
-                orderInfo={orderInfo}
-                checkoutDetails={checkDetails}
-                loading={loading}
-              />
+              <CheckoutSection orderInfo={orderInfo} loading={loading} />
             </div>
           </div>
         </div>

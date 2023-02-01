@@ -59,7 +59,7 @@ import {
 import { MdRemoveCircle } from "react-icons/md";
 // import { toast } from "react-toastify";
 
-const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
+const CheckoutSection = ({ orderInfo, loading }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { user, cart } = useSelector((state) => state);
@@ -112,6 +112,9 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
 
   const [minutes, setMinutes] = useState(10);
   const [seconds, setSeconds] = useState(0);
+  const [totalPromoAmount, setTotalPromoAmount] = useState(0);
+  const [totalAmount, setTotalAmount] = useState(0);
+  const [checkoutLoading, setCheckoutLoading] = useState(false);
 
   useEffect(() => {
     let myInterval = setInterval(() => {
@@ -148,13 +151,13 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
   // const { totalAmount, setTotalAmount } = useState(0);
   // const { currency, setCurrency } = useState("INR");
 
-  const checkDetails = async () => {
-    let requestData = { cartId: cart?.data?.cardId };
-    /// const CheckoutDetails = await getCheckoutApi(requestData);
-    //   console.log(CheckoutDetails?.data?.responseData?.orderInfo?.amount);
-    //   setTotalAmount(1000);
-    //   setCurrency(CheckoutDetails?.data?.responseData?.orderInfo?.currency);
-  };
+  // const checkDetails = async () => {
+  //   let requestData = { cartId: cart?.data?.cardId };
+  //   /// const CheckoutDetails = await getCheckoutApi(requestData);
+  //   //   console.log(CheckoutDetails?.data?.responseData?.orderInfo?.amount);
+  //   //   setTotalAmount(1000);
+  //   //   setCurrency(CheckoutDetails?.data?.responseData?.orderInfo?.currency);
+  // };
   const getPromocodeList = async () => {
     const response = await getPromocodeListApi();
     setPromoCodeList(response?.data?.responseData?.promocodes);
@@ -163,12 +166,21 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
   };
   useEffect(async () => {
     dispatch(get_cart_list_thunk());
-    checkDetails();
     getStatesList();
     setAddress({ ...address, state: user?.data?.state?._id });
-
     getCityUser();
     getPromocodeList();
+    refreshData();
+    getcmsPages();
+
+    // console.log(response?.data?.responseData?.blogs?.docs, "response");
+  }, []);
+
+  useEffect(() => {
+    refreshData();
+  }, [cart]);
+
+  const refreshData = () => {
     if (user?.login) {
       let Data = cart?.data?.cartProductDetails?.find(
         (obj) => obj?.isFree == true
@@ -176,10 +188,44 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
       if (Data) {
         setIsFreeProduct(true);
       }
+      // cart?.data?.cartProductDetails.map(() =>
+      //  )
+      let TotalAmount = cart?.data?.cartProductDetails?.reduce(
+        (n, { saleAmount }) => n + saleAmount,
+        0
+      );
+
+      if (
+        parseFloat(cart?.data?.cartSetting?.deliveryMinimumAmount) >=
+          parseFloat(TotalAmount) ||
+        Data
+      ) {
+        TotalAmount += cart?.data?.cartSetting?.deliveryCharge;
+      }
+      setTotalPromoAmount(TotalAmount);
+
+      if (cart?.data?.promoDetails) {
+        let discountAmount = 0;
+        if (
+          cart?.data?.promoDetails &&
+          Object.keys(cart?.data?.promoDetails)?.length
+        ) {
+          if (cart?.data?.promoDetails?.promoType == "percentage") {
+            discountAmount = percentage(
+              cart?.data?.promoDetails?.percentage,
+              TotalAmount
+            );
+          } else {
+            discountAmount = cart?.data?.promoDetails?.discountAmount;
+          }
+        }
+        // console.log(discountAmount, "discountAmount");
+        TotalAmount -= parseFloat(discountAmount);
+      }
+      setTotalAmount(TotalAmount);
     }
-    getcmsPages();
-    // console.log(response?.data?.responseData?.blogs?.docs, "response");
-  }, []);
+    setPromoCodeDetails(cart?.data?.promoDetails);
+  };
 
   const UpdateAddress = (e) => {
     e.preventDefault();
@@ -417,6 +463,32 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
       alert("Razorpay SDK Failed to load");
       return;
     }
+
+    let CheckoutDetails = "";
+    let isSub = false;
+    let SubId = "";
+    try {
+      setCheckoutLoading(true);
+      let requestData = { cartId: cart?.data?.cardId };
+      CheckoutDetails = await getCheckoutApi(requestData);
+      // setOrderInfo(CheckoutDetails?.data?.responseData);
+      // setLoading(false);
+      if (CheckoutDetails?.data?.statusCode) setCheckoutLoading(false);
+    } catch (err) {
+      // setLoading(false);
+      console.log(err);
+      setCheckoutLoading(false);
+    }
+
+    if (CheckoutDetails?.data?.responseData?.plan_id) {
+      isSub = true;
+      //SubId = CheckoutDetails?.data?.responseData?.orderInfo?.id;
+    }
+    // console.log(
+    //   CheckoutDetails?.data?.responseData?.orderInfo,
+    //   "CheckoutDetails"
+    // );
+    // return false;
     //   //console.log("cart?.data?", cart?.data);
     //   let requestData = { cartId: cart?.data?.cardId };
     //   const CheckoutDetails = await getCheckoutApi(requestData);
@@ -425,40 +497,47 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
     //   CheckoutDetails?.data?.responseData.orderInfo,
     //   "CheckoutDetails"
     // );
-    let discountAmount = 0;
-    if (promoCodeDetails && Object.keys(promoCodeDetails)?.length) {
-      if (promoCodeDetails?.promoType == "percentage") {
-        discountAmount = percentage(
-          promoCodeDetails?.percentage,
-          orderInfo?.orderInfo?.amount / 100
-        );
-      } else {
-        discountAmount = promoCodeDetails?.discountAmount;
-      }
-    }
-    let amount =
-      parseFloat(orderInfo?.orderInfo?.amount) - parseFloat(discountAmount);
+    // let discountAmount = 0;
+    // if (promoCodeDetails && Object.keys(promoCodeDetails)?.length) {
+    //   if (promoCodeDetails?.promoType == "percentage") {
+    //     discountAmount = percentage(
+    //       promoCodeDetails?.percentage,
+    //       orderInfo?.orderInfo?.amount / 100
+    //     );
+    //   } else {
+    //     discountAmount = promoCodeDetails?.discountAmount;
+    //   }
+    // }
+    // let amount =
+    //   parseFloat(orderInfo?.orderInfo?.amount) - parseFloat(discountAmount);
 
-    console.log(amount, "amount");
+    //console.log(amount, "amount");
     const options = {
       key: "rzp_test_2hFYTVjM8i6zhe",
-      currency: orderInfo?.orderInfo?.currency,
-      amount: amount / 100,
+      currency: CheckoutDetails?.data?.responseData?.orderInfo?.currency,
+      //amount: amount / 100,
       name: "LivenScience",
       description: "Thankyou for your order",
       image: "https://manuarora.in/logo.png",
       // description: "Test Wallet Transaction",
       // image: "http://localhost:1337/logo.png",
-      order_id: orderInfo?.orderInfo?.id,
+      order_id: CheckoutDetails?.data?.responseData?.orderInfo?.id,
       handler: async function (response) {
         console.log(response, "response");
-
-        let RequestData = {
-          cartId: cart?.data?.cardId,
-          razorpay_payment_id: response.razorpay_payment_id,
-          razorpay_order_id: response.razorpay_order_id,
-          razorpay_signature: response.razorpay_signature,
-        };
+        let RequestData;
+        if (isSub) {
+          RequestData = {
+            razorpay_payment_id: response.razorpay_payment_id,
+            razorpay_subscription_id: response.razorpay_order_id,
+            razorpay_signature: response.razorpay_signature,
+          };
+        } else {
+          RequestData = {
+            razorpay_payment_id: response.razorpay_payment_id,
+            razorpay_order_id: response.razorpay_order_id,
+            razorpay_signature: response.razorpay_signature,
+          };
+        }
         try {
           const result = await OrderSuccessApi(RequestData);
           if (result.data.statusCode === 200) {
@@ -534,8 +613,10 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
       if (result.data.statusCode === 200) {
         toast.success("Promocode Applied Sucessfully");
         setPromoCodeDetails(result?.data?.responseData.promoDetails);
+        dispatch(get_cart_list_thunk());
+        refreshData();
         setCouponShow(false);
-        checkoutDetails();
+        //checkoutDetails();
       }
       console.log(result, "result");
     } catch (err) {
@@ -558,9 +639,11 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
         // console.log(result?.data?.responseData.promoDetails);
         if (result.data.statusCode === 200) {
           toast.success("Promocode Removed Sucessfully");
+          dispatch(get_cart_list_thunk());
           setPromoCodeDetails({});
           setCouponShow(false);
-          checkoutDetails();
+          refreshData();
+          //checkoutDetails();
         }
         console.log(result, "result");
       } catch (err) {
@@ -1151,17 +1234,21 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
                         )
                       : "No Items Found"}
 
-                    {cart?.data?.cartProductDetails.length > 0 &&
-                      parseFloat(
-                        cart?.data?.cartSetting?.deliveryMinimumAmount
-                      ) >= parseFloat(orderInfo?.orderInfo?.amount / 100) && (
-                        <li className="list-group-item">
-                          Delivery Charges{" "}
-                          <span className="plan_right_section dicount_span">
-                            {currencyFormat(orderInfo?.deliveryCharge, "INR")}
-                          </span>
-                        </li>
-                      )}
+                    {cart?.data?.cartProductDetails.length > 0 || isFreeProduct
+                      ? parseFloat(
+                          cart?.data?.cartSetting?.deliveryMinimumAmount
+                        ) >= parseFloat(totalAmount) && (
+                          <li className="list-group-item">
+                            Delivery Charges{" "}
+                            <span className="plan_right_section dicount_span">
+                              {currencyFormat(
+                                cart?.data?.cartSetting?.deliveryCharge,
+                                "INR"
+                              )}
+                            </span>
+                          </li>
+                        )
+                      : ""}
                     {promoCodeDetails &&
                       Object.keys(promoCodeDetails)?.length > 0 && (
                         <li className="list-group-item">
@@ -1178,7 +1265,7 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
                               ? currencyFormat(
                                   percentage(
                                     promoCodeDetails?.percentage,
-                                    orderInfo?.orderInfo?.amount / 100
+                                    totalPromoAmount
                                   ),
                                   "INR"
                                 )
@@ -1203,10 +1290,7 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
                           <h5>
                             Total Amount
                             <span className="plan_right_section">
-                              {currencyFormat(
-                                orderInfo?.orderInfo?.amount / 100,
-                                "INR"
-                              )}
+                              {currencyFormat(totalAmount, "INR")}
                             </span>
                           </h5>
                         </li>
@@ -1248,13 +1332,20 @@ const CheckoutSection = ({ orderInfo, checkoutDetails, loading }) => {
                                 user?.data?.state &&
                                 user?.data?.city &&
                                 user?.data?.zipCode &&
-                                user?.data?.name &&
-                                user?.data?.email ? (
+                                user?.data?.name ? (
+                                  //user?.data?.email ?
                                   <Link // to="#"
                                     onClick={() => open()}
+                                    disabled={checkoutLoading}
                                     className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4">
-                                    Continue to pay{" "}
-                                    <i className="d-icon-arrow-right"></i>
+                                    {!checkoutLoading ? (
+                                      <>
+                                        Continue to pay{" "}
+                                        <i className="d-icon-arrow-right"></i>
+                                      </>
+                                    ) : (
+                                      "Loading..."
+                                    )}
                                   </Link>
                                 ) : (
                                   <Link
