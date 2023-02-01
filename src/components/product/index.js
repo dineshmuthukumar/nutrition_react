@@ -134,7 +134,7 @@ const Product = ({ ProductDetails, key }) => {
             )
           ) : !ProductDetails?.isFree ? (
             <Link
-              to={`/product/${ProductDetails?._id}`}
+              to={`/login?redirect=${process.env.REACT_APP_PUBLIC_BASE_URL}/product/${ProductDetails?._id}`}
               class="btn-product btn-cart ls-l">
               {" "}
               Add to Bag{" "}
