@@ -510,7 +510,9 @@ const CheckoutSection = ({ orderInfo, loading }) => {
     //console.log(amount, "amount");
     const options = {
       key: "rzp_test_2hFYTVjM8i6zhe",
-      currency: CheckoutDetails?.data?.responseData?.orderInfo?.currency,
+      currency: CheckoutDetails?.data?.responseData?.orderInfo?.currency
+        ? CheckoutDetails?.data?.responseData?.orderInfo?.currency
+        : "INR",
       //amount: amount / 100,
       name: "LivenScience",
       description: "Thankyou for your order",
