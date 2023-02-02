@@ -509,17 +509,18 @@ const CheckoutSection = ({ orderInfo, loading }) => {
 
     //console.log(amount, "amount");
     const options = {
+      ...CheckoutDetails,
       key: "rzp_test_2hFYTVjM8i6zhe",
-      currency: CheckoutDetails?.data?.responseData?.orderInfo?.currency
-        ? CheckoutDetails?.data?.responseData?.orderInfo?.currency
-        : "INR",
-      //amount: amount / 100,
-      name: "LivenScience",
-      description: "Thankyou for your order",
-      image: "https://manuarora.in/logo.png",
-      // description: "Test Wallet Transaction",
-      // image: "http://localhost:1337/logo.png",
-      order_id: CheckoutDetails?.data?.responseData?.orderInfo?.id,
+      // currency: CheckoutDetails?.data?.responseData?.orderInfo?.currency
+      //   ? CheckoutDetails?.data?.responseData?.orderInfo?.currency
+      //   : "INR",
+      ///amount: CheckoutDetails?.data?.responseData?.orderInfo?.amount / 100,
+      // name: "LivenScience",
+      // description: "Thankyou for your order",
+      // image: "https://manuarora.in/logo.png",
+      // // description: "Test Wallet Transaction",
+      // // image: "http://localhost:1337/logo.png",
+      // order_id: CheckoutDetails?.data?.responseData?.orderInfo?.id,
       handler: async function (response) {
         //console.log(response, "response");
         let isSub = false;
