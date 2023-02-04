@@ -198,14 +198,17 @@ input.btn.btn-large:active {
     button {
       background: var(--base-color);
     }
+
     .swipper_back_arrow:disabled {
       background: grey;
       opacity: 0.5;
     }
+
     .swipper_front_arrow:disabled {
       background: grey;
       opacity: 0.5;
     }
+
     .swipper_back_arrow {
       width: 40px;
       height: 40px;
@@ -215,6 +218,7 @@ input.btn.btn-large:active {
       left: -4% !important;
       bottom: 43% !important;
     }
+
     .swipper_front_arrow {
       width: 40px;
       height: 40px;
@@ -226,31 +230,39 @@ input.btn.btn-large:active {
     }
   }
 }
+
 #Potential_product {
   position: relative;
+
   figure.product-media {
     &:hover {
       .title-bottom-left {
         opacity: 1;
       }
     }
+
     &:hover {
       .description-bottom-left {
         opacity: 1;
       }
     }
+
     img.healing_image-top {
       background: #e1fff1;
       border-radius: 20px;
     }
+
     &:hover {
       background: #e1fff1;
+
       img {
         opacity: 0;
       }
+
       // transform: scale(1.2);
     }
   }
+
   .title-bottom-left {
     position: absolute;
     z-index: 999;
@@ -262,6 +274,7 @@ input.btn.btn-large:active {
     right: 0;
     opacity: 0;
   }
+
   .description-bottom-left {
     position: absolute;
     z-index: 999;
@@ -276,4 +289,8 @@ input.btn.btn-large:active {
     opacity: 0;
     padding: 15px;
   }
+}
+
+.trial_buy_now_btn {
+  cursor: pointer
 }
