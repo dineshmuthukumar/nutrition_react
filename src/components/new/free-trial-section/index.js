@@ -323,10 +323,25 @@ const Free_Trial_Section = ({ productData }) => {
         }
       }
     } else {
-      let Data = cart?.data?.cartProductDetails?.find(
-        (obj) => obj?.isFree == true
-      );
-      if (!Data) {
+      if (
+        cart?.data?.cartProductDetails &&
+        Object.keys(cart?.data?.cartProductDetails)?.length > 0
+      ) {
+        let Data = cart?.data?.cartProductDetails?.find(
+          (obj) => obj?.isFree == true
+        );
+        if (!Data) {
+          dispatch(
+            add_to_cart_thunk(
+              productData?._id,
+              productData?.productType[0]?.type,
+              productData?.saleAmount
+            )
+          );
+        } else {
+          toast.info("Free product at a time when only one product is allowed");
+        }
+      } else {
         dispatch(
           add_to_cart_thunk(
             productData?._id,
@@ -334,10 +349,8 @@ const Free_Trial_Section = ({ productData }) => {
             productData?.saleAmount
           )
         );
-        history.push("/cart");
-      } else {
-        toast.info("Free product at a time when only one product is allowed");
       }
+      history.push("/cart");
     }
   };
   const handleVerifyOTP = async () => {
