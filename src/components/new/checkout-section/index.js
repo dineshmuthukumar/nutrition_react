@@ -525,7 +525,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
       // image: "https://manuarora.in/logo.png",
       // // description: "Test Wallet Transaction",
       // // image: "http://localhost:1337/logo.png",
-      // order_id: CheckoutDetails?.data?.responseData?.orderInfo?.plan_id,
+      order_id: CheckoutDetails?.data?.responseData?.orderInfo?.plan_id,
       //entity: "subscription",
 
       handler: async function (response) {
