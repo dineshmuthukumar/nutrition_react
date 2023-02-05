@@ -15,7 +15,10 @@ import { useHistory, useRouteMatch } from "react-router";
 
 import { setCookiesByName, setCookies } from "../utils/cookies";
 import { user_load_by_token_thunk } from "../redux/thunk/user_thunk";
-import { getProductDetailsApi } from "../api/base-methods";
+import {
+  getProductDetailsApi,
+  getProductDetailsSlugApi,
+} from "../api/base-methods";
 import useQuery from "../hook/useQuery";
 //import FavouriteNFTs from "../components/favourite-NFTs";
 // import HeroBanner from "../components/hero-banner";
@@ -45,7 +48,9 @@ const FreeTrial = () => {
   const _ga = query.get("_ga");
   const match = useRouteMatch();
   // const { user } = useSelector((state) => state.user.data);
-  const { productid } = match.params;
+  let { productid } = match.params;
+  if (query.get("slug")) productid = query.get("slug");
+
   const [list, setList] = useState([]);
   const [productData, setProductData] = useState({});
 
@@ -55,7 +60,7 @@ const FreeTrial = () => {
   // const [favHasNext, setFavHasNext] = useState(false);
   const getProductDetails = async () => {
     try {
-      let response = await getProductDetailsApi(productid);
+      let response = await getProductDetailsSlugApi(productid);
       setProductData(response?.data?.responseData?.product);
     } catch (err) {
       console.log(err);
@@ -109,6 +114,6 @@ const FreeTrial = () => {
       {/* <Footer /> */}
     </>
   );
-};;
+};
 
 export default FreeTrial;

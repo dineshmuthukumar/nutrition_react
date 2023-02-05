@@ -42,7 +42,7 @@ const Product = ({ ProductDetails, key }) => {
         {(() => {
           if (ProductDetails?.isFree) {
             return (
-              <Link to={`/product/free/${ProductDetails?._id}`}>
+              <Link to={`/product/free/details?slug=${ProductDetails?.slug}`}>
                 <img
                   src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${ProductDetails?.photos[0]}`}
                   alt="product"
@@ -54,7 +54,7 @@ const Product = ({ ProductDetails, key }) => {
             );
           } else {
             return (
-              <Link to={`/product/${ProductDetails?._id}`}>
+              <Link to={`/product/details?slug=${ProductDetails?.slug}`}>
                 <img
                   //src={"http://54.177.7.240" + ProductDetails?.photos[0]}
                   src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${ProductDetails?.photos[0]}`}
@@ -127,21 +127,21 @@ const Product = ({ ProductDetails, key }) => {
               </a>
             ) : (
               <Link
-                to={`/product/free/${ProductDetails?._id}`}
+                to={`/product/free/details?slug=${ProductDetails?.slug}`}
                 class="btn-product btn-cart ls-l">
                 Add to Bag
               </Link>
             )
           ) : !ProductDetails?.isFree ? (
             <Link
-              to={`/login?redirect=${process.env.REACT_APP_URL}/product/${ProductDetails?._id}`}
+              to={`/login?redirect=${process.env.REACT_APP_URL}/product/details?slug=${ProductDetails?.slug}`}
               class="btn-product btn-cart ls-l">
               {" "}
               Add to Bag{" "}
             </Link>
           ) : (
             <Link
-              to={`/product/free/${ProductDetails?._id}`}
+              to={`/product/free/details?slug=${ProductDetails?.slug}`}
               class="btn-product btn-cart ls-l">
               Add to Bag
             </Link>

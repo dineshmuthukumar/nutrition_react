@@ -32,21 +32,32 @@ import useQuery from "../hook/useQuery";
 
 import Header from "../components/header";
 import ProductDetails from "../components/new/product-details";
-import { getProductDetailsApi } from "../api/base-methods";
+import {
+  getProductDetailsApi,
+  getProductDetailsSlugApi,
+} from "../api/base-methods";
 import Banner from "../components/new/banner";
 
 import Footer from "../components/footer";
 
+// import useQuery from "../hook/useQuery";
+
 const NewHome = () => {
+  const query = useQuery();
+  const slug = query.get("slug");
   const { url } = useRouteMatch();
   const match = useRouteMatch();
   const history = useHistory();
   const dispatch = useDispatch();
-  let query = useQuery();
+  //let query = useQuery();
   const fsz = query.get("fsz");
   const token = query.get("token");
   const _ga = query.get("_ga");
-  const { productid } = match.params;
+
+  let { productid } = match.params;
+
+  if (query.get("slug")) productid = query.get("slug");
+  // console.log(productid, "productid");
   // const { user } = useSelector((state) => state.user.data);
 
   const [productData, setProductData] = useState({});
@@ -60,7 +71,7 @@ const NewHome = () => {
   const getProductDetails = async () => {
     try {
       setLoading(true);
-      let response = await getProductDetailsApi(productid);
+      let response = await getProductDetailsSlugApi(productid);
       setProductData(response?.data?.responseData?.product);
       setSubCategoryProducts(response?.data?.responseData?.subcategoryProducts);
       setLoading(false);

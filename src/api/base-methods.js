@@ -28,6 +28,9 @@ export const getsubCategoryListApi = () => baseAxios.get(`/subcategory/list`);
 export const getProductDetailsApi = (productId) =>
   baseAxios.get(`/product/details?id=${productId}`);
 
+export const getProductDetailsSlugApi = (productId) =>
+  baseAxios.get(`/product/details?slug=${productId}`);
+
 export const getCitiesApi = (stateId) => baseAxios.get(`/cities/${stateId}`);
 
 export const getStatesApi = () => baseAxios.get(`/states/101`);
@@ -94,11 +97,7 @@ export const removepromocodeApi = (cartId) =>
 
 export const settingsApi = () => baseAxios.get(`/settings`);
 
-
 export const EnquiryApi = (props) => baseAxios.post(`/enquiry`, { ...props });
-
-
-
 
 export const readNotificationApi = () =>
   baseAxios.post("/users/notification_read");

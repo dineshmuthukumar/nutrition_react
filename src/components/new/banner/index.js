@@ -81,7 +81,8 @@ const Banner = ({ bannerContent }) => {
             // navigation={true}
             className="bannerSwiper"
             pagination={{ clickable: true }}
-            scrollbar={{ draggable: true }}>
+            scrollbar={{ draggable: true }}
+            loop={true}>
             {(() => {
               if (bannerContent?.length > 0) {
                 return (
