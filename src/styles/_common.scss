@@ -27,11 +27,9 @@ $theme-color-lite: #c784ed;
   --theme-secondary-green: #b3c300;
   --theme-dark-green: #091d15;
   --ck-font-montserrat: "Montserrat", sans-serif;
-  --bs-gradient: linear-gradient(
-    180deg,
-    hsla(0, 0%, 100%, 0.15),
-    hsla(0, 0%, 100%, 0)
-  );
+  --bs-gradient: linear-gradient(180deg,
+      hsla(0, 0%, 100%, 0.15),
+      hsla(0, 0%, 100%, 0));
   --ck-heading-1: 6rem;
   --ck-heading-2: 4rem;
   --ck-heading-3: 2.5rem;
@@ -65,6 +63,7 @@ $theme-color-lite: #c784ed;
   --helvetica: "HelveticaNeue1", sans-serif;
   --helvetica1: "HelveticaNeue2", sans-serif;
 }
+
 //#fc7a4f
 
 // Helper
@@ -95,8 +94,7 @@ $theme-color-lite: #c784ed;
 
 @font-face {
   font-family: "neue_helvetica_ultralight";
-  src: url("../fonts/new/Helvetica\ Neue\ LT\ 25\ Ultra\ Light.ttf")
-    format("truetype");
+  src: url("../fonts/new/Helvetica\ Neue\ LT\ 25\ Ultra\ Light.ttf") format("truetype");
 }
 
 @font-face {
@@ -106,8 +104,7 @@ $theme-color-lite: #c784ed;
 
 @font-face {
   font-family: "neue_helvetica_medium";
-  src: url("../fonts/new/Helvetica\ Neue\ LT\ 65\ Medium.ttf")
-    format("truetype");
+  src: url("../fonts/new/Helvetica\ Neue\ LT\ 65\ Medium.ttf") format("truetype");
 }
 
 @font-face {
@@ -122,33 +119,38 @@ $theme-color-lite: #c784ed;
 
 @font-face {
   font-family: "neue_helvetica_extended";
-  src: url("../fonts/new/Helvetica\ Neue\ LT\ 53\ Extended.ttf")
-    format("truetype");
+  src: url("../fonts/new/Helvetica\ Neue\ LT\ 53\ Extended.ttf") format("truetype");
 }
+
 @font-face {
   font-family: "neue_helvetica_extended_bold";
-  src: url("../fonts/new/Helvetica\ Neue\ LT\ 73\ Bold\ Extended.ttf")
-    format("truetype");
+  src: url("../fonts/new/Helvetica\ Neue\ LT\ 73\ Bold\ Extended.ttf") format("truetype");
 }
+
 @font-face {
   font-family: Impact;
   src: url("../fonts/new/impact.ttf") format("opentype");
 }
+
 .our-team-section {
   .sectionHeading {
     font-size: 4rem;
     color: #f5ff00;
   }
+
   section.team-box {
     .team-member {
       .team-member-role {
         font-size: 1.3rem;
       }
+
       .team-member-name-desc {
         min-height: 22rem;
+
         .team-member-name {
           font-size: 3rem;
         }
+
         .team-member-desc {
           font-size: 0.9rem;
           font-weight: 600 !important;
@@ -158,16 +160,19 @@ $theme-color-lite: #c784ed;
     }
   }
 }
+
 section.our-investor-section {
   .sectionHeading {
     font-size: 4rem;
     color: #f5ff00;
   }
+
   .investor-member {
     .investor-member-name-desc {
       .investor-member-name {
         font-size: 3rem;
       }
+
       .investor-member-desc {
         font-size: 1.2rem;
         font-weight: normal;
@@ -180,11 +185,13 @@ section.our-investor-section {
   .sectionHeading {
     font-size: 4rem;
   }
+
   .our-teambeyond-desc {
     font-size: 1.3rem;
     max-width: 64rem;
   }
 }
+
 $neue-helvetica-thin: "neue_helvetica_thin" !important;
 $neue-helvetica-ultralight: "neue_helvetica_ultralight" !important;
 $neue-helvetica-light: "neue_helvetica_light" !important;
@@ -196,3 +203,7 @@ $neue-helvetica-black: "neue_helvetica_black" !important;
 $neue-helvetica-extended: "neue_helvetica_extended" !important;
 $neue-helvetica-extended-bold: "neue_helvetica_extended_bold" !important;
 $Impact: "Impact" !important;
+
+body {
+  overflow: visible !important;
+}
