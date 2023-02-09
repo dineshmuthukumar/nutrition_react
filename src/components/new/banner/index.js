@@ -89,7 +89,7 @@ const Banner = ({ bannerContent }) => {
                   <>
                     {bannerContent?.map((BannerDetail, key) => {
                       return (
-                        <SwiperSlide>
+                        <SwiperSlide className="swiperSlider">
                           {" "}
                           <Link
                             to={`/products/list/${BannerDetail.categoryId}`}>
