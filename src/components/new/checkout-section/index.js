@@ -191,7 +191,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
       // cart?.data?.cartProductDetails.map(() =>
       //  )
       let TotalAmount = cart?.data?.cartProductDetails?.reduce(
-        (n, { saleAmount }) => n + saleAmount,
+        (n, { saleAmount, qty }) => n + saleAmount * qty,
         0
       );
 
