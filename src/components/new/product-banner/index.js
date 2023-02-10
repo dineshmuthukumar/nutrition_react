@@ -16,7 +16,12 @@ const ProductBanner = ({ homeContent }) => {
           <div className="row product_banner_2">
             <div className="col-sm-6">
               <h1>{homeContent?.section?.first?.header}</h1>
-              <p>{homeContent?.section?.first?.description}</p>
+              <p>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: homeContent?.section?.first?.description,
+                  }}></div>
+              </p>
               <div className="row">
                 {homeContent?.section?.first?.list &&
                   homeContent?.section?.first?.list?.map((firstContentList) => {
@@ -74,7 +79,11 @@ const ProductBanner = ({ homeContent }) => {
             </div>
             <div className="col-sm-6 text-center">
               {homeContent?.section?.first?.image && (
-                <img src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${homeContent?.section?.first?.image}`} alt="First Banner" className="nurtures_images" />
+                <img
+                  src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${homeContent?.section?.first?.image}`}
+                  alt="First Banner"
+                  className="nurtures_images"
+                />
               )}
             </div>
           </div>
@@ -83,6 +92,5 @@ const ProductBanner = ({ homeContent }) => {
     </>
   );
 };
-
 
 export default ProductBanner;

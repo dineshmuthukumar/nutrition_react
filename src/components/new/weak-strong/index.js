@@ -24,17 +24,21 @@ const WeakStrong = ({ homeContent }) => {
             </div>
             <div className="row">
               <div className="col-sm-7">
-                {homeContent?.section?.second?.list &&
-                  homeContent?.section?.second?.list?.map(
-                    (secondContentList) => {
-                      return <p>{secondContentList}</p>;
-                    }
-                  )}
+                {homeContent?.section?.second?.description && (
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: homeContent?.section?.second?.description,
+                    }}></div>
+                )}
               </div>
               <div className="col-sm-5">
                 {/* <img src={pro_bg2} className="weak_strongest_img_absolute" /> */}
                 {homeContent?.section?.second && (
-                  <img src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${homeContent?.section?.second?.image}`} className="weak_strongest_img_absolute" alt="First Banner" />
+                  <img
+                    src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${homeContent?.section?.second?.image}`}
+                    className="weak_strongest_img_absolute"
+                    alt="First Banner"
+                  />
                 )}
               </div>
             </div>
@@ -44,9 +48,12 @@ const WeakStrong = ({ homeContent }) => {
               </div>
               <div className="col-sm-8">
                 <ul>
-                  <li>Authentic standards</li>
-                  <li>Ensure Viability</li>
-                  <li>Intact Ingredient properties</li>
+                  {homeContent?.section?.second?.list &&
+                    homeContent?.section?.second?.list?.map(
+                      (secondContentList) => {
+                        return <li>{secondContentList}</li>;
+                      }
+                    )}
                 </ul>
                 <p></p>
                 <p>
@@ -63,6 +70,5 @@ const WeakStrong = ({ homeContent }) => {
     </>
   );
 };
-
 
 export default WeakStrong;

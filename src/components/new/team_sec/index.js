@@ -7,18 +7,21 @@ const TeamSection = ({ homeContent }) => {
     <>
       <section
         className="team_sec pb-5 pt-5"
-        data-animation-options="{'name': 'fadeInUpShorter','duration': '1.2s', 'delay': '.2s' }"
-      >
+        data-animation-options="{'name': 'fadeInUpShorter','duration': '1.2s', 'delay': '.2s' }">
         <div className="container">
           <h2 className="title-echo">
             <span>{homeContent?.section?.sixth?.title}</span>
           </h2>
-          <p>{homeContent?.section?.sixth?.description}</p>
+          <p>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: homeContent?.section?.sixth?.description,
+              }}></div>
+          </p>
         </div>
       </section>
     </>
   );
 };
-
 
 export default TeamSection;

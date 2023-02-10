@@ -18,7 +18,10 @@ const ProductBannerOne = ({ homeContent }) => {
             <div className="col-sm-8">
               <h1>{homeContent?.section?.fourth?.header}</h1>
               <h3 className="py-2">
-                {homeContent?.section?.fourth?.description}
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: homeContent?.section?.fourth?.description,
+                  }}></div>
               </h3>
               <br></br>
               {/* <div className="row">
@@ -47,6 +50,5 @@ const ProductBannerOne = ({ homeContent }) => {
     </>
   );
 };
-
 
 export default ProductBannerOne;

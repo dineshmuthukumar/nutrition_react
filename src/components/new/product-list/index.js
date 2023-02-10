@@ -53,8 +53,8 @@ const Productlist = () => {
 
   useEffect(async () => {
     const response = await getsubCategoryListApi(1);
-    setSubCategoryDetails(response?.data?.responseData?.subCategories);
-    console.log(response?.data?.responseData?.subCategories);
+    setSubCategoryDetails(response?.data?.responseData?.filterCategories);
+    // console.log(response?.data?.responseData?.filterCategories);
   }, []);
 
   useEffect(async () => {
@@ -217,12 +217,12 @@ const Productlist = () => {
                               <div key={`inline-${type}`} className="mb-3">
                                 <Form.Check
                                   inline
-                                  label={data.subCategoryName}
+                                  label={data.name}
                                   name={`group`}
                                   type={"radio"}
-                                  value={data._id}
+                                  value={data.code}
                                   id={`inline-${type}-1`}
-                                  checked={data._id == selectedCategory}
+                                  checked={data.code == selectedCategory}
                                   //onKeyPress={handleKeyPressEvent}
                                   onChange={handleChangeEvent}
                                 />

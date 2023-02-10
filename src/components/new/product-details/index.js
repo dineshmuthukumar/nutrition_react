@@ -79,7 +79,12 @@ import "swiper/swiper.scss";
 
 import "swiper/swiper-bundle.css";
 
-import SwiperCore, { EffectFlip, Navigation, Pagination } from "swiper";
+import SwiperCore, {
+  EffectFlip,
+  Navigation,
+  Autoplay,
+  Pagination,
+} from "swiper";
 
 const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
   const history = useHistory();
@@ -322,13 +327,19 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                         slidesPerView={1}
                         spaceBetween={4}
                         slidesPerGroup={1}
-                        pagination={true}
-                        // loop={true}
+                        loop={true}
+                        autoplay={{
+                          delay: 1000,
+                          pauseOnMouseEnter: true,
+                          disableOnInteraction: false,
+                        }}
                         // initialSlide={slideBy}
-                        loopFillGroupWithBlank={true}
+                        // loopFillGroupWithBlank={true}
                         // navigation={true}
                         // activeSlideKey={slideBy}
                         className="mySwiper"
+                        modules={[Autoplay]}
+
                         // breakpoints={{
                         //   320: { slidesPerView: 3, spaceBetween: 5 },
                         //   480: { slidesPerView: 3, spaceBetween: 5 },
@@ -1060,7 +1071,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
           <section className="element-section mt-9 mb-10">
             <div className="container">
               <h2 className="title title-center ls-s mb-8 dis_block">
-                {productData?.chooseLivenBurnTitle}
+                {productData?.addLivenBurnTitle}
               </h2>
               <div className="row elements justify-content-center">
                 {(() => {
@@ -1179,7 +1190,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
           <section className="" id="absolute_cart">
             <div className="container">
               <h2 className="title title-center ls-s mb-8 dis_block">
-                {productData?.chooseLivenBurnTitle}
+                {productData?.takeLivenBurnACVTitle}
               </h2>
               <br />
               <div className="row mt-10">
@@ -1409,7 +1420,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
 
           <section className="arrivals-section" id="Potential_product">
             <h2 className="title title-center ls-s mb-8 mt-9 dis_block">
-              Includes Healing Potential of:
+              {productData?.addHealingPotentialTitle}
             </h2>
             <div className="tab tab-nav-center">
               <div className="tab-content">
