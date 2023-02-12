@@ -970,7 +970,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                       {/* <span className="text-bold">Great Job! </span>
                       You're Taking First step towards a better you! */}
                     </p>
-                    <p className="high">
+                    <p className="high checkout-timer">
                       {cart?.data?.cartSetting?.checkoutContent2}
                       {/* <div> */}
                       {minutes === 0 && seconds === 0 ? null : (
