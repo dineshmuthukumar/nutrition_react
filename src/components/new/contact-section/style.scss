@@ -17,3 +17,43 @@
         justify-content: center;
     }
 }
+
+
+
+.quote-section
+{
+    padding: 5rem 0;
+    .inner-quote-section
+    {
+        font-family: "circularstd-medium";
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: -0.2rem 0px 0.5rem #ddd;
+        h2{
+            font-size: 3rem;
+            color: #000;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        p
+        {
+            font-size: 1.5rem;
+            color: #000;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .quote-form
+        {
+            width: 100%;
+            max-width: 90rem;
+            margin: 0 auto;
+            .form-control
+            {
+                font-size: 14px;
+                min-height: 40px;
+            }
+        }
+    }
+}

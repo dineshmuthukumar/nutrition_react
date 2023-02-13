@@ -138,6 +138,66 @@ const ContactSection = () => {
           </Row>
         </Container>
       </section>
+
+
+      <section className="quote-section">
+          <Container>
+          <div className="inner-quote-section">
+            <Row>
+              <Col>
+              <h2>Get Free Quote</h2>
+              <p>Do you have a question for us? we'd love to here from you and we would be happy to answer your questions. <br />Reach out to us and we'll response as soon as we can.</p>
+              </Col>
+            </Row>
+
+            <div className="quote-form">
+
+            <Row>
+              <Col>
+                
+                <Row>
+                  <Col>
+
+                  <Form>
+                      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                        <Form.Control type="text" placeholder="name" />
+                      </Form.Group>
+                      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                          <Form.Control type="text" placeholder="Email Address"/>
+                      </Form.Group>
+                      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                          <Form.Control type="text" placeholder="Email Address"/>
+                      </Form.Group>
+                  </Form>
+
+
+                  </Col>
+                </Row>
+
+              </Col>
+              <Col>
+
+              <Row>
+                <Col>
+                  <Form>
+                      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                        <Form.Control as="textarea" rows={3} placeholder="Address" />
+                      </Form.Group>
+                      <button type="submit" class="btn-product btn-cart wid_200">Send Message</button>
+                  </Form>
+                </Col>
+              </Row>
+
+              </Col>
+            </Row>
+
+            </div>
+
+            </div>
+          </Container>
+      </section>
+
+
     </>
   );
 };
