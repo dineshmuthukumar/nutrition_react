@@ -69,8 +69,7 @@ const BlogPost = () => {
       <div className="container">
         <ul
           className="nav-filters j ustify-content-center"
-          data-target=".posts"
-        ></ul>
+          data-target=".posts"></ul>
 
         <div className="row gutter-lg">
           <div className="offset-sm-1 col-sm-10">
@@ -79,7 +78,10 @@ const BlogPost = () => {
                 <figure className="post-media">
                   <a href="">
                     <img //src={"http://54.177.7.240" + blogData?.image}
-                      src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${blogData?.image}`} className="blog_post_img" alt="post" />
+                      src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${blogData?.image}`}
+                      className="blog_post_img"
+                      alt="post"
+                    />
                   </a>
                 </figure>
               )}
@@ -102,7 +104,13 @@ const BlogPost = () => {
                   <a href="post-single.html#">{blogData?.title}</a>
                 </h4>
                 <div className="post-body mb-7">
-                  <p className="mb-5"> {blogData?.content}</p>
+                  <p className="mb-5">
+                    {" "}
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: blogData?.content,
+                      }}></div>
+                  </p>
                 </div>
               </div>
             </article>
@@ -148,8 +156,7 @@ const BlogPost = () => {
                   // autoplay
                   loop
                   autoplayTimeout={2000}
-                  autoplayHoverPause={true}
-                >
+                  autoplayHoverPause={true}>
                   {(() => {
                     return (
                       <>
@@ -191,13 +198,15 @@ const BlogPost = () => {
                                   </a>
                                 </h4>
                                 <p className="post-content">
-                                  {Recentcontent?.content}
+                                  <div
+                                    dangerouslySetInnerHTML={{
+                                      __html: Recentcontent?.content,
+                                    }}></div>
                                 </p>
 
                                 <Link
                                   to={`/blogpost/${Recentcontent?._id}`}
-                                  className="btn btn-link btn-underline btn-primary"
-                                >
+                                  className="btn btn-link btn-underline btn-primary">
                                   Read more
                                   <i className="d-icon-arrow-right"></i>
                                 </Link>

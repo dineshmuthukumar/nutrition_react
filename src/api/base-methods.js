@@ -99,6 +99,9 @@ export const settingsApi = () => baseAxios.get(`/settings`);
 
 export const EnquiryApi = (props) => baseAxios.post(`/enquiry`, { ...props });
 
+export const EnquiryApiContact = (props) =>
+  baseAxios.post(`/enquiryContact`, { ...props });
+
 export const readNotificationApi = () =>
   baseAxios.post("/users/notification_read");
 

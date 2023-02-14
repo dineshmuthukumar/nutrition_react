@@ -61,14 +61,12 @@ const Blog = () => {
         <div className="container">
           <ul
             className="nav-filters filter-underline blog-filters justify-content-center"
-            data-target=".posts"
-          ></ul>
+            data-target=".posts"></ul>
           <div
             className="posts grid post-grid row"
             data-grid-options="{
                                 'layoutMode': 'fitRows'
-                            }"
-          >
+                            }">
             {list?.length > 0 &&
               list?.map((obj, index) => {
                 return (
@@ -103,14 +101,19 @@ const Blog = () => {
                         <h4 className="post-title">
                           <a href="#">{obj?.title}</a>
                         </h4>
-                        <p className="post-content">{obj?.content}</p>
+                        <p className="post-content">
+                          {" "}
+                          <div
+                            dangerouslySetInnerHTML={{
+                              __html: obj?.content,
+                            }}></div>
+                        </p>
                         {/* <a href="blog_post.html" className="btn btn-link btn-underline btn-primary">Read
                                                                   more<i className="d-icon-arrow-right"></i></a> */}
 
                         <Link
                           to={`/blogpost/${obj?._id}`}
-                          className="btn btn-link btn-underline btn-primary"
-                        >
+                          className="btn btn-link btn-underline btn-primary">
                           Read more<i className="d-icon-arrow-right"></i>
                         </Link>
                       </div>
