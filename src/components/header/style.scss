@@ -31,6 +31,7 @@
   left: 50% !important;
   transform: translateX(-50%) !important;
 }
+
 .x-50.y-50 {
   transform: translate(-50%, -50%) !important;
 }
@@ -106,58 +107,64 @@
 
 @media (min-width: 1200px) {
   .d-xl-none {
-      display: none !important;
+    display: none !important;
   }
 
   .d-xl-block {
-      display: block !important;
+    display: block !important;
   }
 
   .d-xl-flex {
-      display: flex !important;
+    display: flex !important;
   }
 
   .d-xl-inline-flex {
-      display: inline-flex !important;
+    display: inline-flex !important;
   }
 }
+
 @media (min-width: 992px) {
   .d-lg-none {
-      display: none !important;
+    display: none !important;
   }
 
   .d-lg-block {
-      display: block !important;
+    display: block !important;
   }
 
   .d-lg-flex {
-      display: flex !important;
+    display: flex !important;
   }
 
   .d-lg-inline-flex {
-      display: inline-flex !important;
+    display: inline-flex !important;
   }
 }
+
 @media (max-width: 1199px) {
   .d-xl-show {
-      display: none !important;
+    display: none !important;
   }
 }
+
 @media (max-width: 991px) {
   .d-lg-show {
-      display: none !important;
+    display: none !important;
   }
 }
+
 @media (max-width: 767px) {
   .d-md-show {
-      display: none !important;
+    display: none !important;
   }
 }
+
 @media (max-width: 479px) {
   .d-xs-show {
-      display: none !important;
+    display: none !important;
   }
 }
+
 .font-primary {
   font-family: circularstd-medium !important;
 }
@@ -318,7 +325,7 @@
   border: none !important;
 }
 
-.header-right{
+.header-right {
   display: flex;
   width: 100%;
   justify-content: space-around;
@@ -334,28 +341,39 @@
   background: #e1e1e1;
   margin-right: 10px;
 }
+
 .header-middle .login-link {
   display: flex;
   align-items: center;
   margin-right: 2rem;
 }
-.page-active,.catergory-page-active{
+
+.page-active,
+.catergory-page-active {
   display: block !important;
 }
+
 .header {
-  .sticky-content-wrapper{
-    .header-middle{
-      .container{
-        .header-right{
-          .cart-dropdown{
-            .cartListOn{
-              visibility:visible;
-              opacity:1;
-              top:99%
+  .sticky-content-wrapper {
+    .header-middle {
+      .container {
+        .header-right {
+          .cart-dropdown {
+            .cartListOn {
+              visibility: visible;
+              opacity: 1;
+              top: 99%
             }
           }
         }
       }
     }
   }
+}
+
+.whatsup-icon {
+  position: fixed;
+  z-index: 100;
+  right: 20px;
+  bottom: 31px;
 }

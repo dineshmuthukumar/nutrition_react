@@ -204,8 +204,7 @@ const Footer = () => {
                     <button
                       className="btn btn-primary btn-rounded btn-md ls-m ml-2"
                       type="submit"
-                      onClick={() => handleSendNewsLetter()}
-                    >
+                      onClick={() => handleSendNewsLetter()}>
                       subscribe <i className="d-icon-arrow-right"></i>
                     </button>
                   </div>
@@ -222,8 +221,7 @@ const Footer = () => {
                               href={settingsDetails?.socialLink[tudata].url}
                               className="social-link social-facebook fab"
                               title={settingsDetails?.socialLink[tudata].name}
-                              target="_blank"
-                            >
+                              target="_blank">
                               {settingsDetails?.socialLink[tudata].name ==
                                 "Facebook Link" && <FaFacebook />}
                               {settingsDetails?.socialLink[tudata].name ==
@@ -368,8 +366,7 @@ const Footer = () => {
                               return (
                                 <li>
                                   <Link
-                                    to={`/products/list/${CategoriesDetail._id}`}
-                                  >
+                                    to={`/products/list/${CategoriesDetail._id}`}>
                                     {CategoriesDetail.name}
                                   </Link>
                                 </li>
@@ -481,7 +478,9 @@ const Footer = () => {
             <Row>
               <Col>
                 <div className="footer-center">
-                  <p className="copyright">Copyright &copy; 2022. Nutrition</p>
+                  <p className="copyright">
+                    Copyright &copy; 2023. Liven Science
+                  </p>
                 </div>
               </Col>
             </Row>
@@ -490,6 +489,6 @@ const Footer = () => {
       </div>
     </>
   );
-};;;;;;;
+};
 
 export default Footer;

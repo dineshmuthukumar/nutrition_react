@@ -55,6 +55,8 @@ import Logo from "../../images/new-images/demos/demo-food2/liven-logo.png";
 import One from "../../images/new-images/demos/demo-food2/products/1.jpg";
 import Two from "../../images/new-images/demos/demo-food2/products/2.jpg";
 
+import icons8_whatsapp from "../../images/icons8-whatsapp-80.png";
+
 import "./style.scss";
 
 const Header = ({
@@ -266,8 +268,7 @@ const Header = ({
           e.preventDefault();
           onClick(e);
           setNotiRead(true);
-        }}
-      >
+        }}>
         <img src={NotificationICon} height={25} width={25} alt="Nofity-Bell" />
 
         {!notiRead && (
@@ -288,8 +289,7 @@ const Header = ({
         onClick={(e) => {
           e.preventDefault();
           onClick(e);
-        }}
-      >
+        }}>
         Drops
       </Nav.Link>
     );
@@ -683,6 +683,7 @@ const Header = ({
   const IsDropdownMenuItem = (subCategoriesId) => {
     let filterData = "";
     if (subCategoryList?.length) {
+      //console.log(subCategoryList, "subCategoryList");
       filterData = subCategoryList?.filter(
         (x) => x?.categoryId?._id === subCategoriesId
       );
@@ -755,8 +756,7 @@ const Header = ({
               <div className="header-left">
                 <Nav.Link
                   className="mobile-menu-toggle"
-                  onClick={() => openModal()}
-                >
+                  onClick={() => openModal()}>
                   <i className="d-icon-bars2"></i>
                 </Nav.Link>
 
@@ -770,8 +770,7 @@ const Header = ({
                     <li className="active submenu">
                       <Nav.Link
                         className="submenu"
-                        onClick={() => history.push("/")}
-                      >
+                        onClick={() => history.push("/")}>
                         Shop
                         <AiOutlineArrowDown />
                       </Nav.Link>
@@ -794,12 +793,10 @@ const Header = ({
                                                 )
                                                   ? ""
                                                   : ""
-                                              }`}
-                                            >
+                                              }`}>
                                               <a
                                                 className="d-flex justify-content-between"
-                                                href={`/products/list/${CategoriesDetail?._id}`}
-                                              >
+                                                href={`/products/list/${CategoriesDetail?._id}`}>
                                                 {CategoriesDetail.name}{" "}
                                                 {IsDropdownMenuItem(
                                                   CategoriesDetail?._id
@@ -826,8 +823,9 @@ const Header = ({
 
                               <li>
                                 <Link
-                                  onClick={() => history.push("/products/list")}
-                                >
+                                  onClick={() =>
+                                    history.push("/products/list")
+                                  }>
                                   Shop All
                                 </Link>
                               </li>
@@ -845,8 +843,7 @@ const Header = ({
                                           return (
                                             <li>
                                               <Link
-                                                to={`/product/${bestSellerDetailsData._id}`}
-                                              >
+                                                to={`/product/${bestSellerDetailsData._id}`}>
                                                 {bestSellerDetailsData.name}
                                               </Link>
                                             </li>
@@ -868,8 +865,7 @@ const Header = ({
                     <li className="submenu">
                       <Nav.Link
                         className="submenu"
-                        onClick={() => history.push("/")}
-                      >
+                        onClick={() => history.push("/")}>
                         Invent
                         <AiOutlineArrowDown />
                       </Nav.Link>
@@ -925,8 +921,7 @@ const Header = ({
                                                   history.push(
                                                     `/category/${CategoriesDetail?._id}`
                                                   )
-                                                }
-                                              >
+                                                }>
                                                 {
                                                   CategoriesDetail?.subCategoryName
                                                 }
@@ -1101,8 +1096,8 @@ const Header = ({
                       </Nav.Link>
                     </li>
                     <li>
-                      <Nav.Link onClick={() => history.push("/cms/Consult")}>
-                        Consult
+                      <Nav.Link onClick={() => history.push("/contact")}>
+                        Contact
                       </Nav.Link>
                     </li>
                   </ul>
@@ -1134,13 +1129,11 @@ const Header = ({
                           //readNotification();
                           setNotiRead(false);
                         }
-                      }}
-                    >
+                      }}>
                       <Dropdown.Toggle
                         align="start"
                         drop="start"
-                        as={NotificationToggleComponent}
-                      ></Dropdown.Toggle>
+                        as={NotificationToggleComponent}></Dropdown.Toggle>
 
                       <Dropdown.Menu align="end" className="noti-container">
                         <div className="noti-header">
@@ -1171,8 +1164,7 @@ const Header = ({
                                   onClick={() => {
                                     setNPage(npage + 1);
                                     handleGetNotification(npage + 1);
-                                  }}
-                                >
+                                  }}>
                                   See More
                                 </div>
                               ) : (
@@ -1193,8 +1185,7 @@ const Header = ({
                       <Dropdown.Toggle
                         align="start"
                         drop="start"
-                        as={UserToggleComponent}
-                      ></Dropdown.Toggle>
+                        as={UserToggleComponent}></Dropdown.Toggle>
 
                       <Dropdown.Menu align="end">
                         <Dropdown.Item
@@ -1204,8 +1195,7 @@ const Header = ({
                               `${process.env.REACT_APP_URL}/accounts?defaultkey=second`,
                               "_self"
                             )
-                          }
-                        >
+                          }>
                           My Profile
                         </Dropdown.Item>
                         <Dropdown.Item
@@ -1215,16 +1205,14 @@ const Header = ({
                               `${process.env.REACT_APP_URL}/accounts?defaultkey=first`,
                               "_self"
                             )
-                          }
-                        >
+                          }>
                           My Order
                         </Dropdown.Item>
 
                         <Dropdown.Divider />
                         <Dropdown.Item
                           as="button"
-                          onClick={() => dispatch(user_logout_thunk())}
-                        >
+                          onClick={() => dispatch(user_logout_thunk())}>
                           Sign Out
                         </Dropdown.Item>
                       </Dropdown.Menu>
@@ -1234,8 +1222,7 @@ const Header = ({
                   <>
                     <Link
                       to="/login"
-                      className="nav-link nav-link-with-img border-rounded login-link d-xs-show"
-                    >
+                      className="nav-link nav-link-with-img border-rounded login-link d-xs-show">
                       <h3 className="img-cat-title mb-0">Login/Signup</h3>
                       {/* </a> */}
                     </Link>
@@ -1259,123 +1246,92 @@ const Header = ({
                     className={`dropdown-box ${
                       user?.cartlist ? "cartListOn" : ""
                     }`}
-                    onMouseOut={showHideUpdateRow}
-                  >
-                    <div className="products scrollable">
-                      {cart?.data?.cartProductDetails?.length > 0 &&
-                        cart?.data?.cartProductDetails?.map(
-                          (item, productcartkey) => {
-                            totalAmount =
-                              totalAmount + item?.qty * item?.saleAmount;
-                            return (
-                              <div
-                                className="product product-cart"
-                                key={productcartkey}
-                              >
-                                <figure className="product-media">
-                                  <a href="#">
-                                    <img
-                                      // src={"http://54.177.7.240" + item?.photos}
-                                      src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${item?.photos[0]}`} alt="product" />
-                                  </a>
-                                  <button
-                                    className="btn btn-link btn-close"
-                                    onClick={() =>
-                                      dispatch(
-                                        remove_from_cart_thunk(item?.productId)
-                                      )
-                                    }
-                                  >
-                                    {/* <i className="fas fa-times"></i> */}
-                                    <span className="sr-only">Close</span>
-                                  </button>
-                                </figure>
-                                <div className="product-detail">
-                                  <a href="#" className="product-name">
-                                    {item?.name}
-                                  </a>
-                                  <div className="price-box">
-                                    <span className="product-price">
-                                      {item?.qty}
-                                      {" X "}{" "}
-                                      {currencyFormat(item?.saleAmount, "INR")}{" "}
-                                    </span>
+                    onMouseOut={showHideUpdateRow}>
+                    {user?.login ? (
+                      <>
+                        <div className="products scrollable">
+                          {cart?.data?.cartProductDetails?.length > 0 &&
+                            cart?.data?.cartProductDetails?.map(
+                              (item, productcartkey) => {
+                                totalAmount =
+                                  totalAmount + item?.qty * item?.saleAmount;
+                                return (
+                                  <div
+                                    className="product product-cart"
+                                    key={productcartkey}>
+                                    <figure className="product-media">
+                                      <a href="#">
+                                        <img
+                                          // src={"http://54.177.7.240" + item?.photos}
+                                          src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${item?.photos[0]}`}
+                                          alt="product"
+                                        />
+                                      </a>
+                                      <button
+                                        className="btn btn-link btn-close"
+                                        onClick={() =>
+                                          dispatch(
+                                            remove_from_cart_thunk(
+                                              item?.productId
+                                            )
+                                          )
+                                        }>
+                                        {/* <i className="fas fa-times"></i> */}
+                                        <span className="sr-only">Close</span>
+                                      </button>
+                                    </figure>
+                                    <div className="product-detail">
+                                      <a href="#" className="product-name">
+                                        {item?.name}
+                                      </a>
+                                      <div className="price-box">
+                                        <span className="product-price">
+                                          {item?.qty}
+                                          {" X "}{" "}
+                                          {currencyFormat(
+                                            item?.saleAmount,
+                                            "INR"
+                                          )}{" "}
+                                        </span>
+                                      </div>
+                                    </div>
                                   </div>
-                                </div>
-                              </div>
-                            );
-                          }
-                        )}
-                      {/* {getCartList()} */}
-                      {/* <div className="product product-cart">
-                        <figure className="product-media">
-                          <a href="#">
-                            <img
-                              src={One}
-                              alt="product"
-                              width="80"
-                              height="90"
-                            />
-                          </a>
-                          <button className="btn btn-link btn-close">
-                            <i className="fas fa-times"></i>
-                            <span className="sr-only">Close</span>
-                          </button>
-                        </figure>
-                        <div className="product-detail">
-                          <a href="#" className="product-name">
-                            Paprika
-                          </a>
-                          <div className="price-box">
-                            <span className="product-quantity">1</span>
-                            <span className="product-price">$21.00</span>
-                          </div>
+                                );
+                              }
+                            )}
                         </div>
+
+                        <div className="cart-total">
+                          <label>Subtotal:</label>
+                          <span className="price">
+                            {currencyFormat(totalAmount, "INR")}
+                          </span>
+                        </div>
+
+                        <div className="cart-action">
+                          <Link
+                            className="btn btn-underline btn-link"
+                            to="/cart">
+                            View Cart
+                          </Link>
+
+                          <Link
+                            to="/checkout"
+                            className="d-flex justify-content-center btn btn-dark btn-md btn-rounded">
+                            <span>Go To Checkout</span>
+                          </Link>
+                        </div>
+                      </>
+                    ) : (
+                      <div className="d-flex justify-content-center">
+                        <Link
+                          to="/login"
+                          className="nav-link nav-link-with-img border-rounded login-link d-xs-show">
+                          <h3 className="img-cat-title mb-0">Login/Signup</h3>
+                          {/* </a> */}
+                        </Link>
                       </div>
-
-                      <div className="product product-cart">
-                        <figure className="product-media">
-                          <a href="#">
-                            <img
-                              src={Two}
-                              alt="product"
-                              width="80"
-                              height="90"
-                            />
-                          </a>
-                          <button className="btn btn-link btn-close">
-                            <i className="fas fa-times"></i>
-                            <span className="sr-only">Close</span>
-                          </button>
-                        </figure>
-                        <div className="product-detail">
-                          <a href="#" className="product-name">
-                            Vegetable
-                          </a>
-                          <div className="price-box">
-                            <span className="product-quantity">1</span>
-                            <span className="product-price">$118.00</span>
-                          </div>
-                        </div>
-                      </div> */}
-                    </div>
-
-                    <div className="cart-total">
-                      <label>Subtotal:</label>
-                      <span className="price">
-                        {currencyFormat(totalAmount, "INR")}
-                      </span>
-                    </div>
-
-                    <div className="cart-action">
-                      <Link className="btn btn-underline btn-link" to="/cart">
-                        View Cart
-                      </Link>
-
-                      <Link to="/checkout" className="d-flex justify-content-center btn btn-dark btn-md btn-rounded">
-                        <span>Go To Checkout</span>
-                      </Link>
-                    </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -1384,9 +1340,11 @@ const Header = ({
         </div>
       </div>
 
+      <div className="whatsup-icon">
+        <img src={icons8_whatsapp} />
+      </div>
       <div
-        className={`mobile-menu-wrapper ${mobileMenuActive ? "active" : ""}`}
-      >
+        className={`mobile-menu-wrapper ${mobileMenuActive ? "active" : ""}`}>
         <div className="mobile-menu-overlay"></div>
 
         <a className="mobile-menu-close" onClick={() => hideModal()}>
@@ -1425,8 +1383,7 @@ const Header = ({
               </a>
 
               <ul
-                className={`${categoryActive ? "catergory-page-active" : ""}`}
-              >
+                className={`${categoryActive ? "catergory-page-active" : ""}`}>
                 {(() => {
                   if (categoryDetails?.length > 0) {
                     return (
@@ -1438,8 +1395,7 @@ const Header = ({
                                 IsDropdownMenuItem(CategoriesDetail?._id)
                                   ? "submenu"
                                   : ""
-                              }`}
-                            >
+                              }`}>
                               <a>{CategoriesDetail?.name}</a>
                               <AiOutlineArrowDown />
                               {DropdownMenuItem(CategoriesDetail?._id)}{" "}
@@ -1844,8 +1800,7 @@ const HeaderMobileMenuIcon = React.forwardRef(({ onClick }, ref) => {
       onClick={(e) => {
         e.preventDefault();
         onClick(e);
-      }}
-    >
+      }}>
       <CgMenuRight size={25} color={"white"} />
     </div>
   );
@@ -1860,8 +1815,7 @@ const HeaderMobileMenuCloseIcon = React.forwardRef(({ onClick }, ref) => {
       onClick={(e) => {
         e.preventDefault();
         onClick(e);
-      }}
-    >
+      }}>
       <VscChromeClose size={25} color={"white"} />
     </div>
   );
