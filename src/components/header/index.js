@@ -11,7 +11,8 @@ import { useHistory, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import images from "../../utils/images.json";
-
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 import {
   user_logout_thunk,
   cart_off_thunk,
@@ -91,6 +92,12 @@ const Header = ({
   const [pageActive, setPageActive] = useState(false);
   const [bestSellerDetails, setBestSellerDetails] = useState({});
   const [footerDetails, setFooterDetails] = useState({});
+
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const slug = user.data?.user ? user.data?.user?.slug : null;
   const userCart = cart?.data ? cart?.data : null;
@@ -1768,6 +1775,47 @@ const Header = ({
           </ul>
         </div>
       </div>
+
+
+
+
+{/* Search Option Dropdown Start */}
+
+    
+      <Button variant="primary" onClick={handleShow}>
+        Launch demo modal
+      </Button>
+
+      <div className="">
+        <Modal show={show} onHide={handleClose} className="search-model">
+          <Modal.Header closeButton>
+            <Modal.Title>PRODUCTS</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+
+            <div className="search-section">
+              
+              <div className="search-block">
+                <div className="search-img"><img src="https://accounts.jump.trade/static/media/eth1.128ad42d.png" alt="" /></div>
+                <div className="search-para">
+                  <a>Superfood Plant Protein Samplers | Dark Chocolate Hazelnut</a>
+                </div>
+              </div>
+              <div className="search-block">
+                <div className="search-img"><img src="https://accounts.jump.trade/static/media/eth1.128ad42d.png" alt="" /></div>
+                <div className="search-para">
+                  <a>Superfood Plant Protein Samplers | Dark Chocolate Hazelnut</a>
+                </div>
+              </div>
+
+            </div>
+
+          </Modal.Body>
+        </Modal>
+      </div>
+
+  {/* Search Option Dropdown End */}
+    
 
       {/* <Cart
           cartPop={cartPop}

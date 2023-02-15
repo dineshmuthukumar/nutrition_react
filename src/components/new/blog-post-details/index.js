@@ -15,6 +15,7 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 import { IoLogoWhatsapp } from "react-icons/io";
+import Nav from 'react-bootstrap/Nav';
 
 import nd_3 from "../../../images/new-images/blog/single/3.jpg";
 import nd_4 from "../../../images/new-images/blog/single/4.jpg";
@@ -72,7 +73,7 @@ const BlogPost = () => {
           data-target=".posts"></ul>
 
         <div className="row gutter-lg">
-          <div className="offset-sm-1 col-sm-10">
+          <div className="col-sm-9">
             <article className="post-single">
               {blogData?.image && (
                 <figure className="post-media">
@@ -378,6 +379,78 @@ const BlogPost = () => {
                 </button>
               </form>
             </div> */}
+          </div>
+          <div className="col-sm-3">
+          
+            <div className="blog-category-section">
+
+              <div className="inner-blog-one">
+                <div className="blog-block">
+                  <div className="blog-sub-heading"><h2>Recent Post</h2></div>
+                </div>
+                <div className="search-section">
+              
+                  <div className="search-block">
+                    <div className="search-img"><img src="https://accounts.jump.trade/static/media/eth1.128ad42d.png" alt="" /></div>
+                    <div className="search-para">
+                      <a>Superfood Plant Protein Samplers | Dark Chocolate Hazelnut</a>
+                      <span className="">Feb 13, 2023</span>
+                    </div>
+                  </div>
+                  <div className="search-block">
+                    <div className="search-img"><img src="https://accounts.jump.trade/static/media/eth1.128ad42d.png" alt="" /></div>
+                    <div className="search-para">
+                      <a>Superfood Plant Protein Samplers | Dark Chocolate Hazelnut</a>
+                      <span className="">Feb 13, 2023</span>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <br/>
+              <div className="inner-blog-one">
+                <div className="blog-block">
+                  <div className="blog-sub-heading"><h2>Blog Categories</h2></div>
+                </div>
+                <div className="search-section-blog">
+
+                <Nav defaultActiveKey="/home" as="ul">
+                  <Nav.Item as="li"><Nav.Link>Beauty</Nav.Link></Nav.Item>
+                  <Nav.Item as="li"><Nav.Link>Beauty</Nav.Link></Nav.Item>
+                  <Nav.Item as="li"><Nav.Link>Beauty</Nav.Link></Nav.Item>
+                  <Nav.Item as="li"><Nav.Link>Beauty</Nav.Link></Nav.Item>
+                  <Nav.Item as="li"><Nav.Link>Beauty</Nav.Link></Nav.Item>
+                </Nav>
+
+                </div>
+              </div>
+              <br/>
+              <div className="inner-blog-one">
+                <div className="blog-block">
+                  <div className="blog-sub-heading"><h2>Recent Post</h2></div>
+                </div>
+                <div className="search-section">
+              
+                  <div className="search-block">
+                    <div className="search-img"><img src="https://accounts.jump.trade/static/media/eth1.128ad42d.png" alt="" /></div>
+                    <div className="search-para">
+                      <a>Superfood Plant Protein Samplers | Dark Chocolate Hazelnut</a>
+                      <span className="">Feb 13, 2023</span>
+                    </div>
+                  </div>
+                  <div className="search-block">
+                    <div className="search-img"><img src="https://accounts.jump.trade/static/media/eth1.128ad42d.png" alt="" /></div>
+                    <div className="search-para">
+                      <a>Superfood Plant Protein Samplers | Dark Chocolate Hazelnut</a>
+                      <span className="">Feb 13, 2023</span>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              
+            </div>
+
           </div>
         </div>
       </div>

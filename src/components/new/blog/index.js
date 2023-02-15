@@ -15,7 +15,7 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 import { IoLogoWhatsapp } from "react-icons/io";
-
+import Nav from 'react-bootstrap/Nav';
 import first from "../../../images/new-images/blog/3col/1.jpg";
 import second from "../../../images/new-images/blog/3col/2.jpg";
 import three from "../../../images/new-images/blog/3col/3.jpg";
@@ -62,6 +62,10 @@ const Blog = () => {
           <ul
             className="nav-filters filter-underline blog-filters justify-content-center"
             data-target=".posts"></ul>
+          
+          
+        <div className="row">
+          <div className="col-sm-9">
           <div
             className="posts grid post-grid row"
             data-grid-options="{
@@ -70,7 +74,7 @@ const Blog = () => {
             {list?.length > 0 &&
               list?.map((obj, index) => {
                 return (
-                  <div className="grid-item col-sm-6 col-lg-3 lifestyle shopping winter-sale">
+                  <div className="grid-item col-sm-6 col-lg-4 lifestyle shopping winter-sale">
                     <article className="post">
                       <figure className="post-media">
                         <a href="#">
@@ -134,39 +138,83 @@ const Blog = () => {
             </div>
           ) : (
             ""
-          )}
-          {/* <ul className="pagination justify-content-center">
-            <li className="page-item disabled">
-              <a
-                className="page-link page-link-prev"
-                href="#"
-                aria-label="Previous"
-                tabIndex="-1"
-                aria-disabled="true"
-              >
-                <i className="d-icon-arrow-left"></i>Prev
-              </a>
-            </li>
-            <li className="page-item active" aria-current="page">
-              <a className="page-link" href="#">
-                1
-              </a>
-            </li>
-            <li className="page-item">
-              <a className="page-link" href="#">
-                2
-              </a>
-            </li>
-            <li className="page-item">
-              <a
-                className="page-link page-link-next"
-                href="#"
-                aria-label="Next"
-              >
-                Next<i className="d-icon-arrow-right"></i>
-              </a>
-            </li>
-          </ul> */}
+          )}            
+          </div>
+          <div className="col-sm-3">
+          
+            <div className="blog-category-section">
+
+              <div className="inner-blog-one">
+                <div className="blog-block">
+                  <div className="blog-sub-heading"><h2>Recent Post</h2></div>
+                </div>
+                <div className="search-section">
+              
+                  <div className="search-block">
+                    <div className="search-img"><img src="https://accounts.jump.trade/static/media/eth1.128ad42d.png" alt="" /></div>
+                    <div className="search-para">
+                      <a>Superfood Plant Protein Samplers | Dark Chocolate Hazelnut</a>
+                      <span className="">Feb 13, 2023</span>
+                    </div>
+                  </div>
+                  <div className="search-block">
+                    <div className="search-img"><img src="https://accounts.jump.trade/static/media/eth1.128ad42d.png" alt="" /></div>
+                    <div className="search-para">
+                      <a>Superfood Plant Protein Samplers | Dark Chocolate Hazelnut</a>
+                      <span className="">Feb 13, 2023</span>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <br/>
+              <div className="inner-blog-one">
+                <div className="blog-block">
+                  <div className="blog-sub-heading"><h2>Blog Categories</h2></div>
+                </div>
+                <div className="search-section-blog">
+
+                <Nav defaultActiveKey="/home" as="ul">
+                  <Nav.Item as="li"><Nav.Link>Beauty</Nav.Link></Nav.Item>
+                  <Nav.Item as="li"><Nav.Link>Beauty</Nav.Link></Nav.Item>
+                  <Nav.Item as="li"><Nav.Link>Beauty</Nav.Link></Nav.Item>
+                  <Nav.Item as="li"><Nav.Link>Beauty</Nav.Link></Nav.Item>
+                  <Nav.Item as="li"><Nav.Link>Beauty</Nav.Link></Nav.Item>
+                </Nav>
+
+                </div>
+              </div>
+              <br/>
+              <div className="inner-blog-one">
+                <div className="blog-block">
+                  <div className="blog-sub-heading"><h2>Recent Post</h2></div>
+                </div>
+                <div className="search-section">
+              
+                  <div className="search-block">
+                    <div className="search-img"><img src="https://accounts.jump.trade/static/media/eth1.128ad42d.png" alt="" /></div>
+                    <div className="search-para">
+                      <a>Superfood Plant Protein Samplers | Dark Chocolate Hazelnut</a>
+                      <span className="">Feb 13, 2023</span>
+                    </div>
+                  </div>
+                  <div className="search-block">
+                    <div className="search-img"><img src="https://accounts.jump.trade/static/media/eth1.128ad42d.png" alt="" /></div>
+                    <div className="search-para">
+                      <a>Superfood Plant Protein Samplers | Dark Chocolate Hazelnut</a>
+                      <span className="">Feb 13, 2023</span>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              
+            </div>
+
+          </div>
+        </div>
+
+
         </div>
       </div>
     </>
