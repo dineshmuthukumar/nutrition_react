@@ -15,7 +15,7 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 import { IoLogoWhatsapp } from "react-icons/io";
-import Nav from 'react-bootstrap/Nav';
+import Nav from "react-bootstrap/Nav";
 import first from "../../../images/new-images/blog/3col/1.jpg";
 import second from "../../../images/new-images/blog/3col/2.jpg";
 import three from "../../../images/new-images/blog/3col/3.jpg";
@@ -31,6 +31,7 @@ import Pagination from "../pagination";
 
 import "./style.scss";
 import dayjs from "dayjs";
+import Category from "../../../pages/category";
 
 const Blog = () => {
   const [list, setList] = useState([]);
@@ -39,6 +40,8 @@ const Blog = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isNextPage, setIsNextPage] = useState(false);
   const [totalPages, setTotalPages] = useState(1);
+  const [categoryList, setCategoryList] = useState([]);
+  const [recentList, setRecentList] = useState([]);
 
   useEffect(async () => {
     const response = await blogListApi(1);
@@ -49,6 +52,8 @@ const Blog = () => {
     setCurrentPage(response?.data?.responseData?.blogs?.page);
     setIsNextPage(response?.data?.responseData?.blogs?.hasNextPage);
     setTotalPages(response?.data?.responseData?.blogs?.totalPages);
+    setCategoryList(response?.data?.responseData?.categoryBlogs);
+    setRecentList(response?.data?.responseData?.recentBlogs);
   }, []);
 
   const handlePage = async (page) => {
@@ -62,159 +67,192 @@ const Blog = () => {
           <ul
             className="nav-filters filter-underline blog-filters justify-content-center"
             data-target=".posts"></ul>
-          
-          
-        <div className="row">
-          <div className="col-sm-9">
-          <div
-            className="posts grid post-grid row"
-            data-grid-options="{
+
+          <div className="row">
+            <div className="col-sm-9">
+              <div
+                className="posts grid post-grid row"
+                data-grid-options="{
                                 'layoutMode': 'fitRows'
                             }">
-            {list?.length > 0 &&
-              list?.map((obj, index) => {
-                return (
-                  <div className="grid-item col-sm-6 col-lg-4 lifestyle shopping winter-sale">
-                    <article className="post">
-                      <figure className="post-media">
-                        <a href="#">
-                          <img
-                            //src={"http://54.177.7.240" + obj?.image}
-                            src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${obj?.image}`}
-                            width="380"
-                            height="280"
-                            alt="post"
-                          />
-                        </a>
-                      </figure>
-                      <div className="post-details">
-                        <div className="post-meta">
-                          on{" "}
-                          <a href="blog-grid-3col.html#" className="post-date">
-                            {/* July 25, 2022 */}
-                            {dayjs(obj?.createdAt).format("MMM DD,YYYY")}
-                          </a>
-                          |{" "}
-                          {/* <a
+                {list?.length > 0 &&
+                  list?.map((obj, index) => {
+                    return (
+                      <Link to={`/blogpost/${obj?._id}`}>
+                        {" "}
+                        <div className="grid-item col-sm-6 col-lg-4 lifestyle shopping winter-sale">
+                          <article className="post">
+                            <figure className="post-media">
+                              <a href="#">
+                                <img
+                                  //src={"http://54.177.7.240" + obj?.image}
+                                  src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${obj?.image}`}
+                                  width="380"
+                                  height="280"
+                                  alt="post"
+                                />
+                              </a>
+                            </figure>
+                            <div className="post-details">
+                              <div className="post-meta">
+                                on{" "}
+                                <a
+                                  href="blog-grid-3col.html#"
+                                  className="post-date">
+                                  {/* July 25, 2022 */}
+                                  {dayjs(obj?.createdAt).format("MMM DD,YYYY")}
+                                </a>
+                                |{" "}
+                                {/* <a
                             href="blog-grid-3col.html#"
                             className="post-comment"
                           >
                             <span>2</span> Comments
                           </a> */}
-                        </div>
-                        <h4 className="post-title">
-                          <a href="#">{obj?.title}</a>
-                        </h4>
-                        <p className="post-content">
-                          {" "}
-                          <div
-                            dangerouslySetInnerHTML={{
-                              __html: obj?.content,
-                            }}></div>
-                        </p>
-                        {/* <a href="blog_post.html" className="btn btn-link btn-underline btn-primary">Read
+                              </div>
+                              <h4 className="post-title">
+                                <a href="#">{obj?.title}</a>
+                              </h4>
+                              <p className="post-content">
+                                {" "}
+                                <div
+                                  dangerouslySetInnerHTML={{
+                                    __html: obj?.content,
+                                  }}></div>
+                              </p>
+                              {/* <a href="blog_post.html" className="btn btn-link btn-underline btn-primary">Read
                                                                   more<i className="d-icon-arrow-right"></i></a> */}
 
-                        <Link
-                          to={`/blogpost/${obj?._id}`}
-                          className="btn btn-link btn-underline btn-primary">
-                          Read more<i className="d-icon-arrow-right"></i>
+                              <Link
+                                to={`/blogpost/${obj?._id}`}
+                                className="btn btn-link btn-underline btn-primary">
+                                Read more<i className="d-icon-arrow-right"></i>
+                              </Link>
+                            </div>
+                          </article>
+                        </div>{" "}
+                      </Link>
+                    );
+                  })}
+              </div>
+              {list?.length > 0 ? (
+                <div className="user-profile-table-pagination">
+                  <Pagination
+                    className="pagination-bar"
+                    currentPage={currentPage}
+                    totalCount={totalCount}
+                    pageSize={limit}
+                    onPageChange={(page) => handlePage(page)}
+                  />
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
+            <div className="col-sm-3">
+              <div className="blog-category-section">
+                <div className="inner-blog-one">
+                  <div className="blog-block">
+                    <div className="blog-sub-heading">
+                      <h2>Recent Post</h2>
+                    </div>
+                  </div>
+                  <div className="search-section">
+                    {recentList?.map((recentListDetail) => {
+                      return (
+                        <Link to={`/blogpost/${recentListDetail?._id}`}>
+                          <div className="search-block">
+                            <div className="search-img">
+                              <img
+                                src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${recentListDetail?.image}`}
+                                alt=""
+                              />
+                            </div>
+                            <div className="search-para">
+                              <a>{recentListDetail?.title}</a>
+                              <span className="">
+                                {" "}
+                                {dayjs(recentListDetail?.createdAt).format(
+                                  "MMM DD,YYYY"
+                                )}
+                              </span>
+                            </div>
+                          </div>
                         </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+                <br />
+                <div className="inner-blog-one">
+                  <div className="blog-block">
+                    <div className="blog-sub-heading">
+                      <h2>Blog Categories</h2>
+                    </div>
+                  </div>
+                  <div className="search-section-blog">
+                    <Nav defaultActiveKey="/home" as="ul">
+                      <Nav.Item as="li">
+                        <Nav.Link>Beauty</Nav.Link>
+                      </Nav.Item>
+                      <Nav.Item as="li">
+                        <Nav.Link>Beauty</Nav.Link>
+                      </Nav.Item>
+                      <Nav.Item as="li">
+                        <Nav.Link>Beauty</Nav.Link>
+                      </Nav.Item>
+                      <Nav.Item as="li">
+                        <Nav.Link>Beauty</Nav.Link>
+                      </Nav.Item>
+                      <Nav.Item as="li">
+                        <Nav.Link>Beauty</Nav.Link>
+                      </Nav.Item>
+                    </Nav>
+                  </div>
+                </div>
+                <br />
+                {/* <div className="inner-blog-one">
+                  <div className="blog-block">
+                    <div className="blog-sub-heading">
+                      <h2>Recent Post</h2>
+                    </div>
+                  </div>
+                  <div className="search-section">
+                    <div className="search-block">
+                      <div className="search-img">
+                        <img
+                          src="https://accounts.jump.trade/static/media/eth1.128ad42d.png"
+                          alt=""
+                        />
                       </div>
-                    </article>
+                      <div className="search-para">
+                        <a>
+                          Superfood Plant Protein Samplers | Dark Chocolate
+                          Hazelnut
+                        </a>
+                        <span className="">Feb 13, 2023</span>
+                      </div>
+                    </div>
+                    <div className="search-block">
+                      <div className="search-img">
+                        <img
+                          src="https://accounts.jump.trade/static/media/eth1.128ad42d.png"
+                          alt=""
+                        />
+                      </div>
+                      <div className="search-para">
+                        <a>
+                          Superfood Plant Protein Samplers | Dark Chocolate
+                          Hazelnut
+                        </a>
+                        <span className="">Feb 13, 2023</span>
+                      </div>
+                    </div>
                   </div>
-                );
-              })}
-          </div>
-          {list?.length > 0 ? (
-            <div className="user-profile-table-pagination">
-              <Pagination
-                className="pagination-bar"
-                currentPage={currentPage}
-                totalCount={totalCount}
-                pageSize={limit}
-                onPageChange={(page) => handlePage(page)}
-              />
+                </div> */}
+              </div>
             </div>
-          ) : (
-            ""
-          )}            
           </div>
-          <div className="col-sm-3">
-          
-            <div className="blog-category-section">
-
-              <div className="inner-blog-one">
-                <div className="blog-block">
-                  <div className="blog-sub-heading"><h2>Recent Post</h2></div>
-                </div>
-                <div className="search-section">
-              
-                  <div className="search-block">
-                    <div className="search-img"><img src="https://accounts.jump.trade/static/media/eth1.128ad42d.png" alt="" /></div>
-                    <div className="search-para">
-                      <a>Superfood Plant Protein Samplers | Dark Chocolate Hazelnut</a>
-                      <span className="">Feb 13, 2023</span>
-                    </div>
-                  </div>
-                  <div className="search-block">
-                    <div className="search-img"><img src="https://accounts.jump.trade/static/media/eth1.128ad42d.png" alt="" /></div>
-                    <div className="search-para">
-                      <a>Superfood Plant Protein Samplers | Dark Chocolate Hazelnut</a>
-                      <span className="">Feb 13, 2023</span>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-              <br/>
-              <div className="inner-blog-one">
-                <div className="blog-block">
-                  <div className="blog-sub-heading"><h2>Blog Categories</h2></div>
-                </div>
-                <div className="search-section-blog">
-
-                <Nav defaultActiveKey="/home" as="ul">
-                  <Nav.Item as="li"><Nav.Link>Beauty</Nav.Link></Nav.Item>
-                  <Nav.Item as="li"><Nav.Link>Beauty</Nav.Link></Nav.Item>
-                  <Nav.Item as="li"><Nav.Link>Beauty</Nav.Link></Nav.Item>
-                  <Nav.Item as="li"><Nav.Link>Beauty</Nav.Link></Nav.Item>
-                  <Nav.Item as="li"><Nav.Link>Beauty</Nav.Link></Nav.Item>
-                </Nav>
-
-                </div>
-              </div>
-              <br/>
-              <div className="inner-blog-one">
-                <div className="blog-block">
-                  <div className="blog-sub-heading"><h2>Recent Post</h2></div>
-                </div>
-                <div className="search-section">
-              
-                  <div className="search-block">
-                    <div className="search-img"><img src="https://accounts.jump.trade/static/media/eth1.128ad42d.png" alt="" /></div>
-                    <div className="search-para">
-                      <a>Superfood Plant Protein Samplers | Dark Chocolate Hazelnut</a>
-                      <span className="">Feb 13, 2023</span>
-                    </div>
-                  </div>
-                  <div className="search-block">
-                    <div className="search-img"><img src="https://accounts.jump.trade/static/media/eth1.128ad42d.png" alt="" /></div>
-                    <div className="search-para">
-                      <a>Superfood Plant Protein Samplers | Dark Chocolate Hazelnut</a>
-                      <span className="">Feb 13, 2023</span>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-              
-            </div>
-
-          </div>
-        </div>
-
-
         </div>
       </div>
     </>

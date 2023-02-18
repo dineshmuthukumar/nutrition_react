@@ -11,8 +11,8 @@ import { useHistory, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import images from "../../utils/images.json";
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 import {
   user_logout_thunk,
   cart_off_thunk,
@@ -89,10 +89,10 @@ const Header = ({
   const [categoryDetails, setCategoryDetails] = useState({});
   const [categoryActive, setCategoryActive] = useState(false);
   const [subCategoryList, setSubCategoryList] = useState({});
+  const [filterCategoryList, setFilterCategoryList] = useState({});
   const [pageActive, setPageActive] = useState(false);
   const [bestSellerDetails, setBestSellerDetails] = useState({});
   const [footerDetails, setFooterDetails] = useState({});
-
 
   const [show, setShow] = useState(false);
 
@@ -175,7 +175,12 @@ const Header = ({
     try {
       setNotiLoading(true);
       const result = await getsubCategoryListApi();
-
+      const resultData = result?.data?.responseData?.subCategories?.filter(
+        (thing, index, self) =>
+          index ===
+          self.findIndex((t) => t?.subCategoryName === thing?.subCategoryName)
+      );
+      setFilterCategoryList(resultData);
       setSubCategoryList(result?.data?.responseData?.subCategories);
     } catch (error) {
       setNotiLoading(false);
@@ -913,10 +918,10 @@ const Header = ({
                               </li> */}
 
                               {(() => {
-                                if (subCategoryList?.length > 0) {
+                                if (filterCategoryList?.length > 0) {
                                   return (
                                     <>
-                                      {subCategoryList?.map(
+                                      {filterCategoryList?.map(
                                         (CategoriesDetail) => {
                                           return (
                                             <li className="">
@@ -1347,9 +1352,15 @@ const Header = ({
         </div>
       </div>
 
-      <div className="whatsup-icon">
-        <img src={icons8_whatsapp} />
-      </div>
+      <a
+        href="https://wa.me/message/MBAYXCC5DNOUM1"
+        target="_blank"
+        rel="noopener noreferrer">
+        <div className="whatsup-icon">
+          <img src={icons8_whatsapp} />
+        </div>
+      </a>
+
       <div
         className={`mobile-menu-wrapper ${mobileMenuActive ? "active" : ""}`}>
         <div className="mobile-menu-overlay"></div>
@@ -1776,12 +1787,8 @@ const Header = ({
         </div>
       </div>
 
+      {/* Search Option Dropdown Start */}
 
-
-
-{/* Search Option Dropdown Start */}
-
-    
       <Button variant="primary" onClick={handleShow}>
         Launch demo modal
       </Button>
@@ -1792,30 +1799,39 @@ const Header = ({
             <Modal.Title>PRODUCTS</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-
             <div className="search-section">
-              
               <div className="search-block">
-                <div className="search-img"><img src="https://accounts.jump.trade/static/media/eth1.128ad42d.png" alt="" /></div>
+                <div className="search-img">
+                  <img
+                    src="https://accounts.jump.trade/static/media/eth1.128ad42d.png"
+                    alt=""
+                  />
+                </div>
                 <div className="search-para">
-                  <a>Superfood Plant Protein Samplers | Dark Chocolate Hazelnut</a>
+                  <a>
+                    Superfood Plant Protein Samplers | Dark Chocolate Hazelnut
+                  </a>
                 </div>
               </div>
               <div className="search-block">
-                <div className="search-img"><img src="https://accounts.jump.trade/static/media/eth1.128ad42d.png" alt="" /></div>
+                <div className="search-img">
+                  <img
+                    src="https://accounts.jump.trade/static/media/eth1.128ad42d.png"
+                    alt=""
+                  />
+                </div>
                 <div className="search-para">
-                  <a>Superfood Plant Protein Samplers | Dark Chocolate Hazelnut</a>
+                  <a>
+                    Superfood Plant Protein Samplers | Dark Chocolate Hazelnut
+                  </a>
                 </div>
               </div>
-
             </div>
-
           </Modal.Body>
         </Modal>
       </div>
 
-  {/* Search Option Dropdown End */}
-    
+      {/* Search Option Dropdown End */}
 
       {/* <Cart
           cartPop={cartPop}
