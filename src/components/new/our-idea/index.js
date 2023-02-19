@@ -5,14 +5,15 @@ import fit_3 from "../../../images/new-images/demos/demo-food2/products/final/fi
 import fit_4 from "../../../images/new-images/demos/demo-food2/products/final/fit_4.jpg";
 import fit_5 from "../../../images/new-images/demos/demo-food2/products/final/fit_5.jpg";
 
-
 const OurIdea = ({ homeContent }) => {
   return (
     <>
       <section className="new_our_idea pt-10 pb-10">
         <div className="container p-0">
           <h2 className="title-echo mb-1">
-            <span>{homeContent?.section?.third?.title}</span>
+            <span className="title-font">
+              {homeContent?.section?.third?.title}
+            </span>
           </h2>
 
           <div className="row p-20">
@@ -30,7 +31,11 @@ const OurIdea = ({ homeContent }) => {
                             height="200"
                           /> */}
                           {thirdContentList?.image && (
-                            <img src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${thirdContentList?.image}`} alt="category" className="category_media_image" />
+                            <img
+                              src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${thirdContentList?.image}`}
+                              alt="category"
+                              className="category_media_image"
+                            />
                           )}
                         </figure>
                       </a>
@@ -50,6 +55,5 @@ const OurIdea = ({ homeContent }) => {
     </>
   );
 };
-
 
 export default OurIdea;

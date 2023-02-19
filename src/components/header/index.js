@@ -108,6 +108,7 @@ const Header = ({
 
   const [show, setShow] = useState(false);
   const [search, setSearch] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -268,10 +269,14 @@ const Header = ({
     if (e) {
       setSearch(e);
       try {
+        setLoading(true);
         const response = await searchForm(e);
         setSearchList(response?.data?.responseData?.product);
+        setLoading(false);
         // console.log(response?.data?.responseData?.product, "response");
-      } catch (err) {}
+      } catch (err) {
+        setLoading(false);
+      }
     }
   };
 

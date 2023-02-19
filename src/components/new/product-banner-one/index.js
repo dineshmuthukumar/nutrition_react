@@ -16,7 +16,9 @@ const ProductBannerOne = ({ homeContent }) => {
               )}
             </div>
             <div className="col-sm-8">
-              <h1>{homeContent?.section?.fourth?.header}</h1>
+              <h1 className="heading-font">
+                {homeContent?.section?.fourth?.header}
+              </h1>
               <h3 className="py-2">
                 <div
                   dangerouslySetInnerHTML={{

@@ -9,7 +9,7 @@ const TeamSection = ({ homeContent }) => {
         className="team_sec pb-5 pt-5"
         data-animation-options="{'name': 'fadeInUpShorter','duration': '1.2s', 'delay': '.2s' }">
         <div className="container">
-          <h2 className="title-echo">
+          <h2 className="title-echo title-font">
             <span>{homeContent?.section?.sixth?.title}</span>
           </h2>
           <p>

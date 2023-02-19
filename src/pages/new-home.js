@@ -208,6 +208,6 @@ const NewHome = () => {
       {/* <Footer /> */}
     </>
   );
-};;;;;;;
+};
 
 export default NewHome;

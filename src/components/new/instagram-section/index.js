@@ -40,10 +40,10 @@ const InstagramSection = ({ homeContent }) => {
         className="instagram-section pt-2 pt-md-7 pt-10 pb-8"
         data-animation-options="{'delay': '.2s', 'duration': '.5s' }">
         <div className="container">
-          <h2 className="title-echo mb-1">
+          <h2 className="title-echo mb-1 title-font">
             <span>{homeContent?.section?.fifth?.title}</span>
           </h2>
-          <p>{homeContent?.section?.fifth?.header}</p>
+          <p className="heading-font">{homeContent?.section?.fifth?.header}</p>
           <p>{homeContent?.section?.fifth?.description}</p>
           {/* <div
                                 className="owl-carousel owl-theme row cols-xl-5 cols-lg-4 cols-sm-3 cols-2"
