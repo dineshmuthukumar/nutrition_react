@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import OwlCarousel from "react-owl-carousel";
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
+import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from "swiper";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -75,21 +75,23 @@ const Banner = ({ bannerContent }) => {
           <Swiper
             spaceBetween={50}
             slidesPerView={1}
-            onSlideChange={() => console.log("slide change")}
-            onSwiper={(swiper) => console.log(swiper)}
-            modules={[Navigation, Pagination, Scrollbar, A11y]}
-            // navigation={true}
+            //onSlideChange={() => console.log("slide change")}
+            //onSwiper={(swiper) => console.log(swiper)}
+            //modules={[Navigation, Pagination, Scrollbar, A11y]}
+            //navigation={true}
             className="bannerSwiper"
-            pagination={{ clickable: true }}
-            scrollbar={{ draggable: true }}
-            loop={true}>
+            modules={[Navigation, Autoplay, Pagination, Scrollbar]}
+            //pagination={{ clickable: true }}
+            autoplay={{ delay: 100, disableOnInteraction: true }}
+            speed={500}
+            loop>
             {(() => {
               if (bannerContent?.length > 0) {
                 return (
                   <>
                     {bannerContent?.map((BannerDetail, key) => {
                       return (
-                        <SwiperSlide className="swiperSlider">
+                        <SwiperSlide className="swiperSlider" key={key}>
                           {" "}
                           <Link
                             to={`/products/list/${BannerDetail.categoryId}`}>

@@ -32,8 +32,11 @@ import Pagination from "../pagination";
 import "./style.scss";
 import dayjs from "dayjs";
 import Category from "../../../pages/category";
+import { useQuery } from "../../../hook/url-params";
 
 const Blog = () => {
+  const history = useHistory();
+  const query = useQuery();
   const [list, setList] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
   const [limit, setLimit] = useState(10);
@@ -42,11 +45,23 @@ const Blog = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [categoryList, setCategoryList] = useState([]);
   const [recentList, setRecentList] = useState([]);
+  var queryAdd = window.location.search.substring(1);
+
+  //console.log(queryAdd, "queryAdd");
+  var vars = queryAdd.split("=");
+  const slug = vars[1];
+  const [loading, setLoading] = useState(false);
 
   useEffect(async () => {
+    setLoading(true);
     const response = await blogListApi(1);
     // console.log(response?.data?.responseData?.blogs?.docs, "response");
-    setList(response?.data?.responseData?.blogs?.docs);
+    let list = response?.data?.responseData?.blogs?.docs;
+    if (slug) {
+      list = list.filter((e) => e?.categoryId == slug);
+    }
+
+    setList(list);
     setTotalCount(response?.data?.responseData?.blogs?.totalDocs);
     setLimit(response?.data?.responseData?.blogs?.limit);
     setCurrentPage(response?.data?.responseData?.blogs?.page);
@@ -54,7 +69,8 @@ const Blog = () => {
     setTotalPages(response?.data?.responseData?.blogs?.totalPages);
     setCategoryList(response?.data?.responseData?.categoryBlogs);
     setRecentList(response?.data?.responseData?.recentBlogs);
-  }, []);
+    setLoading(false);
+  }, [slug]);
 
   const handlePage = async (page) => {
     const response = await blogListApi(currentPage);
@@ -75,65 +91,74 @@ const Blog = () => {
                 data-grid-options="{
                                 'layoutMode': 'fitRows'
                             }">
-                {list?.length > 0 &&
-                  list?.map((obj, index) => {
-                    return (
-                      <Link to={`/blogpost/${obj?._id}`}>
-                        {" "}
-                        <div className="grid-item col-sm-6 col-lg-4 lifestyle shopping winter-sale">
-                          <article className="post">
-                            <figure className="post-media">
-                              <a href="#">
-                                <img
-                                  //src={"http://54.177.7.240" + obj?.image}
-                                  src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${obj?.image}`}
-                                  width="380"
-                                  height="280"
-                                  alt="post"
-                                />
-                              </a>
-                            </figure>
-                            <div className="post-details">
-                              <div className="post-meta">
-                                on{" "}
-                                <a
-                                  href="blog-grid-3col.html#"
-                                  className="post-date">
-                                  {/* July 25, 2022 */}
-                                  {dayjs(obj?.createdAt).format("MMM DD,YYYY")}
-                                </a>
-                                |{" "}
-                                {/* <a
+                {!loading
+                  ? list?.length > 0
+                    ? list?.length > 0 &&
+                      list?.map((obj, index) => {
+                        return (
+                          <Link
+                            to={`/blogs/${obj?.slug}`}
+                            className="grid-item col-sm-6 col-lg-4 lifestyle shopping winter-sale">
+                            {" "}
+                            <div>
+                              <article className="post">
+                                <figure className="post-media">
+                                  <a href="#">
+                                    <img
+                                      //src={"http://54.177.7.240" + obj?.image}
+                                      src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${obj?.image}`}
+                                      width="380"
+                                      height="280"
+                                      alt="post"
+                                    />
+                                  </a>
+                                </figure>
+                                <div className="post-details">
+                                  <div className="post-meta">
+                                    on{" "}
+                                    <a
+                                      href="blog-grid-3col.html#"
+                                      className="post-date">
+                                      {/* July 25, 2022 */}
+                                      {dayjs(obj?.createdAt).format(
+                                        "MMM DD,YYYY"
+                                      )}
+                                    </a>
+                                    |{" "}
+                                    {/* <a
                             href="blog-grid-3col.html#"
                             className="post-comment"
                           >
                             <span>2</span> Comments
                           </a> */}
-                              </div>
-                              <h4 className="post-title">
-                                <a href="#">{obj?.title}</a>
-                              </h4>
-                              <p className="post-content">
-                                {" "}
-                                <div
-                                  dangerouslySetInnerHTML={{
-                                    __html: obj?.content,
-                                  }}></div>
-                              </p>
-                              {/* <a href="blog_post.html" className="btn btn-link btn-underline btn-primary">Read
+                                  </div>
+                                  <h4 className="post-title">
+                                    <a href="#">{obj?.title}</a>
+                                  </h4>
+                                  <p className="post-content">
+                                    {" "}
+                                    <div
+                                      dangerouslySetInnerHTML={{
+                                        __html: obj?.content,
+                                      }}></div>
+                                  </p>
+                                  {/* <a href="blog_post.html" className="btn btn-link btn-underline btn-primary">Read
                                                                   more<i className="d-icon-arrow-right"></i></a> */}
 
-                              <Link
-                                to={`/blogpost/${obj?._id}`}
-                                className="btn btn-link btn-underline btn-primary">
-                                Read more<i className="d-icon-arrow-right"></i>
-                              </Link>
-                            </div>
-                          </article>
-                        </div>{" "}
-                      </Link>
-                    );
-                  })}
+                                  <Link
+                                    to={`/blogpost/${obj?._id}`}
+                                    className="btn btn-link btn-underline btn-primary">
+                                    Read more
+                                    <i className="d-icon-arrow-right"></i>
+                                  </Link>
+                                </div>
+                              </article>
+                            </div>{" "}
+                          </Link>
+                        );
+                      })
+                    : "No Found Blog"
+                  : "Loading...."}
               </div>
               {list?.length > 0 ? (
                 <div className="user-profile-table-pagination">
@@ -158,29 +183,31 @@ const Blog = () => {
                     </div>
                   </div>
                   <div className="search-section">
-                    {recentList?.map((recentListDetail) => {
-                      return (
-                        <Link to={`/blogpost/${recentListDetail?._id}`}>
-                          <div className="search-block">
-                            <div className="search-img">
-                              <img
-                                src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${recentListDetail?.image}`}
-                                alt=""
-                              />
-                            </div>
-                            <div className="search-para">
-                              <a>{recentListDetail?.title}</a>
-                              <span className="">
-                                {" "}
-                                {dayjs(recentListDetail?.createdAt).format(
-                                  "MMM DD,YYYY"
-                                )}
-                              </span>
-                            </div>
-                          </div>
-                        </Link>
-                      );
-                    })}
+                    {!loading
+                      ? recentList?.map((recentListDetail) => {
+                          return (
+                            <Link to={`/blogs/${recentListDetail?.slug}`}>
+                              <div className="search-block">
+                                <div className="search-img">
+                                  <img
+                                    src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${recentListDetail?.image}`}
+                                    alt=""
+                                  />
+                                </div>
+                                <div className="search-para">
+                                  <a>{recentListDetail?.title}</a>
+                                  <span className="">
+                                    {" "}
+                                    {dayjs(recentListDetail?.createdAt).format(
+                                      "MMM DD,YYYY"
+                                    )}
+                                  </span>
+                                </div>
+                              </div>
+                            </Link>
+                          );
+                        })
+                      : "Loading...."}
                   </div>
                 </div>
                 <br />
@@ -192,7 +219,25 @@ const Blog = () => {
                   </div>
                   <div className="search-section-blog">
                     <Nav defaultActiveKey="/home" as="ul">
-                      <Nav.Item as="li">
+                      {!loading
+                        ? categoryList?.map((CategoryDetail) => {
+                            return (
+                              <Nav.Item as="li">
+                                <Nav.Link
+                                  onClick={() =>
+                                    history.push(`?id=${CategoryDetail?._id}`)
+                                  }>
+                                  {CategoryDetail?.name}{" "}
+                                  {CategoryDetail?.count > 0
+                                    ? `(${CategoryDetail?.count})`
+                                    : ""}
+                                </Nav.Link>
+                              </Nav.Item>
+                            );
+                          })
+                        : "Loading..."}
+
+                      {/* <Nav.Item as="li">
                         <Nav.Link>Beauty</Nav.Link>
                       </Nav.Item>
                       <Nav.Item as="li">
@@ -206,7 +251,7 @@ const Blog = () => {
                       </Nav.Item>
                       <Nav.Item as="li">
                         <Nav.Link>Beauty</Nav.Link>
-                      </Nav.Item>
+                      </Nav.Item> */}
                     </Nav>
                   </div>
                 </div>

@@ -17,10 +17,6 @@ const FirstBannerSection = ({ homeContent }) => {
                 <div className="col-xl-2 col-sm-6 col-12">
                   <div className="banner1 banner banner-fixed overlay-zoom">
                     <figure>
-                      {console.log(
-                        getExtension(sixthproductcontentList?.image),
-                        "Type"
-                      )}
                       {getExtension(
                         sixthproductcontentList?.image
                       ).toLowerCase() === "mp4" ? (

@@ -15,7 +15,7 @@ const TeamSection = ({ homeContent }) => {
           <p>
             <div
               dangerouslySetInnerHTML={{
-                __html: homeContent?.section?.sixth?.description,
+                __html: homeContent?.section?.sixth?.header,
               }}></div>
           </p>
         </div>

@@ -37,6 +37,7 @@ import {
   getsubCategoryListApi,
   getProductDetailsApi,
   cmsPages,
+  searchForm,
 } from "../../api/base-methods";
 import { readNotificationApi } from "./../../api/base-methods";
 import {
@@ -58,6 +59,9 @@ import Two from "../../images/new-images/demos/demo-food2/products/2.jpg";
 
 import icons8_whatsapp from "../../images/icons8-whatsapp-80.png";
 
+import { Select } from "antd";
+
+// import "antd/dist/antd.css";
 import "./style.scss";
 
 const Header = ({
@@ -67,6 +71,14 @@ const Header = ({
   bgImage = false,
   ...props
 }) => {
+  const aquaticCreatures = [
+    { label: "Shark", value: "Shark" },
+    { label: "Dolphin", value: "Dolphin" },
+    { label: "Whale", value: "Whale" },
+    { label: "Octopus", value: "Octopus" },
+    { label: "Crab", value: "Crab" },
+    { label: "Lobster", value: "Lobster" },
+  ];
   const t = useTranslation();
   const dispatch = useDispatch();
   const location = useLocation();
@@ -95,6 +107,7 @@ const Header = ({
   const [footerDetails, setFooterDetails] = useState({});
 
   const [show, setShow] = useState(false);
+  const [search, setSearch] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -129,6 +142,8 @@ const Header = ({
     const result = await cmsPages();
     setFooterDetails(result?.data?.responseData?.pages);
   };
+
+  const [searchList, setSearchList] = useState({});
 
   useEffect(() => {
     if (user?.login) {
@@ -245,6 +260,18 @@ const Header = ({
         "🚀 ~ file: index.js ~ line 49 ~ handleGetNotification ~ error",
         error
       );
+    }
+  };
+
+  const onSearch = async (e) => {
+    console.log(e, "ecre");
+    if (e) {
+      setSearch(e);
+      try {
+        const response = await searchForm(e);
+        setSearchList(response?.data?.responseData?.product);
+        // console.log(response?.data?.responseData?.product, "response");
+      } catch (err) {}
     }
   };
 
@@ -689,7 +716,6 @@ const Header = ({
       } else {
         return "";
       }
-      return "";
     }
   };
   const IsDropdownMenuItem = (subCategoriesId) => {
@@ -1117,18 +1143,152 @@ const Header = ({
               </div>
               <div className="header-right">
                 <div className="header-search hs-simple">
-                  <form action="#" className="input-wrapper">
-                    <input
+                  {/* <form action="#" className="input-wrapper"> */}
+                  {/* <Select
+                    options={searchList?.length > 0 ? searchList : ""}
+                    style={{ width: "100%" }}
+                    onChange={(opt) => {
+                      console.log(opt);
+                    }}
+                  /> */}
+                  <Select
+                    style={{ width: 280 }}
+                    placeholder="Search...."
+                    showSearch={true}
+                    value={search}
+                    onSearch={onSearch}
+                    onChange={(e) => {
+                      if (e) {
+                        history.push(`/product/details?slug=${e}`);
+                      }
+                    }}>
+                    {/* <Select.Option value="jack">Jack</Select.Option>
+                    <Select.Option value="lucy">Lucy</Select.Option>
+                    <Select.Option value="disabled" disabled>
+                      Disabled
+                    </Select.Option>
+                    <Select.Option value="Yiminghe">yiminghe</Select.Option> */}
+                    {searchList &&
+                      searchList?.length > 0 &&
+                      searchList?.map((data, key) => {
+                        return (
+                          <Select.Option value={data?.slug || ""} key={key}>
+                            <DisplayContainer data={data} />
+                          </Select.Option>
+                        );
+                      })}
+                    {/* {searchList && searchList?.length > 0
+                      ? searchList?.map(({ value, key }) => (
+                          <Select.Option value={value || ""} key={key}>
+                            <DisplayContainer data={value} />
+                          </Select.Option>
+                        ))
+                      : "No record found"} */}
+                  </Select>
+                  {/* <input
                       type="text"
-                      className="form-control"
+                      className="form-control search-input"
                       name="search"
                       placeholder="Search..."
                       required
                     />
-                    <button className="btn btn-search" type="submit">
+                    <div className="megamenu-div">
+                      <div className="row">
+                        <div className="col-6 col-sm-6 col-md-6 col-lg-6">
+                          <h4 className="menu-title">Categories</h4>
+                          <ul>
+                            {(() => {
+                              if (categoryDetails?.length > 0) {
+                                return (
+                                  <>
+                                    {categoryDetails?.map(
+                                      (CategoriesDetail) => {
+                                        return (
+                                          <li
+                                            className={`${
+                                              IsDropdownMenuItem(
+                                                CategoriesDetail?._id
+                                              )
+                                                ? ""
+                                                : ""
+                                            }`}>
+                                            <a
+                                              className="d-flex justify-content-between"
+                                              href={`/products/list/${CategoriesDetail?._id}`}>
+                                              {CategoriesDetail.name}{" "}
+                                              {IsDropdownMenuItem(
+                                                CategoriesDetail?._id
+                                              ) ? (
+                                                <AiOutlineArrowRight />
+                                              ) : (
+                                                ""
+                                              )}
+                                            </a>
+
+                                            {DropdownMenuItem(
+                                              CategoriesDetail?._id
+                                            )}
+                                          </li>
+                                        );
+                                      }
+                                    )}
+                                  </>
+                                );
+                              } else {
+                                return <li>No Categories Found</li>;
+                              }
+                            })()}
+
+                            <li>
+                              <Link
+                                onClick={() => history.push("/products/list")}>
+                                Shop All
+                              </Link>
+                            </li>
+                          </ul>
+                        </div>
+                        <div className="col-6 col-sm-6 col-md-6 col-lg-6">
+                          <h4 className="menu-title">Best Sellers</h4>
+                          <ul>
+                            {(() => {
+                              if (bestSellerDetails?.length > 0) {
+                                return (
+                                  <>
+                                    {bestSellerDetails?.map(
+                                      (bestSellerDetailsData) => {
+                                        return (
+                                          <li>
+                                            <Link
+                                              to={`/product/${bestSellerDetailsData._id}`}>
+                                              {bestSellerDetailsData.name}
+                                            </Link>
+                                          </li>
+                                        );
+                                      }
+                                    )}
+                                  </>
+                                );
+                              } else {
+                                return <li>No Best Sellers Found</li>;
+                              }
+                            })()}
+                          </ul>
+                        </div>
+                      </div>
+                    </div> */}
+                  {/* <li>Africa</li>
+                    <li>Europe</li>
+                    <li>America</li>
+                    <li>Africa</li>
+                    <li>Europe</li>
+                    <li>America</li>
+                    <li>Africa</li>
+                    <li>Europe</li>
+                    <li>America</li> */}
+                  {/* <button className="btn btn-search" type="submit">
                       <i className="d-icon-search"></i>
                     </button>
-                  </form>
+                  </form> */}
                 </div>
                 {/* <a className="nav-link nav-link-with-img border-rounded login-link d-xs-show" href="ajax/login.html" data-toggle="login-modal" */}
                 {/* title="login"> */}
@@ -1789,9 +1949,9 @@ const Header = ({
 
       {/* Search Option Dropdown Start */}
 
-      <Button variant="primary" onClick={handleShow}>
+      {/* <Button variant="primary" onClick={handleShow}>
         Launch demo modal
-      </Button>
+      </Button> */}
 
       <div className="">
         <Modal show={show} onHide={handleClose} className="search-model">
@@ -1885,4 +2045,24 @@ const HeaderMobileMenuCloseIcon = React.forwardRef(({ onClick }, ref) => {
   );
 });
 
+const DisplayContainer = (data) => {
+  // debugger;
+  // console.log(data, "data");
+  return (
+    <div style={{ width: "120px", height: "53px" }}>
+      <div>
+        {/* <img src="" */}
+        <span style={{ fontSize: "8px", padding: "5px 0px 0px 10px" }}>
+          {data?.data?.name}
+        </span>
+      </div>
+      <div style={{ padding: "2px 5px 8px 14px" }}>
+        <span
+          style={{ display: "inline", marginLeft: "10px", fontSize: "18px" }}>
+          {data?.data?.name}
+        </span>
+      </div>
+    </div>
+  );
+};
 export default Header;

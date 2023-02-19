@@ -674,7 +674,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
         <div className="container mt-7 mb-2">
           <div className="row cms-page-content">
             <div className="col-lg-7 col-md-7 pr-lg-4">
-              <div class="card_inner">
+              <div className="card_inner">
                 {/* <div class="row pt-4">
                     <div class="col-sm-8">
                       <h1 class="">Billing Address</h1>
@@ -699,11 +699,13 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                         <ul className="address_list">
                           <li>{user?.data?.address}</li>
                           <li>
-                            <i class="fa fa-phone" aria-hidden="true"></i> +
+                            <i className="fa fa-phone" aria-hidden="true"></i> +
                             {user?.data?.mobile}
                           </li>
                           <li>
-                            <i class="fa fa-envelope" aria-hidden="true"></i>{" "}
+                            <i
+                              className="fa fa-envelope"
+                              aria-hidden="true"></i>{" "}
                             {user?.data?.email}
                           </li>
                           <li>
@@ -956,7 +958,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                         <Row>
                           <Col className="py-4">
                             <button
-                              class="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
+                              className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
                               onClick={() => handleProfileAddressForm()}>
                               SAVE
                             </button>
@@ -1307,7 +1309,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                     </ul>
                   </div>
                   <Form>
-                    <div class="row">
+                    <div className="row">
                       {/* <div class="col-sm-8 mt-2">
                         <Form.Label>Apply Coupon</Form.Label>
                         <Form.Group
@@ -1318,9 +1320,9 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                         </Form.Group>
                       </div> */}
                       {cart?.data?.cart.length > 0 && (
-                        <div class="cart-actions-right">
+                        <div className="cart-actions-right">
                           <div
-                            class="btn btn-dark btn-md btn-rounded btn-icon-left mt-4 mb-4"
+                            className="btn btn-dark btn-md btn-rounded btn-icon-left mt-4 mb-4"
                             onClick={() => {
                               setCouponShow(true);
                               setPromoError(false);
@@ -1455,12 +1457,12 @@ const CheckoutSection = ({ orderInfo, loading }) => {
         </Modal.Header>
         <Modal.Body>
           <div className="cart-card">
-            <div class="row">
-              <div class="col-sm-12 coupon_card">
-                <h1 class="">Promocode</h1>
+            <div className="row">
+              <div className="col-sm-12 coupon_card">
+                <h1 className="">Promocode</h1>
                 <Form>
-                  <div class="row">
-                    <div class="col-sm-4">
+                  <div className="row">
+                    <div className="col-sm-4">
                       <Form.Group
                         className="mb-3"
                         controlId="exampleForm.ControlInput1">
@@ -1475,17 +1477,17 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                         )}
                       </Form.Group>
                     </div>
-                    <div class="col-sm-3">
+                    <div className="col-sm-3">
                       <button
-                        class="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
+                        className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
                         onClick={(e) => applypromocode(e)}>
-                        Apply Promocode <i class="d-icon-arrow-right"></i>
+                        Apply Promocode <i className="d-icon-arrow-right"></i>
                       </button>
                     </div>
                   </div>
                 </Form>
 
-                <div class="row">
+                <div className="row">
                   {(() => {
                     if (promoCodeList?.length > 0) {
                       return (
@@ -1500,8 +1502,8 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                               )?.toDateString() >= today.toISOString()
                             ) {
                               return (
-                                <div class="col-sm-3">
-                                  <div class="coupon-card">
+                                <div className="col-sm-3">
+                                  <div className="coupon-card">
                                     {promocodes?.promoType == "percentage" ? (
                                       <h3>
                                         {promocodes?.percentage}% flat offer
@@ -1515,7 +1517,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                                         flat offer
                                       </h3>
                                     )}
-                                    <di class="coupon-row">
+                                    <di className="coupon-row">
                                       <span id="cpnCode">
                                         {promocodes?.promo}
                                       </span>
@@ -1533,8 +1535,8 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                                         "DD MMM,YYYY"
                                       )}{" "}
                                     </p>
-                                    <div class="circle1"></div>
-                                    <div class="circle2"></div>
+                                    <div className="circle1"></div>
+                                    <div className="circle2"></div>
                                   </div>
                                 </div>
                               );

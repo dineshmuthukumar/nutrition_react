@@ -182,22 +182,24 @@ function App(props) {
         <Router basename="/">
           <Suspense
             fallback={
-              // <div className="flone-preloader-wrapper">
-              //   <div className="flone-preloader">
-              //     <span></span>
-              //     <span></span>
-              //     <span></span>
-              //     <span></span>
-              //   </div>
-              // </div>
-              <div className="d-flex gif-loader">
-                <img
-                  src={
-                    "https://flevix.com/wp-content/uploads/2019/07/Spin-Preloader-1.gif"
-                  }
-                  alt="loader"
-                />
-              </div>
+              <>
+                <div className="flone-preloader-wrapper">
+                  <div className="flone-preloader">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </div>
+                <div className="d-flex gif-loader">
+                  <img
+                    src={
+                      "https://flevix.com/wp-content/uploads/2019/07/Spin-Preloader-1.gif"
+                    }
+                    alt="loader"
+                  />
+                </div>
+              </>
             }>
             <Switch>
               <Route exact component={WebContainer} />
@@ -258,7 +260,7 @@ const WebContainer = () => {
         <Route exact path="/explore" component={Explore} />
         <Route exact path="/dominance" component={Dominance} />
         <Route exact path="/blog" component={blog} />
-        <Route exact path="/blogpost/:blogid?" component={blogPost} />
+        <Route exact path="/blogs/:slug?" component={blogPost} />
         <Route exact path="/freetrial" component={freetrial} />
         <Route exact path="/contact" component={contact} />
         <Route exact path="/privacy" component={privacy} />

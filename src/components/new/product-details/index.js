@@ -118,6 +118,16 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
     else swiperRef.current.swiper.slidePrev();
   }, []);
 
+  // useEffect(() => {
+  //   // create a interval and get the id
+  //   const myInterval = setInterval(() => {
+  //     console.log("intervel");
+  //     swiperRef.current.swiper.slideNext();
+  //   }, 8000);
+  //   // clear out the interval using the id when unmounting the component
+  //   return () => clearInterval(myInterval);
+  // }, []);
+
   useEffect(() => {
     setUpdate(Math.random());
   }, [swiperRef?.current?.swiper]);
@@ -327,18 +337,26 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                         slidesPerView={1}
                         spaceBetween={4}
                         slidesPerGroup={1}
+                        //speed={5000}
                         loop={true}
+                        // observer={true}
+                        // observeParents={true}
+                        // parallax={true}
                         autoplay={{
-                          delay: 1000,
+                          delay: 0,
                           pauseOnMouseEnter: true,
                           disableOnInteraction: false,
                         }}
+                        // onSwiper={(swiper) => {
+                        //   swiper.$wrapperEl[0].style.transitionTimingFunction =
+                        //     "linear";
+                        // }}
                         // initialSlide={slideBy}
                         // loopFillGroupWithBlank={true}
                         // navigation={true}
                         // activeSlideKey={slideBy}
                         className="mySwiper"
-                        modules={[Autoplay]}
+                        modules={[Autoplay, Pagination, Navigation]}
 
                         // breakpoints={{
                         //   320: { slidesPerView: 3, spaceBetween: 5 },
@@ -413,12 +431,13 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                                     {productData?.photos?.map(
                                       (prodImgaesThumb, key) => {
                                         return (
+                                          // // ${
+                                          //     productThumb == key
+                                          //       ? "active"
+                                          //       : ""
+                                          //   }`
                                           <div
-                                            className={`product-thumb ${
-                                              productThumb == key
-                                                ? "active"
-                                                : ""
-                                            }`}
+                                            className={`product-thumb `}
                                             onClick={() => {
                                               setProductThumb(key);
                                               swiperRefBanner.current.swiper.slideTo(
@@ -476,43 +495,55 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                                 <button
                                   className="thumb-up11"
                                   onClick={() => {
-                                    console.log(
-                                      parseInt(slideBy),
-                                      "parseInt(slideBy)"
-                                    );
+                                    // console.log(
+                                    //   parseInt(slideBy),
+                                    //   "parseInt(slideBy)"
+                                    // );
                                     if (parseInt(slideBy) == 0) {
                                       setSlideBy(
-                                        productData?.photos?.length - 1
+                                        parseInt(productData?.photos?.length) -
+                                          1
                                       );
                                       swiperRefBanner.current.swiper.slideTo(
-                                        productData?.photos?.length - 1
+                                        productData?.photos?.length
                                       );
                                       setProductThumb(
-                                        productData?.photos?.length - 1
+                                        parseInt(productData?.photos?.length) -
+                                          1
                                       );
-                                    }
-                                    if (parseInt(slideBy) - 1 <= 0) {
-                                      console.log(true, "erfcre");
                                     } else {
-                                      console.log(false);
-                                    }
-                                    if (parseInt(slideBy) - 1 <= -1) {
-                                      setSlideBy(
-                                        productData?.photos?.length - 1
-                                      );
+                                      let SLidBy = slideBy;
+                                      setSlideBy(SLidBy);
                                       swiperRefBanner.current.swiper.slideTo(
-                                        productData?.photos?.length - 1
+                                        SLidBy
                                       );
-                                      setProductThumb(
-                                        productData?.photos?.length - 1
-                                      );
-                                    } else {
+                                      setProductThumb(SLidBy);
+
                                       setSlideBy(parseInt(slideBy) - 1);
-                                      swiperRefBanner.current.swiper.slidePrev();
+                                      swiperRefBanner.current.swiper.slideTo(
+                                        parseInt(slideBy) - 1
+                                      );
+
                                       setProductThumb(
                                         parseInt(productThumb) - 1
                                       );
                                     }
+
+                                    // if (
+                                    //   parseInt(slideBy) - 1 <= -1 &&
+                                    //   parseInt(slideBy) != 0
+                                    // ) {
+                                    //   console.log(
+                                    //     parseInt(slideBy) - 1,
+                                    //     "parseInt(slideBy) - 1"
+                                    //   );
+                                    //   setSlideBy(parseInt(slideBy) - 1);
+                                    //   swiperRefBanner.current.swiper.slideTo(
+                                    //     parseInt(slideBy) - 1
+                                    //   );
+
+                                    //   setProductThumb(parseInt(slideBy) - 1);
+                                    // }
                                   }}
                                   key="prdni1">
                                   <i class="d-icon-arrow-left"></i>
@@ -520,20 +551,51 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                                 <button
                                   className="thumb-down22"
                                   onClick={() => {
+                                    // console.log(
+                                    //   parseInt(slideBy),
+                                    //   "parseInt(slideBy)"
+                                    // );
+                                    // if (
+                                    //   parseInt(slideBy) + 1 >=
+                                    //   productData?.photos?.length
+                                    // ) {
+                                    //   setSlideBy(0);
+                                    //   swiperRefBanner.current.swiper.slideTo(0);
+                                    //   setProductThumb(0);
+                                    // } else {
+                                    //swiperRefBanner.current.swiper.slideNext();
+                                    // console.log(parseInt(slideBy) + 1);
+                                    // console.log(
+                                    //   productData?.photos?.length,
+                                    //   ""
+                                    // );
                                     if (
-                                      parseInt(slideBy) + 1 >=
+                                      parseInt(slideBy) + 1 <=
                                       productData?.photos?.length
                                     ) {
-                                      setSlideBy(0);
-                                      swiperRefBanner.current.swiper.slideTo(0);
-                                      setProductThumb(0);
-                                    } else {
+                                      swiperRefBanner.current.swiper.slideTo(
+                                        parseInt(slideBy) + 1
+                                      );
                                       setSlideBy(parseInt(slideBy) + 1);
-                                      swiperRefBanner.current.swiper.slideNext();
+
+                                      //console.log("refv");
                                       setProductThumb(
                                         parseInt(productThumb) + 1
                                       );
+                                    } else if (
+                                      parseInt(slideBy) + 1 ===
+                                      productData?.photos?.length
+                                    ) {
+                                      swiperRefBanner.current.swiper.slideTo(0);
+                                      setSlideBy(0);
+                                      setProductThumb(0);
+                                    } else {
+                                      swiperRefBanner.current.swiper.slideTo(1);
+                                      setSlideBy(1);
+                                      setProductThumb(1);
                                     }
+
+                                    // }
                                   }}
                                   key="prdni34">
                                   <i class="d-icon-arrow-right"></i>

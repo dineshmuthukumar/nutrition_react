@@ -15,7 +15,7 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 import { IoLogoWhatsapp } from "react-icons/io";
-import Nav from 'react-bootstrap/Nav';
+import Nav from "react-bootstrap/Nav";
 
 import nd_3 from "../../../images/new-images/blog/single/3.jpg";
 import nd_4 from "../../../images/new-images/blog/single/4.jpg";
@@ -31,16 +31,22 @@ import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 
 const BlogPost = () => {
+  const history = useHistory();
   const match = useRouteMatch();
-  const { blogid } = match.params;
+  const { slug } = match.params;
   const [blogData, setBlogData] = useState({});
   const [recentData, setRecentData] = useState({});
+
+  const [categoryList, setCategoryList] = useState([]);
+  const [recentList, setRecentList] = useState([]);
+
   const [offset, setOffset] = useState(0);
   const getBlogDetails = async () => {
     try {
-      let response = await blogListIdApi(blogid);
+      let response = await blogListIdApi(slug);
       setBlogData(response?.data?.responseData?.blogs);
       setRecentData(response?.data?.responseData?.recentBlogs);
+      setCategoryList(response?.data?.responseData?.categoryBlogs);
       window.scrollTo(0, 0);
     } catch (err) {
       console.log(err);
@@ -64,7 +70,7 @@ const BlogPost = () => {
     //window.location.reload();
     ///categoriesList(1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [blogid]);
+  }, [slug]);
   return (
     <>
       <div className="container">
@@ -116,25 +122,11 @@ const BlogPost = () => {
               </div>
             </article>
 
-            <div className="related-posts">
+            {/* <div className="related-posts">
               <h3 className="title title-simple text-left text-normal font-weight-bold ls-normal">
                 Related Posts
               </h3>
-              {/* <div className="owl-carousel owl-theme row cols-lg-3 cols-sm-2" data-owl-options="{
-                            'nav': true,
-                            'dots': false,
-                            'items': 1,
-                            'margin': 20,
-                            'loop': false,
-                            'responsive': {
-                                '576': {
-                                    'items': 2
-                                },
-                                '768': {
-                                    'items': 3
-                                }
-                            }
-                        }"> */}
+
               {recentData?.length > 0 ? (
                 <OwlCarousel
                   className="owl-carousel owl-theme row cols-lg-4 cols-md-3 cols-2"
@@ -222,7 +214,7 @@ const BlogPost = () => {
               ) : (
                 "no record found"
               )}
-            </div>
+            </div> */}
             {/* <div className="comments">
               <br />
               <h3 className="title title-simple text-left text-normal font-weight-bold">
@@ -381,76 +373,124 @@ const BlogPost = () => {
             </div> */}
           </div>
           <div className="col-sm-3">
-          
             <div className="blog-category-section">
-
               <div className="inner-blog-one">
                 <div className="blog-block">
-                  <div className="blog-sub-heading"><h2>Recent Post</h2></div>
+                  <div className="blog-sub-heading">
+                    <h2>Recent Post</h2>
+                  </div>
                 </div>
                 <div className="search-section">
-              
-                  <div className="search-block">
-                    <div className="search-img"><img src="https://accounts.jump.trade/static/media/eth1.128ad42d.png" alt="" /></div>
-                    <div className="search-para">
-                      <a>Superfood Plant Protein Samplers | Dark Chocolate Hazelnut</a>
-                      <span className="">Feb 13, 2023</span>
-                    </div>
-                  </div>
-                  <div className="search-block">
-                    <div className="search-img"><img src="https://accounts.jump.trade/static/media/eth1.128ad42d.png" alt="" /></div>
-                    <div className="search-para">
-                      <a>Superfood Plant Protein Samplers | Dark Chocolate Hazelnut</a>
-                      <span className="">Feb 13, 2023</span>
-                    </div>
-                  </div>
-
+                  {recentData &&
+                    recentData?.length > 0 &&
+                    recentData?.map((recentListDetail) => {
+                      return (
+                        <Link to={`/blogs/${recentListDetail?.slug}`}>
+                          <div className="search-block">
+                            <div className="search-img">
+                              <img
+                                src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${recentListDetail?.image}`}
+                                alt=""
+                              />
+                            </div>
+                            <div className="search-para">
+                              <a>{recentListDetail?.title}</a>
+                              <span className="">
+                                {" "}
+                                {dayjs(recentListDetail?.createdAt).format(
+                                  "MMM DD,YYYY"
+                                )}
+                              </span>
+                            </div>
+                          </div>
+                        </Link>
+                      );
+                    })}
                 </div>
               </div>
-              <br/>
+              <br />
               <div className="inner-blog-one">
                 <div className="blog-block">
-                  <div className="blog-sub-heading"><h2>Blog Categories</h2></div>
+                  <div className="blog-sub-heading">
+                    <h2>Blog Categories</h2>
+                  </div>
                 </div>
                 <div className="search-section-blog">
-
-                <Nav defaultActiveKey="/home" as="ul">
-                  <Nav.Item as="li"><Nav.Link>Beauty</Nav.Link></Nav.Item>
-                  <Nav.Item as="li"><Nav.Link>Beauty</Nav.Link></Nav.Item>
-                  <Nav.Item as="li"><Nav.Link>Beauty</Nav.Link></Nav.Item>
-                  <Nav.Item as="li"><Nav.Link>Beauty</Nav.Link></Nav.Item>
-                  <Nav.Item as="li"><Nav.Link>Beauty</Nav.Link></Nav.Item>
-                </Nav>
-
+                  <Nav defaultActiveKey="/home" as="ul">
+                    {/* <Nav.Item as="li">
+                      <Nav.Link>Beauty</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item as="li">
+                      <Nav.Link>Beauty</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item as="li">
+                      <Nav.Link>Beauty</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item as="li">
+                      <Nav.Link>Beauty</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item as="li">
+                      <Nav.Link>Beauty</Nav.Link>
+                    </Nav.Item> */}
+                    {categoryList?.map((CategoryDetail) => {
+                      return (
+                        <Nav.Item as="li">
+                          <Nav.Link
+                            onClick={() =>
+                              history.push(`/blog?id=${CategoryDetail?._id}`)
+                            }>
+                            {CategoryDetail?.name}{" "}
+                            {CategoryDetail?.count > 0
+                              ? `(${CategoryDetail?.count})`
+                              : ""}
+                          </Nav.Link>
+                        </Nav.Item>
+                      );
+                    })}
+                  </Nav>
                 </div>
               </div>
-              <br/>
+              <br />
               <div className="inner-blog-one">
                 <div className="blog-block">
-                  <div className="blog-sub-heading"><h2>Recent Post</h2></div>
+                  <div className="blog-sub-heading">
+                    <h2>Recent Post</h2>
+                  </div>
                 </div>
                 <div className="search-section">
-              
                   <div className="search-block">
-                    <div className="search-img"><img src="https://accounts.jump.trade/static/media/eth1.128ad42d.png" alt="" /></div>
+                    <div className="search-img">
+                      <img
+                        src="https://accounts.jump.trade/static/media/eth1.128ad42d.png"
+                        alt=""
+                      />
+                    </div>
                     <div className="search-para">
-                      <a>Superfood Plant Protein Samplers | Dark Chocolate Hazelnut</a>
+                      <a>
+                        Superfood Plant Protein Samplers | Dark Chocolate
+                        Hazelnut
+                      </a>
                       <span className="">Feb 13, 2023</span>
                     </div>
                   </div>
                   <div className="search-block">
-                    <div className="search-img"><img src="https://accounts.jump.trade/static/media/eth1.128ad42d.png" alt="" /></div>
+                    <div className="search-img">
+                      <img
+                        src="https://accounts.jump.trade/static/media/eth1.128ad42d.png"
+                        alt=""
+                      />
+                    </div>
                     <div className="search-para">
-                      <a>Superfood Plant Protein Samplers | Dark Chocolate Hazelnut</a>
+                      <a>
+                        Superfood Plant Protein Samplers | Dark Chocolate
+                        Hazelnut
+                      </a>
                       <span className="">Feb 13, 2023</span>
                     </div>
                   </div>
-
                 </div>
               </div>
-              
             </div>
-
           </div>
         </div>
       </div>

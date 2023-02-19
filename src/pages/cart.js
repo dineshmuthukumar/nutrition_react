@@ -134,7 +134,7 @@ const Cart = () => {
                 SHOPPING CART
               </h1>
             </div>
-            <div class="page-content mt-10 pt-10">
+            <div className="page-content mt-10 pt-10">
               <Cartcontent />
             </div>
           </div>

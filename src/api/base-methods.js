@@ -82,6 +82,9 @@ export const productListCategoryApiwithpage = (page, categoriesId) =>
 export const productListSubCategoryApiwithpage = (page, categoriesId) =>
   baseAxios.get(`/product/list?page=${page}&code=${categoriesId}`);
 
+export const searchForm = (searchkey) =>
+  baseAxios.get(`/product/search?searchKey=${searchkey}`);
+
 export const getOrderListApi = (page) =>
   baseAxios.get(`/order/history?page=${page}`);
 

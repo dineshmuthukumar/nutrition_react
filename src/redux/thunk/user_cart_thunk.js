@@ -53,7 +53,6 @@ export const add_to_cart_thunk = (
 
       // Meta Pixel
     } catch (err) {
-      debugger;
       console.log(err?.response?.status);
       if (err?.response?.status === 404) {
         toast.error("The Product has either been sold or no longer listed.", {

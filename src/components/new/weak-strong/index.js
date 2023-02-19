@@ -47,20 +47,19 @@ const WeakStrong = ({ homeContent }) => {
                 <img src={nutri_leaf} className="weak_strongest_img" />
               </div>
               <div className="col-sm-8">
-                <ul>
-                  {homeContent?.section?.second?.list &&
-                    homeContent?.section?.second?.list?.map(
-                      (secondContentList) => {
-                        return <li>{secondContentList}</li>;
-                      }
-                    )}
-                </ul>
+                {homeContent?.section?.second?.list &&
+                  homeContent?.section?.second?.list?.map(
+                    (secondContentList) => {
+                      return secondContentList;
+                    }
+                  )}
+                {/* </ul>
                 <p></p>
                 <p>
                   We clear the path of GOAL to offer delicate doses, Hope,
                   Research-based nutrients and veracious inputs that can put you
                   on the right track of leading healthier and pleasurable life.
-                </p>
+                </p> */}
                 <br></br>
               </div>
             </div>

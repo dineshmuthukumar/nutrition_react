@@ -508,6 +508,15 @@
   }
 }
 
-.modal-backdrop.show {
-  opacity: 0;
+// .modal-backdrop.show {
+//   opacity: 0;
+// }
+.search-input {
+  position: relative;
+}
+
+.input-wrapper {
+  &container {
+    width: 100%;
+  }
 }
