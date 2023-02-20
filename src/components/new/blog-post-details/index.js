@@ -451,7 +451,7 @@ const BlogPost = () => {
                 </div>
               </div>
               <br />
-              <div className="inner-blog-one">
+              {/* <div className="inner-blog-one">
                 <div className="blog-block">
                   <div className="blog-sub-heading">
                     <h2>Recent Post</h2>
@@ -489,7 +489,7 @@ const BlogPost = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

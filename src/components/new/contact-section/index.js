@@ -34,7 +34,7 @@ import InputPhone from "../../input-phone";
 import { EnquiryApiContact } from "../../../api/base-methods";
 import { toast } from "react-toastify";
 
-const ContactSection = () => {
+const ContactSection = ({ setting }) => {
   const [loading, setLoading] = useState(false);
   const [validation, setValidation] = useState({
     name: false,
@@ -190,32 +190,33 @@ const ContactSection = () => {
             <div className="col-lg-3 col-md-4 col-sm-6 ls-m mb-4">
               <div className="grey-section d-flex align-items-center h-100">
                 <div>
-                  <h4 className="mb-2 text-capitalize">Headquarters</h4>
-                  <p>
+                  {/* <h4 className="mb-2 text-capitalize">Headquarters</h4> */}
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: setting?.site?.contactDetails,
+                    }}></div>
+                  {/* <p>
                     1600 Amphitheatre Parkway
                     <br />
                     New York WC1 1BA
-                  </p>
-                  <h4 className="mb-2 text-capitalize">Phone Number</h4>
+                  </p> */}
+                  {/* <h4 className="mb-2 text-capitalize">Phone Number</h4>
                   <p>
                     <Link to="" slassName="btn btn-link">
-                      1.800.458.56
+                      {setting?.site?.mobile}
                     </Link>
                     <br />
-                    <Link to="" className="btn btn-link">
-                      1.800.458.56
-                    </Link>
                   </p>
                   <h4 className="mb-2 text-capitalize">Support</h4>
                   <p className="mb-4">
                     <Link to="" className="btn btn-link">
-                      support@your-domain.com
-                    </Link>
-                    <br />
-                    <Link to="" className="btn btn-link">
+                      {setting?.site?.email}
+                    </Link> */}
+                  {/* <br /> */}
+                  {/* <Link to="" className="btn btn-link">
                       help@your-domain.com
-                    </Link>
-                  </p>
+                    </Link> */}
+                  {/* </p> */}
                 </div>
               </div>
             </div>
@@ -225,13 +226,12 @@ const ContactSection = () => {
                   <div className="inner-quote-section">
                     <Row>
                       <Col>
-                        <h2>Get Free Quote</h2>
-                        <p>
-                          Do you have a question for us? we'd love to here from
-                          you and we would be happy to answer your questions.{" "}
-                          <br />
-                          Reach out to us and we'll response as soon as we can.
-                        </p>
+                        <h2>{setting?.site?.contactTitle}</h2>
+
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: setting?.site?.contactDescription,
+                          }}></div>
                       </Col>
                     </Row>
 

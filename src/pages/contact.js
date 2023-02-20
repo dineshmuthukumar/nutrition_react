@@ -15,7 +15,6 @@ import { useHistory, useRouteMatch } from "react-router";
 
 import { setCookiesByName, setCookies } from "../utils/cookies";
 import { user_load_by_token_thunk } from "../redux/thunk/user_thunk";
-import { nftCategoriesApi } from "../api/methods";
 import useQuery from "../hook/useQuery";
 //import FavouriteNFTs from "../components/favourite-NFTs";
 // import HeroBanner from "../components/hero-banner";
@@ -31,9 +30,10 @@ import useQuery from "../hook/useQuery";
 // import MclGameButton from "../components/mcl-game-button";
 
 import Header from "../components/header";
-import ContactSection from "../components/new/contact-section"; 
+import ContactSection from "../components/new/contact-section";
 
 import Footer from "../components/footer";
+import { settingsApi } from "../api/base-methods";
 
 const Contact = () => {
   const { url } = useRouteMatch();
@@ -47,6 +47,8 @@ const Contact = () => {
 
   const [list, setList] = useState([]);
 
+  const [setting, setSetting] = useState({});
+
   // const [favPage, setFavPage] = useState(1);
   // const [favList, setFavList] = useState([]);
   // const [favLoading, setFavLoading] = useState(false);
@@ -54,8 +56,10 @@ const Contact = () => {
 
   const categoriesList = async (page) => {
     try {
-      let response = await nftCategoriesApi({ page });
-      setList([...list, ...response.data.data.categories]);
+      let response = await settingsApi();
+      //console.log(response?.data.responseData, "response");
+      setSetting(response?.data.responseData);
+      //setList([...list, ...response.data.data.categories]);
     } catch (err) {
       console.log(err);
     }
@@ -74,7 +78,7 @@ const Contact = () => {
       dispatch(user_load_by_token_thunk(token));
     }
 
-    //categoriesList(1);
+    categoriesList(1);
     if (_ga) {
       history.replace(url);
     }
@@ -118,11 +122,15 @@ const Contact = () => {
       <main className="main single-product">
         <div className="page-content">
           <div className="container-fluid p-0">
-            <div className="page-header pl-4 pr-4" style={{background: "#7ea4b1"}}>
-                <h1 className="page-title font-weight-bold lh-1 text-white text-capitalize">Contact Us</h1>
+            <div
+              className="page-header pl-4 pr-4"
+              style={{
+                backgroundImage: `url(${process.env.REACT_APP_PUBLIC_BASE_URL}${setting?.site?.contact_image})`,
+              }}>
+              <h1 className="page-title font-weight-bold lh-1 text-white text-capitalize"></h1>
             </div>
             <div class="page-content pb-10 pt-10">
-                <ContactSection />
+              <ContactSection setting={setting} />
             </div>
           </div>
         </div>

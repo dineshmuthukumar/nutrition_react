@@ -38,6 +38,7 @@ import {
   getProductDetailsApi,
   cmsPages,
   searchForm,
+  settingsApi,
 } from "../../api/base-methods";
 import { readNotificationApi } from "./../../api/base-methods";
 import {
@@ -105,7 +106,7 @@ const Header = ({
   const [pageActive, setPageActive] = useState(false);
   const [bestSellerDetails, setBestSellerDetails] = useState({});
   const [footerDetails, setFooterDetails] = useState({});
-
+  const [setting, setSetting] = useState({});
   const [show, setShow] = useState(false);
   const [search, setSearch] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -184,8 +185,20 @@ const Header = ({
     handleGetNotification();
     getsubCategoryList();
     getFooterDetails();
+    getSettings();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const getSettings = async (page) => {
+    try {
+      let response = await settingsApi();
+      //console.log(response?.data.responseData, "response");
+      setSetting(response?.data.responseData);
+      //setList([...list, ...response.data.data.categories]);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const getsubCategoryList = async () => {
     try {
@@ -942,44 +955,14 @@ const Header = ({
                                     );
                                   }
                                 })}
-                              {/* </li> */}
-                              {/* <li className="">
+                              <li>
+                                <Link to="/explore">Explore More</Link>
+                              </li>
+                              <li className="">
                                 {" "}
-                                <Link to="/">Liven Dominance</Link>
-                              </li> */}
+                                <Link to="/dominance">Liven Dominance</Link>
+                              </li>
 
-                              {(() => {
-                                if (filterCategoryList?.length > 0) {
-                                  return (
-                                    <>
-                                      {filterCategoryList?.map(
-                                        (CategoriesDetail) => {
-                                          return (
-                                            <li className="">
-                                              {/* <Link
-                                                to={`/category/${CategoriesDetail?._id}`}
-                                              > */}
-                                              <Nav.Link
-                                                onClick={() =>
-                                                  history.push(
-                                                    `/category/${CategoriesDetail?._id}`
-                                                  )
-                                                }>
-                                                {
-                                                  CategoriesDetail?.subCategoryName
-                                                }
-                                                {/* </Link> */}
-                                              </Nav.Link>
-                                            </li>
-                                          );
-                                        }
-                                      )}
-                                    </>
-                                  );
-                                } else {
-                                  return <li>No Categories Found</li>;
-                                }
-                              })()}
                               {/* <li className="submenu">
                                 {" "}
                                 <Link to="/category">Explore More</Link>
@@ -1518,7 +1501,7 @@ const Header = ({
       </div>
 
       <a
-        href="https://wa.me/message/MBAYXCC5DNOUM1"
+        href={setting?.site?.whatsAppLink}
         target="_blank"
         rel="noopener noreferrer">
         <div className="whatsup-icon">
@@ -2046,16 +2029,25 @@ const DisplayContainer = (data) => {
   return (
     <div style={{ width: "120px", height: "53px" }}>
       <div>
-        {/* <img src="" */}
-        <span style={{ fontSize: "8px", padding: "5px 0px 0px 10px" }}>
+        <img
+          src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${data?.data?.photos[0]}`}
+          alt="img"
+          width={25}
+        />
+        <span
+          style={{
+            fontSize: "12px",
+            padding: "5px 0px 0px 10px",
+            wordBreak: "break-all",
+          }}>
           {data?.data?.name}
         </span>
       </div>
       <div style={{ padding: "2px 5px 8px 14px" }}>
-        <span
+        {/* <span
           style={{ display: "inline", marginLeft: "10px", fontSize: "18px" }}>
           {data?.data?.name}
-        </span>
+        </span> */}
       </div>
     </div>
   );

@@ -479,7 +479,7 @@ const Footer = () => {
               <Col>
                 <div className="footer-center">
                   <p className="copyright">
-                    Copyright &copy; 2023. Liven Science
+                    {settingsDetails?.site?.copyright}
                   </p>
                 </div>
               </Col>
