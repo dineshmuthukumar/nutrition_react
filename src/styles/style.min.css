@@ -16786,7 +16786,7 @@ aside + div .product-single .product-details {
   min-height: 4rem;
   color: #7a8088;
   border: 1px solid;
-  border-color: #2e3237;
+  border-color: #ccc;
   border-right: 0;
   background-color: transparent;
 }
@@ -16794,8 +16794,8 @@ aside + div .product-single .product-details {
 .mobile-menu-container .input-wrapper .btn-search {
   padding: 0;
   width: 4rem;
-  background-color: #26c;
-  border-color: #26c;
+  background-color: var(--base-color);
+  border-color: #ccc;
   color: #fff;
   font-size: 1.4rem;
   border-radius: 3px;
@@ -16808,7 +16808,7 @@ aside + div .product-single .product-details {
 
 .mobile-menu-container .mobile-menu {
   margin: 2rem 0rem;
-  background: #ddd;
+  background: #222;
   border-radius: 10px;
 }
 

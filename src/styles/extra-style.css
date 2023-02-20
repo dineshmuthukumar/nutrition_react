@@ -1584,7 +1584,13 @@ img.weak_strongest_img_absolute {
 {
     ul.mobile-menu.mmenu-anim a 
     {
-        color: var(--black);
+        color: var(--white);
+    }
+    .d-flex.justify-content-between
+    {
+        padding: 2rem 0.6rem 2rem 1rem;
+        color: #fff;
+        font-weight: 700;
     }
     .header-middle 
     {
@@ -1593,6 +1599,12 @@ img.weak_strongest_img_absolute {
     .product.product-with-qty .product-details .btn-cart 
     {
         max-width: 100% !important;
+    }
+    .catergory-page-active li {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: flex-start;
     }
 }
 
