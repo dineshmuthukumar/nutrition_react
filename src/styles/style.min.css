@@ -25467,6 +25467,13 @@ h3.img-cat-title i {
     min-height: auto;
     width: 100%;
   }
+  .mobile-menu-container .input-wrapper {
+    display: flex;
+    margin-bottom: 0.6rem;
+    height: 4rem;
+    text-align: center;
+    justify-content: center;
+}
 
   img.weak_strongest_img_absolute {
     position: relative;

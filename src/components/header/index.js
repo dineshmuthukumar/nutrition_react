@@ -1535,18 +1535,8 @@ const Header = ({
         </a>
 
         <div className="mobile-menu-container scrollable">
-          <div action="demo-food2-product.html#" className="input-wrapper">
-            <input
-              type="text"
-              className="form-control"
-              name="search"
-              autoComplete="off"
-              placeholder="Search your keyword..."
-              required
-            />
-            <button className="btn btn-search" type="submit">
-              <i className="d-icon-search"></i>
-            </button>
+          <div action="" className="input-wrapper">
+            <img src={Logo} />
           </div>
 
           <ul className="mobile-menu mmenu-anim">
