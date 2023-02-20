@@ -1606,6 +1606,14 @@ img.weak_strongest_img_absolute {
         text-align: center;
         justify-content: flex-start;
     }
+    .mobile-menu-wrapper .mobile-menu-close i
+    {
+        background: var(--base-color);
+        border-radius: 50%;
+        padding: 0.5rem;        
+        font-size: 2rem;
+        color: #fff;
+    }
 }
 
 .header-user-details {
