@@ -2132,3 +2132,25 @@ section.instagram-section.pt-2.pt-md-7.pt-10.pb-8 .owl-item {
         width: 100%;
     }
 }
+
+
+.blog-title-banner
+{
+    background: url("https://qa.solent.ac.uk/centres/wp-content/uploads/sites/3/2019/12/blogpage-header-banner.jpg") !important;
+    background-attachment: fixed !important;
+    background-size: cover !important; 
+    background-repeat: no-repeat !important;
+    position: relative;
+    z-index: 1;
+}
+.blog-title-banner::before
+{
+    position: absolute;
+    content: '';
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #00000078;
+    z-index: -1;
+}
