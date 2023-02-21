@@ -968,12 +968,18 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                     </div>
                     <p className="high">
                       {" "}
-                      {cart?.data?.cartSetting?.checkoutContent1}
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: cart?.data?.cartSetting?.checkoutContent1,
+                        }}></div>
                       {/* <span className="text-bold">Great Job! </span>
                       You're Taking First step towards a better you! */}
                     </p>
                     <p className="high checkout-timer">
-                      {cart?.data?.cartSetting?.checkoutContent2}
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: cart?.data?.cartSetting?.checkoutContent2,
+                        }}></div>
                       {/* <div> */}
                       {minutes === 0 && seconds === 0 ? null : (
                         <>
@@ -1097,7 +1103,11 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                         <div className="pt-5">
                           <p className="p-2 border-header">
                             {cart?.data?.cartSetting?.checkoutContent3 ? (
-                              cart?.data?.cartSetting?.checkoutContent3
+                              <div
+                                dangerouslySetInnerHTML={{
+                                  __html:
+                                    cart?.data?.cartSetting?.checkoutContent3,
+                                }}></div>
                             ) : (
                               <>
                                 After Your trial period has expired you will be
