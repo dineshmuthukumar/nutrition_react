@@ -719,10 +719,10 @@ const Header = ({
       );
       if (filterData?.length) {
         return (
-          <ul>
+          <ul className="submenu-level ">
             {filterData?.map((subCategoriesDetail) => {
               return (
-                <li>
+                <li className="submenu">
                   <Link to={`/category/${subCategoriesDetail?._id}`}>
                     {subCategoriesDetail?.subCategoryName}
                   </Link>
@@ -1554,8 +1554,12 @@ const Header = ({
                                   : ""
                               }`}>
                               <a>{CategoriesDetail?.name}</a>
-                              <AiOutlineArrowDown />
-                              {DropdownMenuItem(CategoriesDetail?._id)}{" "}
+                              {IsDropdownMenuItem(CategoriesDetail?._id) ? (
+                                <AiOutlineArrowRight />
+                              ) : (
+                                ""
+                              )}
+                              {DropdownMenuItem(CategoriesDetail?._id)}
                             </li>
                           );
                         })}
@@ -1567,7 +1571,7 @@ const Header = ({
                 })()}
               </ul>
             </li>
-            <li>
+            {/* <li>
               <a href="demo-food2-product.html">Products</a>
               <ul>
                 <li>
@@ -1690,7 +1694,7 @@ const Header = ({
                   </ul>
                 </li>
               </ul>
-            </li>
+            </li> */}
             <li>
               <div className="d-flex justify-content-between">
                 Pages{" "}
@@ -1702,10 +1706,10 @@ const Header = ({
               </div>
               <ul className={`${pageActive ? "page-active" : ""}`}>
                 <li>
-                  <Link to="/abouts">About</Link>
+                  <Link to="/aboutus">About</Link>
                 </li>
                 <li>
-                  <Link to="/cms/contactUs">Contact Us</Link>
+                  <Link to="/contact">Contact Us</Link>
                 </li>
                 {/* <li>
                   <Link to="/login">Login</Link>
