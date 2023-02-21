@@ -81,8 +81,8 @@
 
 .bannerTitle {
   position: absolute;
-  top: 50%;
-  left: 35%;
+  top: 40%;
+  left: 32%;
   transform: translate(-50%, -50%);
   // h3{
   // color: white;
@@ -91,9 +91,12 @@
 
 .bannerDescription {
   position: absolute;
-  top: 60%;
+  top: 50%;
   left: 35%;
+  width: 100%;
+  max-width: 90rem;
   transform: translate(-50%, -50%);
+  margin: 2rem 0 0;
   //   h4{
   //     color: white;
   //     }
@@ -293,4 +296,38 @@ input.btn.btn-large:active {
 
 .trial_buy_now_btn {
   cursor: pointer
+}
+
+
+.intro-slide1.banner.banner-fixed
+{
+  position: relative;
+  z-index: 1;
+  &::before
+  {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: #000000b3;
+  }
+  .bannerTitle
+  {
+    h3{
+      font-size: 3rem;
+      color: #fff;
+      font-weight: 700;
+    }
+  }
+  .bannerDescription
+  {
+    h4{
+      font-size: 2rem;
+      color: #fff;
+      font-weight: 700;
+      line-height: 2;
+    }
+  }
 }
