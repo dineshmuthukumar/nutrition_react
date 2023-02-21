@@ -111,35 +111,53 @@ const Privacy = () => {
   return (
     <>
       <Header
-        title="Most Trusted NFT Marketplace To Trade Cricket NFTs"
-        description="Jump.trade is the most secured NFT marketplace where you can buy & sell rare cricket NFTs. Discover, collect, and trade authentic cricket player NFTs on our NFT gaming marketplace. Sign up now!"
-        image="https://cdn.guardianlink.io/product-hotspot/images/og-image_jt.jpg"
+        title="liven Science"
+        description="Natural Medicine. Sign up now!"
+        //image="https://cdn.guardianlink.io/product-hotspot/images/og-image_jt.jpg"
       />
       <main className="main single-product">
         <div className="page-content">
           <div className="container-fluid p-0">
-            <div className="page-header pl-4 pr-4" style={{background: "#7ea4b1"}}>
-                <h1 className="page-title font-weight-bold lh-1 text-white text-capitalize">Privacy Policy</h1>
+            <div
+              className="page-header pl-4 pr-4"
+              style={{ background: "#7ea4b1" }}>
+              <h1 className="page-title font-weight-bold lh-1 text-white text-capitalize">
+                Privacy Policy
+              </h1>
             </div>
             <div class="page-content mt-10 pt-10">
-                <section className="customer-section pb-10">
-                  <div className="container">
-                      <div className="row align-items-center">
-                          <div className="col-md-12 mb-4">
-                              <h3 className="section-title lh-1 font-weight-bold">Privacy Policy</h3>
-                              <p class="section-desc text-grey">Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                              Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                              Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                              Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                              </p>
-                          </div>
-                      </div>
+              <section className="customer-section pb-10">
+                <div className="container">
+                  <div className="row align-items-center">
+                    <div className="col-md-12 mb-4">
+                      <h3 className="section-title lh-1 font-weight-bold">
+                        Privacy Policy
+                      </h3>
+                      <p class="section-desc text-grey">
+                        Lorem Ipsum is simply dummy text of the printing and
+                        typesetting industry. Lorem Ipsum has been the
+                        industry's standard dummy text ever since the 1500s,
+                        when an unknown printer took a galley of type and
+                        scrambled it to make a type specimen book. Lorem Ipsum
+                        is simply dummy text of the printing and typesetting
+                        industry. Lorem Ipsum has been the industry's standard
+                        dummy text ever since the 1500s, when an unknown printer
+                        took a galley of type and scrambled it to make a type
+                        specimen book. Lorem Ipsum is simply dummy text of the
+                        printing and typesetting industry. Lorem Ipsum has been
+                        the industry's standard dummy text ever since the 1500s,
+                        when an unknown printer took a galley of type and
+                        scrambled it to make a type specimen book. Lorem Ipsum
+                        is simply dummy text of the printing and typesetting
+                        industry. Lorem Ipsum has been the industry's standard
+                        dummy text ever since the 1500s, when an unknown printer
+                        took a galley of type and scrambled it to make a type
+                        specimen book.
+                      </p>
+                    </div>
                   </div>
-                 </section>  
+                </div>
+              </section>
             </div>
           </div>
         </div>

@@ -1106,7 +1106,7 @@ const Header = ({
                       </ul>
                     </li> */}
                     <li>
-                      {footerDetails?.length > 0 &&
+                      {/* {footerDetails?.length > 0 &&
                         footerDetails?.map((obj, index) => {
                           if (obj.url == "aboutus") {
                             // return (
@@ -1114,7 +1114,8 @@ const Header = ({
                             // );
                             return <Link to={`/aboutus`}>{obj?.title}</Link>;
                           }
-                        })}
+                        })} */}
+                      <Link to={`/aboutus`}>about us</Link>
                     </li>
                     <li>
                       <Nav.Link onClick={() => history.push("/blog")}>
@@ -1123,7 +1124,7 @@ const Header = ({
                     </li>
                     <li>
                       <Nav.Link onClick={() => history.push("/contact")}>
-                        Contact
+                        Contact us
                       </Nav.Link>
                     </li>
                   </ul>

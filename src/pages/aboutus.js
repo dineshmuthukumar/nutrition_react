@@ -45,7 +45,11 @@ const AboutUs = () => {
 
   return (
     <>
-      <Header></Header>
+      <Header
+        title="liven Science"
+        description="Natural Medicine. Sign up now!"
+        //image="https://cdn.guardianlink.io/product-hotspot/images/og-image_jt.jpg"
+      />
       {data ? <AboutUsSection data={data} /> : <>Loading</>}
       <Footer />
     </>

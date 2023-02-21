@@ -153,9 +153,9 @@ const NewHome = () => {
   return (
     <>
       <Header
-        title="Most Trusted NFT Marketplace To Trade Cricket NFTs"
-        description="Jump.trade is the most secured NFT marketplace where you can buy & sell rare cricket NFTs. Discover, collect, and trade authentic cricket player NFTs on our NFT gaming marketplace. Sign up now!"
-        image="https://cdn.guardianlink.io/product-hotspot/images/og-image_jt.jpg"
+        title="liven Science"
+        description="Natural Medicine. Sign up now!"
+        //image="https://cdn.guardianlink.io/product-hotspot/images/og-image_jt.jpg"
       />
       <main className="main pt-6 single-product">
         <div className="page-content">

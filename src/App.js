@@ -95,7 +95,7 @@ function App(props) {
   useEffect(() => {
     props.change_lang(lang);
     setLanguage(lang);
-    mixpanel.init("fb37da042db19dafef9b171500d64106", { debug: true });
+    ///mixpanel.init("fb37da042db19dafef9b171500d64106", { debug: true });
   }, [props, lang]);
 
   const checkSystemTimer = (input) => {
@@ -113,30 +113,6 @@ function App(props) {
     } catch (error) {
       console.log("🚀 ~ file: App.js ~ line 48 ~ getServerTime ~ error", error);
     }
-  };
-
-  window.setFiredeskdetails = () => {
-    setTimeout(function () {
-      if (user.data?.user) {
-        // console.log(user.data?.user);
-        if (document.getElementById("chat-fc-name")) {
-          document.getElementById("chat-fc-name").value =
-            user.data?.user.first_name + " " + user.data?.user.last_name;
-          document.getElementById("chat-fc-name").disabled = true;
-        }
-
-        if (document.getElementById("chat-fc-email")) {
-          document.getElementById("chat-fc-email").value =
-            user.data?.user.email;
-          document.getElementById("chat-fc-email").disabled = true;
-        }
-        if (document.getElementById("chat-fc-phone")) {
-          document.getElementById("chat-fc-phone").value =
-            user.data?.user.phone_no;
-          document.getElementById("chat-fc-phone").disabled = true;
-        }
-      }
-    }, 1000);
   };
 
   useEffect(() => {
@@ -222,24 +198,12 @@ const WebContainer = () => {
   const aid = query.get("aid");
 
   useEffect(() => {
-    if (fsz) {
-      sessionStorage.setItem("fsz", fsz);
-      setCookiesByName("source", fsz);
-    }
-
     if (token) {
       setCookies(token);
 
       history.replace(pathname);
 
       dispatch(user_load_by_token_thunk(token));
-    }
-
-    // XENA Integration
-    if (aid) {
-      for (const [key, value] of query.entries()) {
-        setCookiesByName(key, value);
-      }
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

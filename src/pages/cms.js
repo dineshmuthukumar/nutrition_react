@@ -127,9 +127,9 @@ const About = () => {
   return (
     <>
       <Header
-        title="Most Trusted NFT Marketplace To Trade Cricket NFTs"
-        description="Jump.trade is the most secured NFT marketplace where you can buy & sell rare cricket NFTs. Discover, collect, and trade authentic cricket player NFTs on our NFT gaming marketplace. Sign up now!"
-        image="https://cdn.guardianlink.io/product-hotspot/images/og-image_jt.jpg"
+        title="liven Science"
+        description="Natural Medicine. Sign up now!"
+        //image="https://cdn.guardianlink.io/product-hotspot/images/og-image_jt.jpg"
       />
       <main className="main single-product">
         <div className="page-content">
@@ -138,8 +138,7 @@ const About = () => {
               className="page-header pl-4 pr-4 cms-page-imge"
               style={{
                 backgroundImage: `url(${process.env.REACT_APP_PUBLIC_BASE_URL}${Data?.image})`,
-              }}
-            >
+              }}>
               <h1 className="page-title font-weight-bold lh-1 text-white text-capitalize">
                 {/* Page */}
               </h1>
