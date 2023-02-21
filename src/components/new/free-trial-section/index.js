@@ -407,7 +407,12 @@ const Free_Trial_Section = ({ productData }) => {
 
           {productData?.bannerDescription && (
             <div class="bannerDescription">
-              <h4>{productData?.bannerDescription}</h4>
+              <h4>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: productData?.bannerDescription,
+                  }}></div>
+              </h4>
             </div>
           )}
           {productData?.photos && (
