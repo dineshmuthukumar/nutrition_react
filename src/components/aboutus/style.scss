@@ -1,20 +1,20 @@
 section.aboutus {
   .banner-block {
-    padding: 1rem;
+    padding: 0rem;
     .banner {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 2rem;
       img {
-        border-radius: 2rem;
+        border-radius: 0rem;
         width: 100%;
         object-fit: cover;
       }
     }
   }
   .content-block {
-    padding: 1rem;
+    padding: 0rem;
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -26,7 +26,7 @@ section.aboutus {
       padding: 2rem;
       align-items: center;
       border: 1px solid #e9f5dacc;
-      border-radius: 2rem;
+      border-radius: 0rem;
       h4 {
         margin: 2rem 0;
         padding: 0 1rem;
@@ -82,7 +82,7 @@ section.aboutus {
       grid-template-columns: repeat(2, 1fr);
       grid-template-rows: 4rem 1fr;
       border: 1px solid #e9f5dacc;
-      border-radius: 2rem;
+      border-radius: 0rem;
       overflow: hidden;
       text-align: center;
       h4 {
@@ -103,7 +103,7 @@ section.aboutus {
         max-height: 45rem;
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        // object-fit: cover;
         grid-area: 1 / 1 / 3 / 3;
         z-index: 4;
       }
