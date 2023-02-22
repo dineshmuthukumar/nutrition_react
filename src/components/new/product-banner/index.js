@@ -8,14 +8,16 @@ const ProductBanner = ({ homeContent }) => {
         <div className="container">
           <div className="row">
             <div className="col-sm-12">
-              <h2 className="title-echo mb-1">
+              <h2 className="title-echo mb-1 title-poppens">
                 <span>{homeContent?.section?.first?.title}</span>
               </h2>
             </div>
           </div>
           <div className="row product_banner_2">
             <div className="col-sm-6">
-              <h1>{homeContent?.section?.first?.header}</h1>
+              <h1 className="sub-title-poppens">
+                {homeContent?.section?.first?.header}
+              </h1>
               <p>
                 <div
                   dangerouslySetInnerHTML={{

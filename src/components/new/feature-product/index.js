@@ -46,7 +46,7 @@ const FeatureProduct = ({ featureProductsContent }) => {
     <>
       <div className="container-fluid base-color-bg" id="feature-product">
         <section className="category-section mb-4 mb-lg-6 pb-7">
-          <h2 className="title-echo mb-2">
+          <h2 className="title-echo mb-2 title-poppens">
             <span>Featured product</span>
           </h2>
 
@@ -143,8 +143,7 @@ const FeatureProduct = ({ featureProductsContent }) => {
                   480: { slidesPerView: 2, spaceBetween: 5 },
                   768: { slidesPerView: 3, spaceBetween: 4 },
                   1024: { slidesPerView: 3, spaceBetween: 4 },
-                }}
-              >
+                }}>
                 {(() => {
                   if (featureProductsContent?.length > 0) {
                     return (
@@ -170,8 +169,7 @@ const FeatureProduct = ({ featureProductsContent }) => {
           <button
             className="swipper_back_arrow"
             onClick={() => handleNavigation("prev")}
-            disabled={swiperRef?.current?.swiper?.isBeginning}
-          >
+            disabled={swiperRef?.current?.swiper?.isBeginning}>
             <img
               src="https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png"
               width="40"
@@ -182,8 +180,7 @@ const FeatureProduct = ({ featureProductsContent }) => {
           <button
             className="swipper_front_arrow"
             onClick={() => handleNavigation("next")}
-            disabled={swiperRef?.current?.swiper?.isEnd}
-          >
+            disabled={swiperRef?.current?.swiper?.isEnd}>
             <img
               src="https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/front-arrow.png"
               width="40"

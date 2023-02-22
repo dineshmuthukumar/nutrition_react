@@ -10,7 +10,9 @@ const TeamSection = ({ homeContent }) => {
         data-animation-options="{'name': 'fadeInUpShorter','duration': '1.2s', 'delay': '.2s' }">
         <div className="container">
           <h2 className="title-echo title-font">
-            <span>{homeContent?.section?.sixth?.title}</span>
+            <span className="title-poppens">
+              {homeContent?.section?.sixth?.title}
+            </span>
           </h2>
           <p>
             <div

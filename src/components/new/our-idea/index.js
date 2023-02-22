@@ -11,7 +11,7 @@ const OurIdea = ({ homeContent }) => {
       <section className="new_our_idea pt-10 pb-10">
         <div className="container p-0">
           <h2 className="title-echo mb-1">
-            <span className="title-font">
+            <span className="title-font title-poppens">
               {homeContent?.section?.third?.title}
             </span>
           </h2>

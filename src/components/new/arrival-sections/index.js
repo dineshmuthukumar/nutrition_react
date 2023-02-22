@@ -124,10 +124,10 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
     <>
       <section className="arrivals-section need_sec">
         <div className="container">
-          <h2 className="title-echo mb-1">
+          <h2 className="title-echo mb-1 title-poppens">
             <span>What you need? Meet the most Here!</span>
           </h2>
-          <p>
+          <p className="sub-title-poppens">
             From skin to muscles, sleep to energy and fitness to cognition –
             Liven nurtures <br /> the health with essentials naturally sourced.
           </p>
@@ -141,7 +141,7 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
                   className={`nav-link nav-link-with-img border-rounded ${
                     categoryActiveIndex == "best_product" ? "active" : ""
                   }`}>
-                  <h3 className="img-cat-title mb-0">
+                  <h3 className="img-cat-title mb-0 ">
                     <AiFillHome /> Best sellers
                   </h3>
                 </a>
