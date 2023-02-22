@@ -9,8 +9,8 @@ const WeakStrong = ({ homeContent }) => {
         <div className="container">
           <div className="row">
             <div className="col-sm-12">
-              <h2 className="title-echo mb-1 title-font">
-                <span className="title-poppens">
+              <h2 className="title-echo mb-1">
+                <span className="title-poppens  title-font">
                   {homeContent?.section?.second?.title}
                 </span>
               </h2>
