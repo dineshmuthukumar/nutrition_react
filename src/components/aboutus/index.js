@@ -12,7 +12,14 @@ const Content = ({ data = {}, variant = "content", className = "" }) => (
       ) : (
         <h4>{`${data?.title}`}</h4>
       ))}
-    {data?.description && <p>{`${data?.description}`}</p>}
+    {data?.description && (
+      <div
+        dangerouslySetInnerHTML={{
+          __html: data?.description,
+        }}>
+        {/* <p>{`${data?.description}`}</p> */}
+      </div>
+    )}
     {data?.image && (
       <img src={`https://admin.livenscience.com${data?.image}`}></img>
     )}

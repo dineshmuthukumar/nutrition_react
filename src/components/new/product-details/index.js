@@ -637,7 +637,13 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                         ( 0 reviews )
                       </a> */}
                     </div>
-                    <p>{productData?.description}</p>
+                    <p>
+                      {" "}
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: productData?.description,
+                        }}></div>
+                    </p>
 
                     <div className="product_list_icon">
                       <div className="row" style={{ display: "none" }}>
