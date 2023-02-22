@@ -485,10 +485,20 @@ const Footer = () => {
               </Col>
             </Row>
           </div>
+
+          <div className="whatsapp-block2">
+            <div className="tooltip2 facebook">
+                <span className="tooltipText2 fb">Hey, how can we assist you today?</span>
+                <img src="https://img.icons8.com/color/256/whatsapp--v1.png" />
+            </div>
+          </div>
+
         </div>
       </div>
     </>
   );
 };
+
+
 
 export default Footer;

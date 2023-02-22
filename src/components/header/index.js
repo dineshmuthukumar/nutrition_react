@@ -1501,14 +1501,7 @@ const Header = ({
         </div>
       </div>
 
-      <a
-        href={setting?.site?.whatsAppLink}
-        target="_blank"
-        rel="noopener noreferrer">
-        <div className="whatsup-icon">
-          <img src={icons8_whatsapp} />
-        </div>
-      </a>
+      {/* <a href={setting?.site?.whatsAppLink} target="_blank" rel="noopener noreferrer"><div className="whatsup-icon"><img src={icons8_whatsapp} /></div></a> */}
 
       <div
         className={`mobile-menu-wrapper ${mobileMenuActive ? "active" : ""}`}>

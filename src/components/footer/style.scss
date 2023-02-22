@@ -1681,3 +1681,71 @@ span.seperator {
 {
   background: transparent;
 }
+
+
+.whatsapp-block2 {
+  display: flex;
+  justify-content:end;
+  position: fixed;
+  z-index: 999;
+  right: 0%;
+  bottom: 5%;
+}
+
+/* Container Tooltip */
+.tooltip2 {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 40px;
+  cursor: pointer;
+}
+
+/* Style text tooltip */
+.tooltipText2 {
+  background-color: #fff;
+  // position: absolute;
+  bottom: 100%;
+  right: -20%;
+  position: relative;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 14px;
+  opacity: 0;
+  transition: all .5s;
+}
+
+.fb {color: #3B5998;}
+.tw {color: #1da1f2}
+.wa {color:#25d366}
+
+
+/*  Membuat dan style tip*/
+.tooltipText2::after {
+  content: '';
+  border-width: 5px;
+  border-style: solid;
+  border-color: #fff transparent transparent transparent;
+  position: absolute;
+  top: 100%;
+  right: 15%;
+  margin-left: 5%;
+}
+
+
+
+/* Hover text tooltip */
+.tooltip2:hover .tooltipText2{
+  opacity: 1;
+  transform: translateY(-10px);
+}
+
+/* Hover Background icon */
+.facebook:hover i {
+  background-color: #3B5998;
+}
+.tooltip2.facebook img
+{
+  width: 4rem;
+}
