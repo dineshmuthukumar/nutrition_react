@@ -25,7 +25,7 @@ import six from "../../../images/new-images/blog/3col/6.jpg";
 
 import { Link } from "react-router-dom";
 
-import { blogListApi } from "../../../api/base-methods";
+import { blogListApi, settingsApi } from "../../../api/base-methods";
 
 import Pagination from "../pagination";
 

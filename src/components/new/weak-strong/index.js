@@ -48,11 +48,11 @@ const WeakStrong = ({ homeContent }) => {
               <div className="col-sm-4 text-center">
                 <img src={nutri_leaf} className="weak_strongest_img" />
               </div>
-              <div className="col-sm-8">
+              <div className="col-sm-8 pt-6">
                 {homeContent?.section?.second?.list &&
                   homeContent?.section?.second?.list?.map(
                     (secondContentList) => {
-                      return secondContentList;
+                      return <p>secondContentList</p>;
                     }
                   )}
                 {/* </ul>

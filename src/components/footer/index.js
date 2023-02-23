@@ -489,14 +489,19 @@ const Footer = () => {
           <div className="whatsapp-block2">
             <div className="tooltip2 facebook">
               <span className="tooltipText2 fb">
-                Hey, how can we assist you today?
+                {settingsDetails?.site?.whatsAppTitle1}
+                {/* <br />
+                {settingsDetails?.site?.whatsAppTitle2} */}
               </span>
               <a
                 href={settingsDetails?.site?.whatsAppLink}
                 target="_blank"
                 rel="noopener noreferrer">
                 {" "}
-                <img src="https://img.icons8.com/color/256/whatsapp--v1.png" />
+                <img
+                  src="https://img.icons8.com/color/256/whatsapp--v1.png"
+                  height={40}
+                />
               </a>
             </div>
           </div>
