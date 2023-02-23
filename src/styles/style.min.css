@@ -1473,10 +1473,11 @@ h6 {
 }
 
 p {
-  font-family: var(--font-monda);
-  font-size: 14px;
+  font-family: var(--font-family-poppins);
+  font-size: 16px;
   line-height: 1.86;
   color: #000;
+  font-weight: 400;
 }
 
 blockquote {
@@ -4452,10 +4453,10 @@ blockquote {
 
 .card-header {
   text-transform: capitalize;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 30px;
-  font-family: var(--font-monda);
+  font-family: var(--font-family-poppins);
 }
 
 .card-header a {
@@ -5413,8 +5414,10 @@ blockquote {
 }
 
 h4.post-title {
-  height: 50px;
+  height: 70px;
   overflow: hidden;
+  font-size: 16px;
+  font-weight: 500 !important;
 }
 
 .post-media .post-calendar {
@@ -7593,8 +7596,8 @@ ul.blog-filters .nav-filter {
   background-color: #fff;
   border-radius: 0.3rem;
   min-height: 40px;
-  font-family: var(--font-monda);
-  font-size: 14px;
+  font-family: var(--font-family-poppins);
+  font-size: 16px;
 }
 
 .reply p {
@@ -7876,7 +7879,7 @@ ul.blog-filters .nav-filter {
   margin: 1.4rem 0 0;
   text-align: center;
   color: #222;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   line-height: 1.2;
   text-transform: uppercase;
@@ -8906,8 +8909,8 @@ input[type="radio"]:checked ~ label:after {
 .icon-box .icon-box-title {
   margin: 0 0 0.7rem;
   text-transform: uppercase;
-  font-size: 15px;
-  font-family: var(--font-monda);
+  font-size: 16px;
+  font-family: var(--font-family-poppins);
   letter-spacing: -0.025em;
   line-height: 1.6;
 }
@@ -9849,7 +9852,7 @@ figure:hover .overlay-visible {
   margin-bottom: 0;
   text-transform: uppercase;
   font-size: 3rem;
-  font-family: var(--font-monda);
+  font-family: var(--font-family-poppins);
 }
 
 .page-title + .breadcrumb {
@@ -10309,7 +10312,7 @@ button.mfp-arrow {
 .login-popup .btn {
   height: 4.7rem;
   padding: 0;
-  font-size: 1.3rem;
+  font-size: 16px;
 }
 
 .login-popup .lost-link {
@@ -10506,7 +10509,7 @@ button.mfp-arrow {
 }
 
 .newsletter-pop2 p {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.7;
 }
 
@@ -10544,7 +10547,7 @@ button.mfp-arrow {
 
 .newsletter-pop3 p {
   margin: 8px 21px 24px;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.7;
 }
 
@@ -10625,7 +10628,7 @@ button.mfp-arrow {
 }
 
 .newsletter-pop4 p {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.7;
 }
 
@@ -10674,7 +10677,7 @@ button.mfp-arrow {
 }
 
 .newsletter-pop5 p {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.7;
   margin-bottom: 23px;
 }
@@ -10943,7 +10946,7 @@ button.mfp-arrow {
 .product {
   position: relative;
   overflow: hidden;
-  font-family: var(--font-monda);
+  font-family: var(--font-family-poppins);
   font-size: 1.4rem;
   color: #999;
   transition: 0.3s;
@@ -11021,7 +11024,7 @@ button.mfp-arrow {
 .product-label.label-sale {
   background: #d26e4b;
   padding: 1rem;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .product-label.label-top {
@@ -12125,7 +12128,7 @@ aside + div .product-single .product-details {
   font-size: 1.3rem;
   font-weight: 400;
   letter-spacing: -0.025em;
-  font-family: var(--font-monda);
+  font-family: var(--font-family-poppins);
 }
 
 .product-single .product-cat span {
@@ -12134,12 +12137,13 @@ aside + div .product-single .product-details {
 
 .product-single .product-name {
   margin-bottom: 0.6rem;
-  font-size: 2.6rem;
+  font-size: 28px;
   font-weight: 700;
   letter-spacing: -0.025em;
   white-space: normal;
   color: #222;
-  font-family: var(--font-monda);
+  line-height: 35px;
+  font-family: var(--font-family-poppins);
 }
 
 .product-single .product-price {
@@ -12167,7 +12171,7 @@ aside + div .product-single .product-details {
 
 .product-single .ratings-container {
   margin-bottom: 1.7rem;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .product-single .ratings-container .ratings:before {
@@ -13399,7 +13403,7 @@ aside + div .product-single .product-details {
   border: 1px solid #e1e1e1;
   line-height: 1.5;
   border-radius: 3px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 300;
   color: #999;
   transition: color 0.3s, border-color 0.3s;
@@ -13461,7 +13465,7 @@ aside + div .product-single .product-details {
 .nav-tabs .nav-item.show .nav-link,
 .nav-tabs .nav-item:hover .nav-link {
   color: #4dae67;
-  font-family: var(--font-monda);
+  font-family: var(--font-family-poppins);
   font-size: 20px;
   font-weight: 700;
 }
@@ -14274,11 +14278,14 @@ aside + div .product-single .product-details {
 
 .title-echo span {
   position: absolute;
-  font-size: 30px;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  color: #222;
+  color: #000;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.75;
+  font-family: var(--font-family-poppins);
 }
 
 @media (max-width: 767px) {
@@ -15193,7 +15200,7 @@ aside + div .product-single .product-details {
   padding: 0 5rem 0 1.55rem;
   border-radius: 5px;
   border: 2px solid;
-  font-family: var(--font-monda);
+  font-family: var(--font-family-poppins);
   background-color: #fff;
   color: #999;
   min-height: 40px;
@@ -17290,11 +17297,12 @@ aside + div .product-single .product-details {
   padding: 0.6rem 0;
   margin-bottom: 0.9rem;
   font-family: inherit;
-  font-size: 1.6rem;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 500;
   letter-spacing: 0;
   text-transform: capitalize;
   color: #e1e1e1;
+  font-family: var(--font-family-poppins);
 }
 
 .footer-middle .widget-body {
@@ -17447,9 +17455,9 @@ aside + div .product-single .product-details {
 .widget-newsletter .widget-title {
   padding: 0;
   margin-bottom: 20px;
-  font-family: var(--font-monda);
+  font-family: var(--font-family-poppins);
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: 0x;
   text-transform: inherit;
   line-height: 30px;
@@ -17688,7 +17696,7 @@ aside + div .product-single .product-details {
 .customer-section .section-title,
 .store-section .section-title {
   margin-bottom: 1.9rem;
-  font-family: var(--font-monda);
+  font-family: var(--font-family-poppins);
   font-size: 20px;
 }
 
@@ -17696,8 +17704,8 @@ aside + div .product-single .product-details {
 .store-section .section-desc {
   margin-bottom: 4.2rem;
   line-height: 30px;
-  font-family: var(--font-monda);
-  font-size: 14px;
+  font-family: var(--font-family-poppins);
+  font-size: 16px;
   color: #000 !important;
 }
 
@@ -18240,13 +18248,14 @@ aside + div .product-single .product-details {
 
 .contact-section form h4 {
   margin-bottom: 0.3rem;
-  font-family: var(--font-monda);
-  font-size: 18px;
+  font-family: var(--font-family-poppins);
+  font-size: 20px;
 }
 
 .grey-section h4 {
-  font-family: var(--font-monda);
-  font-size: 18px;
+  font-family: var(--font-family-poppins);
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .contact-section form p {
@@ -18648,7 +18657,7 @@ aside + div .product-single .product-details {
   letter-spacing: -0.025em;
   line-height: 30px;
   padding-bottom: 20px;
-  font-size: 2.4rem;
+  font-size: 20px;
 }
 
 .banner-4 .banner-title {
@@ -20301,7 +20310,7 @@ aside + div .product-single .product-details {
 #product-tab-size-guide .size-table,
 .card-sizeguide .size-table {
   flex: 1;
-  font-size: 14px;
+  font-size: 16px;
   text-transform: uppercase;
   color: #21293c;
 }
@@ -21366,7 +21375,7 @@ aside .owl-nav-top .owl-nav i:before {
 .related-posts .post-content {
   margin-bottom: 1.8rem;
   line-height: 1.72;
-  font-family: var(--font-monda);
+  font-family: var(--font-family-poppins);
 }
 
 .comments .title-simple,
@@ -21399,12 +21408,12 @@ aside .owl-nav-top .owl-nav i:before {
 
 .shop-table th {
   padding: 0.3rem 0 0.3rem;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 1.875;
   text-transform: uppercase;
   color: #fff;
-  font-family: var(--font-monda);
+  font-family: var(--font-family-poppins);
 }
 
 .shop-table img {
@@ -21621,7 +21630,7 @@ aside .owl-nav-top .owl-nav i:before {
 }
 
 .wishlist-empty .wishlist-descri {
-  font-size: 14px;
+  font-size: 16px;
   margin: 22px 0;
 }
 
@@ -22088,7 +22097,7 @@ aside .owl-nav-top .owl-nav i:before {
 }
 
 .cart-empty .cart-descri {
-  font-size: 14px;
+  font-size: 16px;
   margin: 22px 0;
 }
 
@@ -22816,7 +22825,7 @@ aside .owl-nav-top .owl-nav i:before {
 
 .compare-default .compare-field {
   color: #999;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   text-align: right;
   padding-right: 5rem;
@@ -22977,7 +22986,7 @@ aside .owl-nav-top .owl-nav i:before {
 }
 
 .compare-empty .compare-descri {
-  font-size: 14px;
+  font-size: 16px;
   margin: 22px 0;
 }
 
@@ -23344,7 +23353,7 @@ aside .owl-nav-top .owl-nav i:before {
 }
 
 .counter-inline .count-to {
-  font-size: 14px;
+  font-size: 16px;
   margin: 0;
 }
 
@@ -23552,7 +23561,7 @@ aside .owl-nav-top .owl-nav i:before {
 }
 
 .code-template .show-code > i {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .code-template .code-style {
@@ -23996,7 +24005,7 @@ aside .owl-nav-top .owl-nav i:before {
 }
 
 .video-slider .banner .btn {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .video-slider .banner .btn i {
@@ -24211,7 +24220,7 @@ aside .owl-nav-top .owl-nav i:before {
 }
 
 .big-slide2 p {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .big-slide2 .btn {
@@ -24313,7 +24322,7 @@ aside .owl-nav-top .owl-nav i:before {
 
 .grid-banner .banner-subtitle {
   color: #aaaaaa;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 2.14em;
   letter-spacing: normal;
@@ -24321,7 +24330,7 @@ aside .owl-nav-top .owl-nav i:before {
 
 .grid-banner .banner-price {
   color: #ffffff;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   line-height: 1.42em;
   letter-spacing: 0px;
@@ -24334,7 +24343,7 @@ aside .owl-nav-top .owl-nav i:before {
 }
 
 .grid-banner .banner-price sup {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .grid-banner1 .banner-content {
@@ -25400,7 +25409,7 @@ aside .owl-nav-top .owl-nav i:before {
   font-size: 1.8rem;
   font-weight: 700;
   text-transform: uppercase;
-  font-family: var(--font-monda);
+  font-family: var(--font-family-poppins);
 }
 
 .image-overlay figure {

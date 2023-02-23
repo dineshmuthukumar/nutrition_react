@@ -62,6 +62,7 @@ $theme-color-lite: #c784ed;
   --impact: "Impact", sans-serif;
   --helvetica: "HelveticaNeue1", sans-serif;
   --helvetica1: "HelveticaNeue2", sans-serif;
+  --font-family-poppins: 'Poppins', sans-serif;
 }
 
 //#fc7a4f
@@ -131,6 +132,12 @@ $theme-color-lite: #c784ed;
   font-family: Impact;
   src: url("../fonts/new/impact.ttf") format("opentype");
 }
+
+  @font-face 
+  {
+      font-family: 'Poppins', sans-serif;
+      src: url("../fonts/poppins-regular.ttf");
+  }
 
 .our-team-section {
   .sectionHeading {
@@ -209,8 +216,9 @@ body {
 }
 
 .title-font {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-size: 22px !important;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.75;
 }
 
 .heading-font {
@@ -219,10 +227,11 @@ body {
 }
 
 .title-poppens {
-  font-family: "Poppins-bold", Sans-serif !important;
-  font-weight: bold !important;
+  // font-family: "Poppins-bold", Sans-serif !important;
+  // font-weight: bold !important;
+  font-family: var(--font-family-poppins) !important;
 }
 
 .sub-title-poppens {
-  font-family: "Poppins", Sans-serif !important
+  font-family: var(--font-family-poppins) !important;
 }

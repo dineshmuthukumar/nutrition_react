@@ -28,7 +28,7 @@
 .form .form-control {
   margin-bottom: 2rem;
   min-height: 40px;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .account_form_box {
@@ -42,13 +42,13 @@ h5.card-title.text-uppercase {
 
 .card-address p {
   margin-bottom: 1rem;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 30px;
 }
 
 .card-address p {
   margin-bottom: 1rem;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 30px;
 }
 
@@ -84,7 +84,7 @@ h5.card-title.text-uppercase {
 
 select.form-select {
   min-height: 40px;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .profile_heading {

@@ -38,7 +38,7 @@
     color: #333333;
     margin-bottom: 0px;
     font-size: 16px;
-    font-family: var(--font-monda);
+    font-family: var(--font-family-poppins);
     line-height: 1.5;
     margin-top: 1em;
     letter-spacing: 0.02em;
@@ -46,11 +46,11 @@
 }
 
 h2.title.title-center.ls-s.mb-8 {
-    font-size: 32px;
-    line-height: 1.09375;
+    font-size: 28px;
+    line-height: 28px;
     color: var(--color-text);
-    font-weight: 100 !important;
-    font-family: var(--font-monda);
+    font-weight: 700 !important;
+    font-family: var(--font-family-poppins);
 }
 
 .font_italic {
@@ -74,7 +74,7 @@ h2.title.title-center.ls-s.mb-8 {
 
 .product-price.ls-md.offer_price_details span {
     color: var(--color-text);
-    font-family: var(--font-monda);
+    font-family: var(--font-family-poppins);
     font-size: 16px;
     font-weight: 100;
 }
@@ -89,14 +89,14 @@ h2.title.title-center.ls-s.mb-8 {
     color: var(--base-color) !important;
     font-size: 16px !important;
     font-weight: 100 !important;
-    font-family: var(--font-monda);
+    font-family: var(--font-family-poppins);
 }
 
 .black-color {
     color: var(--black) !important;
     font-size: 16px !important;
     font-weight: 100 !important;
-    font-family: var(--font-monda);
+    font-family: var(--font-family-poppins);
 }
 
 .base-color-bg {
@@ -116,13 +116,13 @@ h2.title.title-center.ls-s.mb-8 {
 
 .product_banner h1 {
     color: var(--color-text);
-    font-family: var(--font-monda);
+    font-family: var(--font-family-poppins);
     font-size: 40px;
 }
 
 .product_banner_2 h1 {
     color: var(--color-text);
-    font-family: var(--font-monda);
+    font-family: var(--font-family-poppins);
     font-size: 20px;
     line-height: 30px;
     margin-bottom: 15px;
@@ -130,15 +130,15 @@ h2.title.title-center.ls-s.mb-8 {
 }
 
 .product_banner p {
-    font-family: var(--font-monda);
+    font-family: var(--font-family-poppins);
     font-size: 20px;
     line-height: 30px;
     color: #7f848b;
 }
 
 .product_banner_2 p {
-    font-family: var(--font-monda);
-    font-size: 14px;
+    font-family: var(--font-family-poppins);
+    font-size: 16px;
     line-height: 30px;
     color: #000;
 }
@@ -146,7 +146,7 @@ h2.title.title-center.ls-s.mb-8 {
 .product-name.text-center a,
 .product-name a {
     color: #000;
-    font-size: 15px;
+    font-size: 20px;
     font-weight: 500;
 }
 
@@ -155,7 +155,7 @@ h2.title.title-center.ls-s.mb-8 {
     color: var(--color-text);
     line-height: 50px;
     text-decoration: underline;
-    font-family: var(--font-monda);
+    font-family: var(--font-family-poppins);
 }
 
 .product_banner_2 a {
@@ -163,7 +163,7 @@ h2.title.title-center.ls-s.mb-8 {
     color: var(--color-text);
     line-height: 50px;
     text-decoration: underline;
-    font-family: var(--font-monda);
+    font-family: var(--font-family-poppins);
 }
 
 .product_banner_2 {
@@ -187,14 +187,14 @@ h2.title.title-center.ls-s.mb-8 {
 .product_banner_3 h1 {
     color: var(--color-text);
     font-size: 20px;
-    font-family: var(--font-monda);
+    font-family: var(--font-family-poppins);
     font-weight: 100;
     text-align: center;
 }
 
 .product_banner_3 p {
-    font-family: var(--font-monda);
-    font-size: 14px;
+    font-family: var(--font-family-poppins);
+    font-size: 16px;
     line-height: 30px;
     color: var(--color-text);
 }
@@ -261,8 +261,8 @@ img.weak_strongest_img_absolute {
 }
 
 .cli_logo p {
-    font-family: var(--font-monda);
-    font-size: 20px;
+    font-family: var(--font-family-poppins);
+    font-size: 16px;
     line-height: 1.86;
     color: var(--color-text);
     text-align: center;
@@ -442,10 +442,10 @@ img.weak_strongest_img_absolute {
 }
 
 span.mail_footer a {
-    font-size: 14px;
+    font-size: 16px;
     color: var(--white);
     padding-left: 10px;
-    font-family: var(--font-monda);
+    font-family: var(--font-family-poppins);
 }
 
 .icon-box-icon {
@@ -528,14 +528,14 @@ a.nav-link.nav-link-with-img.border-rounded {
 .overlay-zoom h4 {
     background: #0000009e;
     border-radius: 10px;
-    font-size: 14px;
+    font-size: 16px;
     padding: 10px;
     margin-bottom: 20px !important;
-    font-family: var(--font-monda);
+    font-family: var(--font-family-poppins);
 }
 
 .category-section p {
-    font-family: var(--font-monda);
+    font-family: var(--font-family-poppins);
     font-size: 20px;
     line-height: 1.86;
     color: var(--color-text);
@@ -564,8 +564,8 @@ a.nav-link.nav-link-with-img.border-rounded {
 }
 
 .new_our_idea_des {
-    font-family: var(--font-monda);
-    font-size: 14px;
+    font-family: var(--font-family-poppins);
+    font-size: 16px;
     line-height: 30px;
     color: var(--color-text);
     text-align: center;
@@ -665,7 +665,7 @@ a.nav-link.nav-link-with-img.border-rounded {
 }
 
 .pack_add_cart {
-    font-size: 14px;
+    font-size: 16px;
     line-height: 30px;
     color: #222;
     border-radius: 5px;
@@ -673,7 +673,7 @@ a.nav-link.nav-link-with-img.border-rounded {
 
 h1.pack_tittle {
     color: #000;
-    font-size: 14px;
+    font-size: 16px;
     margin: 0px;
 }
 
@@ -700,12 +700,12 @@ h2.pack_total_doller {
     flex-basis: 100%;
     color: #252f42;
     margin-bottom: 20px;
-    font-family: var(--font-monda);
+    font-family: var(--font-family-poppins);
 }
 
 .plans .plan .plan-details p {
     color: #646a79;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 18px;
 }
 
@@ -955,21 +955,21 @@ button.btn-product.btn-cart {
 }
 
 #why_choose_image p {
-    font-family: var(--font-monda);
-    font-size: 14px;
+    font-family: var(--font-family-poppins);
+    font-size: 16px;
     line-height: 30px;
     color: var(--color-text);
 }
 
 #why_choose_image li {
-    font-family: var(--font-monda);
-    font-size: 14px;
+    font-family: var(--font-family-poppins);
+    font-size: 16px;
     line-height: 30px;
     color: var(--color-text);
 }
 
 .burn_works {
-    font-family: var(--font-monda);
+    font-family: var(--font-family-poppins);
     color: #000;
 }
 
@@ -1005,7 +1005,7 @@ button.btn-product.btn-cart {
     top: 5rem;
     max-width: 100%;
     color: #fff;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 div#cart_product_page label {
@@ -1189,7 +1189,7 @@ h4.icon-box-title.text-capitalize.ls-normal {
 
 .need_sec .product-details .product-name {
     text-align: center;
-    font-family: var(--font-monda);
+    font-family: var(--font-family-poppins);
 }
 
 .product_banner_section_3 {
@@ -1198,6 +1198,7 @@ h4.icon-box-title.text-capitalize.ls-normal {
 
 .burn_works {
     line-height: 75px;
+    font-size: 16px;
 }
 
 .pro_des_icon2 {
@@ -1207,7 +1208,7 @@ h4.icon-box-title.text-capitalize.ls-normal {
 
 .product_banner_3 ul li {
     color: #000;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 30px;
 }
 
@@ -1216,7 +1217,7 @@ h4.icon-box-title.text-capitalize.ls-normal {
 }
 
 section.instagram-section p {
-    font-family: var(--font-monda);
+    font-family: var(--font-family-poppins);
     font-size: 16px;
     line-height: 1.86;
     color: var(--color-text);
@@ -1232,8 +1233,8 @@ section.instagram-section p {
 }
 
 #free_trial_section p {
-    font-family: var(--font-monda);
-    font-size: 14px;
+    font-family: var(--font-family-poppins);
+    font-size: 16px;
     line-height: 30px;
     color: var(--color-text);
 }
@@ -1248,8 +1249,11 @@ section.instagram-section p {
 }
 
 .trial_form h5 {
+    font-weight: 500;
     color: var(--white);
     margin: 0px;
+    font-family: var(--font-family-poppins);
+    font-size: 20px;
 }
 
 .trial_form option {
@@ -1265,7 +1269,7 @@ section.instagram-section p {
 .trial_form .form-control {
     border: 1px solid var(--white);
     min-height: 40px;
-    font-family: var(--font-monda);
+    font-family: var(--font-family-poppins);
     font-size: 12px;
     color: var(--black);
     line-height: 30px;
@@ -1350,6 +1354,7 @@ img.trial_buy_now_btn {
     vertical-align: top;
     border-collapse: separate !important;
     border-radius: 10px;
+    font-size: 16px;
 }
 
 #distinct_table .table-bordered table {
@@ -1499,8 +1504,8 @@ table.shop-table.cart-table thead {
 }
 
 .product_banner_2 h3 {
-    font-family: var(--font-monda);
-    font-size: 14px;
+    font-family: var(--font-family-poppins);
+    font-size: 16px;
     line-height: 30px;
     color: var(--color-text);
 }
@@ -1542,8 +1547,8 @@ img.weak_strongest_img_absolute {
 .dropdown-menu.show.dropdown-menu-end {
     width: 200px;
     inset: 15px auto auto auto !important;
-    font-size: 14px;
-    font-family: var(--font-monda);
+    font-size: 16px;
+    font-family: var(--font-family-poppins);
 }
 
 .otp-input {
@@ -1721,7 +1726,7 @@ article.post,
 
 .change_pass .form-control {
     height: 40px;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 textarea#exampleForm\.ControlTextarea1 {
@@ -1853,12 +1858,12 @@ label.form-label {
 
 .cart-card .form-control {
     height: 40px;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .cart-card select.form-select {
     height: 40px;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .cart-card .card_inner {
@@ -2028,7 +2033,7 @@ section.instagram-section.pt-2.pt-md-7.pt-10.pb-8 .owl-item {
 }
 
 .widget.widget-newsletter.form-wrapper button.btn.btn-primary {
-    font-size: 15px;
+    font-size: 16px;
     background: var(--base-color);
     border: none;
 }

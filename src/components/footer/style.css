@@ -1821,12 +1821,12 @@ span.seperator {
 }
 
 .toast strong.me-auto, .toast p {
-  font-size: 14px;
+  font-size: 16px;
   color: #000;
 }
 
 .toast_btn {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .fade.toast.show {
