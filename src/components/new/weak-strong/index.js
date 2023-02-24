@@ -52,7 +52,7 @@ const WeakStrong = ({ homeContent }) => {
                 {homeContent?.section?.second?.list &&
                   homeContent?.section?.second?.list?.map(
                     (secondContentList) => {
-                      return <p>secondContentList</p>;
+                      return <p>{secondContentList}</p>;
                     }
                   )}
                 {/* </ul>
