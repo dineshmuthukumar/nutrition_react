@@ -40,7 +40,7 @@ const AboutUsSection = ({ data = {} }) => {
           <Content variant="content-with-bg" data={contentWithBg}></Content>
           {rest &&
             rest.map((item, i) => (
-              <Content key={i} variant="content" data={item} />
+              <Content key={i} variant="content container" data={item} />
             ))}
         </div>
         <div className="position-relative w-100" style={{ height: "100px" }}>
