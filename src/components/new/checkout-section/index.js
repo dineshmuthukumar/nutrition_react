@@ -989,7 +989,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                       )}
                       {/* </div>{" "} */}
                     </p>
-                    <p className="high">Act now before supplies run out </p>
+                    {/* <p className="high">Act now before supplies run out </p> */}
                   </>
                 )}
               </div>

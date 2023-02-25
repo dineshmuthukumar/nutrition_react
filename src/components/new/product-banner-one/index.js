@@ -6,6 +6,11 @@ const ProductBannerOne = ({ homeContent }) => {
     <>
       <section className="product_banner_section_2 pb-6">
         <div className="container">
+          <h2 className="title-echo mb-1">
+            <span className="title-font title-poppens">
+              {homeContent?.section?.fourth?.title}
+            </span>
+          </h2>
           <div className="row product_banner_2">
             <div className="col-sm-4 text-center">
               {homeContent?.section?.fourth?.image && (
