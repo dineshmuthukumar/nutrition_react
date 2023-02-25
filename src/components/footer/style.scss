@@ -1704,7 +1704,7 @@ span.seperator {
 
 /* Style text tooltip */
 .tooltipText2 {
-  background-color: #fff;
+  background-color: var(--base-color);
   // position: absolute;
   bottom: 100%;
   right: -20%;
@@ -1716,7 +1716,7 @@ span.seperator {
   transition: all .5s;
 }
 
-.fb {color: #3B5998;}
+.fb {color: #000;}
 .tw {color: #1da1f2}
 .wa {color:#25d366}
 
@@ -1726,7 +1726,7 @@ span.seperator {
   content: '';
   border-width: 5px;
   border-style: solid;
-  border-color: #fff transparent transparent transparent;
+  border-color: var(--base-color) transparent transparent transparent;
   position: absolute;
   top: 100%;
   right: 15%;
@@ -1747,5 +1747,5 @@ span.seperator {
 }
 .tooltip2.facebook img
 {
-  width: 4rem;
+  width: 6rem;
 }
