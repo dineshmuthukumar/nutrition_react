@@ -191,12 +191,26 @@ const Productlist = () => {
     }
   };
   const handleChangeEvent = (e) => {
-    console.log(e.target.value, "selectCategroy");
+    //console.log(e.target.value, "selectCategroy");
     if (e.target.value) {
       setSelectedCategory(e.target.value);
     } else {
       setSelectedCategory("");
     }
+  };
+
+  const ResetCategory = async () => {
+    setSelectedCategory("");
+    setLoading(true);
+    let response = await productListApi(1);
+    setList(response?.data?.responseData?.product?.docs);
+    setTotalCount(response?.data?.responseData?.product?.totalDocs);
+    // setLimit(response?.data?.responseData?.product?.limit);
+    setCurrentPage(response?.data?.responseData?.product?.page);
+    setIsNextPage(response?.data?.responseData?.product?.hasNextPage);
+    setTotalPages(response?.data?.responseData?.product?.totalPages);
+    setLoading(false);
+    window.scrollTo(0, 0);
   };
 
   return (
@@ -229,15 +243,15 @@ const Productlist = () => {
                               </div>
                             ))}
                         </Form>
-                      </div>
-                      <div class="col-sm-6">
                         <button
                           onClick={() => {
-                            history.goBack();
+                            ResetCategory();
                           }}
                           className="btn btn-primary">
-                          Back
+                          Reset
                         </button>
+                      </div>
+                      <div class="col-sm-6">
                         {/* <Form.Label>Category</Form.Label>
               <Form>
                 {['checkbox'].map((type) => (
