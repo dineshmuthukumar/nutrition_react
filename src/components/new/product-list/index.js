@@ -39,7 +39,7 @@ import "./style.scss";
 
 const Productlist = () => {
   const match = useRouteMatch();
-
+  const history = useHistory();
   const { categoryid } = match.params;
   const [list, setList] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
@@ -231,6 +231,13 @@ const Productlist = () => {
                         </Form>
                       </div>
                       <div class="col-sm-6">
+                        <button
+                          onClick={() => {
+                            history.goBack();
+                          }}
+                          className="btn btn-primary">
+                          Back
+                        </button>
                         {/* <Form.Label>Category</Form.Label>
               <Form>
                 {['checkbox'].map((type) => (
