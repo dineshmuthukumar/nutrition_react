@@ -1,10 +1,6 @@
 @charset "UTF-8";
 
 :root {
-    --font-family-m: "circularstd-medium";
-    --font-family-b: "circularstd-bold";
-    --font-family-black: "circularstd-black";
-    --font-monda: "circularstd-medium";
     --color-text: #1a1818;
     --font-family-poppins: 'Poppins', sans-serif;
 }
@@ -19,38 +15,11 @@ a {
     text-decoration: none !important;
 }
 
-@font-face {
-    font-family: monda;
-    src: url("../fonts/monda-regular.ttf");
-}
-
-@font-face {
-    font-family: "circularstd-medium";
-    src: url("../fonts/newfonts/circularstd-medium.ttf");
-}
-
-@font-face {
-    font-family: "circularstd-bold";
-    src: url("../fonts/newfonts/circularstd-bold.ttf");
-}
-
-@font-face {
-    font-family: "circularstd-black";
-    src: url("../fonts/newfonts/circularstd-black.ttf");
-}
-
-@font-face {
-    font-family: "domainedispnar";
-    src: url("../fonts/newfonts/domainedispnar.ttf");
-}
-
 @font-face 
 {
     font-family: 'Poppins', sans-serif;
     src: url("../fonts/poppins-regular.ttf");
 }
-
-
 
 .owl-carousel .owl-item img {
     height: auto;

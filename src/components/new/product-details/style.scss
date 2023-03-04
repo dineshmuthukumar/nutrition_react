@@ -27,7 +27,7 @@
 .product {
     position: relative;
     overflow: hidden;
-    font-family: circularstd-medium;
+    font-family: var(--font-family-poppins);
     font-size: 1.4rem;
     color: #999;
     transition: 0.3s;
@@ -184,7 +184,7 @@
     padding: 1.14em 0;
     background-color: #4dae67;
     color: var(--black);
-    font-family: circularstd-medium;
+    font-family: var(--font-family-poppins);
     font-size: 1.4rem;
     font-weight: 100;
     line-height: 1.2;
@@ -317,7 +317,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-family: circularstd-medium;
+    font-family: var(--font-family-poppins);
 }
 
 .product-name a:hover {
@@ -895,7 +895,7 @@
     font-size: 16px;
     padding: 0;
     border-color: var(--base-color);
-    font-family: circularstd-medium;
+    font-family: var(--font-family-poppins);
     color: var(--black);
     border-radius: 5px;
     line-height: 38px;
@@ -1277,7 +1277,7 @@ input.btn.btn-large:active {
     padding: 1.22em 2.78em;
     font-weight: 100;
     font-size: 1.4rem;
-    font-family: circularstd-medium;
+    font-family: var(--font-family-poppins);
     letter-spacing: 0;
     line-height: 1.2;
     text-transform: uppercase;
@@ -1453,7 +1453,7 @@ input.btn.btn-large:active {
     padding: 1.22em 2.78em;
     font-weight: 100;
     font-size: 1.4rem;
-    font-family: circularstd-medium;
+    font-family: var(--font-family-poppins);
     letter-spacing: 0;
     line-height: 1.2;
     text-transform: uppercase;

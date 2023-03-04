@@ -166,17 +166,8 @@
 }
 
 .font-primary {
-  font-family: circularstd-medium !important;
+  font-family: var(--font-family-poppins) !important;
 }
-
-.font-secondary {
-  font-family: Kalam, sans-serif !important;
-}
-
-.font-tertiary {
-  font-family: "Open Sans", sans-serif !important;
-}
-
 .font-weight-bolder {
   font-weight: 800 !important;
 }
