@@ -2116,3 +2116,28 @@ section.instagram-section.pt-2.pt-md-7.pt-10.pb-8 .owl-item {
   background: #00000078;
   z-index: -1;
 }
+
+
+
+@media (min-width: 991px)
+{
+  html 
+  {
+      font-size: 13px;
+  }
+  .intro-slide0 img
+  {
+    width: 100%;
+  }
+}
+@media (min-width: 576px)
+{
+  html 
+  {
+      font-size: 14px;
+  }
+  .intro-slide0 img
+  {
+    width: 100%;
+  }
+}

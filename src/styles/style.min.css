@@ -25421,29 +25421,32 @@ aside .owl-nav-top .owl-nav i:before {
   display: block;
 }
 
-.swiper-container.swiper-container-initialized.swiper-container-horizontal.swiper-container-pointer-events {
+.mySwiper.swiper-container-initialized.swiper-container-horizontal.swiper-container-pointer-events 
+{
+  height: 550px;
+} 
+/* .swiper-container.swiper-container-initialized.swiper-container-horizontal.swiper-container-pointer-events 
+{
   height: 240px;
 }
-
-.mySwiper.swiper-container-initialized.swiper-container-horizontal.swiper-container-pointer-events {
-  height: 550px;
-}
-
 .bannerSwiper.swiper-container-initialized.swiper-container-horizontal.swiper-container-pointer-events {
   height: 640px;
-}
+} */
+
 .banner figure img {
   object-fit: fill !important;
   max-width: 100%;
-  /* height: 540px;
-  min-height: 540px; */
   width: 100%;
-  height: 640px;
+  height: auto;
+  /* height: 640px; */
   border-radius: 0px;
 }
 
 .swiper-slide.swiper-slide-active {
   margin-right: 0px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .swiper-container-horizontal > .swiper-scrollbar {
