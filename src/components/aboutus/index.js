@@ -16,7 +16,8 @@ const Content = ({ data = {}, variant = "content", className = "" }) => (
       <div
         dangerouslySetInnerHTML={{
           __html: data?.description,
-        }}>
+        }}
+      >
         {/* <p>{`${data?.description}`}</p> */}
       </div>
     )}

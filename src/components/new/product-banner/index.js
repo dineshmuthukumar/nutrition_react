@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
 import home_one from "../../../images/new-images/demos/demo-food2/products/final/home_one.jpg";
+import nature1 from "../../../images/nature1.jpeg";
+import nature2 from "../../../images/nature2.jpeg";
+import nature3 from "../../../images/nature3.jpeg";
+import nature4 from "../../../images/nature4.jpeg";
+
+import "./style.scss";
 
 const ProductBanner = ({ homeContent }) => {
   return (
@@ -14,7 +20,7 @@ const ProductBanner = ({ homeContent }) => {
             </div>
           </div>
           <div className="row product_banner_2">
-            <div className="col-sm-6">
+            <div className="col-sm-7">
               <h1 className="sub-title-poppens">
                 {homeContent?.section?.first?.header}
               </h1>
@@ -22,24 +28,39 @@ const ProductBanner = ({ homeContent }) => {
                 <div
                   dangerouslySetInnerHTML={{
                     __html: homeContent?.section?.first?.description,
-                  }}></div>
+                  }}
+                ></div>
               </p>
               <div className="row">
                 {homeContent?.section?.first?.list &&
-                  homeContent?.section?.first?.list?.map((firstContentList) => {
-                    return (
-                      <div className="col-sm-6">
-                        <div className="icon-box icon-box-side">
-                          <i className="icon-box-icon d-icon-truck"></i>
-                          <div className="icon-box-content">
-                            <h4 className="icon-box-title text-capitalize ls-normal">
-                              {firstContentList}
-                            </h4>
+                  homeContent?.section?.first?.list?.map(
+                    (firstContentList, index) => {
+                      return (
+                        <div className="col-sm-6">
+                          <div className="icon-box icon-box-side">
+                            <span className="">
+                              {(() => {
+                                if (index == 0) {
+                                  return <img src={nature1} alt="nature1" />;
+                                } else if (index == 1) {
+                                  return <img src={nature2} alt="nature2" />;
+                                } else if (index == 2) {
+                                  return <img src={nature3} alt="nature3" />;
+                                } else if (index == 3) {
+                                  return <img src={nature4} alt="nature4" />;
+                                }
+                              })()}
+                            </span>
+                            <div className="icon-box-content">
+                              <h4 className="icon-box-title text-capitalize ls-normal">
+                                {firstContentList}
+                              </h4>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    }
+                  )}
 
                 {/* <div className="col-sm-6">
                   <div className="icon-box icon-box-side">
@@ -79,7 +100,7 @@ const ProductBanner = ({ homeContent }) => {
                 </div>
               </div> */}
             </div>
-            <div className="col-sm-6 text-center">
+            <div className="col-sm-5 text-center">
               {homeContent?.section?.first?.image && (
                 <img
                   src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${homeContent?.section?.first?.image}`}
