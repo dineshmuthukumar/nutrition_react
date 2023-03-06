@@ -1,7 +1,6 @@
 @import "../../styles/common";
 
 .faq-wrapper {
-  font-family: $neue-helvetica-extended;
 
   background: var(--theme-dark-green);
   padding: 7rem 5rem;
@@ -48,7 +47,6 @@
 
 .c-accordian {
   background: #212135;
-  font-family: $neue-helvetica-extended;
   margin-bottom: 1.5rem;
 
   .c-accor-head {

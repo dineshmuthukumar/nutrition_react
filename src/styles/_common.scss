@@ -59,9 +59,6 @@ $theme-color-lite: #c784ed;
   --ck-subtitle: 2rem;
   --ck-section-padding: 5rem 0;
   --ck-drop-gradient: linear-gradient(-70deg, #97df5f, #6ae28b 50%, #0de2ab);
-  --impact: "Impact", sans-serif;
-  --helvetica: "HelveticaNeue1", sans-serif;
-  --helvetica1: "HelveticaNeue2", sans-serif;
   --font-family-poppins: 'Poppins', sans-serif;
 }
 
@@ -75,64 +72,6 @@ $theme-color-lite: #c784ed;
   text-overflow: ellipsis;
   overflow: hidden;
 }
-
-// new fonts
-
-@font-face {
-  font-family: "neue_helvetica_bold";
-  src: url("../fonts/new/Helvetica\ Neue\ LT\ 75\ Bold.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "neue_helvetica_light";
-  src: url("../fonts/new/Helvetica\ Neue\ LT\ 45\ Light.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "neue_helvetica_thin";
-  src: url("../fonts/new/Helvetica\ Neue\ LT\ 35\ Thin.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "neue_helvetica_ultralight";
-  src: url("../fonts/new/Helvetica\ Neue\ LT\ 25\ Ultra\ Light.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "neue_helvetica_roman";
-  src: url("../fonts/new/Helvetica\ Neue\ LT\ 55\ Roman.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "neue_helvetica_medium";
-  src: url("../fonts/new/Helvetica\ Neue\ LT\ 65\ Medium.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "neue_helvetica_heavy";
-  src: url("../fonts/new/Helvetica\ Neue\ LT\ 85\ Heavy.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "neue_helvetica_black";
-  src: url("../fonts/new/Helvetica\ Neue\ LT\ 95\ Black.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "neue_helvetica_extended";
-  src: url("../fonts/new/Helvetica\ Neue\ LT\ 53\ Extended.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "neue_helvetica_extended_bold";
-  src: url("../fonts/new/Helvetica\ Neue\ LT\ 73\ Bold\ Extended.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: Impact;
-  src: url("../fonts/new/impact.ttf") format("opentype");
-}
-
   @font-face 
   {
       font-family: 'Poppins', sans-serif;
@@ -161,7 +100,7 @@ $theme-color-lite: #c784ed;
         .team-member-desc {
           font-size: 0.9rem;
           font-weight: 600 !important;
-          font-family: "Montserrat", sans-serif !important;
+          
         }
       }
     }
@@ -199,17 +138,17 @@ section.our-investor-section {
   }
 }
 
-$neue-helvetica-thin: "neue_helvetica_thin" !important;
-$neue-helvetica-ultralight: "neue_helvetica_ultralight" !important;
-$neue-helvetica-light: "neue_helvetica_light" !important;
-$neue-helvetica-bold: "neue_helvetica_bold" !important;
-$neue-helvetica-roman: "neue_helvetica_roman" !important;
-$neue-helvetica-medium: "neue_helvetica_medium" !important;
-$neue-helvetica-heavy: "neue_helvetica_heavy" !important;
-$neue-helvetica-black: "neue_helvetica_black" !important;
-$neue-helvetica-extended: "neue_helvetica_extended" !important;
-$neue-helvetica-extended-bold: "neue_helvetica_extended_bold" !important;
-$Impact: "Impact" !important;
+// $neue-helvetica-thin: "neue_helvetica_thin" !important;
+// $neue-helvetica-ultralight: "neue_helvetica_ultralight" !important;
+// $neue-helvetica-light: "neue_helvetica_light" !important;
+// $neue-helvetica-bold: "neue_helvetica_bold" !important;
+// $neue-helvetica-roman: "neue_helvetica_roman" !important;
+// $neue-helvetica-medium: "neue_helvetica_medium" !important;
+// $neue-helvetica-heavy: "neue_helvetica_heavy" !important;
+// $neue-helvetica-black: "neue_helvetica_black" !important;
+// $neue-helvetica-extended: "neue_helvetica_extended" !important;
+// $neue-helvetica-extended-bold: "neue_helvetica_extended_bold" !important;
+// $Impact: "Impact" !important;
 
 body {
   overflow: visible !important;
@@ -222,16 +161,14 @@ body {
 }
 
 .heading-font {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: var(--font-family-poppins) !important;
   font-size: 18px !important;
 }
-
-.title-poppens {
-  // font-family: "Poppins-bold", Sans-serif !important;
-  // font-weight: bold !important;
+.title-poppens 
+{
   font-family: var(--font-family-poppins) !important;
 }
-
-.sub-title-poppens {
+.sub-title-poppens 
+{
   font-family: var(--font-family-poppins) !important;
 }

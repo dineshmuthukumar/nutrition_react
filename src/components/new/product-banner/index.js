@@ -41,9 +41,9 @@ const ProductBanner = ({ homeContent }) => {
                             <span className="">
                               {(() => {
                                 if (index == 0) {
-                                  return <img src={nature1} alt="nature1" />;
-                                } else if (index == 1) {
                                   return <img src={nature2} alt="nature2" />;
+                                } else if (index == 1) {
+                                  return <img src={nature1} alt="nature1" />;
                                 } else if (index == 2) {
                                   return <img src={nature3} alt="nature3" />;
                                 } else if (index == 3) {

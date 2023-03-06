@@ -28,7 +28,6 @@
 }
 .downloads-section {
   .app-download {
-    font-family: "neue_helvetica_extended_bold" !important;
     font-size: 1.8rem;
     text-transform: uppercase;
   }
@@ -541,7 +540,6 @@ button.nft_form {
           justify-content: center;
         }
         h3 {
-          font-family: $neue-helvetica-extended;
           font-size: 1.7rem;
           margin-bottom: 1rem;
           white-space: nowrap;
@@ -602,7 +600,6 @@ button.nft_form {
 
       .top-block {
         h3 {
-          font-family: $neue-helvetica-extended-bold;
           font-size: 1.8rem;
           margin-bottom: 2rem;
           max-width: 25rem;
@@ -613,7 +610,6 @@ button.nft_form {
         }
         h4 {
           font-size: 1.8rem;
-          font-family: $neue-helvetica-extended;
           margin-bottom: 1rem;
         }
         ul.linkList {
@@ -635,7 +631,6 @@ button.nft_form {
             a {
               padding: 0 !important;
               line-height: 1.5;
-              font-family: $neue-helvetica-extended-bold;
               @media screen and (max-width: 767px) {
                 background: none;
                 justify-content: end;
@@ -649,7 +644,6 @@ button.nft_form {
             }
             &:last-child {
               a {
-                font-family: $neue-helvetica-medium;
                 font-style: italic;
                 background: -webkit-linear-gradient(
                   40deg,
@@ -679,7 +673,6 @@ button.nft_form {
         }
         .form-label {
           font-size: 1.6rem;
-          font-family: $neue-helvetica-extended;
           color: #fff;
           margin-bottom: 1rem;
           margin-top: 2rem;
@@ -774,7 +767,6 @@ button.nft_form {
             margin-bottom: 1.8rem;
             cursor: pointer;
             line-height: 1.2;
-            font-family: $neue-helvetica-roman;
             display: table;
             margin-left: auto;
             margin-right: auto;
@@ -1583,7 +1575,6 @@ span.seperator {
 
 .end-date {
   font-size: 2.3rem;
-  font-family: $neue-helvetica-bold;
 }
 .theme-btn {
   border-radius: 0.3rem;
@@ -1596,7 +1587,6 @@ span.seperator {
   padding: 0.6rem 2rem;
   transition: 0.3s;
   position: relative;
-  font-family: $neue-helvetica-extended-bold;
   text-transform: uppercase;
   font-size: 1.4rem;
   background: transparent

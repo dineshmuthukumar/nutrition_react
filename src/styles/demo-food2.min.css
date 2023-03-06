@@ -2,23 +2,21 @@
 
 :root {
     --color-text: #1a1818;
-    --font-family-poppins: 'Poppins', sans-serif;
+    --font-family-poppins: 'Poppins', sans-serif !important;
 }
-
-body {
-    font-family: var(--font-family-poppins);
-}
-
-a {
-    font-family: var(--font-family-poppins);
-    /* color: #000 !important; */
-    text-decoration: none !important;
-}
-
 @font-face 
 {
     font-family: 'Poppins', sans-serif;
     src: url("../fonts/poppins-regular.ttf");
+}
+body 
+{
+    font-family: var(--font-family-poppins);
+}
+a
+{
+    font-family: var(--font-family-poppins);
+    text-decoration: none !important;
 }
 
 .owl-carousel .owl-item img {
