@@ -1,31 +1,24 @@
-import { useState, useLayoutEffect } from 'react';
-import throttle from 'lodash.throttle';
-
-const isBrowser = typeof window !== 'undefined';
-
-export const useWindowSize = (initialWidth = Infinity, initialHeight = Infinity) => {
-  
-  const [state, setState] = useState( {
-    width: isBrowser ? window.innerWidth : initialWidth,
-    height: isBrowser ? window.innerHeight : initialHeight
-  } );
-
-  useLayoutEffect( () => {
-    if ( !isBrowser ) return;
-
-    const handler = throttle( () => {
-      setState( {
-        width: window.innerWidth,
-        height: window.innerHeight
-      } );
-    }, 200 );
-
-    window.addEventListener( 'resize', handler );
-
-    return () => {
-      window.removeEventListener( 'resize', handler );
+import { useEffect, useState } from "react";
+const useWindowSize = () => {
+  const [windowSize, setWindowSize] = useState({
+    width: undefined,
+    height: undefined,
+  });
+  useEffect(() => {
+    let timeOut = null;
+    const handleResize = () => {
+      timeOut && clearTimeout(timeOut);
+      timeOut = setTimeout(() => {
+        setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+      }, 500);
     };
-  }, [] );
-
-  return state;
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  return windowSize;
 };
+export default useWindowSize;

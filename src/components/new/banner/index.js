@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import OwlCarousel from "react-owl-carousel";
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from "swiper";
 
@@ -34,9 +34,16 @@ import Banner_2 from "../../../images/new-images/demos/demo-food2/slides/banner_
 
 import Banner_3 from "../../../images/new-images/demos/demo-food2/slides/banner_2.jpg";
 
+import banner_1_mobile from "../../../images/new-images/demos/demo-food2/slides/banner_1_mobile.png";
+
 import "./style.scss";
+import useWindowSize from "../../../utils/useWindowSize";
 
 const Banner = ({ bannerContent }) => {
+  const { width } = useWindowSize();
+  useEffect(() => {
+    console.log(width, "width");
+  }, [width]);
   return (
     <>
       <section className="intro-section" id="home_banner_section">
@@ -84,7 +91,8 @@ const Banner = ({ bannerContent }) => {
             //pagination={{ clickable: true }}
             autoplay={{ delay: 100, disableOnInteraction: true }}
             speed={500}
-            loop>
+            loop
+          >
             {(() => {
               if (bannerContent?.length > 0) {
                 return (
@@ -94,12 +102,19 @@ const Banner = ({ bannerContent }) => {
                         <SwiperSlide className="swiperSlider" key={key}>
                           {" "}
                           <Link
-                            to={`/products/list/${BannerDetail.categoryId}`}>
+                            to={`/products/list/${BannerDetail.categoryId}`}
+                          >
                             <div
-                              className={`intro-slide${key} banner banner-fixed`}>
+                              className={`intro-slide${key} banner banner-fixed`}
+                            >
                               <figure>
                                 <img
-                                  src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${BannerDetail?.image}`}
+                                  src={`${
+                                    width < 767
+                                      ? banner_1_mobile
+                                      : process.env.REACT_APP_PUBLIC_BASE_URL +
+                                        BannerDetail?.image
+                                  }`}
                                   alt="intro-banner"
                                 />
                               </figure>

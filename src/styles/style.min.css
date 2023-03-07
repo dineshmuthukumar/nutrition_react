@@ -25473,7 +25473,6 @@ h3.img-cat-title i {
 
 @media (min-width: 320px) and (max-width: 767px) {
   .banner figure img {
-    object-fit: fill;
     max-width: 100%;
     height: auto;
     min-height: auto;
