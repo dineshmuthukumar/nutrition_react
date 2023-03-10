@@ -89,12 +89,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.scss";
-
+import useWindowSize from "../../../utils/useWindowSize";
 import "swiper/swiper-bundle.css";
 
 import SwiperCore, { EffectFlip, Navigation, Pagination } from "swiper";
 
 const Free_Trial_Section = ({ productData }) => {
+  const { width } = useWindowSize();
   const history = useHistory();
   //console.log(productData?._id, "productData");
   const dispatch = useDispatch();
@@ -420,7 +421,13 @@ const Free_Trial_Section = ({ productData }) => {
             <figure>
               <img
                 //src={banner_1}
-                src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${productData?.photos[0]}`}
+                src={`${
+                  width > 767
+                    ? process.env.REACT_APP_PUBLIC_BASE_URL +
+                      productData?.photos[0]
+                    : process.env.REACT_APP_PUBLIC_BASE_URL +
+                      productData?.mobileImage
+                }`}
                 alt="intro-banner"
                 width="1903"
                 height="540"
