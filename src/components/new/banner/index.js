@@ -47,7 +47,6 @@ const Banner = ({ bannerContent }) => {
   return (
     <>
       <section className="intro-section" id="home_banner_section">
-        ``
         {bannerContent?.length > 0 &&
         // <OwlCarousel
         //   className="owl-carousel owl-nav-inside owl-theme row owl-nav-fade intr o-slider animation-slider cols-1 gutter-no owl-nav-arrow"
