@@ -79,14 +79,29 @@
   padding: 1.6rem;
 }
 
-.bannerTitle {
+.bannerTitle 
+{
   position: absolute;
   top: 40%;
   left: 32%;
   transform: translate(-50%, -50%);
-  // h3{
-  // color: white;
-  // }
+  h3
+  {
+    @media (min-width: 320px) and (max-width: 767px)  
+    {
+      line-height: 1.6;
+      font-size: 1.6rem !important;
+    }
+  }
+  @media (min-width: 320px) and (max-width: 767px)
+  {
+    inset: 15% 0% 0% 50%;
+    z-index: 1;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .bannerDescription {
@@ -329,5 +344,19 @@ input.btn.btn-large:active {
       font-weight: 700;
       line-height: 2;
     }
+  }
+}
+
+
+@media (min-width: 320px) and (max-width: 767px)
+{
+  .banner-content.y-50
+  {
+    top: 0 !important;
+  }
+  .banner-fixed > .container
+  {
+    position: relative;
+    background: #fff;
   }
 }
