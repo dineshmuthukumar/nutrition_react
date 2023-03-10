@@ -47,38 +47,40 @@ const Banner = ({ bannerContent }) => {
   return (
     <>
       <section className="intro-section" id="home_banner_section">
-        {bannerContent?.length > 0 && (
-          // <OwlCarousel
-          //   className="owl-carousel owl-nav-inside owl-theme row owl-nav-fade intr o-slider animation-slider cols-1 gutter-no owl-nav-arrow"
-          //   margin={20}
-          //   nav
-          //   smartSpeed={500}
-          //   dots={false}
-          //   navContainerClass={"owl-nav"}
-          //   navText={[
-          //     `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png  />`,
-          //     `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png />`,
-          //   ]}
-          //   responsive={{
-          //     0: {
-          //       items: 1,
-          //     },
-          //     768: {
-          //       items: 1,
-          //     },
-          //     800: {
-          //       items: 1,
-          //     },
-          //   }}
-          //   autoplay
-          //   loop
-          //   autoplayTimeout={2000}
-          //   autoplayHoverPause={true}
-          //   // navText={[
-          //   //   '<i class="fa fa-chevron-left"></i>"',
-          //   //   '<i class="fa fa-chevron-right"></i>'
-          //   // ]}
-          // >
+        ``
+        {bannerContent?.length > 0 &&
+        // <OwlCarousel
+        //   className="owl-carousel owl-nav-inside owl-theme row owl-nav-fade intr o-slider animation-slider cols-1 gutter-no owl-nav-arrow"
+        //   margin={20}
+        //   nav
+        //   smartSpeed={500}
+        //   dots={false}
+        //   navContainerClass={"owl-nav"}
+        //   navText={[
+        //     `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png  />`,
+        //     `<img src=https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png />`,
+        //   ]}
+        //   responsive={{
+        //     0: {
+        //       items: 1,
+        //     },
+        //     768: {
+        //       items: 1,
+        //     },
+        //     800: {
+        //       items: 1,
+        //     },
+        //   }}
+        //   autoplay
+        //   loop
+        //   autoplayTimeout={2000}
+        //   autoplayHoverPause={true}
+        //   // navText={[
+        //   //   '<i class="fa fa-chevron-left"></i>"',
+        //   //   '<i class="fa fa-chevron-right"></i>'
+        //   // ]}
+        // >
+        width > 767 ? (
           <Swiper
             spaceBetween={50}
             slidesPerView={1}
@@ -98,30 +100,81 @@ const Banner = ({ bannerContent }) => {
                 return (
                   <>
                     {bannerContent?.map((BannerDetail, key) => {
-                      return (
-                        <SwiperSlide className="swiperSlider" key={key}>
-                          {" "}
-                          <Link
-                            to={`/products/list/${BannerDetail.categoryId}`}
-                          >
-                            <div
-                              className={`intro-slide${key} banner banner-fixed`}
+                      if (!BannerDetail?.isMobile) {
+                        return (
+                          <SwiperSlide className="swiperSlider" key={key}>
+                            {" "}
+                            <Link
+                              to={`/products/list/${BannerDetail.categoryId}`}
                             >
-                              <figure>
-                                <img
-                                  src={`${
-                                    width < 767
-                                      ? banner_1_mobile
-                                      : process.env.REACT_APP_PUBLIC_BASE_URL +
-                                        BannerDetail?.image
-                                  }`}
-                                  alt="intro-banner"
-                                />
-                              </figure>
-                            </div>
-                          </Link>
-                        </SwiperSlide>
-                      );
+                              <div
+                                className={`intro-slide${key} banner banner-fixed`}
+                              >
+                                <figure>
+                                  <img
+                                    src={`${
+                                      process.env.REACT_APP_PUBLIC_BASE_URL +
+                                      BannerDetail?.image
+                                    }`}
+                                    alt="intro-banner"
+                                  />
+                                </figure>
+                              </div>
+                            </Link>
+                          </SwiperSlide>
+                        );
+                      }
+                    })}
+                  </>
+                );
+              }
+            })()}
+            {/* </OwlCarousel> */}
+          </Swiper>
+        ) : (
+          <Swiper
+            spaceBetween={50}
+            slidesPerView={1}
+            //onSlideChange={() => console.log("slide change")}
+            //onSwiper={(swiper) => console.log(swiper)}
+            //modules={[Navigation, Pagination, Scrollbar, A11y]}
+            //navigation={true}
+            className="bannerSwiper"
+            modules={[Navigation, Autoplay, Pagination, Scrollbar]}
+            //pagination={{ clickable: true }}
+            autoplay={{ delay: 100, disableOnInteraction: true }}
+            speed={500}
+            loop
+          >
+            {(() => {
+              if (bannerContent?.length > 0) {
+                return (
+                  <>
+                    {bannerContent?.map((BannerDetail, key) => {
+                      if (BannerDetail?.isMobile) {
+                        return (
+                          <SwiperSlide className="swiperSlider" key={key}>
+                            {" "}
+                            <Link
+                              to={`/products/list/${BannerDetail.categoryId}`}
+                            >
+                              <div
+                                className={`intro-slide${key} banner banner-fixed`}
+                              >
+                                <figure>
+                                  <img
+                                    src={`${
+                                      process.env.REACT_APP_PUBLIC_BASE_URL +
+                                      BannerDetail?.image
+                                    }`}
+                                    alt="intro-banner"
+                                  />
+                                </figure>
+                              </div>
+                            </Link>
+                          </SwiperSlide>
+                        );
+                      }
                     })}
                   </>
                 );
