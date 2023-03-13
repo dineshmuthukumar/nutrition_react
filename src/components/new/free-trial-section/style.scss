@@ -359,4 +359,29 @@ input.btn.btn-large:active {
     position: relative;
     background: #fff;
   }
+  h2.title.title-center.ls-s.mb-8
+  {
+    font-size: 16px;
+  }
+  h2.description-title.mb-4.font-weight-semi-bold.ls-m
+  {
+    font-size: 16px;
+  }
+  section#trial_faq 
+  {
+    margin-top: 5rem;
+  }
+  #Potential_product figure.product-media:hover {
+    background: #e1fff1;
+    padding: 2rem;
+    margin: 2rem;
+  }
+  .arrivals-section .tab .swipper_front_arrow
+  {
+    z-index: 999;
+  }
+  .arrivals-section .tab .swipper_back_arrow
+  {
+    z-index: 999;
+  }
 }
