@@ -2145,3 +2145,8 @@ section.instagram-section.pt-2.pt-md-7.pt-10.pb-8 .owl-item {
     width: 100%;
   }
 }
+
+
+.icon-box.icon-inversed.text-center.bg-livenburnitem .icon-box-content p {
+  color: #000;
+}
