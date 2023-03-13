@@ -320,13 +320,13 @@ input.btn.btn-large:active {
   z-index: 1;
   &::before
   {
-    position: absolute;
-    content: '';
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background: #000000b3;
+    // position: absolute;
+    // content: '';
+    // top: 0;
+    // left: 0;
+    // bottom: 0;
+    // right: 0;
+    // background: #000000b3;
   }
   .bannerTitle
   {
