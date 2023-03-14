@@ -1432,6 +1432,13 @@ table.shop-table.cart-table .product-remove {
   flex-wrap: wrap;
 }
 
+@media (min-width: 320px) and (max-width: 767px)
+{
+  .cart-actions-right
+  {
+    justify-content: center;
+  }
+}
 .apply_couple {
   display: flex;
   justify-content: center;
