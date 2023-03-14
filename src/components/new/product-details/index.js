@@ -1530,7 +1530,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                       modules={[Navigation]}
                       className="mySwiper11"
                       breakpoints={{
-                        320: { slidesPerView: 3, spaceBetween: 5 },
+                        320: { slidesPerView: 1, spaceBetween: 5 },
                         480: { slidesPerView: 3, spaceBetween: 5 },
                         768: { slidesPerView: 4, spaceBetween: 5 },
                         1024: { slidesPerView: 5, spaceBetween: 5 },
