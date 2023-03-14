@@ -134,7 +134,6 @@ const CheckoutSection = ({ orderInfo, loading }) => {
       clearInterval(myInterval);
     };
   });
-
   const getcmsPages = async () => {
     try {
       const result = await cmsPages();
