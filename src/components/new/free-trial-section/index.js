@@ -435,7 +435,7 @@ const Free_Trial_Section = ({ productData }) => {
               />
             </figure>
           )}
-          <div className="container">
+          <div className={`container ${user?.login ? "centered" : ""}`}>
             <div className="banner-content">
               <div className="col-lg-4 col-md-4">
                 <div className="trial_form">

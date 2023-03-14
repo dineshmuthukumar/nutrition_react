@@ -385,3 +385,21 @@ input.btn.btn-large:active {
     z-index: 999;
   }
 }
+
+.free-single-product
+{
+  .page-content
+  {
+    #trial_free_section
+    {
+      .container
+      {
+        &.centered
+        {
+          top: 30%;
+          bottom: 0;
+        }
+      }
+    }
+  }
+}

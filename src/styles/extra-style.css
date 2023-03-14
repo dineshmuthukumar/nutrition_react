@@ -1613,6 +1613,7 @@ img.weak_strongest_img_absolute {
   border-radius: 50px;
   padding: 5px 10px;
   background: transparent;
+  padding: 0.5rem 4rem;
 }
 
 .header-user-details img.user-image {
