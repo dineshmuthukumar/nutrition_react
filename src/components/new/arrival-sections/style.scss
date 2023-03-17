@@ -73,9 +73,9 @@
 
 .arrivals-section {
     li.nav-item {
-        h3 {
-            color: #000;
-            padding-left: 5px;
+        h3
+        {
+            color: #000; padding-left: 5px; display: flex; justify-content: center;
         }
 
         svg {
