@@ -247,6 +247,19 @@ input.btn.btn-large:active {
   }
 }
 
+.healing_image {
+  width: 300px !important;
+  height: 173px !important;
+  min-height: 180px;
+  background-size: cover;
+  object-fit: contain !important;
+  z-index: 12;
+}
+
+.healing_image-top {
+  z-index: 8;
+}
+
 #Potential_product {
   position: relative;
 
@@ -307,7 +320,25 @@ input.btn.btn-large:active {
     opacity: 0;
     padding: 15px;
   }
+
+  figure.product-media:hover img:last-child {
+    opacity: 1;
+  }
+
+  figure.product-media:hover img:last-child {
+    opacity: 1;
+
+    .title-bottom-left {
+      display: block;
+    }
+
+    .description-bottom-left {
+      display: block;
+    }
+  }
 }
+
+
 
 .trial_buy_now_btn {
   cursor: pointer
@@ -395,17 +426,4 @@ input.btn.btn-large:active {
       }
     }
   }
-}
-
-.healing_image {
-  width: 300px !important;
-  height: 173px !important;
-  min-height: 180px;
-  background-size: cover;
-  object-fit: contain !important;
-  z-index: 12;
-}
-
-.healing_image-top {
-  z-index: 8 !important;
 }

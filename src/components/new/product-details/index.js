@@ -1550,7 +1550,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                         320: { slidesPerView: 1, spaceBetween: 4 },
                         480: { slidesPerView: 3, spaceBetween: 4 },
                         768: { slidesPerView: 4, spaceBetween: 4 },
-                        1024: { slidesPerView: 5, spaceBetween: 4 },
+                        1024: { slidesPerView: 4, spaceBetween: 4 },
                       }}>
                       {(() => {
                         return (

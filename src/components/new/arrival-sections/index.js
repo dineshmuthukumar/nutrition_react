@@ -136,13 +136,11 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
               <li
                 className="nav-item ml-1 mr-1 pt-2 pb-2"
                 ref={ref}
-                onClick={() => IsProductDetails(0, "best_product")}
-              >
+                onClick={() => IsProductDetails(0, "best_product")}>
                 <a
                   className={`nav-link nav-link-with-img border-rounded ${
                     categoryActiveIndex == "best_product" ? "active" : ""
-                  }`}
-                >
+                  }`}>
                   <h3 className="img-cat-title mb-0 ">
                     <AiFillHome /> Best sellers
                   </h3>
@@ -159,13 +157,11 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
                             ref={ref}
                             onClick={() =>
                               IsProductDetails(arrivalecontent._id, key)
-                            }
-                          >
+                            }>
                             <a
                               className={`nav-link nav-link-with-img border-rounded ${
                                 categoryActiveIndex == key ? "active" : ""
-                              }`}
-                            >
+                              }`}>
                               <h3 className="img-cat-title mb-0 gap-4">
                                 {arrivalecontent?.layoutPhoto && (
                                   <img
@@ -189,8 +185,7 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
             <div className="tab-content">
               <div
                 className={`tab-pane pt-4 ${productTabActive ? "active" : ""}`}
-                id="fruits"
-              >
+                id="fruits">
                 {prodList?.length > 0 && (
                   // <OwlCarousel
                   //   className="owl-carousel owl-theme row cols-lg-4 cols-md-3 cols-2"
@@ -233,8 +228,7 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
                       480: { slidesPerView: 2, spaceBetween: 5 },
                       768: { slidesPerView: 3, spaceBetween: 4 },
                       1024: { slidesPerView: 3, spaceBetween: 4 },
-                    }}
-                  >
+                    }}>
                     {(() => {
                       return (
                         <>
@@ -262,8 +256,7 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
               <button
                 className="swipper_back_arrow"
                 onClick={() => handleNavigation("prev")}
-                disabled={swiperRef?.current?.swiper?.isBeginning}
-              >
+                disabled={swiperRef?.current?.swiper?.isBeginning}>
                 <img
                   src="https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png"
                   width="40"
@@ -274,8 +267,7 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
               <button
                 className="swipper_front_arrow"
                 onClick={() => handleNavigation("next")}
-                disabled={swiperRef?.current?.swiper?.isEnd}
-              >
+                disabled={swiperRef?.current?.swiper?.isEnd}>
                 <img
                   src="https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/front-arrow.png"
                   width="40"
