@@ -1564,6 +1564,11 @@ const Header = ({
                 })()}
               </ul>
             </li>
+            <li>
+              <Link onClick={() => history.push("/products/list")}>
+                Shop All
+              </Link>
+            </li>
             {/* <li>
               <a href="demo-food2-product.html">Products</a>
               <ul>

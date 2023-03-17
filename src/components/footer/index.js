@@ -204,6 +204,7 @@ const Footer = () => {
                     <button
                       className="btn btn-primary btn-rounded btn-md ls-m ml-2"
                       type="submit"
+                      style={{ width: "none" }}
                       onClick={() => handleSendNewsLetter()}>
                       subscribe <i className="d-icon-arrow-right"></i>
                     </button>
