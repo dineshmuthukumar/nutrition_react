@@ -79,8 +79,13 @@ export const productListCategoryApi = (props) =>
 export const productListCategoryApiwithpage = (page, categoriesId) =>
   baseAxios.get(`/product/list?page=${page}&categoryId=${categoriesId}`);
 
-export const productListSubCategoryApiwithpage = (page, categoriesId) =>
-  baseAxios.get(`/product/list?page=${page}&code=${categoriesId}`);
+export const productListSubCategoryApiwithpage = (page, categoriesId) => {
+  if (categoriesId == "all") {
+    baseAxios.get(`/product/list?page=${page}`);
+  } else {
+    baseAxios.get(`/product/list?page=${page}&code=${categoriesId}`);
+  }
+};
 
 export const searchForm = (searchkey) =>
   baseAxios.get(`/product/search?searchKey=${searchkey}`);

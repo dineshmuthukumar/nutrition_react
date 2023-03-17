@@ -45,7 +45,7 @@ const InstagramSection = ({ homeContent }) => {
               {homeContent?.section?.fifth?.title}
             </span>
           </h2>
-          <p className="heading-font sub-title-poppens">
+          <p className="heading-font sub-title-poppens ">
             {homeContent?.section?.fifth?.header}
           </p>
           <p>{homeContent?.section?.fifth?.description}</p>

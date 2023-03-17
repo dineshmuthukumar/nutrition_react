@@ -72,11 +72,11 @@ $theme-color-lite: #c784ed;
   text-overflow: ellipsis;
   overflow: hidden;
 }
-  @font-face 
-  {
-      font-family: 'Poppins', sans-serif;
-      src: url("../fonts/poppins-regular.ttf");
-  }
+
+@font-face {
+  font-family: 'Poppins', sans-serif;
+  src: url("../fonts/poppins-regular.ttf");
+}
 
 .our-team-section {
   .sectionHeading {
@@ -100,7 +100,7 @@ $theme-color-lite: #c784ed;
         .team-member-desc {
           font-size: 0.9rem;
           font-weight: 600 !important;
-          
+
         }
       }
     }
@@ -164,11 +164,15 @@ body {
   font-family: var(--font-family-poppins) !important;
   font-size: 18px !important;
 }
-.title-poppens 
-{
+
+.title-poppens {
   font-family: var(--font-family-poppins) !important;
 }
-.sub-title-poppens 
-{
+
+.sub-title-poppens {
   font-family: var(--font-family-poppins) !important;
+}
+
+.fontWeight {
+  font-weight: bold !important;
 }

@@ -19,9 +19,11 @@ const WeakStrong = ({ homeContent }) => {
           <div className="product_banner_3">
             <div className="row">
               <div className="col-sm-12">
-                <h1 className="mb-10 heading-font sub-title-poppens">
-                  {homeContent?.section?.second?.header}
-                </h1>
+                <strong>
+                  <h1 className="mb-10 heading-font sub-title-poppens fontWeight">
+                    {homeContent?.section?.second?.header}
+                  </h1>
+                </strong>
               </div>
             </div>
             <div className="row">
@@ -55,7 +57,7 @@ const WeakStrong = ({ homeContent }) => {
                       return <p>{secondContentList}</p>;
                     }
                   )}
-                  
+
                 {/* </ul>
                 <p></p>
                 <p>

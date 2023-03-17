@@ -36,8 +36,20 @@ const Product = ({ ProductDetails, key }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
 
+  const pageNaviagation = () => {
+    if (ProductDetails?.isFree) {
+      history.push(`/product/free/details?slug=${ProductDetails?.slug}`);
+    } else {
+      history.push(`/product/details?slug=${ProductDetails?.slug}`);
+    }
+  };
+
   return (
-    <div class="product text-center product-with-qty" key={ProductDetails?._id}>
+    <div
+      class="product text-center product-with-qty cursor-pointer"
+      style={{ cursor: "pointer" }}
+      key={ProductDetails?._id}
+      onClick={() => pageNaviagation()}>
       <figure class="product-media">
         {(() => {
           if (ProductDetails?.isFree) {
@@ -76,9 +88,7 @@ const Product = ({ ProductDetails, key }) => {
         )}
       </figure>
       <div class="product-details">
-        <h3 class="product-name">
-          <a href="#">{ProductDetails?.name}</a>
-        </h3>
+        <h3 class="product-name">{ProductDetails?.name}</h3>
 
         <div className="product-price ls-md offer_price_details">
           <span className="price">Rs {ProductDetails?.saleAmount}</span>

@@ -21,7 +21,7 @@ const ProductBannerOne = ({ homeContent }) => {
               )}
             </div>
             <div className="col-sm-8">
-              <h1 className="heading-font sub-title-poppens">
+              <h1 className="heading-font sub-title-poppens fontWeight">
                 {homeContent?.section?.fourth?.header}
               </h1>
               <h3 className="py-2">

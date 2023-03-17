@@ -1022,7 +1022,7 @@ const Free_Trial_Section = ({ productData }) => {
                 {productData?.healingPotentials?.length > 0 && (
                   <Swiper
                     ref={swiperRef}
-                    slidesPerView={5}
+                    slidesPerView={4}
                     spaceBetween={4}
                     slidesPerGroup={4}
                     // loop={true}
@@ -1034,7 +1034,7 @@ const Free_Trial_Section = ({ productData }) => {
                       320: { slidesPerView: 1, spaceBetween: 1 },
                       480: { slidesPerView: 3, spaceBetween: 5 },
                       768: { slidesPerView: 4, spaceBetween: 5 },
-                      1024: { slidesPerView: 5, spaceBetween: 5 },
+                      1024: { slidesPerView: 4, spaceBetween: 5 },
                     }}>
                     {(() => {
                       return (

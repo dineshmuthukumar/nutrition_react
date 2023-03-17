@@ -49,7 +49,7 @@ const Productlist = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(false);
   const [subCategoryDetails, setSubCategoryDetails] = useState({});
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
 
   useEffect(async () => {
     const response = await getsubCategoryListApi(1);
@@ -200,7 +200,7 @@ const Productlist = () => {
   };
 
   const ResetCategory = async () => {
-    setSelectedCategory("");
+    setSelectedCategory("all");
     setLoading(true);
     let response = await productListApi(1);
     setList(response?.data?.responseData?.product?.docs);
@@ -242,14 +242,25 @@ const Productlist = () => {
                                 />
                               </div>
                             ))}
+                          <Form.Check
+                            inline
+                            label={"All"}
+                            name={`group`}
+                            type={"radio"}
+                            value={"all"}
+                            id={`inline--1`}
+                            checked={"all" == selectedCategory}
+                            //onKeyPress={handleKeyPressEvent}
+                            onChange={ResetCategory}
+                          />
                         </Form>
-                        <button
+                        {/* <button
                           onClick={() => {
                             ResetCategory();
                           }}
                           className="btn btn-primary">
                           Reset
-                        </button>
+                        </button> */}
                       </div>
                       <div class="col-sm-6">
                         {/* <Form.Label>Category</Form.Label>
