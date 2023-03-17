@@ -49,7 +49,7 @@ const Productlist = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(false);
   const [subCategoryDetails, setSubCategoryDetails] = useState({});
-  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   useEffect(async () => {
     const response = await getsubCategoryListApi(1);
@@ -138,7 +138,7 @@ const Productlist = () => {
       setLoading(false);
       window.scrollTo(0, 0);
     } else {
-      if (selectedCategory) {
+      if (selectedCategory && selectedCategory != "all") {
         setLoading(true);
         const response = await productListSubCategoryApiwithpage(
           1,
@@ -200,17 +200,17 @@ const Productlist = () => {
   };
 
   const ResetCategory = async () => {
-    setSelectedCategory("all");
-    setLoading(true);
-    let response = await productListApi(1);
-    setList(response?.data?.responseData?.product?.docs);
-    setTotalCount(response?.data?.responseData?.product?.totalDocs);
-    // setLimit(response?.data?.responseData?.product?.limit);
-    setCurrentPage(response?.data?.responseData?.product?.page);
-    setIsNextPage(response?.data?.responseData?.product?.hasNextPage);
-    setTotalPages(response?.data?.responseData?.product?.totalPages);
-    setLoading(false);
-    window.scrollTo(0, 0);
+    // setSelectedCategory("all");
+    // setLoading(true);
+    // let response = await productListApi(1);
+    // setList(response?.data?.responseData?.product?.docs);
+    // setTotalCount(response?.data?.responseData?.product?.totalDocs);
+    // // setLimit(response?.data?.responseData?.product?.limit);
+    // setCurrentPage(response?.data?.responseData?.product?.page);
+    // setIsNextPage(response?.data?.responseData?.product?.hasNextPage);
+    // setTotalPages(response?.data?.responseData?.product?.totalPages);
+    // setLoading(false);
+    // window.scrollTo(0, 0);
   };
 
   return (
@@ -251,7 +251,9 @@ const Productlist = () => {
                             id={`inline--1`}
                             checked={"all" == selectedCategory}
                             //onKeyPress={handleKeyPressEvent}
-                            onChange={ResetCategory}
+                            onChange={() => {
+                              setSelectedCategory("all");
+                            }}
                           />
                         </Form>
                         {/* <button
