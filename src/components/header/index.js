@@ -1562,13 +1562,14 @@ const Header = ({
                     return <li>No Categories Found</li>;
                   }
                 })()}
+                <li>
+                  <Link onClick={() => history.push("/products/list")}>
+                    Shop All
+                  </Link>
+                </li>
               </ul>
             </li>
-            <li>
-              <Link onClick={() => history.push("/products/list")}>
-                Shop All
-              </Link>
-            </li>
+
             {/* <li>
               <a href="demo-food2-product.html">Products</a>
               <ul>
