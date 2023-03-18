@@ -38,9 +38,9 @@ const Product = ({ ProductDetails, key }) => {
 
   const pageNaviagation = () => {
     if (ProductDetails?.isFree) {
-      history.push(`/product/free/details?slug=${ProductDetails?.slug}`);
+      history.push(`/product/free/details/${ProductDetails?.slug}`);
     } else {
-      history.push(`/product/details?slug=${ProductDetails?.slug}`);
+      history.push(`/product/details/${ProductDetails?.slug}`);
     }
   };
 
@@ -54,7 +54,7 @@ const Product = ({ ProductDetails, key }) => {
         {(() => {
           if (ProductDetails?.isFree) {
             return (
-              <Link to={`/product/free/details?slug=${ProductDetails?.slug}`}>
+              <Link to={`/product/free/details/${ProductDetails?.slug}`}>
                 <img
                   src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${ProductDetails?.photos[0]}`}
                   alt="product"
@@ -66,7 +66,7 @@ const Product = ({ ProductDetails, key }) => {
             );
           } else {
             return (
-              <Link to={`/product/details?slug=${ProductDetails?.slug}`}>
+              <Link to={`/product/details/${ProductDetails?.slug}`}>
                 <img
                   //src={"http://54.177.7.240" + ProductDetails?.photos[0]}
                   src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${ProductDetails?.photos[0]}`}
@@ -137,21 +137,21 @@ const Product = ({ ProductDetails, key }) => {
               </a>
             ) : (
               <Link
-                to={`/product/free/details?slug=${ProductDetails?.slug}`}
+                to={`/product/free/details/${ProductDetails?.slug}`}
                 class="btn-product btn-cart ls-l">
                 Add to Bag
               </Link>
             )
           ) : !ProductDetails?.isFree ? (
             <Link
-              to={`/login?redirect=${process.env.REACT_APP_URL}/product/details?slug=${ProductDetails?.slug}`}
+              to={`/login?redirect=${process.env.REACT_APP_URL}/product/details/${ProductDetails?.slug}`}
               class="btn-product btn-cart ls-l">
               {" "}
               Add to Bag{" "}
             </Link>
           ) : (
             <Link
-              to={`/product/free/details?slug=${ProductDetails?.slug}`}
+              to={`/product/free/details/${ProductDetails?.slug}`}
               class="btn-product btn-cart ls-l">
               Add to Bag
             </Link>
