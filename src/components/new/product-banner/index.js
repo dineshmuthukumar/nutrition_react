@@ -21,15 +21,14 @@ const ProductBanner = ({ homeContent }) => {
           </div>
           <div className="row product_banner_2">
             <div className="col-sm-7">
-              <h1 className="sub-title-poppens">
+              <h1 className="sub-title-poppens fontWeight">
                 {homeContent?.section?.first?.header}
               </h1>
               <p>
                 <div
                   dangerouslySetInnerHTML={{
                     __html: homeContent?.section?.first?.description,
-                  }}
-                ></div>
+                  }}></div>
               </p>
               <div className="row">
                 {homeContent?.section?.first?.list &&

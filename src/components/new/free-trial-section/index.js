@@ -566,7 +566,7 @@ const Free_Trial_Section = ({ productData }) => {
                               }}
                               onChange={async (Ciytdata) => {
                                 setData({ ...data, city: Ciytdata?.value });
-                                console.log(data, "data");
+                                //console.log(data, "data");
                               }}
                               placeholder="Select City"
                             />

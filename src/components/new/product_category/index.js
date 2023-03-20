@@ -1,6 +1,4 @@
-
-
-import React, { useEffect, useState,useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useRouteMatch } from "react-router";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
@@ -36,7 +34,7 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
     },
     []
   );
-  console.log(result, "result");
+  //console.log(result, "result");
 
   return (
     <>
@@ -116,8 +114,7 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
                             </figure>
                             <div
                               className="banner-content d-flex align-items-center w-100 text-left"
-                              style={{ padding: "20px" }}
-                            >
+                              style={{ padding: "20px" }}>
                               <div className="mr-auto mb-4 mb-md-0">
                                 <h4 className="banner-subtitle text-white">
                                   {" "}
@@ -412,8 +409,7 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
 
       <section
         className="pt-3 mt-2 mb-2 pb-10 need_sec cat_new_carosal"
-        id="product_category_page_section"
-      >
+        id="product_category_page_section">
         <div className="container">
           <h2 className="title-echo mb-1">
             <span>Available Products</span>
@@ -476,8 +472,7 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
               // loop
               autoplay={false}
               autoplayTimeout={2000}
-              autoplayHoverPause={true}
-            >
+              autoplayHoverPause={true}>
               {(() => {
                 if (categoryProdDetails?.length > 0) {
                   return (
@@ -504,8 +499,7 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
       </section>
       <section
         className="new_our_idea pt-2 pt-md-7 pt-10 pb-8"
-        id="distinct_table"
-      >
+        id="distinct_table">
         <div className="container p-0">
           <h2 className="title-echo mb-1">
             <span>Why we are Distinct from other?</span>
@@ -530,8 +524,7 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
                                   <tr
                                     className={`${
                                       addkey == 0 ? "base-bg" : ""
-                                    }`}
-                                  >
+                                    }`}>
                                     <td>
                                       <i className="fas fa-certificate"></i>
                                       {advantage?.title}
@@ -581,8 +574,9 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
                               (deadvantage, diskey) => {
                                 return (
                                   <tr
-                                    className={`${diskey == 0 ? "red-bg" : ""}`}
-                                  >
+                                    className={`${
+                                      diskey == 0 ? "red-bg" : ""
+                                    }`}>
                                     <td>
                                       <i className="fas fa-certificate"></i>
                                       {deadvantage?.title}
@@ -652,6 +646,5 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
     </>
   );
 };
-
 
 export default Product_Category;

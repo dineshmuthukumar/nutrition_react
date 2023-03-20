@@ -229,7 +229,7 @@ const CartContent = () => {
   const checkAddressValidation = () => {
     let c_validation = { ...addressValidation };
 
-    console.log(addressValidation, "addressValidation");
+    //console.log(addressValidation, "addressValidation");
     if (!address?.address) {
       c_validation = { ...c_validation, address: true };
       // c_validation = { ...c_validation, valid_address: true };
@@ -259,7 +259,7 @@ const CartContent = () => {
       c_validation = { ...c_validation, valid_pincode: false };
     }
 
-    console.log(c_validation, "c_validation");
+    //console.log(c_validation, "c_validation");
 
     setAddressValidation(c_validation);
     if (
@@ -293,7 +293,7 @@ const CartContent = () => {
         if (result.data.statusCode === 200) {
           toast.success("Profile Updated Sucessfully");
         }
-        console.log(result, "result");
+        //console.log(result, "result");
       } catch (err) {
         console.log(err);
       }
@@ -398,8 +398,7 @@ const CartContent = () => {
                                 dispatch(
                                   remove_from_cart_thunk(item?.productId)
                                 )
-                              }
-                            >
+                              }>
                               <MdRemoveCircle
                                 size={30}
                                 style={{ cursor: "pointer" }}
@@ -420,8 +419,7 @@ const CartContent = () => {
                     return (
                       <Link
                         to="/checkout"
-                        className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
-                      >
+                        className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4">
                         Continue Shopping <i className="d-icon-arrow-right"></i>
                       </Link>
                     );
@@ -628,6 +626,6 @@ const CartContent = () => {
       </Modal> */}
     </>
   );
-};;
+};
 
 export default CartContent;

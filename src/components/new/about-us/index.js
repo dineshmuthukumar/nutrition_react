@@ -24,7 +24,7 @@ const Aboutus = () => {
   const getCustomPage = async (page) => {
     const Abouts = await CustomPageApi(page);
 
-    console.log(Abouts, "Abouts");
+    //console.log(Abouts, "Abouts");
   };
 
   useEffect(() => {

@@ -48,7 +48,7 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
 
   const handleNavigation = useCallback((direction = "") => {
     setUpdate(Math.random());
-    console.log(direction, "direction");
+    //console.log(direction, "direction");
     //if (!direction || !swiperRef.current) return;
     if (direction === "next") swiperRef.current.swiper.slideNext();
     else swiperRef.current.swiper.slidePrev();

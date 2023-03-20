@@ -1,5 +1,3 @@
-
-
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import InputPhone from "../../input-phone";
@@ -209,8 +207,8 @@ const Logincomponent = () => {
             setLoading
           )
         );
-        console.log(otp, "otp");
-        console.log(id, "id");
+        //console.log(otp, "otp");
+        //console.log(id, "id");
         //setLoading(false);
         // const result = await registerApi(apiInput);
         // console.log(result,"result");
@@ -334,8 +332,7 @@ const Logincomponent = () => {
           <div className="tab tab-nav-simple tab-nav-boxed form-tab">
             <ul
               className="nav nav-tabs nav-fill align-items-center border-no justify-content-center mb-5"
-              role="tablist"
-            >
+              role="tablist">
               <li className="nav-item">
                 <a
                   className={`nav-link ${
@@ -349,8 +346,7 @@ const Logincomponent = () => {
                     setNavigate("");
                     setVerifyLoading("");
                     setLoading(false);
-                  }}
-                >
+                  }}>
                   Login/Register
                 </a>
               </li>
@@ -376,8 +372,7 @@ const Logincomponent = () => {
             <div className="tab-content">
               <div
                 className={`tab-pane ${tab == "login" ? "active" : ""}`}
-                id="signin"
-              >
+                id="signin">
                 {otp ? (
                   <>
                     <div>
@@ -388,8 +383,7 @@ const Logincomponent = () => {
                         <Col className="text-right">
                           <div
                             className="cursor_pointer"
-                            onClick={() => setOTP(false)}
-                          >
+                            onClick={() => setOTP(false)}>
                             <h4>Change</h4>
                           </div>
                         </Col>
@@ -405,8 +399,7 @@ const Logincomponent = () => {
                         type="button"
                         className="btn btn-dark btn-block btn-rounded"
                         onClick={handleVerifyOTP}
-                        disabled={verifyLoading || navigate}
-                      >
+                        disabled={verifyLoading || navigate}>
                         {navigate ? (
                           "Verified Successfully, please wait..."
                         ) : (
@@ -427,16 +420,14 @@ const Logincomponent = () => {
                         />
                         <label
                           className="form-control-label"
-                          for="signin-remember"
-                        >
+                          for="signin-remember">
                           Remember me
                         </label>
                       </div>
                       <a
                         href="#"
                         className="lost-link"
-                        onClick={() => handleResendOTP()}
-                      >
+                        onClick={() => handleResendOTP()}>
                         Resend code
                       </a>
                     </div>
@@ -473,8 +464,7 @@ const Logincomponent = () => {
                       className="btn btn-dark btn-block btn-rounded"
                       type="submit"
                       onClick={handleLoginOTP}
-                      disabled={loading}
-                    >
+                      disabled={loading}>
                       {loading ? "Loading" : "Request OTP"}
                     </button>
 
@@ -511,8 +501,7 @@ const Logincomponent = () => {
               </div>
               <div
                 className={`tab-pane ${tab == "register" ? "active" : ""}`}
-                id="register"
-              >
+                id="register">
                 {otp ? (
                   <div>
                     <Row className="otp_flex">
@@ -522,8 +511,7 @@ const Logincomponent = () => {
                       <Col className="text-right">
                         <div
                           className="cursor_pointer"
-                          onClick={() => setOTP(false)}
-                        >
+                          onClick={() => setOTP(false)}>
                           <h4>Change</h4>
                         </div>
                       </Col>
@@ -539,8 +527,7 @@ const Logincomponent = () => {
                       type="button"
                       className="btn btn-dark btn-block btn-rounded"
                       onClick={handleVerifyOTP}
-                      disabled={verifyLoading || navigate}
-                    >
+                      disabled={verifyLoading || navigate}>
                       {navigate ? (
                         "Verified Successfully, please wait..."
                       ) : (
@@ -623,8 +610,7 @@ const Logincomponent = () => {
                           />
                           <label
                             className="form-control-label"
-                            for="register-agree"
-                          >
+                            for="register-agree">
                             I agree to the privacy policy
                           </label>
                           {validation.accepted_terms_and_condition && (
@@ -638,8 +624,7 @@ const Logincomponent = () => {
                         className="btn btn-dark btn-block btn-rounded"
                         disabled={loading}
                         type="button"
-                        onClick={handleSignUp}
-                      >
+                        onClick={handleSignUp}>
                         {loading ? "Loading..." : "Register"}
                       </button>
 
@@ -680,8 +665,7 @@ const Logincomponent = () => {
                     onClose={() => setShow(false)}
                     show={show}
                     delay={3000}
-                    autohide
-                  >
+                    autohide>
                     {/* <Toast.Header>
                       <strong className="me-auto">Bootstrap</strong>
                       <small>
@@ -703,7 +687,5 @@ const Logincomponent = () => {
     </>
   );
 };
-
-
 
 export default Logincomponent;

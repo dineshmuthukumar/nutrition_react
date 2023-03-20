@@ -112,7 +112,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
   let productIdCookies = getproductIdCookies();
   const handleNavigation = useCallback((direction = "") => {
     setUpdate(Math.random());
-    console.log(direction, "direction");
+    //console.log(direction, "direction");
     //if (!direction || !swiperRef.current) return;
     if (direction === "next") swiperRef.current.swiper.slideNext();
     else swiperRef.current.swiper.slidePrev();
@@ -135,7 +135,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
   useEffect(() => {
     // console.log(SaleAmountCookies, "TypeCookies");
     if (productIdCookies && user?.login) {
-      console.log(SaleAmountCookies, "TypeCookies");
+      // console.log(SaleAmountCookies, "TypeCookies");
       // console.log(productIdCookies, "productIdCookies");
       if (productData?._id == productIdCookies) {
         console.log("getproductIdCookies", getproductIdCookies());

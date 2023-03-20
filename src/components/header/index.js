@@ -769,7 +769,7 @@ const Header = ({
     //}
   };
   const showHideUpdateRow = () => {
-    console.log("cart in off");
+    //console.log("cart in off");
     dispatch(cart_off_thunk());
   };
 

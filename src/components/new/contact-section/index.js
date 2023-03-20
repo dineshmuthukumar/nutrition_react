@@ -136,7 +136,7 @@ const ContactSection = ({ setting }) => {
 
   const handleForm = async () => {
     if (CheckValidation()) {
-      console.log(data, "data");
+      //console.log(data, "data");
 
       try {
         let Newdata = {

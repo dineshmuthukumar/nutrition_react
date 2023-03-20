@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Col from 'react-bootstrap/Col';
-import Nav from 'react-bootstrap/Nav';
-import Row from 'react-bootstrap/Row';
-import Tab from 'react-bootstrap/Tab';
-import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom';
+import Col from "react-bootstrap/Col";
+import Nav from "react-bootstrap/Nav";
+import Row from "react-bootstrap/Row";
+import Tab from "react-bootstrap/Tab";
+import Form from "react-bootstrap/Form";
+import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import DatePicker from "react-datepicker";
 import moment from "moment";
@@ -174,7 +174,7 @@ const Accountcomponent = () => {
         setProfile({ ...profile, [e.target.name]: e.target.value });
         // console.log(e.target.name, e.target.value);
         setProfileValidation({ ...profileValidation, [e.target.name]: false });
-        console.log(profile, "profile");
+        //console.log(profile, "profile");
       }
     } else {
       setProfile({ ...profile, [e.target.name]: e.target.value });
@@ -288,7 +288,7 @@ const Accountcomponent = () => {
   const checkAddressValidation = () => {
     let c_validation = { ...addressValidation };
 
-    console.log(addressValidation, "addressValidation");
+    //console.log(addressValidation, "addressValidation");
     if (!address.address) {
       c_validation = { ...c_validation, address: true };
       // c_validation = { ...c_validation, valid_address: true };
@@ -360,7 +360,7 @@ const Accountcomponent = () => {
         if (result.data.statusCode === 200) {
           toast.success("Profile Updated Sucessfully");
         }
-        console.log(result, "result");
+        //console.log(result, "result");
       } catch (err) {
         console.log(err);
       }
@@ -392,8 +392,7 @@ const Accountcomponent = () => {
           id="left-tabs-example"
           defaultActiveKey={`${
             params?.defaultkey ? params?.defaultkey : "second"
-          }`}
-        >
+          }`}>
           <Row>
             <Col sm={3} className="account_form_box">
               <Nav variant="pills" className="flex-column">
@@ -509,8 +508,7 @@ const Accountcomponent = () => {
                         <Form>
                           <Form.Group
                             className="mb-3"
-                            controlId="exampleForm.ControlInput1"
-                          >
+                            controlId="exampleForm.ControlInput1">
                             {/* <Form.Label>Name</Form.Label> */}
                             {/* <Form.Control
                                 type="text"
@@ -538,8 +536,7 @@ const Accountcomponent = () => {
                         <Form>
                           <Form.Group
                             className="mb-3"
-                            controlId="exampleForm.ControlInput1"
-                          >
+                            controlId="exampleForm.ControlInput1">
                             <InputText
                               title={"Email"}
                               name="email"
@@ -561,8 +558,7 @@ const Accountcomponent = () => {
                         <Form>
                           <Form.Group
                             className="mb-3"
-                            controlId="exampleForm.ControlInput1"
-                          >
+                            controlId="exampleForm.ControlInput1">
                             <InputPhone
                               title={"Mobile"}
                               defaultCountry={"+91"}
@@ -711,8 +707,7 @@ const Accountcomponent = () => {
                         <Form>
                           <Form.Group
                             className="mb-3"
-                            controlId="exampleForm.ControlTextarea1 "
-                          >
+                            controlId="exampleForm.ControlTextarea1 ">
                             <Form.Label>Address</Form.Label>
                             <Form.Control
                               as="textarea"
@@ -875,8 +870,7 @@ const Accountcomponent = () => {
                         <Form>
                           <Form.Group
                             className="mb-3"
-                            controlId="exampleForm.ControlInput1"
-                          >
+                            controlId="exampleForm.ControlInput1">
                             {/* <Form.Label>Pincode</Form.Label>
                               <Form.Control type="text" placeholder="name" /> */}
                             <InputText
@@ -898,8 +892,7 @@ const Accountcomponent = () => {
                         <button
                           // type="submit"
                           class="btn-product btn-cart wid_200"
-                          onClick={() => handleProfileAddressForm()}
-                        >
+                          onClick={() => handleProfileAddressForm()}>
                           SAVE
                         </button>
                       </Col>
@@ -977,16 +970,14 @@ const Accountcomponent = () => {
                             return (
                               <>
                                 <div
-                                  onClick={() => handlePop(orderListproduct)}
-                                >
+                                  onClick={() => handlePop(orderListproduct)}>
                                   <div class="row product_banner_2 text-left">
                                     <div class="col-sm-2">
                                       <img
                                         src="https://cdn-icons-png.flaticon.com/512/1007/1007908.png "
                                         //src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${orderListproduct?.image}`}
                                         width="100"
-                                        height="100"
-                                      ></img>
+                                        height="100"></img>
                                     </div>
                                     <div class="col-sm-4">
                                       {orderListproduct?.productDetails.map(
@@ -1012,8 +1003,7 @@ const Accountcomponent = () => {
                                         <h4>
                                           <i
                                             class="fa fa-circle green_color_fa"
-                                            aria-hidden="true"
-                                          ></i>{" "}
+                                            aria-hidden="true"></i>{" "}
                                           Delivered on{" "}
                                           {dayjs(
                                             orderListproduct?.updatedAt
