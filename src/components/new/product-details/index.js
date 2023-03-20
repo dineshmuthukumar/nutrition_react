@@ -171,10 +171,14 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
     // console.log(productData.productType, "productData.productType");
     //console.log(productData?.productType, "ewdfcdw");
     // eslint-di useEffect(() => {
-    // console.log(getTypeCookies(), "getTypeCookies()");
+    console.log(getTypeCookies(), "getTypeCookies()");
+    console.log(
+      productData?._id != getproductIdCookies(),
+      "productData?._id != getproductIdCookies()"
+    );
 
     if (productData?.productType) {
-      if (!getTypeCookies()) {
+      if (!getTypeCookies() || productData?._id != getproductIdCookies()) {
         if (productData?.productType[1]?.saleAmount) {
           setProductFavor(productData.productType[1].type);
           setProductAmount(productData.productType[1]?.saleAmount);
@@ -455,7 +459,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                                   <>
                                     {productData?.photos?.map(
                                       (prodImgaesThumb, key) => {
-                                        console.log(key, "key");
+                                        // console.log(key, "key");
                                         return (
                                           // // ${
                                           //     productThumb == key

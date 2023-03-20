@@ -331,17 +331,17 @@ const Free_Trial_Section = ({ productData }) => {
         let Data = cart?.data?.cartProductDetails?.find(
           (obj) => obj?.isFree == true
         );
-        if (!Data) {
-          dispatch(
-            add_to_cart_thunk(
-              productData?._id,
-              productData?.productType[0]?.type,
-              productData?.saleAmount
-            )
-          );
-        } else {
-          toast.info("Free product at a time when only one product is allowed");
-        }
+        //if (!Data) {
+        dispatch(
+          add_to_cart_thunk(
+            productData?._id,
+            productData?.productType[0]?.type,
+            productData?.saleAmount
+          )
+        );
+        // } else {
+        //   toast.info("Free product at a time when only one product is allowed");
+        // }
       } else {
         dispatch(
           add_to_cart_thunk(
