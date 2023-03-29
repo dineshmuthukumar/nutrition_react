@@ -75,7 +75,7 @@ const Category = () => {
             <div
               className="page-header pl-4 pr-4"
               style={{
-                backgroundImage: `url(${process.env.REACT_APP_PUBLIC_BASE_URL}${categoryDetails?.bannerImage})`,
+                backgroundImage: `url(${categoryDetails?.bannerImage})`,
               }}>
               <h1 className="page-title font-weight-bold lh-1 text-white text-capitalize">
                 {/* {categoryDetails?.subCategoryName} */}

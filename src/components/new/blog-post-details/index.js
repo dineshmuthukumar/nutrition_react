@@ -85,7 +85,7 @@ const BlogPost = () => {
                 <figure className="post-media">
                   <a href="">
                     <img //src={"http://54.177.7.240" + blogData?.image}
-                      src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${blogData?.image}`}
+                      src={`${blogData?.image}`}
                       className="blog_post_img"
                       alt="post"
                     />
@@ -388,10 +388,7 @@ const BlogPost = () => {
                         <Link to={`/blogs/${recentListDetail?.slug}`}>
                           <div className="search-block">
                             <div className="search-img">
-                              <img
-                                src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${recentListDetail?.image}`}
-                                alt=""
-                              />
+                              <img src={`${recentListDetail?.image}`} alt="" />
                             </div>
                             <div className="search-para">
                               <a>{recentListDetail?.title}</a>

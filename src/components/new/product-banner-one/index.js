@@ -15,7 +15,7 @@ const ProductBannerOne = ({ homeContent }) => {
             <div className="col-sm-4 text-center">
               {homeContent?.section?.fourth?.image && (
                 <img
-                  src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${homeContent?.section?.fourth?.image}`}
+                  src={`${homeContent?.section?.fourth?.image}`}
                   className="best_img"
                 />
               )}

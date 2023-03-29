@@ -24,7 +24,7 @@ const InstagramSection = ({ homeContent }) => {
 
   const handleNavigation = useCallback((direction = "") => {
     setUpdate(Math.random());
-    console.log(direction, "direction");
+    //console.log(direction, "direction");
     //if (!direction || !swiperRef.current) return;
     if (direction === "next") swiperRef.current.swiper.slideNext();
     else swiperRef.current.swiper.slidePrev();
@@ -125,7 +125,7 @@ const InstagramSection = ({ homeContent }) => {
                       <figure className="instagram">
                         <a href="product.html">
                           <img
-                            src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${fifthproductcontentList.image}`}
+                            src={`${fifthproductcontentList.image}`}
                             alt="Instagram"
                             width="220"
                             height="220"

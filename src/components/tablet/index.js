@@ -16,11 +16,10 @@ const Tablet = ({ trigger = null }) => {
     if (scrollPercentage > 50) className = "5";
     if (scrollPercentage > 70) className = "end";
   }
-  return (
-    <div className={`tablet ${className}`}>
-      <span className={className ? `t-${className}` : ""}></span>
-    </div>
-  );
+  return "";
+  // <div className={`tablet ${className}`}>
+  //   <span className={className ? `t-${className}` : ""}></span>
+  // </div>
 };
 
 export default Tablet;

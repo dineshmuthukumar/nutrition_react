@@ -30,7 +30,7 @@ const FirstBannerSection = ({ homeContent }) => {
                           controls
                           style={{ width: "100%" }}>
                           <source
-                            src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${sixthproductcontentList?.image}`}
+                            src={`${sixthproductcontentList?.image}`}
                             type="video/mp4"
                           />
                         </video>
@@ -49,7 +49,7 @@ const FirstBannerSection = ({ homeContent }) => {
                             className="card_video__1z3he"
                             width="auto"
                             height="auto"
-                            src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${sixthproductcontentList?.image}`}
+                            src={`${sixthproductcontentList?.image}`}
                             style={{ width: "100%" }}
                           />
                           {/* </video> */}

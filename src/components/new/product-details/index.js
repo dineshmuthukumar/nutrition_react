@@ -403,7 +403,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                                     <SwiperSlide>
                                       <figure className="product-image">
                                         <img
-                                          src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${prodImgaes}`}
+                                          src={`${prodImgaes}`}
                                           data-zoom-image={prodImgaes}
                                           alt="Women's Brown Leather Backpacks"
                                           width="600"
@@ -476,7 +476,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                                               moveToslider(key);
                                             }}>
                                             <img
-                                              src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${prodImgaesThumb}`}
+                                              src={`${prodImgaesThumb}`}
                                               alt="product thumbnail"
                                               className="product-thumb_img"
                                             />
@@ -918,7 +918,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                                                   )
                                                 </h1>
                                                 <img
-                                                  src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${producttype?.image}`}
+                                                  src={`${producttype?.image}`}
                                                 />
                                               </div>
                                               <div className="pack_add_cart">
@@ -926,7 +926,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                                                   producttype?.saleAmount,
                                                   "INR"
                                                 )}{" "}
-                                                / Fulse
+                                                / {productData?.productPackType}
                                               </div>
                                             </div>
                                           </div>
@@ -1198,7 +1198,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                               <a href="#" className="element-type">
                                 <div className="element element-accordian dotted_border">
                                   <img
-                                    src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${takelivenBurn?.image}`}
+                                    src={`${takelivenBurn?.image}`}
                                     className="whole_food_img"
                                   />
                                   <p>{takelivenBurn?.name}</p>
@@ -1293,7 +1293,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                 </div>
                 <div className="col-md-5">
                   <img
-                    src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${productData?.howToUseImage}`}
+                    src={`${productData?.howToUseImage}`}
                     className="why_choose_img"
                   />
                 </div>
@@ -1318,7 +1318,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                               <div className="icon-box icon-inversed text-center bg-livenburnitem">
                                 <span className="icon-box-icon">
                                   <img
-                                    src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${takelivenBurns.image}`}
+                                    src={`${takelivenBurns.image}`}
                                     alt="category"
                                   />
                                 </span>
@@ -1472,7 +1472,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                             return (
                               <div className="col-sm-4 burn_works">
                                 <img
-                                  src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${livenBurnWorkIconData?.image}`}
+                                  src={`${livenBurnWorkIconData?.image}`}
                                   className="pro_des_icon2"
                                 />
                                 {livenBurnWorkIconData?.name}
@@ -1524,7 +1524,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                 </div>
                 <div className="col-md-4 text-center">
                   <img
-                    src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${productData?.chooseLivenBurnImage}`}
+                    src={`${productData?.chooseLivenBurnImage}`}
                     className="why_choose_img"
                   />
                 </div>
@@ -1569,7 +1569,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                                         <a href="javascript:void">
                                           <img
                                             //src={app_1}
-                                            src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${healingPoten?.image}`}
+                                            src={`${healingPoten?.image}`}
                                             alt="product"
                                             width="280"
                                             height="315"
@@ -1588,7 +1588,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
                                             //   healingPoten?.image
                                             // }
 
-                                            src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${healingPoten?.layoutPhoto}`}
+                                            src={`${healingPoten?.layoutPhoto}`}
                                             className="healing_image-top"
                                             alt="product"
                                             style={{ width: "50% !important" }}

@@ -1424,7 +1424,7 @@ const Header = ({
                                       <a href="#">
                                         <img
                                           // src={"http://54.177.7.240" + item?.photos}
-                                          src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${item?.photos[0]}`}
+                                          src={`${item?.photos[0]}`}
                                           alt="product"
                                         />
                                       </a>
@@ -2033,11 +2033,7 @@ const DisplayContainer = (data) => {
   return (
     <div style={{ width: "120px", height: "53px" }}>
       <div>
-        <img
-          src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${data?.data?.photos[0]}`}
-          alt="img"
-          width={25}
-        />
+        <img src={`${data?.data?.photos[0]}`} alt="img" width={25} />
         <span
           style={{
             fontSize: "12px",

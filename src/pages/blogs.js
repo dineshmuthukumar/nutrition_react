@@ -39,7 +39,7 @@ const Blogs = () => {
             <div
               className="page-header pl-4 pr-4 blog-title-banner"
               style={{
-                backgroundImage: `url(${process.env.REACT_APP_PUBLIC_BASE_URL}${settingsDetails?.site?.blogImage})`,
+                backgroundImage: `url(${settingsDetails?.site?.blogImage})`,
               }}>
               <h1 className="page-title font-weight-bold lh-1 text-white text-capitalize">
                 Blog

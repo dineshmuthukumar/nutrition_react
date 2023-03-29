@@ -39,7 +39,7 @@ const WeakStrong = ({ homeContent }) => {
                 {/* <img src={pro_bg2} className="weak_strongest_img_absolute" /> */}
                 {homeContent?.section?.second && (
                   <img
-                    src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${homeContent?.section?.second?.image}`}
+                    src={`${homeContent?.section?.second?.image}`}
                     className="weak_strongest_img_absolute"
                     alt="First Banner"
                   />

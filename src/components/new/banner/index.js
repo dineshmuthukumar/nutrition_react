@@ -42,7 +42,7 @@ import useWindowSize from "../../../utils/useWindowSize";
 const Banner = ({ bannerContent }) => {
   const { width } = useWindowSize();
   useEffect(() => {
-    console.log(width, "width");
+    //console.log(width, "width");
   }, [width]);
   return (
     <>
@@ -92,8 +92,7 @@ const Banner = ({ bannerContent }) => {
             //pagination={{ clickable: true }}
             autoplay={{ delay: 100, disableOnInteraction: true }}
             speed={500}
-            loop
-          >
+            loop>
             {(() => {
               if (bannerContent?.length > 0) {
                 return (
@@ -104,17 +103,12 @@ const Banner = ({ bannerContent }) => {
                           <SwiperSlide className="swiperSlider" key={key}>
                             {" "}
                             <Link
-                              to={`/products/list/${BannerDetail.categoryId}`}
-                            >
+                              to={`/products/list/${BannerDetail.categoryId}`}>
                               <div
-                                className={`intro-slide${key} banner banner-fixed`}
-                              >
+                                className={`intro-slide${key} banner banner-fixed`}>
                                 <figure>
                                   <img
-                                    src={`${
-                                      process.env.REACT_APP_PUBLIC_BASE_URL +
-                                      BannerDetail?.image
-                                    }`}
+                                    src={`${BannerDetail?.image}`}
                                     alt="intro-banner"
                                   />
                                 </figure>
@@ -143,8 +137,7 @@ const Banner = ({ bannerContent }) => {
             //pagination={{ clickable: true }}
             autoplay={{ delay: 100, disableOnInteraction: true }}
             speed={500}
-            loop
-          >
+            loop>
             {(() => {
               if (bannerContent?.length > 0) {
                 return (
@@ -155,17 +148,12 @@ const Banner = ({ bannerContent }) => {
                           <SwiperSlide className="swiperSlider" key={key}>
                             {" "}
                             <Link
-                              to={`/products/list/${BannerDetail.categoryId}`}
-                            >
+                              to={`/products/list/${BannerDetail.categoryId}`}>
                               <div
-                                className={`intro-slide${key} banner banner-fixed`}
-                              >
+                                className={`intro-slide${key} banner banner-fixed`}>
                                 <figure>
                                   <img
-                                    src={`${
-                                      process.env.REACT_APP_PUBLIC_BASE_URL +
-                                      BannerDetail?.image
-                                    }`}
+                                    src={`${BannerDetail?.image}`}
                                     alt="intro-banner"
                                   />
                                 </figure>

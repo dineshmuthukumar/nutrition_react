@@ -32,7 +32,7 @@ const OurIdea = ({ homeContent }) => {
                           /> */}
                           {thirdContentList?.image && (
                             <img
-                              src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${thirdContentList?.image}`}
+                              src={`${thirdContentList?.image}`}
                               alt="category"
                               className="category_media_image"
                             />

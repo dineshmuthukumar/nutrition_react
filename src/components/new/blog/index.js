@@ -106,7 +106,7 @@ const Blog = () => {
                                   <a href="#">
                                     <img
                                       //src={"http://54.177.7.240" + obj?.image}
-                                      src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${obj?.image}`}
+                                      src={`${obj?.image}`}
                                       width="380"
                                       height="280"
                                       alt="post"
@@ -190,7 +190,7 @@ const Blog = () => {
                               <div className="search-block">
                                 <div className="search-img">
                                   <img
-                                    src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${recentListDetail?.image}`}
+                                    src={`${recentListDetail?.image}`}
                                     alt=""
                                   />
                                 </div>

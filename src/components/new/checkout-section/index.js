@@ -1045,7 +1045,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                                     <figure>
                                       <Link to={`/product/${item?._id}`}>
                                         <img
-                                          src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${item?.photos[0]}`}
+                                          src={`${item?.photos[0]}`}
                                           width="100"
                                           height="100"
                                           alt="product"
@@ -1256,7 +1256,51 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                         )
                       : "No Items Found"}
 
-                    {cart?.data?.cartProductDetails.length > 0 ? (
+                    {(() => {
+                      if (cart?.data?.cartProductDetails.length > 0) {
+                        if (isFreeProduct) {
+                          return (
+                            <li className="list-group-item">
+                              Delivery Charges{" "}
+                              <span className="plan_right_section dicount_span">
+                                {currencyFormat(
+                                  cart?.data?.cartSetting?.deliveryCharge,
+                                  "INR"
+                                )}
+                              </span>
+                            </li>
+                          );
+                        }
+                        if (
+                          parseFloat(
+                            cart?.data?.cartSetting?.deliveryMinimumAmount
+                          ) >= parseFloat(totalAmount)
+                        ) {
+                          return (
+                            <li className="list-group-item">
+                              Delivery Charges{" "}
+                              <span className="plan_right_section dicount_span">
+                                {currencyFormat(
+                                  cart?.data?.cartSetting?.deliveryCharge,
+                                  "INR"
+                                )}
+                              </span>
+                            </li>
+                          );
+                        } else {
+                          return (
+                            <li className="list-group-item">
+                              Delivery Charges{" "}
+                              <span className="plan_right_section dicount_span">
+                                {currencyFormat(0, "INR")}
+                              </span>
+                            </li>
+                          );
+                        }
+                      }
+                    })()}
+
+                    {/* {cart?.data?.cartProductDetails.length > 0 ? (
                       isFreeProduct ||
                       parseFloat(
                         cart?.data?.cartSetting?.deliveryMinimumAmount
@@ -1275,7 +1319,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                       )
                     ) : (
                       ""
-                    )}
+                    )} */}
                     {promoCodeDetails &&
                       Object.keys(promoCodeDetails)?.length > 0 && (
                         <li className="list-group-item">

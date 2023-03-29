@@ -422,10 +422,8 @@ const Free_Trial_Section = ({ productData }) => {
                 //src={banner_1}
                 src={`${
                   width > 767
-                    ? process.env.REACT_APP_PUBLIC_BASE_URL +
-                      productData?.photos[0]
-                    : process.env.REACT_APP_PUBLIC_BASE_URL +
-                      productData?.mobileImage
+                    ? productData?.photos[0]
+                    : productData?.mobileImage
                 }`}
                 alt="intro-banner"
                 width="1903"
@@ -717,7 +715,7 @@ const Free_Trial_Section = ({ productData }) => {
                             <a href="#" className="element-type">
                               <div className="element element-accordian dotted_border">
                                 <img
-                                  src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${takelivenBurn?.image}`}
+                                  src={`${takelivenBurn?.image}`}
                                   className="whole_food_img"
                                 />
                                 <p>{takelivenBurn?.name}</p>
@@ -812,7 +810,7 @@ const Free_Trial_Section = ({ productData }) => {
               </div>
               <div className="col-md-5">
                 <img
-                  src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${productData?.howToUseImage}`}
+                  src={`${productData?.howToUseImage}`}
                   style={{ width: "100%" }}
                 />
               </div>
@@ -843,7 +841,7 @@ const Free_Trial_Section = ({ productData }) => {
                               <div className="icon-box icon-inversed text-center bg-livenburnitem">
                                 <span className="icon-box-icon">
                                   <img
-                                    src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${livenBurnshealingPoten?.image}`}
+                                    src={`${livenBurnshealingPoten?.image}`}
                                     alt="category"
                                   />
                                 </span>
@@ -978,7 +976,7 @@ const Free_Trial_Section = ({ productData }) => {
                           return (
                             <div className="col-sm-4 burn_works">
                               <img
-                                src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${livenBurnWorkIcon?.image}`}
+                                src={`${livenBurnWorkIcon?.image}`}
                                 className="pro_des_icon2"
                               />
                               {livenBurnWorkIcon?.name}
@@ -1004,7 +1002,7 @@ const Free_Trial_Section = ({ productData }) => {
               </div>
               <div className="col-md-4 text-center">
                 <img
-                  src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${productData?.chooseLivenBurnImage}`}
+                  src={`${productData?.chooseLivenBurnImage}`}
                   className="why_choose_img"
                 />
               </div>
@@ -1049,7 +1047,7 @@ const Free_Trial_Section = ({ productData }) => {
                                       <a href="javascript:void">
                                         <img
                                           //src={app_1}
-                                          src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${healingPoten?.image}`}
+                                          src={`${healingPoten?.image}`}
                                           alt="product"
                                           width="280"
                                           height="315"
@@ -1068,7 +1066,7 @@ const Free_Trial_Section = ({ productData }) => {
                                           //   healingPoten?.image
                                           // }
 
-                                          src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${healingPoten?.layoutPhoto}`}
+                                          src={`${healingPoten?.layoutPhoto}`}
                                           className="healing_image-top"
                                           alt="product"
                                           style={{ width: "50% !important" }}

@@ -16,8 +16,7 @@ const Content = ({ data = {}, variant = "content", className = "" }) => (
       <div
         dangerouslySetInnerHTML={{
           __html: data?.description,
-        }}
-      >
+        }}>
         {/* <p>{`${data?.description}`}</p> */}
       </div>
     )}
@@ -45,7 +44,7 @@ const AboutUsSection = ({ data = {} }) => {
             ))}
         </div>
         <div className="position-relative w-100" style={{ height: "100px" }}>
-          <Tablet trigger={70}></Tablet>
+          {/* <Tablet trigger={70}></Tablet> */}
         </div>
       </section>
     </>

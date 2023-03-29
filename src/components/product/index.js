@@ -56,7 +56,7 @@ const Product = ({ ProductDetails, key }) => {
             return (
               <Link to={`/product/free/details/${ProductDetails?.slug}`}>
                 <img
-                  src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${ProductDetails?.photos[0]}`}
+                  src={`${ProductDetails?.photos[0]}`}
                   alt="product"
                   class="img-fluid"
                   width="280"
@@ -69,7 +69,7 @@ const Product = ({ ProductDetails, key }) => {
               <Link to={`/product/details/${ProductDetails?.slug}`}>
                 <img
                   //src={"http://54.177.7.240" + ProductDetails?.photos[0]}
-                  src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${ProductDetails?.photos[0]}`}
+                  src={`${ProductDetails?.photos[0]}`}
                   alt="product"
                   class="img-fluid"
                   width="280"

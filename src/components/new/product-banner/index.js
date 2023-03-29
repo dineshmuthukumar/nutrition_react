@@ -102,7 +102,7 @@ const ProductBanner = ({ homeContent }) => {
             <div className="col-sm-5 text-center">
               {homeContent?.section?.first?.image && (
                 <img
-                  src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${homeContent?.section?.first?.image}`}
+                  src={`${homeContent?.section?.first?.image}`}
                   alt="First Banner"
                   className="nurtures_images"
                 />

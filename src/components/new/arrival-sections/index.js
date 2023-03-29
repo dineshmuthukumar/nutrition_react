@@ -165,7 +165,7 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
                               <h3 className="img-cat-title mb-0 gap-4">
                                 {arrivalecontent?.layoutPhoto && (
                                   <img
-                                    src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${arrivalecontent?.layoutPhoto}`}
+                                    src={`${arrivalecontent?.layoutPhoto}`}
                                     alt={"Image"}
                                     width="14"
                                     height="14"

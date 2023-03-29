@@ -102,7 +102,7 @@ const Product_Category = ({ categoryDetails, categoryProdDetails }) => {
                           <div className="banner banner-4 banner-fixed banner-radius overlay-effect2 content-middle content-center appear-animate fadeIn appear-animation-visible">
                             <figure>
                               <img
-                                src={`${process.env.REACT_APP_PUBLIC_BASE_URL}${queas?.image}`}
+                                src={`${queas?.image}`}
                                 alt="banner"
                                 width="350"
                                 height="177"
