@@ -18,7 +18,7 @@ import SwiperCore, { EffectFlip, Navigation, Pagination } from "swiper";
 
 import "./style.scss";
 
-const InstagramSection = ({ homeContent }) => {
+const InstagramSection = ({ homeContent, filterList }) => {
   const swiperRef = useRef();
   const [update, setUpdate] = useState(0);
 
@@ -117,29 +117,28 @@ const InstagramSection = ({ homeContent }) => {
               768: { slidesPerView: 5, spaceBetween: 5 },
               1024: { slidesPerView: 5, spaceBetween: 5 },
             }}>
-            {homeContent?.section?.fifth?.imageList &&
-              homeContent?.section?.fifth?.imageList?.map(
-                (fifthproductcontentList) => {
-                  return (
-                    <SwiperSlide>
-                      <figure className="instagram">
-                        <a href="product.html">
-                          <img
-                            src={`${fifthproductcontentList.image}`}
-                            alt="Instagram"
-                            width="220"
-                            height="220"
-                          />
-                          <br />
-                          <span className="categories_title_name">
-                            <h5>{fifthproductcontentList.text}</h5>
-                          </span>
-                        </a>
-                      </figure>
-                    </SwiperSlide>
-                  );
-                }
-              )}
+            {filterList &&
+              filterList?.map((fifthproductcontentList) => {
+                return (
+                  <SwiperSlide>
+                    <figure className="instagram">
+                      <a
+                        href={`/products/list?subcategory_id=${fifthproductcontentList?._id}`}>
+                        <img
+                          src={`${fifthproductcontentList.image}`}
+                          alt="Instagram"
+                          width="220"
+                          height="220"
+                        />
+                        <br />
+                        <span className="categories_title_name">
+                          <h5>{fifthproductcontentList.name}</h5>
+                        </span>
+                      </a>
+                    </figure>
+                  </SwiperSlide>
+                );
+              })}
             {/* <figure className="instagram">
               <a href="product.html">
                 <img src={pro_1} alt="Instagram" width="220" height="220" />

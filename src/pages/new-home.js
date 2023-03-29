@@ -61,6 +61,7 @@ const NewHome = () => {
   // const { user } = useSelector((state) => state.user.data);
 
   const [list, setList] = useState([]);
+  const [filterList, setFilterList] = useState([]);
 
   // const [favPage, setFavPage] = useState(1);
   // const [favList, setFavList] = useState([]);
@@ -81,6 +82,7 @@ const NewHome = () => {
       let response = await getsubCategoryListApi();
       //setList(response?.data?.responseData);
       setList(response?.data?.responseData?.subCategories);
+      setFilterList(response?.data?.responseData?.filterCategories);
     } catch (err) {
       console.log(err);
     }
@@ -174,7 +176,7 @@ const NewHome = () => {
           <WeakStrong homeContent={homeContent} />
           <OurIdea homeContent={homeContent} />
           <ProductBannerOne homeContent={homeContent} />
-          <InstagramSection homeContent={homeContent} />
+          <InstagramSection homeContent={homeContent} filterList={filterList} />
           <TeamSection homeContent={homeContent} />
           <FirstBannerSection homeContent={homeContent} />
           <Footer />

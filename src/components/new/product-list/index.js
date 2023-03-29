@@ -34,11 +34,14 @@ import {
 
 import pagination from "../pagination";
 import Product from "../../product";
+import useQuery from "../../../hook/useQuery";
 
 import "./style.scss";
 
 const Productlist = () => {
   const match = useRouteMatch();
+  const query = useQuery();
+  const subCategoriesId = query.get("subcategory_id");
   const history = useHistory();
   const { categoryid } = match.params;
   const [list, setList] = useState([]);
@@ -49,7 +52,14 @@ const Productlist = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(false);
   const [subCategoryDetails, setSubCategoryDetails] = useState({});
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState(subCategoriesId);
+
+  // console.log(subCategoriesId, "subCategoriesId");
+  //  useEffect(async () => {
+  //   console.log(subCategoriesId, "subCategoriesId");
+  //   setSelectedCategory(subCategoriesId);
+  //   // console.log(response?.data?.responseData?.filterCategories);
+  // }, [subCategoriesId]);
 
   useEffect(async () => {
     const response = await getsubCategoryListApi(1);
@@ -199,20 +209,6 @@ const Productlist = () => {
     }
   };
 
-  const ResetCategory = async () => {
-    // setSelectedCategory("all");
-    // setLoading(true);
-    // let response = await productListApi(1);
-    // setList(response?.data?.responseData?.product?.docs);
-    // setTotalCount(response?.data?.responseData?.product?.totalDocs);
-    // // setLimit(response?.data?.responseData?.product?.limit);
-    // setCurrentPage(response?.data?.responseData?.product?.page);
-    // setIsNextPage(response?.data?.responseData?.product?.hasNextPage);
-    // setTotalPages(response?.data?.responseData?.product?.totalPages);
-    // setLoading(false);
-    // window.scrollTo(0, 0);
-  };
-
   return (
     <>
       <div className="page-content pb-10 mb-10">
@@ -263,50 +259,6 @@ const Productlist = () => {
                           className="btn btn-primary">
                           Reset
                         </button> */}
-                      </div>
-                      <div class="col-sm-6">
-                        {/* <Form.Label>Category</Form.Label>
-              <Form>
-                {['checkbox'].map((type) => (
-                  <div key={`inline-${type}`} className="mb-3">
-                    <Form.Check
-                      inline
-                      label="Apple"
-                      name="group1"
-                      type={type}
-                      id={`inline-${type}-1`}
-                    />
-                    <Form.Check
-                      inline
-                      label="Apple"
-                      name="group1"
-                      type={type}
-                      id={`inline-${type}-2`}
-                    />
-                    <Form.Check
-                      inline
-                      label="Apple"
-                      name="group1"
-                      type={type}
-                      id={`inline-${type}-3`}
-                    />
-                    <Form.Check
-                      inline
-                      label="Apple"
-                      name="group1"
-                      type={type}
-                      id={`inline-${type}-4`}
-                    />
-                    <Form.Check
-                      inline
-                      label="Apple"
-                      name="group1"
-                      type={type}
-                      id={`inline-${type}-5`}
-                    />
-                  </div>
-                ))}
-              </Form> */}
                       </div>
                     </div>
                   </div>
