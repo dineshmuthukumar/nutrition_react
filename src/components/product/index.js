@@ -38,9 +38,9 @@ const Product = ({ ProductDetails, key }) => {
 
   const pageNaviagation = () => {
     if (ProductDetails?.isFree) {
-      history.push(`/product/free/details/${ProductDetails?.slug}`);
+      history.push(`/product/free/${ProductDetails?.slug}`);
     } else {
-      history.push(`/product/details/${ProductDetails?.slug}`);
+      history.push(`/product/${ProductDetails?.slug}`);
     }
   };
 
@@ -54,7 +54,7 @@ const Product = ({ ProductDetails, key }) => {
         {(() => {
           if (ProductDetails?.isFree) {
             return (
-              <Link to={`/product/free/details/${ProductDetails?.slug}`}>
+              <Link to={`/product/free/${ProductDetails?.slug}`}>
                 <img
                   src={`${ProductDetails?.photos[0]}`}
                   alt="product"
@@ -66,7 +66,7 @@ const Product = ({ ProductDetails, key }) => {
             );
           } else {
             return (
-              <Link to={`/product/details/${ProductDetails?.slug}`}>
+              <Link to={`/product/${ProductDetails?.slug}`}>
                 <img
                   //src={"http://54.177.7.240" + ProductDetails?.photos[0]}
                   src={`${ProductDetails?.photos[0]}`}

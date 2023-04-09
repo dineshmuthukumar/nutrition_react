@@ -721,9 +721,10 @@ const Header = ({
         return (
           <ul className="submenu-level ">
             {filterData?.map((subCategoriesDetail) => {
+              console.log(subCategoriesDetail, "subCategoriesDetail");
               return (
                 <li className="submenu">
-                  <Link to={`/category/${subCategoriesDetail?._id}`}>
+                  <Link to={`/collections/${subCategoriesDetail?._id}`}>
                     {subCategoriesDetail?.subCategoryName}
                   </Link>
                 </li>
@@ -899,7 +900,7 @@ const Header = ({
                                           return (
                                             <li>
                                               <Link
-                                                to={`/product/${bestSellerDetailsData._id}`}>
+                                                to={`/product/${bestSellerDetailsData.slug}`}>
                                                 {bestSellerDetailsData.name}
                                               </Link>
                                             </li>

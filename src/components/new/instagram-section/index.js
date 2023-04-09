@@ -119,11 +119,12 @@ const InstagramSection = ({ homeContent, filterList }) => {
             }}>
             {filterList &&
               filterList?.map((fifthproductcontentList) => {
+                //console.log(fifthproductcontentList, "fifthproductcontentList");
                 return (
                   <SwiperSlide>
                     <figure className="instagram">
                       <a
-                        href={`/products/list?subcategory_id=${fifthproductcontentList?._id}`}>
+                        href={`/products?name=${fifthproductcontentList?.name}subcategory=${fifthproductcontentList?._id}`}>
                         <img
                           src={`${fifthproductcontentList.image}`}
                           alt="Instagram"
