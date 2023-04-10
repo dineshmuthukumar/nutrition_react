@@ -123,8 +123,7 @@ const InstagramSection = ({ homeContent, filterList }) => {
                 return (
                   <SwiperSlide>
                     <figure className="instagram">
-                      <a
-                        href={`/products?name=${fifthproductcontentList?.name}subcategory=${fifthproductcontentList?._id}`}>
+                      <a href={`/products/${fifthproductcontentList?.code}`}>
                         <img
                           src={`${fifthproductcontentList.image}`}
                           alt="Instagram"

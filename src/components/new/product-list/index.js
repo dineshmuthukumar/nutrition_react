@@ -41,9 +41,9 @@ import "./style.scss";
 const Productlist = () => {
   const match = useRouteMatch();
   const query = useQuery();
-  const subCategoriesId = query.get("subcategory_id");
+  // const subCategoriesId = query.get("subcategory_id");
   const history = useHistory();
-  const { categoryid } = match.params;
+  const { categoryid, subcategoryid } = match.params;
   const [list, setList] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
   const [limit, setLimit] = useState(10);
@@ -52,7 +52,7 @@ const Productlist = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(false);
   const [subCategoryDetails, setSubCategoryDetails] = useState({});
-  const [selectedCategory, setSelectedCategory] = useState(subCategoriesId);
+  const [selectedCategory, setSelectedCategory] = useState(subcategoryid);
 
   // console.log(subCategoriesId, "subCategoriesId");
   //  useEffect(async () => {

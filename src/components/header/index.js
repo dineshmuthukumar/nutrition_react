@@ -724,7 +724,7 @@ const Header = ({
               console.log(subCategoriesDetail, "subCategoriesDetail");
               return (
                 <li className="submenu">
-                  <Link to={`/collections/${subCategoriesDetail?._id}`}>
+                  <Link to={`/collections/${subCategoriesDetail?.slug}`}>
                     {subCategoriesDetail?.subCategoryName}
                   </Link>
                 </li>
