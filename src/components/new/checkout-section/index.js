@@ -531,7 +531,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
 
       handler: async function (response) {
         let subid = "";
-        console.log(response, "response");
+        //console.log(response, "response");
         let isSub = false;
         if (CheckoutDetails?.data?.responseData?.plan_id) {
           isSub = true;
@@ -1459,19 +1459,19 @@ const CheckoutSection = ({ orderInfo, loading }) => {
               {footerDetails?.length > 0 &&
                 footerDetails?.map((obj, index) => {
                   if (obj.url == "privacy") {
-                    return <Link to={`/cms/${obj?.url}`}>{obj?.title}</Link>;
+                    return <Link to={`/pages/${obj?.url}`}>{obj?.title}</Link>;
                   }
                 })}
               {footerDetails?.length > 0 &&
                 footerDetails?.map((obj, index) => {
                   if (obj.url == "terms") {
-                    return <Link to={`/cms/${obj?.url}`}>{obj?.title}</Link>;
+                    return <Link to={`/pages/${obj?.url}`}>{obj?.title}</Link>;
                   }
                 })}
               {footerDetails?.length > 0 &&
                 footerDetails?.map((obj, index) => {
                   if (obj.url == "disclaimer") {
-                    return <Link to={`/cms/${obj?.url}`}>{obj?.title}</Link>;
+                    return <Link to={`/pages/${obj?.url}`}>{obj?.title}</Link>;
                   }
                 })}
             </div>

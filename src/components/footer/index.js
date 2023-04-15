@@ -282,7 +282,9 @@ const Footer = () => {
                         if (obj.url == "who_we_are") {
                           return (
                             <li>
-                              <Link to={`/cms/${obj?.url}`}>{obj?.title}</Link>
+                              <Link to={`/pages/${obj?.url}`}>
+                                {obj?.title}
+                              </Link>
                             </li>
                           );
                         }
@@ -292,7 +294,9 @@ const Footer = () => {
                         if (obj.url == "source") {
                           return (
                             <li>
-                              <Link to={`/cms/${obj?.url}`}>{obj?.title}</Link>
+                              <Link to={`/pages/${obj?.url}`}>
+                                {obj?.title}
+                              </Link>
                             </li>
                           );
                         }
@@ -302,7 +306,9 @@ const Footer = () => {
                         if (obj.url == "promise") {
                           return (
                             <li>
-                              <Link to={`/cms/${obj?.url}`}>{obj?.title}</Link>
+                              <Link to={`/pages/${obj?.url}`}>
+                                {obj?.title}
+                              </Link>
                             </li>
                           );
                         }
@@ -312,7 +318,9 @@ const Footer = () => {
                         if (obj.url == "risk") {
                           return (
                             <li>
-                              <Link to={`/cms/${obj?.url}`}>{obj?.title}</Link>
+                              <Link to={`/pages/${obj?.url}`}>
+                                {obj?.title}
+                              </Link>
                             </li>
                           );
                         }
@@ -322,7 +330,9 @@ const Footer = () => {
                         if (obj.url == "reward") {
                           return (
                             <li>
-                              <Link to={`/cms/${obj?.url}`}>{obj?.title}</Link>
+                              <Link to={`/pages/${obj?.url}`}>
+                                {obj?.title}
+                              </Link>
                             </li>
                           );
                         }
@@ -394,7 +404,9 @@ const Footer = () => {
                         if (obj.url == "Consult") {
                           return (
                             <li>
-                              <Link to={`/cms/${obj?.url}`}>{obj?.title}</Link>
+                              <Link to={`/pages/${obj?.url}`}>
+                                {obj?.title}
+                              </Link>
                             </li>
                           );
                         }
@@ -404,7 +416,9 @@ const Footer = () => {
                         if (obj.url == "testimonial") {
                           return (
                             <li>
-                              <Link to={`/cms/${obj?.url}`}>{obj?.title}</Link>
+                              <Link to={`/pages/${obj?.url}`}>
+                                {obj?.title}
+                              </Link>
                             </li>
                           );
                         }
@@ -414,7 +428,9 @@ const Footer = () => {
                         if (obj.url == "privacy") {
                           return (
                             <li>
-                              <Link to={`/cms/${obj?.url}`}>{obj?.title}</Link>
+                              <Link to={`/pages/${obj?.url}`}>
+                                {obj?.title}
+                              </Link>
                             </li>
                           );
                         }
@@ -424,7 +440,9 @@ const Footer = () => {
                         if (obj.url == "terms") {
                           return (
                             <li>
-                              <Link to={`/cms/${obj?.url}`}>{obj?.title}</Link>
+                              <Link to={`/pages/${obj?.url}`}>
+                                {obj?.title}
+                              </Link>
                             </li>
                           );
                         }
@@ -434,7 +452,9 @@ const Footer = () => {
                         if (obj.url == "refund") {
                           return (
                             <li>
-                              <Link to={`/cms/${obj?.url}`}>{obj?.title}</Link>
+                              <Link to={`/pages/${obj?.url}`}>
+                                {obj?.title}
+                              </Link>
                             </li>
                           );
                         }
@@ -444,7 +464,9 @@ const Footer = () => {
                         if (obj.url == "disclaimer") {
                           return (
                             <li>
-                              <Link to={`/cms/${obj?.url}`}>{obj?.title}</Link>
+                              <Link to={`/pages/${obj?.url}`}>
+                                {obj?.title}
+                              </Link>
                             </li>
                           );
                         }
@@ -454,7 +476,9 @@ const Footer = () => {
                         if (obj.url == "contactUs") {
                           return (
                             <li>
-                              <Link to={`/cms/${obj?.url}`}>{obj?.title}</Link>
+                              <Link to={`/pages/${obj?.url}`}>
+                                {obj?.title}
+                              </Link>
                             </li>
                           );
                         }

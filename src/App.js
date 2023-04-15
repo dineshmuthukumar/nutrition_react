@@ -246,12 +246,18 @@ const WebContainer = () => {
           path="/products/list/:categoryid?"
           component={ProductList}
         />
+        <Route
+          exact
+          path="/products/category/:categoryid?"
+          component={ProductList}
+        />
         <Route exact path="/products/:subcategoryid" component={ProductList} />
         <Route exact path="/products" component={ProductList} />
         <PrivateRoute exact path="/cart" component={Cart} />
         <PrivateRoute exact path="/accounts" component={MyAccount} />
         <PrivateRoute exact path="/checkout" component={Checkout} />
-        <Route exact path="/cms/:id?" component={Cms} />
+        <Route exact path="/pages/:id?" component={Cms} />
+        <Route exact path="/page/:id?" component={Cms} />
 
         <Route exact component={() => <Redirect to="/"></Redirect>} />
       </Switch>

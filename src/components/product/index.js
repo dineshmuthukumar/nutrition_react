@@ -29,7 +29,7 @@ const Product = ({ ProductDetails, key }) => {
   }, [userCart]);
 
   useEffect(() => {
-    console.log(status, "status");
+    //console.log(status, "status");
     if (user?.login && status) {
       dispatch(cart_on_thunk());
     }

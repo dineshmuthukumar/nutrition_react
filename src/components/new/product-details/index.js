@@ -271,7 +271,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
   };
 
   const ProductThumbIncreatype = (type) => {
-    console.log(type, "type");
+    //console.log(type, "type");
     // console.log(productThumb, "productThumb");
 
     if (type == "left") {

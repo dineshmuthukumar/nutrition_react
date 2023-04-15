@@ -721,7 +721,7 @@ const Header = ({
         return (
           <ul className="submenu-level ">
             {filterData?.map((subCategoriesDetail) => {
-              console.log(subCategoriesDetail, "subCategoriesDetail");
+              //console.log(subCategoriesDetail, "subCategoriesDetail");
               return (
                 <li className="submenu">
                   <Link to={`/collections/${subCategoriesDetail?.slug}`}>
@@ -853,7 +853,7 @@ const Header = ({
                                               }`}>
                                               <a
                                                 className="d-flex justify-content-between"
-                                                href={`/products/list/${CategoriesDetail?._id}`}>
+                                                href={`/products/category/${CategoriesDetail?.slug}`}>
                                                 {CategoriesDetail.name}{" "}
                                                 {IsDropdownMenuItem(
                                                   CategoriesDetail?._id
@@ -1547,7 +1547,11 @@ const Header = ({
                                   ? "submenu"
                                   : ""
                               }`}>
-                              <a>{CategoriesDetail?.name}</a>
+                              <a
+                                className="d-flex justify-content-between"
+                                href={`/products/category/${CategoriesDetail?.slug}`}>
+                                {CategoriesDetail?.name}
+                              </a>
                               {IsDropdownMenuItem(CategoriesDetail?._id) ? (
                                 <AiOutlineArrowRight />
                               ) : (
