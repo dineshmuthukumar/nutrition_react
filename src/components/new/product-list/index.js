@@ -43,7 +43,7 @@ const Productlist = () => {
   const query = useQuery();
   // const subCategoriesId = query.get("subcategory_id");
   const history = useHistory();
-  const { categoryid, subcategoryid } = match.params;
+  let { categoryid, slug, subcategoryid } = match.params;
   const [list, setList] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
   const [limit, setLimit] = useState(10);
@@ -52,7 +52,11 @@ const Productlist = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(false);
   const [subCategoryDetails, setSubCategoryDetails] = useState({});
-  const [selectedCategory, setSelectedCategory] = useState(subcategoryid);
+  const [selectedCategory, setSelectedCategory] = useState(
+    subcategoryid ? subcategoryid : "all"
+  );
+
+  // categoryid = categoryid ? categoryid : slug;
 
   // console.log(subCategoriesId, "subCategoriesId");
   //  useEffect(async () => {
