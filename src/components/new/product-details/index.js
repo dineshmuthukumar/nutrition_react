@@ -92,6 +92,8 @@ const ProductDetails = ({
   loading,
   subCategory,
 }) => {
+
+  // console.log(subCategory,"subCategory")
   const history = useHistory();
   const dispatch = useDispatch();
   const { user, cart } = useSelector((state) => state);
