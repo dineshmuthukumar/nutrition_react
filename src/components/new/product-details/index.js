@@ -86,7 +86,12 @@ import SwiperCore, {
   Pagination,
 } from "swiper";
 
-const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
+const ProductDetails = ({
+  productData,
+  subCategoryProducts,
+  loading,
+  subCategory,
+}) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { user, cart } = useSelector((state) => state);
@@ -2223,7 +2228,7 @@ const ProductDetails = ({ productData, subCategoryProducts, loading }) => {
               <div className="col-sm-12 text-center">
                 <div className="product-form-group justify-content-center">
                   {/* {user?.login ? ( */}
-                  <Link to={`/products/list/${productData.categoryId}`}>
+                  <Link to={`/collections/${subCategory.slug}`}>
                     <button className="btn-product btn-cart wid_250">
                       <i className="d-icon-bag pr-2"></i> More Health Boosters
                     </button>

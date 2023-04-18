@@ -62,6 +62,7 @@ const NewHome = () => {
 
   const [productData, setProductData] = useState({});
   const [subCategoryProducts, setSubCategoryProducts] = useState({});
+  const [subCategory, setSubCategory] = useState({});
 
   // const [favPage, setFavPage] = useState(1);
   // const [favList, setFavList] = useState([]);
@@ -74,6 +75,7 @@ const NewHome = () => {
       let response = await getProductDetailsSlugApi(productid);
       setProductData(response?.data?.responseData?.product);
       setSubCategoryProducts(response?.data?.responseData?.subcategoryProducts);
+      setSubCategory(response?.data?.responseData?.categoryProducts[0]);
       setLoading(false);
     } catch (err) {
       setLoading(false);
@@ -164,6 +166,7 @@ const NewHome = () => {
               productData={productData}
               subCategoryProducts={subCategoryProducts}
               loading={loading}
+              subCategory={subCategory}
             />
           </div>
           <Footer />

@@ -377,7 +377,7 @@ const Footer = () => {
                               return (
                                 <li>
                                   <Link
-                                    to={`/products/list/${CategoriesDetail._id}`}>
+                                    to={`/category/${CategoriesDetail.slug}`}>
                                     {CategoriesDetail.name}
                                   </Link>
                                 </li>
