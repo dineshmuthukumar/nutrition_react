@@ -853,7 +853,7 @@ const Header = ({
                                               }`}>
                                               <a
                                                 className="d-flex justify-content-between"
-                                                href={`/category/${CategoriesDetail?.slug}`}>
+                                                href={`/products/category/${CategoriesDetail?.slug}`}>
                                                 {CategoriesDetail.name}{" "}
                                                 {IsDropdownMenuItem(
                                                   CategoriesDetail?._id
