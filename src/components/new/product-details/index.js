@@ -2230,7 +2230,7 @@ const ProductDetails = ({
               <div className="col-sm-12 text-center">
                 <div className="product-form-group justify-content-center">
                   {/* {user?.login ? ( */}
-                  <Link to={`/collections/${subCategory.slug}`}>
+                  <Link to={`/products/list`}>
                     <button className="btn-product btn-cart wid_250">
                       <i className="d-icon-bag pr-2"></i> More Health Boosters
                     </button>
