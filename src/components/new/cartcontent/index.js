@@ -395,9 +395,7 @@ const CartContent = () => {
                               className="product-remove"
                               title="Remove this product"
                               onClick={() =>
-                                dispatch(
-                                  remove_from_cart_thunk(item?.productId)
-                                )
+                                dispatch(remove_from_cart_thunk(item?._id))
                               }>
                               <MdRemoveCircle
                                 size={30}

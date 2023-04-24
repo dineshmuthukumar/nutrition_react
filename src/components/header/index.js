@@ -1433,9 +1433,7 @@ const Header = ({
                                         className="btn btn-link btn-close"
                                         onClick={() =>
                                           dispatch(
-                                            remove_from_cart_thunk(
-                                              item?.productId
-                                            )
+                                            remove_from_cart_thunk(item?._id)
                                           )
                                         }>
                                         {/* <i className="fas fa-times"></i> */}

@@ -508,10 +508,10 @@ const CheckoutSection = ({ orderInfo, loading }) => {
     // let amount =
     //   parseFloat(orderInfo?.orderInfo?.amount) - parseFloat(discountAmount);
 
-    console.log(
-      CheckoutDetails?.data?.responseData?.orderInfo?.plan_id,
-      "amount"
-    );
+    // console.log(
+    //   CheckoutDetails?.data?.responseData?.orderInfo?.plan_id,
+    //   "amount"
+    // );
     const options = {
       ...CheckoutDetails.data?.responseData?.orderInfo,
       //key: "rzp_test_2hFYTVjM8i6zhe",
@@ -1083,9 +1083,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                                       title="Remove this product"
                                       onClick={() =>
                                         dispatch(
-                                          remove_from_cart_thunk(
-                                            item?.productId
-                                          )
+                                          remove_from_cart_thunk(item?._id)
                                         )
                                       }>
                                       <MdRemoveCircle
