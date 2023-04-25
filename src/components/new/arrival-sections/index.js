@@ -156,7 +156,7 @@ const ArrivalSection = ({ homeContent, categorylist }) => {
                             className="nav-item ml-1 mr-1 pt-2 pb-2"
                             ref={ref}
                             onClick={() =>
-                              IsProductDetails(arrivalecontent._id, key)
+                              IsProductDetails(arrivalecontent.slug, key)
                             }>
                             <a
                               className={`nav-link nav-link-with-img border-rounded ${

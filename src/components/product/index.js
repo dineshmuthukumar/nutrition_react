@@ -121,16 +121,17 @@ const Product = ({ ProductDetails, key }) => {
                 data-target="#addCartModal"
                 title="Add to cart"
                 onClick={() => {
-                  if (!inCart) {
-                    dispatch(
-                      add_to_cart_thunk(
-                        ProductDetails._id,
-                        "BASIC",
-                        ProductDetails?.productType[0]?.saleAmount,
-                        setStatus
-                      )
-                    );
-                  }
+                  // if (!inCart) {
+                  //   dispatch(
+                  //     add_to_cart_thunk(
+                  //       ProductDetails._id,
+                  //       "BASIC",
+                  //       ProductDetails?.productType[0]?.saleAmount,
+                  //       setStatus
+                  //     )
+                  //   );
+                  // }
+                  history.push(`/product/free/details/${ProductDetails?.slug}`);
                 }}>
                 <i class="d-icon-bag"></i>
                 <span>Add to Bag</span>
