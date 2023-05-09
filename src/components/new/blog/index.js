@@ -146,7 +146,7 @@ const Blog = () => {
                                                                   more<i className="d-icon-arrow-right"></i></a> */}
 
                                   <Link
-                                    to={`/blogpost/${obj?._id}`}
+                                    to={`/blogs/${obj?.slug}`}
                                     className="btn btn-link btn-underline btn-primary">
                                     Read more
                                     <i className="d-icon-arrow-right"></i>

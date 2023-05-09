@@ -277,6 +277,15 @@ const Footer = () => {
                 <div className="widget widget-contact">
                   <h4 className="widget-title">Know Us</h4>
                   <ul className="widget-body">
+                    <li>
+                      <Link to={`/aboutus`}>About us</Link>
+                    </li>
+                    <li>
+                      <Link to="/explore">Explore More</Link>
+                    </li>
+                    <li>
+                      <Link to="/dominance">Liven Dominance</Link>
+                    </li>
                     {footerDetails?.length > 0 &&
                       footerDetails?.map((obj, index) => {
                         if (obj.url == "who_we_are") {
