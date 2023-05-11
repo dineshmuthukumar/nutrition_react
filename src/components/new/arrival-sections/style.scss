@@ -192,6 +192,10 @@
                 position: absolute;
                 left: -6% !important;
                 bottom: 50% !important;
+                @media (max-width: 576px)
+                {
+                    left: 0 !important;
+                }
             }
             .swipper_front_arrow
             {
@@ -202,6 +206,10 @@
                 position: absolute;
                 right: -6% !important;
                 bottom: 50% !important;
+                @media (max-width: 576px)
+                {
+                    right: 0 !important;
+                }
             }
 
               }

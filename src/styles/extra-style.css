@@ -1604,7 +1604,8 @@ img.weak_strongest_img_absolute {
     display: flex;
     align-items: center;
     text-align: center;
-    justify-content: flex-start;
+    justify-content: space-between;
+    padding: 1rem;
   }
   .mobile-menu-wrapper .mobile-menu-close i {
     background: var(--base-color);
