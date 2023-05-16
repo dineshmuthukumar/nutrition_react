@@ -92,7 +92,6 @@ const ProductDetails = ({
   loading,
   subCategory,
 }) => {
-
   // console.log(subCategory,"subCategory")
   const history = useHistory();
   const dispatch = useDispatch();
@@ -481,7 +480,8 @@ const ProductDetails = ({
                                               //   key
                                               // );
                                               moveToslider(key);
-                                            }}>
+                                            }}
+                                          >
                                             <img
                                               src={`${prodImgaesThumb}`}
                                               alt="product thumbnail"
@@ -583,7 +583,8 @@ const ProductDetails = ({
                                     //   setProductThumb(parseInt(slideBy) - 1);
                                     // }
                                   }}
-                                  key="prdni1">
+                                  key="prdni1"
+                                >
                                   <i class="d-icon-arrow-left"></i>
                                 </button>
                                 <button
@@ -635,7 +636,8 @@ const ProductDetails = ({
 
                                     // }
                                   }}
-                                  key="prdni34">
+                                  key="prdni34"
+                                >
                                   <i class="d-icon-arrow-right"></i>
                                 </button>
                               </div>
@@ -650,7 +652,8 @@ const ProductDetails = ({
                 </div>
                 <div
                   className="col-md-6"
-                  style={{ backgroundColor: "white", padding: "1rem" }}>
+                  style={{ backgroundColor: "white", padding: "1rem" }}
+                >
                   <div className="product-details">
                     <h1 className="product-name text-left">
                       {productData?.name}
@@ -665,7 +668,8 @@ const ProductDetails = ({
                       <div className="ratings-full">
                         <span
                           className="ratings"
-                          style={{ width: "100%" }}></span>
+                          style={{ width: "100%" }}
+                        ></span>
                         <span className="tooltiptext tooltip-top"></span>
                       </div>
                       {/* <a
@@ -680,7 +684,8 @@ const ProductDetails = ({
                       <div
                         dangerouslySetInnerHTML={{
                           __html: productData?.description,
-                        }}></div>
+                        }}
+                      ></div>
                     </p>
 
                     <div className="product_list_icon">
@@ -769,7 +774,8 @@ const ProductDetails = ({
                                   setProductAmount(
                                     productData?.productType[0]?.saleAmount
                                   );
-                                }}>
+                                }}
+                              >
                                 <i className="d-icon-bag"></i>
                                 {productData?.favorName} Flavour
                               </button>
@@ -873,11 +879,13 @@ const ProductDetails = ({
                                         producttype?.type == "PRO"
                                           ? "plan_height"
                                           : ""
-                                      }`}>
+                                      }`}
+                                    >
                                       <div className="plans">
                                         <label
                                           className={`plan ${producttype?.type}-plan`}
-                                          htmlFor={producttype?.type}>
+                                          htmlFor={producttype?.type}
+                                        >
                                           <input
                                             type="radio"
                                             name="plan"
@@ -976,7 +984,8 @@ const ProductDetails = ({
                                       )
                                     );
                                   }
-                                }}>
+                                }}
+                              >
                                 <i className="d-icon-bag"></i>Add To BAG
                               </button>
                             ) : (
@@ -1045,13 +1054,15 @@ const ProductDetails = ({
                       />
                       <label
                         className="form-control-label ls-s"
-                        htmlFor="create-account">
+                        htmlFor="create-account"
+                      >
                         This item: Glow Japanese Marine Collagen Peptides
                       </label>
                       <div className="product_pack_count">
                         <select
                           name="orderby"
-                          className="form-control count_pack_value">
+                          className="form-control count_pack_value"
+                        >
                           <option value="default">Pack of 1</option>
                           <option value="popularity" selected="selected">
                             Pack of 2
@@ -1075,13 +1086,15 @@ const ProductDetails = ({
                       />
                       <label
                         className="form-control-label ls-s"
-                        htmlFor="different-address">
+                        htmlFor="different-address"
+                      >
                         Beauty Japanese Marine Collagen Peptides
                       </label>
                       <div className="product_pack_count">
                         <select
                           name="orderby"
-                          className="form-control count_pack_value">
+                          className="form-control count_pack_value"
+                        >
                           <option value="default">Pack of 1</option>
                           <option value="popularity" defaultValue="selected">
                             Pack of 2
@@ -1105,13 +1118,15 @@ const ProductDetails = ({
                       />
                       <label
                         className="form-control-label ls-s"
-                        htmlFor="create-account-add">
+                        htmlFor="create-account-add"
+                      >
                         This item: Glow Japanese Marine Collagen Peptides
                       </label>
                       <div className="product_pack_count">
                         <select
                           name="orderby"
-                          className="form-control count_pack_value">
+                          className="form-control count_pack_value"
+                        >
                           <option value="default">Pack of 1</option>
                           <option value="popularity" defaultValue="selected">
                             Pack of 2
@@ -1132,7 +1147,8 @@ const ProductDetails = ({
 
           <section
             className="product_banner_section_3"
-            style={{ display: "none" }}>
+            style={{ display: "none" }}
+          >
             <div className="container">
               <div className="row product_banner_3">
                 <div className="col-sm-8">
@@ -1285,7 +1301,8 @@ const ProductDetails = ({
                     <div
                       dangerouslySetInnerHTML={{
                         __html: productData?.howToUsedescription,
-                      }}></div>
+                      }}
+                    ></div>
                     {/* <li>
                   <b>Drop</b>: Put 1 tab in a glass of water (250ml).
                 </li>
@@ -1527,7 +1544,8 @@ const ProductDetails = ({
                   <div
                     dangerouslySetInnerHTML={{
                       __html: productData?.chooseLivenBurndescription,
-                    }}></div>
+                    }}
+                  ></div>
                 </div>
                 <div className="col-md-4 text-center">
                   <img
@@ -1562,7 +1580,8 @@ const ProductDetails = ({
                         480: { slidesPerView: 3, spaceBetween: 4 },
                         768: { slidesPerView: 4, spaceBetween: 4 },
                         1024: { slidesPerView: 4, spaceBetween: 4 },
-                      }}>
+                      }}
+                    >
                       {(() => {
                         return (
                           <>
@@ -1607,7 +1626,8 @@ const ProductDetails = ({
                                           <a
                                             href="#"
                                             className="btn-product-icon btn-wishlist"
-                                            title="Add to wishlist">
+                                            title="Add to wishlist"
+                                          >
                                             <i className="d-icon-plus"></i>
                                           </a>
                                         </div>
@@ -1636,7 +1656,8 @@ const ProductDetails = ({
                 <button
                   className="swipper_back_arrow"
                   onClick={() => handleNavigation("prev")}
-                  disabled={swiperRef?.current?.swiper?.isBeginning}>
+                  disabled={swiperRef?.current?.swiper?.isBeginning}
+                >
                   <img
                     src="https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png"
                     width="40"
@@ -1647,7 +1668,8 @@ const ProductDetails = ({
                 <button
                   className="swipper_front_arrow"
                   onClick={() => handleNavigation("next")}
-                  disabled={swiperRef?.current?.swiper?.isEnd}>
+                  disabled={swiperRef?.current?.swiper?.isEnd}
+                >
                   <img
                     src="https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/front-arrow.png"
                     width="40"
@@ -1661,7 +1683,8 @@ const ProductDetails = ({
 
           <section
             className="new_our_idea pt-2 pt-md-7 pt-10"
-            style={{ display: "none" }}>
+            style={{ display: "none" }}
+          >
             <div className="container p-0">
               <h2 className="title-echo mb-1">
                 <span>Customer Review</span>
@@ -1701,7 +1724,8 @@ const ProductDetails = ({
                           </a>
                           <a
                             className="star-4 active"
-                            href="demo-food2-product.html#">
+                            href="demo-food2-product.html#"
+                          >
                             4
                           </a>
                           <a className="star-5" href="demo-food2-product.html#">
@@ -1713,7 +1737,8 @@ const ProductDetails = ({
                           name="rating"
                           id="rating"
                           required=""
-                          style={{ display: "none" }}>
+                          style={{ display: "none" }}
+                        >
                           <option value="">Rate…</option>
                           <option value="5">Perfect</option>
                           <option value="4">Good</option>
@@ -1729,10 +1754,12 @@ const ProductDetails = ({
                           rows="6"
                           className="form-control mb-4"
                           placeholder="Comment *"
-                          required></textarea>
+                          required
+                        ></textarea>
                         <button
                           type="submit"
-                          className="btn-product btn-cart wid_200">
+                          className="btn-product btn-cart wid_200"
+                        >
                           Submit<i className="d-icon-arrow-right"></i>
                         </button>
                       </form>
@@ -1743,7 +1770,8 @@ const ProductDetails = ({
                   <div
                     className="card-body expanded"
                     id="collapse1-3"
-                    style={{ display: "block" }}>
+                    style={{ display: "block" }}
+                  >
                     <div className="row">
                       <div className="col-12 mb-6">
                         <div className="avg-rating-container">
@@ -1756,7 +1784,8 @@ const ProductDetails = ({
                               <div className="ratings-full">
                                 <span
                                   className="ratings"
-                                  style={{ width: "100%" }}></span>
+                                  style={{ width: "100%" }}
+                                ></span>
                                 <span className="tooltiptext tooltip-top">
                                   5.00
                                 </span>
@@ -1773,7 +1802,8 @@ const ProductDetails = ({
                               <div className="ratings-full">
                                 <span
                                   className="ratings"
-                                  style={{ width: "100%" }}></span>
+                                  style={{ width: "100%" }}
+                                ></span>
                                 <span className="tooltiptext tooltip-top">
                                   5.00
                                 </span>
@@ -1789,7 +1819,8 @@ const ProductDetails = ({
                               <div className="ratings-full">
                                 <span
                                   className="ratings"
-                                  style={{ width: "80%" }}></span>
+                                  style={{ width: "80%" }}
+                                ></span>
                                 <span className="tooltiptext tooltip-top">
                                   4.00
                                 </span>
@@ -1805,7 +1836,8 @@ const ProductDetails = ({
                               <div className="ratings-full">
                                 <span
                                   className="ratings"
-                                  style={{ width: "60%" }}></span>
+                                  style={{ width: "60%" }}
+                                ></span>
                                 <span className="tooltiptext tooltip-top">
                                   4.00
                                 </span>
@@ -1822,7 +1854,8 @@ const ProductDetails = ({
                               <div className="ratings-full">
                                 <span
                                   className="ratings"
-                                  style={{ width: "40%" }}></span>
+                                  style={{ width: "40%" }}
+                                ></span>
                                 <span className="tooltiptext tooltip-top">
                                   2.00
                                 </span>
@@ -1838,7 +1871,8 @@ const ProductDetails = ({
                               <div className="ratings-full">
                                 <span
                                   className="ratings"
-                                  style={{ width: "20%" }}></span>
+                                  style={{ width: "20%" }}
+                                ></span>
                                 <span className="tooltiptext tooltip-top">
                                   4.00
                                 </span>
@@ -1887,7 +1921,8 @@ const ProductDetails = ({
                                   <div className="ratings-full">
                                     <span
                                       className="ratings"
-                                      style={{ width: "100%" }}></span>
+                                      style={{ width: "100%" }}
+                                    ></span>
                                     <span className="tooltiptext tooltip-top">
                                       5.00
                                     </span>
@@ -1940,7 +1975,8 @@ const ProductDetails = ({
                                   <div className="ratings-full">
                                     <span
                                       className="ratings"
-                                      style={{ width: "100%" }}></span>
+                                      style={{ width: "100%" }}
+                                    ></span>
                                     <span className="tooltiptext tooltip-top"></span>
                                   </div>
                                 </div>
@@ -1986,14 +2022,16 @@ const ProductDetails = ({
                                 href="#"
                                 aria-label="Previous"
                                 tabIndex="-1"
-                                aria-disabled="true">
+                                aria-disabled="true"
+                              >
                                 {" "}
                                 <i className="d-icon-arrow-left"></i>Prev{" "}
                               </a>
                             </li>
                             <li
                               className="page-item active"
-                              aria-current="page">
+                              aria-current="page"
+                            >
                               <a className="page-link" href="#">
                                 1
                               </a>
@@ -2017,7 +2055,8 @@ const ProductDetails = ({
                               <a
                                 className="page-link page-link-next"
                                 href="#"
-                                aria-label="Next">
+                                aria-label="Next"
+                              >
                                 {" "}
                                 Next<i className="d-icon-arrow-right"></i>{" "}
                               </a>
@@ -2127,7 +2166,7 @@ const ProductDetails = ({
                 modules={[Navigation]}
                 className="mySwiper11122d"
                 breakpoints={{
-                  320: { slidesPerView: 3, spaceBetween: 5 },
+                  320: { slidesPerView: 1, spaceBetween: 5 },
                   480: { slidesPerView: 3, spaceBetween: 5 },
                   768: { slidesPerView: 4, spaceBetween: 5 },
                   1024: { slidesPerView: 5, spaceBetween: 5 },
@@ -2207,7 +2246,8 @@ const ProductDetails = ({
             <button
               className="swipper_back_arrow"
               onClick={() => handleNavigation("prev")}
-              disabled={swiperRef?.current?.swiper?.isBeginning}>
+              disabled={swiperRef?.current?.swiper?.isBeginning}
+            >
               <img
                 src="https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png"
                 width="40"
@@ -2218,7 +2258,8 @@ const ProductDetails = ({
             <button
               className="swipper_front_arrow"
               onClick={() => handleNavigation("next")}
-              disabled={swiperRef?.current?.swiper?.isEnd}>
+              disabled={swiperRef?.current?.swiper?.isEnd}
+            >
               <img
                 src="https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/front-arrow.png"
                 width="40"
