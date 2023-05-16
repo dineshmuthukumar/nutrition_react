@@ -1704,6 +1704,14 @@ span.seperator {
   font-size: 16px;
   opacity: 0;
   transition: all .5s;
+  @media (max-width: 1024px)
+  {
+    bottom: 60%;
+    left: 25%;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+  }
 }
 
 .fb {color: #000;}
