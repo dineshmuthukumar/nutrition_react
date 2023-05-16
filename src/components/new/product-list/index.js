@@ -219,13 +219,13 @@ const Productlist = () => {
         <section class="pt-3 mt-2 mb-2 pb-10 need_sec">
           <div className="container">
             {!categoryid && (
-              <div class=" shop_filter mb-5">
+              <div class="shop_filter mb-5">
                 <div class="">
                   <div class="counter">
                     <div class="row">
-                      <div class="col-sm-6">
+                      <div class="col-sm-12">
                         <Form.Label>Sub Category</Form.Label>
-                        <Form className="d-flex">
+                        <Form className="sub_category_list">
                           {subCategoryDetails.length > 0 &&
                             subCategoryDetails?.map((data, type) => (
                               <div key={`inline-${type}`} className="mb-3">

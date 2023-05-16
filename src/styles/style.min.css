@@ -11909,7 +11909,7 @@ button.mfp-arrow {
     .product.product-with-qty .product-details .btn-cart 
     {
       width: 100%;
-      max-width: 200px;
+      max-width: 90% !important; 
     } 
   }
 
@@ -14285,7 +14285,7 @@ aside + div .product-single .product-details {
 }
 
 .title-echo span {
-  position: absolute;
+  /* position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -14293,7 +14293,13 @@ aside + div .product-single .product-details {
   font-size: 28px;
   font-weight: 700;
   line-height: 1.75;
+  font-family: var(--font-family-poppins); */
+
+  color: var(--color-text);
+  font-weight: 600;
   font-family: var(--font-family-poppins);
+  font-size: 20px;
+  margin-bottom: 1rem;
 }
 
 @media (max-width: 767px) {

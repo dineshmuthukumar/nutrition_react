@@ -1,7 +1,13 @@
 .accordion {
   max-width: 768px;
 }
-
+.accordion-background
+{
+  @media (max-width: 1024px)
+  {
+    margin: 1rem;
+  }
+}
 .accordion-item {
   list-style: none;
 }
@@ -17,6 +23,10 @@
   border-radius: 5px;
   font-size: 16px;
   font-family: var(--font-monda);
+  @media (max-width: 1024px)
+  {
+    text-align: left;
+  }
 }
 
 .accordion-toggle:hover {

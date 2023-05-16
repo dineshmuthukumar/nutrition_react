@@ -219,7 +219,7 @@ const ProductlistNew = () => {
                 <div class="">
                   <div class="counter">
                     <div class="row">
-                      <div class="col-sm-6">
+                      <div class="col-sm-12">
                         <Form.Label>Sub Category</Form.Label>
                         <Form className="d-flex">
                           {subCategoryDetails.length > 0 &&

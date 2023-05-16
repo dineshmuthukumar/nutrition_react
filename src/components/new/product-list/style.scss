@@ -40,3 +40,19 @@ select.form-select
     min-height: 36px;
     font-size: 16px;
 }
+
+.shop_filter
+{
+    .counter
+    {
+        .sub_category_list
+        {
+            display: flex;
+            @media (max-width: 576px)
+            {
+                display: block;
+                text-align: left;
+            }
+        }
+    }
+}

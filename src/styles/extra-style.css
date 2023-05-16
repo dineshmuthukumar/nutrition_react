@@ -1824,6 +1824,7 @@ video.card_video__1z3he {
 .shop_filter .counter {
   padding: 2rem 2rem;
   box-shadow: 0px 5px 40px 0px rgb(0 0 0 / 5%);
+  border-radius: 2rem;
 }
 
 .cart-card {
@@ -1896,20 +1897,20 @@ label.form-label {
   }
 
   .title-echo span {
-    position: relative !important;
+    /* position: relative !important;
     margin-top: 40px;
     font-size: 20px !important;
-    line-height: 30px;
+    line-height: 30px; */
   }
 
   .title-echo {
     padding-bottom: 0px;
   }
 
-  section.new_our_idea .title-echo span {
+  /* section.new_our_idea .title-echo span {
     left: 33%;
     margin: 0px;
-  }
+  } */
 
   #weak_strongest .title-echo span {
     left: 35%;
