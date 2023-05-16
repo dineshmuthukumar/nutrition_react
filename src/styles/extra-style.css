@@ -745,7 +745,7 @@ h2.pack_total_doller {
 
 @media screen and (max-width: 991px) {
   .plans {
-    margin: 0 20px;
+    margin: 0px;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
@@ -753,7 +753,7 @@ h2.pack_total_doller {
     -webkit-box-align: start;
     -ms-flex-align: start;
     align-items: flex-start;
-    padding: 40px;
+    padding: 0px;
   }
 
   .plans .plan {
@@ -1569,6 +1569,13 @@ img.weak_strongest_img_absolute {
   margin: 10px 10px !important;
   padding: 10px !important;
   line-height: 30px !important;
+}
+@media (max-width: 767px)
+{
+  .otp-input input
+  {
+    margin: 5px 5px !important;
+  }
 }
 
 .cursor_pointer {

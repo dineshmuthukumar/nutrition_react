@@ -1014,7 +1014,8 @@
 
     .product-details .btn-cart,
     .product-hide-details .btn-cart {
-        max-width: 4.2rem;
+        max-width: 100%;
+        width: 100%;
         display: flex;
     }
 
@@ -1651,6 +1652,10 @@ input.btn.btn-large:active {
             position: absolute;
             left: -4% !important;
             bottom: 43% !important;
+            @media (max-width: 767px)
+            {
+                left: 2% !important;
+            }
         }
 
         .swipper_front_arrow {
@@ -1661,6 +1666,10 @@ input.btn.btn-large:active {
             position: absolute;
             right: -4% !important;
             bottom: 43% !important;
+            @media (max-width: 767px)
+            {
+                right: 2% !important;
+            }
         }
     }
 }

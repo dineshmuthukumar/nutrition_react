@@ -22008,7 +22008,18 @@ aside .owl-nav-top .owl-nav i:before {
 .cart-table .product-quantity {
   width: 135px;
 }
-
+@media (max-width: 767px)
+{
+  .cart-table .product-quantity 
+  {
+    width: 100%;
+  }
+  td.product-price 
+  {
+    display: block !important;
+    width: 100%;
+  }
+}
 .cart-table .product-subtotal {
   width: 85px;
   color: #222;
