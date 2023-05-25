@@ -368,6 +368,10 @@ img.weak_strongest_img_absolute {
   .row.burn_works.mb-3 {
     text-align: left;
     padding: 1rem;
+    @media (min-width: 320px) and (max-width: 767px)
+    {
+      padding: 2rem;
+    }
   }
 
   .row.mt-10.why_choose_dflex {
