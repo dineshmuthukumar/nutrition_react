@@ -325,7 +325,8 @@ const Header = ({
           e.preventDefault();
           onClick(e);
           setNotiRead(true);
-        }}>
+        }}
+      >
         <img src={NotificationICon} height={25} width={25} alt="Nofity-Bell" />
 
         {!notiRead && (
@@ -346,7 +347,8 @@ const Header = ({
         onClick={(e) => {
           e.preventDefault();
           onClick(e);
-        }}>
+        }}
+      >
         Drops
       </Nav.Link>
     );
@@ -813,7 +815,8 @@ const Header = ({
               <div className="header-left">
                 <Nav.Link
                   className="mobile-menu-toggle"
-                  onClick={() => openModal()}>
+                  onClick={() => openModal()}
+                >
                   <i className="d-icon-bars2"></i>
                 </Nav.Link>
 
@@ -827,7 +830,8 @@ const Header = ({
                     <li className="active submenu">
                       <Nav.Link
                         className="submenu"
-                        onClick={() => history.push("/")}>
+                        onClick={() => history.push("/")}
+                      >
                         Shop
                         <AiOutlineArrowDown />
                       </Nav.Link>
@@ -850,10 +854,12 @@ const Header = ({
                                                 )
                                                   ? ""
                                                   : ""
-                                              }`}>
+                                              }`}
+                                            >
                                               <a
                                                 className="d-flex justify-content-between"
-                                                href={`/products/category/${CategoriesDetail?.slug}`}>
+                                                href={`/products/category/${CategoriesDetail?.slug}`}
+                                              >
                                                 {CategoriesDetail.name}{" "}
                                                 {IsDropdownMenuItem(
                                                   CategoriesDetail?._id
@@ -880,9 +886,8 @@ const Header = ({
 
                               <li>
                                 <Link
-                                  onClick={() =>
-                                    history.push("/products/list")
-                                  }>
+                                  onClick={() => history.push("/products/list")}
+                                >
                                   Shop All
                                 </Link>
                               </li>
@@ -900,7 +905,8 @@ const Header = ({
                                           return (
                                             <li>
                                               <Link
-                                                to={`/product/${bestSellerDetailsData.slug}`}>
+                                                to={`/product/${bestSellerDetailsData.slug}`}
+                                              >
                                                 {bestSellerDetailsData.name}
                                               </Link>
                                             </li>
@@ -922,7 +928,8 @@ const Header = ({
                     <li className="submenu">
                       <Nav.Link
                         className="submenu"
-                        onClick={() => history.push("/")}>
+                        onClick={() => history.push("/")}
+                      >
                         Invent
                         <AiOutlineArrowDown />
                       </Nav.Link>
@@ -1151,7 +1158,8 @@ const Header = ({
                       if (e) {
                         history.push(`/product/details?slug=${e}`);
                       }
-                    }}>
+                    }}
+                  >
                     {/* <Select.Option value="jack">Jack</Select.Option>
                     <Select.Option value="lucy">Lucy</Select.Option>
                     <Select.Option value="disabled" disabled>
@@ -1291,11 +1299,13 @@ const Header = ({
                           //readNotification();
                           setNotiRead(false);
                         }
-                      }}>
+                      }}
+                    >
                       <Dropdown.Toggle
                         align="start"
                         drop="start"
-                        as={NotificationToggleComponent}></Dropdown.Toggle>
+                        as={NotificationToggleComponent}
+                      ></Dropdown.Toggle>
 
                       <Dropdown.Menu align="end" className="noti-container">
                         <div className="noti-header">
@@ -1326,7 +1336,8 @@ const Header = ({
                                   onClick={() => {
                                     setNPage(npage + 1);
                                     handleGetNotification(npage + 1);
-                                  }}>
+                                  }}
+                                >
                                   See More
                                 </div>
                               ) : (
@@ -1347,7 +1358,8 @@ const Header = ({
                       <Dropdown.Toggle
                         align="start"
                         drop="start"
-                        as={UserToggleComponent}></Dropdown.Toggle>
+                        as={UserToggleComponent}
+                      ></Dropdown.Toggle>
 
                       <Dropdown.Menu align="end">
                         <Dropdown.Item
@@ -1357,7 +1369,8 @@ const Header = ({
                               `${process.env.REACT_APP_URL}/accounts?defaultkey=second`,
                               "_self"
                             )
-                          }>
+                          }
+                        >
                           My Profile
                         </Dropdown.Item>
                         <Dropdown.Item
@@ -1367,14 +1380,16 @@ const Header = ({
                               `${process.env.REACT_APP_URL}/accounts?defaultkey=first`,
                               "_self"
                             )
-                          }>
+                          }
+                        >
                           My Order
                         </Dropdown.Item>
 
                         <Dropdown.Divider />
                         <Dropdown.Item
                           as="button"
-                          onClick={() => dispatch(user_logout_thunk())}>
+                          onClick={() => dispatch(user_logout_thunk())}
+                        >
                           Sign Out
                         </Dropdown.Item>
                       </Dropdown.Menu>
@@ -1384,7 +1399,8 @@ const Header = ({
                   <>
                     <Link
                       to="/login"
-                      className="nav-link nav-link-with-img border-rounded login-link d-xs-show">
+                      className="nav-link nav-link-with-img border-rounded login-link d-xs-show"
+                    >
                       <h3 className="img-cat-title mb-0">Login/Signup</h3>
                       {/* </a> */}
                     </Link>
@@ -1408,7 +1424,8 @@ const Header = ({
                     className={`dropdown-box ${
                       user?.cartlist ? "cartListOn" : ""
                     }`}
-                    onMouseOut={showHideUpdateRow}>
+                    onMouseOut={showHideUpdateRow}
+                  >
                     {user?.login ? (
                       <>
                         <div className="products scrollable">
@@ -1420,7 +1437,8 @@ const Header = ({
                                 return (
                                   <div
                                     className="product product-cart"
-                                    key={productcartkey}>
+                                    key={productcartkey}
+                                  >
                                     <figure className="product-media">
                                       <a href="#">
                                         <img
@@ -1435,7 +1453,8 @@ const Header = ({
                                           dispatch(
                                             remove_from_cart_thunk(item?._id)
                                           )
-                                        }>
+                                        }
+                                      >
                                         {/* <i className="fas fa-times"></i> */}
                                         <span className="sr-only">Close</span>
                                       </button>
@@ -1471,13 +1490,15 @@ const Header = ({
                         <div className="cart-action">
                           <Link
                             className="btn btn-underline btn-link"
-                            to="/cart">
+                            to="/cart"
+                          >
                             View Cart
                           </Link>
 
                           <Link
                             to="/checkout"
-                            className="d-flex justify-content-center btn btn-dark btn-md btn-rounded">
+                            className="d-flex justify-content-center btn btn-dark btn-md btn-rounded"
+                          >
                             <span>Go To Checkout</span>
                           </Link>
                         </div>
@@ -1486,7 +1507,8 @@ const Header = ({
                       <div className="d-flex justify-content-center">
                         <Link
                           to="/login"
-                          className="nav-link nav-link-with-img border-rounded login-link d-xs-show">
+                          className="nav-link nav-link-with-img border-rounded login-link d-xs-show"
+                        >
                           <h3 className="img-cat-title mb-0">Login/Signup</h3>
                           {/* </a> */}
                         </Link>
@@ -1503,7 +1525,8 @@ const Header = ({
       {/* <a href={setting?.site?.whatsAppLink} target="_blank" rel="noopener noreferrer"><div className="whatsup-icon"><img src={icons8_whatsapp} /></div></a> */}
 
       <div
-        className={`mobile-menu-wrapper ${mobileMenuActive ? "active" : ""}`}>
+        className={`mobile-menu-wrapper ${mobileMenuActive ? "active" : ""}`}
+      >
         <div className="mobile-menu-overlay"></div>
 
         <a className="mobile-menu-close" onClick={() => hideModal()}>
@@ -1532,7 +1555,8 @@ const Header = ({
               </a>
 
               <ul
-                className={`${categoryActive ? "catergory-page-active" : ""}`}>
+                className={`${categoryActive ? "catergory-page-active" : ""}`}
+              >
                 {(() => {
                   if (categoryDetails?.length > 0) {
                     return (
@@ -1544,14 +1568,20 @@ const Header = ({
                                 IsDropdownMenuItem(CategoriesDetail?._id)
                                   ? "submenu"
                                   : ""
-                              }`}>
+                              }`}
+                            >
                               <a
                                 className="d-flex justify-content-between"
-                                href={`/products/category/${CategoriesDetail?.slug}`}>
+                                href={`/products/category/${CategoriesDetail?.slug}`}
+                              >
                                 {CategoriesDetail?.name}
                               </a>
                               {IsDropdownMenuItem(CategoriesDetail?._id) ? (
-                                <AiOutlineArrowRight />
+                                <a
+                                  href={`/products/category/${CategoriesDetail?.slug}`}
+                                >
+                                  <AiOutlineArrowRight />
+                                </a>
                               ) : (
                                 ""
                               )}
@@ -2009,7 +2039,8 @@ const HeaderMobileMenuIcon = React.forwardRef(({ onClick }, ref) => {
       onClick={(e) => {
         e.preventDefault();
         onClick(e);
-      }}>
+      }}
+    >
       <CgMenuRight size={25} color={"white"} />
     </div>
   );
@@ -2024,7 +2055,8 @@ const HeaderMobileMenuCloseIcon = React.forwardRef(({ onClick }, ref) => {
       onClick={(e) => {
         e.preventDefault();
         onClick(e);
-      }}>
+      }}
+    >
       <VscChromeClose size={25} color={"white"} />
     </div>
   );
@@ -2042,7 +2074,8 @@ const DisplayContainer = (data) => {
             fontSize: "12px",
             padding: "5px 0px 0px 10px",
             wordBreak: "break-all",
-          }}>
+          }}
+        >
           {data?.data?.name}
         </span>
       </div>
