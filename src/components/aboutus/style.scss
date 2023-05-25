@@ -44,6 +44,11 @@ section.aboutus {
         font-weight: 700;
         line-height: 1.75;
         margin-bottom: 6rem;
+        @media (min-width: 320px) and (max-width: 767px)
+        {
+          font-size: 20px;
+          margin-bottom: 0rem;
+        }
       }
 
       p {
@@ -65,6 +70,10 @@ section.aboutus {
         width: 50%;
         border-radius: 1rem;
         margin: auto;
+        @media (min-width: 320px) and (max-width: 767px)
+        {
+          width: 100%;
+        }
       }
 
       &:nth-child(even) {
@@ -123,6 +132,10 @@ section.aboutus {
         font-size: 28px;
         font-weight: 700;
         line-height: 1.75;
+        @media (min-width: 320px) and (max-width: 767px)
+        {
+          font-size: 20px;
+        }
       }
 
       p {
@@ -155,14 +168,18 @@ section.aboutus {
           line-height: unset !important;
           background: unset !important;
           vertical-align: unset !important;
-
-
           font-size: 2.25rem;
           font-weight: lighter;
           padding: 4rem;
           vertical-align: middle;
           grid-area: 2 / 1 / 3 / 3 !important;
           z-index: 5;
+          @media (min-width: 320px) and (max-width: 767px)
+          {
+            font-size: 1.5rem;
+            text-align: justify;
+            margin-top: 3rem !important
+          }
         }
       }
 
@@ -177,7 +194,7 @@ section.aboutus {
 
       @media screen and (max-width: 768px) {
         img {
-          max-height: 100%;
+          height: auto;
         }
       }
     }
