@@ -165,7 +165,7 @@
             .swiper-slide
             {
                 background: transparent;
-                margin-right: 0px !important;
+                // margin-right: 0px !important;
             }
         }
     }
@@ -195,6 +195,7 @@
                 @media (max-width: 576px)
                 {
                     left: 0 !important;
+                    z-index: 9999;
                 }
             }
             .swipper_front_arrow

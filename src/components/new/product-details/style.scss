@@ -1637,11 +1637,13 @@ input.btn.btn-large:active {
         .swipper_back_arrow:disabled {
             background: grey;
             opacity: 0.5;
+            z-index: 9999;
         }
 
         .swipper_front_arrow:disabled {
             background: grey;
             opacity: 0.5;
+            z-index: 9999;
         }
 
         .swipper_back_arrow {
@@ -1655,6 +1657,7 @@ input.btn.btn-large:active {
             @media (max-width: 767px)
             {
                 left: 2% !important;
+                z-index: 9999;
             }
         }
 
@@ -1669,6 +1672,7 @@ input.btn.btn-large:active {
             @media (max-width: 767px)
             {
                 right: 2% !important;
+                z-index: 9999;
             }
         }
     }
@@ -1735,6 +1739,10 @@ input.btn.btn-large:active {
         position: absolute;
         left: -4% !important;
         bottom: 43% !important;
+        @media (max-width: 576px)
+        {
+            display: none;
+        }
     }
 
     .swipper_front_arrow {
@@ -1745,6 +1753,10 @@ input.btn.btn-large:active {
         position: absolute;
         right: -4% !important;
         bottom: 43% !important;
+        @media (max-width: 576px)
+        {
+            display: none;
+        }
     }
 
 }

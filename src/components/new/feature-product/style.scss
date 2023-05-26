@@ -140,7 +140,7 @@ div#feature-product {
 
             .swiper-slide {
                 background: transparent;
-                margin-right: 0px !important;
+                // margin-right: 0px !important;
             }
         }
     }
@@ -169,6 +169,7 @@ div#feature-product {
         position: absolute;
         left: 1% !important;
         bottom: 50% !important;
+        z-index: 9999;
     }
 
     .swipper_front_arrow {

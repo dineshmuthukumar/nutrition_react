@@ -143,7 +143,8 @@ const FeatureProduct = ({ featureProductsContent }) => {
                   480: { slidesPerView: 2, spaceBetween: 5 },
                   768: { slidesPerView: 3, spaceBetween: 4 },
                   1024: { slidesPerView: 3, spaceBetween: 4 },
-                }}>
+                }}
+              >
                 {(() => {
                   if (featureProductsContent?.length > 0) {
                     return (
@@ -169,7 +170,8 @@ const FeatureProduct = ({ featureProductsContent }) => {
           <button
             className="swipper_back_arrow"
             onClick={() => handleNavigation("prev")}
-            disabled={swiperRef?.current?.swiper?.isBeginning}>
+            disabled={swiperRef?.current?.swiper?.isBeginning}
+          >
             <img
               src="https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png"
               width="40"
@@ -180,7 +182,8 @@ const FeatureProduct = ({ featureProductsContent }) => {
           <button
             className="swipper_front_arrow"
             onClick={() => handleNavigation("next")}
-            disabled={swiperRef?.current?.swiper?.isEnd}>
+            disabled={swiperRef?.current?.swiper?.isEnd}
+          >
             <img
               src="https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/front-arrow.png"
               width="40"
