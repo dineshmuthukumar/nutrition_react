@@ -786,6 +786,10 @@ h2.pack_total_doller {
     width: 60%;
     display: inline-block;
   }
+  .row.mt-5.why_choose_dflex 
+  {
+    padding: 1rem;
+  }
 }
 
 @media screen and (max-width: 540px) {
@@ -2177,3 +2181,4 @@ section.instagram-section.pt-2.pt-md-7.pt-10.pb-8 .owl-item {
 .icon-box.icon-inversed.text-center.bg-livenburnitem .icon-box-content p {
   color: #000;
 }
+
