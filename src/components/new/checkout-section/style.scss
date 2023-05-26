@@ -3,6 +3,14 @@
         font-weight: 400;
         color: var(--black);
         list-style-type: none;
+        @media (max-width: 576px)
+        {
+            font-weight: 400;
+            color: var(--black);
+            list-style-type: none;
+            font-size: 1.2rem;
+            text-align: left;
+        }
     }
 
     ul.list-group.list-group-flush {
@@ -13,6 +21,10 @@
         padding: 2.4rem 3rem 3rem;
         border: 1px solid #e1e1e1;
         border-radius: 2px;
+        @media (max-width: 576px)
+        {
+            padding: 1rem;
+        }
     }
 
     .list-group-item {
