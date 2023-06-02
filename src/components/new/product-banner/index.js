@@ -28,14 +28,15 @@ const ProductBanner = ({ homeContent }) => {
                 <div
                   dangerouslySetInnerHTML={{
                     __html: homeContent?.section?.first?.description,
-                  }}></div>
+                  }}
+                ></div>
               </p>
               <div className="row">
                 {homeContent?.section?.first?.list &&
                   homeContent?.section?.first?.list?.map(
                     (firstContentList, index) => {
                       return (
-                        <div className="col-sm-6">
+                        <div className="col-6 col-md-6 col-lg-6">
                           <div className="icon-box icon-box-side">
                             <span className="">
                               {(() => {

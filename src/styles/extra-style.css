@@ -296,7 +296,7 @@ img.weak_strongest_img_absolute {
 
   .new_our_idea .category {
     width: 100% !important;
-    max-width: 100% !important;
+    max-width: 50% !important;
   }
 
   .icon-box-side .icon-box-icon {
@@ -316,7 +316,17 @@ img.weak_strongest_img_absolute {
     left: 7rem !important;
     top: rem !important;
   }
-
+    .pro_before_img
+    {
+      width: 100px;
+      height: 100px;
+      display: none;
+    }
+    img.category_media_image
+    {
+      width: 100px !important;
+      height: 100px !important;
+    }
   .footer-middle .widget-body li {
     display: inline-block;
     text-decoration: underline;

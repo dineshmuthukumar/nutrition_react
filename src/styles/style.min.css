@@ -7884,6 +7884,20 @@ ul.blog-filters .nav-filter {
   line-height: 1.2;
   text-transform: uppercase;
 }
+@media (min-width: 768px) and (max-width: 1024px)
+{
+  .element p
+  {
+    font-size: 12px;
+  }
+}
+@media (max-width: 767px)
+{
+  .element p
+  {
+    font-size: 12px;
+  }
+}
 
 .element.active .element-img,
 .element:hover .element-img {
