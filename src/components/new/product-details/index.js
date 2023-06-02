@@ -1494,7 +1494,7 @@ const ProductDetails = ({
                         {productData?.livenBurnWorkIcon?.map(
                           (livenBurnWorkIconData) => {
                             return (
-                              <div className="col-sm-4 burn_works">
+                              <div className="col-6 col-md-6 col-lg-6 burn_works">
                                 <img
                                   src={`${livenBurnWorkIconData?.image}`}
                                   className="pro_des_icon2"

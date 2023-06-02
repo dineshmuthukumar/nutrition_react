@@ -2021,6 +2021,10 @@ label.form-label {
   .banner-4 .banner-subtitle p.text-white {
     font-size: 12px;
   }
+  .icon-box.icon-inversed.text-center.bg-livenburnitem {
+    min-height: 150px;
+    height: 150px;
+  }
 }
 
 .icon-box.icon-inversed.text-center.bg-livenburnitem {
