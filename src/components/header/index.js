@@ -1577,11 +1577,7 @@ const Header = ({
                                 {CategoriesDetail?.name}
                               </a>
                               {IsDropdownMenuItem(CategoriesDetail?._id) ? (
-                                <a
-                                  href={`/products/category/${CategoriesDetail?.slug}`}
-                                >
-                                  <AiOutlineArrowRight />
-                                </a>
+                                <AiOutlineArrowRight />
                               ) : (
                                 ""
                               )}
