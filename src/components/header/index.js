@@ -1538,6 +1538,20 @@ const Header = ({
             <img src={Logo} />
           </div>
 
+          <form action="#" class="input-wrapper">
+            <input
+              type="text"
+              class="form-control"
+              name="search"
+              autocomplete="off"
+              placeholder="Search your keyword..."
+              required=""
+            ></input>
+            <button class="btn btn-search" type="submit" title="submit-button">
+              <i class="d-icon-search"></i>
+            </button>
+          </form>
+
           <ul className="mobile-menu mmenu-anim">
             <li>
               <Link to="/">Home</Link>
