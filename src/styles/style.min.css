@@ -7691,7 +7691,7 @@ ul.blog-filters .nav-filter {
 }
 
 .elements > div {
-  margin-bottom: 3rem;
+  /* margin-bottom: 3rem; */
   transition: transform 0.3s;
 }
 
@@ -25482,10 +25482,10 @@ aside .owl-nav-top .owl-nav i:before {
 }
 
 .swiper-slide.swiper-slide-active {
-  margin-right: 0px !important;
+  /* margin-right: 0px !important;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
 }
 
 .swiper-container-horizontal > .swiper-scrollbar {

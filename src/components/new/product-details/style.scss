@@ -125,7 +125,9 @@
     color: #fff;
     text-transform: uppercase;
 }
-
+.burn_works {
+    font-size: 14px;
+}
 .product-label.label-new {
     background: #4dae67;
 }
@@ -1775,5 +1777,17 @@ input.btn.btn-large:active {
         width: 100%;
         overflow-x: scroll;
         flex-flow: row-reverse;
+    }
+}
+
+.mobile_extra_block
+{
+    .col-3
+    {
+        @media (min-width: 320px) and (max-width: 1024px)
+        {
+            flex: 0 0 auto;
+            width: 34%;
+        }
     }
 }

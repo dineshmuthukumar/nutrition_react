@@ -1210,14 +1210,14 @@ const ProductDetails = ({
               <h2 className="title title-center ls-s mb-8 dis_block">
                 {productData?.addLivenBurnTitle}
               </h2>
-              <div className="row elements justify-content-center mobile-view-block">
+              <div className="row elements justify-content-center mobile-view-block mobile_extra_block">
                 {(() => {
                   if (productData?.livenBurns?.length > 0) {
                     return (
                       <>
                         {productData?.livenBurns?.map((takelivenBurn) => {
                           return (
-                            <div className="col-6 col-md-6 col-lg-6">
+                            <div className="col-3 col-md-6 col-lg-2">
                               <a href="#" className="element-type">
                                 <div className="element element-accordian dotted_border">
                                   <img

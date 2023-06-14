@@ -427,3 +427,15 @@ input.btn.btn-large:active {
     }
   }
 }
+
+@media (min-width: 320px) and (max-width: 767px)
+{
+    .mobile-view-block
+    {
+        padding: 1.25rem 0rem;
+        display: inline-flex;
+        width: 100%;
+        overflow-x: scroll;
+        flex-flow: row-reverse;
+    }
+}

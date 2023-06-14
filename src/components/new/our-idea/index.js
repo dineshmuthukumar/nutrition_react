@@ -16,13 +16,13 @@ const OurIdea = ({ homeContent }) => {
             </span>
           </h2>
 
-          <div className="row p-20">
+          <div className="row p-20 justify-content-center align-items-center">
             {homeContent?.section?.third?.imageList &&
               homeContent?.section?.third?.imageList?.map(
                 (thirdContentList) => {
                   return (
                     <div className="col-xl-3 col-sm-6 col-12 category">
-                      <a href="product.html">
+                      <a href="">
                         <figure className="category-media">
                           {/* <img
                             src={fit_1}
