@@ -335,79 +335,84 @@ const CartContent = () => {
           <div className="row align-items-center">
             <div className="offset-lg-2 col-lg-9 col-md-9 pr-lg-4">
               {cart?.data?.cartProductDetails?.length > 0 ? (
-                <table className="shop-table cart-table">
-                  <thead>
-                    <tr>
-                      <th>
-                        <span>Product</span>
-                      </th>
-                      <th>Name</th>
-                      <th>
-                        <span>Quantity</span>
-                      </th>
-                      <th>
-                        <span>Price</span>
-                      </th>
+                <div class="table-responsive">
+                  <table className="shop-table cart-table">
+                    <thead>
+                      <tr>
+                        <th>
+                          <span>Product</span>
+                        </th>
+                        <th>Name</th>
+                        <th>
+                          <span>Quantity</span>
+                        </th>
+                        <th>
+                          <span>Price</span>
+                        </th>
 
-                      <th>Subtotal</th>
-                      <th>Remove</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {cart?.data?.cartProductDetails?.map((item, productkey) => {
-                      return (
-                        <tr key={productkey}>
-                          <td className="product-thumbnail">
-                            <figure>
-                              <a href="product-simple.html">
-                                <img
-                                  src={`${item?.photos[0]}`}
-                                  width="100"
-                                  height="100"
-                                  alt="product"
-                                />
-                              </a>
-                            </figure>
-                          </td>
-                          <td className="product-name">
-                            <div className="product-name-section">
-                              <a href="product-simple.html">{item?.name}</a>
-                            </div>
-                          </td>
-                          <td className="product-quantity">{item?.qty}</td>
-                          <td className="product-subtotal">
-                            <span className="amount">
-                              {currencyFormat(item?.saleAmount, "INR")}
-                            </span>
-                          </td>
+                        <th>Subtotal</th>
+                        <th>Remove</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {cart?.data?.cartProductDetails?.map(
+                        (item, productkey) => {
+                          return (
+                            <tr key={productkey}>
+                              <td className="product-thumbnail">
+                                <figure>
+                                  <a href="product-simple.html">
+                                    <img
+                                      src={`${item?.photos[0]}`}
+                                      width="100"
+                                      height="100"
+                                      alt="product"
+                                    />
+                                  </a>
+                                </figure>
+                              </td>
+                              <td className="product-name">
+                                <div className="product-name-section">
+                                  <a href="product-simple.html">{item?.name}</a>
+                                </div>
+                              </td>
+                              <td className="product-quantity">{item?.qty}</td>
+                              <td className="product-subtotal">
+                                <span className="amount">
+                                  {currencyFormat(item?.saleAmount, "INR")}
+                                </span>
+                              </td>
 
-                          <td className="product-subtotal">
-                            <span className="amount">
-                              {currencyFormat(
-                                item?.qty * item?.saleAmount,
-                                "INR"
-                              )}
-                            </span>
-                          </td>
-                          <td className="product-close">
-                            <a
-                              //href="cart.html#"
-                              className="product-remove"
-                              title="Remove this product"
-                              onClick={() =>
-                                dispatch(remove_from_cart_thunk(item?._id))
-                              }>
-                              <MdRemoveCircle
-                                size={30}
-                                style={{ cursor: "pointer" }}
-                              />
-                            </a>
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
+                              <td className="product-subtotal">
+                                <span className="amount">
+                                  {currencyFormat(
+                                    item?.qty * item?.saleAmount,
+                                    "INR"
+                                  )}
+                                </span>
+                              </td>
+                              <td className="product-close">
+                                <a
+                                  //href="cart.html#"
+                                  className="product-remove"
+                                  title="Remove this product"
+                                  onClick={() =>
+                                    dispatch(remove_from_cart_thunk(item?._id))
+                                  }
+                                >
+                                  <MdRemoveCircle
+                                    size={30}
+                                    style={{ cursor: "pointer" }}
+                                  />
+                                </a>
+                              </td>
+                            </tr>
+                          );
+                        }
+                      )}
+                    </tbody>
+                  </table>
+                </div>
               ) : (
                 "No Items Found"
               )}
@@ -417,7 +422,8 @@ const CartContent = () => {
                     return (
                       <Link
                         to="/checkout"
-                        className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4">
+                        className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
+                      >
                         Continue Shopping <i className="d-icon-arrow-right"></i>
                       </Link>
                     );

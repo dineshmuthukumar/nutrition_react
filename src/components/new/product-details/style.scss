@@ -1789,5 +1789,15 @@ input.btn.btn-large:active {
             flex: 0 0 auto;
             width: 34%;
         }
+        
     }
+}
+
+@media (min-width: 320px) and (max-width: 767px)
+{
+    .col-6.col-md-6.col-lg-6.burn_works {
+        line-height: 30px;
+        align-items: center;
+        display: flex;
+      }
 }

@@ -21443,6 +21443,13 @@ aside .owl-nav-top .owl-nav i:before {
   color: #fff;
   font-family: var(--font-family-poppins);
 }
+@media (max-width: 767px)
+{
+  .shop-table th
+  {
+    font-size: 14px;
+  }
+}
 
 .shop-table img {
   display: block;
@@ -21544,7 +21551,7 @@ aside .owl-nav-top .owl-nav i:before {
     text-align: center;
   }
 
-  .shop-table thead {
+  /* .shop-table thead {
     display: none;
   }
 
@@ -21552,7 +21559,7 @@ aside .owl-nav-top .owl-nav i:before {
   .shop-table td,
   .shop-table tr {
     display: block;
-  }
+  } */
 
   .shop-table tbody {
     border: 1px solid #e1e1e1;

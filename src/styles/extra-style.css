@@ -154,6 +154,13 @@ h2.title.title-center.ls-s.mb-8 {
     font-size: 20px;
     font-weight: 500;
 }
+@media (max-width: 767px)
+{
+  .product-name.text-center a,
+  .product-name a {
+      font-size: 14px;
+  } 
+}
 
 .product_banner a {
     font-size: 20px;
