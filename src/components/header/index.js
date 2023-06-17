@@ -114,6 +114,8 @@ const Header = ({
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const [subId, setSubId] = useState("");
+
   const slug = user.data?.user ? user.data?.user?.slug : null;
   const userCart = cart?.data ? cart?.data : null;
   let totalAmount = 0;
@@ -145,7 +147,7 @@ const Header = ({
     setFooterDetails(result?.data?.responseData?.pages);
   };
 
-  const [searchList, setSearchList] = useState({});
+  const [searchList, setSearchList] = useState([]);
 
   useEffect(() => {
     if (user?.login) {
@@ -292,6 +294,19 @@ const Header = ({
       }
     }
   };
+  const onSearchMobile = async (e) => {
+    setSearch(e?.target?.value);
+    try {
+      setLoading(true);
+      const response = await searchForm(e?.target?.value);
+      // console.log(response, "response");
+      setSearchList(response?.data?.responseData?.product);
+      setLoading(false);
+      // console.log(response?.data?.responseData?.product, "response");
+    } catch (err) {
+      setLoading(false);
+    }
+  };
 
   const readNotification = async () => {
     try {
@@ -325,8 +340,7 @@ const Header = ({
           e.preventDefault();
           onClick(e);
           setNotiRead(true);
-        }}
-      >
+        }}>
         <img src={NotificationICon} height={25} width={25} alt="Nofity-Bell" />
 
         {!notiRead && (
@@ -347,8 +361,7 @@ const Header = ({
         onClick={(e) => {
           e.preventDefault();
           onClick(e);
-        }}
-      >
+        }}>
         Drops
       </Nav.Link>
     );
@@ -721,7 +734,12 @@ const Header = ({
       );
       if (filterData?.length) {
         return (
-          <ul className="submenu-level ">
+          <ul
+            className={` ${
+              subId == subCategoriesId
+                ? "catergory-page-active"
+                : "submenu-level"
+            }`}>
             {filterData?.map((subCategoriesDetail) => {
               //console.log(subCategoriesDetail, "subCategoriesDetail");
               return (
@@ -815,8 +833,7 @@ const Header = ({
               <div className="header-left">
                 <Nav.Link
                   className="mobile-menu-toggle"
-                  onClick={() => openModal()}
-                >
+                  onClick={() => openModal()}>
                   <i className="d-icon-bars2"></i>
                 </Nav.Link>
 
@@ -830,8 +847,7 @@ const Header = ({
                     <li className="active submenu">
                       <Nav.Link
                         className="submenu"
-                        onClick={() => history.push("/")}
-                      >
+                        onClick={() => history.push("/")}>
                         Shop
                         <AiOutlineArrowDown />
                       </Nav.Link>
@@ -854,12 +870,10 @@ const Header = ({
                                                 )
                                                   ? ""
                                                   : ""
-                                              }`}
-                                            >
+                                              }`}>
                                               <a
                                                 className="d-flex justify-content-between"
-                                                href={`/products/category/${CategoriesDetail?.slug}`}
-                                              >
+                                                href={`/products/category/${CategoriesDetail?.slug}`}>
                                                 {CategoriesDetail.name}{" "}
                                                 {IsDropdownMenuItem(
                                                   CategoriesDetail?._id
@@ -870,9 +884,11 @@ const Header = ({
                                                 )}
                                               </a>
 
-                                              {DropdownMenuItem(
-                                                CategoriesDetail?._id
-                                              )}
+                                              <a className="d-flex justify-content-between">
+                                                {DropdownMenuItem(
+                                                  CategoriesDetail?._id
+                                                )}
+                                              </a>
                                             </li>
                                           );
                                         }
@@ -886,8 +902,9 @@ const Header = ({
 
                               <li>
                                 <Link
-                                  onClick={() => history.push("/products/list")}
-                                >
+                                  onClick={() =>
+                                    history.push("/products/list")
+                                  }>
                                   Shop All
                                 </Link>
                               </li>
@@ -905,8 +922,7 @@ const Header = ({
                                           return (
                                             <li>
                                               <Link
-                                                to={`/product/${bestSellerDetailsData.slug}`}
-                                              >
+                                                to={`/product/${bestSellerDetailsData.slug}`}>
                                                 {bestSellerDetailsData.name}
                                               </Link>
                                             </li>
@@ -928,8 +944,7 @@ const Header = ({
                     <li className="submenu">
                       <Nav.Link
                         className="submenu"
-                        onClick={() => history.push("/")}
-                      >
+                        onClick={() => history.push("/")}>
                         Invent
                         <AiOutlineArrowDown />
                       </Nav.Link>
@@ -1158,16 +1173,8 @@ const Header = ({
                       if (e) {
                         history.push(`/product/details?slug=${e}`);
                       }
-                    }}
-                  >
-                    {/* <Select.Option value="jack">Jack</Select.Option>
-                    <Select.Option value="lucy">Lucy</Select.Option>
-                    <Select.Option value="disabled" disabled>
-                      Disabled
-                    </Select.Option>
-                    <Select.Option value="Yiminghe">yiminghe</Select.Option> */}
-                    {searchList &&
-                      searchList?.length > 0 &&
+                    }}>
+                    {searchList?.length > 0 &&
                       searchList?.map((data, key) => {
                         return (
                           <Select.Option value={data?.slug || ""} key={key}>
@@ -1175,13 +1182,6 @@ const Header = ({
                           </Select.Option>
                         );
                       })}
-                    {/* {searchList && searchList?.length > 0
-                      ? searchList?.map(({ value, key }) => (
-                          <Select.Option value={value || ""} key={key}>
-                            <DisplayContainer data={value} />
-                          </Select.Option>
-                        ))
-                      : "No record found"} */}
                   </Select>
                   {/* <input
                       type="text"
@@ -1299,13 +1299,11 @@ const Header = ({
                           //readNotification();
                           setNotiRead(false);
                         }
-                      }}
-                    >
+                      }}>
                       <Dropdown.Toggle
                         align="start"
                         drop="start"
-                        as={NotificationToggleComponent}
-                      ></Dropdown.Toggle>
+                        as={NotificationToggleComponent}></Dropdown.Toggle>
 
                       <Dropdown.Menu align="end" className="noti-container">
                         <div className="noti-header">
@@ -1336,8 +1334,7 @@ const Header = ({
                                   onClick={() => {
                                     setNPage(npage + 1);
                                     handleGetNotification(npage + 1);
-                                  }}
-                                >
+                                  }}>
                                   See More
                                 </div>
                               ) : (
@@ -1358,8 +1355,7 @@ const Header = ({
                       <Dropdown.Toggle
                         align="start"
                         drop="start"
-                        as={UserToggleComponent}
-                      ></Dropdown.Toggle>
+                        as={UserToggleComponent}></Dropdown.Toggle>
 
                       <Dropdown.Menu align="end">
                         <Dropdown.Item
@@ -1369,8 +1365,7 @@ const Header = ({
                               `${process.env.REACT_APP_URL}/accounts?defaultkey=second`,
                               "_self"
                             )
-                          }
-                        >
+                          }>
                           My Profile
                         </Dropdown.Item>
                         <Dropdown.Item
@@ -1380,16 +1375,14 @@ const Header = ({
                               `${process.env.REACT_APP_URL}/accounts?defaultkey=first`,
                               "_self"
                             )
-                          }
-                        >
+                          }>
                           My Order
                         </Dropdown.Item>
 
                         <Dropdown.Divider />
                         <Dropdown.Item
                           as="button"
-                          onClick={() => dispatch(user_logout_thunk())}
-                        >
+                          onClick={() => dispatch(user_logout_thunk())}>
                           Sign Out
                         </Dropdown.Item>
                       </Dropdown.Menu>
@@ -1399,8 +1392,7 @@ const Header = ({
                   <>
                     <Link
                       to="/login"
-                      className="nav-link nav-link-with-img border-rounded login-link d-xs-show"
-                    >
+                      className="nav-link nav-link-with-img border-rounded login-link d-xs-show">
                       <h3 className="img-cat-title mb-0">Login/Signup</h3>
                       {/* </a> */}
                     </Link>
@@ -1424,8 +1416,7 @@ const Header = ({
                     className={`dropdown-box ${
                       user?.cartlist ? "cartListOn" : ""
                     }`}
-                    onMouseOut={showHideUpdateRow}
-                  >
+                    onMouseOut={showHideUpdateRow}>
                     {user?.login ? (
                       <>
                         <div className="products scrollable">
@@ -1437,8 +1428,7 @@ const Header = ({
                                 return (
                                   <div
                                     className="product product-cart"
-                                    key={productcartkey}
-                                  >
+                                    key={productcartkey}>
                                     <figure className="product-media">
                                       <a href="#">
                                         <img
@@ -1453,8 +1443,7 @@ const Header = ({
                                           dispatch(
                                             remove_from_cart_thunk(item?._id)
                                           )
-                                        }
-                                      >
+                                        }>
                                         {/* <i className="fas fa-times"></i> */}
                                         <span className="sr-only">Close</span>
                                       </button>
@@ -1490,15 +1479,13 @@ const Header = ({
                         <div className="cart-action">
                           <Link
                             className="btn btn-underline btn-link"
-                            to="/cart"
-                          >
+                            to="/cart">
                             View Cart
                           </Link>
 
                           <Link
                             to="/checkout"
-                            className="d-flex justify-content-center btn btn-dark btn-md btn-rounded"
-                          >
+                            className="d-flex justify-content-center btn btn-dark btn-md btn-rounded">
                             <span>Go To Checkout</span>
                           </Link>
                         </div>
@@ -1507,8 +1494,7 @@ const Header = ({
                       <div className="d-flex justify-content-center">
                         <Link
                           to="/login"
-                          className="nav-link nav-link-with-img border-rounded login-link d-xs-show"
-                        >
+                          className="nav-link nav-link-with-img border-rounded login-link d-xs-show">
                           <h3 className="img-cat-title mb-0">Login/Signup</h3>
                           {/* </a> */}
                         </Link>
@@ -1525,8 +1511,7 @@ const Header = ({
       {/* <a href={setting?.site?.whatsAppLink} target="_blank" rel="noopener noreferrer"><div className="whatsup-icon"><img src={icons8_whatsapp} /></div></a> */}
 
       <div
-        className={`mobile-menu-wrapper ${mobileMenuActive ? "active" : ""}`}
-      >
+        className={`mobile-menu-wrapper ${mobileMenuActive ? "active" : ""}`}>
         <div className="mobile-menu-overlay"></div>
 
         <a className="mobile-menu-close" onClick={() => hideModal()}>
@@ -1538,19 +1523,74 @@ const Header = ({
             <img src={Logo} />
           </div>
 
-          <form action="#" class="input-wrapper">
-            <input
-              type="text"
-              class="form-control"
-              name="search"
-              autocomplete="off"
-              placeholder="Search your keyword..."
-              required=""
-            ></input>
-            <button class="btn btn-search" type="submit" title="submit-button">
+          {/* <Select
+            style={{ width: 280 }}
+            placeholder="Search...."
+            showSearch={true}
+            value={search}
+            onSearch={onSearch}
+            onChange={(e) => {
+              if (e) {
+                history.push(`/product/details?slug=${e}`);
+              }
+            }}>
+            {searchList?.length > 0 &&
+              searchList?.map((data, key) => {
+                return (
+                  <Select.Option value={data?.slug || ""} key={key}>
+                    <DisplayContainer data={data} />
+                  </Select.Option>
+                );
+              })}
+          </Select> */}
+          <input
+            type="text"
+            class="form-control "
+            name="search"
+            value={search ? search : ""}
+            autocomplete="off"
+            placeholder="Search your keyword..."
+            onChange={onSearchMobile}
+            required=""></input>
+          <div>
+            {searchList?.length > 0 &&
+              searchList?.map((data, key) => {
+                return (
+                  <div
+                    onClick={() => {
+                      history.push(`/product/details?slug=${data?.slug}`);
+                    }}>
+                    <DisplayContainer data={data} />
+                  </div>
+                );
+              })}
+          </div>
+          {/* <button class="btn btn-search" type="submit" title="submit-button">
               <i class="d-icon-search"></i>
-            </button>
-          </form>
+            </button> */}
+
+          {/* </form> */}
+          {/* <Select
+            style={{ width: 280 }}
+            placeholder="Search...."
+      
+            {searchList &&
+              searchList?.length > 0 &&
+              searchList?.map((data, key) => {
+                return (
+                  <Select.Option value={data?.slug || ""} key={key}>
+                    <DisplayContainer data={data} />
+                  </Select.Option>
+                );
+              })}
+            {/* {searchList && searchList?.length > 0
+                      ? searchList?.map(({ value, key }) => (
+                          <Select.Option value={value || ""} key={key}>
+                            <DisplayContainer data={value} />
+                          </Select.Option>
+                        ))
+                      : "No record found"} 
+          </Select>  */}
 
           <ul className="mobile-menu mmenu-anim">
             <li>
@@ -1569,8 +1609,7 @@ const Header = ({
               </a>
 
               <ul
-                className={`${categoryActive ? "catergory-page-active" : ""}`}
-              >
+                className={`${categoryActive ? "catergory-page-active" : ""}`}>
                 {(() => {
                   if (categoryDetails?.length > 0) {
                     return (
@@ -1582,16 +1621,18 @@ const Header = ({
                                 IsDropdownMenuItem(CategoriesDetail?._id)
                                   ? "submenu"
                                   : ""
-                              }`}
-                            >
+                              }`}>
                               <a
                                 className="d-flex justify-content-between"
-                                href={`/products/category/${CategoriesDetail?.slug}`}
-                              >
+                                href={`/products/category/${CategoriesDetail?.slug}`}>
                                 {CategoriesDetail?.name}
                               </a>
                               {IsDropdownMenuItem(CategoriesDetail?._id) ? (
-                                <AiOutlineArrowRight />
+                                <AiOutlineArrowDown
+                                  onClick={() =>
+                                    setSubId(CategoriesDetail?._id)
+                                  }
+                                />
                               ) : (
                                 ""
                               )}
@@ -2049,8 +2090,7 @@ const HeaderMobileMenuIcon = React.forwardRef(({ onClick }, ref) => {
       onClick={(e) => {
         e.preventDefault();
         onClick(e);
-      }}
-    >
+      }}>
       <CgMenuRight size={25} color={"white"} />
     </div>
   );
@@ -2065,37 +2105,36 @@ const HeaderMobileMenuCloseIcon = React.forwardRef(({ onClick }, ref) => {
       onClick={(e) => {
         e.preventDefault();
         onClick(e);
-      }}
-    >
+      }}>
       <VscChromeClose size={25} color={"white"} />
     </div>
   );
 });
 
 const DisplayContainer = (data) => {
-  // debugger;
-  // console.log(data, "data");
-  return (
-    <div style={{ width: "120px", height: "53px" }}>
-      <div>
-        <img src={`${data?.data?.photos[0]}`} alt="img" width={25} />
-        <span
-          style={{
-            fontSize: "12px",
-            padding: "5px 0px 0px 10px",
-            wordBreak: "break-all",
-          }}
-        >
-          {data?.data?.name}
-        </span>
-      </div>
-      <div style={{ padding: "2px 5px 8px 14px" }}>
-        {/* <span
+  console.log(data, "data");
+
+  if (data)
+    return (
+      <div style={{ width: "120px", height: "53px" }}>
+        <div>
+          <img src={`${data?.data?.photos[0]}`} alt="img" width={25} />
+          <span
+            style={{
+              fontSize: "12px",
+              padding: "5px 0px 0px 10px",
+              wordBreak: "break-all",
+            }}>
+            {data?.data?.name}
+          </span>
+        </div>
+        <div style={{ padding: "2px 5px 8px 14px" }}>
+          {/* <span
           style={{ display: "inline", marginLeft: "10px", fontSize: "18px" }}>
           {data?.data?.name}
         </span> */}
+        </div>
       </div>
-    </div>
-  );
+    );
 };
 export default Header;

@@ -168,6 +168,7 @@
 .font-primary {
   font-family: var(--font-family-poppins) !important;
 }
+
 .font-weight-bolder {
   font-weight: 800 !important;
 }
@@ -510,4 +511,31 @@
   &container {
     width: 100%;
   }
+}
+
+.ant-select-selection-selected-value {
+  border-radius: 0px 8px 8px 0px;
+  height: 53px;
+}
+
+.ant-select-selection.ant-select-selection--single {
+  height: 53px;
+}
+
+.ant-select-selection.ant-select-selection--single>div>div>div>div+div {
+  margin-top: -5px;
+  padding: 4px 5px 5px 14px !important;
+}
+
+.ant-select-selection.ant-select-selection--single>div>div>div>div {
+  margin-top: -20px;
+}
+
+.ant-select-selection.ant-select-selection--single[aria-expanded="true"]>div>div>div>div {
+  margin-top: -10px;
+}
+
+/*style for when the menu is expanded: show shipment description above icon and name*/
+.ant-select-selection.ant-select-selection--single[aria-expanded="true"]>div>div>div>div+div {
+  margin-top: -15px;
 }
