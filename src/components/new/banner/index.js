@@ -102,18 +102,32 @@ const Banner = ({ bannerContent }) => {
                         return (
                           <SwiperSlide className="swiperSlider" key={key}>
                             {" "}
-                            <Link
-                              to={`/products/list/${BannerDetail.categoryId}`}>
-                              <div
-                                className={`intro-slide${key} banner banner-fixed`}>
-                                <figure>
-                                  <img
-                                    src={`${BannerDetail?.image}`}
-                                    alt="intro-banner"
-                                  />
-                                </figure>
-                              </div>
-                            </Link>
+                            {BannerDetail.categoryId ? (
+                              <Link
+                                to={`/products/list/${BannerDetail.categoryId}`}>
+                                <div
+                                  className={`intro-slide${key} banner banner-fixed`}>
+                                  <figure>
+                                    <img
+                                      src={`${BannerDetail?.image}`}
+                                      alt="intro-banner"
+                                    />
+                                  </figure>
+                                </div>
+                              </Link>
+                            ) : (
+                              <Link>
+                                <div
+                                  className={`intro-slide${key} banner banner-fixed`}>
+                                  <figure>
+                                    <img
+                                      src={`${BannerDetail?.image}`}
+                                      alt="intro-banner"
+                                    />
+                                  </figure>
+                                </div>
+                              </Link>
+                            )}
                           </SwiperSlide>
                         );
                       }
@@ -147,18 +161,32 @@ const Banner = ({ bannerContent }) => {
                         return (
                           <SwiperSlide className="swiperSlider" key={key}>
                             {" "}
-                            <Link
-                              to={`/products/list/${BannerDetail.categoryId}`}>
-                              <div
-                                className={`intro-slide${key} banner banner-fixed`}>
-                                <figure>
-                                  <img
-                                    src={`${BannerDetail?.image}`}
-                                    alt="intro-banner"
-                                  />
-                                </figure>
-                              </div>
-                            </Link>
+                            {BannerDetail.categoryId ? (
+                              <Link
+                                to={`/products/list/${BannerDetail.categoryId}`}>
+                                <div
+                                  className={`intro-slide${key} banner banner-fixed`}>
+                                  <figure>
+                                    <img
+                                      src={`${BannerDetail?.image}`}
+                                      alt="intro-banner"
+                                    />
+                                  </figure>
+                                </div>
+                              </Link>
+                            ) : (
+                              <Link>
+                                <div
+                                  className={`intro-slide${key} banner banner-fixed`}>
+                                  <figure>
+                                    <img
+                                      src={`${BannerDetail?.image}`}
+                                      alt="intro-banner"
+                                    />
+                                  </figure>
+                                </div>
+                              </Link>
+                            )}
                           </SwiperSlide>
                         );
                       }
