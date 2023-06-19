@@ -1639,7 +1639,17 @@ img.weak_strongest_img_absolute {
     justify-content: space-between;
     padding: 1rem;
   }
-  @media (max-width: 767px)
+  .mobile-menu-wrapper .mobile-menu-close i {
+    background: var(--base-color);
+    border-radius: 50%;
+    padding: 0.5rem;
+    font-size: 2rem;
+    color: #fff;
+  }
+}
+
+
+@media (max-width: 767px)
   {
     .catergory-page-active li
     {
@@ -1650,14 +1660,6 @@ img.weak_strongest_img_absolute {
       line-height: 3;
     }
   }
-  .mobile-menu-wrapper .mobile-menu-close i {
-    background: var(--base-color);
-    border-radius: 50%;
-    padding: 0.5rem;
-    font-size: 2rem;
-    color: #fff;
-  }
-}
 
 .header-user-details {
   border: 1px solid #ccc;
