@@ -1634,8 +1634,8 @@ img.weak_strongest_img_absolute {
   }
   .catergory-page-active li {
     display: flex;
-    align-items: center;
-    text-align: center;
+    align-items: left;
+    text-align: left;
     justify-content: space-between;
     padding: 1rem;
   }
@@ -1644,6 +1644,10 @@ img.weak_strongest_img_absolute {
     .catergory-page-active li
     {
       display: block;
+    }
+    .mobile-menu-container.scrollable .form-control
+    {
+      line-height: 3;
     }
   }
   .mobile-menu-wrapper .mobile-menu-close i {
