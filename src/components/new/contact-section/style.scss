@@ -19,10 +19,19 @@
 }
 
 
-
+.page-content.pb-10.pt-10
+{
+    @media (min-width: 320px) and (max-width: 1356px)
+    {
+        padding-top: 0rem !important;
+    }
+}
 .inner-quote-section
     {
-        
+        @media (min-width: 320px) and (max-width: 1356px)
+        {
+            padding: 1rem;
+        }
         h2{
             font-size: 28px;
             color: #000;
