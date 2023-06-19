@@ -14445,7 +14445,7 @@ figure.instagram img:hover {
 .header-middle .login-link {
     display: flex;
     align-items: center;
-    margin-right: 2rem;
+    margin-right: 0rem;
 }
 
 .header-middle .login-link span {

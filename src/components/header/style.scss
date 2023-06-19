@@ -337,7 +337,7 @@
 .header-middle .login-link {
   display: flex;
   align-items: center;
-  margin-right: 1rem;
+  margin: 0 1rem;
 }
 
 .page-active,
@@ -539,3 +539,14 @@
 .ant-select-selection.ant-select-selection--single[aria-expanded="true"]>div>div>div>div+div {
   margin-top: -15px;
 }
+
+
+@media (max-width: 767px)
+{
+  .mmobile-menu 
+  {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+} 
