@@ -21598,13 +21598,13 @@ aside .owl-nav-top .owl-nav i:before {
     max-width: 220px;
   }
 
-  .shop-table .product-remove {
+  /* .shop-table .product-remove {
     position: absolute;
     right: 2rem;
     top: 2rem;
     padding: 0.5rem;
     width: auto;
-  }
+  } */
 
   .shop-table .product-quantity {
     margin-bottom: 1rem;
