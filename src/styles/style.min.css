@@ -25520,8 +25520,8 @@ h3.img-cat-title i {
 @media (min-width: 320px) and (max-width: 767px) {
   .banner figure img {
     max-width: 100%;
-    height: auto;
-    min-height: auto;
+    height: 25vh;
+    min-height: 25vh;
     width: 100%;
   }
   .mobile-menu-container .input-wrapper {
