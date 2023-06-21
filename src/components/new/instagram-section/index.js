@@ -38,7 +38,8 @@ const InstagramSection = ({ homeContent, filterList }) => {
     <>
       <section
         className="instagram-section pt-2 pt-md-7 pt-10 pb-8"
-        data-animation-options="{'delay': '.2s', 'duration': '.5s' }">
+        data-animation-options="{'delay': '.2s', 'duration': '.5s' }"
+      >
         <div className="container">
           <h2 className="title-echo mb-1 title-font">
             <span className="title-poppens">
@@ -103,20 +104,21 @@ const InstagramSection = ({ homeContent, filterList }) => {
           > */}
           <Swiper
             ref={swiperRef}
-            slidesPerView={5}
+            slidesPerView={1}
             spaceBetween={4}
-            slidesPerGroup={4}
+            slidesPerGroup={1}
             // loop={true}
             // loopFillGroupWithBlank={true}
             navigation={false}
             modules={[Navigation]}
             className="mySwiper11"
             breakpoints={{
-              320: { slidesPerView: 3, spaceBetween: 5 },
+              320: { slidesPerView: 2, spaceBetween: 5 },
               480: { slidesPerView: 3, spaceBetween: 5 },
               768: { slidesPerView: 5, spaceBetween: 5 },
               1024: { slidesPerView: 5, spaceBetween: 5 },
-            }}>
+            }}
+          >
             {filterList &&
               filterList?.map((fifthproductcontentList) => {
                 //console.log(fifthproductcontentList, "fifthproductcontentList");
@@ -189,7 +191,8 @@ const InstagramSection = ({ homeContent, filterList }) => {
           <button
             className="swipper_back_arrow"
             onClick={() => handleNavigation("prev")}
-            disabled={swiperRef?.current?.swiper?.isBeginning}>
+            disabled={swiperRef?.current?.swiper?.isBeginning}
+          >
             <img
               src="https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/back-arrow.png"
               width="40"
@@ -200,7 +203,8 @@ const InstagramSection = ({ homeContent, filterList }) => {
           <button
             className="swipper_front_arrow"
             onClick={() => handleNavigation("next")}
-            disabled={swiperRef?.current?.swiper?.isEnd}>
+            disabled={swiperRef?.current?.swiper?.isEnd}
+          >
             <img
               src="https://cdn.guardianlink.io/product-hotspot/images/jump/jump-trade/front-arrow.png"
               width="40"
