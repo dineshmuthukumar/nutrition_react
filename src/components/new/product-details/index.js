@@ -1210,7 +1210,7 @@ const ProductDetails = ({
               <h2 className="title title-center ls-s mb-8 dis_block">
                 {productData?.addLivenBurnTitle}
               </h2>
-              <div className="row elements justify-content-center mobile-view-block mobile_extra_block">
+              <div className="row elements mobile-view-block mobile_extra_block">
                 {(() => {
                   if (productData?.livenBurns?.length > 0) {
                     return (
@@ -1567,9 +1567,9 @@ const ProductDetails = ({
                   {productData?.healingPotentials?.length > 0 && (
                     <Swiper
                       ref={swiperRef}
-                      slidesPerView={4}
+                      slidesPerView={1}
                       spaceBetween={4}
-                      slidesPerGroup={4}
+                      slidesPerGroup={1}
                       // loop={true}
                       // loopFillGroupWithBlank={true}
                       navigation={false}
@@ -2157,9 +2157,9 @@ const ProductDetails = ({
             {subCategoryProducts?.length > 0 && (
               <Swiper
                 ref={swiperRefRelated}
-                slidesPerView={5}
+                slidesPerView={1}
                 spaceBetween={4}
-                slidesPerGroup={4}
+                slidesPerGroup={1}
                 // loop={true}
                 // loopFillGroupWithBlank={true}
                 navigation={false}

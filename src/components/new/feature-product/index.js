@@ -130,9 +130,9 @@ const FeatureProduct = ({ featureProductsContent }) => {
               // >
               <Swiper
                 ref={swiperRef}
-                slidesPerView={3}
+                slidesPerView={1}
                 spaceBetween={4}
-                slidesPerGroup={3}
+                slidesPerGroup={1}
                 // loop={true}
                 // loopFillGroupWithBlank={true}
                 navigation={false}

@@ -1545,7 +1545,7 @@ input.btn.btn-large:active {
 @media (min-width: 320px) and (max-width: 1024px) {
   .mobile_extra_block .col-3 {
     flex: 0 0 auto;
-    width: 20%;
+    width: 50%;
   }
 }
 
