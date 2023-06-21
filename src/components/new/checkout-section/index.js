@@ -706,7 +706,8 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                           <li>
                             <i
                               className="fa fa-envelope"
-                              aria-hidden="true"></i>{" "}
+                              aria-hidden="true"
+                            ></i>{" "}
                             {user?.data?.email}
                           </li>
                           <li>
@@ -715,7 +716,8 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                               href="#"
                               onClick={() =>
                                 setShowAddressSection(!showAddressSection)
-                              }>
+                              }
+                            >
                               Changes
                             </button>
                           </li>
@@ -728,7 +730,8 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                         showAddressSection
                           ? "show-address-section"
                           : "hide-address-section"
-                      }`}>
+                      }`}
+                    >
                       <div className="col-sm-12">
                         <h1 className="address_user">Edit Address</h1>
                         <hr></hr>
@@ -737,7 +740,8 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                             <Form>
                               <Form.Group
                                 className="mb-3"
-                                controlId="exampleForm.ControlInput1">
+                                controlId="exampleForm.ControlInput1"
+                              >
                                 {/* <Form.Label>Name</Form.Label> */}
                                 {/* <Form.Control
                                 type="text"
@@ -765,7 +769,8 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                             <Form>
                               <Form.Group
                                 className="mb-3"
-                                controlId="exampleForm.ControlInput1">
+                                controlId="exampleForm.ControlInput1"
+                              >
                                 <InputText
                                   title={"Email"}
                                   name="email"
@@ -787,7 +792,8 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                             <Form>
                               <Form.Group
                                 className="mb-3"
-                                controlId="exampleForm.ControlInput1">
+                                controlId="exampleForm.ControlInput1"
+                              >
                                 <InputPhone
                                   title={"Mobile"}
                                   defaultCountry={"+91"}
@@ -823,7 +829,8 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                             <Form>
                               <Form.Group
                                 className="mb-3"
-                                controlId="exampleForm.ControlTextarea1 ">
+                                controlId="exampleForm.ControlTextarea1 "
+                              >
                                 <Form.Label>Address</Form.Label>
                                 <Form.Control
                                   as="textarea"
@@ -940,7 +947,8 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                             <Form>
                               <Form.Group
                                 className="mb-3"
-                                controlId="exampleForm.ControlInput1">
+                                controlId="exampleForm.ControlInput1"
+                              >
                                 {/* <Form.Label>Pincode</Form.Label>
                               <Form.Control type="text" placeholder="name" /> */}
                                 <InputText
@@ -960,7 +968,8 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                           <Col className="py-4">
                             <button
                               className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
-                              onClick={() => handleProfileAddressForm()}>
+                              onClick={() => handleProfileAddressForm()}
+                            >
                               SAVE
                             </button>
                           </Col>
@@ -972,7 +981,8 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                       <div
                         dangerouslySetInnerHTML={{
                           __html: cart?.data?.cartSetting?.checkoutContent1,
-                        }}></div>
+                        }}
+                      ></div>
                       {/* <span className="text-bold">Great Job! </span>
                       You're Taking First step towards a better you! */}
                     </p>
@@ -980,7 +990,8 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                       <div
                         dangerouslySetInnerHTML={{
                           __html: cart?.data?.cartSetting?.checkoutContent2,
-                        }}></div>
+                        }}
+                      ></div>
                       {/* <div> */}
                       {minutes === 0 && seconds === 0 ? null : (
                         <>
@@ -1019,85 +1030,93 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                   <hr></hr>
                   {cart?.data?.cartProductDetails?.length > 0 ? (
                     <>
-                      <table className="shop-table cart-table">
-                        <thead>
-                          <tr>
-                            <th>
-                              <span>Product</span>
-                            </th>
-                            <th>Name</th>
-                            <th>
-                              <span>Price</span>
-                            </th>
-                            <th>
-                              <span>quantity</span>
-                            </th>
-                            <th>Subtotal</th>
-                            <th>Remove</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {cart?.data?.cartProductDetails?.map(
-                            (item, productkey) => {
-                              return (
-                                <tr key={productkey}>
-                                  <td className="product-thumbnail">
-                                    <figure>
-                                      <Link to={`/product/${item?._id}`}>
-                                        <img
-                                          src={`${item?.photos[0]}`}
-                                          width="100"
-                                          height="100"
-                                          alt="product"
+                      <div class="table-responsive">
+                        <table className="shop-table cart-table">
+                          <thead>
+                            <tr>
+                              <th>
+                                <span>Product</span>
+                              </th>
+                              <th>Name</th>
+                              <th>
+                                <span>Price</span>
+                              </th>
+                              <th>
+                                <span>quantity</span>
+                              </th>
+                              <th>Subtotal</th>
+                              <th>Remove</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {cart?.data?.cartProductDetails?.map(
+                              (item, productkey) => {
+                                return (
+                                  <tr key={productkey}>
+                                    <td className="product-thumbnail">
+                                      <figure>
+                                        <Link to={`/product/${item?._id}`}>
+                                          <img
+                                            src={`${item?.photos[0]}`}
+                                            width="100"
+                                            height="100"
+                                            alt="product"
+                                          />
+                                        </Link>
+                                      </figure>
+                                    </td>
+                                    <td className="product-name">
+                                      <div className="product-name-section">
+                                        <a href="product-simple.html">
+                                          {item?.name}
+                                        </a>
+                                      </div>
+                                    </td>
+                                    <td className="product-subtotal">
+                                      <span className="amount">
+                                        {currencyFormat(
+                                          item?.saleAmount,
+                                          "INR"
+                                        )}
+                                      </span>
+                                    </td>
+                                    <td className="product-quantity">
+                                      <span className="amount">
+                                        {item?.qty}
+                                      </span>
+                                    </td>
+                                    <td className="product-price">
+                                      <span className="amount">
+                                        {currencyFormat(
+                                          item?.qty * item?.saleAmount,
+                                          "INR"
+                                        )}
+                                      </span>
+                                    </td>
+                                    <td className="product-close">
+                                      <a
+                                        //href="cart.html#"
+                                        className="product-remove"
+                                        title="Remove this product"
+                                        onClick={() =>
+                                          dispatch(
+                                            remove_from_cart_thunk(item?._id)
+                                          )
+                                        }
+                                      >
+                                        <MdRemoveCircle
+                                          size={30}
+                                          style={{ cursor: "pointer" }}
                                         />
-                                      </Link>
-                                    </figure>
-                                  </td>
-                                  <td className="product-name">
-                                    <div className="product-name-section">
-                                      <a href="product-simple.html">
-                                        {item?.name}
                                       </a>
-                                    </div>
-                                  </td>
-                                  <td className="product-subtotal">
-                                    <span className="amount">
-                                      {currencyFormat(item?.saleAmount, "INR")}
-                                    </span>
-                                  </td>
-                                  <td className="product-quantity">
-                                    <span className="amount">{item?.qty}</span>
-                                  </td>
-                                  <td className="product-price">
-                                    <span className="amount">
-                                      {currencyFormat(
-                                        item?.qty * item?.saleAmount,
-                                        "INR"
-                                      )}
-                                    </span>
-                                  </td>
-                                  <td className="product-close">
-                                    <a
-                                      //href="cart.html#"
-                                      className="product-remove"
-                                      title="Remove this product"
-                                      onClick={() =>
-                                        dispatch(
-                                          remove_from_cart_thunk(item?._id)
-                                        )
-                                      }>
-                                      <MdRemoveCircle
-                                        size={30}
-                                        style={{ cursor: "pointer" }}
-                                      />
-                                    </a>
-                                  </td>
-                                </tr>
-                              );
-                            }
-                          )}
-                        </tbody>
-                      </table>
+                                    </td>
+                                  </tr>
+                                );
+                              }
+                            )}
+                          </tbody>
+                        </table>
+                      </div>
                       {isFreeProduct && (
                         <div className="pt-5">
                           <p className="p-2 border-header">
@@ -1106,7 +1125,8 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                                 dangerouslySetInnerHTML={{
                                   __html:
                                     cart?.data?.cartSetting?.checkoutContent3,
-                                }}></div>
+                                }}
+                              ></div>
                             ) : (
                               <>
                                 After Your trial period has expired you will be
@@ -1385,7 +1405,8 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                               setCouponShow(true);
                               setPromoError(false);
                               setPromoCodeValue("");
-                            }}>
+                            }}
+                          >
                             Apply Coupons
                           </div>
                         </div>
@@ -1406,7 +1427,8 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                                   <Link // to="#"
                                     onClick={() => open()}
                                     disabled={checkoutLoading}
-                                    className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4">
+                                    className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
+                                  >
                                     {!checkoutLoading ? (
                                       <>
                                         Continue to pay{" "}
@@ -1420,7 +1442,8 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                                   <Link
                                     // to="#"
                                     onClick={(e) => UpdateAddress(e)}
-                                    className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4">
+                                    className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
+                                  >
                                     Continue to pay{" "}
                                     <i className="d-icon-arrow-right"></i>
                                   </Link>
@@ -1431,7 +1454,8 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                             return (
                               <Link
                                 to="/"
-                                className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4">
+                                className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
+                              >
                                 Back
                               </Link>
                             );
@@ -1491,14 +1515,16 @@ const CheckoutSection = ({ orderInfo, loading }) => {
           <div className="sucss-cont">
             <img
               src="https://uxwing.com/wp-content/themes/uxwing/download/checkmark-cross/success-green-check-mark-icon.png"
-              className="sucess_img"></img>
+              className="sucess_img"
+            ></img>
             <p>Thanks for you ordered product.</p>
           </div>
         </Modal.Body>
         <Modal.Footer className="mt-4 mb-4">
           <Button
             variant="primary"
-            onClick={() => history.push("/accounts?defaultkey=first")}>
+            onClick={() => history.push("/accounts?defaultkey=first")}
+          >
             Ok
           </Button>
         </Modal.Footer>
@@ -1509,7 +1535,8 @@ const CheckoutSection = ({ orderInfo, loading }) => {
         onHide={() => {
           setCouponShow(!couponShow);
           setPromoError(false);
-        }}>
+        }}
+      >
         <Modal.Header closeButton>
           <Modal.Title className="text-center">Apply Promocode</Modal.Title>
         </Modal.Header>
@@ -1523,7 +1550,8 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                     <div className="col-sm-4">
                       <Form.Group
                         className="mb-3"
-                        controlId="exampleForm.ControlInput1">
+                        controlId="exampleForm.ControlInput1"
+                      >
                         <Form.Control
                           type="text"
                           placeholder="name"
@@ -1538,7 +1566,8 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                     <div className="col-sm-3">
                       <button
                         className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
-                        onClick={(e) => applypromocode(e)}>
+                        onClick={(e) => applypromocode(e)}
+                      >
                         Apply Promocode <i className="d-icon-arrow-right"></i>
                       </button>
                     </div>
@@ -1583,7 +1612,8 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                                         id="cpnBtn"
                                         onClick={() =>
                                           handleCopy(promocodes?.promo)
-                                        }>
+                                        }
+                                      >
                                         Copy Code
                                       </span>
                                     </di>
@@ -1615,7 +1645,8 @@ const CheckoutSection = ({ orderInfo, loading }) => {
             onClick={() => {
               setCouponShow(false);
               setPromoError(false);
-            }}>
+            }}
+          >
             Close
           </Button>
           {/* <Button variant="primary" onClick={() => history.push("/accounts")}>

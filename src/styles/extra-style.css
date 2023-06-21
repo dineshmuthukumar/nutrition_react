@@ -1400,10 +1400,14 @@ img.trial_buy_now_btn {
 }
 
 .shop-table td {
-  border: 1px solid #e1e1e1;
+  border: 1px solid #e1e1e1 !important;
   font-size: 1.4rem;
 }
-
+table.shop-table.cart-table thead tr th
+{
+  font-size: 12px;
+  padding: 10px;
+}
 .shop-table {
   text-align: center;
 }

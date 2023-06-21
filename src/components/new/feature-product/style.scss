@@ -117,6 +117,21 @@
     object-fit: cover !important;
 }
 
+.instagram-section
+{
+    .swiper-slide
+    {
+        img
+        {
+            height: 220px;
+            &:hover
+            {
+                background: red;
+            }
+        }
+    }
+}
+
 div#feature-product {
     position: relative;
     z-index: 1;

@@ -9169,9 +9169,9 @@ input[type="radio"]:checked ~ label:after {
   transform: translate(-50%, -50%) rotate(0deg) scale(1);
 }
 
-.instagram:hover img {
+/* .instagram:hover img {
   transform: scale(1.15);
-}
+} */
 
 .instagram-info .instagram-content {
   position: absolute;
@@ -22020,6 +22020,7 @@ aside .owl-nav-top .owl-nav i:before {
   font-weight: 600;
   color: #222;
   line-height: 1.86;
+  padding: 10px;
 }
 
 .cart-table .product-price {
