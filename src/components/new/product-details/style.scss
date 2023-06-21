@@ -1776,7 +1776,7 @@ input.btn.btn-large:active {
         display: inline-flex;
         width: 100%;
         overflow-x: scroll;
-        flex-flow: row-reverse;
+        flex-flow: inherit;
     }
 }
 

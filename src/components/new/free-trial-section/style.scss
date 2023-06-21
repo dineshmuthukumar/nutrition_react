@@ -436,7 +436,7 @@ input.btn.btn-large:active {
         display: inline-flex;
         width: 100%;
         overflow-x: scroll;
-        flex-flow: row-reverse;
+        flex-flow: inherit;
     }
     .col-6.col-md-6.col-lg-6.burn_works {
       line-height: 30px;

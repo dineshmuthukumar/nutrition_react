@@ -1539,7 +1539,7 @@ input.btn.btn-large:active {
     display: inline-flex;
     width: 100%;
     overflow-x: scroll;
-    flex-flow: row-reverse;
+    flex-flow: inherit;
   }
 }
 @media (min-width: 320px) and (max-width: 1024px) {
