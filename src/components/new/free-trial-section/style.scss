@@ -351,6 +351,15 @@ input.btn.btn-large:active {
     }
 }
 
+.row.elements.mobile-view-block.mobile_extra_block
+{
+  justify-content: center;
+  @media (min-width: 320px) and (max-width: 1024px)
+  {
+    justify-content: flex-start;
+  }
+}
+
 .trial_buy_now_btn {
   cursor: pointer
 }
