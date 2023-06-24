@@ -25533,7 +25533,7 @@ h3.img-cat-title i {
     justify-content: center;
 }
 
-  img.weak_strongest_img_absolute {
+  /* img.weak_strongest_img_absolute {
     position: relative;
     width: 100%;
     top: 0;
@@ -25551,7 +25551,7 @@ h3.img-cat-title i {
     bottom: 0;
     right: 0;
     content: "";
-  }
+  }*/
 
   .product_banner_3 ul li {
     list-style-type: none;

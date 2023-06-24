@@ -1571,6 +1571,35 @@ img.weak_strongest_img_absolute {
   content: "";
 }
 
+@media (min-width: 320px) and (max-width: 767px)
+{
+  img.weak_strongest_img_absolute
+  {
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+  .weak_strongest_img
+  {
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px)
+{
+  img.weak_strongest_img_absolute
+  {
+    top: 0px;
+    left: 0;
+  }
+  .weak_strongest_img
+  {
+    top: 0;
+    left: 0;
+  }
+}
+
 .noti-content {
   padding: 10px;
 }
