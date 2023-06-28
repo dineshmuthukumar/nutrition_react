@@ -215,13 +215,8 @@ h2.title.title-center.ls-s.mb-8 {
   border-radius: 100%;
 }
 
-img.weak_strongest_img_absolute {
+/* img.weak_strongest_img_absolute {
   width: 100%;
-  /* position: absolute;
-    top: -60px;
-    left: -65px;
-    bottom: 0;
-    right: 0; */
   content: "";
 }
 
@@ -233,7 +228,7 @@ img.weak_strongest_img_absolute {
   bottom: 0;
   right: 0;
   content: "";
-}
+} */
 
 .text-black {
   color: var(--black);
@@ -776,7 +771,14 @@ h2.pack_total_doller {
     align-items: flex-start;
     padding: 0px;
   }
-
+  section.team_sec 
+  {
+    padding: 0 1rem;
+  }
+  .row.product_banner_2
+  {
+    padding: 0 1rem;
+  }
   .plans .plan {
     width: 100%;
   }
@@ -1560,7 +1562,10 @@ img.category_media_image {
   padding: 10px;
   inset: 15px auto auto auto !important;
 }
-
+.noti-content {
+  padding: 10px;
+}
+/* 
 img.weak_strongest_img_absolute {
   position: absolute;
   width: 100%;
@@ -1569,7 +1574,7 @@ img.weak_strongest_img_absolute {
   bottom: 0;
   right: 0;
   content: "";
-}
+} 
 
 @media (min-width: 320px) and (max-width: 767px)
 {
@@ -1599,10 +1604,8 @@ img.weak_strongest_img_absolute {
     left: 0;
   }
 }
+*/
 
-.noti-content {
-  padding: 10px;
-}
 
 .dropdown-menu.show.dropdown-menu-end {
     width: 200px;
