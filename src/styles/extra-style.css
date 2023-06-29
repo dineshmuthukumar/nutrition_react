@@ -187,12 +187,9 @@ h2.title.title-center.ls-s.mb-8 {
 .product_banner_3 {
   box-shadow: 0px 3px 15px #1018200d;
   padding: 50px;
-  /*background: #cfece76e; */
   border-radius: 10px;
-  /* background: url("../images/new-images/demos/demo-food2/products/pro_bg3.png") no-repeat; */
   background: url("../images/green_bg.jpg") no-repeat;
   border-radius: 10px;
-  /*background-position: center;*/
   background-size: cover;
 }
 

@@ -25521,8 +25521,8 @@ h3.img-cat-title i {
 @media (min-width: 320px) and (max-width: 767px) {
   .banner figure img {
     max-width: 100%;
-    height: 26vh;
-    min-height: 26vh;
+    height: 28vh;
+    min-height: 28vh;
     width: 100%;
   }
   .mobile-menu-container .input-wrapper {
