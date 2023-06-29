@@ -21,6 +21,7 @@
   }
   .instagram-section
 {
+    position: relative;
     button
     {
         background: var(--base-color);
@@ -47,7 +48,7 @@
         @media (max-width: 844px)
         {
             // left: 0 !important;
-            bottom: 23% !important;
+            // bottom: 23% !important;
             z-index: 9999;
         }
     }
@@ -63,7 +64,7 @@
         @media (max-width: 844px)
         {
             // right: 0 !important;
-            bottom: 23% !important;
+            // bottom: 23% !important;
             z-index: 9999;
         }
     }
