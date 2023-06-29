@@ -32,10 +32,11 @@ const WeakStrong = ({ homeContent }) => {
                   <div
                     dangerouslySetInnerHTML={{
                       __html: homeContent?.section?.second?.description,
-                    }}></div>
+                    }}
+                  ></div>
                 )}
               </div>
-              <div className="col-sm-5">
+              <div className="col-sm-5 text-center">
                 {/* <img src={pro_bg2} className="weak_strongest_img_absolute" /> */}
                 {homeContent?.section?.second && (
                   <img

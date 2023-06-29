@@ -211,6 +211,11 @@ h2.title.title-center.ls-s.mb-8 {
   border-radius: 100%;
 }
 
+.weak_strongest_img_absolute
+{
+  width: 80%;
+}
+
 /* img.weak_strongest_img_absolute {
   width: 100%;
   content: "";
