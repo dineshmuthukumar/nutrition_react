@@ -100,13 +100,13 @@ const Banner = ({ bannerContent }) => {
                     {bannerContent?.map((BannerDetail, key) => {
                       if (!BannerDetail?.isMobile) {
                         return (
-                          <SwiperSlide className="swiperSlider" key={key}>
+                          <SwiperSlide className={`swiperSlider `} key={key}>
                             {" "}
                             {BannerDetail.categoryId ? (
                               <Link
-                                to={`/products/list/${BannerDetail.categoryId}`}>
+                                to={`/products/bannerlist/${BannerDetail._id}`}>
                                 <div
-                                  className={`intro-slide${key} banner banner-fixed`}>
+                                  className={`intro-slide${key} dews banner banner-fixed`}>
                                   <figure>
                                     <img
                                       src={`${BannerDetail?.image}`}
@@ -116,9 +116,10 @@ const Banner = ({ bannerContent }) => {
                                 </div>
                               </Link>
                             ) : (
-                              <Link>
+                              <Link
+                                to={`/products/bannerlist/${BannerDetail._id}`}>
                                 <div
-                                  className={`intro-slide${key} banner banner-fixed`}>
+                                  className={`intro-slide${key} bannerbanner banner-fixed`}>
                                   <figure>
                                     <img
                                       src={`${BannerDetail?.image}`}
@@ -163,9 +164,9 @@ const Banner = ({ bannerContent }) => {
                             {" "}
                             {BannerDetail.categoryId ? (
                               <Link
-                                to={`/products/list/${BannerDetail.categoryId}`}>
+                                to={`/products/bannerlist/${BannerDetail._id}`}>
                                 <div
-                                  className={`intro-slide${key} banner banner-fixed`}>
+                                  className={`intro-slide${key} /${BannerDetail._id} bannerbanner banner-fixed`}>
                                   <figure>
                                     <img
                                       src={`${BannerDetail?.image}`}
@@ -177,7 +178,7 @@ const Banner = ({ bannerContent }) => {
                             ) : (
                               <Link>
                                 <div
-                                  className={`intro-slide${key} banner banner-fixed`}>
+                                  className={`intro-slide${key} banner banner banner-fixed`}>
                                   <figure>
                                     <img
                                       src={`${BannerDetail?.image}`}

@@ -1,0 +1,58 @@
+.product.text-center.product-with-qty img {
+    min-height: 315px;
+    height: 315px;
+    object-fit: contain;
+}
+.product.text-center.product-with-qty {
+    margin-bottom: 20px;
+}
+.shop_filter input[type=radio]~label:before
+{
+    display: none;
+}
+.shop_filter input[type=radio]~label:after
+{
+    display: none;
+}
+.shop_filter .form-label 
+{
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+input[type=radio]~label {
+    padding-left: 1rem;
+    padding-top: 0px;
+    font-size: 18px;
+}
+label.form-check-label
+{
+    padding-left: 1rem;
+    padding-top: 0px;
+    font-size: 18px;
+}
+.form-check-input 
+{
+    width: 1.5em;
+    height: 1.5em;
+}
+select.form-select
+{
+    min-height: 36px;
+    font-size: 16px;
+}
+
+.shop_filter
+{
+    .counter
+    {
+        .sub_category_list
+        {
+            display: flex;
+            @media (max-width: 576px)
+            {
+                display: block;
+                text-align: left;
+            }
+        }
+    }
+}

@@ -126,3 +126,6 @@ export const tournamentsApi = () => baseAxios.get("/tournaments");
 export const aboutusApi = () => baseAxios.get("/cms/page/aboutus");
 export const exploreApi = () => baseAxios.get("/cms/page/explore");
 export const dominanceApi = () => baseAxios.get("/cms/page/dominance");
+
+export const productListBannerApiwithpage = (page, bannerid) =>
+  baseAxios.get(`/product/list?page=${page}&bannerid=${bannerid}`);

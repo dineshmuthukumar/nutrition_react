@@ -44,6 +44,7 @@ const Terms = lazy(() => import("./pages/terms"));
 const Login = lazy(() => import("./pages/login"));
 const MyAccount = lazy(() => import("./pages/my-account"));
 const ProductList = lazy(() => import("./pages/productlist"));
+const Bannerlist = lazy(() => import("./pages/bannerlist"));
 const Checkout = lazy(() => import("./pages/checkout"));
 const Cms = lazy(() => import("./pages/cms"));
 const AboutUs = lazy(() => import("./pages/aboutus"));
@@ -251,6 +252,13 @@ const WebContainer = () => {
           path="/products/category/:categoryid?"
           component={ProductList}
         />
+
+        <Route
+          exact
+          path="/products/bannerlist/:categoryid?"
+          component={Bannerlist}
+        />
+
         {/* <Route exact path="/category/:slug?" component={ProductList} /> */}
         <Route exact path="/products/:subcategoryid" component={ProductList} />
         <Route exact path="/products" component={ProductList} />

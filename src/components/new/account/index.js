@@ -210,11 +210,11 @@ const Accountcomponent = () => {
       c_validation = { ...c_validation, valid_dob: false };
     }
 
-    if (!profile.gender) {
-      c_validation = { ...c_validation, gender: true };
-    } else {
-      c_validation = { ...c_validation, valid_gender: false };
-    }
+    // if (!profile.gender) {
+    //   c_validation = { ...c_validation, gender: true };
+    // } else {
+    //   c_validation = { ...c_validation, valid_gender: false };
+    // }
 
     setProfileValidation(c_validation);
     if (
@@ -223,9 +223,7 @@ const Accountcomponent = () => {
       !c_validation.email &&
       !c_validation.valid_email &&
       !c_validation.dob &&
-      !c_validation.valid_dob &&
-      !c_validation.gender &&
-      !c_validation.valid_gender
+      !c_validation.valid_dob
     ) {
       return true;
     } else {
@@ -605,7 +603,7 @@ const Accountcomponent = () => {
                           )}
                         </Form>
                       </Col>
-                      <Col sm={4}>
+                      {/* <Col sm={4}>
                         <Form className="gender_list">
                           <Form.Label>Gender</Form.Label>
                           {["radio"].map((type) => (
@@ -640,7 +638,7 @@ const Accountcomponent = () => {
                             <p className="error_text">Please select Gender</p>
                           )}
                         </Form>
-                      </Col>
+                      </Col> */}
                     </Row>
                     {/* <Row>
                       <Col className="py-4">
