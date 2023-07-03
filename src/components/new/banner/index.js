@@ -92,7 +92,8 @@ const Banner = ({ bannerContent }) => {
             //pagination={{ clickable: true }}
             autoplay={{ delay: 100, disableOnInteraction: true }}
             speed={500}
-            loop>
+            loop
+          >
             {(() => {
               if (bannerContent?.length > 0) {
                 return (
@@ -104,9 +105,11 @@ const Banner = ({ bannerContent }) => {
                             {" "}
                             {BannerDetail.categoryId ? (
                               <Link
-                                to={`/products/bannerlist/${BannerDetail._id}`}>
+                                to={`/products/bannerlist/${BannerDetail._id}`}
+                              >
                                 <div
-                                  className={`intro-slide${key} dews banner banner-fixed`}>
+                                  className={`intro-slide${key} dews banner banner-fixed`}
+                                >
                                   <figure>
                                     <img
                                       src={`${BannerDetail?.image}`}
@@ -117,9 +120,11 @@ const Banner = ({ bannerContent }) => {
                               </Link>
                             ) : (
                               <Link
-                                to={`/products/bannerlist/${BannerDetail._id}`}>
+                                to={`/products/bannerlist/${BannerDetail._id}`}
+                              >
                                 <div
-                                  className={`intro-slide${key} bannerbanner banner-fixed`}>
+                                  className={`intro-slide${key} bannerbanner banner-fixed`}
+                                >
                                   <figure>
                                     <img
                                       src={`${BannerDetail?.image}`}
@@ -152,7 +157,8 @@ const Banner = ({ bannerContent }) => {
             //pagination={{ clickable: true }}
             autoplay={{ delay: 100, disableOnInteraction: true }}
             speed={500}
-            loop>
+            loop
+          >
             {(() => {
               if (bannerContent?.length > 0) {
                 return (
@@ -164,9 +170,11 @@ const Banner = ({ bannerContent }) => {
                             {" "}
                             {BannerDetail.categoryId ? (
                               <Link
-                                to={`/products/bannerlist/${BannerDetail._id}`}>
+                                to={`/products/bannerlist/${BannerDetail._id}`}
+                              >
                                 <div
-                                  className={`intro-slide${key} /${BannerDetail._id} bannerbanner banner-fixed`}>
+                                  className={`intro-slide${key} /${BannerDetail._id} bannerbanner banner-fixed`}
+                                >
                                   <figure>
                                     <img
                                       src={`${BannerDetail?.image}`}
@@ -176,9 +184,12 @@ const Banner = ({ bannerContent }) => {
                                 </div>
                               </Link>
                             ) : (
-                              <Link>
+                              <Link
+                                to={`/products/bannerlist/${BannerDetail._id}`}
+                              >
                                 <div
-                                  className={`intro-slide${key} banner banner banner-fixed`}>
+                                  className={`intro-slide${key} banner banner banner-fixed`}
+                                >
                                   <figure>
                                     <img
                                       src={`${BannerDetail?.image}`}
