@@ -20,9 +20,7 @@ const Content = ({ data = {}, variant = "content", className = "" }) => (
         {/* <p>{`${data?.description}`}</p> */}
       </div>
     )}
-    {data?.image && (
-      <img src={`https://admin.livenscience.com${data?.image}`}></img>
-    )}
+    {data?.image && <img src={`${data?.image}`}></img>}
   </div>
 );
 
