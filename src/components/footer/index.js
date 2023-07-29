@@ -408,7 +408,7 @@ const Footer = () => {
                     <li>
                       <Link to="/blog">Blog</Link>
                     </li>
-                    {footerDetails?.length > 0 &&
+                    {/* {footerDetails?.length > 0 &&
                       footerDetails?.map((obj, index) => {
                         if (obj.url == "Consult") {
                           return (
@@ -419,20 +419,18 @@ const Footer = () => {
                             </li>
                           );
                         }
-                      })}
+                      })} */}
                     {footerDetails?.length > 0 &&
                       footerDetails?.map((obj, index) => {
-                        if (obj.url == "testimonial") {
-                          return (
-                            <li>
-                              <Link to={`/pages/${obj?.url}`}>
-                                {obj?.title}
-                              </Link>
-                            </li>
-                          );
-                        }
+                        // if (obj.url == "testimonial") {
+                        return (
+                          <li>
+                            <Link to={`/pages/${obj?.url}`}>{obj?.title}</Link>
+                          </li>
+                        );
+                        // }
                       })}
-                    {footerDetails?.length > 0 &&
+                    {/* {footerDetails?.length > 0 &&
                       footerDetails?.map((obj, index) => {
                         if (obj.url == "privacy") {
                           return (
@@ -443,8 +441,8 @@ const Footer = () => {
                             </li>
                           );
                         }
-                      })}
-                    {footerDetails?.length > 0 &&
+                      })} */}
+                    {/* {footerDetails?.length > 0 &&
                       footerDetails?.map((obj, index) => {
                         if (obj.url == "terms") {
                           return (
@@ -455,8 +453,8 @@ const Footer = () => {
                             </li>
                           );
                         }
-                      })}
-                    {footerDetails?.length > 0 &&
+                      })} */}
+                    {/* {footerDetails?.length > 0 &&
                       footerDetails?.map((obj, index) => {
                         if (obj.url == "refund") {
                           return (
@@ -467,8 +465,8 @@ const Footer = () => {
                             </li>
                           );
                         }
-                      })}
-                    {footerDetails?.length > 0 &&
+                      })} */}
+                    {/* {footerDetails?.length > 0 &&
                       footerDetails?.map((obj, index) => {
                         if (obj.url == "disclaimer") {
                           return (
@@ -479,8 +477,8 @@ const Footer = () => {
                             </li>
                           );
                         }
-                      })}
-                    {footerDetails?.length > 0 &&
+                      })} */}
+                    {/* {footerDetails?.length > 0 &&
                       footerDetails?.map((obj, index) => {
                         if (obj.url == "contactUs") {
                           return (
@@ -491,7 +489,7 @@ const Footer = () => {
                             </li>
                           );
                         }
-                      })}
+                      })} */}
                   </ul>
                 </div>
               </div>
