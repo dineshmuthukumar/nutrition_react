@@ -167,7 +167,9 @@ const NewHome = () => {
       />
       <main className="main home">
         <div className="page-content">
-          <Banner bannerContent={homeContent?.banner} />
+          {homeContent?.banner?.length > 0 && (
+            <Banner bannerContent={homeContent?.banner} />
+          )}
           <FeatureProduct
             featureProductsContent={homeContent?.featureProducts}
           />

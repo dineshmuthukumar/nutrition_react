@@ -75,26 +75,23 @@ const CheckoutSection = ({ orderInfo, loading }) => {
 
   const [promoCodeValue, setPromoCodeValue] = useState("");
   const [footerDetails, setFooterDetails] = useState({});
-
-  const [profile, setProfile] = useState({
-    name: user?.data?.name,
-    email: user?.data?.email,
-  });
-
   const [profileValidation, setProfileValidation] = useState({
     name: false,
     valid_name: false,
     email: false,
     valid_email: false,
   });
-
-  const [address, setAddress] = useState({
-    address: user?.data?.address,
-    city: user?.data?.city?._id,
-    state: user?.data?.state?._id,
-    pincode: user?.data?.zipCode,
+  const [profile, setProfile] = useState({
+    name: "",
+    email: "",
   });
 
+  const [address, setAddress] = useState({
+    address: user?.data?.address ? user?.data?.address : "",
+    city: user?.data?.city?._id ? user?.data?.city?._id : "",
+    state: user?.data?.state?._id ? user?.data?.state?._id : "",
+    pincode: user?.data?.zipCode ? user?.data?.zipCode : "",
+  });
   const [addressValidation, setAddressValidation] = useState({
     address: false,
     valid_address: false,
@@ -134,6 +131,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
       clearInterval(myInterval);
     };
   });
+
   const getcmsPages = async () => {
     try {
       const result = await cmsPages();
@@ -178,6 +176,13 @@ const CheckoutSection = ({ orderInfo, loading }) => {
   useEffect(() => {
     refreshData();
   }, [cart]);
+
+  useEffect(() => {
+    setProfile({
+      name: user?.data?.name ? user?.data?.name : "",
+      email: user?.data?.email ? user?.data?.email : "",
+    });
+  }, [user]);
 
   const refreshData = () => {
     if (user?.login) {
@@ -690,7 +695,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                   </div> */}
 
                 {/* New Address Section Start */}
-                {cart?.data?.cart.length > 0 && (
+                {cart?.data?.cart?.length > 0 && (
                   <>
                     <div className="row">
                       <div className="col-sm-12">
@@ -706,8 +711,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                           <li>
                             <i
                               className="fa fa-envelope"
-                              aria-hidden="true"
-                            ></i>{" "}
+                              aria-hidden="true"></i>{" "}
                             {user?.data?.email}
                           </li>
                           <li>
@@ -716,8 +720,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                               href="#"
                               onClick={() =>
                                 setShowAddressSection(!showAddressSection)
-                              }
-                            >
+                              }>
                               Changes
                             </button>
                           </li>
@@ -730,8 +733,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                         showAddressSection
                           ? "show-address-section"
                           : "hide-address-section"
-                      }`}
-                    >
+                      }`}>
                       <div className="col-sm-12">
                         <h1 className="address_user">Edit Address</h1>
                         <hr></hr>
@@ -740,8 +742,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                             <Form>
                               <Form.Group
                                 className="mb-3"
-                                controlId="exampleForm.ControlInput1"
-                              >
+                                controlId="exampleForm.ControlInput1">
                                 {/* <Form.Label>Name</Form.Label> */}
                                 {/* <Form.Control
                                 type="text"
@@ -769,8 +770,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                             <Form>
                               <Form.Group
                                 className="mb-3"
-                                controlId="exampleForm.ControlInput1"
-                              >
+                                controlId="exampleForm.ControlInput1">
                                 <InputText
                                   title={"Email"}
                                   name="email"
@@ -792,8 +792,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                             <Form>
                               <Form.Group
                                 className="mb-3"
-                                controlId="exampleForm.ControlInput1"
-                              >
+                                controlId="exampleForm.ControlInput1">
                                 <InputPhone
                                   title={"Mobile"}
                                   defaultCountry={"+91"}
@@ -829,8 +828,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                             <Form>
                               <Form.Group
                                 className="mb-3"
-                                controlId="exampleForm.ControlTextarea1 "
-                              >
+                                controlId="exampleForm.ControlTextarea1 ">
                                 <Form.Label>Address</Form.Label>
                                 <Form.Control
                                   as="textarea"
@@ -947,8 +945,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                             <Form>
                               <Form.Group
                                 className="mb-3"
-                                controlId="exampleForm.ControlInput1"
-                              >
+                                controlId="exampleForm.ControlInput1">
                                 {/* <Form.Label>Pincode</Form.Label>
                               <Form.Control type="text" placeholder="name" /> */}
                                 <InputText
@@ -968,8 +965,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                           <Col className="py-4">
                             <button
                               className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
-                              onClick={() => handleProfileAddressForm()}
-                            >
+                              onClick={() => handleProfileAddressForm()}>
                               SAVE
                             </button>
                           </Col>
@@ -981,8 +977,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                       <div
                         dangerouslySetInnerHTML={{
                           __html: cart?.data?.cartSetting?.checkoutContent1,
-                        }}
-                      ></div>
+                        }}></div>
                       {/* <span className="text-bold">Great Job! </span>
                       You're Taking First step towards a better you! */}
                     </p>
@@ -990,8 +985,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                       <div
                         dangerouslySetInnerHTML={{
                           __html: cart?.data?.cartSetting?.checkoutContent2,
-                        }}
-                      ></div>
+                        }}></div>
                       {/* <div> */}
                       {minutes === 0 && seconds === 0 ? null : (
                         <>
@@ -1102,8 +1096,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                                           dispatch(
                                             remove_from_cart_thunk(item?._id)
                                           )
-                                        }
-                                      >
+                                        }>
                                         <MdRemoveCircle
                                           size={30}
                                           style={{ cursor: "pointer" }}
@@ -1125,8 +1118,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                                 dangerouslySetInnerHTML={{
                                   __html:
                                     cart?.data?.cartSetting?.checkoutContent3,
-                                }}
-                              ></div>
+                                }}></div>
                             ) : (
                               <>
                                 After Your trial period has expired you will be
@@ -1275,7 +1267,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                       : "No Items Found"}
 
                     {(() => {
-                      if (cart?.data?.cartProductDetails.length > 0) {
+                      if (cart?.data?.cartProductDetails?.length > 0) {
                         if (isFreeProduct) {
                           return (
                             <li className="list-group-item">
@@ -1374,7 +1366,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                   </ul>
                   <div className="panel-footer">
                     <ul className="list-group list-group-flush">
-                      {cart?.data?.cart.length > 0 && (
+                      {cart?.data?.cart?.length > 0 && (
                         <li className="list-group-item">
                           <h5>
                             Total Amount
@@ -1397,7 +1389,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                           <Form.Control type="text" placeholder="name" />
                         </Form.Group>
                       </div> */}
-                      {cart?.data?.cart.length > 0 && (
+                      {cart?.data?.cart?.length > 0 && (
                         <div className="cart-actions-right">
                           <div
                             className="btn btn-dark btn-md btn-rounded btn-icon-left mt-4 mb-4"
@@ -1405,8 +1397,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                               setCouponShow(true);
                               setPromoError(false);
                               setPromoCodeValue("");
-                            }}
-                          >
+                            }}>
                             Apply Coupons
                           </div>
                         </div>
@@ -1427,8 +1418,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                                   <Link // to="#"
                                     onClick={() => open()}
                                     disabled={checkoutLoading}
-                                    className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
-                                  >
+                                    className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4">
                                     {!checkoutLoading ? (
                                       <>
                                         Continue to pay{" "}
@@ -1442,8 +1432,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                                   <Link
                                     // to="#"
                                     onClick={(e) => UpdateAddress(e)}
-                                    className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
-                                  >
+                                    className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4">
                                     Continue to pay{" "}
                                     <i className="d-icon-arrow-right"></i>
                                   </Link>
@@ -1454,8 +1443,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                             return (
                               <Link
                                 to="/"
-                                className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
-                              >
+                                className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4">
                                 Back
                               </Link>
                             );
@@ -1515,16 +1503,14 @@ const CheckoutSection = ({ orderInfo, loading }) => {
           <div className="sucss-cont">
             <img
               src="https://uxwing.com/wp-content/themes/uxwing/download/checkmark-cross/success-green-check-mark-icon.png"
-              className="sucess_img"
-            ></img>
+              className="sucess_img"></img>
             <p>Thanks for you ordered product.</p>
           </div>
         </Modal.Body>
         <Modal.Footer className="mt-4 mb-4">
           <Button
             variant="primary"
-            onClick={() => history.push("/accounts?defaultkey=first")}
-          >
+            onClick={() => history.push("/accounts?defaultkey=first")}>
             Ok
           </Button>
         </Modal.Footer>
@@ -1535,8 +1521,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
         onHide={() => {
           setCouponShow(!couponShow);
           setPromoError(false);
-        }}
-      >
+        }}>
         <Modal.Header closeButton>
           <Modal.Title className="text-center">Apply Promocode</Modal.Title>
         </Modal.Header>
@@ -1550,8 +1535,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                     <div className="col-sm-4">
                       <Form.Group
                         className="mb-3"
-                        controlId="exampleForm.ControlInput1"
-                      >
+                        controlId="exampleForm.ControlInput1">
                         <Form.Control
                           type="text"
                           placeholder="name"
@@ -1566,8 +1550,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                     <div className="col-sm-3">
                       <button
                         className="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"
-                        onClick={(e) => applypromocode(e)}
-                      >
+                        onClick={(e) => applypromocode(e)}>
                         Apply Promocode <i className="d-icon-arrow-right"></i>
                       </button>
                     </div>
@@ -1612,8 +1595,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
                                         id="cpnBtn"
                                         onClick={() =>
                                           handleCopy(promocodes?.promo)
-                                        }
-                                      >
+                                        }>
                                         Copy Code
                                       </span>
                                     </di>
@@ -1645,8 +1627,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
             onClick={() => {
               setCouponShow(false);
               setPromoError(false);
-            }}
-          >
+            }}>
             Close
           </Button>
           {/* <Button variant="primary" onClick={() => history.push("/accounts")}>

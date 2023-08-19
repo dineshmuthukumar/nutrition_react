@@ -83,6 +83,7 @@ const Header = ({
   const t = useTranslation();
   const dispatch = useDispatch();
   const location = useLocation();
+  const [explore, setExplore] = useState(false);
   const { user, cart } = useSelector((state) => state);
   // console.log(user, "user");
 
@@ -985,7 +986,9 @@ const Header = ({
                                   if (obj.url == "exploreLiven") {
                                     return (
                                       <li>
-                                        <Link to={`explore`}>{obj?.title}</Link>
+                                        <Link to={`/explore`}>
+                                          {obj?.title}
+                                        </Link>
                                       </li>
                                     );
                                   }
@@ -1549,10 +1552,10 @@ const Header = ({
           <div className="search-container">
             <input
               type="text"
-              class="form-control "
+              className="form-control "
               name="search"
               value={search ? search : ""}
-              autocomplete="off"
+              autoComplete="off"
               placeholder="Search your keyword..."
               onChange={onSearchMobile}
               required=""></input>
@@ -1627,7 +1630,7 @@ const Header = ({
                                   ? "submenu"
                                   : ""
                               }`}>
-                              <div class="mmobile-menu">
+                              <div className="mmobile-menu">
                                 <a
                                   className="d-flex justify-content-between"
                                   href={`/products/category/${CategoriesDetail?.slug}`}>
@@ -1785,6 +1788,45 @@ const Header = ({
                 </li>
               </ul>
             </li> */}
+            <li>
+              <div className="d-flex justify-content-between">
+                Invent{" "}
+                {explore ? (
+                  <AiOutlineArrowDown onClick={() => setExplore(false)} />
+                ) : (
+                  <AiOutlineArrowUp onClick={() => setExplore(true)} />
+                )}
+              </div>
+              <ul className={`${explore ? "page-active" : ""}`}>
+                {/* {footerDetails?.length > 0 &&
+                  footerDetails?.map((obj, index) => {
+                    if (obj.url == "exploreLiven") {
+                      return (
+                        <li>
+                          <Link to={`explore`}>{obj?.title}</Link>
+                        </li>
+                      );
+                    }
+                  })}
+                {footerDetails?.length > 0 &&
+                  footerDetails?.map((obj, index) => {
+                    if (obj.url == "livenDominance") {
+                      return (
+                        <li>
+                          <Link to={`/dominance`}>{obj?.title}</Link>
+                        </li>
+                      );
+                    }
+                  })} */}
+                <li>
+                  <Link to="/explore">Explore More</Link>
+                </li>
+                <li className="">
+                  {" "}
+                  <Link to="/dominance">Liven Dominance</Link>
+                </li>
+              </ul>
+            </li>
             <li>
               <div className="d-flex justify-content-between">
                 Pages{" "}
