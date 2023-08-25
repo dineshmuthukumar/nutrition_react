@@ -581,7 +581,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
     paymentObject.on("payment.failed", async function (response) {
       try {
         if (response?.error?.metadata?.order_id) {
-          const result = await OrdersFailedApi(response?.error?.metadata);
+          const result = await OrdersFailedApi(response?.error);
         }
         toast.error(response?.error?.description);
       } catch (err) {
