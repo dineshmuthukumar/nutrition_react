@@ -535,6 +535,7 @@ const CheckoutSection = ({ orderInfo, loading }) => {
       //entity: "subscription",
 
       handler: async function (response) {
+        debugger;
         let subid = "";
         //console.log(response, "response");
         let isSub = false;
@@ -579,10 +580,10 @@ const CheckoutSection = ({ orderInfo, loading }) => {
 
     paymentObject.on("payment.failed", async function (response) {
       try {
-        const result = await OrdersFailedApi(response);
-        //if (result?.data?.statusCode === 200) {
-        //console.log(result?.data, "results");
-        toast.error("Payment failed. Try again sometimes");
+        if (response?.error?.metadata?.order_id) {
+          const result = await OrdersFailedApi(response?.error?.metadata);
+        }
+        toast.error(response?.error?.description);
       } catch (err) {
         console.log(err, "erro");
         toast.error(err?.data?.message);
